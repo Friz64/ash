@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display.html) · Extension `VK_KHR_display`
 #![doc(alias = "VK_KHR_display")]
+pub const SPEC_VERSION: u32 = 23;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_display";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_display_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceDisplayPropertiesKHR,
@@ -774,7 +776,5 @@ pub(crate) mod reexport {
         p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
-    pub const KHR_DISPLAY_SPEC_VERSION: u32 = 23;
-    pub const KHR_DISPLAY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_display";
 }
 pub use reexport::*;

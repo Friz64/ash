@@ -2,247 +2,254 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_blend_operation_advanced.html) · Extension `VK_EXT_blend_operation_advanced`
 #![doc(alias = "VK_EXT_blend_operation_advanced")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub advanced_blend_coherent_operations: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            advanced_blend_coherent_operations: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_blend_operation_advanced";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub advanced_blend_coherent_operations: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                advanced_blend_coherent_operations: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
-    pub fn advanced_blend_coherent_operations(
-        mut self,
-        advanced_blend_coherent_operations: bool,
-    ) -> Self {
-        self.advanced_blend_coherent_operations = advanced_blend_coherent_operations
-            .into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub advanced_blend_max_color_attachments: u32,
-    pub advanced_blend_independent_blend: crate::vk::Bool32,
-    pub advanced_blend_non_premultiplied_src_color: crate::vk::Bool32,
-    pub advanced_blend_non_premultiplied_dst_color: crate::vk::Bool32,
-    pub advanced_blend_correlated_overlap: crate::vk::Bool32,
-    pub advanced_blend_all_operations: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
-for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            advanced_blend_max_color_attachments: Default::default(),
-            advanced_blend_independent_blend: Default::default(),
-            advanced_blend_non_premultiplied_src_color: Default::default(),
-            advanced_blend_non_premultiplied_dst_color: Default::default(),
-            advanced_blend_correlated_overlap: Default::default(),
-            advanced_blend_all_operations: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
+        pub fn advanced_blend_coherent_operations(
+            mut self,
+            advanced_blend_coherent_operations: bool,
+        ) -> Self {
+            self.advanced_blend_coherent_operations = advanced_blend_coherent_operations
+                .into();
+            self
         }
     }
-}
-impl<'a> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
-    pub fn advanced_blend_max_color_attachments(
-        mut self,
-        advanced_blend_max_color_attachments: u32,
-    ) -> Self {
-        self.advanced_blend_max_color_attachments = advanced_blend_max_color_attachments;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub advanced_blend_max_color_attachments: u32,
+        pub advanced_blend_independent_blend: crate::vk::Bool32,
+        pub advanced_blend_non_premultiplied_src_color: crate::vk::Bool32,
+        pub advanced_blend_non_premultiplied_dst_color: crate::vk::Bool32,
+        pub advanced_blend_correlated_overlap: crate::vk::Bool32,
+        pub advanced_blend_all_operations: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub fn advanced_blend_independent_blend(
-        mut self,
-        advanced_blend_independent_blend: bool,
-    ) -> Self {
-        self.advanced_blend_independent_blend = advanced_blend_independent_blend.into();
-        self
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT;
     }
-    pub fn advanced_blend_non_premultiplied_src_color(
-        mut self,
-        advanced_blend_non_premultiplied_src_color: bool,
-    ) -> Self {
-        self.advanced_blend_non_premultiplied_src_color = advanced_blend_non_premultiplied_src_color
-            .into();
-        self
-    }
-    pub fn advanced_blend_non_premultiplied_dst_color(
-        mut self,
-        advanced_blend_non_premultiplied_dst_color: bool,
-    ) -> Self {
-        self.advanced_blend_non_premultiplied_dst_color = advanced_blend_non_premultiplied_dst_color
-            .into();
-        self
-    }
-    pub fn advanced_blend_correlated_overlap(
-        mut self,
-        advanced_blend_correlated_overlap: bool,
-    ) -> Self {
-        self.advanced_blend_correlated_overlap = advanced_blend_correlated_overlap
-            .into();
-        self
-    }
-    pub fn advanced_blend_all_operations(
-        mut self,
-        advanced_blend_all_operations: bool,
-    ) -> Self {
-        self.advanced_blend_all_operations = advanced_blend_all_operations.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub src_premultiplied: crate::vk::Bool32,
-    pub dst_premultiplied: crate::vk::Bool32,
-    pub blend_overlap: crate::vk::BlendOverlapEXT,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PipelineColorBlendStateCreateInfo<'_>>
-for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {}
-impl<'a> Default for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            src_premultiplied: Default::default(),
-            dst_premultiplied: Default::default(),
-            blend_overlap: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                advanced_blend_max_color_attachments: Default::default(),
+                advanced_blend_independent_blend: Default::default(),
+                advanced_blend_non_premultiplied_src_color: Default::default(),
+                advanced_blend_non_premultiplied_dst_color: Default::default(),
+                advanced_blend_correlated_overlap: Default::default(),
+                advanced_blend_all_operations: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
-    pub fn src_premultiplied(mut self, src_premultiplied: bool) -> Self {
-        self.src_premultiplied = src_premultiplied.into();
-        self
+    impl<'a> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
+        pub fn advanced_blend_max_color_attachments(
+            mut self,
+            advanced_blend_max_color_attachments: u32,
+        ) -> Self {
+            self.advanced_blend_max_color_attachments = advanced_blend_max_color_attachments;
+            self
+        }
+        pub fn advanced_blend_independent_blend(
+            mut self,
+            advanced_blend_independent_blend: bool,
+        ) -> Self {
+            self.advanced_blend_independent_blend = advanced_blend_independent_blend
+                .into();
+            self
+        }
+        pub fn advanced_blend_non_premultiplied_src_color(
+            mut self,
+            advanced_blend_non_premultiplied_src_color: bool,
+        ) -> Self {
+            self.advanced_blend_non_premultiplied_src_color = advanced_blend_non_premultiplied_src_color
+                .into();
+            self
+        }
+        pub fn advanced_blend_non_premultiplied_dst_color(
+            mut self,
+            advanced_blend_non_premultiplied_dst_color: bool,
+        ) -> Self {
+            self.advanced_blend_non_premultiplied_dst_color = advanced_blend_non_premultiplied_dst_color
+                .into();
+            self
+        }
+        pub fn advanced_blend_correlated_overlap(
+            mut self,
+            advanced_blend_correlated_overlap: bool,
+        ) -> Self {
+            self.advanced_blend_correlated_overlap = advanced_blend_correlated_overlap
+                .into();
+            self
+        }
+        pub fn advanced_blend_all_operations(
+            mut self,
+            advanced_blend_all_operations: bool,
+        ) -> Self {
+            self.advanced_blend_all_operations = advanced_blend_all_operations.into();
+            self
+        }
     }
-    pub fn dst_premultiplied(mut self, dst_premultiplied: bool) -> Self {
-        self.dst_premultiplied = dst_premultiplied.into();
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub src_premultiplied: crate::vk::Bool32,
+        pub dst_premultiplied: crate::vk::Bool32,
+        pub blend_overlap: crate::vk::BlendOverlapEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub fn blend_overlap(mut self, blend_overlap: crate::vk::BlendOverlapEXT) -> Self {
-        self.blend_overlap = blend_overlap;
-        self
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineColorBlendStateCreateInfo<'_>>
+    for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {}
+    impl<'a> Default for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                src_premultiplied: Default::default(),
+                dst_premultiplied: Default::default(),
+                blend_overlap: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
+        pub fn src_premultiplied(mut self, src_premultiplied: bool) -> Self {
+            self.src_premultiplied = src_premultiplied.into();
+            self
+        }
+        pub fn dst_premultiplied(mut self, dst_premultiplied: bool) -> Self {
+            self.dst_premultiplied = dst_premultiplied.into();
+            self
+        }
+        pub fn blend_overlap(
+            mut self,
+            blend_overlap: crate::vk::BlendOverlapEXT,
+        ) -> Self {
+            self.blend_overlap = blend_overlap;
+            self
+        }
+    }
+    ///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
+    impl crate::vk::BlendOp {
+        pub const ZERO_EXT: Self = Self(1000148000);
+        pub const SRC_EXT: Self = Self(1000148001);
+        pub const DST_EXT: Self = Self(1000148002);
+        pub const SRC_OVER_EXT: Self = Self(1000148003);
+        pub const DST_OVER_EXT: Self = Self(1000148004);
+        pub const SRC_IN_EXT: Self = Self(1000148005);
+        pub const DST_IN_EXT: Self = Self(1000148006);
+        pub const SRC_OUT_EXT: Self = Self(1000148007);
+        pub const DST_OUT_EXT: Self = Self(1000148008);
+        pub const SRC_ATOP_EXT: Self = Self(1000148009);
+        pub const DST_ATOP_EXT: Self = Self(1000148010);
+        pub const XOR_EXT: Self = Self(1000148011);
+        pub const MULTIPLY_EXT: Self = Self(1000148012);
+        pub const SCREEN_EXT: Self = Self(1000148013);
+        pub const OVERLAY_EXT: Self = Self(1000148014);
+        pub const DARKEN_EXT: Self = Self(1000148015);
+        pub const LIGHTEN_EXT: Self = Self(1000148016);
+        pub const COLORDODGE_EXT: Self = Self(1000148017);
+        pub const COLORBURN_EXT: Self = Self(1000148018);
+        pub const HARDLIGHT_EXT: Self = Self(1000148019);
+        pub const SOFTLIGHT_EXT: Self = Self(1000148020);
+        pub const DIFFERENCE_EXT: Self = Self(1000148021);
+        pub const EXCLUSION_EXT: Self = Self(1000148022);
+        pub const INVERT_EXT: Self = Self(1000148023);
+        pub const INVERT_RGB_EXT: Self = Self(1000148024);
+        pub const LINEARDODGE_EXT: Self = Self(1000148025);
+        pub const LINEARBURN_EXT: Self = Self(1000148026);
+        pub const VIVIDLIGHT_EXT: Self = Self(1000148027);
+        pub const LINEARLIGHT_EXT: Self = Self(1000148028);
+        pub const PINLIGHT_EXT: Self = Self(1000148029);
+        pub const HARDMIX_EXT: Self = Self(1000148030);
+        pub const HSL_HUE_EXT: Self = Self(1000148031);
+        pub const HSL_SATURATION_EXT: Self = Self(1000148032);
+        pub const HSL_COLOR_EXT: Self = Self(1000148033);
+        pub const HSL_LUMINOSITY_EXT: Self = Self(1000148034);
+        pub const PLUS_EXT: Self = Self(1000148035);
+        pub const PLUS_CLAMPED_EXT: Self = Self(1000148036);
+        pub const PLUS_CLAMPED_ALPHA_EXT: Self = Self(1000148037);
+        pub const PLUS_DARKER_EXT: Self = Self(1000148038);
+        pub const MINUS_EXT: Self = Self(1000148039);
+        pub const MINUS_CLAMPED_EXT: Self = Self(1000148040);
+        pub const CONTRAST_EXT: Self = Self(1000148041);
+        pub const INVERT_OVG_EXT: Self = Self(1000148042);
+        pub const RED_EXT: Self = Self(1000148043);
+        pub const GREEN_EXT: Self = Self(1000148044);
+        pub const BLUE_EXT: Self = Self(1000148045);
+    }
+    ///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT: Self = Self(
+            1000148000,
+        );
+        pub const PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT: Self = Self(
+            1000148001,
+        );
+        pub const PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT: Self = Self(
+            1000148002,
+        );
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct BlendOverlapEXT(pub(crate) i32);
+    ///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
+    impl BlendOverlapEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const UNCORRELATED_EXT: Self = Self(0);
+        pub const DISJOINT_EXT: Self = Self(1);
+        pub const CONJOINT_EXT: Self = Self(2);
+    }
+    ///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
+    impl crate::vk::AccessFlagBits {
+        pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(1 << 19);
     }
 }
-///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
-impl crate::vk::BlendOp {
-    pub const ZERO_EXT: Self = Self(1000148000);
-    pub const SRC_EXT: Self = Self(1000148001);
-    pub const DST_EXT: Self = Self(1000148002);
-    pub const SRC_OVER_EXT: Self = Self(1000148003);
-    pub const DST_OVER_EXT: Self = Self(1000148004);
-    pub const SRC_IN_EXT: Self = Self(1000148005);
-    pub const DST_IN_EXT: Self = Self(1000148006);
-    pub const SRC_OUT_EXT: Self = Self(1000148007);
-    pub const DST_OUT_EXT: Self = Self(1000148008);
-    pub const SRC_ATOP_EXT: Self = Self(1000148009);
-    pub const DST_ATOP_EXT: Self = Self(1000148010);
-    pub const XOR_EXT: Self = Self(1000148011);
-    pub const MULTIPLY_EXT: Self = Self(1000148012);
-    pub const SCREEN_EXT: Self = Self(1000148013);
-    pub const OVERLAY_EXT: Self = Self(1000148014);
-    pub const DARKEN_EXT: Self = Self(1000148015);
-    pub const LIGHTEN_EXT: Self = Self(1000148016);
-    pub const COLORDODGE_EXT: Self = Self(1000148017);
-    pub const COLORBURN_EXT: Self = Self(1000148018);
-    pub const HARDLIGHT_EXT: Self = Self(1000148019);
-    pub const SOFTLIGHT_EXT: Self = Self(1000148020);
-    pub const DIFFERENCE_EXT: Self = Self(1000148021);
-    pub const EXCLUSION_EXT: Self = Self(1000148022);
-    pub const INVERT_EXT: Self = Self(1000148023);
-    pub const INVERT_RGB_EXT: Self = Self(1000148024);
-    pub const LINEARDODGE_EXT: Self = Self(1000148025);
-    pub const LINEARBURN_EXT: Self = Self(1000148026);
-    pub const VIVIDLIGHT_EXT: Self = Self(1000148027);
-    pub const LINEARLIGHT_EXT: Self = Self(1000148028);
-    pub const PINLIGHT_EXT: Self = Self(1000148029);
-    pub const HARDMIX_EXT: Self = Self(1000148030);
-    pub const HSL_HUE_EXT: Self = Self(1000148031);
-    pub const HSL_SATURATION_EXT: Self = Self(1000148032);
-    pub const HSL_COLOR_EXT: Self = Self(1000148033);
-    pub const HSL_LUMINOSITY_EXT: Self = Self(1000148034);
-    pub const PLUS_EXT: Self = Self(1000148035);
-    pub const PLUS_CLAMPED_EXT: Self = Self(1000148036);
-    pub const PLUS_CLAMPED_ALPHA_EXT: Self = Self(1000148037);
-    pub const PLUS_DARKER_EXT: Self = Self(1000148038);
-    pub const MINUS_EXT: Self = Self(1000148039);
-    pub const MINUS_CLAMPED_EXT: Self = Self(1000148040);
-    pub const CONTRAST_EXT: Self = Self(1000148041);
-    pub const INVERT_OVG_EXT: Self = Self(1000148042);
-    pub const RED_EXT: Self = Self(1000148043);
-    pub const GREEN_EXT: Self = Self(1000148044);
-    pub const BLUE_EXT: Self = Self(1000148045);
-}
-///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT: Self = Self(
-        1000148000,
-    );
-    pub const PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT: Self = Self(
-        1000148001,
-    );
-    pub const PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT: Self = Self(
-        1000148002,
-    );
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct BlendOverlapEXT(pub(crate) i32);
-///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
-impl BlendOverlapEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const UNCORRELATED_EXT: Self = Self(0);
-    pub const DISJOINT_EXT: Self = Self(1);
-    pub const CONJOINT_EXT: Self = Self(2);
-}
-///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
-impl crate::vk::AccessFlagBits {
-    pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(1 << 19);
-}
-pub const EXT_BLEND_OPERATION_ADVANCED_SPEC_VERSION: u32 = 2;
-pub const EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_blend_operation_advanced";
+pub use reexport::*;

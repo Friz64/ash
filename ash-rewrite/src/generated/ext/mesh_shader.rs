@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_mesh_shader.html) · Extension `VK_EXT_mesh_shader`
 #![doc(alias = "VK_EXT_mesh_shader")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_mesh_shader";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_draw_mesh_tasks_ext: crate::vk::PFN_vkCmdDrawMeshTasksEXT,
@@ -507,7 +509,5 @@ pub(crate) mod reexport {
         max_draw_count: u32,
         stride: u32,
     );
-    pub const EXT_MESH_SHADER_SPEC_VERSION: u32 = 1;
-    pub const EXT_MESH_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_mesh_shader";
 }
 pub use reexport::*;

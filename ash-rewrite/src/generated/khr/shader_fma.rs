@@ -2,52 +2,56 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_fma.html) · Extension `VK_KHR_shader_fma`
 #![doc(alias = "VK_KHR_shader_fma")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderFmaFeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_fma_float16: crate::vk::Bool32,
-    pub shader_fma_float32: crate::vk::Bool32,
-    pub shader_fma_float64: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderFmaFeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderFmaFeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_fma_float16: Default::default(),
-            shader_fma_float32: Default::default(),
-            shader_fma_float64: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_fma";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderFmaFeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_fma_float16: crate::vk::Bool32,
+        pub shader_fma_float32: crate::vk::Bool32,
+        pub shader_fma_float64: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderFmaFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderFmaFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_fma_float16: Default::default(),
+                shader_fma_float32: Default::default(),
+                shader_fma_float64: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderFmaFeaturesKHR<'a> {
-    pub fn shader_fma_float16(mut self, shader_fma_float16: bool) -> Self {
-        self.shader_fma_float16 = shader_fma_float16.into();
-        self
+    impl<'a> PhysicalDeviceShaderFmaFeaturesKHR<'a> {
+        pub fn shader_fma_float16(mut self, shader_fma_float16: bool) -> Self {
+            self.shader_fma_float16 = shader_fma_float16.into();
+            self
+        }
+        pub fn shader_fma_float32(mut self, shader_fma_float32: bool) -> Self {
+            self.shader_fma_float32 = shader_fma_float32.into();
+            self
+        }
+        pub fn shader_fma_float64(mut self, shader_fma_float64: bool) -> Self {
+            self.shader_fma_float64 = shader_fma_float64.into();
+            self
+        }
     }
-    pub fn shader_fma_float32(mut self, shader_fma_float32: bool) -> Self {
-        self.shader_fma_float32 = shader_fma_float32.into();
-        self
-    }
-    pub fn shader_fma_float64(mut self, shader_fma_float64: bool) -> Self {
-        self.shader_fma_float64 = shader_fma_float64.into();
-        self
+    ///Provided by [`khr::shader_fma`](crate::khr::shader_fma)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR: Self = Self(1000579000);
     }
 }
-///Provided by [`khr::shader_fma`](crate::khr::shader_fma)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR: Self = Self(1000579000);
-}
-pub const KHR_SHADER_FMA_SPEC_VERSION: u32 = 1;
-pub const KHR_SHADER_FMA_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_fma";
+pub use reexport::*;

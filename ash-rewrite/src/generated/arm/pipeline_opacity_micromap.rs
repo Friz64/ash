@@ -2,43 +2,49 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_pipeline_opacity_micromap.html) · Extension `VK_ARM_pipeline_opacity_micromap`
 #![doc(alias = "VK_ARM_pipeline_opacity_micromap")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub pipeline_opacity_micromap: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {}
-impl<'a> Default for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            pipeline_opacity_micromap: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_pipeline_opacity_micromap";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub pipeline_opacity_micromap: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {}
+    impl<'a> Default for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_opacity_micromap: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
-    pub fn pipeline_opacity_micromap(mut self, pipeline_opacity_micromap: bool) -> Self {
-        self.pipeline_opacity_micromap = pipeline_opacity_micromap.into();
-        self
+    impl<'a> PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
+        pub fn pipeline_opacity_micromap(
+            mut self,
+            pipeline_opacity_micromap: bool,
+        ) -> Self {
+            self.pipeline_opacity_micromap = pipeline_opacity_micromap.into();
+            self
+        }
+    }
+    ///Provided by [`arm::pipeline_opacity_micromap`](crate::arm::pipeline_opacity_micromap)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM: Self = Self(
+            1000596000,
+        );
     }
 }
-///Provided by [`arm::pipeline_opacity_micromap`](crate::arm::pipeline_opacity_micromap)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM: Self = Self(
-        1000596000,
-    );
-}
-pub const ARM_PIPELINE_OPACITY_MICROMAP_SPEC_VERSION: u32 = 1;
-pub const ARM_PIPELINE_OPACITY_MICROMAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_pipeline_opacity_micromap";
+pub use reexport::*;

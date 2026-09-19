@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clamp_control.html) · Extension `VK_EXT_depth_clamp_control`
 #![doc(alias = "VK_EXT_depth_clamp_control")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_clamp_control";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_depth_clamp_range_ext: crate::vk::PFN_vkCmdSetDepthClampRangeEXT,
@@ -179,7 +181,5 @@ pub(crate) mod reexport {
         pub const VIEWPORT_RANGE_EXT: Self = Self(0);
         pub const USER_DEFINED_RANGE_EXT: Self = Self(1);
     }
-    pub const EXT_DEPTH_CLAMP_CONTROL_SPEC_VERSION: u32 = 1;
-    pub const EXT_DEPTH_CLAMP_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_clamp_control";
 }
 pub use reexport::*;

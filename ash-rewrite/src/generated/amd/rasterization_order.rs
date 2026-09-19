@@ -2,61 +2,64 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_rasterization_order.html) · Extension `VK_AMD_rasterization_order`
 #![doc(alias = "VK_AMD_rasterization_order")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PipelineRasterizationStateRasterizationOrderAMD<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub rasterization_order: crate::vk::RasterizationOrderAMD,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PipelineRasterizationStateRasterizationOrderAMD<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
-for PipelineRasterizationStateRasterizationOrderAMD<'a> {}
-impl<'a> Default for PipelineRasterizationStateRasterizationOrderAMD<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            rasterization_order: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_rasterization_order";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineRasterizationStateRasterizationOrderAMD<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub rasterization_order: crate::vk::RasterizationOrderAMD,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineRasterizationStateRasterizationOrderAMD<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+    for PipelineRasterizationStateRasterizationOrderAMD<'a> {}
+    impl<'a> Default for PipelineRasterizationStateRasterizationOrderAMD<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                rasterization_order: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PipelineRasterizationStateRasterizationOrderAMD<'a> {
-    pub fn rasterization_order(
-        mut self,
-        rasterization_order: crate::vk::RasterizationOrderAMD,
-    ) -> Self {
-        self.rasterization_order = rasterization_order;
-        self
+    impl<'a> PipelineRasterizationStateRasterizationOrderAMD<'a> {
+        pub fn rasterization_order(
+            mut self,
+            rasterization_order: crate::vk::RasterizationOrderAMD,
+        ) -> Self {
+            self.rasterization_order = rasterization_order;
+            self
+        }
+    }
+    ///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
+    impl crate::vk::StructureType {
+        pub const PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD: Self = Self(
+            1000018000,
+        );
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct RasterizationOrderAMD(pub(crate) i32);
+    ///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
+    impl RasterizationOrderAMD {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const STRICT_AMD: Self = Self(0);
+        pub const RELAXED_AMD: Self = Self(1);
     }
 }
-///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
-impl crate::vk::StructureType {
-    pub const PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD: Self = Self(
-        1000018000,
-    );
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct RasterizationOrderAMD(pub(crate) i32);
-///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
-impl RasterizationOrderAMD {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const STRICT_AMD: Self = Self(0);
-    pub const RELAXED_AMD: Self = Self(1);
-}
-pub const AMD_RASTERIZATION_ORDER_SPEC_VERSION: u32 = 1;
-pub const AMD_RASTERIZATION_ORDER_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_rasterization_order";
+pub use reexport::*;

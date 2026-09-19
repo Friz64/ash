@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GOOGLE_hlsl_functionality1.html) · Extension `VK_GOOGLE_hlsl_functionality1`
 #![doc(alias = "VK_GOOGLE_hlsl_functionality1")]
-pub const GOOGLE_HLSL_FUNCTIONALITY_1_SPEC_VERSION: u32 = 1;
-pub const GOOGLE_HLSL_FUNCTIONALITY_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_GOOGLE_hlsl_functionality1";
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_GOOGLE_hlsl_functionality1";

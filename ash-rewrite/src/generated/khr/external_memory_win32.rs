@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory_win32.html) · Extension `VK_KHR_external_memory_win32`
 #![doc(alias = "VK_KHR_external_memory_win32")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_external_memory_win32";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_memory_win32_handle_khr: crate::vk::PFN_vkGetMemoryWin32HandleKHR,
@@ -247,7 +249,5 @@ pub(crate) mod reexport {
             '_,
         >,
     ) -> crate::vk::Result;
-    pub const KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION: u32 = 1;
-    pub const KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_memory_win32";
 }
 pub use reexport::*;

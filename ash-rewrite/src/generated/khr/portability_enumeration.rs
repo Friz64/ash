@@ -2,9 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_portability_enumeration.html) · Extension `VK_KHR_portability_enumeration`
 #![doc(alias = "VK_KHR_portability_enumeration")]
-///Provided by [`khr::portability_enumeration`](crate::khr::portability_enumeration)
-impl crate::vk::InstanceCreateFlagBits {
-    pub const ENUMERATE_PORTABILITY_KHR: Self = Self(1 << 0);
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_portability_enumeration";
+pub(crate) mod reexport {
+    ///Provided by [`khr::portability_enumeration`](crate::khr::portability_enumeration)
+    impl crate::vk::InstanceCreateFlagBits {
+        pub const ENUMERATE_PORTABILITY_KHR: Self = Self(1 << 0);
+    }
 }
-pub const KHR_PORTABILITY_ENUMERATION_SPEC_VERSION: u32 = 1;
-pub const KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_portability_enumeration";
+pub use reexport::*;

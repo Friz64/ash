@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain.html) · Extension `VK_KHR_swapchain`
 #![doc(alias = "VK_KHR_swapchain")]
+pub const SPEC_VERSION: u32 = 70;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_swapchain";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_swapchain_khr: crate::vk::PFN_vkCreateSwapchainKHR,
@@ -931,7 +933,5 @@ pub(crate) mod reexport {
         p_rect_count: *mut u32,
         p_rects: *mut crate::vk::Rect2D,
     ) -> crate::vk::Result;
-    pub const KHR_SWAPCHAIN_SPEC_VERSION: u32 = 70;
-    pub const KHR_SWAPCHAIN_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_swapchain";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_subpass_shading.html) · Extension `VK_HUAWEI_subpass_shading`
 #![doc(alias = "VK_HUAWEI_subpass_shading")]
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_subpass_shading";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_device_subpass_shading_max_workgroup_size_huawei: crate::vk::PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI,
@@ -206,7 +208,5 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdSubpassShadingHUAWEI = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
     );
-    pub const HUAWEI_SUBPASS_SHADING_SPEC_VERSION: u32 = 3;
-    pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_subpass_shading";
 }
 pub use reexport::*;

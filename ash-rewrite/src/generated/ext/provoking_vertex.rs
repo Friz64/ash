@@ -2,149 +2,154 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_provoking_vertex.html) · Extension `VK_EXT_provoking_vertex`
 #![doc(alias = "VK_EXT_provoking_vertex")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub provoking_vertex_last: crate::vk::Bool32,
-    pub transform_feedback_preserves_provoking_vertex: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            provoking_vertex_last: Default::default(),
-            transform_feedback_preserves_provoking_vertex: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_provoking_vertex";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub provoking_vertex_last: crate::vk::Bool32,
+        pub transform_feedback_preserves_provoking_vertex: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                provoking_vertex_last: Default::default(),
+                transform_feedback_preserves_provoking_vertex: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
-    pub fn provoking_vertex_last(mut self, provoking_vertex_last: bool) -> Self {
-        self.provoking_vertex_last = provoking_vertex_last.into();
-        self
-    }
-    pub fn transform_feedback_preserves_provoking_vertex(
-        mut self,
-        transform_feedback_preserves_provoking_vertex: bool,
-    ) -> Self {
-        self.transform_feedback_preserves_provoking_vertex = transform_feedback_preserves_provoking_vertex
-            .into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub provoking_vertex_mode_per_pipeline: crate::vk::Bool32,
-    pub transform_feedback_preserves_triangle_fan_provoking_vertex: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
-for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            provoking_vertex_mode_per_pipeline: Default::default(),
-            transform_feedback_preserves_triangle_fan_provoking_vertex: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
+        pub fn provoking_vertex_last(mut self, provoking_vertex_last: bool) -> Self {
+            self.provoking_vertex_last = provoking_vertex_last.into();
+            self
+        }
+        pub fn transform_feedback_preserves_provoking_vertex(
+            mut self,
+            transform_feedback_preserves_provoking_vertex: bool,
+        ) -> Self {
+            self.transform_feedback_preserves_provoking_vertex = transform_feedback_preserves_provoking_vertex
+                .into();
+            self
         }
     }
-}
-impl<'a> PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
-    pub fn provoking_vertex_mode_per_pipeline(
-        mut self,
-        provoking_vertex_mode_per_pipeline: bool,
-    ) -> Self {
-        self.provoking_vertex_mode_per_pipeline = provoking_vertex_mode_per_pipeline
-            .into();
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub provoking_vertex_mode_per_pipeline: crate::vk::Bool32,
+        pub transform_feedback_preserves_triangle_fan_provoking_vertex: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub fn transform_feedback_preserves_triangle_fan_provoking_vertex(
-        mut self,
-        transform_feedback_preserves_triangle_fan_provoking_vertex: bool,
-    ) -> Self {
-        self.transform_feedback_preserves_triangle_fan_provoking_vertex = transform_feedback_preserves_triangle_fan_provoking_vertex
-            .into();
-        self
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT;
     }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
-for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {}
-impl<'a> Default for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            provoking_vertex_mode: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                provoking_vertex_mode_per_pipeline: Default::default(),
+                transform_feedback_preserves_triangle_fan_provoking_vertex: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
-    pub fn provoking_vertex_mode(
-        mut self,
-        provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
-    ) -> Self {
-        self.provoking_vertex_mode = provoking_vertex_mode;
-        self
+    impl<'a> PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
+        pub fn provoking_vertex_mode_per_pipeline(
+            mut self,
+            provoking_vertex_mode_per_pipeline: bool,
+        ) -> Self {
+            self.provoking_vertex_mode_per_pipeline = provoking_vertex_mode_per_pipeline
+                .into();
+            self
+        }
+        pub fn transform_feedback_preserves_triangle_fan_provoking_vertex(
+            mut self,
+            transform_feedback_preserves_triangle_fan_provoking_vertex: bool,
+        ) -> Self {
+            self.transform_feedback_preserves_triangle_fan_provoking_vertex = transform_feedback_preserves_triangle_fan_provoking_vertex
+                .into();
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+    for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {}
+    impl<'a> Default for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                provoking_vertex_mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
+        pub fn provoking_vertex_mode(
+            mut self,
+            provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
+        ) -> Self {
+            self.provoking_vertex_mode = provoking_vertex_mode;
+            self
+        }
+    }
+    ///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT: Self = Self(1000254000);
+        pub const PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT: Self = Self(
+            1000254001,
+        );
+        pub const PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT: Self = Self(
+            1000254002,
+        );
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct ProvokingVertexModeEXT(pub(crate) i32);
+    ///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
+    impl ProvokingVertexModeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const FIRST_VERTEX_EXT: Self = Self(0);
+        pub const LAST_VERTEX_EXT: Self = Self(1);
     }
 }
-///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT: Self = Self(1000254000);
-    pub const PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT: Self = Self(
-        1000254001,
-    );
-    pub const PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT: Self = Self(1000254002);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct ProvokingVertexModeEXT(pub(crate) i32);
-///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
-impl ProvokingVertexModeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const FIRST_VERTEX_EXT: Self = Self(0);
-    pub const LAST_VERTEX_EXT: Self = Self(1);
-}
-pub const EXT_PROVOKING_VERTEX_SPEC_VERSION: u32 = 1;
-pub const EXT_PROVOKING_VERTEX_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_provoking_vertex";
+pub use reexport::*;

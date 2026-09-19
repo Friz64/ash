@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_descriptor_set_host_mapping.html) · Extension `VK_VALVE_descriptor_set_host_mapping`
 #![doc(alias = "VK_VALVE_descriptor_set_host_mapping")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_VALVE_descriptor_set_host_mapping";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_descriptor_set_layout_host_mapping_info_valve: crate::vk::PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE,
@@ -199,7 +201,5 @@ pub(crate) mod reexport {
         descriptor_set: crate::vk::DescriptorSet,
         pp_data: *mut *mut core::ffi::c_void,
     );
-    pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_SPEC_VERSION: u32 = 1;
-    pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME: &core::ffi::CStr = c"VK_VALVE_descriptor_set_host_mapping";
 }
 pub use reexport::*;

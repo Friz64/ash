@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_surface.html) · Extension `VK_OHOS_surface`
 #![doc(alias = "VK_OHOS_surface")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_OHOS_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_surface_ohos: crate::vk::PFN_vkCreateSurfaceOHOS,
@@ -173,7 +175,5 @@ pub(crate) mod reexport {
         p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
-    pub const OHOS_SURFACE_SPEC_VERSION: u32 = 1;
-    pub const OHOS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_OHOS_surface";
 }
 pub use reexport::*;

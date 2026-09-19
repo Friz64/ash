@@ -2,75 +2,82 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_incremental_present.html) · Extension `VK_KHR_incremental_present`
 #![doc(alias = "VK_KHR_incremental_present")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PresentRegionsKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: u32,
-    pub p_regions: *const crate::vk::PresentRegionKHR<'a>,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for PresentRegionsKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_REGIONS_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>> for PresentRegionsKHR<'a> {}
-impl<'a> Default for PresentRegionsKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            swapchain_count: Default::default(),
-            p_regions: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_incremental_present";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PresentRegionsKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub swapchain_count: u32,
+        pub p_regions: *const crate::vk::PresentRegionKHR<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PresentRegionsKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_REGIONS_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for PresentRegionsKHR<'a> {}
+    impl<'a> Default for PresentRegionsKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain_count: Default::default(),
+                p_regions: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PresentRegionsKHR<'a> {
-    pub fn regions(mut self, regions: &'a [crate::vk::PresentRegionKHR<'a>]) -> Self {
-        self.swapchain_count = regions.len() as _;
-        self.p_regions = regions.as_ptr();
-        self
+    impl<'a> PresentRegionsKHR<'a> {
+        pub fn regions(
+            mut self,
+            regions: &'a [crate::vk::PresentRegionKHR<'a>],
+        ) -> Self {
+            self.swapchain_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct PresentRegionKHR<'a> {
+        pub rectangle_count: u32,
+        pub p_rectangles: *const crate::vk::RectLayerKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    impl<'a> PresentRegionKHR<'a> {
+        pub fn rectangles(mut self, rectangles: &'a [crate::vk::RectLayerKHR]) -> Self {
+            self.rectangle_count = rectangles.len() as _;
+            self.p_rectangles = rectangles.as_ptr();
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct RectLayerKHR {
+        pub offset: crate::vk::Offset2D,
+        pub extent: crate::vk::Extent2D,
+        pub layer: u32,
+    }
+    impl RectLayerKHR {
+        pub fn offset(mut self, offset: crate::vk::Offset2D) -> Self {
+            self.offset = offset;
+            self
+        }
+        pub fn extent(mut self, extent: crate::vk::Extent2D) -> Self {
+            self.extent = extent;
+            self
+        }
+        pub fn layer(mut self, layer: u32) -> Self {
+            self.layer = layer;
+            self
+        }
+    }
+    ///Provided by [`khr::incremental_present`](crate::khr::incremental_present)
+    impl crate::vk::StructureType {
+        pub const PRESENT_REGIONS_KHR: Self = Self(1000084000);
     }
 }
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct PresentRegionKHR<'a> {
-    pub rectangle_count: u32,
-    pub p_rectangles: *const crate::vk::RectLayerKHR,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-impl<'a> PresentRegionKHR<'a> {
-    pub fn rectangles(mut self, rectangles: &'a [crate::vk::RectLayerKHR]) -> Self {
-        self.rectangle_count = rectangles.len() as _;
-        self.p_rectangles = rectangles.as_ptr();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct RectLayerKHR {
-    pub offset: crate::vk::Offset2D,
-    pub extent: crate::vk::Extent2D,
-    pub layer: u32,
-}
-impl RectLayerKHR {
-    pub fn offset(mut self, offset: crate::vk::Offset2D) -> Self {
-        self.offset = offset;
-        self
-    }
-    pub fn extent(mut self, extent: crate::vk::Extent2D) -> Self {
-        self.extent = extent;
-        self
-    }
-    pub fn layer(mut self, layer: u32) -> Self {
-        self.layer = layer;
-        self
-    }
-}
-///Provided by [`khr::incremental_present`](crate::khr::incremental_present)
-impl crate::vk::StructureType {
-    pub const PRESENT_REGIONS_KHR: Self = Self(1000084000);
-}
-pub const KHR_INCREMENTAL_PRESENT_SPEC_VERSION: u32 = 2;
-pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_incremental_present";
+pub use reexport::*;

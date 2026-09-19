@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_diagnostic_checkpoints.html) · Extension `VK_NV_device_diagnostic_checkpoints`
 #![doc(alias = "VK_NV_device_diagnostic_checkpoints")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_NV_device_diagnostic_checkpoints";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_checkpoint_nv: crate::vk::PFN_vkCmdSetCheckpointNV,
@@ -249,7 +251,5 @@ pub(crate) mod reexport {
         p_checkpoint_data_count: *mut u32,
         p_checkpoint_data: *mut crate::vk::CheckpointData2NV<'_>,
     );
-    pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_SPEC_VERSION: u32 = 2;
-    pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_diagnostic_checkpoints";
 }
 pub use reexport::*;

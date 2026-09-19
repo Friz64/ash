@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_executable_properties.html) · Extension `VK_KHR_pipeline_executable_properties`
 #![doc(alias = "VK_KHR_pipeline_executable_properties")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_pipeline_executable_properties";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_pipeline_executable_properties_khr: crate::vk::PFN_vkGetPipelineExecutablePropertiesKHR,
@@ -451,7 +453,5 @@ pub(crate) mod reexport {
             '_,
         >,
     ) -> crate::vk::Result;
-    pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_SPEC_VERSION: u32 = 1;
-    pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_pipeline_executable_properties";
 }
 pub use reexport::*;

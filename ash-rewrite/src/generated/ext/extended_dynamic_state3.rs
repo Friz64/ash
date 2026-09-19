@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state3.html) · Extension `VK_EXT_extended_dynamic_state3`
 #![doc(alias = "VK_EXT_extended_dynamic_state3")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state3";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_tessellation_domain_origin_ext: crate::vk::PFN_vkCmdSetTessellationDomainOriginEXT,
@@ -1154,7 +1156,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         representative_fragment_test_enable: crate::vk::Bool32,
     );
-    pub const EXT_EXTENDED_DYNAMIC_STATE_3_SPEC_VERSION: u32 = 2;
-    pub const EXT_EXTENDED_DYNAMIC_STATE_3_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state3";
 }
 pub use reexport::*;

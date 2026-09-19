@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_direct_mode_display.html) · Extension `VK_EXT_direct_mode_display`
 #![doc(alias = "VK_EXT_direct_mode_display")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_direct_mode_display";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub release_display_ext: crate::vk::PFN_vkReleaseDisplayEXT,
@@ -62,7 +64,5 @@ pub(crate) mod reexport {
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
     ) -> crate::vk::Result;
-    pub const EXT_DIRECT_MODE_DISPLAY_SPEC_VERSION: u32 = 1;
-    pub const EXT_DIRECT_MODE_DISPLAY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_direct_mode_display";
 }
 pub use reexport::*;

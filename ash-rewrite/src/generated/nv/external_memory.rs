@@ -2,74 +2,77 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory.html) · Extension `VK_NV_external_memory`
 #![doc(alias = "VK_NV_external_memory")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct ExternalMemoryImageCreateInfoNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for ExternalMemoryImageCreateInfoNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
-for ExternalMemoryImageCreateInfoNV<'a> {}
-impl<'a> Default for ExternalMemoryImageCreateInfoNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            handle_types: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct ExternalMemoryImageCreateInfoNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalMemoryImageCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ExternalMemoryImageCreateInfoNV<'a> {}
+    impl<'a> Default for ExternalMemoryImageCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                handle_types: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> ExternalMemoryImageCreateInfoNV<'a> {
-    pub fn handle_types(
-        mut self,
-        handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-    ) -> Self {
-        self.handle_types = handle_types;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct ExportMemoryAllocateInfoNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryAllocateInfoNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
-for ExportMemoryAllocateInfoNV<'a> {}
-impl<'a> Default for ExportMemoryAllocateInfoNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            handle_types: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> ExternalMemoryImageCreateInfoNV<'a> {
+        pub fn handle_types(
+            mut self,
+            handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+        ) -> Self {
+            self.handle_types = handle_types;
+            self
         }
     }
-}
-impl<'a> ExportMemoryAllocateInfoNV<'a> {
-    pub fn handle_types(
-        mut self,
-        handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-    ) -> Self {
-        self.handle_types = handle_types;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct ExportMemoryAllocateInfoNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryAllocateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ExportMemoryAllocateInfoNV<'a> {}
+    impl<'a> Default for ExportMemoryAllocateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                handle_types: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ExportMemoryAllocateInfoNV<'a> {
+        pub fn handle_types(
+            mut self,
+            handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+        ) -> Self {
+            self.handle_types = handle_types;
+            self
+        }
+    }
+    ///Provided by [`nv::external_memory`](crate::nv::external_memory)
+    impl crate::vk::StructureType {
+        pub const EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV: Self = Self(1000056000);
+        pub const EXPORT_MEMORY_ALLOCATE_INFO_NV: Self = Self(1000056001);
     }
 }
-///Provided by [`nv::external_memory`](crate::nv::external_memory)
-impl crate::vk::StructureType {
-    pub const EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV: Self = Self(1000056000);
-    pub const EXPORT_MEMORY_ALLOCATE_INFO_NV: Self = Self(1000056001);
-}
-pub const NV_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
-pub const NV_EXTERNAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_memory";
+pub use reexport::*;

@@ -2,22 +2,25 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_surface_maintenance1.html) · Extension `VK_EXT_surface_maintenance1`
 #![doc(alias = "VK_EXT_surface_maintenance1")]
-pub type SurfacePresentModeEXT<'a> = crate::vk::SurfacePresentModeKHR<'a>;
-pub type SurfacePresentScalingCapabilitiesEXT<'a> = crate::vk::SurfacePresentScalingCapabilitiesKHR<
-    'a,
->;
-pub type SurfacePresentModeCompatibilityEXT<'a> = crate::vk::SurfacePresentModeCompatibilityKHR<
-    'a,
->;
-///Provided by [`ext::surface_maintenance1`](crate::ext::surface_maintenance1)
-impl crate::vk::StructureType {
-    pub const SURFACE_PRESENT_MODE_EXT: Self = Self::SURFACE_PRESENT_MODE_KHR;
-    pub const SURFACE_PRESENT_SCALING_CAPABILITIES_EXT: Self = Self::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR;
-    pub const SURFACE_PRESENT_MODE_COMPATIBILITY_EXT: Self = Self::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_surface_maintenance1";
+pub(crate) mod reexport {
+    pub type SurfacePresentModeEXT<'a> = crate::vk::SurfacePresentModeKHR<'a>;
+    pub type SurfacePresentScalingCapabilitiesEXT<'a> = crate::vk::SurfacePresentScalingCapabilitiesKHR<
+        'a,
+    >;
+    pub type SurfacePresentModeCompatibilityEXT<'a> = crate::vk::SurfacePresentModeCompatibilityKHR<
+        'a,
+    >;
+    ///Provided by [`ext::surface_maintenance1`](crate::ext::surface_maintenance1)
+    impl crate::vk::StructureType {
+        pub const SURFACE_PRESENT_MODE_EXT: Self = Self::SURFACE_PRESENT_MODE_KHR;
+        pub const SURFACE_PRESENT_SCALING_CAPABILITIES_EXT: Self = Self::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR;
+        pub const SURFACE_PRESENT_MODE_COMPATIBILITY_EXT: Self = Self::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR;
+    }
+    pub type PresentScalingFlagBitsEXT = crate::vk::PresentScalingFlagBitsKHR;
+    pub type PresentGravityFlagBitsEXT = crate::vk::PresentGravityFlagBitsKHR;
+    pub type PresentScalingFlagsEXT = crate::vk::PresentScalingFlagsKHR;
+    pub type PresentGravityFlagsEXT = crate::vk::PresentGravityFlagsKHR;
 }
-pub type PresentScalingFlagBitsEXT = crate::vk::PresentScalingFlagBitsKHR;
-pub type PresentGravityFlagBitsEXT = crate::vk::PresentGravityFlagBitsKHR;
-pub type PresentScalingFlagsEXT = crate::vk::PresentScalingFlagsKHR;
-pub type PresentGravityFlagsEXT = crate::vk::PresentGravityFlagsKHR;
-pub const EXT_SURFACE_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
-pub const EXT_SURFACE_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_surface_maintenance1";
+pub use reexport::*;

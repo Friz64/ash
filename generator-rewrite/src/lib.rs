@@ -53,8 +53,16 @@ fn escape_ident(name: &str) -> Ident {
     syn::parse_str(name).unwrap_or_else(|_| format_ident!("_{name}"))
 }
 
-fn variable_token(s: &str) -> Ident {
-    crate::escape_ident(&s.to_snek_case())
+fn variable_token(original: &str) -> Ident {
+    crate::escape_ident(&original.to_snek_case())
+}
+
+fn constant_token(prefix_trimmed: &str) -> Ident {
+    if let Some(without_extension) = prefix_trimmed.strip_suffix("EXTENSION_NAME") {
+        syn::parse_str(&format!("{without_extension}NAME")).unwrap()
+    } else {
+        syn::parse_str(prefix_trimmed).unwrap()
+    }
 }
 
 #[derive(Debug)]
@@ -76,7 +84,7 @@ impl RustTokens for Context<'_> {
     fn type_tokens(&self, name: TypeName, qualified: bool, lifetime: &Lifetime) -> TokenStream {
         let type_item = &self.items.types[&name];
         let required_by = type_item.required_by(&self.items);
-        let ident: Ident = syn::parse_str(name.prefix_trimmed(required_by.library)).unwrap();
+        let ident: Ident = syn::parse_str(name.prefix_stripped(required_by.library)).unwrap();
         let path = qualified.then(|| quote! { crate::vk:: });
         let lifetime = self.type_has_lifetime(name).then(|| quote! { <#lifetime> });
         quote! { #path #ident #lifetime }
@@ -95,7 +103,7 @@ impl RustTokens for Context<'_> {
     }
 
     fn constant_tokens(&self, name: ConstantName, qualified: bool) -> TokenStream {
-        let ident: Ident = syn::parse_str(name.prefix_trimmed()).unwrap();
+        let ident = constant_token(name.prefix_trimmed());
         let path = qualified.then(|| quote! { crate::vk:: });
         quote! { #path #ident }
     }
@@ -117,9 +125,9 @@ impl RustTokens for Context<'_> {
 
     fn cmacro_tokens(&self, name: CMacroName, qualified: bool) -> TokenStream {
         let ident: Ident = if self.items.cmacros[&name].has_args() {
-            syn::parse_str(name.prefix_trimmed()).unwrap()
+            syn::parse_str(name.prefix_stripped()).unwrap()
         } else {
-            syn::parse_str(&name.prefix_trimmed().to_ascii_lowercase()).unwrap()
+            syn::parse_str(&name.prefix_stripped().to_ascii_lowercase()).unwrap()
         };
 
         let path = qualified.then(|| quote! { crate::vk:: });

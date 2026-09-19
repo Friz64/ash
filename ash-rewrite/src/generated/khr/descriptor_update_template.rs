@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_descriptor_update_template.html) · Extension `VK_KHR_descriptor_update_template`
 #![doc(alias = "VK_KHR_descriptor_update_template")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_descriptor_update_template";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_descriptor_update_template_khr: crate::vk::PFN_vkCreateDescriptorUpdateTemplateKHR,
@@ -137,7 +139,5 @@ pub(crate) mod reexport {
     pub type PFN_vkCreateDescriptorUpdateTemplateKHR = crate::vk::PFN_vkCreateDescriptorUpdateTemplate;
     pub type PFN_vkDestroyDescriptorUpdateTemplateKHR = crate::vk::PFN_vkDestroyDescriptorUpdateTemplate;
     pub type PFN_vkUpdateDescriptorSetWithTemplateKHR = crate::vk::PFN_vkUpdateDescriptorSetWithTemplate;
-    pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_SPEC_VERSION: u32 = 1;
-    pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_descriptor_update_template";
 }
 pub use reexport::*;

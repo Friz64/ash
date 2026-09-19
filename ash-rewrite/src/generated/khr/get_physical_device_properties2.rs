@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_physical_device_properties2.html) · Extension `VK_KHR_get_physical_device_properties2`
 #![doc(alias = "VK_KHR_get_physical_device_properties2")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_get_physical_device_properties2";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_features2_khr: crate::vk::PFN_vkGetPhysicalDeviceFeatures2KHR,
@@ -191,7 +193,5 @@ pub(crate) mod reexport {
     pub type PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR = crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyProperties2;
     pub type PFN_vkGetPhysicalDeviceMemoryProperties2KHR = crate::vk::PFN_vkGetPhysicalDeviceMemoryProperties2;
     pub type PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR = crate::vk::PFN_vkGetPhysicalDeviceSparseImageFormatProperties2;
-    pub const KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_SPEC_VERSION: u32 = 2;
-    pub const KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_physical_device_properties2";
 }
 pub use reexport::*;

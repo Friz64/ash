@@ -2,77 +2,80 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_present_metering.html) · Extension `VK_NV_present_metering`
 #![doc(alias = "VK_NV_present_metering")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct SetPresentConfigNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub num_frames_per_batch: u32,
-    pub present_config_feedback: u32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for SetPresentConfigNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_PRESENT_CONFIG_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
-for SetPresentConfigNV<'a> {}
-impl<'a> Default for SetPresentConfigNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            num_frames_per_batch: Default::default(),
-            present_config_feedback: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_present_metering";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct SetPresentConfigNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub num_frames_per_batch: u32,
+        pub present_config_feedback: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SetPresentConfigNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_PRESENT_CONFIG_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for SetPresentConfigNV<'a> {}
+    impl<'a> Default for SetPresentConfigNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                num_frames_per_batch: Default::default(),
+                present_config_feedback: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> SetPresentConfigNV<'a> {
-    pub fn num_frames_per_batch(mut self, num_frames_per_batch: u32) -> Self {
-        self.num_frames_per_batch = num_frames_per_batch;
-        self
-    }
-    pub fn present_config_feedback(mut self, present_config_feedback: u32) -> Self {
-        self.present_config_feedback = present_config_feedback;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDevicePresentMeteringFeaturesNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub present_metering: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDevicePresentMeteringFeaturesNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDevicePresentMeteringFeaturesNV<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDevicePresentMeteringFeaturesNV<'a> {}
-impl<'a> Default for PhysicalDevicePresentMeteringFeaturesNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            present_metering: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> SetPresentConfigNV<'a> {
+        pub fn num_frames_per_batch(mut self, num_frames_per_batch: u32) -> Self {
+            self.num_frames_per_batch = num_frames_per_batch;
+            self
+        }
+        pub fn present_config_feedback(mut self, present_config_feedback: u32) -> Self {
+            self.present_config_feedback = present_config_feedback;
+            self
         }
     }
-}
-impl<'a> PhysicalDevicePresentMeteringFeaturesNV<'a> {
-    pub fn present_metering(mut self, present_metering: bool) -> Self {
-        self.present_metering = present_metering.into();
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDevicePresentMeteringFeaturesNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub present_metering: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePresentMeteringFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePresentMeteringFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePresentMeteringFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDevicePresentMeteringFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_metering: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDevicePresentMeteringFeaturesNV<'a> {
+        pub fn present_metering(mut self, present_metering: bool) -> Self {
+            self.present_metering = present_metering.into();
+            self
+        }
+    }
+    ///Provided by [`nv::present_metering`](crate::nv::present_metering)
+    impl crate::vk::StructureType {
+        pub const SET_PRESENT_CONFIG_NV: Self = Self(1000613000);
+        pub const PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV: Self = Self(1000613001);
     }
 }
-///Provided by [`nv::present_metering`](crate::nv::present_metering)
-impl crate::vk::StructureType {
-    pub const SET_PRESENT_CONFIG_NV: Self = Self(1000613000);
-    pub const PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV: Self = Self(1000613001);
-}
-pub const NV_PRESENT_METERING_SPEC_VERSION: u32 = 1;
-pub const NV_PRESENT_METERING_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_present_metering";
+pub use reexport::*;

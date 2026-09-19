@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_generated_commands_compute.html) · Extension `VK_NV_device_generated_commands_compute`
 #![doc(alias = "VK_NV_device_generated_commands_compute")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands_compute";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_update_pipeline_indirect_buffer_nv: crate::vk::PFN_vkCmdUpdatePipelineIndirectBufferNV,
@@ -275,7 +277,5 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         p_info: *const crate::vk::PipelineIndirectDeviceAddressInfoNV<'_>,
     ) -> crate::vk::DeviceAddress;
-    pub const NV_DEVICE_GENERATED_COMMANDS_COMPUTE_SPEC_VERSION: u32 = 2;
-    pub const NV_DEVICE_GENERATED_COMMANDS_COMPUTE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands_compute";
 }
 pub use reexport::*;

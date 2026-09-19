@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fragment_shading_rate_enums.html) · Extension `VK_NV_fragment_shading_rate_enums`
 #![doc(alias = "VK_NV_fragment_shading_rate_enums")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_fragment_shading_rate_enum_nv: crate::vk::PFN_vkCmdSetFragmentShadingRateEnumNV,
@@ -259,7 +261,5 @@ pub(crate) mod reexport {
         shading_rate: crate::vk::FragmentShadingRateNV,
         combiner_ops: *const [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
     );
-    pub const NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION: u32 = 1;
-    pub const NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";
 }
 pub use reexport::*;

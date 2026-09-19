@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_deferred_host_operations.html) · Extension `VK_KHR_deferred_host_operations`
 #![doc(alias = "VK_KHR_deferred_host_operations")]
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_deferred_host_operations";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_deferred_operation_khr: crate::vk::PFN_vkCreateDeferredOperationKHR,
@@ -180,7 +182,5 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         operation: crate::vk::DeferredOperationKHR,
     ) -> crate::vk::Result;
-    pub const KHR_DEFERRED_HOST_OPERATIONS_SPEC_VERSION: u32 = 4;
-    pub const KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_deferred_host_operations";
 }
 pub use reexport::*;

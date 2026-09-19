@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conditional_rendering.html) · Extension `VK_EXT_conditional_rendering`
 #![doc(alias = "VK_EXT_conditional_rendering")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_conditional_rendering";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_begin_conditional_rendering_ext: crate::vk::PFN_vkCmdBeginConditionalRenderingEXT,
@@ -294,7 +296,5 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdEndConditionalRenderingEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
     );
-    pub const EXT_CONDITIONAL_RENDERING_SPEC_VERSION: u32 = 2;
-    pub const EXT_CONDITIONAL_RENDERING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_conditional_rendering";
 }
 pub use reexport::*;

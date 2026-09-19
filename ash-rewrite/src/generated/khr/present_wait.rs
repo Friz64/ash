@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_wait.html) · Extension `VK_KHR_present_wait`
 #![doc(alias = "VK_KHR_present_wait")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_present_wait";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub wait_for_present_khr: crate::vk::PFN_vkWaitForPresentKHR,
@@ -102,7 +104,5 @@ pub(crate) mod reexport {
         present_id: u64,
         timeout: u64,
     ) -> crate::vk::Result;
-    pub const KHR_PRESENT_WAIT_SPEC_VERSION: u32 = 1;
-    pub const KHR_PRESENT_WAIT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_present_wait";
 }
 pub use reexport::*;

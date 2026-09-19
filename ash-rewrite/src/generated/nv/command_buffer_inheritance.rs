@@ -2,46 +2,49 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_command_buffer_inheritance.html) · Extension `VK_NV_command_buffer_inheritance`
 #![doc(alias = "VK_NV_command_buffer_inheritance")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub command_buffer_inheritance: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {}
-impl<'a> Default for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            command_buffer_inheritance: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_command_buffer_inheritance";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub command_buffer_inheritance: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                command_buffer_inheritance: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
-    pub fn command_buffer_inheritance(
-        mut self,
-        command_buffer_inheritance: bool,
-    ) -> Self {
-        self.command_buffer_inheritance = command_buffer_inheritance.into();
-        self
+    impl<'a> PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
+        pub fn command_buffer_inheritance(
+            mut self,
+            command_buffer_inheritance: bool,
+        ) -> Self {
+            self.command_buffer_inheritance = command_buffer_inheritance.into();
+            self
+        }
+    }
+    ///Provided by [`nv::command_buffer_inheritance`](crate::nv::command_buffer_inheritance)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV: Self = Self(
+            1000559000,
+        );
     }
 }
-///Provided by [`nv::command_buffer_inheritance`](crate::nv::command_buffer_inheritance)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV: Self = Self(
-        1000559000,
-    );
-}
-pub const NV_COMMAND_BUFFER_INHERITANCE_SPEC_VERSION: u32 = 1;
-pub const NV_COMMAND_BUFFER_INHERITANCE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_command_buffer_inheritance";
+pub use reexport::*;

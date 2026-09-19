@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_buffer_device_address.html) · Extension `VK_EXT_buffer_device_address`
 #![doc(alias = "VK_EXT_buffer_device_address")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_buffer_device_address";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_buffer_device_address_ext: crate::vk::PFN_vkGetBufferDeviceAddressEXT,
@@ -168,7 +170,5 @@ pub(crate) mod reexport {
         pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
     }
     pub type PFN_vkGetBufferDeviceAddressEXT = crate::vk::PFN_vkGetBufferDeviceAddress;
-    pub const EXT_BUFFER_DEVICE_ADDRESS_SPEC_VERSION: u32 = 2;
-    pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_buffer_device_address";
 }
 pub use reexport::*;

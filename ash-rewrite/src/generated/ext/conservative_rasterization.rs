@@ -2,255 +2,265 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conservative_rasterization.html) · Extension `VK_EXT_conservative_rasterization`
 #![doc(alias = "VK_EXT_conservative_rasterization")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub primitive_overestimation_size: core::ffi::c_float,
-    pub max_extra_primitive_overestimation_size: core::ffi::c_float,
-    pub extra_primitive_overestimation_size_granularity: core::ffi::c_float,
-    pub primitive_underestimation: crate::vk::Bool32,
-    pub conservative_point_and_line_rasterization: crate::vk::Bool32,
-    pub degenerate_triangles_rasterized: crate::vk::Bool32,
-    pub degenerate_lines_rasterized: crate::vk::Bool32,
-    pub fully_covered_fragment_shader_input_variable: crate::vk::Bool32,
-    pub conservative_rasterization_post_depth_coverage: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
-for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            primitive_overestimation_size: Default::default(),
-            max_extra_primitive_overestimation_size: Default::default(),
-            extra_primitive_overestimation_size_granularity: Default::default(),
-            primitive_underestimation: Default::default(),
-            conservative_point_and_line_rasterization: Default::default(),
-            degenerate_triangles_rasterized: Default::default(),
-            degenerate_lines_rasterized: Default::default(),
-            fully_covered_fragment_shader_input_variable: Default::default(),
-            conservative_rasterization_post_depth_coverage: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_conservative_rasterization";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub primitive_overestimation_size: core::ffi::c_float,
+        pub max_extra_primitive_overestimation_size: core::ffi::c_float,
+        pub extra_primitive_overestimation_size_granularity: core::ffi::c_float,
+        pub primitive_underestimation: crate::vk::Bool32,
+        pub conservative_point_and_line_rasterization: crate::vk::Bool32,
+        pub degenerate_triangles_rasterized: crate::vk::Bool32,
+        pub degenerate_lines_rasterized: crate::vk::Bool32,
+        pub fully_covered_fragment_shader_input_variable: crate::vk::Bool32,
+        pub conservative_rasterization_post_depth_coverage: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                primitive_overestimation_size: Default::default(),
+                max_extra_primitive_overestimation_size: Default::default(),
+                extra_primitive_overestimation_size_granularity: Default::default(),
+                primitive_underestimation: Default::default(),
+                conservative_point_and_line_rasterization: Default::default(),
+                degenerate_triangles_rasterized: Default::default(),
+                degenerate_lines_rasterized: Default::default(),
+                fully_covered_fragment_shader_input_variable: Default::default(),
+                conservative_rasterization_post_depth_coverage: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
+        pub fn primitive_overestimation_size(
+            mut self,
+            primitive_overestimation_size: core::ffi::c_float,
+        ) -> Self {
+            self.primitive_overestimation_size = primitive_overestimation_size;
+            self
+        }
+        pub fn max_extra_primitive_overestimation_size(
+            mut self,
+            max_extra_primitive_overestimation_size: core::ffi::c_float,
+        ) -> Self {
+            self.max_extra_primitive_overestimation_size = max_extra_primitive_overestimation_size;
+            self
+        }
+        pub fn extra_primitive_overestimation_size_granularity(
+            mut self,
+            extra_primitive_overestimation_size_granularity: core::ffi::c_float,
+        ) -> Self {
+            self.extra_primitive_overestimation_size_granularity = extra_primitive_overestimation_size_granularity;
+            self
+        }
+        pub fn primitive_underestimation(
+            mut self,
+            primitive_underestimation: bool,
+        ) -> Self {
+            self.primitive_underestimation = primitive_underestimation.into();
+            self
+        }
+        pub fn conservative_point_and_line_rasterization(
+            mut self,
+            conservative_point_and_line_rasterization: bool,
+        ) -> Self {
+            self.conservative_point_and_line_rasterization = conservative_point_and_line_rasterization
+                .into();
+            self
+        }
+        pub fn degenerate_triangles_rasterized(
+            mut self,
+            degenerate_triangles_rasterized: bool,
+        ) -> Self {
+            self.degenerate_triangles_rasterized = degenerate_triangles_rasterized
+                .into();
+            self
+        }
+        pub fn degenerate_lines_rasterized(
+            mut self,
+            degenerate_lines_rasterized: bool,
+        ) -> Self {
+            self.degenerate_lines_rasterized = degenerate_lines_rasterized.into();
+            self
+        }
+        pub fn fully_covered_fragment_shader_input_variable(
+            mut self,
+            fully_covered_fragment_shader_input_variable: bool,
+        ) -> Self {
+            self.fully_covered_fragment_shader_input_variable = fully_covered_fragment_shader_input_variable
+                .into();
+            self
+        }
+        pub fn conservative_rasterization_post_depth_coverage(
+            mut self,
+            conservative_rasterization_post_depth_coverage: bool,
+        ) -> Self {
+            self.conservative_rasterization_post_depth_coverage = conservative_rasterization_post_depth_coverage
+                .into();
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
+        pub conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
+        pub extra_primitive_overestimation_size: core::ffi::c_float,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+    for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {}
+    impl<'a> Default for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                conservative_rasterization_mode: Default::default(),
+                extra_primitive_overestimation_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn conservative_rasterization_mode(
+            mut self,
+            conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
+        ) -> Self {
+            self.conservative_rasterization_mode = conservative_rasterization_mode;
+            self
+        }
+        pub fn extra_primitive_overestimation_size(
+            mut self,
+            extra_primitive_overestimation_size: core::ffi::c_float,
+        ) -> Self {
+            self.extra_primitive_overestimation_size = extra_primitive_overestimation_size;
+            self
+        }
+    }
+    ///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT: Self = Self(
+            1000101000,
+        );
+        pub const PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT: Self = Self(
+            1000101001,
+        );
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct ConservativeRasterizationModeEXT(pub(crate) i32);
+    ///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
+    impl ConservativeRasterizationModeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const DISABLED_EXT: Self = Self(0);
+        pub const OVERESTIMATE_EXT: Self = Self(1);
+        pub const UNDERESTIMATE_EXT: Self = Self(2);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineRasterizationConservativeStateCreateFlagsEXT(u32);
+    impl PipelineRasterizationConservativeStateCreateFlagsEXT {
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for PipelineRasterizationConservativeStateCreateFlagsEXT {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for PipelineRasterizationConservativeStateCreateFlagsEXT {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign
+    for PipelineRasterizationConservativeStateCreateFlagsEXT {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for PipelineRasterizationConservativeStateCreateFlagsEXT {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign
+    for PipelineRasterizationConservativeStateCreateFlagsEXT {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for PipelineRasterizationConservativeStateCreateFlagsEXT {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign
+    for PipelineRasterizationConservativeStateCreateFlagsEXT {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for PipelineRasterizationConservativeStateCreateFlagsEXT {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
         }
     }
 }
-impl<'a> PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
-    pub fn primitive_overestimation_size(
-        mut self,
-        primitive_overestimation_size: core::ffi::c_float,
-    ) -> Self {
-        self.primitive_overestimation_size = primitive_overestimation_size;
-        self
-    }
-    pub fn max_extra_primitive_overestimation_size(
-        mut self,
-        max_extra_primitive_overestimation_size: core::ffi::c_float,
-    ) -> Self {
-        self.max_extra_primitive_overestimation_size = max_extra_primitive_overestimation_size;
-        self
-    }
-    pub fn extra_primitive_overestimation_size_granularity(
-        mut self,
-        extra_primitive_overestimation_size_granularity: core::ffi::c_float,
-    ) -> Self {
-        self.extra_primitive_overestimation_size_granularity = extra_primitive_overestimation_size_granularity;
-        self
-    }
-    pub fn primitive_underestimation(mut self, primitive_underestimation: bool) -> Self {
-        self.primitive_underestimation = primitive_underestimation.into();
-        self
-    }
-    pub fn conservative_point_and_line_rasterization(
-        mut self,
-        conservative_point_and_line_rasterization: bool,
-    ) -> Self {
-        self.conservative_point_and_line_rasterization = conservative_point_and_line_rasterization
-            .into();
-        self
-    }
-    pub fn degenerate_triangles_rasterized(
-        mut self,
-        degenerate_triangles_rasterized: bool,
-    ) -> Self {
-        self.degenerate_triangles_rasterized = degenerate_triangles_rasterized.into();
-        self
-    }
-    pub fn degenerate_lines_rasterized(
-        mut self,
-        degenerate_lines_rasterized: bool,
-    ) -> Self {
-        self.degenerate_lines_rasterized = degenerate_lines_rasterized.into();
-        self
-    }
-    pub fn fully_covered_fragment_shader_input_variable(
-        mut self,
-        fully_covered_fragment_shader_input_variable: bool,
-    ) -> Self {
-        self.fully_covered_fragment_shader_input_variable = fully_covered_fragment_shader_input_variable
-            .into();
-        self
-    }
-    pub fn conservative_rasterization_post_depth_coverage(
-        mut self,
-        conservative_rasterization_post_depth_coverage: bool,
-    ) -> Self {
-        self.conservative_rasterization_post_depth_coverage = conservative_rasterization_post_depth_coverage
-            .into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
-    pub conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
-    pub extra_primitive_overestimation_size: core::ffi::c_float,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
-for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {}
-impl<'a> Default for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            flags: Default::default(),
-            conservative_rasterization_mode: Default::default(),
-            extra_primitive_overestimation_size: Default::default(),
-            _marker: ::core::marker::PhantomData,
-        }
-    }
-}
-impl<'a> PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
-    pub fn flags(
-        mut self,
-        flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
-    ) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn conservative_rasterization_mode(
-        mut self,
-        conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
-    ) -> Self {
-        self.conservative_rasterization_mode = conservative_rasterization_mode;
-        self
-    }
-    pub fn extra_primitive_overestimation_size(
-        mut self,
-        extra_primitive_overestimation_size: core::ffi::c_float,
-    ) -> Self {
-        self.extra_primitive_overestimation_size = extra_primitive_overestimation_size;
-        self
-    }
-}
-///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT: Self = Self(
-        1000101000,
-    );
-    pub const PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT: Self = Self(
-        1000101001,
-    );
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct ConservativeRasterizationModeEXT(pub(crate) i32);
-///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
-impl ConservativeRasterizationModeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const DISABLED_EXT: Self = Self(0);
-    pub const OVERESTIMATE_EXT: Self = Self(1);
-    pub const UNDERESTIMATE_EXT: Self = Self(2);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineRasterizationConservativeStateCreateFlagsEXT(u32);
-impl PipelineRasterizationConservativeStateCreateFlagsEXT {
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    pub const fn from_raw(x: u32) -> Self {
-        Self(x)
-    }
-    pub const fn as_raw(self) -> u32 {
-        self.0
-    }
-    pub const fn is_empty(self) -> bool {
-        self.0 == Self::empty().0
-    }
-    pub const fn intersects(self, other: Self) -> bool {
-        !Self(self.0 & other.0).is_empty()
-    }
-    pub const fn contains(self, other: Self) -> bool {
-        self.0 & other.0 == other.0
-    }
-}
-impl Default for PipelineRasterizationConservativeStateCreateFlagsEXT {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl core::ops::BitOr for PipelineRasterizationConservativeStateCreateFlagsEXT {
-    type Output = Self;
-    fn bitor(self, rhs: Self) -> Self {
-        Self(self.0 | rhs.0)
-    }
-}
-impl core::ops::BitOrAssign for PipelineRasterizationConservativeStateCreateFlagsEXT {
-    fn bitor_assign(&mut self, rhs: Self) {
-        *self = *self | rhs;
-    }
-}
-impl core::ops::BitAnd for PipelineRasterizationConservativeStateCreateFlagsEXT {
-    type Output = Self;
-    fn bitand(self, rhs: Self) -> Self {
-        Self(self.0 & rhs.0)
-    }
-}
-impl core::ops::BitAndAssign for PipelineRasterizationConservativeStateCreateFlagsEXT {
-    fn bitand_assign(&mut self, rhs: Self) {
-        *self = *self & rhs;
-    }
-}
-impl core::ops::BitXor for PipelineRasterizationConservativeStateCreateFlagsEXT {
-    type Output = Self;
-    fn bitxor(self, rhs: Self) -> Self {
-        Self(self.0 ^ rhs.0)
-    }
-}
-impl core::ops::BitXorAssign for PipelineRasterizationConservativeStateCreateFlagsEXT {
-    fn bitxor_assign(&mut self, rhs: Self) {
-        *self = *self ^ rhs;
-    }
-}
-impl core::ops::Not for PipelineRasterizationConservativeStateCreateFlagsEXT {
-    type Output = Self;
-    fn not(self) -> Self {
-        Self(!self.0)
-    }
-}
-pub const EXT_CONSERVATIVE_RASTERIZATION_SPEC_VERSION: u32 = 1;
-pub const EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_conservative_rasterization";
+pub use reexport::*;

@@ -2,112 +2,116 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MESA_image_alignment_control.html) · Extension `VK_MESA_image_alignment_control`
 #![doc(alias = "VK_MESA_image_alignment_control")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub image_alignment_control: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {}
-impl<'a> Default for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            image_alignment_control: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_MESA_image_alignment_control";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub image_alignment_control: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {}
+    impl<'a> Default for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                image_alignment_control: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
-    pub fn image_alignment_control(mut self, image_alignment_control: bool) -> Self {
-        self.image_alignment_control = image_alignment_control.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub supported_image_alignment_mask: u32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
-for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {}
-impl<'a> Default for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            supported_image_alignment_mask: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
+        pub fn image_alignment_control(mut self, image_alignment_control: bool) -> Self {
+            self.image_alignment_control = image_alignment_control.into();
+            self
         }
     }
-}
-impl<'a> PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
-    pub fn supported_image_alignment_mask(
-        mut self,
-        supported_image_alignment_mask: u32,
-    ) -> Self {
-        self.supported_image_alignment_mask = supported_image_alignment_mask;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub supported_image_alignment_mask: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct ImageAlignmentControlCreateInfoMESA<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub maximum_requested_alignment: u32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for ImageAlignmentControlCreateInfoMESA<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA;
-}
-unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
-for ImageAlignmentControlCreateInfoMESA<'a> {}
-impl<'a> Default for ImageAlignmentControlCreateInfoMESA<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            maximum_requested_alignment: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {}
+    impl<'a> Default for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                supported_image_alignment_mask: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> ImageAlignmentControlCreateInfoMESA<'a> {
-    pub fn maximum_requested_alignment(
-        mut self,
-        maximum_requested_alignment: u32,
-    ) -> Self {
-        self.maximum_requested_alignment = maximum_requested_alignment;
-        self
+    impl<'a> PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
+        pub fn supported_image_alignment_mask(
+            mut self,
+            supported_image_alignment_mask: u32,
+        ) -> Self {
+            self.supported_image_alignment_mask = supported_image_alignment_mask;
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct ImageAlignmentControlCreateInfoMESA<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub maximum_requested_alignment: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ImageAlignmentControlCreateInfoMESA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ImageAlignmentControlCreateInfoMESA<'a> {}
+    impl<'a> Default for ImageAlignmentControlCreateInfoMESA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                maximum_requested_alignment: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImageAlignmentControlCreateInfoMESA<'a> {
+        pub fn maximum_requested_alignment(
+            mut self,
+            maximum_requested_alignment: u32,
+        ) -> Self {
+            self.maximum_requested_alignment = maximum_requested_alignment;
+            self
+        }
+    }
+    ///Provided by [`mesa::image_alignment_control`](crate::mesa::image_alignment_control)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA: Self = Self(
+            1000575000,
+        );
+        pub const PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA: Self = Self(
+            1000575001,
+        );
+        pub const IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA: Self = Self(1000575002);
     }
 }
-///Provided by [`mesa::image_alignment_control`](crate::mesa::image_alignment_control)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA: Self = Self(
-        1000575000,
-    );
-    pub const PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA: Self = Self(
-        1000575001,
-    );
-    pub const IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA: Self = Self(1000575002);
-}
-pub const MESA_IMAGE_ALIGNMENT_CONTROL_SPEC_VERSION: u32 = 1;
-pub const MESA_IMAGE_ALIGNMENT_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_MESA_image_alignment_control";
+pub use reexport::*;

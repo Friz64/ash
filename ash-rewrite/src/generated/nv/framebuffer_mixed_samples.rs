@@ -2,160 +2,168 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_framebuffer_mixed_samples.html) · Extension `VK_NV_framebuffer_mixed_samples`
 #![doc(alias = "VK_NV_framebuffer_mixed_samples")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PipelineCoverageModulationStateCreateInfoNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
-    pub coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
-    pub coverage_modulation_table_enable: crate::vk::Bool32,
-    pub coverage_modulation_table_count: u32,
-    pub p_coverage_modulation_table: *const core::ffi::c_float,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PipelineCoverageModulationStateCreateInfoNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
-for PipelineCoverageModulationStateCreateInfoNV<'a> {}
-impl<'a> Default for PipelineCoverageModulationStateCreateInfoNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            flags: Default::default(),
-            coverage_modulation_mode: Default::default(),
-            coverage_modulation_table_enable: Default::default(),
-            coverage_modulation_table_count: Default::default(),
-            p_coverage_modulation_table: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_framebuffer_mixed_samples";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineCoverageModulationStateCreateInfoNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
+        pub coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
+        pub coverage_modulation_table_enable: crate::vk::Bool32,
+        pub coverage_modulation_table_count: u32,
+        pub p_coverage_modulation_table: *const core::ffi::c_float,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineCoverageModulationStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
+    for PipelineCoverageModulationStateCreateInfoNV<'a> {}
+    impl<'a> Default for PipelineCoverageModulationStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                coverage_modulation_mode: Default::default(),
+                coverage_modulation_table_enable: Default::default(),
+                coverage_modulation_table_count: Default::default(),
+                p_coverage_modulation_table: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineCoverageModulationStateCreateInfoNV<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn coverage_modulation_mode(
+            mut self,
+            coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
+        ) -> Self {
+            self.coverage_modulation_mode = coverage_modulation_mode;
+            self
+        }
+        pub fn coverage_modulation_table_enable(
+            mut self,
+            coverage_modulation_table_enable: bool,
+        ) -> Self {
+            self.coverage_modulation_table_enable = coverage_modulation_table_enable
+                .into();
+            self
+        }
+        pub fn coverage_modulation_table(
+            mut self,
+            coverage_modulation_table: &'a [core::ffi::c_float],
+        ) -> Self {
+            self.coverage_modulation_table_count = coverage_modulation_table.len() as _;
+            self.p_coverage_modulation_table = coverage_modulation_table.as_ptr();
+            self
+        }
+    }
+    pub type AttachmentSampleCountInfoNV<'a> = crate::vk::AttachmentSampleCountInfoAMD<
+        'a,
+    >;
+    ///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
+    impl crate::vk::StructureType {
+        pub const PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV: Self = Self(
+            1000152000,
+        );
+        pub const ATTACHMENT_SAMPLE_COUNT_INFO_NV: Self = Self::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct CoverageModulationModeNV(pub(crate) i32);
+    ///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
+    impl CoverageModulationModeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const NONE_NV: Self = Self(0);
+        pub const RGB_NV: Self = Self(1);
+        pub const ALPHA_NV: Self = Self(2);
+        pub const RGBA_NV: Self = Self(3);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineCoverageModulationStateCreateFlagsNV(u32);
+    impl PipelineCoverageModulationStateCreateFlagsNV {
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for PipelineCoverageModulationStateCreateFlagsNV {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for PipelineCoverageModulationStateCreateFlagsNV {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for PipelineCoverageModulationStateCreateFlagsNV {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for PipelineCoverageModulationStateCreateFlagsNV {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for PipelineCoverageModulationStateCreateFlagsNV {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for PipelineCoverageModulationStateCreateFlagsNV {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for PipelineCoverageModulationStateCreateFlagsNV {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for PipelineCoverageModulationStateCreateFlagsNV {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
         }
     }
 }
-impl<'a> PipelineCoverageModulationStateCreateInfoNV<'a> {
-    pub fn flags(
-        mut self,
-        flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
-    ) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn coverage_modulation_mode(
-        mut self,
-        coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
-    ) -> Self {
-        self.coverage_modulation_mode = coverage_modulation_mode;
-        self
-    }
-    pub fn coverage_modulation_table_enable(
-        mut self,
-        coverage_modulation_table_enable: bool,
-    ) -> Self {
-        self.coverage_modulation_table_enable = coverage_modulation_table_enable.into();
-        self
-    }
-    pub fn coverage_modulation_table(
-        mut self,
-        coverage_modulation_table: &'a [core::ffi::c_float],
-    ) -> Self {
-        self.coverage_modulation_table_count = coverage_modulation_table.len() as _;
-        self.p_coverage_modulation_table = coverage_modulation_table.as_ptr();
-        self
-    }
-}
-pub type AttachmentSampleCountInfoNV<'a> = crate::vk::AttachmentSampleCountInfoAMD<'a>;
-///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
-impl crate::vk::StructureType {
-    pub const PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV: Self = Self(1000152000);
-    pub const ATTACHMENT_SAMPLE_COUNT_INFO_NV: Self = Self::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct CoverageModulationModeNV(pub(crate) i32);
-///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
-impl CoverageModulationModeNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const NONE_NV: Self = Self(0);
-    pub const RGB_NV: Self = Self(1);
-    pub const ALPHA_NV: Self = Self(2);
-    pub const RGBA_NV: Self = Self(3);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineCoverageModulationStateCreateFlagsNV(u32);
-impl PipelineCoverageModulationStateCreateFlagsNV {
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    pub const fn from_raw(x: u32) -> Self {
-        Self(x)
-    }
-    pub const fn as_raw(self) -> u32 {
-        self.0
-    }
-    pub const fn is_empty(self) -> bool {
-        self.0 == Self::empty().0
-    }
-    pub const fn intersects(self, other: Self) -> bool {
-        !Self(self.0 & other.0).is_empty()
-    }
-    pub const fn contains(self, other: Self) -> bool {
-        self.0 & other.0 == other.0
-    }
-}
-impl Default for PipelineCoverageModulationStateCreateFlagsNV {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl core::ops::BitOr for PipelineCoverageModulationStateCreateFlagsNV {
-    type Output = Self;
-    fn bitor(self, rhs: Self) -> Self {
-        Self(self.0 | rhs.0)
-    }
-}
-impl core::ops::BitOrAssign for PipelineCoverageModulationStateCreateFlagsNV {
-    fn bitor_assign(&mut self, rhs: Self) {
-        *self = *self | rhs;
-    }
-}
-impl core::ops::BitAnd for PipelineCoverageModulationStateCreateFlagsNV {
-    type Output = Self;
-    fn bitand(self, rhs: Self) -> Self {
-        Self(self.0 & rhs.0)
-    }
-}
-impl core::ops::BitAndAssign for PipelineCoverageModulationStateCreateFlagsNV {
-    fn bitand_assign(&mut self, rhs: Self) {
-        *self = *self & rhs;
-    }
-}
-impl core::ops::BitXor for PipelineCoverageModulationStateCreateFlagsNV {
-    type Output = Self;
-    fn bitxor(self, rhs: Self) -> Self {
-        Self(self.0 ^ rhs.0)
-    }
-}
-impl core::ops::BitXorAssign for PipelineCoverageModulationStateCreateFlagsNV {
-    fn bitxor_assign(&mut self, rhs: Self) {
-        *self = *self ^ rhs;
-    }
-}
-impl core::ops::Not for PipelineCoverageModulationStateCreateFlagsNV {
-    type Output = Self;
-    fn not(self) -> Self {
-        Self(!self.0)
-    }
-}
-pub const NV_FRAMEBUFFER_MIXED_SAMPLES_SPEC_VERSION: u32 = 1;
-pub const NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_framebuffer_mixed_samples";
+pub use reexport::*;

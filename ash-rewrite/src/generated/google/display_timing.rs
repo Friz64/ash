@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GOOGLE_display_timing.html) · Extension `VK_GOOGLE_display_timing`
 #![doc(alias = "VK_GOOGLE_display_timing")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_GOOGLE_display_timing";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_refresh_cycle_duration_google: crate::vk::PFN_vkGetRefreshCycleDurationGOOGLE,
@@ -181,7 +183,5 @@ pub(crate) mod reexport {
         p_presentation_timing_count: *mut u32,
         p_presentation_timings: *mut crate::vk::PastPresentationTimingGOOGLE,
     ) -> crate::vk::Result;
-    pub const GOOGLE_DISPLAY_TIMING_SPEC_VERSION: u32 = 1;
-    pub const GOOGLE_DISPLAY_TIMING_EXTENSION_NAME: &core::ffi::CStr = c"VK_GOOGLE_display_timing";
 }
 pub use reexport::*;

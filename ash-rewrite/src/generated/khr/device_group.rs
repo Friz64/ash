@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_group.html) · Extension `VK_KHR_device_group`
 #![doc(alias = "VK_KHR_device_group")]
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_device_group";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_device_group_present_capabilities_khr: crate::vk::PFN_vkGetDeviceGroupPresentCapabilitiesKHR,
@@ -256,7 +258,5 @@ pub(crate) mod reexport {
     pub type PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR = crate::vk::PFN_vkGetDeviceGroupPeerMemoryFeatures;
     pub type PFN_vkCmdSetDeviceMaskKHR = crate::vk::PFN_vkCmdSetDeviceMask;
     pub type PFN_vkCmdDispatchBaseKHR = crate::vk::PFN_vkCmdDispatchBase;
-    pub const KHR_DEVICE_GROUP_SPEC_VERSION: u32 = 4;
-    pub const KHR_DEVICE_GROUP_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_device_group";
 }
 pub use reexport::*;

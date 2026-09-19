@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_fragment_shading_rate.html) · Extension `VK_KHR_fragment_shading_rate`
 #![doc(alias = "VK_KHR_fragment_shading_rate")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_fragment_shading_rate";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_fragment_shading_rate_khr: crate::vk::PFN_vkCmdSetFragmentShadingRateKHR,
@@ -603,7 +605,5 @@ pub(crate) mod reexport {
             '_,
         >,
     ) -> crate::vk::Result;
-    pub const KHR_FRAGMENT_SHADING_RATE_SPEC_VERSION: u32 = 2;
-    pub const KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_fragment_shading_rate";
 }
 pub use reexport::*;

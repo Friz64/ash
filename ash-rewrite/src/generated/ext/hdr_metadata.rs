@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_hdr_metadata.html) · Extension `VK_EXT_hdr_metadata`
 #![doc(alias = "VK_EXT_hdr_metadata")]
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_hdr_metadata";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub set_hdr_metadata_ext: crate::vk::PFN_vkSetHdrMetadataEXT,
@@ -170,7 +172,5 @@ pub(crate) mod reexport {
         p_swapchains: *const crate::vk::SwapchainKHR,
         p_metadata: *const crate::vk::HdrMetadataEXT<'_>,
     );
-    pub const EXT_HDR_METADATA_SPEC_VERSION: u32 = 3;
-    pub const EXT_HDR_METADATA_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_hdr_metadata";
 }
 pub use reexport::*;

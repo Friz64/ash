@@ -2,50 +2,53 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ycbcr_2plane_444_formats.html) · Extension `VK_EXT_ycbcr_2plane_444_formats`
 #![doc(alias = "VK_EXT_ycbcr_2plane_444_formats")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub ycbcr2plane444_formats: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            ycbcr2plane444_formats: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_ycbcr_2plane_444_formats";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub ycbcr2plane444_formats: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                ycbcr2plane444_formats: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
-    pub fn ycbcr2plane444_formats(mut self, ycbcr2plane444_formats: bool) -> Self {
-        self.ycbcr2plane444_formats = ycbcr2plane444_formats.into();
-        self
+    impl<'a> PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
+        pub fn ycbcr2plane444_formats(mut self, ycbcr2plane444_formats: bool) -> Self {
+            self.ycbcr2plane444_formats = ycbcr2plane444_formats.into();
+            self
+        }
+    }
+    ///Provided by [`ext::ycbcr_2plane_444_formats`](crate::ext::ycbcr_2plane_444_formats)
+    impl crate::vk::Format {
+        pub const G8_B8R8_2PLANE_444_UNORM_EXT: Self = Self::G8_B8R8_2PLANE_444_UNORM;
+        pub const G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16_EXT: Self = Self::G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16;
+        pub const G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16_EXT: Self = Self::G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16;
+        pub const G16_B16R16_2PLANE_444_UNORM_EXT: Self = Self::G16_B16R16_2PLANE_444_UNORM;
+    }
+    ///Provided by [`ext::ycbcr_2plane_444_formats`](crate::ext::ycbcr_2plane_444_formats)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT: Self = Self(
+            1000330000,
+        );
     }
 }
-///Provided by [`ext::ycbcr_2plane_444_formats`](crate::ext::ycbcr_2plane_444_formats)
-impl crate::vk::Format {
-    pub const G8_B8R8_2PLANE_444_UNORM_EXT: Self = Self::G8_B8R8_2PLANE_444_UNORM;
-    pub const G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16_EXT: Self = Self::G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16;
-    pub const G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16_EXT: Self = Self::G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16;
-    pub const G16_B16R16_2PLANE_444_UNORM_EXT: Self = Self::G16_B16R16_2PLANE_444_UNORM;
-}
-///Provided by [`ext::ycbcr_2plane_444_formats`](crate::ext::ycbcr_2plane_444_formats)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT: Self = Self(
-        1000330000,
-    );
-}
-pub const EXT_YCBCR_2PLANE_444_FORMATS_SPEC_VERSION: u32 = 1;
-pub const EXT_YCBCR_2PLANE_444_FORMATS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_ycbcr_2plane_444_formats";
+pub use reexport::*;

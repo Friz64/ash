@@ -17,11 +17,18 @@ use std::{
 };
 use syn::Ident;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+pub struct ReexportAs {
+    pub original: Ident,
+    pub alias: Ident,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Destination {
     pub library: LibraryName,
     pub location: RequireLocation,
     pub reexport: bool,
+    pub reexport_as: Vec<ReexportAs>,
 }
 
 impl Destination {
@@ -30,6 +37,7 @@ impl Destination {
             library: required_by.library,
             location: required_by.primary_location(),
             reexport: true,
+            reexport_as: Vec::new(),
         }
     }
 
@@ -40,6 +48,7 @@ impl Destination {
                 library: required_by.library,
                 location,
                 reexport: true,
+                reexport_as: Vec::new(),
             })
     }
 }
@@ -53,7 +62,7 @@ impl Destination {
     fn original_name(&self) -> String {
         match self.location {
             RequireLocation::Core { major, minor } => format!("VK_VERSION_{major}_{minor}"),
-            RequireLocation::Extension { name } => name.into(),
+            RequireLocation::Extension { name } => name.original().into(),
         }
     }
 
@@ -69,8 +78,7 @@ impl Destination {
             }],
             RequireLocation::Extension { name } => match self.library {
                 LibraryName::Vk => {
-                    let vulkan_ext = name.strip_prefix("VK_").unwrap();
-                    let (ext_tag, ext_name) = vulkan_ext.split_once('_').unwrap();
+                    let (ext_tag, ext_name) = name.tag_and_name(self.library);
                     vec![
                         DestinationPathComponent {
                             module_name: format_ident!("{}", ext_tag.to_ascii_lowercase()),
@@ -80,21 +88,21 @@ impl Destination {
                             module_name: crate::escape_ident(&ext_name.to_snek_case()),
                             doc_comment: crate::refpage_doc(
                                 &original_name,
-                                format!("Extension `{name}`"),
+                                format!("Extension `{}`", original_name),
                             ),
                         },
                     ]
                 }
                 LibraryName::Video => {
-                    let video_ext = name.strip_prefix("vulkan_video_").unwrap();
+                    let prefix_stripped = name.prefix_stripped(self.library);
                     vec![
                         DestinationPathComponent {
                             module_name: format_ident!("video"),
                             doc_comment: "Vulkan Video".into(),
                         },
                         DestinationPathComponent {
-                            module_name: format_ident!("{video_ext}"),
-                            doc_comment: format!("Items provided by `{}`", name),
+                            module_name: format_ident!("{prefix_stripped}"),
+                            doc_comment: format!("Items provided by `{}`", original_name),
                         },
                     ]
                 }
@@ -130,6 +138,10 @@ impl CodeMap {
         self.0.iter()
     }
 
+    pub fn into_iter(self) -> impl Iterator<Item = (Destination, TokenStream)> {
+        self.0.into_iter()
+    }
+
     pub fn write(&self, output_path: impl AsRef<Path>) -> io::Result<()> {
         let mut vfs = VirtualRustFs::default();
         vfs.write(
@@ -145,11 +157,16 @@ impl CodeMap {
             child_modules: IndexSet<Ident>,
         }
 
-        struct SourceFile {
-            destination: Destination,
+        struct SourceFile<'a> {
+            destination: &'a Destination,
             doc_comment: String,
+            /// e.g. VK_EXT_FOO for easy lookup
             doc_alias: String,
+            /// [reexport::*, NAME as FOO_NAME, SPEC_VERSION as FOO_SPEC_VERSION]
+            reexport_items: Vec<TokenStream>,
+            /// items that will be glob-reexported to the vk module
             reexport_content: TokenStream,
+            /// other items
             content: TokenStream,
         }
 
@@ -170,9 +187,10 @@ impl CodeMap {
             path.add_extension("rs");
 
             let source_file = source_files.entry(path).or_insert_with(|| SourceFile {
-                destination: *destination,
+                destination,
                 doc_comment: doc.into(),
                 doc_alias: destination.original_name(),
+                reexport_items: vec![quote! { reexport::* }],
                 reexport_content: TokenStream::new(),
                 content: TokenStream::new(),
             });
@@ -181,6 +199,10 @@ impl CodeMap {
                 source_file.reexport_content.extend(content.clone());
             } else {
                 source_file.content.extend(content.clone());
+            }
+
+            for ReexportAs { original, alias } in &destination.reexport_as {
+                (source_file.reexport_items).push(quote! { #original as #alias });
             }
 
             // this affects the order impl blocks show up in rustdoc
@@ -214,26 +236,29 @@ impl CodeMap {
                 destination,
                 doc_comment,
                 doc_alias,
+                reexport_items,
                 mut reexport_content,
                 content,
             } = source_file;
 
             if !reexport_content.is_empty() {
-                let mut module = None;
-                if !content.is_empty() {
-                    module = Some(quote! { ::reexport });
-                    reexport_content = quote! {
-                        pub(crate) mod reexport { #reexport_content }
-                        pub use reexport::*;
-                    };
-                }
+                reexport_content = quote! {
+                    pub(crate) mod reexport { #reexport_content }
+                    pub use reexport::*;
+                };
 
                 let components = destination.path_components();
-                let component_idents = components.iter().map(|component| &component.module_name);
-                vfs.write(
-                    "vk.rs",
-                    quote! { pub use super:: #( #component_idents ) :: * #module ::*; },
-                );
+                let component_idents: Vec<_> = components
+                    .iter()
+                    .map(|component| &component.module_name)
+                    .collect();
+                let vk_content = reexport_items.into_iter().map(|reexport_item| {
+                    // this is quite difficult to parse by eye:
+                    // #component_idents is using repetition syntax #()*
+                    quote! { pub use super:: #(#component_idents)::* ::#reexport_item; }
+                });
+
+                vfs.write("vk.rs", quote! { #(#vk_content)* });
             }
 
             vfs.write(

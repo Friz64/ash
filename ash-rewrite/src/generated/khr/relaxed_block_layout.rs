@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_relaxed_block_layout.html) · Extension `VK_KHR_relaxed_block_layout`
 #![doc(alias = "VK_KHR_relaxed_block_layout")]
-pub const KHR_RELAXED_BLOCK_LAYOUT_SPEC_VERSION: u32 = 1;
-pub const KHR_RELAXED_BLOCK_LAYOUT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_relaxed_block_layout";
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_relaxed_block_layout";

@@ -2,111 +2,116 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_features.html) · Extension `VK_EXT_validation_features`
 #![doc(alias = "VK_EXT_validation_features")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct ValidationFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub enabled_validation_feature_count: u32,
-    pub p_enabled_validation_features: *const crate::vk::ValidationFeatureEnableEXT,
-    pub disabled_validation_feature_count: u32,
-    pub p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
-for ValidationFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::ShaderModuleCreateInfo<'_>>
-for ValidationFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::ShaderCreateInfoEXT<'_>>
-for ValidationFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
-for ValidationFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
-for ValidationFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
-for ValidationFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::RayTracingPipelineCreateInfoKHR<'_>>
-for ValidationFeaturesEXT<'a> {}
-impl<'a> Default for ValidationFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            enabled_validation_feature_count: Default::default(),
-            p_enabled_validation_features: Default::default(),
-            disabled_validation_feature_count: Default::default(),
-            p_disabled_validation_features: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 6;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_features";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct ValidationFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub enabled_validation_feature_count: u32,
+        pub p_enabled_validation_features: *const crate::vk::ValidationFeatureEnableEXT,
+        pub disabled_validation_feature_count: u32,
+        pub p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+    for ValidationFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ShaderModuleCreateInfo<'_>>
+    for ValidationFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ShaderCreateInfoEXT<'_>>
+    for ValidationFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    for ValidationFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for ValidationFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+    for ValidationFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RayTracingPipelineCreateInfoKHR<'_>>
+    for ValidationFeaturesEXT<'a> {}
+    impl<'a> Default for ValidationFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                enabled_validation_feature_count: Default::default(),
+                p_enabled_validation_features: Default::default(),
+                disabled_validation_feature_count: Default::default(),
+                p_disabled_validation_features: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
+    impl<'a> ValidationFeaturesEXT<'a> {
+        pub fn enabled_validation_features(
+            mut self,
+            enabled_validation_features: &'a [crate::vk::ValidationFeatureEnableEXT],
+        ) -> Self {
+            self.enabled_validation_feature_count = enabled_validation_features.len()
+                as _;
+            self.p_enabled_validation_features = enabled_validation_features.as_ptr();
+            self
+        }
+        pub fn disabled_validation_features(
+            mut self,
+            disabled_validation_features: &'a [crate::vk::ValidationFeatureDisableEXT],
+        ) -> Self {
+            self.disabled_validation_feature_count = disabled_validation_features.len()
+                as _;
+            self.p_disabled_validation_features = disabled_validation_features.as_ptr();
+            self
+        }
+    }
+    ///Provided by [`ext::validation_features`](crate::ext::validation_features)
+    impl crate::vk::StructureType {
+        pub const VALIDATION_FEATURES_EXT: Self = Self(1000247000);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct ValidationFeatureEnableEXT(pub(crate) i32);
+    ///Provided by [`ext::validation_features`](crate::ext::validation_features)
+    impl ValidationFeatureEnableEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const GPU_ASSISTED_EXT: Self = Self(0);
+        pub const GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT: Self = Self(1);
+        pub const BEST_PRACTICES_EXT: Self = Self(2);
+        pub const DEBUG_PRINTF_EXT: Self = Self(3);
+        pub const SYNCHRONIZATION_VALIDATION_EXT: Self = Self(4);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct ValidationFeatureDisableEXT(pub(crate) i32);
+    ///Provided by [`ext::validation_features`](crate::ext::validation_features)
+    impl ValidationFeatureDisableEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const ALL_EXT: Self = Self(0);
+        pub const SHADERS_EXT: Self = Self(1);
+        pub const THREAD_SAFETY_EXT: Self = Self(2);
+        pub const API_PARAMETERS_EXT: Self = Self(3);
+        pub const OBJECT_LIFETIMES_EXT: Self = Self(4);
+        pub const CORE_CHECKS_EXT: Self = Self(5);
+        pub const UNIQUE_HANDLES_EXT: Self = Self(6);
+        pub const SHADER_VALIDATION_CACHE_EXT: Self = Self(7);
+    }
 }
-impl<'a> ValidationFeaturesEXT<'a> {
-    pub fn enabled_validation_features(
-        mut self,
-        enabled_validation_features: &'a [crate::vk::ValidationFeatureEnableEXT],
-    ) -> Self {
-        self.enabled_validation_feature_count = enabled_validation_features.len() as _;
-        self.p_enabled_validation_features = enabled_validation_features.as_ptr();
-        self
-    }
-    pub fn disabled_validation_features(
-        mut self,
-        disabled_validation_features: &'a [crate::vk::ValidationFeatureDisableEXT],
-    ) -> Self {
-        self.disabled_validation_feature_count = disabled_validation_features.len() as _;
-        self.p_disabled_validation_features = disabled_validation_features.as_ptr();
-        self
-    }
-}
-///Provided by [`ext::validation_features`](crate::ext::validation_features)
-impl crate::vk::StructureType {
-    pub const VALIDATION_FEATURES_EXT: Self = Self(1000247000);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct ValidationFeatureEnableEXT(pub(crate) i32);
-///Provided by [`ext::validation_features`](crate::ext::validation_features)
-impl ValidationFeatureEnableEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const GPU_ASSISTED_EXT: Self = Self(0);
-    pub const GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT: Self = Self(1);
-    pub const BEST_PRACTICES_EXT: Self = Self(2);
-    pub const DEBUG_PRINTF_EXT: Self = Self(3);
-    pub const SYNCHRONIZATION_VALIDATION_EXT: Self = Self(4);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct ValidationFeatureDisableEXT(pub(crate) i32);
-///Provided by [`ext::validation_features`](crate::ext::validation_features)
-impl ValidationFeatureDisableEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const ALL_EXT: Self = Self(0);
-    pub const SHADERS_EXT: Self = Self(1);
-    pub const THREAD_SAFETY_EXT: Self = Self(2);
-    pub const API_PARAMETERS_EXT: Self = Self(3);
-    pub const OBJECT_LIFETIMES_EXT: Self = Self(4);
-    pub const CORE_CHECKS_EXT: Self = Self(5);
-    pub const UNIQUE_HANDLES_EXT: Self = Self(6);
-    pub const SHADER_VALIDATION_CACHE_EXT: Self = Self(7);
-}
-pub const EXT_VALIDATION_FEATURES_SPEC_VERSION: u32 = 6;
-pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_validation_features";
+pub use reexport::*;

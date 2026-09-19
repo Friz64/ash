@@ -2,24 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_multiview.html) · Extension `VK_KHR_multiview`
 #![doc(alias = "VK_KHR_multiview")]
-pub type PhysicalDeviceMultiviewFeaturesKHR<'a> = crate::vk::PhysicalDeviceMultiviewFeatures<
-    'a,
->;
-pub type PhysicalDeviceMultiviewPropertiesKHR<'a> = crate::vk::PhysicalDeviceMultiviewProperties<
-    'a,
->;
-pub type RenderPassMultiviewCreateInfoKHR<'a> = crate::vk::RenderPassMultiviewCreateInfo<
-    'a,
->;
-///Provided by [`khr::multiview`](crate::khr::multiview)
-impl crate::vk::StructureType {
-    pub const RENDER_PASS_MULTIVIEW_CREATE_INFO_KHR: Self = Self::RENDER_PASS_MULTIVIEW_CREATE_INFO;
-    pub const PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MULTIVIEW_FEATURES;
-    pub const PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_multiview";
+pub(crate) mod reexport {
+    pub type PhysicalDeviceMultiviewFeaturesKHR<'a> = crate::vk::PhysicalDeviceMultiviewFeatures<
+        'a,
+    >;
+    pub type PhysicalDeviceMultiviewPropertiesKHR<'a> = crate::vk::PhysicalDeviceMultiviewProperties<
+        'a,
+    >;
+    pub type RenderPassMultiviewCreateInfoKHR<'a> = crate::vk::RenderPassMultiviewCreateInfo<
+        'a,
+    >;
+    ///Provided by [`khr::multiview`](crate::khr::multiview)
+    impl crate::vk::StructureType {
+        pub const RENDER_PASS_MULTIVIEW_CREATE_INFO_KHR: Self = Self::RENDER_PASS_MULTIVIEW_CREATE_INFO;
+        pub const PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MULTIVIEW_FEATURES;
+        pub const PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES;
+    }
+    ///Provided by [`khr::multiview`](crate::khr::multiview)
+    impl crate::vk::DependencyFlagBits {
+        pub const VIEW_LOCAL_KHR: Self = Self::VIEW_LOCAL;
+    }
 }
-///Provided by [`khr::multiview`](crate::khr::multiview)
-impl crate::vk::DependencyFlagBits {
-    pub const VIEW_LOCAL_KHR: Self = Self::VIEW_LOCAL;
-}
-pub const KHR_MULTIVIEW_SPEC_VERSION: u32 = 1;
-pub const KHR_MULTIVIEW_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_multiview";
+pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_private_data.html) · Extension `VK_EXT_private_data`
 #![doc(alias = "VK_EXT_private_data")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_private_data";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_private_data_slot_ext: crate::vk::PFN_vkCreatePrivateDataSlotEXT,
@@ -136,7 +138,5 @@ pub(crate) mod reexport {
     pub type PFN_vkDestroyPrivateDataSlotEXT = crate::vk::PFN_vkDestroyPrivateDataSlot;
     pub type PFN_vkSetPrivateDataEXT = crate::vk::PFN_vkSetPrivateData;
     pub type PFN_vkGetPrivateDataEXT = crate::vk::PFN_vkGetPrivateData;
-    pub const EXT_PRIVATE_DATA_SPEC_VERSION: u32 = 1;
-    pub const EXT_PRIVATE_DATA_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_private_data";
 }
 pub use reexport::*;

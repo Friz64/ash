@@ -2,9 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_render_pass_store_ops.html) · Extension `VK_QCOM_render_pass_store_ops`
 #![doc(alias = "VK_QCOM_render_pass_store_ops")]
-///Provided by [`qcom::render_pass_store_ops`](crate::qcom::render_pass_store_ops)
-impl crate::vk::AttachmentStoreOp {
-    pub const NONE_QCOM: Self = Self::NONE;
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_render_pass_store_ops";
+pub(crate) mod reexport {
+    ///Provided by [`qcom::render_pass_store_ops`](crate::qcom::render_pass_store_ops)
+    impl crate::vk::AttachmentStoreOp {
+        pub const NONE_QCOM: Self = Self::NONE;
+    }
 }
-pub const QCOM_RENDER_PASS_STORE_OPS_SPEC_VERSION: u32 = 2;
-pub const QCOM_RENDER_PASS_STORE_OPS_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_render_pass_store_ops";
+pub use reexport::*;

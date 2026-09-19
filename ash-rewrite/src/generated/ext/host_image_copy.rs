@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_host_image_copy.html) · Extension `VK_EXT_host_image_copy`
 #![doc(alias = "VK_EXT_host_image_copy")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_host_image_copy";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub copy_memory_to_image_ext: crate::vk::PFN_vkCopyMemoryToImageEXT,
@@ -173,7 +175,5 @@ pub(crate) mod reexport {
     pub type PFN_vkCopyImageToImageEXT = crate::vk::PFN_vkCopyImageToImage;
     pub type PFN_vkTransitionImageLayoutEXT = crate::vk::PFN_vkTransitionImageLayout;
     pub type PFN_vkGetImageSubresourceLayout2EXT = crate::vk::PFN_vkGetImageSubresourceLayout2;
-    pub const EXT_HOST_IMAGE_COPY_SPEC_VERSION: u32 = 1;
-    pub const EXT_HOST_IMAGE_COPY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_host_image_copy";
 }
 pub use reexport::*;

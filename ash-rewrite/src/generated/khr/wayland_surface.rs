@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_wayland_surface.html) · Extension `VK_KHR_wayland_surface`
 #![doc(alias = "VK_KHR_wayland_surface")]
+pub const SPEC_VERSION: u32 = 6;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_wayland_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_wayland_surface_khr: crate::vk::PFN_vkCreateWaylandSurfaceKHR,
@@ -205,7 +207,5 @@ pub(crate) mod reexport {
         queue_family_index: u32,
         display: *mut crate::platform_types::wl_display,
     ) -> crate::vk::Bool32;
-    pub const KHR_WAYLAND_SURFACE_SPEC_VERSION: u32 = 6;
-    pub const KHR_WAYLAND_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_wayland_surface";
 }
 pub use reexport::*;

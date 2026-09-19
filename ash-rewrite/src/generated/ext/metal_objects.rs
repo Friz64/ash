@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_metal_objects.html) · Extension `VK_EXT_metal_objects`
 #![doc(alias = "VK_EXT_metal_objects")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_metal_objects";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub export_metal_objects_ext: crate::vk::PFN_vkExportMetalObjectsEXT,
@@ -620,7 +622,5 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         p_metal_objects_info: *mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
     );
-    pub const EXT_METAL_OBJECTS_SPEC_VERSION: u32 = 2;
-    pub const EXT_METAL_OBJECTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_metal_objects";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_screen_surface.html) · Extension `VK_QNX_screen_surface`
 #![doc(alias = "VK_QNX_screen_surface")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QNX_screen_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_screen_surface_qnx: crate::vk::PFN_vkCreateScreenSurfaceQNX,
@@ -205,7 +207,5 @@ pub(crate) mod reexport {
         queue_family_index: u32,
         window: *mut crate::platform_types::_screen_window,
     ) -> crate::vk::Bool32;
-    pub const QNX_SCREEN_SURFACE_SPEC_VERSION: u32 = 1;
-    pub const QNX_SCREEN_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_QNX_screen_surface";
 }
 pub use reexport::*;

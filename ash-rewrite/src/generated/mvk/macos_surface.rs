@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MVK_macos_surface.html) · Extension `VK_MVK_macos_surface`
 #![doc(alias = "VK_MVK_macos_surface")]
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_MVK_macos_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_mac_os_surface_mvk: crate::vk::PFN_vkCreateMacOSSurfaceMVK,
@@ -170,7 +172,5 @@ pub(crate) mod reexport {
         p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
-    pub const MVK_MACOS_SURFACE_SPEC_VERSION: u32 = 3;
-    pub const MVK_MACOS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_MVK_macos_surface";
 }
 pub use reexport::*;

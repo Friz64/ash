@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_opacity_micromap.html) · Extension `VK_EXT_opacity_micromap`
 #![doc(alias = "VK_EXT_opacity_micromap")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_opacity_micromap";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_micromap_ext: crate::vk::PFN_vkCreateMicromapEXT,
@@ -1215,7 +1217,5 @@ pub(crate) mod reexport {
         p_build_info: *const crate::vk::MicromapBuildInfoEXT<'_>,
         p_size_info: *mut crate::vk::MicromapBuildSizesInfoEXT<'_>,
     );
-    pub const EXT_OPACITY_MICROMAP_SPEC_VERSION: u32 = 2;
-    pub const EXT_OPACITY_MICROMAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_opacity_micromap";
 }
 pub use reexport::*;

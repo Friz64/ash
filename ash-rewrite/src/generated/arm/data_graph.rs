@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph.html) · Extension `VK_ARM_data_graph`
 #![doc(alias = "VK_ARM_data_graph")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_data_graph_pipelines_arm: crate::vk::PFN_vkCreateDataGraphPipelinesARM,
@@ -1604,7 +1606,5 @@ pub(crate) mod reexport {
         >,
     );
     pub const MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM: u32 = 128;
-    pub const ARM_DATA_GRAPH_SPEC_VERSION: u32 = 1;
-    pub const ARM_DATA_GRAPH_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_data_graph";
 }
 pub use reexport::*;

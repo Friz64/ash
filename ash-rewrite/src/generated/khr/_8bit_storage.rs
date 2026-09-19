@@ -2,12 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_8bit_storage.html) · Extension `VK_KHR_8bit_storage`
 #![doc(alias = "VK_KHR_8bit_storage")]
-pub type PhysicalDevice8BitStorageFeaturesKHR<'a> = crate::vk::PhysicalDevice8BitStorageFeatures<
-    'a,
->;
-///Provided by [`khr::_8bit_storage`](crate::khr::_8bit_storage)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_8bit_storage";
+pub(crate) mod reexport {
+    pub type PhysicalDevice8BitStorageFeaturesKHR<'a> = crate::vk::PhysicalDevice8BitStorageFeatures<
+        'a,
+    >;
+    ///Provided by [`khr::_8bit_storage`](crate::khr::_8bit_storage)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES;
+    }
 }
-pub const KHR_8BIT_STORAGE_SPEC_VERSION: u32 = 1;
-pub const KHR_8BIT_STORAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_8bit_storage";
+pub use reexport::*;

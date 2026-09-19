@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_gpa_interface.html) · Extension `VK_AMD_gpa_interface`
 #![doc(alias = "VK_AMD_gpa_interface")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_gpa_interface";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_gpa_session_amd: crate::vk::PFN_vkCreateGpaSessionAMD,
@@ -1135,7 +1137,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         gpa_session: crate::vk::GpaSessionAMD,
     );
-    pub const AMD_GPA_INTERFACE_SPEC_VERSION: u32 = 1;
-    pub const AMD_GPA_INTERFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_gpa_interface";
 }
 pub use reexport::*;

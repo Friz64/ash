@@ -2,71 +2,76 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_view_min_lod.html) · Extension `VK_EXT_image_view_min_lod`
 #![doc(alias = "VK_EXT_image_view_min_lod")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub min_lod: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            min_lod: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_image_view_min_lod";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub min_lod: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                min_lod: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
-    pub fn min_lod(mut self, min_lod: bool) -> Self {
-        self.min_lod = min_lod.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct ImageViewMinLodCreateInfoEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub min_lod: core::ffi::c_float,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewMinLodCreateInfoEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
-for ImageViewMinLodCreateInfoEXT<'a> {}
-impl<'a> Default for ImageViewMinLodCreateInfoEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            min_lod: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
+        pub fn min_lod(mut self, min_lod: bool) -> Self {
+            self.min_lod = min_lod.into();
+            self
         }
     }
-}
-impl<'a> ImageViewMinLodCreateInfoEXT<'a> {
-    pub fn min_lod(mut self, min_lod: core::ffi::c_float) -> Self {
-        self.min_lod = min_lod;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct ImageViewMinLodCreateInfoEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub min_lod: core::ffi::c_float,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewMinLodCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
+    for ImageViewMinLodCreateInfoEXT<'a> {}
+    impl<'a> Default for ImageViewMinLodCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                min_lod: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImageViewMinLodCreateInfoEXT<'a> {
+        pub fn min_lod(mut self, min_lod: core::ffi::c_float) -> Self {
+            self.min_lod = min_lod;
+            self
+        }
+    }
+    ///Provided by [`ext::image_view_min_lod`](crate::ext::image_view_min_lod)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT: Self = Self(
+            1000391000,
+        );
+        pub const IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT: Self = Self(1000391001);
     }
 }
-///Provided by [`ext::image_view_min_lod`](crate::ext::image_view_min_lod)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT: Self = Self(1000391000);
-    pub const IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT: Self = Self(1000391001);
-}
-pub const EXT_IMAGE_VIEW_MIN_LOD_SPEC_VERSION: u32 = 1;
-pub const EXT_IMAGE_VIEW_MIN_LOD_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_view_min_lod";
+pub use reexport::*;

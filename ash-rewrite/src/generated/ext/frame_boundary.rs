@@ -2,187 +2,192 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_frame_boundary.html) · Extension `VK_EXT_frame_boundary`
 #![doc(alias = "VK_EXT_frame_boundary")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct FrameBoundaryEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::vk::FrameBoundaryFlagsEXT,
-    pub frame_id: u64,
-    pub image_count: u32,
-    pub p_images: *const crate::vk::Image,
-    pub buffer_count: u32,
-    pub p_buffers: *const crate::vk::Buffer,
-    pub tag_name: u64,
-    pub tag_size: usize,
-    pub p_tag: *const core::ffi::c_void,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for FrameBoundaryEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAME_BOUNDARY_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>> for FrameBoundaryEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo2<'_>> for FrameBoundaryEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>> for FrameBoundaryEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::BindSparseInfo<'_>> for FrameBoundaryEXT<'a> {}
-impl<'a> Default for FrameBoundaryEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            flags: Default::default(),
-            frame_id: Default::default(),
-            image_count: Default::default(),
-            p_images: Default::default(),
-            buffer_count: Default::default(),
-            p_buffers: Default::default(),
-            tag_name: Default::default(),
-            tag_size: Default::default(),
-            p_tag: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_frame_boundary";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct FrameBoundaryEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub flags: crate::vk::FrameBoundaryFlagsEXT,
+        pub frame_id: u64,
+        pub image_count: u32,
+        pub p_images: *const crate::vk::Image,
+        pub buffer_count: u32,
+        pub p_buffers: *const crate::vk::Buffer,
+        pub tag_name: u64,
+        pub tag_size: usize,
+        pub p_tag: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for FrameBoundaryEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAME_BOUNDARY_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>> for FrameBoundaryEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo2<'_>> for FrameBoundaryEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for FrameBoundaryEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::BindSparseInfo<'_>>
+    for FrameBoundaryEXT<'a> {}
+    impl<'a> Default for FrameBoundaryEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                frame_id: Default::default(),
+                image_count: Default::default(),
+                p_images: Default::default(),
+                buffer_count: Default::default(),
+                p_buffers: Default::default(),
+                tag_name: Default::default(),
+                tag_size: Default::default(),
+                p_tag: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> FrameBoundaryEXT<'a> {
-    pub fn flags(mut self, flags: crate::vk::FrameBoundaryFlagsEXT) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn frame_id(mut self, frame_id: u64) -> Self {
-        self.frame_id = frame_id;
-        self
-    }
-    pub fn images(mut self, images: &'a [crate::vk::Image]) -> Self {
-        self.image_count = images.len() as _;
-        self.p_images = images.as_ptr();
-        self
-    }
-    pub fn buffers(mut self, buffers: &'a [crate::vk::Buffer]) -> Self {
-        self.buffer_count = buffers.len() as _;
-        self.p_buffers = buffers.as_ptr();
-        self
-    }
-    pub fn tag_name(mut self, tag_name: u64) -> Self {
-        self.tag_name = tag_name;
-        self
-    }
-    pub fn tag(mut self, tag: &'a [u8]) -> Self {
-        self.tag_size = tag.len() as _;
-        self.p_tag = tag.as_ptr().cast();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub frame_boundary: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            frame_boundary: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> FrameBoundaryEXT<'a> {
+        pub fn flags(mut self, flags: crate::vk::FrameBoundaryFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn frame_id(mut self, frame_id: u64) -> Self {
+            self.frame_id = frame_id;
+            self
+        }
+        pub fn images(mut self, images: &'a [crate::vk::Image]) -> Self {
+            self.image_count = images.len() as _;
+            self.p_images = images.as_ptr();
+            self
+        }
+        pub fn buffers(mut self, buffers: &'a [crate::vk::Buffer]) -> Self {
+            self.buffer_count = buffers.len() as _;
+            self.p_buffers = buffers.as_ptr();
+            self
+        }
+        pub fn tag_name(mut self, tag_name: u64) -> Self {
+            self.tag_name = tag_name;
+            self
+        }
+        pub fn tag(mut self, tag: &'a [u8]) -> Self {
+            self.tag_size = tag.len() as _;
+            self.p_tag = tag.as_ptr().cast();
+            self
         }
     }
-}
-impl<'a> PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
-    pub fn frame_boundary(mut self, frame_boundary: bool) -> Self {
-        self.frame_boundary = frame_boundary.into();
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub frame_boundary: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                frame_boundary: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
+        pub fn frame_boundary(mut self, frame_boundary: bool) -> Self {
+            self.frame_boundary = frame_boundary.into();
+            self
+        }
+    }
+    ///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT: Self = Self(1000375000);
+        pub const FRAME_BOUNDARY_EXT: Self = Self(1000375001);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct FrameBoundaryFlagsEXT(u32);
+    impl FrameBoundaryFlagsEXT {
+        pub const FRAME_END_EXT: Self = Self(FrameBoundaryFlagBitsEXT::FRAME_END_EXT.0);
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for FrameBoundaryFlagsEXT {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for FrameBoundaryFlagsEXT {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for FrameBoundaryFlagsEXT {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for FrameBoundaryFlagsEXT {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for FrameBoundaryFlagsEXT {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for FrameBoundaryFlagsEXT {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for FrameBoundaryFlagsEXT {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for FrameBoundaryFlagsEXT {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, Default)]
+    pub struct FrameBoundaryFlagBitsEXT(pub(crate) u32);
+    ///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
+    impl FrameBoundaryFlagBitsEXT {
+        pub const FRAME_END_EXT: Self = Self(1 << 0);
     }
 }
-///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT: Self = Self(1000375000);
-    pub const FRAME_BOUNDARY_EXT: Self = Self(1000375001);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct FrameBoundaryFlagsEXT(u32);
-impl FrameBoundaryFlagsEXT {
-    pub const FRAME_END_EXT: Self = Self(FrameBoundaryFlagBitsEXT::FRAME_END_EXT.0);
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    pub const fn from_raw(x: u32) -> Self {
-        Self(x)
-    }
-    pub const fn as_raw(self) -> u32 {
-        self.0
-    }
-    pub const fn is_empty(self) -> bool {
-        self.0 == Self::empty().0
-    }
-    pub const fn intersects(self, other: Self) -> bool {
-        !Self(self.0 & other.0).is_empty()
-    }
-    pub const fn contains(self, other: Self) -> bool {
-        self.0 & other.0 == other.0
-    }
-}
-impl Default for FrameBoundaryFlagsEXT {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl core::ops::BitOr for FrameBoundaryFlagsEXT {
-    type Output = Self;
-    fn bitor(self, rhs: Self) -> Self {
-        Self(self.0 | rhs.0)
-    }
-}
-impl core::ops::BitOrAssign for FrameBoundaryFlagsEXT {
-    fn bitor_assign(&mut self, rhs: Self) {
-        *self = *self | rhs;
-    }
-}
-impl core::ops::BitAnd for FrameBoundaryFlagsEXT {
-    type Output = Self;
-    fn bitand(self, rhs: Self) -> Self {
-        Self(self.0 & rhs.0)
-    }
-}
-impl core::ops::BitAndAssign for FrameBoundaryFlagsEXT {
-    fn bitand_assign(&mut self, rhs: Self) {
-        *self = *self & rhs;
-    }
-}
-impl core::ops::BitXor for FrameBoundaryFlagsEXT {
-    type Output = Self;
-    fn bitxor(self, rhs: Self) -> Self {
-        Self(self.0 ^ rhs.0)
-    }
-}
-impl core::ops::BitXorAssign for FrameBoundaryFlagsEXT {
-    fn bitxor_assign(&mut self, rhs: Self) {
-        *self = *self ^ rhs;
-    }
-}
-impl core::ops::Not for FrameBoundaryFlagsEXT {
-    type Output = Self;
-    fn not(self) -> Self {
-        Self(!self.0)
-    }
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, Default)]
-pub struct FrameBoundaryFlagBitsEXT(pub(crate) u32);
-///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
-impl FrameBoundaryFlagBitsEXT {
-    pub const FRAME_END_EXT: Self = Self(1 << 0);
-}
-pub const EXT_FRAME_BOUNDARY_SPEC_VERSION: u32 = 1;
-pub const EXT_FRAME_BOUNDARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_frame_boundary";
+pub use reexport::*;

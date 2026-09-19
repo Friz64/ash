@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_draw_parameters.html) · Extension `VK_KHR_shader_draw_parameters`
 #![doc(alias = "VK_KHR_shader_draw_parameters")]
-pub const KHR_SHADER_DRAW_PARAMETERS_SPEC_VERSION: u32 = 1;
-pub const KHR_SHADER_DRAW_PARAMETERS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_draw_parameters";
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_draw_parameters";

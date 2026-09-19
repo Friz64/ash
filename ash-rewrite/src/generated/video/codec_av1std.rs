@@ -2,164 +2,169 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_av1std`
 #![doc(alias = "vulkan_video_codec_av1std")]
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct AV1ColorConfigFlags {
-    /**- `mono_chrome` @ `0..1`
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct AV1ColorConfigFlags {
+        /**- `mono_chrome` @ `0..1`
 - `color_range` @ `1..2`
 - `separate_uv_delta_q` @ `2..3`
 - `color_description_present_flag` @ `3..4`*/
-    pub bitfield0: u32,
-}
-impl AV1ColorConfigFlags {
-    pub fn mono_chrome(mut self, mono_chrome: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFE;
-        self.bitfield0 = (mono_chrome & 0x00000001) | rest;
-        self
+        pub bitfield0: u32,
     }
-    pub fn get_mono_chrome(&self) -> u32 {
-        self.bitfield0 & 0x00000001
+    impl AV1ColorConfigFlags {
+        pub fn mono_chrome(mut self, mono_chrome: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFE;
+            self.bitfield0 = (mono_chrome & 0x00000001) | rest;
+            self
+        }
+        pub fn get_mono_chrome(&self) -> u32 {
+            self.bitfield0 & 0x00000001
+        }
+        pub fn color_range(mut self, color_range: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFD;
+            self.bitfield0 = ((color_range << 1u32) & 0x00000002) | rest;
+            self
+        }
+        pub fn get_color_range(&self) -> u32 {
+            (self.bitfield0 & 0x00000002) >> 1u32
+        }
+        pub fn separate_uv_delta_q(mut self, separate_uv_delta_q: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFB;
+            self.bitfield0 = ((separate_uv_delta_q << 2u32) & 0x00000004) | rest;
+            self
+        }
+        pub fn get_separate_uv_delta_q(&self) -> u32 {
+            (self.bitfield0 & 0x00000004) >> 2u32
+        }
+        pub fn color_description_present_flag(
+            mut self,
+            color_description_present_flag: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFF7;
+            self.bitfield0 = ((color_description_present_flag << 3u32) & 0x00000008)
+                | rest;
+            self
+        }
+        pub fn get_color_description_present_flag(&self) -> u32 {
+            (self.bitfield0 & 0x00000008) >> 3u32
+        }
     }
-    pub fn color_range(mut self, color_range: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFD;
-        self.bitfield0 = ((color_range << 1u32) & 0x00000002) | rest;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct AV1ColorConfig {
+        pub flags: crate::vk::AV1ColorConfigFlags,
+        pub bit_depth: u8,
+        pub subsampling_x: u8,
+        pub subsampling_y: u8,
+        pub reserved1: u8,
+        pub color_primaries: crate::vk::AV1ColorPrimaries,
+        pub transfer_characteristics: crate::vk::AV1TransferCharacteristics,
+        pub matrix_coefficients: crate::vk::AV1MatrixCoefficients,
+        pub chroma_sample_position: crate::vk::AV1ChromaSamplePosition,
     }
-    pub fn get_color_range(&self) -> u32 {
-        (self.bitfield0 & 0x00000002) >> 1u32
+    impl AV1ColorConfig {
+        pub fn flags(mut self, flags: crate::vk::AV1ColorConfigFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn bit_depth(mut self, bit_depth: u8) -> Self {
+            self.bit_depth = bit_depth;
+            self
+        }
+        pub fn subsampling_x(mut self, subsampling_x: u8) -> Self {
+            self.subsampling_x = subsampling_x;
+            self
+        }
+        pub fn subsampling_y(mut self, subsampling_y: u8) -> Self {
+            self.subsampling_y = subsampling_y;
+            self
+        }
+        pub fn reserved1(mut self, reserved1: u8) -> Self {
+            self.reserved1 = reserved1;
+            self
+        }
+        pub fn color_primaries(
+            mut self,
+            color_primaries: crate::vk::AV1ColorPrimaries,
+        ) -> Self {
+            self.color_primaries = color_primaries;
+            self
+        }
+        pub fn transfer_characteristics(
+            mut self,
+            transfer_characteristics: crate::vk::AV1TransferCharacteristics,
+        ) -> Self {
+            self.transfer_characteristics = transfer_characteristics;
+            self
+        }
+        pub fn matrix_coefficients(
+            mut self,
+            matrix_coefficients: crate::vk::AV1MatrixCoefficients,
+        ) -> Self {
+            self.matrix_coefficients = matrix_coefficients;
+            self
+        }
+        pub fn chroma_sample_position(
+            mut self,
+            chroma_sample_position: crate::vk::AV1ChromaSamplePosition,
+        ) -> Self {
+            self.chroma_sample_position = chroma_sample_position;
+            self
+        }
     }
-    pub fn separate_uv_delta_q(mut self, separate_uv_delta_q: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFB;
-        self.bitfield0 = ((separate_uv_delta_q << 2u32) & 0x00000004) | rest;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct AV1TimingInfoFlags {
+        ///- `equal_picture_interval` @ `0..1`
+        pub bitfield0: u32,
     }
-    pub fn get_separate_uv_delta_q(&self) -> u32 {
-        (self.bitfield0 & 0x00000004) >> 2u32
+    impl AV1TimingInfoFlags {
+        pub fn equal_picture_interval(mut self, equal_picture_interval: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFE;
+            self.bitfield0 = (equal_picture_interval & 0x00000001) | rest;
+            self
+        }
+        pub fn get_equal_picture_interval(&self) -> u32 {
+            self.bitfield0 & 0x00000001
+        }
     }
-    pub fn color_description_present_flag(
-        mut self,
-        color_description_present_flag: u32,
-    ) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFF7;
-        self.bitfield0 = ((color_description_present_flag << 3u32) & 0x00000008) | rest;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct AV1TimingInfo {
+        pub flags: crate::vk::AV1TimingInfoFlags,
+        pub num_units_in_display_tick: u32,
+        pub time_scale: u32,
+        pub num_ticks_per_picture_minus_1: u32,
     }
-    pub fn get_color_description_present_flag(&self) -> u32 {
-        (self.bitfield0 & 0x00000008) >> 3u32
+    impl AV1TimingInfo {
+        pub fn flags(mut self, flags: crate::vk::AV1TimingInfoFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn num_units_in_display_tick(
+            mut self,
+            num_units_in_display_tick: u32,
+        ) -> Self {
+            self.num_units_in_display_tick = num_units_in_display_tick;
+            self
+        }
+        pub fn time_scale(mut self, time_scale: u32) -> Self {
+            self.time_scale = time_scale;
+            self
+        }
+        pub fn num_ticks_per_picture_minus_1(
+            mut self,
+            num_ticks_per_picture_minus_1: u32,
+        ) -> Self {
+            self.num_ticks_per_picture_minus_1 = num_ticks_per_picture_minus_1;
+            self
+        }
     }
-}
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct AV1ColorConfig {
-    pub flags: crate::vk::AV1ColorConfigFlags,
-    pub bit_depth: u8,
-    pub subsampling_x: u8,
-    pub subsampling_y: u8,
-    pub reserved1: u8,
-    pub color_primaries: crate::vk::AV1ColorPrimaries,
-    pub transfer_characteristics: crate::vk::AV1TransferCharacteristics,
-    pub matrix_coefficients: crate::vk::AV1MatrixCoefficients,
-    pub chroma_sample_position: crate::vk::AV1ChromaSamplePosition,
-}
-impl AV1ColorConfig {
-    pub fn flags(mut self, flags: crate::vk::AV1ColorConfigFlags) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn bit_depth(mut self, bit_depth: u8) -> Self {
-        self.bit_depth = bit_depth;
-        self
-    }
-    pub fn subsampling_x(mut self, subsampling_x: u8) -> Self {
-        self.subsampling_x = subsampling_x;
-        self
-    }
-    pub fn subsampling_y(mut self, subsampling_y: u8) -> Self {
-        self.subsampling_y = subsampling_y;
-        self
-    }
-    pub fn reserved1(mut self, reserved1: u8) -> Self {
-        self.reserved1 = reserved1;
-        self
-    }
-    pub fn color_primaries(
-        mut self,
-        color_primaries: crate::vk::AV1ColorPrimaries,
-    ) -> Self {
-        self.color_primaries = color_primaries;
-        self
-    }
-    pub fn transfer_characteristics(
-        mut self,
-        transfer_characteristics: crate::vk::AV1TransferCharacteristics,
-    ) -> Self {
-        self.transfer_characteristics = transfer_characteristics;
-        self
-    }
-    pub fn matrix_coefficients(
-        mut self,
-        matrix_coefficients: crate::vk::AV1MatrixCoefficients,
-    ) -> Self {
-        self.matrix_coefficients = matrix_coefficients;
-        self
-    }
-    pub fn chroma_sample_position(
-        mut self,
-        chroma_sample_position: crate::vk::AV1ChromaSamplePosition,
-    ) -> Self {
-        self.chroma_sample_position = chroma_sample_position;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct AV1TimingInfoFlags {
-    ///- `equal_picture_interval` @ `0..1`
-    pub bitfield0: u32,
-}
-impl AV1TimingInfoFlags {
-    pub fn equal_picture_interval(mut self, equal_picture_interval: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFE;
-        self.bitfield0 = (equal_picture_interval & 0x00000001) | rest;
-        self
-    }
-    pub fn get_equal_picture_interval(&self) -> u32 {
-        self.bitfield0 & 0x00000001
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct AV1TimingInfo {
-    pub flags: crate::vk::AV1TimingInfoFlags,
-    pub num_units_in_display_tick: u32,
-    pub time_scale: u32,
-    pub num_ticks_per_picture_minus_1: u32,
-}
-impl AV1TimingInfo {
-    pub fn flags(mut self, flags: crate::vk::AV1TimingInfoFlags) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn num_units_in_display_tick(mut self, num_units_in_display_tick: u32) -> Self {
-        self.num_units_in_display_tick = num_units_in_display_tick;
-        self
-    }
-    pub fn time_scale(mut self, time_scale: u32) -> Self {
-        self.time_scale = time_scale;
-        self
-    }
-    pub fn num_ticks_per_picture_minus_1(
-        mut self,
-        num_ticks_per_picture_minus_1: u32,
-    ) -> Self {
-        self.num_ticks_per_picture_minus_1 = num_ticks_per_picture_minus_1;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct AV1SequenceHeaderFlags {
-    /**- `still_picture` @ `0..1`
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct AV1SequenceHeaderFlags {
+        /**- `still_picture` @ `0..1`
 - `reduced_still_picture_header` @ `1..2`
 - `use_128x128_superblock` @ `2..3`
 - `enable_filter_intra` @ `3..4`
@@ -178,1230 +183,1276 @@ pub struct AV1SequenceHeaderFlags {
 - `film_grain_params_present` @ `16..17`
 - `timing_info_present_flag` @ `17..18`
 - `initial_display_delay_present_flag` @ `18..19`*/
-    pub bitfield0: u32,
-}
-impl AV1SequenceHeaderFlags {
-    pub fn still_picture(mut self, still_picture: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFE;
-        self.bitfield0 = (still_picture & 0x00000001) | rest;
-        self
+        pub bitfield0: u32,
     }
-    pub fn get_still_picture(&self) -> u32 {
-        self.bitfield0 & 0x00000001
-    }
-    pub fn reduced_still_picture_header(
-        mut self,
-        reduced_still_picture_header: u32,
-    ) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFD;
-        self.bitfield0 = ((reduced_still_picture_header << 1u32) & 0x00000002) | rest;
-        self
-    }
-    pub fn get_reduced_still_picture_header(&self) -> u32 {
-        (self.bitfield0 & 0x00000002) >> 1u32
-    }
-    pub fn use_128x128_superblock(mut self, use_128x128_superblock: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFB;
-        self.bitfield0 = ((use_128x128_superblock << 2u32) & 0x00000004) | rest;
-        self
-    }
-    pub fn get_use_128x128_superblock(&self) -> u32 {
-        (self.bitfield0 & 0x00000004) >> 2u32
-    }
-    pub fn enable_filter_intra(mut self, enable_filter_intra: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFF7;
-        self.bitfield0 = ((enable_filter_intra << 3u32) & 0x00000008) | rest;
-        self
-    }
-    pub fn get_enable_filter_intra(&self) -> u32 {
-        (self.bitfield0 & 0x00000008) >> 3u32
-    }
-    pub fn enable_intra_edge_filter(mut self, enable_intra_edge_filter: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFEF;
-        self.bitfield0 = ((enable_intra_edge_filter << 4u32) & 0x00000010) | rest;
-        self
-    }
-    pub fn get_enable_intra_edge_filter(&self) -> u32 {
-        (self.bitfield0 & 0x00000010) >> 4u32
-    }
-    pub fn enable_interintra_compound(
-        mut self,
-        enable_interintra_compound: u32,
-    ) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFDF;
-        self.bitfield0 = ((enable_interintra_compound << 5u32) & 0x00000020) | rest;
-        self
-    }
-    pub fn get_enable_interintra_compound(&self) -> u32 {
-        (self.bitfield0 & 0x00000020) >> 5u32
-    }
-    pub fn enable_masked_compound(mut self, enable_masked_compound: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFBF;
-        self.bitfield0 = ((enable_masked_compound << 6u32) & 0x00000040) | rest;
-        self
-    }
-    pub fn get_enable_masked_compound(&self) -> u32 {
-        (self.bitfield0 & 0x00000040) >> 6u32
-    }
-    pub fn enable_warped_motion(mut self, enable_warped_motion: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFF7F;
-        self.bitfield0 = ((enable_warped_motion << 7u32) & 0x00000080) | rest;
-        self
-    }
-    pub fn get_enable_warped_motion(&self) -> u32 {
-        (self.bitfield0 & 0x00000080) >> 7u32
-    }
-    pub fn enable_dual_filter(mut self, enable_dual_filter: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFEFF;
-        self.bitfield0 = ((enable_dual_filter << 8u32) & 0x00000100) | rest;
-        self
-    }
-    pub fn get_enable_dual_filter(&self) -> u32 {
-        (self.bitfield0 & 0x00000100) >> 8u32
-    }
-    pub fn enable_order_hint(mut self, enable_order_hint: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFDFF;
-        self.bitfield0 = ((enable_order_hint << 9u32) & 0x00000200) | rest;
-        self
-    }
-    pub fn get_enable_order_hint(&self) -> u32 {
-        (self.bitfield0 & 0x00000200) >> 9u32
-    }
-    pub fn enable_jnt_comp(mut self, enable_jnt_comp: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFBFF;
-        self.bitfield0 = ((enable_jnt_comp << 10u32) & 0x00000400) | rest;
-        self
-    }
-    pub fn get_enable_jnt_comp(&self) -> u32 {
-        (self.bitfield0 & 0x00000400) >> 10u32
-    }
-    pub fn enable_ref_frame_mvs(mut self, enable_ref_frame_mvs: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFF7FF;
-        self.bitfield0 = ((enable_ref_frame_mvs << 11u32) & 0x00000800) | rest;
-        self
-    }
-    pub fn get_enable_ref_frame_mvs(&self) -> u32 {
-        (self.bitfield0 & 0x00000800) >> 11u32
-    }
-    pub fn frame_id_numbers_present_flag(
-        mut self,
-        frame_id_numbers_present_flag: u32,
-    ) -> Self {
-        let rest = self.bitfield0 & 0xFFFFEFFF;
-        self.bitfield0 = ((frame_id_numbers_present_flag << 12u32) & 0x00001000) | rest;
-        self
-    }
-    pub fn get_frame_id_numbers_present_flag(&self) -> u32 {
-        (self.bitfield0 & 0x00001000) >> 12u32
-    }
-    pub fn enable_superres(mut self, enable_superres: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFDFFF;
-        self.bitfield0 = ((enable_superres << 13u32) & 0x00002000) | rest;
-        self
-    }
-    pub fn get_enable_superres(&self) -> u32 {
-        (self.bitfield0 & 0x00002000) >> 13u32
-    }
-    pub fn enable_cdef(mut self, enable_cdef: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFBFFF;
-        self.bitfield0 = ((enable_cdef << 14u32) & 0x00004000) | rest;
-        self
-    }
-    pub fn get_enable_cdef(&self) -> u32 {
-        (self.bitfield0 & 0x00004000) >> 14u32
-    }
-    pub fn enable_restoration(mut self, enable_restoration: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFF7FFF;
-        self.bitfield0 = ((enable_restoration << 15u32) & 0x00008000) | rest;
-        self
-    }
-    pub fn get_enable_restoration(&self) -> u32 {
-        (self.bitfield0 & 0x00008000) >> 15u32
-    }
-    pub fn film_grain_params_present(mut self, film_grain_params_present: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFEFFFF;
-        self.bitfield0 = ((film_grain_params_present << 16u32) & 0x00010000) | rest;
-        self
-    }
-    pub fn get_film_grain_params_present(&self) -> u32 {
-        (self.bitfield0 & 0x00010000) >> 16u32
-    }
-    pub fn timing_info_present_flag(mut self, timing_info_present_flag: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFDFFFF;
-        self.bitfield0 = ((timing_info_present_flag << 17u32) & 0x00020000) | rest;
-        self
-    }
-    pub fn get_timing_info_present_flag(&self) -> u32 {
-        (self.bitfield0 & 0x00020000) >> 17u32
-    }
-    pub fn initial_display_delay_present_flag(
-        mut self,
-        initial_display_delay_present_flag: u32,
-    ) -> Self {
-        let rest = self.bitfield0 & 0xFFFBFFFF;
-        self.bitfield0 = ((initial_display_delay_present_flag << 18u32) & 0x00040000)
-            | rest;
-        self
-    }
-    pub fn get_initial_display_delay_present_flag(&self) -> u32 {
-        (self.bitfield0 & 0x00040000) >> 18u32
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct AV1SequenceHeader<'a> {
-    pub flags: crate::vk::AV1SequenceHeaderFlags,
-    pub seq_profile: crate::vk::AV1Profile,
-    pub frame_width_bits_minus_1: u8,
-    pub frame_height_bits_minus_1: u8,
-    pub max_frame_width_minus_1: u16,
-    pub max_frame_height_minus_1: u16,
-    pub delta_frame_id_length_minus_2: u8,
-    pub additional_frame_id_length_minus_1: u8,
-    pub order_hint_bits_minus_1: u8,
-    pub seq_force_integer_mv: u8,
-    pub seq_force_screen_content_tools: u8,
-    pub reserved1: [u8; 5 as _],
-    pub p_color_config: *const crate::vk::AV1ColorConfig,
-    pub p_timing_info: *const crate::vk::AV1TimingInfo,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-impl<'a> Default for AV1SequenceHeader<'a> {
-    fn default() -> Self {
-        Self {
-            flags: Default::default(),
-            seq_profile: Default::default(),
-            frame_width_bits_minus_1: Default::default(),
-            frame_height_bits_minus_1: Default::default(),
-            max_frame_width_minus_1: Default::default(),
-            max_frame_height_minus_1: Default::default(),
-            delta_frame_id_length_minus_2: Default::default(),
-            additional_frame_id_length_minus_1: Default::default(),
-            order_hint_bits_minus_1: Default::default(),
-            seq_force_integer_mv: Default::default(),
-            seq_force_screen_content_tools: Default::default(),
-            reserved1: unsafe { core::mem::zeroed() },
-            p_color_config: Default::default(),
-            p_timing_info: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl AV1SequenceHeaderFlags {
+        pub fn still_picture(mut self, still_picture: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFE;
+            self.bitfield0 = (still_picture & 0x00000001) | rest;
+            self
+        }
+        pub fn get_still_picture(&self) -> u32 {
+            self.bitfield0 & 0x00000001
+        }
+        pub fn reduced_still_picture_header(
+            mut self,
+            reduced_still_picture_header: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFD;
+            self.bitfield0 = ((reduced_still_picture_header << 1u32) & 0x00000002)
+                | rest;
+            self
+        }
+        pub fn get_reduced_still_picture_header(&self) -> u32 {
+            (self.bitfield0 & 0x00000002) >> 1u32
+        }
+        pub fn use_128x128_superblock(mut self, use_128x128_superblock: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFB;
+            self.bitfield0 = ((use_128x128_superblock << 2u32) & 0x00000004) | rest;
+            self
+        }
+        pub fn get_use_128x128_superblock(&self) -> u32 {
+            (self.bitfield0 & 0x00000004) >> 2u32
+        }
+        pub fn enable_filter_intra(mut self, enable_filter_intra: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFF7;
+            self.bitfield0 = ((enable_filter_intra << 3u32) & 0x00000008) | rest;
+            self
+        }
+        pub fn get_enable_filter_intra(&self) -> u32 {
+            (self.bitfield0 & 0x00000008) >> 3u32
+        }
+        pub fn enable_intra_edge_filter(
+            mut self,
+            enable_intra_edge_filter: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFEF;
+            self.bitfield0 = ((enable_intra_edge_filter << 4u32) & 0x00000010) | rest;
+            self
+        }
+        pub fn get_enable_intra_edge_filter(&self) -> u32 {
+            (self.bitfield0 & 0x00000010) >> 4u32
+        }
+        pub fn enable_interintra_compound(
+            mut self,
+            enable_interintra_compound: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFDF;
+            self.bitfield0 = ((enable_interintra_compound << 5u32) & 0x00000020) | rest;
+            self
+        }
+        pub fn get_enable_interintra_compound(&self) -> u32 {
+            (self.bitfield0 & 0x00000020) >> 5u32
+        }
+        pub fn enable_masked_compound(mut self, enable_masked_compound: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFBF;
+            self.bitfield0 = ((enable_masked_compound << 6u32) & 0x00000040) | rest;
+            self
+        }
+        pub fn get_enable_masked_compound(&self) -> u32 {
+            (self.bitfield0 & 0x00000040) >> 6u32
+        }
+        pub fn enable_warped_motion(mut self, enable_warped_motion: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFF7F;
+            self.bitfield0 = ((enable_warped_motion << 7u32) & 0x00000080) | rest;
+            self
+        }
+        pub fn get_enable_warped_motion(&self) -> u32 {
+            (self.bitfield0 & 0x00000080) >> 7u32
+        }
+        pub fn enable_dual_filter(mut self, enable_dual_filter: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFEFF;
+            self.bitfield0 = ((enable_dual_filter << 8u32) & 0x00000100) | rest;
+            self
+        }
+        pub fn get_enable_dual_filter(&self) -> u32 {
+            (self.bitfield0 & 0x00000100) >> 8u32
+        }
+        pub fn enable_order_hint(mut self, enable_order_hint: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFDFF;
+            self.bitfield0 = ((enable_order_hint << 9u32) & 0x00000200) | rest;
+            self
+        }
+        pub fn get_enable_order_hint(&self) -> u32 {
+            (self.bitfield0 & 0x00000200) >> 9u32
+        }
+        pub fn enable_jnt_comp(mut self, enable_jnt_comp: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFBFF;
+            self.bitfield0 = ((enable_jnt_comp << 10u32) & 0x00000400) | rest;
+            self
+        }
+        pub fn get_enable_jnt_comp(&self) -> u32 {
+            (self.bitfield0 & 0x00000400) >> 10u32
+        }
+        pub fn enable_ref_frame_mvs(mut self, enable_ref_frame_mvs: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFF7FF;
+            self.bitfield0 = ((enable_ref_frame_mvs << 11u32) & 0x00000800) | rest;
+            self
+        }
+        pub fn get_enable_ref_frame_mvs(&self) -> u32 {
+            (self.bitfield0 & 0x00000800) >> 11u32
+        }
+        pub fn frame_id_numbers_present_flag(
+            mut self,
+            frame_id_numbers_present_flag: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFFEFFF;
+            self.bitfield0 = ((frame_id_numbers_present_flag << 12u32) & 0x00001000)
+                | rest;
+            self
+        }
+        pub fn get_frame_id_numbers_present_flag(&self) -> u32 {
+            (self.bitfield0 & 0x00001000) >> 12u32
+        }
+        pub fn enable_superres(mut self, enable_superres: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFDFFF;
+            self.bitfield0 = ((enable_superres << 13u32) & 0x00002000) | rest;
+            self
+        }
+        pub fn get_enable_superres(&self) -> u32 {
+            (self.bitfield0 & 0x00002000) >> 13u32
+        }
+        pub fn enable_cdef(mut self, enable_cdef: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFBFFF;
+            self.bitfield0 = ((enable_cdef << 14u32) & 0x00004000) | rest;
+            self
+        }
+        pub fn get_enable_cdef(&self) -> u32 {
+            (self.bitfield0 & 0x00004000) >> 14u32
+        }
+        pub fn enable_restoration(mut self, enable_restoration: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFF7FFF;
+            self.bitfield0 = ((enable_restoration << 15u32) & 0x00008000) | rest;
+            self
+        }
+        pub fn get_enable_restoration(&self) -> u32 {
+            (self.bitfield0 & 0x00008000) >> 15u32
+        }
+        pub fn film_grain_params_present(
+            mut self,
+            film_grain_params_present: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFEFFFF;
+            self.bitfield0 = ((film_grain_params_present << 16u32) & 0x00010000) | rest;
+            self
+        }
+        pub fn get_film_grain_params_present(&self) -> u32 {
+            (self.bitfield0 & 0x00010000) >> 16u32
+        }
+        pub fn timing_info_present_flag(
+            mut self,
+            timing_info_present_flag: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFDFFFF;
+            self.bitfield0 = ((timing_info_present_flag << 17u32) & 0x00020000) | rest;
+            self
+        }
+        pub fn get_timing_info_present_flag(&self) -> u32 {
+            (self.bitfield0 & 0x00020000) >> 17u32
+        }
+        pub fn initial_display_delay_present_flag(
+            mut self,
+            initial_display_delay_present_flag: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFBFFFF;
+            self.bitfield0 = ((initial_display_delay_present_flag << 18u32) & 0x00040000)
+                | rest;
+            self
+        }
+        pub fn get_initial_display_delay_present_flag(&self) -> u32 {
+            (self.bitfield0 & 0x00040000) >> 18u32
         }
     }
-}
-impl<'a> AV1SequenceHeader<'a> {
-    pub fn flags(mut self, flags: crate::vk::AV1SequenceHeaderFlags) -> Self {
-        self.flags = flags;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct AV1SequenceHeader<'a> {
+        pub flags: crate::vk::AV1SequenceHeaderFlags,
+        pub seq_profile: crate::vk::AV1Profile,
+        pub frame_width_bits_minus_1: u8,
+        pub frame_height_bits_minus_1: u8,
+        pub max_frame_width_minus_1: u16,
+        pub max_frame_height_minus_1: u16,
+        pub delta_frame_id_length_minus_2: u8,
+        pub additional_frame_id_length_minus_1: u8,
+        pub order_hint_bits_minus_1: u8,
+        pub seq_force_integer_mv: u8,
+        pub seq_force_screen_content_tools: u8,
+        pub reserved1: [u8; 5 as _],
+        pub p_color_config: *const crate::vk::AV1ColorConfig,
+        pub p_timing_info: *const crate::vk::AV1TimingInfo,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub fn seq_profile(mut self, seq_profile: crate::vk::AV1Profile) -> Self {
-        self.seq_profile = seq_profile;
-        self
+    impl<'a> Default for AV1SequenceHeader<'a> {
+        fn default() -> Self {
+            Self {
+                flags: Default::default(),
+                seq_profile: Default::default(),
+                frame_width_bits_minus_1: Default::default(),
+                frame_height_bits_minus_1: Default::default(),
+                max_frame_width_minus_1: Default::default(),
+                max_frame_height_minus_1: Default::default(),
+                delta_frame_id_length_minus_2: Default::default(),
+                additional_frame_id_length_minus_1: Default::default(),
+                order_hint_bits_minus_1: Default::default(),
+                seq_force_integer_mv: Default::default(),
+                seq_force_screen_content_tools: Default::default(),
+                reserved1: unsafe { core::mem::zeroed() },
+                p_color_config: Default::default(),
+                p_timing_info: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
-    pub fn frame_width_bits_minus_1(mut self, frame_width_bits_minus_1: u8) -> Self {
-        self.frame_width_bits_minus_1 = frame_width_bits_minus_1;
-        self
+    impl<'a> AV1SequenceHeader<'a> {
+        pub fn flags(mut self, flags: crate::vk::AV1SequenceHeaderFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn seq_profile(mut self, seq_profile: crate::vk::AV1Profile) -> Self {
+            self.seq_profile = seq_profile;
+            self
+        }
+        pub fn frame_width_bits_minus_1(mut self, frame_width_bits_minus_1: u8) -> Self {
+            self.frame_width_bits_minus_1 = frame_width_bits_minus_1;
+            self
+        }
+        pub fn frame_height_bits_minus_1(
+            mut self,
+            frame_height_bits_minus_1: u8,
+        ) -> Self {
+            self.frame_height_bits_minus_1 = frame_height_bits_minus_1;
+            self
+        }
+        pub fn max_frame_width_minus_1(mut self, max_frame_width_minus_1: u16) -> Self {
+            self.max_frame_width_minus_1 = max_frame_width_minus_1;
+            self
+        }
+        pub fn max_frame_height_minus_1(
+            mut self,
+            max_frame_height_minus_1: u16,
+        ) -> Self {
+            self.max_frame_height_minus_1 = max_frame_height_minus_1;
+            self
+        }
+        pub fn delta_frame_id_length_minus_2(
+            mut self,
+            delta_frame_id_length_minus_2: u8,
+        ) -> Self {
+            self.delta_frame_id_length_minus_2 = delta_frame_id_length_minus_2;
+            self
+        }
+        pub fn additional_frame_id_length_minus_1(
+            mut self,
+            additional_frame_id_length_minus_1: u8,
+        ) -> Self {
+            self.additional_frame_id_length_minus_1 = additional_frame_id_length_minus_1;
+            self
+        }
+        pub fn order_hint_bits_minus_1(mut self, order_hint_bits_minus_1: u8) -> Self {
+            self.order_hint_bits_minus_1 = order_hint_bits_minus_1;
+            self
+        }
+        pub fn seq_force_integer_mv(mut self, seq_force_integer_mv: u8) -> Self {
+            self.seq_force_integer_mv = seq_force_integer_mv;
+            self
+        }
+        pub fn seq_force_screen_content_tools(
+            mut self,
+            seq_force_screen_content_tools: u8,
+        ) -> Self {
+            self.seq_force_screen_content_tools = seq_force_screen_content_tools;
+            self
+        }
+        pub fn reserved1(mut self, reserved1: [u8; 5 as _]) -> Self {
+            self.reserved1 = reserved1;
+            self
+        }
+        pub fn color_config(
+            mut self,
+            color_config: &'a crate::vk::AV1ColorConfig,
+        ) -> Self {
+            self.p_color_config = color_config;
+            self
+        }
+        pub fn timing_info(mut self, timing_info: &'a crate::vk::AV1TimingInfo) -> Self {
+            self.p_timing_info = timing_info;
+            self
+        }
     }
-    pub fn frame_height_bits_minus_1(mut self, frame_height_bits_minus_1: u8) -> Self {
-        self.frame_height_bits_minus_1 = frame_height_bits_minus_1;
-        self
-    }
-    pub fn max_frame_width_minus_1(mut self, max_frame_width_minus_1: u16) -> Self {
-        self.max_frame_width_minus_1 = max_frame_width_minus_1;
-        self
-    }
-    pub fn max_frame_height_minus_1(mut self, max_frame_height_minus_1: u16) -> Self {
-        self.max_frame_height_minus_1 = max_frame_height_minus_1;
-        self
-    }
-    pub fn delta_frame_id_length_minus_2(
-        mut self,
-        delta_frame_id_length_minus_2: u8,
-    ) -> Self {
-        self.delta_frame_id_length_minus_2 = delta_frame_id_length_minus_2;
-        self
-    }
-    pub fn additional_frame_id_length_minus_1(
-        mut self,
-        additional_frame_id_length_minus_1: u8,
-    ) -> Self {
-        self.additional_frame_id_length_minus_1 = additional_frame_id_length_minus_1;
-        self
-    }
-    pub fn order_hint_bits_minus_1(mut self, order_hint_bits_minus_1: u8) -> Self {
-        self.order_hint_bits_minus_1 = order_hint_bits_minus_1;
-        self
-    }
-    pub fn seq_force_integer_mv(mut self, seq_force_integer_mv: u8) -> Self {
-        self.seq_force_integer_mv = seq_force_integer_mv;
-        self
-    }
-    pub fn seq_force_screen_content_tools(
-        mut self,
-        seq_force_screen_content_tools: u8,
-    ) -> Self {
-        self.seq_force_screen_content_tools = seq_force_screen_content_tools;
-        self
-    }
-    pub fn reserved1(mut self, reserved1: [u8; 5 as _]) -> Self {
-        self.reserved1 = reserved1;
-        self
-    }
-    pub fn color_config(mut self, color_config: &'a crate::vk::AV1ColorConfig) -> Self {
-        self.p_color_config = color_config;
-        self
-    }
-    pub fn timing_info(mut self, timing_info: &'a crate::vk::AV1TimingInfo) -> Self {
-        self.p_timing_info = timing_info;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct AV1LoopFilterFlags {
-    /**- `loop_filter_delta_enabled` @ `0..1`
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct AV1LoopFilterFlags {
+        /**- `loop_filter_delta_enabled` @ `0..1`
 - `loop_filter_delta_update` @ `1..2`*/
-    pub bitfield0: u32,
-}
-impl AV1LoopFilterFlags {
-    pub fn loop_filter_delta_enabled(mut self, loop_filter_delta_enabled: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFE;
-        self.bitfield0 = (loop_filter_delta_enabled & 0x00000001) | rest;
-        self
+        pub bitfield0: u32,
     }
-    pub fn get_loop_filter_delta_enabled(&self) -> u32 {
-        self.bitfield0 & 0x00000001
-    }
-    pub fn loop_filter_delta_update(mut self, loop_filter_delta_update: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFD;
-        self.bitfield0 = ((loop_filter_delta_update << 1u32) & 0x00000002) | rest;
-        self
-    }
-    pub fn get_loop_filter_delta_update(&self) -> u32 {
-        (self.bitfield0 & 0x00000002) >> 1u32
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct AV1LoopFilter {
-    pub flags: crate::vk::AV1LoopFilterFlags,
-    pub loop_filter_level: [u8; crate::vk::STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS as _],
-    pub loop_filter_sharpness: u8,
-    pub update_ref_delta: u8,
-    pub loop_filter_ref_deltas: [i8; crate::vk::STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME as _],
-    pub update_mode_delta: u8,
-    pub loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS
-        as _],
-}
-impl Default for AV1LoopFilter {
-    fn default() -> Self {
-        Self {
-            flags: Default::default(),
-            loop_filter_level: unsafe { core::mem::zeroed() },
-            loop_filter_sharpness: Default::default(),
-            update_ref_delta: Default::default(),
-            loop_filter_ref_deltas: unsafe { core::mem::zeroed() },
-            update_mode_delta: Default::default(),
-            loop_filter_mode_deltas: unsafe { core::mem::zeroed() },
+    impl AV1LoopFilterFlags {
+        pub fn loop_filter_delta_enabled(
+            mut self,
+            loop_filter_delta_enabled: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFE;
+            self.bitfield0 = (loop_filter_delta_enabled & 0x00000001) | rest;
+            self
+        }
+        pub fn get_loop_filter_delta_enabled(&self) -> u32 {
+            self.bitfield0 & 0x00000001
+        }
+        pub fn loop_filter_delta_update(
+            mut self,
+            loop_filter_delta_update: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFD;
+            self.bitfield0 = ((loop_filter_delta_update << 1u32) & 0x00000002) | rest;
+            self
+        }
+        pub fn get_loop_filter_delta_update(&self) -> u32 {
+            (self.bitfield0 & 0x00000002) >> 1u32
         }
     }
-}
-impl AV1LoopFilter {
-    pub fn flags(mut self, flags: crate::vk::AV1LoopFilterFlags) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn loop_filter_level(
-        mut self,
-        loop_filter_level: [u8; crate::vk::STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS as _],
-    ) -> Self {
-        self.loop_filter_level = loop_filter_level;
-        self
-    }
-    pub fn loop_filter_sharpness(mut self, loop_filter_sharpness: u8) -> Self {
-        self.loop_filter_sharpness = loop_filter_sharpness;
-        self
-    }
-    pub fn update_ref_delta(mut self, update_ref_delta: u8) -> Self {
-        self.update_ref_delta = update_ref_delta;
-        self
-    }
-    pub fn loop_filter_ref_deltas(
-        mut self,
-        loop_filter_ref_deltas: [i8; crate::vk::STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME as _],
-    ) -> Self {
-        self.loop_filter_ref_deltas = loop_filter_ref_deltas;
-        self
-    }
-    pub fn update_mode_delta(mut self, update_mode_delta: u8) -> Self {
-        self.update_mode_delta = update_mode_delta;
-        self
-    }
-    pub fn loop_filter_mode_deltas(
-        mut self,
-        loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct AV1LoopFilter {
+        pub flags: crate::vk::AV1LoopFilterFlags,
+        pub loop_filter_level: [u8; crate::vk::STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS
             as _],
-    ) -> Self {
-        self.loop_filter_mode_deltas = loop_filter_mode_deltas;
-        self
+        pub loop_filter_sharpness: u8,
+        pub update_ref_delta: u8,
+        pub loop_filter_ref_deltas: [i8; crate::vk::STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME
+            as _],
+        pub update_mode_delta: u8,
+        pub loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS
+            as _],
     }
-}
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct AV1QuantizationFlags {
-    /**- `using_qmatrix` @ `0..1`
+    impl Default for AV1LoopFilter {
+        fn default() -> Self {
+            Self {
+                flags: Default::default(),
+                loop_filter_level: unsafe { core::mem::zeroed() },
+                loop_filter_sharpness: Default::default(),
+                update_ref_delta: Default::default(),
+                loop_filter_ref_deltas: unsafe { core::mem::zeroed() },
+                update_mode_delta: Default::default(),
+                loop_filter_mode_deltas: unsafe { core::mem::zeroed() },
+            }
+        }
+    }
+    impl AV1LoopFilter {
+        pub fn flags(mut self, flags: crate::vk::AV1LoopFilterFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn loop_filter_level(
+            mut self,
+            loop_filter_level: [u8; crate::vk::STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS
+                as _],
+        ) -> Self {
+            self.loop_filter_level = loop_filter_level;
+            self
+        }
+        pub fn loop_filter_sharpness(mut self, loop_filter_sharpness: u8) -> Self {
+            self.loop_filter_sharpness = loop_filter_sharpness;
+            self
+        }
+        pub fn update_ref_delta(mut self, update_ref_delta: u8) -> Self {
+            self.update_ref_delta = update_ref_delta;
+            self
+        }
+        pub fn loop_filter_ref_deltas(
+            mut self,
+            loop_filter_ref_deltas: [i8; crate::vk::STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME
+                as _],
+        ) -> Self {
+            self.loop_filter_ref_deltas = loop_filter_ref_deltas;
+            self
+        }
+        pub fn update_mode_delta(mut self, update_mode_delta: u8) -> Self {
+            self.update_mode_delta = update_mode_delta;
+            self
+        }
+        pub fn loop_filter_mode_deltas(
+            mut self,
+            loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS
+                as _],
+        ) -> Self {
+            self.loop_filter_mode_deltas = loop_filter_mode_deltas;
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct AV1QuantizationFlags {
+        /**- `using_qmatrix` @ `0..1`
 - `diff_uv_delta` @ `1..2`*/
-    pub bitfield0: u32,
-}
-impl AV1QuantizationFlags {
-    pub fn using_qmatrix(mut self, using_qmatrix: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFE;
-        self.bitfield0 = (using_qmatrix & 0x00000001) | rest;
-        self
+        pub bitfield0: u32,
     }
-    pub fn get_using_qmatrix(&self) -> u32 {
-        self.bitfield0 & 0x00000001
-    }
-    pub fn diff_uv_delta(mut self, diff_uv_delta: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFD;
-        self.bitfield0 = ((diff_uv_delta << 1u32) & 0x00000002) | rest;
-        self
-    }
-    pub fn get_diff_uv_delta(&self) -> u32 {
-        (self.bitfield0 & 0x00000002) >> 1u32
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct AV1Quantization {
-    pub flags: crate::vk::AV1QuantizationFlags,
-    pub base_q_idx: u8,
-    pub delta_qy_dc: i8,
-    pub delta_qu_dc: i8,
-    pub delta_qu_ac: i8,
-    pub delta_qv_dc: i8,
-    pub delta_qv_ac: i8,
-    pub qm_y: u8,
-    pub qm_u: u8,
-    pub qm_v: u8,
-}
-impl AV1Quantization {
-    pub fn flags(mut self, flags: crate::vk::AV1QuantizationFlags) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn base_q_idx(mut self, base_q_idx: u8) -> Self {
-        self.base_q_idx = base_q_idx;
-        self
-    }
-    pub fn delta_qy_dc(mut self, delta_qy_dc: i8) -> Self {
-        self.delta_qy_dc = delta_qy_dc;
-        self
-    }
-    pub fn delta_qu_dc(mut self, delta_qu_dc: i8) -> Self {
-        self.delta_qu_dc = delta_qu_dc;
-        self
-    }
-    pub fn delta_qu_ac(mut self, delta_qu_ac: i8) -> Self {
-        self.delta_qu_ac = delta_qu_ac;
-        self
-    }
-    pub fn delta_qv_dc(mut self, delta_qv_dc: i8) -> Self {
-        self.delta_qv_dc = delta_qv_dc;
-        self
-    }
-    pub fn delta_qv_ac(mut self, delta_qv_ac: i8) -> Self {
-        self.delta_qv_ac = delta_qv_ac;
-        self
-    }
-    pub fn qm_y(mut self, qm_y: u8) -> Self {
-        self.qm_y = qm_y;
-        self
-    }
-    pub fn qm_u(mut self, qm_u: u8) -> Self {
-        self.qm_u = qm_u;
-        self
-    }
-    pub fn qm_v(mut self, qm_v: u8) -> Self {
-        self.qm_v = qm_v;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct AV1Segmentation {
-    pub feature_enabled: [u8; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
-    pub feature_data: [[i16; crate::vk::STD_VIDEO_AV1_SEG_LVL_MAX
-        as _]; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
-}
-impl Default for AV1Segmentation {
-    fn default() -> Self {
-        Self {
-            feature_enabled: unsafe { core::mem::zeroed() },
-            feature_data: unsafe { core::mem::zeroed() },
+    impl AV1QuantizationFlags {
+        pub fn using_qmatrix(mut self, using_qmatrix: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFE;
+            self.bitfield0 = (using_qmatrix & 0x00000001) | rest;
+            self
+        }
+        pub fn get_using_qmatrix(&self) -> u32 {
+            self.bitfield0 & 0x00000001
+        }
+        pub fn diff_uv_delta(mut self, diff_uv_delta: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFD;
+            self.bitfield0 = ((diff_uv_delta << 1u32) & 0x00000002) | rest;
+            self
+        }
+        pub fn get_diff_uv_delta(&self) -> u32 {
+            (self.bitfield0 & 0x00000002) >> 1u32
         }
     }
-}
-impl AV1Segmentation {
-    pub fn feature_enabled(
-        mut self,
-        feature_enabled: [u8; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
-    ) -> Self {
-        self.feature_enabled = feature_enabled;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct AV1Quantization {
+        pub flags: crate::vk::AV1QuantizationFlags,
+        pub base_q_idx: u8,
+        pub delta_qy_dc: i8,
+        pub delta_qu_dc: i8,
+        pub delta_qu_ac: i8,
+        pub delta_qv_dc: i8,
+        pub delta_qv_ac: i8,
+        pub qm_y: u8,
+        pub qm_u: u8,
+        pub qm_v: u8,
     }
-    pub fn feature_data(
-        mut self,
-        feature_data: [[i16; crate::vk::STD_VIDEO_AV1_SEG_LVL_MAX
+    impl AV1Quantization {
+        pub fn flags(mut self, flags: crate::vk::AV1QuantizationFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn base_q_idx(mut self, base_q_idx: u8) -> Self {
+            self.base_q_idx = base_q_idx;
+            self
+        }
+        pub fn delta_qy_dc(mut self, delta_qy_dc: i8) -> Self {
+            self.delta_qy_dc = delta_qy_dc;
+            self
+        }
+        pub fn delta_qu_dc(mut self, delta_qu_dc: i8) -> Self {
+            self.delta_qu_dc = delta_qu_dc;
+            self
+        }
+        pub fn delta_qu_ac(mut self, delta_qu_ac: i8) -> Self {
+            self.delta_qu_ac = delta_qu_ac;
+            self
+        }
+        pub fn delta_qv_dc(mut self, delta_qv_dc: i8) -> Self {
+            self.delta_qv_dc = delta_qv_dc;
+            self
+        }
+        pub fn delta_qv_ac(mut self, delta_qv_ac: i8) -> Self {
+            self.delta_qv_ac = delta_qv_ac;
+            self
+        }
+        pub fn qm_y(mut self, qm_y: u8) -> Self {
+            self.qm_y = qm_y;
+            self
+        }
+        pub fn qm_u(mut self, qm_u: u8) -> Self {
+            self.qm_u = qm_u;
+            self
+        }
+        pub fn qm_v(mut self, qm_v: u8) -> Self {
+            self.qm_v = qm_v;
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct AV1Segmentation {
+        pub feature_enabled: [u8; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
+        pub feature_data: [[i16; crate::vk::STD_VIDEO_AV1_SEG_LVL_MAX
             as _]; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
-    ) -> Self {
-        self.feature_data = feature_data;
-        self
     }
-}
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct AV1TileInfoFlags {
-    ///- `uniform_tile_spacing_flag` @ `0..1`
-    pub bitfield0: u32,
-}
-impl AV1TileInfoFlags {
-    pub fn uniform_tile_spacing_flag(mut self, uniform_tile_spacing_flag: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFE;
-        self.bitfield0 = (uniform_tile_spacing_flag & 0x00000001) | rest;
-        self
-    }
-    pub fn get_uniform_tile_spacing_flag(&self) -> u32 {
-        self.bitfield0 & 0x00000001
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct AV1TileInfo<'a> {
-    pub flags: crate::vk::AV1TileInfoFlags,
-    pub tile_cols: u8,
-    pub tile_rows: u8,
-    pub context_update_tile_id: u16,
-    pub tile_size_bytes_minus_1: u8,
-    pub reserved1: [u8; 7 as _],
-    pub p_mi_col_starts: *const u16,
-    pub p_mi_row_starts: *const u16,
-    pub p_width_in_sbs_minus1: *const u16,
-    pub p_height_in_sbs_minus1: *const u16,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-impl<'a> Default for AV1TileInfo<'a> {
-    fn default() -> Self {
-        Self {
-            flags: Default::default(),
-            tile_cols: Default::default(),
-            tile_rows: Default::default(),
-            context_update_tile_id: Default::default(),
-            tile_size_bytes_minus_1: Default::default(),
-            reserved1: unsafe { core::mem::zeroed() },
-            p_mi_col_starts: Default::default(),
-            p_mi_row_starts: Default::default(),
-            p_width_in_sbs_minus1: Default::default(),
-            p_height_in_sbs_minus1: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl Default for AV1Segmentation {
+        fn default() -> Self {
+            Self {
+                feature_enabled: unsafe { core::mem::zeroed() },
+                feature_data: unsafe { core::mem::zeroed() },
+            }
         }
     }
-}
-impl<'a> AV1TileInfo<'a> {
-    pub fn flags(mut self, flags: crate::vk::AV1TileInfoFlags) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn context_update_tile_id(mut self, context_update_tile_id: u16) -> Self {
-        self.context_update_tile_id = context_update_tile_id;
-        self
-    }
-    pub fn tile_size_bytes_minus_1(mut self, tile_size_bytes_minus_1: u8) -> Self {
-        self.tile_size_bytes_minus_1 = tile_size_bytes_minus_1;
-        self
-    }
-    pub fn reserved1(mut self, reserved1: [u8; 7 as _]) -> Self {
-        self.reserved1 = reserved1;
-        self
-    }
-    pub fn mi_col_starts(mut self, mi_col_starts: &'a [u16]) -> Self {
-        self.tile_cols = mi_col_starts.len() as _;
-        self.p_mi_col_starts = mi_col_starts.as_ptr();
-        self
-    }
-    pub fn mi_row_starts(mut self, mi_row_starts: &'a [u16]) -> Self {
-        self.tile_rows = mi_row_starts.len() as _;
-        self.p_mi_row_starts = mi_row_starts.as_ptr();
-        self
-    }
-    pub fn width_in_sbs_minus1(mut self, width_in_sbs_minus1: &'a [u16]) -> Self {
-        self.tile_cols = width_in_sbs_minus1.len() as _;
-        self.p_width_in_sbs_minus1 = width_in_sbs_minus1.as_ptr();
-        self
-    }
-    pub fn height_in_sbs_minus1(mut self, height_in_sbs_minus1: &'a [u16]) -> Self {
-        self.tile_rows = height_in_sbs_minus1.len() as _;
-        self.p_height_in_sbs_minus1 = height_in_sbs_minus1.as_ptr();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct AV1CDEF {
-    pub cdef_damping_minus_3: u8,
-    pub cdef_bits: u8,
-    pub cdef_y_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-        as _],
-    pub cdef_y_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-        as _],
-    pub cdef_uv_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-        as _],
-    pub cdef_uv_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-        as _],
-}
-impl Default for AV1CDEF {
-    fn default() -> Self {
-        Self {
-            cdef_damping_minus_3: Default::default(),
-            cdef_bits: Default::default(),
-            cdef_y_pri_strength: unsafe { core::mem::zeroed() },
-            cdef_y_sec_strength: unsafe { core::mem::zeroed() },
-            cdef_uv_pri_strength: unsafe { core::mem::zeroed() },
-            cdef_uv_sec_strength: unsafe { core::mem::zeroed() },
+    impl AV1Segmentation {
+        pub fn feature_enabled(
+            mut self,
+            feature_enabled: [u8; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
+        ) -> Self {
+            self.feature_enabled = feature_enabled;
+            self
+        }
+        pub fn feature_data(
+            mut self,
+            feature_data: [[i16; crate::vk::STD_VIDEO_AV1_SEG_LVL_MAX
+                as _]; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
+        ) -> Self {
+            self.feature_data = feature_data;
+            self
         }
     }
-}
-impl AV1CDEF {
-    pub fn cdef_damping_minus_3(mut self, cdef_damping_minus_3: u8) -> Self {
-        self.cdef_damping_minus_3 = cdef_damping_minus_3;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct AV1TileInfoFlags {
+        ///- `uniform_tile_spacing_flag` @ `0..1`
+        pub bitfield0: u32,
     }
-    pub fn cdef_bits(mut self, cdef_bits: u8) -> Self {
-        self.cdef_bits = cdef_bits;
-        self
-    }
-    pub fn cdef_y_pri_strength(
-        mut self,
-        cdef_y_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-            as _],
-    ) -> Self {
-        self.cdef_y_pri_strength = cdef_y_pri_strength;
-        self
-    }
-    pub fn cdef_y_sec_strength(
-        mut self,
-        cdef_y_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-            as _],
-    ) -> Self {
-        self.cdef_y_sec_strength = cdef_y_sec_strength;
-        self
-    }
-    pub fn cdef_uv_pri_strength(
-        mut self,
-        cdef_uv_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-            as _],
-    ) -> Self {
-        self.cdef_uv_pri_strength = cdef_uv_pri_strength;
-        self
-    }
-    pub fn cdef_uv_sec_strength(
-        mut self,
-        cdef_uv_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-            as _],
-    ) -> Self {
-        self.cdef_uv_sec_strength = cdef_uv_sec_strength;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct AV1LoopRestoration {
-    pub frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES
-        as _],
-    pub loop_restoration_size: [u16; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES as _],
-}
-impl Default for AV1LoopRestoration {
-    fn default() -> Self {
-        Self {
-            frame_restoration_type: unsafe { core::mem::zeroed() },
-            loop_restoration_size: unsafe { core::mem::zeroed() },
+    impl AV1TileInfoFlags {
+        pub fn uniform_tile_spacing_flag(
+            mut self,
+            uniform_tile_spacing_flag: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFE;
+            self.bitfield0 = (uniform_tile_spacing_flag & 0x00000001) | rest;
+            self
+        }
+        pub fn get_uniform_tile_spacing_flag(&self) -> u32 {
+            self.bitfield0 & 0x00000001
         }
     }
-}
-impl AV1LoopRestoration {
-    pub fn frame_restoration_type(
-        mut self,
-        frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES
-            as _],
-    ) -> Self {
-        self.frame_restoration_type = frame_restoration_type;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct AV1TileInfo<'a> {
+        pub flags: crate::vk::AV1TileInfoFlags,
+        pub tile_cols: u8,
+        pub tile_rows: u8,
+        pub context_update_tile_id: u16,
+        pub tile_size_bytes_minus_1: u8,
+        pub reserved1: [u8; 7 as _],
+        pub p_mi_col_starts: *const u16,
+        pub p_mi_row_starts: *const u16,
+        pub p_width_in_sbs_minus1: *const u16,
+        pub p_height_in_sbs_minus1: *const u16,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub fn loop_restoration_size(
-        mut self,
-        loop_restoration_size: [u16; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES as _],
-    ) -> Self {
-        self.loop_restoration_size = loop_restoration_size;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct AV1GlobalMotion {
-    pub gm_type: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
-    pub gm_params: [[i32; crate::vk::STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS
-        as _]; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
-}
-impl Default for AV1GlobalMotion {
-    fn default() -> Self {
-        Self {
-            gm_type: unsafe { core::mem::zeroed() },
-            gm_params: unsafe { core::mem::zeroed() },
+    impl<'a> Default for AV1TileInfo<'a> {
+        fn default() -> Self {
+            Self {
+                flags: Default::default(),
+                tile_cols: Default::default(),
+                tile_rows: Default::default(),
+                context_update_tile_id: Default::default(),
+                tile_size_bytes_minus_1: Default::default(),
+                reserved1: unsafe { core::mem::zeroed() },
+                p_mi_col_starts: Default::default(),
+                p_mi_row_starts: Default::default(),
+                p_width_in_sbs_minus1: Default::default(),
+                p_height_in_sbs_minus1: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl AV1GlobalMotion {
-    pub fn gm_type(
-        mut self,
-        gm_type: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
-    ) -> Self {
-        self.gm_type = gm_type;
-        self
+    impl<'a> AV1TileInfo<'a> {
+        pub fn flags(mut self, flags: crate::vk::AV1TileInfoFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn context_update_tile_id(mut self, context_update_tile_id: u16) -> Self {
+            self.context_update_tile_id = context_update_tile_id;
+            self
+        }
+        pub fn tile_size_bytes_minus_1(mut self, tile_size_bytes_minus_1: u8) -> Self {
+            self.tile_size_bytes_minus_1 = tile_size_bytes_minus_1;
+            self
+        }
+        pub fn reserved1(mut self, reserved1: [u8; 7 as _]) -> Self {
+            self.reserved1 = reserved1;
+            self
+        }
+        pub fn mi_col_starts(mut self, mi_col_starts: &'a [u16]) -> Self {
+            self.tile_cols = mi_col_starts.len() as _;
+            self.p_mi_col_starts = mi_col_starts.as_ptr();
+            self
+        }
+        pub fn mi_row_starts(mut self, mi_row_starts: &'a [u16]) -> Self {
+            self.tile_rows = mi_row_starts.len() as _;
+            self.p_mi_row_starts = mi_row_starts.as_ptr();
+            self
+        }
+        pub fn width_in_sbs_minus1(mut self, width_in_sbs_minus1: &'a [u16]) -> Self {
+            self.tile_cols = width_in_sbs_minus1.len() as _;
+            self.p_width_in_sbs_minus1 = width_in_sbs_minus1.as_ptr();
+            self
+        }
+        pub fn height_in_sbs_minus1(mut self, height_in_sbs_minus1: &'a [u16]) -> Self {
+            self.tile_rows = height_in_sbs_minus1.len() as _;
+            self.p_height_in_sbs_minus1 = height_in_sbs_minus1.as_ptr();
+            self
+        }
     }
-    pub fn gm_params(
-        mut self,
-        gm_params: [[i32; crate::vk::STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct AV1CDEF {
+        pub cdef_damping_minus_3: u8,
+        pub cdef_bits: u8,
+        pub cdef_y_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
+            as _],
+        pub cdef_y_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
+            as _],
+        pub cdef_uv_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
+            as _],
+        pub cdef_uv_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
+            as _],
+    }
+    impl Default for AV1CDEF {
+        fn default() -> Self {
+            Self {
+                cdef_damping_minus_3: Default::default(),
+                cdef_bits: Default::default(),
+                cdef_y_pri_strength: unsafe { core::mem::zeroed() },
+                cdef_y_sec_strength: unsafe { core::mem::zeroed() },
+                cdef_uv_pri_strength: unsafe { core::mem::zeroed() },
+                cdef_uv_sec_strength: unsafe { core::mem::zeroed() },
+            }
+        }
+    }
+    impl AV1CDEF {
+        pub fn cdef_damping_minus_3(mut self, cdef_damping_minus_3: u8) -> Self {
+            self.cdef_damping_minus_3 = cdef_damping_minus_3;
+            self
+        }
+        pub fn cdef_bits(mut self, cdef_bits: u8) -> Self {
+            self.cdef_bits = cdef_bits;
+            self
+        }
+        pub fn cdef_y_pri_strength(
+            mut self,
+            cdef_y_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
+                as _],
+        ) -> Self {
+            self.cdef_y_pri_strength = cdef_y_pri_strength;
+            self
+        }
+        pub fn cdef_y_sec_strength(
+            mut self,
+            cdef_y_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
+                as _],
+        ) -> Self {
+            self.cdef_y_sec_strength = cdef_y_sec_strength;
+            self
+        }
+        pub fn cdef_uv_pri_strength(
+            mut self,
+            cdef_uv_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
+                as _],
+        ) -> Self {
+            self.cdef_uv_pri_strength = cdef_uv_pri_strength;
+            self
+        }
+        pub fn cdef_uv_sec_strength(
+            mut self,
+            cdef_uv_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
+                as _],
+        ) -> Self {
+            self.cdef_uv_sec_strength = cdef_uv_sec_strength;
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct AV1LoopRestoration {
+        pub frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES
+            as _],
+        pub loop_restoration_size: [u16; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES as _],
+    }
+    impl Default for AV1LoopRestoration {
+        fn default() -> Self {
+            Self {
+                frame_restoration_type: unsafe { core::mem::zeroed() },
+                loop_restoration_size: unsafe { core::mem::zeroed() },
+            }
+        }
+    }
+    impl AV1LoopRestoration {
+        pub fn frame_restoration_type(
+            mut self,
+            frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES
+                as _],
+        ) -> Self {
+            self.frame_restoration_type = frame_restoration_type;
+            self
+        }
+        pub fn loop_restoration_size(
+            mut self,
+            loop_restoration_size: [u16; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES as _],
+        ) -> Self {
+            self.loop_restoration_size = loop_restoration_size;
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct AV1GlobalMotion {
+        pub gm_type: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+        pub gm_params: [[i32; crate::vk::STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS
             as _]; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
-    ) -> Self {
-        self.gm_params = gm_params;
-        self
     }
-}
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct AV1FilmGrainFlags {
-    /**- `chroma_scaling_from_luma` @ `0..1`
+    impl Default for AV1GlobalMotion {
+        fn default() -> Self {
+            Self {
+                gm_type: unsafe { core::mem::zeroed() },
+                gm_params: unsafe { core::mem::zeroed() },
+            }
+        }
+    }
+    impl AV1GlobalMotion {
+        pub fn gm_type(
+            mut self,
+            gm_type: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+        ) -> Self {
+            self.gm_type = gm_type;
+            self
+        }
+        pub fn gm_params(
+            mut self,
+            gm_params: [[i32; crate::vk::STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS
+                as _]; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+        ) -> Self {
+            self.gm_params = gm_params;
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct AV1FilmGrainFlags {
+        /**- `chroma_scaling_from_luma` @ `0..1`
 - `overlap_flag` @ `1..2`
 - `clip_to_restricted_range` @ `2..3`
 - `update_grain` @ `3..4`*/
-    pub bitfield0: u32,
-}
-impl AV1FilmGrainFlags {
-    pub fn chroma_scaling_from_luma(mut self, chroma_scaling_from_luma: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFE;
-        self.bitfield0 = (chroma_scaling_from_luma & 0x00000001) | rest;
-        self
+        pub bitfield0: u32,
     }
-    pub fn get_chroma_scaling_from_luma(&self) -> u32 {
-        self.bitfield0 & 0x00000001
-    }
-    pub fn overlap_flag(mut self, overlap_flag: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFD;
-        self.bitfield0 = ((overlap_flag << 1u32) & 0x00000002) | rest;
-        self
-    }
-    pub fn get_overlap_flag(&self) -> u32 {
-        (self.bitfield0 & 0x00000002) >> 1u32
-    }
-    pub fn clip_to_restricted_range(mut self, clip_to_restricted_range: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFFB;
-        self.bitfield0 = ((clip_to_restricted_range << 2u32) & 0x00000004) | rest;
-        self
-    }
-    pub fn get_clip_to_restricted_range(&self) -> u32 {
-        (self.bitfield0 & 0x00000004) >> 2u32
-    }
-    pub fn update_grain(mut self, update_grain: u32) -> Self {
-        let rest = self.bitfield0 & 0xFFFFFFF7;
-        self.bitfield0 = ((update_grain << 3u32) & 0x00000008) | rest;
-        self
-    }
-    pub fn get_update_grain(&self) -> u32 {
-        (self.bitfield0 & 0x00000008) >> 3u32
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct AV1FilmGrain {
-    pub flags: crate::vk::AV1FilmGrainFlags,
-    pub grain_scaling_minus_8: u8,
-    pub ar_coeff_lag: u8,
-    pub ar_coeff_shift_minus_6: u8,
-    pub grain_scale_shift: u8,
-    pub grain_seed: u16,
-    pub film_grain_params_ref_idx: u8,
-    pub num_y_points: u8,
-    pub point_y_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
-    pub point_y_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
-    pub num_cb_points: u8,
-    pub point_cb_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
-    pub point_cb_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
-    pub num_cr_points: u8,
-    pub point_cr_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
-    pub point_cr_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
-    pub ar_coeffs_y_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_LUMA as _],
-    pub ar_coeffs_cb_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA as _],
-    pub ar_coeffs_cr_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA as _],
-    pub cb_mult: u8,
-    pub cb_luma_mult: u8,
-    pub cb_offset: u16,
-    pub cr_mult: u8,
-    pub cr_luma_mult: u8,
-    pub cr_offset: u16,
-}
-impl Default for AV1FilmGrain {
-    fn default() -> Self {
-        Self {
-            flags: Default::default(),
-            grain_scaling_minus_8: Default::default(),
-            ar_coeff_lag: Default::default(),
-            ar_coeff_shift_minus_6: Default::default(),
-            grain_scale_shift: Default::default(),
-            grain_seed: Default::default(),
-            film_grain_params_ref_idx: Default::default(),
-            num_y_points: Default::default(),
-            point_y_value: unsafe { core::mem::zeroed() },
-            point_y_scaling: unsafe { core::mem::zeroed() },
-            num_cb_points: Default::default(),
-            point_cb_value: unsafe { core::mem::zeroed() },
-            point_cb_scaling: unsafe { core::mem::zeroed() },
-            num_cr_points: Default::default(),
-            point_cr_value: unsafe { core::mem::zeroed() },
-            point_cr_scaling: unsafe { core::mem::zeroed() },
-            ar_coeffs_y_plus_128: unsafe { core::mem::zeroed() },
-            ar_coeffs_cb_plus_128: unsafe { core::mem::zeroed() },
-            ar_coeffs_cr_plus_128: unsafe { core::mem::zeroed() },
-            cb_mult: Default::default(),
-            cb_luma_mult: Default::default(),
-            cb_offset: Default::default(),
-            cr_mult: Default::default(),
-            cr_luma_mult: Default::default(),
-            cr_offset: Default::default(),
+    impl AV1FilmGrainFlags {
+        pub fn chroma_scaling_from_luma(
+            mut self,
+            chroma_scaling_from_luma: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFE;
+            self.bitfield0 = (chroma_scaling_from_luma & 0x00000001) | rest;
+            self
+        }
+        pub fn get_chroma_scaling_from_luma(&self) -> u32 {
+            self.bitfield0 & 0x00000001
+        }
+        pub fn overlap_flag(mut self, overlap_flag: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFD;
+            self.bitfield0 = ((overlap_flag << 1u32) & 0x00000002) | rest;
+            self
+        }
+        pub fn get_overlap_flag(&self) -> u32 {
+            (self.bitfield0 & 0x00000002) >> 1u32
+        }
+        pub fn clip_to_restricted_range(
+            mut self,
+            clip_to_restricted_range: u32,
+        ) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFFB;
+            self.bitfield0 = ((clip_to_restricted_range << 2u32) & 0x00000004) | rest;
+            self
+        }
+        pub fn get_clip_to_restricted_range(&self) -> u32 {
+            (self.bitfield0 & 0x00000004) >> 2u32
+        }
+        pub fn update_grain(mut self, update_grain: u32) -> Self {
+            let rest = self.bitfield0 & 0xFFFFFFF7;
+            self.bitfield0 = ((update_grain << 3u32) & 0x00000008) | rest;
+            self
+        }
+        pub fn get_update_grain(&self) -> u32 {
+            (self.bitfield0 & 0x00000008) >> 3u32
         }
     }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct AV1FilmGrain {
+        pub flags: crate::vk::AV1FilmGrainFlags,
+        pub grain_scaling_minus_8: u8,
+        pub ar_coeff_lag: u8,
+        pub ar_coeff_shift_minus_6: u8,
+        pub grain_scale_shift: u8,
+        pub grain_seed: u16,
+        pub film_grain_params_ref_idx: u8,
+        pub num_y_points: u8,
+        pub point_y_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
+        pub point_y_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
+        pub num_cb_points: u8,
+        pub point_cb_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
+        pub point_cb_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
+        pub num_cr_points: u8,
+        pub point_cr_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
+        pub point_cr_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
+        pub ar_coeffs_y_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_LUMA as _],
+        pub ar_coeffs_cb_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA
+            as _],
+        pub ar_coeffs_cr_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA
+            as _],
+        pub cb_mult: u8,
+        pub cb_luma_mult: u8,
+        pub cb_offset: u16,
+        pub cr_mult: u8,
+        pub cr_luma_mult: u8,
+        pub cr_offset: u16,
+    }
+    impl Default for AV1FilmGrain {
+        fn default() -> Self {
+            Self {
+                flags: Default::default(),
+                grain_scaling_minus_8: Default::default(),
+                ar_coeff_lag: Default::default(),
+                ar_coeff_shift_minus_6: Default::default(),
+                grain_scale_shift: Default::default(),
+                grain_seed: Default::default(),
+                film_grain_params_ref_idx: Default::default(),
+                num_y_points: Default::default(),
+                point_y_value: unsafe { core::mem::zeroed() },
+                point_y_scaling: unsafe { core::mem::zeroed() },
+                num_cb_points: Default::default(),
+                point_cb_value: unsafe { core::mem::zeroed() },
+                point_cb_scaling: unsafe { core::mem::zeroed() },
+                num_cr_points: Default::default(),
+                point_cr_value: unsafe { core::mem::zeroed() },
+                point_cr_scaling: unsafe { core::mem::zeroed() },
+                ar_coeffs_y_plus_128: unsafe { core::mem::zeroed() },
+                ar_coeffs_cb_plus_128: unsafe { core::mem::zeroed() },
+                ar_coeffs_cr_plus_128: unsafe { core::mem::zeroed() },
+                cb_mult: Default::default(),
+                cb_luma_mult: Default::default(),
+                cb_offset: Default::default(),
+                cr_mult: Default::default(),
+                cr_luma_mult: Default::default(),
+                cr_offset: Default::default(),
+            }
+        }
+    }
+    impl AV1FilmGrain {
+        pub fn flags(mut self, flags: crate::vk::AV1FilmGrainFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn grain_scaling_minus_8(mut self, grain_scaling_minus_8: u8) -> Self {
+            self.grain_scaling_minus_8 = grain_scaling_minus_8;
+            self
+        }
+        pub fn ar_coeff_lag(mut self, ar_coeff_lag: u8) -> Self {
+            self.ar_coeff_lag = ar_coeff_lag;
+            self
+        }
+        pub fn ar_coeff_shift_minus_6(mut self, ar_coeff_shift_minus_6: u8) -> Self {
+            self.ar_coeff_shift_minus_6 = ar_coeff_shift_minus_6;
+            self
+        }
+        pub fn grain_scale_shift(mut self, grain_scale_shift: u8) -> Self {
+            self.grain_scale_shift = grain_scale_shift;
+            self
+        }
+        pub fn grain_seed(mut self, grain_seed: u16) -> Self {
+            self.grain_seed = grain_seed;
+            self
+        }
+        pub fn film_grain_params_ref_idx(
+            mut self,
+            film_grain_params_ref_idx: u8,
+        ) -> Self {
+            self.film_grain_params_ref_idx = film_grain_params_ref_idx;
+            self
+        }
+        pub fn num_y_points(mut self, num_y_points: u8) -> Self {
+            self.num_y_points = num_y_points;
+            self
+        }
+        pub fn point_y_value(
+            mut self,
+            point_y_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
+        ) -> Self {
+            self.point_y_value = point_y_value;
+            self
+        }
+        pub fn point_y_scaling(
+            mut self,
+            point_y_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
+        ) -> Self {
+            self.point_y_scaling = point_y_scaling;
+            self
+        }
+        pub fn num_cb_points(mut self, num_cb_points: u8) -> Self {
+            self.num_cb_points = num_cb_points;
+            self
+        }
+        pub fn point_cb_value(
+            mut self,
+            point_cb_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
+        ) -> Self {
+            self.point_cb_value = point_cb_value;
+            self
+        }
+        pub fn point_cb_scaling(
+            mut self,
+            point_cb_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
+        ) -> Self {
+            self.point_cb_scaling = point_cb_scaling;
+            self
+        }
+        pub fn num_cr_points(mut self, num_cr_points: u8) -> Self {
+            self.num_cr_points = num_cr_points;
+            self
+        }
+        pub fn point_cr_value(
+            mut self,
+            point_cr_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
+        ) -> Self {
+            self.point_cr_value = point_cr_value;
+            self
+        }
+        pub fn point_cr_scaling(
+            mut self,
+            point_cr_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
+        ) -> Self {
+            self.point_cr_scaling = point_cr_scaling;
+            self
+        }
+        pub fn ar_coeffs_y_plus_128(
+            mut self,
+            ar_coeffs_y_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_LUMA as _],
+        ) -> Self {
+            self.ar_coeffs_y_plus_128 = ar_coeffs_y_plus_128;
+            self
+        }
+        pub fn ar_coeffs_cb_plus_128(
+            mut self,
+            ar_coeffs_cb_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA as _],
+        ) -> Self {
+            self.ar_coeffs_cb_plus_128 = ar_coeffs_cb_plus_128;
+            self
+        }
+        pub fn ar_coeffs_cr_plus_128(
+            mut self,
+            ar_coeffs_cr_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA as _],
+        ) -> Self {
+            self.ar_coeffs_cr_plus_128 = ar_coeffs_cr_plus_128;
+            self
+        }
+        pub fn cb_mult(mut self, cb_mult: u8) -> Self {
+            self.cb_mult = cb_mult;
+            self
+        }
+        pub fn cb_luma_mult(mut self, cb_luma_mult: u8) -> Self {
+            self.cb_luma_mult = cb_luma_mult;
+            self
+        }
+        pub fn cb_offset(mut self, cb_offset: u16) -> Self {
+            self.cb_offset = cb_offset;
+            self
+        }
+        pub fn cr_mult(mut self, cr_mult: u8) -> Self {
+            self.cr_mult = cr_mult;
+            self
+        }
+        pub fn cr_luma_mult(mut self, cr_luma_mult: u8) -> Self {
+            self.cr_luma_mult = cr_luma_mult;
+            self
+        }
+        pub fn cr_offset(mut self, cr_offset: u16) -> Self {
+            self.cr_offset = cr_offset;
+            self
+        }
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct AV1Profile(pub(crate) i32);
+    ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
+    impl AV1Profile {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const MAIN: Self = Self(0);
+        pub const HIGH: Self = Self(1);
+        pub const PROFESSIONAL: Self = Self(2);
+        pub const INVALID: Self = Self(0x7FFFFFF);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct AV1Level(pub(crate) i32);
+    ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
+    impl AV1Level {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const _2_0: Self = Self(0);
+        pub const _2_1: Self = Self(1);
+        pub const _2_2: Self = Self(2);
+        pub const _2_3: Self = Self(3);
+        pub const _3_0: Self = Self(4);
+        pub const _3_1: Self = Self(5);
+        pub const _3_2: Self = Self(6);
+        pub const _3_3: Self = Self(7);
+        pub const _4_0: Self = Self(8);
+        pub const _4_1: Self = Self(9);
+        pub const _4_2: Self = Self(10);
+        pub const _4_3: Self = Self(11);
+        pub const _5_0: Self = Self(12);
+        pub const _5_1: Self = Self(13);
+        pub const _5_2: Self = Self(14);
+        pub const _5_3: Self = Self(15);
+        pub const _6_0: Self = Self(16);
+        pub const _6_1: Self = Self(17);
+        pub const _6_2: Self = Self(18);
+        pub const _6_3: Self = Self(19);
+        pub const _7_0: Self = Self(20);
+        pub const _7_1: Self = Self(21);
+        pub const _7_2: Self = Self(22);
+        pub const _7_3: Self = Self(23);
+        pub const INVALID: Self = Self(0x7FFFFFF);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct AV1FrameType(pub(crate) i32);
+    ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
+    impl AV1FrameType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const KEY: Self = Self(0);
+        pub const INTER: Self = Self(1);
+        pub const INTRA_ONLY: Self = Self(2);
+        pub const SWITCH: Self = Self(3);
+        pub const INVALID: Self = Self(0x7FFFFFF);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct AV1ReferenceName(pub(crate) i32);
+    ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
+    impl AV1ReferenceName {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const INTRA_FRAME: Self = Self(0);
+        pub const LAST_FRAME: Self = Self(1);
+        pub const LAST2_FRAME: Self = Self(2);
+        pub const LAST3_FRAME: Self = Self(3);
+        pub const GOLDEN_FRAME: Self = Self(4);
+        pub const BWDREF_FRAME: Self = Self(5);
+        pub const ALTREF2_FRAME: Self = Self(6);
+        pub const ALTREF_FRAME: Self = Self(7);
+        pub const INVALID: Self = Self(0x7FFFFFF);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct AV1InterpolationFilter(pub(crate) i32);
+    ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
+    impl AV1InterpolationFilter {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const EIGHTTAP: Self = Self(0);
+        pub const EIGHTTAP_SMOOTH: Self = Self(1);
+        pub const EIGHTTAP_SHARP: Self = Self(2);
+        pub const BILINEAR: Self = Self(3);
+        pub const SWITCHABLE: Self = Self(4);
+        pub const INVALID: Self = Self(0x7FFFFFF);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct AV1TxMode(pub(crate) i32);
+    ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
+    impl AV1TxMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const ONLY_4X4: Self = Self(0);
+        pub const LARGEST: Self = Self(1);
+        pub const SELECT: Self = Self(2);
+        pub const INVALID: Self = Self(0x7FFFFFF);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct AV1FrameRestorationType(pub(crate) i32);
+    ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
+    impl AV1FrameRestorationType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const NONE: Self = Self(0);
+        pub const WIENER: Self = Self(1);
+        pub const SGRPROJ: Self = Self(2);
+        pub const SWITCHABLE: Self = Self(3);
+        pub const INVALID: Self = Self(0x7FFFFFF);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct AV1ColorPrimaries(pub(crate) i32);
+    ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
+    impl AV1ColorPrimaries {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const BT_709: Self = Self(1);
+        pub const UNSPECIFIED: Self = Self(2);
+        pub const BT_470_M: Self = Self(4);
+        pub const BT_470_B_G: Self = Self(5);
+        pub const BT_601: Self = Self(6);
+        pub const SMPTE_240: Self = Self(7);
+        pub const GENERIC_FILM: Self = Self(8);
+        pub const BT_2020: Self = Self(9);
+        pub const XYZ: Self = Self(10);
+        pub const SMPTE_431: Self = Self(11);
+        pub const SMPTE_432: Self = Self(12);
+        pub const EBU_3213: Self = Self(22);
+        pub const INVALID: Self = Self(0x7FFFFFF);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct AV1TransferCharacteristics(pub(crate) i32);
+    ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
+    impl AV1TransferCharacteristics {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const RESERVED_0: Self = Self(0);
+        pub const BT_709: Self = Self(1);
+        pub const UNSPECIFIED: Self = Self(2);
+        pub const RESERVED_3: Self = Self(3);
+        pub const BT_470_M: Self = Self(4);
+        pub const BT_470_B_G: Self = Self(5);
+        pub const BT_601: Self = Self(6);
+        pub const SMPTE_240: Self = Self(7);
+        pub const LINEAR: Self = Self(8);
+        pub const LOG_100: Self = Self(9);
+        pub const LOG_100_SQRT10: Self = Self(10);
+        pub const IEC_61966: Self = Self(11);
+        pub const BT_1361: Self = Self(12);
+        pub const SRGB: Self = Self(13);
+        pub const BT_2020_10: Self = Self(14);
+        pub const BT_2020_12: Self = Self(15);
+        pub const SMPTE_2084: Self = Self(16);
+        pub const SMPTE_428: Self = Self(17);
+        pub const HLG: Self = Self(18);
+        pub const INVALID: Self = Self(0x7FFFFFF);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct AV1MatrixCoefficients(pub(crate) i32);
+    ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
+    impl AV1MatrixCoefficients {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const IDENTITY: Self = Self(0);
+        pub const BT_709: Self = Self(1);
+        pub const UNSPECIFIED: Self = Self(2);
+        pub const RESERVED_3: Self = Self(3);
+        pub const FCC: Self = Self(4);
+        pub const BT_470_B_G: Self = Self(5);
+        pub const BT_601: Self = Self(6);
+        pub const SMPTE_240: Self = Self(7);
+        pub const SMPTE_YCGCO: Self = Self(8);
+        pub const BT_2020_NCL: Self = Self(9);
+        pub const BT_2020_CL: Self = Self(10);
+        pub const SMPTE_2085: Self = Self(11);
+        pub const CHROMAT_NCL: Self = Self(12);
+        pub const CHROMAT_CL: Self = Self(13);
+        pub const ICTCP: Self = Self(14);
+        pub const INVALID: Self = Self(0x7FFFFFF);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct AV1ChromaSamplePosition(pub(crate) i32);
+    ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
+    impl AV1ChromaSamplePosition {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const UNKNOWN: Self = Self(0);
+        pub const VERTICAL: Self = Self(1);
+        pub const COLOCATED: Self = Self(2);
+        pub const RESERVED: Self = Self(3);
+        pub const INVALID: Self = Self(0x7FFFFFF);
+    }
+    pub const STD_VIDEO_AV1_NUM_REF_FRAMES: u32 = 8;
+    pub const STD_VIDEO_AV1_REFS_PER_FRAME: u32 = 7;
+    pub const STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME: u32 = 8;
+    pub const STD_VIDEO_AV1_MAX_TILE_COLS: u32 = 64;
+    pub const STD_VIDEO_AV1_MAX_TILE_ROWS: u32 = 64;
+    pub const STD_VIDEO_AV1_MAX_SEGMENTS: u32 = 8;
+    pub const STD_VIDEO_AV1_SEG_LVL_MAX: u32 = 8;
+    pub const STD_VIDEO_AV1_PRIMARY_REF_NONE: u32 = 7;
+    pub const STD_VIDEO_AV1_SELECT_INTEGER_MV: u32 = 2;
+    pub const STD_VIDEO_AV1_SELECT_SCREEN_CONTENT_TOOLS: u32 = 2;
+    pub const STD_VIDEO_AV1_SKIP_MODE_FRAMES: u32 = 2;
+    pub const STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS: u32 = 4;
+    pub const STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS: u32 = 2;
+    pub const STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS: u32 = 8;
+    pub const STD_VIDEO_AV1_MAX_NUM_PLANES: u32 = 3;
+    pub const STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS: u32 = 6;
+    pub const STD_VIDEO_AV1_MAX_NUM_Y_POINTS: u32 = 14;
+    pub const STD_VIDEO_AV1_MAX_NUM_CB_POINTS: u32 = 10;
+    pub const STD_VIDEO_AV1_MAX_NUM_CR_POINTS: u32 = 10;
+    pub const STD_VIDEO_AV1_MAX_NUM_POS_LUMA: u32 = 24;
+    pub const STD_VIDEO_AV1_MAX_NUM_POS_CHROMA: u32 = 25;
 }
-impl AV1FilmGrain {
-    pub fn flags(mut self, flags: crate::vk::AV1FilmGrainFlags) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn grain_scaling_minus_8(mut self, grain_scaling_minus_8: u8) -> Self {
-        self.grain_scaling_minus_8 = grain_scaling_minus_8;
-        self
-    }
-    pub fn ar_coeff_lag(mut self, ar_coeff_lag: u8) -> Self {
-        self.ar_coeff_lag = ar_coeff_lag;
-        self
-    }
-    pub fn ar_coeff_shift_minus_6(mut self, ar_coeff_shift_minus_6: u8) -> Self {
-        self.ar_coeff_shift_minus_6 = ar_coeff_shift_minus_6;
-        self
-    }
-    pub fn grain_scale_shift(mut self, grain_scale_shift: u8) -> Self {
-        self.grain_scale_shift = grain_scale_shift;
-        self
-    }
-    pub fn grain_seed(mut self, grain_seed: u16) -> Self {
-        self.grain_seed = grain_seed;
-        self
-    }
-    pub fn film_grain_params_ref_idx(mut self, film_grain_params_ref_idx: u8) -> Self {
-        self.film_grain_params_ref_idx = film_grain_params_ref_idx;
-        self
-    }
-    pub fn num_y_points(mut self, num_y_points: u8) -> Self {
-        self.num_y_points = num_y_points;
-        self
-    }
-    pub fn point_y_value(
-        mut self,
-        point_y_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
-    ) -> Self {
-        self.point_y_value = point_y_value;
-        self
-    }
-    pub fn point_y_scaling(
-        mut self,
-        point_y_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
-    ) -> Self {
-        self.point_y_scaling = point_y_scaling;
-        self
-    }
-    pub fn num_cb_points(mut self, num_cb_points: u8) -> Self {
-        self.num_cb_points = num_cb_points;
-        self
-    }
-    pub fn point_cb_value(
-        mut self,
-        point_cb_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
-    ) -> Self {
-        self.point_cb_value = point_cb_value;
-        self
-    }
-    pub fn point_cb_scaling(
-        mut self,
-        point_cb_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
-    ) -> Self {
-        self.point_cb_scaling = point_cb_scaling;
-        self
-    }
-    pub fn num_cr_points(mut self, num_cr_points: u8) -> Self {
-        self.num_cr_points = num_cr_points;
-        self
-    }
-    pub fn point_cr_value(
-        mut self,
-        point_cr_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
-    ) -> Self {
-        self.point_cr_value = point_cr_value;
-        self
-    }
-    pub fn point_cr_scaling(
-        mut self,
-        point_cr_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
-    ) -> Self {
-        self.point_cr_scaling = point_cr_scaling;
-        self
-    }
-    pub fn ar_coeffs_y_plus_128(
-        mut self,
-        ar_coeffs_y_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_LUMA as _],
-    ) -> Self {
-        self.ar_coeffs_y_plus_128 = ar_coeffs_y_plus_128;
-        self
-    }
-    pub fn ar_coeffs_cb_plus_128(
-        mut self,
-        ar_coeffs_cb_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA as _],
-    ) -> Self {
-        self.ar_coeffs_cb_plus_128 = ar_coeffs_cb_plus_128;
-        self
-    }
-    pub fn ar_coeffs_cr_plus_128(
-        mut self,
-        ar_coeffs_cr_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA as _],
-    ) -> Self {
-        self.ar_coeffs_cr_plus_128 = ar_coeffs_cr_plus_128;
-        self
-    }
-    pub fn cb_mult(mut self, cb_mult: u8) -> Self {
-        self.cb_mult = cb_mult;
-        self
-    }
-    pub fn cb_luma_mult(mut self, cb_luma_mult: u8) -> Self {
-        self.cb_luma_mult = cb_luma_mult;
-        self
-    }
-    pub fn cb_offset(mut self, cb_offset: u16) -> Self {
-        self.cb_offset = cb_offset;
-        self
-    }
-    pub fn cr_mult(mut self, cr_mult: u8) -> Self {
-        self.cr_mult = cr_mult;
-        self
-    }
-    pub fn cr_luma_mult(mut self, cr_luma_mult: u8) -> Self {
-        self.cr_luma_mult = cr_luma_mult;
-        self
-    }
-    pub fn cr_offset(mut self, cr_offset: u16) -> Self {
-        self.cr_offset = cr_offset;
-        self
-    }
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct AV1Profile(pub(crate) i32);
-///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl AV1Profile {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const MAIN: Self = Self(0);
-    pub const HIGH: Self = Self(1);
-    pub const PROFESSIONAL: Self = Self(2);
-    pub const INVALID: Self = Self(0x7FFFFFF);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct AV1Level(pub(crate) i32);
-///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl AV1Level {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const _2_0: Self = Self(0);
-    pub const _2_1: Self = Self(1);
-    pub const _2_2: Self = Self(2);
-    pub const _2_3: Self = Self(3);
-    pub const _3_0: Self = Self(4);
-    pub const _3_1: Self = Self(5);
-    pub const _3_2: Self = Self(6);
-    pub const _3_3: Self = Self(7);
-    pub const _4_0: Self = Self(8);
-    pub const _4_1: Self = Self(9);
-    pub const _4_2: Self = Self(10);
-    pub const _4_3: Self = Self(11);
-    pub const _5_0: Self = Self(12);
-    pub const _5_1: Self = Self(13);
-    pub const _5_2: Self = Self(14);
-    pub const _5_3: Self = Self(15);
-    pub const _6_0: Self = Self(16);
-    pub const _6_1: Self = Self(17);
-    pub const _6_2: Self = Self(18);
-    pub const _6_3: Self = Self(19);
-    pub const _7_0: Self = Self(20);
-    pub const _7_1: Self = Self(21);
-    pub const _7_2: Self = Self(22);
-    pub const _7_3: Self = Self(23);
-    pub const INVALID: Self = Self(0x7FFFFFF);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct AV1FrameType(pub(crate) i32);
-///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl AV1FrameType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const KEY: Self = Self(0);
-    pub const INTER: Self = Self(1);
-    pub const INTRA_ONLY: Self = Self(2);
-    pub const SWITCH: Self = Self(3);
-    pub const INVALID: Self = Self(0x7FFFFFF);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct AV1ReferenceName(pub(crate) i32);
-///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl AV1ReferenceName {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const INTRA_FRAME: Self = Self(0);
-    pub const LAST_FRAME: Self = Self(1);
-    pub const LAST2_FRAME: Self = Self(2);
-    pub const LAST3_FRAME: Self = Self(3);
-    pub const GOLDEN_FRAME: Self = Self(4);
-    pub const BWDREF_FRAME: Self = Self(5);
-    pub const ALTREF2_FRAME: Self = Self(6);
-    pub const ALTREF_FRAME: Self = Self(7);
-    pub const INVALID: Self = Self(0x7FFFFFF);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct AV1InterpolationFilter(pub(crate) i32);
-///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl AV1InterpolationFilter {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const EIGHTTAP: Self = Self(0);
-    pub const EIGHTTAP_SMOOTH: Self = Self(1);
-    pub const EIGHTTAP_SHARP: Self = Self(2);
-    pub const BILINEAR: Self = Self(3);
-    pub const SWITCHABLE: Self = Self(4);
-    pub const INVALID: Self = Self(0x7FFFFFF);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct AV1TxMode(pub(crate) i32);
-///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl AV1TxMode {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const ONLY_4X4: Self = Self(0);
-    pub const LARGEST: Self = Self(1);
-    pub const SELECT: Self = Self(2);
-    pub const INVALID: Self = Self(0x7FFFFFF);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct AV1FrameRestorationType(pub(crate) i32);
-///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl AV1FrameRestorationType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const NONE: Self = Self(0);
-    pub const WIENER: Self = Self(1);
-    pub const SGRPROJ: Self = Self(2);
-    pub const SWITCHABLE: Self = Self(3);
-    pub const INVALID: Self = Self(0x7FFFFFF);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct AV1ColorPrimaries(pub(crate) i32);
-///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl AV1ColorPrimaries {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const BT_709: Self = Self(1);
-    pub const UNSPECIFIED: Self = Self(2);
-    pub const BT_470_M: Self = Self(4);
-    pub const BT_470_B_G: Self = Self(5);
-    pub const BT_601: Self = Self(6);
-    pub const SMPTE_240: Self = Self(7);
-    pub const GENERIC_FILM: Self = Self(8);
-    pub const BT_2020: Self = Self(9);
-    pub const XYZ: Self = Self(10);
-    pub const SMPTE_431: Self = Self(11);
-    pub const SMPTE_432: Self = Self(12);
-    pub const EBU_3213: Self = Self(22);
-    pub const INVALID: Self = Self(0x7FFFFFF);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct AV1TransferCharacteristics(pub(crate) i32);
-///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl AV1TransferCharacteristics {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const RESERVED_0: Self = Self(0);
-    pub const BT_709: Self = Self(1);
-    pub const UNSPECIFIED: Self = Self(2);
-    pub const RESERVED_3: Self = Self(3);
-    pub const BT_470_M: Self = Self(4);
-    pub const BT_470_B_G: Self = Self(5);
-    pub const BT_601: Self = Self(6);
-    pub const SMPTE_240: Self = Self(7);
-    pub const LINEAR: Self = Self(8);
-    pub const LOG_100: Self = Self(9);
-    pub const LOG_100_SQRT10: Self = Self(10);
-    pub const IEC_61966: Self = Self(11);
-    pub const BT_1361: Self = Self(12);
-    pub const SRGB: Self = Self(13);
-    pub const BT_2020_10: Self = Self(14);
-    pub const BT_2020_12: Self = Self(15);
-    pub const SMPTE_2084: Self = Self(16);
-    pub const SMPTE_428: Self = Self(17);
-    pub const HLG: Self = Self(18);
-    pub const INVALID: Self = Self(0x7FFFFFF);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct AV1MatrixCoefficients(pub(crate) i32);
-///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl AV1MatrixCoefficients {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const IDENTITY: Self = Self(0);
-    pub const BT_709: Self = Self(1);
-    pub const UNSPECIFIED: Self = Self(2);
-    pub const RESERVED_3: Self = Self(3);
-    pub const FCC: Self = Self(4);
-    pub const BT_470_B_G: Self = Self(5);
-    pub const BT_601: Self = Self(6);
-    pub const SMPTE_240: Self = Self(7);
-    pub const SMPTE_YCGCO: Self = Self(8);
-    pub const BT_2020_NCL: Self = Self(9);
-    pub const BT_2020_CL: Self = Self(10);
-    pub const SMPTE_2085: Self = Self(11);
-    pub const CHROMAT_NCL: Self = Self(12);
-    pub const CHROMAT_CL: Self = Self(13);
-    pub const ICTCP: Self = Self(14);
-    pub const INVALID: Self = Self(0x7FFFFFF);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct AV1ChromaSamplePosition(pub(crate) i32);
-///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl AV1ChromaSamplePosition {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const UNKNOWN: Self = Self(0);
-    pub const VERTICAL: Self = Self(1);
-    pub const COLOCATED: Self = Self(2);
-    pub const RESERVED: Self = Self(3);
-    pub const INVALID: Self = Self(0x7FFFFFF);
-}
-pub const STD_VIDEO_AV1_NUM_REF_FRAMES: u32 = 8;
-pub const STD_VIDEO_AV1_REFS_PER_FRAME: u32 = 7;
-pub const STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME: u32 = 8;
-pub const STD_VIDEO_AV1_MAX_TILE_COLS: u32 = 64;
-pub const STD_VIDEO_AV1_MAX_TILE_ROWS: u32 = 64;
-pub const STD_VIDEO_AV1_MAX_SEGMENTS: u32 = 8;
-pub const STD_VIDEO_AV1_SEG_LVL_MAX: u32 = 8;
-pub const STD_VIDEO_AV1_PRIMARY_REF_NONE: u32 = 7;
-pub const STD_VIDEO_AV1_SELECT_INTEGER_MV: u32 = 2;
-pub const STD_VIDEO_AV1_SELECT_SCREEN_CONTENT_TOOLS: u32 = 2;
-pub const STD_VIDEO_AV1_SKIP_MODE_FRAMES: u32 = 2;
-pub const STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS: u32 = 4;
-pub const STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS: u32 = 2;
-pub const STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS: u32 = 8;
-pub const STD_VIDEO_AV1_MAX_NUM_PLANES: u32 = 3;
-pub const STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS: u32 = 6;
-pub const STD_VIDEO_AV1_MAX_NUM_Y_POINTS: u32 = 14;
-pub const STD_VIDEO_AV1_MAX_NUM_CB_POINTS: u32 = 10;
-pub const STD_VIDEO_AV1_MAX_NUM_CR_POINTS: u32 = 10;
-pub const STD_VIDEO_AV1_MAX_NUM_POS_LUMA: u32 = 24;
-pub const STD_VIDEO_AV1_MAX_NUM_POS_CHROMA: u32 = 25;
+pub use reexport::*;

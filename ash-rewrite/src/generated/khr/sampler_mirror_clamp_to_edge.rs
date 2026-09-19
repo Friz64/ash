@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_sampler_mirror_clamp_to_edge.html) · Extension `VK_KHR_sampler_mirror_clamp_to_edge`
 #![doc(alias = "VK_KHR_sampler_mirror_clamp_to_edge")]
-pub const KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_SPEC_VERSION: u32 = 3;
-pub const KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_sampler_mirror_clamp_to_edge";
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_sampler_mirror_clamp_to_edge";

@@ -2,126 +2,133 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_filter_cubic_weights.html) · Extension `VK_QCOM_filter_cubic_weights`
 #![doc(alias = "VK_QCOM_filter_cubic_weights")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub selectable_cubic_weights: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {}
-impl<'a> Default for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            selectable_cubic_weights: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_filter_cubic_weights";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub selectable_cubic_weights: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {}
+    impl<'a> Default for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                selectable_cubic_weights: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
-    pub fn selectable_cubic_weights(mut self, selectable_cubic_weights: bool) -> Self {
-        self.selectable_cubic_weights = selectable_cubic_weights.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct SamplerCubicWeightsCreateInfoQCOM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for SamplerCubicWeightsCreateInfoQCOM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
-for SamplerCubicWeightsCreateInfoQCOM<'a> {}
-impl<'a> Default for SamplerCubicWeightsCreateInfoQCOM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            cubic_weights: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
+        pub fn selectable_cubic_weights(
+            mut self,
+            selectable_cubic_weights: bool,
+        ) -> Self {
+            self.selectable_cubic_weights = selectable_cubic_weights.into();
+            self
         }
     }
-}
-impl<'a> SamplerCubicWeightsCreateInfoQCOM<'a> {
-    pub fn cubic_weights(
-        mut self,
-        cubic_weights: crate::vk::CubicFilterWeightsQCOM,
-    ) -> Self {
-        self.cubic_weights = cubic_weights;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct SamplerCubicWeightsCreateInfoQCOM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct BlitImageCubicWeightsInfoQCOM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for BlitImageCubicWeightsInfoQCOM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::BlitImageInfo2<'_>>
-for BlitImageCubicWeightsInfoQCOM<'a> {}
-impl<'a> Default for BlitImageCubicWeightsInfoQCOM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            cubic_weights: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SamplerCubicWeightsCreateInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+    for SamplerCubicWeightsCreateInfoQCOM<'a> {}
+    impl<'a> Default for SamplerCubicWeightsCreateInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cubic_weights: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> BlitImageCubicWeightsInfoQCOM<'a> {
-    pub fn cubic_weights(
-        mut self,
-        cubic_weights: crate::vk::CubicFilterWeightsQCOM,
-    ) -> Self {
-        self.cubic_weights = cubic_weights;
-        self
+    impl<'a> SamplerCubicWeightsCreateInfoQCOM<'a> {
+        pub fn cubic_weights(
+            mut self,
+            cubic_weights: crate::vk::CubicFilterWeightsQCOM,
+        ) -> Self {
+            self.cubic_weights = cubic_weights;
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct BlitImageCubicWeightsInfoQCOM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BlitImageCubicWeightsInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::BlitImageInfo2<'_>>
+    for BlitImageCubicWeightsInfoQCOM<'a> {}
+    impl<'a> Default for BlitImageCubicWeightsInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cubic_weights: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> BlitImageCubicWeightsInfoQCOM<'a> {
+        pub fn cubic_weights(
+            mut self,
+            cubic_weights: crate::vk::CubicFilterWeightsQCOM,
+        ) -> Self {
+            self.cubic_weights = cubic_weights;
+            self
+        }
+    }
+    ///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
+    impl crate::vk::StructureType {
+        pub const SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM: Self = Self(1000519000);
+        pub const PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM: Self = Self(1000519001);
+        pub const BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM: Self = Self(1000519002);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct CubicFilterWeightsQCOM(pub(crate) i32);
+    ///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
+    impl CubicFilterWeightsQCOM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const CATMULL_ROM_QCOM: Self = Self(0);
+        pub const ZERO_TANGENT_CARDINAL_QCOM: Self = Self(1);
+        pub const B_SPLINE_QCOM: Self = Self(2);
+        pub const MITCHELL_NETRAVALI_QCOM: Self = Self(3);
     }
 }
-///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
-impl crate::vk::StructureType {
-    pub const SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM: Self = Self(1000519000);
-    pub const PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM: Self = Self(1000519001);
-    pub const BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM: Self = Self(1000519002);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct CubicFilterWeightsQCOM(pub(crate) i32);
-///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
-impl CubicFilterWeightsQCOM {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const CATMULL_ROM_QCOM: Self = Self(0);
-    pub const ZERO_TANGENT_CARDINAL_QCOM: Self = Self(1);
-    pub const B_SPLINE_QCOM: Self = Self(2);
-    pub const MITCHELL_NETRAVALI_QCOM: Self = Self(3);
-}
-pub const QCOM_FILTER_CUBIC_WEIGHTS_SPEC_VERSION: u32 = 1;
-pub const QCOM_FILTER_CUBIC_WEIGHTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_filter_cubic_weights";
+pub use reexport::*;

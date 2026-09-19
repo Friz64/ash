@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pageable_device_local_memory.html) · Extension `VK_EXT_pageable_device_local_memory`
 #![doc(alias = "VK_EXT_pageable_device_local_memory")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_pageable_device_local_memory";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub set_device_memory_priority_ext: crate::vk::PFN_vkSetDeviceMemoryPriorityEXT,
@@ -105,7 +107,5 @@ pub(crate) mod reexport {
         memory: crate::vk::DeviceMemory,
         priority: core::ffi::c_float,
     );
-    pub const EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_SPEC_VERSION: u32 = 1;
-    pub const EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pageable_device_local_memory";
 }
 pub use reexport::*;

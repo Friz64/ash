@@ -2,46 +2,49 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_multiview_per_view_viewports.html) · Extension `VK_QCOM_multiview_per_view_viewports`
 #![doc(alias = "VK_QCOM_multiview_per_view_viewports")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub multiview_per_view_viewports: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {}
-impl<'a> Default for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            multiview_per_view_viewports: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_multiview_per_view_viewports";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub multiview_per_view_viewports: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {}
+    impl<'a> Default for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                multiview_per_view_viewports: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
-    pub fn multiview_per_view_viewports(
-        mut self,
-        multiview_per_view_viewports: bool,
-    ) -> Self {
-        self.multiview_per_view_viewports = multiview_per_view_viewports.into();
-        self
+    impl<'a> PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
+        pub fn multiview_per_view_viewports(
+            mut self,
+            multiview_per_view_viewports: bool,
+        ) -> Self {
+            self.multiview_per_view_viewports = multiview_per_view_viewports.into();
+            self
+        }
+    }
+    ///Provided by [`qcom::multiview_per_view_viewports`](crate::qcom::multiview_per_view_viewports)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM: Self = Self(
+            1000488000,
+        );
     }
 }
-///Provided by [`qcom::multiview_per_view_viewports`](crate::qcom::multiview_per_view_viewports)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM: Self = Self(
-        1000488000,
-    );
-}
-pub const QCOM_MULTIVIEW_PER_VIEW_VIEWPORTS_SPEC_VERSION: u32 = 1;
-pub const QCOM_MULTIVIEW_PER_VIEW_VIEWPORTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_multiview_per_view_viewports";
+pub use reexport::*;

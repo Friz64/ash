@@ -2,63 +2,67 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_attachment_feedback_loop_layout.html) · Extension `VK_EXT_attachment_feedback_loop_layout`
 #![doc(alias = "VK_EXT_attachment_feedback_loop_layout")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub attachment_feedback_loop_layout: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            attachment_feedback_loop_layout: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_layout";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub attachment_feedback_loop_layout: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                attachment_feedback_loop_layout: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
-    pub fn attachment_feedback_loop_layout(
-        mut self,
-        attachment_feedback_loop_layout: bool,
-    ) -> Self {
-        self.attachment_feedback_loop_layout = attachment_feedback_loop_layout.into();
-        self
+    impl<'a> PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
+        pub fn attachment_feedback_loop_layout(
+            mut self,
+            attachment_feedback_loop_layout: bool,
+        ) -> Self {
+            self.attachment_feedback_loop_layout = attachment_feedback_loop_layout
+                .into();
+            self
+        }
+    }
+    ///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+    impl crate::vk::ImageLayout {
+        pub const ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT: Self = Self(1000339000);
+    }
+    ///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT: Self = Self(
+            1000339000,
+        );
+    }
+    ///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+    impl crate::vk::ImageUsageFlagBits {
+        pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 19);
+    }
+    ///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+    impl crate::vk::PipelineCreateFlagBits {
+        pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 25);
+        pub const DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 26);
+    }
+    ///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+    impl crate::vk::DependencyFlagBits {
+        pub const FEEDBACK_LOOP_EXT: Self = Self(1 << 3);
     }
 }
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::ImageLayout {
-    pub const ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT: Self = Self(1000339000);
-}
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT: Self = Self(
-        1000339000,
-    );
-}
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::ImageUsageFlagBits {
-    pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 19);
-}
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::PipelineCreateFlagBits {
-    pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 25);
-    pub const DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 26);
-}
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::DependencyFlagBits {
-    pub const FEEDBACK_LOOP_EXT: Self = Self(1 << 3);
-}
-pub const EXT_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_SPEC_VERSION: u32 = 2;
-pub const EXT_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_layout";
+pub use reexport::*;

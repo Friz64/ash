@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_tensors.html) · Extension `VK_ARM_tensors`
 #![doc(alias = "VK_ARM_tensors")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_tensors";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_tensor_arm: crate::vk::PFN_vkCreateTensorARM,
@@ -1637,7 +1639,5 @@ pub(crate) mod reexport {
         >,
         p_external_tensor_properties: *mut crate::vk::ExternalTensorPropertiesARM<'_>,
     );
-    pub const ARM_TENSORS_SPEC_VERSION: u32 = 2;
-    pub const ARM_TENSORS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_tensors";
 }
 pub use reexport::*;

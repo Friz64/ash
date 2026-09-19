@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance4.html) · Extension `VK_KHR_maintenance4`
 #![doc(alias = "VK_KHR_maintenance4")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance4";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_device_buffer_memory_requirements_khr: crate::vk::PFN_vkGetDeviceBufferMemoryRequirementsKHR,
@@ -118,7 +120,5 @@ pub(crate) mod reexport {
     pub type PFN_vkGetDeviceBufferMemoryRequirementsKHR = crate::vk::PFN_vkGetDeviceBufferMemoryRequirements;
     pub type PFN_vkGetDeviceImageMemoryRequirementsKHR = crate::vk::PFN_vkGetDeviceImageMemoryRequirements;
     pub type PFN_vkGetDeviceImageSparseMemoryRequirementsKHR = crate::vk::PFN_vkGetDeviceImageSparseMemoryRequirements;
-    pub const KHR_MAINTENANCE_4_SPEC_VERSION: u32 = 2;
-    pub const KHR_MAINTENANCE_4_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance4";
 }
 pub use reexport::*;

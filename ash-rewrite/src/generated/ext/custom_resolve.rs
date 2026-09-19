@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_custom_resolve.html) · Extension `VK_EXT_custom_resolve`
 #![doc(alias = "VK_EXT_custom_resolve")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_custom_resolve";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_begin_custom_resolve_ext: crate::vk::PFN_vkCmdBeginCustomResolveEXT,
@@ -197,7 +199,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         p_begin_custom_resolve_info: *const crate::vk::BeginCustomResolveInfoEXT<'_>,
     );
-    pub const EXT_CUSTOM_RESOLVE_SPEC_VERSION: u32 = 1;
-    pub const EXT_CUSTOM_RESOLVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_custom_resolve";
 }
 pub use reexport::*;

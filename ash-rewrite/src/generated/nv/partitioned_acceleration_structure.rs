@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_partitioned_acceleration_structure.html) · Extension `VK_NV_partitioned_acceleration_structure`
 #![doc(alias = "VK_NV_partitioned_acceleration_structure")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_partitioned_acceleration_structure";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_partitioned_acceleration_structures_build_sizes_nv: crate::vk::PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV,
@@ -651,7 +653,5 @@ pub(crate) mod reexport {
         p_build_info: *const crate::vk::BuildPartitionedAccelerationStructureInfoNV<'_>,
     );
     pub const PARTITIONED_ACCELERATION_STRUCTURE_PARTITION_INDEX_GLOBAL_NV: u32 = (!0);
-    pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 1;
-    pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_partitioned_acceleration_structure";
 }
 pub use reexport::*;

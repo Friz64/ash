@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_buffer_collection.html) · Extension `VK_FUCHSIA_buffer_collection`
 #![doc(alias = "VK_FUCHSIA_buffer_collection")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_buffer_collection";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_buffer_collection_fuchsia: crate::vk::PFN_vkCreateBufferCollectionFUCHSIA,
@@ -881,7 +883,5 @@ pub(crate) mod reexport {
         collection: crate::vk::BufferCollectionFUCHSIA,
         p_properties: *mut crate::vk::BufferCollectionPropertiesFUCHSIA<'_>,
     ) -> crate::vk::Result;
-    pub const FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION: u32 = 2;
-    pub const FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_buffer_collection";
 }
 pub use reexport::*;

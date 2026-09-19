@@ -2,13 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_load_store_op_none.html) · Extension `VK_EXT_load_store_op_none`
 #![doc(alias = "VK_EXT_load_store_op_none")]
-///Provided by [`ext::load_store_op_none`](crate::ext::load_store_op_none)
-impl crate::vk::AttachmentLoadOp {
-    pub const NONE_EXT: Self = Self::NONE;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_load_store_op_none";
+pub(crate) mod reexport {
+    ///Provided by [`ext::load_store_op_none`](crate::ext::load_store_op_none)
+    impl crate::vk::AttachmentLoadOp {
+        pub const NONE_EXT: Self = Self::NONE;
+    }
+    ///Provided by [`ext::load_store_op_none`](crate::ext::load_store_op_none)
+    impl crate::vk::AttachmentStoreOp {
+        pub const NONE_EXT: Self = Self::NONE;
+    }
 }
-///Provided by [`ext::load_store_op_none`](crate::ext::load_store_op_none)
-impl crate::vk::AttachmentStoreOp {
-    pub const NONE_EXT: Self = Self::NONE;
-}
-pub const EXT_LOAD_STORE_OP_NONE_SPEC_VERSION: u32 = 1;
-pub const EXT_LOAD_STORE_OP_NONE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_load_store_op_none";
+pub use reexport::*;

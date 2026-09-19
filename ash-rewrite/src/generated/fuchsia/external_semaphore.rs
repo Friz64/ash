@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_external_semaphore.html) · Extension `VK_FUCHSIA_external_semaphore`
 #![doc(alias = "VK_FUCHSIA_external_semaphore")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_semaphore";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_semaphore_zircon_handle_fuchsia: crate::vk::PFN_vkGetSemaphoreZirconHandleFUCHSIA,
@@ -185,7 +187,5 @@ pub(crate) mod reexport {
             '_,
         >,
     ) -> crate::vk::Result;
-    pub const FUCHSIA_EXTERNAL_SEMAPHORE_SPEC_VERSION: u32 = 1;
-    pub const FUCHSIA_EXTERNAL_SEMAPHORE_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_semaphore";
 }
 pub use reexport::*;

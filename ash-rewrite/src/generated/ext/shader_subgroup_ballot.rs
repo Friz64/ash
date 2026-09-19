@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_subgroup_ballot.html) · Extension `VK_EXT_shader_subgroup_ballot`
 #![doc(alias = "VK_EXT_shader_subgroup_ballot")]
-pub const EXT_SHADER_SUBGROUP_BALLOT_SPEC_VERSION: u32 = 1;
-pub const EXT_SHADER_SUBGROUP_BALLOT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_subgroup_ballot";
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_subgroup_ballot";

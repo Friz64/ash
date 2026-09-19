@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_sample_locations.html) · Extension `VK_EXT_sample_locations`
 #![doc(alias = "VK_EXT_sample_locations")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_sample_locations";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_sample_locations_ext: crate::vk::PFN_vkCmdSetSampleLocationsEXT,
@@ -450,7 +452,5 @@ pub(crate) mod reexport {
         samples: crate::vk::SampleCountFlagBits,
         p_multisample_properties: *mut crate::vk::MultisamplePropertiesEXT<'_>,
     );
-    pub const EXT_SAMPLE_LOCATIONS_SPEC_VERSION: u32 = 1;
-    pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_sample_locations";
 }
 pub use reexport::*;

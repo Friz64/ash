@@ -2,27 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_separate_depth_stencil_layouts.html) · Extension `VK_KHR_separate_depth_stencil_layouts`
 #![doc(alias = "VK_KHR_separate_depth_stencil_layouts")]
-pub type PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR<'a> = crate::vk::PhysicalDeviceSeparateDepthStencilLayoutsFeatures<
-    'a,
->;
-pub type AttachmentReferenceStencilLayoutKHR<'a> = crate::vk::AttachmentReferenceStencilLayout<
-    'a,
->;
-pub type AttachmentDescriptionStencilLayoutKHR<'a> = crate::vk::AttachmentDescriptionStencilLayout<
-    'a,
->;
-///Provided by [`khr::separate_depth_stencil_layouts`](crate::khr::separate_depth_stencil_layouts)
-impl crate::vk::ImageLayout {
-    pub const DEPTH_ATTACHMENT_OPTIMAL_KHR: Self = Self::DEPTH_ATTACHMENT_OPTIMAL;
-    pub const DEPTH_READ_ONLY_OPTIMAL_KHR: Self = Self::DEPTH_READ_ONLY_OPTIMAL;
-    pub const STENCIL_ATTACHMENT_OPTIMAL_KHR: Self = Self::STENCIL_ATTACHMENT_OPTIMAL;
-    pub const STENCIL_READ_ONLY_OPTIMAL_KHR: Self = Self::STENCIL_READ_ONLY_OPTIMAL;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_separate_depth_stencil_layouts";
+pub(crate) mod reexport {
+    pub type PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR<'a> = crate::vk::PhysicalDeviceSeparateDepthStencilLayoutsFeatures<
+        'a,
+    >;
+    pub type AttachmentReferenceStencilLayoutKHR<'a> = crate::vk::AttachmentReferenceStencilLayout<
+        'a,
+    >;
+    pub type AttachmentDescriptionStencilLayoutKHR<'a> = crate::vk::AttachmentDescriptionStencilLayout<
+        'a,
+    >;
+    ///Provided by [`khr::separate_depth_stencil_layouts`](crate::khr::separate_depth_stencil_layouts)
+    impl crate::vk::ImageLayout {
+        pub const DEPTH_ATTACHMENT_OPTIMAL_KHR: Self = Self::DEPTH_ATTACHMENT_OPTIMAL;
+        pub const DEPTH_READ_ONLY_OPTIMAL_KHR: Self = Self::DEPTH_READ_ONLY_OPTIMAL;
+        pub const STENCIL_ATTACHMENT_OPTIMAL_KHR: Self = Self::STENCIL_ATTACHMENT_OPTIMAL;
+        pub const STENCIL_READ_ONLY_OPTIMAL_KHR: Self = Self::STENCIL_READ_ONLY_OPTIMAL;
+    }
+    ///Provided by [`khr::separate_depth_stencil_layouts`](crate::khr::separate_depth_stencil_layouts)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES;
+        pub const ATTACHMENT_REFERENCE_STENCIL_LAYOUT_KHR: Self = Self::ATTACHMENT_REFERENCE_STENCIL_LAYOUT;
+        pub const ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT_KHR: Self = Self::ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT;
+    }
 }
-///Provided by [`khr::separate_depth_stencil_layouts`](crate::khr::separate_depth_stencil_layouts)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES;
-    pub const ATTACHMENT_REFERENCE_STENCIL_LAYOUT_KHR: Self = Self::ATTACHMENT_REFERENCE_STENCIL_LAYOUT;
-    pub const ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT_KHR: Self = Self::ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT;
-}
-pub const KHR_SEPARATE_DEPTH_STENCIL_LAYOUTS_SPEC_VERSION: u32 = 1;
-pub const KHR_SEPARATE_DEPTH_STENCIL_LAYOUTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_separate_depth_stencil_layouts";
+pub use reexport::*;

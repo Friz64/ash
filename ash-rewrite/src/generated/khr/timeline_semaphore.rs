@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_timeline_semaphore.html) · Extension `VK_KHR_timeline_semaphore`
 #![doc(alias = "VK_KHR_timeline_semaphore")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_timeline_semaphore";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_semaphore_counter_value_khr: crate::vk::PFN_vkGetSemaphoreCounterValueKHR,
@@ -126,7 +128,5 @@ pub(crate) mod reexport {
     pub type PFN_vkGetSemaphoreCounterValueKHR = crate::vk::PFN_vkGetSemaphoreCounterValue;
     pub type PFN_vkWaitSemaphoresKHR = crate::vk::PFN_vkWaitSemaphores;
     pub type PFN_vkSignalSemaphoreKHR = crate::vk::PFN_vkSignalSemaphore;
-    pub const KHR_TIMELINE_SEMAPHORE_SPEC_VERSION: u32 = 2;
-    pub const KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_timeline_semaphore";
 }
 pub use reexport::*;

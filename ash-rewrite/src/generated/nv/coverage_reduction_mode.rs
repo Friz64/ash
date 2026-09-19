@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_coverage_reduction_mode.html) · Extension `VK_NV_coverage_reduction_mode`
 #![doc(alias = "VK_NV_coverage_reduction_mode")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_coverage_reduction_mode";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_supported_framebuffer_mixed_samples_combinations_nv: crate::vk::PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV,
@@ -294,7 +296,5 @@ pub(crate) mod reexport {
         p_combination_count: *mut u32,
         p_combinations: *mut crate::vk::FramebufferMixedSamplesCombinationNV<'_>,
     ) -> crate::vk::Result;
-    pub const NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION: u32 = 1;
-    pub const NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_coverage_reduction_mode";
 }
 pub use reexport::*;

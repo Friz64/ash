@@ -2,46 +2,49 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_attribute_robustness.html) · Extension `VK_EXT_vertex_attribute_robustness`
 #![doc(alias = "VK_EXT_vertex_attribute_robustness")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub vertex_attribute_robustness: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            vertex_attribute_robustness: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_vertex_attribute_robustness";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub vertex_attribute_robustness: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                vertex_attribute_robustness: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
-    pub fn vertex_attribute_robustness(
-        mut self,
-        vertex_attribute_robustness: bool,
-    ) -> Self {
-        self.vertex_attribute_robustness = vertex_attribute_robustness.into();
-        self
+    impl<'a> PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
+        pub fn vertex_attribute_robustness(
+            mut self,
+            vertex_attribute_robustness: bool,
+        ) -> Self {
+            self.vertex_attribute_robustness = vertex_attribute_robustness.into();
+            self
+        }
+    }
+    ///Provided by [`ext::vertex_attribute_robustness`](crate::ext::vertex_attribute_robustness)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT: Self = Self(
+            1000608000,
+        );
     }
 }
-///Provided by [`ext::vertex_attribute_robustness`](crate::ext::vertex_attribute_robustness)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT: Self = Self(
-        1000608000,
-    );
-}
-pub const EXT_VERTEX_ATTRIBUTE_ROBUSTNESS_SPEC_VERSION: u32 = 1;
-pub const EXT_VERTEX_ATTRIBUTE_ROBUSTNESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_vertex_attribute_robustness";
+pub use reexport::*;

@@ -60,7 +60,7 @@ impl Code for Enum {
             ));
         }
 
-        for (&dest, impl_tokens) in impl_map.iter() {
+        for (dest, impl_tokens) in impl_map.into_iter() {
             let name = ctx.type_tokens(
                 self.name,
                 dest != Destination::primary_location(self.required_by),

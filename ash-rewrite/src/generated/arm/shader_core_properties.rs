@@ -2,51 +2,54 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_core_properties.html) · Extension `VK_ARM_shader_core_properties`
 #![doc(alias = "VK_ARM_shader_core_properties")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderCorePropertiesARM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub pixel_rate: u32,
-    pub texel_rate: u32,
-    pub fma_rate: u32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderCorePropertiesARM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
-for PhysicalDeviceShaderCorePropertiesARM<'a> {}
-impl<'a> Default for PhysicalDeviceShaderCorePropertiesARM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            pixel_rate: Default::default(),
-            texel_rate: Default::default(),
-            fma_rate: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_shader_core_properties";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderCorePropertiesARM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub pixel_rate: u32,
+        pub texel_rate: u32,
+        pub fma_rate: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderCorePropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceShaderCorePropertiesARM<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderCorePropertiesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pixel_rate: Default::default(),
+                texel_rate: Default::default(),
+                fma_rate: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderCorePropertiesARM<'a> {
-    pub fn pixel_rate(mut self, pixel_rate: u32) -> Self {
-        self.pixel_rate = pixel_rate;
-        self
+    impl<'a> PhysicalDeviceShaderCorePropertiesARM<'a> {
+        pub fn pixel_rate(mut self, pixel_rate: u32) -> Self {
+            self.pixel_rate = pixel_rate;
+            self
+        }
+        pub fn texel_rate(mut self, texel_rate: u32) -> Self {
+            self.texel_rate = texel_rate;
+            self
+        }
+        pub fn fma_rate(mut self, fma_rate: u32) -> Self {
+            self.fma_rate = fma_rate;
+            self
+        }
     }
-    pub fn texel_rate(mut self, texel_rate: u32) -> Self {
-        self.texel_rate = texel_rate;
-        self
-    }
-    pub fn fma_rate(mut self, fma_rate: u32) -> Self {
-        self.fma_rate = fma_rate;
-        self
+    ///Provided by [`arm::shader_core_properties`](crate::arm::shader_core_properties)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM: Self = Self(1000415000);
     }
 }
-///Provided by [`arm::shader_core_properties`](crate::arm::shader_core_properties)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM: Self = Self(1000415000);
-}
-pub const ARM_SHADER_CORE_PROPERTIES_SPEC_VERSION: u32 = 1;
-pub const ARM_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_shader_core_properties";
+pub use reexport::*;

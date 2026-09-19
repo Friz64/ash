@@ -2,53 +2,56 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_legacy_dithering.html) · Extension `VK_EXT_legacy_dithering`
 #![doc(alias = "VK_EXT_legacy_dithering")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub legacy_dithering: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            legacy_dithering: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_legacy_dithering";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub legacy_dithering: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                legacy_dithering: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
-    pub fn legacy_dithering(mut self, legacy_dithering: bool) -> Self {
-        self.legacy_dithering = legacy_dithering.into();
-        self
+    impl<'a> PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
+        pub fn legacy_dithering(mut self, legacy_dithering: bool) -> Self {
+            self.legacy_dithering = legacy_dithering.into();
+            self
+        }
+    }
+    ///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT: Self = Self(1000465000);
+    }
+    ///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+    impl crate::vk::SubpassDescriptionFlagBits {
+        pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 7);
+    }
+    ///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+    impl crate::vk::RenderingFlagBits {
+        pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 3);
+    }
+    ///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+    impl crate::vk::PipelineCreateFlagBits2 {
+        pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 34);
     }
 }
-///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT: Self = Self(1000465000);
-}
-///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
-impl crate::vk::SubpassDescriptionFlagBits {
-    pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 7);
-}
-///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
-impl crate::vk::RenderingFlagBits {
-    pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 3);
-}
-///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
-impl crate::vk::PipelineCreateFlagBits2 {
-    pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 34);
-}
-pub const EXT_LEGACY_DITHERING_SPEC_VERSION: u32 = 2;
-pub const EXT_LEGACY_DITHERING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_legacy_dithering";
+pub use reexport::*;

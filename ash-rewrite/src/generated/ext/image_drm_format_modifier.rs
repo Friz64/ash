@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_drm_format_modifier.html) · Extension `VK_EXT_image_drm_format_modifier`
 #![doc(alias = "VK_EXT_image_drm_format_modifier")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_image_drm_format_modifier";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_image_drm_format_modifier_properties_ext: crate::vk::PFN_vkGetImageDrmFormatModifierPropertiesEXT,
@@ -372,7 +374,5 @@ pub(crate) mod reexport {
         image: crate::vk::Image,
         p_properties: *mut crate::vk::ImageDrmFormatModifierPropertiesEXT<'_>,
     ) -> crate::vk::Result;
-    pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_SPEC_VERSION: u32 = 2;
-    pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_drm_format_modifier";
 }
 pub use reexport::*;

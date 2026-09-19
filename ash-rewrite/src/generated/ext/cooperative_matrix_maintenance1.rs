@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_cooperative_matrix_maintenance1.html) · Extension `VK_EXT_cooperative_matrix_maintenance1`
 #![doc(alias = "VK_EXT_cooperative_matrix_maintenance1")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_cooperative_matrix_maintenance1";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_cooperative_matrix_properties2_ext: crate::vk::PFN_vkGetPhysicalDeviceCooperativeMatrixProperties2EXT,
@@ -337,7 +339,5 @@ pub(crate) mod reexport {
         p_property_count: *mut u32,
         p_properties: *mut crate::vk::CooperativeMatrixProperties2EXT<'_>,
     ) -> crate::vk::Result;
-    pub const EXT_COOPERATIVE_MATRIX_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
-    pub const EXT_COOPERATIVE_MATRIX_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_cooperative_matrix_maintenance1";
 }
 pub use reexport::*;

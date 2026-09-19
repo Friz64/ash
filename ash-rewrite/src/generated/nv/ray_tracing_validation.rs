@@ -2,43 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_validation.html) · Extension `VK_NV_ray_tracing_validation`
 #![doc(alias = "VK_NV_ray_tracing_validation")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub ray_tracing_validation: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_VALIDATION_FEATURES_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {}
-impl<'a> Default for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            ray_tracing_validation: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_validation";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub ray_tracing_validation: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_VALIDATION_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                ray_tracing_validation: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
-    pub fn ray_tracing_validation(mut self, ray_tracing_validation: bool) -> Self {
-        self.ray_tracing_validation = ray_tracing_validation.into();
-        self
+    impl<'a> PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
+        pub fn ray_tracing_validation(mut self, ray_tracing_validation: bool) -> Self {
+            self.ray_tracing_validation = ray_tracing_validation.into();
+            self
+        }
+    }
+    ///Provided by [`nv::ray_tracing_validation`](crate::nv::ray_tracing_validation)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_RAY_TRACING_VALIDATION_FEATURES_NV: Self = Self(
+            1000568000,
+        );
     }
 }
-///Provided by [`nv::ray_tracing_validation`](crate::nv::ray_tracing_validation)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_RAY_TRACING_VALIDATION_FEATURES_NV: Self = Self(
-        1000568000,
-    );
-}
-pub const NV_RAY_TRACING_VALIDATION_SPEC_VERSION: u32 = 1;
-pub const NV_RAY_TRACING_VALIDATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_validation";
+pub use reexport::*;

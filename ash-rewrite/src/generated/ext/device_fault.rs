@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_fault.html) · Extension `VK_EXT_device_fault`
 #![doc(alias = "VK_EXT_device_fault")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_device_fault";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_device_fault_info_ext: crate::vk::PFN_vkGetDeviceFaultInfoEXT,
@@ -229,7 +231,5 @@ pub(crate) mod reexport {
         p_fault_counts: *mut crate::vk::DeviceFaultCountsEXT<'_>,
         p_fault_info: *mut crate::vk::DeviceFaultInfoEXT<'_>,
     ) -> crate::vk::Result;
-    pub const EXT_DEVICE_FAULT_SPEC_VERSION: u32 = 2;
-    pub const EXT_DEVICE_FAULT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_fault";
 }
 pub use reexport::*;

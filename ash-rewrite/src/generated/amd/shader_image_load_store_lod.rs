@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_image_load_store_lod.html) · Extension `VK_AMD_shader_image_load_store_lod`
 #![doc(alias = "VK_AMD_shader_image_load_store_lod")]
-pub const AMD_SHADER_IMAGE_LOAD_STORE_LOD_SPEC_VERSION: u32 = 1;
-pub const AMD_SHADER_IMAGE_LOAD_STORE_LOD_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_shader_image_load_store_lod";
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_shader_image_load_store_lod";

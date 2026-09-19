@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_acquire_xlib_display.html) · Extension `VK_EXT_acquire_xlib_display`
 #![doc(alias = "VK_EXT_acquire_xlib_display")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_acquire_xlib_display";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub acquire_xlib_display_ext: crate::vk::PFN_vkAcquireXlibDisplayEXT,
@@ -87,7 +89,5 @@ pub(crate) mod reexport {
         rr_output: crate::platform_types::RROutput,
         p_display: *mut crate::vk::DisplayKHR,
     ) -> crate::vk::Result;
-    pub const EXT_ACQUIRE_XLIB_DISPLAY_SPEC_VERSION: u32 = 1;
-    pub const EXT_ACQUIRE_XLIB_DISPLAY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_acquire_xlib_display";
 }
 pub use reexport::*;

@@ -2,138 +2,141 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_format_resolve.html) · Extension `VK_ANDROID_external_format_resolve`
 #![doc(alias = "VK_ANDROID_external_format_resolve")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub external_format_resolve: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {}
-impl<'a> Default for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            external_format_resolve: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ANDROID_external_format_resolve";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub external_format_resolve: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {}
+    impl<'a> Default for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                external_format_resolve: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
-    pub fn external_format_resolve(mut self, external_format_resolve: bool) -> Self {
-        self.external_format_resolve = external_format_resolve.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub null_color_attachment_with_external_format_resolve: crate::vk::Bool32,
-    pub external_format_resolve_chroma_offset_x: crate::vk::ChromaLocation,
-    pub external_format_resolve_chroma_offset_y: crate::vk::ChromaLocation,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
-for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {}
-impl<'a> Default for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            null_color_attachment_with_external_format_resolve: Default::default(),
-            external_format_resolve_chroma_offset_x: Default::default(),
-            external_format_resolve_chroma_offset_y: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
+        pub fn external_format_resolve(mut self, external_format_resolve: bool) -> Self {
+            self.external_format_resolve = external_format_resolve.into();
+            self
         }
     }
-}
-impl<'a> PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
-    pub fn null_color_attachment_with_external_format_resolve(
-        mut self,
-        null_color_attachment_with_external_format_resolve: bool,
-    ) -> Self {
-        self.null_color_attachment_with_external_format_resolve = null_color_attachment_with_external_format_resolve
-            .into();
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub null_color_attachment_with_external_format_resolve: crate::vk::Bool32,
+        pub external_format_resolve_chroma_offset_x: crate::vk::ChromaLocation,
+        pub external_format_resolve_chroma_offset_y: crate::vk::ChromaLocation,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub fn external_format_resolve_chroma_offset_x(
-        mut self,
-        external_format_resolve_chroma_offset_x: crate::vk::ChromaLocation,
-    ) -> Self {
-        self.external_format_resolve_chroma_offset_x = external_format_resolve_chroma_offset_x;
-        self
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID;
     }
-    pub fn external_format_resolve_chroma_offset_y(
-        mut self,
-        external_format_resolve_chroma_offset_y: crate::vk::ChromaLocation,
-    ) -> Self {
-        self.external_format_resolve_chroma_offset_y = external_format_resolve_chroma_offset_y;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub color_attachment_format: crate::vk::Format,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID;
-}
-unsafe impl<'a> crate::Extends<crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>>
-for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {}
-impl<'a> Default for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            color_attachment_format: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {}
+    impl<'a> Default for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                null_color_attachment_with_external_format_resolve: Default::default(),
+                external_format_resolve_chroma_offset_x: Default::default(),
+                external_format_resolve_chroma_offset_y: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
-    pub fn color_attachment_format(
-        mut self,
-        color_attachment_format: crate::vk::Format,
-    ) -> Self {
-        self.color_attachment_format = color_attachment_format;
-        self
+    impl<'a> PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
+        pub fn null_color_attachment_with_external_format_resolve(
+            mut self,
+            null_color_attachment_with_external_format_resolve: bool,
+        ) -> Self {
+            self.null_color_attachment_with_external_format_resolve = null_color_attachment_with_external_format_resolve
+                .into();
+            self
+        }
+        pub fn external_format_resolve_chroma_offset_x(
+            mut self,
+            external_format_resolve_chroma_offset_x: crate::vk::ChromaLocation,
+        ) -> Self {
+            self.external_format_resolve_chroma_offset_x = external_format_resolve_chroma_offset_x;
+            self
+        }
+        pub fn external_format_resolve_chroma_offset_y(
+            mut self,
+            external_format_resolve_chroma_offset_y: crate::vk::ChromaLocation,
+        ) -> Self {
+            self.external_format_resolve_chroma_offset_y = external_format_resolve_chroma_offset_y;
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub color_attachment_format: crate::vk::Format,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>>
+    for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {}
+    impl<'a> Default for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                color_attachment_format: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
+        pub fn color_attachment_format(
+            mut self,
+            color_attachment_format: crate::vk::Format,
+        ) -> Self {
+            self.color_attachment_format = color_attachment_format;
+            self
+        }
+    }
+    ///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID: Self = Self(
+            1000468000,
+        );
+        pub const PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID: Self = Self(
+            1000468001,
+        );
+        pub const ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID: Self = Self(
+            1000468002,
+        );
+    }
+    ///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
+    impl crate::vk::ResolveModeFlagBits {
+        pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(1 << 4);
     }
 }
-///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID: Self = Self(
-        1000468000,
-    );
-    pub const PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID: Self = Self(
-        1000468001,
-    );
-    pub const ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID: Self = Self(
-        1000468002,
-    );
-}
-///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
-impl crate::vk::ResolveModeFlagBits {
-    pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(1 << 4);
-}
-pub const ANDROID_EXTERNAL_FORMAT_RESOLVE_SPEC_VERSION: u32 = 1;
-pub const ANDROID_EXTERNAL_FORMAT_RESOLVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_ANDROID_external_format_resolve";
+pub use reexport::*;

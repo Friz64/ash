@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_dynamic_rendering_local_read.html) · Extension `VK_KHR_dynamic_rendering_local_read`
 #![doc(alias = "VK_KHR_dynamic_rendering_local_read")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering_local_read";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_rendering_attachment_locations_khr: crate::vk::PFN_vkCmdSetRenderingAttachmentLocationsKHR,
@@ -94,7 +96,5 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdSetRenderingAttachmentLocationsKHR = crate::vk::PFN_vkCmdSetRenderingAttachmentLocations;
     pub type PFN_vkCmdSetRenderingInputAttachmentIndicesKHR = crate::vk::PFN_vkCmdSetRenderingInputAttachmentIndices;
-    pub const KHR_DYNAMIC_RENDERING_LOCAL_READ_SPEC_VERSION: u32 = 1;
-    pub const KHR_DYNAMIC_RENDERING_LOCAL_READ_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering_local_read";
 }
 pub use reexport::*;

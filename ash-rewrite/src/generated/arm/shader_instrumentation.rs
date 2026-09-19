@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_instrumentation.html) · Extension `VK_ARM_shader_instrumentation`
 #![doc(alias = "VK_ARM_shader_instrumentation")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_shader_instrumentation";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub enumerate_physical_device_shader_instrumentation_metrics_arm: crate::vk::PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM,
@@ -508,7 +510,5 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         instrumentation: crate::vk::ShaderInstrumentationARM,
     );
-    pub const ARM_SHADER_INSTRUMENTATION_SPEC_VERSION: u32 = 1;
-    pub const ARM_SHADER_INSTRUMENTATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_shader_instrumentation";
 }
 pub use reexport::*;

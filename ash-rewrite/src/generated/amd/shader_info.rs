@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_info.html) · Extension `VK_AMD_shader_info`
 #![doc(alias = "VK_AMD_shader_info")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_shader_info";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_shader_info_amd: crate::vk::PFN_vkGetShaderInfoAMD,
@@ -191,7 +193,5 @@ pub(crate) mod reexport {
         p_info_size: *mut usize,
         p_info: *mut core::ffi::c_void,
     ) -> crate::vk::Result;
-    pub const AMD_SHADER_INFO_SPEC_VERSION: u32 = 1;
-    pub const AMD_SHADER_INFO_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_shader_info";
 }
 pub use reexport::*;

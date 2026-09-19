@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_metal.html) · Extension `VK_EXT_external_memory_metal`
 #![doc(alias = "VK_EXT_external_memory_metal")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_external_memory_metal";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_memory_metal_handle_ext: crate::vk::PFN_vkGetMemoryMetalHandleEXT,
@@ -202,7 +204,5 @@ pub(crate) mod reexport {
             '_,
         >,
     ) -> crate::vk::Result;
-    pub const EXT_EXTERNAL_MEMORY_METAL_SPEC_VERSION: u32 = 1;
-    pub const EXT_EXTERNAL_MEMORY_METAL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_external_memory_metal";
 }
 pub use reexport::*;

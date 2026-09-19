@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_surface_counter.html) · Extension `VK_EXT_display_surface_counter`
 #![doc(alias = "VK_EXT_display_surface_counter")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_display_surface_counter";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_surface_capabilities2_ext: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT,
@@ -251,7 +253,5 @@ pub(crate) mod reexport {
         surface: crate::vk::SurfaceKHR,
         p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2EXT<'_>,
     ) -> crate::vk::Result;
-    pub const EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION: u32 = 1;
-    pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_display_surface_counter";
 }
 pub use reexport::*;

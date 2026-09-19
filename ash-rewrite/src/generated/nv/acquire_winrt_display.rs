@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_acquire_winrt_display.html) · Extension `VK_NV_acquire_winrt_display`
 #![doc(alias = "VK_NV_acquire_winrt_display")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_acquire_winrt_display";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub acquire_winrt_display_nv: crate::vk::PFN_vkAcquireWinrtDisplayNV,
@@ -83,7 +85,5 @@ pub(crate) mod reexport {
         device_relative_id: u32,
         p_display: *mut crate::vk::DisplayKHR,
     ) -> crate::vk::Result;
-    pub const NV_ACQUIRE_WINRT_DISPLAY_SPEC_VERSION: u32 = 1;
-    pub const NV_ACQUIRE_WINRT_DISPLAY_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_acquire_winrt_display";
 }
 pub use reexport::*;

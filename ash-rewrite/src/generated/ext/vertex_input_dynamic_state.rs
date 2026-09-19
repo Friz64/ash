@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_input_dynamic_state.html) · Extension `VK_EXT_vertex_input_dynamic_state`
 #![doc(alias = "VK_EXT_vertex_input_dynamic_state")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_vertex_input_dynamic_state";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_vertex_input_ext: crate::vk::PFN_vkCmdSetVertexInputEXT,
@@ -211,7 +213,5 @@ pub(crate) mod reexport {
             '_,
         >,
     );
-    pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION: u32 = 2;
-    pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_vertex_input_dynamic_state";
 }
 pub use reexport::*;

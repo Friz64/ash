@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_INTEL_performance_query.html) · Extension `VK_INTEL_performance_query`
 #![doc(alias = "VK_INTEL_performance_query")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_INTEL_performance_query";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub initialize_performance_api_intel: crate::vk::PFN_vkInitializePerformanceApiINTEL,
@@ -566,7 +568,5 @@ pub(crate) mod reexport {
         parameter: crate::vk::PerformanceParameterTypeINTEL,
         p_value: *mut crate::vk::PerformanceValueINTEL,
     ) -> crate::vk::Result;
-    pub const INTEL_PERFORMANCE_QUERY_SPEC_VERSION: u32 = 2;
-    pub const INTEL_PERFORMANCE_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_INTEL_performance_query";
 }
 pub use reexport::*;

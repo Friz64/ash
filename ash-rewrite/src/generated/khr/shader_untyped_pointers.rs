@@ -2,43 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_untyped_pointers.html) · Extension `VK_KHR_shader_untyped_pointers`
 #![doc(alias = "VK_KHR_shader_untyped_pointers")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_untyped_pointers: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_untyped_pointers: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_untyped_pointers";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_untyped_pointers: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_untyped_pointers: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
-    pub fn shader_untyped_pointers(mut self, shader_untyped_pointers: bool) -> Self {
-        self.shader_untyped_pointers = shader_untyped_pointers.into();
-        self
+    impl<'a> PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
+        pub fn shader_untyped_pointers(mut self, shader_untyped_pointers: bool) -> Self {
+            self.shader_untyped_pointers = shader_untyped_pointers.into();
+            self
+        }
+    }
+    ///Provided by [`khr::shader_untyped_pointers`](crate::khr::shader_untyped_pointers)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR: Self = Self(
+            1000387000,
+        );
     }
 }
-///Provided by [`khr::shader_untyped_pointers`](crate::khr::shader_untyped_pointers)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR: Self = Self(
-        1000387000,
-    );
-}
-pub const KHR_SHADER_UNTYPED_POINTERS_SPEC_VERSION: u32 = 1;
-pub const KHR_SHADER_UNTYPED_POINTERS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_untyped_pointers";
+pub use reexport::*;

@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_negative_viewport_height.html) · Extension `VK_AMD_negative_viewport_height`
 #![doc(alias = "VK_AMD_negative_viewport_height")]
-pub const AMD_NEGATIVE_VIEWPORT_HEIGHT_SPEC_VERSION: u32 = 1;
-pub const AMD_NEGATIVE_VIEWPORT_HEIGHT_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_negative_viewport_height";
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_negative_viewport_height";

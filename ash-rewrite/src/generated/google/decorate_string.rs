@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GOOGLE_decorate_string.html) · Extension `VK_GOOGLE_decorate_string`
 #![doc(alias = "VK_GOOGLE_decorate_string")]
-pub const GOOGLE_DECORATE_STRING_SPEC_VERSION: u32 = 1;
-pub const GOOGLE_DECORATE_STRING_EXTENSION_NAME: &core::ffi::CStr = c"VK_GOOGLE_decorate_string";
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_GOOGLE_decorate_string";

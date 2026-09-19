@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_gcn_shader.html) · Extension `VK_AMD_gcn_shader`
 #![doc(alias = "VK_AMD_gcn_shader")]
-pub const AMD_GCN_SHADER_SPEC_VERSION: u32 = 1;
-pub const AMD_GCN_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_gcn_shader";
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_gcn_shader";

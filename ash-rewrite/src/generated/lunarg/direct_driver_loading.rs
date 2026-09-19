@@ -2,177 +2,183 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_LUNARG_direct_driver_loading.html) · Extension `VK_LUNARG_direct_driver_loading`
 #![doc(alias = "VK_LUNARG_direct_driver_loading")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct DirectDriverLoadingInfoLUNARG<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub flags: crate::vk::DirectDriverLoadingFlagsLUNARG,
-    pub pfn_get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddrLUNARG,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for DirectDriverLoadingInfoLUNARG<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECT_DRIVER_LOADING_INFO_LUNARG;
-}
-impl<'a> Default for DirectDriverLoadingInfoLUNARG<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            flags: Default::default(),
-            pfn_get_instance_proc_addr: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_LUNARG_direct_driver_loading";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct DirectDriverLoadingInfoLUNARG<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub flags: crate::vk::DirectDriverLoadingFlagsLUNARG,
+        pub pfn_get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddrLUNARG,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DirectDriverLoadingInfoLUNARG<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECT_DRIVER_LOADING_INFO_LUNARG;
+    }
+    impl<'a> Default for DirectDriverLoadingInfoLUNARG<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                pfn_get_instance_proc_addr: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> DirectDriverLoadingInfoLUNARG<'a> {
-    pub fn flags(mut self, flags: crate::vk::DirectDriverLoadingFlagsLUNARG) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn pfn_get_instance_proc_addr(
-        mut self,
-        pfn_get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddrLUNARG,
-    ) -> Self {
-        self.pfn_get_instance_proc_addr = pfn_get_instance_proc_addr;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct DirectDriverLoadingListLUNARG<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub mode: crate::vk::DirectDriverLoadingModeLUNARG,
-    pub driver_count: u32,
-    pub p_drivers: *const crate::vk::DirectDriverLoadingInfoLUNARG<'a>,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for DirectDriverLoadingListLUNARG<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECT_DRIVER_LOADING_LIST_LUNARG;
-}
-unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
-for DirectDriverLoadingListLUNARG<'a> {}
-impl<'a> Default for DirectDriverLoadingListLUNARG<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            mode: Default::default(),
-            driver_count: Default::default(),
-            p_drivers: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> DirectDriverLoadingInfoLUNARG<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::DirectDriverLoadingFlagsLUNARG,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn pfn_get_instance_proc_addr(
+            mut self,
+            pfn_get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddrLUNARG,
+        ) -> Self {
+            self.pfn_get_instance_proc_addr = pfn_get_instance_proc_addr;
+            self
         }
     }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct DirectDriverLoadingListLUNARG<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub mode: crate::vk::DirectDriverLoadingModeLUNARG,
+        pub driver_count: u32,
+        pub p_drivers: *const crate::vk::DirectDriverLoadingInfoLUNARG<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DirectDriverLoadingListLUNARG<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECT_DRIVER_LOADING_LIST_LUNARG;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+    for DirectDriverLoadingListLUNARG<'a> {}
+    impl<'a> Default for DirectDriverLoadingListLUNARG<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                mode: Default::default(),
+                driver_count: Default::default(),
+                p_drivers: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DirectDriverLoadingListLUNARG<'a> {
+        pub fn mode(mut self, mode: crate::vk::DirectDriverLoadingModeLUNARG) -> Self {
+            self.mode = mode;
+            self
+        }
+        pub fn drivers(
+            mut self,
+            drivers: &'a [crate::vk::DirectDriverLoadingInfoLUNARG<'a>],
+        ) -> Self {
+            self.driver_count = drivers.len() as _;
+            self.p_drivers = drivers.as_ptr();
+            self
+        }
+    }
+    ///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
+    impl crate::vk::StructureType {
+        pub const DIRECT_DRIVER_LOADING_INFO_LUNARG: Self = Self(1000459000);
+        pub const DIRECT_DRIVER_LOADING_LIST_LUNARG: Self = Self(1000459001);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct DirectDriverLoadingModeLUNARG(pub(crate) i32);
+    ///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
+    impl DirectDriverLoadingModeLUNARG {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const EXCLUSIVE_LUNARG: Self = Self(0);
+        pub const INCLUSIVE_LUNARG: Self = Self(1);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DirectDriverLoadingFlagsLUNARG(u32);
+    impl DirectDriverLoadingFlagsLUNARG {
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for DirectDriverLoadingFlagsLUNARG {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for DirectDriverLoadingFlagsLUNARG {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for DirectDriverLoadingFlagsLUNARG {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for DirectDriverLoadingFlagsLUNARG {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for DirectDriverLoadingFlagsLUNARG {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for DirectDriverLoadingFlagsLUNARG {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for DirectDriverLoadingFlagsLUNARG {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for DirectDriverLoadingFlagsLUNARG {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
+    pub type PFN_vkGetInstanceProcAddrLUNARG = Option<
+        unsafe extern "system" fn(
+            instance: crate::vk::Instance,
+            p_name: *const core::ffi::c_char,
+        ) -> crate::vk::PFN_vkVoidFunction,
+    >;
 }
-impl<'a> DirectDriverLoadingListLUNARG<'a> {
-    pub fn mode(mut self, mode: crate::vk::DirectDriverLoadingModeLUNARG) -> Self {
-        self.mode = mode;
-        self
-    }
-    pub fn drivers(
-        mut self,
-        drivers: &'a [crate::vk::DirectDriverLoadingInfoLUNARG<'a>],
-    ) -> Self {
-        self.driver_count = drivers.len() as _;
-        self.p_drivers = drivers.as_ptr();
-        self
-    }
-}
-///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
-impl crate::vk::StructureType {
-    pub const DIRECT_DRIVER_LOADING_INFO_LUNARG: Self = Self(1000459000);
-    pub const DIRECT_DRIVER_LOADING_LIST_LUNARG: Self = Self(1000459001);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct DirectDriverLoadingModeLUNARG(pub(crate) i32);
-///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
-impl DirectDriverLoadingModeLUNARG {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const EXCLUSIVE_LUNARG: Self = Self(0);
-    pub const INCLUSIVE_LUNARG: Self = Self(1);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DirectDriverLoadingFlagsLUNARG(u32);
-impl DirectDriverLoadingFlagsLUNARG {
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    pub const fn from_raw(x: u32) -> Self {
-        Self(x)
-    }
-    pub const fn as_raw(self) -> u32 {
-        self.0
-    }
-    pub const fn is_empty(self) -> bool {
-        self.0 == Self::empty().0
-    }
-    pub const fn intersects(self, other: Self) -> bool {
-        !Self(self.0 & other.0).is_empty()
-    }
-    pub const fn contains(self, other: Self) -> bool {
-        self.0 & other.0 == other.0
-    }
-}
-impl Default for DirectDriverLoadingFlagsLUNARG {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl core::ops::BitOr for DirectDriverLoadingFlagsLUNARG {
-    type Output = Self;
-    fn bitor(self, rhs: Self) -> Self {
-        Self(self.0 | rhs.0)
-    }
-}
-impl core::ops::BitOrAssign for DirectDriverLoadingFlagsLUNARG {
-    fn bitor_assign(&mut self, rhs: Self) {
-        *self = *self | rhs;
-    }
-}
-impl core::ops::BitAnd for DirectDriverLoadingFlagsLUNARG {
-    type Output = Self;
-    fn bitand(self, rhs: Self) -> Self {
-        Self(self.0 & rhs.0)
-    }
-}
-impl core::ops::BitAndAssign for DirectDriverLoadingFlagsLUNARG {
-    fn bitand_assign(&mut self, rhs: Self) {
-        *self = *self & rhs;
-    }
-}
-impl core::ops::BitXor for DirectDriverLoadingFlagsLUNARG {
-    type Output = Self;
-    fn bitxor(self, rhs: Self) -> Self {
-        Self(self.0 ^ rhs.0)
-    }
-}
-impl core::ops::BitXorAssign for DirectDriverLoadingFlagsLUNARG {
-    fn bitxor_assign(&mut self, rhs: Self) {
-        *self = *self ^ rhs;
-    }
-}
-impl core::ops::Not for DirectDriverLoadingFlagsLUNARG {
-    type Output = Self;
-    fn not(self) -> Self {
-        Self(!self.0)
-    }
-}
-pub type PFN_vkGetInstanceProcAddrLUNARG = Option<
-    unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        p_name: *const core::ffi::c_char,
-    ) -> crate::vk::PFN_vkVoidFunction,
->;
-pub const LUNARG_DIRECT_DRIVER_LOADING_SPEC_VERSION: u32 = 1;
-pub const LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME: &core::ffi::CStr = c"VK_LUNARG_direct_driver_loading";
+pub use reexport::*;

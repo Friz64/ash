@@ -2,47 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_compression_control_swapchain.html) · Extension `VK_EXT_image_compression_control_swapchain`
 #![doc(alias = "VK_EXT_image_compression_control_swapchain")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub image_compression_control_swapchain: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            image_compression_control_swapchain: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control_swapchain";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub image_compression_control_swapchain: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                image_compression_control_swapchain: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
-    pub fn image_compression_control_swapchain(
-        mut self,
-        image_compression_control_swapchain: bool,
-    ) -> Self {
-        self.image_compression_control_swapchain = image_compression_control_swapchain
-            .into();
-        self
+    impl<'a> PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
+        pub fn image_compression_control_swapchain(
+            mut self,
+            image_compression_control_swapchain: bool,
+        ) -> Self {
+            self.image_compression_control_swapchain = image_compression_control_swapchain
+                .into();
+            self
+        }
+    }
+    ///Provided by [`ext::image_compression_control_swapchain`](crate::ext::image_compression_control_swapchain)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_FEATURES_EXT: Self = Self(
+            1000437000,
+        );
     }
 }
-///Provided by [`ext::image_compression_control_swapchain`](crate::ext::image_compression_control_swapchain)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_FEATURES_EXT: Self = Self(
-        1000437000,
-    );
-}
-pub const EXT_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_SPEC_VERSION: u32 = 1;
-pub const EXT_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control_swapchain";
+pub use reexport::*;

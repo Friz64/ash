@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shading_rate_image.html) · Extension `VK_NV_shading_rate_image`
 #![doc(alias = "VK_NV_shading_rate_image")]
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_NV_shading_rate_image";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_bind_shading_rate_image_nv: crate::vk::PFN_vkCmdBindShadingRateImageNV,
@@ -444,7 +446,5 @@ pub(crate) mod reexport {
         custom_sample_order_count: u32,
         p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'_>,
     );
-    pub const NV_SHADING_RATE_IMAGE_SPEC_VERSION: u32 = 3;
-    pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shading_rate_image";
 }
 pub use reexport::*;

@@ -2,55 +2,58 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_mixed_attachment_samples.html) · Extension `VK_AMD_mixed_attachment_samples`
 #![doc(alias = "VK_AMD_mixed_attachment_samples")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct AttachmentSampleCountInfoAMD<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub color_attachment_count: u32,
-    pub p_color_attachment_samples: *const crate::vk::SampleCountFlagBits,
-    pub depth_stencil_attachment_samples: crate::vk::SampleCountFlagBits,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentSampleCountInfoAMD<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
-}
-unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
-for AttachmentSampleCountInfoAMD<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
-for AttachmentSampleCountInfoAMD<'a> {}
-impl<'a> Default for AttachmentSampleCountInfoAMD<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            color_attachment_count: Default::default(),
-            p_color_attachment_samples: Default::default(),
-            depth_stencil_attachment_samples: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_mixed_attachment_samples";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct AttachmentSampleCountInfoAMD<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub color_attachment_count: u32,
+        pub p_color_attachment_samples: *const crate::vk::SampleCountFlagBits,
+        pub depth_stencil_attachment_samples: crate::vk::SampleCountFlagBits,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentSampleCountInfoAMD<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    for AttachmentSampleCountInfoAMD<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for AttachmentSampleCountInfoAMD<'a> {}
+    impl<'a> Default for AttachmentSampleCountInfoAMD<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                color_attachment_count: Default::default(),
+                p_color_attachment_samples: Default::default(),
+                depth_stencil_attachment_samples: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> AttachmentSampleCountInfoAMD<'a> {
-    pub fn color_attachment_samples(
-        mut self,
-        color_attachment_samples: &'a [crate::vk::SampleCountFlagBits],
-    ) -> Self {
-        self.color_attachment_count = color_attachment_samples.len() as _;
-        self.p_color_attachment_samples = color_attachment_samples.as_ptr();
-        self
+    impl<'a> AttachmentSampleCountInfoAMD<'a> {
+        pub fn color_attachment_samples(
+            mut self,
+            color_attachment_samples: &'a [crate::vk::SampleCountFlagBits],
+        ) -> Self {
+            self.color_attachment_count = color_attachment_samples.len() as _;
+            self.p_color_attachment_samples = color_attachment_samples.as_ptr();
+            self
+        }
+        pub fn depth_stencil_attachment_samples(
+            mut self,
+            depth_stencil_attachment_samples: crate::vk::SampleCountFlagBits,
+        ) -> Self {
+            self.depth_stencil_attachment_samples = depth_stencil_attachment_samples;
+            self
+        }
     }
-    pub fn depth_stencil_attachment_samples(
-        mut self,
-        depth_stencil_attachment_samples: crate::vk::SampleCountFlagBits,
-    ) -> Self {
-        self.depth_stencil_attachment_samples = depth_stencil_attachment_samples;
-        self
+    ///Provided by [`amd::mixed_attachment_samples`](crate::amd::mixed_attachment_samples)
+    impl crate::vk::StructureType {
+        pub const ATTACHMENT_SAMPLE_COUNT_INFO_AMD: Self = Self(1000044008);
     }
 }
-///Provided by [`amd::mixed_attachment_samples`](crate::amd::mixed_attachment_samples)
-impl crate::vk::StructureType {
-    pub const ATTACHMENT_SAMPLE_COUNT_INFO_AMD: Self = Self(1000044008);
-}
-pub const AMD_MIXED_ATTACHMENT_SAMPLES_SPEC_VERSION: u32 = 1;
-pub const AMD_MIXED_ATTACHMENT_SAMPLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_mixed_attachment_samples";
+pub use reexport::*;

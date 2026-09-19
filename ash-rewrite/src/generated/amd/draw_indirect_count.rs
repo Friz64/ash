@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_draw_indirect_count.html) · Extension `VK_AMD_draw_indirect_count`
 #![doc(alias = "VK_AMD_draw_indirect_count")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_draw_indirect_count";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_draw_indirect_count_amd: crate::vk::PFN_vkCmdDrawIndirectCountAMD,
@@ -85,7 +87,5 @@ impl Device {
 pub(crate) mod reexport {
     pub type PFN_vkCmdDrawIndirectCountAMD = crate::vk::PFN_vkCmdDrawIndirectCount;
     pub type PFN_vkCmdDrawIndexedIndirectCountAMD = crate::vk::PFN_vkCmdDrawIndexedIndirectCount;
-    pub const AMD_DRAW_INDIRECT_COUNT_SPEC_VERSION: u32 = 2;
-    pub const AMD_DRAW_INDIRECT_COUNT_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_draw_indirect_count";
 }
 pub use reexport::*;

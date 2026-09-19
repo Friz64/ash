@@ -2,73 +2,77 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_astc_decode_mode.html) · Extension `VK_EXT_astc_decode_mode`
 #![doc(alias = "VK_EXT_astc_decode_mode")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct ImageViewASTCDecodeModeEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub decode_mode: crate::vk::Format,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewASTCDecodeModeEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_ASTC_DECODE_MODE_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
-for ImageViewASTCDecodeModeEXT<'a> {}
-impl<'a> Default for ImageViewASTCDecodeModeEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            decode_mode: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_astc_decode_mode";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct ImageViewASTCDecodeModeEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub decode_mode: crate::vk::Format,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewASTCDecodeModeEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_ASTC_DECODE_MODE_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
+    for ImageViewASTCDecodeModeEXT<'a> {}
+    impl<'a> Default for ImageViewASTCDecodeModeEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                decode_mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> ImageViewASTCDecodeModeEXT<'a> {
-    pub fn decode_mode(mut self, decode_mode: crate::vk::Format) -> Self {
-        self.decode_mode = decode_mode;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub decode_mode_shared_exponent: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            decode_mode_shared_exponent: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> ImageViewASTCDecodeModeEXT<'a> {
+        pub fn decode_mode(mut self, decode_mode: crate::vk::Format) -> Self {
+            self.decode_mode = decode_mode;
+            self
         }
     }
-}
-impl<'a> PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
-    pub fn decode_mode_shared_exponent(
-        mut self,
-        decode_mode_shared_exponent: bool,
-    ) -> Self {
-        self.decode_mode_shared_exponent = decode_mode_shared_exponent.into();
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub decode_mode_shared_exponent: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                decode_mode_shared_exponent: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
+        pub fn decode_mode_shared_exponent(
+            mut self,
+            decode_mode_shared_exponent: bool,
+        ) -> Self {
+            self.decode_mode_shared_exponent = decode_mode_shared_exponent.into();
+            self
+        }
+    }
+    ///Provided by [`ext::astc_decode_mode`](crate::ext::astc_decode_mode)
+    impl crate::vk::StructureType {
+        pub const IMAGE_VIEW_ASTC_DECODE_MODE_EXT: Self = Self(1000067000);
+        pub const PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT: Self = Self(1000067001);
     }
 }
-///Provided by [`ext::astc_decode_mode`](crate::ext::astc_decode_mode)
-impl crate::vk::StructureType {
-    pub const IMAGE_VIEW_ASTC_DECODE_MODE_EXT: Self = Self(1000067000);
-    pub const PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT: Self = Self(1000067001);
-}
-pub const EXT_ASTC_DECODE_MODE_SPEC_VERSION: u32 = 1;
-pub const EXT_ASTC_DECODE_MODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_astc_decode_mode";
+pub use reexport::*;

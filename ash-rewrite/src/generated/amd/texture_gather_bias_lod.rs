@@ -2,42 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_texture_gather_bias_lod.html) · Extension `VK_AMD_texture_gather_bias_lod`
 #![doc(alias = "VK_AMD_texture_gather_bias_lod")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct TextureLODGatherFormatPropertiesAMD<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub supports_texture_gather_lod_bias_amd: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for TextureLODGatherFormatPropertiesAMD<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD;
-}
-unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
-for TextureLODGatherFormatPropertiesAMD<'a> {}
-impl<'a> Default for TextureLODGatherFormatPropertiesAMD<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            supports_texture_gather_lod_bias_amd: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_texture_gather_bias_lod";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct TextureLODGatherFormatPropertiesAMD<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub supports_texture_gather_lod_bias_amd: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for TextureLODGatherFormatPropertiesAMD<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+    for TextureLODGatherFormatPropertiesAMD<'a> {}
+    impl<'a> Default for TextureLODGatherFormatPropertiesAMD<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                supports_texture_gather_lod_bias_amd: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> TextureLODGatherFormatPropertiesAMD<'a> {
-    pub fn supports_texture_gather_lod_bias_amd(
-        mut self,
-        supports_texture_gather_lod_bias_amd: bool,
-    ) -> Self {
-        self.supports_texture_gather_lod_bias_amd = supports_texture_gather_lod_bias_amd
-            .into();
-        self
+    impl<'a> TextureLODGatherFormatPropertiesAMD<'a> {
+        pub fn supports_texture_gather_lod_bias_amd(
+            mut self,
+            supports_texture_gather_lod_bias_amd: bool,
+        ) -> Self {
+            self.supports_texture_gather_lod_bias_amd = supports_texture_gather_lod_bias_amd
+                .into();
+            self
+        }
+    }
+    ///Provided by [`amd::texture_gather_bias_lod`](crate::amd::texture_gather_bias_lod)
+    impl crate::vk::StructureType {
+        pub const TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD: Self = Self(1000041000);
     }
 }
-///Provided by [`amd::texture_gather_bias_lod`](crate::amd::texture_gather_bias_lod)
-impl crate::vk::StructureType {
-    pub const TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD: Self = Self(1000041000);
-}
-pub const AMD_TEXTURE_GATHER_BIAS_LOD_SPEC_VERSION: u32 = 1;
-pub const AMD_TEXTURE_GATHER_BIAS_LOD_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_texture_gather_bias_lod";
+pub use reexport::*;

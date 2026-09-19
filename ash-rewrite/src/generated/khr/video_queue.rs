@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_queue.html) · Extension `VK_KHR_video_queue`
 #![doc(alias = "VK_KHR_video_queue")]
+pub const SPEC_VERSION: u32 = 8;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_video_queue";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_video_capabilities_khr: crate::vk::PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR,
@@ -1982,7 +1984,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         p_end_coding_info: *const crate::vk::VideoEndCodingInfoKHR<'_>,
     );
-    pub const KHR_VIDEO_QUEUE_SPEC_VERSION: u32 = 8;
-    pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_queue";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_performance_counters_by_region.html) · Extension `VK_ARM_performance_counters_by_region`
 #![doc(alias = "VK_ARM_performance_counters_by_region")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_performance_counters_by_region";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub enumerate_physical_device_queue_family_performance_counters_by_region_arm: crate::vk::PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM,
@@ -374,7 +376,5 @@ pub(crate) mod reexport {
         p_counters: *mut crate::vk::PerformanceCounterARM<'_>,
         p_counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionARM<'_>,
     ) -> crate::vk::Result;
-    pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_SPEC_VERSION: u32 = 1;
-    pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_performance_counters_by_region";
 }
 pub use reexport::*;

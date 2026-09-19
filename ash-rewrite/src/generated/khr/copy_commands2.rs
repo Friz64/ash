@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_copy_commands2.html) · Extension `VK_KHR_copy_commands2`
 #![doc(alias = "VK_KHR_copy_commands2")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_copy_commands2";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_copy_buffer2_khr: crate::vk::PFN_vkCmdCopyBuffer2KHR,
@@ -164,7 +166,5 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdCopyBufferToImage2KHR = crate::vk::PFN_vkCmdCopyBufferToImage2;
     pub type PFN_vkCmdCopyImageToBuffer2KHR = crate::vk::PFN_vkCmdCopyImageToBuffer2;
     pub type PFN_vkCmdResolveImage2KHR = crate::vk::PFN_vkCmdResolveImage2;
-    pub const KHR_COPY_COMMANDS_2_SPEC_VERSION: u32 = 1;
-    pub const KHR_COPY_COMMANDS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_copy_commands2";
 }
 pub use reexport::*;

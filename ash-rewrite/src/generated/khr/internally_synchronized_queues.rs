@@ -2,50 +2,53 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_internally_synchronized_queues.html) · Extension `VK_KHR_internally_synchronized_queues`
 #![doc(alias = "VK_KHR_internally_synchronized_queues")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub internally_synchronized_queues: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            internally_synchronized_queues: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_internally_synchronized_queues";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub internally_synchronized_queues: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                internally_synchronized_queues: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
-    pub fn internally_synchronized_queues(
-        mut self,
-        internally_synchronized_queues: bool,
-    ) -> Self {
-        self.internally_synchronized_queues = internally_synchronized_queues.into();
-        self
+    impl<'a> PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
+        pub fn internally_synchronized_queues(
+            mut self,
+            internally_synchronized_queues: bool,
+        ) -> Self {
+            self.internally_synchronized_queues = internally_synchronized_queues.into();
+            self
+        }
+    }
+    ///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR: Self = Self(
+            1000504000,
+        );
+    }
+    ///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
+    impl crate::vk::DeviceQueueCreateFlagBits {
+        pub const INTERNALLY_SYNCHRONIZED_KHR: Self = Self(1 << 2);
     }
 }
-///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR: Self = Self(
-        1000504000,
-    );
-}
-///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
-impl crate::vk::DeviceQueueCreateFlagBits {
-    pub const INTERNALLY_SYNCHRONIZED_KHR: Self = Self(1 << 2);
-}
-pub const KHR_INTERNALLY_SYNCHRONIZED_QUEUES_SPEC_VERSION: u32 = 1;
-pub const KHR_INTERNALLY_SYNCHRONIZED_QUEUES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_internally_synchronized_queues";
+pub use reexport::*;

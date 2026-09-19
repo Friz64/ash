@@ -2,95 +2,99 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_robustness2.html) · Extension `VK_KHR_robustness2`
 #![doc(alias = "VK_KHR_robustness2")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceRobustness2FeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub robust_buffer_access2: crate::vk::Bool32,
-    pub robust_image_access2: crate::vk::Bool32,
-    pub null_descriptor: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceRobustness2FeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceRobustness2FeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceRobustness2FeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceRobustness2FeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            robust_buffer_access2: Default::default(),
-            robust_image_access2: Default::default(),
-            null_descriptor: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_robustness2";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceRobustness2FeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub robust_buffer_access2: crate::vk::Bool32,
+        pub robust_image_access2: crate::vk::Bool32,
+        pub null_descriptor: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceRobustness2FeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceRobustness2FeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceRobustness2FeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceRobustness2FeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                robust_buffer_access2: Default::default(),
+                robust_image_access2: Default::default(),
+                null_descriptor: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceRobustness2FeaturesKHR<'a> {
-    pub fn robust_buffer_access2(mut self, robust_buffer_access2: bool) -> Self {
-        self.robust_buffer_access2 = robust_buffer_access2.into();
-        self
-    }
-    pub fn robust_image_access2(mut self, robust_image_access2: bool) -> Self {
-        self.robust_image_access2 = robust_image_access2.into();
-        self
-    }
-    pub fn null_descriptor(mut self, null_descriptor: bool) -> Self {
-        self.null_descriptor = null_descriptor.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceRobustness2PropertiesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub robust_storage_buffer_access_size_alignment: crate::vk::DeviceSize,
-    pub robust_uniform_buffer_access_size_alignment: crate::vk::DeviceSize,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceRobustness2PropertiesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
-for PhysicalDeviceRobustness2PropertiesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceRobustness2PropertiesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            robust_storage_buffer_access_size_alignment: Default::default(),
-            robust_uniform_buffer_access_size_alignment: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceRobustness2FeaturesKHR<'a> {
+        pub fn robust_buffer_access2(mut self, robust_buffer_access2: bool) -> Self {
+            self.robust_buffer_access2 = robust_buffer_access2.into();
+            self
+        }
+        pub fn robust_image_access2(mut self, robust_image_access2: bool) -> Self {
+            self.robust_image_access2 = robust_image_access2.into();
+            self
+        }
+        pub fn null_descriptor(mut self, null_descriptor: bool) -> Self {
+            self.null_descriptor = null_descriptor.into();
+            self
         }
     }
-}
-impl<'a> PhysicalDeviceRobustness2PropertiesKHR<'a> {
-    pub fn robust_storage_buffer_access_size_alignment(
-        mut self,
-        robust_storage_buffer_access_size_alignment: crate::vk::DeviceSize,
-    ) -> Self {
-        self.robust_storage_buffer_access_size_alignment = robust_storage_buffer_access_size_alignment;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceRobustness2PropertiesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub robust_storage_buffer_access_size_alignment: crate::vk::DeviceSize,
+        pub robust_uniform_buffer_access_size_alignment: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub fn robust_uniform_buffer_access_size_alignment(
-        mut self,
-        robust_uniform_buffer_access_size_alignment: crate::vk::DeviceSize,
-    ) -> Self {
-        self.robust_uniform_buffer_access_size_alignment = robust_uniform_buffer_access_size_alignment;
-        self
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceRobustness2PropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceRobustness2PropertiesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceRobustness2PropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                robust_storage_buffer_access_size_alignment: Default::default(),
+                robust_uniform_buffer_access_size_alignment: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceRobustness2PropertiesKHR<'a> {
+        pub fn robust_storage_buffer_access_size_alignment(
+            mut self,
+            robust_storage_buffer_access_size_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.robust_storage_buffer_access_size_alignment = robust_storage_buffer_access_size_alignment;
+            self
+        }
+        pub fn robust_uniform_buffer_access_size_alignment(
+            mut self,
+            robust_uniform_buffer_access_size_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.robust_uniform_buffer_access_size_alignment = robust_uniform_buffer_access_size_alignment;
+            self
+        }
+    }
+    ///Provided by [`khr::robustness2`](crate::khr::robustness2)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR: Self = Self(1000286000);
+        pub const PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR: Self = Self(1000286001);
     }
 }
-///Provided by [`khr::robustness2`](crate::khr::robustness2)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR: Self = Self(1000286000);
-    pub const PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR: Self = Self(1000286001);
-}
-pub const KHR_ROBUSTNESS_2_SPEC_VERSION: u32 = 1;
-pub const KHR_ROBUSTNESS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_robustness2";
+pub use reexport::*;

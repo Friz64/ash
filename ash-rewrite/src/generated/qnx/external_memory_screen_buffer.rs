@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_external_memory_screen_buffer.html) · Extension `VK_QNX_external_memory_screen_buffer`
 #![doc(alias = "VK_QNX_external_memory_screen_buffer")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QNX_external_memory_screen_buffer";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_screen_buffer_properties_qnx: crate::vk::PFN_vkGetScreenBufferPropertiesQNX,
@@ -304,7 +306,5 @@ pub(crate) mod reexport {
         buffer: *const crate::platform_types::_screen_buffer,
         p_properties: *mut crate::vk::ScreenBufferPropertiesQNX<'_>,
     ) -> crate::vk::Result;
-    pub const QNX_EXTERNAL_MEMORY_SCREEN_BUFFER_SPEC_VERSION: u32 = 1;
-    pub const QNX_EXTERNAL_MEMORY_SCREEN_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_QNX_external_memory_screen_buffer";
 }
 pub use reexport::*;

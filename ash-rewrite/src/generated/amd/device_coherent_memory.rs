@@ -2,46 +2,49 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_device_coherent_memory.html) · Extension `VK_AMD_device_coherent_memory`
 #![doc(alias = "VK_AMD_device_coherent_memory")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub device_coherent_memory: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {}
-impl<'a> Default for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            device_coherent_memory: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_device_coherent_memory";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub device_coherent_memory: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {}
+    impl<'a> Default for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_coherent_memory: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
-    pub fn device_coherent_memory(mut self, device_coherent_memory: bool) -> Self {
-        self.device_coherent_memory = device_coherent_memory.into();
-        self
+    impl<'a> PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
+        pub fn device_coherent_memory(mut self, device_coherent_memory: bool) -> Self {
+            self.device_coherent_memory = device_coherent_memory.into();
+            self
+        }
+    }
+    ///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD: Self = Self(1000229000);
+    }
+    ///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
+    impl crate::vk::MemoryPropertyFlagBits {
+        pub const DEVICE_COHERENT_AMD: Self = Self(1 << 6);
+        pub const DEVICE_UNCACHED_AMD: Self = Self(1 << 7);
     }
 }
-///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD: Self = Self(1000229000);
-}
-///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
-impl crate::vk::MemoryPropertyFlagBits {
-    pub const DEVICE_COHERENT_AMD: Self = Self(1 << 6);
-    pub const DEVICE_UNCACHED_AMD: Self = Self(1 << 7);
-}
-pub const AMD_DEVICE_COHERENT_MEMORY_SPEC_VERSION: u32 = 1;
-pub const AMD_DEVICE_COHERENT_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_device_coherent_memory";
+pub use reexport::*;

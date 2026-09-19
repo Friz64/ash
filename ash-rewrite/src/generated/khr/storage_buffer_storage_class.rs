@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_storage_buffer_storage_class.html) · Extension `VK_KHR_storage_buffer_storage_class`
 #![doc(alias = "VK_KHR_storage_buffer_storage_class")]
-pub const KHR_STORAGE_BUFFER_STORAGE_CLASS_SPEC_VERSION: u32 = 1;
-pub const KHR_STORAGE_BUFFER_STORAGE_CLASS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_storage_buffer_storage_class";
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_storage_buffer_storage_class";

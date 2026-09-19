@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_memory_heap.html) · Extension `VK_QCOM_tile_memory_heap`
 #![doc(alias = "VK_QCOM_tile_memory_heap")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_tile_memory_heap";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_bind_tile_memory_qcom: crate::vk::PFN_vkCmdBindTileMemoryQCOM,
@@ -255,7 +257,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         p_tile_memory_bind_info: *const crate::vk::TileMemoryBindInfoQCOM<'_>,
     );
-    pub const QCOM_TILE_MEMORY_HEAP_SPEC_VERSION: u32 = 1;
-    pub const QCOM_TILE_MEMORY_HEAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_memory_heap";
 }
 pub use reexport::*;

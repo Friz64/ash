@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_descriptor_heap.html) · Extension `VK_EXT_descriptor_heap`
 #![doc(alias = "VK_EXT_descriptor_heap")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_descriptor_heap";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub write_sampler_descriptors_ext: crate::vk::PFN_vkWriteSamplerDescriptorsEXT,
@@ -1805,7 +1807,5 @@ pub(crate) mod reexport {
         p_tensors: *const crate::vk::TensorARM,
         p_datas: *mut crate::vk::HostAddressRangeEXT<'_>,
     ) -> crate::vk::Result;
-    pub const EXT_DESCRIPTOR_HEAP_SPEC_VERSION: u32 = 1;
-    pub const EXT_DESCRIPTOR_HEAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_descriptor_heap";
 }
 pub use reexport::*;

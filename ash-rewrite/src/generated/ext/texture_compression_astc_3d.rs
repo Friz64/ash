@@ -2,79 +2,82 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_texture_compression_astc_3d.html) · Extension `VK_EXT_texture_compression_astc_3d`
 #![doc(alias = "VK_EXT_texture_compression_astc_3d")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub texture_compression_astc_3d: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            texture_compression_astc_3d: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_texture_compression_astc_3d";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub texture_compression_astc_3d: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                texture_compression_astc_3d: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
-    pub fn texture_compression_astc_3d(
-        mut self,
-        texture_compression_astc_3d: bool,
-    ) -> Self {
-        self.texture_compression_astc_3d = texture_compression_astc_3d.into();
-        self
+    impl<'a> PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
+        pub fn texture_compression_astc_3d(
+            mut self,
+            texture_compression_astc_3d: bool,
+        ) -> Self {
+            self.texture_compression_astc_3d = texture_compression_astc_3d.into();
+            self
+        }
+    }
+    ///Provided by [`ext::texture_compression_astc_3d`](crate::ext::texture_compression_astc_3d)
+    impl crate::vk::Format {
+        pub const ASTC_3X3X3_UNORM_BLOCK_EXT: Self = Self(1000288000);
+        pub const ASTC_3X3X3_SRGB_BLOCK_EXT: Self = Self(1000288001);
+        pub const ASTC_3X3X3_SFLOAT_BLOCK_EXT: Self = Self(1000288002);
+        pub const ASTC_4X3X3_UNORM_BLOCK_EXT: Self = Self(1000288003);
+        pub const ASTC_4X3X3_SRGB_BLOCK_EXT: Self = Self(1000288004);
+        pub const ASTC_4X3X3_SFLOAT_BLOCK_EXT: Self = Self(1000288005);
+        pub const ASTC_4X4X3_UNORM_BLOCK_EXT: Self = Self(1000288006);
+        pub const ASTC_4X4X3_SRGB_BLOCK_EXT: Self = Self(1000288007);
+        pub const ASTC_4X4X3_SFLOAT_BLOCK_EXT: Self = Self(1000288008);
+        pub const ASTC_4X4X4_UNORM_BLOCK_EXT: Self = Self(1000288009);
+        pub const ASTC_4X4X4_SRGB_BLOCK_EXT: Self = Self(1000288010);
+        pub const ASTC_4X4X4_SFLOAT_BLOCK_EXT: Self = Self(1000288011);
+        pub const ASTC_5X4X4_UNORM_BLOCK_EXT: Self = Self(1000288012);
+        pub const ASTC_5X4X4_SRGB_BLOCK_EXT: Self = Self(1000288013);
+        pub const ASTC_5X4X4_SFLOAT_BLOCK_EXT: Self = Self(1000288014);
+        pub const ASTC_5X5X4_UNORM_BLOCK_EXT: Self = Self(1000288015);
+        pub const ASTC_5X5X4_SRGB_BLOCK_EXT: Self = Self(1000288016);
+        pub const ASTC_5X5X4_SFLOAT_BLOCK_EXT: Self = Self(1000288017);
+        pub const ASTC_5X5X5_UNORM_BLOCK_EXT: Self = Self(1000288018);
+        pub const ASTC_5X5X5_SRGB_BLOCK_EXT: Self = Self(1000288019);
+        pub const ASTC_5X5X5_SFLOAT_BLOCK_EXT: Self = Self(1000288020);
+        pub const ASTC_6X5X5_UNORM_BLOCK_EXT: Self = Self(1000288021);
+        pub const ASTC_6X5X5_SRGB_BLOCK_EXT: Self = Self(1000288022);
+        pub const ASTC_6X5X5_SFLOAT_BLOCK_EXT: Self = Self(1000288023);
+        pub const ASTC_6X6X5_UNORM_BLOCK_EXT: Self = Self(1000288024);
+        pub const ASTC_6X6X5_SRGB_BLOCK_EXT: Self = Self(1000288025);
+        pub const ASTC_6X6X5_SFLOAT_BLOCK_EXT: Self = Self(1000288026);
+        pub const ASTC_6X6X6_UNORM_BLOCK_EXT: Self = Self(1000288027);
+        pub const ASTC_6X6X6_SRGB_BLOCK_EXT: Self = Self(1000288028);
+        pub const ASTC_6X6X6_SFLOAT_BLOCK_EXT: Self = Self(1000288029);
+    }
+    ///Provided by [`ext::texture_compression_astc_3d`](crate::ext::texture_compression_astc_3d)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT: Self = Self(
+            1000288000,
+        );
     }
 }
-///Provided by [`ext::texture_compression_astc_3d`](crate::ext::texture_compression_astc_3d)
-impl crate::vk::Format {
-    pub const ASTC_3X3X3_UNORM_BLOCK_EXT: Self = Self(1000288000);
-    pub const ASTC_3X3X3_SRGB_BLOCK_EXT: Self = Self(1000288001);
-    pub const ASTC_3X3X3_SFLOAT_BLOCK_EXT: Self = Self(1000288002);
-    pub const ASTC_4X3X3_UNORM_BLOCK_EXT: Self = Self(1000288003);
-    pub const ASTC_4X3X3_SRGB_BLOCK_EXT: Self = Self(1000288004);
-    pub const ASTC_4X3X3_SFLOAT_BLOCK_EXT: Self = Self(1000288005);
-    pub const ASTC_4X4X3_UNORM_BLOCK_EXT: Self = Self(1000288006);
-    pub const ASTC_4X4X3_SRGB_BLOCK_EXT: Self = Self(1000288007);
-    pub const ASTC_4X4X3_SFLOAT_BLOCK_EXT: Self = Self(1000288008);
-    pub const ASTC_4X4X4_UNORM_BLOCK_EXT: Self = Self(1000288009);
-    pub const ASTC_4X4X4_SRGB_BLOCK_EXT: Self = Self(1000288010);
-    pub const ASTC_4X4X4_SFLOAT_BLOCK_EXT: Self = Self(1000288011);
-    pub const ASTC_5X4X4_UNORM_BLOCK_EXT: Self = Self(1000288012);
-    pub const ASTC_5X4X4_SRGB_BLOCK_EXT: Self = Self(1000288013);
-    pub const ASTC_5X4X4_SFLOAT_BLOCK_EXT: Self = Self(1000288014);
-    pub const ASTC_5X5X4_UNORM_BLOCK_EXT: Self = Self(1000288015);
-    pub const ASTC_5X5X4_SRGB_BLOCK_EXT: Self = Self(1000288016);
-    pub const ASTC_5X5X4_SFLOAT_BLOCK_EXT: Self = Self(1000288017);
-    pub const ASTC_5X5X5_UNORM_BLOCK_EXT: Self = Self(1000288018);
-    pub const ASTC_5X5X5_SRGB_BLOCK_EXT: Self = Self(1000288019);
-    pub const ASTC_5X5X5_SFLOAT_BLOCK_EXT: Self = Self(1000288020);
-    pub const ASTC_6X5X5_UNORM_BLOCK_EXT: Self = Self(1000288021);
-    pub const ASTC_6X5X5_SRGB_BLOCK_EXT: Self = Self(1000288022);
-    pub const ASTC_6X5X5_SFLOAT_BLOCK_EXT: Self = Self(1000288023);
-    pub const ASTC_6X6X5_UNORM_BLOCK_EXT: Self = Self(1000288024);
-    pub const ASTC_6X6X5_SRGB_BLOCK_EXT: Self = Self(1000288025);
-    pub const ASTC_6X6X5_SFLOAT_BLOCK_EXT: Self = Self(1000288026);
-    pub const ASTC_6X6X6_UNORM_BLOCK_EXT: Self = Self(1000288027);
-    pub const ASTC_6X6X6_SRGB_BLOCK_EXT: Self = Self(1000288028);
-    pub const ASTC_6X6X6_SFLOAT_BLOCK_EXT: Self = Self(1000288029);
-}
-///Provided by [`ext::texture_compression_astc_3d`](crate::ext::texture_compression_astc_3d)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT: Self = Self(
-        1000288000,
-    );
-}
-pub const EXT_TEXTURE_COMPRESSION_ASTC_3D_SPEC_VERSION: u32 = 1;
-pub const EXT_TEXTURE_COMPRESSION_ASTC_3D_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_texture_compression_astc_3d";
+pub use reexport::*;

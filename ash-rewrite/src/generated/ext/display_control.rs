@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_control.html) · Extension `VK_EXT_display_control`
 #![doc(alias = "VK_EXT_display_control")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_display_control";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub display_power_control_ext: crate::vk::PFN_vkDisplayPowerControlEXT,
@@ -314,7 +316,5 @@ pub(crate) mod reexport {
         counter: crate::vk::SurfaceCounterFlagBitsEXT,
         p_counter_value: *mut u64,
     ) -> crate::vk::Result;
-    pub const EXT_DISPLAY_CONTROL_SPEC_VERSION: u32 = 1;
-    pub const EXT_DISPLAY_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_display_control";
 }
 pub use reexport::*;

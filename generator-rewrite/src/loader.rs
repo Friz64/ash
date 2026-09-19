@@ -43,7 +43,7 @@ impl FunctionType {
         }
     }
 
-    fn table_name(self, dest: Destination) -> Ident {
+    fn table_name(self, dest: &Destination) -> Ident {
         match (self, dest.location) {
             (FunctionType::Static, _) => format_ident!("StaticFn"),
             (FunctionType::Entry, RequireLocation::Core { major, minor }) => {
@@ -65,7 +65,7 @@ impl FunctionType {
         }
     }
 
-    fn loader_name(self, dest: Destination) -> Option<Ident> {
+    fn loader_name(self, dest: &Destination) -> Option<Ident> {
         match (self, dest.location) {
             (FunctionType::Static | FunctionType::Entry, _) => None,
             (FunctionType::Instance, RequireLocation::Core { major, minor }) => {
@@ -108,7 +108,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             dest.reexport = false;
             let table = tables.entry((function_type, dest)).or_default();
 
-            let field_name = format_ident!("{}", name.prefix_trimmed().to_snek_case());
+            let field_name = format_ident!("{}", name.prefix_stripped().to_snek_case());
             let command_ty = ctx.command_tokens(name, true);
             table.fields.extend(quote! {
                 pub #field_name: #command_ty,
@@ -146,9 +146,9 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
         }
     }
 
-    for (&(function_type, dest), Table { fields, loaders }) in tables.iter() {
-        let table_name = function_type.table_name(dest);
-        let loader_name = function_type.loader_name(dest);
+    for ((function_type, dest), Table { fields, loaders }) in tables.into_iter() {
+        let table_name = function_type.table_name(&dest);
+        let loader_name = function_type.loader_name(&dest);
         let loader_code = match function_type {
             FunctionType::Instance => Some(quote! {
                 #[derive(Clone)]

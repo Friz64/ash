@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_module_identifier.html) · Extension `VK_EXT_shader_module_identifier`
 #![doc(alias = "VK_EXT_shader_module_identifier")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_module_identifier";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_shader_module_identifier_ext: crate::vk::PFN_vkGetShaderModuleIdentifierEXT,
@@ -233,7 +235,5 @@ pub(crate) mod reexport {
         p_identifier: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
     );
     pub const MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT: u32 = 32;
-    pub const EXT_SHADER_MODULE_IDENTIFIER_SPEC_VERSION: u32 = 1;
-    pub const EXT_SHADER_MODULE_IDENTIFIER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_module_identifier";
 }
 pub use reexport::*;

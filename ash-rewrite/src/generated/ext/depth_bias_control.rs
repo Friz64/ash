@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_bias_control.html) · Extension `VK_EXT_depth_bias_control`
 #![doc(alias = "VK_EXT_depth_bias_control")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_bias_control";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_depth_bias2_ext: crate::vk::PFN_vkCmdSetDepthBias2EXT,
@@ -227,7 +229,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         p_depth_bias_info: *const crate::vk::DepthBiasInfoEXT<'_>,
     );
-    pub const EXT_DEPTH_BIAS_CONTROL_SPEC_VERSION: u32 = 1;
-    pub const EXT_DEPTH_BIAS_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_bias_control";
 }
 pub use reexport::*;

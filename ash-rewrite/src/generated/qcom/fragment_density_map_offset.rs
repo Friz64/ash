@@ -2,24 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_fragment_density_map_offset.html) · Extension `VK_QCOM_fragment_density_map_offset`
 #![doc(alias = "VK_QCOM_fragment_density_map_offset")]
-pub type PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'a> = crate::vk::PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<
-    'a,
->;
-pub type PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'a> = crate::vk::PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<
-    'a,
->;
-pub type SubpassFragmentDensityMapOffsetEndInfoQCOM<'a> = crate::vk::RenderPassFragmentDensityMapOffsetEndInfoEXT<
-    'a,
->;
-///Provided by [`qcom::fragment_density_map_offset`](crate::qcom::fragment_density_map_offset)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_QCOM: Self = Self::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT;
-    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_QCOM: Self = Self::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT;
-    pub const SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM: Self = Self::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT;
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_fragment_density_map_offset";
+pub(crate) mod reexport {
+    pub type PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'a> = crate::vk::PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<
+        'a,
+    >;
+    pub type PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'a> = crate::vk::PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<
+        'a,
+    >;
+    pub type SubpassFragmentDensityMapOffsetEndInfoQCOM<'a> = crate::vk::RenderPassFragmentDensityMapOffsetEndInfoEXT<
+        'a,
+    >;
+    ///Provided by [`qcom::fragment_density_map_offset`](crate::qcom::fragment_density_map_offset)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_QCOM: Self = Self::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT;
+        pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_QCOM: Self = Self::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT;
+        pub const SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM: Self = Self::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT;
+    }
+    ///Provided by [`qcom::fragment_density_map_offset`](crate::qcom::fragment_density_map_offset)
+    impl crate::vk::ImageCreateFlagBits {
+        pub const FRAGMENT_DENSITY_MAP_OFFSET_QCOM: Self = Self::FRAGMENT_DENSITY_MAP_OFFSET_EXT;
+    }
 }
-///Provided by [`qcom::fragment_density_map_offset`](crate::qcom::fragment_density_map_offset)
-impl crate::vk::ImageCreateFlagBits {
-    pub const FRAGMENT_DENSITY_MAP_OFFSET_QCOM: Self = Self::FRAGMENT_DENSITY_MAP_OFFSET_EXT;
-}
-pub const QCOM_FRAGMENT_DENSITY_MAP_OFFSET_SPEC_VERSION: u32 = 3;
-pub const QCOM_FRAGMENT_DENSITY_MAP_OFFSET_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_fragment_density_map_offset";
+pub use reexport::*;

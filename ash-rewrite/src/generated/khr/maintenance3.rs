@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance3.html) · Extension `VK_KHR_maintenance3`
 #![doc(alias = "VK_KHR_maintenance3")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance3";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_descriptor_set_layout_support_khr: crate::vk::PFN_vkGetDescriptorSetLayoutSupportKHR,
@@ -71,7 +73,5 @@ pub(crate) mod reexport {
         pub const DESCRIPTOR_SET_LAYOUT_SUPPORT_KHR: Self = Self::DESCRIPTOR_SET_LAYOUT_SUPPORT;
     }
     pub type PFN_vkGetDescriptorSetLayoutSupportKHR = crate::vk::PFN_vkGetDescriptorSetLayoutSupport;
-    pub const KHR_MAINTENANCE_3_SPEC_VERSION: u32 = 1;
-    pub const KHR_MAINTENANCE_3_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance3";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance5.html) · Extension `VK_KHR_maintenance5`
 #![doc(alias = "VK_KHR_maintenance5")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance5";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_rendering_area_granularity_khr: crate::vk::PFN_vkGetRenderingAreaGranularityKHR,
@@ -220,7 +222,5 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdBindIndexBuffer2KHR = crate::vk::PFN_vkCmdBindIndexBuffer2;
     pub type PFN_vkGetImageSubresourceLayout2KHR = crate::vk::PFN_vkGetImageSubresourceLayout2;
     pub type PFN_vkGetDeviceImageSubresourceLayoutKHR = crate::vk::PFN_vkGetDeviceImageSubresourceLayout;
-    pub const KHR_MAINTENANCE_5_SPEC_VERSION: u32 = 1;
-    pub const KHR_MAINTENANCE_5_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance5";
 }
 pub use reexport::*;

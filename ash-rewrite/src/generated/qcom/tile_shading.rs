@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_shading.html) · Extension `VK_QCOM_tile_shading`
 #![doc(alias = "VK_QCOM_tile_shading")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_tile_shading";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_dispatch_tile_qcom: crate::vk::PFN_vkCmdDispatchTileQCOM,
@@ -503,7 +505,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         p_per_tile_end_info: *const crate::vk::PerTileEndInfoQCOM<'_>,
     );
-    pub const QCOM_TILE_SHADING_SPEC_VERSION: u32 = 2;
-    pub const QCOM_TILE_SHADING_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_shading";
 }
 pub use reexport::*;

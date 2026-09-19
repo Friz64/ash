@@ -2,47 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_dynamic_rendering_unused_attachments.html) · Extension `VK_EXT_dynamic_rendering_unused_attachments`
 #![doc(alias = "VK_EXT_dynamic_rendering_unused_attachments")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub dynamic_rendering_unused_attachments: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            dynamic_rendering_unused_attachments: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_dynamic_rendering_unused_attachments";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub dynamic_rendering_unused_attachments: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                dynamic_rendering_unused_attachments: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
-    pub fn dynamic_rendering_unused_attachments(
-        mut self,
-        dynamic_rendering_unused_attachments: bool,
-    ) -> Self {
-        self.dynamic_rendering_unused_attachments = dynamic_rendering_unused_attachments
-            .into();
-        self
+    impl<'a> PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
+        pub fn dynamic_rendering_unused_attachments(
+            mut self,
+            dynamic_rendering_unused_attachments: bool,
+        ) -> Self {
+            self.dynamic_rendering_unused_attachments = dynamic_rendering_unused_attachments
+                .into();
+            self
+        }
+    }
+    ///Provided by [`ext::dynamic_rendering_unused_attachments`](crate::ext::dynamic_rendering_unused_attachments)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT: Self = Self(
+            1000499000,
+        );
     }
 }
-///Provided by [`ext::dynamic_rendering_unused_attachments`](crate::ext::dynamic_rendering_unused_attachments)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT: Self = Self(
-        1000499000,
-    );
-}
-pub const EXT_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_SPEC_VERSION: u32 = 1;
-pub const EXT_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_dynamic_rendering_unused_attachments";
+pub use reexport::*;

@@ -2,47 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_linear_color_attachment.html) · Extension `VK_NV_linear_color_attachment`
 #![doc(alias = "VK_NV_linear_color_attachment")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub linear_color_attachment: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {}
-impl<'a> Default for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            linear_color_attachment: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_linear_color_attachment";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub linear_color_attachment: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                linear_color_attachment: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
-    pub fn linear_color_attachment(mut self, linear_color_attachment: bool) -> Self {
-        self.linear_color_attachment = linear_color_attachment.into();
-        self
+    impl<'a> PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
+        pub fn linear_color_attachment(mut self, linear_color_attachment: bool) -> Self {
+            self.linear_color_attachment = linear_color_attachment.into();
+            self
+        }
+    }
+    ///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV: Self = Self(
+            1000430000,
+        );
+    }
+    ///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
+    impl crate::vk::FormatFeatureFlagBits2 {
+        pub const LINEAR_COLOR_ATTACHMENT_NV: Self = Self(1 << 38);
     }
 }
-///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV: Self = Self(
-        1000430000,
-    );
-}
-///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
-impl crate::vk::FormatFeatureFlagBits2 {
-    pub const LINEAR_COLOR_ATTACHMENT_NV: Self = Self(1 << 38);
-}
-pub const NV_LINEAR_COLOR_ATTACHMENT_SPEC_VERSION: u32 = 1;
-pub const NV_LINEAR_COLOR_ATTACHMENT_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_linear_color_attachment";
+pub use reexport::*;

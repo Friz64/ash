@@ -2,50 +2,53 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_subgroup_partitioned.html) · Extension `VK_EXT_shader_subgroup_partitioned`
 #![doc(alias = "VK_EXT_shader_subgroup_partitioned")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_subgroup_partitioned: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_PARTITIONED_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_subgroup_partitioned: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_subgroup_partitioned";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_subgroup_partitioned: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_PARTITIONED_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_subgroup_partitioned: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
-    pub fn shader_subgroup_partitioned(
-        mut self,
-        shader_subgroup_partitioned: bool,
-    ) -> Self {
-        self.shader_subgroup_partitioned = shader_subgroup_partitioned.into();
-        self
+    impl<'a> PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
+        pub fn shader_subgroup_partitioned(
+            mut self,
+            shader_subgroup_partitioned: bool,
+        ) -> Self {
+            self.shader_subgroup_partitioned = shader_subgroup_partitioned.into();
+            self
+        }
+    }
+    ///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_PARTITIONED_FEATURES_EXT: Self = Self(
+            1000662000,
+        );
+    }
+    ///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
+    impl crate::vk::SubgroupFeatureFlagBits {
+        pub const PARTITIONED_EXT: Self = Self(1 << 8);
     }
 }
-///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_PARTITIONED_FEATURES_EXT: Self = Self(
-        1000662000,
-    );
-}
-///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
-impl crate::vk::SubgroupFeatureFlagBits {
-    pub const PARTITIONED_EXT: Self = Self(1 << 8);
-}
-pub const EXT_SHADER_SUBGROUP_PARTITIONED_SPEC_VERSION: u32 = 1;
-pub const EXT_SHADER_SUBGROUP_PARTITIONED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_subgroup_partitioned";
+pub use reexport::*;

@@ -2,143 +2,154 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_atomic_float.html) · Extension `VK_EXT_shader_atomic_float`
 #![doc(alias = "VK_EXT_shader_atomic_float")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_buffer_float32_atomics: crate::vk::Bool32,
-    pub shader_buffer_float32_atomic_add: crate::vk::Bool32,
-    pub shader_buffer_float64_atomics: crate::vk::Bool32,
-    pub shader_buffer_float64_atomic_add: crate::vk::Bool32,
-    pub shader_shared_float32_atomics: crate::vk::Bool32,
-    pub shader_shared_float32_atomic_add: crate::vk::Bool32,
-    pub shader_shared_float64_atomics: crate::vk::Bool32,
-    pub shader_shared_float64_atomic_add: crate::vk::Bool32,
-    pub shader_image_float32_atomics: crate::vk::Bool32,
-    pub shader_image_float32_atomic_add: crate::vk::Bool32,
-    pub sparse_image_float32_atomics: crate::vk::Bool32,
-    pub sparse_image_float32_atomic_add: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_buffer_float32_atomics: Default::default(),
-            shader_buffer_float32_atomic_add: Default::default(),
-            shader_buffer_float64_atomics: Default::default(),
-            shader_buffer_float64_atomic_add: Default::default(),
-            shader_shared_float32_atomics: Default::default(),
-            shader_shared_float32_atomic_add: Default::default(),
-            shader_shared_float64_atomics: Default::default(),
-            shader_shared_float64_atomic_add: Default::default(),
-            shader_image_float32_atomics: Default::default(),
-            shader_image_float32_atomic_add: Default::default(),
-            sparse_image_float32_atomics: Default::default(),
-            sparse_image_float32_atomic_add: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_atomic_float";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_buffer_float32_atomics: crate::vk::Bool32,
+        pub shader_buffer_float32_atomic_add: crate::vk::Bool32,
+        pub shader_buffer_float64_atomics: crate::vk::Bool32,
+        pub shader_buffer_float64_atomic_add: crate::vk::Bool32,
+        pub shader_shared_float32_atomics: crate::vk::Bool32,
+        pub shader_shared_float32_atomic_add: crate::vk::Bool32,
+        pub shader_shared_float64_atomics: crate::vk::Bool32,
+        pub shader_shared_float64_atomic_add: crate::vk::Bool32,
+        pub shader_image_float32_atomics: crate::vk::Bool32,
+        pub shader_image_float32_atomic_add: crate::vk::Bool32,
+        pub sparse_image_float32_atomics: crate::vk::Bool32,
+        pub sparse_image_float32_atomic_add: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_buffer_float32_atomics: Default::default(),
+                shader_buffer_float32_atomic_add: Default::default(),
+                shader_buffer_float64_atomics: Default::default(),
+                shader_buffer_float64_atomic_add: Default::default(),
+                shader_shared_float32_atomics: Default::default(),
+                shader_shared_float32_atomic_add: Default::default(),
+                shader_shared_float64_atomics: Default::default(),
+                shader_shared_float64_atomic_add: Default::default(),
+                shader_image_float32_atomics: Default::default(),
+                shader_image_float32_atomic_add: Default::default(),
+                sparse_image_float32_atomics: Default::default(),
+                sparse_image_float32_atomic_add: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
+    impl<'a> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
+        pub fn shader_buffer_float32_atomics(
+            mut self,
+            shader_buffer_float32_atomics: bool,
+        ) -> Self {
+            self.shader_buffer_float32_atomics = shader_buffer_float32_atomics.into();
+            self
+        }
+        pub fn shader_buffer_float32_atomic_add(
+            mut self,
+            shader_buffer_float32_atomic_add: bool,
+        ) -> Self {
+            self.shader_buffer_float32_atomic_add = shader_buffer_float32_atomic_add
+                .into();
+            self
+        }
+        pub fn shader_buffer_float64_atomics(
+            mut self,
+            shader_buffer_float64_atomics: bool,
+        ) -> Self {
+            self.shader_buffer_float64_atomics = shader_buffer_float64_atomics.into();
+            self
+        }
+        pub fn shader_buffer_float64_atomic_add(
+            mut self,
+            shader_buffer_float64_atomic_add: bool,
+        ) -> Self {
+            self.shader_buffer_float64_atomic_add = shader_buffer_float64_atomic_add
+                .into();
+            self
+        }
+        pub fn shader_shared_float32_atomics(
+            mut self,
+            shader_shared_float32_atomics: bool,
+        ) -> Self {
+            self.shader_shared_float32_atomics = shader_shared_float32_atomics.into();
+            self
+        }
+        pub fn shader_shared_float32_atomic_add(
+            mut self,
+            shader_shared_float32_atomic_add: bool,
+        ) -> Self {
+            self.shader_shared_float32_atomic_add = shader_shared_float32_atomic_add
+                .into();
+            self
+        }
+        pub fn shader_shared_float64_atomics(
+            mut self,
+            shader_shared_float64_atomics: bool,
+        ) -> Self {
+            self.shader_shared_float64_atomics = shader_shared_float64_atomics.into();
+            self
+        }
+        pub fn shader_shared_float64_atomic_add(
+            mut self,
+            shader_shared_float64_atomic_add: bool,
+        ) -> Self {
+            self.shader_shared_float64_atomic_add = shader_shared_float64_atomic_add
+                .into();
+            self
+        }
+        pub fn shader_image_float32_atomics(
+            mut self,
+            shader_image_float32_atomics: bool,
+        ) -> Self {
+            self.shader_image_float32_atomics = shader_image_float32_atomics.into();
+            self
+        }
+        pub fn shader_image_float32_atomic_add(
+            mut self,
+            shader_image_float32_atomic_add: bool,
+        ) -> Self {
+            self.shader_image_float32_atomic_add = shader_image_float32_atomic_add
+                .into();
+            self
+        }
+        pub fn sparse_image_float32_atomics(
+            mut self,
+            sparse_image_float32_atomics: bool,
+        ) -> Self {
+            self.sparse_image_float32_atomics = sparse_image_float32_atomics.into();
+            self
+        }
+        pub fn sparse_image_float32_atomic_add(
+            mut self,
+            sparse_image_float32_atomic_add: bool,
+        ) -> Self {
+            self.sparse_image_float32_atomic_add = sparse_image_float32_atomic_add
+                .into();
+            self
+        }
+    }
+    ///Provided by [`ext::shader_atomic_float`](crate::ext::shader_atomic_float)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT: Self = Self(
+            1000260000,
+        );
+    }
 }
-impl<'a> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
-    pub fn shader_buffer_float32_atomics(
-        mut self,
-        shader_buffer_float32_atomics: bool,
-    ) -> Self {
-        self.shader_buffer_float32_atomics = shader_buffer_float32_atomics.into();
-        self
-    }
-    pub fn shader_buffer_float32_atomic_add(
-        mut self,
-        shader_buffer_float32_atomic_add: bool,
-    ) -> Self {
-        self.shader_buffer_float32_atomic_add = shader_buffer_float32_atomic_add.into();
-        self
-    }
-    pub fn shader_buffer_float64_atomics(
-        mut self,
-        shader_buffer_float64_atomics: bool,
-    ) -> Self {
-        self.shader_buffer_float64_atomics = shader_buffer_float64_atomics.into();
-        self
-    }
-    pub fn shader_buffer_float64_atomic_add(
-        mut self,
-        shader_buffer_float64_atomic_add: bool,
-    ) -> Self {
-        self.shader_buffer_float64_atomic_add = shader_buffer_float64_atomic_add.into();
-        self
-    }
-    pub fn shader_shared_float32_atomics(
-        mut self,
-        shader_shared_float32_atomics: bool,
-    ) -> Self {
-        self.shader_shared_float32_atomics = shader_shared_float32_atomics.into();
-        self
-    }
-    pub fn shader_shared_float32_atomic_add(
-        mut self,
-        shader_shared_float32_atomic_add: bool,
-    ) -> Self {
-        self.shader_shared_float32_atomic_add = shader_shared_float32_atomic_add.into();
-        self
-    }
-    pub fn shader_shared_float64_atomics(
-        mut self,
-        shader_shared_float64_atomics: bool,
-    ) -> Self {
-        self.shader_shared_float64_atomics = shader_shared_float64_atomics.into();
-        self
-    }
-    pub fn shader_shared_float64_atomic_add(
-        mut self,
-        shader_shared_float64_atomic_add: bool,
-    ) -> Self {
-        self.shader_shared_float64_atomic_add = shader_shared_float64_atomic_add.into();
-        self
-    }
-    pub fn shader_image_float32_atomics(
-        mut self,
-        shader_image_float32_atomics: bool,
-    ) -> Self {
-        self.shader_image_float32_atomics = shader_image_float32_atomics.into();
-        self
-    }
-    pub fn shader_image_float32_atomic_add(
-        mut self,
-        shader_image_float32_atomic_add: bool,
-    ) -> Self {
-        self.shader_image_float32_atomic_add = shader_image_float32_atomic_add.into();
-        self
-    }
-    pub fn sparse_image_float32_atomics(
-        mut self,
-        sparse_image_float32_atomics: bool,
-    ) -> Self {
-        self.sparse_image_float32_atomics = sparse_image_float32_atomics.into();
-        self
-    }
-    pub fn sparse_image_float32_atomic_add(
-        mut self,
-        sparse_image_float32_atomic_add: bool,
-    ) -> Self {
-        self.sparse_image_float32_atomic_add = sparse_image_float32_atomic_add.into();
-        self
-    }
-}
-///Provided by [`ext::shader_atomic_float`](crate::ext::shader_atomic_float)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT: Self = Self(1000260000);
-}
-pub const EXT_SHADER_ATOMIC_FLOAT_SPEC_VERSION: u32 = 1;
-pub const EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_atomic_float";
+pub use reexport::*;

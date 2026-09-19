@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_create_renderpass2.html) · Extension `VK_KHR_create_renderpass2`
 #![doc(alias = "VK_KHR_create_renderpass2")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_create_renderpass2";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_render_pass2_khr: crate::vk::PFN_vkCreateRenderPass2KHR,
@@ -128,7 +130,5 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdBeginRenderPass2KHR = crate::vk::PFN_vkCmdBeginRenderPass2;
     pub type PFN_vkCmdNextSubpass2KHR = crate::vk::PFN_vkCmdNextSubpass2;
     pub type PFN_vkCmdEndRenderPass2KHR = crate::vk::PFN_vkCmdEndRenderPass2;
-    pub const KHR_CREATE_RENDERPASS_2_SPEC_VERSION: u32 = 1;
-    pub const KHR_CREATE_RENDERPASS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_create_renderpass2";
 }
 pub use reexport::*;

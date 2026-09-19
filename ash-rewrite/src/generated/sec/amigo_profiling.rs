@@ -2,77 +2,80 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_amigo_profiling.html) · Extension `VK_SEC_amigo_profiling`
 #![doc(alias = "VK_SEC_amigo_profiling")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub amigo_profiling: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {}
-impl<'a> Default for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            amigo_profiling: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_SEC_amigo_profiling";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub amigo_profiling: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {}
+    impl<'a> Default for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                amigo_profiling: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
-    pub fn amigo_profiling(mut self, amigo_profiling: bool) -> Self {
-        self.amigo_profiling = amigo_profiling.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct AmigoProfilingSubmitInfoSEC<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub first_draw_timestamp: u64,
-    pub swap_buffer_timestamp: u64,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for AmigoProfilingSubmitInfoSEC<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC;
-}
-unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
-for AmigoProfilingSubmitInfoSEC<'a> {}
-impl<'a> Default for AmigoProfilingSubmitInfoSEC<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            first_draw_timestamp: Default::default(),
-            swap_buffer_timestamp: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
+        pub fn amigo_profiling(mut self, amigo_profiling: bool) -> Self {
+            self.amigo_profiling = amigo_profiling.into();
+            self
         }
     }
-}
-impl<'a> AmigoProfilingSubmitInfoSEC<'a> {
-    pub fn first_draw_timestamp(mut self, first_draw_timestamp: u64) -> Self {
-        self.first_draw_timestamp = first_draw_timestamp;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct AmigoProfilingSubmitInfoSEC<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub first_draw_timestamp: u64,
+        pub swap_buffer_timestamp: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub fn swap_buffer_timestamp(mut self, swap_buffer_timestamp: u64) -> Self {
-        self.swap_buffer_timestamp = swap_buffer_timestamp;
-        self
+    unsafe impl<'a> crate::TaggedStructure<'a> for AmigoProfilingSubmitInfoSEC<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+    for AmigoProfilingSubmitInfoSEC<'a> {}
+    impl<'a> Default for AmigoProfilingSubmitInfoSEC<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                first_draw_timestamp: Default::default(),
+                swap_buffer_timestamp: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> AmigoProfilingSubmitInfoSEC<'a> {
+        pub fn first_draw_timestamp(mut self, first_draw_timestamp: u64) -> Self {
+            self.first_draw_timestamp = first_draw_timestamp;
+            self
+        }
+        pub fn swap_buffer_timestamp(mut self, swap_buffer_timestamp: u64) -> Self {
+            self.swap_buffer_timestamp = swap_buffer_timestamp;
+            self
+        }
+    }
+    ///Provided by [`sec::amigo_profiling`](crate::sec::amigo_profiling)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC: Self = Self(1000485000);
+        pub const AMIGO_PROFILING_SUBMIT_INFO_SEC: Self = Self(1000485001);
     }
 }
-///Provided by [`sec::amigo_profiling`](crate::sec::amigo_profiling)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC: Self = Self(1000485000);
-    pub const AMIGO_PROFILING_SUBMIT_INFO_SEC: Self = Self(1000485001);
-}
-pub const SEC_AMIGO_PROFILING_SPEC_VERSION: u32 = 1;
-pub const SEC_AMIGO_PROFILING_EXTENSION_NAME: &core::ffi::CStr = c"VK_SEC_amigo_profiling";
+pub use reexport::*;

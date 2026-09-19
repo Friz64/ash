@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_metal_surface.html) · Extension `VK_EXT_metal_surface`
 #![doc(alias = "VK_EXT_metal_surface")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_metal_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_metal_surface_ext: crate::vk::PFN_vkCreateMetalSurfaceEXT,
@@ -170,7 +172,5 @@ pub(crate) mod reexport {
         p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
-    pub const EXT_METAL_SURFACE_SPEC_VERSION: u32 = 1;
-    pub const EXT_METAL_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_metal_surface";
 }
 pub use reexport::*;

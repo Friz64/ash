@@ -2,12 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_dedicated_allocation.html) · Extension `VK_KHR_dedicated_allocation`
 #![doc(alias = "VK_KHR_dedicated_allocation")]
-pub type MemoryDedicatedRequirementsKHR<'a> = crate::vk::MemoryDedicatedRequirements<'a>;
-pub type MemoryDedicatedAllocateInfoKHR<'a> = crate::vk::MemoryDedicatedAllocateInfo<'a>;
-///Provided by [`khr::dedicated_allocation`](crate::khr::dedicated_allocation)
-impl crate::vk::StructureType {
-    pub const MEMORY_DEDICATED_REQUIREMENTS_KHR: Self = Self::MEMORY_DEDICATED_REQUIREMENTS;
-    pub const MEMORY_DEDICATED_ALLOCATE_INFO_KHR: Self = Self::MEMORY_DEDICATED_ALLOCATE_INFO;
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_dedicated_allocation";
+pub(crate) mod reexport {
+    pub type MemoryDedicatedRequirementsKHR<'a> = crate::vk::MemoryDedicatedRequirements<
+        'a,
+    >;
+    pub type MemoryDedicatedAllocateInfoKHR<'a> = crate::vk::MemoryDedicatedAllocateInfo<
+        'a,
+    >;
+    ///Provided by [`khr::dedicated_allocation`](crate::khr::dedicated_allocation)
+    impl crate::vk::StructureType {
+        pub const MEMORY_DEDICATED_REQUIREMENTS_KHR: Self = Self::MEMORY_DEDICATED_REQUIREMENTS;
+        pub const MEMORY_DEDICATED_ALLOCATE_INFO_KHR: Self = Self::MEMORY_DEDICATED_ALLOCATE_INFO;
+    }
 }
-pub const KHR_DEDICATED_ALLOCATION_SPEC_VERSION: u32 = 3;
-pub const KHR_DEDICATED_ALLOCATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_dedicated_allocation";
+pub use reexport::*;

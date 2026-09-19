@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance6.html) · Extension `VK_KHR_maintenance6`
 #![doc(alias = "VK_KHR_maintenance6")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance6";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_descriptor_buffer_offsets2_ext: crate::vk::PFN_vkCmdSetDescriptorBufferOffsets2EXT,
@@ -274,7 +276,5 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdPushConstants2KHR = crate::vk::PFN_vkCmdPushConstants2;
     pub type PFN_vkCmdPushDescriptorSet2KHR = crate::vk::PFN_vkCmdPushDescriptorSet2;
     pub type PFN_vkCmdPushDescriptorSetWithTemplate2KHR = crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate2;
-    pub const KHR_MAINTENANCE_6_SPEC_VERSION: u32 = 1;
-    pub const KHR_MAINTENANCE_6_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance6";
 }
 pub use reexport::*;

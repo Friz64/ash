@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_calibrated_timestamps.html) · Extension `VK_KHR_calibrated_timestamps`
 #![doc(alias = "VK_KHR_calibrated_timestamps")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_calibrated_timestamps";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_calibrateable_time_domains_khr: crate::vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR,
@@ -181,7 +183,5 @@ pub(crate) mod reexport {
         p_timestamps: *mut u64,
         p_max_deviation: *mut u64,
     ) -> crate::vk::Result;
-    pub const KHR_CALIBRATED_TIMESTAMPS_SPEC_VERSION: u32 = 1;
-    pub const KHR_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_calibrated_timestamps";
 }
 pub use reexport::*;

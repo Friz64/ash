@@ -2,134 +2,139 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_image_processing2.html) · Extension `VK_QCOM_image_processing2`
 #![doc(alias = "VK_QCOM_image_processing2")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub texture_block_match2: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_FEATURES_QCOM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {}
-impl<'a> Default for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            texture_block_match2: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_image_processing2";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub texture_block_match2: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_FEATURES_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {}
+    impl<'a> Default for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                texture_block_match2: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
-    pub fn texture_block_match2(mut self, texture_block_match2: bool) -> Self {
-        self.texture_block_match2 = texture_block_match2.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_block_match_window: crate::vk::Extent2D,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_PROPERTIES_QCOM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
-for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {}
-impl<'a> Default for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            max_block_match_window: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
+        pub fn texture_block_match2(mut self, texture_block_match2: bool) -> Self {
+            self.texture_block_match2 = texture_block_match2.into();
+            self
         }
     }
-}
-impl<'a> PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
-    pub fn max_block_match_window(
-        mut self,
-        max_block_match_window: crate::vk::Extent2D,
-    ) -> Self {
-        self.max_block_match_window = max_block_match_window;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub max_block_match_window: crate::vk::Extent2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct SamplerBlockMatchWindowCreateInfoQCOM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub window_extent: crate::vk::Extent2D,
-    pub window_compare_mode: crate::vk::BlockMatchWindowCompareModeQCOM,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
-for SamplerBlockMatchWindowCreateInfoQCOM<'a> {}
-impl<'a> Default for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            window_extent: Default::default(),
-            window_compare_mode: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_PROPERTIES_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {}
+    impl<'a> Default for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_block_match_window: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> SamplerBlockMatchWindowCreateInfoQCOM<'a> {
-    pub fn window_extent(mut self, window_extent: crate::vk::Extent2D) -> Self {
-        self.window_extent = window_extent;
-        self
+    impl<'a> PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
+        pub fn max_block_match_window(
+            mut self,
+            max_block_match_window: crate::vk::Extent2D,
+        ) -> Self {
+            self.max_block_match_window = max_block_match_window;
+            self
+        }
     }
-    pub fn window_compare_mode(
-        mut self,
-        window_compare_mode: crate::vk::BlockMatchWindowCompareModeQCOM,
-    ) -> Self {
-        self.window_compare_mode = window_compare_mode;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct SamplerBlockMatchWindowCreateInfoQCOM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub window_extent: crate::vk::Extent2D,
+        pub window_compare_mode: crate::vk::BlockMatchWindowCompareModeQCOM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+    for SamplerBlockMatchWindowCreateInfoQCOM<'a> {}
+    impl<'a> Default for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                window_extent: Default::default(),
+                window_compare_mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SamplerBlockMatchWindowCreateInfoQCOM<'a> {
+        pub fn window_extent(mut self, window_extent: crate::vk::Extent2D) -> Self {
+            self.window_extent = window_extent;
+            self
+        }
+        pub fn window_compare_mode(
+            mut self,
+            window_compare_mode: crate::vk::BlockMatchWindowCompareModeQCOM,
+        ) -> Self {
+            self.window_compare_mode = window_compare_mode;
+            self
+        }
+    }
+    ///Provided by [`qcom::image_processing2`](crate::qcom::image_processing2)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_2_FEATURES_QCOM: Self = Self(
+            1000518000,
+        );
+        pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_2_PROPERTIES_QCOM: Self = Self(
+            1000518001,
+        );
+        pub const SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM: Self = Self(1000518002);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct BlockMatchWindowCompareModeQCOM(pub(crate) i32);
+    ///Provided by [`qcom::image_processing2`](crate::qcom::image_processing2)
+    impl BlockMatchWindowCompareModeQCOM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const MIN_QCOM: Self = Self(0);
+        pub const MAX_QCOM: Self = Self(1);
     }
 }
-///Provided by [`qcom::image_processing2`](crate::qcom::image_processing2)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_2_FEATURES_QCOM: Self = Self(1000518000);
-    pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_2_PROPERTIES_QCOM: Self = Self(
-        1000518001,
-    );
-    pub const SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM: Self = Self(1000518002);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct BlockMatchWindowCompareModeQCOM(pub(crate) i32);
-///Provided by [`qcom::image_processing2`](crate::qcom::image_processing2)
-impl BlockMatchWindowCompareModeQCOM {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const MIN_QCOM: Self = Self(0);
-    pub const MAX_QCOM: Self = Self(1);
-}
-pub const QCOM_IMAGE_PROCESSING_2_SPEC_VERSION: u32 = 1;
-pub const QCOM_IMAGE_PROCESSING_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_image_processing2";
+pub use reexport::*;

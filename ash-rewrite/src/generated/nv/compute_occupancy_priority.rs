@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_compute_occupancy_priority.html) · Extension `VK_NV_compute_occupancy_priority`
 #![doc(alias = "VK_NV_compute_occupancy_priority")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_compute_occupancy_priority";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_compute_occupancy_priority_nv: crate::vk::PFN_vkCmdSetComputeOccupancyPriorityNV,
@@ -147,7 +149,5 @@ pub(crate) mod reexport {
     pub const COMPUTE_OCCUPANCY_PRIORITY_LOW_NV: core::ffi::c_float = 0.25;
     pub const COMPUTE_OCCUPANCY_PRIORITY_NORMAL_NV: core::ffi::c_float = 0.50;
     pub const COMPUTE_OCCUPANCY_PRIORITY_HIGH_NV: core::ffi::c_float = 0.75;
-    pub const NV_COMPUTE_OCCUPANCY_PRIORITY_SPEC_VERSION: u32 = 1;
-    pub const NV_COMPUTE_OCCUPANCY_PRIORITY_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_compute_occupancy_priority";
 }
 pub use reexport::*;

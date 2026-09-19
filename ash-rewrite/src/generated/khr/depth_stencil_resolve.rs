@@ -2,26 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_depth_stencil_resolve.html) · Extension `VK_KHR_depth_stencil_resolve`
 #![doc(alias = "VK_KHR_depth_stencil_resolve")]
-pub type PhysicalDeviceDepthStencilResolvePropertiesKHR<'a> = crate::vk::PhysicalDeviceDepthStencilResolveProperties<
-    'a,
->;
-pub type SubpassDescriptionDepthStencilResolveKHR<'a> = crate::vk::SubpassDescriptionDepthStencilResolve<
-    'a,
->;
-///Provided by [`khr::depth_stencil_resolve`](crate::khr::depth_stencil_resolve)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES;
-    pub const SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR: Self = Self::SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_depth_stencil_resolve";
+pub(crate) mod reexport {
+    pub type PhysicalDeviceDepthStencilResolvePropertiesKHR<'a> = crate::vk::PhysicalDeviceDepthStencilResolveProperties<
+        'a,
+    >;
+    pub type SubpassDescriptionDepthStencilResolveKHR<'a> = crate::vk::SubpassDescriptionDepthStencilResolve<
+        'a,
+    >;
+    ///Provided by [`khr::depth_stencil_resolve`](crate::khr::depth_stencil_resolve)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES;
+        pub const SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR: Self = Self::SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE;
+    }
+    pub type ResolveModeFlagBitsKHR = crate::vk::ResolveModeFlagBits;
+    ///Provided by [`khr::depth_stencil_resolve`](crate::khr::depth_stencil_resolve)
+    impl crate::vk::ResolveModeFlagBits {
+        pub const NONE_KHR: Self = Self::NONE;
+        pub const SAMPLE_ZERO_KHR: Self = Self::SAMPLE_ZERO;
+        pub const AVERAGE_KHR: Self = Self::AVERAGE;
+        pub const MIN_KHR: Self = Self::MIN;
+        pub const MAX_KHR: Self = Self::MAX;
+    }
+    pub type ResolveModeFlagsKHR = crate::vk::ResolveModeFlags;
 }
-pub type ResolveModeFlagBitsKHR = crate::vk::ResolveModeFlagBits;
-///Provided by [`khr::depth_stencil_resolve`](crate::khr::depth_stencil_resolve)
-impl crate::vk::ResolveModeFlagBits {
-    pub const NONE_KHR: Self = Self::NONE;
-    pub const SAMPLE_ZERO_KHR: Self = Self::SAMPLE_ZERO;
-    pub const AVERAGE_KHR: Self = Self::AVERAGE;
-    pub const MIN_KHR: Self = Self::MIN;
-    pub const MAX_KHR: Self = Self::MAX;
-}
-pub type ResolveModeFlagsKHR = crate::vk::ResolveModeFlags;
-pub const KHR_DEPTH_STENCIL_RESOLVE_SPEC_VERSION: u32 = 1;
-pub const KHR_DEPTH_STENCIL_RESOLVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_depth_stencil_resolve";
+pub use reexport::*;

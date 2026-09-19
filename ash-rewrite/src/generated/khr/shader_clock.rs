@@ -2,46 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_clock.html) · Extension `VK_KHR_shader_clock`
 #![doc(alias = "VK_KHR_shader_clock")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderClockFeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_subgroup_clock: crate::vk::Bool32,
-    pub shader_device_clock: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceShaderClockFeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderClockFeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderClockFeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceShaderClockFeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_subgroup_clock: Default::default(),
-            shader_device_clock: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_clock";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderClockFeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_subgroup_clock: crate::vk::Bool32,
+        pub shader_device_clock: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderClockFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderClockFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderClockFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderClockFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_subgroup_clock: Default::default(),
+                shader_device_clock: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderClockFeaturesKHR<'a> {
-    pub fn shader_subgroup_clock(mut self, shader_subgroup_clock: bool) -> Self {
-        self.shader_subgroup_clock = shader_subgroup_clock.into();
-        self
+    impl<'a> PhysicalDeviceShaderClockFeaturesKHR<'a> {
+        pub fn shader_subgroup_clock(mut self, shader_subgroup_clock: bool) -> Self {
+            self.shader_subgroup_clock = shader_subgroup_clock.into();
+            self
+        }
+        pub fn shader_device_clock(mut self, shader_device_clock: bool) -> Self {
+            self.shader_device_clock = shader_device_clock.into();
+            self
+        }
     }
-    pub fn shader_device_clock(mut self, shader_device_clock: bool) -> Self {
-        self.shader_device_clock = shader_device_clock.into();
-        self
+    ///Provided by [`khr::shader_clock`](crate::khr::shader_clock)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR: Self = Self(1000181000);
     }
 }
-///Provided by [`khr::shader_clock`](crate::khr::shader_clock)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR: Self = Self(1000181000);
-}
-pub const KHR_SHADER_CLOCK_SPEC_VERSION: u32 = 1;
-pub const KHR_SHADER_CLOCK_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_clock";
+pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_cache.html) · Extension `VK_EXT_validation_cache`
 #![doc(alias = "VK_EXT_validation_cache")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_cache";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_validation_cache_ext: crate::vk::PFN_vkCreateValidationCacheEXT,
@@ -325,7 +327,5 @@ pub(crate) mod reexport {
         src_cache_count: u32,
         p_src_caches: *const crate::vk::ValidationCacheEXT,
     ) -> crate::vk::Result;
-    pub const EXT_VALIDATION_CACHE_SPEC_VERSION: u32 = 1;
-    pub const EXT_VALIDATION_CACHE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_validation_cache";
 }
 pub use reexport::*;

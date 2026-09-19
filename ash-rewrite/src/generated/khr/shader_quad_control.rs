@@ -2,41 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_quad_control.html) · Extension `VK_KHR_shader_quad_control`
 #![doc(alias = "VK_KHR_shader_quad_control")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_quad_control: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_QUAD_CONTROL_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_quad_control: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_quad_control";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_quad_control: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_QUAD_CONTROL_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_quad_control: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
-    pub fn shader_quad_control(mut self, shader_quad_control: bool) -> Self {
-        self.shader_quad_control = shader_quad_control.into();
-        self
+    impl<'a> PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
+        pub fn shader_quad_control(mut self, shader_quad_control: bool) -> Self {
+            self.shader_quad_control = shader_quad_control.into();
+            self
+        }
+    }
+    ///Provided by [`khr::shader_quad_control`](crate::khr::shader_quad_control)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_QUAD_CONTROL_FEATURES_KHR: Self = Self(
+            1000235000,
+        );
     }
 }
-///Provided by [`khr::shader_quad_control`](crate::khr::shader_quad_control)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_QUAD_CONTROL_FEATURES_KHR: Self = Self(1000235000);
-}
-pub const KHR_SHADER_QUAD_CONTROL_SPEC_VERSION: u32 = 1;
-pub const KHR_SHADER_QUAD_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_quad_control";
+pub use reexport::*;

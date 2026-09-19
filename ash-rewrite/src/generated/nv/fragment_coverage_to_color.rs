@@ -2,124 +2,132 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fragment_coverage_to_color.html) · Extension `VK_NV_fragment_coverage_to_color`
 #![doc(alias = "VK_NV_fragment_coverage_to_color")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PipelineCoverageToColorStateCreateInfoNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::vk::PipelineCoverageToColorStateCreateFlagsNV,
-    pub coverage_to_color_enable: crate::vk::Bool32,
-    pub coverage_to_color_location: u32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PipelineCoverageToColorStateCreateInfoNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
-for PipelineCoverageToColorStateCreateInfoNV<'a> {}
-impl<'a> Default for PipelineCoverageToColorStateCreateInfoNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            flags: Default::default(),
-            coverage_to_color_enable: Default::default(),
-            coverage_to_color_location: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_fragment_coverage_to_color";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineCoverageToColorStateCreateInfoNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub flags: crate::vk::PipelineCoverageToColorStateCreateFlagsNV,
+        pub coverage_to_color_enable: crate::vk::Bool32,
+        pub coverage_to_color_location: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineCoverageToColorStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
+    for PipelineCoverageToColorStateCreateInfoNV<'a> {}
+    impl<'a> Default for PipelineCoverageToColorStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                coverage_to_color_enable: Default::default(),
+                coverage_to_color_location: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineCoverageToColorStateCreateInfoNV<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::PipelineCoverageToColorStateCreateFlagsNV,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn coverage_to_color_enable(
+            mut self,
+            coverage_to_color_enable: bool,
+        ) -> Self {
+            self.coverage_to_color_enable = coverage_to_color_enable.into();
+            self
+        }
+        pub fn coverage_to_color_location(
+            mut self,
+            coverage_to_color_location: u32,
+        ) -> Self {
+            self.coverage_to_color_location = coverage_to_color_location;
+            self
+        }
+    }
+    ///Provided by [`nv::fragment_coverage_to_color`](crate::nv::fragment_coverage_to_color)
+    impl crate::vk::StructureType {
+        pub const PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV: Self = Self(
+            1000149000,
+        );
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineCoverageToColorStateCreateFlagsNV(u32);
+    impl PipelineCoverageToColorStateCreateFlagsNV {
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for PipelineCoverageToColorStateCreateFlagsNV {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for PipelineCoverageToColorStateCreateFlagsNV {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for PipelineCoverageToColorStateCreateFlagsNV {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for PipelineCoverageToColorStateCreateFlagsNV {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for PipelineCoverageToColorStateCreateFlagsNV {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for PipelineCoverageToColorStateCreateFlagsNV {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for PipelineCoverageToColorStateCreateFlagsNV {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for PipelineCoverageToColorStateCreateFlagsNV {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
         }
     }
 }
-impl<'a> PipelineCoverageToColorStateCreateInfoNV<'a> {
-    pub fn flags(
-        mut self,
-        flags: crate::vk::PipelineCoverageToColorStateCreateFlagsNV,
-    ) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn coverage_to_color_enable(mut self, coverage_to_color_enable: bool) -> Self {
-        self.coverage_to_color_enable = coverage_to_color_enable.into();
-        self
-    }
-    pub fn coverage_to_color_location(
-        mut self,
-        coverage_to_color_location: u32,
-    ) -> Self {
-        self.coverage_to_color_location = coverage_to_color_location;
-        self
-    }
-}
-///Provided by [`nv::fragment_coverage_to_color`](crate::nv::fragment_coverage_to_color)
-impl crate::vk::StructureType {
-    pub const PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV: Self = Self(1000149000);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineCoverageToColorStateCreateFlagsNV(u32);
-impl PipelineCoverageToColorStateCreateFlagsNV {
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    pub const fn from_raw(x: u32) -> Self {
-        Self(x)
-    }
-    pub const fn as_raw(self) -> u32 {
-        self.0
-    }
-    pub const fn is_empty(self) -> bool {
-        self.0 == Self::empty().0
-    }
-    pub const fn intersects(self, other: Self) -> bool {
-        !Self(self.0 & other.0).is_empty()
-    }
-    pub const fn contains(self, other: Self) -> bool {
-        self.0 & other.0 == other.0
-    }
-}
-impl Default for PipelineCoverageToColorStateCreateFlagsNV {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl core::ops::BitOr for PipelineCoverageToColorStateCreateFlagsNV {
-    type Output = Self;
-    fn bitor(self, rhs: Self) -> Self {
-        Self(self.0 | rhs.0)
-    }
-}
-impl core::ops::BitOrAssign for PipelineCoverageToColorStateCreateFlagsNV {
-    fn bitor_assign(&mut self, rhs: Self) {
-        *self = *self | rhs;
-    }
-}
-impl core::ops::BitAnd for PipelineCoverageToColorStateCreateFlagsNV {
-    type Output = Self;
-    fn bitand(self, rhs: Self) -> Self {
-        Self(self.0 & rhs.0)
-    }
-}
-impl core::ops::BitAndAssign for PipelineCoverageToColorStateCreateFlagsNV {
-    fn bitand_assign(&mut self, rhs: Self) {
-        *self = *self & rhs;
-    }
-}
-impl core::ops::BitXor for PipelineCoverageToColorStateCreateFlagsNV {
-    type Output = Self;
-    fn bitxor(self, rhs: Self) -> Self {
-        Self(self.0 ^ rhs.0)
-    }
-}
-impl core::ops::BitXorAssign for PipelineCoverageToColorStateCreateFlagsNV {
-    fn bitxor_assign(&mut self, rhs: Self) {
-        *self = *self ^ rhs;
-    }
-}
-impl core::ops::Not for PipelineCoverageToColorStateCreateFlagsNV {
-    type Output = Self;
-    fn not(self) -> Self {
-        Self(!self.0)
-    }
-}
-pub const NV_FRAGMENT_COVERAGE_TO_COLOR_SPEC_VERSION: u32 = 1;
-pub const NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_fragment_coverage_to_color";
+pub use reexport::*;

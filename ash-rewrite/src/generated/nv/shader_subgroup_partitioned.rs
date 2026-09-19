@@ -2,9 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shader_subgroup_partitioned.html) · Extension `VK_NV_shader_subgroup_partitioned`
 #![doc(alias = "VK_NV_shader_subgroup_partitioned")]
-///Provided by [`nv::shader_subgroup_partitioned`](crate::nv::shader_subgroup_partitioned)
-impl crate::vk::SubgroupFeatureFlagBits {
-    pub const PARTITIONED_NV: Self = Self::PARTITIONED_EXT;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_shader_subgroup_partitioned";
+pub(crate) mod reexport {
+    ///Provided by [`nv::shader_subgroup_partitioned`](crate::nv::shader_subgroup_partitioned)
+    impl crate::vk::SubgroupFeatureFlagBits {
+        pub const PARTITIONED_NV: Self = Self::PARTITIONED_EXT;
+    }
 }
-pub const NV_SHADER_SUBGROUP_PARTITIONED_SPEC_VERSION: u32 = 1;
-pub const NV_SHADER_SUBGROUP_PARTITIONED_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shader_subgroup_partitioned";
+pub use reexport::*;

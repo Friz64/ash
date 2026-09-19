@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_map_memory2.html) · Extension `VK_KHR_map_memory2`
 #![doc(alias = "VK_KHR_map_memory2")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_map_memory2";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub map_memory2_khr: crate::vk::PFN_vkMapMemory2KHR,
@@ -81,7 +83,5 @@ pub(crate) mod reexport {
     pub type MemoryUnmapFlagsKHR = crate::vk::MemoryUnmapFlags;
     pub type PFN_vkMapMemory2KHR = crate::vk::PFN_vkMapMemory2;
     pub type PFN_vkUnmapMemory2KHR = crate::vk::PFN_vkUnmapMemory2;
-    pub const KHR_MAP_MEMORY_2_SPEC_VERSION: u32 = 1;
-    pub const KHR_MAP_MEMORY_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_map_memory2";
 }
 pub use reexport::*;

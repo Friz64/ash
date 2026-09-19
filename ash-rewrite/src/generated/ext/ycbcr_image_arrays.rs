@@ -2,41 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ycbcr_image_arrays.html) · Extension `VK_EXT_ycbcr_image_arrays`
 #![doc(alias = "VK_EXT_ycbcr_image_arrays")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub ycbcr_image_arrays: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            ycbcr_image_arrays: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_ycbcr_image_arrays";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub ycbcr_image_arrays: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                ycbcr_image_arrays: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
-    pub fn ycbcr_image_arrays(mut self, ycbcr_image_arrays: bool) -> Self {
-        self.ycbcr_image_arrays = ycbcr_image_arrays.into();
-        self
+    impl<'a> PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
+        pub fn ycbcr_image_arrays(mut self, ycbcr_image_arrays: bool) -> Self {
+            self.ycbcr_image_arrays = ycbcr_image_arrays.into();
+            self
+        }
+    }
+    ///Provided by [`ext::ycbcr_image_arrays`](crate::ext::ycbcr_image_arrays)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT: Self = Self(
+            1000252000,
+        );
     }
 }
-///Provided by [`ext::ycbcr_image_arrays`](crate::ext::ycbcr_image_arrays)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT: Self = Self(1000252000);
-}
-pub const EXT_YCBCR_IMAGE_ARRAYS_SPEC_VERSION: u32 = 1;
-pub const EXT_YCBCR_IMAGE_ARRAYS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_ycbcr_image_arrays";
+pub use reexport::*;

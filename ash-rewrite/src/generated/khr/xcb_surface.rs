@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_xcb_surface.html) · Extension `VK_KHR_xcb_surface`
 #![doc(alias = "VK_KHR_xcb_surface")]
+pub const SPEC_VERSION: u32 = 6;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_xcb_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_xcb_surface_khr: crate::vk::PFN_vkCreateXcbSurfaceKHR,
@@ -202,7 +204,5 @@ pub(crate) mod reexport {
         connection: *mut crate::platform_types::xcb_connection_t,
         visual_id: crate::platform_types::xcb_visualid_t,
     ) -> crate::vk::Bool32;
-    pub const KHR_XCB_SURFACE_SPEC_VERSION: u32 = 6;
-    pub const KHR_XCB_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_xcb_surface";
 }
 pub use reexport::*;
