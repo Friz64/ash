@@ -101,12 +101,9 @@ pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct H265DecPicBufMgr {
-        pub max_latency_increase_plus1: [u32; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE
-            as _],
-        pub max_dec_pic_buffering_minus1: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE
-            as _],
-        pub max_num_reorder_pics: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE
-            as _],
+        pub max_latency_increase_plus1: [u32; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
+        pub max_dec_pic_buffering_minus1: [u8; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
+        pub max_num_reorder_pics: [u8; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
     }
     impl Default for H265DecPicBufMgr {
         fn default() -> Self {
@@ -120,24 +117,21 @@ pub(crate) mod reexport {
     impl H265DecPicBufMgr {
         pub fn max_latency_increase_plus1(
             mut self,
-            max_latency_increase_plus1: [u32; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE
-                as _],
+            max_latency_increase_plus1: [u32; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
         ) -> Self {
             self.max_latency_increase_plus1 = max_latency_increase_plus1;
             self
         }
         pub fn max_dec_pic_buffering_minus1(
             mut self,
-            max_dec_pic_buffering_minus1: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE
-                as _],
+            max_dec_pic_buffering_minus1: [u8; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
         ) -> Self {
             self.max_dec_pic_buffering_minus1 = max_dec_pic_buffering_minus1;
             self
         }
         pub fn max_num_reorder_pics(
             mut self,
-            max_num_reorder_pics: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE
-                as _],
+            max_num_reorder_pics: [u8; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
         ) -> Self {
             self.max_num_reorder_pics = max_num_reorder_pics;
             self
@@ -146,14 +140,10 @@ pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct H265SubLayerHrdParameters {
-        pub bit_rate_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE
-            as _],
-        pub cpb_size_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE
-            as _],
-        pub cpb_size_du_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE
-            as _],
-        pub bit_rate_du_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE
-            as _],
+        pub bit_rate_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
+        pub cpb_size_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
+        pub cpb_size_du_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
+        pub bit_rate_du_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
         pub cbr_flag: u32,
     }
     impl Default for H265SubLayerHrdParameters {
@@ -170,32 +160,28 @@ pub(crate) mod reexport {
     impl H265SubLayerHrdParameters {
         pub fn bit_rate_value_minus1(
             mut self,
-            bit_rate_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE
-                as _],
+            bit_rate_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
         ) -> Self {
             self.bit_rate_value_minus1 = bit_rate_value_minus1;
             self
         }
         pub fn cpb_size_value_minus1(
             mut self,
-            cpb_size_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE
-                as _],
+            cpb_size_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
         ) -> Self {
             self.cpb_size_value_minus1 = cpb_size_value_minus1;
             self
         }
         pub fn cpb_size_du_value_minus1(
             mut self,
-            cpb_size_du_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE
-                as _],
+            cpb_size_du_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
         ) -> Self {
             self.cpb_size_du_value_minus1 = cpb_size_du_value_minus1;
             self
         }
         pub fn bit_rate_du_value_minus1(
             mut self,
-            bit_rate_du_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE
-                as _],
+            bit_rate_du_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
         ) -> Self {
             self.bit_rate_du_value_minus1 = bit_rate_du_value_minus1;
             self
@@ -310,8 +296,8 @@ pub(crate) mod reexport {
         pub initial_cpb_removal_delay_length_minus1: u8,
         pub au_cpb_removal_delay_length_minus1: u8,
         pub dpb_output_delay_length_minus1: u8,
-        pub cpb_cnt_minus1: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE as _],
-        pub elemental_duration_in_tc_minus1: [u16; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE
+        pub cpb_cnt_minus1: [u8; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
+        pub elemental_duration_in_tc_minus1: [u16; crate::vk::H265_SUBLAYERS_LIST_SIZE
             as _],
         pub reserved: [u16; 3 as _],
         pub p_sub_layer_hrd_parameters_nal: *const crate::vk::H265SubLayerHrdParameters,
@@ -398,14 +384,14 @@ pub(crate) mod reexport {
         }
         pub fn cpb_cnt_minus1(
             mut self,
-            cpb_cnt_minus1: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE as _],
+            cpb_cnt_minus1: [u8; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
         ) -> Self {
             self.cpb_cnt_minus1 = cpb_cnt_minus1;
             self
         }
         pub fn elemental_duration_in_tc_minus1(
             mut self,
-            elemental_duration_in_tc_minus1: [u16; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE
+            elemental_duration_in_tc_minus1: [u16; crate::vk::H265_SUBLAYERS_LIST_SIZE
                 as _],
         ) -> Self {
             self.elemental_duration_in_tc_minus1 = elemental_duration_in_tc_minus1;
@@ -576,17 +562,17 @@ pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct H265ScalingLists {
-        pub scaling_list4x4: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_4X4_NUM_ELEMENTS
-            as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_4X4_NUM_LISTS as _],
-        pub scaling_list8x8: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_8X8_NUM_ELEMENTS
-            as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_8X8_NUM_LISTS as _],
-        pub scaling_list16x16: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_16X16_NUM_ELEMENTS
-            as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_16X16_NUM_LISTS as _],
-        pub scaling_list32x32: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_ELEMENTS
-            as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_LISTS as _],
-        pub scaling_list_dc_coef16x16: [u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_16X16_NUM_LISTS
+        pub scaling_list4x4: [[u8; crate::vk::H265_SCALING_LIST_4X4_NUM_ELEMENTS
+            as _]; crate::vk::H265_SCALING_LIST_4X4_NUM_LISTS as _],
+        pub scaling_list8x8: [[u8; crate::vk::H265_SCALING_LIST_8X8_NUM_ELEMENTS
+            as _]; crate::vk::H265_SCALING_LIST_8X8_NUM_LISTS as _],
+        pub scaling_list16x16: [[u8; crate::vk::H265_SCALING_LIST_16X16_NUM_ELEMENTS
+            as _]; crate::vk::H265_SCALING_LIST_16X16_NUM_LISTS as _],
+        pub scaling_list32x32: [[u8; crate::vk::H265_SCALING_LIST_32X32_NUM_ELEMENTS
+            as _]; crate::vk::H265_SCALING_LIST_32X32_NUM_LISTS as _],
+        pub scaling_list_dc_coef16x16: [u8; crate::vk::H265_SCALING_LIST_16X16_NUM_LISTS
             as _],
-        pub scaling_list_dc_coef32x32: [u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_LISTS
+        pub scaling_list_dc_coef32x32: [u8; crate::vk::H265_SCALING_LIST_32X32_NUM_LISTS
             as _],
     }
     impl Default for H265ScalingLists {
@@ -604,39 +590,39 @@ pub(crate) mod reexport {
     impl H265ScalingLists {
         pub fn scaling_list4x4(
             mut self,
-            scaling_list4x4: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_4X4_NUM_ELEMENTS
-                as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_4X4_NUM_LISTS as _],
+            scaling_list4x4: [[u8; crate::vk::H265_SCALING_LIST_4X4_NUM_ELEMENTS
+                as _]; crate::vk::H265_SCALING_LIST_4X4_NUM_LISTS as _],
         ) -> Self {
             self.scaling_list4x4 = scaling_list4x4;
             self
         }
         pub fn scaling_list8x8(
             mut self,
-            scaling_list8x8: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_8X8_NUM_ELEMENTS
-                as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_8X8_NUM_LISTS as _],
+            scaling_list8x8: [[u8; crate::vk::H265_SCALING_LIST_8X8_NUM_ELEMENTS
+                as _]; crate::vk::H265_SCALING_LIST_8X8_NUM_LISTS as _],
         ) -> Self {
             self.scaling_list8x8 = scaling_list8x8;
             self
         }
         pub fn scaling_list16x16(
             mut self,
-            scaling_list16x16: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_16X16_NUM_ELEMENTS
-                as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_16X16_NUM_LISTS as _],
+            scaling_list16x16: [[u8; crate::vk::H265_SCALING_LIST_16X16_NUM_ELEMENTS
+                as _]; crate::vk::H265_SCALING_LIST_16X16_NUM_LISTS as _],
         ) -> Self {
             self.scaling_list16x16 = scaling_list16x16;
             self
         }
         pub fn scaling_list32x32(
             mut self,
-            scaling_list32x32: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_ELEMENTS
-                as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_LISTS as _],
+            scaling_list32x32: [[u8; crate::vk::H265_SCALING_LIST_32X32_NUM_ELEMENTS
+                as _]; crate::vk::H265_SCALING_LIST_32X32_NUM_LISTS as _],
         ) -> Self {
             self.scaling_list32x32 = scaling_list32x32;
             self
         }
         pub fn scaling_list_dc_coef16x16(
             mut self,
-            scaling_list_dc_coef16x16: [u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_16X16_NUM_LISTS
+            scaling_list_dc_coef16x16: [u8; crate::vk::H265_SCALING_LIST_16X16_NUM_LISTS
                 as _],
         ) -> Self {
             self.scaling_list_dc_coef16x16 = scaling_list_dc_coef16x16;
@@ -644,7 +630,7 @@ pub(crate) mod reexport {
         }
         pub fn scaling_list_dc_coef32x32(
             mut self,
-            scaling_list_dc_coef32x32: [u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_LISTS
+            scaling_list_dc_coef32x32: [u8; crate::vk::H265_SCALING_LIST_32X32_NUM_LISTS
                 as _],
         ) -> Self {
             self.scaling_list_dc_coef32x32 = scaling_list_dc_coef32x32;
@@ -694,8 +680,8 @@ pub(crate) mod reexport {
         pub reserved3: u8,
         pub num_negative_pics: u8,
         pub num_positive_pics: u8,
-        pub delta_poc_s0_minus1: [u16; crate::vk::STD_VIDEO_H265_MAX_DPB_SIZE as _],
-        pub delta_poc_s1_minus1: [u16; crate::vk::STD_VIDEO_H265_MAX_DPB_SIZE as _],
+        pub delta_poc_s0_minus1: [u16; crate::vk::H265_MAX_DPB_SIZE as _],
+        pub delta_poc_s1_minus1: [u16; crate::vk::H265_MAX_DPB_SIZE as _],
     }
     impl Default for H265ShortTermRefPicSet {
         fn default() -> Self {
@@ -774,14 +760,14 @@ pub(crate) mod reexport {
         }
         pub fn delta_poc_s0_minus1(
             mut self,
-            delta_poc_s0_minus1: [u16; crate::vk::STD_VIDEO_H265_MAX_DPB_SIZE as _],
+            delta_poc_s0_minus1: [u16; crate::vk::H265_MAX_DPB_SIZE as _],
         ) -> Self {
             self.delta_poc_s0_minus1 = delta_poc_s0_minus1;
             self
         }
         pub fn delta_poc_s1_minus1(
             mut self,
-            delta_poc_s1_minus1: [u16; crate::vk::STD_VIDEO_H265_MAX_DPB_SIZE as _],
+            delta_poc_s1_minus1: [u16; crate::vk::H265_MAX_DPB_SIZE as _],
         ) -> Self {
             self.delta_poc_s1_minus1 = delta_poc_s1_minus1;
             self
@@ -791,7 +777,7 @@ pub(crate) mod reexport {
     #[derive(Clone, Copy)]
     pub struct H265LongTermRefPicsSps {
         pub used_by_curr_pic_lt_sps_flag: u32,
-        pub lt_ref_pic_poc_lsb_sps: [u32; crate::vk::STD_VIDEO_H265_MAX_LONG_TERM_REF_PICS_SPS
+        pub lt_ref_pic_poc_lsb_sps: [u32; crate::vk::H265_MAX_LONG_TERM_REF_PICS_SPS
             as _],
     }
     impl Default for H265LongTermRefPicsSps {
@@ -812,7 +798,7 @@ pub(crate) mod reexport {
         }
         pub fn lt_ref_pic_poc_lsb_sps(
             mut self,
-            lt_ref_pic_poc_lsb_sps: [u32; crate::vk::STD_VIDEO_H265_MAX_LONG_TERM_REF_PICS_SPS
+            lt_ref_pic_poc_lsb_sps: [u32; crate::vk::H265_MAX_LONG_TERM_REF_PICS_SPS
                 as _],
         ) -> Self {
             self.lt_ref_pic_poc_lsb_sps = lt_ref_pic_poc_lsb_sps;
@@ -1223,9 +1209,8 @@ pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct H265PredictorPaletteEntries {
-        pub predictor_palette_entries: [[u16; crate::vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE
-            as _]; crate::vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE
-            as _],
+        pub predictor_palette_entries: [[u16; crate::vk::H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE
+            as _]; crate::vk::H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE as _],
     }
     impl Default for H265PredictorPaletteEntries {
         fn default() -> Self {
@@ -1237,9 +1222,8 @@ pub(crate) mod reexport {
     impl H265PredictorPaletteEntries {
         pub fn predictor_palette_entries(
             mut self,
-            predictor_palette_entries: [[u16; crate::vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE
-                as _]; crate::vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE
-                as _],
+            predictor_palette_entries: [[u16; crate::vk::H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE
+                as _]; crate::vk::H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE as _],
         ) -> Self {
             self.predictor_palette_entries = predictor_palette_entries;
             self
@@ -2301,10 +2285,8 @@ pub(crate) mod reexport {
         pub log2_max_transform_skip_block_size_minus2: u8,
         pub diff_cu_chroma_qp_offset_depth: u8,
         pub chroma_qp_offset_list_len_minus1: u8,
-        pub cb_qp_offset_list: [i8; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_LIST_SIZE
-            as _],
-        pub cr_qp_offset_list: [i8; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_LIST_SIZE
-            as _],
+        pub cb_qp_offset_list: [i8; crate::vk::H265_CHROMA_QP_OFFSET_LIST_SIZE as _],
+        pub cr_qp_offset_list: [i8; crate::vk::H265_CHROMA_QP_OFFSET_LIST_SIZE as _],
         pub log2_sao_offset_scale_luma: u8,
         pub log2_sao_offset_scale_chroma: u8,
         pub pps_act_y_qp_offset_plus5: i8,
@@ -2317,9 +2299,9 @@ pub(crate) mod reexport {
         pub num_tile_rows_minus1: u8,
         pub reserved1: u8,
         pub reserved2: u8,
-        pub column_width_minus1: [u16; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_COLS_LIST_SIZE
+        pub column_width_minus1: [u16; crate::vk::H265_CHROMA_QP_OFFSET_TILE_COLS_LIST_SIZE
             as _],
-        pub row_height_minus1: [u16; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_ROWS_LIST_SIZE
+        pub row_height_minus1: [u16; crate::vk::H265_CHROMA_QP_OFFSET_TILE_ROWS_LIST_SIZE
             as _],
         pub reserved3: u32,
         pub p_scaling_lists: *const crate::vk::H265ScalingLists,
@@ -2464,16 +2446,14 @@ pub(crate) mod reexport {
         }
         pub fn cb_qp_offset_list(
             mut self,
-            cb_qp_offset_list: [i8; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_LIST_SIZE
-                as _],
+            cb_qp_offset_list: [i8; crate::vk::H265_CHROMA_QP_OFFSET_LIST_SIZE as _],
         ) -> Self {
             self.cb_qp_offset_list = cb_qp_offset_list;
             self
         }
         pub fn cr_qp_offset_list(
             mut self,
-            cr_qp_offset_list: [i8; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_LIST_SIZE
-                as _],
+            cr_qp_offset_list: [i8; crate::vk::H265_CHROMA_QP_OFFSET_LIST_SIZE as _],
         ) -> Self {
             self.cr_qp_offset_list = cr_qp_offset_list;
             self
@@ -2552,7 +2532,7 @@ pub(crate) mod reexport {
         }
         pub fn column_width_minus1(
             mut self,
-            column_width_minus1: [u16; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_COLS_LIST_SIZE
+            column_width_minus1: [u16; crate::vk::H265_CHROMA_QP_OFFSET_TILE_COLS_LIST_SIZE
                 as _],
         ) -> Self {
             self.column_width_minus1 = column_width_minus1;
@@ -2560,7 +2540,7 @@ pub(crate) mod reexport {
         }
         pub fn row_height_minus1(
             mut self,
-            row_height_minus1: [u16; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_ROWS_LIST_SIZE
+            row_height_minus1: [u16; crate::vk::H265_CHROMA_QP_OFFSET_TILE_ROWS_LIST_SIZE
                 as _],
         ) -> Self {
             self.row_height_minus1 = row_height_minus1;
@@ -2728,28 +2708,28 @@ pub(crate) mod reexport {
         pub const EXTENDED_SAR: Self = Self(255);
         pub const INVALID: Self = Self(0x7FFFFFF);
     }
-    pub const STD_VIDEO_H265_CPB_CNT_LIST_SIZE: u32 = 32;
-    pub const STD_VIDEO_H265_SUBLAYERS_LIST_SIZE: u32 = 7;
-    pub const STD_VIDEO_H265_SCALING_LIST_4X4_NUM_LISTS: u32 = 6;
-    pub const STD_VIDEO_H265_SCALING_LIST_4X4_NUM_ELEMENTS: u32 = 16;
-    pub const STD_VIDEO_H265_SCALING_LIST_8X8_NUM_LISTS: u32 = 6;
-    pub const STD_VIDEO_H265_SCALING_LIST_8X8_NUM_ELEMENTS: u32 = 64;
-    pub const STD_VIDEO_H265_SCALING_LIST_16X16_NUM_LISTS: u32 = 6;
-    pub const STD_VIDEO_H265_SCALING_LIST_16X16_NUM_ELEMENTS: u32 = 64;
-    pub const STD_VIDEO_H265_SCALING_LIST_32X32_NUM_LISTS: u32 = 2;
-    pub const STD_VIDEO_H265_SCALING_LIST_32X32_NUM_ELEMENTS: u32 = 64;
-    pub const STD_VIDEO_H265_CHROMA_QP_OFFSET_LIST_SIZE: u32 = 6;
-    pub const STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_COLS_LIST_SIZE: u32 = 19;
-    pub const STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_ROWS_LIST_SIZE: u32 = 21;
-    pub const STD_VIDEO_H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE: u32 = 3;
-    pub const STD_VIDEO_H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE: u32 = 128;
-    pub const STD_VIDEO_H265_MAX_NUM_LIST_REF: u32 = 15;
-    pub const STD_VIDEO_H265_MAX_CHROMA_PLANES: u32 = 2;
-    pub const STD_VIDEO_H265_MAX_SHORT_TERM_REF_PIC_SETS: u32 = 64;
-    pub const STD_VIDEO_H265_MAX_DPB_SIZE: u32 = 16;
-    pub const STD_VIDEO_H265_MAX_LONG_TERM_REF_PICS_SPS: u32 = 32;
-    pub const STD_VIDEO_H265_MAX_LONG_TERM_PICS: u32 = 16;
-    pub const STD_VIDEO_H265_MAX_DELTA_POC: u32 = 48;
-    pub const STD_VIDEO_H265_NO_REFERENCE_PICTURE: u32 = 0xF;
+    pub const H265_CPB_CNT_LIST_SIZE: u32 = 32;
+    pub const H265_SUBLAYERS_LIST_SIZE: u32 = 7;
+    pub const H265_SCALING_LIST_4X4_NUM_LISTS: u32 = 6;
+    pub const H265_SCALING_LIST_4X4_NUM_ELEMENTS: u32 = 16;
+    pub const H265_SCALING_LIST_8X8_NUM_LISTS: u32 = 6;
+    pub const H265_SCALING_LIST_8X8_NUM_ELEMENTS: u32 = 64;
+    pub const H265_SCALING_LIST_16X16_NUM_LISTS: u32 = 6;
+    pub const H265_SCALING_LIST_16X16_NUM_ELEMENTS: u32 = 64;
+    pub const H265_SCALING_LIST_32X32_NUM_LISTS: u32 = 2;
+    pub const H265_SCALING_LIST_32X32_NUM_ELEMENTS: u32 = 64;
+    pub const H265_CHROMA_QP_OFFSET_LIST_SIZE: u32 = 6;
+    pub const H265_CHROMA_QP_OFFSET_TILE_COLS_LIST_SIZE: u32 = 19;
+    pub const H265_CHROMA_QP_OFFSET_TILE_ROWS_LIST_SIZE: u32 = 21;
+    pub const H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE: u32 = 3;
+    pub const H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE: u32 = 128;
+    pub const H265_MAX_NUM_LIST_REF: u32 = 15;
+    pub const H265_MAX_CHROMA_PLANES: u32 = 2;
+    pub const H265_MAX_SHORT_TERM_REF_PIC_SETS: u32 = 64;
+    pub const H265_MAX_DPB_SIZE: u32 = 16;
+    pub const H265_MAX_LONG_TERM_REF_PICS_SPS: u32 = 32;
+    pub const H265_MAX_LONG_TERM_PICS: u32 = 16;
+    pub const H265_MAX_DELTA_POC: u32 = 48;
+    pub const H265_NO_REFERENCE_PICTURE: u32 = 0xF;
 }
 pub use reexport::*;

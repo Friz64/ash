@@ -514,15 +514,12 @@ pub(crate) mod reexport {
     #[derive(Clone, Copy)]
     pub struct AV1LoopFilter {
         pub flags: crate::vk::AV1LoopFilterFlags,
-        pub loop_filter_level: [u8; crate::vk::STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS
-            as _],
+        pub loop_filter_level: [u8; crate::vk::AV1_MAX_LOOP_FILTER_STRENGTHS as _],
         pub loop_filter_sharpness: u8,
         pub update_ref_delta: u8,
-        pub loop_filter_ref_deltas: [i8; crate::vk::STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME
-            as _],
+        pub loop_filter_ref_deltas: [i8; crate::vk::AV1_TOTAL_REFS_PER_FRAME as _],
         pub update_mode_delta: u8,
-        pub loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS
-            as _],
+        pub loop_filter_mode_deltas: [i8; crate::vk::AV1_LOOP_FILTER_ADJUSTMENTS as _],
     }
     impl Default for AV1LoopFilter {
         fn default() -> Self {
@@ -544,8 +541,7 @@ pub(crate) mod reexport {
         }
         pub fn loop_filter_level(
             mut self,
-            loop_filter_level: [u8; crate::vk::STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS
-                as _],
+            loop_filter_level: [u8; crate::vk::AV1_MAX_LOOP_FILTER_STRENGTHS as _],
         ) -> Self {
             self.loop_filter_level = loop_filter_level;
             self
@@ -560,8 +556,7 @@ pub(crate) mod reexport {
         }
         pub fn loop_filter_ref_deltas(
             mut self,
-            loop_filter_ref_deltas: [i8; crate::vk::STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME
-                as _],
+            loop_filter_ref_deltas: [i8; crate::vk::AV1_TOTAL_REFS_PER_FRAME as _],
         ) -> Self {
             self.loop_filter_ref_deltas = loop_filter_ref_deltas;
             self
@@ -572,8 +567,7 @@ pub(crate) mod reexport {
         }
         pub fn loop_filter_mode_deltas(
             mut self,
-            loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS
-                as _],
+            loop_filter_mode_deltas: [i8; crate::vk::AV1_LOOP_FILTER_ADJUSTMENTS as _],
         ) -> Self {
             self.loop_filter_mode_deltas = loop_filter_mode_deltas;
             self
@@ -663,9 +657,9 @@ pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AV1Segmentation {
-        pub feature_enabled: [u8; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
-        pub feature_data: [[i16; crate::vk::STD_VIDEO_AV1_SEG_LVL_MAX
-            as _]; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
+        pub feature_enabled: [u8; crate::vk::AV1_MAX_SEGMENTS as _],
+        pub feature_data: [[i16; crate::vk::AV1_SEG_LVL_MAX
+            as _]; crate::vk::AV1_MAX_SEGMENTS as _],
     }
     impl Default for AV1Segmentation {
         fn default() -> Self {
@@ -678,15 +672,15 @@ pub(crate) mod reexport {
     impl AV1Segmentation {
         pub fn feature_enabled(
             mut self,
-            feature_enabled: [u8; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
+            feature_enabled: [u8; crate::vk::AV1_MAX_SEGMENTS as _],
         ) -> Self {
             self.feature_enabled = feature_enabled;
             self
         }
         pub fn feature_data(
             mut self,
-            feature_data: [[i16; crate::vk::STD_VIDEO_AV1_SEG_LVL_MAX
-                as _]; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
+            feature_data: [[i16; crate::vk::AV1_SEG_LVL_MAX
+                as _]; crate::vk::AV1_MAX_SEGMENTS as _],
         ) -> Self {
             self.feature_data = feature_data;
             self
@@ -786,14 +780,10 @@ pub(crate) mod reexport {
     pub struct AV1CDEF {
         pub cdef_damping_minus_3: u8,
         pub cdef_bits: u8,
-        pub cdef_y_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-            as _],
-        pub cdef_y_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-            as _],
-        pub cdef_uv_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-            as _],
-        pub cdef_uv_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-            as _],
+        pub cdef_y_pri_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
+        pub cdef_y_sec_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
+        pub cdef_uv_pri_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
+        pub cdef_uv_sec_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
     }
     impl Default for AV1CDEF {
         fn default() -> Self {
@@ -818,32 +808,28 @@ pub(crate) mod reexport {
         }
         pub fn cdef_y_pri_strength(
             mut self,
-            cdef_y_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-                as _],
+            cdef_y_pri_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
         ) -> Self {
             self.cdef_y_pri_strength = cdef_y_pri_strength;
             self
         }
         pub fn cdef_y_sec_strength(
             mut self,
-            cdef_y_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-                as _],
+            cdef_y_sec_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
         ) -> Self {
             self.cdef_y_sec_strength = cdef_y_sec_strength;
             self
         }
         pub fn cdef_uv_pri_strength(
             mut self,
-            cdef_uv_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-                as _],
+            cdef_uv_pri_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
         ) -> Self {
             self.cdef_uv_pri_strength = cdef_uv_pri_strength;
             self
         }
         pub fn cdef_uv_sec_strength(
             mut self,
-            cdef_uv_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
-                as _],
+            cdef_uv_sec_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
         ) -> Self {
             self.cdef_uv_sec_strength = cdef_uv_sec_strength;
             self
@@ -852,9 +838,9 @@ pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AV1LoopRestoration {
-        pub frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES
+        pub frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::AV1_MAX_NUM_PLANES
             as _],
-        pub loop_restoration_size: [u16; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES as _],
+        pub loop_restoration_size: [u16; crate::vk::AV1_MAX_NUM_PLANES as _],
     }
     impl Default for AV1LoopRestoration {
         fn default() -> Self {
@@ -867,7 +853,7 @@ pub(crate) mod reexport {
     impl AV1LoopRestoration {
         pub fn frame_restoration_type(
             mut self,
-            frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES
+            frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::AV1_MAX_NUM_PLANES
                 as _],
         ) -> Self {
             self.frame_restoration_type = frame_restoration_type;
@@ -875,7 +861,7 @@ pub(crate) mod reexport {
         }
         pub fn loop_restoration_size(
             mut self,
-            loop_restoration_size: [u16; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES as _],
+            loop_restoration_size: [u16; crate::vk::AV1_MAX_NUM_PLANES as _],
         ) -> Self {
             self.loop_restoration_size = loop_restoration_size;
             self
@@ -884,9 +870,9 @@ pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AV1GlobalMotion {
-        pub gm_type: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
-        pub gm_params: [[i32; crate::vk::STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS
-            as _]; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+        pub gm_type: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
+        pub gm_params: [[i32; crate::vk::AV1_GLOBAL_MOTION_PARAMS
+            as _]; crate::vk::AV1_NUM_REF_FRAMES as _],
     }
     impl Default for AV1GlobalMotion {
         fn default() -> Self {
@@ -899,15 +885,15 @@ pub(crate) mod reexport {
     impl AV1GlobalMotion {
         pub fn gm_type(
             mut self,
-            gm_type: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+            gm_type: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
         ) -> Self {
             self.gm_type = gm_type;
             self
         }
         pub fn gm_params(
             mut self,
-            gm_params: [[i32; crate::vk::STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS
-                as _]; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+            gm_params: [[i32; crate::vk::AV1_GLOBAL_MOTION_PARAMS
+                as _]; crate::vk::AV1_NUM_REF_FRAMES as _],
         ) -> Self {
             self.gm_params = gm_params;
             self
@@ -973,19 +959,17 @@ pub(crate) mod reexport {
         pub grain_seed: u16,
         pub film_grain_params_ref_idx: u8,
         pub num_y_points: u8,
-        pub point_y_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
-        pub point_y_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
+        pub point_y_value: [u8; crate::vk::AV1_MAX_NUM_Y_POINTS as _],
+        pub point_y_scaling: [u8; crate::vk::AV1_MAX_NUM_Y_POINTS as _],
         pub num_cb_points: u8,
-        pub point_cb_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
-        pub point_cb_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
+        pub point_cb_value: [u8; crate::vk::AV1_MAX_NUM_CB_POINTS as _],
+        pub point_cb_scaling: [u8; crate::vk::AV1_MAX_NUM_CB_POINTS as _],
         pub num_cr_points: u8,
-        pub point_cr_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
-        pub point_cr_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
-        pub ar_coeffs_y_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_LUMA as _],
-        pub ar_coeffs_cb_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA
-            as _],
-        pub ar_coeffs_cr_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA
-            as _],
+        pub point_cr_value: [u8; crate::vk::AV1_MAX_NUM_CR_POINTS as _],
+        pub point_cr_scaling: [u8; crate::vk::AV1_MAX_NUM_CR_POINTS as _],
+        pub ar_coeffs_y_plus_128: [i8; crate::vk::AV1_MAX_NUM_POS_LUMA as _],
+        pub ar_coeffs_cb_plus_128: [i8; crate::vk::AV1_MAX_NUM_POS_CHROMA as _],
+        pub ar_coeffs_cr_plus_128: [i8; crate::vk::AV1_MAX_NUM_POS_CHROMA as _],
         pub cb_mult: u8,
         pub cb_luma_mult: u8,
         pub cb_offset: u16,
@@ -1062,14 +1046,14 @@ pub(crate) mod reexport {
         }
         pub fn point_y_value(
             mut self,
-            point_y_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
+            point_y_value: [u8; crate::vk::AV1_MAX_NUM_Y_POINTS as _],
         ) -> Self {
             self.point_y_value = point_y_value;
             self
         }
         pub fn point_y_scaling(
             mut self,
-            point_y_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
+            point_y_scaling: [u8; crate::vk::AV1_MAX_NUM_Y_POINTS as _],
         ) -> Self {
             self.point_y_scaling = point_y_scaling;
             self
@@ -1080,14 +1064,14 @@ pub(crate) mod reexport {
         }
         pub fn point_cb_value(
             mut self,
-            point_cb_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
+            point_cb_value: [u8; crate::vk::AV1_MAX_NUM_CB_POINTS as _],
         ) -> Self {
             self.point_cb_value = point_cb_value;
             self
         }
         pub fn point_cb_scaling(
             mut self,
-            point_cb_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
+            point_cb_scaling: [u8; crate::vk::AV1_MAX_NUM_CB_POINTS as _],
         ) -> Self {
             self.point_cb_scaling = point_cb_scaling;
             self
@@ -1098,35 +1082,35 @@ pub(crate) mod reexport {
         }
         pub fn point_cr_value(
             mut self,
-            point_cr_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
+            point_cr_value: [u8; crate::vk::AV1_MAX_NUM_CR_POINTS as _],
         ) -> Self {
             self.point_cr_value = point_cr_value;
             self
         }
         pub fn point_cr_scaling(
             mut self,
-            point_cr_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
+            point_cr_scaling: [u8; crate::vk::AV1_MAX_NUM_CR_POINTS as _],
         ) -> Self {
             self.point_cr_scaling = point_cr_scaling;
             self
         }
         pub fn ar_coeffs_y_plus_128(
             mut self,
-            ar_coeffs_y_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_LUMA as _],
+            ar_coeffs_y_plus_128: [i8; crate::vk::AV1_MAX_NUM_POS_LUMA as _],
         ) -> Self {
             self.ar_coeffs_y_plus_128 = ar_coeffs_y_plus_128;
             self
         }
         pub fn ar_coeffs_cb_plus_128(
             mut self,
-            ar_coeffs_cb_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA as _],
+            ar_coeffs_cb_plus_128: [i8; crate::vk::AV1_MAX_NUM_POS_CHROMA as _],
         ) -> Self {
             self.ar_coeffs_cb_plus_128 = ar_coeffs_cb_plus_128;
             self
         }
         pub fn ar_coeffs_cr_plus_128(
             mut self,
-            ar_coeffs_cr_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA as _],
+            ar_coeffs_cr_plus_128: [i8; crate::vk::AV1_MAX_NUM_POS_CHROMA as _],
         ) -> Self {
             self.ar_coeffs_cr_plus_128 = ar_coeffs_cr_plus_128;
             self
@@ -1433,26 +1417,26 @@ pub(crate) mod reexport {
         pub const RESERVED: Self = Self(3);
         pub const INVALID: Self = Self(0x7FFFFFF);
     }
-    pub const STD_VIDEO_AV1_NUM_REF_FRAMES: u32 = 8;
-    pub const STD_VIDEO_AV1_REFS_PER_FRAME: u32 = 7;
-    pub const STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME: u32 = 8;
-    pub const STD_VIDEO_AV1_MAX_TILE_COLS: u32 = 64;
-    pub const STD_VIDEO_AV1_MAX_TILE_ROWS: u32 = 64;
-    pub const STD_VIDEO_AV1_MAX_SEGMENTS: u32 = 8;
-    pub const STD_VIDEO_AV1_SEG_LVL_MAX: u32 = 8;
-    pub const STD_VIDEO_AV1_PRIMARY_REF_NONE: u32 = 7;
-    pub const STD_VIDEO_AV1_SELECT_INTEGER_MV: u32 = 2;
-    pub const STD_VIDEO_AV1_SELECT_SCREEN_CONTENT_TOOLS: u32 = 2;
-    pub const STD_VIDEO_AV1_SKIP_MODE_FRAMES: u32 = 2;
-    pub const STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS: u32 = 4;
-    pub const STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS: u32 = 2;
-    pub const STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS: u32 = 8;
-    pub const STD_VIDEO_AV1_MAX_NUM_PLANES: u32 = 3;
-    pub const STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS: u32 = 6;
-    pub const STD_VIDEO_AV1_MAX_NUM_Y_POINTS: u32 = 14;
-    pub const STD_VIDEO_AV1_MAX_NUM_CB_POINTS: u32 = 10;
-    pub const STD_VIDEO_AV1_MAX_NUM_CR_POINTS: u32 = 10;
-    pub const STD_VIDEO_AV1_MAX_NUM_POS_LUMA: u32 = 24;
-    pub const STD_VIDEO_AV1_MAX_NUM_POS_CHROMA: u32 = 25;
+    pub const AV1_NUM_REF_FRAMES: u32 = 8;
+    pub const AV1_REFS_PER_FRAME: u32 = 7;
+    pub const AV1_TOTAL_REFS_PER_FRAME: u32 = 8;
+    pub const AV1_MAX_TILE_COLS: u32 = 64;
+    pub const AV1_MAX_TILE_ROWS: u32 = 64;
+    pub const AV1_MAX_SEGMENTS: u32 = 8;
+    pub const AV1_SEG_LVL_MAX: u32 = 8;
+    pub const AV1_PRIMARY_REF_NONE: u32 = 7;
+    pub const AV1_SELECT_INTEGER_MV: u32 = 2;
+    pub const AV1_SELECT_SCREEN_CONTENT_TOOLS: u32 = 2;
+    pub const AV1_SKIP_MODE_FRAMES: u32 = 2;
+    pub const AV1_MAX_LOOP_FILTER_STRENGTHS: u32 = 4;
+    pub const AV1_LOOP_FILTER_ADJUSTMENTS: u32 = 2;
+    pub const AV1_MAX_CDEF_FILTER_STRENGTHS: u32 = 8;
+    pub const AV1_MAX_NUM_PLANES: u32 = 3;
+    pub const AV1_GLOBAL_MOTION_PARAMS: u32 = 6;
+    pub const AV1_MAX_NUM_Y_POINTS: u32 = 14;
+    pub const AV1_MAX_NUM_CB_POINTS: u32 = 10;
+    pub const AV1_MAX_NUM_CR_POINTS: u32 = 10;
+    pub const AV1_MAX_NUM_POS_LUMA: u32 = 24;
+    pub const AV1_MAX_NUM_POS_CHROMA: u32 = 25;
 }
 pub use reexport::*;

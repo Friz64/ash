@@ -468,10 +468,10 @@ pub(crate) mod reexport {
         pub tx_mode: crate::vk::AV1TxMode,
         pub delta_q_res: u8,
         pub delta_lf_res: u8,
-        pub ref_order_hint: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
-        pub ref_frame_idx: [i8; crate::vk::STD_VIDEO_AV1_REFS_PER_FRAME as _],
+        pub ref_order_hint: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
+        pub ref_frame_idx: [i8; crate::vk::AV1_REFS_PER_FRAME as _],
         pub reserved1: [u8; 3 as _],
-        pub delta_frame_id_minus_1: [u32; crate::vk::STD_VIDEO_AV1_REFS_PER_FRAME as _],
+        pub delta_frame_id_minus_1: [u32; crate::vk::AV1_REFS_PER_FRAME as _],
         pub p_tile_info: *const crate::vk::AV1TileInfo<'a>,
         pub p_quantization: *const crate::vk::AV1Quantization,
         pub p_segmentation: *const crate::vk::AV1Segmentation,
@@ -579,14 +579,14 @@ pub(crate) mod reexport {
         }
         pub fn ref_order_hint(
             mut self,
-            ref_order_hint: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+            ref_order_hint: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
         ) -> Self {
             self.ref_order_hint = ref_order_hint;
             self
         }
         pub fn ref_frame_idx(
             mut self,
-            ref_frame_idx: [i8; crate::vk::STD_VIDEO_AV1_REFS_PER_FRAME as _],
+            ref_frame_idx: [i8; crate::vk::AV1_REFS_PER_FRAME as _],
         ) -> Self {
             self.ref_frame_idx = ref_frame_idx;
             self
@@ -597,7 +597,7 @@ pub(crate) mod reexport {
         }
         pub fn delta_frame_id_minus_1(
             mut self,
-            delta_frame_id_minus_1: [u32; crate::vk::STD_VIDEO_AV1_REFS_PER_FRAME as _],
+            delta_frame_id_minus_1: [u32; crate::vk::AV1_REFS_PER_FRAME as _],
         ) -> Self {
             self.delta_frame_id_minus_1 = delta_frame_id_minus_1;
             self

@@ -14,11 +14,11 @@ impl Code for Constant {
         trace!("generating");
 
         let mut location = Destination::primary_location(self.required_by);
-        let mut name = crate::constant_token(self.name.prefix_trimmed());
+        let mut name = ctx.constant_token(self.name);
 
-        for suffix in ["EXTENSION_NAME", "SPEC_VERSION"] {
-            if self.name.original().ends_with(suffix) {
-                let new_name = crate::constant_token(suffix);
+        for special in ["EXTENSION_NAME", "SPEC_VERSION"] {
+            if self.name.original().ends_with(special) {
+                let new_name = ctx.constant_token_from_prefix_stripped(special);
                 location.reexport = false;
                 location.reexport_as.push(ReexportAs {
                     original: new_name.clone(),

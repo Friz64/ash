@@ -53,18 +53,6 @@ fn escape_ident(name: &str) -> Ident {
     syn::parse_str(name).unwrap_or_else(|_| format_ident!("_{name}"))
 }
 
-fn variable_token(original: &str) -> Ident {
-    crate::escape_ident(&original.to_snek_case())
-}
-
-fn constant_token(prefix_trimmed: &str) -> Ident {
-    if let Some(without_extension) = prefix_trimmed.strip_suffix("EXTENSION_NAME") {
-        syn::parse_str(&format!("{without_extension}NAME")).unwrap()
-    } else {
-        syn::parse_str(prefix_trimmed).unwrap()
-    }
-}
-
 #[derive(Debug)]
 pub struct Context<'a>(&'a AnalysisResult);
 
@@ -76,9 +64,30 @@ impl<'a> Deref for Context<'a> {
     }
 }
 
+impl Context<'_> {
+    fn variable_token_from_original(&self, original: &str) -> Ident {
+        crate::escape_ident(&original.to_snek_case())
+    }
+
+    fn constant_token_from_prefix_stripped(&self, prefix_stripped: &str) -> Ident {
+        if let Some(without_extension) = prefix_stripped.strip_suffix("EXTENSION_NAME") {
+            syn::parse_str(&format!("{without_extension}NAME")).unwrap()
+        } else {
+            syn::parse_str(prefix_stripped).unwrap()
+        }
+    }
+
+    fn constant_token(&self, name: ConstantName) -> Ident {
+        let constant_item = &self.items.constants[&name];
+        self.constant_token_from_prefix_stripped(
+            name.prefix_stripped(constant_item.required_by.library),
+        )
+    }
+}
+
 impl RustTokens for Context<'_> {
     fn variable_token(&self, name: VariableName) -> Ident {
-        variable_token(name.original())
+        self.variable_token_from_original(name.original())
     }
 
     fn type_tokens(&self, name: TypeName, qualified: bool, lifetime: &Lifetime) -> TokenStream {
@@ -103,7 +112,7 @@ impl RustTokens for Context<'_> {
     }
 
     fn constant_tokens(&self, name: ConstantName, qualified: bool) -> TokenStream {
-        let ident = constant_token(name.prefix_trimmed());
+        let ident = self.constant_token(name);
         let path = qualified.then(|| quote! { crate::vk:: });
         quote! { #path #ident }
     }

@@ -318,11 +318,11 @@ pub(crate) mod reexport {
         pub tx_mode: crate::vk::AV1TxMode,
         pub delta_q_res: u8,
         pub delta_lf_res: u8,
-        pub skip_mode_frame: [u8; crate::vk::STD_VIDEO_AV1_SKIP_MODE_FRAMES as _],
+        pub skip_mode_frame: [u8; crate::vk::AV1_SKIP_MODE_FRAMES as _],
         pub coded_denom: u8,
         pub reserved2: [u8; 3 as _],
-        pub order_hints: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
-        pub expected_frame_id: [u32; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+        pub order_hints: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
+        pub expected_frame_id: [u32; crate::vk::AV1_NUM_REF_FRAMES as _],
         pub p_tile_info: *const crate::vk::AV1TileInfo<'a>,
         pub p_quantization: *const crate::vk::AV1Quantization,
         pub p_segmentation: *const crate::vk::AV1Segmentation,
@@ -414,7 +414,7 @@ pub(crate) mod reexport {
         }
         pub fn skip_mode_frame(
             mut self,
-            skip_mode_frame: [u8; crate::vk::STD_VIDEO_AV1_SKIP_MODE_FRAMES as _],
+            skip_mode_frame: [u8; crate::vk::AV1_SKIP_MODE_FRAMES as _],
         ) -> Self {
             self.skip_mode_frame = skip_mode_frame;
             self
@@ -429,14 +429,14 @@ pub(crate) mod reexport {
         }
         pub fn order_hints(
             mut self,
-            order_hints: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+            order_hints: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
         ) -> Self {
             self.order_hints = order_hints;
             self
         }
         pub fn expected_frame_id(
             mut self,
-            expected_frame_id: [u32; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+            expected_frame_id: [u32; crate::vk::AV1_NUM_REF_FRAMES as _],
         ) -> Self {
             self.expected_frame_id = expected_frame_id;
             self
@@ -521,7 +521,7 @@ pub(crate) mod reexport {
         pub frame_type: u8,
         pub ref_frame_sign_bias: u8,
         pub order_hint: u8,
-        pub saved_order_hints: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+        pub saved_order_hints: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
     }
     impl Default for DecodeAV1ReferenceInfo {
         fn default() -> Self {
@@ -553,7 +553,7 @@ pub(crate) mod reexport {
         }
         pub fn saved_order_hints(
             mut self,
-            saved_order_hints: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+            saved_order_hints: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
         ) -> Self {
             self.saved_order_hints = saved_order_hints;
             self

@@ -79,7 +79,7 @@ pub(crate) mod reexport {
         pub reserved2: u8,
         pub frame_num: u16,
         pub idr_pic_id: u16,
-        pub pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
+        pub pic_order_cnt: [i32; crate::vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
             as _],
     }
     impl Default for DecodeH264PictureInfo {
@@ -127,8 +127,7 @@ pub(crate) mod reexport {
         }
         pub fn pic_order_cnt(
             mut self,
-            pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
-                as _],
+            pic_order_cnt: [i32; crate::vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE as _],
         ) -> Self {
             self.pic_order_cnt = pic_order_cnt;
             self
@@ -187,7 +186,7 @@ pub(crate) mod reexport {
         pub flags: crate::vk::DecodeH264ReferenceInfoFlags,
         pub frame_num: u16,
         pub reserved: u16,
-        pub pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
+        pub pic_order_cnt: [i32; crate::vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
             as _],
     }
     impl Default for DecodeH264ReferenceInfo {
@@ -215,8 +214,7 @@ pub(crate) mod reexport {
         }
         pub fn pic_order_cnt(
             mut self,
-            pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
-                as _],
+            pic_order_cnt: [i32; crate::vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE as _],
         ) -> Self {
             self.pic_order_cnt = pic_order_cnt;
             self
@@ -240,7 +238,7 @@ pub(crate) mod reexport {
         pub const BOTTOM: Self = Self(1);
         pub const INVALID: Self = Self(0x7FFFFFF);
     }
-    pub const STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE: u32 = 2;
+    pub const DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE: u32 = 2;
     pub const STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0: u32 = crate::vk::make_video_std_version(
         1,
         0,
