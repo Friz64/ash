@@ -2,107 +2,113 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_layer_settings.html) · Extension `VK_EXT_layer_settings`
 #![doc(alias = "VK_EXT_layer_settings")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct LayerSettingsCreateInfoEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub setting_count: u32,
-    pub p_settings: *const crate::vk::LayerSettingEXT<'a>,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for LayerSettingsCreateInfoEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LAYER_SETTINGS_CREATE_INFO_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
-for LayerSettingsCreateInfoEXT<'a> {}
-impl<'a> Default for LayerSettingsCreateInfoEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            setting_count: Default::default(),
-            p_settings: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_layer_settings";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct LayerSettingsCreateInfoEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub setting_count: u32,
+        pub p_settings: *const crate::vk::LayerSettingEXT<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for LayerSettingsCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LAYER_SETTINGS_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+    for LayerSettingsCreateInfoEXT<'a> {}
+    impl<'a> Default for LayerSettingsCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                setting_count: Default::default(),
+                p_settings: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> LayerSettingsCreateInfoEXT<'a> {
-    pub fn settings(mut self, settings: &'a [crate::vk::LayerSettingEXT<'a>]) -> Self {
-        self.setting_count = settings.len() as _;
-        self.p_settings = settings.as_ptr();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct LayerSettingEXT<'a> {
-    pub p_layer_name: *const core::ffi::c_char,
-    pub p_setting_name: *const core::ffi::c_char,
-    pub _type: crate::vk::LayerSettingTypeEXT,
-    pub value_count: u32,
-    pub p_values: *const core::ffi::c_void,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-impl<'a> LayerSettingEXT<'a> {
-    pub fn layer_name(mut self, layer_name: &'a core::ffi::CStr) -> Self {
-        self.p_layer_name = layer_name.as_ptr();
-        self
-    }
-    pub unsafe fn layer_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
-        if self.p_layer_name.is_null() {
-            None
-        } else {
-            Some(unsafe { core::ffi::CStr::from_ptr(self.p_layer_name) })
+    impl<'a> LayerSettingsCreateInfoEXT<'a> {
+        pub fn settings(
+            mut self,
+            settings: &'a [crate::vk::LayerSettingEXT<'a>],
+        ) -> Self {
+            self.setting_count = settings.len() as _;
+            self.p_settings = settings.as_ptr();
+            self
         }
     }
-    pub fn setting_name(mut self, setting_name: &'a core::ffi::CStr) -> Self {
-        self.p_setting_name = setting_name.as_ptr();
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct LayerSettingEXT<'a> {
+        pub p_layer_name: *const core::ffi::c_char,
+        pub p_setting_name: *const core::ffi::c_char,
+        pub _type: crate::vk::LayerSettingTypeEXT,
+        pub value_count: u32,
+        pub p_values: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub unsafe fn setting_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
-        if self.p_setting_name.is_null() {
-            None
-        } else {
-            Some(unsafe { core::ffi::CStr::from_ptr(self.p_setting_name) })
+    impl<'a> LayerSettingEXT<'a> {
+        pub fn layer_name(mut self, layer_name: &'a core::ffi::CStr) -> Self {
+            self.p_layer_name = layer_name.as_ptr();
+            self
+        }
+        pub unsafe fn layer_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_layer_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_layer_name) })
+            }
+        }
+        pub fn setting_name(mut self, setting_name: &'a core::ffi::CStr) -> Self {
+            self.p_setting_name = setting_name.as_ptr();
+            self
+        }
+        pub unsafe fn setting_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_setting_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_setting_name) })
+            }
+        }
+        pub fn _type(mut self, _type: crate::vk::LayerSettingTypeEXT) -> Self {
+            self._type = _type;
+            self
+        }
+        pub fn values(mut self, values: &'a [u8]) -> Self {
+            self.value_count = values.len() as _;
+            self.p_values = values.as_ptr().cast();
+            self
         }
     }
-    pub fn _type(mut self, _type: crate::vk::LayerSettingTypeEXT) -> Self {
-        self._type = _type;
-        self
+    ///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
+    impl crate::vk::StructureType {
+        pub const LAYER_SETTINGS_CREATE_INFO_EXT: Self = Self(1000496000);
     }
-    pub fn values(mut self, values: &'a [u8]) -> Self {
-        self.value_count = values.len() as _;
-        self.p_values = values.as_ptr().cast();
-        self
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct LayerSettingTypeEXT(pub(crate) i32);
+    ///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
+    impl LayerSettingTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const BOOL32_EXT: Self = Self(0);
+        pub const INT32_EXT: Self = Self(1);
+        pub const INT64_EXT: Self = Self(2);
+        pub const UINT32_EXT: Self = Self(3);
+        pub const UINT64_EXT: Self = Self(4);
+        pub const FLOAT32_EXT: Self = Self(5);
+        pub const FLOAT64_EXT: Self = Self(6);
+        pub const STRING_EXT: Self = Self(7);
     }
 }
-///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
-impl crate::vk::StructureType {
-    pub const LAYER_SETTINGS_CREATE_INFO_EXT: Self = Self(1000496000);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct LayerSettingTypeEXT(pub(crate) i32);
-///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
-impl LayerSettingTypeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const BOOL32_EXT: Self = Self(0);
-    pub const INT32_EXT: Self = Self(1);
-    pub const INT64_EXT: Self = Self(2);
-    pub const UINT32_EXT: Self = Self(3);
-    pub const UINT64_EXT: Self = Self(4);
-    pub const FLOAT32_EXT: Self = Self(5);
-    pub const FLOAT64_EXT: Self = Self(6);
-    pub const STRING_EXT: Self = Self(7);
-}
-pub const EXT_LAYER_SETTINGS_SPEC_VERSION: u32 = 2;
-pub const EXT_LAYER_SETTINGS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_layer_settings";
+pub use reexport::*;

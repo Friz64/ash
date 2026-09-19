@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_multi_draw.html) · Extension `VK_EXT_multi_draw`
 #![doc(alias = "VK_EXT_multi_draw")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_multi_draw";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_draw_multi_ext: crate::vk::PFN_vkCmdDrawMultiEXT,
@@ -203,7 +205,5 @@ pub(crate) mod reexport {
         stride: u32,
         p_vertex_offset: *const i32,
     );
-    pub const EXT_MULTI_DRAW_SPEC_VERSION: u32 = 1;
-    pub const EXT_MULTI_DRAW_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_multi_draw";
 }
 pub use reexport::*;

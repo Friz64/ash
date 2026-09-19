@@ -2,43 +2,49 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_INTEL_shader_integer_functions2.html) · Extension `VK_INTEL_shader_integer_functions2`
 #![doc(alias = "VK_INTEL_shader_integer_functions2")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_integer_functions2: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {}
-impl<'a> Default for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_integer_functions2: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_INTEL_shader_integer_functions2";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_integer_functions2: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_integer_functions2: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
-    pub fn shader_integer_functions2(mut self, shader_integer_functions2: bool) -> Self {
-        self.shader_integer_functions2 = shader_integer_functions2.into();
-        self
+    impl<'a> PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
+        pub fn shader_integer_functions2(
+            mut self,
+            shader_integer_functions2: bool,
+        ) -> Self {
+            self.shader_integer_functions2 = shader_integer_functions2.into();
+            self
+        }
+    }
+    ///Provided by [`intel::shader_integer_functions2`](crate::intel::shader_integer_functions2)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL: Self = Self(
+            1000209000,
+        );
     }
 }
-///Provided by [`intel::shader_integer_functions2`](crate::intel::shader_integer_functions2)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL: Self = Self(
-        1000209000,
-    );
-}
-pub const INTEL_SHADER_INTEGER_FUNCTIONS_2_SPEC_VERSION: u32 = 1;
-pub const INTEL_SHADER_INTEGER_FUNCTIONS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_INTEL_shader_integer_functions2";
+pub use reexport::*;

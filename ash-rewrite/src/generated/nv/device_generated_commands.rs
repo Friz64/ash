@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_generated_commands.html) · Extension `VK_NV_device_generated_commands`
 #![doc(alias = "VK_NV_device_generated_commands")]
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_execute_generated_commands_nv: crate::vk::PFN_vkCmdExecuteGeneratedCommandsNV,
@@ -1093,7 +1095,5 @@ pub(crate) mod reexport {
         indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
         p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
-    pub const NV_DEVICE_GENERATED_COMMANDS_SPEC_VERSION: u32 = 3;
-    pub const NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_transform_feedback.html) · Extension `VK_EXT_transform_feedback`
 #![doc(alias = "VK_EXT_transform_feedback")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_transform_feedback";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_bind_transform_feedback_buffers_ext: crate::vk::PFN_vkCmdBindTransformFeedbackBuffersEXT,
@@ -485,7 +487,5 @@ pub(crate) mod reexport {
         counter_offset: u32,
         vertex_stride: u32,
     );
-    pub const EXT_TRANSFORM_FEEDBACK_SPEC_VERSION: u32 = 1;
-    pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_transform_feedback";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_performance_query.html) · Extension `VK_KHR_performance_query`
 #![doc(alias = "VK_KHR_performance_query")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_performance_query";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub enumerate_physical_device_queue_family_performance_query_counters_khr: crate::vk::PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR,
@@ -723,7 +725,5 @@ pub(crate) mod reexport {
     pub type PFN_vkReleaseProfilingLockKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
     );
-    pub const KHR_PERFORMANCE_QUERY_SPEC_VERSION: u32 = 1;
-    pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_performance_query";
 }
 pub use reexport::*;

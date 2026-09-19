@@ -2,192 +2,196 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_address_binding_report.html) · Extension `VK_EXT_device_address_binding_report`
 #![doc(alias = "VK_EXT_device_address_binding_report")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub report_address_binding: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            report_address_binding: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_device_address_binding_report";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub report_address_binding: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                report_address_binding: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
-    pub fn report_address_binding(mut self, report_address_binding: bool) -> Self {
-        self.report_address_binding = report_address_binding.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct DeviceAddressBindingCallbackDataEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub flags: crate::vk::DeviceAddressBindingFlagsEXT,
-    pub base_address: crate::vk::DeviceAddress,
-    pub size: crate::vk::DeviceSize,
-    pub binding_type: crate::vk::DeviceAddressBindingTypeEXT,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for DeviceAddressBindingCallbackDataEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>>
-for DeviceAddressBindingCallbackDataEXT<'a> {}
-impl<'a> Default for DeviceAddressBindingCallbackDataEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            flags: Default::default(),
-            base_address: Default::default(),
-            size: Default::default(),
-            binding_type: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
+        pub fn report_address_binding(mut self, report_address_binding: bool) -> Self {
+            self.report_address_binding = report_address_binding.into();
+            self
         }
     }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct DeviceAddressBindingCallbackDataEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub flags: crate::vk::DeviceAddressBindingFlagsEXT,
+        pub base_address: crate::vk::DeviceAddress,
+        pub size: crate::vk::DeviceSize,
+        pub binding_type: crate::vk::DeviceAddressBindingTypeEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DeviceAddressBindingCallbackDataEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>>
+    for DeviceAddressBindingCallbackDataEXT<'a> {}
+    impl<'a> Default for DeviceAddressBindingCallbackDataEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                base_address: Default::default(),
+                size: Default::default(),
+                binding_type: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DeviceAddressBindingCallbackDataEXT<'a> {
+        pub fn flags(mut self, flags: crate::vk::DeviceAddressBindingFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn base_address(mut self, base_address: crate::vk::DeviceAddress) -> Self {
+            self.base_address = base_address;
+            self
+        }
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
+        pub fn binding_type(
+            mut self,
+            binding_type: crate::vk::DeviceAddressBindingTypeEXT,
+        ) -> Self {
+            self.binding_type = binding_type;
+            self
+        }
+    }
+    ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT: Self = Self(
+            1000354000,
+        );
+        pub const DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT: Self = Self(1000354001);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
+    ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+    impl DeviceAddressBindingTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const BIND_EXT: Self = Self(0);
+        pub const UNBIND_EXT: Self = Self(1);
+    }
+    ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+    impl crate::vk::DebugUtilsMessageTypeFlagBitsEXT {
+        pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(1 << 3);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DeviceAddressBindingFlagsEXT(u32);
+    impl DeviceAddressBindingFlagsEXT {
+        pub const INTERNAL_OBJECT_EXT: Self = Self(
+            DeviceAddressBindingFlagBitsEXT::INTERNAL_OBJECT_EXT.0,
+        );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for DeviceAddressBindingFlagsEXT {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for DeviceAddressBindingFlagsEXT {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for DeviceAddressBindingFlagsEXT {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for DeviceAddressBindingFlagsEXT {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for DeviceAddressBindingFlagsEXT {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for DeviceAddressBindingFlagsEXT {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for DeviceAddressBindingFlagsEXT {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for DeviceAddressBindingFlagsEXT {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, Default)]
+    pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) u32);
+    ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+    impl DeviceAddressBindingFlagBitsEXT {
+        pub const INTERNAL_OBJECT_EXT: Self = Self(1 << 0);
+    }
 }
-impl<'a> DeviceAddressBindingCallbackDataEXT<'a> {
-    pub fn flags(mut self, flags: crate::vk::DeviceAddressBindingFlagsEXT) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn base_address(mut self, base_address: crate::vk::DeviceAddress) -> Self {
-        self.base_address = base_address;
-        self
-    }
-    pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
-        self.size = size;
-        self
-    }
-    pub fn binding_type(
-        mut self,
-        binding_type: crate::vk::DeviceAddressBindingTypeEXT,
-    ) -> Self {
-        self.binding_type = binding_type;
-        self
-    }
-}
-///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT: Self = Self(
-        1000354000,
-    );
-    pub const DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT: Self = Self(1000354001);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
-///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
-impl DeviceAddressBindingTypeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const BIND_EXT: Self = Self(0);
-    pub const UNBIND_EXT: Self = Self(1);
-}
-///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
-impl crate::vk::DebugUtilsMessageTypeFlagBitsEXT {
-    pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(1 << 3);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DeviceAddressBindingFlagsEXT(u32);
-impl DeviceAddressBindingFlagsEXT {
-    pub const INTERNAL_OBJECT_EXT: Self = Self(
-        DeviceAddressBindingFlagBitsEXT::INTERNAL_OBJECT_EXT.0,
-    );
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    pub const fn from_raw(x: u32) -> Self {
-        Self(x)
-    }
-    pub const fn as_raw(self) -> u32 {
-        self.0
-    }
-    pub const fn is_empty(self) -> bool {
-        self.0 == Self::empty().0
-    }
-    pub const fn intersects(self, other: Self) -> bool {
-        !Self(self.0 & other.0).is_empty()
-    }
-    pub const fn contains(self, other: Self) -> bool {
-        self.0 & other.0 == other.0
-    }
-}
-impl Default for DeviceAddressBindingFlagsEXT {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl core::ops::BitOr for DeviceAddressBindingFlagsEXT {
-    type Output = Self;
-    fn bitor(self, rhs: Self) -> Self {
-        Self(self.0 | rhs.0)
-    }
-}
-impl core::ops::BitOrAssign for DeviceAddressBindingFlagsEXT {
-    fn bitor_assign(&mut self, rhs: Self) {
-        *self = *self | rhs;
-    }
-}
-impl core::ops::BitAnd for DeviceAddressBindingFlagsEXT {
-    type Output = Self;
-    fn bitand(self, rhs: Self) -> Self {
-        Self(self.0 & rhs.0)
-    }
-}
-impl core::ops::BitAndAssign for DeviceAddressBindingFlagsEXT {
-    fn bitand_assign(&mut self, rhs: Self) {
-        *self = *self & rhs;
-    }
-}
-impl core::ops::BitXor for DeviceAddressBindingFlagsEXT {
-    type Output = Self;
-    fn bitxor(self, rhs: Self) -> Self {
-        Self(self.0 ^ rhs.0)
-    }
-}
-impl core::ops::BitXorAssign for DeviceAddressBindingFlagsEXT {
-    fn bitxor_assign(&mut self, rhs: Self) {
-        *self = *self ^ rhs;
-    }
-}
-impl core::ops::Not for DeviceAddressBindingFlagsEXT {
-    type Output = Self;
-    fn not(self) -> Self {
-        Self(!self.0)
-    }
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, Default)]
-pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) u32);
-///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
-impl DeviceAddressBindingFlagBitsEXT {
-    pub const INTERNAL_OBJECT_EXT: Self = Self(1 << 0);
-}
-pub const EXT_DEVICE_ADDRESS_BINDING_REPORT_SPEC_VERSION: u32 = 1;
-pub const EXT_DEVICE_ADDRESS_BINDING_REPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_address_binding_report";
+pub use reexport::*;

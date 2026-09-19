@@ -2,50 +2,53 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_mode_fifo_latest_ready.html) · Extension `VK_KHR_present_mode_fifo_latest_ready`
 #![doc(alias = "VK_KHR_present_mode_fifo_latest_ready")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub present_mode_fifo_latest_ready: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            present_mode_fifo_latest_ready: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_present_mode_fifo_latest_ready";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub present_mode_fifo_latest_ready: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_mode_fifo_latest_ready: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
-    pub fn present_mode_fifo_latest_ready(
-        mut self,
-        present_mode_fifo_latest_ready: bool,
-    ) -> Self {
-        self.present_mode_fifo_latest_ready = present_mode_fifo_latest_ready.into();
-        self
+    impl<'a> PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
+        pub fn present_mode_fifo_latest_ready(
+            mut self,
+            present_mode_fifo_latest_ready: bool,
+        ) -> Self {
+            self.present_mode_fifo_latest_ready = present_mode_fifo_latest_ready.into();
+            self
+        }
+    }
+    ///Provided by [`khr::present_mode_fifo_latest_ready`](crate::khr::present_mode_fifo_latest_ready)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR: Self = Self(
+            1000361000,
+        );
+    }
+    ///Provided by [`khr::present_mode_fifo_latest_ready`](crate::khr::present_mode_fifo_latest_ready)
+    impl crate::vk::PresentModeKHR {
+        pub const FIFO_LATEST_READY_KHR: Self = Self(1000361000);
     }
 }
-///Provided by [`khr::present_mode_fifo_latest_ready`](crate::khr::present_mode_fifo_latest_ready)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR: Self = Self(
-        1000361000,
-    );
-}
-///Provided by [`khr::present_mode_fifo_latest_ready`](crate::khr::present_mode_fifo_latest_ready)
-impl crate::vk::PresentModeKHR {
-    pub const FIFO_LATEST_READY_KHR: Self = Self(1000361000);
-}
-pub const KHR_PRESENT_MODE_FIFO_LATEST_READY_SPEC_VERSION: u32 = 1;
-pub const KHR_PRESENT_MODE_FIFO_LATEST_READY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_present_mode_fifo_latest_ready";
+pub use reexport::*;

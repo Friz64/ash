@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shared_presentable_image.html) · Extension `VK_KHR_shared_presentable_image`
 #![doc(alias = "VK_KHR_shared_presentable_image")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_shared_presentable_image";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_swapchain_status_khr: crate::vk::PFN_vkGetSwapchainStatusKHR,
@@ -108,7 +110,5 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
     ) -> crate::vk::Result;
-    pub const KHR_SHARED_PRESENTABLE_IMAGE_SPEC_VERSION: u32 = 1;
-    pub const KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shared_presentable_image";
 }
 pub use reexport::*;

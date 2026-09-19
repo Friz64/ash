@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_win32_surface.html) · Extension `VK_KHR_win32_surface`
 #![doc(alias = "VK_KHR_win32_surface")]
+pub const SPEC_VERSION: u32 = 6;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_win32_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_win32_surface_khr: crate::vk::PFN_vkCreateWin32SurfaceKHR,
@@ -197,7 +199,5 @@ pub(crate) mod reexport {
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
     ) -> crate::vk::Bool32;
-    pub const KHR_WIN32_SURFACE_SPEC_VERSION: u32 = 6;
-    pub const KHR_WIN32_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_win32_surface";
 }
 pub use reexport::*;

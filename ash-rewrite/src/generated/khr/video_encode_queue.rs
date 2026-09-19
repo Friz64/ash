@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_queue.html) · Extension `VK_KHR_video_encode_queue`
 #![doc(alias = "VK_KHR_video_encode_queue")]
+pub const SPEC_VERSION: u32 = 12;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_queue";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_video_encode_quality_level_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR,
@@ -1393,7 +1395,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         p_encode_info: *const crate::vk::VideoEncodeInfoKHR<'_>,
     );
-    pub const KHR_VIDEO_ENCODE_QUEUE_SPEC_VERSION: u32 = 12;
-    pub const KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_queue";
 }
 pub use reexport::*;

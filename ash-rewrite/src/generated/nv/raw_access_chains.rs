@@ -2,41 +2,47 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_raw_access_chains.html) · Extension `VK_NV_raw_access_chains`
 #![doc(alias = "VK_NV_raw_access_chains")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_raw_access_chains: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {}
-impl<'a> Default for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_raw_access_chains: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_raw_access_chains";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_raw_access_chains: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_raw_access_chains: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
-    pub fn shader_raw_access_chains(mut self, shader_raw_access_chains: bool) -> Self {
-        self.shader_raw_access_chains = shader_raw_access_chains.into();
-        self
+    impl<'a> PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
+        pub fn shader_raw_access_chains(
+            mut self,
+            shader_raw_access_chains: bool,
+        ) -> Self {
+            self.shader_raw_access_chains = shader_raw_access_chains.into();
+            self
+        }
+    }
+    ///Provided by [`nv::raw_access_chains`](crate::nv::raw_access_chains)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV: Self = Self(1000555000);
     }
 }
-///Provided by [`nv::raw_access_chains`](crate::nv::raw_access_chains)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV: Self = Self(1000555000);
-}
-pub const NV_RAW_ACCESS_CHAINS_SPEC_VERSION: u32 = 1;
-pub const NV_RAW_ACCESS_CHAINS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_raw_access_chains";
+pub use reexport::*;

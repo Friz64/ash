@@ -2,16 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_integer_dot_product.html) · Extension `VK_KHR_shader_integer_dot_product`
 #![doc(alias = "VK_KHR_shader_integer_dot_product")]
-pub type PhysicalDeviceShaderIntegerDotProductFeaturesKHR<'a> = crate::vk::PhysicalDeviceShaderIntegerDotProductFeatures<
-    'a,
->;
-pub type PhysicalDeviceShaderIntegerDotProductPropertiesKHR<'a> = crate::vk::PhysicalDeviceShaderIntegerDotProductProperties<
-    'a,
->;
-///Provided by [`khr::shader_integer_dot_product`](crate::khr::shader_integer_dot_product)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES;
-    pub const PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_integer_dot_product";
+pub(crate) mod reexport {
+    pub type PhysicalDeviceShaderIntegerDotProductFeaturesKHR<'a> = crate::vk::PhysicalDeviceShaderIntegerDotProductFeatures<
+        'a,
+    >;
+    pub type PhysicalDeviceShaderIntegerDotProductPropertiesKHR<'a> = crate::vk::PhysicalDeviceShaderIntegerDotProductProperties<
+        'a,
+    >;
+    ///Provided by [`khr::shader_integer_dot_product`](crate::khr::shader_integer_dot_product)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES;
+        pub const PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES;
+    }
 }
-pub const KHR_SHADER_INTEGER_DOT_PRODUCT_SPEC_VERSION: u32 = 1;
-pub const KHR_SHADER_INTEGER_DOT_PRODUCT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_integer_dot_product";
+pub use reexport::*;

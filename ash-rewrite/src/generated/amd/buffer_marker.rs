@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_buffer_marker.html) · Extension `VK_AMD_buffer_marker`
 #![doc(alias = "VK_AMD_buffer_marker")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_buffer_marker";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_write_buffer_marker_amd: crate::vk::PFN_vkCmdWriteBufferMarkerAMD,
@@ -93,7 +95,5 @@ pub(crate) mod reexport {
         dst_offset: crate::vk::DeviceSize,
         marker: u32,
     );
-    pub const AMD_BUFFER_MARKER_SPEC_VERSION: u32 = 1;
-    pub const AMD_BUFFER_MARKER_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_buffer_marker";
 }
 pub use reexport::*;

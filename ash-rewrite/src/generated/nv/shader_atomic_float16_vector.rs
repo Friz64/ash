@@ -2,46 +2,49 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shader_atomic_float16_vector.html) · Extension `VK_NV_shader_atomic_float16_vector`
 #![doc(alias = "VK_NV_shader_atomic_float16_vector")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_float16_vector_atomics: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {}
-impl<'a> Default for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_float16_vector_atomics: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_shader_atomic_float16_vector";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_float16_vector_atomics: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_float16_vector_atomics: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
-    pub fn shader_float16_vector_atomics(
-        mut self,
-        shader_float16_vector_atomics: bool,
-    ) -> Self {
-        self.shader_float16_vector_atomics = shader_float16_vector_atomics.into();
-        self
+    impl<'a> PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
+        pub fn shader_float16_vector_atomics(
+            mut self,
+            shader_float16_vector_atomics: bool,
+        ) -> Self {
+            self.shader_float16_vector_atomics = shader_float16_vector_atomics.into();
+            self
+        }
+    }
+    ///Provided by [`nv::shader_atomic_float16_vector`](crate::nv::shader_atomic_float16_vector)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV: Self = Self(
+            1000563000,
+        );
     }
 }
-///Provided by [`nv::shader_atomic_float16_vector`](crate::nv::shader_atomic_float16_vector)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV: Self = Self(
-        1000563000,
-    );
-}
-pub const NV_SHADER_ATOMIC_FLOAT16_VECTOR_SPEC_VERSION: u32 = 1;
-pub const NV_SHADER_ATOMIC_FLOAT16_VECTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shader_atomic_float16_vector";
+pub use reexport::*;

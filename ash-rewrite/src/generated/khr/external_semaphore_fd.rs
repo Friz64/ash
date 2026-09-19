@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_fd.html) · Extension `VK_KHR_external_semaphore_fd`
 #![doc(alias = "VK_KHR_external_semaphore_fd")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_fd";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_semaphore_fd_khr: crate::vk::PFN_vkGetSemaphoreFdKHR,
@@ -172,7 +174,5 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         p_import_semaphore_fd_info: *const crate::vk::ImportSemaphoreFdInfoKHR<'_>,
     ) -> crate::vk::Result;
-    pub const KHR_EXTERNAL_SEMAPHORE_FD_SPEC_VERSION: u32 = 1;
-    pub const KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_fd";
 }
 pub use reexport::*;

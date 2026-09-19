@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_full_screen_exclusive.html) · Extension `VK_EXT_full_screen_exclusive`
 #![doc(alias = "VK_EXT_full_screen_exclusive")]
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_full_screen_exclusive";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_surface_present_modes2_ext: crate::vk::PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT,
@@ -297,7 +299,5 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
     ) -> crate::vk::Result;
-    pub const EXT_FULL_SCREEN_EXCLUSIVE_SPEC_VERSION: u32 = 4;
-    pub const EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_full_screen_exclusive";
 }
 pub use reexport::*;

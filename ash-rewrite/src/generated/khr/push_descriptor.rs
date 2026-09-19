@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_push_descriptor.html) · Extension `VK_KHR_push_descriptor`
 #![doc(alias = "VK_KHR_push_descriptor")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_push_descriptor";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_push_descriptor_set_khr: crate::vk::PFN_vkCmdPushDescriptorSetKHR,
@@ -97,7 +99,5 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdPushDescriptorSetKHR = crate::vk::PFN_vkCmdPushDescriptorSet;
     pub type PFN_vkCmdPushDescriptorSetWithTemplateKHR = crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate;
-    pub const KHR_PUSH_DESCRIPTOR_SPEC_VERSION: u32 = 2;
-    pub const KHR_PUSH_DESCRIPTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_push_descriptor";
 }
 pub use reexport::*;

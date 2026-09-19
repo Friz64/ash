@@ -2,87 +2,91 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_multiview_per_view_render_areas.html) · Extension `VK_QCOM_multiview_per_view_render_areas`
 #![doc(alias = "VK_QCOM_multiview_per_view_render_areas")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub multiview_per_view_render_areas: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {}
-impl<'a> Default for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            multiview_per_view_render_areas: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_multiview_per_view_render_areas";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub multiview_per_view_render_areas: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {}
+    impl<'a> Default for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                multiview_per_view_render_areas: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
-    pub fn multiview_per_view_render_areas(
-        mut self,
-        multiview_per_view_render_areas: bool,
-    ) -> Self {
-        self.multiview_per_view_render_areas = multiview_per_view_render_areas.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub per_view_render_area_count: u32,
-    pub p_per_view_render_areas: *const crate::vk::Rect2D,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTIVIEW_PER_VIEW_RENDER_AREAS_RENDER_PASS_BEGIN_INFO_QCOM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
-for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
-for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {}
-impl<'a> Default for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            per_view_render_area_count: Default::default(),
-            p_per_view_render_areas: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
+        pub fn multiview_per_view_render_areas(
+            mut self,
+            multiview_per_view_render_areas: bool,
+        ) -> Self {
+            self.multiview_per_view_render_areas = multiview_per_view_render_areas
+                .into();
+            self
         }
     }
-}
-impl<'a> MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
-    pub fn per_view_render_areas(
-        mut self,
-        per_view_render_areas: &'a [crate::vk::Rect2D],
-    ) -> Self {
-        self.per_view_render_area_count = per_view_render_areas.len() as _;
-        self.p_per_view_render_areas = per_view_render_areas.as_ptr();
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub per_view_render_area_count: u32,
+        pub p_per_view_render_areas: *const crate::vk::Rect2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTIVIEW_PER_VIEW_RENDER_AREAS_RENDER_PASS_BEGIN_INFO_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
+    for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {}
+    impl<'a> Default for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                per_view_render_area_count: Default::default(),
+                p_per_view_render_areas: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
+        pub fn per_view_render_areas(
+            mut self,
+            per_view_render_areas: &'a [crate::vk::Rect2D],
+        ) -> Self {
+            self.per_view_render_area_count = per_view_render_areas.len() as _;
+            self.p_per_view_render_areas = per_view_render_areas.as_ptr();
+            self
+        }
+    }
+    ///Provided by [`qcom::multiview_per_view_render_areas`](crate::qcom::multiview_per_view_render_areas)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM: Self = Self(
+            1000510000,
+        );
+        pub const MULTIVIEW_PER_VIEW_RENDER_AREAS_RENDER_PASS_BEGIN_INFO_QCOM: Self = Self(
+            1000510001,
+        );
     }
 }
-///Provided by [`qcom::multiview_per_view_render_areas`](crate::qcom::multiview_per_view_render_areas)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM: Self = Self(
-        1000510000,
-    );
-    pub const MULTIVIEW_PER_VIEW_RENDER_AREAS_RENDER_PASS_BEGIN_INFO_QCOM: Self = Self(
-        1000510001,
-    );
-}
-pub const QCOM_MULTIVIEW_PER_VIEW_RENDER_AREAS_SPEC_VERSION: u32 = 1;
-pub const QCOM_MULTIVIEW_PER_VIEW_RENDER_AREAS_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_multiview_per_view_render_areas";
+pub use reexport::*;

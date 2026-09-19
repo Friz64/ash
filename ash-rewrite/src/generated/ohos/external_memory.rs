@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_external_memory.html) · Extension `VK_OHOS_external_memory`
 #![doc(alias = "VK_OHOS_external_memory")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_OHOS_external_memory";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_native_buffer_properties_ohos: crate::vk::PFN_vkGetNativeBufferPropertiesOHOS,
@@ -351,7 +353,5 @@ pub(crate) mod reexport {
         p_info: *const crate::vk::MemoryGetNativeBufferInfoOHOS<'_>,
         p_buffer: *mut *mut crate::platform_types::OH_NativeBuffer,
     ) -> crate::vk::Result;
-    pub const OHOS_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
-    pub const OHOS_EXTERNAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_OHOS_external_memory";
 }
 pub use reexport::*;

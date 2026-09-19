@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_present_timing.html) · Extension `VK_EXT_present_timing`
 #![doc(alias = "VK_EXT_present_timing")]
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_present_timing";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub set_swapchain_present_timing_queue_size_ext: crate::vk::PFN_vkSetSwapchainPresentTimingQueueSizeEXT,
@@ -900,7 +902,5 @@ pub(crate) mod reexport {
             '_,
         >,
     ) -> crate::vk::Result;
-    pub const EXT_PRESENT_TIMING_SPEC_VERSION: u32 = 3;
-    pub const EXT_PRESENT_TIMING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_present_timing";
 }
 pub use reexport::*;

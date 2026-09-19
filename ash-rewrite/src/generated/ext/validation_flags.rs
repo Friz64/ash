@@ -2,61 +2,64 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_flags.html) · Extension `VK_EXT_validation_flags`
 #![doc(alias = "VK_EXT_validation_flags")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct ValidationFlagsEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub disabled_validation_check_count: u32,
-    pub p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFlagsEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FLAGS_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
-for ValidationFlagsEXT<'a> {}
-impl<'a> Default for ValidationFlagsEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            disabled_validation_check_count: Default::default(),
-            p_disabled_validation_checks: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_flags";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct ValidationFlagsEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub disabled_validation_check_count: u32,
+        pub p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFlagsEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FLAGS_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+    for ValidationFlagsEXT<'a> {}
+    impl<'a> Default for ValidationFlagsEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                disabled_validation_check_count: Default::default(),
+                p_disabled_validation_checks: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> ValidationFlagsEXT<'a> {
-    pub fn disabled_validation_checks(
-        mut self,
-        disabled_validation_checks: &'a [crate::vk::ValidationCheckEXT],
-    ) -> Self {
-        self.disabled_validation_check_count = disabled_validation_checks.len() as _;
-        self.p_disabled_validation_checks = disabled_validation_checks.as_ptr();
-        self
+    impl<'a> ValidationFlagsEXT<'a> {
+        pub fn disabled_validation_checks(
+            mut self,
+            disabled_validation_checks: &'a [crate::vk::ValidationCheckEXT],
+        ) -> Self {
+            self.disabled_validation_check_count = disabled_validation_checks.len() as _;
+            self.p_disabled_validation_checks = disabled_validation_checks.as_ptr();
+            self
+        }
+    }
+    ///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
+    impl crate::vk::StructureType {
+        pub const VALIDATION_FLAGS_EXT: Self = Self(1000061000);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct ValidationCheckEXT(pub(crate) i32);
+    ///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
+    impl ValidationCheckEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const ALL_EXT: Self = Self(0);
+        pub const SHADERS_EXT: Self = Self(1);
     }
 }
-///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
-impl crate::vk::StructureType {
-    pub const VALIDATION_FLAGS_EXT: Self = Self(1000061000);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct ValidationCheckEXT(pub(crate) i32);
-///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
-impl ValidationCheckEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const ALL_EXT: Self = Self(0);
-    pub const SHADERS_EXT: Self = Self(1);
-}
-pub const EXT_VALIDATION_FLAGS_SPEC_VERSION: u32 = 3;
-pub const EXT_VALIDATION_FLAGS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_validation_flags";
+pub use reexport::*;

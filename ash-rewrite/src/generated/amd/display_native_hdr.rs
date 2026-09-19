@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_display_native_hdr.html) · Extension `VK_AMD_display_native_hdr`
 #![doc(alias = "VK_AMD_display_native_hdr")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_display_native_hdr";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub set_local_dimming_amd: crate::vk::PFN_vkSetLocalDimmingAMD,
@@ -133,7 +135,5 @@ pub(crate) mod reexport {
         swap_chain: crate::vk::SwapchainKHR,
         local_dimming_enable: crate::vk::Bool32,
     );
-    pub const AMD_DISPLAY_NATIVE_HDR_SPEC_VERSION: u32 = 1;
-    pub const AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_display_native_hdr";
 }
 pub use reexport::*;

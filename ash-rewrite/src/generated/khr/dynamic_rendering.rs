@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_dynamic_rendering.html) · Extension `VK_KHR_dynamic_rendering`
 #![doc(alias = "VK_KHR_dynamic_rendering")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_begin_rendering_khr: crate::vk::PFN_vkCmdBeginRenderingKHR,
@@ -105,7 +107,5 @@ pub(crate) mod reexport {
     pub type RenderingFlagsKHR = crate::vk::RenderingFlags;
     pub type PFN_vkCmdBeginRenderingKHR = crate::vk::PFN_vkCmdBeginRendering;
     pub type PFN_vkCmdEndRenderingKHR = crate::vk::PFN_vkCmdEndRendering;
-    pub const KHR_DYNAMIC_RENDERING_SPEC_VERSION: u32 = 1;
-    pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering";
 }
 pub use reexport::*;

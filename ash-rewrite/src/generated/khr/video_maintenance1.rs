@@ -2,97 +2,102 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_maintenance1.html) · Extension `VK_KHR_video_maintenance1`
 #![doc(alias = "VK_KHR_video_maintenance1")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub video_maintenance1: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            video_maintenance1: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_video_maintenance1";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub video_maintenance1: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                video_maintenance1: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
-    pub fn video_maintenance1(mut self, video_maintenance1: bool) -> Self {
-        self.video_maintenance1 = video_maintenance1.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct VideoInlineQueryInfoKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub query_pool: crate::vk::QueryPool,
-    pub first_query: u32,
-    pub query_count: u32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for VideoInlineQueryInfoKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_INLINE_QUERY_INFO_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::VideoDecodeInfoKHR<'_>>
-for VideoInlineQueryInfoKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeInfoKHR<'_>>
-for VideoInlineQueryInfoKHR<'a> {}
-impl<'a> Default for VideoInlineQueryInfoKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            query_pool: Default::default(),
-            first_query: Default::default(),
-            query_count: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
+        pub fn video_maintenance1(mut self, video_maintenance1: bool) -> Self {
+            self.video_maintenance1 = video_maintenance1.into();
+            self
         }
     }
-}
-impl<'a> VideoInlineQueryInfoKHR<'a> {
-    pub fn query_pool(mut self, query_pool: crate::vk::QueryPool) -> Self {
-        self.query_pool = query_pool;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct VideoInlineQueryInfoKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub query_pool: crate::vk::QueryPool,
+        pub first_query: u32,
+        pub query_count: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub fn first_query(mut self, first_query: u32) -> Self {
-        self.first_query = first_query;
-        self
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoInlineQueryInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_INLINE_QUERY_INFO_KHR;
     }
-    pub fn query_count(mut self, query_count: u32) -> Self {
-        self.query_count = query_count;
-        self
+    unsafe impl<'a> crate::Extends<crate::vk::VideoDecodeInfoKHR<'_>>
+    for VideoInlineQueryInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeInfoKHR<'_>>
+    for VideoInlineQueryInfoKHR<'a> {}
+    impl<'a> Default for VideoInlineQueryInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                query_pool: Default::default(),
+                first_query: Default::default(),
+                query_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoInlineQueryInfoKHR<'a> {
+        pub fn query_pool(mut self, query_pool: crate::vk::QueryPool) -> Self {
+            self.query_pool = query_pool;
+            self
+        }
+        pub fn first_query(mut self, first_query: u32) -> Self {
+            self.first_query = first_query;
+            self
+        }
+        pub fn query_count(mut self, query_count: u32) -> Self {
+            self.query_count = query_count;
+            self
+        }
+    }
+    ///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR: Self = Self(
+            1000515000,
+        );
+        pub const VIDEO_INLINE_QUERY_INFO_KHR: Self = Self(1000515001);
+    }
+    ///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+    impl crate::vk::BufferCreateFlagBits {
+        pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 6);
+    }
+    ///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+    impl crate::vk::ImageCreateFlagBits {
+        pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 20);
+    }
+    ///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+    impl crate::vk::VideoSessionCreateFlagBitsKHR {
+        pub const INLINE_QUERIES_KHR: Self = Self(1 << 2);
     }
 }
-///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR: Self = Self(1000515000);
-    pub const VIDEO_INLINE_QUERY_INFO_KHR: Self = Self(1000515001);
-}
-///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
-impl crate::vk::BufferCreateFlagBits {
-    pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 6);
-}
-///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
-impl crate::vk::ImageCreateFlagBits {
-    pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 20);
-}
-///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
-impl crate::vk::VideoSessionCreateFlagBitsKHR {
-    pub const INLINE_QUERIES_KHR: Self = Self(1 << 2);
-}
-pub const KHR_VIDEO_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
-pub const KHR_VIDEO_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_maintenance1";
+pub use reexport::*;

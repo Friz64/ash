@@ -2,115 +2,119 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_pipeline_compiler_control.html) · Extension `VK_AMD_pipeline_compiler_control`
 #![doc(alias = "VK_AMD_pipeline_compiler_control")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PipelineCompilerControlCreateInfoAMD<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for PipelineCompilerControlCreateInfoAMD<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD;
-}
-unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
-for PipelineCompilerControlCreateInfoAMD<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
-for PipelineCompilerControlCreateInfoAMD<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::ExecutionGraphPipelineCreateInfoAMDX<'_>>
-for PipelineCompilerControlCreateInfoAMD<'a> {}
-impl<'a> Default for PipelineCompilerControlCreateInfoAMD<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            compiler_control_flags: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_pipeline_compiler_control";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineCompilerControlCreateInfoAMD<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineCompilerControlCreateInfoAMD<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for PipelineCompilerControlCreateInfoAMD<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+    for PipelineCompilerControlCreateInfoAMD<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ExecutionGraphPipelineCreateInfoAMDX<'_>>
+    for PipelineCompilerControlCreateInfoAMD<'a> {}
+    impl<'a> Default for PipelineCompilerControlCreateInfoAMD<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                compiler_control_flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
+    impl<'a> PipelineCompilerControlCreateInfoAMD<'a> {
+        pub fn compiler_control_flags(
+            mut self,
+            compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
+        ) -> Self {
+            self.compiler_control_flags = compiler_control_flags;
+            self
+        }
+    }
+    ///Provided by [`amd::pipeline_compiler_control`](crate::amd::pipeline_compiler_control)
+    impl crate::vk::StructureType {
+        pub const PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD: Self = Self(1000183000);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineCompilerControlFlagsAMD(u32);
+    impl PipelineCompilerControlFlagsAMD {
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for PipelineCompilerControlFlagsAMD {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for PipelineCompilerControlFlagsAMD {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for PipelineCompilerControlFlagsAMD {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for PipelineCompilerControlFlagsAMD {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for PipelineCompilerControlFlagsAMD {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for PipelineCompilerControlFlagsAMD {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for PipelineCompilerControlFlagsAMD {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for PipelineCompilerControlFlagsAMD {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, Default)]
+    pub struct PipelineCompilerControlFlagBitsAMD(pub(crate) u32);
 }
-impl<'a> PipelineCompilerControlCreateInfoAMD<'a> {
-    pub fn compiler_control_flags(
-        mut self,
-        compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
-    ) -> Self {
-        self.compiler_control_flags = compiler_control_flags;
-        self
-    }
-}
-///Provided by [`amd::pipeline_compiler_control`](crate::amd::pipeline_compiler_control)
-impl crate::vk::StructureType {
-    pub const PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD: Self = Self(1000183000);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineCompilerControlFlagsAMD(u32);
-impl PipelineCompilerControlFlagsAMD {
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    pub const fn from_raw(x: u32) -> Self {
-        Self(x)
-    }
-    pub const fn as_raw(self) -> u32 {
-        self.0
-    }
-    pub const fn is_empty(self) -> bool {
-        self.0 == Self::empty().0
-    }
-    pub const fn intersects(self, other: Self) -> bool {
-        !Self(self.0 & other.0).is_empty()
-    }
-    pub const fn contains(self, other: Self) -> bool {
-        self.0 & other.0 == other.0
-    }
-}
-impl Default for PipelineCompilerControlFlagsAMD {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl core::ops::BitOr for PipelineCompilerControlFlagsAMD {
-    type Output = Self;
-    fn bitor(self, rhs: Self) -> Self {
-        Self(self.0 | rhs.0)
-    }
-}
-impl core::ops::BitOrAssign for PipelineCompilerControlFlagsAMD {
-    fn bitor_assign(&mut self, rhs: Self) {
-        *self = *self | rhs;
-    }
-}
-impl core::ops::BitAnd for PipelineCompilerControlFlagsAMD {
-    type Output = Self;
-    fn bitand(self, rhs: Self) -> Self {
-        Self(self.0 & rhs.0)
-    }
-}
-impl core::ops::BitAndAssign for PipelineCompilerControlFlagsAMD {
-    fn bitand_assign(&mut self, rhs: Self) {
-        *self = *self & rhs;
-    }
-}
-impl core::ops::BitXor for PipelineCompilerControlFlagsAMD {
-    type Output = Self;
-    fn bitxor(self, rhs: Self) -> Self {
-        Self(self.0 ^ rhs.0)
-    }
-}
-impl core::ops::BitXorAssign for PipelineCompilerControlFlagsAMD {
-    fn bitxor_assign(&mut self, rhs: Self) {
-        *self = *self ^ rhs;
-    }
-}
-impl core::ops::Not for PipelineCompilerControlFlagsAMD {
-    type Output = Self;
-    fn not(self) -> Self {
-        Self(!self.0)
-    }
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, Default)]
-pub struct PipelineCompilerControlFlagBitsAMD(pub(crate) u32);
-pub const AMD_PIPELINE_COMPILER_CONTROL_SPEC_VERSION: u32 = 1;
-pub const AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_pipeline_compiler_control";
+pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_clip_space_w_scaling.html) · Extension `VK_NV_clip_space_w_scaling`
 #![doc(alias = "VK_NV_clip_space_w_scaling")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_clip_space_w_scaling";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_viewport_w_scaling_nv: crate::vk::PFN_vkCmdSetViewportWScalingNV,
@@ -137,7 +139,5 @@ pub(crate) mod reexport {
         viewport_count: u32,
         p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
     );
-    pub const NV_CLIP_SPACE_W_SCALING_SPEC_VERSION: u32 = 1;
-    pub const NV_CLIP_SPACE_W_SCALING_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_clip_space_w_scaling";
 }
 pub use reexport::*;

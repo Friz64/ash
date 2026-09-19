@@ -2,64 +2,67 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_bfloat16.html) · Extension `VK_KHR_shader_bfloat16`
 #![doc(alias = "VK_KHR_shader_bfloat16")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_b_float16_type: crate::vk::Bool32,
-    pub shader_b_float16_dot_product: crate::vk::Bool32,
-    pub shader_b_float16_cooperative_matrix: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_b_float16_type: Default::default(),
-            shader_b_float16_dot_product: Default::default(),
-            shader_b_float16_cooperative_matrix: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_bfloat16";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_b_float16_type: crate::vk::Bool32,
+        pub shader_b_float16_dot_product: crate::vk::Bool32,
+        pub shader_b_float16_cooperative_matrix: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_b_float16_type: Default::default(),
+                shader_b_float16_dot_product: Default::default(),
+                shader_b_float16_cooperative_matrix: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
-    pub fn shader_b_float16_type(mut self, shader_b_float16_type: bool) -> Self {
-        self.shader_b_float16_type = shader_b_float16_type.into();
-        self
+    impl<'a> PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
+        pub fn shader_b_float16_type(mut self, shader_b_float16_type: bool) -> Self {
+            self.shader_b_float16_type = shader_b_float16_type.into();
+            self
+        }
+        pub fn shader_b_float16_dot_product(
+            mut self,
+            shader_b_float16_dot_product: bool,
+        ) -> Self {
+            self.shader_b_float16_dot_product = shader_b_float16_dot_product.into();
+            self
+        }
+        pub fn shader_b_float16_cooperative_matrix(
+            mut self,
+            shader_b_float16_cooperative_matrix: bool,
+        ) -> Self {
+            self.shader_b_float16_cooperative_matrix = shader_b_float16_cooperative_matrix
+                .into();
+            self
+        }
     }
-    pub fn shader_b_float16_dot_product(
-        mut self,
-        shader_b_float16_dot_product: bool,
-    ) -> Self {
-        self.shader_b_float16_dot_product = shader_b_float16_dot_product.into();
-        self
+    ///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR: Self = Self(1000141000);
     }
-    pub fn shader_b_float16_cooperative_matrix(
-        mut self,
-        shader_b_float16_cooperative_matrix: bool,
-    ) -> Self {
-        self.shader_b_float16_cooperative_matrix = shader_b_float16_cooperative_matrix
-            .into();
-        self
+    ///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
+    impl crate::vk::ComponentTypeKHR {
+        pub const BFLOAT16_KHR: Self = Self(1000141000);
     }
 }
-///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR: Self = Self(1000141000);
-}
-///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
-impl crate::vk::ComponentTypeKHR {
-    pub const BFLOAT16_KHR: Self = Self(1000141000);
-}
-pub const KHR_SHADER_BFLOAT16_SPEC_VERSION: u32 = 1;
-pub const KHR_SHADER_BFLOAT16_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_bfloat16";
+pub use reexport::*;

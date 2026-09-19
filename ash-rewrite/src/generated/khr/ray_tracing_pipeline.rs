@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_tracing_pipeline.html) · Extension `VK_KHR_ray_tracing_pipeline`
 #![doc(alias = "VK_KHR_ray_tracing_pipeline")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_pipeline";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_trace_rays_khr: crate::vk::PFN_vkCmdTraceRaysKHR,
@@ -741,7 +743,5 @@ pub(crate) mod reexport {
         pipeline_stack_size: u32,
     );
     pub const SHADER_UNUSED_KHR: u32 = (!0);
-    pub const KHR_RAY_TRACING_PIPELINE_SPEC_VERSION: u32 = 1;
-    pub const KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_pipeline";
 }
 pub use reexport::*;

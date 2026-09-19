@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_invocation_mask.html) · Extension `VK_HUAWEI_invocation_mask`
 #![doc(alias = "VK_HUAWEI_invocation_mask")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_invocation_mask";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_bind_invocation_mask_huawei: crate::vk::PFN_vkCmdBindInvocationMaskHUAWEI,
@@ -114,7 +116,5 @@ pub(crate) mod reexport {
         image_view: crate::vk::ImageView,
         image_layout: crate::vk::ImageLayout,
     );
-    pub const HUAWEI_INVOCATION_MASK_SPEC_VERSION: u32 = 1;
-    pub const HUAWEI_INVOCATION_MASK_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_invocation_mask";
 }
 pub use reexport::*;

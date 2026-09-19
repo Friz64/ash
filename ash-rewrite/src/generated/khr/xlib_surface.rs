@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_xlib_surface.html) · Extension `VK_KHR_xlib_surface`
 #![doc(alias = "VK_KHR_xlib_surface")]
+pub const SPEC_VERSION: u32 = 6;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_xlib_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_xlib_surface_khr: crate::vk::PFN_vkCreateXlibSurfaceKHR,
@@ -201,7 +203,5 @@ pub(crate) mod reexport {
         dpy: *mut crate::platform_types::Display,
         visual_id: crate::platform_types::VisualID,
     ) -> crate::vk::Bool32;
-    pub const KHR_XLIB_SURFACE_SPEC_VERSION: u32 = 6;
-    pub const KHR_XLIB_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_xlib_surface";
 }
 pub use reexport::*;

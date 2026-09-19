@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_cluster_culling_shader.html) · Extension `VK_HUAWEI_cluster_culling_shader`
 #![doc(alias = "VK_HUAWEI_cluster_culling_shader")]
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_draw_cluster_huawei: crate::vk::PFN_vkCmdDrawClusterHUAWEI,
@@ -245,7 +247,5 @@ pub(crate) mod reexport {
         buffer: crate::vk::Buffer,
         offset: crate::vk::DeviceSize,
     );
-    pub const HUAWEI_CLUSTER_CULLING_SHADER_SPEC_VERSION: u32 = 3;
-    pub const HUAWEI_CLUSTER_CULLING_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";
 }
 pub use reexport::*;

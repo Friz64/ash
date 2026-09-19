@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain_maintenance1.html) · Extension `VK_KHR_swapchain_maintenance1`
 #![doc(alias = "VK_KHR_swapchain_maintenance1")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_swapchain_maintenance1";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub release_swapchain_images_khr: crate::vk::PFN_vkReleaseSwapchainImagesKHR,
@@ -299,7 +301,5 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         p_release_info: *const crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
     ) -> crate::vk::Result;
-    pub const KHR_SWAPCHAIN_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
-    pub const KHR_SWAPCHAIN_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_swapchain_maintenance1";
 }
 pub use reexport::*;

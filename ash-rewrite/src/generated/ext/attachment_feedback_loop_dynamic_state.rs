@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_attachment_feedback_loop_dynamic_state.html) · Extension `VK_EXT_attachment_feedback_loop_dynamic_state`
 #![doc(alias = "VK_EXT_attachment_feedback_loop_dynamic_state")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_dynamic_state";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_attachment_feedback_loop_enable_ext: crate::vk::PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT,
@@ -109,7 +111,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         aspect_mask: crate::vk::ImageAspectFlags,
     );
-    pub const EXT_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_SPEC_VERSION: u32 = 1;
-    pub const EXT_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_dynamic_state";
 }
 pub use reexport::*;

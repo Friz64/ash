@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_acquire_drm_display.html) · Extension `VK_EXT_acquire_drm_display`
 #![doc(alias = "VK_EXT_acquire_drm_display")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_acquire_drm_display";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub acquire_drm_display_ext: crate::vk::PFN_vkAcquireDrmDisplayEXT,
@@ -87,7 +89,5 @@ pub(crate) mod reexport {
         connector_id: u32,
         display: *mut crate::vk::DisplayKHR,
     ) -> crate::vk::Result;
-    pub const EXT_ACQUIRE_DRM_DISPLAY_SPEC_VERSION: u32 = 1;
-    pub const EXT_ACQUIRE_DRM_DISPLAY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_acquire_drm_display";
 }
 pub use reexport::*;

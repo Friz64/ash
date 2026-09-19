@@ -2,38 +2,41 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface_protected_capabilities.html) · Extension `VK_KHR_surface_protected_capabilities`
 #![doc(alias = "VK_KHR_surface_protected_capabilities")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct SurfaceProtectedCapabilitiesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub supports_protected: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceProtectedCapabilitiesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
-for SurfaceProtectedCapabilitiesKHR<'a> {}
-impl<'a> Default for SurfaceProtectedCapabilitiesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            supports_protected: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_surface_protected_capabilities";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct SurfaceProtectedCapabilitiesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub supports_protected: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceProtectedCapabilitiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for SurfaceProtectedCapabilitiesKHR<'a> {}
+    impl<'a> Default for SurfaceProtectedCapabilitiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                supports_protected: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> SurfaceProtectedCapabilitiesKHR<'a> {
-    pub fn supports_protected(mut self, supports_protected: bool) -> Self {
-        self.supports_protected = supports_protected.into();
-        self
+    impl<'a> SurfaceProtectedCapabilitiesKHR<'a> {
+        pub fn supports_protected(mut self, supports_protected: bool) -> Self {
+            self.supports_protected = supports_protected.into();
+            self
+        }
+    }
+    ///Provided by [`khr::surface_protected_capabilities`](crate::khr::surface_protected_capabilities)
+    impl crate::vk::StructureType {
+        pub const SURFACE_PROTECTED_CAPABILITIES_KHR: Self = Self(1000239000);
     }
 }
-///Provided by [`khr::surface_protected_capabilities`](crate::khr::surface_protected_capabilities)
-impl crate::vk::StructureType {
-    pub const SURFACE_PROTECTED_CAPABILITIES_KHR: Self = Self(1000239000);
-}
-pub const KHR_SURFACE_PROTECTED_CAPABILITIES_SPEC_VERSION: u32 = 1;
-pub const KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_surface_protected_capabilities";
+pub use reexport::*;

@@ -23,7 +23,7 @@ impl TypeName {
         self.0
     }
 
-    pub fn prefix_trimmed(&self, library: LibraryName) -> &'static str {
+    pub fn prefix_stripped(&self, library: LibraryName) -> &'static str {
         let prefix = match library {
             LibraryName::Vk => "Vk",
             LibraryName::Video => "StdVideo",
@@ -53,6 +53,7 @@ impl ConstantName {
         self.0
     }
 
+    // TODO: why not strip?
     pub fn prefix_trimmed(&self) -> &'static str {
         self.original().trim_start_matches("VK_")
     }
@@ -104,7 +105,7 @@ impl CMacroName {
         self.0
     }
 
-    pub fn prefix_trimmed(&self) -> &'static str {
+    pub fn prefix_stripped(&self) -> &'static str {
         self.original().strip_prefix("VK_").unwrap()
     }
 }
@@ -141,7 +142,7 @@ impl CommandName {
         self.0
     }
 
-    pub fn prefix_trimmed(&self) -> &'static str {
+    pub fn prefix_stripped(&self) -> &'static str {
         self.original().strip_prefix("vk").unwrap()
     }
 }
@@ -156,5 +157,33 @@ impl VariableName {
 
     pub const fn original(&self) -> &'static str {
         self.0
+    }
+}
+
+#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
+pub struct ExtensionName(&'static str);
+
+impl ExtensionName {
+    pub(crate) const fn new(original: &'static str) -> Self {
+        Self(original)
+    }
+
+    pub const fn original(&self) -> &'static str {
+        self.0
+    }
+
+    pub fn prefix_stripped(&self, library: LibraryName) -> &'static str {
+        match library {
+            LibraryName::Vk => self.original().strip_prefix("VK_").unwrap(),
+            LibraryName::Video => self.original().strip_prefix("vulkan_video_").unwrap(),
+        }
+    }
+
+    pub fn tag_and_name(&self, library: LibraryName) -> (&'static str, &'static str) {
+        let prefix_stripped = self.prefix_stripped(library);
+        match library {
+            LibraryName::Vk => prefix_stripped.split_once('_').unwrap(),
+            LibraryName::Video => ("", prefix_stripped),
+        }
     }
 }

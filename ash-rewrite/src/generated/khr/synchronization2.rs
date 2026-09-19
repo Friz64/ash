@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_synchronization2.html) · Extension `VK_KHR_synchronization2`
 #![doc(alias = "VK_KHR_synchronization2")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_synchronization2";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_event2_khr: crate::vk::PFN_vkCmdSetEvent2KHR,
@@ -279,7 +281,5 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdPipelineBarrier2KHR = crate::vk::PFN_vkCmdPipelineBarrier2;
     pub type PFN_vkQueueSubmit2KHR = crate::vk::PFN_vkQueueSubmit2;
     pub type PFN_vkCmdWriteTimestamp2KHR = crate::vk::PFN_vkCmdWriteTimestamp2;
-    pub const KHR_SYNCHRONIZATION_2_SPEC_VERSION: u32 = 1;
-    pub const KHR_SYNCHRONIZATION_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_synchronization2";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_binary_import.html) · Extension `VK_NVX_binary_import`
 #![doc(alias = "VK_NVX_binary_import")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_NVX_binary_import";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_cu_module_nvx: crate::vk::PFN_vkCreateCuModuleNVX,
@@ -408,7 +410,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         p_launch_info: *const crate::vk::CuLaunchInfoNVX<'_>,
     );
-    pub const NVX_BINARY_IMPORT_SPEC_VERSION: u32 = 2;
-    pub const NVX_BINARY_IMPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_NVX_binary_import";
 }
 pub use reexport::*;

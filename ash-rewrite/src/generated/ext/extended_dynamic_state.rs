@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state.html) · Extension `VK_EXT_extended_dynamic_state`
 #![doc(alias = "VK_EXT_extended_dynamic_state")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_cull_mode_ext: crate::vk::PFN_vkCmdSetCullModeEXT,
@@ -299,7 +301,5 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdSetDepthBoundsTestEnableEXT = crate::vk::PFN_vkCmdSetDepthBoundsTestEnable;
     pub type PFN_vkCmdSetStencilTestEnableEXT = crate::vk::PFN_vkCmdSetStencilTestEnable;
     pub type PFN_vkCmdSetStencilOpEXT = crate::vk::PFN_vkCmdSetStencilOp;
-    pub const EXT_EXTENDED_DYNAMIC_STATE_SPEC_VERSION: u32 = 1;
-    pub const EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state";
 }
 pub use reexport::*;

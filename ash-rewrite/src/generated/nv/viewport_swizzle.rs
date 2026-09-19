@@ -2,170 +2,175 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_viewport_swizzle.html) · Extension `VK_NV_viewport_swizzle`
 #![doc(alias = "VK_NV_viewport_swizzle")]
-#[repr(C)]
-#[derive(Clone, Copy, Default)]
-pub struct ViewportSwizzleNV {
-    pub x: crate::vk::ViewportCoordinateSwizzleNV,
-    pub y: crate::vk::ViewportCoordinateSwizzleNV,
-    pub z: crate::vk::ViewportCoordinateSwizzleNV,
-    pub w: crate::vk::ViewportCoordinateSwizzleNV,
-}
-impl ViewportSwizzleNV {
-    pub fn x(mut self, x: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
-        self.x = x;
-        self
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_viewport_swizzle";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy, Default)]
+    pub struct ViewportSwizzleNV {
+        pub x: crate::vk::ViewportCoordinateSwizzleNV,
+        pub y: crate::vk::ViewportCoordinateSwizzleNV,
+        pub z: crate::vk::ViewportCoordinateSwizzleNV,
+        pub w: crate::vk::ViewportCoordinateSwizzleNV,
     }
-    pub fn y(mut self, y: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
-        self.y = y;
-        self
+    impl ViewportSwizzleNV {
+        pub fn x(mut self, x: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
+            self.x = x;
+            self
+        }
+        pub fn y(mut self, y: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
+            self.y = y;
+            self
+        }
+        pub fn z(mut self, z: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
+            self.z = z;
+            self
+        }
+        pub fn w(mut self, w: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
+            self.w = w;
+            self
+        }
     }
-    pub fn z(mut self, z: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
-        self.z = z;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineViewportSwizzleStateCreateInfoNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub flags: crate::vk::PipelineViewportSwizzleStateCreateFlagsNV,
+        pub viewport_count: u32,
+        pub p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub fn w(mut self, w: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
-        self.w = w;
-        self
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineViewportSwizzleStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV;
     }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PipelineViewportSwizzleStateCreateInfoNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::vk::PipelineViewportSwizzleStateCreateFlagsNV,
-    pub viewport_count: u32,
-    pub p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PipelineViewportSwizzleStateCreateInfoNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
-for PipelineViewportSwizzleStateCreateInfoNV<'a> {}
-impl<'a> Default for PipelineViewportSwizzleStateCreateInfoNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            flags: Default::default(),
-            viewport_count: Default::default(),
-            p_viewport_swizzles: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    for PipelineViewportSwizzleStateCreateInfoNV<'a> {}
+    impl<'a> Default for PipelineViewportSwizzleStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                viewport_count: Default::default(),
+                p_viewport_swizzles: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineViewportSwizzleStateCreateInfoNV<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::PipelineViewportSwizzleStateCreateFlagsNV,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn viewport_swizzles(
+            mut self,
+            viewport_swizzles: &'a [crate::vk::ViewportSwizzleNV],
+        ) -> Self {
+            self.viewport_count = viewport_swizzles.len() as _;
+            self.p_viewport_swizzles = viewport_swizzles.as_ptr();
+            self
+        }
+    }
+    ///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
+    impl crate::vk::StructureType {
+        pub const PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV: Self = Self(
+            1000098000,
+        );
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
+    pub struct ViewportCoordinateSwizzleNV(pub(crate) i32);
+    ///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
+    impl ViewportCoordinateSwizzleNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+        pub const POSITIVE_X_NV: Self = Self(0);
+        pub const NEGATIVE_X_NV: Self = Self(1);
+        pub const POSITIVE_Y_NV: Self = Self(2);
+        pub const NEGATIVE_Y_NV: Self = Self(3);
+        pub const POSITIVE_Z_NV: Self = Self(4);
+        pub const NEGATIVE_Z_NV: Self = Self(5);
+        pub const POSITIVE_W_NV: Self = Self(6);
+        pub const NEGATIVE_W_NV: Self = Self(7);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineViewportSwizzleStateCreateFlagsNV(u32);
+    impl PipelineViewportSwizzleStateCreateFlagsNV {
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for PipelineViewportSwizzleStateCreateFlagsNV {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for PipelineViewportSwizzleStateCreateFlagsNV {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for PipelineViewportSwizzleStateCreateFlagsNV {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for PipelineViewportSwizzleStateCreateFlagsNV {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for PipelineViewportSwizzleStateCreateFlagsNV {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for PipelineViewportSwizzleStateCreateFlagsNV {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for PipelineViewportSwizzleStateCreateFlagsNV {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for PipelineViewportSwizzleStateCreateFlagsNV {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
         }
     }
 }
-impl<'a> PipelineViewportSwizzleStateCreateInfoNV<'a> {
-    pub fn flags(
-        mut self,
-        flags: crate::vk::PipelineViewportSwizzleStateCreateFlagsNV,
-    ) -> Self {
-        self.flags = flags;
-        self
-    }
-    pub fn viewport_swizzles(
-        mut self,
-        viewport_swizzles: &'a [crate::vk::ViewportSwizzleNV],
-    ) -> Self {
-        self.viewport_count = viewport_swizzles.len() as _;
-        self.p_viewport_swizzles = viewport_swizzles.as_ptr();
-        self
-    }
-}
-///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
-impl crate::vk::StructureType {
-    pub const PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV: Self = Self(1000098000);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-#[derive(Debug)]
-pub struct ViewportCoordinateSwizzleNV(pub(crate) i32);
-///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
-impl ViewportCoordinateSwizzleNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
-    pub const POSITIVE_X_NV: Self = Self(0);
-    pub const NEGATIVE_X_NV: Self = Self(1);
-    pub const POSITIVE_Y_NV: Self = Self(2);
-    pub const NEGATIVE_Y_NV: Self = Self(3);
-    pub const POSITIVE_Z_NV: Self = Self(4);
-    pub const NEGATIVE_Z_NV: Self = Self(5);
-    pub const POSITIVE_W_NV: Self = Self(6);
-    pub const NEGATIVE_W_NV: Self = Self(7);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineViewportSwizzleStateCreateFlagsNV(u32);
-impl PipelineViewportSwizzleStateCreateFlagsNV {
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    pub const fn from_raw(x: u32) -> Self {
-        Self(x)
-    }
-    pub const fn as_raw(self) -> u32 {
-        self.0
-    }
-    pub const fn is_empty(self) -> bool {
-        self.0 == Self::empty().0
-    }
-    pub const fn intersects(self, other: Self) -> bool {
-        !Self(self.0 & other.0).is_empty()
-    }
-    pub const fn contains(self, other: Self) -> bool {
-        self.0 & other.0 == other.0
-    }
-}
-impl Default for PipelineViewportSwizzleStateCreateFlagsNV {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl core::ops::BitOr for PipelineViewportSwizzleStateCreateFlagsNV {
-    type Output = Self;
-    fn bitor(self, rhs: Self) -> Self {
-        Self(self.0 | rhs.0)
-    }
-}
-impl core::ops::BitOrAssign for PipelineViewportSwizzleStateCreateFlagsNV {
-    fn bitor_assign(&mut self, rhs: Self) {
-        *self = *self | rhs;
-    }
-}
-impl core::ops::BitAnd for PipelineViewportSwizzleStateCreateFlagsNV {
-    type Output = Self;
-    fn bitand(self, rhs: Self) -> Self {
-        Self(self.0 & rhs.0)
-    }
-}
-impl core::ops::BitAndAssign for PipelineViewportSwizzleStateCreateFlagsNV {
-    fn bitand_assign(&mut self, rhs: Self) {
-        *self = *self & rhs;
-    }
-}
-impl core::ops::BitXor for PipelineViewportSwizzleStateCreateFlagsNV {
-    type Output = Self;
-    fn bitxor(self, rhs: Self) -> Self {
-        Self(self.0 ^ rhs.0)
-    }
-}
-impl core::ops::BitXorAssign for PipelineViewportSwizzleStateCreateFlagsNV {
-    fn bitxor_assign(&mut self, rhs: Self) {
-        *self = *self ^ rhs;
-    }
-}
-impl core::ops::Not for PipelineViewportSwizzleStateCreateFlagsNV {
-    type Output = Self;
-    fn not(self) -> Self {
-        Self(!self.0)
-    }
-}
-pub const NV_VIEWPORT_SWIZZLE_SPEC_VERSION: u32 = 1;
-pub const NV_VIEWPORT_SWIZZLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_viewport_swizzle";
+pub use reexport::*;

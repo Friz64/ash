@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance1.html) · Extension `VK_KHR_maintenance1`
 #![doc(alias = "VK_KHR_maintenance1")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance1";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub trim_command_pool_khr: crate::vk::PFN_vkTrimCommandPoolKHR,
@@ -74,7 +76,5 @@ pub(crate) mod reexport {
     }
     pub type CommandPoolTrimFlagsKHR = crate::vk::CommandPoolTrimFlags;
     pub type PFN_vkTrimCommandPoolKHR = crate::vk::PFN_vkTrimCommandPool;
-    pub const KHR_MAINTENANCE_1_SPEC_VERSION: u32 = 2;
-    pub const KHR_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance1";
 }
 pub use reexport::*;

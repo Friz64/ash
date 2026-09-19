@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_report.html) · Extension `VK_EXT_debug_report`
 #![doc(alias = "VK_EXT_debug_report")]
+pub const SPEC_VERSION: u32 = 10;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_report";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_debug_report_callback_ext: crate::vk::PFN_vkCreateDebugReportCallbackEXT,
@@ -349,7 +351,5 @@ pub(crate) mod reexport {
         p_layer_prefix: *const core::ffi::c_char,
         p_message: *const core::ffi::c_char,
     );
-    pub const EXT_DEBUG_REPORT_SPEC_VERSION: u32 = 10;
-    pub const EXT_DEBUG_REPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_report";
 }
 pub use reexport::*;

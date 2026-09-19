@@ -2,47 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_relaxed_extended_instruction.html) · Extension `VK_KHR_shader_relaxed_extended_instruction`
 #![doc(alias = "VK_KHR_shader_relaxed_extended_instruction")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_relaxed_extended_instruction: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_relaxed_extended_instruction: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_relaxed_extended_instruction";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_relaxed_extended_instruction: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_relaxed_extended_instruction: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
-    pub fn shader_relaxed_extended_instruction(
-        mut self,
-        shader_relaxed_extended_instruction: bool,
-    ) -> Self {
-        self.shader_relaxed_extended_instruction = shader_relaxed_extended_instruction
-            .into();
-        self
+    impl<'a> PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
+        pub fn shader_relaxed_extended_instruction(
+            mut self,
+            shader_relaxed_extended_instruction: bool,
+        ) -> Self {
+            self.shader_relaxed_extended_instruction = shader_relaxed_extended_instruction
+                .into();
+            self
+        }
+    }
+    ///Provided by [`khr::shader_relaxed_extended_instruction`](crate::khr::shader_relaxed_extended_instruction)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR: Self = Self(
+            1000558000,
+        );
     }
 }
-///Provided by [`khr::shader_relaxed_extended_instruction`](crate::khr::shader_relaxed_extended_instruction)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR: Self = Self(
-        1000558000,
-    );
-}
-pub const KHR_SHADER_RELAXED_EXTENDED_INSTRUCTION_SPEC_VERSION: u32 = 1;
-pub const KHR_SHADER_RELAXED_EXTENDED_INSTRUCTION_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_relaxed_extended_instruction";
+pub use reexport::*;

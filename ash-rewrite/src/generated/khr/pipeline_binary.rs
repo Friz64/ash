@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_binary.html) · Extension `VK_KHR_pipeline_binary`
 #![doc(alias = "VK_KHR_pipeline_binary")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_pipeline_binary";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_pipeline_binaries_khr: crate::vk::PFN_vkCreatePipelineBinariesKHR,
@@ -618,7 +620,5 @@ pub(crate) mod reexport {
         p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     ) -> crate::vk::Result;
     pub const MAX_PIPELINE_BINARY_KEY_SIZE_KHR: u32 = 32;
-    pub const KHR_PIPELINE_BINARY_SPEC_VERSION: u32 = 1;
-    pub const KHR_PIPELINE_BINARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_pipeline_binary";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_compute_queue.html) · Extension `VK_NV_external_compute_queue`
 #![doc(alias = "VK_NV_external_compute_queue")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_external_compute_queue";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_external_compute_queue_nv: crate::vk::PFN_vkCreateExternalComputeQueueNV,
@@ -296,7 +298,5 @@ pub(crate) mod reexport {
         params: *mut crate::vk::ExternalComputeQueueDataParamsNV<'_>,
         p_data: *mut core::ffi::c_void,
     );
-    pub const NV_EXTERNAL_COMPUTE_QUEUE_SPEC_VERSION: u32 = 1;
-    pub const NV_EXTERNAL_COMPUTE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_compute_queue";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_acceleration_structure.html) · Extension `VK_KHR_acceleration_structure`
 #![doc(alias = "VK_KHR_acceleration_structure")]
+pub const SPEC_VERSION: u32 = 13;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_acceleration_structure";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub destroy_acceleration_structure_khr: crate::vk::PFN_vkDestroyAccelerationStructureKHR,
@@ -2000,7 +2002,5 @@ pub(crate) mod reexport {
         p_max_primitive_counts: *const u32,
         p_size_info: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
     );
-    pub const KHR_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 13;
-    pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_acceleration_structure";
 }
 pub use reexport::*;

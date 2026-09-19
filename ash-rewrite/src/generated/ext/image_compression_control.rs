@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_compression_control.html) · Extension `VK_EXT_image_compression_control`
 #![doc(alias = "VK_EXT_image_compression_control")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_image_subresource_layout2_ext: crate::vk::PFN_vkGetImageSubresourceLayout2EXT,
@@ -457,7 +459,5 @@ pub(crate) mod reexport {
         pub const _23BPC_EXT: Self = Self(1 << 22);
         pub const _24BPC_EXT: Self = Self(1 << 23);
     }
-    pub const EXT_IMAGE_COMPRESSION_CONTROL_SPEC_VERSION: u32 = 1;
-    pub const EXT_IMAGE_COMPRESSION_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_queue_perf_hint.html) · Extension `VK_QCOM_queue_perf_hint`
 #![doc(alias = "VK_QCOM_queue_perf_hint")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_queue_perf_hint";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub queue_set_perf_hint_qcom: crate::vk::PFN_vkQueueSetPerfHintQCOM,
@@ -187,7 +189,5 @@ pub(crate) mod reexport {
         queue: crate::vk::Queue,
         p_perf_hint_info: *const crate::vk::PerfHintInfoQCOM<'_>,
     ) -> crate::vk::Result;
-    pub const QCOM_QUEUE_PERF_HINT_SPEC_VERSION: u32 = 1;
-    pub const QCOM_QUEUE_PERF_HINT_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_queue_perf_hint";
 }
 pub use reexport::*;

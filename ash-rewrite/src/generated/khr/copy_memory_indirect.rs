@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_copy_memory_indirect.html) · Extension `VK_KHR_copy_memory_indirect`
 #![doc(alias = "VK_KHR_copy_memory_indirect")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_copy_memory_indirect";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_copy_memory_indirect_khr: crate::vk::PFN_vkCmdCopyMemoryIndirectKHR,
@@ -437,7 +439,5 @@ pub(crate) mod reexport {
             '_,
         >,
     );
-    pub const KHR_COPY_MEMORY_INDIRECT_SPEC_VERSION: u32 = 1;
-    pub const KHR_COPY_MEMORY_INDIRECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_copy_memory_indirect";
 }
 pub use reexport::*;

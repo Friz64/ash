@@ -2,41 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_depth_clamp_zero_one.html) · Extension `VK_KHR_depth_clamp_zero_one`
 #![doc(alias = "VK_KHR_depth_clamp_zero_one")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub depth_clamp_zero_one: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            depth_clamp_zero_one: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_depth_clamp_zero_one";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub depth_clamp_zero_one: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                depth_clamp_zero_one: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
-    pub fn depth_clamp_zero_one(mut self, depth_clamp_zero_one: bool) -> Self {
-        self.depth_clamp_zero_one = depth_clamp_zero_one.into();
-        self
+    impl<'a> PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
+        pub fn depth_clamp_zero_one(mut self, depth_clamp_zero_one: bool) -> Self {
+            self.depth_clamp_zero_one = depth_clamp_zero_one.into();
+            self
+        }
+    }
+    ///Provided by [`khr::depth_clamp_zero_one`](crate::khr::depth_clamp_zero_one)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR: Self = Self(
+            1000421000,
+        );
     }
 }
-///Provided by [`khr::depth_clamp_zero_one`](crate::khr::depth_clamp_zero_one)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR: Self = Self(1000421000);
-}
-pub const KHR_DEPTH_CLAMP_ZERO_ONE_SPEC_VERSION: u32 = 1;
-pub const KHR_DEPTH_CLAMP_ZERO_ONE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_depth_clamp_zero_one";
+pub use reexport::*;

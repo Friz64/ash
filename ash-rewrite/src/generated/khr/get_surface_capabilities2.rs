@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_surface_capabilities2.html) · Extension `VK_KHR_get_surface_capabilities2`
 #![doc(alias = "VK_KHR_get_surface_capabilities2")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_get_surface_capabilities2";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_surface_capabilities2_khr: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR,
@@ -180,7 +182,5 @@ pub(crate) mod reexport {
         p_surface_format_count: *mut u32,
         p_surface_formats: *mut crate::vk::SurfaceFormat2KHR<'_>,
     ) -> crate::vk::Result;
-    pub const KHR_GET_SURFACE_CAPABILITIES_2_SPEC_VERSION: u32 = 1;
-    pub const KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_surface_capabilities2";
 }
 pub use reexport::*;

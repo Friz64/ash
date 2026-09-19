@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_buffer_device_address.html) · Extension `VK_KHR_buffer_device_address`
 #![doc(alias = "VK_KHR_buffer_device_address")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_buffer_device_address";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_buffer_opaque_capture_address_khr: crate::vk::PFN_vkGetBufferOpaqueCaptureAddressKHR,
@@ -129,7 +131,5 @@ pub(crate) mod reexport {
     pub type PFN_vkGetBufferOpaqueCaptureAddressKHR = crate::vk::PFN_vkGetBufferOpaqueCaptureAddress;
     pub type PFN_vkGetBufferDeviceAddressKHR = crate::vk::PFN_vkGetBufferDeviceAddress;
     pub type PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR = crate::vk::PFN_vkGetDeviceMemoryOpaqueCaptureAddress;
-    pub const KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION: u32 = 1;
-    pub const KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_buffer_device_address";
 }
 pub use reexport::*;

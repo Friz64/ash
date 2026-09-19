@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_memory_decompression.html) · Extension `VK_EXT_memory_decompression`
 #![doc(alias = "VK_EXT_memory_decompression")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_memory_decompression";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_decompress_memory_ext: crate::vk::PFN_vkCmdDecompressMemoryEXT,
@@ -341,7 +343,5 @@ pub(crate) mod reexport {
         max_decompression_count: u32,
         stride: u32,
     );
-    pub const EXT_MEMORY_DECOMPRESSION_SPEC_VERSION: u32 = 1;
-    pub const EXT_MEMORY_DECOMPRESSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_memory_decompression";
 }
 pub use reexport::*;

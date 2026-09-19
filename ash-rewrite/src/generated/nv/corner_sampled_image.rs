@@ -2,45 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_corner_sampled_image.html) · Extension `VK_NV_corner_sampled_image`
 #![doc(alias = "VK_NV_corner_sampled_image")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub corner_sampled_image: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {}
-impl<'a> Default for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            corner_sampled_image: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_NV_corner_sampled_image";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub corner_sampled_image: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                corner_sampled_image: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
-    pub fn corner_sampled_image(mut self, corner_sampled_image: bool) -> Self {
-        self.corner_sampled_image = corner_sampled_image.into();
-        self
+    impl<'a> PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
+        pub fn corner_sampled_image(mut self, corner_sampled_image: bool) -> Self {
+            self.corner_sampled_image = corner_sampled_image.into();
+            self
+        }
+    }
+    ///Provided by [`nv::corner_sampled_image`](crate::nv::corner_sampled_image)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV: Self = Self(
+            1000050000,
+        );
+    }
+    ///Provided by [`nv::corner_sampled_image`](crate::nv::corner_sampled_image)
+    impl crate::vk::ImageCreateFlagBits {
+        pub const CORNER_SAMPLED_NV: Self = Self(1 << 13);
     }
 }
-///Provided by [`nv::corner_sampled_image`](crate::nv::corner_sampled_image)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV: Self = Self(1000050000);
-}
-///Provided by [`nv::corner_sampled_image`](crate::nv::corner_sampled_image)
-impl crate::vk::ImageCreateFlagBits {
-    pub const CORNER_SAMPLED_NV: Self = Self(1 << 13);
-}
-pub const NV_CORNER_SAMPLED_IMAGE_SPEC_VERSION: u32 = 2;
-pub const NV_CORNER_SAMPLED_IMAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_corner_sampled_image";
+pub use reexport::*;

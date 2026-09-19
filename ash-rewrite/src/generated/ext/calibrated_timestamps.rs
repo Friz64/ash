@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_calibrated_timestamps.html) · Extension `VK_EXT_calibrated_timestamps`
 #![doc(alias = "VK_EXT_calibrated_timestamps")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_calibrated_timestamps";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_calibrateable_time_domains_ext: crate::vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT,
@@ -134,7 +136,5 @@ pub(crate) mod reexport {
     pub type TimeDomainEXT = crate::vk::TimeDomainKHR;
     pub type PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT = crate::vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR;
     pub type PFN_vkGetCalibratedTimestampsEXT = crate::vk::PFN_vkGetCalibratedTimestampsKHR;
-    pub const EXT_CALIBRATED_TIMESTAMPS_SPEC_VERSION: u32 = 2;
-    pub const EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_calibrated_timestamps";
 }
 pub use reexport::*;

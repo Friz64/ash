@@ -2,12 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_compute_shader_derivatives.html) · Extension `VK_NV_compute_shader_derivatives`
 #![doc(alias = "VK_NV_compute_shader_derivatives")]
-pub type PhysicalDeviceComputeShaderDerivativesFeaturesNV<'a> = crate::vk::PhysicalDeviceComputeShaderDerivativesFeaturesKHR<
-    'a,
->;
-///Provided by [`nv::compute_shader_derivatives`](crate::nv::compute_shader_derivatives)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_NV: Self = Self::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_KHR;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_compute_shader_derivatives";
+pub(crate) mod reexport {
+    pub type PhysicalDeviceComputeShaderDerivativesFeaturesNV<'a> = crate::vk::PhysicalDeviceComputeShaderDerivativesFeaturesKHR<
+        'a,
+    >;
+    ///Provided by [`nv::compute_shader_derivatives`](crate::nv::compute_shader_derivatives)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_NV: Self = Self::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_KHR;
+    }
 }
-pub const NV_COMPUTE_SHADER_DERIVATIVES_SPEC_VERSION: u32 = 1;
-pub const NV_COMPUTE_SHADER_DERIVATIVES_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_compute_shader_derivatives";
+pub use reexport::*;

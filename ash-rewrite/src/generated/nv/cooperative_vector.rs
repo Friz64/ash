@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_vector.html) · Extension `VK_NV_cooperative_vector`
 #![doc(alias = "VK_NV_cooperative_vector")]
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &core::ffi::CStr = c"VK_NV_cooperative_vector";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_cooperative_vector_properties_nv: crate::vk::PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV,
@@ -488,7 +490,5 @@ pub(crate) mod reexport {
         info_count: u32,
         p_infos: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
     );
-    pub const NV_COOPERATIVE_VECTOR_SPEC_VERSION: u32 = 4;
-    pub const NV_COOPERATIVE_VECTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cooperative_vector";
 }
 pub use reexport::*;

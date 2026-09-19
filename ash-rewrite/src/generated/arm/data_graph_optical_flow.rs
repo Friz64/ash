@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph_optical_flow.html) · Extension `VK_ARM_data_graph_optical_flow`
 #![doc(alias = "VK_ARM_data_graph_optical_flow")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_optical_flow";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_queue_family_data_graph_engine_operation_properties_arm: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM,
@@ -989,7 +991,5 @@ pub(crate) mod reexport {
             '_,
         >,
     ) -> crate::vk::Result;
-    pub const ARM_DATA_GRAPH_OPTICAL_FLOW_SPEC_VERSION: u32 = 1;
-    pub const ARM_DATA_GRAPH_OPTICAL_FLOW_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_data_graph_optical_flow";
 }
 pub use reexport::*;

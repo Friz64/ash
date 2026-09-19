@@ -2,47 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_non_seamless_cube_map.html) · Extension `VK_EXT_non_seamless_cube_map`
 #![doc(alias = "VK_EXT_non_seamless_cube_map")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub non_seamless_cube_map: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            non_seamless_cube_map: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_non_seamless_cube_map";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub non_seamless_cube_map: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                non_seamless_cube_map: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
-    pub fn non_seamless_cube_map(mut self, non_seamless_cube_map: bool) -> Self {
-        self.non_seamless_cube_map = non_seamless_cube_map.into();
-        self
+    impl<'a> PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
+        pub fn non_seamless_cube_map(mut self, non_seamless_cube_map: bool) -> Self {
+            self.non_seamless_cube_map = non_seamless_cube_map.into();
+            self
+        }
+    }
+    ///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT: Self = Self(
+            1000422000,
+        );
+    }
+    ///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
+    impl crate::vk::SamplerCreateFlagBits {
+        pub const NON_SEAMLESS_CUBE_MAP_EXT: Self = Self(1 << 2);
     }
 }
-///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT: Self = Self(
-        1000422000,
-    );
-}
-///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
-impl crate::vk::SamplerCreateFlagBits {
-    pub const NON_SEAMLESS_CUBE_MAP_EXT: Self = Self(1 << 2);
-}
-pub const EXT_NON_SEAMLESS_CUBE_MAP_SPEC_VERSION: u32 = 1;
-pub const EXT_NON_SEAMLESS_CUBE_MAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_non_seamless_cube_map";
+pub use reexport::*;

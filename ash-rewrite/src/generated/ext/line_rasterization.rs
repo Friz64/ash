@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_line_rasterization.html) · Extension `VK_EXT_line_rasterization`
 #![doc(alias = "VK_EXT_line_rasterization")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_line_rasterization";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_line_stipple_ext: crate::vk::PFN_vkCmdSetLineStippleEXT,
@@ -87,7 +89,5 @@ pub(crate) mod reexport {
     }
     pub type LineRasterizationModeEXT = crate::vk::LineRasterizationMode;
     pub type PFN_vkCmdSetLineStippleEXT = crate::vk::PFN_vkCmdSetLineStipple;
-    pub const EXT_LINE_RASTERIZATION_SPEC_VERSION: u32 = 1;
-    pub const EXT_LINE_RASTERIZATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_line_rasterization";
 }
 pub use reexport::*;

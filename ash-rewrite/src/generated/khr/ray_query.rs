@@ -2,40 +2,44 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_query.html) · Extension `VK_KHR_ray_query`
 #![doc(alias = "VK_KHR_ray_query")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceRayQueryFeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub ray_query: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceRayQueryFeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceRayQueryFeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceRayQueryFeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceRayQueryFeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            ray_query: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_ray_query";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceRayQueryFeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub ray_query: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceRayQueryFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceRayQueryFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceRayQueryFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceRayQueryFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                ray_query: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceRayQueryFeaturesKHR<'a> {
-    pub fn ray_query(mut self, ray_query: bool) -> Self {
-        self.ray_query = ray_query.into();
-        self
+    impl<'a> PhysicalDeviceRayQueryFeaturesKHR<'a> {
+        pub fn ray_query(mut self, ray_query: bool) -> Self {
+            self.ray_query = ray_query.into();
+            self
+        }
+    }
+    ///Provided by [`khr::ray_query`](crate::khr::ray_query)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR: Self = Self(1000348013);
     }
 }
-///Provided by [`khr::ray_query`](crate::khr::ray_query)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR: Self = Self(1000348013);
-}
-pub const KHR_RAY_QUERY_SPEC_VERSION: u32 = 1;
-pub const KHR_RAY_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_ray_query";
+pub use reexport::*;

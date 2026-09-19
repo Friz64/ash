@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_external_memory.html) · Extension `VK_FUCHSIA_external_memory`
 #![doc(alias = "VK_FUCHSIA_external_memory")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_memory";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_memory_zircon_handle_fuchsia: crate::vk::PFN_vkGetMemoryZirconHandleFUCHSIA,
@@ -202,7 +204,5 @@ pub(crate) mod reexport {
             '_,
         >,
     ) -> crate::vk::Result;
-    pub const FUCHSIA_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
-    pub const FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_memory";
 }
 pub use reexport::*;

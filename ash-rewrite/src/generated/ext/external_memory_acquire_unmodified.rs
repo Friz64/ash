@@ -2,44 +2,51 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_acquire_unmodified.html) · Extension `VK_EXT_external_memory_acquire_unmodified`
 #![doc(alias = "VK_EXT_external_memory_acquire_unmodified")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct ExternalMemoryAcquireUnmodifiedEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub acquire_unmodified_memory: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for ExternalMemoryAcquireUnmodifiedEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::BufferMemoryBarrier<'_>>
-for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::BufferMemoryBarrier2<'_>>
-for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier<'_>>
-for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier2<'_>>
-for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
-impl<'a> Default for ExternalMemoryAcquireUnmodifiedEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            acquire_unmodified_memory: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_external_memory_acquire_unmodified";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct ExternalMemoryAcquireUnmodifiedEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub acquire_unmodified_memory: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ExternalMemoryAcquireUnmodifiedEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::BufferMemoryBarrier<'_>>
+    for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::BufferMemoryBarrier2<'_>>
+    for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier<'_>>
+    for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier2<'_>>
+    for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
+    impl<'a> Default for ExternalMemoryAcquireUnmodifiedEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                acquire_unmodified_memory: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> ExternalMemoryAcquireUnmodifiedEXT<'a> {
-    pub fn acquire_unmodified_memory(mut self, acquire_unmodified_memory: bool) -> Self {
-        self.acquire_unmodified_memory = acquire_unmodified_memory.into();
-        self
+    impl<'a> ExternalMemoryAcquireUnmodifiedEXT<'a> {
+        pub fn acquire_unmodified_memory(
+            mut self,
+            acquire_unmodified_memory: bool,
+        ) -> Self {
+            self.acquire_unmodified_memory = acquire_unmodified_memory.into();
+            self
+        }
+    }
+    ///Provided by [`ext::external_memory_acquire_unmodified`](crate::ext::external_memory_acquire_unmodified)
+    impl crate::vk::StructureType {
+        pub const EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT: Self = Self(1000453000);
     }
 }
-///Provided by [`ext::external_memory_acquire_unmodified`](crate::ext::external_memory_acquire_unmodified)
-impl crate::vk::StructureType {
-    pub const EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT: Self = Self(1000453000);
-}
-pub const EXT_EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_SPEC_VERSION: u32 = 1;
-pub const EXT_EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_external_memory_acquire_unmodified";
+pub use reexport::*;

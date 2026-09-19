@@ -4,7 +4,7 @@ pub mod depends;
 
 use crate::LibraryName;
 use crate::name::{
-    CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
+    CMacroName, CommandName, ConstantName, EnumeratorName, ExtensionName, FuncPointerName, TypeName,
 };
 use cdecl::{CDecl, CDeclMode, CTok, CType};
 use cexpr::{CExprItem, CExprItems};
@@ -426,13 +426,13 @@ impl Handle {
 
 #[derive(Debug)]
 pub struct EnumType {
-    pub name: &'static str,
+    pub name: TypeName,
 }
 
 impl EnumType {
     fn from_node(node: Node) -> EnumType {
         EnumType {
-            name: attribute(node, "name").unwrap(),
+            name: TypeName::new(attribute(node, "name").unwrap()),
         }
     }
 }
@@ -924,7 +924,7 @@ impl Feature {
 
 #[derive(Debug)]
 pub struct Extension {
-    pub name: &'static str,
+    pub name: ExtensionName,
     pub number: Option<u32>,
     pub ty: Option<&'static str>,
     pub is_ratified: Option<bool>,
@@ -936,7 +936,7 @@ impl Extension {
     fn from_node(node: Node, library_name: LibraryName, api: &str) -> Extension {
         let extension_num = attribute(node, "number").map(|value| value.parse().unwrap());
         Extension {
-            name: attribute(node, "name").unwrap(),
+            name: ExtensionName::new(attribute(node, "name").unwrap()),
             number: extension_num,
             ty: attribute(node, "type"),
             is_ratified: matches!(library_name, LibraryName::Vk).then(|| {

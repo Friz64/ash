@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance10.html) · Extension `VK_KHR_maintenance10`
 #![doc(alias = "VK_KHR_maintenance10")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance10";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_end_rendering2_khr: crate::vk::PFN_vkCmdEndRendering2KHR,
@@ -433,7 +435,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         p_rendering_end_info: *const crate::vk::RenderingEndInfoKHR<'_>,
     );
-    pub const KHR_MAINTENANCE_10_SPEC_VERSION: u32 = 1;
-    pub const KHR_MAINTENANCE_10_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance10";
 }
 pub use reexport::*;

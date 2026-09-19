@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_discard_rectangles.html) · Extension `VK_EXT_discard_rectangles`
 #![doc(alias = "VK_EXT_discard_rectangles")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_discard_rectangles";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_discard_rectangle_ext: crate::vk::PFN_vkCmdSetDiscardRectangleEXT,
@@ -287,7 +289,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
     );
-    pub const EXT_DISCARD_RECTANGLES_SPEC_VERSION: u32 = 2;
-    pub const EXT_DISCARD_RECTANGLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_discard_rectangles";
 }
 pub use reexport::*;

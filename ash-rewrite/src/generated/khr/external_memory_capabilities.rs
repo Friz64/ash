@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory_capabilities.html) · Extension `VK_KHR_external_memory_capabilities`
 #![doc(alias = "VK_KHR_external_memory_capabilities")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_external_memory_capabilities";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_external_buffer_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR,
@@ -104,7 +106,5 @@ pub(crate) mod reexport {
     pub type ExternalMemoryHandleTypeFlagsKHR = crate::vk::ExternalMemoryHandleTypeFlags;
     pub type ExternalMemoryFeatureFlagsKHR = crate::vk::ExternalMemoryFeatureFlags;
     pub type PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR = crate::vk::PFN_vkGetPhysicalDeviceExternalBufferProperties;
-    pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: u32 = 1;
-    pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_memory_capabilities";
 }
 pub use reexport::*;

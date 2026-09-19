@@ -2,72 +2,76 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_id.html) · Extension `VK_KHR_present_id`
 #![doc(alias = "VK_KHR_present_id")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDevicePresentIdFeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub present_id: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDevicePresentIdFeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDevicePresentIdFeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDevicePresentIdFeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDevicePresentIdFeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            present_id: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_present_id";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDevicePresentIdFeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub present_id: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePresentIdFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePresentIdFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePresentIdFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDevicePresentIdFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_id: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDevicePresentIdFeaturesKHR<'a> {
-    pub fn present_id(mut self, present_id: bool) -> Self {
-        self.present_id = present_id.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PresentIdKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: u32,
-    pub p_present_ids: *const u64,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for PresentIdKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>> for PresentIdKHR<'a> {}
-impl<'a> Default for PresentIdKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            swapchain_count: Default::default(),
-            p_present_ids: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDevicePresentIdFeaturesKHR<'a> {
+        pub fn present_id(mut self, present_id: bool) -> Self {
+            self.present_id = present_id.into();
+            self
         }
     }
-}
-impl<'a> PresentIdKHR<'a> {
-    pub fn present_ids(mut self, present_ids: &'a [u64]) -> Self {
-        self.swapchain_count = present_ids.len() as _;
-        self.p_present_ids = present_ids.as_ptr();
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PresentIdKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub swapchain_count: u32,
+        pub p_present_ids: *const u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PresentIdKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>> for PresentIdKHR<'a> {}
+    impl<'a> Default for PresentIdKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain_count: Default::default(),
+                p_present_ids: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PresentIdKHR<'a> {
+        pub fn present_ids(mut self, present_ids: &'a [u64]) -> Self {
+            self.swapchain_count = present_ids.len() as _;
+            self.p_present_ids = present_ids.as_ptr();
+            self
+        }
+    }
+    ///Provided by [`khr::present_id`](crate::khr::present_id)
+    impl crate::vk::StructureType {
+        pub const PRESENT_ID_KHR: Self = Self(1000294000);
+        pub const PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR: Self = Self(1000294001);
     }
 }
-///Provided by [`khr::present_id`](crate::khr::present_id)
-impl crate::vk::StructureType {
-    pub const PRESENT_ID_KHR: Self = Self(1000294000);
-    pub const PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR: Self = Self(1000294001);
-}
-pub const KHR_PRESENT_ID_SPEC_VERSION: u32 = 1;
-pub const KHR_PRESENT_ID_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_present_id";
+pub use reexport::*;

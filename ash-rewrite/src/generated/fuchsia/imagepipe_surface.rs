@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_imagepipe_surface.html) · Extension `VK_FUCHSIA_imagepipe_surface`
 #![doc(alias = "VK_FUCHSIA_imagepipe_surface")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_imagepipe_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_image_pipe_surface_fuchsia: crate::vk::PFN_vkCreateImagePipeSurfaceFUCHSIA,
@@ -177,7 +179,5 @@ pub(crate) mod reexport {
         p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
-    pub const FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION: u32 = 1;
-    pub const FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_imagepipe_surface";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_optical_flow.html) · Extension `VK_NV_optical_flow`
 #![doc(alias = "VK_NV_optical_flow")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_optical_flow";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_optical_flow_image_formats_nv: crate::vk::PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV,
@@ -1008,7 +1010,5 @@ pub(crate) mod reexport {
         session: crate::vk::OpticalFlowSessionNV,
         p_execute_info: *const crate::vk::OpticalFlowExecuteInfoNV<'_>,
     );
-    pub const NV_OPTICAL_FLOW_SPEC_VERSION: u32 = 1;
-    pub const NV_OPTICAL_FLOW_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_optical_flow";
 }
 pub use reexport::*;

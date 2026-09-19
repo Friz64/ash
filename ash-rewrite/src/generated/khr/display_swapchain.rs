@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display_swapchain.html) · Extension `VK_KHR_display_swapchain`
 #![doc(alias = "VK_KHR_display_swapchain")]
+pub const SPEC_VERSION: u32 = 10;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_display_swapchain";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_shared_swapchains_khr: crate::vk::PFN_vkCreateSharedSwapchainsKHR,
@@ -117,7 +119,5 @@ pub(crate) mod reexport {
         p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_swapchains: *mut crate::vk::SwapchainKHR,
     ) -> crate::vk::Result;
-    pub const KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION: u32 = 10;
-    pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_display_swapchain";
 }
 pub use reexport::*;

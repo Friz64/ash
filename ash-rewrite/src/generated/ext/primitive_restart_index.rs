@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_primitive_restart_index.html) · Extension `VK_EXT_primitive_restart_index`
 #![doc(alias = "VK_EXT_primitive_restart_index")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_primitive_restart_index";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_primitive_restart_index_ext: crate::vk::PFN_vkCmdSetPrimitiveRestartIndexEXT,
@@ -100,7 +102,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         primitive_restart_index: u32,
     );
-    pub const EXT_PRIMITIVE_RESTART_INDEX_SPEC_VERSION: u32 = 1;
-    pub const EXT_PRIMITIVE_RESTART_INDEX_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_primitive_restart_index";
 }
 pub use reexport::*;

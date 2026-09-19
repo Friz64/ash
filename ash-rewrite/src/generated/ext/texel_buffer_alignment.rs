@@ -2,47 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_texel_buffer_alignment.html) · Extension `VK_EXT_texel_buffer_alignment`
 #![doc(alias = "VK_EXT_texel_buffer_alignment")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub texel_buffer_alignment: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            texel_buffer_alignment: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_texel_buffer_alignment";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub texel_buffer_alignment: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                texel_buffer_alignment: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
-    pub fn texel_buffer_alignment(mut self, texel_buffer_alignment: bool) -> Self {
-        self.texel_buffer_alignment = texel_buffer_alignment.into();
-        self
+    impl<'a> PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
+        pub fn texel_buffer_alignment(mut self, texel_buffer_alignment: bool) -> Self {
+            self.texel_buffer_alignment = texel_buffer_alignment.into();
+            self
+        }
+    }
+    pub type PhysicalDeviceTexelBufferAlignmentPropertiesEXT<'a> = crate::vk::PhysicalDeviceTexelBufferAlignmentProperties<
+        'a,
+    >;
+    ///Provided by [`ext::texel_buffer_alignment`](crate::ext::texel_buffer_alignment)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT: Self = Self(
+            1000281000,
+        );
+        pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES;
     }
 }
-pub type PhysicalDeviceTexelBufferAlignmentPropertiesEXT<'a> = crate::vk::PhysicalDeviceTexelBufferAlignmentProperties<
-    'a,
->;
-///Provided by [`ext::texel_buffer_alignment`](crate::ext::texel_buffer_alignment)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT: Self = Self(
-        1000281000,
-    );
-    pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES;
-}
-pub const EXT_TEXEL_BUFFER_ALIGNMENT_SPEC_VERSION: u32 = 1;
-pub const EXT_TEXEL_BUFFER_ALIGNMENT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_texel_buffer_alignment";
+pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_marker.html) · Extension `VK_EXT_debug_marker`
 #![doc(alias = "VK_EXT_debug_marker")]
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_marker";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub debug_marker_set_object_name_ext: crate::vk::PFN_vkDebugMarkerSetObjectNameEXT,
@@ -282,7 +284,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         p_marker_info: *const crate::vk::DebugMarkerMarkerInfoEXT<'_>,
     );
-    pub const EXT_DEBUG_MARKER_SPEC_VERSION: u32 = 4;
-    pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_marker";
 }
 pub use reexport::*;

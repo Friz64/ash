@@ -2,317 +2,326 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface_maintenance1.html) · Extension `VK_KHR_surface_maintenance1`
 #![doc(alias = "VK_KHR_surface_maintenance1")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct SurfacePresentModeKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub present_mode: crate::vk::PresentModeKHR,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentModeKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_MODE_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
-for SurfacePresentModeKHR<'a> {}
-impl<'a> Default for SurfacePresentModeKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            present_mode: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_surface_maintenance1";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct SurfacePresentModeKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub present_mode: crate::vk::PresentModeKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentModeKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_MODE_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
+    for SurfacePresentModeKHR<'a> {}
+    impl<'a> Default for SurfacePresentModeKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> SurfacePresentModeKHR<'a> {
-    pub fn present_mode(mut self, present_mode: crate::vk::PresentModeKHR) -> Self {
-        self.present_mode = present_mode;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct SurfacePresentScalingCapabilitiesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub supported_present_scaling: crate::vk::PresentScalingFlagsKHR,
-    pub supported_present_gravity_x: crate::vk::PresentGravityFlagsKHR,
-    pub supported_present_gravity_y: crate::vk::PresentGravityFlagsKHR,
-    pub min_scaled_image_extent: crate::vk::Extent2D,
-    pub max_scaled_image_extent: crate::vk::Extent2D,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentScalingCapabilitiesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
-for SurfacePresentScalingCapabilitiesKHR<'a> {}
-impl<'a> Default for SurfacePresentScalingCapabilitiesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            supported_present_scaling: Default::default(),
-            supported_present_gravity_x: Default::default(),
-            supported_present_gravity_y: Default::default(),
-            min_scaled_image_extent: Default::default(),
-            max_scaled_image_extent: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> SurfacePresentModeKHR<'a> {
+        pub fn present_mode(mut self, present_mode: crate::vk::PresentModeKHR) -> Self {
+            self.present_mode = present_mode;
+            self
         }
     }
-}
-impl<'a> SurfacePresentScalingCapabilitiesKHR<'a> {
-    pub fn supported_present_scaling(
-        mut self,
-        supported_present_scaling: crate::vk::PresentScalingFlagsKHR,
-    ) -> Self {
-        self.supported_present_scaling = supported_present_scaling;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct SurfacePresentScalingCapabilitiesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub supported_present_scaling: crate::vk::PresentScalingFlagsKHR,
+        pub supported_present_gravity_x: crate::vk::PresentGravityFlagsKHR,
+        pub supported_present_gravity_y: crate::vk::PresentGravityFlagsKHR,
+        pub min_scaled_image_extent: crate::vk::Extent2D,
+        pub max_scaled_image_extent: crate::vk::Extent2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub fn supported_present_gravity_x(
-        mut self,
-        supported_present_gravity_x: crate::vk::PresentGravityFlagsKHR,
-    ) -> Self {
-        self.supported_present_gravity_x = supported_present_gravity_x;
-        self
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SurfacePresentScalingCapabilitiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR;
     }
-    pub fn supported_present_gravity_y(
-        mut self,
-        supported_present_gravity_y: crate::vk::PresentGravityFlagsKHR,
-    ) -> Self {
-        self.supported_present_gravity_y = supported_present_gravity_y;
-        self
-    }
-    pub fn min_scaled_image_extent(
-        mut self,
-        min_scaled_image_extent: crate::vk::Extent2D,
-    ) -> Self {
-        self.min_scaled_image_extent = min_scaled_image_extent;
-        self
-    }
-    pub fn max_scaled_image_extent(
-        mut self,
-        max_scaled_image_extent: crate::vk::Extent2D,
-    ) -> Self {
-        self.max_scaled_image_extent = max_scaled_image_extent;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct SurfacePresentModeCompatibilityKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub present_mode_count: u32,
-    pub p_present_modes: *mut crate::vk::PresentModeKHR,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentModeCompatibilityKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
-for SurfacePresentModeCompatibilityKHR<'a> {}
-impl<'a> Default for SurfacePresentModeCompatibilityKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            present_mode_count: Default::default(),
-            p_present_modes: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for SurfacePresentScalingCapabilitiesKHR<'a> {}
+    impl<'a> Default for SurfacePresentScalingCapabilitiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                supported_present_scaling: Default::default(),
+                supported_present_gravity_x: Default::default(),
+                supported_present_gravity_y: Default::default(),
+                min_scaled_image_extent: Default::default(),
+                max_scaled_image_extent: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> SurfacePresentModeCompatibilityKHR<'a> {
-    pub fn present_modes(
-        mut self,
-        present_modes: &'a mut [crate::vk::PresentModeKHR],
-    ) -> Self {
-        self.present_mode_count = present_modes.len() as _;
-        self.p_present_modes = present_modes.as_mut_ptr();
-        self
+    impl<'a> SurfacePresentScalingCapabilitiesKHR<'a> {
+        pub fn supported_present_scaling(
+            mut self,
+            supported_present_scaling: crate::vk::PresentScalingFlagsKHR,
+        ) -> Self {
+            self.supported_present_scaling = supported_present_scaling;
+            self
+        }
+        pub fn supported_present_gravity_x(
+            mut self,
+            supported_present_gravity_x: crate::vk::PresentGravityFlagsKHR,
+        ) -> Self {
+            self.supported_present_gravity_x = supported_present_gravity_x;
+            self
+        }
+        pub fn supported_present_gravity_y(
+            mut self,
+            supported_present_gravity_y: crate::vk::PresentGravityFlagsKHR,
+        ) -> Self {
+            self.supported_present_gravity_y = supported_present_gravity_y;
+            self
+        }
+        pub fn min_scaled_image_extent(
+            mut self,
+            min_scaled_image_extent: crate::vk::Extent2D,
+        ) -> Self {
+            self.min_scaled_image_extent = min_scaled_image_extent;
+            self
+        }
+        pub fn max_scaled_image_extent(
+            mut self,
+            max_scaled_image_extent: crate::vk::Extent2D,
+        ) -> Self {
+            self.max_scaled_image_extent = max_scaled_image_extent;
+            self
+        }
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct SurfacePresentModeCompatibilityKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub present_mode_count: u32,
+        pub p_present_modes: *mut crate::vk::PresentModeKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SurfacePresentModeCompatibilityKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for SurfacePresentModeCompatibilityKHR<'a> {}
+    impl<'a> Default for SurfacePresentModeCompatibilityKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_mode_count: Default::default(),
+                p_present_modes: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SurfacePresentModeCompatibilityKHR<'a> {
+        pub fn present_modes(
+            mut self,
+            present_modes: &'a mut [crate::vk::PresentModeKHR],
+        ) -> Self {
+            self.present_mode_count = present_modes.len() as _;
+            self.p_present_modes = present_modes.as_mut_ptr();
+            self
+        }
+    }
+    ///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+    impl crate::vk::StructureType {
+        pub const SURFACE_PRESENT_MODE_KHR: Self = Self(1000274000);
+        pub const SURFACE_PRESENT_SCALING_CAPABILITIES_KHR: Self = Self(1000274001);
+        pub const SURFACE_PRESENT_MODE_COMPATIBILITY_KHR: Self = Self(1000274002);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PresentScalingFlagsKHR(u32);
+    impl PresentScalingFlagsKHR {
+        pub const ONE_TO_ONE_KHR: Self = Self(
+            PresentScalingFlagBitsKHR::ONE_TO_ONE_KHR.0,
+        );
+        pub const ONE_TO_ONE_EXT: Self = Self(
+            PresentScalingFlagBitsKHR::ONE_TO_ONE_EXT.0,
+        );
+        pub const ASPECT_RATIO_STRETCH_KHR: Self = Self(
+            PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_KHR.0,
+        );
+        pub const ASPECT_RATIO_STRETCH_EXT: Self = Self(
+            PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_EXT.0,
+        );
+        pub const STRETCH_KHR: Self = Self(PresentScalingFlagBitsKHR::STRETCH_KHR.0);
+        pub const STRETCH_EXT: Self = Self(PresentScalingFlagBitsKHR::STRETCH_EXT.0);
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for PresentScalingFlagsKHR {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for PresentScalingFlagsKHR {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for PresentScalingFlagsKHR {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for PresentScalingFlagsKHR {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for PresentScalingFlagsKHR {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for PresentScalingFlagsKHR {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for PresentScalingFlagsKHR {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for PresentScalingFlagsKHR {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, Default)]
+    pub struct PresentScalingFlagBitsKHR(pub(crate) u32);
+    ///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+    impl PresentScalingFlagBitsKHR {
+        pub const ONE_TO_ONE_KHR: Self = Self(1 << 0);
+        pub const ONE_TO_ONE_EXT: Self = Self::ONE_TO_ONE_KHR;
+        pub const ASPECT_RATIO_STRETCH_KHR: Self = Self(1 << 1);
+        pub const ASPECT_RATIO_STRETCH_EXT: Self = Self::ASPECT_RATIO_STRETCH_KHR;
+        pub const STRETCH_KHR: Self = Self(1 << 2);
+        pub const STRETCH_EXT: Self = Self::STRETCH_KHR;
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PresentGravityFlagsKHR(u32);
+    impl PresentGravityFlagsKHR {
+        pub const MIN_KHR: Self = Self(PresentGravityFlagBitsKHR::MIN_KHR.0);
+        pub const MIN_EXT: Self = Self(PresentGravityFlagBitsKHR::MIN_EXT.0);
+        pub const MAX_KHR: Self = Self(PresentGravityFlagBitsKHR::MAX_KHR.0);
+        pub const MAX_EXT: Self = Self(PresentGravityFlagBitsKHR::MAX_EXT.0);
+        pub const CENTERED_KHR: Self = Self(PresentGravityFlagBitsKHR::CENTERED_KHR.0);
+        pub const CENTERED_EXT: Self = Self(PresentGravityFlagBitsKHR::CENTERED_EXT.0);
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for PresentGravityFlagsKHR {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for PresentGravityFlagsKHR {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for PresentGravityFlagsKHR {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for PresentGravityFlagsKHR {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for PresentGravityFlagsKHR {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for PresentGravityFlagsKHR {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for PresentGravityFlagsKHR {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for PresentGravityFlagsKHR {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, Default)]
+    pub struct PresentGravityFlagBitsKHR(pub(crate) u32);
+    ///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+    impl PresentGravityFlagBitsKHR {
+        pub const MIN_KHR: Self = Self(1 << 0);
+        pub const MIN_EXT: Self = Self::MIN_KHR;
+        pub const MAX_KHR: Self = Self(1 << 1);
+        pub const MAX_EXT: Self = Self::MAX_KHR;
+        pub const CENTERED_KHR: Self = Self(1 << 2);
+        pub const CENTERED_EXT: Self = Self::CENTERED_KHR;
     }
 }
-///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
-impl crate::vk::StructureType {
-    pub const SURFACE_PRESENT_MODE_KHR: Self = Self(1000274000);
-    pub const SURFACE_PRESENT_SCALING_CAPABILITIES_KHR: Self = Self(1000274001);
-    pub const SURFACE_PRESENT_MODE_COMPATIBILITY_KHR: Self = Self(1000274002);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PresentScalingFlagsKHR(u32);
-impl PresentScalingFlagsKHR {
-    pub const ONE_TO_ONE_KHR: Self = Self(PresentScalingFlagBitsKHR::ONE_TO_ONE_KHR.0);
-    pub const ONE_TO_ONE_EXT: Self = Self(PresentScalingFlagBitsKHR::ONE_TO_ONE_EXT.0);
-    pub const ASPECT_RATIO_STRETCH_KHR: Self = Self(
-        PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_KHR.0,
-    );
-    pub const ASPECT_RATIO_STRETCH_EXT: Self = Self(
-        PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_EXT.0,
-    );
-    pub const STRETCH_KHR: Self = Self(PresentScalingFlagBitsKHR::STRETCH_KHR.0);
-    pub const STRETCH_EXT: Self = Self(PresentScalingFlagBitsKHR::STRETCH_EXT.0);
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    pub const fn from_raw(x: u32) -> Self {
-        Self(x)
-    }
-    pub const fn as_raw(self) -> u32 {
-        self.0
-    }
-    pub const fn is_empty(self) -> bool {
-        self.0 == Self::empty().0
-    }
-    pub const fn intersects(self, other: Self) -> bool {
-        !Self(self.0 & other.0).is_empty()
-    }
-    pub const fn contains(self, other: Self) -> bool {
-        self.0 & other.0 == other.0
-    }
-}
-impl Default for PresentScalingFlagsKHR {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl core::ops::BitOr for PresentScalingFlagsKHR {
-    type Output = Self;
-    fn bitor(self, rhs: Self) -> Self {
-        Self(self.0 | rhs.0)
-    }
-}
-impl core::ops::BitOrAssign for PresentScalingFlagsKHR {
-    fn bitor_assign(&mut self, rhs: Self) {
-        *self = *self | rhs;
-    }
-}
-impl core::ops::BitAnd for PresentScalingFlagsKHR {
-    type Output = Self;
-    fn bitand(self, rhs: Self) -> Self {
-        Self(self.0 & rhs.0)
-    }
-}
-impl core::ops::BitAndAssign for PresentScalingFlagsKHR {
-    fn bitand_assign(&mut self, rhs: Self) {
-        *self = *self & rhs;
-    }
-}
-impl core::ops::BitXor for PresentScalingFlagsKHR {
-    type Output = Self;
-    fn bitxor(self, rhs: Self) -> Self {
-        Self(self.0 ^ rhs.0)
-    }
-}
-impl core::ops::BitXorAssign for PresentScalingFlagsKHR {
-    fn bitxor_assign(&mut self, rhs: Self) {
-        *self = *self ^ rhs;
-    }
-}
-impl core::ops::Not for PresentScalingFlagsKHR {
-    type Output = Self;
-    fn not(self) -> Self {
-        Self(!self.0)
-    }
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, Default)]
-pub struct PresentScalingFlagBitsKHR(pub(crate) u32);
-///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
-impl PresentScalingFlagBitsKHR {
-    pub const ONE_TO_ONE_KHR: Self = Self(1 << 0);
-    pub const ONE_TO_ONE_EXT: Self = Self::ONE_TO_ONE_KHR;
-    pub const ASPECT_RATIO_STRETCH_KHR: Self = Self(1 << 1);
-    pub const ASPECT_RATIO_STRETCH_EXT: Self = Self::ASPECT_RATIO_STRETCH_KHR;
-    pub const STRETCH_KHR: Self = Self(1 << 2);
-    pub const STRETCH_EXT: Self = Self::STRETCH_KHR;
-}
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PresentGravityFlagsKHR(u32);
-impl PresentGravityFlagsKHR {
-    pub const MIN_KHR: Self = Self(PresentGravityFlagBitsKHR::MIN_KHR.0);
-    pub const MIN_EXT: Self = Self(PresentGravityFlagBitsKHR::MIN_EXT.0);
-    pub const MAX_KHR: Self = Self(PresentGravityFlagBitsKHR::MAX_KHR.0);
-    pub const MAX_EXT: Self = Self(PresentGravityFlagBitsKHR::MAX_EXT.0);
-    pub const CENTERED_KHR: Self = Self(PresentGravityFlagBitsKHR::CENTERED_KHR.0);
-    pub const CENTERED_EXT: Self = Self(PresentGravityFlagBitsKHR::CENTERED_EXT.0);
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    pub const fn from_raw(x: u32) -> Self {
-        Self(x)
-    }
-    pub const fn as_raw(self) -> u32 {
-        self.0
-    }
-    pub const fn is_empty(self) -> bool {
-        self.0 == Self::empty().0
-    }
-    pub const fn intersects(self, other: Self) -> bool {
-        !Self(self.0 & other.0).is_empty()
-    }
-    pub const fn contains(self, other: Self) -> bool {
-        self.0 & other.0 == other.0
-    }
-}
-impl Default for PresentGravityFlagsKHR {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl core::ops::BitOr for PresentGravityFlagsKHR {
-    type Output = Self;
-    fn bitor(self, rhs: Self) -> Self {
-        Self(self.0 | rhs.0)
-    }
-}
-impl core::ops::BitOrAssign for PresentGravityFlagsKHR {
-    fn bitor_assign(&mut self, rhs: Self) {
-        *self = *self | rhs;
-    }
-}
-impl core::ops::BitAnd for PresentGravityFlagsKHR {
-    type Output = Self;
-    fn bitand(self, rhs: Self) -> Self {
-        Self(self.0 & rhs.0)
-    }
-}
-impl core::ops::BitAndAssign for PresentGravityFlagsKHR {
-    fn bitand_assign(&mut self, rhs: Self) {
-        *self = *self & rhs;
-    }
-}
-impl core::ops::BitXor for PresentGravityFlagsKHR {
-    type Output = Self;
-    fn bitxor(self, rhs: Self) -> Self {
-        Self(self.0 ^ rhs.0)
-    }
-}
-impl core::ops::BitXorAssign for PresentGravityFlagsKHR {
-    fn bitxor_assign(&mut self, rhs: Self) {
-        *self = *self ^ rhs;
-    }
-}
-impl core::ops::Not for PresentGravityFlagsKHR {
-    type Output = Self;
-    fn not(self) -> Self {
-        Self(!self.0)
-    }
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, Default)]
-pub struct PresentGravityFlagBitsKHR(pub(crate) u32);
-///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
-impl PresentGravityFlagBitsKHR {
-    pub const MIN_KHR: Self = Self(1 << 0);
-    pub const MIN_EXT: Self = Self::MIN_KHR;
-    pub const MAX_KHR: Self = Self(1 << 1);
-    pub const MAX_EXT: Self = Self::MAX_KHR;
-    pub const CENTERED_KHR: Self = Self(1 << 2);
-    pub const CENTERED_EXT: Self = Self::CENTERED_KHR;
-}
-pub const KHR_SURFACE_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
-pub const KHR_SURFACE_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_surface_maintenance1";
+pub use reexport::*;

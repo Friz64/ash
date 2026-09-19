@@ -21,7 +21,7 @@ use crate::{
         handle::Handle,
         structure::{Struct, Union},
     },
-    name::{CMacroName, CommandName, ConstantName, FuncPointerName, TypeName},
+    name::{CMacroName, CommandName, ConstantName, ExtensionName, FuncPointerName, TypeName},
     xml::{self, Require, RequireCommand, RequireConstant, RequireType},
 };
 use indexmap::IndexMap;
@@ -56,7 +56,7 @@ impl RequiredBy {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum RequireLocation {
     Core { major: u32, minor: u32 },
-    Extension { name: &'static str },
+    Extension { name: ExtensionName },
 }
 
 impl Default for RequireLocation {

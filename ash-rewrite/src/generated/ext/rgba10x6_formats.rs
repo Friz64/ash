@@ -2,45 +2,48 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_rgba10x6_formats.html) · Extension `VK_EXT_rgba10x6_formats`
 #![doc(alias = "VK_EXT_rgba10x6_formats")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub format_rgba10x6_without_y_cb_cr_sampler: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            format_rgba10x6_without_y_cb_cr_sampler: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_rgba10x6_formats";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub format_rgba10x6_without_y_cb_cr_sampler: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format_rgba10x6_without_y_cb_cr_sampler: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
-    pub fn format_rgba10x6_without_y_cb_cr_sampler(
-        mut self,
-        format_rgba10x6_without_y_cb_cr_sampler: bool,
-    ) -> Self {
-        self.format_rgba10x6_without_y_cb_cr_sampler = format_rgba10x6_without_y_cb_cr_sampler
-            .into();
-        self
+    impl<'a> PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
+        pub fn format_rgba10x6_without_y_cb_cr_sampler(
+            mut self,
+            format_rgba10x6_without_y_cb_cr_sampler: bool,
+        ) -> Self {
+            self.format_rgba10x6_without_y_cb_cr_sampler = format_rgba10x6_without_y_cb_cr_sampler
+                .into();
+            self
+        }
+    }
+    ///Provided by [`ext::rgba10x6_formats`](crate::ext::rgba10x6_formats)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT: Self = Self(1000344000);
     }
 }
-///Provided by [`ext::rgba10x6_formats`](crate::ext::rgba10x6_formats)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT: Self = Self(1000344000);
-}
-pub const EXT_RGBA10X6_FORMATS_SPEC_VERSION: u32 = 1;
-pub const EXT_RGBA10X6_FORMATS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_rgba10x6_formats";
+pub use reexport::*;

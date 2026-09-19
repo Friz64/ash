@@ -2,70 +2,73 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_primitives_generated_query.html) · Extension `VK_EXT_primitives_generated_query`
 #![doc(alias = "VK_EXT_primitives_generated_query")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub primitives_generated_query: crate::vk::Bool32,
-    pub primitives_generated_query_with_rasterizer_discard: crate::vk::Bool32,
-    pub primitives_generated_query_with_non_zero_streams: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIMITIVES_GENERATED_QUERY_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            primitives_generated_query: Default::default(),
-            primitives_generated_query_with_rasterizer_discard: Default::default(),
-            primitives_generated_query_with_non_zero_streams: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_primitives_generated_query";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub primitives_generated_query: crate::vk::Bool32,
+        pub primitives_generated_query_with_rasterizer_discard: crate::vk::Bool32,
+        pub primitives_generated_query_with_non_zero_streams: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIMITIVES_GENERATED_QUERY_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                primitives_generated_query: Default::default(),
+                primitives_generated_query_with_rasterizer_discard: Default::default(),
+                primitives_generated_query_with_non_zero_streams: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
-    pub fn primitives_generated_query(
-        mut self,
-        primitives_generated_query: bool,
-    ) -> Self {
-        self.primitives_generated_query = primitives_generated_query.into();
-        self
+    impl<'a> PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
+        pub fn primitives_generated_query(
+            mut self,
+            primitives_generated_query: bool,
+        ) -> Self {
+            self.primitives_generated_query = primitives_generated_query.into();
+            self
+        }
+        pub fn primitives_generated_query_with_rasterizer_discard(
+            mut self,
+            primitives_generated_query_with_rasterizer_discard: bool,
+        ) -> Self {
+            self.primitives_generated_query_with_rasterizer_discard = primitives_generated_query_with_rasterizer_discard
+                .into();
+            self
+        }
+        pub fn primitives_generated_query_with_non_zero_streams(
+            mut self,
+            primitives_generated_query_with_non_zero_streams: bool,
+        ) -> Self {
+            self.primitives_generated_query_with_non_zero_streams = primitives_generated_query_with_non_zero_streams
+                .into();
+            self
+        }
     }
-    pub fn primitives_generated_query_with_rasterizer_discard(
-        mut self,
-        primitives_generated_query_with_rasterizer_discard: bool,
-    ) -> Self {
-        self.primitives_generated_query_with_rasterizer_discard = primitives_generated_query_with_rasterizer_discard
-            .into();
-        self
+    ///Provided by [`ext::primitives_generated_query`](crate::ext::primitives_generated_query)
+    impl crate::vk::QueryType {
+        pub const PRIMITIVES_GENERATED_EXT: Self = Self(1000382000);
     }
-    pub fn primitives_generated_query_with_non_zero_streams(
-        mut self,
-        primitives_generated_query_with_non_zero_streams: bool,
-    ) -> Self {
-        self.primitives_generated_query_with_non_zero_streams = primitives_generated_query_with_non_zero_streams
-            .into();
-        self
+    ///Provided by [`ext::primitives_generated_query`](crate::ext::primitives_generated_query)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_PRIMITIVES_GENERATED_QUERY_FEATURES_EXT: Self = Self(
+            1000382000,
+        );
     }
 }
-///Provided by [`ext::primitives_generated_query`](crate::ext::primitives_generated_query)
-impl crate::vk::QueryType {
-    pub const PRIMITIVES_GENERATED_EXT: Self = Self(1000382000);
-}
-///Provided by [`ext::primitives_generated_query`](crate::ext::primitives_generated_query)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_PRIMITIVES_GENERATED_QUERY_FEATURES_EXT: Self = Self(
-        1000382000,
-    );
-}
-pub const EXT_PRIMITIVES_GENERATED_QUERY_SPEC_VERSION: u32 = 1;
-pub const EXT_PRIMITIVES_GENERATED_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_primitives_generated_query";
+pub use reexport::*;

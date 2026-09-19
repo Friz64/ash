@@ -2,41 +2,44 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GGP_frame_token.html) · Extension `VK_GGP_frame_token`
 #![doc(alias = "VK_GGP_frame_token")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PresentFrameTokenGGP<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub frame_token: crate::platform_types::GgpFrameToken,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for PresentFrameTokenGGP<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_FRAME_TOKEN_GGP;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
-for PresentFrameTokenGGP<'a> {}
-impl<'a> Default for PresentFrameTokenGGP<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            frame_token: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_GGP_frame_token";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PresentFrameTokenGGP<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub frame_token: crate::platform_types::GgpFrameToken,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PresentFrameTokenGGP<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_FRAME_TOKEN_GGP;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for PresentFrameTokenGGP<'a> {}
+    impl<'a> Default for PresentFrameTokenGGP<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                frame_token: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PresentFrameTokenGGP<'a> {
-    pub fn frame_token(
-        mut self,
-        frame_token: crate::platform_types::GgpFrameToken,
-    ) -> Self {
-        self.frame_token = frame_token;
-        self
+    impl<'a> PresentFrameTokenGGP<'a> {
+        pub fn frame_token(
+            mut self,
+            frame_token: crate::platform_types::GgpFrameToken,
+        ) -> Self {
+            self.frame_token = frame_token;
+            self
+        }
+    }
+    ///Provided by [`ggp::frame_token`](crate::ggp::frame_token)
+    impl crate::vk::StructureType {
+        pub const PRESENT_FRAME_TOKEN_GGP: Self = Self(1000191000);
     }
 }
-///Provided by [`ggp::frame_token`](crate::ggp::frame_token)
-impl crate::vk::StructureType {
-    pub const PRESENT_FRAME_TOKEN_GGP: Self = Self(1000191000);
-}
-pub const GGP_FRAME_TOKEN_SPEC_VERSION: u32 = 1;
-pub const GGP_FRAME_TOKEN_EXTENSION_NAME: &core::ffi::CStr = c"VK_GGP_frame_token";
+pub use reexport::*;

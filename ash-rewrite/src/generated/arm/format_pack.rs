@@ -2,57 +2,61 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_format_pack.html) · Extension `VK_ARM_format_pack`
 #![doc(alias = "VK_ARM_format_pack")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceFormatPackFeaturesARM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub format_pack: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFormatPackFeaturesARM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceFormatPackFeaturesARM<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceFormatPackFeaturesARM<'a> {}
-impl<'a> Default for PhysicalDeviceFormatPackFeaturesARM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            format_pack: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_format_pack";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceFormatPackFeaturesARM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub format_pack: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceFormatPackFeaturesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceFormatPackFeaturesARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceFormatPackFeaturesARM<'a> {}
+    impl<'a> Default for PhysicalDeviceFormatPackFeaturesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format_pack: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceFormatPackFeaturesARM<'a> {
-    pub fn format_pack(mut self, format_pack: bool) -> Self {
-        self.format_pack = format_pack.into();
-        self
+    impl<'a> PhysicalDeviceFormatPackFeaturesARM<'a> {
+        pub fn format_pack(mut self, format_pack: bool) -> Self {
+            self.format_pack = format_pack.into();
+            self
+        }
+    }
+    ///Provided by [`arm::format_pack`](crate::arm::format_pack)
+    impl crate::vk::Format {
+        pub const R10X6_UINT_PACK16_ARM: Self = Self(1000609000);
+        pub const R10X6G10X6_UINT_2PACK16_ARM: Self = Self(1000609001);
+        pub const R10X6G10X6B10X6A10X6_UINT_4PACK16_ARM: Self = Self(1000609002);
+        pub const R12X4_UINT_PACK16_ARM: Self = Self(1000609003);
+        pub const R12X4G12X4_UINT_2PACK16_ARM: Self = Self(1000609004);
+        pub const R12X4G12X4B12X4A12X4_UINT_4PACK16_ARM: Self = Self(1000609005);
+        pub const R14X2_UINT_PACK16_ARM: Self = Self(1000609006);
+        pub const R14X2G14X2_UINT_2PACK16_ARM: Self = Self(1000609007);
+        pub const R14X2G14X2B14X2A14X2_UINT_4PACK16_ARM: Self = Self(1000609008);
+        pub const R14X2_UNORM_PACK16_ARM: Self = Self(1000609009);
+        pub const R14X2G14X2_UNORM_2PACK16_ARM: Self = Self(1000609010);
+        pub const R14X2G14X2B14X2A14X2_UNORM_4PACK16_ARM: Self = Self(1000609011);
+        pub const G14X2_B14X2R14X2_2PLANE_420_UNORM_3PACK16_ARM: Self = Self(1000609012);
+        pub const G14X2_B14X2R14X2_2PLANE_422_UNORM_3PACK16_ARM: Self = Self(1000609013);
+    }
+    ///Provided by [`arm::format_pack`](crate::arm::format_pack)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM: Self = Self(1000609000);
     }
 }
-///Provided by [`arm::format_pack`](crate::arm::format_pack)
-impl crate::vk::Format {
-    pub const R10X6_UINT_PACK16_ARM: Self = Self(1000609000);
-    pub const R10X6G10X6_UINT_2PACK16_ARM: Self = Self(1000609001);
-    pub const R10X6G10X6B10X6A10X6_UINT_4PACK16_ARM: Self = Self(1000609002);
-    pub const R12X4_UINT_PACK16_ARM: Self = Self(1000609003);
-    pub const R12X4G12X4_UINT_2PACK16_ARM: Self = Self(1000609004);
-    pub const R12X4G12X4B12X4A12X4_UINT_4PACK16_ARM: Self = Self(1000609005);
-    pub const R14X2_UINT_PACK16_ARM: Self = Self(1000609006);
-    pub const R14X2G14X2_UINT_2PACK16_ARM: Self = Self(1000609007);
-    pub const R14X2G14X2B14X2A14X2_UINT_4PACK16_ARM: Self = Self(1000609008);
-    pub const R14X2_UNORM_PACK16_ARM: Self = Self(1000609009);
-    pub const R14X2G14X2_UNORM_2PACK16_ARM: Self = Self(1000609010);
-    pub const R14X2G14X2B14X2A14X2_UNORM_4PACK16_ARM: Self = Self(1000609011);
-    pub const G14X2_B14X2R14X2_2PLANE_420_UNORM_3PACK16_ARM: Self = Self(1000609012);
-    pub const G14X2_B14X2R14X2_2PLANE_422_UNORM_3PACK16_ARM: Self = Self(1000609013);
-}
-///Provided by [`arm::format_pack`](crate::arm::format_pack)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM: Self = Self(1000609000);
-}
-pub const ARM_FORMAT_PACK_SPEC_VERSION: u32 = 1;
-pub const ARM_FORMAT_PACK_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_format_pack";
+pub use reexport::*;

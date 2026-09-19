@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_properties.html) · Extension `VK_QCOM_tile_properties`
 #![doc(alias = "VK_QCOM_tile_properties")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_tile_properties";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_framebuffer_tile_properties_qcom: crate::vk::PFN_vkGetFramebufferTilePropertiesQCOM,
@@ -163,7 +165,5 @@ pub(crate) mod reexport {
         p_rendering_info: *const crate::vk::RenderingInfo<'_>,
         p_properties: *mut crate::vk::TilePropertiesQCOM<'_>,
     ) -> crate::vk::Result;
-    pub const QCOM_TILE_PROPERTIES_SPEC_VERSION: u32 = 1;
-    pub const QCOM_TILE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_properties";
 }
 pub use reexport::*;

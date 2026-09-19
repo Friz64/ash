@@ -2,46 +2,49 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_cooperative_matrix_conversion.html) · Extension `VK_QCOM_cooperative_matrix_conversion`
 #![doc(alias = "VK_QCOM_cooperative_matrix_conversion")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub cooperative_matrix_conversion: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {}
-impl<'a> Default for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            cooperative_matrix_conversion: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_cooperative_matrix_conversion";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub cooperative_matrix_conversion: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {}
+    impl<'a> Default for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cooperative_matrix_conversion: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
-    pub fn cooperative_matrix_conversion(
-        mut self,
-        cooperative_matrix_conversion: bool,
-    ) -> Self {
-        self.cooperative_matrix_conversion = cooperative_matrix_conversion.into();
-        self
+    impl<'a> PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
+        pub fn cooperative_matrix_conversion(
+            mut self,
+            cooperative_matrix_conversion: bool,
+        ) -> Self {
+            self.cooperative_matrix_conversion = cooperative_matrix_conversion.into();
+            self
+        }
+    }
+    ///Provided by [`qcom::cooperative_matrix_conversion`](crate::qcom::cooperative_matrix_conversion)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM: Self = Self(
+            1000172000,
+        );
     }
 }
-///Provided by [`qcom::cooperative_matrix_conversion`](crate::qcom::cooperative_matrix_conversion)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM: Self = Self(
-        1000172000,
-    );
-}
-pub const QCOM_COOPERATIVE_MATRIX_CONVERSION_SPEC_VERSION: u32 = 1;
-pub const QCOM_COOPERATIVE_MATRIX_CONVERSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_cooperative_matrix_conversion";
+pub use reexport::*;

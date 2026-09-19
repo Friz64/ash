@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence_capabilities.html) · Extension `VK_KHR_external_fence_capabilities`
 #![doc(alias = "VK_KHR_external_fence_capabilities")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_external_fence_capabilities";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_external_fence_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR,
@@ -87,7 +89,5 @@ pub(crate) mod reexport {
     pub type ExternalFenceHandleTypeFlagsKHR = crate::vk::ExternalFenceHandleTypeFlags;
     pub type ExternalFenceFeatureFlagsKHR = crate::vk::ExternalFenceFeatureFlags;
     pub type PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR = crate::vk::PFN_vkGetPhysicalDeviceExternalFenceProperties;
-    pub const KHR_EXTERNAL_FENCE_CAPABILITIES_SPEC_VERSION: u32 = 1;
-    pub const KHR_EXTERNAL_FENCE_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_fence_capabilities";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph_instruction_set_tosa.html) · Extension `VK_ARM_data_graph_instruction_set_tosa`
 #![doc(alias = "VK_ARM_data_graph_instruction_set_tosa")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_instruction_set_tosa";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_queue_family_data_graph_engine_operation_properties_arm: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM,
@@ -269,7 +271,5 @@ pub(crate) mod reexport {
         p_properties: *mut crate::vk::BaseOutStructure<'_>,
     ) -> crate::vk::Result;
     pub const MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM: u32 = 128;
-    pub const ARM_DATA_GRAPH_INSTRUCTION_SET_TOSA_SPEC_VERSION: u32 = 1;
-    pub const ARM_DATA_GRAPH_INSTRUCTION_SET_TOSA_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_data_graph_instruction_set_tosa";
 }
 pub use reexport::*;

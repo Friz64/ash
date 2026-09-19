@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_host.html) · Extension `VK_EXT_external_memory_host`
 #![doc(alias = "VK_EXT_external_memory_host")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_external_memory_host";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_memory_host_pointer_properties_ext: crate::vk::PFN_vkGetMemoryHostPointerPropertiesEXT,
@@ -179,7 +181,5 @@ pub(crate) mod reexport {
             '_,
         >,
     ) -> crate::vk::Result;
-    pub const EXT_EXTERNAL_MEMORY_HOST_SPEC_VERSION: u32 = 1;
-    pub const EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_external_memory_host";
 }
 pub use reexport::*;

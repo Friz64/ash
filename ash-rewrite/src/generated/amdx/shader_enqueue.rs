@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_shader_enqueue.html) · Extension `VK_AMDX_shader_enqueue`
 #![doc(alias = "VK_AMDX_shader_enqueue")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_AMDX_shader_enqueue";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_execution_graph_pipeline_scratch_size_amdx: crate::vk::PFN_vkGetExecutionGraphPipelineScratchSizeAMDX,
@@ -575,7 +577,5 @@ pub(crate) mod reexport {
         count_info: crate::vk::DeviceAddress,
     );
     pub const SHADER_INDEX_UNUSED_AMDX: u32 = (!0);
-    pub const AMDX_SHADER_ENQUEUE_SPEC_VERSION: u32 = 2;
-    pub const AMDX_SHADER_ENQUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMDX_shader_enqueue";
 }
 pub use reexport::*;

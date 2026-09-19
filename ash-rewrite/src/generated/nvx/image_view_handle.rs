@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_image_view_handle.html) · Extension `VK_NVX_image_view_handle`
 #![doc(alias = "VK_NVX_image_view_handle")]
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &core::ffi::CStr = c"VK_NVX_image_view_handle";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_image_view_handle_nvx: crate::vk::PFN_vkGetImageViewHandleNVX,
@@ -206,7 +208,5 @@ pub(crate) mod reexport {
         image_view_index: u64,
         sampler_index: u64,
     ) -> u64;
-    pub const NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION: u32 = 4;
-    pub const NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NVX_image_view_handle";
 }
 pub use reexport::*;

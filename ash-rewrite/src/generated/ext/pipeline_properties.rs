@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_properties.html) · Extension `VK_EXT_pipeline_properties`
 #![doc(alias = "VK_EXT_pipeline_properties")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_properties";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_pipeline_properties_ext: crate::vk::PFN_vkGetPipelinePropertiesEXT,
@@ -138,7 +140,5 @@ pub(crate) mod reexport {
         p_pipeline_info: *const crate::vk::PipelineInfoKHR<'_>,
         p_pipeline_properties: *mut crate::vk::BaseOutStructure<'_>,
     ) -> crate::vk::Result;
-    pub const EXT_PIPELINE_PROPERTIES_SPEC_VERSION: u32 = 1;
-    pub const EXT_PIPELINE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pipeline_properties";
 }
 pub use reexport::*;

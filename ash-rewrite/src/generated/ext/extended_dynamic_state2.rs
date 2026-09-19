@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state2.html) · Extension `VK_EXT_extended_dynamic_state2`
 #![doc(alias = "VK_EXT_extended_dynamic_state2")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state2";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_patch_control_points_ext: crate::vk::PFN_vkCmdSetPatchControlPointsEXT,
@@ -195,7 +197,5 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdSetRasterizerDiscardEnableEXT = crate::vk::PFN_vkCmdSetRasterizerDiscardEnable;
     pub type PFN_vkCmdSetDepthBiasEnableEXT = crate::vk::PFN_vkCmdSetDepthBiasEnable;
     pub type PFN_vkCmdSetPrimitiveRestartEnableEXT = crate::vk::PFN_vkCmdSetPrimitiveRestartEnable;
-    pub const EXT_EXTENDED_DYNAMIC_STATE_2_SPEC_VERSION: u32 = 1;
-    pub const EXT_EXTENDED_DYNAMIC_STATE_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state2";
 }
 pub use reexport::*;

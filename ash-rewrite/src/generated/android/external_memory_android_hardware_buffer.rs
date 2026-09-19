@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_memory_android_hardware_buffer.html) · Extension `VK_ANDROID_external_memory_android_hardware_buffer`
 #![doc(alias = "VK_ANDROID_external_memory_android_hardware_buffer")]
+pub const SPEC_VERSION: u32 = 5;
+pub const NAME: &core::ffi::CStr = c"VK_ANDROID_external_memory_android_hardware_buffer";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_android_hardware_buffer_properties_android: crate::vk::PFN_vkGetAndroidHardwareBufferPropertiesANDROID,
@@ -453,7 +455,5 @@ pub(crate) mod reexport {
         p_info: *const crate::vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
         p_buffer: *mut *mut crate::platform_types::AHardwareBuffer,
     ) -> crate::vk::Result;
-    pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION: u32 = 5;
-    pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_ANDROID_external_memory_android_hardware_buffer";
 }
 pub use reexport::*;

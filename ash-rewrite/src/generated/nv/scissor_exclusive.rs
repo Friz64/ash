@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_scissor_exclusive.html) · Extension `VK_NV_scissor_exclusive`
 #![doc(alias = "VK_NV_scissor_exclusive")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_NV_scissor_exclusive";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_exclusive_scissor_nv: crate::vk::PFN_vkCmdSetExclusiveScissorNV,
@@ -169,7 +171,5 @@ pub(crate) mod reexport {
         exclusive_scissor_count: u32,
         p_exclusive_scissor_enables: *const crate::vk::Bool32,
     );
-    pub const NV_SCISSOR_EXCLUSIVE_SPEC_VERSION: u32 = 2;
-    pub const NV_SCISSOR_EXCLUSIVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_scissor_exclusive";
 }
 pub use reexport::*;

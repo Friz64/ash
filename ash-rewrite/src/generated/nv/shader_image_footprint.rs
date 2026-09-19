@@ -2,43 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shader_image_footprint.html) · Extension `VK_NV_shader_image_footprint`
 #![doc(alias = "VK_NV_shader_image_footprint")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub image_footprint: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {}
-impl<'a> Default for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            image_footprint: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_NV_shader_image_footprint";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub image_footprint: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                image_footprint: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
-    pub fn image_footprint(mut self, image_footprint: bool) -> Self {
-        self.image_footprint = image_footprint.into();
-        self
+    impl<'a> PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
+        pub fn image_footprint(mut self, image_footprint: bool) -> Self {
+            self.image_footprint = image_footprint.into();
+            self
+        }
+    }
+    ///Provided by [`nv::shader_image_footprint`](crate::nv::shader_image_footprint)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV: Self = Self(
+            1000204000,
+        );
     }
 }
-///Provided by [`nv::shader_image_footprint`](crate::nv::shader_image_footprint)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV: Self = Self(
-        1000204000,
-    );
-}
-pub const NV_SHADER_IMAGE_FOOTPRINT_SPEC_VERSION: u32 = 2;
-pub const NV_SHADER_IMAGE_FOOTPRINT_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shader_image_footprint";
+pub use reexport::*;

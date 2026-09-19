@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_descriptor_buffer.html) · Extension `VK_EXT_descriptor_buffer`
 #![doc(alias = "VK_EXT_descriptor_buffer")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_descriptor_buffer";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_descriptor_set_layout_size_ext: crate::vk::PFN_vkGetDescriptorSetLayoutSizeEXT,
@@ -1134,7 +1136,5 @@ pub(crate) mod reexport {
         p_info: *const crate::vk::AccelerationStructureCaptureDescriptorDataInfoEXT<'_>,
         p_data: *mut core::ffi::c_void,
     ) -> crate::vk::Result;
-    pub const EXT_DESCRIPTOR_BUFFER_SPEC_VERSION: u32 = 1;
-    pub const EXT_DESCRIPTOR_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_descriptor_buffer";
 }
 pub use reexport::*;

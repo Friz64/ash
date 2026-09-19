@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_object.html) · Extension `VK_EXT_shader_object`
 #![doc(alias = "VK_EXT_shader_object")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_object";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_patch_control_points_ext: crate::vk::PFN_vkCmdSetPatchControlPointsEXT,
@@ -1267,7 +1269,5 @@ pub(crate) mod reexport {
         depth_clamp_mode: crate::vk::DepthClampModeEXT,
         p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
     );
-    pub const EXT_SHADER_OBJECT_SPEC_VERSION: u32 = 1;
-    pub const EXT_SHADER_OBJECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_object";
 }
 pub use reexport::*;

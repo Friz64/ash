@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_color_write_enable.html) · Extension `VK_EXT_color_write_enable`
 #![doc(alias = "VK_EXT_color_write_enable")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_color_write_enable";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_color_write_enable_ext: crate::vk::PFN_vkCmdSetColorWriteEnableEXT,
@@ -142,7 +144,5 @@ pub(crate) mod reexport {
         attachment_count: u32,
         p_color_write_enables: *const crate::vk::Bool32,
     );
-    pub const EXT_COLOR_WRITE_ENABLE_SPEC_VERSION: u32 = 1;
-    pub const EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_color_write_enable";
 }
 pub use reexport::*;

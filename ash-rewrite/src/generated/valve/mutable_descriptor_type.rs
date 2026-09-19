@@ -2,31 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_mutable_descriptor_type.html) · Extension `VK_VALVE_mutable_descriptor_type`
 #![doc(alias = "VK_VALVE_mutable_descriptor_type")]
-pub type PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'a> = crate::vk::PhysicalDeviceMutableDescriptorTypeFeaturesEXT<
-    'a,
->;
-pub type MutableDescriptorTypeListVALVE<'a> = crate::vk::MutableDescriptorTypeListEXT<
-    'a,
->;
-pub type MutableDescriptorTypeCreateInfoVALVE<'a> = crate::vk::MutableDescriptorTypeCreateInfoEXT<
-    'a,
->;
-///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
-impl crate::vk::DescriptorType {
-    pub const MUTABLE_VALVE: Self = Self::MUTABLE_EXT;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_VALVE_mutable_descriptor_type";
+pub(crate) mod reexport {
+    pub type PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'a> = crate::vk::PhysicalDeviceMutableDescriptorTypeFeaturesEXT<
+        'a,
+    >;
+    pub type MutableDescriptorTypeListVALVE<'a> = crate::vk::MutableDescriptorTypeListEXT<
+        'a,
+    >;
+    pub type MutableDescriptorTypeCreateInfoVALVE<'a> = crate::vk::MutableDescriptorTypeCreateInfoEXT<
+        'a,
+    >;
+    ///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
+    impl crate::vk::DescriptorType {
+        pub const MUTABLE_VALVE: Self = Self::MUTABLE_EXT;
+    }
+    ///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE: Self = Self::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT;
+        pub const MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE: Self = Self::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;
+    }
+    ///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
+    impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+        pub const HOST_ONLY_POOL_VALVE: Self = Self::HOST_ONLY_POOL_EXT;
+    }
+    ///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
+    impl crate::vk::DescriptorPoolCreateFlagBits {
+        pub const HOST_ONLY_VALVE: Self = Self::HOST_ONLY_EXT;
+    }
 }
-///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE: Self = Self::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT;
-    pub const MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE: Self = Self::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;
-}
-///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
-impl crate::vk::DescriptorSetLayoutCreateFlagBits {
-    pub const HOST_ONLY_POOL_VALVE: Self = Self::HOST_ONLY_POOL_EXT;
-}
-///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
-impl crate::vk::DescriptorPoolCreateFlagBits {
-    pub const HOST_ONLY_VALVE: Self = Self::HOST_ONLY_EXT;
-}
-pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_SPEC_VERSION: u32 = 1;
-pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &core::ffi::CStr = c"VK_VALVE_mutable_descriptor_type";
+pub use reexport::*;

@@ -2,46 +2,49 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_replicated_composites.html) · Extension `VK_EXT_shader_replicated_composites`
 #![doc(alias = "VK_EXT_shader_replicated_composites")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_replicated_composites: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_replicated_composites: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_replicated_composites";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_replicated_composites: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_replicated_composites: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
-    pub fn shader_replicated_composites(
-        mut self,
-        shader_replicated_composites: bool,
-    ) -> Self {
-        self.shader_replicated_composites = shader_replicated_composites.into();
-        self
+    impl<'a> PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
+        pub fn shader_replicated_composites(
+            mut self,
+            shader_replicated_composites: bool,
+        ) -> Self {
+            self.shader_replicated_composites = shader_replicated_composites.into();
+            self
+        }
+    }
+    ///Provided by [`ext::shader_replicated_composites`](crate::ext::shader_replicated_composites)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT: Self = Self(
+            1000564000,
+        );
     }
 }
-///Provided by [`ext::shader_replicated_composites`](crate::ext::shader_replicated_composites)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT: Self = Self(
-        1000564000,
-    );
-}
-pub const EXT_SHADER_REPLICATED_COMPOSITES_SPEC_VERSION: u32 = 1;
-pub const EXT_SHADER_REPLICATED_COMPOSITES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_replicated_composites";
+pub use reexport::*;

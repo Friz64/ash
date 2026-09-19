@@ -2,46 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_pipeline_cache_incremental_mode.html) · Extension `VK_SEC_pipeline_cache_incremental_mode`
 #![doc(alias = "VK_SEC_pipeline_cache_incremental_mode")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub pipeline_cache_incremental_mode: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {}
-impl<'a> Default for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            pipeline_cache_incremental_mode: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_SEC_pipeline_cache_incremental_mode";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub pipeline_cache_incremental_mode: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {}
+    impl<'a> Default for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_cache_incremental_mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
-    pub fn pipeline_cache_incremental_mode(
-        mut self,
-        pipeline_cache_incremental_mode: bool,
-    ) -> Self {
-        self.pipeline_cache_incremental_mode = pipeline_cache_incremental_mode.into();
-        self
+    impl<'a> PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
+        pub fn pipeline_cache_incremental_mode(
+            mut self,
+            pipeline_cache_incremental_mode: bool,
+        ) -> Self {
+            self.pipeline_cache_incremental_mode = pipeline_cache_incremental_mode
+                .into();
+            self
+        }
+    }
+    ///Provided by [`sec::pipeline_cache_incremental_mode`](crate::sec::pipeline_cache_incremental_mode)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC: Self = Self(
+            1000637000,
+        );
     }
 }
-///Provided by [`sec::pipeline_cache_incremental_mode`](crate::sec::pipeline_cache_incremental_mode)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC: Self = Self(
-        1000637000,
-    );
-}
-pub const SEC_PIPELINE_CACHE_INCREMENTAL_MODE_SPEC_VERSION: u32 = 1;
-pub const SEC_PIPELINE_CACHE_INCREMENTAL_MODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_SEC_pipeline_cache_incremental_mode";
+pub use reexport::*;

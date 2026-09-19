@@ -2,12 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_library_group_handles.html) · Extension `VK_EXT_pipeline_library_group_handles`
 #![doc(alias = "VK_EXT_pipeline_library_group_handles")]
-pub type PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> = crate::vk::PhysicalDevicePipelineLibraryGroupHandlesFeaturesKHR<
-    'a,
->;
-///Provided by [`ext::pipeline_library_group_handles`](crate::ext::pipeline_library_group_handles)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_KHR;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_library_group_handles";
+pub(crate) mod reexport {
+    pub type PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> = crate::vk::PhysicalDevicePipelineLibraryGroupHandlesFeaturesKHR<
+        'a,
+    >;
+    ///Provided by [`ext::pipeline_library_group_handles`](crate::ext::pipeline_library_group_handles)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_KHR;
+    }
 }
-pub const EXT_PIPELINE_LIBRARY_GROUP_HANDLES_SPEC_VERSION: u32 = 1;
-pub const EXT_PIPELINE_LIBRARY_GROUP_HANDLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pipeline_library_group_handles";
+pub use reexport::*;

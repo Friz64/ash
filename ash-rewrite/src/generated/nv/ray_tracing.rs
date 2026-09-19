@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing.html) · Extension `VK_NV_ray_tracing`
 #![doc(alias = "VK_NV_ray_tracing")]
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_NV_ray_tracing";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub compile_deferred_nv: crate::vk::PFN_vkCompileDeferredNV,
@@ -1144,7 +1146,5 @@ pub(crate) mod reexport {
         p_pipelines: *mut crate::vk::Pipeline,
     ) -> crate::vk::Result;
     pub type PFN_vkGetRayTracingShaderGroupHandlesNV = crate::vk::PFN_vkGetRayTracingShaderGroupHandlesKHR;
-    pub const NV_RAY_TRACING_SPEC_VERSION: u32 = 3;
-    pub const NV_RAY_TRACING_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing";
 }
 pub use reexport::*;

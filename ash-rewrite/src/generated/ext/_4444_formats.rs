@@ -2,51 +2,55 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_4444_formats.html) · Extension `VK_EXT_4444_formats`
 #![doc(alias = "VK_EXT_4444_formats")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDevice4444FormatsFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub format_a4r4g4b4: crate::vk::Bool32,
-    pub format_a4b4g4r4: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDevice4444FormatsFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDevice4444FormatsFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDevice4444FormatsFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDevice4444FormatsFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            format_a4r4g4b4: Default::default(),
-            format_a4b4g4r4: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_4444_formats";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDevice4444FormatsFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub format_a4r4g4b4: crate::vk::Bool32,
+        pub format_a4b4g4r4: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevice4444FormatsFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevice4444FormatsFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevice4444FormatsFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDevice4444FormatsFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format_a4r4g4b4: Default::default(),
+                format_a4b4g4r4: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDevice4444FormatsFeaturesEXT<'a> {
-    pub fn format_a4r4g4b4(mut self, format_a4r4g4b4: bool) -> Self {
-        self.format_a4r4g4b4 = format_a4r4g4b4.into();
-        self
+    impl<'a> PhysicalDevice4444FormatsFeaturesEXT<'a> {
+        pub fn format_a4r4g4b4(mut self, format_a4r4g4b4: bool) -> Self {
+            self.format_a4r4g4b4 = format_a4r4g4b4.into();
+            self
+        }
+        pub fn format_a4b4g4r4(mut self, format_a4b4g4r4: bool) -> Self {
+            self.format_a4b4g4r4 = format_a4b4g4r4.into();
+            self
+        }
     }
-    pub fn format_a4b4g4r4(mut self, format_a4b4g4r4: bool) -> Self {
-        self.format_a4b4g4r4 = format_a4b4g4r4.into();
-        self
+    ///Provided by [`ext::_4444_formats`](crate::ext::_4444_formats)
+    impl crate::vk::Format {
+        pub const A4R4G4B4_UNORM_PACK16_EXT: Self = Self::A4R4G4B4_UNORM_PACK16;
+        pub const A4B4G4R4_UNORM_PACK16_EXT: Self = Self::A4B4G4R4_UNORM_PACK16;
+    }
+    ///Provided by [`ext::_4444_formats`](crate::ext::_4444_formats)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT: Self = Self(1000340000);
     }
 }
-///Provided by [`ext::_4444_formats`](crate::ext::_4444_formats)
-impl crate::vk::Format {
-    pub const A4R4G4B4_UNORM_PACK16_EXT: Self = Self::A4R4G4B4_UNORM_PACK16;
-    pub const A4B4G4R4_UNORM_PACK16_EXT: Self = Self::A4B4G4R4_UNORM_PACK16;
-}
-///Provided by [`ext::_4444_formats`](crate::ext::_4444_formats)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT: Self = Self(1000340000);
-}
-pub const EXT_4444_FORMATS_SPEC_VERSION: u32 = 1;
-pub const EXT_4444_FORMATS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_4444_formats";
+pub use reexport::*;

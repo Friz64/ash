@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_range_unrestricted.html) · Extension `VK_EXT_depth_range_unrestricted`
 #![doc(alias = "VK_EXT_depth_range_unrestricted")]
-pub const EXT_DEPTH_RANGE_UNRESTRICTED_SPEC_VERSION: u32 = 1;
-pub const EXT_DEPTH_RANGE_UNRESTRICTED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_range_unrestricted";
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_range_unrestricted";

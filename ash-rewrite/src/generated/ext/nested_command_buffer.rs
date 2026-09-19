@@ -2,106 +2,110 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_nested_command_buffer.html) · Extension `VK_EXT_nested_command_buffer`
 #![doc(alias = "VK_EXT_nested_command_buffer")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub nested_command_buffer: crate::vk::Bool32,
-    pub nested_command_buffer_rendering: crate::vk::Bool32,
-    pub nested_command_buffer_simultaneous_use: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            nested_command_buffer: Default::default(),
-            nested_command_buffer_rendering: Default::default(),
-            nested_command_buffer_simultaneous_use: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_nested_command_buffer";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub nested_command_buffer: crate::vk::Bool32,
+        pub nested_command_buffer_rendering: crate::vk::Bool32,
+        pub nested_command_buffer_simultaneous_use: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                nested_command_buffer: Default::default(),
+                nested_command_buffer_rendering: Default::default(),
+                nested_command_buffer_simultaneous_use: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
-    pub fn nested_command_buffer(mut self, nested_command_buffer: bool) -> Self {
-        self.nested_command_buffer = nested_command_buffer.into();
-        self
-    }
-    pub fn nested_command_buffer_rendering(
-        mut self,
-        nested_command_buffer_rendering: bool,
-    ) -> Self {
-        self.nested_command_buffer_rendering = nested_command_buffer_rendering.into();
-        self
-    }
-    pub fn nested_command_buffer_simultaneous_use(
-        mut self,
-        nested_command_buffer_simultaneous_use: bool,
-    ) -> Self {
-        self.nested_command_buffer_simultaneous_use = nested_command_buffer_simultaneous_use
-            .into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_command_buffer_nesting_level: u32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
-for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            max_command_buffer_nesting_level: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
+        pub fn nested_command_buffer(mut self, nested_command_buffer: bool) -> Self {
+            self.nested_command_buffer = nested_command_buffer.into();
+            self
+        }
+        pub fn nested_command_buffer_rendering(
+            mut self,
+            nested_command_buffer_rendering: bool,
+        ) -> Self {
+            self.nested_command_buffer_rendering = nested_command_buffer_rendering
+                .into();
+            self
+        }
+        pub fn nested_command_buffer_simultaneous_use(
+            mut self,
+            nested_command_buffer_simultaneous_use: bool,
+        ) -> Self {
+            self.nested_command_buffer_simultaneous_use = nested_command_buffer_simultaneous_use
+                .into();
+            self
         }
     }
-}
-impl<'a> PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
-    pub fn max_command_buffer_nesting_level(
-        mut self,
-        max_command_buffer_nesting_level: u32,
-    ) -> Self {
-        self.max_command_buffer_nesting_level = max_command_buffer_nesting_level;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub max_command_buffer_nesting_level: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_command_buffer_nesting_level: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
+        pub fn max_command_buffer_nesting_level(
+            mut self,
+            max_command_buffer_nesting_level: u32,
+        ) -> Self {
+            self.max_command_buffer_nesting_level = max_command_buffer_nesting_level;
+            self
+        }
+    }
+    ///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT: Self = Self(
+            1000451000,
+        );
+        pub const PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT: Self = Self(
+            1000451001,
+        );
+    }
+    ///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
+    impl crate::vk::SubpassContents {
+        pub const INLINE_AND_SECONDARY_COMMAND_BUFFERS_EXT: Self = Self::INLINE_AND_SECONDARY_COMMAND_BUFFERS_KHR;
+    }
+    ///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
+    impl crate::vk::RenderingFlagBits {
+        pub const CONTENTS_INLINE_EXT: Self = Self::CONTENTS_INLINE_KHR;
     }
 }
-///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT: Self = Self(
-        1000451000,
-    );
-    pub const PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT: Self = Self(
-        1000451001,
-    );
-}
-///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
-impl crate::vk::SubpassContents {
-    pub const INLINE_AND_SECONDARY_COMMAND_BUFFERS_EXT: Self = Self::INLINE_AND_SECONDARY_COMMAND_BUFFERS_KHR;
-}
-///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
-impl crate::vk::RenderingFlagBits {
-    pub const CONTENTS_INLINE_EXT: Self = Self::CONTENTS_INLINE_KHR;
-}
-pub const EXT_NESTED_COMMAND_BUFFER_SPEC_VERSION: u32 = 1;
-pub const EXT_NESTED_COMMAND_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_nested_command_buffer";
+pub use reexport::*;

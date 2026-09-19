@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_tooling_info.html) · Extension `VK_EXT_tooling_info`
 #![doc(alias = "VK_EXT_tooling_info")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_tooling_info";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_tool_properties_ext: crate::vk::PFN_vkGetPhysicalDeviceToolPropertiesEXT,
@@ -79,7 +81,5 @@ pub(crate) mod reexport {
     }
     pub type ToolPurposeFlagsEXT = crate::vk::ToolPurposeFlags;
     pub type PFN_vkGetPhysicalDeviceToolPropertiesEXT = crate::vk::PFN_vkGetPhysicalDeviceToolProperties;
-    pub const EXT_TOOLING_INFO_SPEC_VERSION: u32 = 1;
-    pub const EXT_TOOLING_INFO_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_tooling_info";
 }
 pub use reexport::*;

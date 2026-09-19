@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_display_properties2.html) · Extension `VK_KHR_get_display_properties2`
 #![doc(alias = "VK_KHR_get_display_properties2")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_get_display_properties2";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_display_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceDisplayProperties2KHR,
@@ -292,7 +294,5 @@ pub(crate) mod reexport {
         p_display_plane_info: *const crate::vk::DisplayPlaneInfo2KHR<'_>,
         p_capabilities: *mut crate::vk::DisplayPlaneCapabilities2KHR<'_>,
     ) -> crate::vk::Result;
-    pub const KHR_GET_DISPLAY_PROPERTIES_2_SPEC_VERSION: u32 = 1;
-    pub const KHR_GET_DISPLAY_PROPERTIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_display_properties2";
 }
 pub use reexport::*;

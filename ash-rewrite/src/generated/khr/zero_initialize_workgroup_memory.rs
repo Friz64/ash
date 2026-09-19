@@ -2,12 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_zero_initialize_workgroup_memory.html) · Extension `VK_KHR_zero_initialize_workgroup_memory`
 #![doc(alias = "VK_KHR_zero_initialize_workgroup_memory")]
-pub type PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR<'a> = crate::vk::PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<
-    'a,
->;
-///Provided by [`khr::zero_initialize_workgroup_memory`](crate::khr::zero_initialize_workgroup_memory)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_zero_initialize_workgroup_memory";
+pub(crate) mod reexport {
+    pub type PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR<'a> = crate::vk::PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<
+        'a,
+    >;
+    ///Provided by [`khr::zero_initialize_workgroup_memory`](crate::khr::zero_initialize_workgroup_memory)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES;
+    }
 }
-pub const KHR_ZERO_INITIALIZE_WORKGROUP_MEMORY_SPEC_VERSION: u32 = 1;
-pub const KHR_ZERO_INITIALIZE_WORKGROUP_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_zero_initialize_workgroup_memory";
+pub use reexport::*;

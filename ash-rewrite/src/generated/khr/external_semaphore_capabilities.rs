@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_capabilities.html) · Extension `VK_KHR_external_semaphore_capabilities`
 #![doc(alias = "VK_KHR_external_semaphore_capabilities")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_capabilities";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_external_semaphore_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR,
@@ -90,7 +92,5 @@ pub(crate) mod reexport {
     pub type ExternalSemaphoreHandleTypeFlagsKHR = crate::vk::ExternalSemaphoreHandleTypeFlags;
     pub type ExternalSemaphoreFeatureFlagsKHR = crate::vk::ExternalSemaphoreFeatureFlags;
     pub type PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR = crate::vk::PFN_vkGetPhysicalDeviceExternalSemaphoreProperties;
-    pub const KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_SPEC_VERSION: u32 = 1;
-    pub const KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_capabilities";
 }
 pub use reexport::*;

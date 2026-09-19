@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_host_query_reset.html) · Extension `VK_EXT_host_query_reset`
 #![doc(alias = "VK_EXT_host_query_reset")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_host_query_reset";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub reset_query_pool_ext: crate::vk::PFN_vkResetQueryPoolEXT,
@@ -68,7 +70,5 @@ pub(crate) mod reexport {
         pub const PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES;
     }
     pub type PFN_vkResetQueryPoolEXT = crate::vk::PFN_vkResetQueryPool;
-    pub const EXT_HOST_QUERY_RESET_SPEC_VERSION: u32 = 1;
-    pub const EXT_HOST_QUERY_RESET_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_host_query_reset";
 }
 pub use reexport::*;

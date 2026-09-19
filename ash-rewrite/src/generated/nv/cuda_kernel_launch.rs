@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cuda_kernel_launch.html) · Extension `VK_NV_cuda_kernel_launch`
 #![doc(alias = "VK_NV_cuda_kernel_launch")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_NV_cuda_kernel_launch";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_cuda_module_nv: crate::vk::PFN_vkCreateCudaModuleNV,
@@ -483,7 +485,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         p_launch_info: *const crate::vk::CudaLaunchInfoNV<'_>,
     );
-    pub const NV_CUDA_KERNEL_LAUNCH_SPEC_VERSION: u32 = 2;
-    pub const NV_CUDA_KERNEL_LAUNCH_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cuda_kernel_launch";
 }
 pub use reexport::*;

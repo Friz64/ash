@@ -2,78 +2,85 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shader_sm_builtins.html) · Extension `VK_NV_shader_sm_builtins`
 #![doc(alias = "VK_NV_shader_sm_builtins")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_sm_count: u32,
-    pub shader_warps_per_sm: u32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
-for PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {}
-impl<'a> Default for PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_sm_count: Default::default(),
-            shader_warps_per_sm: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_shader_sm_builtins";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_sm_count: u32,
+        pub shader_warps_per_sm: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_sm_count: Default::default(),
+                shader_warps_per_sm: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
-    pub fn shader_sm_count(mut self, shader_sm_count: u32) -> Self {
-        self.shader_sm_count = shader_sm_count;
-        self
-    }
-    pub fn shader_warps_per_sm(mut self, shader_warps_per_sm: u32) -> Self {
-        self.shader_warps_per_sm = shader_warps_per_sm;
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_sm_builtins: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {}
-impl<'a> Default for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            shader_sm_builtins: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
+        pub fn shader_sm_count(mut self, shader_sm_count: u32) -> Self {
+            self.shader_sm_count = shader_sm_count;
+            self
+        }
+        pub fn shader_warps_per_sm(mut self, shader_warps_per_sm: u32) -> Self {
+            self.shader_warps_per_sm = shader_warps_per_sm;
+            self
         }
     }
-}
-impl<'a> PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
-    pub fn shader_sm_builtins(mut self, shader_sm_builtins: bool) -> Self {
-        self.shader_sm_builtins = shader_sm_builtins.into();
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub shader_sm_builtins: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_sm_builtins: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
+        pub fn shader_sm_builtins(mut self, shader_sm_builtins: bool) -> Self {
+            self.shader_sm_builtins = shader_sm_builtins.into();
+            self
+        }
+    }
+    ///Provided by [`nv::shader_sm_builtins`](crate::nv::shader_sm_builtins)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV: Self = Self(
+            1000154000,
+        );
+        pub const PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV: Self = Self(
+            1000154001,
+        );
     }
 }
-///Provided by [`nv::shader_sm_builtins`](crate::nv::shader_sm_builtins)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV: Self = Self(1000154000);
-    pub const PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV: Self = Self(1000154001);
-}
-pub const NV_SHADER_SM_BUILTINS_SPEC_VERSION: u32 = 1;
-pub const NV_SHADER_SM_BUILTINS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shader_sm_builtins";
+pub use reexport::*;

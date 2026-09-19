@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_sampler_ycbcr_conversion.html) · Extension `VK_KHR_sampler_ycbcr_conversion`
 #![doc(alias = "VK_KHR_sampler_ycbcr_conversion")]
+pub const SPEC_VERSION: u32 = 14;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_sampler_ycbcr_conversion";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_sampler_ycbcr_conversion_khr: crate::vk::PFN_vkCreateSamplerYcbcrConversionKHR,
@@ -190,7 +192,5 @@ pub(crate) mod reexport {
     pub type SamplerYcbcrConversionKHR = crate::vk::SamplerYcbcrConversion;
     pub type PFN_vkCreateSamplerYcbcrConversionKHR = crate::vk::PFN_vkCreateSamplerYcbcrConversion;
     pub type PFN_vkDestroySamplerYcbcrConversionKHR = crate::vk::PFN_vkDestroySamplerYcbcrConversion;
-    pub const KHR_SAMPLER_YCBCR_CONVERSION_SPEC_VERSION: u32 = 14;
-    pub const KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_sampler_ycbcr_conversion";
 }
 pub use reexport::*;

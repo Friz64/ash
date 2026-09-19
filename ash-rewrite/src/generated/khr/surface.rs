@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface.html) · Extension `VK_KHR_surface`
 #![doc(alias = "VK_KHR_surface")]
+pub const SPEC_VERSION: u32 = 25;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub destroy_surface_khr: crate::vk::PFN_vkDestroySurfaceKHR,
@@ -505,7 +507,5 @@ pub(crate) mod reexport {
         p_present_mode_count: *mut u32,
         p_present_modes: *mut crate::vk::PresentModeKHR,
     ) -> crate::vk::Result;
-    pub const KHR_SURFACE_SPEC_VERSION: u32 = 25;
-    pub const KHR_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_surface";
 }
 pub use reexport::*;

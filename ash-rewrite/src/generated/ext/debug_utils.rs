@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_utils.html) · Extension `VK_EXT_debug_utils`
 #![doc(alias = "VK_EXT_debug_utils")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_utils";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub set_debug_utils_object_name_ext: crate::vk::PFN_vkSetDebugUtilsObjectNameEXT,
@@ -960,7 +962,5 @@ pub(crate) mod reexport {
         message_types: crate::vk::DebugUtilsMessageTypeFlagsEXT,
         p_callback_data: *const crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>,
     );
-    pub const EXT_DEBUG_UTILS_SPEC_VERSION: u32 = 2;
-    pub const EXT_DEBUG_UTILS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_utils";
 }
 pub use reexport::*;

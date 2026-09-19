@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_swapchain_maintenance1.html) · Extension `VK_EXT_swapchain_maintenance1`
 #![doc(alias = "VK_EXT_swapchain_maintenance1")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_swapchain_maintenance1";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub release_swapchain_images_ext: crate::vk::PFN_vkReleaseSwapchainImagesEXT,
@@ -90,7 +92,5 @@ pub(crate) mod reexport {
         pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self::DEFERRED_MEMORY_ALLOCATION_KHR;
     }
     pub type PFN_vkReleaseSwapchainImagesEXT = crate::vk::PFN_vkReleaseSwapchainImagesKHR;
-    pub const EXT_SWAPCHAIN_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
-    pub const EXT_SWAPCHAIN_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_swapchain_maintenance1";
 }
 pub use reexport::*;

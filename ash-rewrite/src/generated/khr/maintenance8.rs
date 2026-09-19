@@ -2,172 +2,177 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance8.html) · Extension `VK_KHR_maintenance8`
 #![doc(alias = "VK_KHR_maintenance8")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceMaintenance8FeaturesKHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub maintenance8: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceMaintenance8FeaturesKHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceMaintenance8FeaturesKHR<'a> {}
-impl<'a> Default for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            maintenance8: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance8";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceMaintenance8FeaturesKHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub maintenance8: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceMaintenance8FeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceMaintenance8FeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                maintenance8: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceMaintenance8FeaturesKHR<'a> {
-    pub fn maintenance8(mut self, maintenance8: bool) -> Self {
-        self.maintenance8 = maintenance8.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct MemoryBarrierAccessFlags3KHR<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub src_access_mask3: crate::vk::AccessFlags3KHR,
-    pub dst_access_mask3: crate::vk::AccessFlags3KHR,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for MemoryBarrierAccessFlags3KHR<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_BARRIER_ACCESS_FLAGS_3_KHR;
-}
-unsafe impl<'a> crate::Extends<crate::vk::SubpassDependency2<'_>>
-for MemoryBarrierAccessFlags3KHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::BufferMemoryBarrier2<'_>>
-for MemoryBarrierAccessFlags3KHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier2<'_>>
-for MemoryBarrierAccessFlags3KHR<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::MemoryRangeBarriersInfoKHR<'_>>
-for MemoryBarrierAccessFlags3KHR<'a> {}
-impl<'a> Default for MemoryBarrierAccessFlags3KHR<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            src_access_mask3: Default::default(),
-            dst_access_mask3: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceMaintenance8FeaturesKHR<'a> {
+        pub fn maintenance8(mut self, maintenance8: bool) -> Self {
+            self.maintenance8 = maintenance8.into();
+            self
         }
     }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct MemoryBarrierAccessFlags3KHR<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub src_access_mask3: crate::vk::AccessFlags3KHR,
+        pub dst_access_mask3: crate::vk::AccessFlags3KHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryBarrierAccessFlags3KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_BARRIER_ACCESS_FLAGS_3_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SubpassDependency2<'_>>
+    for MemoryBarrierAccessFlags3KHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::BufferMemoryBarrier2<'_>>
+    for MemoryBarrierAccessFlags3KHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier2<'_>>
+    for MemoryBarrierAccessFlags3KHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryRangeBarriersInfoKHR<'_>>
+    for MemoryBarrierAccessFlags3KHR<'a> {}
+    impl<'a> Default for MemoryBarrierAccessFlags3KHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                src_access_mask3: Default::default(),
+                dst_access_mask3: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> MemoryBarrierAccessFlags3KHR<'a> {
+        pub fn src_access_mask3(
+            mut self,
+            src_access_mask3: crate::vk::AccessFlags3KHR,
+        ) -> Self {
+            self.src_access_mask3 = src_access_mask3;
+            self
+        }
+        pub fn dst_access_mask3(
+            mut self,
+            dst_access_mask3: crate::vk::AccessFlags3KHR,
+        ) -> Self {
+            self.dst_access_mask3 = dst_access_mask3;
+            self
+        }
+    }
+    ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR: Self = Self(1000574000);
+        pub const MEMORY_BARRIER_ACCESS_FLAGS_3_KHR: Self = Self(1000574002);
+    }
+    ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+    impl crate::vk::PipelineCacheCreateFlagBits {
+        pub const INTERNALLY_SYNCHRONIZED_MERGE_KHR: Self = Self(1 << 3);
+    }
+    ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+    impl crate::vk::DependencyFlagBits {
+        pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR: Self = Self(
+            1 << 5,
+        );
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct AccessFlags3KHR(u64);
+    impl AccessFlags3KHR {
+        pub const NONE_KHR: Self = Self(AccessFlagBits3KHR::NONE_KHR.0);
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u64 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for AccessFlags3KHR {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for AccessFlags3KHR {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for AccessFlags3KHR {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for AccessFlags3KHR {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for AccessFlags3KHR {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for AccessFlags3KHR {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for AccessFlags3KHR {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for AccessFlags3KHR {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, Default)]
+    pub struct AccessFlagBits3KHR(pub(crate) u64);
+    ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+    impl AccessFlagBits3KHR {
+        pub const NONE_KHR: Self = Self(0);
+    }
 }
-impl<'a> MemoryBarrierAccessFlags3KHR<'a> {
-    pub fn src_access_mask3(
-        mut self,
-        src_access_mask3: crate::vk::AccessFlags3KHR,
-    ) -> Self {
-        self.src_access_mask3 = src_access_mask3;
-        self
-    }
-    pub fn dst_access_mask3(
-        mut self,
-        dst_access_mask3: crate::vk::AccessFlags3KHR,
-    ) -> Self {
-        self.dst_access_mask3 = dst_access_mask3;
-        self
-    }
-}
-///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR: Self = Self(1000574000);
-    pub const MEMORY_BARRIER_ACCESS_FLAGS_3_KHR: Self = Self(1000574002);
-}
-///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
-impl crate::vk::PipelineCacheCreateFlagBits {
-    pub const INTERNALLY_SYNCHRONIZED_MERGE_KHR: Self = Self(1 << 3);
-}
-///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
-impl crate::vk::DependencyFlagBits {
-    pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR: Self = Self(1 << 5);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct AccessFlags3KHR(u64);
-impl AccessFlags3KHR {
-    pub const NONE_KHR: Self = Self(AccessFlagBits3KHR::NONE_KHR.0);
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    pub const fn from_raw(x: u64) -> Self {
-        Self(x)
-    }
-    pub const fn as_raw(self) -> u64 {
-        self.0
-    }
-    pub const fn is_empty(self) -> bool {
-        self.0 == Self::empty().0
-    }
-    pub const fn intersects(self, other: Self) -> bool {
-        !Self(self.0 & other.0).is_empty()
-    }
-    pub const fn contains(self, other: Self) -> bool {
-        self.0 & other.0 == other.0
-    }
-}
-impl Default for AccessFlags3KHR {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl core::ops::BitOr for AccessFlags3KHR {
-    type Output = Self;
-    fn bitor(self, rhs: Self) -> Self {
-        Self(self.0 | rhs.0)
-    }
-}
-impl core::ops::BitOrAssign for AccessFlags3KHR {
-    fn bitor_assign(&mut self, rhs: Self) {
-        *self = *self | rhs;
-    }
-}
-impl core::ops::BitAnd for AccessFlags3KHR {
-    type Output = Self;
-    fn bitand(self, rhs: Self) -> Self {
-        Self(self.0 & rhs.0)
-    }
-}
-impl core::ops::BitAndAssign for AccessFlags3KHR {
-    fn bitand_assign(&mut self, rhs: Self) {
-        *self = *self & rhs;
-    }
-}
-impl core::ops::BitXor for AccessFlags3KHR {
-    type Output = Self;
-    fn bitxor(self, rhs: Self) -> Self {
-        Self(self.0 ^ rhs.0)
-    }
-}
-impl core::ops::BitXorAssign for AccessFlags3KHR {
-    fn bitxor_assign(&mut self, rhs: Self) {
-        *self = *self ^ rhs;
-    }
-}
-impl core::ops::Not for AccessFlags3KHR {
-    type Output = Self;
-    fn not(self) -> Self {
-        Self(!self.0)
-    }
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, Default)]
-pub struct AccessFlagBits3KHR(pub(crate) u64);
-///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
-impl AccessFlagBits3KHR {
-    pub const NONE_KHR: Self = Self(0);
-}
-pub const KHR_MAINTENANCE_8_SPEC_VERSION: u32 = 1;
-pub const KHR_MAINTENANCE_8_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance8";
+pub use reexport::*;

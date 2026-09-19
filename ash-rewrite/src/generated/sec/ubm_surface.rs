@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_ubm_surface.html) · Extension `VK_SEC_ubm_surface`
 #![doc(alias = "VK_SEC_ubm_surface")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_SEC_ubm_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_ubm_surface_sec: crate::vk::PFN_vkCreateUbmSurfaceSEC,
@@ -203,7 +205,5 @@ pub(crate) mod reexport {
         queue_family_index: u32,
         device: *mut crate::platform_types::ubm_device,
     ) -> crate::vk::Bool32;
-    pub const SEC_UBM_SURFACE_SPEC_VERSION: u32 = 1;
-    pub const SEC_UBM_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_SEC_ubm_surface";
 }
 pub use reexport::*;

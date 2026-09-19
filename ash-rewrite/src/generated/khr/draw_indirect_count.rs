@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_draw_indirect_count.html) · Extension `VK_KHR_draw_indirect_count`
 #![doc(alias = "VK_KHR_draw_indirect_count")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_draw_indirect_count";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_draw_indirect_count_khr: crate::vk::PFN_vkCmdDrawIndirectCountKHR,
@@ -85,7 +87,5 @@ impl Device {
 pub(crate) mod reexport {
     pub type PFN_vkCmdDrawIndirectCountKHR = crate::vk::PFN_vkCmdDrawIndirectCount;
     pub type PFN_vkCmdDrawIndexedIndirectCountKHR = crate::vk::PFN_vkCmdDrawIndexedIndirectCount;
-    pub const KHR_DRAW_INDIRECT_COUNT_SPEC_VERSION: u32 = 1;
-    pub const KHR_DRAW_INDIRECT_COUNT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_draw_indirect_count";
 }
 pub use reexport::*;

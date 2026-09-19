@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_group_creation.html) · Extension `VK_KHR_device_group_creation`
 #![doc(alias = "VK_KHR_device_group_creation")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_device_group_creation";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub enumerate_physical_device_groups_khr: crate::vk::PFN_vkEnumeratePhysicalDeviceGroupsKHR,
@@ -75,7 +77,5 @@ pub(crate) mod reexport {
         pub const MULTI_INSTANCE_KHR: Self = Self::MULTI_INSTANCE;
     }
     pub type PFN_vkEnumeratePhysicalDeviceGroupsKHR = crate::vk::PFN_vkEnumeratePhysicalDeviceGroups;
-    pub const KHR_DEVICE_GROUP_CREATION_SPEC_VERSION: u32 = 1;
-    pub const KHR_DEVICE_GROUP_CREATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_device_group_creation";
 }
 pub use reexport::*;

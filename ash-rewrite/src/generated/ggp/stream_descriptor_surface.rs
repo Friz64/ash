@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GGP_stream_descriptor_surface.html) · Extension `VK_GGP_stream_descriptor_surface`
 #![doc(alias = "VK_GGP_stream_descriptor_surface")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_GGP_stream_descriptor_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_stream_descriptor_surface_ggp: crate::vk::PFN_vkCreateStreamDescriptorSurfaceGGP,
@@ -177,7 +179,5 @@ pub(crate) mod reexport {
         p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
-    pub const GGP_STREAM_DESCRIPTOR_SURFACE_SPEC_VERSION: u32 = 1;
-    pub const GGP_STREAM_DESCRIPTOR_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_GGP_stream_descriptor_surface";
 }
 pub use reexport::*;

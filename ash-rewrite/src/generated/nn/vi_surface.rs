@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NN_vi_surface.html) · Extension `VK_NN_vi_surface`
 #![doc(alias = "VK_NN_vi_surface")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NN_vi_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_vi_surface_nn: crate::vk::PFN_vkCreateViSurfaceNN,
@@ -170,7 +172,5 @@ pub(crate) mod reexport {
         p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
-    pub const NN_VI_SURFACE_SPEC_VERSION: u32 = 1;
-    pub const NN_VI_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NN_vi_surface";
 }
 pub use reexport::*;

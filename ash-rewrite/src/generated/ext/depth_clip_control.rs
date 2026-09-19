@@ -2,74 +2,79 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clip_control.html) · Extension `VK_EXT_depth_clip_control`
 #![doc(alias = "VK_EXT_depth_clip_control")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub depth_clip_control: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceDepthClipControlFeaturesEXT<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceDepthClipControlFeaturesEXT<'a> {}
-impl<'a> Default for PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            depth_clip_control: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_clip_control";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub depth_clip_control: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDepthClipControlFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDepthClipControlFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                depth_clip_control: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
-    pub fn depth_clip_control(mut self, depth_clip_control: bool) -> Self {
-        self.depth_clip_control = depth_clip_control.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PipelineViewportDepthClipControlCreateInfoEXT<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub negative_one_to_one: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PipelineViewportDepthClipControlCreateInfoEXT<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
-for PipelineViewportDepthClipControlCreateInfoEXT<'a> {}
-impl<'a> Default for PipelineViewportDepthClipControlCreateInfoEXT<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            negative_one_to_one: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
+        pub fn depth_clip_control(mut self, depth_clip_control: bool) -> Self {
+            self.depth_clip_control = depth_clip_control.into();
+            self
         }
     }
-}
-impl<'a> PipelineViewportDepthClipControlCreateInfoEXT<'a> {
-    pub fn negative_one_to_one(mut self, negative_one_to_one: bool) -> Self {
-        self.negative_one_to_one = negative_one_to_one.into();
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineViewportDepthClipControlCreateInfoEXT<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub negative_one_to_one: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineViewportDepthClipControlCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    for PipelineViewportDepthClipControlCreateInfoEXT<'a> {}
+    impl<'a> Default for PipelineViewportDepthClipControlCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                negative_one_to_one: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineViewportDepthClipControlCreateInfoEXT<'a> {
+        pub fn negative_one_to_one(mut self, negative_one_to_one: bool) -> Self {
+            self.negative_one_to_one = negative_one_to_one.into();
+            self
+        }
+    }
+    ///Provided by [`ext::depth_clip_control`](crate::ext::depth_clip_control)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT: Self = Self(
+            1000355000,
+        );
+        pub const PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT: Self = Self(
+            1000355001,
+        );
     }
 }
-///Provided by [`ext::depth_clip_control`](crate::ext::depth_clip_control)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT: Self = Self(1000355000);
-    pub const PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT: Self = Self(
-        1000355001,
-    );
-}
-pub const EXT_DEPTH_CLIP_CONTROL_SPEC_VERSION: u32 = 1;
-pub const EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_clip_control";
+pub use reexport::*;

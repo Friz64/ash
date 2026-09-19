@@ -2,160 +2,169 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_diagnostics_config.html) · Extension `VK_NV_device_diagnostics_config`
 #![doc(alias = "VK_NV_device_diagnostics_config")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub diagnostics_config: crate::vk::Bool32,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a>
-for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
-for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {}
-impl<'a> Default for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            diagnostics_config: Default::default(),
-            _marker: ::core::marker::PhantomData,
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_NV_device_diagnostics_config";
+pub(crate) mod reexport {
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *mut core::ffi::c_void,
+        pub diagnostics_config: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                diagnostics_config: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
         }
     }
-}
-impl<'a> PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
-    pub fn diagnostics_config(mut self, diagnostics_config: bool) -> Self {
-        self.diagnostics_config = diagnostics_config.into();
-        self
-    }
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::vk::DeviceDiagnosticsConfigFlagsNV,
-    pub _marker: ::core::marker::PhantomData<&'a ()>,
-}
-unsafe impl<'a> crate::TaggedStructure<'a> for DeviceDiagnosticsConfigCreateInfoNV<'a> {
-    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV;
-}
-unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
-for DeviceDiagnosticsConfigCreateInfoNV<'a> {}
-impl<'a> Default for DeviceDiagnosticsConfigCreateInfoNV<'a> {
-    fn default() -> Self {
-        Self {
-            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
-            p_next: Default::default(),
-            flags: Default::default(),
-            _marker: ::core::marker::PhantomData,
+    impl<'a> PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
+        pub fn diagnostics_config(mut self, diagnostics_config: bool) -> Self {
+            self.diagnostics_config = diagnostics_config.into();
+            self
         }
     }
-}
-impl<'a> DeviceDiagnosticsConfigCreateInfoNV<'a> {
-    pub fn flags(mut self, flags: crate::vk::DeviceDiagnosticsConfigFlagsNV) -> Self {
-        self.flags = flags;
-        self
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
+        pub s_type: crate::vk::StructureType,
+        pub p_next: *const core::ffi::c_void,
+        pub flags: crate::vk::DeviceDiagnosticsConfigFlagsNV,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DeviceDiagnosticsConfigCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for DeviceDiagnosticsConfigCreateInfoNV<'a> {}
+    impl<'a> Default for DeviceDiagnosticsConfigCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DeviceDiagnosticsConfigCreateInfoNV<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::DeviceDiagnosticsConfigFlagsNV,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+    }
+    ///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV: Self = Self(
+            1000300000,
+        );
+        pub const DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV: Self = Self(1000300001);
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DeviceDiagnosticsConfigFlagsNV(u32);
+    impl DeviceDiagnosticsConfigFlagsNV {
+        pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(
+            DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_DEBUG_INFO_NV.0,
+        );
+        pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(
+            DeviceDiagnosticsConfigFlagBitsNV::ENABLE_RESOURCE_TRACKING_NV.0,
+        );
+        pub const ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(
+            DeviceDiagnosticsConfigFlagBitsNV::ENABLE_AUTOMATIC_CHECKPOINTS_NV.0,
+        );
+        pub const ENABLE_SHADER_ERROR_REPORTING_NV: Self = Self(
+            DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_ERROR_REPORTING_NV.0,
+        );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for DeviceDiagnosticsConfigFlagsNV {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for DeviceDiagnosticsConfigFlagsNV {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for DeviceDiagnosticsConfigFlagsNV {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for DeviceDiagnosticsConfigFlagsNV {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for DeviceDiagnosticsConfigFlagsNV {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for DeviceDiagnosticsConfigFlagsNV {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for DeviceDiagnosticsConfigFlagsNV {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for DeviceDiagnosticsConfigFlagsNV {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, Default)]
+    pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) u32);
+    ///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
+    impl DeviceDiagnosticsConfigFlagBitsNV {
+        pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(1 << 0);
+        pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(1 << 1);
+        pub const ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(1 << 2);
+        pub const ENABLE_SHADER_ERROR_REPORTING_NV: Self = Self(1 << 3);
     }
 }
-///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV: Self = Self(1000300000);
-    pub const DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV: Self = Self(1000300001);
-}
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DeviceDiagnosticsConfigFlagsNV(u32);
-impl DeviceDiagnosticsConfigFlagsNV {
-    pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(
-        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_DEBUG_INFO_NV.0,
-    );
-    pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(
-        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_RESOURCE_TRACKING_NV.0,
-    );
-    pub const ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(
-        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_AUTOMATIC_CHECKPOINTS_NV.0,
-    );
-    pub const ENABLE_SHADER_ERROR_REPORTING_NV: Self = Self(
-        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_ERROR_REPORTING_NV.0,
-    );
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    pub const fn from_raw(x: u32) -> Self {
-        Self(x)
-    }
-    pub const fn as_raw(self) -> u32 {
-        self.0
-    }
-    pub const fn is_empty(self) -> bool {
-        self.0 == Self::empty().0
-    }
-    pub const fn intersects(self, other: Self) -> bool {
-        !Self(self.0 & other.0).is_empty()
-    }
-    pub const fn contains(self, other: Self) -> bool {
-        self.0 & other.0 == other.0
-    }
-}
-impl Default for DeviceDiagnosticsConfigFlagsNV {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl core::ops::BitOr for DeviceDiagnosticsConfigFlagsNV {
-    type Output = Self;
-    fn bitor(self, rhs: Self) -> Self {
-        Self(self.0 | rhs.0)
-    }
-}
-impl core::ops::BitOrAssign for DeviceDiagnosticsConfigFlagsNV {
-    fn bitor_assign(&mut self, rhs: Self) {
-        *self = *self | rhs;
-    }
-}
-impl core::ops::BitAnd for DeviceDiagnosticsConfigFlagsNV {
-    type Output = Self;
-    fn bitand(self, rhs: Self) -> Self {
-        Self(self.0 & rhs.0)
-    }
-}
-impl core::ops::BitAndAssign for DeviceDiagnosticsConfigFlagsNV {
-    fn bitand_assign(&mut self, rhs: Self) {
-        *self = *self & rhs;
-    }
-}
-impl core::ops::BitXor for DeviceDiagnosticsConfigFlagsNV {
-    type Output = Self;
-    fn bitxor(self, rhs: Self) -> Self {
-        Self(self.0 ^ rhs.0)
-    }
-}
-impl core::ops::BitXorAssign for DeviceDiagnosticsConfigFlagsNV {
-    fn bitxor_assign(&mut self, rhs: Self) {
-        *self = *self ^ rhs;
-    }
-}
-impl core::ops::Not for DeviceDiagnosticsConfigFlagsNV {
-    type Output = Self;
-    fn not(self) -> Self {
-        Self(!self.0)
-    }
-}
-#[repr(transparent)]
-#[derive(Clone, Copy, Default)]
-pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) u32);
-///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
-impl DeviceDiagnosticsConfigFlagBitsNV {
-    pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(1 << 0);
-    pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(1 << 1);
-    pub const ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(1 << 2);
-    pub const ENABLE_SHADER_ERROR_REPORTING_NV: Self = Self(1 << 3);
-}
-pub const NV_DEVICE_DIAGNOSTICS_CONFIG_SPEC_VERSION: u32 = 2;
-pub const NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_diagnostics_config";
+pub use reexport::*;

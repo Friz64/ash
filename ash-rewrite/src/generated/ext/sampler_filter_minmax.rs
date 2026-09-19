@@ -2,27 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_sampler_filter_minmax.html) · Extension `VK_EXT_sampler_filter_minmax`
 #![doc(alias = "VK_EXT_sampler_filter_minmax")]
-pub type PhysicalDeviceSamplerFilterMinmaxPropertiesEXT<'a> = crate::vk::PhysicalDeviceSamplerFilterMinmaxProperties<
-    'a,
->;
-pub type SamplerReductionModeCreateInfoEXT<'a> = crate::vk::SamplerReductionModeCreateInfo<
-    'a,
->;
-///Provided by [`ext::sampler_filter_minmax`](crate::ext::sampler_filter_minmax)
-impl crate::vk::StructureType {
-    pub const PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES;
-    pub const SAMPLER_REDUCTION_MODE_CREATE_INFO_EXT: Self = Self::SAMPLER_REDUCTION_MODE_CREATE_INFO;
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_sampler_filter_minmax";
+pub(crate) mod reexport {
+    pub type PhysicalDeviceSamplerFilterMinmaxPropertiesEXT<'a> = crate::vk::PhysicalDeviceSamplerFilterMinmaxProperties<
+        'a,
+    >;
+    pub type SamplerReductionModeCreateInfoEXT<'a> = crate::vk::SamplerReductionModeCreateInfo<
+        'a,
+    >;
+    ///Provided by [`ext::sampler_filter_minmax`](crate::ext::sampler_filter_minmax)
+    impl crate::vk::StructureType {
+        pub const PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES;
+        pub const SAMPLER_REDUCTION_MODE_CREATE_INFO_EXT: Self = Self::SAMPLER_REDUCTION_MODE_CREATE_INFO;
+    }
+    ///Provided by [`ext::sampler_filter_minmax`](crate::ext::sampler_filter_minmax)
+    impl crate::vk::SamplerReductionMode {
+        pub const WEIGHTED_AVERAGE_EXT: Self = Self::WEIGHTED_AVERAGE;
+        pub const MIN_EXT: Self = Self::MIN;
+        pub const MAX_EXT: Self = Self::MAX;
+    }
+    pub type SamplerReductionModeEXT = crate::vk::SamplerReductionMode;
+    ///Provided by [`ext::sampler_filter_minmax`](crate::ext::sampler_filter_minmax)
+    impl crate::vk::FormatFeatureFlagBits {
+        pub const SAMPLED_IMAGE_FILTER_MINMAX_EXT: Self = Self::SAMPLED_IMAGE_FILTER_MINMAX;
+    }
 }
-///Provided by [`ext::sampler_filter_minmax`](crate::ext::sampler_filter_minmax)
-impl crate::vk::SamplerReductionMode {
-    pub const WEIGHTED_AVERAGE_EXT: Self = Self::WEIGHTED_AVERAGE;
-    pub const MIN_EXT: Self = Self::MIN;
-    pub const MAX_EXT: Self = Self::MAX;
-}
-pub type SamplerReductionModeEXT = crate::vk::SamplerReductionMode;
-///Provided by [`ext::sampler_filter_minmax`](crate::ext::sampler_filter_minmax)
-impl crate::vk::FormatFeatureFlagBits {
-    pub const SAMPLED_IMAGE_FILTER_MINMAX_EXT: Self = Self::SAMPLED_IMAGE_FILTER_MINMAX;
-}
-pub const EXT_SAMPLER_FILTER_MINMAX_SPEC_VERSION: u32 = 2;
-pub const EXT_SAMPLER_FILTER_MINMAX_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_sampler_filter_minmax";
+pub use reexport::*;

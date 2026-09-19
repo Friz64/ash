@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_scheduling_controls.html) · Extension `VK_ARM_scheduling_controls`
 #![doc(alias = "VK_ARM_scheduling_controls")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_scheduling_controls";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_dispatch_parameters_arm: crate::vk::PFN_vkCmdSetDispatchParametersARM,
@@ -353,7 +355,5 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         p_dispatch_parameters: *const crate::vk::DispatchParametersARM<'_>,
     );
-    pub const ARM_SCHEDULING_CONTROLS_SPEC_VERSION: u32 = 2;
-    pub const ARM_SCHEDULING_CONTROLS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_scheduling_controls";
 }
 pub use reexport::*;

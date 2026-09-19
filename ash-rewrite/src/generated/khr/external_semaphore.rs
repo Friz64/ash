@@ -2,16 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore.html) · Extension `VK_KHR_external_semaphore`
 #![doc(alias = "VK_KHR_external_semaphore")]
-pub type ExportSemaphoreCreateInfoKHR<'a> = crate::vk::ExportSemaphoreCreateInfo<'a>;
-///Provided by [`khr::external_semaphore`](crate::khr::external_semaphore)
-impl crate::vk::StructureType {
-    pub const EXPORT_SEMAPHORE_CREATE_INFO_KHR: Self = Self::EXPORT_SEMAPHORE_CREATE_INFO;
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore";
+pub(crate) mod reexport {
+    pub type ExportSemaphoreCreateInfoKHR<'a> = crate::vk::ExportSemaphoreCreateInfo<'a>;
+    ///Provided by [`khr::external_semaphore`](crate::khr::external_semaphore)
+    impl crate::vk::StructureType {
+        pub const EXPORT_SEMAPHORE_CREATE_INFO_KHR: Self = Self::EXPORT_SEMAPHORE_CREATE_INFO;
+    }
+    pub type SemaphoreImportFlagBitsKHR = crate::vk::SemaphoreImportFlagBits;
+    ///Provided by [`khr::external_semaphore`](crate::khr::external_semaphore)
+    impl crate::vk::SemaphoreImportFlagBits {
+        pub const TEMPORARY_KHR: Self = Self::TEMPORARY;
+    }
+    pub type SemaphoreImportFlagsKHR = crate::vk::SemaphoreImportFlags;
 }
-pub type SemaphoreImportFlagBitsKHR = crate::vk::SemaphoreImportFlagBits;
-///Provided by [`khr::external_semaphore`](crate::khr::external_semaphore)
-impl crate::vk::SemaphoreImportFlagBits {
-    pub const TEMPORARY_KHR: Self = Self::TEMPORARY;
-}
-pub type SemaphoreImportFlagsKHR = crate::vk::SemaphoreImportFlags;
-pub const KHR_EXTERNAL_SEMAPHORE_SPEC_VERSION: u32 = 1;
-pub const KHR_EXTERNAL_SEMAPHORE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore";
+pub use reexport::*;

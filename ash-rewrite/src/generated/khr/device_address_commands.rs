@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_address_commands.html) · Extension `VK_KHR_device_address_commands`
 #![doc(alias = "VK_KHR_device_address_commands")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_device_address_commands";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_copy_memory_khr: crate::vk::PFN_vkCmdCopyMemoryKHR,
@@ -1445,7 +1447,5 @@ pub(crate) mod reexport {
         p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_acceleration_structure: *mut crate::vk::AccelerationStructureKHR,
     ) -> crate::vk::Result;
-    pub const KHR_DEVICE_ADDRESS_COMMANDS_SPEC_VERSION: u32 = 1;
-    pub const KHR_DEVICE_ADDRESS_COMMANDS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_device_address_commands";
 }
 pub use reexport::*;

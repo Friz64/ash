@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map_offset.html) · Extension `VK_EXT_fragment_density_map_offset`
 #![doc(alias = "VK_EXT_fragment_density_map_offset")]
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_fragment_density_map_offset";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_end_rendering2_ext: crate::vk::PFN_vkCmdEndRendering2EXT,
@@ -183,7 +185,5 @@ pub(crate) mod reexport {
         pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(1 << 15);
     }
     pub type PFN_vkCmdEndRendering2EXT = crate::vk::PFN_vkCmdEndRendering2KHR;
-    pub const EXT_FRAGMENT_DENSITY_MAP_OFFSET_SPEC_VERSION: u32 = 1;
-    pub const EXT_FRAGMENT_DENSITY_MAP_OFFSET_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_fragment_density_map_offset";
 }
 pub use reexport::*;

@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_low_latency.html) · Extension `VK_NV_low_latency`
 #![doc(alias = "VK_NV_low_latency")]
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_NV_low_latency";
 #[derive(Clone)]
 pub struct DeviceFn {
     pub set_latency_sleep_mode_legacy_nv: crate::vk::PFN_vkSetLatencySleepModeLegacyNV,
@@ -218,7 +220,5 @@ pub(crate) mod reexport {
     pub type PFN_vkShutdownLatencyDeviceLegacyNV = unsafe extern "system" fn(
         device: crate::vk::Device,
     );
-    pub const NV_LOW_LATENCY_SPEC_VERSION: u32 = 2;
-    pub const NV_LOW_LATENCY_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_low_latency";
 }
 pub use reexport::*;

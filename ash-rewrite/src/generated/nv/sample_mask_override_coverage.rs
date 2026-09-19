@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_sample_mask_override_coverage.html) · Extension `VK_NV_sample_mask_override_coverage`
 #![doc(alias = "VK_NV_sample_mask_override_coverage")]
-pub const NV_SAMPLE_MASK_OVERRIDE_COVERAGE_SPEC_VERSION: u32 = 1;
-pub const NV_SAMPLE_MASK_OVERRIDE_COVERAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_sample_mask_override_coverage";
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_sample_mask_override_coverage";

@@ -158,7 +158,7 @@ impl Code for BitMask {
                 ));
             }
 
-            for (&dest, impl_tokens) in impl_map.iter() {
+            for (dest, impl_tokens) in impl_map.into_iter() {
                 let name = ctx.type_tokens(
                     bits_name,
                     dest != Destination::primary_location(self.required_by),
