@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_android_surface.html) · Extension `VK_KHR_android_surface`
 #![doc(alias = "VK_KHR_android_surface")]
-pub const SPEC_VERSION: u32 = 6;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_android_surface";
+///Provided by [`khr::android_surface`](crate::khr::android_surface)
+impl crate::vk::StructureType {
+    pub const ANDROID_SURFACE_CREATE_INFO_KHR: Self = Self(1000008000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_android_surface_khr: crate::vk::PFN_vkCreateAndroidSurfaceKHR,
@@ -61,6 +63,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 6;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_android_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -97,10 +101,6 @@ pub(crate) mod reexport {
             self.window = window;
             self
         }
-    }
-    ///Provided by [`khr::android_surface`](crate::khr::android_surface)
-    impl crate::vk::StructureType {
-        pub const ANDROID_SURFACE_CREATE_INFO_KHR: Self = Self(1000008000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

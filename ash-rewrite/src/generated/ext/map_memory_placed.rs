@@ -2,6 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_map_memory_placed.html) · Extension `VK_EXT_map_memory_placed`
 #![doc(alias = "VK_EXT_map_memory_placed")]
+///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT: Self = Self(1000272000);
+    pub const PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT: Self = Self(1000272001);
+    pub const MEMORY_MAP_PLACED_INFO_EXT: Self = Self(1000272002);
+}
+///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
+impl crate::vk::MemoryMapFlagBits {
+    pub const PLACED_EXT: Self = Self(1 << 0);
+}
+///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
+impl crate::vk::MemoryUnmapFlagBits {
+    pub const RESERVE_EXT: Self = Self(1 << 0);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_map_memory_placed";
 pub(crate) mod reexport {
@@ -113,24 +127,6 @@ pub(crate) mod reexport {
             self.p_placed_address = placed_address;
             self
         }
-    }
-    ///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT: Self = Self(
-            1000272000,
-        );
-        pub const PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT: Self = Self(
-            1000272001,
-        );
-        pub const MEMORY_MAP_PLACED_INFO_EXT: Self = Self(1000272002);
-    }
-    ///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
-    impl crate::vk::MemoryMapFlagBits {
-        pub const PLACED_EXT: Self = Self(1 << 0);
-    }
-    ///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
-    impl crate::vk::MemoryUnmapFlagBits {
-        pub const RESERVE_EXT: Self = Self(1 << 0);
     }
 }
 pub use reexport::*;

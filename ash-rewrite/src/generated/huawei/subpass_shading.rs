@@ -2,8 +2,24 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_subpass_shading.html) · Extension `VK_HUAWEI_subpass_shading`
 #![doc(alias = "VK_HUAWEI_subpass_shading")]
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_subpass_shading";
+///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+impl crate::vk::PipelineBindPoint {
+    pub const SUBPASS_SHADING_HUAWEI: Self = Self(1000369003);
+}
+///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+impl crate::vk::StructureType {
+    pub const SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI: Self = Self(1000369000);
+    pub const PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI: Self = Self(1000369001);
+    pub const PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI: Self = Self(1000369002);
+}
+///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+impl crate::vk::ShaderStageFlagBits {
+    pub const SUBPASS_SHADING_HUAWEI: Self = Self(1 << 14);
+}
+///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const SUBPASS_SHADER_HUAWEI: Self = Self(1 << 39);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_device_subpass_shading_max_workgroup_size_huawei: crate::vk::PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI,
@@ -76,6 +92,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_subpass_shading";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -177,28 +195,6 @@ pub(crate) mod reexport {
             self.subpass_shading = subpass_shading.into();
             self
         }
-    }
-    ///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
-    impl crate::vk::PipelineBindPoint {
-        pub const SUBPASS_SHADING_HUAWEI: Self = Self(1000369003);
-    }
-    ///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
-    impl crate::vk::StructureType {
-        pub const SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI: Self = Self(1000369000);
-        pub const PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI: Self = Self(
-            1000369001,
-        );
-        pub const PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI: Self = Self(
-            1000369002,
-        );
-    }
-    ///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
-    impl crate::vk::ShaderStageFlagBits {
-        pub const SUBPASS_SHADING_HUAWEI: Self = Self(1 << 14);
-    }
-    ///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
-    impl crate::vk::PipelineStageFlagBits2 {
-        pub const SUBPASS_SHADER_HUAWEI: Self = Self(1 << 39);
     }
     pub type PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI = unsafe extern "system" fn(
         device: crate::vk::Device,

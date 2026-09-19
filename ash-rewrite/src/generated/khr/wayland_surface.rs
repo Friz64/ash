@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_wayland_surface.html) · Extension `VK_KHR_wayland_surface`
 #![doc(alias = "VK_KHR_wayland_surface")]
-pub const SPEC_VERSION: u32 = 6;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_wayland_surface";
+///Provided by [`khr::wayland_surface`](crate::khr::wayland_surface)
+impl crate::vk::StructureType {
+    pub const WAYLAND_SURFACE_CREATE_INFO_KHR: Self = Self(1000006000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_wayland_surface_khr: crate::vk::PFN_vkCreateWaylandSurfaceKHR,
@@ -79,6 +81,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 6;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_wayland_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -124,10 +128,6 @@ pub(crate) mod reexport {
             self.surface = surface;
             self
         }
-    }
-    ///Provided by [`khr::wayland_surface`](crate::khr::wayland_surface)
-    impl crate::vk::StructureType {
-        pub const WAYLAND_SURFACE_CREATE_INFO_KHR: Self = Self(1000006000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

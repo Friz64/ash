@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_mixed_attachment_samples.html) · Extension `VK_AMD_mixed_attachment_samples`
 #![doc(alias = "VK_AMD_mixed_attachment_samples")]
+///Provided by [`amd::mixed_attachment_samples`](crate::amd::mixed_attachment_samples)
+impl crate::vk::StructureType {
+    pub const ATTACHMENT_SAMPLE_COUNT_INFO_AMD: Self = Self(1000044008);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_mixed_attachment_samples";
 pub(crate) mod reexport {
@@ -50,10 +54,6 @@ pub(crate) mod reexport {
             self.depth_stencil_attachment_samples = depth_stencil_attachment_samples;
             self
         }
-    }
-    ///Provided by [`amd::mixed_attachment_samples`](crate::amd::mixed_attachment_samples)
-    impl crate::vk::StructureType {
-        pub const ATTACHMENT_SAMPLE_COUNT_INFO_AMD: Self = Self(1000044008);
     }
 }
 pub use reexport::*;

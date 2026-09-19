@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_depth_clamp_zero_one.html) · Extension `VK_KHR_depth_clamp_zero_one`
 #![doc(alias = "VK_KHR_depth_clamp_zero_one")]
+///Provided by [`khr::depth_clamp_zero_one`](crate::khr::depth_clamp_zero_one)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR: Self = Self(1000421000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_depth_clamp_zero_one";
 pub(crate) mod reexport {
@@ -36,12 +40,6 @@ pub(crate) mod reexport {
             self.depth_clamp_zero_one = depth_clamp_zero_one.into();
             self
         }
-    }
-    ///Provided by [`khr::depth_clamp_zero_one`](crate::khr::depth_clamp_zero_one)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR: Self = Self(
-            1000421000,
-        );
     }
 }
 pub use reexport::*;

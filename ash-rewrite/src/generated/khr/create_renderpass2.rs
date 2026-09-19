@@ -2,8 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_create_renderpass2.html) · Extension `VK_KHR_create_renderpass2`
 #![doc(alias = "VK_KHR_create_renderpass2")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_create_renderpass2";
+///Provided by [`khr::create_renderpass2`](crate::khr::create_renderpass2)
+impl crate::vk::StructureType {
+    pub const ATTACHMENT_DESCRIPTION_2_KHR: Self = Self::ATTACHMENT_DESCRIPTION_2;
+    pub const ATTACHMENT_REFERENCE_2_KHR: Self = Self::ATTACHMENT_REFERENCE_2;
+    pub const SUBPASS_DESCRIPTION_2_KHR: Self = Self::SUBPASS_DESCRIPTION_2;
+    pub const SUBPASS_DEPENDENCY_2_KHR: Self = Self::SUBPASS_DEPENDENCY_2;
+    pub const RENDER_PASS_CREATE_INFO_2_KHR: Self = Self::RENDER_PASS_CREATE_INFO_2;
+    pub const SUBPASS_BEGIN_INFO_KHR: Self = Self::SUBPASS_BEGIN_INFO;
+    pub const SUBPASS_END_INFO_KHR: Self = Self::SUBPASS_END_INFO;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_render_pass2_khr: crate::vk::PFN_vkCreateRenderPass2KHR,
@@ -108,6 +116,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_create_renderpass2";
 pub(crate) mod reexport {
     pub type AttachmentDescription2KHR<'a> = crate::vk::AttachmentDescription2<'a>;
     pub type AttachmentReference2KHR<'a> = crate::vk::AttachmentReference2<'a>;
@@ -116,16 +126,6 @@ pub(crate) mod reexport {
     pub type RenderPassCreateInfo2KHR<'a> = crate::vk::RenderPassCreateInfo2<'a>;
     pub type SubpassBeginInfoKHR<'a> = crate::vk::SubpassBeginInfo<'a>;
     pub type SubpassEndInfoKHR<'a> = crate::vk::SubpassEndInfo<'a>;
-    ///Provided by [`khr::create_renderpass2`](crate::khr::create_renderpass2)
-    impl crate::vk::StructureType {
-        pub const ATTACHMENT_DESCRIPTION_2_KHR: Self = Self::ATTACHMENT_DESCRIPTION_2;
-        pub const ATTACHMENT_REFERENCE_2_KHR: Self = Self::ATTACHMENT_REFERENCE_2;
-        pub const SUBPASS_DESCRIPTION_2_KHR: Self = Self::SUBPASS_DESCRIPTION_2;
-        pub const SUBPASS_DEPENDENCY_2_KHR: Self = Self::SUBPASS_DEPENDENCY_2;
-        pub const RENDER_PASS_CREATE_INFO_2_KHR: Self = Self::RENDER_PASS_CREATE_INFO_2;
-        pub const SUBPASS_BEGIN_INFO_KHR: Self = Self::SUBPASS_BEGIN_INFO;
-        pub const SUBPASS_END_INFO_KHR: Self = Self::SUBPASS_END_INFO;
-    }
     pub type PFN_vkCreateRenderPass2KHR = crate::vk::PFN_vkCreateRenderPass2;
     pub type PFN_vkCmdBeginRenderPass2KHR = crate::vk::PFN_vkCmdBeginRenderPass2;
     pub type PFN_vkCmdNextSubpass2KHR = crate::vk::PFN_vkCmdNextSubpass2;

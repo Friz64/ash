@@ -2,8 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_input_dynamic_state.html) · Extension `VK_EXT_vertex_input_dynamic_state`
 #![doc(alias = "VK_EXT_vertex_input_dynamic_state")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_vertex_input_dynamic_state";
+///Provided by [`ext::vertex_input_dynamic_state`](crate::ext::vertex_input_dynamic_state)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
+        1000352000,
+    );
+    pub const VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT: Self = Self(1000352001);
+    pub const VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT: Self = Self(1000352002);
+}
+///Provided by [`ext::vertex_input_dynamic_state`](crate::ext::vertex_input_dynamic_state)
+impl crate::vk::DynamicState {
+    pub const VERTEX_INPUT_EXT: Self = Self(1000352000);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_vertex_input_ext: crate::vk::PFN_vkCmdSetVertexInputEXT,
@@ -62,6 +72,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_vertex_input_dynamic_state";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -189,18 +201,6 @@ pub(crate) mod reexport {
             self.offset = offset;
             self
         }
-    }
-    ///Provided by [`ext::vertex_input_dynamic_state`](crate::ext::vertex_input_dynamic_state)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
-            1000352000,
-        );
-        pub const VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT: Self = Self(1000352001);
-        pub const VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT: Self = Self(1000352002);
-    }
-    ///Provided by [`ext::vertex_input_dynamic_state`](crate::ext::vertex_input_dynamic_state)
-    impl crate::vk::DynamicState {
-        pub const VERTEX_INPUT_EXT: Self = Self(1000352000);
     }
     pub type PFN_vkCmdSetVertexInputEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

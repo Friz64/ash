@@ -2,8 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_shader_enqueue.html) · Extension `VK_AMDX_shader_enqueue`
 #![doc(alias = "VK_AMDX_shader_enqueue")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_AMDX_shader_enqueue";
+///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+impl crate::vk::PipelineBindPoint {
+    pub const EXECUTION_GRAPH_AMDX: Self = Self(1000134000);
+}
+///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX: Self = Self(1000134000);
+    pub const PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX: Self = Self(1000134001);
+    pub const EXECUTION_GRAPH_PIPELINE_SCRATCH_SIZE_AMDX: Self = Self(1000134002);
+    pub const EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX: Self = Self(1000134003);
+    pub const PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX: Self = Self(1000134004);
+}
+///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+impl crate::vk::BufferUsageFlagBits {
+    pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(1 << 25);
+}
+///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const EXECUTION_GRAPH_AMDX: Self = Self(1 << 32);
+}
+///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+impl crate::vk::BufferUsageFlagBits2 {
+    pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(1 << 25);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_execution_graph_pipeline_scratch_size_amdx: crate::vk::PFN_vkGetExecutionGraphPipelineScratchSizeAMDX,
@@ -164,6 +186,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_AMDX_shader_enqueue";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -506,32 +530,6 @@ pub(crate) mod reexport {
         fn default() -> Self {
             unsafe { core::mem::zeroed() }
         }
-    }
-    ///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
-    impl crate::vk::PipelineBindPoint {
-        pub const EXECUTION_GRAPH_AMDX: Self = Self(1000134000);
-    }
-    ///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX: Self = Self(1000134000);
-        pub const PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX: Self = Self(
-            1000134001,
-        );
-        pub const EXECUTION_GRAPH_PIPELINE_SCRATCH_SIZE_AMDX: Self = Self(1000134002);
-        pub const EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX: Self = Self(1000134003);
-        pub const PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX: Self = Self(1000134004);
-    }
-    ///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
-    impl crate::vk::BufferUsageFlagBits {
-        pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(1 << 25);
-    }
-    ///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
-    impl crate::vk::PipelineCreateFlagBits2 {
-        pub const EXECUTION_GRAPH_AMDX: Self = Self(1 << 32);
-    }
-    ///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
-    impl crate::vk::BufferUsageFlagBits2 {
-        pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(1 << 25);
     }
     pub type PFN_vkGetExecutionGraphPipelineScratchSizeAMDX = unsafe extern "system" fn(
         device: crate::vk::Device,

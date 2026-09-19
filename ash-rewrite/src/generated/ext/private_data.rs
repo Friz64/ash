@@ -2,8 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_private_data.html) · Extension `VK_EXT_private_data`
 #![doc(alias = "VK_EXT_private_data")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_private_data";
+///Provided by [`ext::private_data`](crate::ext::private_data)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES;
+    pub const DEVICE_PRIVATE_DATA_CREATE_INFO_EXT: Self = Self::DEVICE_PRIVATE_DATA_CREATE_INFO;
+    pub const PRIVATE_DATA_SLOT_CREATE_INFO_EXT: Self = Self::PRIVATE_DATA_SLOT_CREATE_INFO;
+}
+///Provided by [`ext::private_data`](crate::ext::private_data)
+impl crate::vk::ObjectType {
+    pub const PRIVATE_DATA_SLOT_EXT: Self = Self::PRIVATE_DATA_SLOT;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_private_data_slot_ext: crate::vk::PFN_vkCreatePrivateDataSlotEXT,
@@ -113,6 +121,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_private_data";
 pub(crate) mod reexport {
     pub type DevicePrivateDataCreateInfoEXT<'a> = crate::vk::DevicePrivateDataCreateInfo<
         'a,
@@ -121,16 +131,6 @@ pub(crate) mod reexport {
     pub type PhysicalDevicePrivateDataFeaturesEXT<'a> = crate::vk::PhysicalDevicePrivateDataFeatures<
         'a,
     >;
-    ///Provided by [`ext::private_data`](crate::ext::private_data)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES;
-        pub const DEVICE_PRIVATE_DATA_CREATE_INFO_EXT: Self = Self::DEVICE_PRIVATE_DATA_CREATE_INFO;
-        pub const PRIVATE_DATA_SLOT_CREATE_INFO_EXT: Self = Self::PRIVATE_DATA_SLOT_CREATE_INFO;
-    }
-    ///Provided by [`ext::private_data`](crate::ext::private_data)
-    impl crate::vk::ObjectType {
-        pub const PRIVATE_DATA_SLOT_EXT: Self = Self::PRIVATE_DATA_SLOT;
-    }
     pub type PrivateDataSlotCreateFlagBitsEXT = crate::vk::PrivateDataSlotCreateFlagBits;
     pub type PrivateDataSlotCreateFlagsEXT = crate::vk::PrivateDataSlotCreateFlags;
     pub type PrivateDataSlotEXT = crate::vk::PrivateDataSlot;

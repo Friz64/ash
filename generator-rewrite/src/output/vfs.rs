@@ -20,6 +20,10 @@ pub struct VirtualRustFs(HashMap<PathBuf, TokenStream>);
 
 impl VirtualRustFs {
     pub fn write(&mut self, path: impl Into<PathBuf>, content: TokenStream) {
+        if content.is_empty() {
+            return;
+        }
+
         let path = path.into();
         assert!(path.is_relative());
         self.0.entry(path).or_default().extend(content);

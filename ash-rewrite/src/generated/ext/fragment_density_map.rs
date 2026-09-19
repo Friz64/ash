@@ -2,6 +2,58 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map.html) · Extension `VK_EXT_fragment_density_map`
 #![doc(alias = "VK_EXT_fragment_density_map")]
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::ImageLayout {
+    pub const FRAGMENT_DENSITY_MAP_OPTIMAL_EXT: Self = Self(1000218000);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT: Self = Self(1000218000);
+    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT: Self = Self(
+        1000218001,
+    );
+    pub const RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT: Self = Self(1000218002);
+    pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT: Self = Self(
+        1000044007,
+    );
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::SamplerCreateFlagBits {
+    pub const SUBSAMPLED_EXT: Self = Self(1 << 0);
+    pub const SUBSAMPLED_COARSE_RECONSTRUCTION_EXT: Self = Self(1 << 1);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::AccessFlagBits {
+    pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(1 << 24);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::ImageUsageFlagBits {
+    pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 9);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::ImageCreateFlagBits {
+    pub const SUBSAMPLED_EXT: Self = Self(1 << 14);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::ImageViewCreateFlagBits {
+    pub const FRAGMENT_DENSITY_MAP_DYNAMIC_EXT: Self = Self(1 << 0);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 22);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::FormatFeatureFlagBits {
+    pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 24);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::PipelineStageFlagBits {
+    pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(1 << 23);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 24);
+}
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_fragment_density_map";
 pub(crate) mod reexport {
@@ -177,62 +229,6 @@ pub(crate) mod reexport {
             self.image_layout = image_layout;
             self
         }
-    }
-    ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
-    impl crate::vk::ImageLayout {
-        pub const FRAGMENT_DENSITY_MAP_OPTIMAL_EXT: Self = Self(1000218000);
-    }
-    ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT: Self = Self(
-            1000218000,
-        );
-        pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT: Self = Self(
-            1000218001,
-        );
-        pub const RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT: Self = Self(
-            1000218002,
-        );
-        pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT: Self = Self(
-            1000044007,
-        );
-    }
-    ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
-    impl crate::vk::SamplerCreateFlagBits {
-        pub const SUBSAMPLED_EXT: Self = Self(1 << 0);
-        pub const SUBSAMPLED_COARSE_RECONSTRUCTION_EXT: Self = Self(1 << 1);
-    }
-    ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
-    impl crate::vk::AccessFlagBits {
-        pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(1 << 24);
-    }
-    ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
-    impl crate::vk::ImageUsageFlagBits {
-        pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 9);
-    }
-    ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
-    impl crate::vk::ImageCreateFlagBits {
-        pub const SUBSAMPLED_EXT: Self = Self(1 << 14);
-    }
-    ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
-    impl crate::vk::ImageViewCreateFlagBits {
-        pub const FRAGMENT_DENSITY_MAP_DYNAMIC_EXT: Self = Self(1 << 0);
-    }
-    ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
-    impl crate::vk::PipelineCreateFlagBits {
-        pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 22);
-    }
-    ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
-    impl crate::vk::FormatFeatureFlagBits {
-        pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 24);
-    }
-    ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
-    impl crate::vk::PipelineStageFlagBits {
-        pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(1 << 23);
-    }
-    ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
-    impl crate::vk::FormatFeatureFlagBits2 {
-        pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 24);
     }
 }
 pub use reexport::*;

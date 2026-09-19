@@ -2,6 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_2d_view_of_3d.html) · Extension `VK_EXT_image_2d_view_of_3d`
 #![doc(alias = "VK_EXT_image_2d_view_of_3d")]
+///Provided by [`ext::image_2d_view_of_3d`](crate::ext::image_2d_view_of_3d)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT: Self = Self(1000393000);
+}
+///Provided by [`ext::image_2d_view_of_3d`](crate::ext::image_2d_view_of_3d)
+impl crate::vk::ImageCreateFlagBits {
+    pub const _2D_VIEW_COMPATIBLE_EXT: Self = Self(1 << 17);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_image_2d_view_of_3d";
 pub(crate) mod reexport {
@@ -42,16 +50,6 @@ pub(crate) mod reexport {
             self.sampler2_d_view_of3_d = sampler2_d_view_of3_d.into();
             self
         }
-    }
-    ///Provided by [`ext::image_2d_view_of_3d`](crate::ext::image_2d_view_of_3d)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT: Self = Self(
-            1000393000,
-        );
-    }
-    ///Provided by [`ext::image_2d_view_of_3d`](crate::ext::image_2d_view_of_3d)
-    impl crate::vk::ImageCreateFlagBits {
-        pub const _2D_VIEW_COMPATIBLE_EXT: Self = Self(1 << 17);
     }
 }
 pub use reexport::*;

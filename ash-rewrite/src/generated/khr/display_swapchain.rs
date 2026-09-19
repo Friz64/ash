@@ -2,8 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display_swapchain.html) · Extension `VK_KHR_display_swapchain`
 #![doc(alias = "VK_KHR_display_swapchain")]
-pub const SPEC_VERSION: u32 = 10;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_display_swapchain";
+///Provided by [`khr::display_swapchain`](crate::khr::display_swapchain)
+impl crate::vk::StructureType {
+    pub const DISPLAY_PRESENT_INFO_KHR: Self = Self(1000003000);
+}
+///Provided by [`khr::display_swapchain`](crate::khr::display_swapchain)
+impl crate::vk::Result {
+    pub const ERROR_INCOMPATIBLE_DISPLAY_KHR: Self = Self(-1000003001);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_shared_swapchains_khr: crate::vk::PFN_vkCreateSharedSwapchainsKHR,
@@ -62,6 +68,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 10;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_display_swapchain";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -103,14 +111,6 @@ pub(crate) mod reexport {
             self.persistent = persistent.into();
             self
         }
-    }
-    ///Provided by [`khr::display_swapchain`](crate::khr::display_swapchain)
-    impl crate::vk::StructureType {
-        pub const DISPLAY_PRESENT_INFO_KHR: Self = Self(1000003000);
-    }
-    ///Provided by [`khr::display_swapchain`](crate::khr::display_swapchain)
-    impl crate::vk::Result {
-        pub const ERROR_INCOMPATIBLE_DISPLAY_KHR: Self = Self(-1000003001);
     }
     pub type PFN_vkCreateSharedSwapchainsKHR = unsafe extern "system" fn(
         device: crate::vk::Device,

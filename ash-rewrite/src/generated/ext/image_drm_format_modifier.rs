@@ -2,8 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_drm_format_modifier.html) · Extension `VK_EXT_image_drm_format_modifier`
 #![doc(alias = "VK_EXT_image_drm_format_modifier")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_image_drm_format_modifier";
+///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
+impl crate::vk::ImageTiling {
+    pub const DRM_FORMAT_MODIFIER_EXT: Self = Self(1000158000);
+}
+///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
+impl crate::vk::StructureType {
+    pub const DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT: Self = Self(1000158000);
+    pub const PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT: Self = Self(
+        1000158002,
+    );
+    pub const IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT: Self = Self(1000158003);
+    pub const IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT: Self = Self(
+        1000158004,
+    );
+    pub const IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT: Self = Self(1000158005);
+    pub const DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT: Self = Self(1000158006);
+}
+///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
+impl crate::vk::Result {
+    pub const ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT: Self = Self(
+        -1000158000,
+    );
+}
+///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
+impl crate::vk::ImageAspectFlagBits {
+    pub const MEMORY_PLANE_0_EXT: Self = Self(1 << 7);
+    pub const MEMORY_PLANE_1_EXT: Self = Self(1 << 8);
+    pub const MEMORY_PLANE_2_EXT: Self = Self(1 << 9);
+    pub const MEMORY_PLANE_3_EXT: Self = Self(1 << 10);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_image_drm_format_modifier_properties_ext: crate::vk::PFN_vkGetImageDrmFormatModifierPropertiesEXT,
@@ -60,6 +88,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_image_drm_format_modifier";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -336,38 +366,6 @@ pub(crate) mod reexport {
             self.drm_format_modifier_tiling_features = drm_format_modifier_tiling_features;
             self
         }
-    }
-    ///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
-    impl crate::vk::ImageTiling {
-        pub const DRM_FORMAT_MODIFIER_EXT: Self = Self(1000158000);
-    }
-    ///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
-    impl crate::vk::StructureType {
-        pub const DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT: Self = Self(1000158000);
-        pub const PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT: Self = Self(
-            1000158002,
-        );
-        pub const IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT: Self = Self(
-            1000158003,
-        );
-        pub const IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT: Self = Self(
-            1000158004,
-        );
-        pub const IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT: Self = Self(1000158005);
-        pub const DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT: Self = Self(1000158006);
-    }
-    ///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
-    impl crate::vk::Result {
-        pub const ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT: Self = Self(
-            -1000158000,
-        );
-    }
-    ///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
-    impl crate::vk::ImageAspectFlagBits {
-        pub const MEMORY_PLANE_0_EXT: Self = Self(1 << 7);
-        pub const MEMORY_PLANE_1_EXT: Self = Self(1 << 8);
-        pub const MEMORY_PLANE_2_EXT: Self = Self(1 << 9);
-        pub const MEMORY_PLANE_3_EXT: Self = Self(1 << 10);
     }
     pub type PFN_vkGetImageDrmFormatModifierPropertiesEXT = unsafe extern "system" fn(
         device: crate::vk::Device,

@@ -2,6 +2,70 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_quantization_map.html) · Extension `VK_KHR_video_encode_quantization_map`
 #![doc(alias = "VK_KHR_video_encode_quantization_map")]
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::ImageLayout {
+    pub const VIDEO_ENCODE_QUANTIZATION_MAP_KHR: Self = Self(1000553000);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::StructureType {
+    pub const VIDEO_ENCODE_QUANTIZATION_MAP_CAPABILITIES_KHR: Self = Self(1000553000);
+    pub const VIDEO_FORMAT_QUANTIZATION_MAP_PROPERTIES_KHR: Self = Self(1000553001);
+    pub const VIDEO_ENCODE_QUANTIZATION_MAP_INFO_KHR: Self = Self(1000553002);
+    pub const VIDEO_ENCODE_QUANTIZATION_MAP_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
+        1000553005,
+    );
+    pub const PHYSICAL_DEVICE_VIDEO_ENCODE_QUANTIZATION_MAP_FEATURES_KHR: Self = Self(
+        1000553009,
+    );
+    pub const VIDEO_ENCODE_H264_QUANTIZATION_MAP_CAPABILITIES_KHR: Self = Self(
+        1000553003,
+    );
+    pub const VIDEO_ENCODE_H265_QUANTIZATION_MAP_CAPABILITIES_KHR: Self = Self(
+        1000553004,
+    );
+    pub const VIDEO_FORMAT_H265_QUANTIZATION_MAP_PROPERTIES_KHR: Self = Self(1000553006);
+    pub const VIDEO_ENCODE_AV1_QUANTIZATION_MAP_CAPABILITIES_KHR: Self = Self(
+        1000553007,
+    );
+    pub const VIDEO_FORMAT_AV1_QUANTIZATION_MAP_PROPERTIES_KHR: Self = Self(1000553008);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::ImageUsageFlagBits {
+    pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 25);
+    pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 26);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 49);
+    pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 50);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::VideoSessionCreateFlagBitsKHR {
+    pub const ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 3);
+    pub const ALLOW_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 4);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::VideoSessionParametersCreateFlagBitsKHR {
+    pub const QUANTIZATION_MAP_COMPATIBLE_KHR: Self = Self(1 << 0);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::VideoEncodeFlagBitsKHR {
+    pub const WITH_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 0);
+    pub const WITH_EMPHASIS_MAP_KHR: Self = Self(1 << 1);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::VideoEncodeCapabilityFlagBitsKHR {
+    pub const QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 2);
+    pub const EMPHASIS_MAP_KHR: Self = Self(1 << 3);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::VideoEncodeH264CapabilityFlagBitsKHR {
+    pub const MB_QP_DIFF_WRAPAROUND_KHR: Self = Self(1 << 9);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::VideoEncodeH265CapabilityFlagBitsKHR {
+    pub const CU_QP_DIFF_WRAPAROUND_KHR: Self = Self(1 << 10);
+}
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_quantization_map";
 pub(crate) mod reexport {
@@ -354,76 +418,6 @@ pub(crate) mod reexport {
             self.video_encode_quantization_map = video_encode_quantization_map.into();
             self
         }
-    }
-    ///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
-    impl crate::vk::ImageLayout {
-        pub const VIDEO_ENCODE_QUANTIZATION_MAP_KHR: Self = Self(1000553000);
-    }
-    ///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
-    impl crate::vk::StructureType {
-        pub const VIDEO_ENCODE_QUANTIZATION_MAP_CAPABILITIES_KHR: Self = Self(
-            1000553000,
-        );
-        pub const VIDEO_FORMAT_QUANTIZATION_MAP_PROPERTIES_KHR: Self = Self(1000553001);
-        pub const VIDEO_ENCODE_QUANTIZATION_MAP_INFO_KHR: Self = Self(1000553002);
-        pub const VIDEO_ENCODE_QUANTIZATION_MAP_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
-            1000553005,
-        );
-        pub const PHYSICAL_DEVICE_VIDEO_ENCODE_QUANTIZATION_MAP_FEATURES_KHR: Self = Self(
-            1000553009,
-        );
-        pub const VIDEO_ENCODE_H264_QUANTIZATION_MAP_CAPABILITIES_KHR: Self = Self(
-            1000553003,
-        );
-        pub const VIDEO_ENCODE_H265_QUANTIZATION_MAP_CAPABILITIES_KHR: Self = Self(
-            1000553004,
-        );
-        pub const VIDEO_FORMAT_H265_QUANTIZATION_MAP_PROPERTIES_KHR: Self = Self(
-            1000553006,
-        );
-        pub const VIDEO_ENCODE_AV1_QUANTIZATION_MAP_CAPABILITIES_KHR: Self = Self(
-            1000553007,
-        );
-        pub const VIDEO_FORMAT_AV1_QUANTIZATION_MAP_PROPERTIES_KHR: Self = Self(
-            1000553008,
-        );
-    }
-    ///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
-    impl crate::vk::ImageUsageFlagBits {
-        pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 25);
-        pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 26);
-    }
-    ///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
-    impl crate::vk::FormatFeatureFlagBits2 {
-        pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 49);
-        pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 50);
-    }
-    ///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
-    impl crate::vk::VideoSessionCreateFlagBitsKHR {
-        pub const ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 3);
-        pub const ALLOW_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 4);
-    }
-    ///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
-    impl crate::vk::VideoSessionParametersCreateFlagBitsKHR {
-        pub const QUANTIZATION_MAP_COMPATIBLE_KHR: Self = Self(1 << 0);
-    }
-    ///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
-    impl crate::vk::VideoEncodeFlagBitsKHR {
-        pub const WITH_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 0);
-        pub const WITH_EMPHASIS_MAP_KHR: Self = Self(1 << 1);
-    }
-    ///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
-    impl crate::vk::VideoEncodeCapabilityFlagBitsKHR {
-        pub const QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 2);
-        pub const EMPHASIS_MAP_KHR: Self = Self(1 << 3);
-    }
-    ///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
-    impl crate::vk::VideoEncodeH264CapabilityFlagBitsKHR {
-        pub const MB_QP_DIFF_WRAPAROUND_KHR: Self = Self(1 << 9);
-    }
-    ///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
-    impl crate::vk::VideoEncodeH265CapabilityFlagBitsKHR {
-        pub const CU_QP_DIFF_WRAPAROUND_KHR: Self = Self(1 << 10);
     }
 }
 pub use reexport::*;

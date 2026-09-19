@@ -2,6 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_address_binding_report.html) · Extension `VK_EXT_device_address_binding_report`
 #![doc(alias = "VK_EXT_device_address_binding_report")]
+///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT: Self = Self(
+        1000354000,
+    );
+    pub const DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT: Self = Self(1000354001);
+}
+///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+impl DeviceAddressBindingTypeEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const BIND_EXT: Self = Self(0);
+    pub const UNBIND_EXT: Self = Self(1);
+}
+///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+impl crate::vk::DebugUtilsMessageTypeFlagBitsEXT {
+    pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(1 << 3);
+}
+///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+impl DeviceAddressBindingFlagBitsEXT {
+    pub const INTERNAL_OBJECT_EXT: Self = Self(1 << 0);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_device_address_binding_report";
 pub(crate) mod reexport {
@@ -88,34 +116,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT: Self = Self(
-            1000354000,
-        );
-        pub const DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT: Self = Self(1000354001);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
-    ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
-    impl DeviceAddressBindingTypeEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const BIND_EXT: Self = Self(0);
-        pub const UNBIND_EXT: Self = Self(1);
-    }
-    ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
-    impl crate::vk::DebugUtilsMessageTypeFlagBitsEXT {
-        pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(1 << 3);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DeviceAddressBindingFlagsEXT(u32);
@@ -189,9 +193,5 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
-    impl DeviceAddressBindingFlagBitsEXT {
-        pub const INTERNAL_OBJECT_EXT: Self = Self(1 << 0);
-    }
 }
 pub use reexport::*;

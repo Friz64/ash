@@ -2,6 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_border_color_swizzle.html) · Extension `VK_EXT_border_color_swizzle`
 #![doc(alias = "VK_EXT_border_color_swizzle")]
+///Provided by [`ext::border_color_swizzle`](crate::ext::border_color_swizzle)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT: Self = Self(1000411000);
+    pub const SAMPLER_BORDER_COLOR_COMPONENT_MAPPING_CREATE_INFO_EXT: Self = Self(
+        1000411001,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_border_color_swizzle";
 pub(crate) mod reexport {
@@ -82,15 +89,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`ext::border_color_swizzle`](crate::ext::border_color_swizzle)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT: Self = Self(
-            1000411000,
-        );
-        pub const SAMPLER_BORDER_COLOR_COMPONENT_MAPPING_CREATE_INFO_EXT: Self = Self(
-            1000411001,
-        );
     }
 }
 pub use reexport::*;

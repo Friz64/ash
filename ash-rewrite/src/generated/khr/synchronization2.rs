@@ -2,8 +2,122 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_synchronization2.html) · Extension `VK_KHR_synchronization2`
 #![doc(alias = "VK_KHR_synchronization2")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_synchronization2";
+///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+impl crate::vk::ImageLayout {
+    pub const READ_ONLY_OPTIMAL_KHR: Self = Self::READ_ONLY_OPTIMAL;
+    pub const ATTACHMENT_OPTIMAL_KHR: Self = Self::ATTACHMENT_OPTIMAL;
+}
+///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+impl crate::vk::StructureType {
+    pub const MEMORY_BARRIER_2_KHR: Self = Self::MEMORY_BARRIER_2;
+    pub const BUFFER_MEMORY_BARRIER_2_KHR: Self = Self::BUFFER_MEMORY_BARRIER_2;
+    pub const IMAGE_MEMORY_BARRIER_2_KHR: Self = Self::IMAGE_MEMORY_BARRIER_2;
+    pub const DEPENDENCY_INFO_KHR: Self = Self::DEPENDENCY_INFO;
+    pub const SUBMIT_INFO_2_KHR: Self = Self::SUBMIT_INFO_2;
+    pub const SEMAPHORE_SUBMIT_INFO_KHR: Self = Self::SEMAPHORE_SUBMIT_INFO;
+    pub const COMMAND_BUFFER_SUBMIT_INFO_KHR: Self = Self::COMMAND_BUFFER_SUBMIT_INFO;
+    pub const PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES;
+}
+///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+impl crate::vk::AccessFlagBits {
+    pub const NONE_KHR: Self = Self::NONE;
+}
+///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+impl crate::vk::EventCreateFlagBits {
+    pub const DEVICE_ONLY_KHR: Self = Self::DEVICE_ONLY;
+}
+///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+impl crate::vk::PipelineStageFlagBits {
+    pub const NONE_KHR: Self = Self::NONE;
+}
+///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+impl crate::vk::AccessFlagBits2 {
+    pub const NONE_KHR: Self = Self::NONE;
+    pub const INDIRECT_COMMAND_READ_KHR: Self = Self::INDIRECT_COMMAND_READ;
+    pub const INDEX_READ_KHR: Self = Self::INDEX_READ;
+    pub const VERTEX_ATTRIBUTE_READ_KHR: Self = Self::VERTEX_ATTRIBUTE_READ;
+    pub const UNIFORM_READ_KHR: Self = Self::UNIFORM_READ;
+    pub const INPUT_ATTACHMENT_READ_KHR: Self = Self::INPUT_ATTACHMENT_READ;
+    pub const SHADER_READ_KHR: Self = Self::SHADER_READ;
+    pub const SHADER_WRITE_KHR: Self = Self::SHADER_WRITE;
+    pub const COLOR_ATTACHMENT_READ_KHR: Self = Self::COLOR_ATTACHMENT_READ;
+    pub const COLOR_ATTACHMENT_WRITE_KHR: Self = Self::COLOR_ATTACHMENT_WRITE;
+    pub const DEPTH_STENCIL_ATTACHMENT_READ_KHR: Self = Self::DEPTH_STENCIL_ATTACHMENT_READ;
+    pub const DEPTH_STENCIL_ATTACHMENT_WRITE_KHR: Self = Self::DEPTH_STENCIL_ATTACHMENT_WRITE;
+    pub const TRANSFER_READ_KHR: Self = Self::TRANSFER_READ;
+    pub const TRANSFER_WRITE_KHR: Self = Self::TRANSFER_WRITE;
+    pub const HOST_READ_KHR: Self = Self::HOST_READ;
+    pub const HOST_WRITE_KHR: Self = Self::HOST_WRITE;
+    pub const MEMORY_READ_KHR: Self = Self::MEMORY_READ;
+    pub const MEMORY_WRITE_KHR: Self = Self::MEMORY_WRITE;
+    pub const SHADER_SAMPLED_READ_KHR: Self = Self::SHADER_SAMPLED_READ;
+    pub const SHADER_STORAGE_READ_KHR: Self = Self::SHADER_STORAGE_READ;
+    pub const SHADER_STORAGE_WRITE_KHR: Self = Self::SHADER_STORAGE_WRITE;
+    pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(1 << 25);
+    pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(1 << 26);
+    pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(1 << 27);
+    pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(1 << 20);
+    pub const COMMAND_PREPROCESS_READ_NV: Self = Self::COMMAND_PREPROCESS_READ_EXT;
+    pub const COMMAND_PREPROCESS_WRITE_NV: Self = Self::COMMAND_PREPROCESS_WRITE_EXT;
+    pub const COMMAND_PREPROCESS_READ_EXT: Self = Self(1 << 17);
+    pub const COMMAND_PREPROCESS_WRITE_EXT: Self = Self(1 << 18);
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR: Self = Self(1 << 23);
+    pub const SHADING_RATE_IMAGE_READ_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR;
+    pub const ACCELERATION_STRUCTURE_READ_KHR: Self = Self(1 << 21);
+    pub const ACCELERATION_STRUCTURE_WRITE_KHR: Self = Self(1 << 22);
+    pub const ACCELERATION_STRUCTURE_READ_NV: Self = Self::ACCELERATION_STRUCTURE_READ_KHR;
+    pub const ACCELERATION_STRUCTURE_WRITE_NV: Self = Self::ACCELERATION_STRUCTURE_WRITE_KHR;
+    pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(1 << 24);
+    pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(1 << 19);
+}
+///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const NONE_KHR: Self = Self::NONE;
+    pub const TOP_OF_PIPE_KHR: Self = Self::TOP_OF_PIPE;
+    pub const DRAW_INDIRECT_KHR: Self = Self::DRAW_INDIRECT;
+    pub const VERTEX_INPUT_KHR: Self = Self::VERTEX_INPUT;
+    pub const VERTEX_SHADER_KHR: Self = Self::VERTEX_SHADER;
+    pub const TESSELLATION_CONTROL_SHADER_KHR: Self = Self::TESSELLATION_CONTROL_SHADER;
+    pub const TESSELLATION_EVALUATION_SHADER_KHR: Self = Self::TESSELLATION_EVALUATION_SHADER;
+    pub const GEOMETRY_SHADER_KHR: Self = Self::GEOMETRY_SHADER;
+    pub const FRAGMENT_SHADER_KHR: Self = Self::FRAGMENT_SHADER;
+    pub const EARLY_FRAGMENT_TESTS_KHR: Self = Self::EARLY_FRAGMENT_TESTS;
+    pub const LATE_FRAGMENT_TESTS_KHR: Self = Self::LATE_FRAGMENT_TESTS;
+    pub const COLOR_ATTACHMENT_OUTPUT_KHR: Self = Self::COLOR_ATTACHMENT_OUTPUT;
+    pub const COMPUTE_SHADER_KHR: Self = Self::COMPUTE_SHADER;
+    pub const ALL_TRANSFER_KHR: Self = Self::ALL_TRANSFER;
+    pub const TRANSFER_KHR: Self = Self::ALL_TRANSFER;
+    pub const BOTTOM_OF_PIPE_KHR: Self = Self::BOTTOM_OF_PIPE;
+    pub const HOST_KHR: Self = Self::HOST;
+    pub const ALL_GRAPHICS_KHR: Self = Self::ALL_GRAPHICS;
+    pub const ALL_COMMANDS_KHR: Self = Self::ALL_COMMANDS;
+    pub const COPY_KHR: Self = Self::COPY;
+    pub const RESOLVE_KHR: Self = Self::RESOLVE;
+    pub const BLIT_KHR: Self = Self::BLIT;
+    pub const CLEAR_KHR: Self = Self::CLEAR;
+    pub const INDEX_INPUT_KHR: Self = Self::INDEX_INPUT;
+    pub const VERTEX_ATTRIBUTE_INPUT_KHR: Self = Self::VERTEX_ATTRIBUTE_INPUT;
+    pub const PRE_RASTERIZATION_SHADERS_KHR: Self = Self::PRE_RASTERIZATION_SHADERS;
+    pub const TRANSFORM_FEEDBACK_EXT: Self = Self(1 << 24);
+    pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 18);
+    pub const COMMAND_PREPROCESS_NV: Self = Self::COMMAND_PREPROCESS_EXT;
+    pub const COMMAND_PREPROCESS_EXT: Self = Self(1 << 17);
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 22);
+    pub const SHADING_RATE_IMAGE_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
+    pub const ACCELERATION_STRUCTURE_BUILD_KHR: Self = Self(1 << 25);
+    pub const RAY_TRACING_SHADER_KHR: Self = Self(1 << 21);
+    pub const RAY_TRACING_SHADER_NV: Self = Self::RAY_TRACING_SHADER_KHR;
+    pub const ACCELERATION_STRUCTURE_BUILD_NV: Self = Self::ACCELERATION_STRUCTURE_BUILD_KHR;
+    pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(1 << 23);
+    pub const TASK_SHADER_NV: Self = Self::TASK_SHADER_EXT;
+    pub const MESH_SHADER_NV: Self = Self::MESH_SHADER_EXT;
+    pub const TASK_SHADER_EXT: Self = Self(1 << 19);
+    pub const MESH_SHADER_EXT: Self = Self(1 << 20);
+}
+///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+impl crate::vk::SubmitFlagBits {
+    pub const PROTECTED_KHR: Self = Self::PROTECTED;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_event2_khr: crate::vk::PFN_vkCmdSetEvent2KHR,
@@ -142,6 +256,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_synchronization2";
 pub(crate) mod reexport {
     pub type MemoryBarrier2KHR<'a> = crate::vk::MemoryBarrier2<'a>;
     pub type ImageMemoryBarrier2KHR<'a> = crate::vk::ImageMemoryBarrier2<'a>;
@@ -153,125 +269,9 @@ pub(crate) mod reexport {
     pub type PhysicalDeviceSynchronization2FeaturesKHR<'a> = crate::vk::PhysicalDeviceSynchronization2Features<
         'a,
     >;
-    ///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
-    impl crate::vk::ImageLayout {
-        pub const READ_ONLY_OPTIMAL_KHR: Self = Self::READ_ONLY_OPTIMAL;
-        pub const ATTACHMENT_OPTIMAL_KHR: Self = Self::ATTACHMENT_OPTIMAL;
-    }
-    ///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
-    impl crate::vk::StructureType {
-        pub const MEMORY_BARRIER_2_KHR: Self = Self::MEMORY_BARRIER_2;
-        pub const BUFFER_MEMORY_BARRIER_2_KHR: Self = Self::BUFFER_MEMORY_BARRIER_2;
-        pub const IMAGE_MEMORY_BARRIER_2_KHR: Self = Self::IMAGE_MEMORY_BARRIER_2;
-        pub const DEPENDENCY_INFO_KHR: Self = Self::DEPENDENCY_INFO;
-        pub const SUBMIT_INFO_2_KHR: Self = Self::SUBMIT_INFO_2;
-        pub const SEMAPHORE_SUBMIT_INFO_KHR: Self = Self::SEMAPHORE_SUBMIT_INFO;
-        pub const COMMAND_BUFFER_SUBMIT_INFO_KHR: Self = Self::COMMAND_BUFFER_SUBMIT_INFO;
-        pub const PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES;
-    }
     pub type AccessFlagBits2KHR = crate::vk::AccessFlagBits2;
     pub type PipelineStageFlagBits2KHR = crate::vk::PipelineStageFlagBits2;
     pub type SubmitFlagBitsKHR = crate::vk::SubmitFlagBits;
-    ///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
-    impl crate::vk::AccessFlagBits {
-        pub const NONE_KHR: Self = Self::NONE;
-    }
-    ///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
-    impl crate::vk::EventCreateFlagBits {
-        pub const DEVICE_ONLY_KHR: Self = Self::DEVICE_ONLY;
-    }
-    ///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
-    impl crate::vk::PipelineStageFlagBits {
-        pub const NONE_KHR: Self = Self::NONE;
-    }
-    ///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
-    impl crate::vk::AccessFlagBits2 {
-        pub const NONE_KHR: Self = Self::NONE;
-        pub const INDIRECT_COMMAND_READ_KHR: Self = Self::INDIRECT_COMMAND_READ;
-        pub const INDEX_READ_KHR: Self = Self::INDEX_READ;
-        pub const VERTEX_ATTRIBUTE_READ_KHR: Self = Self::VERTEX_ATTRIBUTE_READ;
-        pub const UNIFORM_READ_KHR: Self = Self::UNIFORM_READ;
-        pub const INPUT_ATTACHMENT_READ_KHR: Self = Self::INPUT_ATTACHMENT_READ;
-        pub const SHADER_READ_KHR: Self = Self::SHADER_READ;
-        pub const SHADER_WRITE_KHR: Self = Self::SHADER_WRITE;
-        pub const COLOR_ATTACHMENT_READ_KHR: Self = Self::COLOR_ATTACHMENT_READ;
-        pub const COLOR_ATTACHMENT_WRITE_KHR: Self = Self::COLOR_ATTACHMENT_WRITE;
-        pub const DEPTH_STENCIL_ATTACHMENT_READ_KHR: Self = Self::DEPTH_STENCIL_ATTACHMENT_READ;
-        pub const DEPTH_STENCIL_ATTACHMENT_WRITE_KHR: Self = Self::DEPTH_STENCIL_ATTACHMENT_WRITE;
-        pub const TRANSFER_READ_KHR: Self = Self::TRANSFER_READ;
-        pub const TRANSFER_WRITE_KHR: Self = Self::TRANSFER_WRITE;
-        pub const HOST_READ_KHR: Self = Self::HOST_READ;
-        pub const HOST_WRITE_KHR: Self = Self::HOST_WRITE;
-        pub const MEMORY_READ_KHR: Self = Self::MEMORY_READ;
-        pub const MEMORY_WRITE_KHR: Self = Self::MEMORY_WRITE;
-        pub const SHADER_SAMPLED_READ_KHR: Self = Self::SHADER_SAMPLED_READ;
-        pub const SHADER_STORAGE_READ_KHR: Self = Self::SHADER_STORAGE_READ;
-        pub const SHADER_STORAGE_WRITE_KHR: Self = Self::SHADER_STORAGE_WRITE;
-        pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(1 << 25);
-        pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(1 << 26);
-        pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(1 << 27);
-        pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(1 << 20);
-        pub const COMMAND_PREPROCESS_READ_NV: Self = Self::COMMAND_PREPROCESS_READ_EXT;
-        pub const COMMAND_PREPROCESS_WRITE_NV: Self = Self::COMMAND_PREPROCESS_WRITE_EXT;
-        pub const COMMAND_PREPROCESS_READ_EXT: Self = Self(1 << 17);
-        pub const COMMAND_PREPROCESS_WRITE_EXT: Self = Self(1 << 18);
-        pub const FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR: Self = Self(1 << 23);
-        pub const SHADING_RATE_IMAGE_READ_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR;
-        pub const ACCELERATION_STRUCTURE_READ_KHR: Self = Self(1 << 21);
-        pub const ACCELERATION_STRUCTURE_WRITE_KHR: Self = Self(1 << 22);
-        pub const ACCELERATION_STRUCTURE_READ_NV: Self = Self::ACCELERATION_STRUCTURE_READ_KHR;
-        pub const ACCELERATION_STRUCTURE_WRITE_NV: Self = Self::ACCELERATION_STRUCTURE_WRITE_KHR;
-        pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(1 << 24);
-        pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(1 << 19);
-    }
-    ///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
-    impl crate::vk::PipelineStageFlagBits2 {
-        pub const NONE_KHR: Self = Self::NONE;
-        pub const TOP_OF_PIPE_KHR: Self = Self::TOP_OF_PIPE;
-        pub const DRAW_INDIRECT_KHR: Self = Self::DRAW_INDIRECT;
-        pub const VERTEX_INPUT_KHR: Self = Self::VERTEX_INPUT;
-        pub const VERTEX_SHADER_KHR: Self = Self::VERTEX_SHADER;
-        pub const TESSELLATION_CONTROL_SHADER_KHR: Self = Self::TESSELLATION_CONTROL_SHADER;
-        pub const TESSELLATION_EVALUATION_SHADER_KHR: Self = Self::TESSELLATION_EVALUATION_SHADER;
-        pub const GEOMETRY_SHADER_KHR: Self = Self::GEOMETRY_SHADER;
-        pub const FRAGMENT_SHADER_KHR: Self = Self::FRAGMENT_SHADER;
-        pub const EARLY_FRAGMENT_TESTS_KHR: Self = Self::EARLY_FRAGMENT_TESTS;
-        pub const LATE_FRAGMENT_TESTS_KHR: Self = Self::LATE_FRAGMENT_TESTS;
-        pub const COLOR_ATTACHMENT_OUTPUT_KHR: Self = Self::COLOR_ATTACHMENT_OUTPUT;
-        pub const COMPUTE_SHADER_KHR: Self = Self::COMPUTE_SHADER;
-        pub const ALL_TRANSFER_KHR: Self = Self::ALL_TRANSFER;
-        pub const TRANSFER_KHR: Self = Self::ALL_TRANSFER;
-        pub const BOTTOM_OF_PIPE_KHR: Self = Self::BOTTOM_OF_PIPE;
-        pub const HOST_KHR: Self = Self::HOST;
-        pub const ALL_GRAPHICS_KHR: Self = Self::ALL_GRAPHICS;
-        pub const ALL_COMMANDS_KHR: Self = Self::ALL_COMMANDS;
-        pub const COPY_KHR: Self = Self::COPY;
-        pub const RESOLVE_KHR: Self = Self::RESOLVE;
-        pub const BLIT_KHR: Self = Self::BLIT;
-        pub const CLEAR_KHR: Self = Self::CLEAR;
-        pub const INDEX_INPUT_KHR: Self = Self::INDEX_INPUT;
-        pub const VERTEX_ATTRIBUTE_INPUT_KHR: Self = Self::VERTEX_ATTRIBUTE_INPUT;
-        pub const PRE_RASTERIZATION_SHADERS_KHR: Self = Self::PRE_RASTERIZATION_SHADERS;
-        pub const TRANSFORM_FEEDBACK_EXT: Self = Self(1 << 24);
-        pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 18);
-        pub const COMMAND_PREPROCESS_NV: Self = Self::COMMAND_PREPROCESS_EXT;
-        pub const COMMAND_PREPROCESS_EXT: Self = Self(1 << 17);
-        pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 22);
-        pub const SHADING_RATE_IMAGE_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
-        pub const ACCELERATION_STRUCTURE_BUILD_KHR: Self = Self(1 << 25);
-        pub const RAY_TRACING_SHADER_KHR: Self = Self(1 << 21);
-        pub const RAY_TRACING_SHADER_NV: Self = Self::RAY_TRACING_SHADER_KHR;
-        pub const ACCELERATION_STRUCTURE_BUILD_NV: Self = Self::ACCELERATION_STRUCTURE_BUILD_KHR;
-        pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(1 << 23);
-        pub const TASK_SHADER_NV: Self = Self::TASK_SHADER_EXT;
-        pub const MESH_SHADER_NV: Self = Self::MESH_SHADER_EXT;
-        pub const TASK_SHADER_EXT: Self = Self(1 << 19);
-        pub const MESH_SHADER_EXT: Self = Self(1 << 20);
-    }
-    ///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
-    impl crate::vk::SubmitFlagBits {
-        pub const PROTECTED_KHR: Self = Self::PROTECTED;
-    }
     pub type AccessFlags2KHR = crate::vk::AccessFlags2;
     pub type PipelineStageFlags2KHR = crate::vk::PipelineStageFlags2;
     pub type SubmitFlagsKHR = crate::vk::SubmitFlags;

@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_hdr_metadata.html) · Extension `VK_EXT_hdr_metadata`
 #![doc(alias = "VK_EXT_hdr_metadata")]
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_hdr_metadata";
+///Provided by [`ext::hdr_metadata`](crate::ext::hdr_metadata)
+impl crate::vk::StructureType {
+    pub const HDR_METADATA_EXT: Self = Self(1000105000);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub set_hdr_metadata_ext: crate::vk::PFN_vkSetHdrMetadataEXT,
@@ -61,6 +63,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_hdr_metadata";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -161,10 +165,6 @@ pub(crate) mod reexport {
             self.max_frame_average_light_level = max_frame_average_light_level;
             self
         }
-    }
-    ///Provided by [`ext::hdr_metadata`](crate::ext::hdr_metadata)
-    impl crate::vk::StructureType {
-        pub const HDR_METADATA_EXT: Self = Self(1000105000);
     }
     pub type PFN_vkSetHdrMetadataEXT = unsafe extern "system" fn(
         device: crate::vk::Device,

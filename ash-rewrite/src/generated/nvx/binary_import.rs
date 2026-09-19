@@ -2,8 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_binary_import.html) · Extension `VK_NVX_binary_import`
 #![doc(alias = "VK_NVX_binary_import")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_NVX_binary_import";
+///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
+impl crate::vk::StructureType {
+    pub const CU_MODULE_CREATE_INFO_NVX: Self = Self(1000029000);
+    pub const CU_FUNCTION_CREATE_INFO_NVX: Self = Self(1000029001);
+    pub const CU_LAUNCH_INFO_NVX: Self = Self(1000029002);
+    pub const CU_MODULE_TEXTURING_MODE_CREATE_INFO_NVX: Self = Self(1000029004);
+}
+///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
+impl crate::vk::ObjectType {
+    pub const CU_MODULE_NVX: Self = Self(1000029000);
+    pub const CU_FUNCTION_NVX: Self = Self(1000029001);
+}
+///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
+impl crate::vk::DebugReportObjectTypeEXT {
+    pub const CU_MODULE_NVX_EXT: Self = Self(1000029000);
+    pub const CU_FUNCTION_NVX_EXT: Self = Self(1000029001);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_cu_module_nvx: crate::vk::PFN_vkCreateCuModuleNVX,
@@ -125,6 +140,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_NVX_binary_import";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -312,23 +329,6 @@ pub(crate) mod reexport {
             self.p_extras = extras.as_ptr();
             self
         }
-    }
-    ///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
-    impl crate::vk::StructureType {
-        pub const CU_MODULE_CREATE_INFO_NVX: Self = Self(1000029000);
-        pub const CU_FUNCTION_CREATE_INFO_NVX: Self = Self(1000029001);
-        pub const CU_LAUNCH_INFO_NVX: Self = Self(1000029002);
-        pub const CU_MODULE_TEXTURING_MODE_CREATE_INFO_NVX: Self = Self(1000029004);
-    }
-    ///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
-    impl crate::vk::ObjectType {
-        pub const CU_MODULE_NVX: Self = Self(1000029000);
-        pub const CU_FUNCTION_NVX: Self = Self(1000029001);
-    }
-    ///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
-    impl crate::vk::DebugReportObjectTypeEXT {
-        pub const CU_MODULE_NVX_EXT: Self = Self(1000029000);
-        pub const CU_FUNCTION_NVX_EXT: Self = Self(1000029001);
     }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]

@@ -2,8 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_memory_requirements2.html) · Extension `VK_KHR_get_memory_requirements2`
 #![doc(alias = "VK_KHR_get_memory_requirements2")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_get_memory_requirements2";
+///Provided by [`khr::get_memory_requirements2`](crate::khr::get_memory_requirements2)
+impl crate::vk::StructureType {
+    pub const BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::BUFFER_MEMORY_REQUIREMENTS_INFO_2;
+    pub const IMAGE_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::IMAGE_MEMORY_REQUIREMENTS_INFO_2;
+    pub const IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2;
+    pub const MEMORY_REQUIREMENTS_2_KHR: Self = Self::MEMORY_REQUIREMENTS_2;
+    pub const SPARSE_IMAGE_MEMORY_REQUIREMENTS_2_KHR: Self = Self::SPARSE_IMAGE_MEMORY_REQUIREMENTS_2;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_buffer_memory_requirements2_khr: crate::vk::PFN_vkGetBufferMemoryRequirements2KHR,
@@ -93,6 +99,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_get_memory_requirements2";
 pub(crate) mod reexport {
     pub type BufferMemoryRequirementsInfo2KHR<'a> = crate::vk::BufferMemoryRequirementsInfo2<
         'a,
@@ -107,14 +115,6 @@ pub(crate) mod reexport {
     pub type SparseImageMemoryRequirements2KHR<'a> = crate::vk::SparseImageMemoryRequirements2<
         'a,
     >;
-    ///Provided by [`khr::get_memory_requirements2`](crate::khr::get_memory_requirements2)
-    impl crate::vk::StructureType {
-        pub const BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::BUFFER_MEMORY_REQUIREMENTS_INFO_2;
-        pub const IMAGE_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::IMAGE_MEMORY_REQUIREMENTS_INFO_2;
-        pub const IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2;
-        pub const MEMORY_REQUIREMENTS_2_KHR: Self = Self::MEMORY_REQUIREMENTS_2;
-        pub const SPARSE_IMAGE_MEMORY_REQUIREMENTS_2_KHR: Self = Self::SPARSE_IMAGE_MEMORY_REQUIREMENTS_2;
-    }
     pub type PFN_vkGetBufferMemoryRequirements2KHR = crate::vk::PFN_vkGetBufferMemoryRequirements2;
     pub type PFN_vkGetImageMemoryRequirements2KHR = crate::vk::PFN_vkGetImageMemoryRequirements2;
     pub type PFN_vkGetImageSparseMemoryRequirements2KHR = crate::vk::PFN_vkGetImageSparseMemoryRequirements2;

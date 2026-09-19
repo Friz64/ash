@@ -2,6 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_inline_uniform_block.html) · Extension `VK_EXT_inline_uniform_block`
 #![doc(alias = "VK_EXT_inline_uniform_block")]
+///Provided by [`ext::inline_uniform_block`](crate::ext::inline_uniform_block)
+impl crate::vk::DescriptorType {
+    pub const INLINE_UNIFORM_BLOCK_EXT: Self = Self::INLINE_UNIFORM_BLOCK;
+}
+///Provided by [`ext::inline_uniform_block`](crate::ext::inline_uniform_block)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES;
+    pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES;
+    pub const WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT: Self = Self::WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK;
+    pub const DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO_EXT: Self = Self::DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_inline_uniform_block";
 pub(crate) mod reexport {
@@ -17,16 +28,5 @@ pub(crate) mod reexport {
     pub type DescriptorPoolInlineUniformBlockCreateInfoEXT<'a> = crate::vk::DescriptorPoolInlineUniformBlockCreateInfo<
         'a,
     >;
-    ///Provided by [`ext::inline_uniform_block`](crate::ext::inline_uniform_block)
-    impl crate::vk::DescriptorType {
-        pub const INLINE_UNIFORM_BLOCK_EXT: Self = Self::INLINE_UNIFORM_BLOCK;
-    }
-    ///Provided by [`ext::inline_uniform_block`](crate::ext::inline_uniform_block)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES;
-        pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES;
-        pub const WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT: Self = Self::WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK;
-        pub const DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO_EXT: Self = Self::DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO;
-    }
 }
 pub use reexport::*;

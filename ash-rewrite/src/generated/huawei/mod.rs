@@ -2,6 +2,6 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Extensions tagged HUAWEI
 pub mod subpass_shading;
-pub mod cluster_culling_shader;
 pub mod invocation_mask;
+pub mod cluster_culling_shader;
 pub mod hdr_vivid;

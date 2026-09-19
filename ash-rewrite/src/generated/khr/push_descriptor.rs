@@ -2,8 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_push_descriptor.html) · Extension `VK_KHR_push_descriptor`
 #![doc(alias = "VK_KHR_push_descriptor")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_push_descriptor";
+///Provided by [`khr::push_descriptor`](crate::khr::push_descriptor)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES;
+}
+///Provided by [`khr::push_descriptor`](crate::khr::push_descriptor)
+impl crate::vk::DescriptorUpdateTemplateType {
+    pub const PUSH_DESCRIPTORS_KHR: Self = Self::PUSH_DESCRIPTORS;
+}
+///Provided by [`khr::push_descriptor`](crate::khr::push_descriptor)
+impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+    pub const PUSH_DESCRIPTOR_KHR: Self = Self::PUSH_DESCRIPTOR;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_push_descriptor_set_khr: crate::vk::PFN_vkCmdPushDescriptorSetKHR,
@@ -81,22 +91,12 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_push_descriptor";
 pub(crate) mod reexport {
     pub type PhysicalDevicePushDescriptorPropertiesKHR<'a> = crate::vk::PhysicalDevicePushDescriptorProperties<
         'a,
     >;
-    ///Provided by [`khr::push_descriptor`](crate::khr::push_descriptor)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES;
-    }
-    ///Provided by [`khr::push_descriptor`](crate::khr::push_descriptor)
-    impl crate::vk::DescriptorUpdateTemplateType {
-        pub const PUSH_DESCRIPTORS_KHR: Self = Self::PUSH_DESCRIPTORS;
-    }
-    ///Provided by [`khr::push_descriptor`](crate::khr::push_descriptor)
-    impl crate::vk::DescriptorSetLayoutCreateFlagBits {
-        pub const PUSH_DESCRIPTOR_KHR: Self = Self::PUSH_DESCRIPTOR;
-    }
     pub type PFN_vkCmdPushDescriptorSetKHR = crate::vk::PFN_vkCmdPushDescriptorSet;
     pub type PFN_vkCmdPushDescriptorSetWithTemplateKHR = crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate;
 }

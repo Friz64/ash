@@ -2,8 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_tooling_info.html) · Extension `VK_EXT_tooling_info`
 #![doc(alias = "VK_EXT_tooling_info")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_tooling_info";
+///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TOOL_PROPERTIES;
+}
+///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
+impl crate::vk::ToolPurposeFlagBits {
+    pub const VALIDATION_EXT: Self = Self::VALIDATION;
+    pub const PROFILING_EXT: Self = Self::PROFILING;
+    pub const TRACING_EXT: Self = Self::TRACING;
+    pub const ADDITIONAL_FEATURES_EXT: Self = Self::ADDITIONAL_FEATURES;
+    pub const MODIFYING_FEATURES_EXT: Self = Self::MODIFYING_FEATURES;
+    pub const DEBUG_REPORTING_EXT: Self = Self(1 << 5);
+    pub const DEBUG_MARKERS_EXT: Self = Self(1 << 6);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_tool_properties_ext: crate::vk::PFN_vkGetPhysicalDeviceToolPropertiesEXT,
@@ -60,25 +72,13 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_tooling_info";
 pub(crate) mod reexport {
     pub type PhysicalDeviceToolPropertiesEXT<'a> = crate::vk::PhysicalDeviceToolProperties<
         'a,
     >;
-    ///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TOOL_PROPERTIES;
-    }
     pub type ToolPurposeFlagBitsEXT = crate::vk::ToolPurposeFlagBits;
-    ///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
-    impl crate::vk::ToolPurposeFlagBits {
-        pub const VALIDATION_EXT: Self = Self::VALIDATION;
-        pub const PROFILING_EXT: Self = Self::PROFILING;
-        pub const TRACING_EXT: Self = Self::TRACING;
-        pub const ADDITIONAL_FEATURES_EXT: Self = Self::ADDITIONAL_FEATURES;
-        pub const MODIFYING_FEATURES_EXT: Self = Self::MODIFYING_FEATURES;
-        pub const DEBUG_REPORTING_EXT: Self = Self(1 << 5);
-        pub const DEBUG_MARKERS_EXT: Self = Self(1 << 6);
-    }
     pub type ToolPurposeFlagsEXT = crate::vk::ToolPurposeFlags;
     pub type PFN_vkGetPhysicalDeviceToolPropertiesEXT = crate::vk::PFN_vkGetPhysicalDeviceToolProperties;
 }

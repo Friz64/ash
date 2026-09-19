@@ -2,8 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_cooperative_matrix_maintenance1.html) · Extension `VK_EXT_cooperative_matrix_maintenance1`
 #![doc(alias = "VK_EXT_cooperative_matrix_maintenance1")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_cooperative_matrix_maintenance1";
+///Provided by [`ext::cooperative_matrix_maintenance1`](crate::ext::cooperative_matrix_maintenance1)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_MAINTENANCE_1_FEATURES_EXT: Self = Self(
+        1000659000,
+    );
+    pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_INFO_2_EXT: Self = Self(1000659001);
+    pub const COOPERATIVE_MATRIX_PROPERTIES_2_EXT: Self = Self(1000659002);
+}
+///Provided by [`ext::cooperative_matrix_maintenance1`](crate::ext::cooperative_matrix_maintenance1)
+impl CooperativeMatrixFlagBitsEXT {
+    pub const SATURATING_ACCUMULATION_EXT: Self = Self(1 << 0);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_cooperative_matrix_properties2_ext: crate::vk::PFN_vkGetPhysicalDeviceCooperativeMatrixProperties2EXT,
@@ -63,6 +73,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_cooperative_matrix_maintenance1";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -246,14 +258,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::cooperative_matrix_maintenance1`](crate::ext::cooperative_matrix_maintenance1)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_MAINTENANCE_1_FEATURES_EXT: Self = Self(
-            1000659000,
-        );
-        pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_INFO_2_EXT: Self = Self(1000659001);
-        pub const COOPERATIVE_MATRIX_PROPERTIES_2_EXT: Self = Self(1000659002);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct CooperativeMatrixFlagsEXT(u32);
@@ -327,10 +331,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct CooperativeMatrixFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::cooperative_matrix_maintenance1`](crate::ext::cooperative_matrix_maintenance1)
-    impl CooperativeMatrixFlagBitsEXT {
-        pub const SATURATING_ACCUMULATION_EXT: Self = Self(1 << 0);
-    }
     pub type PFN_vkGetPhysicalDeviceCooperativeMatrixProperties2EXT = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_cooperative_matrix_info: *const crate::vk::PhysicalDeviceCooperativeMatrixInfo2EXT<

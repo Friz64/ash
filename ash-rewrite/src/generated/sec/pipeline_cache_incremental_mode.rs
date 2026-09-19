@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_pipeline_cache_incremental_mode.html) · Extension `VK_SEC_pipeline_cache_incremental_mode`
 #![doc(alias = "VK_SEC_pipeline_cache_incremental_mode")]
+///Provided by [`sec::pipeline_cache_incremental_mode`](crate::sec::pipeline_cache_incremental_mode)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC: Self = Self(
+        1000637000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_SEC_pipeline_cache_incremental_mode";
 pub(crate) mod reexport {
@@ -40,12 +46,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`sec::pipeline_cache_incremental_mode`](crate::sec::pipeline_cache_incremental_mode)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC: Self = Self(
-            1000637000,
-        );
     }
 }
 pub use reexport::*;

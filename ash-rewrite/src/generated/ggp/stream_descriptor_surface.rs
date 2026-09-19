@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GGP_stream_descriptor_surface.html) · Extension `VK_GGP_stream_descriptor_surface`
 #![doc(alias = "VK_GGP_stream_descriptor_surface")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_GGP_stream_descriptor_surface";
+///Provided by [`ggp::stream_descriptor_surface`](crate::ggp::stream_descriptor_surface)
+impl crate::vk::StructureType {
+    pub const STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP: Self = Self(1000049000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_stream_descriptor_surface_ggp: crate::vk::PFN_vkCreateStreamDescriptorSurfaceGGP,
@@ -61,6 +63,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_GGP_stream_descriptor_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -101,10 +105,6 @@ pub(crate) mod reexport {
             self.stream_descriptor = stream_descriptor;
             self
         }
-    }
-    ///Provided by [`ggp::stream_descriptor_surface`](crate::ggp::stream_descriptor_surface)
-    impl crate::vk::StructureType {
-        pub const STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP: Self = Self(1000049000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

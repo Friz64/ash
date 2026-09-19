@@ -2,6 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_rasterization_order_attachment_access.html) · Extension `VK_EXT_rasterization_order_attachment_access`
 #![doc(alias = "VK_EXT_rasterization_order_attachment_access")]
+///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT: Self = Self(
+        1000342000,
+    );
+}
+///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
+impl crate::vk::PipelineDepthStencilStateCreateFlagBits {
+    pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT: Self = Self(1 << 0);
+    pub const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT: Self = Self(1 << 1);
+}
+///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
+impl crate::vk::PipelineColorBlendStateCreateFlagBits {
+    pub const RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT: Self = Self(1 << 0);
+}
+///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
+impl crate::vk::SubpassDescriptionFlagBits {
+    pub const RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT: Self = Self(1 << 4);
+    pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT: Self = Self(1 << 5);
+    pub const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT: Self = Self(1 << 6);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_rasterization_order_attachment_access";
 pub(crate) mod reexport {
@@ -61,27 +82,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT: Self = Self(
-            1000342000,
-        );
-    }
-    ///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
-    impl crate::vk::PipelineDepthStencilStateCreateFlagBits {
-        pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT: Self = Self(1 << 0);
-        pub const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT: Self = Self(1 << 1);
-    }
-    ///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
-    impl crate::vk::PipelineColorBlendStateCreateFlagBits {
-        pub const RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT: Self = Self(1 << 0);
-    }
-    ///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
-    impl crate::vk::SubpassDescriptionFlagBits {
-        pub const RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT: Self = Self(1 << 4);
-        pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT: Self = Self(1 << 5);
-        pub const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT: Self = Self(1 << 6);
     }
 }
 pub use reexport::*;

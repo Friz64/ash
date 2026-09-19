@@ -2,6 +2,45 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_features.html) · Extension `VK_EXT_validation_features`
 #![doc(alias = "VK_EXT_validation_features")]
+///Provided by [`ext::validation_features`](crate::ext::validation_features)
+impl crate::vk::StructureType {
+    pub const VALIDATION_FEATURES_EXT: Self = Self(1000247000);
+}
+///Provided by [`ext::validation_features`](crate::ext::validation_features)
+impl ValidationFeatureEnableEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const GPU_ASSISTED_EXT: Self = Self(0);
+    pub const GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT: Self = Self(1);
+    pub const BEST_PRACTICES_EXT: Self = Self(2);
+    pub const DEBUG_PRINTF_EXT: Self = Self(3);
+    pub const SYNCHRONIZATION_VALIDATION_EXT: Self = Self(4);
+}
+///Provided by [`ext::validation_features`](crate::ext::validation_features)
+impl ValidationFeatureDisableEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const ALL_EXT: Self = Self(0);
+    pub const SHADERS_EXT: Self = Self(1);
+    pub const THREAD_SAFETY_EXT: Self = Self(2);
+    pub const API_PARAMETERS_EXT: Self = Self(3);
+    pub const OBJECT_LIFETIMES_EXT: Self = Self(4);
+    pub const CORE_CHECKS_EXT: Self = Self(5);
+    pub const UNIQUE_HANDLES_EXT: Self = Self(6);
+    pub const SHADER_VALIDATION_CACHE_EXT: Self = Self(7);
+}
 pub const SPEC_VERSION: u32 = 6;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_features";
 pub(crate) mod reexport {
@@ -66,52 +105,13 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::validation_features`](crate::ext::validation_features)
-    impl crate::vk::StructureType {
-        pub const VALIDATION_FEATURES_EXT: Self = Self(1000247000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct ValidationFeatureEnableEXT(pub(crate) i32);
-    ///Provided by [`ext::validation_features`](crate::ext::validation_features)
-    impl ValidationFeatureEnableEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const GPU_ASSISTED_EXT: Self = Self(0);
-        pub const GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT: Self = Self(1);
-        pub const BEST_PRACTICES_EXT: Self = Self(2);
-        pub const DEBUG_PRINTF_EXT: Self = Self(3);
-        pub const SYNCHRONIZATION_VALIDATION_EXT: Self = Self(4);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct ValidationFeatureDisableEXT(pub(crate) i32);
-    ///Provided by [`ext::validation_features`](crate::ext::validation_features)
-    impl ValidationFeatureDisableEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const ALL_EXT: Self = Self(0);
-        pub const SHADERS_EXT: Self = Self(1);
-        pub const THREAD_SAFETY_EXT: Self = Self(2);
-        pub const API_PARAMETERS_EXT: Self = Self(3);
-        pub const OBJECT_LIFETIMES_EXT: Self = Self(4);
-        pub const CORE_CHECKS_EXT: Self = Self(5);
-        pub const UNIQUE_HANDLES_EXT: Self = Self(6);
-        pub const SHADER_VALIDATION_CACHE_EXT: Self = Self(7);
-    }
 }
 pub use reexport::*;

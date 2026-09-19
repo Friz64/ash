@@ -2,6 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_present_metering.html) · Extension `VK_NV_present_metering`
 #![doc(alias = "VK_NV_present_metering")]
+///Provided by [`nv::present_metering`](crate::nv::present_metering)
+impl crate::vk::StructureType {
+    pub const SET_PRESENT_CONFIG_NV: Self = Self(1000613000);
+    pub const PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV: Self = Self(1000613001);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_present_metering";
 pub(crate) mod reexport {
@@ -71,11 +76,6 @@ pub(crate) mod reexport {
             self.present_metering = present_metering.into();
             self
         }
-    }
-    ///Provided by [`nv::present_metering`](crate::nv::present_metering)
-    impl crate::vk::StructureType {
-        pub const SET_PRESENT_CONFIG_NV: Self = Self(1000613000);
-        pub const PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV: Self = Self(1000613001);
     }
 }
 pub use reexport::*;

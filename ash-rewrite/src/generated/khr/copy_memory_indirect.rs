@@ -2,8 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_copy_memory_indirect.html) · Extension `VK_KHR_copy_memory_indirect`
 #![doc(alias = "VK_KHR_copy_memory_indirect")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_copy_memory_indirect";
+///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR: Self = Self(1000549000);
+    pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR: Self = Self(
+        1000426001,
+    );
+    pub const COPY_MEMORY_INDIRECT_INFO_KHR: Self = Self(1000549002);
+    pub const COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR: Self = Self(1000549003);
+}
+///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const COPY_INDIRECT_KHR: Self = Self(1 << 46);
+}
+///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const COPY_IMAGE_INDIRECT_DST_KHR: Self = Self(1 << 59);
+}
+///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
+impl AddressCopyFlagBitsKHR {
+    pub const DEVICE_LOCAL_KHR: Self = Self(1 << 0);
+    pub const SPARSE_KHR: Self = Self(1 << 1);
+    pub const PROTECTED_KHR: Self = Self(1 << 2);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_copy_memory_indirect_khr: crate::vk::PFN_vkCmdCopyMemoryIndirectKHR,
@@ -74,6 +95,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_copy_memory_indirect";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -329,25 +352,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR: Self = Self(
-            1000549000,
-        );
-        pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR: Self = Self(
-            1000426001,
-        );
-        pub const COPY_MEMORY_INDIRECT_INFO_KHR: Self = Self(1000549002);
-        pub const COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR: Self = Self(1000549003);
-    }
-    ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
-    impl crate::vk::PipelineStageFlagBits2 {
-        pub const COPY_INDIRECT_KHR: Self = Self(1 << 46);
-    }
-    ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
-    impl crate::vk::FormatFeatureFlagBits2 {
-        pub const COPY_IMAGE_INDIRECT_DST_KHR: Self = Self(1 << 59);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct AddressCopyFlagsKHR(u32);
@@ -423,12 +427,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct AddressCopyFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
-    impl AddressCopyFlagBitsKHR {
-        pub const DEVICE_LOCAL_KHR: Self = Self(1 << 0);
-        pub const SPARSE_KHR: Self = Self(1 << 1);
-        pub const PROTECTED_KHR: Self = Self(1 << 2);
-    }
     pub type PFN_vkCmdCopyMemoryIndirectKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_copy_memory_indirect_info: *const crate::vk::CopyMemoryIndirectInfoKHR<'_>,

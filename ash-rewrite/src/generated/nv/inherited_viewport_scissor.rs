@@ -2,6 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_inherited_viewport_scissor.html) · Extension `VK_NV_inherited_viewport_scissor`
 #![doc(alias = "VK_NV_inherited_viewport_scissor")]
+///Provided by [`nv::inherited_viewport_scissor`](crate::nv::inherited_viewport_scissor)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV: Self = Self(
+        1000278000,
+    );
+    pub const COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV: Self = Self(
+        1000278001,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_inherited_viewport_scissor";
 pub(crate) mod reexport {
@@ -84,15 +93,6 @@ pub(crate) mod reexport {
             self.p_viewport_depths = viewport_depths;
             self
         }
-    }
-    ///Provided by [`nv::inherited_viewport_scissor`](crate::nv::inherited_viewport_scissor)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV: Self = Self(
-            1000278000,
-        );
-        pub const COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV: Self = Self(
-            1000278001,
-        );
     }
 }
 pub use reexport::*;

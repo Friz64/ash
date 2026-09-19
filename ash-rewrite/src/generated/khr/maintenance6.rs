@@ -2,8 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance6.html) · Extension `VK_KHR_maintenance6`
 #![doc(alias = "VK_KHR_maintenance6")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance6";
+///Provided by [`khr::maintenance6`](crate::khr::maintenance6)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES;
+    pub const PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES;
+    pub const BIND_MEMORY_STATUS_KHR: Self = Self::BIND_MEMORY_STATUS;
+    pub const BIND_DESCRIPTOR_SETS_INFO_KHR: Self = Self::BIND_DESCRIPTOR_SETS_INFO;
+    pub const PUSH_CONSTANTS_INFO_KHR: Self = Self::PUSH_CONSTANTS_INFO;
+    pub const PUSH_DESCRIPTOR_SET_INFO_KHR: Self = Self::PUSH_DESCRIPTOR_SET_INFO;
+    pub const PUSH_DESCRIPTOR_SET_WITH_TEMPLATE_INFO_KHR: Self = Self::PUSH_DESCRIPTOR_SET_WITH_TEMPLATE_INFO;
+    pub const SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT: Self = Self(1000545007);
+    pub const BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT: Self = Self(1000545008);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_descriptor_buffer_offsets2_ext: crate::vk::PFN_vkCmdSetDescriptorBufferOffsets2EXT,
@@ -136,6 +146,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance6";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -246,20 +258,6 @@ pub(crate) mod reexport {
     pub type PushDescriptorSetWithTemplateInfoKHR<'a> = crate::vk::PushDescriptorSetWithTemplateInfo<
         'a,
     >;
-    ///Provided by [`khr::maintenance6`](crate::khr::maintenance6)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES;
-        pub const PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES;
-        pub const BIND_MEMORY_STATUS_KHR: Self = Self::BIND_MEMORY_STATUS;
-        pub const BIND_DESCRIPTOR_SETS_INFO_KHR: Self = Self::BIND_DESCRIPTOR_SETS_INFO;
-        pub const PUSH_CONSTANTS_INFO_KHR: Self = Self::PUSH_CONSTANTS_INFO;
-        pub const PUSH_DESCRIPTOR_SET_INFO_KHR: Self = Self::PUSH_DESCRIPTOR_SET_INFO;
-        pub const PUSH_DESCRIPTOR_SET_WITH_TEMPLATE_INFO_KHR: Self = Self::PUSH_DESCRIPTOR_SET_WITH_TEMPLATE_INFO;
-        pub const SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT: Self = Self(1000545007);
-        pub const BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT: Self = Self(
-            1000545008,
-        );
-    }
     pub type PFN_vkCmdSetDescriptorBufferOffsets2EXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_set_descriptor_buffer_offsets_info: *const crate::vk::SetDescriptorBufferOffsetsInfoEXT<

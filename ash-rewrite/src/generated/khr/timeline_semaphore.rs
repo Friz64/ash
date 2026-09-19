@@ -2,8 +2,24 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_timeline_semaphore.html) · Extension `VK_KHR_timeline_semaphore`
 #![doc(alias = "VK_KHR_timeline_semaphore")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_timeline_semaphore";
+///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES;
+    pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES;
+    pub const SEMAPHORE_TYPE_CREATE_INFO_KHR: Self = Self::SEMAPHORE_TYPE_CREATE_INFO;
+    pub const TIMELINE_SEMAPHORE_SUBMIT_INFO_KHR: Self = Self::TIMELINE_SEMAPHORE_SUBMIT_INFO;
+    pub const SEMAPHORE_WAIT_INFO_KHR: Self = Self::SEMAPHORE_WAIT_INFO;
+    pub const SEMAPHORE_SIGNAL_INFO_KHR: Self = Self::SEMAPHORE_SIGNAL_INFO;
+}
+///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)
+impl crate::vk::SemaphoreType {
+    pub const BINARY_KHR: Self = Self::BINARY;
+    pub const TIMELINE_KHR: Self = Self::TIMELINE;
+}
+///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)
+impl crate::vk::SemaphoreWaitFlagBits {
+    pub const ANY_KHR: Self = Self::ANY;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_semaphore_counter_value_khr: crate::vk::PFN_vkGetSemaphoreCounterValueKHR,
@@ -91,6 +107,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_timeline_semaphore";
 pub(crate) mod reexport {
     pub type PhysicalDeviceTimelineSemaphoreFeaturesKHR<'a> = crate::vk::PhysicalDeviceTimelineSemaphoreFeatures<
         'a,
@@ -104,26 +122,8 @@ pub(crate) mod reexport {
     >;
     pub type SemaphoreWaitInfoKHR<'a> = crate::vk::SemaphoreWaitInfo<'a>;
     pub type SemaphoreSignalInfoKHR<'a> = crate::vk::SemaphoreSignalInfo<'a>;
-    ///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES;
-        pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES;
-        pub const SEMAPHORE_TYPE_CREATE_INFO_KHR: Self = Self::SEMAPHORE_TYPE_CREATE_INFO;
-        pub const TIMELINE_SEMAPHORE_SUBMIT_INFO_KHR: Self = Self::TIMELINE_SEMAPHORE_SUBMIT_INFO;
-        pub const SEMAPHORE_WAIT_INFO_KHR: Self = Self::SEMAPHORE_WAIT_INFO;
-        pub const SEMAPHORE_SIGNAL_INFO_KHR: Self = Self::SEMAPHORE_SIGNAL_INFO;
-    }
-    ///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)
-    impl crate::vk::SemaphoreType {
-        pub const BINARY_KHR: Self = Self::BINARY;
-        pub const TIMELINE_KHR: Self = Self::TIMELINE;
-    }
     pub type SemaphoreTypeKHR = crate::vk::SemaphoreType;
     pub type SemaphoreWaitFlagBitsKHR = crate::vk::SemaphoreWaitFlagBits;
-    ///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)
-    impl crate::vk::SemaphoreWaitFlagBits {
-        pub const ANY_KHR: Self = Self::ANY;
-    }
     pub type SemaphoreWaitFlagsKHR = crate::vk::SemaphoreWaitFlags;
     pub type PFN_vkGetSemaphoreCounterValueKHR = crate::vk::PFN_vkGetSemaphoreCounterValue;
     pub type PFN_vkWaitSemaphoresKHR = crate::vk::PFN_vkWaitSemaphores;

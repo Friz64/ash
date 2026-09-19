@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_primitive_restart_index.html) · Extension `VK_EXT_primitive_restart_index`
 #![doc(alias = "VK_EXT_primitive_restart_index")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_primitive_restart_index";
+///Provided by [`ext::primitive_restart_index`](crate::ext::primitive_restart_index)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT: Self = Self(
+        1000678000,
+    );
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_primitive_restart_index_ext: crate::vk::PFN_vkCmdSetPrimitiveRestartIndexEXT,
@@ -59,6 +63,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_primitive_restart_index";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -91,12 +97,6 @@ pub(crate) mod reexport {
             self.primitive_restart_index = primitive_restart_index.into();
             self
         }
-    }
-    ///Provided by [`ext::primitive_restart_index`](crate::ext::primitive_restart_index)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT: Self = Self(
-            1000678000,
-        );
     }
     pub type PFN_vkCmdSetPrimitiveRestartIndexEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

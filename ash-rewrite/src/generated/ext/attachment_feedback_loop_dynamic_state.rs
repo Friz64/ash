@@ -2,8 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_attachment_feedback_loop_dynamic_state.html) · Extension `VK_EXT_attachment_feedback_loop_dynamic_state`
 #![doc(alias = "VK_EXT_attachment_feedback_loop_dynamic_state")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_dynamic_state";
+///Provided by [`ext::attachment_feedback_loop_dynamic_state`](crate::ext::attachment_feedback_loop_dynamic_state)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
+        1000524000,
+    );
+}
+///Provided by [`ext::attachment_feedback_loop_dynamic_state`](crate::ext::attachment_feedback_loop_dynamic_state)
+impl crate::vk::DynamicState {
+    pub const ATTACHMENT_FEEDBACK_LOOP_ENABLE_EXT: Self = Self(1000524000);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_attachment_feedback_loop_enable_ext: crate::vk::PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT,
@@ -59,6 +67,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_dynamic_state";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -96,16 +106,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`ext::attachment_feedback_loop_dynamic_state`](crate::ext::attachment_feedback_loop_dynamic_state)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
-            1000524000,
-        );
-    }
-    ///Provided by [`ext::attachment_feedback_loop_dynamic_state`](crate::ext::attachment_feedback_loop_dynamic_state)
-    impl crate::vk::DynamicState {
-        pub const ATTACHMENT_FEEDBACK_LOOP_ENABLE_EXT: Self = Self(1000524000);
     }
     pub type PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

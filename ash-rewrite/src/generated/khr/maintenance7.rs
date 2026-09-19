@@ -2,6 +2,38 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance7.html) · Extension `VK_KHR_maintenance7`
 #![doc(alias = "VK_KHR_maintenance7")]
+///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_7_FEATURES_KHR: Self = Self(1000562000);
+    pub const PHYSICAL_DEVICE_MAINTENANCE_7_PROPERTIES_KHR: Self = Self(1000562001);
+    pub const PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR: Self = Self(1000562002);
+    pub const PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_KHR: Self = Self(1000562003);
+    pub const PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR: Self = Self(1000562004);
+}
+///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
+impl crate::vk::SubpassContents {
+    pub const INLINE_AND_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self(1000451000);
+}
+///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
+impl PhysicalDeviceLayeredApiKHR {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const VULKAN_KHR: Self = Self(0);
+    pub const D3D12_KHR: Self = Self(1);
+    pub const METAL_KHR: Self = Self(2);
+    pub const OPENGL_KHR: Self = Self(3);
+    pub const OPENGLES_KHR: Self = Self(4);
+}
+///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
+impl crate::vk::RenderingFlagBits {
+    pub const CONTENTS_INLINE_KHR: Self = Self(1 << 4);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance7";
 pub(crate) mod reexport {
@@ -258,45 +290,9 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MAINTENANCE_7_FEATURES_KHR: Self = Self(1000562000);
-        pub const PHYSICAL_DEVICE_MAINTENANCE_7_PROPERTIES_KHR: Self = Self(1000562001);
-        pub const PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR: Self = Self(
-            1000562002,
-        );
-        pub const PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_KHR: Self = Self(1000562003);
-        pub const PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR: Self = Self(
-            1000562004,
-        );
-    }
-    ///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
-    impl crate::vk::SubpassContents {
-        pub const INLINE_AND_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self(1000451000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct PhysicalDeviceLayeredApiKHR(pub(crate) i32);
-    ///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
-    impl PhysicalDeviceLayeredApiKHR {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const VULKAN_KHR: Self = Self(0);
-        pub const D3D12_KHR: Self = Self(1);
-        pub const METAL_KHR: Self = Self(2);
-        pub const OPENGL_KHR: Self = Self(3);
-        pub const OPENGLES_KHR: Self = Self(4);
-    }
-    ///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
-    impl crate::vk::RenderingFlagBits {
-        pub const CONTENTS_INLINE_KHR: Self = Self(1 << 4);
-    }
 }
 pub use reexport::*;

@@ -2,6 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_split_barrier.html) · Extension `VK_EXT_shader_split_barrier`
 #![doc(alias = "VK_EXT_shader_split_barrier")]
+///Provided by [`ext::shader_split_barrier`](crate::ext::shader_split_barrier)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_SPLIT_BARRIER_FEATURES_EXT: Self = Self(1000305000);
+    pub const PHYSICAL_DEVICE_SHADER_SPLIT_BARRIER_PROPERTIES_EXT: Self = Self(
+        1000305001,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_split_barrier";
 pub(crate) mod reexport {
@@ -69,15 +76,6 @@ pub(crate) mod reexport {
             self.split_barrier_reserved_shared_memory = split_barrier_reserved_shared_memory;
             self
         }
-    }
-    ///Provided by [`ext::shader_split_barrier`](crate::ext::shader_split_barrier)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_SPLIT_BARRIER_FEATURES_EXT: Self = Self(
-            1000305000,
-        );
-        pub const PHYSICAL_DEVICE_SHADER_SPLIT_BARRIER_PROPERTIES_EXT: Self = Self(
-            1000305001,
-        );
     }
 }
 pub use reexport::*;

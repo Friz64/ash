@@ -2,8 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_fault.html) · Extension `VK_EXT_device_fault`
 #![doc(alias = "VK_EXT_device_fault")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_device_fault";
+///Provided by [`ext::device_fault`](crate::ext::device_fault)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FAULT_FEATURES_EXT: Self = Self(1000341000);
+    pub const DEVICE_FAULT_COUNTS_EXT: Self = Self(1000341001);
+    pub const DEVICE_FAULT_INFO_EXT: Self = Self(1000341002);
+}
+///Provided by [`ext::device_fault`](crate::ext::device_fault)
+impl crate::vk::DeviceFaultAddressTypeKHR {
+    pub const NONE_EXT: Self = Self::NONE_KHR;
+    pub const READ_INVALID_EXT: Self = Self::READ_INVALID_KHR;
+    pub const WRITE_INVALID_EXT: Self = Self::WRITE_INVALID_KHR;
+    pub const EXECUTE_INVALID_EXT: Self = Self::EXECUTE_INVALID_KHR;
+    pub const INSTRUCTION_POINTER_UNKNOWN_EXT: Self = Self::INSTRUCTION_POINTER_UNKNOWN_KHR;
+    pub const INSTRUCTION_POINTER_INVALID_EXT: Self = Self::INSTRUCTION_POINTER_INVALID_KHR;
+    pub const INSTRUCTION_POINTER_FAULT_EXT: Self = Self::INSTRUCTION_POINTER_FAULT_KHR;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_device_fault_info_ext: crate::vk::PFN_vkGetDeviceFaultInfoEXT,
@@ -60,6 +74,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_device_fault";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -208,22 +224,6 @@ pub(crate) mod reexport {
     pub type DeviceFaultAddressInfoEXT = crate::vk::DeviceFaultAddressInfoKHR;
     pub type DeviceFaultVendorInfoEXT = crate::vk::DeviceFaultVendorInfoKHR;
     pub type DeviceFaultVendorBinaryHeaderVersionOneEXT = crate::vk::DeviceFaultVendorBinaryHeaderVersionOneKHR;
-    ///Provided by [`ext::device_fault`](crate::ext::device_fault)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_FAULT_FEATURES_EXT: Self = Self(1000341000);
-        pub const DEVICE_FAULT_COUNTS_EXT: Self = Self(1000341001);
-        pub const DEVICE_FAULT_INFO_EXT: Self = Self(1000341002);
-    }
-    ///Provided by [`ext::device_fault`](crate::ext::device_fault)
-    impl crate::vk::DeviceFaultAddressTypeKHR {
-        pub const NONE_EXT: Self = Self::NONE_KHR;
-        pub const READ_INVALID_EXT: Self = Self::READ_INVALID_KHR;
-        pub const WRITE_INVALID_EXT: Self = Self::WRITE_INVALID_KHR;
-        pub const EXECUTE_INVALID_EXT: Self = Self::EXECUTE_INVALID_KHR;
-        pub const INSTRUCTION_POINTER_UNKNOWN_EXT: Self = Self::INSTRUCTION_POINTER_UNKNOWN_KHR;
-        pub const INSTRUCTION_POINTER_INVALID_EXT: Self = Self::INSTRUCTION_POINTER_INVALID_KHR;
-        pub const INSTRUCTION_POINTER_FAULT_EXT: Self = Self::INSTRUCTION_POINTER_FAULT_KHR;
-    }
     pub type DeviceFaultVendorBinaryHeaderVersionEXT = crate::vk::DeviceFaultVendorBinaryHeaderVersionKHR;
     pub type DeviceFaultAddressTypeEXT = crate::vk::DeviceFaultAddressTypeKHR;
     pub type PFN_vkGetDeviceFaultInfoEXT = unsafe extern "system" fn(

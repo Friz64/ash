@@ -2,20 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_protected_access.html) · Extension `VK_EXT_pipeline_protected_access`
 #![doc(alias = "VK_EXT_pipeline_protected_access")]
+///Provided by [`ext::pipeline_protected_access`](crate::ext::pipeline_protected_access)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES;
+}
+///Provided by [`ext::pipeline_protected_access`](crate::ext::pipeline_protected_access)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const NO_PROTECTED_ACCESS_EXT: Self = Self::NO_PROTECTED_ACCESS;
+    pub const PROTECTED_ACCESS_ONLY_EXT: Self = Self::PROTECTED_ACCESS_ONLY;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_protected_access";
 pub(crate) mod reexport {
     pub type PhysicalDevicePipelineProtectedAccessFeaturesEXT<'a> = crate::vk::PhysicalDevicePipelineProtectedAccessFeatures<
         'a,
     >;
-    ///Provided by [`ext::pipeline_protected_access`](crate::ext::pipeline_protected_access)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES;
-    }
-    ///Provided by [`ext::pipeline_protected_access`](crate::ext::pipeline_protected_access)
-    impl crate::vk::PipelineCreateFlagBits {
-        pub const NO_PROTECTED_ACCESS_EXT: Self = Self::NO_PROTECTED_ACCESS;
-        pub const PROTECTED_ACCESS_ONLY_EXT: Self = Self::PROTECTED_ACCESS_ONLY;
-    }
 }
 pub use reexport::*;

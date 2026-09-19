@@ -2,8 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_metal.html) · Extension `VK_EXT_external_memory_metal`
 #![doc(alias = "VK_EXT_external_memory_metal")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_external_memory_metal";
+///Provided by [`ext::external_memory_metal`](crate::ext::external_memory_metal)
+impl crate::vk::StructureType {
+    pub const IMPORT_MEMORY_METAL_HANDLE_INFO_EXT: Self = Self(1000602000);
+    pub const MEMORY_METAL_HANDLE_PROPERTIES_EXT: Self = Self(1000602001);
+    pub const MEMORY_GET_METAL_HANDLE_INFO_EXT: Self = Self(1000602002);
+}
+///Provided by [`ext::external_memory_metal`](crate::ext::external_memory_metal)
+impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+    pub const MTLBUFFER_EXT: Self = Self(1 << 16);
+    pub const MTLTEXTURE_EXT: Self = Self(1 << 17);
+    pub const MTLHEAP_EXT: Self = Self(1 << 18);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_memory_metal_handle_ext: crate::vk::PFN_vkGetMemoryMetalHandleEXT,
@@ -77,6 +87,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_external_memory_metal";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -178,18 +190,6 @@ pub(crate) mod reexport {
             self.handle_type = handle_type;
             self
         }
-    }
-    ///Provided by [`ext::external_memory_metal`](crate::ext::external_memory_metal)
-    impl crate::vk::StructureType {
-        pub const IMPORT_MEMORY_METAL_HANDLE_INFO_EXT: Self = Self(1000602000);
-        pub const MEMORY_METAL_HANDLE_PROPERTIES_EXT: Self = Self(1000602001);
-        pub const MEMORY_GET_METAL_HANDLE_INFO_EXT: Self = Self(1000602002);
-    }
-    ///Provided by [`ext::external_memory_metal`](crate::ext::external_memory_metal)
-    impl crate::vk::ExternalMemoryHandleTypeFlagBits {
-        pub const MTLBUFFER_EXT: Self = Self(1 << 16);
-        pub const MTLTEXTURE_EXT: Self = Self(1 << 17);
-        pub const MTLHEAP_EXT: Self = Self(1 << 18);
     }
     pub type PFN_vkGetMemoryMetalHandleEXT = unsafe extern "system" fn(
         device: crate::vk::Device,

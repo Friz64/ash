@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GGP_frame_token.html) · Extension `VK_GGP_frame_token`
 #![doc(alias = "VK_GGP_frame_token")]
+///Provided by [`ggp::frame_token`](crate::ggp::frame_token)
+impl crate::vk::StructureType {
+    pub const PRESENT_FRAME_TOKEN_GGP: Self = Self(1000191000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_GGP_frame_token";
 pub(crate) mod reexport {
@@ -36,10 +40,6 @@ pub(crate) mod reexport {
             self.frame_token = frame_token;
             self
         }
-    }
-    ///Provided by [`ggp::frame_token`](crate::ggp::frame_token)
-    impl crate::vk::StructureType {
-        pub const PRESENT_FRAME_TOKEN_GGP: Self = Self(1000191000);
     }
 }
 pub use reexport::*;

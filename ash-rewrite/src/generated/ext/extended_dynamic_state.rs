@@ -2,8 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state.html) · Extension `VK_EXT_extended_dynamic_state`
 #![doc(alias = "VK_EXT_extended_dynamic_state")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state";
+///Provided by [`ext::extended_dynamic_state`](crate::ext::extended_dynamic_state)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
+        1000267000,
+    );
+}
+///Provided by [`ext::extended_dynamic_state`](crate::ext::extended_dynamic_state)
+impl crate::vk::DynamicState {
+    pub const CULL_MODE_EXT: Self = Self::CULL_MODE;
+    pub const FRONT_FACE_EXT: Self = Self::FRONT_FACE;
+    pub const PRIMITIVE_TOPOLOGY_EXT: Self = Self::PRIMITIVE_TOPOLOGY;
+    pub const VIEWPORT_WITH_COUNT_EXT: Self = Self::VIEWPORT_WITH_COUNT;
+    pub const SCISSOR_WITH_COUNT_EXT: Self = Self::SCISSOR_WITH_COUNT;
+    pub const VERTEX_INPUT_BINDING_STRIDE_EXT: Self = Self::VERTEX_INPUT_BINDING_STRIDE;
+    pub const DEPTH_TEST_ENABLE_EXT: Self = Self::DEPTH_TEST_ENABLE;
+    pub const DEPTH_WRITE_ENABLE_EXT: Self = Self::DEPTH_WRITE_ENABLE;
+    pub const DEPTH_COMPARE_OP_EXT: Self = Self::DEPTH_COMPARE_OP;
+    pub const DEPTH_BOUNDS_TEST_ENABLE_EXT: Self = Self::DEPTH_BOUNDS_TEST_ENABLE;
+    pub const STENCIL_TEST_ENABLE_EXT: Self = Self::STENCIL_TEST_ENABLE;
+    pub const STENCIL_OP_EXT: Self = Self::STENCIL_OP;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_cull_mode_ext: crate::vk::PFN_vkCmdSetCullModeEXT,
@@ -235,6 +254,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -267,27 +288,6 @@ pub(crate) mod reexport {
             self.extended_dynamic_state = extended_dynamic_state.into();
             self
         }
-    }
-    ///Provided by [`ext::extended_dynamic_state`](crate::ext::extended_dynamic_state)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
-            1000267000,
-        );
-    }
-    ///Provided by [`ext::extended_dynamic_state`](crate::ext::extended_dynamic_state)
-    impl crate::vk::DynamicState {
-        pub const CULL_MODE_EXT: Self = Self::CULL_MODE;
-        pub const FRONT_FACE_EXT: Self = Self::FRONT_FACE;
-        pub const PRIMITIVE_TOPOLOGY_EXT: Self = Self::PRIMITIVE_TOPOLOGY;
-        pub const VIEWPORT_WITH_COUNT_EXT: Self = Self::VIEWPORT_WITH_COUNT;
-        pub const SCISSOR_WITH_COUNT_EXT: Self = Self::SCISSOR_WITH_COUNT;
-        pub const VERTEX_INPUT_BINDING_STRIDE_EXT: Self = Self::VERTEX_INPUT_BINDING_STRIDE;
-        pub const DEPTH_TEST_ENABLE_EXT: Self = Self::DEPTH_TEST_ENABLE;
-        pub const DEPTH_WRITE_ENABLE_EXT: Self = Self::DEPTH_WRITE_ENABLE;
-        pub const DEPTH_COMPARE_OP_EXT: Self = Self::DEPTH_COMPARE_OP;
-        pub const DEPTH_BOUNDS_TEST_ENABLE_EXT: Self = Self::DEPTH_BOUNDS_TEST_ENABLE;
-        pub const STENCIL_TEST_ENABLE_EXT: Self = Self::STENCIL_TEST_ENABLE;
-        pub const STENCIL_OP_EXT: Self = Self::STENCIL_OP;
     }
     pub type PFN_vkCmdSetCullModeEXT = crate::vk::PFN_vkCmdSetCullMode;
     pub type PFN_vkCmdSetFrontFaceEXT = crate::vk::PFN_vkCmdSetFrontFace;

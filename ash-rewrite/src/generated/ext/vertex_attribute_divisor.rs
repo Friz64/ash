@@ -2,6 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_attribute_divisor.html) · Extension `VK_EXT_vertex_attribute_divisor`
 #![doc(alias = "VK_EXT_vertex_attribute_divisor")]
+///Provided by [`ext::vertex_attribute_divisor`](crate::ext::vertex_attribute_divisor)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT: Self = Self(
+        1000190000,
+    );
+    pub const PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_EXT: Self = Self::PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES;
+}
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_vertex_attribute_divisor";
 pub(crate) mod reexport {
@@ -45,13 +53,5 @@ pub(crate) mod reexport {
     pub type PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'a> = crate::vk::PhysicalDeviceVertexAttributeDivisorFeatures<
         'a,
     >;
-    ///Provided by [`ext::vertex_attribute_divisor`](crate::ext::vertex_attribute_divisor)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT: Self = Self(
-            1000190000,
-        );
-        pub const PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_EXT: Self = Self::PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO;
-        pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES;
-    }
 }
 pub use reexport::*;

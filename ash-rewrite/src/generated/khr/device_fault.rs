@@ -2,8 +2,53 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_fault.html) · Extension `VK_KHR_device_fault`
 #![doc(alias = "VK_KHR_device_fault")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_device_fault";
+///Provided by [`khr::device_fault`](crate::khr::device_fault)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FAULT_FEATURES_KHR: Self = Self(1000573000);
+    pub const PHYSICAL_DEVICE_FAULT_PROPERTIES_KHR: Self = Self(1000573001);
+    pub const DEVICE_FAULT_INFO_KHR: Self = Self(1000573002);
+    pub const DEVICE_FAULT_DEBUG_INFO_KHR: Self = Self(1000573003);
+}
+///Provided by [`khr::device_fault`](crate::khr::device_fault)
+impl DeviceFaultAddressTypeKHR {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const NONE_KHR: Self = Self(0);
+    pub const READ_INVALID_KHR: Self = Self(1);
+    pub const WRITE_INVALID_KHR: Self = Self(2);
+    pub const EXECUTE_INVALID_KHR: Self = Self(3);
+    pub const INSTRUCTION_POINTER_UNKNOWN_KHR: Self = Self(4);
+    pub const INSTRUCTION_POINTER_INVALID_KHR: Self = Self(5);
+    pub const INSTRUCTION_POINTER_FAULT_KHR: Self = Self(6);
+}
+///Provided by [`khr::device_fault`](crate::khr::device_fault)
+impl DeviceFaultVendorBinaryHeaderVersionKHR {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const ONE_KHR: Self = Self(1);
+    pub const ONE_EXT: Self = Self::ONE_KHR;
+}
+///Provided by [`khr::device_fault`](crate::khr::device_fault)
+impl DeviceFaultFlagBitsKHR {
+    pub const FLAG_DEVICE_LOST_KHR: Self = Self(1 << 0);
+    pub const FLAG_MEMORY_ADDRESS_KHR: Self = Self(1 << 1);
+    pub const FLAG_INSTRUCTION_ADDRESS_KHR: Self = Self(1 << 2);
+    pub const FLAG_VENDOR_KHR: Self = Self(1 << 3);
+    pub const FLAG_WATCHDOG_TIMEOUT_KHR: Self = Self(1 << 4);
+    pub const FLAG_OVERFLOW_KHR: Self = Self(1 << 5);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_device_fault_reports_khr: crate::vk::PFN_vkGetDeviceFaultReportsKHR,
@@ -76,6 +121,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_device_fault";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -421,52 +468,14 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::device_fault`](crate::khr::device_fault)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_FAULT_FEATURES_KHR: Self = Self(1000573000);
-        pub const PHYSICAL_DEVICE_FAULT_PROPERTIES_KHR: Self = Self(1000573001);
-        pub const DEVICE_FAULT_INFO_KHR: Self = Self(1000573002);
-        pub const DEVICE_FAULT_DEBUG_INFO_KHR: Self = Self(1000573003);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DeviceFaultAddressTypeKHR(pub(crate) i32);
-    ///Provided by [`khr::device_fault`](crate::khr::device_fault)
-    impl DeviceFaultAddressTypeKHR {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const NONE_KHR: Self = Self(0);
-        pub const READ_INVALID_KHR: Self = Self(1);
-        pub const WRITE_INVALID_KHR: Self = Self(2);
-        pub const EXECUTE_INVALID_KHR: Self = Self(3);
-        pub const INSTRUCTION_POINTER_UNKNOWN_KHR: Self = Self(4);
-        pub const INSTRUCTION_POINTER_INVALID_KHR: Self = Self(5);
-        pub const INSTRUCTION_POINTER_FAULT_KHR: Self = Self(6);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DeviceFaultVendorBinaryHeaderVersionKHR(pub(crate) i32);
-    ///Provided by [`khr::device_fault`](crate::khr::device_fault)
-    impl DeviceFaultVendorBinaryHeaderVersionKHR {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const ONE_KHR: Self = Self(1);
-        pub const ONE_EXT: Self = Self::ONE_KHR;
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DeviceFaultFlagsKHR(u32);
@@ -555,15 +564,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct DeviceFaultFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::device_fault`](crate::khr::device_fault)
-    impl DeviceFaultFlagBitsKHR {
-        pub const FLAG_DEVICE_LOST_KHR: Self = Self(1 << 0);
-        pub const FLAG_MEMORY_ADDRESS_KHR: Self = Self(1 << 1);
-        pub const FLAG_INSTRUCTION_ADDRESS_KHR: Self = Self(1 << 2);
-        pub const FLAG_VENDOR_KHR: Self = Self(1 << 3);
-        pub const FLAG_WATCHDOG_TIMEOUT_KHR: Self = Self(1 << 4);
-        pub const FLAG_OVERFLOW_KHR: Self = Self(1 << 5);
-    }
     pub type PFN_vkGetDeviceFaultReportsKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         timeout: u64,

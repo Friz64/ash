@@ -2,6 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_astc_decode_mode.html) · Extension `VK_EXT_astc_decode_mode`
 #![doc(alias = "VK_EXT_astc_decode_mode")]
+///Provided by [`ext::astc_decode_mode`](crate::ext::astc_decode_mode)
+impl crate::vk::StructureType {
+    pub const IMAGE_VIEW_ASTC_DECODE_MODE_EXT: Self = Self(1000067000);
+    pub const PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT: Self = Self(1000067001);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_astc_decode_mode";
 pub(crate) mod reexport {
@@ -68,11 +73,6 @@ pub(crate) mod reexport {
             self.decode_mode_shared_exponent = decode_mode_shared_exponent.into();
             self
         }
-    }
-    ///Provided by [`ext::astc_decode_mode`](crate::ext::astc_decode_mode)
-    impl crate::vk::StructureType {
-        pub const IMAGE_VIEW_ASTC_DECODE_MODE_EXT: Self = Self(1000067000);
-        pub const PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT: Self = Self(1000067001);
     }
 }
 pub use reexport::*;

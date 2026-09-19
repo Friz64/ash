@@ -2,6 +2,25 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_tiling_control.html) · Extension `VK_EXT_image_tiling_control`
 #![doc(alias = "VK_EXT_image_tiling_control")]
+///Provided by [`ext::image_tiling_control`](crate::ext::image_tiling_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_TILING_CONTROL_FEATURES_EXT: Self = Self(1000687000);
+    pub const IMAGE_TILING_CONTROL_CREATE_INFO_EXT: Self = Self(1000687001);
+}
+///Provided by [`ext::image_tiling_control`](crate::ext::image_tiling_control)
+impl ImageTilingControlEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const DEFAULT_EXT: Self = Self(0);
+    pub const MIN_SIZE_EXT: Self = Self(1);
+    pub const MAX_PERFORMANCE_EXT: Self = Self(2);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_image_tiling_control";
 pub(crate) mod reexport {
@@ -69,30 +88,9 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::image_tiling_control`](crate::ext::image_tiling_control)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_IMAGE_TILING_CONTROL_FEATURES_EXT: Self = Self(
-            1000687000,
-        );
-        pub const IMAGE_TILING_CONTROL_CREATE_INFO_EXT: Self = Self(1000687001);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct ImageTilingControlEXT(pub(crate) i32);
-    ///Provided by [`ext::image_tiling_control`](crate::ext::image_tiling_control)
-    impl ImageTilingControlEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const DEFAULT_EXT: Self = Self(0);
-        pub const MIN_SIZE_EXT: Self = Self(1);
-        pub const MAX_PERFORMANCE_EXT: Self = Self(2);
-    }
 }
 pub use reexport::*;

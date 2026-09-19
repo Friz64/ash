@@ -2,6 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_subgroup_size_control.html) · Extension `VK_EXT_subgroup_size_control`
 #![doc(alias = "VK_EXT_subgroup_size_control")]
+///Provided by [`ext::subgroup_size_control`](crate::ext::subgroup_size_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES;
+    pub const PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT: Self = Self::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES;
+}
+///Provided by [`ext::subgroup_size_control`](crate::ext::subgroup_size_control)
+impl crate::vk::PipelineShaderStageCreateFlagBits {
+    pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self::ALLOW_VARYING_SUBGROUP_SIZE;
+    pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self::REQUIRE_FULL_SUBGROUPS;
+}
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_subgroup_size_control";
 pub(crate) mod reexport {
@@ -14,16 +25,5 @@ pub(crate) mod reexport {
     pub type PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT<'a> = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo<
         'a,
     >;
-    ///Provided by [`ext::subgroup_size_control`](crate::ext::subgroup_size_control)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES;
-        pub const PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT: Self = Self::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO;
-        pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES;
-    }
-    ///Provided by [`ext::subgroup_size_control`](crate::ext::subgroup_size_control)
-    impl crate::vk::PipelineShaderStageCreateFlagBits {
-        pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self::ALLOW_VARYING_SUBGROUP_SIZE;
-        pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self::REQUIRE_FULL_SUBGROUPS;
-    }
 }
 pub use reexport::*;

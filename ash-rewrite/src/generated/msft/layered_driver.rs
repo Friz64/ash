@@ -2,6 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MSFT_layered_driver.html) · Extension `VK_MSFT_layered_driver`
 #![doc(alias = "VK_MSFT_layered_driver")]
+///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT: Self = Self(1000530000);
+}
+///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
+impl LayeredDriverUnderlyingApiMSFT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const NONE_MSFT: Self = Self(0);
+    pub const D3D12_MSFT: Self = Self(1);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_MSFT_layered_driver";
 pub(crate) mod reexport {
@@ -38,28 +55,9 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT: Self = Self(
-            1000530000,
-        );
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct LayeredDriverUnderlyingApiMSFT(pub(crate) i32);
-    ///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
-    impl LayeredDriverUnderlyingApiMSFT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const NONE_MSFT: Self = Self(0);
-        pub const D3D12_MSFT: Self = Self(1);
-    }
 }
 pub use reexport::*;

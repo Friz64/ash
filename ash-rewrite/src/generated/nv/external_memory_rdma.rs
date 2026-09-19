@@ -2,8 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_rdma.html) · Extension `VK_NV_external_memory_rdma`
 #![doc(alias = "VK_NV_external_memory_rdma")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_rdma";
+///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
+impl crate::vk::StructureType {
+    pub const MEMORY_GET_REMOTE_ADDRESS_INFO_NV: Self = Self(1000371000);
+    pub const PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV: Self = Self(1000371001);
+}
+///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
+impl crate::vk::MemoryPropertyFlagBits {
+    pub const RDMA_CAPABLE_NV: Self = Self(1 << 8);
+}
+///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
+impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+    pub const RDMA_ADDRESS_NV: Self = Self(1 << 12);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_memory_remote_address_nv: crate::vk::PFN_vkGetMemoryRemoteAddressNV,
@@ -60,6 +71,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_rdma";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -128,21 +141,6 @@ pub(crate) mod reexport {
             self.handle_type = handle_type;
             self
         }
-    }
-    ///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
-    impl crate::vk::StructureType {
-        pub const MEMORY_GET_REMOTE_ADDRESS_INFO_NV: Self = Self(1000371000);
-        pub const PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV: Self = Self(
-            1000371001,
-        );
-    }
-    ///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
-    impl crate::vk::MemoryPropertyFlagBits {
-        pub const RDMA_CAPABLE_NV: Self = Self(1 << 8);
-    }
-    ///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
-    impl crate::vk::ExternalMemoryHandleTypeFlagBits {
-        pub const RDMA_ADDRESS_NV: Self = Self(1 << 12);
     }
     pub type RemoteAddressNV = *mut core::ffi::c_void;
     pub type PFN_vkGetMemoryRemoteAddressNV = unsafe extern "system" fn(

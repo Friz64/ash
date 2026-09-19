@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_command_buffer_inheritance.html) · Extension `VK_NV_command_buffer_inheritance`
 #![doc(alias = "VK_NV_command_buffer_inheritance")]
+///Provided by [`nv::command_buffer_inheritance`](crate::nv::command_buffer_inheritance)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV: Self = Self(
+        1000559000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_command_buffer_inheritance";
 pub(crate) mod reexport {
@@ -39,12 +45,6 @@ pub(crate) mod reexport {
             self.command_buffer_inheritance = command_buffer_inheritance.into();
             self
         }
-    }
-    ///Provided by [`nv::command_buffer_inheritance`](crate::nv::command_buffer_inheritance)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV: Self = Self(
-            1000559000,
-        );
     }
 }
 pub use reexport::*;

@@ -2,6 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_global_priority_query.html) · Extension `VK_EXT_global_priority_query`
 #![doc(alias = "VK_EXT_global_priority_query")]
+///Provided by [`ext::global_priority_query`](crate::ext::global_priority_query)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES;
+    pub const QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_EXT: Self = Self::QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_global_priority_query";
 pub(crate) mod reexport {
@@ -11,10 +16,5 @@ pub(crate) mod reexport {
     pub type QueueFamilyGlobalPriorityPropertiesEXT<'a> = crate::vk::QueueFamilyGlobalPriorityProperties<
         'a,
     >;
-    ///Provided by [`ext::global_priority_query`](crate::ext::global_priority_query)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES;
-        pub const QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_EXT: Self = Self::QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES;
-    }
 }
 pub use reexport::*;

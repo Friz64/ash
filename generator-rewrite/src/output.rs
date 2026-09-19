@@ -190,7 +190,7 @@ impl CodeMap {
                 destination,
                 doc_comment: doc.into(),
                 doc_alias: destination.original_name(),
-                reexport_items: vec![quote! { reexport::* }],
+                reexport_items: Vec::new(),
                 reexport_content: TokenStream::new(),
                 content: TokenStream::new(),
             });
@@ -236,7 +236,7 @@ impl CodeMap {
                 destination,
                 doc_comment,
                 doc_alias,
-                reexport_items,
+                mut reexport_items,
                 mut reexport_content,
                 content,
             } = source_file;
@@ -247,19 +247,22 @@ impl CodeMap {
                     pub use reexport::*;
                 };
 
-                let components = destination.path_components();
-                let component_idents: Vec<_> = components
-                    .iter()
-                    .map(|component| &component.module_name)
-                    .collect();
-                let vk_content = reexport_items.into_iter().map(|reexport_item| {
-                    // this is quite difficult to parse by eye:
-                    // #component_idents is using repetition syntax #()*
-                    quote! { pub use super:: #(#component_idents)::* ::#reexport_item; }
-                });
-
-                vfs.write("vk.rs", quote! { #(#vk_content)* });
+                reexport_items.push(quote! { reexport::* });
             }
+
+            let components = destination.path_components();
+            let component_idents: Vec<_> = components
+                .iter()
+                .map(|component| &component.module_name)
+                .collect();
+
+            let vk_content = reexport_items.into_iter().map(|reexport_item| {
+                // this is quite difficult to parse by eye:
+                // #component_idents is using repetition syntax #()*
+                quote! { pub use super:: #(#component_idents)::* ::#reexport_item; }
+            });
+
+            vfs.write("vk.rs", quote! { #(#vk_content)* });
 
             vfs.write(
                 source_path,

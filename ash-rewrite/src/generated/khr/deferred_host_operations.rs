@@ -2,8 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_deferred_host_operations.html) · Extension `VK_KHR_deferred_host_operations`
 #![doc(alias = "VK_KHR_deferred_host_operations")]
-pub const SPEC_VERSION: u32 = 4;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_deferred_host_operations";
+///Provided by [`khr::deferred_host_operations`](crate::khr::deferred_host_operations)
+impl crate::vk::Result {
+    pub const THREAD_IDLE_KHR: Self = Self(1000268000);
+    pub const THREAD_DONE_KHR: Self = Self(1000268001);
+    pub const OPERATION_DEFERRED_KHR: Self = Self(1000268002);
+    pub const OPERATION_NOT_DEFERRED_KHR: Self = Self(1000268003);
+}
+///Provided by [`khr::deferred_host_operations`](crate::khr::deferred_host_operations)
+impl crate::vk::ObjectType {
+    pub const DEFERRED_OPERATION_KHR: Self = Self(1000268000);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_deferred_operation_khr: crate::vk::PFN_vkCreateDeferredOperationKHR,
@@ -121,18 +130,9 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_deferred_host_operations";
 pub(crate) mod reexport {
-    ///Provided by [`khr::deferred_host_operations`](crate::khr::deferred_host_operations)
-    impl crate::vk::Result {
-        pub const THREAD_IDLE_KHR: Self = Self(1000268000);
-        pub const THREAD_DONE_KHR: Self = Self(1000268001);
-        pub const OPERATION_DEFERRED_KHR: Self = Self(1000268002);
-        pub const OPERATION_NOT_DEFERRED_KHR: Self = Self(1000268003);
-    }
-    ///Provided by [`khr::deferred_host_operations`](crate::khr::deferred_host_operations)
-    impl crate::vk::ObjectType {
-        pub const DEFERRED_OPERATION_KHR: Self = Self(1000268000);
-    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DeferredOperationKHR(u64);

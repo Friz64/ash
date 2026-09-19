@@ -2,19 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_IMG_format_pvrtc.html) · Extension `VK_IMG_format_pvrtc`
 #![doc(alias = "VK_IMG_format_pvrtc")]
+///Provided by [`img::format_pvrtc`](crate::img::format_pvrtc)
+impl crate::vk::Format {
+    pub const PVRTC1_2BPP_UNORM_BLOCK_IMG: Self = Self(1000054000);
+    pub const PVRTC1_4BPP_UNORM_BLOCK_IMG: Self = Self(1000054001);
+    pub const PVRTC2_2BPP_UNORM_BLOCK_IMG: Self = Self(1000054002);
+    pub const PVRTC2_4BPP_UNORM_BLOCK_IMG: Self = Self(1000054003);
+    pub const PVRTC1_2BPP_SRGB_BLOCK_IMG: Self = Self(1000054004);
+    pub const PVRTC1_4BPP_SRGB_BLOCK_IMG: Self = Self(1000054005);
+    pub const PVRTC2_2BPP_SRGB_BLOCK_IMG: Self = Self(1000054006);
+    pub const PVRTC2_4BPP_SRGB_BLOCK_IMG: Self = Self(1000054007);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_IMG_format_pvrtc";
-pub(crate) mod reexport {
-    ///Provided by [`img::format_pvrtc`](crate::img::format_pvrtc)
-    impl crate::vk::Format {
-        pub const PVRTC1_2BPP_UNORM_BLOCK_IMG: Self = Self(1000054000);
-        pub const PVRTC1_4BPP_UNORM_BLOCK_IMG: Self = Self(1000054001);
-        pub const PVRTC2_2BPP_UNORM_BLOCK_IMG: Self = Self(1000054002);
-        pub const PVRTC2_4BPP_UNORM_BLOCK_IMG: Self = Self(1000054003);
-        pub const PVRTC1_2BPP_SRGB_BLOCK_IMG: Self = Self(1000054004);
-        pub const PVRTC1_4BPP_SRGB_BLOCK_IMG: Self = Self(1000054005);
-        pub const PVRTC2_2BPP_SRGB_BLOCK_IMG: Self = Self(1000054006);
-        pub const PVRTC2_4BPP_SRGB_BLOCK_IMG: Self = Self(1000054007);
-    }
-}
-pub use reexport::*;

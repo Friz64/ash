@@ -2,6 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_mode_fifo_latest_ready.html) · Extension `VK_KHR_present_mode_fifo_latest_ready`
 #![doc(alias = "VK_KHR_present_mode_fifo_latest_ready")]
+///Provided by [`khr::present_mode_fifo_latest_ready`](crate::khr::present_mode_fifo_latest_ready)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR: Self = Self(
+        1000361000,
+    );
+}
+///Provided by [`khr::present_mode_fifo_latest_ready`](crate::khr::present_mode_fifo_latest_ready)
+impl crate::vk::PresentModeKHR {
+    pub const FIFO_LATEST_READY_KHR: Self = Self(1000361000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_present_mode_fifo_latest_ready";
 pub(crate) mod reexport {
@@ -39,16 +49,6 @@ pub(crate) mod reexport {
             self.present_mode_fifo_latest_ready = present_mode_fifo_latest_ready.into();
             self
         }
-    }
-    ///Provided by [`khr::present_mode_fifo_latest_ready`](crate::khr::present_mode_fifo_latest_ready)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR: Self = Self(
-            1000361000,
-        );
-    }
-    ///Provided by [`khr::present_mode_fifo_latest_ready`](crate::khr::present_mode_fifo_latest_ready)
-    impl crate::vk::PresentModeKHR {
-        pub const FIFO_LATEST_READY_KHR: Self = Self(1000361000);
     }
 }
 pub use reexport::*;

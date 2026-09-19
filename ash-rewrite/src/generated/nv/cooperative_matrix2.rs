@@ -2,8 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_matrix2.html) · Extension `VK_NV_cooperative_matrix2`
 #![doc(alias = "VK_NV_cooperative_matrix2")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_cooperative_matrix2";
+///Provided by [`nv::cooperative_matrix2`](crate::nv::cooperative_matrix2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_FEATURES_NV: Self = Self(1000593000);
+    pub const COOPERATIVE_MATRIX_FLEXIBLE_DIMENSIONS_PROPERTIES_NV: Self = Self(
+        1000593001,
+    );
+    pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_PROPERTIES_NV: Self = Self(
+        1000593002,
+    );
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv: crate::vk::PFN_vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV,
@@ -66,6 +74,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_cooperative_matrix2";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -292,18 +302,6 @@ pub(crate) mod reexport {
             self.workgroup_invocations = workgroup_invocations;
             self
         }
-    }
-    ///Provided by [`nv::cooperative_matrix2`](crate::nv::cooperative_matrix2)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_FEATURES_NV: Self = Self(
-            1000593000,
-        );
-        pub const COOPERATIVE_MATRIX_FLEXIBLE_DIMENSIONS_PROPERTIES_NV: Self = Self(
-            1000593001,
-        );
-        pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_PROPERTIES_NV: Self = Self(
-            1000593002,
-        );
     }
     pub type PFN_vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,

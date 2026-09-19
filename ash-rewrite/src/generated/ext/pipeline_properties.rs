@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_properties.html) · Extension `VK_EXT_pipeline_properties`
 #![doc(alias = "VK_EXT_pipeline_properties")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_properties";
+///Provided by [`ext::pipeline_properties`](crate::ext::pipeline_properties)
+impl crate::vk::StructureType {
+    pub const PIPELINE_PROPERTIES_IDENTIFIER_EXT: Self = Self(1000372000);
+    pub const PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT: Self = Self(1000372001);
+    pub const PIPELINE_INFO_EXT: Self = Self::PIPELINE_INFO_KHR;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_pipeline_properties_ext: crate::vk::PFN_vkGetPipelinePropertiesEXT,
@@ -60,6 +64,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_properties";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -127,14 +133,6 @@ pub(crate) mod reexport {
         }
     }
     pub type PipelineInfoEXT<'a> = crate::vk::PipelineInfoKHR<'a>;
-    ///Provided by [`ext::pipeline_properties`](crate::ext::pipeline_properties)
-    impl crate::vk::StructureType {
-        pub const PIPELINE_PROPERTIES_IDENTIFIER_EXT: Self = Self(1000372000);
-        pub const PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT: Self = Self(
-            1000372001,
-        );
-        pub const PIPELINE_INFO_EXT: Self = Self::PIPELINE_INFO_KHR;
-    }
     pub type PFN_vkGetPipelinePropertiesEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         p_pipeline_info: *const crate::vk::PipelineInfoKHR<'_>,

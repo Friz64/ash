@@ -2,6 +2,32 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_feedback2.html) · Extension `VK_KHR_video_encode_feedback2`
 #![doc(alias = "VK_KHR_video_encode_feedback2")]
+///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VIDEO_ENCODE_FEEDBACK_2_FEATURES_KHR: Self = Self(
+        1000598000,
+    );
+    pub const VIDEO_ENCODE_FEEDBACK_2_CAPABILITIES_KHR: Self = Self(1000598001);
+    pub const QUERY_POOL_VIDEO_ENCODE_PER_PARTITION_FEEDBACK_CREATE_INFO_KHR: Self = Self(
+        1000598002,
+    );
+}
+///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
+impl crate::vk::VideoEncodeFeedbackFlagBitsKHR {
+    pub const AVERAGE_QUANTIZATION_KHR: Self = Self(1 << 3);
+    pub const MIN_QUANTIZATION_KHR: Self = Self(1 << 4);
+    pub const MAX_QUANTIZATION_KHR: Self = Self(1 << 5);
+    pub const INTRA_PIXELS_KHR: Self = Self(1 << 6);
+    pub const INTER_PIXELS_KHR: Self = Self(1 << 7);
+    pub const SKIPPED_PIXELS_KHR: Self = Self(1 << 8);
+    pub const PICTURE_PARTITION_COUNT_KHR: Self = Self(1 << 9);
+}
+///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
+impl VideoEncodePerPartitionFeedbackFlagBitsKHR {
+    pub const STATUS_KHR: Self = Self(1 << 0);
+    pub const BITSTREAM_BUFFER_OFFSET_KHR: Self = Self(1 << 1);
+    pub const BITSTREAM_BYTES_WRITTEN_KHR: Self = Self(1 << 2);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_feedback2";
 pub(crate) mod reexport {
@@ -121,26 +147,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_VIDEO_ENCODE_FEEDBACK_2_FEATURES_KHR: Self = Self(
-            1000598000,
-        );
-        pub const VIDEO_ENCODE_FEEDBACK_2_CAPABILITIES_KHR: Self = Self(1000598001);
-        pub const QUERY_POOL_VIDEO_ENCODE_PER_PARTITION_FEEDBACK_CREATE_INFO_KHR: Self = Self(
-            1000598002,
-        );
-    }
-    ///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
-    impl crate::vk::VideoEncodeFeedbackFlagBitsKHR {
-        pub const AVERAGE_QUANTIZATION_KHR: Self = Self(1 << 3);
-        pub const MIN_QUANTIZATION_KHR: Self = Self(1 << 4);
-        pub const MAX_QUANTIZATION_KHR: Self = Self(1 << 5);
-        pub const INTRA_PIXELS_KHR: Self = Self(1 << 6);
-        pub const INTER_PIXELS_KHR: Self = Self(1 << 7);
-        pub const SKIPPED_PIXELS_KHR: Self = Self(1 << 8);
-        pub const PICTURE_PARTITION_COUNT_KHR: Self = Self(1 << 9);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct VideoEncodePerPartitionFeedbackFlagsKHR(u32);
@@ -220,11 +226,5 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct VideoEncodePerPartitionFeedbackFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
-    impl VideoEncodePerPartitionFeedbackFlagBitsKHR {
-        pub const STATUS_KHR: Self = Self(1 << 0);
-        pub const BITSTREAM_BUFFER_OFFSET_KHR: Self = Self(1 << 1);
-        pub const BITSTREAM_BYTES_WRITTEN_KHR: Self = Self(1 << 2);
-    }
 }
 pub use reexport::*;

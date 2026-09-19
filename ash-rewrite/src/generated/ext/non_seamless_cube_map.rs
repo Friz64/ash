@@ -2,6 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_non_seamless_cube_map.html) · Extension `VK_EXT_non_seamless_cube_map`
 #![doc(alias = "VK_EXT_non_seamless_cube_map")]
+///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT: Self = Self(
+        1000422000,
+    );
+}
+///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
+impl crate::vk::SamplerCreateFlagBits {
+    pub const NON_SEAMLESS_CUBE_MAP_EXT: Self = Self(1 << 2);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_non_seamless_cube_map";
 pub(crate) mod reexport {
@@ -36,16 +46,6 @@ pub(crate) mod reexport {
             self.non_seamless_cube_map = non_seamless_cube_map.into();
             self
         }
-    }
-    ///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT: Self = Self(
-            1000422000,
-        );
-    }
-    ///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
-    impl crate::vk::SamplerCreateFlagBits {
-        pub const NON_SEAMLESS_CUBE_MAP_EXT: Self = Self(1 << 2);
     }
 }
 pub use reexport::*;

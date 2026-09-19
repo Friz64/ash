@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_xcb_surface.html) · Extension `VK_KHR_xcb_surface`
 #![doc(alias = "VK_KHR_xcb_surface")]
-pub const SPEC_VERSION: u32 = 6;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_xcb_surface";
+///Provided by [`khr::xcb_surface`](crate::khr::xcb_surface)
+impl crate::vk::StructureType {
+    pub const XCB_SURFACE_CREATE_INFO_KHR: Self = Self(1000005000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_xcb_surface_khr: crate::vk::PFN_vkCreateXcbSurfaceKHR,
@@ -78,6 +80,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 6;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_xcb_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -120,10 +124,6 @@ pub(crate) mod reexport {
             self.window = window;
             self
         }
-    }
-    ///Provided by [`khr::xcb_surface`](crate::khr::xcb_surface)
-    impl crate::vk::StructureType {
-        pub const XCB_SURFACE_CREATE_INFO_KHR: Self = Self(1000005000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

@@ -2,8 +2,67 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_generated_commands.html) · Extension `VK_NV_device_generated_commands`
 #![doc(alias = "VK_NV_device_generated_commands")]
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands";
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV: Self = Self(
+        1000277000,
+    );
+    pub const GRAPHICS_SHADER_GROUP_CREATE_INFO_NV: Self = Self(1000277001);
+    pub const GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV: Self = Self(1000277002);
+    pub const INDIRECT_COMMANDS_LAYOUT_TOKEN_NV: Self = Self(1000277003);
+    pub const INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV: Self = Self(1000277004);
+    pub const GENERATED_COMMANDS_INFO_NV: Self = Self(1000277005);
+    pub const GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV: Self = Self(1000277006);
+    pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV: Self = Self(
+        1000277007,
+    );
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::ObjectType {
+    pub const INDIRECT_COMMANDS_LAYOUT_NV: Self = Self(1000277000);
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl IndirectCommandsTokenTypeNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const SHADER_GROUP_NV: Self = Self(0);
+    pub const STATE_FLAGS_NV: Self = Self(1);
+    pub const INDEX_BUFFER_NV: Self = Self(2);
+    pub const VERTEX_BUFFER_NV: Self = Self(3);
+    pub const PUSH_CONSTANT_NV: Self = Self(4);
+    pub const DRAW_INDEXED_NV: Self = Self(5);
+    pub const DRAW_NV: Self = Self(6);
+    pub const DRAW_TASKS_NV: Self = Self(7);
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::AccessFlagBits {
+    pub const COMMAND_PREPROCESS_READ_NV: Self = Self::COMMAND_PREPROCESS_READ_EXT;
+    pub const COMMAND_PREPROCESS_WRITE_NV: Self = Self::COMMAND_PREPROCESS_WRITE_EXT;
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 18);
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::PipelineStageFlagBits {
+    pub const COMMAND_PREPROCESS_NV: Self = Self::COMMAND_PREPROCESS_EXT;
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl IndirectCommandsLayoutUsageFlagBitsNV {
+    pub const EXPLICIT_PREPROCESS_NV: Self = Self(1 << 0);
+    pub const INDEXED_SEQUENCES_NV: Self = Self(1 << 1);
+    pub const UNORDERED_SEQUENCES_NV: Self = Self(1 << 2);
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl IndirectStateFlagBitsNV {
+    pub const FLAG_FRONTFACE_NV: Self = Self(1 << 0);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_execute_generated_commands_nv: crate::vk::PFN_vkCmdExecuteGeneratedCommandsNV,
@@ -141,6 +200,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -816,65 +877,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV: Self = Self(
-            1000277000,
-        );
-        pub const GRAPHICS_SHADER_GROUP_CREATE_INFO_NV: Self = Self(1000277001);
-        pub const GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV: Self = Self(
-            1000277002,
-        );
-        pub const INDIRECT_COMMANDS_LAYOUT_TOKEN_NV: Self = Self(1000277003);
-        pub const INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV: Self = Self(1000277004);
-        pub const GENERATED_COMMANDS_INFO_NV: Self = Self(1000277005);
-        pub const GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV: Self = Self(
-            1000277006,
-        );
-        pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV: Self = Self(
-            1000277007,
-        );
-    }
-    ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
-    impl crate::vk::ObjectType {
-        pub const INDIRECT_COMMANDS_LAYOUT_NV: Self = Self(1000277000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct IndirectCommandsTokenTypeNV(pub(crate) i32);
-    ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
-    impl IndirectCommandsTokenTypeNV {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const SHADER_GROUP_NV: Self = Self(0);
-        pub const STATE_FLAGS_NV: Self = Self(1);
-        pub const INDEX_BUFFER_NV: Self = Self(2);
-        pub const VERTEX_BUFFER_NV: Self = Self(3);
-        pub const PUSH_CONSTANT_NV: Self = Self(4);
-        pub const DRAW_INDEXED_NV: Self = Self(5);
-        pub const DRAW_NV: Self = Self(6);
-        pub const DRAW_TASKS_NV: Self = Self(7);
-    }
-    ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
-    impl crate::vk::AccessFlagBits {
-        pub const COMMAND_PREPROCESS_READ_NV: Self = Self::COMMAND_PREPROCESS_READ_EXT;
-        pub const COMMAND_PREPROCESS_WRITE_NV: Self = Self::COMMAND_PREPROCESS_WRITE_EXT;
-    }
-    ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
-    impl crate::vk::PipelineCreateFlagBits {
-        pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 18);
-    }
-    ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
-    impl crate::vk::PipelineStageFlagBits {
-        pub const COMMAND_PREPROCESS_NV: Self = Self::COMMAND_PREPROCESS_EXT;
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutUsageFlagsNV(u32);
@@ -954,12 +960,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
-    impl IndirectCommandsLayoutUsageFlagBitsNV {
-        pub const EXPLICIT_PREPROCESS_NV: Self = Self(1 << 0);
-        pub const INDEXED_SEQUENCES_NV: Self = Self(1 << 1);
-        pub const UNORDERED_SEQUENCES_NV: Self = Self(1 << 2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct IndirectStateFlagsNV(u32);
@@ -1033,10 +1033,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct IndirectStateFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
-    impl IndirectStateFlagBitsNV {
-        pub const FLAG_FRONTFACE_NV: Self = Self(1 << 0);
-    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct IndirectCommandsLayoutNV(u64);

@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_surface_capabilities2.html) · Extension `VK_KHR_get_surface_capabilities2`
 #![doc(alias = "VK_KHR_get_surface_capabilities2")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_get_surface_capabilities2";
+///Provided by [`khr::get_surface_capabilities2`](crate::khr::get_surface_capabilities2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SURFACE_INFO_2_KHR: Self = Self(1000119000);
+    pub const SURFACE_CAPABILITIES_2_KHR: Self = Self(1000119001);
+    pub const SURFACE_FORMAT_2_KHR: Self = Self(1000119002);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_surface_capabilities2_khr: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR,
@@ -77,6 +81,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_get_surface_capabilities2";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -164,12 +170,6 @@ pub(crate) mod reexport {
             self.surface_format = surface_format;
             self
         }
-    }
-    ///Provided by [`khr::get_surface_capabilities2`](crate::khr::get_surface_capabilities2)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SURFACE_INFO_2_KHR: Self = Self(1000119000);
-        pub const SURFACE_CAPABILITIES_2_KHR: Self = Self(1000119001);
-        pub const SURFACE_FORMAT_2_KHR: Self = Self(1000119002);
     }
     pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,

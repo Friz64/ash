@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_multi_draw.html) · Extension `VK_EXT_multi_draw`
 #![doc(alias = "VK_EXT_multi_draw")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_multi_draw";
+///Provided by [`ext::multi_draw`](crate::ext::multi_draw)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT: Self = Self(1000392000);
+    pub const PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT: Self = Self(1000392001);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_draw_multi_ext: crate::vk::PFN_vkCmdDrawMultiEXT,
@@ -83,6 +86,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_multi_draw";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -182,11 +187,6 @@ pub(crate) mod reexport {
             self.multi_draw = multi_draw.into();
             self
         }
-    }
-    ///Provided by [`ext::multi_draw`](crate::ext::multi_draw)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT: Self = Self(1000392000);
-        pub const PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT: Self = Self(1000392001);
     }
     pub type PFN_vkCmdDrawMultiEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

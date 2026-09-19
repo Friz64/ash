@@ -2,8 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain_maintenance1.html) · Extension `VK_KHR_swapchain_maintenance1`
 #![doc(alias = "VK_KHR_swapchain_maintenance1")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_swapchain_maintenance1";
+///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR: Self = Self(
+        1000275000,
+    );
+    pub const SWAPCHAIN_PRESENT_FENCE_INFO_KHR: Self = Self(1000275001);
+    pub const SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR: Self = Self(1000275002);
+    pub const SWAPCHAIN_PRESENT_MODE_INFO_KHR: Self = Self(1000275003);
+    pub const SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR: Self = Self(1000275004);
+    pub const RELEASE_SWAPCHAIN_IMAGES_INFO_KHR: Self = Self(1000275005);
+}
+///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
+impl crate::vk::SwapchainCreateFlagBitsKHR {
+    pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(1 << 3);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub release_swapchain_images_khr: crate::vk::PFN_vkReleaseSwapchainImagesKHR,
@@ -59,6 +72,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_swapchain_maintenance1";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -281,21 +296,6 @@ pub(crate) mod reexport {
             self.p_image_indices = image_indices.as_ptr();
             self
         }
-    }
-    ///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR: Self = Self(
-            1000275000,
-        );
-        pub const SWAPCHAIN_PRESENT_FENCE_INFO_KHR: Self = Self(1000275001);
-        pub const SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR: Self = Self(1000275002);
-        pub const SWAPCHAIN_PRESENT_MODE_INFO_KHR: Self = Self(1000275003);
-        pub const SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR: Self = Self(1000275004);
-        pub const RELEASE_SWAPCHAIN_IMAGES_INFO_KHR: Self = Self(1000275005);
-    }
-    ///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
-    impl crate::vk::SwapchainCreateFlagBitsKHR {
-        pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(1 << 3);
     }
     pub type PFN_vkReleaseSwapchainImagesKHR = unsafe extern "system" fn(
         device: crate::vk::Device,

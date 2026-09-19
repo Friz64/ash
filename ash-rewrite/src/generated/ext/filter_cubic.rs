@@ -2,6 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_filter_cubic.html) · Extension `VK_EXT_filter_cubic`
 #![doc(alias = "VK_EXT_filter_cubic")]
+///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
+impl crate::vk::Filter {
+    pub const CUBIC_EXT: Self = Self(1000015000);
+}
+///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT: Self = Self(1000170000);
+    pub const FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT: Self = Self(
+        1000170001,
+    );
+}
+///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
+impl crate::vk::FormatFeatureFlagBits {
+    pub const SAMPLED_IMAGE_FILTER_CUBIC_EXT: Self = Self(1 << 13);
+}
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_filter_cubic";
 pub(crate) mod reexport {
@@ -73,23 +88,6 @@ pub(crate) mod reexport {
             self.filter_cubic_minmax = filter_cubic_minmax.into();
             self
         }
-    }
-    ///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
-    impl crate::vk::Filter {
-        pub const CUBIC_EXT: Self = Self(1000015000);
-    }
-    ///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT: Self = Self(
-            1000170000,
-        );
-        pub const FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT: Self = Self(
-            1000170001,
-        );
-    }
-    ///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
-    impl crate::vk::FormatFeatureFlagBits {
-        pub const SAMPLED_IMAGE_FILTER_CUBIC_EXT: Self = Self(1 << 13);
     }
 }
 pub use reexport::*;

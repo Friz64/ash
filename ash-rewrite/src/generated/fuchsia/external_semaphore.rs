@@ -2,8 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_external_semaphore.html) · Extension `VK_FUCHSIA_external_semaphore`
 #![doc(alias = "VK_FUCHSIA_external_semaphore")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_semaphore";
+///Provided by [`fuchsia::external_semaphore`](crate::fuchsia::external_semaphore)
+impl crate::vk::StructureType {
+    pub const IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000365000);
+    pub const SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000365001);
+}
+///Provided by [`fuchsia::external_semaphore`](crate::fuchsia::external_semaphore)
+impl crate::vk::ExternalSemaphoreHandleTypeFlagBits {
+    pub const ZIRCON_EVENT_FUCHSIA: Self = Self(1 << 7);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_semaphore_zircon_handle_fuchsia: crate::vk::PFN_vkGetSemaphoreZirconHandleFUCHSIA,
@@ -75,6 +82,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_semaphore";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -164,15 +173,6 @@ pub(crate) mod reexport {
             self.handle_type = handle_type;
             self
         }
-    }
-    ///Provided by [`fuchsia::external_semaphore`](crate::fuchsia::external_semaphore)
-    impl crate::vk::StructureType {
-        pub const IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000365000);
-        pub const SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000365001);
-    }
-    ///Provided by [`fuchsia::external_semaphore`](crate::fuchsia::external_semaphore)
-    impl crate::vk::ExternalSemaphoreHandleTypeFlagBits {
-        pub const ZIRCON_EVENT_FUCHSIA: Self = Self(1 << 7);
     }
     pub type PFN_vkGetSemaphoreZirconHandleFUCHSIA = unsafe extern "system" fn(
         device: crate::vk::Device,

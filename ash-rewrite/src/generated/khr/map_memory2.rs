@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_map_memory2.html) · Extension `VK_KHR_map_memory2`
 #![doc(alias = "VK_KHR_map_memory2")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_map_memory2";
+///Provided by [`khr::map_memory2`](crate::khr::map_memory2)
+impl crate::vk::StructureType {
+    pub const MEMORY_MAP_INFO_KHR: Self = Self::MEMORY_MAP_INFO;
+    pub const MEMORY_UNMAP_INFO_KHR: Self = Self::MEMORY_UNMAP_INFO;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub map_memory2_khr: crate::vk::PFN_vkMapMemory2KHR,
@@ -71,14 +74,11 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_map_memory2";
 pub(crate) mod reexport {
     pub type MemoryMapInfoKHR<'a> = crate::vk::MemoryMapInfo<'a>;
     pub type MemoryUnmapInfoKHR<'a> = crate::vk::MemoryUnmapInfo<'a>;
-    ///Provided by [`khr::map_memory2`](crate::khr::map_memory2)
-    impl crate::vk::StructureType {
-        pub const MEMORY_MAP_INFO_KHR: Self = Self::MEMORY_MAP_INFO;
-        pub const MEMORY_UNMAP_INFO_KHR: Self = Self::MEMORY_UNMAP_INFO;
-    }
     pub type MemoryUnmapFlagBitsKHR = crate::vk::MemoryUnmapFlagBits;
     pub type MemoryUnmapFlagsKHR = crate::vk::MemoryUnmapFlags;
     pub type PFN_vkMapMemory2KHR = crate::vk::PFN_vkMapMemory2;

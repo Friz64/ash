@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_dedicated_allocation.html) · Extension `VK_NV_dedicated_allocation`
 #![doc(alias = "VK_NV_dedicated_allocation")]
+///Provided by [`nv::dedicated_allocation`](crate::nv::dedicated_allocation)
+impl crate::vk::StructureType {
+    pub const DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV: Self = Self(1000026000);
+    pub const DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV: Self = Self(1000026001);
+    pub const DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV: Self = Self(1000026002);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_dedicated_allocation";
 pub(crate) mod reexport {
@@ -100,12 +106,6 @@ pub(crate) mod reexport {
             self.buffer = buffer;
             self
         }
-    }
-    ///Provided by [`nv::dedicated_allocation`](crate::nv::dedicated_allocation)
-    impl crate::vk::StructureType {
-        pub const DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV: Self = Self(1000026000);
-        pub const DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV: Self = Self(1000026001);
-        pub const DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV: Self = Self(1000026002);
     }
 }
 pub use reexport::*;

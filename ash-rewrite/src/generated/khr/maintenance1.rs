@@ -2,8 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance1.html) · Extension `VK_KHR_maintenance1`
 #![doc(alias = "VK_KHR_maintenance1")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance1";
+///Provided by [`khr::maintenance1`](crate::khr::maintenance1)
+impl crate::vk::Result {
+    pub const ERROR_OUT_OF_POOL_MEMORY_KHR: Self = Self::ERROR_OUT_OF_POOL_MEMORY;
+}
+///Provided by [`khr::maintenance1`](crate::khr::maintenance1)
+impl crate::vk::ImageCreateFlagBits {
+    pub const _2D_ARRAY_COMPATIBLE_KHR: Self = Self::_2D_ARRAY_COMPATIBLE;
+}
+///Provided by [`khr::maintenance1`](crate::khr::maintenance1)
+impl crate::vk::FormatFeatureFlagBits {
+    pub const TRANSFER_SRC_KHR: Self = Self::TRANSFER_SRC;
+    pub const TRANSFER_DST_KHR: Self = Self::TRANSFER_DST;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub trim_command_pool_khr: crate::vk::PFN_vkTrimCommandPoolKHR,
@@ -60,20 +71,9 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance1";
 pub(crate) mod reexport {
-    ///Provided by [`khr::maintenance1`](crate::khr::maintenance1)
-    impl crate::vk::Result {
-        pub const ERROR_OUT_OF_POOL_MEMORY_KHR: Self = Self::ERROR_OUT_OF_POOL_MEMORY;
-    }
-    ///Provided by [`khr::maintenance1`](crate::khr::maintenance1)
-    impl crate::vk::ImageCreateFlagBits {
-        pub const _2D_ARRAY_COMPATIBLE_KHR: Self = Self::_2D_ARRAY_COMPATIBLE;
-    }
-    ///Provided by [`khr::maintenance1`](crate::khr::maintenance1)
-    impl crate::vk::FormatFeatureFlagBits {
-        pub const TRANSFER_SRC_KHR: Self = Self::TRANSFER_SRC;
-        pub const TRANSFER_DST_KHR: Self = Self::TRANSFER_DST;
-    }
     pub type CommandPoolTrimFlagsKHR = crate::vk::CommandPoolTrimFlags;
     pub type PFN_vkTrimCommandPoolKHR = crate::vk::PFN_vkTrimCommandPool;
 }

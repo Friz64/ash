@@ -2,8 +2,26 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_bias_control.html) · Extension `VK_EXT_depth_bias_control`
 #![doc(alias = "VK_EXT_depth_bias_control")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_bias_control";
+///Provided by [`ext::depth_bias_control`](crate::ext::depth_bias_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEPTH_BIAS_CONTROL_FEATURES_EXT: Self = Self(1000283000);
+    pub const DEPTH_BIAS_INFO_EXT: Self = Self(1000283001);
+    pub const DEPTH_BIAS_REPRESENTATION_INFO_EXT: Self = Self(1000283002);
+}
+///Provided by [`ext::depth_bias_control`](crate::ext::depth_bias_control)
+impl DepthBiasRepresentationEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const LEAST_REPRESENTABLE_VALUE_FORMAT_EXT: Self = Self(0);
+    pub const LEAST_REPRESENTABLE_VALUE_FORCE_UNORM_EXT: Self = Self(1);
+    pub const FLOAT_EXT: Self = Self(2);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_depth_bias2_ext: crate::vk::PFN_vkCmdSetDepthBias2EXT,
@@ -59,6 +77,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_bias_control";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -199,32 +219,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::depth_bias_control`](crate::ext::depth_bias_control)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DEPTH_BIAS_CONTROL_FEATURES_EXT: Self = Self(
-            1000283000,
-        );
-        pub const DEPTH_BIAS_INFO_EXT: Self = Self(1000283001);
-        pub const DEPTH_BIAS_REPRESENTATION_INFO_EXT: Self = Self(1000283002);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DepthBiasRepresentationEXT(pub(crate) i32);
-    ///Provided by [`ext::depth_bias_control`](crate::ext::depth_bias_control)
-    impl DepthBiasRepresentationEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const LEAST_REPRESENTABLE_VALUE_FORMAT_EXT: Self = Self(0);
-        pub const LEAST_REPRESENTABLE_VALUE_FORCE_UNORM_EXT: Self = Self(1);
-        pub const FLOAT_EXT: Self = Self(2);
-    }
     pub type PFN_vkCmdSetDepthBias2EXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_depth_bias_info: *const crate::vk::DepthBiasInfoEXT<'_>,

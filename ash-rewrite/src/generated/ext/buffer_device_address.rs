@@ -2,8 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_buffer_device_address.html) · Extension `VK_EXT_buffer_device_address`
 #![doc(alias = "VK_EXT_buffer_device_address")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_buffer_device_address";
+///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT: Self = Self(
+        1000244000,
+    );
+    pub const PHYSICAL_DEVICE_BUFFER_ADDRESS_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT;
+    pub const BUFFER_DEVICE_ADDRESS_INFO_EXT: Self = Self::BUFFER_DEVICE_ADDRESS_INFO;
+    pub const BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT: Self = Self(1000244002);
+}
+///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+impl crate::vk::Result {
+    pub const ERROR_INVALID_DEVICE_ADDRESS_EXT: Self = Self::ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS;
+}
+///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+impl crate::vk::BufferUsageFlagBits {
+    pub const SHADER_DEVICE_ADDRESS_EXT: Self = Self::SHADER_DEVICE_ADDRESS;
+}
+///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+impl crate::vk::BufferCreateFlagBits {
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_buffer_device_address_ext: crate::vk::PFN_vkGetBufferDeviceAddressEXT,
@@ -59,6 +78,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_buffer_device_address";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -148,27 +169,6 @@ pub(crate) mod reexport {
         'a,
     >;
     pub type BufferDeviceAddressInfoEXT<'a> = crate::vk::BufferDeviceAddressInfo<'a>;
-    ///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT: Self = Self(
-            1000244000,
-        );
-        pub const PHYSICAL_DEVICE_BUFFER_ADDRESS_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT;
-        pub const BUFFER_DEVICE_ADDRESS_INFO_EXT: Self = Self::BUFFER_DEVICE_ADDRESS_INFO;
-        pub const BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT: Self = Self(1000244002);
-    }
-    ///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
-    impl crate::vk::Result {
-        pub const ERROR_INVALID_DEVICE_ADDRESS_EXT: Self = Self::ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS;
-    }
-    ///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
-    impl crate::vk::BufferUsageFlagBits {
-        pub const SHADER_DEVICE_ADDRESS_EXT: Self = Self::SHADER_DEVICE_ADDRESS;
-    }
-    ///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
-    impl crate::vk::BufferCreateFlagBits {
-        pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
-    }
     pub type PFN_vkGetBufferDeviceAddressEXT = crate::vk::PFN_vkGetBufferDeviceAddress;
 }
 pub use reexport::*;

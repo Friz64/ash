@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_dynamic_rendering_unused_attachments.html) · Extension `VK_EXT_dynamic_rendering_unused_attachments`
 #![doc(alias = "VK_EXT_dynamic_rendering_unused_attachments")]
+///Provided by [`ext::dynamic_rendering_unused_attachments`](crate::ext::dynamic_rendering_unused_attachments)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT: Self = Self(
+        1000499000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_dynamic_rendering_unused_attachments";
 pub(crate) mod reexport {
@@ -40,12 +46,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`ext::dynamic_rendering_unused_attachments`](crate::ext::dynamic_rendering_unused_attachments)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT: Self = Self(
-            1000499000,
-        );
     }
 }
 pub use reexport::*;

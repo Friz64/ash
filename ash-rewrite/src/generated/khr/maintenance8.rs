@@ -2,6 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance8.html) · Extension `VK_KHR_maintenance8`
 #![doc(alias = "VK_KHR_maintenance8")]
+///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR: Self = Self(1000574000);
+    pub const MEMORY_BARRIER_ACCESS_FLAGS_3_KHR: Self = Self(1000574002);
+}
+///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+impl crate::vk::PipelineCacheCreateFlagBits {
+    pub const INTERNALLY_SYNCHRONIZED_MERGE_KHR: Self = Self(1 << 3);
+}
+///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+impl crate::vk::DependencyFlagBits {
+    pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR: Self = Self(1 << 5);
+}
+///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+impl AccessFlagBits3KHR {
+    pub const NONE_KHR: Self = Self(0);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance8";
 pub(crate) mod reexport {
@@ -84,21 +101,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR: Self = Self(1000574000);
-        pub const MEMORY_BARRIER_ACCESS_FLAGS_3_KHR: Self = Self(1000574002);
-    }
-    ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
-    impl crate::vk::PipelineCacheCreateFlagBits {
-        pub const INTERNALLY_SYNCHRONIZED_MERGE_KHR: Self = Self(1 << 3);
-    }
-    ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
-    impl crate::vk::DependencyFlagBits {
-        pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR: Self = Self(
-            1 << 5,
-        );
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct AccessFlags3KHR(u64);
@@ -170,9 +172,5 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct AccessFlagBits3KHR(pub(crate) u64);
-    ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
-    impl AccessFlagBits3KHR {
-        pub const NONE_KHR: Self = Self(0);
-    }
 }
 pub use reexport::*;

@@ -2,20 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_subgroup_rotate.html) · Extension `VK_KHR_shader_subgroup_rotate`
 #![doc(alias = "VK_KHR_shader_subgroup_rotate")]
+///Provided by [`khr::shader_subgroup_rotate`](crate::khr::shader_subgroup_rotate)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES;
+}
+///Provided by [`khr::shader_subgroup_rotate`](crate::khr::shader_subgroup_rotate)
+impl crate::vk::SubgroupFeatureFlagBits {
+    pub const ROTATE_KHR: Self = Self::ROTATE;
+    pub const ROTATE_CLUSTERED_KHR: Self = Self::ROTATE_CLUSTERED;
+}
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_subgroup_rotate";
 pub(crate) mod reexport {
     pub type PhysicalDeviceShaderSubgroupRotateFeaturesKHR<'a> = crate::vk::PhysicalDeviceShaderSubgroupRotateFeatures<
         'a,
     >;
-    ///Provided by [`khr::shader_subgroup_rotate`](crate::khr::shader_subgroup_rotate)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES;
-    }
-    ///Provided by [`khr::shader_subgroup_rotate`](crate::khr::shader_subgroup_rotate)
-    impl crate::vk::SubgroupFeatureFlagBits {
-        pub const ROTATE_KHR: Self = Self::ROTATE;
-        pub const ROTATE_CLUSTERED_KHR: Self = Self::ROTATE_CLUSTERED;
-    }
 }
 pub use reexport::*;

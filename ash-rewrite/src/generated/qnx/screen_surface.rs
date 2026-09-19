@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_screen_surface.html) · Extension `VK_QNX_screen_surface`
 #![doc(alias = "VK_QNX_screen_surface")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_QNX_screen_surface";
+///Provided by [`qnx::screen_surface`](crate::qnx::screen_surface)
+impl crate::vk::StructureType {
+    pub const SCREEN_SURFACE_CREATE_INFO_QNX: Self = Self(1000378000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_screen_surface_qnx: crate::vk::PFN_vkCreateScreenSurfaceQNX,
@@ -79,6 +81,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QNX_screen_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -124,10 +128,6 @@ pub(crate) mod reexport {
             self.window = window;
             self
         }
-    }
-    ///Provided by [`qnx::screen_surface`](crate::qnx::screen_surface)
-    impl crate::vk::StructureType {
-        pub const SCREEN_SURFACE_CREATE_INFO_QNX: Self = Self(1000378000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_pipeline_opacity_micromap.html) · Extension `VK_ARM_pipeline_opacity_micromap`
 #![doc(alias = "VK_ARM_pipeline_opacity_micromap")]
+///Provided by [`arm::pipeline_opacity_micromap`](crate::arm::pipeline_opacity_micromap)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM: Self = Self(
+        1000596000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_pipeline_opacity_micromap";
 pub(crate) mod reexport {
@@ -39,12 +45,6 @@ pub(crate) mod reexport {
             self.pipeline_opacity_micromap = pipeline_opacity_micromap.into();
             self
         }
-    }
-    ///Provided by [`arm::pipeline_opacity_micromap`](crate::arm::pipeline_opacity_micromap)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM: Self = Self(
-            1000596000,
-        );
     }
 }
 pub use reexport::*;

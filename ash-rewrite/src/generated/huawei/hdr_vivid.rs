@@ -2,6 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_hdr_vivid.html) · Extension `VK_HUAWEI_hdr_vivid`
 #![doc(alias = "VK_HUAWEI_hdr_vivid")]
+///Provided by [`huawei::hdr_vivid`](crate::huawei::hdr_vivid)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI: Self = Self(1000590000);
+    pub const HDR_VIVID_DYNAMIC_METADATA_HUAWEI: Self = Self(1000590001);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_hdr_vivid";
 pub(crate) mod reexport {
@@ -68,11 +73,6 @@ pub(crate) mod reexport {
             self.hdr_vivid = hdr_vivid.into();
             self
         }
-    }
-    ///Provided by [`huawei::hdr_vivid`](crate::huawei::hdr_vivid)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI: Self = Self(1000590000);
-        pub const HDR_VIVID_DYNAMIC_METADATA_HUAWEI: Self = Self(1000590001);
     }
 }
 pub use reexport::*;

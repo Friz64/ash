@@ -2,8 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display.html) · Extension `VK_KHR_display`
 #![doc(alias = "VK_KHR_display")]
-pub const SPEC_VERSION: u32 = 23;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_display";
+///Provided by [`khr::display`](crate::khr::display)
+impl crate::vk::StructureType {
+    pub const DISPLAY_MODE_CREATE_INFO_KHR: Self = Self(1000002000);
+    pub const DISPLAY_SURFACE_CREATE_INFO_KHR: Self = Self(1000002001);
+}
+///Provided by [`khr::display`](crate::khr::display)
+impl crate::vk::ObjectType {
+    pub const DISPLAY_KHR: Self = Self(1000002000);
+    pub const DISPLAY_MODE_KHR: Self = Self(1000002001);
+}
+///Provided by [`khr::display`](crate::khr::display)
+impl DisplayPlaneAlphaFlagBitsKHR {
+    pub const OPAQUE_KHR: Self = Self(1 << 0);
+    pub const GLOBAL_KHR: Self = Self(1 << 1);
+    pub const PER_PIXEL_KHR: Self = Self(1 << 2);
+    pub const PER_PIXEL_PREMULTIPLIED_KHR: Self = Self(1 << 3);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_display_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceDisplayPropertiesKHR,
@@ -162,6 +177,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 23;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_display";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -452,16 +469,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::display`](crate::khr::display)
-    impl crate::vk::StructureType {
-        pub const DISPLAY_MODE_CREATE_INFO_KHR: Self = Self(1000002000);
-        pub const DISPLAY_SURFACE_CREATE_INFO_KHR: Self = Self(1000002001);
-    }
-    ///Provided by [`khr::display`](crate::khr::display)
-    impl crate::vk::ObjectType {
-        pub const DISPLAY_KHR: Self = Self(1000002000);
-        pub const DISPLAY_MODE_KHR: Self = Self(1000002001);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DisplayPlaneAlphaFlagsKHR(u32);
@@ -540,13 +547,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct DisplayPlaneAlphaFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::display`](crate::khr::display)
-    impl DisplayPlaneAlphaFlagBitsKHR {
-        pub const OPAQUE_KHR: Self = Self(1 << 0);
-        pub const GLOBAL_KHR: Self = Self(1 << 1);
-        pub const PER_PIXEL_KHR: Self = Self(1 << 2);
-        pub const PER_PIXEL_PREMULTIPLIED_KHR: Self = Self(1 << 3);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DisplayModeCreateFlagsKHR(u32);

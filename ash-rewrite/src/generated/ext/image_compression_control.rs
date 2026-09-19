@@ -2,8 +2,55 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_compression_control.html) · Extension `VK_EXT_image_compression_control`
 #![doc(alias = "VK_EXT_image_compression_control")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control";
+///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT: Self = Self(
+        1000338000,
+    );
+    pub const IMAGE_COMPRESSION_CONTROL_EXT: Self = Self(1000338001);
+    pub const SUBRESOURCE_LAYOUT_2_EXT: Self = Self::SUBRESOURCE_LAYOUT_2;
+    pub const IMAGE_SUBRESOURCE_2_EXT: Self = Self::IMAGE_SUBRESOURCE_2;
+    pub const IMAGE_COMPRESSION_PROPERTIES_EXT: Self = Self(1000338004);
+}
+///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+impl crate::vk::Result {
+    pub const ERROR_COMPRESSION_EXHAUSTED_EXT: Self = Self(-1000338000);
+}
+///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+impl ImageCompressionFlagBitsEXT {
+    pub const DEFAULT_EXT: Self = Self(0);
+    pub const FIXED_RATE_DEFAULT_EXT: Self = Self(1 << 0);
+    pub const FIXED_RATE_EXPLICIT_EXT: Self = Self(1 << 1);
+    pub const DISABLED_EXT: Self = Self(1 << 2);
+}
+///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+impl ImageCompressionFixedRateFlagBitsEXT {
+    pub const NONE_EXT: Self = Self(0);
+    pub const _1BPC_EXT: Self = Self(1 << 0);
+    pub const _2BPC_EXT: Self = Self(1 << 1);
+    pub const _3BPC_EXT: Self = Self(1 << 2);
+    pub const _4BPC_EXT: Self = Self(1 << 3);
+    pub const _5BPC_EXT: Self = Self(1 << 4);
+    pub const _6BPC_EXT: Self = Self(1 << 5);
+    pub const _7BPC_EXT: Self = Self(1 << 6);
+    pub const _8BPC_EXT: Self = Self(1 << 7);
+    pub const _9BPC_EXT: Self = Self(1 << 8);
+    pub const _10BPC_EXT: Self = Self(1 << 9);
+    pub const _11BPC_EXT: Self = Self(1 << 10);
+    pub const _12BPC_EXT: Self = Self(1 << 11);
+    pub const _13BPC_EXT: Self = Self(1 << 12);
+    pub const _14BPC_EXT: Self = Self(1 << 13);
+    pub const _15BPC_EXT: Self = Self(1 << 14);
+    pub const _16BPC_EXT: Self = Self(1 << 15);
+    pub const _17BPC_EXT: Self = Self(1 << 16);
+    pub const _18BPC_EXT: Self = Self(1 << 17);
+    pub const _19BPC_EXT: Self = Self(1 << 18);
+    pub const _20BPC_EXT: Self = Self(1 << 19);
+    pub const _21BPC_EXT: Self = Self(1 << 20);
+    pub const _22BPC_EXT: Self = Self(1 << 21);
+    pub const _23BPC_EXT: Self = Self(1 << 22);
+    pub const _24BPC_EXT: Self = Self(1 << 23);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_image_subresource_layout2_ext: crate::vk::PFN_vkGetImageSubresourceLayout2EXT,
@@ -61,6 +108,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -187,20 +236,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT: Self = Self(
-            1000338000,
-        );
-        pub const IMAGE_COMPRESSION_CONTROL_EXT: Self = Self(1000338001);
-        pub const SUBRESOURCE_LAYOUT_2_EXT: Self = Self::SUBRESOURCE_LAYOUT_2;
-        pub const IMAGE_SUBRESOURCE_2_EXT: Self = Self::IMAGE_SUBRESOURCE_2;
-        pub const IMAGE_COMPRESSION_PROPERTIES_EXT: Self = Self(1000338004);
-    }
-    ///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
-    impl crate::vk::Result {
-        pub const ERROR_COMPRESSION_EXHAUSTED_EXT: Self = Self(-1000338000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ImageCompressionFlagsEXT(u32);
@@ -279,13 +314,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ImageCompressionFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
-    impl ImageCompressionFlagBitsEXT {
-        pub const DEFAULT_EXT: Self = Self(0);
-        pub const FIXED_RATE_DEFAULT_EXT: Self = Self(1 << 0);
-        pub const FIXED_RATE_EXPLICIT_EXT: Self = Self(1 << 1);
-        pub const DISABLED_EXT: Self = Self(1 << 2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ImageCompressionFixedRateFlagsEXT(u32);
@@ -431,33 +459,5 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ImageCompressionFixedRateFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
-    impl ImageCompressionFixedRateFlagBitsEXT {
-        pub const NONE_EXT: Self = Self(0);
-        pub const _1BPC_EXT: Self = Self(1 << 0);
-        pub const _2BPC_EXT: Self = Self(1 << 1);
-        pub const _3BPC_EXT: Self = Self(1 << 2);
-        pub const _4BPC_EXT: Self = Self(1 << 3);
-        pub const _5BPC_EXT: Self = Self(1 << 4);
-        pub const _6BPC_EXT: Self = Self(1 << 5);
-        pub const _7BPC_EXT: Self = Self(1 << 6);
-        pub const _8BPC_EXT: Self = Self(1 << 7);
-        pub const _9BPC_EXT: Self = Self(1 << 8);
-        pub const _10BPC_EXT: Self = Self(1 << 9);
-        pub const _11BPC_EXT: Self = Self(1 << 10);
-        pub const _12BPC_EXT: Self = Self(1 << 11);
-        pub const _13BPC_EXT: Self = Self(1 << 12);
-        pub const _14BPC_EXT: Self = Self(1 << 13);
-        pub const _15BPC_EXT: Self = Self(1 << 14);
-        pub const _16BPC_EXT: Self = Self(1 << 15);
-        pub const _17BPC_EXT: Self = Self(1 << 16);
-        pub const _18BPC_EXT: Self = Self(1 << 17);
-        pub const _19BPC_EXT: Self = Self(1 << 18);
-        pub const _20BPC_EXT: Self = Self(1 << 19);
-        pub const _21BPC_EXT: Self = Self(1 << 20);
-        pub const _22BPC_EXT: Self = Self(1 << 21);
-        pub const _23BPC_EXT: Self = Self(1 << 22);
-        pub const _24BPC_EXT: Self = Self(1 << 23);
-    }
 }
 pub use reexport::*;

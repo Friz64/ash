@@ -2,8 +2,141 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph.html) · Extension `VK_ARM_data_graph`
 #![doc(alias = "VK_ARM_data_graph")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph";
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::PipelineBindPoint {
+    pub const DATA_GRAPH_ARM: Self = Self(1000507000);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::StructureType {
+    pub const DATA_GRAPH_PIPELINE_CREATE_INFO_ARM: Self = Self(1000507000);
+    pub const DATA_GRAPH_PIPELINE_SESSION_CREATE_INFO_ARM: Self = Self(1000507001);
+    pub const DATA_GRAPH_PIPELINE_RESOURCE_INFO_ARM: Self = Self(1000507002);
+    pub const DATA_GRAPH_PIPELINE_CONSTANT_ARM: Self = Self(1000507003);
+    pub const DATA_GRAPH_PIPELINE_SESSION_MEMORY_REQUIREMENTS_INFO_ARM: Self = Self(
+        1000507004,
+    );
+    pub const BIND_DATA_GRAPH_PIPELINE_SESSION_MEMORY_INFO_ARM: Self = Self(1000507005);
+    pub const PHYSICAL_DEVICE_DATA_GRAPH_FEATURES_ARM: Self = Self(1000507006);
+    pub const DATA_GRAPH_PIPELINE_SHADER_MODULE_CREATE_INFO_ARM: Self = Self(1000507007);
+    pub const DATA_GRAPH_PIPELINE_PROPERTY_QUERY_RESULT_ARM: Self = Self(1000507008);
+    pub const DATA_GRAPH_PIPELINE_INFO_ARM: Self = Self(1000507009);
+    pub const DATA_GRAPH_PIPELINE_COMPILER_CONTROL_CREATE_INFO_ARM: Self = Self(
+        1000507010,
+    );
+    pub const DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENTS_INFO_ARM: Self = Self(
+        1000507011,
+    );
+    pub const DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENT_ARM: Self = Self(
+        1000507012,
+    );
+    pub const DATA_GRAPH_PIPELINE_IDENTIFIER_CREATE_INFO_ARM: Self = Self(1000507013);
+    pub const DATA_GRAPH_PIPELINE_DISPATCH_INFO_ARM: Self = Self(1000507014);
+    pub const DATA_GRAPH_PROCESSING_ENGINE_CREATE_INFO_ARM: Self = Self(1000507016);
+    pub const QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_PROPERTIES_ARM: Self = Self(
+        1000507017,
+    );
+    pub const QUEUE_FAMILY_DATA_GRAPH_PROPERTIES_ARM: Self = Self(1000507018);
+    pub const PHYSICAL_DEVICE_QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_INFO_ARM: Self = Self(
+        1000507019,
+    );
+    pub const DATA_GRAPH_PIPELINE_CONSTANT_TENSOR_SEMI_STRUCTURED_SPARSITY_INFO_ARM: Self = Self(
+        1000507015,
+    );
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::ObjectType {
+    pub const DATA_GRAPH_PIPELINE_SESSION_ARM: Self = Self(1000507000);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl DataGraphPipelineSessionBindPointARM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const TRANSIENT_ARM: Self = Self(0);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl DataGraphPipelineSessionBindPointTypeARM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const MEMORY_ARM: Self = Self(0);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl DataGraphPipelinePropertyARM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const CREATION_LOG_ARM: Self = Self(0);
+    pub const IDENTIFIER_ARM: Self = Self(1);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl PhysicalDeviceDataGraphProcessingEngineTypeARM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const DEFAULT_ARM: Self = Self(0);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl PhysicalDeviceDataGraphOperationTypeARM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const SPIRV_EXTENDED_INSTRUCTION_SET_ARM: Self = Self(0);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::QueueFlagBits {
+    pub const DATA_GRAPH_ARM: Self = Self(1 << 10);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::AccessFlagBits2 {
+    pub const DATA_GRAPH_READ_ARM: Self = Self(1 << 47);
+    pub const DATA_GRAPH_WRITE_ARM: Self = Self(1 << 48);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const DATA_GRAPH_ARM: Self = Self(1 << 42);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const TENSOR_DATA_GRAPH_ARM: Self = Self(1 << 48);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::BufferUsageFlagBits2 {
+    pub const DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM: Self = Self(1 << 29);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::TensorUsageFlagBitsARM {
+    pub const DATA_GRAPH_ARM: Self = Self(1 << 5);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl DataGraphPipelineSessionCreateFlagBitsARM {
+    pub const PROTECTED_ARM: Self = Self(1 << 0);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_data_graph_pipelines_arm: crate::vk::PFN_vkCreateDataGraphPipelinesARM,
@@ -289,6 +422,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -1197,163 +1332,26 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl crate::vk::PipelineBindPoint {
-        pub const DATA_GRAPH_ARM: Self = Self(1000507000);
-    }
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl crate::vk::StructureType {
-        pub const DATA_GRAPH_PIPELINE_CREATE_INFO_ARM: Self = Self(1000507000);
-        pub const DATA_GRAPH_PIPELINE_SESSION_CREATE_INFO_ARM: Self = Self(1000507001);
-        pub const DATA_GRAPH_PIPELINE_RESOURCE_INFO_ARM: Self = Self(1000507002);
-        pub const DATA_GRAPH_PIPELINE_CONSTANT_ARM: Self = Self(1000507003);
-        pub const DATA_GRAPH_PIPELINE_SESSION_MEMORY_REQUIREMENTS_INFO_ARM: Self = Self(
-            1000507004,
-        );
-        pub const BIND_DATA_GRAPH_PIPELINE_SESSION_MEMORY_INFO_ARM: Self = Self(
-            1000507005,
-        );
-        pub const PHYSICAL_DEVICE_DATA_GRAPH_FEATURES_ARM: Self = Self(1000507006);
-        pub const DATA_GRAPH_PIPELINE_SHADER_MODULE_CREATE_INFO_ARM: Self = Self(
-            1000507007,
-        );
-        pub const DATA_GRAPH_PIPELINE_PROPERTY_QUERY_RESULT_ARM: Self = Self(1000507008);
-        pub const DATA_GRAPH_PIPELINE_INFO_ARM: Self = Self(1000507009);
-        pub const DATA_GRAPH_PIPELINE_COMPILER_CONTROL_CREATE_INFO_ARM: Self = Self(
-            1000507010,
-        );
-        pub const DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENTS_INFO_ARM: Self = Self(
-            1000507011,
-        );
-        pub const DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENT_ARM: Self = Self(
-            1000507012,
-        );
-        pub const DATA_GRAPH_PIPELINE_IDENTIFIER_CREATE_INFO_ARM: Self = Self(
-            1000507013,
-        );
-        pub const DATA_GRAPH_PIPELINE_DISPATCH_INFO_ARM: Self = Self(1000507014);
-        pub const DATA_GRAPH_PROCESSING_ENGINE_CREATE_INFO_ARM: Self = Self(1000507016);
-        pub const QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_PROPERTIES_ARM: Self = Self(
-            1000507017,
-        );
-        pub const QUEUE_FAMILY_DATA_GRAPH_PROPERTIES_ARM: Self = Self(1000507018);
-        pub const PHYSICAL_DEVICE_QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_INFO_ARM: Self = Self(
-            1000507019,
-        );
-        pub const DATA_GRAPH_PIPELINE_CONSTANT_TENSOR_SEMI_STRUCTURED_SPARSITY_INFO_ARM: Self = Self(
-            1000507015,
-        );
-    }
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl crate::vk::ObjectType {
-        pub const DATA_GRAPH_PIPELINE_SESSION_ARM: Self = Self(1000507000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DataGraphPipelineSessionBindPointARM(pub(crate) i32);
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl DataGraphPipelineSessionBindPointARM {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const TRANSIENT_ARM: Self = Self(0);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DataGraphPipelineSessionBindPointTypeARM(pub(crate) i32);
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl DataGraphPipelineSessionBindPointTypeARM {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const MEMORY_ARM: Self = Self(0);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DataGraphPipelinePropertyARM(pub(crate) i32);
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl DataGraphPipelinePropertyARM {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const CREATION_LOG_ARM: Self = Self(0);
-        pub const IDENTIFIER_ARM: Self = Self(1);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct PhysicalDeviceDataGraphProcessingEngineTypeARM(pub(crate) i32);
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl PhysicalDeviceDataGraphProcessingEngineTypeARM {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const DEFAULT_ARM: Self = Self(0);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct PhysicalDeviceDataGraphOperationTypeARM(pub(crate) i32);
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl PhysicalDeviceDataGraphOperationTypeARM {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const SPIRV_EXTENDED_INSTRUCTION_SET_ARM: Self = Self(0);
-    }
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl crate::vk::QueueFlagBits {
-        pub const DATA_GRAPH_ARM: Self = Self(1 << 10);
-    }
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl crate::vk::AccessFlagBits2 {
-        pub const DATA_GRAPH_READ_ARM: Self = Self(1 << 47);
-        pub const DATA_GRAPH_WRITE_ARM: Self = Self(1 << 48);
-    }
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl crate::vk::PipelineStageFlagBits2 {
-        pub const DATA_GRAPH_ARM: Self = Self(1 << 42);
-    }
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl crate::vk::FormatFeatureFlagBits2 {
-        pub const TENSOR_DATA_GRAPH_ARM: Self = Self(1 << 48);
-    }
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl crate::vk::BufferUsageFlagBits2 {
-        pub const DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM: Self = Self(1 << 29);
-    }
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl crate::vk::TensorUsageFlagBitsARM {
-        pub const DATA_GRAPH_ARM: Self = Self(1 << 5);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSessionCreateFlagsARM(u64);
@@ -1430,10 +1428,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct DataGraphPipelineSessionCreateFlagBitsARM(pub(crate) u64);
-    ///Provided by [`arm::data_graph`](crate::arm::data_graph)
-    impl DataGraphPipelineSessionCreateFlagBitsARM {
-        pub const PROTECTED_ARM: Self = Self(1 << 0);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineDispatchFlagsARM(u64);

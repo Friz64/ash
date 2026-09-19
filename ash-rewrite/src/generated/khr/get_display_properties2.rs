@@ -2,8 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_display_properties2.html) · Extension `VK_KHR_get_display_properties2`
 #![doc(alias = "VK_KHR_get_display_properties2")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_get_display_properties2";
+///Provided by [`khr::get_display_properties2`](crate::khr::get_display_properties2)
+impl crate::vk::StructureType {
+    pub const DISPLAY_PROPERTIES_2_KHR: Self = Self(1000121000);
+    pub const DISPLAY_PLANE_PROPERTIES_2_KHR: Self = Self(1000121001);
+    pub const DISPLAY_MODE_PROPERTIES_2_KHR: Self = Self(1000121002);
+    pub const DISPLAY_PLANE_INFO_2_KHR: Self = Self(1000121003);
+    pub const DISPLAY_PLANE_CAPABILITIES_2_KHR: Self = Self(1000121004);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_display_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceDisplayProperties2KHR,
@@ -111,6 +117,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_get_display_properties2";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -264,14 +272,6 @@ pub(crate) mod reexport {
             self.capabilities = capabilities;
             self
         }
-    }
-    ///Provided by [`khr::get_display_properties2`](crate::khr::get_display_properties2)
-    impl crate::vk::StructureType {
-        pub const DISPLAY_PROPERTIES_2_KHR: Self = Self(1000121000);
-        pub const DISPLAY_PLANE_PROPERTIES_2_KHR: Self = Self(1000121001);
-        pub const DISPLAY_MODE_PROPERTIES_2_KHR: Self = Self(1000121002);
-        pub const DISPLAY_PLANE_INFO_2_KHR: Self = Self(1000121003);
-        pub const DISPLAY_PLANE_CAPABILITIES_2_KHR: Self = Self(1000121004);
     }
     pub type PFN_vkGetPhysicalDeviceDisplayProperties2KHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,

@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_abort.html) · Extension `VK_KHR_shader_abort`
 #![doc(alias = "VK_KHR_shader_abort")]
+///Provided by [`khr::shader_abort`](crate::khr::shader_abort)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_ABORT_FEATURES_KHR: Self = Self(1000233000);
+    pub const DEVICE_FAULT_SHADER_ABORT_MESSAGE_INFO_KHR: Self = Self(1000233001);
+    pub const PHYSICAL_DEVICE_SHADER_ABORT_PROPERTIES_KHR: Self = Self(1000233002);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_abort";
 pub(crate) mod reexport {
@@ -102,12 +108,6 @@ pub(crate) mod reexport {
             self.p_message_data = message_data.as_mut_ptr().cast();
             self
         }
-    }
-    ///Provided by [`khr::shader_abort`](crate::khr::shader_abort)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_ABORT_FEATURES_KHR: Self = Self(1000233000);
-        pub const DEVICE_FAULT_SHADER_ABORT_MESSAGE_INFO_KHR: Self = Self(1000233001);
-        pub const PHYSICAL_DEVICE_SHADER_ABORT_PROPERTIES_KHR: Self = Self(1000233002);
     }
 }
 pub use reexport::*;

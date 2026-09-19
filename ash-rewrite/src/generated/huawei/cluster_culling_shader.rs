@@ -2,8 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_cluster_culling_shader.html) · Extension `VK_HUAWEI_cluster_culling_shader`
 #![doc(alias = "VK_HUAWEI_cluster_culling_shader")]
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";
+///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI: Self = Self(
+        1000404000,
+    );
+    pub const PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI: Self = Self(
+        1000404001,
+    );
+    pub const PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI: Self = Self(
+        1000404002,
+    );
+}
+///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+impl crate::vk::ShaderStageFlagBits {
+    pub const CLUSTER_CULLING_HUAWEI: Self = Self(1 << 19);
+}
+///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+impl crate::vk::QueryPipelineStatisticFlagBits {
+    pub const CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI: Self = Self(1 << 13);
+}
+///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const CLUSTER_CULLING_SHADER_HUAWEI: Self = Self(1 << 41);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_draw_cluster_huawei: crate::vk::PFN_vkCmdDrawClusterHUAWEI,
@@ -77,6 +99,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -211,30 +235,6 @@ pub(crate) mod reexport {
             self.cluster_shading_rate = cluster_shading_rate.into();
             self
         }
-    }
-    ///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI: Self = Self(
-            1000404000,
-        );
-        pub const PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI: Self = Self(
-            1000404001,
-        );
-        pub const PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI: Self = Self(
-            1000404002,
-        );
-    }
-    ///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
-    impl crate::vk::ShaderStageFlagBits {
-        pub const CLUSTER_CULLING_HUAWEI: Self = Self(1 << 19);
-    }
-    ///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
-    impl crate::vk::QueryPipelineStatisticFlagBits {
-        pub const CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI: Self = Self(1 << 13);
-    }
-    ///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
-    impl crate::vk::PipelineStageFlagBits2 {
-        pub const CLUSTER_CULLING_SHADER_HUAWEI: Self = Self(1 << 41);
     }
     pub type PFN_vkCmdDrawClusterHUAWEI = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

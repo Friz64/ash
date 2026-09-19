@@ -2,6 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_tensor_controls.html) · Extension `VK_ARM_tensor_controls`
 #![doc(alias = "VK_ARM_tensor_controls")]
+///Provided by [`arm::tensor_controls`](crate::arm::tensor_controls)
+impl crate::vk::StructureType {
+    pub const TENSOR_EXPLICIT_TILING_FORMAT_PROPERTIES_ARM: Self = Self(1000565000);
+    pub const TENSOR_ROLLING_BACKING_CREATE_INFO_ARM: Self = Self(1000565001);
+}
+///Provided by [`arm::tensor_controls`](crate::arm::tensor_controls)
+impl crate::vk::TensorTilingARM {
+    pub const BRICK_16_WIDE_ARM: Self = Self(1000565000);
+    pub const BRICK_8_WIDE_ARM: Self = Self(1000565001);
+    pub const BRICK_4_WIDE_ARM: Self = Self(1000565002);
+    pub const BLOCK_U_INTERLEAVED_ARM: Self = Self(1000565003);
+    pub const BLOCK_U_INTERLEAVED_64K_ARM: Self = Self(1000565004);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_tensor_controls";
 pub(crate) mod reexport {
@@ -108,19 +121,6 @@ pub(crate) mod reexport {
             self.wraps = wraps;
             self
         }
-    }
-    ///Provided by [`arm::tensor_controls`](crate::arm::tensor_controls)
-    impl crate::vk::StructureType {
-        pub const TENSOR_EXPLICIT_TILING_FORMAT_PROPERTIES_ARM: Self = Self(1000565000);
-        pub const TENSOR_ROLLING_BACKING_CREATE_INFO_ARM: Self = Self(1000565001);
-    }
-    ///Provided by [`arm::tensor_controls`](crate::arm::tensor_controls)
-    impl crate::vk::TensorTilingARM {
-        pub const BRICK_16_WIDE_ARM: Self = Self(1000565000);
-        pub const BRICK_8_WIDE_ARM: Self = Self(1000565001);
-        pub const BRICK_4_WIDE_ARM: Self = Self(1000565002);
-        pub const BLOCK_U_INTERLEAVED_ARM: Self = Self(1000565003);
-        pub const BLOCK_U_INTERLEAVED_64K_ARM: Self = Self(1000565004);
     }
     pub const MAX_TENSOR_CREATE_INFO_ROLLING_BACKING_WRAP_COUNT_ARM: u32 = 4;
 }

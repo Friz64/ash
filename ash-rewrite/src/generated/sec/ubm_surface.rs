@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_ubm_surface.html) · Extension `VK_SEC_ubm_surface`
 #![doc(alias = "VK_SEC_ubm_surface")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_SEC_ubm_surface";
+///Provided by [`sec::ubm_surface`](crate::sec::ubm_surface)
+impl crate::vk::StructureType {
+    pub const UBM_SURFACE_CREATE_INFO_SEC: Self = Self(1000664000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_ubm_surface_sec: crate::vk::PFN_vkCreateUbmSurfaceSEC,
@@ -77,6 +79,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_SEC_ubm_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -122,10 +126,6 @@ pub(crate) mod reexport {
             self.surface = surface;
             self
         }
-    }
-    ///Provided by [`sec::ubm_surface`](crate::sec::ubm_surface)
-    impl crate::vk::StructureType {
-        pub const UBM_SURFACE_CREATE_INFO_SEC: Self = Self(1000664000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

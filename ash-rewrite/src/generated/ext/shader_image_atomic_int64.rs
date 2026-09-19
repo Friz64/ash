@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_image_atomic_int64.html) · Extension `VK_EXT_shader_image_atomic_int64`
 #![doc(alias = "VK_EXT_shader_image_atomic_int64")]
+///Provided by [`ext::shader_image_atomic_int64`](crate::ext::shader_image_atomic_int64)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT: Self = Self(
+        1000234000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_image_atomic_int64";
 pub(crate) mod reexport {
@@ -48,12 +54,6 @@ pub(crate) mod reexport {
             self.sparse_image_int64_atomics = sparse_image_int64_atomics.into();
             self
         }
-    }
-    ///Provided by [`ext::shader_image_atomic_int64`](crate::ext::shader_image_atomic_int64)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT: Self = Self(
-            1000234000,
-        );
     }
 }
 pub use reexport::*;

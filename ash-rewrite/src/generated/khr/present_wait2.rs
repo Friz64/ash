@@ -2,8 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_wait2.html) · Extension `VK_KHR_present_wait2`
 #![doc(alias = "VK_KHR_present_wait2")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_present_wait2";
+///Provided by [`khr::present_wait2`](crate::khr::present_wait2)
+impl crate::vk::StructureType {
+    pub const SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR: Self = Self(1000480000);
+    pub const PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR: Self = Self(1000480001);
+    pub const PRESENT_WAIT_2_INFO_KHR: Self = Self(1000480002);
+}
+///Provided by [`khr::present_wait2`](crate::khr::present_wait2)
+impl crate::vk::SwapchainCreateFlagBitsKHR {
+    pub const PRESENT_WAIT_2_KHR: Self = Self(1 << 7);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub wait_for_present2_khr: crate::vk::PFN_vkWaitForPresent2KHR,
@@ -60,6 +68,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_present_wait2";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -155,16 +165,6 @@ pub(crate) mod reexport {
             self.present_wait2_supported = present_wait2_supported.into();
             self
         }
-    }
-    ///Provided by [`khr::present_wait2`](crate::khr::present_wait2)
-    impl crate::vk::StructureType {
-        pub const SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR: Self = Self(1000480000);
-        pub const PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR: Self = Self(1000480001);
-        pub const PRESENT_WAIT_2_INFO_KHR: Self = Self(1000480002);
-    }
-    ///Provided by [`khr::present_wait2`](crate::khr::present_wait2)
-    impl crate::vk::SwapchainCreateFlagBitsKHR {
-        pub const PRESENT_WAIT_2_KHR: Self = Self(1 << 7);
     }
     pub type PFN_vkWaitForPresent2KHR = unsafe extern "system" fn(
         device: crate::vk::Device,

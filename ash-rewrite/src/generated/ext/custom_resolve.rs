@@ -2,8 +2,26 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_custom_resolve.html) · Extension `VK_EXT_custom_resolve`
 #![doc(alias = "VK_EXT_custom_resolve")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_custom_resolve";
+///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT: Self = Self(1000628000);
+    pub const BEGIN_CUSTOM_RESOLVE_INFO_EXT: Self = Self(1000628001);
+    pub const CUSTOM_RESOLVE_CREATE_INFO_EXT: Self = Self(1000628002);
+}
+///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+impl crate::vk::SubpassDescriptionFlagBits {
+    pub const FRAGMENT_REGION_EXT: Self = Self(1 << 2);
+    pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 3);
+}
+///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+impl crate::vk::RenderingFlagBits {
+    pub const FRAGMENT_REGION_EXT: Self = Self(1 << 6);
+    pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 7);
+}
+///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+impl crate::vk::ResolveModeFlagBits {
+    pub const CUSTOM_EXT: Self = Self(1 << 5);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_begin_custom_resolve_ext: crate::vk::PFN_vkCmdBeginCustomResolveEXT,
@@ -59,6 +77,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_custom_resolve";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -174,26 +194,6 @@ pub(crate) mod reexport {
             self.stencil_attachment_format = stencil_attachment_format;
             self
         }
-    }
-    ///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT: Self = Self(1000628000);
-        pub const BEGIN_CUSTOM_RESOLVE_INFO_EXT: Self = Self(1000628001);
-        pub const CUSTOM_RESOLVE_CREATE_INFO_EXT: Self = Self(1000628002);
-    }
-    ///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
-    impl crate::vk::SubpassDescriptionFlagBits {
-        pub const FRAGMENT_REGION_EXT: Self = Self(1 << 2);
-        pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 3);
-    }
-    ///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
-    impl crate::vk::RenderingFlagBits {
-        pub const FRAGMENT_REGION_EXT: Self = Self(1 << 6);
-        pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 7);
-    }
-    ///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
-    impl crate::vk::ResolveModeFlagBits {
-        pub const CUSTOM_EXT: Self = Self(1 << 5);
     }
     pub type PFN_vkCmdBeginCustomResolveEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

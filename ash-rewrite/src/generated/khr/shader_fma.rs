@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_fma.html) · Extension `VK_KHR_shader_fma`
 #![doc(alias = "VK_KHR_shader_fma")]
+///Provided by [`khr::shader_fma`](crate::khr::shader_fma)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR: Self = Self(1000579000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_fma";
 pub(crate) mod reexport {
@@ -48,10 +52,6 @@ pub(crate) mod reexport {
             self.shader_fma_float64 = shader_fma_float64.into();
             self
         }
-    }
-    ///Provided by [`khr::shader_fma`](crate::khr::shader_fma)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR: Self = Self(1000579000);
     }
 }
 pub use reexport::*;

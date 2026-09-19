@@ -2,8 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_info.html) · Extension `VK_AMD_shader_info`
 #![doc(alias = "VK_AMD_shader_info")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_shader_info";
+///Provided by [`amd::shader_info`](crate::amd::shader_info)
+impl ShaderInfoTypeAMD {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const STATISTICS_AMD: Self = Self(0);
+    pub const BINARY_AMD: Self = Self(1);
+    pub const DISASSEMBLY_AMD: Self = Self(2);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_shader_info_amd: crate::vk::PFN_vkGetShaderInfoAMD,
@@ -63,6 +75,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_shader_info";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -171,20 +185,6 @@ pub(crate) mod reexport {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct ShaderInfoTypeAMD(pub(crate) i32);
-    ///Provided by [`amd::shader_info`](crate::amd::shader_info)
-    impl ShaderInfoTypeAMD {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const STATISTICS_AMD: Self = Self(0);
-        pub const BINARY_AMD: Self = Self(1);
-        pub const DISASSEMBLY_AMD: Self = Self(2);
-    }
     pub type PFN_vkGetShaderInfoAMD = unsafe extern "system" fn(
         device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,

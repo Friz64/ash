@@ -2,8 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_copy_commands2.html) · Extension `VK_KHR_copy_commands2`
 #![doc(alias = "VK_KHR_copy_commands2")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_copy_commands2";
+///Provided by [`khr::copy_commands2`](crate::khr::copy_commands2)
+impl crate::vk::StructureType {
+    pub const COPY_BUFFER_INFO_2_KHR: Self = Self::COPY_BUFFER_INFO_2;
+    pub const COPY_IMAGE_INFO_2_KHR: Self = Self::COPY_IMAGE_INFO_2;
+    pub const COPY_BUFFER_TO_IMAGE_INFO_2_KHR: Self = Self::COPY_BUFFER_TO_IMAGE_INFO_2;
+    pub const COPY_IMAGE_TO_BUFFER_INFO_2_KHR: Self = Self::COPY_IMAGE_TO_BUFFER_INFO_2;
+    pub const BLIT_IMAGE_INFO_2_KHR: Self = Self::BLIT_IMAGE_INFO_2;
+    pub const RESOLVE_IMAGE_INFO_2_KHR: Self = Self::RESOLVE_IMAGE_INFO_2;
+    pub const BUFFER_COPY_2_KHR: Self = Self::BUFFER_COPY_2;
+    pub const IMAGE_COPY_2_KHR: Self = Self::IMAGE_COPY_2;
+    pub const IMAGE_BLIT_2_KHR: Self = Self::IMAGE_BLIT_2;
+    pub const BUFFER_IMAGE_COPY_2_KHR: Self = Self::BUFFER_IMAGE_COPY_2;
+    pub const IMAGE_RESOLVE_2_KHR: Self = Self::IMAGE_RESOLVE_2;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_copy_buffer2_khr: crate::vk::PFN_vkCmdCopyBuffer2KHR,
@@ -134,6 +146,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_copy_commands2";
 pub(crate) mod reexport {
     pub type BufferCopy2KHR<'a> = crate::vk::BufferCopy2<'a>;
     pub type ImageCopy2KHR<'a> = crate::vk::ImageCopy2<'a>;
@@ -146,20 +160,6 @@ pub(crate) mod reexport {
     pub type CopyBufferToImageInfo2KHR<'a> = crate::vk::CopyBufferToImageInfo2<'a>;
     pub type CopyImageToBufferInfo2KHR<'a> = crate::vk::CopyImageToBufferInfo2<'a>;
     pub type ResolveImageInfo2KHR<'a> = crate::vk::ResolveImageInfo2<'a>;
-    ///Provided by [`khr::copy_commands2`](crate::khr::copy_commands2)
-    impl crate::vk::StructureType {
-        pub const COPY_BUFFER_INFO_2_KHR: Self = Self::COPY_BUFFER_INFO_2;
-        pub const COPY_IMAGE_INFO_2_KHR: Self = Self::COPY_IMAGE_INFO_2;
-        pub const COPY_BUFFER_TO_IMAGE_INFO_2_KHR: Self = Self::COPY_BUFFER_TO_IMAGE_INFO_2;
-        pub const COPY_IMAGE_TO_BUFFER_INFO_2_KHR: Self = Self::COPY_IMAGE_TO_BUFFER_INFO_2;
-        pub const BLIT_IMAGE_INFO_2_KHR: Self = Self::BLIT_IMAGE_INFO_2;
-        pub const RESOLVE_IMAGE_INFO_2_KHR: Self = Self::RESOLVE_IMAGE_INFO_2;
-        pub const BUFFER_COPY_2_KHR: Self = Self::BUFFER_COPY_2;
-        pub const IMAGE_COPY_2_KHR: Self = Self::IMAGE_COPY_2;
-        pub const IMAGE_BLIT_2_KHR: Self = Self::IMAGE_BLIT_2;
-        pub const BUFFER_IMAGE_COPY_2_KHR: Self = Self::BUFFER_IMAGE_COPY_2;
-        pub const IMAGE_RESOLVE_2_KHR: Self = Self::IMAGE_RESOLVE_2;
-    }
     pub type PFN_vkCmdCopyBuffer2KHR = crate::vk::PFN_vkCmdCopyBuffer2;
     pub type PFN_vkCmdCopyImage2KHR = crate::vk::PFN_vkCmdCopyImage2;
     pub type PFN_vkCmdBlitImage2KHR = crate::vk::PFN_vkCmdBlitImage2;

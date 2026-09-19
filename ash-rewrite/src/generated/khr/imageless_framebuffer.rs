@@ -2,6 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_imageless_framebuffer.html) · Extension `VK_KHR_imageless_framebuffer`
 #![doc(alias = "VK_KHR_imageless_framebuffer")]
+///Provided by [`khr::imageless_framebuffer`](crate::khr::imageless_framebuffer)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES;
+    pub const FRAMEBUFFER_ATTACHMENTS_CREATE_INFO_KHR: Self = Self::FRAMEBUFFER_ATTACHMENTS_CREATE_INFO;
+    pub const FRAMEBUFFER_ATTACHMENT_IMAGE_INFO_KHR: Self = Self::FRAMEBUFFER_ATTACHMENT_IMAGE_INFO;
+    pub const RENDER_PASS_ATTACHMENT_BEGIN_INFO_KHR: Self = Self::RENDER_PASS_ATTACHMENT_BEGIN_INFO;
+}
+///Provided by [`khr::imageless_framebuffer`](crate::khr::imageless_framebuffer)
+impl crate::vk::FramebufferCreateFlagBits {
+    pub const IMAGELESS_KHR: Self = Self::IMAGELESS;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_imageless_framebuffer";
 pub(crate) mod reexport {
@@ -17,16 +28,5 @@ pub(crate) mod reexport {
     pub type RenderPassAttachmentBeginInfoKHR<'a> = crate::vk::RenderPassAttachmentBeginInfo<
         'a,
     >;
-    ///Provided by [`khr::imageless_framebuffer`](crate::khr::imageless_framebuffer)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES;
-        pub const FRAMEBUFFER_ATTACHMENTS_CREATE_INFO_KHR: Self = Self::FRAMEBUFFER_ATTACHMENTS_CREATE_INFO;
-        pub const FRAMEBUFFER_ATTACHMENT_IMAGE_INFO_KHR: Self = Self::FRAMEBUFFER_ATTACHMENT_IMAGE_INFO;
-        pub const RENDER_PASS_ATTACHMENT_BEGIN_INFO_KHR: Self = Self::RENDER_PASS_ATTACHMENT_BEGIN_INFO;
-    }
-    ///Provided by [`khr::imageless_framebuffer`](crate::khr::imageless_framebuffer)
-    impl crate::vk::FramebufferCreateFlagBits {
-        pub const IMAGELESS_KHR: Self = Self::IMAGELESS;
-    }
 }
 pub use reexport::*;

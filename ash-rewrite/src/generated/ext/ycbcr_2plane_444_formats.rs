@@ -2,6 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ycbcr_2plane_444_formats.html) · Extension `VK_EXT_ycbcr_2plane_444_formats`
 #![doc(alias = "VK_EXT_ycbcr_2plane_444_formats")]
+///Provided by [`ext::ycbcr_2plane_444_formats`](crate::ext::ycbcr_2plane_444_formats)
+impl crate::vk::Format {
+    pub const G8_B8R8_2PLANE_444_UNORM_EXT: Self = Self::G8_B8R8_2PLANE_444_UNORM;
+    pub const G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16_EXT: Self = Self::G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16;
+    pub const G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16_EXT: Self = Self::G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16;
+    pub const G16_B16R16_2PLANE_444_UNORM_EXT: Self = Self::G16_B16R16_2PLANE_444_UNORM;
+}
+///Provided by [`ext::ycbcr_2plane_444_formats`](crate::ext::ycbcr_2plane_444_formats)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT: Self = Self(
+        1000330000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_ycbcr_2plane_444_formats";
 pub(crate) mod reexport {
@@ -36,19 +49,6 @@ pub(crate) mod reexport {
             self.ycbcr2plane444_formats = ycbcr2plane444_formats.into();
             self
         }
-    }
-    ///Provided by [`ext::ycbcr_2plane_444_formats`](crate::ext::ycbcr_2plane_444_formats)
-    impl crate::vk::Format {
-        pub const G8_B8R8_2PLANE_444_UNORM_EXT: Self = Self::G8_B8R8_2PLANE_444_UNORM;
-        pub const G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16_EXT: Self = Self::G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16;
-        pub const G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16_EXT: Self = Self::G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16;
-        pub const G16_B16R16_2PLANE_444_UNORM_EXT: Self = Self::G16_B16R16_2PLANE_444_UNORM;
-    }
-    ///Provided by [`ext::ycbcr_2plane_444_formats`](crate::ext::ycbcr_2plane_444_formats)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT: Self = Self(
-            1000330000,
-        );
     }
 }
 pub use reexport::*;

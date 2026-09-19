@@ -2,6 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_unified_image_layouts.html) · Extension `VK_KHR_unified_image_layouts`
 #![doc(alias = "VK_KHR_unified_image_layouts")]
+///Provided by [`khr::unified_image_layouts`](crate::khr::unified_image_layouts)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR: Self = Self(
+        1000527000,
+    );
+    pub const ATTACHMENT_FEEDBACK_LOOP_INFO_EXT: Self = Self(1000527001);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_unified_image_layouts";
 pub(crate) mod reexport {
@@ -74,13 +81,6 @@ pub(crate) mod reexport {
             self.feedback_loop_enable = feedback_loop_enable.into();
             self
         }
-    }
-    ///Provided by [`khr::unified_image_layouts`](crate::khr::unified_image_layouts)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR: Self = Self(
-            1000527000,
-        );
-        pub const ATTACHMENT_FEEDBACK_LOOP_INFO_EXT: Self = Self(1000527001);
     }
 }
 pub use reexport::*;

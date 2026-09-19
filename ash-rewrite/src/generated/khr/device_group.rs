@@ -2,8 +2,40 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_group.html) · Extension `VK_KHR_device_group`
 #![doc(alias = "VK_KHR_device_group")]
-pub const SPEC_VERSION: u32 = 4;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_device_group";
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::StructureType {
+    pub const MEMORY_ALLOCATE_FLAGS_INFO_KHR: Self = Self::MEMORY_ALLOCATE_FLAGS_INFO;
+    pub const DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR: Self = Self::DEVICE_GROUP_RENDER_PASS_BEGIN_INFO;
+    pub const DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO_KHR: Self = Self::DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO;
+    pub const DEVICE_GROUP_SUBMIT_INFO_KHR: Self = Self::DEVICE_GROUP_SUBMIT_INFO;
+    pub const DEVICE_GROUP_BIND_SPARSE_INFO_KHR: Self = Self::DEVICE_GROUP_BIND_SPARSE_INFO;
+    pub const BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO;
+    pub const BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR: Self = Self::BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO;
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::ImageCreateFlagBits {
+    pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self::SPLIT_INSTANCE_BIND_REGIONS;
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const VIEW_INDEX_FROM_DEVICE_INDEX_KHR: Self = Self::VIEW_INDEX_FROM_DEVICE_INDEX;
+    pub const DISPATCH_BASE_KHR: Self = Self::DISPATCH_BASE;
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::DependencyFlagBits {
+    pub const DEVICE_GROUP_KHR: Self = Self::DEVICE_GROUP;
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::PeerMemoryFeatureFlagBits {
+    pub const COPY_SRC_KHR: Self = Self::COPY_SRC;
+    pub const COPY_DST_KHR: Self = Self::COPY_DST;
+    pub const GENERIC_SRC_KHR: Self = Self::GENERIC_SRC;
+    pub const GENERIC_DST_KHR: Self = Self::GENERIC_DST;
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::MemoryAllocateFlagBits {
+    pub const DEVICE_MASK_KHR: Self = Self::DEVICE_MASK;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_device_group_present_capabilities_khr: crate::vk::PFN_vkGetDeviceGroupPresentCapabilitiesKHR,
@@ -201,6 +233,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_device_group";
 pub(crate) mod reexport {
     pub type MemoryAllocateFlagsInfoKHR<'a> = crate::vk::MemoryAllocateFlagsInfo<'a>;
     pub type BindBufferMemoryDeviceGroupInfoKHR<'a> = crate::vk::BindBufferMemoryDeviceGroupInfo<
@@ -217,42 +251,8 @@ pub(crate) mod reexport {
     >;
     pub type DeviceGroupSubmitInfoKHR<'a> = crate::vk::DeviceGroupSubmitInfo<'a>;
     pub type DeviceGroupBindSparseInfoKHR<'a> = crate::vk::DeviceGroupBindSparseInfo<'a>;
-    ///Provided by [`khr::device_group`](crate::khr::device_group)
-    impl crate::vk::StructureType {
-        pub const MEMORY_ALLOCATE_FLAGS_INFO_KHR: Self = Self::MEMORY_ALLOCATE_FLAGS_INFO;
-        pub const DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR: Self = Self::DEVICE_GROUP_RENDER_PASS_BEGIN_INFO;
-        pub const DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO_KHR: Self = Self::DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO;
-        pub const DEVICE_GROUP_SUBMIT_INFO_KHR: Self = Self::DEVICE_GROUP_SUBMIT_INFO;
-        pub const DEVICE_GROUP_BIND_SPARSE_INFO_KHR: Self = Self::DEVICE_GROUP_BIND_SPARSE_INFO;
-        pub const BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO;
-        pub const BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR: Self = Self::BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO;
-    }
     pub type PeerMemoryFeatureFlagBitsKHR = crate::vk::PeerMemoryFeatureFlagBits;
     pub type MemoryAllocateFlagBitsKHR = crate::vk::MemoryAllocateFlagBits;
-    ///Provided by [`khr::device_group`](crate::khr::device_group)
-    impl crate::vk::ImageCreateFlagBits {
-        pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self::SPLIT_INSTANCE_BIND_REGIONS;
-    }
-    ///Provided by [`khr::device_group`](crate::khr::device_group)
-    impl crate::vk::PipelineCreateFlagBits {
-        pub const VIEW_INDEX_FROM_DEVICE_INDEX_KHR: Self = Self::VIEW_INDEX_FROM_DEVICE_INDEX;
-        pub const DISPATCH_BASE_KHR: Self = Self::DISPATCH_BASE;
-    }
-    ///Provided by [`khr::device_group`](crate::khr::device_group)
-    impl crate::vk::DependencyFlagBits {
-        pub const DEVICE_GROUP_KHR: Self = Self::DEVICE_GROUP;
-    }
-    ///Provided by [`khr::device_group`](crate::khr::device_group)
-    impl crate::vk::PeerMemoryFeatureFlagBits {
-        pub const COPY_SRC_KHR: Self = Self::COPY_SRC;
-        pub const COPY_DST_KHR: Self = Self::COPY_DST;
-        pub const GENERIC_SRC_KHR: Self = Self::GENERIC_SRC;
-        pub const GENERIC_DST_KHR: Self = Self::GENERIC_DST;
-    }
-    ///Provided by [`khr::device_group`](crate::khr::device_group)
-    impl crate::vk::MemoryAllocateFlagBits {
-        pub const DEVICE_MASK_KHR: Self = Self::DEVICE_MASK;
-    }
     pub type PeerMemoryFeatureFlagsKHR = crate::vk::PeerMemoryFeatureFlags;
     pub type MemoryAllocateFlagsKHR = crate::vk::MemoryAllocateFlags;
     pub type PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR = crate::vk::PFN_vkGetDeviceGroupPeerMemoryFeatures;

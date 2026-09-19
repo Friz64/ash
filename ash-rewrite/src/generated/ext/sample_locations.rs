@@ -2,8 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_sample_locations.html) · Extension `VK_EXT_sample_locations`
 #![doc(alias = "VK_EXT_sample_locations")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_sample_locations";
+///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
+impl crate::vk::StructureType {
+    pub const SAMPLE_LOCATIONS_INFO_EXT: Self = Self(1000143000);
+    pub const RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT: Self = Self(1000143001);
+    pub const PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT: Self = Self(1000143002);
+    pub const PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT: Self = Self(1000143003);
+    pub const MULTISAMPLE_PROPERTIES_EXT: Self = Self(1000143004);
+}
+///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
+impl crate::vk::DynamicState {
+    pub const SAMPLE_LOCATIONS_EXT: Self = Self(1000143000);
+}
+///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
+impl crate::vk::ImageCreateFlagBits {
+    pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(1 << 12);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_sample_locations_ext: crate::vk::PFN_vkCmdSetSampleLocationsEXT,
@@ -115,6 +129,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_sample_locations";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -422,26 +438,6 @@ pub(crate) mod reexport {
             self.max_sample_location_grid_size = max_sample_location_grid_size;
             self
         }
-    }
-    ///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
-    impl crate::vk::StructureType {
-        pub const SAMPLE_LOCATIONS_INFO_EXT: Self = Self(1000143000);
-        pub const RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT: Self = Self(1000143001);
-        pub const PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT: Self = Self(
-            1000143002,
-        );
-        pub const PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT: Self = Self(
-            1000143003,
-        );
-        pub const MULTISAMPLE_PROPERTIES_EXT: Self = Self(1000143004);
-    }
-    ///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
-    impl crate::vk::DynamicState {
-        pub const SAMPLE_LOCATIONS_EXT: Self = Self(1000143000);
-    }
-    ///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
-    impl crate::vk::ImageCreateFlagBits {
-        pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(1 << 12);
     }
     pub type PFN_vkCmdSetSampleLocationsEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

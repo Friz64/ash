@@ -2,8 +2,41 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance10.html) · Extension `VK_KHR_maintenance10`
 #![doc(alias = "VK_KHR_maintenance10")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance10";
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR: Self = Self(1000630000);
+    pub const PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR: Self = Self(1000630001);
+    pub const RENDERING_ATTACHMENT_FLAGS_INFO_KHR: Self = Self(1000630002);
+    pub const RENDERING_END_INFO_KHR: Self = Self(1000619003);
+    pub const RESOLVE_IMAGE_MODE_INFO_KHR: Self = Self(1000630004);
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl crate::vk::AttachmentDescriptionFlagBits {
+    pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
+    pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const DEPTH_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(1 << 52);
+    pub const DEPTH_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 53);
+    pub const STENCIL_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(1 << 54);
+    pub const STENCIL_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 55);
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl crate::vk::RenderingFlagBits {
+    pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(1 << 8);
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl RenderingAttachmentFlagBitsKHR {
+    pub const INPUT_ATTACHMENT_FEEDBACK_KHR: Self = Self(1 << 0);
+    pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
+    pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl ResolveImageFlagBitsKHR {
+    pub const SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 0);
+    pub const ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_end_rendering2_khr: crate::vk::PFN_vkCmdEndRendering2KHR,
@@ -59,6 +92,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance10";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -241,30 +276,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR: Self = Self(1000630000);
-        pub const PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR: Self = Self(1000630001);
-        pub const RENDERING_ATTACHMENT_FLAGS_INFO_KHR: Self = Self(1000630002);
-        pub const RENDERING_END_INFO_KHR: Self = Self(1000619003);
-        pub const RESOLVE_IMAGE_MODE_INFO_KHR: Self = Self(1000630004);
-    }
-    ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
-    impl crate::vk::AttachmentDescriptionFlagBits {
-        pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
-        pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
-    }
-    ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
-    impl crate::vk::FormatFeatureFlagBits2 {
-        pub const DEPTH_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(1 << 52);
-        pub const DEPTH_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 53);
-        pub const STENCIL_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(1 << 54);
-        pub const STENCIL_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 55);
-    }
-    ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
-    impl crate::vk::RenderingFlagBits {
-        pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(1 << 8);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct RenderingAttachmentFlagsKHR(u32);
@@ -344,12 +355,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct RenderingAttachmentFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
-    impl RenderingAttachmentFlagBitsKHR {
-        pub const INPUT_ATTACHMENT_FEEDBACK_KHR: Self = Self(1 << 0);
-        pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
-        pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ResolveImageFlagsKHR(u32);
@@ -426,11 +431,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ResolveImageFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
-    impl ResolveImageFlagBitsKHR {
-        pub const SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 0);
-        pub const ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
-    }
     pub type PFN_vkCmdEndRendering2KHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_rendering_end_info: *const crate::vk::RenderingEndInfoKHR<'_>,

@@ -2,8 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_matrix.html) · Extension `VK_NV_cooperative_matrix`
 #![doc(alias = "VK_NV_cooperative_matrix")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_cooperative_matrix";
+///Provided by [`nv::cooperative_matrix`](crate::nv::cooperative_matrix)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV: Self = Self(1000249000);
+    pub const COOPERATIVE_MATRIX_PROPERTIES_NV: Self = Self(1000249001);
+    pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV: Self = Self(1000249002);
+}
+///Provided by [`nv::cooperative_matrix`](crate::nv::cooperative_matrix)
+impl crate::vk::ScopeKHR {
+    pub const DEVICE_NV: Self = Self::DEVICE_KHR;
+    pub const WORKGROUP_NV: Self = Self::WORKGROUP_KHR;
+    pub const SUBGROUP_NV: Self = Self::SUBGROUP_KHR;
+    pub const QUEUE_FAMILY_NV: Self = Self::QUEUE_FAMILY_KHR;
+}
+///Provided by [`nv::cooperative_matrix`](crate::nv::cooperative_matrix)
+impl crate::vk::ComponentTypeKHR {
+    pub const FLOAT16_NV: Self = Self::FLOAT16_KHR;
+    pub const FLOAT32_NV: Self = Self::FLOAT32_KHR;
+    pub const FLOAT64_NV: Self = Self::FLOAT64_KHR;
+    pub const SINT8_NV: Self = Self::SINT8_KHR;
+    pub const SINT16_NV: Self = Self::SINT16_KHR;
+    pub const SINT32_NV: Self = Self::SINT32_KHR;
+    pub const SINT64_NV: Self = Self::SINT64_KHR;
+    pub const UINT8_NV: Self = Self::UINT8_KHR;
+    pub const UINT16_NV: Self = Self::UINT16_KHR;
+    pub const UINT32_NV: Self = Self::UINT32_KHR;
+    pub const UINT64_NV: Self = Self::UINT64_KHR;
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_cooperative_matrix_properties_nv: crate::vk::PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV,
@@ -62,6 +87,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_cooperative_matrix";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -206,37 +233,6 @@ pub(crate) mod reexport {
             self.scope = scope;
             self
         }
-    }
-    ///Provided by [`nv::cooperative_matrix`](crate::nv::cooperative_matrix)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV: Self = Self(
-            1000249000,
-        );
-        pub const COOPERATIVE_MATRIX_PROPERTIES_NV: Self = Self(1000249001);
-        pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV: Self = Self(
-            1000249002,
-        );
-    }
-    ///Provided by [`nv::cooperative_matrix`](crate::nv::cooperative_matrix)
-    impl crate::vk::ScopeKHR {
-        pub const DEVICE_NV: Self = Self::DEVICE_KHR;
-        pub const WORKGROUP_NV: Self = Self::WORKGROUP_KHR;
-        pub const SUBGROUP_NV: Self = Self::SUBGROUP_KHR;
-        pub const QUEUE_FAMILY_NV: Self = Self::QUEUE_FAMILY_KHR;
-    }
-    ///Provided by [`nv::cooperative_matrix`](crate::nv::cooperative_matrix)
-    impl crate::vk::ComponentTypeKHR {
-        pub const FLOAT16_NV: Self = Self::FLOAT16_KHR;
-        pub const FLOAT32_NV: Self = Self::FLOAT32_KHR;
-        pub const FLOAT64_NV: Self = Self::FLOAT64_KHR;
-        pub const SINT8_NV: Self = Self::SINT8_KHR;
-        pub const SINT16_NV: Self = Self::SINT16_KHR;
-        pub const SINT32_NV: Self = Self::SINT32_KHR;
-        pub const SINT64_NV: Self = Self::SINT64_KHR;
-        pub const UINT8_NV: Self = Self::UINT8_KHR;
-        pub const UINT16_NV: Self = Self::UINT16_KHR;
-        pub const UINT32_NV: Self = Self::UINT32_KHR;
-        pub const UINT64_NV: Self = Self::UINT64_KHR;
     }
     pub type ScopeNV = crate::vk::ScopeKHR;
     pub type ComponentTypeNV = crate::vk::ComponentTypeKHR;

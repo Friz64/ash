@@ -158,13 +158,14 @@ impl Code for BitMask {
                 ));
             }
 
-            for (dest, impl_tokens) in impl_map.into_iter() {
+            for (mut dest, impl_tokens) in impl_map.into_iter() {
                 let name = ctx.type_tokens(
                     bits_name,
                     dest != Destination::primary_location(self.required_by),
                     &Lifetime::placeholder(),
                 );
 
+                dest.reexport = false;
                 let doc = dest.doc_link();
                 codemap.extend(CodeMap::new(
                     dest,

@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_core_properties.html) · Extension `VK_ARM_shader_core_properties`
 #![doc(alias = "VK_ARM_shader_core_properties")]
+///Provided by [`arm::shader_core_properties`](crate::arm::shader_core_properties)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM: Self = Self(1000415000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_shader_core_properties";
 pub(crate) mod reexport {
@@ -46,10 +50,6 @@ pub(crate) mod reexport {
             self.fma_rate = fma_rate;
             self
         }
-    }
-    ///Provided by [`arm::shader_core_properties`](crate::arm::shader_core_properties)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM: Self = Self(1000415000);
     }
 }
 pub use reexport::*;

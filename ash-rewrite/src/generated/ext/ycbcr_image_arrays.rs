@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ycbcr_image_arrays.html) · Extension `VK_EXT_ycbcr_image_arrays`
 #![doc(alias = "VK_EXT_ycbcr_image_arrays")]
+///Provided by [`ext::ycbcr_image_arrays`](crate::ext::ycbcr_image_arrays)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT: Self = Self(1000252000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_ycbcr_image_arrays";
 pub(crate) mod reexport {
@@ -36,12 +40,6 @@ pub(crate) mod reexport {
             self.ycbcr_image_arrays = ycbcr_image_arrays.into();
             self
         }
-    }
-    ///Provided by [`ext::ycbcr_image_arrays`](crate::ext::ycbcr_image_arrays)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT: Self = Self(
-            1000252000,
-        );
     }
 }
 pub use reexport::*;

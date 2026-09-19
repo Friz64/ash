@@ -2,8 +2,119 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph_optical_flow.html) · Extension `VK_ARM_data_graph_optical_flow`
 #![doc(alias = "VK_ARM_data_graph_optical_flow")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_optical_flow";
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM: Self = Self(
+        1000631000,
+    );
+    pub const QUEUE_FAMILY_DATA_GRAPH_OPTICAL_FLOW_PROPERTIES_ARM: Self = Self(
+        1000631001,
+    );
+    pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_INFO_ARM: Self = Self(1000631003);
+    pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_ARM: Self = Self(
+        1000631004,
+    );
+    pub const DATA_GRAPH_PIPELINE_OPTICAL_FLOW_DISPATCH_INFO_ARM: Self = Self(
+        1000631005,
+    );
+    pub const DATA_GRAPH_PIPELINE_OPTICAL_FLOW_CREATE_INFO_ARM: Self = Self(1000631002);
+    pub const DATA_GRAPH_PIPELINE_RESOURCE_INFO_IMAGE_LAYOUT_ARM: Self = Self(
+        1000631006,
+    );
+    pub const DATA_GRAPH_PIPELINE_SINGLE_NODE_CREATE_INFO_ARM: Self = Self(1000631007);
+    pub const DATA_GRAPH_PIPELINE_SINGLE_NODE_CONNECTION_ARM: Self = Self(1000631008);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl crate::vk::DataGraphPipelineSessionBindPointARM {
+    pub const OPTICAL_FLOW_CACHE_ARM: Self = Self(1000631001);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl crate::vk::PhysicalDeviceDataGraphOperationTypeARM {
+    pub const OPTICAL_FLOW_ARM: Self = Self(1000631000);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl DataGraphOpticalFlowPerformanceLevelARM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const UNKNOWN_ARM: Self = Self(0);
+    pub const SLOW_ARM: Self = Self(1);
+    pub const MEDIUM_ARM: Self = Self(2);
+    pub const FAST_ARM: Self = Self(3);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl DataGraphPipelineNodeConnectionTypeARM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const OPTICAL_FLOW_INPUT_ARM: Self = Self(1000631000);
+    pub const OPTICAL_FLOW_REFERENCE_ARM: Self = Self(1000631001);
+    pub const OPTICAL_FLOW_HINT_ARM: Self = Self(1000631002);
+    pub const OPTICAL_FLOW_FLOW_VECTOR_ARM: Self = Self(1000631003);
+    pub const OPTICAL_FLOW_COST_ARM: Self = Self(1000631004);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl DataGraphPipelineNodeTypeARM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const OPTICAL_FLOW_ARM: Self = Self(1000631000);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM: Self = Self(1 << 56);
+    pub const DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM: Self = Self(1 << 57);
+    pub const DATA_GRAPH_OPTICAL_FLOW_COST_ARM: Self = Self(1 << 58);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl crate::vk::DataGraphPipelineSessionCreateFlagBitsARM {
+    pub const OPTICAL_FLOW_CACHE_ARM: Self = Self(1 << 1);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl DataGraphOpticalFlowGridSizeFlagBitsARM {
+    pub const UNKNOWN_ARM: Self = Self(0);
+    pub const _1X1_ARM: Self = Self(1 << 0);
+    pub const _2X2_ARM: Self = Self(1 << 1);
+    pub const _4X4_ARM: Self = Self(1 << 2);
+    pub const _8X8_ARM: Self = Self(1 << 3);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl DataGraphOpticalFlowImageUsageFlagBitsARM {
+    pub const UNKNOWN_ARM: Self = Self(0);
+    pub const INPUT_ARM: Self = Self(1 << 0);
+    pub const OUTPUT_ARM: Self = Self(1 << 1);
+    pub const HINT_ARM: Self = Self(1 << 2);
+    pub const COST_ARM: Self = Self(1 << 3);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl DataGraphOpticalFlowCreateFlagBitsARM {
+    pub const ENABLE_HINT_ARM: Self = Self(1 << 0);
+    pub const ENABLE_COST_ARM: Self = Self(1 << 1);
+    pub const RESERVED_30_ARM: Self = Self(1 << 30);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl DataGraphOpticalFlowExecuteFlagBitsARM {
+    pub const DISABLE_TEMPORAL_HINTS_ARM: Self = Self(1 << 0);
+    pub const INPUT_UNCHANGED_ARM: Self = Self(1 << 1);
+    pub const REFERENCE_UNCHANGED_ARM: Self = Self(1 << 2);
+    pub const INPUT_IS_PREVIOUS_REFERENCE_ARM: Self = Self(1 << 3);
+    pub const REFERENCE_IS_PREVIOUS_INPUT_ARM: Self = Self(1 << 4);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_queue_family_data_graph_engine_operation_properties_arm: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM,
@@ -88,6 +199,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_optical_flow";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -512,107 +625,18 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM: Self = Self(
-            1000631000,
-        );
-        pub const QUEUE_FAMILY_DATA_GRAPH_OPTICAL_FLOW_PROPERTIES_ARM: Self = Self(
-            1000631001,
-        );
-        pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_INFO_ARM: Self = Self(1000631003);
-        pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_ARM: Self = Self(
-            1000631004,
-        );
-        pub const DATA_GRAPH_PIPELINE_OPTICAL_FLOW_DISPATCH_INFO_ARM: Self = Self(
-            1000631005,
-        );
-        pub const DATA_GRAPH_PIPELINE_OPTICAL_FLOW_CREATE_INFO_ARM: Self = Self(
-            1000631002,
-        );
-        pub const DATA_GRAPH_PIPELINE_RESOURCE_INFO_IMAGE_LAYOUT_ARM: Self = Self(
-            1000631006,
-        );
-        pub const DATA_GRAPH_PIPELINE_SINGLE_NODE_CREATE_INFO_ARM: Self = Self(
-            1000631007,
-        );
-        pub const DATA_GRAPH_PIPELINE_SINGLE_NODE_CONNECTION_ARM: Self = Self(
-            1000631008,
-        );
-    }
-    ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
-    impl crate::vk::DataGraphPipelineSessionBindPointARM {
-        pub const OPTICAL_FLOW_CACHE_ARM: Self = Self(1000631001);
-    }
-    ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
-    impl crate::vk::PhysicalDeviceDataGraphOperationTypeARM {
-        pub const OPTICAL_FLOW_ARM: Self = Self(1000631000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DataGraphOpticalFlowPerformanceLevelARM(pub(crate) i32);
-    ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
-    impl DataGraphOpticalFlowPerformanceLevelARM {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const UNKNOWN_ARM: Self = Self(0);
-        pub const SLOW_ARM: Self = Self(1);
-        pub const MEDIUM_ARM: Self = Self(2);
-        pub const FAST_ARM: Self = Self(3);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DataGraphPipelineNodeConnectionTypeARM(pub(crate) i32);
-    ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
-    impl DataGraphPipelineNodeConnectionTypeARM {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const OPTICAL_FLOW_INPUT_ARM: Self = Self(1000631000);
-        pub const OPTICAL_FLOW_REFERENCE_ARM: Self = Self(1000631001);
-        pub const OPTICAL_FLOW_HINT_ARM: Self = Self(1000631002);
-        pub const OPTICAL_FLOW_FLOW_VECTOR_ARM: Self = Self(1000631003);
-        pub const OPTICAL_FLOW_COST_ARM: Self = Self(1000631004);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DataGraphPipelineNodeTypeARM(pub(crate) i32);
-    ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
-    impl DataGraphPipelineNodeTypeARM {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const OPTICAL_FLOW_ARM: Self = Self(1000631000);
-    }
-    ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
-    impl crate::vk::FormatFeatureFlagBits2 {
-        pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM: Self = Self(1 << 56);
-        pub const DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM: Self = Self(1 << 57);
-        pub const DATA_GRAPH_OPTICAL_FLOW_COST_ARM: Self = Self(1 << 58);
-    }
-    ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
-    impl crate::vk::DataGraphPipelineSessionCreateFlagBitsARM {
-        pub const OPTICAL_FLOW_CACHE_ARM: Self = Self(1 << 1);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DataGraphOpticalFlowGridSizeFlagsARM(u32);
@@ -698,14 +722,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct DataGraphOpticalFlowGridSizeFlagBitsARM(pub(crate) u32);
-    ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
-    impl DataGraphOpticalFlowGridSizeFlagBitsARM {
-        pub const UNKNOWN_ARM: Self = Self(0);
-        pub const _1X1_ARM: Self = Self(1 << 0);
-        pub const _2X2_ARM: Self = Self(1 << 1);
-        pub const _4X4_ARM: Self = Self(1 << 2);
-        pub const _8X8_ARM: Self = Self(1 << 3);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DataGraphOpticalFlowImageUsageFlagsARM(u32);
@@ -791,14 +807,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct DataGraphOpticalFlowImageUsageFlagBitsARM(pub(crate) u32);
-    ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
-    impl DataGraphOpticalFlowImageUsageFlagBitsARM {
-        pub const UNKNOWN_ARM: Self = Self(0);
-        pub const INPUT_ARM: Self = Self(1 << 0);
-        pub const OUTPUT_ARM: Self = Self(1 << 1);
-        pub const HINT_ARM: Self = Self(1 << 2);
-        pub const COST_ARM: Self = Self(1 << 3);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DataGraphOpticalFlowCreateFlagsARM(u32);
@@ -878,12 +886,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct DataGraphOpticalFlowCreateFlagBitsARM(pub(crate) u32);
-    ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
-    impl DataGraphOpticalFlowCreateFlagBitsARM {
-        pub const ENABLE_HINT_ARM: Self = Self(1 << 0);
-        pub const ENABLE_COST_ARM: Self = Self(1 << 1);
-        pub const RESERVED_30_ARM: Self = Self(1 << 30);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DataGraphOpticalFlowExecuteFlagsARM(u32);
@@ -969,14 +971,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct DataGraphOpticalFlowExecuteFlagBitsARM(pub(crate) u32);
-    ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
-    impl DataGraphOpticalFlowExecuteFlagBitsARM {
-        pub const DISABLE_TEMPORAL_HINTS_ARM: Self = Self(1 << 0);
-        pub const INPUT_UNCHANGED_ARM: Self = Self(1 << 1);
-        pub const REFERENCE_UNCHANGED_ARM: Self = Self(1 << 2);
-        pub const INPUT_IS_PREVIOUS_REFERENCE_ARM: Self = Self(1 << 3);
-        pub const REFERENCE_IS_PREVIOUS_INPUT_ARM: Self = Self(1 << 4);
-    }
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,

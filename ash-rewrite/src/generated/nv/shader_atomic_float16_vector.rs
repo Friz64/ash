@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shader_atomic_float16_vector.html) · Extension `VK_NV_shader_atomic_float16_vector`
 #![doc(alias = "VK_NV_shader_atomic_float16_vector")]
+///Provided by [`nv::shader_atomic_float16_vector`](crate::nv::shader_atomic_float16_vector)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV: Self = Self(
+        1000563000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_shader_atomic_float16_vector";
 pub(crate) mod reexport {
@@ -39,12 +45,6 @@ pub(crate) mod reexport {
             self.shader_float16_vector_atomics = shader_float16_vector_atomics.into();
             self
         }
-    }
-    ///Provided by [`nv::shader_atomic_float16_vector`](crate::nv::shader_atomic_float16_vector)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV: Self = Self(
-            1000563000,
-        );
     }
 }
 pub use reexport::*;

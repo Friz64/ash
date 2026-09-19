@@ -2,15 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_subgroup_extended_types.html) · Extension `VK_KHR_shader_subgroup_extended_types`
 #![doc(alias = "VK_KHR_shader_subgroup_extended_types")]
+///Provided by [`khr::shader_subgroup_extended_types`](crate::khr::shader_subgroup_extended_types)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_subgroup_extended_types";
 pub(crate) mod reexport {
     pub type PhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR<'a> = crate::vk::PhysicalDeviceShaderSubgroupExtendedTypesFeatures<
         'a,
     >;
-    ///Provided by [`khr::shader_subgroup_extended_types`](crate::khr::shader_subgroup_extended_types)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES;
-    }
 }
 pub use reexport::*;

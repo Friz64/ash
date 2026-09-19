@@ -2,8 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_clip_space_w_scaling.html) · Extension `VK_NV_clip_space_w_scaling`
 #![doc(alias = "VK_NV_clip_space_w_scaling")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_clip_space_w_scaling";
+///Provided by [`nv::clip_space_w_scaling`](crate::nv::clip_space_w_scaling)
+impl crate::vk::StructureType {
+    pub const PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV: Self = Self(1000087000);
+}
+///Provided by [`nv::clip_space_w_scaling`](crate::nv::clip_space_w_scaling)
+impl crate::vk::DynamicState {
+    pub const VIEWPORT_W_SCALING_NV: Self = Self(1000087000);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_viewport_w_scaling_nv: crate::vk::PFN_vkCmdSetViewportWScalingNV,
@@ -61,6 +67,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_clip_space_w_scaling";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -122,16 +130,6 @@ pub(crate) mod reexport {
             self.p_viewport_w_scalings = viewport_w_scalings.as_ptr();
             self
         }
-    }
-    ///Provided by [`nv::clip_space_w_scaling`](crate::nv::clip_space_w_scaling)
-    impl crate::vk::StructureType {
-        pub const PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV: Self = Self(
-            1000087000,
-        );
-    }
-    ///Provided by [`nv::clip_space_w_scaling`](crate::nv::clip_space_w_scaling)
-    impl crate::vk::DynamicState {
-        pub const VIEWPORT_W_SCALING_NV: Self = Self(1000087000);
     }
     pub type PFN_vkCmdSetViewportWScalingNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

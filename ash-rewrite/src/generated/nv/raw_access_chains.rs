@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_raw_access_chains.html) · Extension `VK_NV_raw_access_chains`
 #![doc(alias = "VK_NV_raw_access_chains")]
+///Provided by [`nv::raw_access_chains`](crate::nv::raw_access_chains)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV: Self = Self(1000555000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_raw_access_chains";
 pub(crate) mod reexport {
@@ -39,10 +43,6 @@ pub(crate) mod reexport {
             self.shader_raw_access_chains = shader_raw_access_chains.into();
             self
         }
-    }
-    ///Provided by [`nv::raw_access_chains`](crate::nv::raw_access_chains)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV: Self = Self(1000555000);
     }
 }
 pub use reexport::*;

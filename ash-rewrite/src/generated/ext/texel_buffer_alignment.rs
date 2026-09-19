@@ -2,6 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_texel_buffer_alignment.html) · Extension `VK_EXT_texel_buffer_alignment`
 #![doc(alias = "VK_EXT_texel_buffer_alignment")]
+///Provided by [`ext::texel_buffer_alignment`](crate::ext::texel_buffer_alignment)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT: Self = Self(
+        1000281000,
+    );
+    pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_texel_buffer_alignment";
 pub(crate) mod reexport {
@@ -40,12 +47,5 @@ pub(crate) mod reexport {
     pub type PhysicalDeviceTexelBufferAlignmentPropertiesEXT<'a> = crate::vk::PhysicalDeviceTexelBufferAlignmentProperties<
         'a,
     >;
-    ///Provided by [`ext::texel_buffer_alignment`](crate::ext::texel_buffer_alignment)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT: Self = Self(
-            1000281000,
-        );
-        pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES;
-    }
 }
 pub use reexport::*;

@@ -2,6 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_bfloat16.html) · Extension `VK_KHR_shader_bfloat16`
 #![doc(alias = "VK_KHR_shader_bfloat16")]
+///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR: Self = Self(1000141000);
+}
+///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
+impl crate::vk::ComponentTypeKHR {
+    pub const BFLOAT16_KHR: Self = Self(1000141000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_bfloat16";
 pub(crate) mod reexport {
@@ -55,14 +63,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR: Self = Self(1000141000);
-    }
-    ///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
-    impl crate::vk::ComponentTypeKHR {
-        pub const BFLOAT16_KHR: Self = Self(1000141000);
     }
 }
 pub use reexport::*;

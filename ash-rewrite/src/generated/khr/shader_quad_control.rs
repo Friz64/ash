@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_quad_control.html) · Extension `VK_KHR_shader_quad_control`
 #![doc(alias = "VK_KHR_shader_quad_control")]
+///Provided by [`khr::shader_quad_control`](crate::khr::shader_quad_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_QUAD_CONTROL_FEATURES_KHR: Self = Self(1000235000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_quad_control";
 pub(crate) mod reexport {
@@ -36,12 +40,6 @@ pub(crate) mod reexport {
             self.shader_quad_control = shader_quad_control.into();
             self
         }
-    }
-    ///Provided by [`khr::shader_quad_control`](crate::khr::shader_quad_control)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_QUAD_CONTROL_FEATURES_KHR: Self = Self(
-            1000235000,
-        );
     }
 }
 pub use reexport::*;

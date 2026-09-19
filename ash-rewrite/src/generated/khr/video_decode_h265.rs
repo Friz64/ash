@@ -2,6 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_h265.html) · Extension `VK_KHR_video_decode_h265`
 #![doc(alias = "VK_KHR_video_decode_h265")]
+///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
+impl crate::vk::StructureType {
+    pub const VIDEO_DECODE_H265_CAPABILITIES_KHR: Self = Self(1000187000);
+    pub const VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
+        1000187001,
+    );
+    pub const VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR: Self = Self(1000187002);
+    pub const VIDEO_DECODE_H265_PROFILE_INFO_KHR: Self = Self(1000187003);
+    pub const VIDEO_DECODE_H265_PICTURE_INFO_KHR: Self = Self(1000187004);
+    pub const VIDEO_DECODE_H265_DPB_SLOT_INFO_KHR: Self = Self(1000187005);
+}
+///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
+impl crate::vk::VideoCodecOperationFlagBitsKHR {
+    pub const DECODE_H265_KHR: Self = Self(1 << 1);
+}
 pub const SPEC_VERSION: u32 = 8;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_h265";
 pub(crate) mod reexport {
@@ -258,23 +273,6 @@ pub(crate) mod reexport {
             self.p_std_reference_info = std_reference_info;
             self
         }
-    }
-    ///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
-    impl crate::vk::StructureType {
-        pub const VIDEO_DECODE_H265_CAPABILITIES_KHR: Self = Self(1000187000);
-        pub const VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
-            1000187001,
-        );
-        pub const VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR: Self = Self(
-            1000187002,
-        );
-        pub const VIDEO_DECODE_H265_PROFILE_INFO_KHR: Self = Self(1000187003);
-        pub const VIDEO_DECODE_H265_PICTURE_INFO_KHR: Self = Self(1000187004);
-        pub const VIDEO_DECODE_H265_DPB_SLOT_INFO_KHR: Self = Self(1000187005);
-    }
-    ///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
-    impl crate::vk::VideoCodecOperationFlagBitsKHR {
-        pub const DECODE_H265_KHR: Self = Self(1 << 1);
     }
 }
 pub use reexport::*;

@@ -2,6 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory.html) · Extension `VK_NV_external_memory`
 #![doc(alias = "VK_NV_external_memory")]
+///Provided by [`nv::external_memory`](crate::nv::external_memory)
+impl crate::vk::StructureType {
+    pub const EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV: Self = Self(1000056000);
+    pub const EXPORT_MEMORY_ALLOCATE_INFO_NV: Self = Self(1000056001);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory";
 pub(crate) mod reexport {
@@ -68,11 +73,6 @@ pub(crate) mod reexport {
             self.handle_types = handle_types;
             self
         }
-    }
-    ///Provided by [`nv::external_memory`](crate::nv::external_memory)
-    impl crate::vk::StructureType {
-        pub const EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV: Self = Self(1000056000);
-        pub const EXPORT_MEMORY_ALLOCATE_INFO_NV: Self = Self(1000056001);
     }
 }
 pub use reexport::*;

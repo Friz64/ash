@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_INTEL_shader_integer_functions2.html) · Extension `VK_INTEL_shader_integer_functions2`
 #![doc(alias = "VK_INTEL_shader_integer_functions2")]
+///Provided by [`intel::shader_integer_functions2`](crate::intel::shader_integer_functions2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL: Self = Self(
+        1000209000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_INTEL_shader_integer_functions2";
 pub(crate) mod reexport {
@@ -39,12 +45,6 @@ pub(crate) mod reexport {
             self.shader_integer_functions2 = shader_integer_functions2.into();
             self
         }
-    }
-    ///Provided by [`intel::shader_integer_functions2`](crate::intel::shader_integer_functions2)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL: Self = Self(
-            1000209000,
-        );
     }
 }
 pub use reexport::*;

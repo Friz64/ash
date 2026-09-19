@@ -2,8 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_bind_memory2.html) · Extension `VK_KHR_bind_memory2`
 #![doc(alias = "VK_KHR_bind_memory2")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_bind_memory2";
+///Provided by [`khr::bind_memory2`](crate::khr::bind_memory2)
+impl crate::vk::StructureType {
+    pub const BIND_BUFFER_MEMORY_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_INFO;
+    pub const BIND_IMAGE_MEMORY_INFO_KHR: Self = Self::BIND_IMAGE_MEMORY_INFO;
+}
+///Provided by [`khr::bind_memory2`](crate::khr::bind_memory2)
+impl crate::vk::ImageCreateFlagBits {
+    pub const ALIAS_KHR: Self = Self::ALIAS;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub bind_buffer_memory2_khr: crate::vk::PFN_vkBindBufferMemory2KHR,
@@ -76,18 +83,11 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_bind_memory2";
 pub(crate) mod reexport {
     pub type BindBufferMemoryInfoKHR<'a> = crate::vk::BindBufferMemoryInfo<'a>;
     pub type BindImageMemoryInfoKHR<'a> = crate::vk::BindImageMemoryInfo<'a>;
-    ///Provided by [`khr::bind_memory2`](crate::khr::bind_memory2)
-    impl crate::vk::StructureType {
-        pub const BIND_BUFFER_MEMORY_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_INFO;
-        pub const BIND_IMAGE_MEMORY_INFO_KHR: Self = Self::BIND_IMAGE_MEMORY_INFO;
-    }
-    ///Provided by [`khr::bind_memory2`](crate::khr::bind_memory2)
-    impl crate::vk::ImageCreateFlagBits {
-        pub const ALIAS_KHR: Self = Self::ALIAS;
-    }
     pub type PFN_vkBindBufferMemory2KHR = crate::vk::PFN_vkBindBufferMemory2;
     pub type PFN_vkBindImageMemory2KHR = crate::vk::PFN_vkBindImageMemory2;
 }

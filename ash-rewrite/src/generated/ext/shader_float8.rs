@@ -2,6 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_float8.html) · Extension `VK_EXT_shader_float8`
 #![doc(alias = "VK_EXT_shader_float8")]
+///Provided by [`ext::shader_float8`](crate::ext::shader_float8)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT: Self = Self(1000567000);
+}
+///Provided by [`ext::shader_float8`](crate::ext::shader_float8)
+impl crate::vk::ComponentTypeKHR {
+    pub const FLOAT8_E4M3_EXT: Self = Self(1000491002);
+    pub const FLOAT8_E5M2_EXT: Self = Self(1000491003);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_float8";
 pub(crate) mod reexport {
@@ -46,15 +55,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`ext::shader_float8`](crate::ext::shader_float8)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT: Self = Self(1000567000);
-    }
-    ///Provided by [`ext::shader_float8`](crate::ext::shader_float8)
-    impl crate::vk::ComponentTypeKHR {
-        pub const FLOAT8_E4M3_EXT: Self = Self(1000491002);
-        pub const FLOAT8_E5M2_EXT: Self = Self(1000491003);
     }
 }
 pub use reexport::*;

@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fragment_coverage_to_color.html) · Extension `VK_NV_fragment_coverage_to_color`
 #![doc(alias = "VK_NV_fragment_coverage_to_color")]
+///Provided by [`nv::fragment_coverage_to_color`](crate::nv::fragment_coverage_to_color)
+impl crate::vk::StructureType {
+    pub const PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV: Self = Self(1000149000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_fragment_coverage_to_color";
 pub(crate) mod reexport {
@@ -55,12 +59,6 @@ pub(crate) mod reexport {
             self.coverage_to_color_location = coverage_to_color_location;
             self
         }
-    }
-    ///Provided by [`nv::fragment_coverage_to_color`](crate::nv::fragment_coverage_to_color)
-    impl crate::vk::StructureType {
-        pub const PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV: Self = Self(
-            1000149000,
-        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

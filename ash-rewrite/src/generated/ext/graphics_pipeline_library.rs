@@ -2,6 +2,32 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_graphics_pipeline_library.html) · Extension `VK_EXT_graphics_pipeline_library`
 #![doc(alias = "VK_EXT_graphics_pipeline_library")]
+///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT: Self = Self(
+        1000320000,
+    );
+    pub const PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_PROPERTIES_EXT: Self = Self(
+        1000320001,
+    );
+    pub const GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT: Self = Self(1000320002);
+}
+///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
+impl crate::vk::PipelineLayoutCreateFlagBits {
+    pub const INDEPENDENT_SETS_EXT: Self = Self(1 << 1);
+}
+///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT: Self = Self(1 << 23);
+    pub const LINK_TIME_OPTIMIZATION_EXT: Self = Self(1 << 10);
+}
+///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
+impl GraphicsPipelineLibraryFlagBitsEXT {
+    pub const VERTEX_INPUT_INTERFACE_EXT: Self = Self(1 << 0);
+    pub const PRE_RASTERIZATION_SHADERS_EXT: Self = Self(1 << 1);
+    pub const FRAGMENT_SHADER_EXT: Self = Self(1 << 2);
+    pub const FRAGMENT_OUTPUT_INTERFACE_EXT: Self = Self(1 << 3);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_graphics_pipeline_library";
 pub(crate) mod reexport {
@@ -117,25 +143,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT: Self = Self(
-            1000320000,
-        );
-        pub const PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_PROPERTIES_EXT: Self = Self(
-            1000320001,
-        );
-        pub const GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT: Self = Self(1000320002);
-    }
-    ///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
-    impl crate::vk::PipelineLayoutCreateFlagBits {
-        pub const INDEPENDENT_SETS_EXT: Self = Self(1 << 1);
-    }
-    ///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
-    impl crate::vk::PipelineCreateFlagBits {
-        pub const RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT: Self = Self(1 << 23);
-        pub const LINK_TIME_OPTIMIZATION_EXT: Self = Self(1 << 10);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct GraphicsPipelineLibraryFlagsEXT(u32);
@@ -218,12 +225,5 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct GraphicsPipelineLibraryFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
-    impl GraphicsPipelineLibraryFlagBitsEXT {
-        pub const VERTEX_INPUT_INTERFACE_EXT: Self = Self(1 << 0);
-        pub const PRE_RASTERIZATION_SHADERS_EXT: Self = Self(1 << 1);
-        pub const FRAGMENT_SHADER_EXT: Self = Self(1 << 2);
-        pub const FRAGMENT_OUTPUT_INTERFACE_EXT: Self = Self(1 << 3);
-    }
 }
 pub use reexport::*;

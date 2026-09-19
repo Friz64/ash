@@ -2,6 +2,40 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_subpass_merge_feedback.html) · Extension `VK_EXT_subpass_merge_feedback`
 #![doc(alias = "VK_EXT_subpass_merge_feedback")]
+///Provided by [`ext::subpass_merge_feedback`](crate::ext::subpass_merge_feedback)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT: Self = Self(
+        1000458000,
+    );
+    pub const RENDER_PASS_CREATION_CONTROL_EXT: Self = Self(1000458001);
+    pub const RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT: Self = Self(1000458002);
+    pub const RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT: Self = Self(1000458003);
+}
+///Provided by [`ext::subpass_merge_feedback`](crate::ext::subpass_merge_feedback)
+impl SubpassMergeStatusEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const MERGED_EXT: Self = Self(0);
+    pub const DISALLOWED_EXT: Self = Self(1);
+    pub const NOT_MERGED_SIDE_EFFECTS_EXT: Self = Self(2);
+    pub const NOT_MERGED_SAMPLES_MISMATCH_EXT: Self = Self(3);
+    pub const NOT_MERGED_VIEWS_MISMATCH_EXT: Self = Self(4);
+    pub const NOT_MERGED_ALIASING_EXT: Self = Self(5);
+    pub const NOT_MERGED_DEPENDENCIES_EXT: Self = Self(6);
+    pub const NOT_MERGED_INCOMPATIBLE_INPUT_ATTACHMENT_EXT: Self = Self(7);
+    pub const NOT_MERGED_TOO_MANY_ATTACHMENTS_EXT: Self = Self(8);
+    pub const NOT_MERGED_INSUFFICIENT_STORAGE_EXT: Self = Self(9);
+    pub const NOT_MERGED_DEPTH_STENCIL_COUNT_EXT: Self = Self(10);
+    pub const NOT_MERGED_RESOLVE_ATTACHMENT_REUSE_EXT: Self = Self(11);
+    pub const NOT_MERGED_SINGLE_SUBPASS_EXT: Self = Self(12);
+    pub const NOT_MERGED_UNSPECIFIED_EXT: Self = Self(13);
+}
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_subpass_merge_feedback";
 pub(crate) mod reexport {
@@ -189,43 +223,9 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::subpass_merge_feedback`](crate::ext::subpass_merge_feedback)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT: Self = Self(
-            1000458000,
-        );
-        pub const RENDER_PASS_CREATION_CONTROL_EXT: Self = Self(1000458001);
-        pub const RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT: Self = Self(1000458002);
-        pub const RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT: Self = Self(1000458003);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct SubpassMergeStatusEXT(pub(crate) i32);
-    ///Provided by [`ext::subpass_merge_feedback`](crate::ext::subpass_merge_feedback)
-    impl SubpassMergeStatusEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const MERGED_EXT: Self = Self(0);
-        pub const DISALLOWED_EXT: Self = Self(1);
-        pub const NOT_MERGED_SIDE_EFFECTS_EXT: Self = Self(2);
-        pub const NOT_MERGED_SAMPLES_MISMATCH_EXT: Self = Self(3);
-        pub const NOT_MERGED_VIEWS_MISMATCH_EXT: Self = Self(4);
-        pub const NOT_MERGED_ALIASING_EXT: Self = Self(5);
-        pub const NOT_MERGED_DEPENDENCIES_EXT: Self = Self(6);
-        pub const NOT_MERGED_INCOMPATIBLE_INPUT_ATTACHMENT_EXT: Self = Self(7);
-        pub const NOT_MERGED_TOO_MANY_ATTACHMENTS_EXT: Self = Self(8);
-        pub const NOT_MERGED_INSUFFICIENT_STORAGE_EXT: Self = Self(9);
-        pub const NOT_MERGED_DEPTH_STENCIL_COUNT_EXT: Self = Self(10);
-        pub const NOT_MERGED_RESOLVE_ATTACHMENT_REUSE_EXT: Self = Self(11);
-        pub const NOT_MERGED_SINGLE_SUBPASS_EXT: Self = Self(12);
-        pub const NOT_MERGED_UNSPECIFIED_EXT: Self = Self(13);
-    }
 }
 pub use reexport::*;

@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_headless_surface.html) · Extension `VK_EXT_headless_surface`
 #![doc(alias = "VK_EXT_headless_surface")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_headless_surface";
+///Provided by [`ext::headless_surface`](crate::ext::headless_surface)
+impl crate::vk::StructureType {
+    pub const HEADLESS_SURFACE_CREATE_INFO_EXT: Self = Self(1000256000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_headless_surface_ext: crate::vk::PFN_vkCreateHeadlessSurfaceEXT,
@@ -61,6 +63,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_headless_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -88,10 +92,6 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-    }
-    ///Provided by [`ext::headless_surface`](crate::ext::headless_surface)
-    impl crate::vk::StructureType {
-        pub const HEADLESS_SURFACE_CREATE_INFO_EXT: Self = Self(1000256000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
