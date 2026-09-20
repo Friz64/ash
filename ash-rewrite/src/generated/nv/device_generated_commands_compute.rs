@@ -16,6 +16,12 @@ impl crate::vk::IndirectCommandsTokenTypeNV {
     pub const DISPATCH_NV: Self = Self(1000428004);
 }
 ///Provided by [`nv::device_generated_commands_compute`](crate::nv::device_generated_commands_compute)
+impl crate::vk::DescriptorSetLayoutCreateFlags {
+    pub const INDIRECT_BINDABLE_NV: Self = Self(
+        crate::vk::DescriptorSetLayoutCreateFlagBits::INDIRECT_BINDABLE_NV.0,
+    );
+}
+///Provided by [`nv::device_generated_commands_compute`](crate::nv::device_generated_commands_compute)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 7);
 }

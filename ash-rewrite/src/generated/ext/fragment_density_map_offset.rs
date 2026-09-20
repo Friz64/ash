@@ -16,6 +16,12 @@ impl crate::vk::StructureType {
     pub const RENDERING_END_INFO_EXT: Self = Self::RENDERING_END_INFO_KHR;
 }
 ///Provided by [`ext::fragment_density_map_offset`](crate::ext::fragment_density_map_offset)
+impl crate::vk::ImageCreateFlags {
+    pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(
+        crate::vk::ImageCreateFlagBits::FRAGMENT_DENSITY_MAP_OFFSET_EXT.0,
+    );
+}
+///Provided by [`ext::fragment_density_map_offset`](crate::ext::fragment_density_map_offset)
 impl crate::vk::ImageCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(1 << 15);
 }

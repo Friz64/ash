@@ -10,6 +10,10 @@ impl crate::vk::StructureType {
     pub const DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR: Self = Self::DEVICE_IMAGE_MEMORY_REQUIREMENTS;
 }
 ///Provided by [`khr::maintenance4`](crate::khr::maintenance4)
+impl crate::vk::ImageAspectFlags {
+    pub const NONE_KHR: Self = Self(crate::vk::ImageAspectFlagBits::NONE_KHR.0);
+}
+///Provided by [`khr::maintenance4`](crate::khr::maintenance4)
 impl crate::vk::ImageAspectFlagBits {
     pub const NONE_KHR: Self = Self::NONE;
 }

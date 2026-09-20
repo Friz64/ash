@@ -7,6 +7,12 @@ impl crate::vk::StructureType {
     pub const EXPORT_FENCE_CREATE_INFO_KHR: Self = Self::EXPORT_FENCE_CREATE_INFO;
 }
 ///Provided by [`khr::external_fence`](crate::khr::external_fence)
+impl crate::vk::FenceImportFlags {
+    pub const TEMPORARY_KHR: Self = Self(
+        crate::vk::FenceImportFlagBits::TEMPORARY_KHR.0,
+    );
+}
+///Provided by [`khr::external_fence`](crate::khr::external_fence)
 impl crate::vk::FenceImportFlagBits {
     pub const TEMPORARY_KHR: Self = Self::TEMPORARY;
 }

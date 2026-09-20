@@ -214,24 +214,64 @@ impl ChromaLocation {
     pub const MIDPOINT: Self = Self(1);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::DeviceQueueCreateFlags {
+    pub const PROTECTED: Self = Self(crate::vk::DeviceQueueCreateFlagBits::PROTECTED.0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
 impl crate::vk::DeviceQueueCreateFlagBits {
     pub const PROTECTED: Self = Self(1 << 0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::QueueFlags {
+    pub const PROTECTED: Self = Self(crate::vk::QueueFlagBits::PROTECTED.0);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl crate::vk::QueueFlagBits {
     pub const PROTECTED: Self = Self(1 << 4);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::MemoryPropertyFlags {
+    pub const PROTECTED: Self = Self(crate::vk::MemoryPropertyFlagBits::PROTECTED.0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
 impl crate::vk::MemoryPropertyFlagBits {
     pub const PROTECTED: Self = Self(1 << 5);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::MemoryHeapFlags {
+    pub const MULTI_INSTANCE: Self = Self(
+        crate::vk::MemoryHeapFlagBits::MULTI_INSTANCE.0,
+    );
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl crate::vk::MemoryHeapFlagBits {
     pub const MULTI_INSTANCE: Self = Self(1 << 1);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::BufferCreateFlags {
+    pub const PROTECTED: Self = Self(crate::vk::BufferCreateFlagBits::PROTECTED.0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
 impl crate::vk::BufferCreateFlagBits {
     pub const PROTECTED: Self = Self(1 << 3);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::ImageCreateFlags {
+    pub const ALIAS: Self = Self(crate::vk::ImageCreateFlagBits::ALIAS.0);
+    pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(
+        crate::vk::ImageCreateFlagBits::SPLIT_INSTANCE_BIND_REGIONS.0,
+    );
+    pub const _2D_ARRAY_COMPATIBLE: Self = Self(
+        crate::vk::ImageCreateFlagBits::_2D_ARRAY_COMPATIBLE.0,
+    );
+    pub const BLOCK_TEXEL_VIEW_COMPATIBLE: Self = Self(
+        crate::vk::ImageCreateFlagBits::BLOCK_TEXEL_VIEW_COMPATIBLE.0,
+    );
+    pub const EXTENDED_USAGE: Self = Self(
+        crate::vk::ImageCreateFlagBits::EXTENDED_USAGE.0,
+    );
+    pub const PROTECTED: Self = Self(crate::vk::ImageCreateFlagBits::PROTECTED.0);
+    pub const DISJOINT: Self = Self(crate::vk::ImageCreateFlagBits::DISJOINT.0);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl crate::vk::ImageCreateFlagBits {
@@ -244,9 +284,49 @@ impl crate::vk::ImageCreateFlagBits {
     pub const DISJOINT: Self = Self(1 << 9);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::PipelineCreateFlags {
+    pub const DISPATCH_BASE: Self = Self(
+        crate::vk::PipelineCreateFlagBits::DISPATCH_BASE.0,
+    );
+    pub const VIEW_INDEX_FROM_DEVICE_INDEX: Self = Self(
+        crate::vk::PipelineCreateFlagBits::VIEW_INDEX_FROM_DEVICE_INDEX.0,
+    );
+}
+///Provided by [`vk1_1`](crate::vk1_1)
 impl crate::vk::PipelineCreateFlagBits {
     pub const DISPATCH_BASE: Self = Self(1 << 4);
     pub const VIEW_INDEX_FROM_DEVICE_INDEX: Self = Self(1 << 3);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::FormatFeatureFlags {
+    pub const TRANSFER_SRC: Self = Self(
+        crate::vk::FormatFeatureFlagBits::TRANSFER_SRC.0,
+    );
+    pub const TRANSFER_DST: Self = Self(
+        crate::vk::FormatFeatureFlagBits::TRANSFER_DST.0,
+    );
+    pub const MIDPOINT_CHROMA_SAMPLES: Self = Self(
+        crate::vk::FormatFeatureFlagBits::MIDPOINT_CHROMA_SAMPLES.0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER: Self = Self(
+        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER.0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER: Self = Self(
+        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER
+            .0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT: Self = Self(
+        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT
+            .0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE: Self = Self(
+        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE
+            .0,
+    );
+    pub const DISJOINT: Self = Self(crate::vk::FormatFeatureFlagBits::DISJOINT.0);
+    pub const COSITED_CHROMA_SAMPLES: Self = Self(
+        crate::vk::FormatFeatureFlagBits::COSITED_CHROMA_SAMPLES.0,
+    );
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl crate::vk::FormatFeatureFlagBits {
@@ -267,8 +347,18 @@ impl crate::vk::FormatFeatureFlagBits {
     pub const COSITED_CHROMA_SAMPLES: Self = Self(1 << 23);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::CommandPoolCreateFlags {
+    pub const PROTECTED: Self = Self(crate::vk::CommandPoolCreateFlagBits::PROTECTED.0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
 impl crate::vk::CommandPoolCreateFlagBits {
     pub const PROTECTED: Self = Self(1 << 2);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::ImageAspectFlags {
+    pub const PLANE_0: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_0.0);
+    pub const PLANE_1: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_1.0);
+    pub const PLANE_2: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_2.0);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl crate::vk::ImageAspectFlagBits {
@@ -277,9 +367,25 @@ impl crate::vk::ImageAspectFlagBits {
     pub const PLANE_2: Self = Self(1 << 6);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::DependencyFlags {
+    pub const DEVICE_GROUP: Self = Self(crate::vk::DependencyFlagBits::DEVICE_GROUP.0);
+    pub const VIEW_LOCAL: Self = Self(crate::vk::DependencyFlagBits::VIEW_LOCAL.0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
 impl crate::vk::DependencyFlagBits {
     pub const DEVICE_GROUP: Self = Self(1 << 2);
     pub const VIEW_LOCAL: Self = Self(1 << 1);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl SubgroupFeatureFlags {
+    pub const BASIC: Self = Self(SubgroupFeatureFlagBits::BASIC.0);
+    pub const VOTE: Self = Self(SubgroupFeatureFlagBits::VOTE.0);
+    pub const ARITHMETIC: Self = Self(SubgroupFeatureFlagBits::ARITHMETIC.0);
+    pub const BALLOT: Self = Self(SubgroupFeatureFlagBits::BALLOT.0);
+    pub const SHUFFLE: Self = Self(SubgroupFeatureFlagBits::SHUFFLE.0);
+    pub const SHUFFLE_RELATIVE: Self = Self(SubgroupFeatureFlagBits::SHUFFLE_RELATIVE.0);
+    pub const CLUSTERED: Self = Self(SubgroupFeatureFlagBits::CLUSTERED.0);
+    pub const QUAD: Self = Self(SubgroupFeatureFlagBits::QUAD.0);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl SubgroupFeatureFlagBits {
@@ -293,6 +399,13 @@ impl SubgroupFeatureFlagBits {
     pub const QUAD: Self = Self(1 << 7);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
+impl PeerMemoryFeatureFlags {
+    pub const COPY_SRC: Self = Self(PeerMemoryFeatureFlagBits::COPY_SRC.0);
+    pub const COPY_DST: Self = Self(PeerMemoryFeatureFlagBits::COPY_DST.0);
+    pub const GENERIC_SRC: Self = Self(PeerMemoryFeatureFlagBits::GENERIC_SRC.0);
+    pub const GENERIC_DST: Self = Self(PeerMemoryFeatureFlagBits::GENERIC_DST.0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
 impl PeerMemoryFeatureFlagBits {
     pub const COPY_SRC: Self = Self(1 << 0);
     pub const COPY_DST: Self = Self(1 << 1);
@@ -300,8 +413,32 @@ impl PeerMemoryFeatureFlagBits {
     pub const GENERIC_DST: Self = Self(1 << 3);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
+impl MemoryAllocateFlags {
+    pub const DEVICE_MASK: Self = Self(MemoryAllocateFlagBits::DEVICE_MASK.0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
 impl MemoryAllocateFlagBits {
     pub const DEVICE_MASK: Self = Self(1 << 0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl ExternalMemoryHandleTypeFlags {
+    pub const OPAQUE_FD: Self = Self(ExternalMemoryHandleTypeFlagBits::OPAQUE_FD.0);
+    pub const OPAQUE_WIN32: Self = Self(
+        ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32.0,
+    );
+    pub const OPAQUE_WIN32_KMT: Self = Self(
+        ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32_KMT.0,
+    );
+    pub const D3D11_TEXTURE: Self = Self(
+        ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE.0,
+    );
+    pub const D3D11_TEXTURE_KMT: Self = Self(
+        ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE_KMT.0,
+    );
+    pub const D3D12_HEAP: Self = Self(ExternalMemoryHandleTypeFlagBits::D3D12_HEAP.0);
+    pub const D3D12_RESOURCE: Self = Self(
+        ExternalMemoryHandleTypeFlagBits::D3D12_RESOURCE.0,
+    );
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl ExternalMemoryHandleTypeFlagBits {
@@ -314,10 +451,35 @@ impl ExternalMemoryHandleTypeFlagBits {
     pub const D3D12_RESOURCE: Self = Self(1 << 6);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
+impl ExternalMemoryFeatureFlags {
+    pub const DEDICATED_ONLY: Self = Self(
+        ExternalMemoryFeatureFlagBits::DEDICATED_ONLY.0,
+    );
+    pub const EXPORTABLE: Self = Self(ExternalMemoryFeatureFlagBits::EXPORTABLE.0);
+    pub const IMPORTABLE: Self = Self(ExternalMemoryFeatureFlagBits::IMPORTABLE.0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
 impl ExternalMemoryFeatureFlagBits {
     pub const DEDICATED_ONLY: Self = Self(1 << 0);
     pub const EXPORTABLE: Self = Self(1 << 1);
     pub const IMPORTABLE: Self = Self(1 << 2);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl ExternalSemaphoreHandleTypeFlags {
+    pub const OPAQUE_FD: Self = Self(ExternalSemaphoreHandleTypeFlagBits::OPAQUE_FD.0);
+    pub const OPAQUE_WIN32: Self = Self(
+        ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32.0,
+    );
+    pub const OPAQUE_WIN32_KMT: Self = Self(
+        ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KMT.0,
+    );
+    pub const D3D12_FENCE: Self = Self(
+        ExternalSemaphoreHandleTypeFlagBits::D3D12_FENCE.0,
+    );
+    pub const D3D11_FENCE: Self = Self(
+        ExternalSemaphoreHandleTypeFlagBits::D3D11_FENCE.0,
+    );
+    pub const SYNC_FD: Self = Self(ExternalSemaphoreHandleTypeFlagBits::SYNC_FD.0);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl ExternalSemaphoreHandleTypeFlagBits {
@@ -329,13 +491,31 @@ impl ExternalSemaphoreHandleTypeFlagBits {
     pub const SYNC_FD: Self = Self(1 << 4);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
+impl ExternalSemaphoreFeatureFlags {
+    pub const EXPORTABLE: Self = Self(ExternalSemaphoreFeatureFlagBits::EXPORTABLE.0);
+    pub const IMPORTABLE: Self = Self(ExternalSemaphoreFeatureFlagBits::IMPORTABLE.0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
 impl ExternalSemaphoreFeatureFlagBits {
     pub const EXPORTABLE: Self = Self(1 << 0);
     pub const IMPORTABLE: Self = Self(1 << 1);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
+impl SemaphoreImportFlags {
+    pub const TEMPORARY: Self = Self(SemaphoreImportFlagBits::TEMPORARY.0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
 impl SemaphoreImportFlagBits {
     pub const TEMPORARY: Self = Self(1 << 0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl ExternalFenceHandleTypeFlags {
+    pub const OPAQUE_FD: Self = Self(ExternalFenceHandleTypeFlagBits::OPAQUE_FD.0);
+    pub const OPAQUE_WIN32: Self = Self(ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32.0);
+    pub const OPAQUE_WIN32_KMT: Self = Self(
+        ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32_KMT.0,
+    );
+    pub const SYNC_FD: Self = Self(ExternalFenceHandleTypeFlagBits::SYNC_FD.0);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl ExternalFenceHandleTypeFlagBits {
@@ -345,9 +525,18 @@ impl ExternalFenceHandleTypeFlagBits {
     pub const SYNC_FD: Self = Self(1 << 3);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
+impl ExternalFenceFeatureFlags {
+    pub const EXPORTABLE: Self = Self(ExternalFenceFeatureFlagBits::EXPORTABLE.0);
+    pub const IMPORTABLE: Self = Self(ExternalFenceFeatureFlagBits::IMPORTABLE.0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
 impl ExternalFenceFeatureFlagBits {
     pub const EXPORTABLE: Self = Self(1 << 0);
     pub const IMPORTABLE: Self = Self(1 << 1);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl FenceImportFlags {
+    pub const TEMPORARY: Self = Self(FenceImportFlagBits::TEMPORARY.0);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl FenceImportFlagBits {
@@ -3651,7 +3840,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct SubgroupFeatureFlags(u32);
+    pub struct SubgroupFeatureFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SubgroupFeatureFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -3675,28 +3864,6 @@ pub(crate) mod items {
         }
     }
     impl SubgroupFeatureFlags {
-        pub const BASIC: Self = Self(SubgroupFeatureFlagBits::BASIC.0);
-        pub const VOTE: Self = Self(SubgroupFeatureFlagBits::VOTE.0);
-        pub const ARITHMETIC: Self = Self(SubgroupFeatureFlagBits::ARITHMETIC.0);
-        pub const BALLOT: Self = Self(SubgroupFeatureFlagBits::BALLOT.0);
-        pub const SHUFFLE: Self = Self(SubgroupFeatureFlagBits::SHUFFLE.0);
-        pub const SHUFFLE_RELATIVE: Self = Self(
-            SubgroupFeatureFlagBits::SHUFFLE_RELATIVE.0,
-        );
-        pub const CLUSTERED: Self = Self(SubgroupFeatureFlagBits::CLUSTERED.0);
-        pub const QUAD: Self = Self(SubgroupFeatureFlagBits::QUAD.0);
-        pub const ROTATE: Self = Self(SubgroupFeatureFlagBits::ROTATE.0);
-        pub const ROTATE_CLUSTERED: Self = Self(
-            SubgroupFeatureFlagBits::ROTATE_CLUSTERED.0,
-        );
-        pub const PARTITIONED_NV: Self = Self(SubgroupFeatureFlagBits::PARTITIONED_NV.0);
-        pub const ROTATE_KHR: Self = Self(SubgroupFeatureFlagBits::ROTATE_KHR.0);
-        pub const ROTATE_CLUSTERED_KHR: Self = Self(
-            SubgroupFeatureFlagBits::ROTATE_CLUSTERED_KHR.0,
-        );
-        pub const PARTITIONED_EXT: Self = Self(
-            SubgroupFeatureFlagBits::PARTITIONED_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -3772,7 +3939,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DescriptorUpdateTemplateCreateFlags(u32);
+    pub struct DescriptorUpdateTemplateCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DescriptorUpdateTemplateCreateFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -3840,7 +4007,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PeerMemoryFeatureFlags(u32);
+    pub struct PeerMemoryFeatureFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PeerMemoryFeatureFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -3857,18 +4024,6 @@ pub(crate) mod items {
         }
     }
     impl PeerMemoryFeatureFlags {
-        pub const COPY_SRC: Self = Self(PeerMemoryFeatureFlagBits::COPY_SRC.0);
-        pub const COPY_DST: Self = Self(PeerMemoryFeatureFlagBits::COPY_DST.0);
-        pub const GENERIC_SRC: Self = Self(PeerMemoryFeatureFlagBits::GENERIC_SRC.0);
-        pub const GENERIC_DST: Self = Self(PeerMemoryFeatureFlagBits::GENERIC_DST.0);
-        pub const COPY_SRC_KHR: Self = Self(PeerMemoryFeatureFlagBits::COPY_SRC_KHR.0);
-        pub const COPY_DST_KHR: Self = Self(PeerMemoryFeatureFlagBits::COPY_DST_KHR.0);
-        pub const GENERIC_SRC_KHR: Self = Self(
-            PeerMemoryFeatureFlagBits::GENERIC_SRC_KHR.0,
-        );
-        pub const GENERIC_DST_KHR: Self = Self(
-            PeerMemoryFeatureFlagBits::GENERIC_DST_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -3944,7 +4099,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct MemoryAllocateFlags(u32);
+    pub struct MemoryAllocateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for MemoryAllocateFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -3964,23 +4119,6 @@ pub(crate) mod items {
         }
     }
     impl MemoryAllocateFlags {
-        pub const DEVICE_MASK: Self = Self(MemoryAllocateFlagBits::DEVICE_MASK.0);
-        pub const DEVICE_ADDRESS: Self = Self(MemoryAllocateFlagBits::DEVICE_ADDRESS.0);
-        pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(
-            MemoryAllocateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
-        );
-        pub const DEVICE_MASK_KHR: Self = Self(
-            MemoryAllocateFlagBits::DEVICE_MASK_KHR.0,
-        );
-        pub const DEVICE_ADDRESS_KHR: Self = Self(
-            MemoryAllocateFlagBits::DEVICE_ADDRESS_KHR.0,
-        );
-        pub const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self(
-            MemoryAllocateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY_KHR.0,
-        );
-        pub const ZERO_INITIALIZE_EXT: Self = Self(
-            MemoryAllocateFlagBits::ZERO_INITIALIZE_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4056,7 +4194,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct CommandPoolTrimFlags(u32);
+    pub struct CommandPoolTrimFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for CommandPoolTrimFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4124,7 +4262,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ExternalMemoryHandleTypeFlags(u32);
+    pub struct ExternalMemoryHandleTypeFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalMemoryHandleTypeFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4161,79 +4299,6 @@ pub(crate) mod items {
         }
     }
     impl ExternalMemoryHandleTypeFlags {
-        pub const OPAQUE_FD: Self = Self(ExternalMemoryHandleTypeFlagBits::OPAQUE_FD.0);
-        pub const OPAQUE_WIN32: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32.0,
-        );
-        pub const OPAQUE_WIN32_KMT: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32_KMT.0,
-        );
-        pub const D3D11_TEXTURE: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE.0,
-        );
-        pub const D3D11_TEXTURE_KMT: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE_KMT.0,
-        );
-        pub const D3D12_HEAP: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::D3D12_HEAP.0,
-        );
-        pub const D3D12_RESOURCE: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::D3D12_RESOURCE.0,
-        );
-        pub const OPAQUE_FD_KHR: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::OPAQUE_FD_KHR.0,
-        );
-        pub const OPAQUE_WIN32_KHR: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32_KHR.0,
-        );
-        pub const OPAQUE_WIN32_KMT_KHR: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0,
-        );
-        pub const D3D11_TEXTURE_KHR: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE_KHR.0,
-        );
-        pub const D3D11_TEXTURE_KMT_KHR: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE_KMT_KHR.0,
-        );
-        pub const D3D12_HEAP_KHR: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::D3D12_HEAP_KHR.0,
-        );
-        pub const D3D12_RESOURCE_KHR: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::D3D12_RESOURCE_KHR.0,
-        );
-        pub const DMA_BUF_EXT: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::DMA_BUF_EXT.0,
-        );
-        pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::ANDROID_HARDWARE_BUFFER_ANDROID.0,
-        );
-        pub const HOST_ALLOCATION_EXT: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::HOST_ALLOCATION_EXT.0,
-        );
-        pub const HOST_MAPPED_FOREIGN_MEMORY_EXT: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::HOST_MAPPED_FOREIGN_MEMORY_EXT.0,
-        );
-        pub const ZIRCON_VMO_FUCHSIA: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::ZIRCON_VMO_FUCHSIA.0,
-        );
-        pub const RDMA_ADDRESS_NV: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::RDMA_ADDRESS_NV.0,
-        );
-        pub const OH_NATIVE_BUFFER_OHOS: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::OH_NATIVE_BUFFER_OHOS.0,
-        );
-        pub const SCREEN_BUFFER_QNX: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::SCREEN_BUFFER_QNX.0,
-        );
-        pub const MTLBUFFER_EXT: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::MTLBUFFER_EXT.0,
-        );
-        pub const MTLTEXTURE_EXT: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::MTLTEXTURE_EXT.0,
-        );
-        pub const MTLHEAP_EXT: Self = Self(
-            ExternalMemoryHandleTypeFlagBits::MTLHEAP_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4309,7 +4374,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ExternalMemoryFeatureFlags(u32);
+    pub struct ExternalMemoryFeatureFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalMemoryFeatureFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4325,20 +4390,6 @@ pub(crate) mod items {
         }
     }
     impl ExternalMemoryFeatureFlags {
-        pub const DEDICATED_ONLY: Self = Self(
-            ExternalMemoryFeatureFlagBits::DEDICATED_ONLY.0,
-        );
-        pub const EXPORTABLE: Self = Self(ExternalMemoryFeatureFlagBits::EXPORTABLE.0);
-        pub const IMPORTABLE: Self = Self(ExternalMemoryFeatureFlagBits::IMPORTABLE.0);
-        pub const DEDICATED_ONLY_KHR: Self = Self(
-            ExternalMemoryFeatureFlagBits::DEDICATED_ONLY_KHR.0,
-        );
-        pub const EXPORTABLE_KHR: Self = Self(
-            ExternalMemoryFeatureFlagBits::EXPORTABLE_KHR.0,
-        );
-        pub const IMPORTABLE_KHR: Self = Self(
-            ExternalMemoryFeatureFlagBits::IMPORTABLE_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4414,7 +4465,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ExternalSemaphoreHandleTypeFlags(u32);
+    pub struct ExternalSemaphoreHandleTypeFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalSemaphoreHandleTypeFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4433,40 +4484,6 @@ pub(crate) mod items {
         }
     }
     impl ExternalSemaphoreHandleTypeFlags {
-        pub const OPAQUE_FD: Self = Self(
-            ExternalSemaphoreHandleTypeFlagBits::OPAQUE_FD.0,
-        );
-        pub const OPAQUE_WIN32: Self = Self(
-            ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32.0,
-        );
-        pub const OPAQUE_WIN32_KMT: Self = Self(
-            ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KMT.0,
-        );
-        pub const D3D12_FENCE: Self = Self(
-            ExternalSemaphoreHandleTypeFlagBits::D3D12_FENCE.0,
-        );
-        pub const D3D11_FENCE: Self = Self(
-            ExternalSemaphoreHandleTypeFlagBits::D3D11_FENCE.0,
-        );
-        pub const SYNC_FD: Self = Self(ExternalSemaphoreHandleTypeFlagBits::SYNC_FD.0);
-        pub const OPAQUE_FD_KHR: Self = Self(
-            ExternalSemaphoreHandleTypeFlagBits::OPAQUE_FD_KHR.0,
-        );
-        pub const OPAQUE_WIN32_KHR: Self = Self(
-            ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KHR.0,
-        );
-        pub const OPAQUE_WIN32_KMT_KHR: Self = Self(
-            ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0,
-        );
-        pub const D3D12_FENCE_KHR: Self = Self(
-            ExternalSemaphoreHandleTypeFlagBits::D3D12_FENCE_KHR.0,
-        );
-        pub const SYNC_FD_KHR: Self = Self(
-            ExternalSemaphoreHandleTypeFlagBits::SYNC_FD_KHR.0,
-        );
-        pub const ZIRCON_EVENT_FUCHSIA: Self = Self(
-            ExternalSemaphoreHandleTypeFlagBits::ZIRCON_EVENT_FUCHSIA.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4542,7 +4559,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ExternalSemaphoreFeatureFlags(u32);
+    pub struct ExternalSemaphoreFeatureFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalSemaphoreFeatureFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4557,18 +4574,6 @@ pub(crate) mod items {
         }
     }
     impl ExternalSemaphoreFeatureFlags {
-        pub const EXPORTABLE: Self = Self(
-            ExternalSemaphoreFeatureFlagBits::EXPORTABLE.0,
-        );
-        pub const IMPORTABLE: Self = Self(
-            ExternalSemaphoreFeatureFlagBits::IMPORTABLE.0,
-        );
-        pub const EXPORTABLE_KHR: Self = Self(
-            ExternalSemaphoreFeatureFlagBits::EXPORTABLE_KHR.0,
-        );
-        pub const IMPORTABLE_KHR: Self = Self(
-            ExternalSemaphoreFeatureFlagBits::IMPORTABLE_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4644,7 +4649,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct SemaphoreImportFlags(u32);
+    pub struct SemaphoreImportFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SemaphoreImportFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4652,8 +4657,6 @@ pub(crate) mod items {
         }
     }
     impl SemaphoreImportFlags {
-        pub const TEMPORARY: Self = Self(SemaphoreImportFlagBits::TEMPORARY.0);
-        pub const TEMPORARY_KHR: Self = Self(SemaphoreImportFlagBits::TEMPORARY_KHR.0);
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4729,7 +4732,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ExternalFenceHandleTypeFlags(u32);
+    pub struct ExternalFenceHandleTypeFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalFenceHandleTypeFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4746,26 +4749,6 @@ pub(crate) mod items {
         }
     }
     impl ExternalFenceHandleTypeFlags {
-        pub const OPAQUE_FD: Self = Self(ExternalFenceHandleTypeFlagBits::OPAQUE_FD.0);
-        pub const OPAQUE_WIN32: Self = Self(
-            ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32.0,
-        );
-        pub const OPAQUE_WIN32_KMT: Self = Self(
-            ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32_KMT.0,
-        );
-        pub const SYNC_FD: Self = Self(ExternalFenceHandleTypeFlagBits::SYNC_FD.0);
-        pub const OPAQUE_FD_KHR: Self = Self(
-            ExternalFenceHandleTypeFlagBits::OPAQUE_FD_KHR.0,
-        );
-        pub const OPAQUE_WIN32_KHR: Self = Self(
-            ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32_KHR.0,
-        );
-        pub const OPAQUE_WIN32_KMT_KHR: Self = Self(
-            ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0,
-        );
-        pub const SYNC_FD_KHR: Self = Self(
-            ExternalFenceHandleTypeFlagBits::SYNC_FD_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4841,7 +4824,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ExternalFenceFeatureFlags(u32);
+    pub struct ExternalFenceFeatureFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalFenceFeatureFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4856,14 +4839,6 @@ pub(crate) mod items {
         }
     }
     impl ExternalFenceFeatureFlags {
-        pub const EXPORTABLE: Self = Self(ExternalFenceFeatureFlagBits::EXPORTABLE.0);
-        pub const IMPORTABLE: Self = Self(ExternalFenceFeatureFlagBits::IMPORTABLE.0);
-        pub const EXPORTABLE_KHR: Self = Self(
-            ExternalFenceFeatureFlagBits::EXPORTABLE_KHR.0,
-        );
-        pub const IMPORTABLE_KHR: Self = Self(
-            ExternalFenceFeatureFlagBits::IMPORTABLE_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4939,7 +4914,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct FenceImportFlags(u32);
+    pub struct FenceImportFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for FenceImportFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4947,8 +4922,6 @@ pub(crate) mod items {
         }
     }
     impl FenceImportFlags {
-        pub const TEMPORARY: Self = Self(FenceImportFlagBits::TEMPORARY.0);
-        pub const TEMPORARY_KHR: Self = Self(FenceImportFlagBits::TEMPORARY_KHR.0);
         pub const fn empty() -> Self {
             Self(0)
         }

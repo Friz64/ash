@@ -14,8 +14,26 @@ impl crate::vk::StructureType {
     pub const VIDEO_DECODE_H264_DPB_SLOT_INFO_KHR: Self = Self(1000040006);
 }
 ///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
+impl crate::vk::VideoCodecOperationFlagsKHR {
+    pub const DECODE_H264_KHR: Self = Self(
+        crate::vk::VideoCodecOperationFlagBitsKHR::DECODE_H264_KHR.0,
+    );
+}
+///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_H264_KHR: Self = Self(1 << 0);
+}
+///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
+impl VideoDecodeH264PictureLayoutFlagsKHR {
+    pub const PROGRESSIVE_KHR: Self = Self(
+        VideoDecodeH264PictureLayoutFlagBitsKHR::PROGRESSIVE_KHR.0,
+    );
+    pub const INTERLACED_INTERLEAVED_LINES_KHR: Self = Self(
+        VideoDecodeH264PictureLayoutFlagBitsKHR::INTERLACED_INTERLEAVED_LINES_KHR.0,
+    );
+    pub const INTERLACED_SEPARATE_PLANES_KHR: Self = Self(
+        VideoDecodeH264PictureLayoutFlagBitsKHR::INTERLACED_SEPARATE_PLANES_KHR.0,
+    );
 }
 ///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
 impl VideoDecodeH264PictureLayoutFlagBitsKHR {
@@ -285,7 +303,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoDecodeH264PictureLayoutFlagsKHR(u32);
+    pub struct VideoDecodeH264PictureLayoutFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoDecodeH264PictureLayoutFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -307,15 +325,6 @@ pub(crate) mod items {
         }
     }
     impl VideoDecodeH264PictureLayoutFlagsKHR {
-        pub const PROGRESSIVE_KHR: Self = Self(
-            VideoDecodeH264PictureLayoutFlagBitsKHR::PROGRESSIVE_KHR.0,
-        );
-        pub const INTERLACED_INTERLEAVED_LINES_KHR: Self = Self(
-            VideoDecodeH264PictureLayoutFlagBitsKHR::INTERLACED_INTERLEAVED_LINES_KHR.0,
-        );
-        pub const INTERLACED_SEPARATE_PLANES_KHR: Self = Self(
-            VideoDecodeH264PictureLayoutFlagBitsKHR::INTERLACED_SEPARATE_PLANES_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

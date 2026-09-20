@@ -10,6 +10,12 @@ impl crate::vk::StructureType {
     pub const RENDER_PASS_ATTACHMENT_BEGIN_INFO_KHR: Self = Self::RENDER_PASS_ATTACHMENT_BEGIN_INFO;
 }
 ///Provided by [`khr::imageless_framebuffer`](crate::khr::imageless_framebuffer)
+impl crate::vk::FramebufferCreateFlags {
+    pub const IMAGELESS_KHR: Self = Self(
+        crate::vk::FramebufferCreateFlagBits::IMAGELESS_KHR.0,
+    );
+}
+///Provided by [`khr::imageless_framebuffer`](crate::khr::imageless_framebuffer)
 impl crate::vk::FramebufferCreateFlagBits {
     pub const IMAGELESS_KHR: Self = Self::IMAGELESS;
 }

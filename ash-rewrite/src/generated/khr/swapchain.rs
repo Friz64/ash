@@ -27,9 +27,25 @@ impl crate::vk::ObjectType {
     pub const SWAPCHAIN_KHR: Self = Self(1000001000);
 }
 ///Provided by [`khr::swapchain`](crate::khr::swapchain)
+impl SwapchainCreateFlagsKHR {
+    pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(
+        SwapchainCreateFlagBitsKHR::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
+    );
+    pub const PROTECTED_KHR: Self = Self(SwapchainCreateFlagBitsKHR::PROTECTED_KHR.0);
+}
+///Provided by [`khr::swapchain`](crate::khr::swapchain)
 impl SwapchainCreateFlagBitsKHR {
     pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(1 << 0);
     pub const PROTECTED_KHR: Self = Self(1 << 1);
+}
+///Provided by [`khr::swapchain`](crate::khr::swapchain)
+impl DeviceGroupPresentModeFlagsKHR {
+    pub const LOCAL_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::LOCAL_KHR.0);
+    pub const REMOTE_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::REMOTE_KHR.0);
+    pub const SUM_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::SUM_KHR.0);
+    pub const LOCAL_MULTI_DEVICE_KHR: Self = Self(
+        DeviceGroupPresentModeFlagBitsKHR::LOCAL_MULTI_DEVICE_KHR.0,
+    );
 }
 ///Provided by [`khr::swapchain`](crate::khr::swapchain)
 impl DeviceGroupPresentModeFlagBitsKHR {
@@ -690,7 +706,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct SwapchainCreateFlagsKHR(u32);
+    pub struct SwapchainCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SwapchainCreateFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -720,33 +736,6 @@ pub(crate) mod items {
         }
     }
     impl SwapchainCreateFlagsKHR {
-        pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(
-            SwapchainCreateFlagBitsKHR::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
-        );
-        pub const PROTECTED_KHR: Self = Self(
-            SwapchainCreateFlagBitsKHR::PROTECTED_KHR.0,
-        );
-        pub const MUTABLE_FORMAT_KHR: Self = Self(
-            SwapchainCreateFlagBitsKHR::MUTABLE_FORMAT_KHR.0,
-        );
-        pub const PRESENT_TIMING_EXT: Self = Self(
-            SwapchainCreateFlagBitsKHR::PRESENT_TIMING_EXT.0,
-        );
-        pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self(
-            SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_EXT.0,
-        );
-        pub const PRESENT_ID_2_KHR: Self = Self(
-            SwapchainCreateFlagBitsKHR::PRESENT_ID_2_KHR.0,
-        );
-        pub const PRESENT_WAIT_2_KHR: Self = Self(
-            SwapchainCreateFlagBitsKHR::PRESENT_WAIT_2_KHR.0,
-        );
-        pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(
-            SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_KHR.0,
-        );
-        pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(
-            SwapchainCreateFlagBitsKHR::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -822,7 +811,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DeviceGroupPresentModeFlagsKHR(u32);
+    pub struct DeviceGroupPresentModeFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -839,14 +828,6 @@ pub(crate) mod items {
         }
     }
     impl DeviceGroupPresentModeFlagsKHR {
-        pub const LOCAL_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::LOCAL_KHR.0);
-        pub const REMOTE_KHR: Self = Self(
-            DeviceGroupPresentModeFlagBitsKHR::REMOTE_KHR.0,
-        );
-        pub const SUM_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::SUM_KHR.0);
-        pub const LOCAL_MULTI_DEVICE_KHR: Self = Self(
-            DeviceGroupPresentModeFlagBitsKHR::LOCAL_MULTI_DEVICE_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

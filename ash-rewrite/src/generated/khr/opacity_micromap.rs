@@ -60,13 +60,42 @@ impl AccelerationStructureSerializedBlockTypeKHR {
     pub const OPACITY_MICROMAP_KHR: Self = Self(0);
 }
 ///Provided by [`khr::opacity_micromap`](crate::khr::opacity_micromap)
+impl crate::vk::PipelineCreateFlags {
+    pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(
+        crate::vk::PipelineCreateFlagBits::RAY_TRACING_OPACITY_MICROMAP_KHR.0,
+    );
+}
+///Provided by [`khr::opacity_micromap`](crate::khr::opacity_micromap)
 impl crate::vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(1 << 24);
+}
+///Provided by [`khr::opacity_micromap`](crate::khr::opacity_micromap)
+impl crate::vk::GeometryInstanceFlagsKHR {
+    pub const FORCE_OPACITY_MICROMAP_2_STATE_KHR: Self = Self(
+        crate::vk::GeometryInstanceFlagBitsKHR::FORCE_OPACITY_MICROMAP_2_STATE_KHR.0,
+    );
+    pub const DISABLE_OPACITY_MICROMAPS_KHR: Self = Self(
+        crate::vk::GeometryInstanceFlagBitsKHR::DISABLE_OPACITY_MICROMAPS_KHR.0,
+    );
 }
 ///Provided by [`khr::opacity_micromap`](crate::khr::opacity_micromap)
 impl crate::vk::GeometryInstanceFlagBitsKHR {
     pub const FORCE_OPACITY_MICROMAP_2_STATE_KHR: Self = Self(1 << 4);
     pub const DISABLE_OPACITY_MICROMAPS_KHR: Self = Self(1 << 5);
+}
+///Provided by [`khr::opacity_micromap`](crate::khr::opacity_micromap)
+impl crate::vk::BuildAccelerationStructureFlagsKHR {
+    pub const ALLOW_OPACITY_MICROMAP_UPDATE_KHR: Self = Self(
+        crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_OPACITY_MICROMAP_UPDATE_KHR
+            .0,
+    );
+    pub const ALLOW_DISABLE_OPACITY_MICROMAPS_KHR: Self = Self(
+        crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_DISABLE_OPACITY_MICROMAPS_KHR
+            .0,
+    );
+    pub const MICROMAP_LOSSY_KHR: Self = Self(
+        crate::vk::BuildAccelerationStructureFlagBitsKHR::MICROMAP_LOSSY_KHR.0,
+    );
 }
 ///Provided by [`khr::opacity_micromap`](crate::khr::opacity_micromap)
 impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
@@ -75,9 +104,26 @@ impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
     pub const MICROMAP_LOSSY_KHR: Self = Self(1 << 10);
 }
 ///Provided by [`khr::opacity_micromap`](crate::khr::opacity_micromap)
+impl crate::vk::PipelineCreateFlags2 {
+    pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(
+        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_OPACITY_MICROMAP_KHR.0,
+    );
+    pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR: Self = Self(
+        crate::vk::PipelineCreateFlagBits2::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR
+            .0,
+    );
+}
+///Provided by [`khr::opacity_micromap`](crate::khr::opacity_micromap)
 impl crate::vk::PipelineCreateFlagBits2 {
     pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(1 << 24);
     pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR: Self = Self(1 << 41);
+}
+///Provided by [`khr::opacity_micromap`](crate::khr::opacity_micromap)
+impl crate::vk::ShaderCreateFlagsEXT {
+    pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT: Self = Self(
+        crate::vk::ShaderCreateFlagBitsEXT::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT
+            .0,
+    );
 }
 ///Provided by [`khr::opacity_micromap`](crate::khr::opacity_micromap)
 impl crate::vk::ShaderCreateFlagBitsEXT {
@@ -313,6 +359,7 @@ pub(crate) mod items {
         'a,
     > crate::Extends<crate::vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
     for AccelerationStructureTrianglesOpacityMicromapKHR<'a> {}
+    #[cfg(feature = "provisional")]
     unsafe impl<
         'a,
     > crate::Extends<

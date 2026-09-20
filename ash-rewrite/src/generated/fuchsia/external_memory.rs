@@ -9,6 +9,12 @@ impl crate::vk::StructureType {
     pub const MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000364002);
 }
 ///Provided by [`fuchsia::external_memory`](crate::fuchsia::external_memory)
+impl crate::vk::ExternalMemoryHandleTypeFlags {
+    pub const ZIRCON_VMO_FUCHSIA: Self = Self(
+        crate::vk::ExternalMemoryHandleTypeFlagBits::ZIRCON_VMO_FUCHSIA.0,
+    );
+}
+///Provided by [`fuchsia::external_memory`](crate::fuchsia::external_memory)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const ZIRCON_VMO_FUCHSIA: Self = Self(1 << 11);
 }

@@ -29,6 +29,15 @@ impl PipelineExecutableStatisticFormatKHR {
     pub const FLOAT64_KHR: Self = Self(3);
 }
 ///Provided by [`khr::pipeline_executable_properties`](crate::khr::pipeline_executable_properties)
+impl crate::vk::PipelineCreateFlags {
+    pub const CAPTURE_STATISTICS_KHR: Self = Self(
+        crate::vk::PipelineCreateFlagBits::CAPTURE_STATISTICS_KHR.0,
+    );
+    pub const CAPTURE_INTERNAL_REPRESENTATIONS_KHR: Self = Self(
+        crate::vk::PipelineCreateFlagBits::CAPTURE_INTERNAL_REPRESENTATIONS_KHR.0,
+    );
+}
+///Provided by [`khr::pipeline_executable_properties`](crate::khr::pipeline_executable_properties)
 impl crate::vk::PipelineCreateFlagBits {
     pub const CAPTURE_STATISTICS_KHR: Self = Self(1 << 6);
     pub const CAPTURE_INTERNAL_REPRESENTATIONS_KHR: Self = Self(1 << 7);

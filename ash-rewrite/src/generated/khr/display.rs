@@ -13,6 +13,15 @@ impl crate::vk::ObjectType {
     pub const DISPLAY_MODE_KHR: Self = Self(1000002001);
 }
 ///Provided by [`khr::display`](crate::khr::display)
+impl DisplayPlaneAlphaFlagsKHR {
+    pub const OPAQUE_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::OPAQUE_KHR.0);
+    pub const GLOBAL_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::GLOBAL_KHR.0);
+    pub const PER_PIXEL_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL_KHR.0);
+    pub const PER_PIXEL_PREMULTIPLIED_KHR: Self = Self(
+        DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL_PREMULTIPLIED_KHR.0,
+    );
+}
+///Provided by [`khr::display`](crate::khr::display)
 impl DisplayPlaneAlphaFlagBitsKHR {
     pub const OPAQUE_KHR: Self = Self(1 << 0);
     pub const GLOBAL_KHR: Self = Self(1 << 1);
@@ -478,7 +487,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DisplayPlaneAlphaFlagsKHR(u32);
+    pub struct DisplayPlaneAlphaFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -495,14 +504,6 @@ pub(crate) mod items {
         }
     }
     impl DisplayPlaneAlphaFlagsKHR {
-        pub const OPAQUE_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::OPAQUE_KHR.0);
-        pub const GLOBAL_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::GLOBAL_KHR.0);
-        pub const PER_PIXEL_KHR: Self = Self(
-            DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL_KHR.0,
-        );
-        pub const PER_PIXEL_PREMULTIPLIED_KHR: Self = Self(
-            DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL_PREMULTIPLIED_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -578,7 +579,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DisplayModeCreateFlagsKHR(u32);
+    pub struct DisplayModeCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DisplayModeCreateFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -646,7 +647,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DisplaySurfaceCreateFlagsKHR(u32);
+    pub struct DisplaySurfaceCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DisplaySurfaceCreateFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

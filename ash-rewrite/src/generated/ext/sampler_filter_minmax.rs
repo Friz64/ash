@@ -14,6 +14,12 @@ impl crate::vk::SamplerReductionMode {
     pub const MAX_EXT: Self = Self::MAX;
 }
 ///Provided by [`ext::sampler_filter_minmax`](crate::ext::sampler_filter_minmax)
+impl crate::vk::FormatFeatureFlags {
+    pub const SAMPLED_IMAGE_FILTER_MINMAX_EXT: Self = Self(
+        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_MINMAX_EXT.0,
+    );
+}
+///Provided by [`ext::sampler_filter_minmax`](crate::ext::sampler_filter_minmax)
 impl crate::vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_MINMAX_EXT: Self = Self::SAMPLED_IMAGE_FILTER_MINMAX;
 }

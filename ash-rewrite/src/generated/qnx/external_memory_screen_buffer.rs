@@ -13,6 +13,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
+impl crate::vk::ExternalMemoryHandleTypeFlags {
+    pub const SCREEN_BUFFER_QNX: Self = Self(
+        crate::vk::ExternalMemoryHandleTypeFlagBits::SCREEN_BUFFER_QNX.0,
+    );
+}
+///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const SCREEN_BUFFER_QNX: Self = Self(1 << 14);
 }

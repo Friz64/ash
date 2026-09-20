@@ -31,6 +31,28 @@ impl ShaderCodeTypeEXT {
     pub const SPIRV_EXT: Self = Self(1);
 }
 ///Provided by [`ext::shader_object`](crate::ext::shader_object)
+impl ShaderCreateFlagsEXT {
+    pub const LINK_STAGE_EXT: Self = Self(ShaderCreateFlagBitsEXT::LINK_STAGE_EXT.0);
+    pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(
+        ShaderCreateFlagBitsEXT::ALLOW_VARYING_SUBGROUP_SIZE_EXT.0,
+    );
+    pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self(
+        ShaderCreateFlagBitsEXT::REQUIRE_FULL_SUBGROUPS_EXT.0,
+    );
+    pub const NO_TASK_SHADER_EXT: Self = Self(
+        ShaderCreateFlagBitsEXT::NO_TASK_SHADER_EXT.0,
+    );
+    pub const DISPATCH_BASE_EXT: Self = Self(
+        ShaderCreateFlagBitsEXT::DISPATCH_BASE_EXT.0,
+    );
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_EXT: Self = Self(
+        ShaderCreateFlagBitsEXT::FRAGMENT_SHADING_RATE_ATTACHMENT_EXT.0,
+    );
+    pub const FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(
+        ShaderCreateFlagBitsEXT::FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0,
+    );
+}
+///Provided by [`ext::shader_object`](crate::ext::shader_object)
 impl ShaderCreateFlagBitsEXT {
     pub const LINK_STAGE_EXT: Self = Self(1 << 0);
     pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(1 << 1);
@@ -1124,7 +1146,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ShaderCreateFlagsEXT(u32);
+    pub struct ShaderCreateFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ShaderCreateFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1162,43 +1184,6 @@ pub(crate) mod items {
         }
     }
     impl ShaderCreateFlagsEXT {
-        pub const LINK_STAGE_EXT: Self = Self(ShaderCreateFlagBitsEXT::LINK_STAGE_EXT.0);
-        pub const DESCRIPTOR_HEAP_EXT: Self = Self(
-            ShaderCreateFlagBitsEXT::DESCRIPTOR_HEAP_EXT.0,
-        );
-        pub const INSTRUMENT_SHADER_ARM: Self = Self(
-            ShaderCreateFlagBitsEXT::INSTRUMENT_SHADER_ARM.0,
-        );
-        pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(
-            ShaderCreateFlagBitsEXT::ALLOW_VARYING_SUBGROUP_SIZE_EXT.0,
-        );
-        pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self(
-            ShaderCreateFlagBitsEXT::REQUIRE_FULL_SUBGROUPS_EXT.0,
-        );
-        pub const NO_TASK_SHADER_EXT: Self = Self(
-            ShaderCreateFlagBitsEXT::NO_TASK_SHADER_EXT.0,
-        );
-        pub const DISPATCH_BASE_EXT: Self = Self(
-            ShaderCreateFlagBitsEXT::DISPATCH_BASE_EXT.0,
-        );
-        pub const FRAGMENT_SHADING_RATE_ATTACHMENT_EXT: Self = Self(
-            ShaderCreateFlagBitsEXT::FRAGMENT_SHADING_RATE_ATTACHMENT_EXT.0,
-        );
-        pub const FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(
-            ShaderCreateFlagBitsEXT::FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0,
-        );
-        pub const INDIRECT_BINDABLE_EXT: Self = Self(
-            ShaderCreateFlagBitsEXT::INDIRECT_BINDABLE_EXT.0,
-        );
-        pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT: Self = Self(
-            ShaderCreateFlagBitsEXT::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT.0,
-        );
-        pub const _64_INDEXING_EXT: Self = Self(
-            ShaderCreateFlagBitsEXT::_64_INDEXING_EXT.0,
-        );
-        pub const INDEPENDENT_SETS_KHR: Self = Self(
-            ShaderCreateFlagBitsEXT::INDEPENDENT_SETS_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

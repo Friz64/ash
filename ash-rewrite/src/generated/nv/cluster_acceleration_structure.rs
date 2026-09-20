@@ -75,14 +75,64 @@ impl crate::vk::OpacityMicromapSpecialIndexKHR {
     pub const CLUSTER_GEOMETRY_DISABLE_OPACITY_MICROMAP_NV: Self = Self(-5);
 }
 ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureGeometryFlagsNV {
+    pub const CULL_DISABLE_NV: Self = Self(
+        ClusterAccelerationStructureGeometryFlagBitsNV::CULL_DISABLE_NV.0,
+    );
+    pub const NO_DUPLICATE_ANYHIT_INVOCATION_NV: Self = Self(
+        ClusterAccelerationStructureGeometryFlagBitsNV::NO_DUPLICATE_ANYHIT_INVOCATION_NV
+            .0,
+    );
+    pub const OPAQUE_NV: Self = Self(
+        ClusterAccelerationStructureGeometryFlagBitsNV::OPAQUE_NV.0,
+    );
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureGeometryFlagBitsNV {
     pub const CULL_DISABLE_NV: Self = Self(1 << 0);
     pub const NO_DUPLICATE_ANYHIT_INVOCATION_NV: Self = Self(1 << 1);
     pub const OPAQUE_NV: Self = Self(1 << 2);
 }
 ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureClusterFlagsNV {
+    pub const ALLOW_DISABLE_OPACITY_MICROMAPS_NV: Self = Self(
+        ClusterAccelerationStructureClusterFlagBitsNV::ALLOW_DISABLE_OPACITY_MICROMAPS_NV
+            .0,
+    );
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureClusterFlagBitsNV {
     pub const ALLOW_DISABLE_OPACITY_MICROMAPS_NV: Self = Self(1 << 0);
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureAddressResolutionFlagsNV {
+    pub const NONE_NV: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::NONE_NV.0,
+    );
+    pub const INDIRECTED_DST_IMPLICIT_DATA_NV: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_IMPLICIT_DATA_NV
+            .0,
+    );
+    pub const INDIRECTED_SCRATCH_DATA_NV: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SCRATCH_DATA_NV
+            .0,
+    );
+    pub const INDIRECTED_DST_ADDRESS_ARRAY_NV: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_ADDRESS_ARRAY_NV
+            .0,
+    );
+    pub const INDIRECTED_DST_SIZES_ARRAY_NV: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_SIZES_ARRAY_NV
+            .0,
+    );
+    pub const INDIRECTED_SRC_INFOS_ARRAY_NV: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SRC_INFOS_ARRAY_NV
+            .0,
+    );
+    pub const INDIRECTED_SRC_INFOS_COUNT_NV: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SRC_INFOS_COUNT_NV
+            .0,
+    );
 }
 ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureAddressResolutionFlagBitsNV {
@@ -95,8 +145,27 @@ impl ClusterAccelerationStructureAddressResolutionFlagBitsNV {
     pub const INDIRECTED_SRC_INFOS_COUNT_NV: Self = Self(1 << 5);
 }
 ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl crate::vk::BuildAccelerationStructureFlagsKHR {
+    pub const ALLOW_CLUSTER_OPACITY_MICROMAPS_NV: Self = Self(
+        crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_CLUSTER_OPACITY_MICROMAPS_NV
+            .0,
+    );
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
 impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_CLUSTER_OPACITY_MICROMAPS_NV: Self = Self(1 << 12);
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureIndexFormatFlagsNV {
+    pub const _8BIT_NV: Self = Self(
+        ClusterAccelerationStructureIndexFormatFlagBitsNV::_8BIT_NV.0,
+    );
+    pub const _16BIT_NV: Self = Self(
+        ClusterAccelerationStructureIndexFormatFlagBitsNV::_16BIT_NV.0,
+    );
+    pub const _32BIT_NV: Self = Self(
+        ClusterAccelerationStructureIndexFormatFlagBitsNV::_32BIT_NV.0,
+    );
 }
 ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureIndexFormatFlagBitsNV {
@@ -1325,7 +1394,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ClusterAccelerationStructureGeometryFlagsNV(u32);
+    pub struct ClusterAccelerationStructureGeometryFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureGeometryFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1344,16 +1413,6 @@ pub(crate) mod items {
         }
     }
     impl ClusterAccelerationStructureGeometryFlagsNV {
-        pub const CULL_DISABLE_NV: Self = Self(
-            ClusterAccelerationStructureGeometryFlagBitsNV::CULL_DISABLE_NV.0,
-        );
-        pub const NO_DUPLICATE_ANYHIT_INVOCATION_NV: Self = Self(
-            ClusterAccelerationStructureGeometryFlagBitsNV::NO_DUPLICATE_ANYHIT_INVOCATION_NV
-                .0,
-        );
-        pub const OPAQUE_NV: Self = Self(
-            ClusterAccelerationStructureGeometryFlagBitsNV::OPAQUE_NV.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1429,7 +1488,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ClusterAccelerationStructureClusterFlagsNV(u32);
+    pub struct ClusterAccelerationStructureClusterFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureClusterFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1446,10 +1505,6 @@ pub(crate) mod items {
         }
     }
     impl ClusterAccelerationStructureClusterFlagsNV {
-        pub const ALLOW_DISABLE_OPACITY_MICROMAPS_NV: Self = Self(
-            ClusterAccelerationStructureClusterFlagBitsNV::ALLOW_DISABLE_OPACITY_MICROMAPS_NV
-                .0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1525,7 +1580,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ClusterAccelerationStructureAddressResolutionFlagsNV(u32);
+    pub struct ClusterAccelerationStructureAddressResolutionFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureAddressResolutionFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1560,33 +1615,6 @@ pub(crate) mod items {
         }
     }
     impl ClusterAccelerationStructureAddressResolutionFlagsNV {
-        pub const NONE_NV: Self = Self(
-            ClusterAccelerationStructureAddressResolutionFlagBitsNV::NONE_NV.0,
-        );
-        pub const INDIRECTED_DST_IMPLICIT_DATA_NV: Self = Self(
-            ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_IMPLICIT_DATA_NV
-                .0,
-        );
-        pub const INDIRECTED_SCRATCH_DATA_NV: Self = Self(
-            ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SCRATCH_DATA_NV
-                .0,
-        );
-        pub const INDIRECTED_DST_ADDRESS_ARRAY_NV: Self = Self(
-            ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_ADDRESS_ARRAY_NV
-                .0,
-        );
-        pub const INDIRECTED_DST_SIZES_ARRAY_NV: Self = Self(
-            ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_SIZES_ARRAY_NV
-                .0,
-        );
-        pub const INDIRECTED_SRC_INFOS_ARRAY_NV: Self = Self(
-            ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SRC_INFOS_ARRAY_NV
-                .0,
-        );
-        pub const INDIRECTED_SRC_INFOS_COUNT_NV: Self = Self(
-            ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SRC_INFOS_COUNT_NV
-                .0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1667,7 +1695,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ClusterAccelerationStructureIndexFormatFlagsNV(u32);
+    pub struct ClusterAccelerationStructureIndexFormatFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureIndexFormatFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1683,15 +1711,6 @@ pub(crate) mod items {
         }
     }
     impl ClusterAccelerationStructureIndexFormatFlagsNV {
-        pub const _8BIT_NV: Self = Self(
-            ClusterAccelerationStructureIndexFormatFlagBitsNV::_8BIT_NV.0,
-        );
-        pub const _16BIT_NV: Self = Self(
-            ClusterAccelerationStructureIndexFormatFlagBitsNV::_16BIT_NV.0,
-        );
-        pub const _32BIT_NV: Self = Self(
-            ClusterAccelerationStructureIndexFormatFlagBitsNV::_32BIT_NV.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

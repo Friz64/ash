@@ -16,6 +16,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
+impl crate::vk::VideoSessionCreateFlagsKHR {
+    pub const INLINE_SESSION_PARAMETERS_KHR: Self = Self(
+        crate::vk::VideoSessionCreateFlagBitsKHR::INLINE_SESSION_PARAMETERS_KHR.0,
+    );
+}
+///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
 impl crate::vk::VideoSessionCreateFlagBitsKHR {
     pub const INLINE_SESSION_PARAMETERS_KHR: Self = Self(1 << 5);
 }

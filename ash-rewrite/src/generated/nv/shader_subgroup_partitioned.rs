@@ -3,6 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shader_subgroup_partitioned.html) · Extension `VK_NV_shader_subgroup_partitioned`
 #![doc(alias = "VK_NV_shader_subgroup_partitioned")]
 ///Provided by [`nv::shader_subgroup_partitioned`](crate::nv::shader_subgroup_partitioned)
+impl crate::vk::SubgroupFeatureFlags {
+    pub const PARTITIONED_NV: Self = Self(
+        crate::vk::SubgroupFeatureFlagBits::PARTITIONED_NV.0,
+    );
+}
+///Provided by [`nv::shader_subgroup_partitioned`](crate::nv::shader_subgroup_partitioned)
 impl crate::vk::SubgroupFeatureFlagBits {
     pub const PARTITIONED_NV: Self = Self::PARTITIONED_EXT;
 }

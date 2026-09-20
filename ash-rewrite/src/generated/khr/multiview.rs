@@ -9,6 +9,12 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES;
 }
 ///Provided by [`khr::multiview`](crate::khr::multiview)
+impl crate::vk::DependencyFlags {
+    pub const VIEW_LOCAL_KHR: Self = Self(
+        crate::vk::DependencyFlagBits::VIEW_LOCAL_KHR.0,
+    );
+}
+///Provided by [`khr::multiview`](crate::khr::multiview)
 impl crate::vk::DependencyFlagBits {
     pub const VIEW_LOCAL_KHR: Self = Self::VIEW_LOCAL;
 }

@@ -15,6 +15,16 @@ impl crate::vk::StructureType {
     pub const COMMAND_BUFFER_INHERITANCE_RENDERING_INFO_KHR: Self = Self::COMMAND_BUFFER_INHERITANCE_RENDERING_INFO;
 }
 ///Provided by [`khr::dynamic_rendering`](crate::khr::dynamic_rendering)
+impl crate::vk::RenderingFlags {
+    pub const CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self(
+        crate::vk::RenderingFlagBits::CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR.0,
+    );
+    pub const SUSPENDING_KHR: Self = Self(
+        crate::vk::RenderingFlagBits::SUSPENDING_KHR.0,
+    );
+    pub const RESUMING_KHR: Self = Self(crate::vk::RenderingFlagBits::RESUMING_KHR.0);
+}
+///Provided by [`khr::dynamic_rendering`](crate::khr::dynamic_rendering)
 impl crate::vk::RenderingFlagBits {
     pub const CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self::CONTENTS_SECONDARY_COMMAND_BUFFERS;
     pub const SUSPENDING_KHR: Self = Self::SUSPENDING;

@@ -118,6 +118,16 @@ impl GpaDeviceClockModeAMD {
     pub const PEAK_AMD: Self = Self(5);
 }
 ///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+impl GpaSqShaderStageFlagsAMD {
+    pub const PS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::PS_AMD.0);
+    pub const VS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::VS_AMD.0);
+    pub const GS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::GS_AMD.0);
+    pub const ES_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::ES_AMD.0);
+    pub const HS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::HS_AMD.0);
+    pub const LS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::LS_AMD.0);
+    pub const CS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::CS_AMD.0);
+}
+///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
 impl GpaSqShaderStageFlagBitsAMD {
     pub const PS_AMD: Self = Self(1 << 0);
     pub const VS_AMD: Self = Self(1 << 1);
@@ -952,7 +962,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct GpaSqShaderStageFlagsAMD(u32);
+    pub struct GpaSqShaderStageFlagsAMD(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for GpaSqShaderStageFlagsAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -972,13 +982,6 @@ pub(crate) mod items {
         }
     }
     impl GpaSqShaderStageFlagsAMD {
-        pub const PS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::PS_AMD.0);
-        pub const VS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::VS_AMD.0);
-        pub const GS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::GS_AMD.0);
-        pub const ES_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::ES_AMD.0);
-        pub const HS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::HS_AMD.0);
-        pub const LS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::LS_AMD.0);
-        pub const CS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::CS_AMD.0);
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1054,7 +1057,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct GpaPerfBlockPropertiesFlagsAMD(u32);
+    pub struct GpaPerfBlockPropertiesFlagsAMD(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for GpaPerfBlockPropertiesFlagsAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1122,7 +1125,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PhysicalDeviceGpaPropertiesFlagsAMD(u32);
+    pub struct PhysicalDeviceGpaPropertiesFlagsAMD(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PhysicalDeviceGpaPropertiesFlagsAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

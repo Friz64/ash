@@ -12,8 +12,20 @@ impl crate::vk::StructureType {
     pub const MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE: Self = Self::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;
 }
 ///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
+impl crate::vk::DescriptorSetLayoutCreateFlags {
+    pub const HOST_ONLY_POOL_VALVE: Self = Self(
+        crate::vk::DescriptorSetLayoutCreateFlagBits::HOST_ONLY_POOL_VALVE.0,
+    );
+}
+///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const HOST_ONLY_POOL_VALVE: Self = Self::HOST_ONLY_POOL_EXT;
+}
+///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
+impl crate::vk::DescriptorPoolCreateFlags {
+    pub const HOST_ONLY_VALVE: Self = Self(
+        crate::vk::DescriptorPoolCreateFlagBits::HOST_ONLY_VALVE.0,
+    );
 }
 ///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
 impl crate::vk::DescriptorPoolCreateFlagBits {

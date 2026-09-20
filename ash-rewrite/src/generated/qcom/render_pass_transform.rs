@@ -10,6 +10,12 @@ impl crate::vk::StructureType {
     pub const RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM: Self = Self(1000282001);
 }
 ///Provided by [`qcom::render_pass_transform`](crate::qcom::render_pass_transform)
+impl crate::vk::RenderPassCreateFlags {
+    pub const TRANSFORM_QCOM: Self = Self(
+        crate::vk::RenderPassCreateFlagBits::TRANSFORM_QCOM.0,
+    );
+}
+///Provided by [`qcom::render_pass_transform`](crate::qcom::render_pass_transform)
 impl crate::vk::RenderPassCreateFlagBits {
     pub const TRANSFORM_QCOM: Self = Self(1 << 1);
 }

@@ -20,8 +20,20 @@ impl crate::vk::IndirectCommandsTokenTypeEXT {
     pub const TRACE_RAYS2_EXT: Self = Self(1000386004);
 }
 ///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
+impl crate::vk::AccessFlags2 {
+    pub const SHADER_BINDING_TABLE_READ_KHR: Self = Self(
+        crate::vk::AccessFlagBits2::SHADER_BINDING_TABLE_READ_KHR.0,
+    );
+}
+///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
 impl crate::vk::AccessFlagBits2 {
     pub const SHADER_BINDING_TABLE_READ_KHR: Self = Self(1 << 40);
+}
+///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
+impl crate::vk::PipelineStageFlags2 {
+    pub const ACCELERATION_STRUCTURE_COPY_KHR: Self = Self(
+        crate::vk::PipelineStageFlagBits2::ACCELERATION_STRUCTURE_COPY_KHR.0,
+    );
 }
 ///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
 impl crate::vk::PipelineStageFlagBits2 {

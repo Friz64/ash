@@ -41,23 +41,62 @@ impl IndirectCommandsTokenTypeNV {
     pub const DRAW_TASKS_NV: Self = Self(7);
 }
 ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::AccessFlags {
+    pub const COMMAND_PREPROCESS_READ_NV: Self = Self(
+        crate::vk::AccessFlagBits::COMMAND_PREPROCESS_READ_NV.0,
+    );
+    pub const COMMAND_PREPROCESS_WRITE_NV: Self = Self(
+        crate::vk::AccessFlagBits::COMMAND_PREPROCESS_WRITE_NV.0,
+    );
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
 impl crate::vk::AccessFlagBits {
     pub const COMMAND_PREPROCESS_READ_NV: Self = Self::COMMAND_PREPROCESS_READ_EXT;
     pub const COMMAND_PREPROCESS_WRITE_NV: Self = Self::COMMAND_PREPROCESS_WRITE_EXT;
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::PipelineCreateFlags {
+    pub const INDIRECT_BINDABLE_NV: Self = Self(
+        crate::vk::PipelineCreateFlagBits::INDIRECT_BINDABLE_NV.0,
+    );
 }
 ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
 impl crate::vk::PipelineCreateFlagBits {
     pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 18);
 }
 ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::PipelineStageFlags {
+    pub const COMMAND_PREPROCESS_NV: Self = Self(
+        crate::vk::PipelineStageFlagBits::COMMAND_PREPROCESS_NV.0,
+    );
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
 impl crate::vk::PipelineStageFlagBits {
     pub const COMMAND_PREPROCESS_NV: Self = Self::COMMAND_PREPROCESS_EXT;
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl IndirectCommandsLayoutUsageFlagsNV {
+    pub const EXPLICIT_PREPROCESS_NV: Self = Self(
+        IndirectCommandsLayoutUsageFlagBitsNV::EXPLICIT_PREPROCESS_NV.0,
+    );
+    pub const INDEXED_SEQUENCES_NV: Self = Self(
+        IndirectCommandsLayoutUsageFlagBitsNV::INDEXED_SEQUENCES_NV.0,
+    );
+    pub const UNORDERED_SEQUENCES_NV: Self = Self(
+        IndirectCommandsLayoutUsageFlagBitsNV::UNORDERED_SEQUENCES_NV.0,
+    );
 }
 ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
 impl IndirectCommandsLayoutUsageFlagBitsNV {
     pub const EXPLICIT_PREPROCESS_NV: Self = Self(1 << 0);
     pub const INDEXED_SEQUENCES_NV: Self = Self(1 << 1);
     pub const UNORDERED_SEQUENCES_NV: Self = Self(1 << 2);
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl IndirectStateFlagsNV {
+    pub const FLAG_FRONTFACE_NV: Self = Self(
+        IndirectStateFlagBitsNV::FLAG_FRONTFACE_NV.0,
+    );
 }
 ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
 impl IndirectStateFlagBitsNV {
@@ -919,7 +958,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct IndirectCommandsLayoutUsageFlagsNV(u32);
+    pub struct IndirectCommandsLayoutUsageFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -935,15 +974,6 @@ pub(crate) mod items {
         }
     }
     impl IndirectCommandsLayoutUsageFlagsNV {
-        pub const EXPLICIT_PREPROCESS_NV: Self = Self(
-            IndirectCommandsLayoutUsageFlagBitsNV::EXPLICIT_PREPROCESS_NV.0,
-        );
-        pub const INDEXED_SEQUENCES_NV: Self = Self(
-            IndirectCommandsLayoutUsageFlagBitsNV::INDEXED_SEQUENCES_NV.0,
-        );
-        pub const UNORDERED_SEQUENCES_NV: Self = Self(
-            IndirectCommandsLayoutUsageFlagBitsNV::UNORDERED_SEQUENCES_NV.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1019,7 +1049,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct IndirectStateFlagsNV(u32);
+    pub struct IndirectStateFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for IndirectStateFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1031,9 +1061,6 @@ pub(crate) mod items {
         }
     }
     impl IndirectStateFlagsNV {
-        pub const FLAG_FRONTFACE_NV: Self = Self(
-            IndirectStateFlagBitsNV::FLAG_FRONTFACE_NV.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

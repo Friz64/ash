@@ -8,12 +8,39 @@ impl crate::vk::StructureType {
     pub const EXTERNAL_SEMAPHORE_PROPERTIES_KHR: Self = Self::EXTERNAL_SEMAPHORE_PROPERTIES;
 }
 ///Provided by [`khr::external_semaphore_capabilities`](crate::khr::external_semaphore_capabilities)
+impl crate::vk::ExternalSemaphoreHandleTypeFlags {
+    pub const OPAQUE_FD_KHR: Self = Self(
+        crate::vk::ExternalSemaphoreHandleTypeFlagBits::OPAQUE_FD_KHR.0,
+    );
+    pub const OPAQUE_WIN32_KHR: Self = Self(
+        crate::vk::ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KHR.0,
+    );
+    pub const OPAQUE_WIN32_KMT_KHR: Self = Self(
+        crate::vk::ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0,
+    );
+    pub const D3D12_FENCE_KHR: Self = Self(
+        crate::vk::ExternalSemaphoreHandleTypeFlagBits::D3D12_FENCE_KHR.0,
+    );
+    pub const SYNC_FD_KHR: Self = Self(
+        crate::vk::ExternalSemaphoreHandleTypeFlagBits::SYNC_FD_KHR.0,
+    );
+}
+///Provided by [`khr::external_semaphore_capabilities`](crate::khr::external_semaphore_capabilities)
 impl crate::vk::ExternalSemaphoreHandleTypeFlagBits {
     pub const OPAQUE_FD_KHR: Self = Self::OPAQUE_FD;
     pub const OPAQUE_WIN32_KHR: Self = Self::OPAQUE_WIN32;
     pub const OPAQUE_WIN32_KMT_KHR: Self = Self::OPAQUE_WIN32_KMT;
     pub const D3D12_FENCE_KHR: Self = Self::D3D12_FENCE;
     pub const SYNC_FD_KHR: Self = Self::SYNC_FD;
+}
+///Provided by [`khr::external_semaphore_capabilities`](crate::khr::external_semaphore_capabilities)
+impl crate::vk::ExternalSemaphoreFeatureFlags {
+    pub const EXPORTABLE_KHR: Self = Self(
+        crate::vk::ExternalSemaphoreFeatureFlagBits::EXPORTABLE_KHR.0,
+    );
+    pub const IMPORTABLE_KHR: Self = Self(
+        crate::vk::ExternalSemaphoreFeatureFlagBits::IMPORTABLE_KHR.0,
+    );
 }
 ///Provided by [`khr::external_semaphore_capabilities`](crate::khr::external_semaphore_capabilities)
 impl crate::vk::ExternalSemaphoreFeatureFlagBits {

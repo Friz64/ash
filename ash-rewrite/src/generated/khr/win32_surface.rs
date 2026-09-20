@@ -125,7 +125,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct Win32SurfaceCreateFlagsKHR(u32);
+    pub struct Win32SurfaceCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for Win32SurfaceCreateFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

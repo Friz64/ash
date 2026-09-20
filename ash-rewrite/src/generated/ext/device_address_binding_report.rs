@@ -23,8 +23,20 @@ impl DeviceAddressBindingTypeEXT {
     pub const UNBIND_EXT: Self = Self(1);
 }
 ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+impl crate::vk::DebugUtilsMessageTypeFlagsEXT {
+    pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(
+        crate::vk::DebugUtilsMessageTypeFlagBitsEXT::DEVICE_ADDRESS_BINDING_EXT.0,
+    );
+}
+///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
 impl crate::vk::DebugUtilsMessageTypeFlagBitsEXT {
     pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(1 << 3);
+}
+///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+impl DeviceAddressBindingFlagsEXT {
+    pub const INTERNAL_OBJECT_EXT: Self = Self(
+        DeviceAddressBindingFlagBitsEXT::INTERNAL_OBJECT_EXT.0,
+    );
 }
 ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
 impl DeviceAddressBindingFlagBitsEXT {
@@ -137,7 +149,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DeviceAddressBindingFlagsEXT(u32);
+    pub struct DeviceAddressBindingFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DeviceAddressBindingFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -149,9 +161,6 @@ pub(crate) mod items {
         }
     }
     impl DeviceAddressBindingFlagsEXT {
-        pub const INTERNAL_OBJECT_EXT: Self = Self(
-            DeviceAddressBindingFlagBitsEXT::INTERNAL_OBJECT_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

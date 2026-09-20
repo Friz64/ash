@@ -76,14 +76,42 @@ impl DataGraphPipelineNodeTypeARM {
     pub const OPTICAL_FLOW_ARM: Self = Self(1000631000);
 }
 ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM.0,
+    );
+    pub const DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM.0,
+    );
+    pub const DATA_GRAPH_OPTICAL_FLOW_COST_ARM: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_COST_ARM.0,
+    );
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM: Self = Self(1 << 56);
     pub const DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM: Self = Self(1 << 57);
     pub const DATA_GRAPH_OPTICAL_FLOW_COST_ARM: Self = Self(1 << 58);
 }
 ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl crate::vk::DataGraphPipelineSessionCreateFlagsARM {
+    pub const OPTICAL_FLOW_CACHE_ARM: Self = Self(
+        crate::vk::DataGraphPipelineSessionCreateFlagBitsARM::OPTICAL_FLOW_CACHE_ARM.0,
+    );
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
 impl crate::vk::DataGraphPipelineSessionCreateFlagBitsARM {
     pub const OPTICAL_FLOW_CACHE_ARM: Self = Self(1 << 1);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl DataGraphOpticalFlowGridSizeFlagsARM {
+    pub const UNKNOWN_ARM: Self = Self(
+        DataGraphOpticalFlowGridSizeFlagBitsARM::UNKNOWN_ARM.0,
+    );
+    pub const _1X1_ARM: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_1X1_ARM.0);
+    pub const _2X2_ARM: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_2X2_ARM.0);
+    pub const _4X4_ARM: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_4X4_ARM.0);
+    pub const _8X8_ARM: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_8X8_ARM.0);
 }
 ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowGridSizeFlagBitsARM {
@@ -94,6 +122,24 @@ impl DataGraphOpticalFlowGridSizeFlagBitsARM {
     pub const _8X8_ARM: Self = Self(1 << 3);
 }
 ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl DataGraphOpticalFlowImageUsageFlagsARM {
+    pub const UNKNOWN_ARM: Self = Self(
+        DataGraphOpticalFlowImageUsageFlagBitsARM::UNKNOWN_ARM.0,
+    );
+    pub const INPUT_ARM: Self = Self(
+        DataGraphOpticalFlowImageUsageFlagBitsARM::INPUT_ARM.0,
+    );
+    pub const OUTPUT_ARM: Self = Self(
+        DataGraphOpticalFlowImageUsageFlagBitsARM::OUTPUT_ARM.0,
+    );
+    pub const HINT_ARM: Self = Self(
+        DataGraphOpticalFlowImageUsageFlagBitsARM::HINT_ARM.0,
+    );
+    pub const COST_ARM: Self = Self(
+        DataGraphOpticalFlowImageUsageFlagBitsARM::COST_ARM.0,
+    );
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowImageUsageFlagBitsARM {
     pub const UNKNOWN_ARM: Self = Self(0);
     pub const INPUT_ARM: Self = Self(1 << 0);
@@ -102,10 +148,40 @@ impl DataGraphOpticalFlowImageUsageFlagBitsARM {
     pub const COST_ARM: Self = Self(1 << 3);
 }
 ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl DataGraphOpticalFlowCreateFlagsARM {
+    pub const ENABLE_HINT_ARM: Self = Self(
+        DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_HINT_ARM.0,
+    );
+    pub const ENABLE_COST_ARM: Self = Self(
+        DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_COST_ARM.0,
+    );
+    pub const RESERVED_30_ARM: Self = Self(
+        DataGraphOpticalFlowCreateFlagBitsARM::RESERVED_30_ARM.0,
+    );
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowCreateFlagBitsARM {
     pub const ENABLE_HINT_ARM: Self = Self(1 << 0);
     pub const ENABLE_COST_ARM: Self = Self(1 << 1);
     pub const RESERVED_30_ARM: Self = Self(1 << 30);
+}
+///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
+impl DataGraphOpticalFlowExecuteFlagsARM {
+    pub const DISABLE_TEMPORAL_HINTS_ARM: Self = Self(
+        DataGraphOpticalFlowExecuteFlagBitsARM::DISABLE_TEMPORAL_HINTS_ARM.0,
+    );
+    pub const INPUT_UNCHANGED_ARM: Self = Self(
+        DataGraphOpticalFlowExecuteFlagBitsARM::INPUT_UNCHANGED_ARM.0,
+    );
+    pub const REFERENCE_UNCHANGED_ARM: Self = Self(
+        DataGraphOpticalFlowExecuteFlagBitsARM::REFERENCE_UNCHANGED_ARM.0,
+    );
+    pub const INPUT_IS_PREVIOUS_REFERENCE_ARM: Self = Self(
+        DataGraphOpticalFlowExecuteFlagBitsARM::INPUT_IS_PREVIOUS_REFERENCE_ARM.0,
+    );
+    pub const REFERENCE_IS_PREVIOUS_INPUT_ARM: Self = Self(
+        DataGraphOpticalFlowExecuteFlagBitsARM::REFERENCE_IS_PREVIOUS_INPUT_ARM.0,
+    );
 }
 ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowExecuteFlagBitsARM {
@@ -693,7 +769,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DataGraphOpticalFlowGridSizeFlagsARM(u32);
+    pub struct DataGraphOpticalFlowGridSizeFlagsARM(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphOpticalFlowGridSizeFlagsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -711,21 +787,6 @@ pub(crate) mod items {
         }
     }
     impl DataGraphOpticalFlowGridSizeFlagsARM {
-        pub const UNKNOWN_ARM: Self = Self(
-            DataGraphOpticalFlowGridSizeFlagBitsARM::UNKNOWN_ARM.0,
-        );
-        pub const _1X1_ARM: Self = Self(
-            DataGraphOpticalFlowGridSizeFlagBitsARM::_1X1_ARM.0,
-        );
-        pub const _2X2_ARM: Self = Self(
-            DataGraphOpticalFlowGridSizeFlagBitsARM::_2X2_ARM.0,
-        );
-        pub const _4X4_ARM: Self = Self(
-            DataGraphOpticalFlowGridSizeFlagBitsARM::_4X4_ARM.0,
-        );
-        pub const _8X8_ARM: Self = Self(
-            DataGraphOpticalFlowGridSizeFlagBitsARM::_8X8_ARM.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -801,7 +862,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DataGraphOpticalFlowImageUsageFlagsARM(u32);
+    pub struct DataGraphOpticalFlowImageUsageFlagsARM(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphOpticalFlowImageUsageFlagsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -819,21 +880,6 @@ pub(crate) mod items {
         }
     }
     impl DataGraphOpticalFlowImageUsageFlagsARM {
-        pub const UNKNOWN_ARM: Self = Self(
-            DataGraphOpticalFlowImageUsageFlagBitsARM::UNKNOWN_ARM.0,
-        );
-        pub const INPUT_ARM: Self = Self(
-            DataGraphOpticalFlowImageUsageFlagBitsARM::INPUT_ARM.0,
-        );
-        pub const OUTPUT_ARM: Self = Self(
-            DataGraphOpticalFlowImageUsageFlagBitsARM::OUTPUT_ARM.0,
-        );
-        pub const HINT_ARM: Self = Self(
-            DataGraphOpticalFlowImageUsageFlagBitsARM::HINT_ARM.0,
-        );
-        pub const COST_ARM: Self = Self(
-            DataGraphOpticalFlowImageUsageFlagBitsARM::COST_ARM.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -909,7 +955,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DataGraphOpticalFlowCreateFlagsARM(u32);
+    pub struct DataGraphOpticalFlowCreateFlagsARM(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphOpticalFlowCreateFlagsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -925,15 +971,6 @@ pub(crate) mod items {
         }
     }
     impl DataGraphOpticalFlowCreateFlagsARM {
-        pub const ENABLE_HINT_ARM: Self = Self(
-            DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_HINT_ARM.0,
-        );
-        pub const ENABLE_COST_ARM: Self = Self(
-            DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_COST_ARM.0,
-        );
-        pub const RESERVED_30_ARM: Self = Self(
-            DataGraphOpticalFlowCreateFlagBitsARM::RESERVED_30_ARM.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1009,7 +1046,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DataGraphOpticalFlowExecuteFlagsARM(u32);
+    pub struct DataGraphOpticalFlowExecuteFlagsARM(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphOpticalFlowExecuteFlagsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1033,21 +1070,6 @@ pub(crate) mod items {
         }
     }
     impl DataGraphOpticalFlowExecuteFlagsARM {
-        pub const DISABLE_TEMPORAL_HINTS_ARM: Self = Self(
-            DataGraphOpticalFlowExecuteFlagBitsARM::DISABLE_TEMPORAL_HINTS_ARM.0,
-        );
-        pub const INPUT_UNCHANGED_ARM: Self = Self(
-            DataGraphOpticalFlowExecuteFlagBitsARM::INPUT_UNCHANGED_ARM.0,
-        );
-        pub const REFERENCE_UNCHANGED_ARM: Self = Self(
-            DataGraphOpticalFlowExecuteFlagBitsARM::REFERENCE_UNCHANGED_ARM.0,
-        );
-        pub const INPUT_IS_PREVIOUS_REFERENCE_ARM: Self = Self(
-            DataGraphOpticalFlowExecuteFlagBitsARM::INPUT_IS_PREVIOUS_REFERENCE_ARM.0,
-        );
-        pub const REFERENCE_IS_PREVIOUS_INPUT_ARM: Self = Self(
-            DataGraphOpticalFlowExecuteFlagBitsARM::REFERENCE_IS_PREVIOUS_INPUT_ARM.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

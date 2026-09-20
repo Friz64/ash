@@ -13,6 +13,30 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
+impl crate::vk::VideoEncodeFeedbackFlagsKHR {
+    pub const AVERAGE_QUANTIZATION_KHR: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::AVERAGE_QUANTIZATION_KHR.0,
+    );
+    pub const MIN_QUANTIZATION_KHR: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::MIN_QUANTIZATION_KHR.0,
+    );
+    pub const MAX_QUANTIZATION_KHR: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::MAX_QUANTIZATION_KHR.0,
+    );
+    pub const INTRA_PIXELS_KHR: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::INTRA_PIXELS_KHR.0,
+    );
+    pub const INTER_PIXELS_KHR: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::INTER_PIXELS_KHR.0,
+    );
+    pub const SKIPPED_PIXELS_KHR: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::SKIPPED_PIXELS_KHR.0,
+    );
+    pub const PICTURE_PARTITION_COUNT_KHR: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::PICTURE_PARTITION_COUNT_KHR.0,
+    );
+}
+///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
 impl crate::vk::VideoEncodeFeedbackFlagBitsKHR {
     pub const AVERAGE_QUANTIZATION_KHR: Self = Self(1 << 3);
     pub const MIN_QUANTIZATION_KHR: Self = Self(1 << 4);
@@ -21,6 +45,18 @@ impl crate::vk::VideoEncodeFeedbackFlagBitsKHR {
     pub const INTER_PIXELS_KHR: Self = Self(1 << 7);
     pub const SKIPPED_PIXELS_KHR: Self = Self(1 << 8);
     pub const PICTURE_PARTITION_COUNT_KHR: Self = Self(1 << 9);
+}
+///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
+impl VideoEncodePerPartitionFeedbackFlagsKHR {
+    pub const STATUS_KHR: Self = Self(
+        VideoEncodePerPartitionFeedbackFlagBitsKHR::STATUS_KHR.0,
+    );
+    pub const BITSTREAM_BUFFER_OFFSET_KHR: Self = Self(
+        VideoEncodePerPartitionFeedbackFlagBitsKHR::BITSTREAM_BUFFER_OFFSET_KHR.0,
+    );
+    pub const BITSTREAM_BYTES_WRITTEN_KHR: Self = Self(
+        VideoEncodePerPartitionFeedbackFlagBitsKHR::BITSTREAM_BYTES_WRITTEN_KHR.0,
+    );
 }
 ///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
 impl VideoEncodePerPartitionFeedbackFlagBitsKHR {
@@ -152,7 +188,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoEncodePerPartitionFeedbackFlagsKHR(u32);
+    pub struct VideoEncodePerPartitionFeedbackFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEncodePerPartitionFeedbackFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -168,15 +204,6 @@ pub(crate) mod items {
         }
     }
     impl VideoEncodePerPartitionFeedbackFlagsKHR {
-        pub const STATUS_KHR: Self = Self(
-            VideoEncodePerPartitionFeedbackFlagBitsKHR::STATUS_KHR.0,
-        );
-        pub const BITSTREAM_BUFFER_OFFSET_KHR: Self = Self(
-            VideoEncodePerPartitionFeedbackFlagBitsKHR::BITSTREAM_BUFFER_OFFSET_KHR.0,
-        );
-        pub const BITSTREAM_BYTES_WRITTEN_KHR: Self = Self(
-            VideoEncodePerPartitionFeedbackFlagBitsKHR::BITSTREAM_BYTES_WRITTEN_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

@@ -9,6 +9,15 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`nv::descriptor_pool_overallocation`](crate::nv::descriptor_pool_overallocation)
+impl crate::vk::DescriptorPoolCreateFlags {
+    pub const ALLOW_OVERALLOCATION_SETS_NV: Self = Self(
+        crate::vk::DescriptorPoolCreateFlagBits::ALLOW_OVERALLOCATION_SETS_NV.0,
+    );
+    pub const ALLOW_OVERALLOCATION_POOLS_NV: Self = Self(
+        crate::vk::DescriptorPoolCreateFlagBits::ALLOW_OVERALLOCATION_POOLS_NV.0,
+    );
+}
+///Provided by [`nv::descriptor_pool_overallocation`](crate::nv::descriptor_pool_overallocation)
 impl crate::vk::DescriptorPoolCreateFlagBits {
     pub const ALLOW_OVERALLOCATION_SETS_NV: Self = Self(1 << 3);
     pub const ALLOW_OVERALLOCATION_POOLS_NV: Self = Self(1 << 4);

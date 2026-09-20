@@ -7,6 +7,12 @@ impl crate::vk::Filter {
     pub const CUBIC_IMG: Self = Self::CUBIC_EXT;
 }
 ///Provided by [`img::filter_cubic`](crate::img::filter_cubic)
+impl crate::vk::FormatFeatureFlags {
+    pub const SAMPLED_IMAGE_FILTER_CUBIC_IMG: Self = Self(
+        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_CUBIC_IMG.0,
+    );
+}
+///Provided by [`img::filter_cubic`](crate::img::filter_cubic)
 impl crate::vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_CUBIC_IMG: Self = Self::SAMPLED_IMAGE_FILTER_CUBIC_EXT;
 }

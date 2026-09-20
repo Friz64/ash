@@ -15,12 +15,31 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+impl crate::vk::ShaderStageFlags {
+    pub const CLUSTER_CULLING_HUAWEI: Self = Self(
+        crate::vk::ShaderStageFlagBits::CLUSTER_CULLING_HUAWEI.0,
+    );
+}
+///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
 impl crate::vk::ShaderStageFlagBits {
     pub const CLUSTER_CULLING_HUAWEI: Self = Self(1 << 19);
 }
 ///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+impl crate::vk::QueryPipelineStatisticFlags {
+    pub const CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI: Self = Self(
+        crate::vk::QueryPipelineStatisticFlagBits::CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI
+            .0,
+    );
+}
+///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
 impl crate::vk::QueryPipelineStatisticFlagBits {
     pub const CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI: Self = Self(1 << 13);
+}
+///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+impl crate::vk::PipelineStageFlags2 {
+    pub const CLUSTER_CULLING_SHADER_HUAWEI: Self = Self(
+        crate::vk::PipelineStageFlagBits2::CLUSTER_CULLING_SHADER_HUAWEI.0,
+    );
 }
 ///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
 impl crate::vk::PipelineStageFlagBits2 {

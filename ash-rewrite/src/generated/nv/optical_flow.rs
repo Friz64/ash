@@ -56,8 +56,21 @@ impl OpticalFlowSessionBindingPointNV {
     pub const GLOBAL_FLOW_NV: Self = Self(8);
 }
 ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::QueueFlags {
+    pub const OPTICAL_FLOW_NV: Self = Self(crate::vk::QueueFlagBits::OPTICAL_FLOW_NV.0);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl crate::vk::QueueFlagBits {
     pub const OPTICAL_FLOW_NV: Self = Self(1 << 8);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::AccessFlags2 {
+    pub const OPTICAL_FLOW_READ_NV: Self = Self(
+        crate::vk::AccessFlagBits2::OPTICAL_FLOW_READ_NV.0,
+    );
+    pub const OPTICAL_FLOW_WRITE_NV: Self = Self(
+        crate::vk::AccessFlagBits2::OPTICAL_FLOW_WRITE_NV.0,
+    );
 }
 ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl crate::vk::AccessFlagBits2 {
@@ -65,8 +78,26 @@ impl crate::vk::AccessFlagBits2 {
     pub const OPTICAL_FLOW_WRITE_NV: Self = Self(1 << 43);
 }
 ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::PipelineStageFlags2 {
+    pub const OPTICAL_FLOW_NV: Self = Self(
+        crate::vk::PipelineStageFlagBits2::OPTICAL_FLOW_NV.0,
+    );
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const OPTICAL_FLOW_NV: Self = Self(1 << 29);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const OPTICAL_FLOW_IMAGE_NV: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::OPTICAL_FLOW_IMAGE_NV.0,
+    );
+    pub const OPTICAL_FLOW_VECTOR_NV: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::OPTICAL_FLOW_VECTOR_NV.0,
+    );
+    pub const OPTICAL_FLOW_COST_NV: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::OPTICAL_FLOW_COST_NV.0,
+    );
 }
 ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl crate::vk::FormatFeatureFlagBits2 {
@@ -75,12 +106,29 @@ impl crate::vk::FormatFeatureFlagBits2 {
     pub const OPTICAL_FLOW_COST_NV: Self = Self(1 << 42);
 }
 ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowGridSizeFlagsNV {
+    pub const UNKNOWN_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::UNKNOWN_NV.0);
+    pub const _1X1_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_1X1_NV.0);
+    pub const _2X2_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_2X2_NV.0);
+    pub const _4X4_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_4X4_NV.0);
+    pub const _8X8_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_8X8_NV.0);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl OpticalFlowGridSizeFlagBitsNV {
     pub const UNKNOWN_NV: Self = Self(0);
     pub const _1X1_NV: Self = Self(1 << 0);
     pub const _2X2_NV: Self = Self(1 << 1);
     pub const _4X4_NV: Self = Self(1 << 2);
     pub const _8X8_NV: Self = Self(1 << 3);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowUsageFlagsNV {
+    pub const UNKNOWN_NV: Self = Self(OpticalFlowUsageFlagBitsNV::UNKNOWN_NV.0);
+    pub const INPUT_NV: Self = Self(OpticalFlowUsageFlagBitsNV::INPUT_NV.0);
+    pub const OUTPUT_NV: Self = Self(OpticalFlowUsageFlagBitsNV::OUTPUT_NV.0);
+    pub const HINT_NV: Self = Self(OpticalFlowUsageFlagBitsNV::HINT_NV.0);
+    pub const COST_NV: Self = Self(OpticalFlowUsageFlagBitsNV::COST_NV.0);
+    pub const GLOBAL_FLOW_NV: Self = Self(OpticalFlowUsageFlagBitsNV::GLOBAL_FLOW_NV.0);
 }
 ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl OpticalFlowUsageFlagBitsNV {
@@ -92,12 +140,36 @@ impl OpticalFlowUsageFlagBitsNV {
     pub const GLOBAL_FLOW_NV: Self = Self(1 << 4);
 }
 ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowSessionCreateFlagsNV {
+    pub const ENABLE_HINT_NV: Self = Self(
+        OpticalFlowSessionCreateFlagBitsNV::ENABLE_HINT_NV.0,
+    );
+    pub const ENABLE_COST_NV: Self = Self(
+        OpticalFlowSessionCreateFlagBitsNV::ENABLE_COST_NV.0,
+    );
+    pub const ENABLE_GLOBAL_FLOW_NV: Self = Self(
+        OpticalFlowSessionCreateFlagBitsNV::ENABLE_GLOBAL_FLOW_NV.0,
+    );
+    pub const ALLOW_REGIONS_NV: Self = Self(
+        OpticalFlowSessionCreateFlagBitsNV::ALLOW_REGIONS_NV.0,
+    );
+    pub const BOTH_DIRECTIONS_NV: Self = Self(
+        OpticalFlowSessionCreateFlagBitsNV::BOTH_DIRECTIONS_NV.0,
+    );
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl OpticalFlowSessionCreateFlagBitsNV {
     pub const ENABLE_HINT_NV: Self = Self(1 << 0);
     pub const ENABLE_COST_NV: Self = Self(1 << 1);
     pub const ENABLE_GLOBAL_FLOW_NV: Self = Self(1 << 2);
     pub const ALLOW_REGIONS_NV: Self = Self(1 << 3);
     pub const BOTH_DIRECTIONS_NV: Self = Self(1 << 4);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowExecuteFlagsNV {
+    pub const DISABLE_TEMPORAL_HINTS_NV: Self = Self(
+        OpticalFlowExecuteFlagBitsNV::DISABLE_TEMPORAL_HINTS_NV.0,
+    );
 }
 ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl OpticalFlowExecuteFlagBitsNV {
@@ -683,7 +755,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct OpticalFlowGridSizeFlagsNV(u32);
+    pub struct OpticalFlowGridSizeFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for OpticalFlowGridSizeFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -701,11 +773,6 @@ pub(crate) mod items {
         }
     }
     impl OpticalFlowGridSizeFlagsNV {
-        pub const UNKNOWN_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::UNKNOWN_NV.0);
-        pub const _1X1_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_1X1_NV.0);
-        pub const _2X2_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_2X2_NV.0);
-        pub const _4X4_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_4X4_NV.0);
-        pub const _8X8_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_8X8_NV.0);
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -781,7 +848,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct OpticalFlowUsageFlagsNV(u32);
+    pub struct OpticalFlowUsageFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for OpticalFlowUsageFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -800,14 +867,6 @@ pub(crate) mod items {
         }
     }
     impl OpticalFlowUsageFlagsNV {
-        pub const UNKNOWN_NV: Self = Self(OpticalFlowUsageFlagBitsNV::UNKNOWN_NV.0);
-        pub const INPUT_NV: Self = Self(OpticalFlowUsageFlagBitsNV::INPUT_NV.0);
-        pub const OUTPUT_NV: Self = Self(OpticalFlowUsageFlagBitsNV::OUTPUT_NV.0);
-        pub const HINT_NV: Self = Self(OpticalFlowUsageFlagBitsNV::HINT_NV.0);
-        pub const COST_NV: Self = Self(OpticalFlowUsageFlagBitsNV::COST_NV.0);
-        pub const GLOBAL_FLOW_NV: Self = Self(
-            OpticalFlowUsageFlagBitsNV::GLOBAL_FLOW_NV.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -883,7 +942,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct OpticalFlowSessionCreateFlagsNV(u32);
+    pub struct OpticalFlowSessionCreateFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for OpticalFlowSessionCreateFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -901,21 +960,6 @@ pub(crate) mod items {
         }
     }
     impl OpticalFlowSessionCreateFlagsNV {
-        pub const ENABLE_HINT_NV: Self = Self(
-            OpticalFlowSessionCreateFlagBitsNV::ENABLE_HINT_NV.0,
-        );
-        pub const ENABLE_COST_NV: Self = Self(
-            OpticalFlowSessionCreateFlagBitsNV::ENABLE_COST_NV.0,
-        );
-        pub const ENABLE_GLOBAL_FLOW_NV: Self = Self(
-            OpticalFlowSessionCreateFlagBitsNV::ENABLE_GLOBAL_FLOW_NV.0,
-        );
-        pub const ALLOW_REGIONS_NV: Self = Self(
-            OpticalFlowSessionCreateFlagBitsNV::ALLOW_REGIONS_NV.0,
-        );
-        pub const BOTH_DIRECTIONS_NV: Self = Self(
-            OpticalFlowSessionCreateFlagBitsNV::BOTH_DIRECTIONS_NV.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -991,7 +1035,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct OpticalFlowExecuteFlagsNV(u32);
+    pub struct OpticalFlowExecuteFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for OpticalFlowExecuteFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1003,9 +1047,6 @@ pub(crate) mod items {
         }
     }
     impl OpticalFlowExecuteFlagsNV {
-        pub const DISABLE_TEMPORAL_HINTS_NV: Self = Self(
-            OpticalFlowExecuteFlagBitsNV::DISABLE_TEMPORAL_HINTS_NV.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

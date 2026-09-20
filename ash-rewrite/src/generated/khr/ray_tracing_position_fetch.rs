@@ -9,6 +9,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`khr::ray_tracing_position_fetch`](crate::khr::ray_tracing_position_fetch)
+impl crate::vk::BuildAccelerationStructureFlagsKHR {
+    pub const ALLOW_DATA_ACCESS_KHR: Self = Self(
+        crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_DATA_ACCESS_KHR.0,
+    );
+}
+///Provided by [`khr::ray_tracing_position_fetch`](crate::khr::ray_tracing_position_fetch)
 impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_DATA_ACCESS_KHR: Self = Self(1 << 11);
 }

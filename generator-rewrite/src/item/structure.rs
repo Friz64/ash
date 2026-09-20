@@ -97,16 +97,27 @@ impl Code for Struct {
             let structure_ty = ctx.type_tokens(TypeName::VK_STRUCTURE_TYPE, true, &lifetime);
             let ty = ctx.enumerator_tokens(*ty, TypeName::VK_STRUCTURE_TYPE, true);
             let anon = Lifetime::placeholder();
-            let extends = self
-                .extends
-                .iter()
-                .map(|ty| ctx.type_tokens(*ty, true, &anon));
+            let extends = self.extends.iter().map(|ty| {
+                let is_provisional = ctx
+                    .type_required_by(*ty)
+                    .primary_location()
+                    .is_provisional(ctx);
+                let provisional_guard =
+                    is_provisional.then_some(quote! { #[cfg(feature = "provisional")] });
+
+                let extends = ctx.type_tokens(*ty, true, &anon);
+                quote! {
+                    #provisional_guard
+                    unsafe impl #lifetime_brackets crate::Extends<#extends> for #name {}
+                }
+            });
+
             quote! {
                 unsafe impl<#lifetime> crate::TaggedStructure<#lifetime> for #name {
                     const STRUCTURE_TYPE: #structure_ty = #ty;
                 }
 
-                #(unsafe impl #lifetime_brackets crate::Extends<#extends> for #name {})*
+                #(#extends)*
             }
         });
 

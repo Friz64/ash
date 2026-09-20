@@ -27,12 +27,30 @@ impl AccelerationStructureMotionInstanceTypeNV {
     pub const SRT_MOTION_NV: Self = Self(2);
 }
 ///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+impl crate::vk::PipelineCreateFlags {
+    pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(
+        crate::vk::PipelineCreateFlagBits::RAY_TRACING_ALLOW_MOTION_NV.0,
+    );
+}
+///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(1 << 20);
 }
 ///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+impl crate::vk::BuildAccelerationStructureFlagsKHR {
+    pub const MOTION_NV: Self = Self(
+        crate::vk::BuildAccelerationStructureFlagBitsKHR::MOTION_NV.0,
+    );
+}
+///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
     pub const MOTION_NV: Self = Self(1 << 5);
+}
+///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+impl crate::vk::AccelerationStructureCreateFlagsKHR {
+    pub const MOTION_NV: Self = Self(
+        crate::vk::AccelerationStructureCreateFlagBitsKHR::MOTION_NV.0,
+    );
 }
 ///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::AccelerationStructureCreateFlagBitsKHR {
@@ -494,7 +512,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct AccelerationStructureMotionInfoFlagsNV(u32);
+    pub struct AccelerationStructureMotionInfoFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureMotionInfoFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -562,7 +580,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct AccelerationStructureMotionInstanceFlagsNV(u32);
+    pub struct AccelerationStructureMotionInstanceFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureMotionInstanceFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

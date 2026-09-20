@@ -9,6 +9,12 @@ impl crate::vk::StructureType {
     pub const PRESENT_WAIT_2_INFO_KHR: Self = Self(1000480002);
 }
 ///Provided by [`khr::present_wait2`](crate::khr::present_wait2)
+impl crate::vk::SwapchainCreateFlagsKHR {
+    pub const PRESENT_WAIT_2_KHR: Self = Self(
+        crate::vk::SwapchainCreateFlagBitsKHR::PRESENT_WAIT_2_KHR.0,
+    );
+}
+///Provided by [`khr::present_wait2`](crate::khr::present_wait2)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_WAIT_2_KHR: Self = Self(1 << 7);
 }

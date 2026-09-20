@@ -75,8 +75,40 @@ impl crate::vk::ChromaLocation {
     pub const MIDPOINT_KHR: Self = Self::MIDPOINT;
 }
 ///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+impl crate::vk::ImageCreateFlags {
+    pub const DISJOINT_KHR: Self = Self(crate::vk::ImageCreateFlagBits::DISJOINT_KHR.0);
+}
+///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::ImageCreateFlagBits {
     pub const DISJOINT_KHR: Self = Self::DISJOINT;
+}
+///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+impl crate::vk::FormatFeatureFlags {
+    pub const MIDPOINT_CHROMA_SAMPLES_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits::MIDPOINT_CHROMA_SAMPLES_KHR.0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR
+            .0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR
+            .0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_KHR
+            .0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR
+            .0,
+    );
+    pub const DISJOINT_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits::DISJOINT_KHR.0,
+    );
+    pub const COSITED_CHROMA_SAMPLES_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits::COSITED_CHROMA_SAMPLES_KHR.0,
+    );
 }
 ///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::FormatFeatureFlagBits {
@@ -87,6 +119,12 @@ impl crate::vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR: Self = Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE;
     pub const DISJOINT_KHR: Self = Self::DISJOINT;
     pub const COSITED_CHROMA_SAMPLES_KHR: Self = Self::COSITED_CHROMA_SAMPLES;
+}
+///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+impl crate::vk::ImageAspectFlags {
+    pub const PLANE_0_KHR: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_0_KHR.0);
+    pub const PLANE_1_KHR: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_1_KHR.0);
+    pub const PLANE_2_KHR: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_2_KHR.0);
 }
 ///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::ImageAspectFlagBits {

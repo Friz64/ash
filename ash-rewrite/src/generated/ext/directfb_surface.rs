@@ -129,7 +129,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DirectFBSurfaceCreateFlagsEXT(u32);
+    pub struct DirectFBSurfaceCreateFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DirectFBSurfaceCreateFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

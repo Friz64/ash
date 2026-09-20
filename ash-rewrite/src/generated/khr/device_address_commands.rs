@@ -24,6 +24,23 @@ impl crate::vk::StructureType {
     pub const ACCELERATION_STRUCTURE_CREATE_INFO_2_KHR: Self = Self(1000318015);
 }
 ///Provided by [`khr::device_address_commands`](crate::khr::device_address_commands)
+impl AddressCommandFlagsKHR {
+    pub const PROTECTED_KHR: Self = Self(AddressCommandFlagBitsKHR::PROTECTED_KHR.0);
+    pub const FULLY_BOUND_KHR: Self = Self(AddressCommandFlagBitsKHR::FULLY_BOUND_KHR.0);
+    pub const STORAGE_BUFFER_USAGE_KHR: Self = Self(
+        AddressCommandFlagBitsKHR::STORAGE_BUFFER_USAGE_KHR.0,
+    );
+    pub const UNKNOWN_STORAGE_BUFFER_USAGE_KHR: Self = Self(
+        AddressCommandFlagBitsKHR::UNKNOWN_STORAGE_BUFFER_USAGE_KHR.0,
+    );
+    pub const TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(
+        AddressCommandFlagBitsKHR::TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
+    );
+    pub const UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(
+        AddressCommandFlagBitsKHR::UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
+    );
+}
+///Provided by [`khr::device_address_commands`](crate::khr::device_address_commands)
 impl AddressCommandFlagBitsKHR {
     pub const PROTECTED_KHR: Self = Self(1 << 0);
     pub const FULLY_BOUND_KHR: Self = Self(1 << 1);
@@ -1267,7 +1284,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct AddressCommandFlagsKHR(u32);
+    pub struct AddressCommandFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AddressCommandFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1295,22 +1312,6 @@ pub(crate) mod items {
         }
     }
     impl AddressCommandFlagsKHR {
-        pub const PROTECTED_KHR: Self = Self(AddressCommandFlagBitsKHR::PROTECTED_KHR.0);
-        pub const FULLY_BOUND_KHR: Self = Self(
-            AddressCommandFlagBitsKHR::FULLY_BOUND_KHR.0,
-        );
-        pub const STORAGE_BUFFER_USAGE_KHR: Self = Self(
-            AddressCommandFlagBitsKHR::STORAGE_BUFFER_USAGE_KHR.0,
-        );
-        pub const UNKNOWN_STORAGE_BUFFER_USAGE_KHR: Self = Self(
-            AddressCommandFlagBitsKHR::UNKNOWN_STORAGE_BUFFER_USAGE_KHR.0,
-        );
-        pub const TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(
-            AddressCommandFlagBitsKHR::TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
-        );
-        pub const UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(
-            AddressCommandFlagBitsKHR::UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

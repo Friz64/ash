@@ -15,6 +15,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
+impl crate::vk::ExternalMemoryHandleTypeFlags {
+    pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(
+        crate::vk::ExternalMemoryHandleTypeFlagBits::ANDROID_HARDWARE_BUFFER_ANDROID.0,
+    );
+}
+///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(1 << 10);
 }

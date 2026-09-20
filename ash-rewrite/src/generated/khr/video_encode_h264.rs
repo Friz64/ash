@@ -24,8 +24,44 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+impl crate::vk::VideoCodecOperationFlagsKHR {
+    pub const ENCODE_H264_KHR: Self = Self(
+        crate::vk::VideoCodecOperationFlagBitsKHR::ENCODE_H264_KHR.0,
+    );
+}
+///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const ENCODE_H264_KHR: Self = Self(1 << 16);
+}
+///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+impl VideoEncodeH264CapabilityFlagsKHR {
+    pub const HRD_COMPLIANCE_KHR: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::HRD_COMPLIANCE_KHR.0,
+    );
+    pub const PREDICTION_WEIGHT_TABLE_GENERATED_KHR: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::PREDICTION_WEIGHT_TABLE_GENERATED_KHR.0,
+    );
+    pub const ROW_UNALIGNED_SLICE_KHR: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::ROW_UNALIGNED_SLICE_KHR.0,
+    );
+    pub const DIFFERENT_SLICE_TYPE_KHR: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::DIFFERENT_SLICE_TYPE_KHR.0,
+    );
+    pub const B_FRAME_IN_L0_LIST_KHR: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::B_FRAME_IN_L0_LIST_KHR.0,
+    );
+    pub const B_FRAME_IN_L1_LIST_KHR: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::B_FRAME_IN_L1_LIST_KHR.0,
+    );
+    pub const PER_PICTURE_TYPE_MIN_MAX_QP_KHR: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::PER_PICTURE_TYPE_MIN_MAX_QP_KHR.0,
+    );
+    pub const PER_SLICE_CONSTANT_QP_KHR: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::PER_SLICE_CONSTANT_QP_KHR.0,
+    );
+    pub const GENERATE_PREFIX_NALU_KHR: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::GENERATE_PREFIX_NALU_KHR.0,
+    );
 }
 ///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
 impl VideoEncodeH264CapabilityFlagBitsKHR {
@@ -38,6 +74,69 @@ impl VideoEncodeH264CapabilityFlagBitsKHR {
     pub const PER_PICTURE_TYPE_MIN_MAX_QP_KHR: Self = Self(1 << 6);
     pub const PER_SLICE_CONSTANT_QP_KHR: Self = Self(1 << 7);
     pub const GENERATE_PREFIX_NALU_KHR: Self = Self(1 << 8);
+}
+///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+impl VideoEncodeH264StdFlagsKHR {
+    pub const SEPARATE_COLOR_PLANE_FLAG_SET_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::SEPARATE_COLOR_PLANE_FLAG_SET_KHR.0,
+    );
+    pub const QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR.0,
+    );
+    pub const SCALING_MATRIX_PRESENT_FLAG_SET_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::SCALING_MATRIX_PRESENT_FLAG_SET_KHR.0,
+    );
+    pub const CHROMA_QP_INDEX_OFFSET_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::CHROMA_QP_INDEX_OFFSET_KHR.0,
+    );
+    pub const SECOND_CHROMA_QP_INDEX_OFFSET_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::SECOND_CHROMA_QP_INDEX_OFFSET_KHR.0,
+    );
+    pub const PIC_INIT_QP_MINUS26_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::PIC_INIT_QP_MINUS26_KHR.0,
+    );
+    pub const WEIGHTED_PRED_FLAG_SET_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::WEIGHTED_PRED_FLAG_SET_KHR.0,
+    );
+    pub const WEIGHTED_BIPRED_IDC_EXPLICIT_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::WEIGHTED_BIPRED_IDC_EXPLICIT_KHR.0,
+    );
+    pub const WEIGHTED_BIPRED_IDC_IMPLICIT_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::WEIGHTED_BIPRED_IDC_IMPLICIT_KHR.0,
+    );
+    pub const TRANSFORM_8X8_MODE_FLAG_SET_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::TRANSFORM_8X8_MODE_FLAG_SET_KHR.0,
+    );
+    pub const DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR.0,
+    );
+    pub const ENTROPY_CODING_MODE_FLAG_UNSET_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::ENTROPY_CODING_MODE_FLAG_UNSET_KHR.0,
+    );
+    pub const ENTROPY_CODING_MODE_FLAG_SET_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::ENTROPY_CODING_MODE_FLAG_SET_KHR.0,
+    );
+    pub const DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR.0,
+    );
+    pub const CONSTRAINED_INTRA_PRED_FLAG_SET_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::CONSTRAINED_INTRA_PRED_FLAG_SET_KHR.0,
+    );
+    pub const DEBLOCKING_FILTER_DISABLED_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::DEBLOCKING_FILTER_DISABLED_KHR.0,
+    );
+    pub const DEBLOCKING_FILTER_ENABLED_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::DEBLOCKING_FILTER_ENABLED_KHR.0,
+    );
+    pub const DEBLOCKING_FILTER_PARTIAL_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::DEBLOCKING_FILTER_PARTIAL_KHR.0,
+    );
+    pub const SLICE_QP_DELTA_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::SLICE_QP_DELTA_KHR.0,
+    );
+    pub const DIFFERENT_SLICE_QP_DELTA_KHR: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::DIFFERENT_SLICE_QP_DELTA_KHR.0,
+    );
 }
 ///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
 impl VideoEncodeH264StdFlagBitsKHR {
@@ -61,6 +160,24 @@ impl VideoEncodeH264StdFlagBitsKHR {
     pub const DEBLOCKING_FILTER_PARTIAL_KHR: Self = Self(1 << 17);
     pub const SLICE_QP_DELTA_KHR: Self = Self(1 << 19);
     pub const DIFFERENT_SLICE_QP_DELTA_KHR: Self = Self(1 << 20);
+}
+///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+impl VideoEncodeH264RateControlFlagsKHR {
+    pub const ATTEMPT_HRD_COMPLIANCE_KHR: Self = Self(
+        VideoEncodeH264RateControlFlagBitsKHR::ATTEMPT_HRD_COMPLIANCE_KHR.0,
+    );
+    pub const REGULAR_GOP_KHR: Self = Self(
+        VideoEncodeH264RateControlFlagBitsKHR::REGULAR_GOP_KHR.0,
+    );
+    pub const REFERENCE_PATTERN_FLAT_KHR: Self = Self(
+        VideoEncodeH264RateControlFlagBitsKHR::REFERENCE_PATTERN_FLAT_KHR.0,
+    );
+    pub const REFERENCE_PATTERN_DYADIC_KHR: Self = Self(
+        VideoEncodeH264RateControlFlagBitsKHR::REFERENCE_PATTERN_DYADIC_KHR.0,
+    );
+    pub const TEMPORAL_LAYER_PATTERN_DYADIC_KHR: Self = Self(
+        VideoEncodeH264RateControlFlagBitsKHR::TEMPORAL_LAYER_PATTERN_DYADIC_KHR.0,
+    );
 }
 ///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
 impl VideoEncodeH264RateControlFlagBitsKHR {
@@ -909,7 +1026,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoEncodeH264CapabilityFlagsKHR(u32);
+    pub struct VideoEncodeH264CapabilityFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEncodeH264CapabilityFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -939,39 +1056,6 @@ pub(crate) mod items {
         }
     }
     impl VideoEncodeH264CapabilityFlagsKHR {
-        pub const HRD_COMPLIANCE_KHR: Self = Self(
-            VideoEncodeH264CapabilityFlagBitsKHR::HRD_COMPLIANCE_KHR.0,
-        );
-        pub const PREDICTION_WEIGHT_TABLE_GENERATED_KHR: Self = Self(
-            VideoEncodeH264CapabilityFlagBitsKHR::PREDICTION_WEIGHT_TABLE_GENERATED_KHR.0,
-        );
-        pub const ROW_UNALIGNED_SLICE_KHR: Self = Self(
-            VideoEncodeH264CapabilityFlagBitsKHR::ROW_UNALIGNED_SLICE_KHR.0,
-        );
-        pub const DIFFERENT_SLICE_TYPE_KHR: Self = Self(
-            VideoEncodeH264CapabilityFlagBitsKHR::DIFFERENT_SLICE_TYPE_KHR.0,
-        );
-        pub const B_FRAME_IN_L0_LIST_KHR: Self = Self(
-            VideoEncodeH264CapabilityFlagBitsKHR::B_FRAME_IN_L0_LIST_KHR.0,
-        );
-        pub const B_FRAME_IN_L1_LIST_KHR: Self = Self(
-            VideoEncodeH264CapabilityFlagBitsKHR::B_FRAME_IN_L1_LIST_KHR.0,
-        );
-        pub const PER_PICTURE_TYPE_MIN_MAX_QP_KHR: Self = Self(
-            VideoEncodeH264CapabilityFlagBitsKHR::PER_PICTURE_TYPE_MIN_MAX_QP_KHR.0,
-        );
-        pub const PER_SLICE_CONSTANT_QP_KHR: Self = Self(
-            VideoEncodeH264CapabilityFlagBitsKHR::PER_SLICE_CONSTANT_QP_KHR.0,
-        );
-        pub const GENERATE_PREFIX_NALU_KHR: Self = Self(
-            VideoEncodeH264CapabilityFlagBitsKHR::GENERATE_PREFIX_NALU_KHR.0,
-        );
-        pub const B_PICTURE_INTRA_REFRESH_KHR: Self = Self(
-            VideoEncodeH264CapabilityFlagBitsKHR::B_PICTURE_INTRA_REFRESH_KHR.0,
-        );
-        pub const MB_QP_DIFF_WRAPAROUND_KHR: Self = Self(
-            VideoEncodeH264CapabilityFlagBitsKHR::MB_QP_DIFF_WRAPAROUND_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1047,7 +1131,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoEncodeH264StdFlagsKHR(u32);
+    pub struct VideoEncodeH264StdFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEncodeH264StdFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1128,66 +1212,6 @@ pub(crate) mod items {
         }
     }
     impl VideoEncodeH264StdFlagsKHR {
-        pub const SEPARATE_COLOR_PLANE_FLAG_SET_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::SEPARATE_COLOR_PLANE_FLAG_SET_KHR.0,
-        );
-        pub const QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR.0,
-        );
-        pub const SCALING_MATRIX_PRESENT_FLAG_SET_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::SCALING_MATRIX_PRESENT_FLAG_SET_KHR.0,
-        );
-        pub const CHROMA_QP_INDEX_OFFSET_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::CHROMA_QP_INDEX_OFFSET_KHR.0,
-        );
-        pub const SECOND_CHROMA_QP_INDEX_OFFSET_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::SECOND_CHROMA_QP_INDEX_OFFSET_KHR.0,
-        );
-        pub const PIC_INIT_QP_MINUS26_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::PIC_INIT_QP_MINUS26_KHR.0,
-        );
-        pub const WEIGHTED_PRED_FLAG_SET_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::WEIGHTED_PRED_FLAG_SET_KHR.0,
-        );
-        pub const WEIGHTED_BIPRED_IDC_EXPLICIT_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::WEIGHTED_BIPRED_IDC_EXPLICIT_KHR.0,
-        );
-        pub const WEIGHTED_BIPRED_IDC_IMPLICIT_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::WEIGHTED_BIPRED_IDC_IMPLICIT_KHR.0,
-        );
-        pub const TRANSFORM_8X8_MODE_FLAG_SET_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::TRANSFORM_8X8_MODE_FLAG_SET_KHR.0,
-        );
-        pub const DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR.0,
-        );
-        pub const ENTROPY_CODING_MODE_FLAG_UNSET_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::ENTROPY_CODING_MODE_FLAG_UNSET_KHR.0,
-        );
-        pub const ENTROPY_CODING_MODE_FLAG_SET_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::ENTROPY_CODING_MODE_FLAG_SET_KHR.0,
-        );
-        pub const DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR.0,
-        );
-        pub const CONSTRAINED_INTRA_PRED_FLAG_SET_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::CONSTRAINED_INTRA_PRED_FLAG_SET_KHR.0,
-        );
-        pub const DEBLOCKING_FILTER_DISABLED_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::DEBLOCKING_FILTER_DISABLED_KHR.0,
-        );
-        pub const DEBLOCKING_FILTER_ENABLED_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::DEBLOCKING_FILTER_ENABLED_KHR.0,
-        );
-        pub const DEBLOCKING_FILTER_PARTIAL_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::DEBLOCKING_FILTER_PARTIAL_KHR.0,
-        );
-        pub const SLICE_QP_DELTA_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::SLICE_QP_DELTA_KHR.0,
-        );
-        pub const DIFFERENT_SLICE_QP_DELTA_KHR: Self = Self(
-            VideoEncodeH264StdFlagBitsKHR::DIFFERENT_SLICE_QP_DELTA_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1263,7 +1287,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoEncodeH264RateControlFlagsKHR(u32);
+    pub struct VideoEncodeH264RateControlFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEncodeH264RateControlFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1287,21 +1311,6 @@ pub(crate) mod items {
         }
     }
     impl VideoEncodeH264RateControlFlagsKHR {
-        pub const ATTEMPT_HRD_COMPLIANCE_KHR: Self = Self(
-            VideoEncodeH264RateControlFlagBitsKHR::ATTEMPT_HRD_COMPLIANCE_KHR.0,
-        );
-        pub const REGULAR_GOP_KHR: Self = Self(
-            VideoEncodeH264RateControlFlagBitsKHR::REGULAR_GOP_KHR.0,
-        );
-        pub const REFERENCE_PATTERN_FLAT_KHR: Self = Self(
-            VideoEncodeH264RateControlFlagBitsKHR::REFERENCE_PATTERN_FLAT_KHR.0,
-        );
-        pub const REFERENCE_PATTERN_DYADIC_KHR: Self = Self(
-            VideoEncodeH264RateControlFlagBitsKHR::REFERENCE_PATTERN_DYADIC_KHR.0,
-        );
-        pub const TEMPORAL_LAYER_PATTERN_DYADIC_KHR: Self = Self(
-            VideoEncodeH264RateControlFlagBitsKHR::TEMPORAL_LAYER_PATTERN_DYADIC_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

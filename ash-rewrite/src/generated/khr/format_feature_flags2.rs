@@ -7,6 +7,94 @@ impl crate::vk::StructureType {
     pub const FORMAT_PROPERTIES_3_KHR: Self = Self::FORMAT_PROPERTIES_3;
 }
 ///Provided by [`khr::format_feature_flags2`](crate::khr::format_feature_flags2)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const SAMPLED_IMAGE_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::SAMPLED_IMAGE_KHR.0,
+    );
+    pub const STORAGE_IMAGE_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::STORAGE_IMAGE_KHR.0,
+    );
+    pub const STORAGE_IMAGE_ATOMIC_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::STORAGE_IMAGE_ATOMIC_KHR.0,
+    );
+    pub const UNIFORM_TEXEL_BUFFER_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::UNIFORM_TEXEL_BUFFER_KHR.0,
+    );
+    pub const STORAGE_TEXEL_BUFFER_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::STORAGE_TEXEL_BUFFER_KHR.0,
+    );
+    pub const STORAGE_TEXEL_BUFFER_ATOMIC_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::STORAGE_TEXEL_BUFFER_ATOMIC_KHR.0,
+    );
+    pub const VERTEX_BUFFER_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::VERTEX_BUFFER_KHR.0,
+    );
+    pub const COLOR_ATTACHMENT_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::COLOR_ATTACHMENT_KHR.0,
+    );
+    pub const COLOR_ATTACHMENT_BLEND_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::COLOR_ATTACHMENT_BLEND_KHR.0,
+    );
+    pub const DEPTH_STENCIL_ATTACHMENT_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::DEPTH_STENCIL_ATTACHMENT_KHR.0,
+    );
+    pub const BLIT_SRC_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::BLIT_SRC_KHR.0,
+    );
+    pub const BLIT_DST_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::BLIT_DST_KHR.0,
+    );
+    pub const SAMPLED_IMAGE_FILTER_LINEAR_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_LINEAR_KHR.0,
+    );
+    pub const TRANSFER_SRC_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::TRANSFER_SRC_KHR.0,
+    );
+    pub const TRANSFER_DST_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::TRANSFER_DST_KHR.0,
+    );
+    pub const MIDPOINT_CHROMA_SAMPLES_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::MIDPOINT_CHROMA_SAMPLES_KHR.0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR
+            .0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR
+            .0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_KHR
+            .0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR
+            .0,
+    );
+    pub const DISJOINT_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::DISJOINT_KHR.0,
+    );
+    pub const COSITED_CHROMA_SAMPLES_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::COSITED_CHROMA_SAMPLES_KHR.0,
+    );
+    pub const STORAGE_READ_WITHOUT_FORMAT_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::STORAGE_READ_WITHOUT_FORMAT_KHR.0,
+    );
+    pub const STORAGE_WRITE_WITHOUT_FORMAT_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::STORAGE_WRITE_WITHOUT_FORMAT_KHR.0,
+    );
+    pub const SAMPLED_IMAGE_DEPTH_COMPARISON_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::SAMPLED_IMAGE_DEPTH_COMPARISON_KHR.0,
+    );
+    pub const SAMPLED_IMAGE_FILTER_MINMAX_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_MINMAX_KHR.0,
+    );
+    pub const SAMPLED_IMAGE_FILTER_CUBIC_EXT: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_CUBIC_EXT.0,
+    );
+}
+///Provided by [`khr::format_feature_flags2`](crate::khr::format_feature_flags2)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const SAMPLED_IMAGE_KHR: Self = Self::SAMPLED_IMAGE;
     pub const STORAGE_IMAGE_KHR: Self = Self::STORAGE_IMAGE;

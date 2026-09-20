@@ -51,6 +51,12 @@ impl CooperativeVectorMatrixLayoutNV {
     pub const TRAINING_OPTIMAL_NV: Self = Self(3);
 }
 ///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
+impl crate::vk::PipelineStageFlags2 {
+    pub const CONVERT_COOPERATIVE_VECTOR_MATRIX_NV: Self = Self(
+        crate::vk::PipelineStageFlagBits2::CONVERT_COOPERATIVE_VECTOR_MATRIX_NV.0,
+    );
+}
+///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const CONVERT_COOPERATIVE_VECTOR_MATRIX_NV: Self = Self(1 << 44);
 }

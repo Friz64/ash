@@ -14,6 +14,12 @@ impl crate::vk::StructureType {
     pub const RELEASE_SWAPCHAIN_IMAGES_INFO_KHR: Self = Self(1000275005);
 }
 ///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
+impl crate::vk::SwapchainCreateFlagsKHR {
+    pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(
+        crate::vk::SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_KHR.0,
+    );
+}
+///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(1 << 3);
 }

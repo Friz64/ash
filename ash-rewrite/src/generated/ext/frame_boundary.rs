@@ -8,6 +8,10 @@ impl crate::vk::StructureType {
     pub const FRAME_BOUNDARY_EXT: Self = Self(1000375001);
 }
 ///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
+impl FrameBoundaryFlagsEXT {
+    pub const FRAME_END_EXT: Self = Self(FrameBoundaryFlagBitsEXT::FRAME_END_EXT.0);
+}
+///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
 impl FrameBoundaryFlagBitsEXT {
     pub const FRAME_END_EXT: Self = Self(1 << 0);
 }
@@ -122,7 +126,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct FrameBoundaryFlagsEXT(u32);
+    pub struct FrameBoundaryFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for FrameBoundaryFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -130,7 +134,6 @@ pub(crate) mod items {
         }
     }
     impl FrameBoundaryFlagsEXT {
-        pub const FRAME_END_EXT: Self = Self(FrameBoundaryFlagBitsEXT::FRAME_END_EXT.0);
         pub const fn empty() -> Self {
             Self(0)
         }

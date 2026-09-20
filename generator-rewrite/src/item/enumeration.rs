@@ -6,7 +6,7 @@ use analysis::{
     rust::{Lifetime, RustTokens},
     xml::cexpr::CExprItem,
 };
-use proc_macro2::{Literal, TokenStream};
+use proc_macro2::Literal;
 use quote::quote;
 use tracing::{instrument, trace};
 
@@ -18,13 +18,19 @@ impl Code for Enum {
 
         let debug = {
             let debug_items = (self.items.iter())
-                .filter_map(|(name, item)| {
-                    (!matches!(item.value, Value::Alias(..))).then_some(name)
-                })
-                .map(|&name| {
+                .filter(|(_name, item)| !matches!(item.value, Value::Alias(..)))
+                .map(|(&name, item)| {
                     let name = ctx.enumerator_tokens(name, self.name, false);
                     let name_string = name.to_string();
-                    quote! { Self::#name => Some(#name_string), }
+
+                    let is_provisional = item.required_by.primary_location().is_provisional(ctx);
+                    let provisional_guard =
+                        is_provisional.then_some(quote! { #[cfg(feature = "provisional")] });
+
+                    quote! {
+                        #provisional_guard
+                        Self::#name => Some(#name_string),
+                    }
                 });
 
             let cfg_guard = (self.name != TypeName::VK_RESULT
@@ -49,23 +55,22 @@ impl Code for Enum {
         };
 
         let display = (self.name == TypeName::VK_RESULT).then(|| {
-            let display_items: TokenStream = (self.items.iter())
-                .filter_map(|(name, item)| {
-                    item.comment.and_then(|comment| {
-                        (!matches!(item.value, Value::Alias(..))).then_some((name, comment))
-                    })
+            let display_items = (self.items.iter())
+                .filter_map(|(name, item)| match (item.comment, &item.value) {
+                    (_, Value::Alias(..)) => None, // filter out aliases
+                    (Some(comment), _) => Some((name, comment)),
+                    _ => None,
                 })
                 .map(|(&name, comment)| {
                     let name = ctx.enumerator_tokens(name, self.name, false);
                     quote! { Self::#name => Some(#comment), }
-                })
-                .collect();
+                });
 
             quote! {
                 impl core::fmt::Display for #name {
                     fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                         if let Some(x) = match *self {
-                            #display_items
+                            #( #display_items )*
                             _ => None,
                         } {
                             f.write_str(x)
@@ -143,7 +148,6 @@ impl Code for Enum {
                 quote! {
                     #[doc = #doc]
                     impl #name {
-                        // TODO: pull doc from xml
                         #impl_tokens
                     }
                 },

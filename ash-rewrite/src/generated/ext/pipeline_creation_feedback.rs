@@ -7,6 +7,18 @@ impl crate::vk::StructureType {
     pub const PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT: Self = Self::PIPELINE_CREATION_FEEDBACK_CREATE_INFO;
 }
 ///Provided by [`ext::pipeline_creation_feedback`](crate::ext::pipeline_creation_feedback)
+impl crate::vk::PipelineCreationFeedbackFlags {
+    pub const VALID_EXT: Self = Self(
+        crate::vk::PipelineCreationFeedbackFlagBits::VALID_EXT.0,
+    );
+    pub const APPLICATION_PIPELINE_CACHE_HIT_EXT: Self = Self(
+        crate::vk::PipelineCreationFeedbackFlagBits::APPLICATION_PIPELINE_CACHE_HIT_EXT.0,
+    );
+    pub const BASE_PIPELINE_ACCELERATION_EXT: Self = Self(
+        crate::vk::PipelineCreationFeedbackFlagBits::BASE_PIPELINE_ACCELERATION_EXT.0,
+    );
+}
+///Provided by [`ext::pipeline_creation_feedback`](crate::ext::pipeline_creation_feedback)
 impl crate::vk::PipelineCreationFeedbackFlagBits {
     pub const VALID_EXT: Self = Self::VALID;
     pub const APPLICATION_PIPELINE_CACHE_HIT_EXT: Self = Self::APPLICATION_PIPELINE_CACHE_HIT;

@@ -70,6 +70,15 @@ impl PerformanceCounterStorageKHR {
     pub const FLOAT64_KHR: Self = Self(5);
 }
 ///Provided by [`khr::performance_query`](crate::khr::performance_query)
+impl PerformanceCounterDescriptionFlagsKHR {
+    pub const PERFORMANCE_IMPACTING_KHR: Self = Self(
+        PerformanceCounterDescriptionFlagBitsKHR::PERFORMANCE_IMPACTING_KHR.0,
+    );
+    pub const CONCURRENTLY_IMPACTED_KHR: Self = Self(
+        PerformanceCounterDescriptionFlagBitsKHR::CONCURRENTLY_IMPACTED_KHR.0,
+    );
+}
+///Provided by [`khr::performance_query`](crate::khr::performance_query)
 impl PerformanceCounterDescriptionFlagBitsKHR {
     pub const PERFORMANCE_IMPACTING_KHR: Self = Self(1 << 0);
     pub const CONCURRENTLY_IMPACTED_KHR: Self = Self(1 << 1);
@@ -634,7 +643,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PerformanceCounterDescriptionFlagsKHR(u32);
+    pub struct PerformanceCounterDescriptionFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -649,12 +658,6 @@ pub(crate) mod items {
         }
     }
     impl PerformanceCounterDescriptionFlagsKHR {
-        pub const PERFORMANCE_IMPACTING_KHR: Self = Self(
-            PerformanceCounterDescriptionFlagBitsKHR::PERFORMANCE_IMPACTING_KHR.0,
-        );
-        pub const CONCURRENTLY_IMPACTED_KHR: Self = Self(
-            PerformanceCounterDescriptionFlagBitsKHR::CONCURRENTLY_IMPACTED_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -730,7 +733,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct AcquireProfilingLockFlagsKHR(u32);
+    pub struct AcquireProfilingLockFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AcquireProfilingLockFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

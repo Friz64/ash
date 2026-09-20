@@ -26,6 +26,21 @@ impl crate::vk::Result {
     );
 }
 ///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
+impl crate::vk::ImageAspectFlags {
+    pub const MEMORY_PLANE_0_EXT: Self = Self(
+        crate::vk::ImageAspectFlagBits::MEMORY_PLANE_0_EXT.0,
+    );
+    pub const MEMORY_PLANE_1_EXT: Self = Self(
+        crate::vk::ImageAspectFlagBits::MEMORY_PLANE_1_EXT.0,
+    );
+    pub const MEMORY_PLANE_2_EXT: Self = Self(
+        crate::vk::ImageAspectFlagBits::MEMORY_PLANE_2_EXT.0,
+    );
+    pub const MEMORY_PLANE_3_EXT: Self = Self(
+        crate::vk::ImageAspectFlagBits::MEMORY_PLANE_3_EXT.0,
+    );
+}
+///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
 impl crate::vk::ImageAspectFlagBits {
     pub const MEMORY_PLANE_0_EXT: Self = Self(1 << 7);
     pub const MEMORY_PLANE_1_EXT: Self = Self(1 << 8);

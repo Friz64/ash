@@ -1,6 +1,6 @@
 mod vfs;
 
-use crate::output::vfs::VirtualRustFs;
+use crate::{Context, output::vfs::VirtualRustFs};
 use analysis::{
     LibraryName,
     item::{RequireLocation, RequiredBy},
@@ -142,7 +142,7 @@ impl CodeMap {
         self.0.into_iter()
     }
 
-    pub fn write(&self, output_path: impl AsRef<Path>) -> io::Result<()> {
+    pub fn write(&self, ctx: &Context, output_path: impl AsRef<Path>) -> io::Result<()> {
         let mut vfs = VirtualRustFs::default();
         vfs.write(
             "mod.rs",
@@ -241,6 +241,12 @@ impl CodeMap {
                 content,
             } = source_file;
 
+            let is_provisional = destination.location.is_provisional(ctx);
+            let provisional_mod_guard =
+                is_provisional.then_some(quote! { #![cfg(feature = "provisional")] });
+            let provisional_guard =
+                is_provisional.then_some(quote! { #[cfg(feature = "provisional")] });
+
             if !reexport_content.is_empty() {
                 reexport_content = quote! {
                     pub(crate) mod items { #reexport_content }
@@ -259,7 +265,10 @@ impl CodeMap {
             let vk_content = reexport_items.into_iter().map(|reexport_item| {
                 // this is quite difficult to parse by eye:
                 // #component_idents is using repetition syntax #()*
-                quote! { pub use super:: #(#component_idents)::* ::#reexport_item; }
+                quote! {
+                    #provisional_guard
+                    pub use super:: #(#component_idents)::* ::#reexport_item;
+                }
             });
 
             vfs.write("vk.rs", quote! { #(#vk_content)* });
@@ -267,6 +276,7 @@ impl CodeMap {
             vfs.write(
                 source_path,
                 quote! {
+                    #provisional_mod_guard
                     #![doc = #doc_comment]
                     #![doc(alias = #doc_alias)]
                     #content

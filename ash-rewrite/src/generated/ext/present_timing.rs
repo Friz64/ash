@@ -25,8 +25,29 @@ impl crate::vk::TimeDomainKHR {
     pub const SWAPCHAIN_LOCAL_EXT: Self = Self(1000208001);
 }
 ///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl crate::vk::SwapchainCreateFlagsKHR {
+    pub const PRESENT_TIMING_EXT: Self = Self(
+        crate::vk::SwapchainCreateFlagBitsKHR::PRESENT_TIMING_EXT.0,
+    );
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_TIMING_EXT: Self = Self(1 << 9);
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl PresentStageFlagsEXT {
+    pub const QUEUE_OPERATIONS_END_EXT: Self = Self(
+        PresentStageFlagBitsEXT::QUEUE_OPERATIONS_END_EXT.0,
+    );
+    pub const REQUEST_DEQUEUED_EXT: Self = Self(
+        PresentStageFlagBitsEXT::REQUEST_DEQUEUED_EXT.0,
+    );
+    pub const IMAGE_FIRST_PIXEL_OUT_EXT: Self = Self(
+        PresentStageFlagBitsEXT::IMAGE_FIRST_PIXEL_OUT_EXT.0,
+    );
+    pub const IMAGE_FIRST_PIXEL_VISIBLE_EXT: Self = Self(
+        PresentStageFlagBitsEXT::IMAGE_FIRST_PIXEL_VISIBLE_EXT.0,
+    );
 }
 ///Provided by [`ext::present_timing`](crate::ext::present_timing)
 impl PresentStageFlagBitsEXT {
@@ -36,9 +57,27 @@ impl PresentStageFlagBitsEXT {
     pub const IMAGE_FIRST_PIXEL_VISIBLE_EXT: Self = Self(1 << 3);
 }
 ///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl PastPresentationTimingFlagsEXT {
+    pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(
+        PastPresentationTimingFlagBitsEXT::ALLOW_PARTIAL_RESULTS_EXT.0,
+    );
+    pub const ALLOW_OUT_OF_ORDER_RESULTS_EXT: Self = Self(
+        PastPresentationTimingFlagBitsEXT::ALLOW_OUT_OF_ORDER_RESULTS_EXT.0,
+    );
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
 impl PastPresentationTimingFlagBitsEXT {
     pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(1 << 0);
     pub const ALLOW_OUT_OF_ORDER_RESULTS_EXT: Self = Self(1 << 1);
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl PresentTimingInfoFlagsEXT {
+    pub const PRESENT_AT_RELATIVE_TIME_EXT: Self = Self(
+        PresentTimingInfoFlagBitsEXT::PRESENT_AT_RELATIVE_TIME_EXT.0,
+    );
+    pub const PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT: Self = Self(
+        PresentTimingInfoFlagBitsEXT::PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT.0,
+    );
 }
 ///Provided by [`ext::present_timing`](crate::ext::present_timing)
 impl PresentTimingInfoFlagBitsEXT {
@@ -653,7 +692,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PresentStageFlagsEXT(u32);
+    pub struct PresentStageFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PresentStageFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -673,18 +712,6 @@ pub(crate) mod items {
         }
     }
     impl PresentStageFlagsEXT {
-        pub const QUEUE_OPERATIONS_END_EXT: Self = Self(
-            PresentStageFlagBitsEXT::QUEUE_OPERATIONS_END_EXT.0,
-        );
-        pub const REQUEST_DEQUEUED_EXT: Self = Self(
-            PresentStageFlagBitsEXT::REQUEST_DEQUEUED_EXT.0,
-        );
-        pub const IMAGE_FIRST_PIXEL_OUT_EXT: Self = Self(
-            PresentStageFlagBitsEXT::IMAGE_FIRST_PIXEL_OUT_EXT.0,
-        );
-        pub const IMAGE_FIRST_PIXEL_VISIBLE_EXT: Self = Self(
-            PresentStageFlagBitsEXT::IMAGE_FIRST_PIXEL_VISIBLE_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -760,7 +787,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PastPresentationTimingFlagsEXT(u32);
+    pub struct PastPresentationTimingFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PastPresentationTimingFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -778,12 +805,6 @@ pub(crate) mod items {
         }
     }
     impl PastPresentationTimingFlagsEXT {
-        pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(
-            PastPresentationTimingFlagBitsEXT::ALLOW_PARTIAL_RESULTS_EXT.0,
-        );
-        pub const ALLOW_OUT_OF_ORDER_RESULTS_EXT: Self = Self(
-            PastPresentationTimingFlagBitsEXT::ALLOW_OUT_OF_ORDER_RESULTS_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -859,7 +880,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PresentTimingInfoFlagsEXT(u32);
+    pub struct PresentTimingInfoFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PresentTimingInfoFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -880,12 +901,6 @@ pub(crate) mod items {
         }
     }
     impl PresentTimingInfoFlagsEXT {
-        pub const PRESENT_AT_RELATIVE_TIME_EXT: Self = Self(
-            PresentTimingInfoFlagBitsEXT::PRESENT_AT_RELATIVE_TIME_EXT.0,
-        );
-        pub const PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT: Self = Self(
-            PresentTimingInfoFlagBitsEXT::PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

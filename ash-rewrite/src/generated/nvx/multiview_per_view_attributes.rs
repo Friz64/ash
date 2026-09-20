@@ -10,6 +10,15 @@ impl crate::vk::StructureType {
     pub const MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX: Self = Self(1000044009);
 }
 ///Provided by [`nvx::multiview_per_view_attributes`](crate::nvx::multiview_per_view_attributes)
+impl crate::vk::SubpassDescriptionFlags {
+    pub const PER_VIEW_ATTRIBUTES_NVX: Self = Self(
+        crate::vk::SubpassDescriptionFlagBits::PER_VIEW_ATTRIBUTES_NVX.0,
+    );
+    pub const PER_VIEW_POSITION_X_ONLY_NVX: Self = Self(
+        crate::vk::SubpassDescriptionFlagBits::PER_VIEW_POSITION_X_ONLY_NVX.0,
+    );
+}
+///Provided by [`nvx::multiview_per_view_attributes`](crate::nvx::multiview_per_view_attributes)
 impl crate::vk::SubpassDescriptionFlagBits {
     pub const PER_VIEW_ATTRIBUTES_NVX: Self = Self(1 << 0);
     pub const PER_VIEW_POSITION_X_ONLY_NVX: Self = Self(1 << 1);

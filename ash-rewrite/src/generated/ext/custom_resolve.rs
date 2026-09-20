@@ -9,14 +9,36 @@ impl crate::vk::StructureType {
     pub const CUSTOM_RESOLVE_CREATE_INFO_EXT: Self = Self(1000628002);
 }
 ///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+impl crate::vk::SubpassDescriptionFlags {
+    pub const FRAGMENT_REGION_EXT: Self = Self(
+        crate::vk::SubpassDescriptionFlagBits::FRAGMENT_REGION_EXT.0,
+    );
+    pub const CUSTOM_RESOLVE_EXT: Self = Self(
+        crate::vk::SubpassDescriptionFlagBits::CUSTOM_RESOLVE_EXT.0,
+    );
+}
+///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
 impl crate::vk::SubpassDescriptionFlagBits {
     pub const FRAGMENT_REGION_EXT: Self = Self(1 << 2);
     pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 3);
 }
 ///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+impl crate::vk::RenderingFlags {
+    pub const FRAGMENT_REGION_EXT: Self = Self(
+        crate::vk::RenderingFlagBits::FRAGMENT_REGION_EXT.0,
+    );
+    pub const CUSTOM_RESOLVE_EXT: Self = Self(
+        crate::vk::RenderingFlagBits::CUSTOM_RESOLVE_EXT.0,
+    );
+}
+///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
 impl crate::vk::RenderingFlagBits {
     pub const FRAGMENT_REGION_EXT: Self = Self(1 << 6);
     pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 7);
+}
+///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+impl crate::vk::ResolveModeFlags {
+    pub const CUSTOM_EXT: Self = Self(crate::vk::ResolveModeFlagBits::CUSTOM_EXT.0);
 }
 ///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
 impl crate::vk::ResolveModeFlagBits {

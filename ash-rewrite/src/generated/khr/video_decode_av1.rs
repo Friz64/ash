@@ -13,6 +13,12 @@ impl crate::vk::StructureType {
     pub const VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR: Self = Self(1000512005);
 }
 ///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
+impl crate::vk::VideoCodecOperationFlagsKHR {
+    pub const DECODE_AV1_KHR: Self = Self(
+        crate::vk::VideoCodecOperationFlagBitsKHR::DECODE_AV1_KHR.0,
+    );
+}
+///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_AV1_KHR: Self = Self(1 << 2);
 }

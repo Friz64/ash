@@ -14,6 +14,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
+impl crate::vk::FormatFeatureFlags {
+    pub const SAMPLED_IMAGE_FILTER_CUBIC_EXT: Self = Self(
+        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_CUBIC_EXT.0,
+    );
+}
+///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
 impl crate::vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_CUBIC_EXT: Self = Self(1 << 13);
 }

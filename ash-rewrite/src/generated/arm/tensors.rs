@@ -67,13 +67,38 @@ impl TensorTilingARM {
     pub const LINEAR_ARM: Self = Self(1);
 }
 ///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::ImageUsageFlags {
+    pub const TENSOR_ALIASING_ARM: Self = Self(
+        crate::vk::ImageUsageFlagBits::TENSOR_ALIASING_ARM.0,
+    );
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
 impl crate::vk::ImageUsageFlagBits {
     pub const TENSOR_ALIASING_ARM: Self = Self(1 << 23);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const TENSOR_SHADER_ARM: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::TENSOR_SHADER_ARM.0,
+    );
+    pub const TENSOR_IMAGE_ALIASING_ARM: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::TENSOR_IMAGE_ALIASING_ARM.0,
+    );
 }
 ///Provided by [`arm::tensors`](crate::arm::tensors)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const TENSOR_SHADER_ARM: Self = Self(1 << 39);
     pub const TENSOR_IMAGE_ALIASING_ARM: Self = Self(1 << 43);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl TensorCreateFlagsARM {
+    pub const MUTABLE_FORMAT_ARM: Self = Self(
+        TensorCreateFlagBitsARM::MUTABLE_FORMAT_ARM.0,
+    );
+    pub const PROTECTED_ARM: Self = Self(TensorCreateFlagBitsARM::PROTECTED_ARM.0);
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(
+        TensorCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
+    );
 }
 ///Provided by [`arm::tensors`](crate::arm::tensors)
 impl TensorCreateFlagBitsARM {
@@ -82,11 +107,26 @@ impl TensorCreateFlagBitsARM {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 2);
 }
 ///Provided by [`arm::tensors`](crate::arm::tensors)
+impl TensorUsageFlagsARM {
+    pub const SHADER_ARM: Self = Self(TensorUsageFlagBitsARM::SHADER_ARM.0);
+    pub const TRANSFER_SRC_ARM: Self = Self(TensorUsageFlagBitsARM::TRANSFER_SRC_ARM.0);
+    pub const TRANSFER_DST_ARM: Self = Self(TensorUsageFlagBitsARM::TRANSFER_DST_ARM.0);
+    pub const IMAGE_ALIASING_ARM: Self = Self(
+        TensorUsageFlagBitsARM::IMAGE_ALIASING_ARM.0,
+    );
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
 impl TensorUsageFlagBitsARM {
     pub const SHADER_ARM: Self = Self(1 << 1);
     pub const TRANSFER_SRC_ARM: Self = Self(1 << 2);
     pub const TRANSFER_DST_ARM: Self = Self(1 << 3);
     pub const IMAGE_ALIASING_ARM: Self = Self(1 << 4);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::TensorViewCreateFlagsARM {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(
+        crate::vk::TensorViewCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
+    );
 }
 ///Provided by [`arm::tensors`](crate::arm::tensors)
 impl crate::vk::TensorViewCreateFlagBitsARM {
@@ -1436,7 +1476,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct TensorCreateFlagsARM(u64);
+    pub struct TensorCreateFlagsARM(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for TensorCreateFlagsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1459,16 +1499,6 @@ pub(crate) mod items {
         }
     }
     impl TensorCreateFlagsARM {
-        pub const MUTABLE_FORMAT_ARM: Self = Self(
-            TensorCreateFlagBitsARM::MUTABLE_FORMAT_ARM.0,
-        );
-        pub const PROTECTED_ARM: Self = Self(TensorCreateFlagBitsARM::PROTECTED_ARM.0);
-        pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM: Self = Self(
-            TensorCreateFlagBitsARM::DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM.0,
-        );
-        pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(
-            TensorCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1544,7 +1574,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct TensorUsageFlagsARM(u64);
+    pub struct TensorUsageFlagsARM(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for TensorUsageFlagsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1562,17 +1592,6 @@ pub(crate) mod items {
         }
     }
     impl TensorUsageFlagsARM {
-        pub const SHADER_ARM: Self = Self(TensorUsageFlagBitsARM::SHADER_ARM.0);
-        pub const TRANSFER_SRC_ARM: Self = Self(
-            TensorUsageFlagBitsARM::TRANSFER_SRC_ARM.0,
-        );
-        pub const TRANSFER_DST_ARM: Self = Self(
-            TensorUsageFlagBitsARM::TRANSFER_DST_ARM.0,
-        );
-        pub const IMAGE_ALIASING_ARM: Self = Self(
-            TensorUsageFlagBitsARM::IMAGE_ALIASING_ARM.0,
-        );
-        pub const DATA_GRAPH_ARM: Self = Self(TensorUsageFlagBitsARM::DATA_GRAPH_ARM.0);
         pub const fn empty() -> Self {
             Self(0)
         }

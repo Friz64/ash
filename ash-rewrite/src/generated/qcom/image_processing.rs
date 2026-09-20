@@ -14,13 +14,43 @@ impl crate::vk::StructureType {
     pub const IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM: Self = Self(1000440002);
 }
 ///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+impl crate::vk::SamplerCreateFlags {
+    pub const IMAGE_PROCESSING_QCOM: Self = Self(
+        crate::vk::SamplerCreateFlagBits::IMAGE_PROCESSING_QCOM.0,
+    );
+}
+///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
 impl crate::vk::SamplerCreateFlagBits {
     pub const IMAGE_PROCESSING_QCOM: Self = Self(1 << 4);
+}
+///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+impl crate::vk::ImageUsageFlags {
+    pub const SAMPLE_WEIGHT_QCOM: Self = Self(
+        crate::vk::ImageUsageFlagBits::SAMPLE_WEIGHT_QCOM.0,
+    );
+    pub const SAMPLE_BLOCK_MATCH_QCOM: Self = Self(
+        crate::vk::ImageUsageFlagBits::SAMPLE_BLOCK_MATCH_QCOM.0,
+    );
 }
 ///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
 impl crate::vk::ImageUsageFlagBits {
     pub const SAMPLE_WEIGHT_QCOM: Self = Self(1 << 20);
     pub const SAMPLE_BLOCK_MATCH_QCOM: Self = Self(1 << 21);
+}
+///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const WEIGHT_IMAGE_QCOM: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::WEIGHT_IMAGE_QCOM.0,
+    );
+    pub const WEIGHT_SAMPLED_IMAGE_QCOM: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::WEIGHT_SAMPLED_IMAGE_QCOM.0,
+    );
+    pub const BLOCK_MATCHING_QCOM: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::BLOCK_MATCHING_QCOM.0,
+    );
+    pub const BOX_FILTER_SAMPLED_QCOM: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::BOX_FILTER_SAMPLED_QCOM.0,
+    );
 }
 ///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
 impl crate::vk::FormatFeatureFlagBits2 {

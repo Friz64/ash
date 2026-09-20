@@ -3,11 +3,38 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_capabilities.html) · Extension `VK_NV_external_memory_capabilities`
 #![doc(alias = "VK_NV_external_memory_capabilities")]
 ///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
+impl ExternalMemoryHandleTypeFlagsNV {
+    pub const OPAQUE_WIN32_NV: Self = Self(
+        ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_NV.0,
+    );
+    pub const OPAQUE_WIN32_KMT_NV: Self = Self(
+        ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_KMT_NV.0,
+    );
+    pub const D3D11_IMAGE_NV: Self = Self(
+        ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE_NV.0,
+    );
+    pub const D3D11_IMAGE_KMT_NV: Self = Self(
+        ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE_KMT_NV.0,
+    );
+}
+///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
 impl ExternalMemoryHandleTypeFlagBitsNV {
     pub const OPAQUE_WIN32_NV: Self = Self(1 << 0);
     pub const OPAQUE_WIN32_KMT_NV: Self = Self(1 << 1);
     pub const D3D11_IMAGE_NV: Self = Self(1 << 2);
     pub const D3D11_IMAGE_KMT_NV: Self = Self(1 << 3);
+}
+///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
+impl ExternalMemoryFeatureFlagsNV {
+    pub const DEDICATED_ONLY_NV: Self = Self(
+        ExternalMemoryFeatureFlagBitsNV::DEDICATED_ONLY_NV.0,
+    );
+    pub const EXPORTABLE_NV: Self = Self(
+        ExternalMemoryFeatureFlagBitsNV::EXPORTABLE_NV.0,
+    );
+    pub const IMPORTABLE_NV: Self = Self(
+        ExternalMemoryFeatureFlagBitsNV::IMPORTABLE_NV.0,
+    );
 }
 ///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
 impl ExternalMemoryFeatureFlagBitsNV {
@@ -122,7 +149,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ExternalMemoryHandleTypeFlagsNV(u32);
+    pub struct ExternalMemoryHandleTypeFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -139,18 +166,6 @@ pub(crate) mod items {
         }
     }
     impl ExternalMemoryHandleTypeFlagsNV {
-        pub const OPAQUE_WIN32_NV: Self = Self(
-            ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_NV.0,
-        );
-        pub const OPAQUE_WIN32_KMT_NV: Self = Self(
-            ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_KMT_NV.0,
-        );
-        pub const D3D11_IMAGE_NV: Self = Self(
-            ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE_NV.0,
-        );
-        pub const D3D11_IMAGE_KMT_NV: Self = Self(
-            ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE_KMT_NV.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -226,7 +241,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ExternalMemoryFeatureFlagsNV(u32);
+    pub struct ExternalMemoryFeatureFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalMemoryFeatureFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -242,15 +257,6 @@ pub(crate) mod items {
         }
     }
     impl ExternalMemoryFeatureFlagsNV {
-        pub const DEDICATED_ONLY_NV: Self = Self(
-            ExternalMemoryFeatureFlagBitsNV::DEDICATED_ONLY_NV.0,
-        );
-        pub const EXPORTABLE_NV: Self = Self(
-            ExternalMemoryFeatureFlagBitsNV::EXPORTABLE_NV.0,
-        );
-        pub const IMPORTABLE_NV: Self = Self(
-            ExternalMemoryFeatureFlagBitsNV::IMPORTABLE_NV.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

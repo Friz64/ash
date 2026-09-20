@@ -15,12 +15,39 @@ impl crate::vk::Result {
     pub const ERROR_FRAGMENTATION_EXT: Self = Self::ERROR_FRAGMENTATION;
 }
 ///Provided by [`ext::descriptor_indexing`](crate::ext::descriptor_indexing)
+impl crate::vk::DescriptorSetLayoutCreateFlags {
+    pub const UPDATE_AFTER_BIND_POOL_EXT: Self = Self(
+        crate::vk::DescriptorSetLayoutCreateFlagBits::UPDATE_AFTER_BIND_POOL_EXT.0,
+    );
+}
+///Provided by [`ext::descriptor_indexing`](crate::ext::descriptor_indexing)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const UPDATE_AFTER_BIND_POOL_EXT: Self = Self::UPDATE_AFTER_BIND_POOL;
 }
 ///Provided by [`ext::descriptor_indexing`](crate::ext::descriptor_indexing)
+impl crate::vk::DescriptorPoolCreateFlags {
+    pub const UPDATE_AFTER_BIND_EXT: Self = Self(
+        crate::vk::DescriptorPoolCreateFlagBits::UPDATE_AFTER_BIND_EXT.0,
+    );
+}
+///Provided by [`ext::descriptor_indexing`](crate::ext::descriptor_indexing)
 impl crate::vk::DescriptorPoolCreateFlagBits {
     pub const UPDATE_AFTER_BIND_EXT: Self = Self::UPDATE_AFTER_BIND;
+}
+///Provided by [`ext::descriptor_indexing`](crate::ext::descriptor_indexing)
+impl crate::vk::DescriptorBindingFlags {
+    pub const UPDATE_AFTER_BIND_EXT: Self = Self(
+        crate::vk::DescriptorBindingFlagBits::UPDATE_AFTER_BIND_EXT.0,
+    );
+    pub const UPDATE_UNUSED_WHILE_PENDING_EXT: Self = Self(
+        crate::vk::DescriptorBindingFlagBits::UPDATE_UNUSED_WHILE_PENDING_EXT.0,
+    );
+    pub const PARTIALLY_BOUND_EXT: Self = Self(
+        crate::vk::DescriptorBindingFlagBits::PARTIALLY_BOUND_EXT.0,
+    );
+    pub const VARIABLE_DESCRIPTOR_COUNT_EXT: Self = Self(
+        crate::vk::DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT_EXT.0,
+    );
 }
 ///Provided by [`ext::descriptor_indexing`](crate::ext::descriptor_indexing)
 impl crate::vk::DescriptorBindingFlagBits {

@@ -12,6 +12,12 @@ impl crate::vk::StructureType {
     pub const EXTERNAL_FORMAT_OHOS: Self = Self(1000452005);
 }
 ///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
+impl crate::vk::ExternalMemoryHandleTypeFlags {
+    pub const OH_NATIVE_BUFFER_OHOS: Self = Self(
+        crate::vk::ExternalMemoryHandleTypeFlagBits::OH_NATIVE_BUFFER_OHOS.0,
+    );
+}
+///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const OH_NATIVE_BUFFER_OHOS: Self = Self(1 << 15);
 }

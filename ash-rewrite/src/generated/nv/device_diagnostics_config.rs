@@ -8,6 +8,21 @@ impl crate::vk::StructureType {
     pub const DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV: Self = Self(1000300001);
 }
 ///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
+impl DeviceDiagnosticsConfigFlagsNV {
+    pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(
+        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_DEBUG_INFO_NV.0,
+    );
+    pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(
+        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_RESOURCE_TRACKING_NV.0,
+    );
+    pub const ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(
+        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_AUTOMATIC_CHECKPOINTS_NV.0,
+    );
+    pub const ENABLE_SHADER_ERROR_REPORTING_NV: Self = Self(
+        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_ERROR_REPORTING_NV.0,
+    );
+}
+///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
 impl DeviceDiagnosticsConfigFlagBitsNV {
     pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(1 << 0);
     pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(1 << 1);
@@ -86,7 +101,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DeviceDiagnosticsConfigFlagsNV(u32);
+    pub struct DeviceDiagnosticsConfigFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -109,18 +124,6 @@ pub(crate) mod items {
         }
     }
     impl DeviceDiagnosticsConfigFlagsNV {
-        pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(
-            DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_DEBUG_INFO_NV.0,
-        );
-        pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(
-            DeviceDiagnosticsConfigFlagBitsNV::ENABLE_RESOURCE_TRACKING_NV.0,
-        );
-        pub const ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(
-            DeviceDiagnosticsConfigFlagBitsNV::ENABLE_AUTOMATIC_CHECKPOINTS_NV.0,
-        );
-        pub const ENABLE_SHADER_ERROR_REPORTING_NV: Self = Self(
-            DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_ERROR_REPORTING_NV.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

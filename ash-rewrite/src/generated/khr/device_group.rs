@@ -13,8 +13,23 @@ impl crate::vk::StructureType {
     pub const BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR: Self = Self::BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO;
 }
 ///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::ImageCreateFlags {
+    pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(
+        crate::vk::ImageCreateFlagBits::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
+    );
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
 impl crate::vk::ImageCreateFlagBits {
     pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self::SPLIT_INSTANCE_BIND_REGIONS;
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::PipelineCreateFlags {
+    pub const VIEW_INDEX_FROM_DEVICE_INDEX_KHR: Self = Self(
+        crate::vk::PipelineCreateFlagBits::VIEW_INDEX_FROM_DEVICE_INDEX_KHR.0,
+    );
+    pub const DISPATCH_BASE_KHR: Self = Self(
+        crate::vk::PipelineCreateFlagBits::DISPATCH_BASE_KHR.0,
+    );
 }
 ///Provided by [`khr::device_group`](crate::khr::device_group)
 impl crate::vk::PipelineCreateFlagBits {
@@ -22,8 +37,29 @@ impl crate::vk::PipelineCreateFlagBits {
     pub const DISPATCH_BASE_KHR: Self = Self::DISPATCH_BASE;
 }
 ///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::DependencyFlags {
+    pub const DEVICE_GROUP_KHR: Self = Self(
+        crate::vk::DependencyFlagBits::DEVICE_GROUP_KHR.0,
+    );
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
 impl crate::vk::DependencyFlagBits {
     pub const DEVICE_GROUP_KHR: Self = Self::DEVICE_GROUP;
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::PeerMemoryFeatureFlags {
+    pub const COPY_SRC_KHR: Self = Self(
+        crate::vk::PeerMemoryFeatureFlagBits::COPY_SRC_KHR.0,
+    );
+    pub const COPY_DST_KHR: Self = Self(
+        crate::vk::PeerMemoryFeatureFlagBits::COPY_DST_KHR.0,
+    );
+    pub const GENERIC_SRC_KHR: Self = Self(
+        crate::vk::PeerMemoryFeatureFlagBits::GENERIC_SRC_KHR.0,
+    );
+    pub const GENERIC_DST_KHR: Self = Self(
+        crate::vk::PeerMemoryFeatureFlagBits::GENERIC_DST_KHR.0,
+    );
 }
 ///Provided by [`khr::device_group`](crate::khr::device_group)
 impl crate::vk::PeerMemoryFeatureFlagBits {
@@ -31,6 +67,12 @@ impl crate::vk::PeerMemoryFeatureFlagBits {
     pub const COPY_DST_KHR: Self = Self::COPY_DST;
     pub const GENERIC_SRC_KHR: Self = Self::GENERIC_SRC;
     pub const GENERIC_DST_KHR: Self = Self::GENERIC_DST;
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::MemoryAllocateFlags {
+    pub const DEVICE_MASK_KHR: Self = Self(
+        crate::vk::MemoryAllocateFlagBits::DEVICE_MASK_KHR.0,
+    );
 }
 ///Provided by [`khr::device_group`](crate::khr::device_group)
 impl crate::vk::MemoryAllocateFlagBits {

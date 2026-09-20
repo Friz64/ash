@@ -9,6 +9,12 @@ impl crate::vk::StructureType {
     pub const SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM: Self = Self::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT;
 }
 ///Provided by [`qcom::fragment_density_map_offset`](crate::qcom::fragment_density_map_offset)
+impl crate::vk::ImageCreateFlags {
+    pub const FRAGMENT_DENSITY_MAP_OFFSET_QCOM: Self = Self(
+        crate::vk::ImageCreateFlagBits::FRAGMENT_DENSITY_MAP_OFFSET_QCOM.0,
+    );
+}
+///Provided by [`qcom::fragment_density_map_offset`](crate::qcom::fragment_density_map_offset)
 impl crate::vk::ImageCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_OFFSET_QCOM: Self = Self::FRAGMENT_DENSITY_MAP_OFFSET_EXT;
 }

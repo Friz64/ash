@@ -12,13 +12,35 @@ impl crate::vk::StructureType {
     pub const DISPATCH_TILE_INFO_QCOM: Self = Self(1000309005);
 }
 ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+impl crate::vk::SubpassDescriptionFlags {
+    pub const TILE_SHADING_APRON_QCOM: Self = Self(
+        crate::vk::SubpassDescriptionFlagBits::TILE_SHADING_APRON_QCOM.0,
+    );
+}
+///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
 impl crate::vk::SubpassDescriptionFlagBits {
     pub const TILE_SHADING_APRON_QCOM: Self = Self(1 << 8);
+}
+///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+impl crate::vk::AccessFlags2 {
+    pub const SHADER_TILE_ATTACHMENT_READ_QCOM: Self = Self(
+        crate::vk::AccessFlagBits2::SHADER_TILE_ATTACHMENT_READ_QCOM.0,
+    );
+    pub const SHADER_TILE_ATTACHMENT_WRITE_QCOM: Self = Self(
+        crate::vk::AccessFlagBits2::SHADER_TILE_ATTACHMENT_WRITE_QCOM.0,
+    );
 }
 ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
 impl crate::vk::AccessFlagBits2 {
     pub const SHADER_TILE_ATTACHMENT_READ_QCOM: Self = Self(1 << 51);
     pub const SHADER_TILE_ATTACHMENT_WRITE_QCOM: Self = Self(1 << 52);
+}
+///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+impl TileShadingRenderPassFlagsQCOM {
+    pub const ENABLE_QCOM: Self = Self(TileShadingRenderPassFlagBitsQCOM::ENABLE_QCOM.0);
+    pub const PER_TILE_EXECUTION_QCOM: Self = Self(
+        TileShadingRenderPassFlagBitsQCOM::PER_TILE_EXECUTION_QCOM.0,
+    );
 }
 ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
 impl TileShadingRenderPassFlagBitsQCOM {
@@ -425,7 +447,7 @@ pub(crate) mod items {
     impl<'a> DispatchTileInfoQCOM<'a> {}
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct TileShadingRenderPassFlagsQCOM(u32);
+    pub struct TileShadingRenderPassFlagsQCOM(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for TileShadingRenderPassFlagsQCOM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -440,12 +462,6 @@ pub(crate) mod items {
         }
     }
     impl TileShadingRenderPassFlagsQCOM {
-        pub const ENABLE_QCOM: Self = Self(
-            TileShadingRenderPassFlagBitsQCOM::ENABLE_QCOM.0,
-        );
-        pub const PER_TILE_EXECUTION_QCOM: Self = Self(
-            TileShadingRenderPassFlagBitsQCOM::PER_TILE_EXECUTION_QCOM.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

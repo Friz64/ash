@@ -9,6 +9,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
+impl crate::vk::SubgroupFeatureFlags {
+    pub const PARTITIONED_EXT: Self = Self(
+        crate::vk::SubgroupFeatureFlagBits::PARTITIONED_EXT.0,
+    );
+}
+///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
 impl crate::vk::SubgroupFeatureFlagBits {
     pub const PARTITIONED_EXT: Self = Self(1 << 8);
 }

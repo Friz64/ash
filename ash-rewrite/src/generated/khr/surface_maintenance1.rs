@@ -9,6 +9,19 @@ impl crate::vk::StructureType {
     pub const SURFACE_PRESENT_MODE_COMPATIBILITY_KHR: Self = Self(1000274002);
 }
 ///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+impl PresentScalingFlagsKHR {
+    pub const ONE_TO_ONE_KHR: Self = Self(PresentScalingFlagBitsKHR::ONE_TO_ONE_KHR.0);
+    pub const ONE_TO_ONE_EXT: Self = Self(PresentScalingFlagBitsKHR::ONE_TO_ONE_EXT.0);
+    pub const ASPECT_RATIO_STRETCH_KHR: Self = Self(
+        PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_KHR.0,
+    );
+    pub const ASPECT_RATIO_STRETCH_EXT: Self = Self(
+        PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_EXT.0,
+    );
+    pub const STRETCH_KHR: Self = Self(PresentScalingFlagBitsKHR::STRETCH_KHR.0);
+    pub const STRETCH_EXT: Self = Self(PresentScalingFlagBitsKHR::STRETCH_EXT.0);
+}
+///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
 impl PresentScalingFlagBitsKHR {
     pub const ONE_TO_ONE_KHR: Self = Self(1 << 0);
     pub const ONE_TO_ONE_EXT: Self = Self::ONE_TO_ONE_KHR;
@@ -16,6 +29,15 @@ impl PresentScalingFlagBitsKHR {
     pub const ASPECT_RATIO_STRETCH_EXT: Self = Self::ASPECT_RATIO_STRETCH_KHR;
     pub const STRETCH_KHR: Self = Self(1 << 2);
     pub const STRETCH_EXT: Self = Self::STRETCH_KHR;
+}
+///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+impl PresentGravityFlagsKHR {
+    pub const MIN_KHR: Self = Self(PresentGravityFlagBitsKHR::MIN_KHR.0);
+    pub const MIN_EXT: Self = Self(PresentGravityFlagBitsKHR::MIN_EXT.0);
+    pub const MAX_KHR: Self = Self(PresentGravityFlagBitsKHR::MAX_KHR.0);
+    pub const MAX_EXT: Self = Self(PresentGravityFlagBitsKHR::MAX_EXT.0);
+    pub const CENTERED_KHR: Self = Self(PresentGravityFlagBitsKHR::CENTERED_KHR.0);
+    pub const CENTERED_EXT: Self = Self(PresentGravityFlagBitsKHR::CENTERED_EXT.0);
 }
 ///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
 impl PresentGravityFlagBitsKHR {
@@ -168,7 +190,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PresentScalingFlagsKHR(u32);
+    pub struct PresentScalingFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PresentScalingFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -184,20 +206,6 @@ pub(crate) mod items {
         }
     }
     impl PresentScalingFlagsKHR {
-        pub const ONE_TO_ONE_KHR: Self = Self(
-            PresentScalingFlagBitsKHR::ONE_TO_ONE_KHR.0,
-        );
-        pub const ONE_TO_ONE_EXT: Self = Self(
-            PresentScalingFlagBitsKHR::ONE_TO_ONE_EXT.0,
-        );
-        pub const ASPECT_RATIO_STRETCH_KHR: Self = Self(
-            PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_KHR.0,
-        );
-        pub const ASPECT_RATIO_STRETCH_EXT: Self = Self(
-            PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_EXT.0,
-        );
-        pub const STRETCH_KHR: Self = Self(PresentScalingFlagBitsKHR::STRETCH_KHR.0);
-        pub const STRETCH_EXT: Self = Self(PresentScalingFlagBitsKHR::STRETCH_EXT.0);
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -273,7 +281,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PresentGravityFlagsKHR(u32);
+    pub struct PresentGravityFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PresentGravityFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -289,12 +297,6 @@ pub(crate) mod items {
         }
     }
     impl PresentGravityFlagsKHR {
-        pub const MIN_KHR: Self = Self(PresentGravityFlagBitsKHR::MIN_KHR.0);
-        pub const MIN_EXT: Self = Self(PresentGravityFlagBitsKHR::MIN_EXT.0);
-        pub const MAX_KHR: Self = Self(PresentGravityFlagBitsKHR::MAX_KHR.0);
-        pub const MAX_EXT: Self = Self(PresentGravityFlagBitsKHR::MAX_EXT.0);
-        pub const CENTERED_KHR: Self = Self(PresentGravityFlagBitsKHR::CENTERED_KHR.0);
-        pub const CENTERED_EXT: Self = Self(PresentGravityFlagBitsKHR::CENTERED_EXT.0);
         pub const fn empty() -> Self {
             Self(0)
         }

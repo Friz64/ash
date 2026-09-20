@@ -61,12 +61,30 @@ impl CoarseSampleOrderTypeNV {
     pub const SAMPLE_MAJOR_NV: Self = Self(3);
 }
 ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+impl crate::vk::AccessFlags {
+    pub const SHADING_RATE_IMAGE_READ_NV: Self = Self(
+        crate::vk::AccessFlagBits::SHADING_RATE_IMAGE_READ_NV.0,
+    );
+}
+///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
 impl crate::vk::AccessFlagBits {
     pub const SHADING_RATE_IMAGE_READ_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR;
 }
 ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+impl crate::vk::ImageUsageFlags {
+    pub const SHADING_RATE_IMAGE_NV: Self = Self(
+        crate::vk::ImageUsageFlagBits::SHADING_RATE_IMAGE_NV.0,
+    );
+}
+///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
 impl crate::vk::ImageUsageFlagBits {
     pub const SHADING_RATE_IMAGE_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
+}
+///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+impl crate::vk::PipelineStageFlags {
+    pub const SHADING_RATE_IMAGE_NV: Self = Self(
+        crate::vk::PipelineStageFlagBits::SHADING_RATE_IMAGE_NV.0,
+    );
 }
 ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
 impl crate::vk::PipelineStageFlagBits {

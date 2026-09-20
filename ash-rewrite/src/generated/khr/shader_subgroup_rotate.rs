@@ -7,6 +7,13 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES;
 }
 ///Provided by [`khr::shader_subgroup_rotate`](crate::khr::shader_subgroup_rotate)
+impl crate::vk::SubgroupFeatureFlags {
+    pub const ROTATE_KHR: Self = Self(crate::vk::SubgroupFeatureFlagBits::ROTATE_KHR.0);
+    pub const ROTATE_CLUSTERED_KHR: Self = Self(
+        crate::vk::SubgroupFeatureFlagBits::ROTATE_CLUSTERED_KHR.0,
+    );
+}
+///Provided by [`khr::shader_subgroup_rotate`](crate::khr::shader_subgroup_rotate)
 impl crate::vk::SubgroupFeatureFlagBits {
     pub const ROTATE_KHR: Self = Self::ROTATE;
     pub const ROTATE_CLUSTERED_KHR: Self = Self::ROTATE_CLUSTERED;

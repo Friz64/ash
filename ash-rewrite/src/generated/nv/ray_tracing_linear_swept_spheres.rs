@@ -44,8 +44,21 @@ impl crate::vk::GeometryTypeKHR {
     pub const LINEAR_SWEPT_SPHERES_NV: Self = Self(1000429005);
 }
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV.0,
+    );
+}
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV: Self = Self(1 << 51);
+}
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl crate::vk::PipelineCreateFlags2 {
+    pub const RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV: Self = Self(
+        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV
+            .0,
+    );
 }
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
 impl crate::vk::PipelineCreateFlagBits2 {

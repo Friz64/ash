@@ -5,6 +5,7 @@ mod output;
 use crate::output::CodeMap;
 use analysis::{
     Analysis, AnalysisResult,
+    item::RequiredBy,
     name::{
         CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
         VariableName,
@@ -27,7 +28,7 @@ pub fn generate(analysis: &Analysis, output_path: impl AsRef<Path>) -> io::Resul
     item::generate_code(&ctx, &mut codemap);
     loader::generate_code(&ctx, &mut codemap);
 
-    codemap.write(output_path)
+    codemap.write(&ctx, output_path)
 }
 
 pub(crate) fn refpage_doc(target: &str, description: impl Display) -> String {
@@ -69,6 +70,11 @@ impl Context<'_> {
         crate::escape_ident(&original.to_snek_case())
     }
 
+    fn type_required_by(&self, name: TypeName) -> RequiredBy {
+        let type_item = &self.items.types[&name];
+        type_item.required_by(self.items)
+    }
+
     fn constant_token_from_prefix_stripped(&self, prefix_stripped: &str) -> Ident {
         if let Some(without_extension) = prefix_stripped.strip_suffix("EXTENSION_NAME") {
             syn::parse_str(&format!("{without_extension}NAME")).unwrap()
@@ -91,8 +97,7 @@ impl RustTokens for Context<'_> {
     }
 
     fn type_tokens(&self, name: TypeName, qualified: bool, lifetime: &Lifetime) -> TokenStream {
-        let type_item = &self.items.types[&name];
-        let required_by = type_item.required_by(&self.items);
+        let required_by = self.type_required_by(name);
         let ident: Ident = syn::parse_str(name.prefix_stripped(required_by.library)).unwrap();
         let path = qualified.then(|| quote! { crate::vk:: });
         let lifetime = self.type_has_lifetime(name).then(|| quote! { <#lifetime> });
@@ -123,7 +128,26 @@ impl RustTokens for Context<'_> {
         type_name: TypeName,
         qualified: bool,
     ) -> TokenStream {
-        let ident = crate::escape_ident(&name.stripped(type_name).TO_SHOUTY_SNEK_CASE());
+        let prefix = if type_name == TypeName::VK_RESULT {
+            String::from("VK_")
+        } else {
+            let mut prefix = type_name
+                .tag_trimmed()
+                .replace("FlagBits", "")
+                .TO_SHOUTY_SNEK_CASE();
+
+            // add _ before trailing number
+            if prefix.ends_with(|c: char| c.is_ascii_digit()) {
+                prefix.insert(prefix.len() - 1, '_');
+            }
+
+            prefix + "_"
+        };
+
+        let prefix_stripped = name.original().strip_prefix(&prefix).unwrap();
+        let stripped_name = prefix_stripped.replace("_BIT", "");
+
+        let ident = crate::escape_ident(&stripped_name.TO_SHOUTY_SNEK_CASE());
         let path = qualified.then(|| {
             let bits_name = self.type_tokens(type_name, true, &Lifetime::placeholder());
             quote! { #bits_name:: }

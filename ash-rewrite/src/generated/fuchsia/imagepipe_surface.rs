@@ -109,7 +109,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ImagePipeSurfaceCreateFlagsFUCHSIA(u32);
+    pub struct ImagePipeSurfaceCreateFlagsFUCHSIA(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImagePipeSurfaceCreateFlagsFUCHSIA {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

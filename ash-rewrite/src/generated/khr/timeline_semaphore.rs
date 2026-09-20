@@ -17,6 +17,10 @@ impl crate::vk::SemaphoreType {
     pub const TIMELINE_KHR: Self = Self::TIMELINE;
 }
 ///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)
+impl crate::vk::SemaphoreWaitFlags {
+    pub const ANY_KHR: Self = Self(crate::vk::SemaphoreWaitFlagBits::ANY_KHR.0);
+}
+///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)
 impl crate::vk::SemaphoreWaitFlagBits {
     pub const ANY_KHR: Self = Self::ANY;
 }

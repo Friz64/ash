@@ -7,6 +7,28 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TOOL_PROPERTIES;
 }
 ///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
+impl crate::vk::ToolPurposeFlags {
+    pub const VALIDATION_EXT: Self = Self(
+        crate::vk::ToolPurposeFlagBits::VALIDATION_EXT.0,
+    );
+    pub const PROFILING_EXT: Self = Self(
+        crate::vk::ToolPurposeFlagBits::PROFILING_EXT.0,
+    );
+    pub const TRACING_EXT: Self = Self(crate::vk::ToolPurposeFlagBits::TRACING_EXT.0);
+    pub const ADDITIONAL_FEATURES_EXT: Self = Self(
+        crate::vk::ToolPurposeFlagBits::ADDITIONAL_FEATURES_EXT.0,
+    );
+    pub const MODIFYING_FEATURES_EXT: Self = Self(
+        crate::vk::ToolPurposeFlagBits::MODIFYING_FEATURES_EXT.0,
+    );
+    pub const DEBUG_REPORTING_EXT: Self = Self(
+        crate::vk::ToolPurposeFlagBits::DEBUG_REPORTING_EXT.0,
+    );
+    pub const DEBUG_MARKERS_EXT: Self = Self(
+        crate::vk::ToolPurposeFlagBits::DEBUG_MARKERS_EXT.0,
+    );
+}
+///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
 impl crate::vk::ToolPurposeFlagBits {
     pub const VALIDATION_EXT: Self = Self::VALIDATION;
     pub const PROFILING_EXT: Self = Self::PROFILING;

@@ -3,6 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_render_pass_shader_resolve.html) · Extension `VK_QCOM_render_pass_shader_resolve`
 #![doc(alias = "VK_QCOM_render_pass_shader_resolve")]
 ///Provided by [`qcom::render_pass_shader_resolve`](crate::qcom::render_pass_shader_resolve)
+impl crate::vk::SubpassDescriptionFlags {
+    pub const FRAGMENT_REGION_QCOM: Self = Self(
+        crate::vk::SubpassDescriptionFlagBits::FRAGMENT_REGION_QCOM.0,
+    );
+    pub const SHADER_RESOLVE_QCOM: Self = Self(
+        crate::vk::SubpassDescriptionFlagBits::SHADER_RESOLVE_QCOM.0,
+    );
+}
+///Provided by [`qcom::render_pass_shader_resolve`](crate::qcom::render_pass_shader_resolve)
 impl crate::vk::SubpassDescriptionFlagBits {
     pub const FRAGMENT_REGION_QCOM: Self = Self::FRAGMENT_REGION_EXT;
     pub const SHADER_RESOLVE_QCOM: Self = Self::CUSTOM_RESOLVE_EXT;

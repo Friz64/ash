@@ -15,6 +15,15 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
+impl PhysicalDeviceSchedulingControlsFlagsARM {
+    pub const SHADER_CORE_COUNT_ARM: Self = Self(
+        PhysicalDeviceSchedulingControlsFlagBitsARM::SHADER_CORE_COUNT_ARM.0,
+    );
+    pub const DISPATCH_PARAMETERS_ARM: Self = Self(
+        PhysicalDeviceSchedulingControlsFlagBitsARM::DISPATCH_PARAMETERS_ARM.0,
+    );
+}
+///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
 impl PhysicalDeviceSchedulingControlsFlagBitsARM {
     pub const SHADER_CORE_COUNT_ARM: Self = Self(1 << 0);
     pub const DISPATCH_PARAMETERS_ARM: Self = Self(1 << 1);
@@ -278,7 +287,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PhysicalDeviceSchedulingControlsFlagsARM(u64);
+    pub struct PhysicalDeviceSchedulingControlsFlagsARM(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PhysicalDeviceSchedulingControlsFlagsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -293,12 +302,6 @@ pub(crate) mod items {
         }
     }
     impl PhysicalDeviceSchedulingControlsFlagsARM {
-        pub const SHADER_CORE_COUNT_ARM: Self = Self(
-            PhysicalDeviceSchedulingControlsFlagBitsARM::SHADER_CORE_COUNT_ARM.0,
-        );
-        pub const DISPATCH_PARAMETERS_ARM: Self = Self(
-            PhysicalDeviceSchedulingControlsFlagBitsARM::DISPATCH_PARAMETERS_ARM.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

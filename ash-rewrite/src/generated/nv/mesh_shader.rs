@@ -13,9 +13,23 @@ impl crate::vk::IndirectCommandsTokenTypeEXT {
     pub const DRAW_MESH_TASKS_COUNT_NV_EXT: Self = Self(1000202003);
 }
 ///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+impl crate::vk::ShaderStageFlags {
+    pub const TASK_NV: Self = Self(crate::vk::ShaderStageFlagBits::TASK_NV.0);
+    pub const MESH_NV: Self = Self(crate::vk::ShaderStageFlagBits::MESH_NV.0);
+}
+///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
 impl crate::vk::ShaderStageFlagBits {
     pub const TASK_NV: Self = Self::TASK_EXT;
     pub const MESH_NV: Self = Self::MESH_EXT;
+}
+///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+impl crate::vk::PipelineStageFlags {
+    pub const TASK_SHADER_NV: Self = Self(
+        crate::vk::PipelineStageFlagBits::TASK_SHADER_NV.0,
+    );
+    pub const MESH_SHADER_NV: Self = Self(
+        crate::vk::PipelineStageFlagBits::MESH_SHADER_NV.0,
+    );
 }
 ///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
 impl crate::vk::PipelineStageFlagBits {

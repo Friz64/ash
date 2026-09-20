@@ -7,6 +7,7 @@ use analysis::{
 };
 use proc_macro2::{Literal, TokenStream};
 use quote::quote;
+use std::iter;
 use tracing::{instrument, trace};
 
 impl Code for BitMask {
@@ -19,12 +20,13 @@ impl Code for BitMask {
             BitWidth::Bits64 => quote! { u64 },
         };
 
-        let mut bits_code = TokenStream::default();
-        let mut values = TokenStream::default();
-        let mut debug_content = None;
+        let mut bits_definition = TokenStream::default();
+        let mut bitmask_impl_map = CodeMap::default();
+        let mut bits_impl_map = CodeMap::default();
+        let mut debug_items = Vec::new();
         if let Some(bits_name) = self.bits_name {
             let bits_name_tokens = ctx.type_tokens(bits_name, false, &Lifetime::placeholder());
-            bits_code = quote! {
+            bits_definition = quote! {
                 #[repr(transparent)]
                 #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
                 pub struct #bits_name_tokens(pub(crate) #base_ty);
@@ -44,35 +46,63 @@ impl Code for BitMask {
                 }
             };
 
-            values = (self.items.iter())
-                .map(|(&name, _item)| {
-                    let name = ctx.enumerator_tokens(name, bits_name, false);
-                    quote! { pub const #name: Self = Self(#bits_name_tokens::#name.0); }
-                })
-                .collect::<TokenStream>();
+            for (&name, Item { required_by, value }) in &self.items {
+                let name = ctx.enumerator_tokens(name, bits_name, false);
+                let dest = Destination::primary_location(*required_by);
+                let value_tokens = match &value {
+                    Value::BitPos(bitpos) => {
+                        let literal = Literal::u8_unsuffixed(*bitpos);
+                        quote! { Self(1 << #literal) }
+                    }
+                    Value::Expr(cexpr_items) => {
+                        let expr = CExprItem::tokens(cexpr_items.iter(), ctx);
+                        quote! { Self(#expr) }
+                    }
+                    Value::Alias(enumerator_name) => {
+                        let en = ctx.enumerator_tokens(*enumerator_name, bits_name, false);
+                        quote! { Self::#en }
+                    }
+                };
 
-            debug_content = (!self.items.is_empty()).then(|| {
-                let debug_items = (self.items.iter())
-                    .filter_map(|(name, item)| {
-                        (!matches!(item.value, Value::Alias(..))).then_some(name)
-                    })
-                    .map(|&name| {
-                        let name = ctx.enumerator_tokens(name, bits_name, false);
-                        let name_string = name.to_string();
-                        quote! { (Self::#name.0, #name_string) }
+                bits_impl_map.extend(CodeMap::new(
+                    dest.clone(),
+                    quote! { pub const #name: Self = #value_tokens; },
+                ));
+
+                let bits_path = ctx.type_tokens(
+                    bits_name,
+                    dest != Destination::primary_location(self.required_by),
+                    &Lifetime::placeholder(),
+                );
+
+                bitmask_impl_map.extend(CodeMap::new(
+                    dest,
+                    quote! { pub const #name: Self = Self(#bits_path::#name.0); },
+                ));
+
+                if !matches!(value, Value::Alias(..)) {
+                    let is_provisional = required_by.primary_location().is_provisional(ctx);
+                    let provisional_guard =
+                        is_provisional.then_some(quote! { #[cfg(feature = "provisional")] });
+
+                    let name_string = name.to_string();
+                    debug_items.push(quote! {
+                        #provisional_guard
+                        (Self::#name.0, #name_string)
                     });
-
-                quote! {
-                    crate::debug_flags(f, &[ #( #debug_items, )* ], self.0)
                 }
-            });
+            }
         }
 
-        let debug_content = debug_content.unwrap_or(quote! { core::fmt::Debug::fmt(&self.0, f) });
+        let debug_content = match debug_items.as_slice() {
+            [] => quote! { core::fmt::Debug::fmt(&self.0, f) },
+            debug_items => quote! { crate::debug_flags(f, &[ #( #debug_items, )* ], self.0) },
+        };
+
         let code = quote! {
             #[repr(transparent)]
             #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-            pub struct #name_tokens(#base_ty);
+            pub struct #name_tokens(pub(crate) #base_ty);
 
             #[cfg(feature = "debug")]
             impl core::fmt::Debug for #name_tokens {
@@ -82,8 +112,6 @@ impl Code for BitMask {
             }
 
             impl #name_tokens {
-                #values
-
                 pub const fn empty() -> Self {
                     Self(0)
                 }
@@ -159,40 +187,17 @@ impl Code for BitMask {
                 }
             }
 
-            #bits_code
+            #bits_definition
         };
 
         let mut codemap = CodeMap::new(Destination::primary_location(self.required_by), code);
-
         if let Some(bits_name) = self.bits_name {
-            let mut impl_map = CodeMap::default();
+            let bitmask_impls = iter::repeat(self.bitmask_name).zip(bitmask_impl_map.into_iter());
+            let bits_impls = iter::repeat(bits_name).zip(bits_impl_map.into_iter());
 
-            for (&name, Item { required_by, value }) in &self.items {
-                let name = ctx.enumerator_tokens(name, bits_name, false);
-                let value = match &value {
-                    Value::BitPos(bitpos) => {
-                        let literal = Literal::u8_unsuffixed(*bitpos);
-                        quote! { Self(1 << #literal) }
-                    }
-                    Value::Expr(cexpr_items) => {
-                        let expr = CExprItem::tokens(cexpr_items.iter(), ctx);
-                        quote! { Self(#expr) }
-                    }
-                    Value::Alias(enumerator_name) => {
-                        let en = ctx.enumerator_tokens(*enumerator_name, bits_name, false);
-                        quote! { Self::#en }
-                    }
-                };
-
-                impl_map.extend(CodeMap::new(
-                    Destination::primary_location(*required_by),
-                    quote! { pub const #name: Self = #value; },
-                ));
-            }
-
-            for (mut dest, impl_tokens) in impl_map.into_iter() {
-                let name = ctx.type_tokens(
-                    bits_name,
+            for (type_name, (mut dest, impl_tokens)) in bitmask_impls.chain(bits_impls) {
+                let bits_path = ctx.type_tokens(
+                    type_name,
                     dest != Destination::primary_location(self.required_by),
                     &Lifetime::placeholder(),
                 );
@@ -203,7 +208,7 @@ impl Code for BitMask {
                     dest,
                     quote! {
                         #[doc = #doc]
-                        impl #name { #impl_tokens }
+                        impl #bits_path { #impl_tokens }
                     },
                 ));
             }

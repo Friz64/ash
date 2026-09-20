@@ -16,12 +16,28 @@ impl crate::vk::StructureType {
     pub const HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY_EXT: Self = Self::HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY;
 }
 ///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
+impl crate::vk::ImageUsageFlags {
+    pub const HOST_TRANSFER_EXT: Self = Self(
+        crate::vk::ImageUsageFlagBits::HOST_TRANSFER_EXT.0,
+    );
+}
+///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
 impl crate::vk::ImageUsageFlagBits {
     pub const HOST_TRANSFER_EXT: Self = Self::HOST_TRANSFER;
 }
 ///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const HOST_IMAGE_TRANSFER_EXT: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::HOST_IMAGE_TRANSFER_EXT.0,
+    );
+}
+///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const HOST_IMAGE_TRANSFER_EXT: Self = Self::HOST_IMAGE_TRANSFER;
+}
+///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
+impl crate::vk::HostImageCopyFlags {
+    pub const MEMCPY_EXT: Self = Self(crate::vk::HostImageCopyFlagBits::MEMCPY_EXT.0);
 }
 ///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
 impl crate::vk::HostImageCopyFlagBits {

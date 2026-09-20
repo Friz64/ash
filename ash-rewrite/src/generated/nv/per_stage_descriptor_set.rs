@@ -9,6 +9,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`nv::per_stage_descriptor_set`](crate::nv::per_stage_descriptor_set)
+impl crate::vk::DescriptorSetLayoutCreateFlags {
+    pub const PER_STAGE_NV: Self = Self(
+        crate::vk::DescriptorSetLayoutCreateFlagBits::PER_STAGE_NV.0,
+    );
+}
+///Provided by [`nv::per_stage_descriptor_set`](crate::nv::per_stage_descriptor_set)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const PER_STAGE_NV: Self = Self(1 << 6);
 }

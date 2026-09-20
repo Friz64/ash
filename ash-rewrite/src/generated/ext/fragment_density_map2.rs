@@ -12,6 +12,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`ext::fragment_density_map2`](crate::ext::fragment_density_map2)
+impl crate::vk::ImageViewCreateFlags {
+    pub const FRAGMENT_DENSITY_MAP_DEFERRED_EXT: Self = Self(
+        crate::vk::ImageViewCreateFlagBits::FRAGMENT_DENSITY_MAP_DEFERRED_EXT.0,
+    );
+}
+///Provided by [`ext::fragment_density_map2`](crate::ext::fragment_density_map2)
 impl crate::vk::ImageViewCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_DEFERRED_EXT: Self = Self(1 << 1);
 }

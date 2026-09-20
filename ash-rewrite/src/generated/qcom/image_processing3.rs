@@ -7,6 +7,12 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_3_FEATURES_QCOM: Self = Self(1000303000);
 }
 ///Provided by [`qcom::image_processing3`](crate::qcom::image_processing3)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const BLOCK_MATCHING_SXD_QCOM: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::BLOCK_MATCHING_SXD_QCOM.0,
+    );
+}
+///Provided by [`qcom::image_processing3`](crate::qcom::image_processing3)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const BLOCK_MATCHING_SXD_QCOM: Self = Self(1 << 44);
 }

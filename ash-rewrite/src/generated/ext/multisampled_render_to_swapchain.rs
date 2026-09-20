@@ -10,6 +10,13 @@ impl crate::vk::StructureType {
     pub const SWAPCHAIN_FLAGS_SURFACE_CAPABILITIES_EXT: Self = Self(1000616001);
 }
 ///Provided by [`ext::multisampled_render_to_swapchain`](crate::ext::multisampled_render_to_swapchain)
+impl crate::vk::SwapchainCreateFlagsKHR {
+    pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(
+        crate::vk::SwapchainCreateFlagBitsKHR::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT
+            .0,
+    );
+}
+///Provided by [`ext::multisampled_render_to_swapchain`](crate::ext::multisampled_render_to_swapchain)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(1 << 8);
 }

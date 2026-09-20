@@ -12,12 +12,30 @@ impl crate::vk::StructureType {
     pub const COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR: Self = Self(1000549003);
 }
 ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
+impl crate::vk::PipelineStageFlags2 {
+    pub const COPY_INDIRECT_KHR: Self = Self(
+        crate::vk::PipelineStageFlagBits2::COPY_INDIRECT_KHR.0,
+    );
+}
+///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const COPY_INDIRECT_KHR: Self = Self(1 << 46);
 }
 ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const COPY_IMAGE_INDIRECT_DST_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::COPY_IMAGE_INDIRECT_DST_KHR.0,
+    );
+}
+///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const COPY_IMAGE_INDIRECT_DST_KHR: Self = Self(1 << 59);
+}
+///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
+impl AddressCopyFlagsKHR {
+    pub const DEVICE_LOCAL_KHR: Self = Self(AddressCopyFlagBitsKHR::DEVICE_LOCAL_KHR.0);
+    pub const SPARSE_KHR: Self = Self(AddressCopyFlagBitsKHR::SPARSE_KHR.0);
+    pub const PROTECTED_KHR: Self = Self(AddressCopyFlagBitsKHR::PROTECTED_KHR.0);
 }
 ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
 impl AddressCopyFlagBitsKHR {
@@ -360,7 +378,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct AddressCopyFlagsKHR(u32);
+    pub struct AddressCopyFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AddressCopyFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -376,11 +394,6 @@ pub(crate) mod items {
         }
     }
     impl AddressCopyFlagsKHR {
-        pub const DEVICE_LOCAL_KHR: Self = Self(
-            AddressCopyFlagBitsKHR::DEVICE_LOCAL_KHR.0,
-        );
-        pub const SPARSE_KHR: Self = Self(AddressCopyFlagBitsKHR::SPARSE_KHR.0);
-        pub const PROTECTED_KHR: Self = Self(AddressCopyFlagBitsKHR::PROTECTED_KHR.0);
         pub const fn empty() -> Self {
             Self(0)
         }

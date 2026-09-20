@@ -11,16 +11,40 @@ impl crate::vk::StructureType {
     pub const TILE_MEMORY_SIZE_INFO_QCOM: Self = Self(1000547004);
 }
 ///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+impl crate::vk::MemoryHeapFlags {
+    pub const TILE_MEMORY_QCOM: Self = Self(
+        crate::vk::MemoryHeapFlagBits::TILE_MEMORY_QCOM.0,
+    );
+}
+///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
 impl crate::vk::MemoryHeapFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 3);
+}
+///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+impl crate::vk::BufferUsageFlags {
+    pub const TILE_MEMORY_QCOM: Self = Self(
+        crate::vk::BufferUsageFlagBits::TILE_MEMORY_QCOM.0,
+    );
 }
 ///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
 impl crate::vk::BufferUsageFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
 }
 ///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+impl crate::vk::ImageUsageFlags {
+    pub const TILE_MEMORY_QCOM: Self = Self(
+        crate::vk::ImageUsageFlagBits::TILE_MEMORY_QCOM.0,
+    );
+}
+///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
 impl crate::vk::ImageUsageFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
+}
+///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+impl crate::vk::BufferUsageFlags2 {
+    pub const TILE_MEMORY_QCOM: Self = Self(
+        crate::vk::BufferUsageFlagBits2::TILE_MEMORY_QCOM.0,
+    );
 }
 ///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
 impl crate::vk::BufferUsageFlagBits2 {

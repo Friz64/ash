@@ -7,8 +7,23 @@ impl crate::vk::Result {
     pub const ERROR_OUT_OF_POOL_MEMORY_KHR: Self = Self::ERROR_OUT_OF_POOL_MEMORY;
 }
 ///Provided by [`khr::maintenance1`](crate::khr::maintenance1)
+impl crate::vk::ImageCreateFlags {
+    pub const _2D_ARRAY_COMPATIBLE_KHR: Self = Self(
+        crate::vk::ImageCreateFlagBits::_2D_ARRAY_COMPATIBLE_KHR.0,
+    );
+}
+///Provided by [`khr::maintenance1`](crate::khr::maintenance1)
 impl crate::vk::ImageCreateFlagBits {
     pub const _2D_ARRAY_COMPATIBLE_KHR: Self = Self::_2D_ARRAY_COMPATIBLE;
+}
+///Provided by [`khr::maintenance1`](crate::khr::maintenance1)
+impl crate::vk::FormatFeatureFlags {
+    pub const TRANSFER_SRC_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits::TRANSFER_SRC_KHR.0,
+    );
+    pub const TRANSFER_DST_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits::TRANSFER_DST_KHR.0,
+    );
 }
 ///Provided by [`khr::maintenance1`](crate::khr::maintenance1)
 impl crate::vk::FormatFeatureFlagBits {

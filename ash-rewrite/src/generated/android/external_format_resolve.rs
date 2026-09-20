@@ -15,6 +15,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
+impl crate::vk::ResolveModeFlags {
+    pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(
+        crate::vk::ResolveModeFlagBits::EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID.0,
+    );
+}
+///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
 impl crate::vk::ResolveModeFlagBits {
     pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(1 << 4);
 }

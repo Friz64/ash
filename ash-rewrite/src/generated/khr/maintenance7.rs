@@ -31,6 +31,12 @@ impl PhysicalDeviceLayeredApiKHR {
     pub const OPENGLES_KHR: Self = Self(4);
 }
 ///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
+impl crate::vk::RenderingFlags {
+    pub const CONTENTS_INLINE_KHR: Self = Self(
+        crate::vk::RenderingFlagBits::CONTENTS_INLINE_KHR.0,
+    );
+}
+///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
 impl crate::vk::RenderingFlagBits {
     pub const CONTENTS_INLINE_KHR: Self = Self(1 << 4);
 }

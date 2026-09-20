@@ -11,9 +11,33 @@ impl crate::vk::StructureType {
     pub const RESOLVE_IMAGE_MODE_INFO_KHR: Self = Self(1000630004);
 }
 ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl crate::vk::AttachmentDescriptionFlags {
+    pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
+        crate::vk::AttachmentDescriptionFlagBits::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0,
+    );
+    pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(
+        crate::vk::AttachmentDescriptionFlagBits::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
+    );
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
 impl crate::vk::AttachmentDescriptionFlagBits {
     pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
     pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const DEPTH_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::DEPTH_COPY_ON_COMPUTE_QUEUE_KHR.0,
+    );
+    pub const DEPTH_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::DEPTH_COPY_ON_TRANSFER_QUEUE_KHR.0,
+    );
+    pub const STENCIL_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::STENCIL_COPY_ON_COMPUTE_QUEUE_KHR.0,
+    );
+    pub const STENCIL_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::STENCIL_COPY_ON_TRANSFER_QUEUE_KHR.0,
+    );
 }
 ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
 impl crate::vk::FormatFeatureFlagBits2 {
@@ -23,14 +47,41 @@ impl crate::vk::FormatFeatureFlagBits2 {
     pub const STENCIL_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 55);
 }
 ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl crate::vk::RenderingFlags {
+    pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(
+        crate::vk::RenderingFlagBits::LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR.0,
+    );
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
 impl crate::vk::RenderingFlagBits {
     pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(1 << 8);
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl RenderingAttachmentFlagsKHR {
+    pub const INPUT_ATTACHMENT_FEEDBACK_KHR: Self = Self(
+        RenderingAttachmentFlagBitsKHR::INPUT_ATTACHMENT_FEEDBACK_KHR.0,
+    );
+    pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
+        RenderingAttachmentFlagBitsKHR::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0,
+    );
+    pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(
+        RenderingAttachmentFlagBitsKHR::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
+    );
 }
 ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
 impl RenderingAttachmentFlagBitsKHR {
     pub const INPUT_ATTACHMENT_FEEDBACK_KHR: Self = Self(1 << 0);
     pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
     pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl ResolveImageFlagsKHR {
+    pub const SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
+        ResolveImageFlagBitsKHR::SKIP_TRANSFER_FUNCTION_KHR.0,
+    );
+    pub const ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(
+        ResolveImageFlagBitsKHR::ENABLE_TRANSFER_FUNCTION_KHR.0,
+    );
 }
 ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
 impl ResolveImageFlagBitsKHR {
@@ -283,7 +334,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct RenderingAttachmentFlagsKHR(u32);
+    pub struct RenderingAttachmentFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for RenderingAttachmentFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -308,15 +359,6 @@ pub(crate) mod items {
         }
     }
     impl RenderingAttachmentFlagsKHR {
-        pub const INPUT_ATTACHMENT_FEEDBACK_KHR: Self = Self(
-            RenderingAttachmentFlagBitsKHR::INPUT_ATTACHMENT_FEEDBACK_KHR.0,
-        );
-        pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
-            RenderingAttachmentFlagBitsKHR::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0,
-        );
-        pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(
-            RenderingAttachmentFlagBitsKHR::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -392,7 +434,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ResolveImageFlagsKHR(u32);
+    pub struct ResolveImageFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ResolveImageFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -410,12 +452,6 @@ pub(crate) mod items {
         }
     }
     impl ResolveImageFlagsKHR {
-        pub const SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
-            ResolveImageFlagBitsKHR::SKIP_TRANSFER_FUNCTION_KHR.0,
-        );
-        pub const ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(
-            ResolveImageFlagBitsKHR::ENABLE_TRANSFER_FUNCTION_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

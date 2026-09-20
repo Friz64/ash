@@ -15,15 +15,42 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::AccessFlags {
+    pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(
+        crate::vk::AccessFlagBits::TRANSFORM_FEEDBACK_WRITE_EXT.0,
+    );
+    pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(
+        crate::vk::AccessFlagBits::TRANSFORM_FEEDBACK_COUNTER_READ_EXT.0,
+    );
+    pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(
+        crate::vk::AccessFlagBits::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT.0,
+    );
+}
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
 impl crate::vk::AccessFlagBits {
     pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(1 << 25);
     pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(1 << 26);
     pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(1 << 27);
 }
 ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::BufferUsageFlags {
+    pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(
+        crate::vk::BufferUsageFlagBits::TRANSFORM_FEEDBACK_BUFFER_EXT.0,
+    );
+    pub const TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT: Self = Self(
+        crate::vk::BufferUsageFlagBits::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT.0,
+    );
+}
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
 impl crate::vk::BufferUsageFlagBits {
     pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(1 << 11);
     pub const TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT: Self = Self(1 << 12);
+}
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::PipelineStageFlags {
+    pub const TRANSFORM_FEEDBACK_EXT: Self = Self(
+        crate::vk::PipelineStageFlagBits::TRANSFORM_FEEDBACK_EXT.0,
+    );
 }
 ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
 impl crate::vk::PipelineStageFlagBits {
@@ -377,7 +404,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PipelineRasterizationStateStreamCreateFlagsEXT(u32);
+    pub struct PipelineRasterizationStateStreamCreateFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineRasterizationStateStreamCreateFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

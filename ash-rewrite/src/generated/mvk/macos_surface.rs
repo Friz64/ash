@@ -102,7 +102,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct MacOSSurfaceCreateFlagsMVK(u32);
+    pub struct MacOSSurfaceCreateFlagsMVK(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for MacOSSurfaceCreateFlagsMVK {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

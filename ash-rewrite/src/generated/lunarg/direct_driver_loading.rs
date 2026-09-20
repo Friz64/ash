@@ -124,7 +124,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DirectDriverLoadingFlagsLUNARG(u32);
+    pub struct DirectDriverLoadingFlagsLUNARG(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DirectDriverLoadingFlagsLUNARG {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

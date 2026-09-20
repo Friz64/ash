@@ -55,12 +55,31 @@ impl QueryResultStatusKHR {
     pub const COMPLETE_KHR: Self = Self(1);
 }
 ///Provided by [`khr::video_queue`](crate::khr::video_queue)
+impl crate::vk::QueryResultFlags {
+    pub const WITH_STATUS_KHR: Self = Self(
+        crate::vk::QueryResultFlagBits::WITH_STATUS_KHR.0,
+    );
+}
+///Provided by [`khr::video_queue`](crate::khr::video_queue)
 impl crate::vk::QueryResultFlagBits {
     pub const WITH_STATUS_KHR: Self = Self(1 << 4);
 }
 ///Provided by [`khr::video_queue`](crate::khr::video_queue)
+impl VideoCodecOperationFlagsKHR {
+    pub const NONE_KHR: Self = Self(VideoCodecOperationFlagBitsKHR::NONE_KHR.0);
+}
+///Provided by [`khr::video_queue`](crate::khr::video_queue)
 impl VideoCodecOperationFlagBitsKHR {
     pub const NONE_KHR: Self = Self(0);
+}
+///Provided by [`khr::video_queue`](crate::khr::video_queue)
+impl VideoCapabilityFlagsKHR {
+    pub const PROTECTED_CONTENT_KHR: Self = Self(
+        VideoCapabilityFlagBitsKHR::PROTECTED_CONTENT_KHR.0,
+    );
+    pub const SEPARATE_REFERENCE_IMAGES_KHR: Self = Self(
+        VideoCapabilityFlagBitsKHR::SEPARATE_REFERENCE_IMAGES_KHR.0,
+    );
 }
 ///Provided by [`khr::video_queue`](crate::khr::video_queue)
 impl VideoCapabilityFlagBitsKHR {
@@ -68,12 +87,32 @@ impl VideoCapabilityFlagBitsKHR {
     pub const SEPARATE_REFERENCE_IMAGES_KHR: Self = Self(1 << 1);
 }
 ///Provided by [`khr::video_queue`](crate::khr::video_queue)
+impl VideoSessionCreateFlagsKHR {
+    pub const PROTECTED_CONTENT_KHR: Self = Self(
+        VideoSessionCreateFlagBitsKHR::PROTECTED_CONTENT_KHR.0,
+    );
+}
+///Provided by [`khr::video_queue`](crate::khr::video_queue)
 impl VideoSessionCreateFlagBitsKHR {
     pub const PROTECTED_CONTENT_KHR: Self = Self(1 << 0);
 }
 ///Provided by [`khr::video_queue`](crate::khr::video_queue)
+impl VideoCodingControlFlagsKHR {
+    pub const RESET_KHR: Self = Self(VideoCodingControlFlagBitsKHR::RESET_KHR.0);
+}
+///Provided by [`khr::video_queue`](crate::khr::video_queue)
 impl VideoCodingControlFlagBitsKHR {
     pub const RESET_KHR: Self = Self(1 << 0);
+}
+///Provided by [`khr::video_queue`](crate::khr::video_queue)
+impl VideoChromaSubsamplingFlagsKHR {
+    pub const INVALID_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::INVALID_KHR.0);
+    pub const MONOCHROME_KHR: Self = Self(
+        VideoChromaSubsamplingFlagBitsKHR::MONOCHROME_KHR.0,
+    );
+    pub const _420_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_420_KHR.0);
+    pub const _422_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_422_KHR.0);
+    pub const _444_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_444_KHR.0);
 }
 ///Provided by [`khr::video_queue`](crate::khr::video_queue)
 impl VideoChromaSubsamplingFlagBitsKHR {
@@ -82,6 +121,13 @@ impl VideoChromaSubsamplingFlagBitsKHR {
     pub const _420_KHR: Self = Self(1 << 1);
     pub const _422_KHR: Self = Self(1 << 2);
     pub const _444_KHR: Self = Self(1 << 3);
+}
+///Provided by [`khr::video_queue`](crate::khr::video_queue)
+impl VideoComponentBitDepthFlagsKHR {
+    pub const INVALID_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::INVALID_KHR.0);
+    pub const _8_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_8_KHR.0);
+    pub const _10_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_10_KHR.0);
+    pub const _12_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_12_KHR.0);
 }
 ///Provided by [`khr::video_queue`](crate::khr::video_queue)
 impl VideoComponentBitDepthFlagBitsKHR {
@@ -1205,7 +1251,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoCodecOperationFlagsKHR(u32);
+    pub struct VideoCodecOperationFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoCodecOperationFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1226,28 +1272,6 @@ pub(crate) mod items {
         }
     }
     impl VideoCodecOperationFlagsKHR {
-        pub const NONE_KHR: Self = Self(VideoCodecOperationFlagBitsKHR::NONE_KHR.0);
-        pub const ENCODE_H264_KHR: Self = Self(
-            VideoCodecOperationFlagBitsKHR::ENCODE_H264_KHR.0,
-        );
-        pub const ENCODE_H265_KHR: Self = Self(
-            VideoCodecOperationFlagBitsKHR::ENCODE_H265_KHR.0,
-        );
-        pub const DECODE_H264_KHR: Self = Self(
-            VideoCodecOperationFlagBitsKHR::DECODE_H264_KHR.0,
-        );
-        pub const DECODE_H265_KHR: Self = Self(
-            VideoCodecOperationFlagBitsKHR::DECODE_H265_KHR.0,
-        );
-        pub const DECODE_AV1_KHR: Self = Self(
-            VideoCodecOperationFlagBitsKHR::DECODE_AV1_KHR.0,
-        );
-        pub const ENCODE_AV1_KHR: Self = Self(
-            VideoCodecOperationFlagBitsKHR::ENCODE_AV1_KHR.0,
-        );
-        pub const DECODE_VP9_KHR: Self = Self(
-            VideoCodecOperationFlagBitsKHR::DECODE_VP9_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1323,7 +1347,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoCapabilityFlagsKHR(u32);
+    pub struct VideoCapabilityFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoCapabilityFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1341,12 +1365,6 @@ pub(crate) mod items {
         }
     }
     impl VideoCapabilityFlagsKHR {
-        pub const PROTECTED_CONTENT_KHR: Self = Self(
-            VideoCapabilityFlagBitsKHR::PROTECTED_CONTENT_KHR.0,
-        );
-        pub const SEPARATE_REFERENCE_IMAGES_KHR: Self = Self(
-            VideoCapabilityFlagBitsKHR::SEPARATE_REFERENCE_IMAGES_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1422,7 +1440,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoSessionCreateFlagsKHR(u32);
+    pub struct VideoSessionCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoSessionCreateFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1453,24 +1471,6 @@ pub(crate) mod items {
         }
     }
     impl VideoSessionCreateFlagsKHR {
-        pub const PROTECTED_CONTENT_KHR: Self = Self(
-            VideoSessionCreateFlagBitsKHR::PROTECTED_CONTENT_KHR.0,
-        );
-        pub const ALLOW_ENCODE_PARAMETER_OPTIMIZATIONS_KHR: Self = Self(
-            VideoSessionCreateFlagBitsKHR::ALLOW_ENCODE_PARAMETER_OPTIMIZATIONS_KHR.0,
-        );
-        pub const INLINE_QUERIES_KHR: Self = Self(
-            VideoSessionCreateFlagBitsKHR::INLINE_QUERIES_KHR.0,
-        );
-        pub const ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(
-            VideoSessionCreateFlagBitsKHR::ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0,
-        );
-        pub const ALLOW_ENCODE_EMPHASIS_MAP_KHR: Self = Self(
-            VideoSessionCreateFlagBitsKHR::ALLOW_ENCODE_EMPHASIS_MAP_KHR.0,
-        );
-        pub const INLINE_SESSION_PARAMETERS_KHR: Self = Self(
-            VideoSessionCreateFlagBitsKHR::INLINE_SESSION_PARAMETERS_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1546,7 +1546,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoSessionParametersCreateFlagsKHR(u32);
+    pub struct VideoSessionParametersCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoSessionParametersCreateFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1563,9 +1563,6 @@ pub(crate) mod items {
         }
     }
     impl VideoSessionParametersCreateFlagsKHR {
-        pub const QUANTIZATION_MAP_COMPATIBLE_KHR: Self = Self(
-            VideoSessionParametersCreateFlagBitsKHR::QUANTIZATION_MAP_COMPATIBLE_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1641,7 +1638,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoBeginCodingFlagsKHR(u32);
+    pub struct VideoBeginCodingFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoBeginCodingFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1709,7 +1706,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoEndCodingFlagsKHR(u32);
+    pub struct VideoEndCodingFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEndCodingFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1777,7 +1774,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoCodingControlFlagsKHR(u32);
+    pub struct VideoCodingControlFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoCodingControlFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1793,13 +1790,6 @@ pub(crate) mod items {
         }
     }
     impl VideoCodingControlFlagsKHR {
-        pub const RESET_KHR: Self = Self(VideoCodingControlFlagBitsKHR::RESET_KHR.0);
-        pub const ENCODE_RATE_CONTROL_KHR: Self = Self(
-            VideoCodingControlFlagBitsKHR::ENCODE_RATE_CONTROL_KHR.0,
-        );
-        pub const ENCODE_QUALITY_LEVEL_KHR: Self = Self(
-            VideoCodingControlFlagBitsKHR::ENCODE_QUALITY_LEVEL_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1875,7 +1865,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoChromaSubsamplingFlagsKHR(u32);
+    pub struct VideoChromaSubsamplingFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1893,15 +1883,6 @@ pub(crate) mod items {
         }
     }
     impl VideoChromaSubsamplingFlagsKHR {
-        pub const INVALID_KHR: Self = Self(
-            VideoChromaSubsamplingFlagBitsKHR::INVALID_KHR.0,
-        );
-        pub const MONOCHROME_KHR: Self = Self(
-            VideoChromaSubsamplingFlagBitsKHR::MONOCHROME_KHR.0,
-        );
-        pub const _420_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_420_KHR.0);
-        pub const _422_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_422_KHR.0);
-        pub const _444_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_444_KHR.0);
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1977,7 +1958,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoComponentBitDepthFlagsKHR(u32);
+    pub struct VideoComponentBitDepthFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoComponentBitDepthFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1994,12 +1975,6 @@ pub(crate) mod items {
         }
     }
     impl VideoComponentBitDepthFlagsKHR {
-        pub const INVALID_KHR: Self = Self(
-            VideoComponentBitDepthFlagBitsKHR::INVALID_KHR.0,
-        );
-        pub const _8_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_8_KHR.0);
-        pub const _10_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_10_KHR.0);
-        pub const _12_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_12_KHR.0);
         pub const fn empty() -> Self {
             Self(0)
         }

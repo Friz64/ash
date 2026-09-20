@@ -15,6 +15,12 @@ impl crate::vk::DynamicState {
     pub const SAMPLE_LOCATIONS_EXT: Self = Self(1000143000);
 }
 ///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
+impl crate::vk::ImageCreateFlags {
+    pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(
+        crate::vk::ImageCreateFlagBits::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT.0,
+    );
+}
+///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
 impl crate::vk::ImageCreateFlagBits {
     pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(1 << 12);
 }

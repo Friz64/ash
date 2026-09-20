@@ -105,7 +105,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct SurfaceCreateFlagsOHOS(u32);
+    pub struct SurfaceCreateFlagsOHOS(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SurfaceCreateFlagsOHOS {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

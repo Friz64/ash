@@ -7,6 +7,12 @@ impl crate::vk::StructureType {
     pub const EXPORT_SEMAPHORE_CREATE_INFO_KHR: Self = Self::EXPORT_SEMAPHORE_CREATE_INFO;
 }
 ///Provided by [`khr::external_semaphore`](crate::khr::external_semaphore)
+impl crate::vk::SemaphoreImportFlags {
+    pub const TEMPORARY_KHR: Self = Self(
+        crate::vk::SemaphoreImportFlagBits::TEMPORARY_KHR.0,
+    );
+}
+///Provided by [`khr::external_semaphore`](crate::khr::external_semaphore)
 impl crate::vk::SemaphoreImportFlagBits {
     pub const TEMPORARY_KHR: Self = Self::TEMPORARY;
 }

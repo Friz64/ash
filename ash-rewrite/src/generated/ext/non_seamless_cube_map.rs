@@ -9,6 +9,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
+impl crate::vk::SamplerCreateFlags {
+    pub const NON_SEAMLESS_CUBE_MAP_EXT: Self = Self(
+        crate::vk::SamplerCreateFlagBits::NON_SEAMLESS_CUBE_MAP_EXT.0,
+    );
+}
+///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
 impl crate::vk::SamplerCreateFlagBits {
     pub const NON_SEAMLESS_CUBE_MAP_EXT: Self = Self(1 << 2);
 }

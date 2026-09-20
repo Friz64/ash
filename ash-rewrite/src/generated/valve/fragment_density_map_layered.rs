@@ -15,12 +15,30 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+impl crate::vk::RenderPassCreateFlags {
+    pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(
+        crate::vk::RenderPassCreateFlagBits::PER_LAYER_FRAGMENT_DENSITY_VALVE.0,
+    );
+}
+///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
 impl crate::vk::RenderPassCreateFlagBits {
     pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(1 << 2);
 }
 ///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+impl crate::vk::RenderingFlags {
+    pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(
+        crate::vk::RenderingFlagBits::PER_LAYER_FRAGMENT_DENSITY_VALVE.0,
+    );
+}
+///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
 impl crate::vk::RenderingFlagBits {
     pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(1 << 5);
+}
+///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+impl crate::vk::PipelineCreateFlags2 {
+    pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(
+        crate::vk::PipelineCreateFlagBits2::PER_LAYER_FRAGMENT_DENSITY_VALVE.0,
+    );
 }
 ///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
 impl crate::vk::PipelineCreateFlagBits2 {

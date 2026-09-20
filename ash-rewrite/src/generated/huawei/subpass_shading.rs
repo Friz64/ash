@@ -13,8 +13,20 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI: Self = Self(1000369002);
 }
 ///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+impl crate::vk::ShaderStageFlags {
+    pub const SUBPASS_SHADING_HUAWEI: Self = Self(
+        crate::vk::ShaderStageFlagBits::SUBPASS_SHADING_HUAWEI.0,
+    );
+}
+///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
 impl crate::vk::ShaderStageFlagBits {
     pub const SUBPASS_SHADING_HUAWEI: Self = Self(1 << 14);
+}
+///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+impl crate::vk::PipelineStageFlags2 {
+    pub const SUBPASS_SHADER_HUAWEI: Self = Self(
+        crate::vk::PipelineStageFlagBits2::SUBPASS_SHADER_HUAWEI.0,
+    );
 }
 ///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
 impl crate::vk::PipelineStageFlagBits2 {

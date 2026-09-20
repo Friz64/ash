@@ -13,6 +13,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`ext::zero_initialize_device_memory`](crate::ext::zero_initialize_device_memory)
+impl crate::vk::MemoryAllocateFlags {
+    pub const ZERO_INITIALIZE_EXT: Self = Self(
+        crate::vk::MemoryAllocateFlagBits::ZERO_INITIALIZE_EXT.0,
+    );
+}
+///Provided by [`ext::zero_initialize_device_memory`](crate::ext::zero_initialize_device_memory)
 impl crate::vk::MemoryAllocateFlagBits {
     pub const ZERO_INITIALIZE_EXT: Self = Self(1 << 3);
 }

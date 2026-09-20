@@ -15,12 +15,33 @@ impl crate::vk::Result {
     pub const ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR: Self = Self::ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS;
 }
 ///Provided by [`khr::buffer_device_address`](crate::khr::buffer_device_address)
+impl crate::vk::BufferUsageFlags {
+    pub const SHADER_DEVICE_ADDRESS_KHR: Self = Self(
+        crate::vk::BufferUsageFlagBits::SHADER_DEVICE_ADDRESS_KHR.0,
+    );
+}
+///Provided by [`khr::buffer_device_address`](crate::khr::buffer_device_address)
 impl crate::vk::BufferUsageFlagBits {
     pub const SHADER_DEVICE_ADDRESS_KHR: Self = Self::SHADER_DEVICE_ADDRESS;
 }
 ///Provided by [`khr::buffer_device_address`](crate::khr::buffer_device_address)
+impl crate::vk::BufferCreateFlags {
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self(
+        crate::vk::BufferCreateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY_KHR.0,
+    );
+}
+///Provided by [`khr::buffer_device_address`](crate::khr::buffer_device_address)
 impl crate::vk::BufferCreateFlagBits {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
+}
+///Provided by [`khr::buffer_device_address`](crate::khr::buffer_device_address)
+impl crate::vk::MemoryAllocateFlags {
+    pub const DEVICE_ADDRESS_KHR: Self = Self(
+        crate::vk::MemoryAllocateFlagBits::DEVICE_ADDRESS_KHR.0,
+    );
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self(
+        crate::vk::MemoryAllocateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY_KHR.0,
+    );
 }
 ///Provided by [`khr::buffer_device_address`](crate::khr::buffer_device_address)
 impl crate::vk::MemoryAllocateFlagBits {

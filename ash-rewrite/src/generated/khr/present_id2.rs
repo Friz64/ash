@@ -9,6 +9,12 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR: Self = Self(1000479002);
 }
 ///Provided by [`khr::present_id2`](crate::khr::present_id2)
+impl crate::vk::SwapchainCreateFlagsKHR {
+    pub const PRESENT_ID_2_KHR: Self = Self(
+        crate::vk::SwapchainCreateFlagBitsKHR::PRESENT_ID_2_KHR.0,
+    );
+}
+///Provided by [`khr::present_id2`](crate::khr::present_id2)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_ID_2_KHR: Self = Self(1 << 6);
 }

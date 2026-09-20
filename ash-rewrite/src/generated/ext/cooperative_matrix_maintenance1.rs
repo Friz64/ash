@@ -11,6 +11,12 @@ impl crate::vk::StructureType {
     pub const COOPERATIVE_MATRIX_PROPERTIES_2_EXT: Self = Self(1000659002);
 }
 ///Provided by [`ext::cooperative_matrix_maintenance1`](crate::ext::cooperative_matrix_maintenance1)
+impl CooperativeMatrixFlagsEXT {
+    pub const SATURATING_ACCUMULATION_EXT: Self = Self(
+        CooperativeMatrixFlagBitsEXT::SATURATING_ACCUMULATION_EXT.0,
+    );
+}
+///Provided by [`ext::cooperative_matrix_maintenance1`](crate::ext::cooperative_matrix_maintenance1)
 impl CooperativeMatrixFlagBitsEXT {
     pub const SATURATING_ACCUMULATION_EXT: Self = Self(1 << 0);
 }
@@ -263,7 +269,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct CooperativeMatrixFlagsEXT(u32);
+    pub struct CooperativeMatrixFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for CooperativeMatrixFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -275,9 +281,6 @@ pub(crate) mod items {
         }
     }
     impl CooperativeMatrixFlagsEXT {
-        pub const SATURATING_ACCUMULATION_EXT: Self = Self(
-            CooperativeMatrixFlagBitsEXT::SATURATING_ACCUMULATION_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

@@ -26,6 +26,7 @@ pub(crate) mod items {
     for PipelineCompilerControlCreateInfoAMD<'a> {}
     unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
     for PipelineCompilerControlCreateInfoAMD<'a> {}
+    #[cfg(feature = "provisional")]
     unsafe impl<'a> crate::Extends<crate::vk::ExecutionGraphPipelineCreateInfoAMDX<'_>>
     for PipelineCompilerControlCreateInfoAMD<'a> {}
     impl<'a> Default for PipelineCompilerControlCreateInfoAMD<'a> {
@@ -49,7 +50,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PipelineCompilerControlFlagsAMD(u32);
+    pub struct PipelineCompilerControlFlagsAMD(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineCompilerControlFlagsAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

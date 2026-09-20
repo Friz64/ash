@@ -3,6 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain_mutable_format.html) · Extension `VK_KHR_swapchain_mutable_format`
 #![doc(alias = "VK_KHR_swapchain_mutable_format")]
 ///Provided by [`khr::swapchain_mutable_format`](crate::khr::swapchain_mutable_format)
+impl crate::vk::SwapchainCreateFlagsKHR {
+    pub const MUTABLE_FORMAT_KHR: Self = Self(
+        crate::vk::SwapchainCreateFlagBitsKHR::MUTABLE_FORMAT_KHR.0,
+    );
+}
+///Provided by [`khr::swapchain_mutable_format`](crate::khr::swapchain_mutable_format)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const MUTABLE_FORMAT_KHR: Self = Self(1 << 2);
 }

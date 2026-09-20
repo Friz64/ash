@@ -17,11 +17,80 @@ impl crate::vk::Result {
     pub const ERROR_COMPRESSION_EXHAUSTED_EXT: Self = Self(-1000338000);
 }
 ///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+impl ImageCompressionFlagsEXT {
+    pub const DEFAULT_EXT: Self = Self(ImageCompressionFlagBitsEXT::DEFAULT_EXT.0);
+    pub const FIXED_RATE_DEFAULT_EXT: Self = Self(
+        ImageCompressionFlagBitsEXT::FIXED_RATE_DEFAULT_EXT.0,
+    );
+    pub const FIXED_RATE_EXPLICIT_EXT: Self = Self(
+        ImageCompressionFlagBitsEXT::FIXED_RATE_EXPLICIT_EXT.0,
+    );
+    pub const DISABLED_EXT: Self = Self(ImageCompressionFlagBitsEXT::DISABLED_EXT.0);
+}
+///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
 impl ImageCompressionFlagBitsEXT {
     pub const DEFAULT_EXT: Self = Self(0);
     pub const FIXED_RATE_DEFAULT_EXT: Self = Self(1 << 0);
     pub const FIXED_RATE_EXPLICIT_EXT: Self = Self(1 << 1);
     pub const DISABLED_EXT: Self = Self(1 << 2);
+}
+///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+impl ImageCompressionFixedRateFlagsEXT {
+    pub const NONE_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::NONE_EXT.0);
+    pub const _1BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_1BPC_EXT.0);
+    pub const _2BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_2BPC_EXT.0);
+    pub const _3BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_3BPC_EXT.0);
+    pub const _4BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_4BPC_EXT.0);
+    pub const _5BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_5BPC_EXT.0);
+    pub const _6BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_6BPC_EXT.0);
+    pub const _7BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_7BPC_EXT.0);
+    pub const _8BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_8BPC_EXT.0);
+    pub const _9BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_9BPC_EXT.0);
+    pub const _10BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_10BPC_EXT.0,
+    );
+    pub const _11BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_11BPC_EXT.0,
+    );
+    pub const _12BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_12BPC_EXT.0,
+    );
+    pub const _13BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_13BPC_EXT.0,
+    );
+    pub const _14BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_14BPC_EXT.0,
+    );
+    pub const _15BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_15BPC_EXT.0,
+    );
+    pub const _16BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_16BPC_EXT.0,
+    );
+    pub const _17BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_17BPC_EXT.0,
+    );
+    pub const _18BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_18BPC_EXT.0,
+    );
+    pub const _19BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_19BPC_EXT.0,
+    );
+    pub const _20BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_20BPC_EXT.0,
+    );
+    pub const _21BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_21BPC_EXT.0,
+    );
+    pub const _22BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_22BPC_EXT.0,
+    );
+    pub const _23BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_23BPC_EXT.0,
+    );
+    pub const _24BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_24BPC_EXT.0,
+    );
 }
 ///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
 impl ImageCompressionFixedRateFlagBitsEXT {
@@ -241,7 +310,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ImageCompressionFlagsEXT(u32);
+    pub struct ImageCompressionFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageCompressionFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -258,14 +327,6 @@ pub(crate) mod items {
         }
     }
     impl ImageCompressionFlagsEXT {
-        pub const DEFAULT_EXT: Self = Self(ImageCompressionFlagBitsEXT::DEFAULT_EXT.0);
-        pub const FIXED_RATE_DEFAULT_EXT: Self = Self(
-            ImageCompressionFlagBitsEXT::FIXED_RATE_DEFAULT_EXT.0,
-        );
-        pub const FIXED_RATE_EXPLICIT_EXT: Self = Self(
-            ImageCompressionFlagBitsEXT::FIXED_RATE_EXPLICIT_EXT.0,
-        );
-        pub const DISABLED_EXT: Self = Self(ImageCompressionFlagBitsEXT::DISABLED_EXT.0);
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -341,7 +402,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ImageCompressionFixedRateFlagsEXT(u32);
+    pub struct ImageCompressionFixedRateFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageCompressionFixedRateFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -379,81 +440,6 @@ pub(crate) mod items {
         }
     }
     impl ImageCompressionFixedRateFlagsEXT {
-        pub const NONE_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::NONE_EXT.0,
-        );
-        pub const _1BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_1BPC_EXT.0,
-        );
-        pub const _2BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_2BPC_EXT.0,
-        );
-        pub const _3BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_3BPC_EXT.0,
-        );
-        pub const _4BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_4BPC_EXT.0,
-        );
-        pub const _5BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_5BPC_EXT.0,
-        );
-        pub const _6BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_6BPC_EXT.0,
-        );
-        pub const _7BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_7BPC_EXT.0,
-        );
-        pub const _8BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_8BPC_EXT.0,
-        );
-        pub const _9BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_9BPC_EXT.0,
-        );
-        pub const _10BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_10BPC_EXT.0,
-        );
-        pub const _11BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_11BPC_EXT.0,
-        );
-        pub const _12BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_12BPC_EXT.0,
-        );
-        pub const _13BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_13BPC_EXT.0,
-        );
-        pub const _14BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_14BPC_EXT.0,
-        );
-        pub const _15BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_15BPC_EXT.0,
-        );
-        pub const _16BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_16BPC_EXT.0,
-        );
-        pub const _17BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_17BPC_EXT.0,
-        );
-        pub const _18BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_18BPC_EXT.0,
-        );
-        pub const _19BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_19BPC_EXT.0,
-        );
-        pub const _20BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_20BPC_EXT.0,
-        );
-        pub const _21BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_21BPC_EXT.0,
-        );
-        pub const _22BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_22BPC_EXT.0,
-        );
-        pub const _23BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_23BPC_EXT.0,
-        );
-        pub const _24BPC_EXT: Self = Self(
-            ImageCompressionFixedRateFlagBitsEXT::_24BPC_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

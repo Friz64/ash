@@ -42,6 +42,25 @@ impl DeviceFaultVendorBinaryHeaderVersionKHR {
     pub const ONE_EXT: Self = Self::ONE_KHR;
 }
 ///Provided by [`khr::device_fault`](crate::khr::device_fault)
+impl DeviceFaultFlagsKHR {
+    pub const FLAG_DEVICE_LOST_KHR: Self = Self(
+        DeviceFaultFlagBitsKHR::FLAG_DEVICE_LOST_KHR.0,
+    );
+    pub const FLAG_MEMORY_ADDRESS_KHR: Self = Self(
+        DeviceFaultFlagBitsKHR::FLAG_MEMORY_ADDRESS_KHR.0,
+    );
+    pub const FLAG_INSTRUCTION_ADDRESS_KHR: Self = Self(
+        DeviceFaultFlagBitsKHR::FLAG_INSTRUCTION_ADDRESS_KHR.0,
+    );
+    pub const FLAG_VENDOR_KHR: Self = Self(DeviceFaultFlagBitsKHR::FLAG_VENDOR_KHR.0);
+    pub const FLAG_WATCHDOG_TIMEOUT_KHR: Self = Self(
+        DeviceFaultFlagBitsKHR::FLAG_WATCHDOG_TIMEOUT_KHR.0,
+    );
+    pub const FLAG_OVERFLOW_KHR: Self = Self(
+        DeviceFaultFlagBitsKHR::FLAG_OVERFLOW_KHR.0,
+    );
+}
+///Provided by [`khr::device_fault`](crate::khr::device_fault)
 impl DeviceFaultFlagBitsKHR {
     pub const FLAG_DEVICE_LOST_KHR: Self = Self(1 << 0);
     pub const FLAG_MEMORY_ADDRESS_KHR: Self = Self(1 << 1);
@@ -545,7 +564,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DeviceFaultFlagsKHR(u32);
+    pub struct DeviceFaultFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DeviceFaultFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -567,24 +586,6 @@ pub(crate) mod items {
         }
     }
     impl DeviceFaultFlagsKHR {
-        pub const FLAG_DEVICE_LOST_KHR: Self = Self(
-            DeviceFaultFlagBitsKHR::FLAG_DEVICE_LOST_KHR.0,
-        );
-        pub const FLAG_MEMORY_ADDRESS_KHR: Self = Self(
-            DeviceFaultFlagBitsKHR::FLAG_MEMORY_ADDRESS_KHR.0,
-        );
-        pub const FLAG_INSTRUCTION_ADDRESS_KHR: Self = Self(
-            DeviceFaultFlagBitsKHR::FLAG_INSTRUCTION_ADDRESS_KHR.0,
-        );
-        pub const FLAG_VENDOR_KHR: Self = Self(
-            DeviceFaultFlagBitsKHR::FLAG_VENDOR_KHR.0,
-        );
-        pub const FLAG_WATCHDOG_TIMEOUT_KHR: Self = Self(
-            DeviceFaultFlagBitsKHR::FLAG_WATCHDOG_TIMEOUT_KHR.0,
-        );
-        pub const FLAG_OVERFLOW_KHR: Self = Self(
-            DeviceFaultFlagBitsKHR::FLAG_OVERFLOW_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

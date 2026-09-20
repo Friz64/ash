@@ -9,8 +9,16 @@ impl crate::vk::StructureType {
     pub const MEMORY_MAP_PLACED_INFO_EXT: Self = Self(1000272002);
 }
 ///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
+impl crate::vk::MemoryMapFlags {
+    pub const PLACED_EXT: Self = Self(crate::vk::MemoryMapFlagBits::PLACED_EXT.0);
+}
+///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
 impl crate::vk::MemoryMapFlagBits {
     pub const PLACED_EXT: Self = Self(1 << 0);
+}
+///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
+impl crate::vk::MemoryUnmapFlags {
+    pub const RESERVE_EXT: Self = Self(crate::vk::MemoryUnmapFlagBits::RESERVE_EXT.0);
 }
 ///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
 impl crate::vk::MemoryUnmapFlagBits {

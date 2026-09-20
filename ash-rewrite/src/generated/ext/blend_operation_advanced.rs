@@ -78,6 +78,12 @@ impl BlendOverlapEXT {
     pub const CONJOINT_EXT: Self = Self(2);
 }
 ///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
+impl crate::vk::AccessFlags {
+    pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(
+        crate::vk::AccessFlagBits::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT.0,
+    );
+}
+///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
 impl crate::vk::AccessFlagBits {
     pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(1 << 19);
 }

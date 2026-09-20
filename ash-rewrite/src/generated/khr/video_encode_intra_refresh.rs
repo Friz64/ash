@@ -15,8 +15,30 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::VideoEncodeFlagsKHR {
+    pub const INTRA_REFRESH_KHR: Self = Self(
+        crate::vk::VideoEncodeFlagBitsKHR::INTRA_REFRESH_KHR.0,
+    );
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
 impl crate::vk::VideoEncodeFlagBitsKHR {
     pub const INTRA_REFRESH_KHR: Self = Self(1 << 2);
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl VideoEncodeIntraRefreshModeFlagsKHR {
+    pub const NONE_KHR: Self = Self(VideoEncodeIntraRefreshModeFlagBitsKHR::NONE_KHR.0);
+    pub const PER_PICTURE_PARTITION_KHR: Self = Self(
+        VideoEncodeIntraRefreshModeFlagBitsKHR::PER_PICTURE_PARTITION_KHR.0,
+    );
+    pub const BLOCK_BASED_KHR: Self = Self(
+        VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_BASED_KHR.0,
+    );
+    pub const BLOCK_ROW_BASED_KHR: Self = Self(
+        VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_ROW_BASED_KHR.0,
+    );
+    pub const BLOCK_COLUMN_BASED_KHR: Self = Self(
+        VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_COLUMN_BASED_KHR.0,
+    );
 }
 ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
 impl VideoEncodeIntraRefreshModeFlagBitsKHR {
@@ -27,12 +49,31 @@ impl VideoEncodeIntraRefreshModeFlagBitsKHR {
     pub const BLOCK_COLUMN_BASED_KHR: Self = Self(1 << 3);
 }
 ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::VideoEncodeH264CapabilityFlagsKHR {
+    pub const B_PICTURE_INTRA_REFRESH_KHR: Self = Self(
+        crate::vk::VideoEncodeH264CapabilityFlagBitsKHR::B_PICTURE_INTRA_REFRESH_KHR.0,
+    );
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
 impl crate::vk::VideoEncodeH264CapabilityFlagBitsKHR {
     pub const B_PICTURE_INTRA_REFRESH_KHR: Self = Self(1 << 10);
 }
 ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::VideoEncodeH265CapabilityFlagsKHR {
+    pub const B_PICTURE_INTRA_REFRESH_KHR: Self = Self(
+        crate::vk::VideoEncodeH265CapabilityFlagBitsKHR::B_PICTURE_INTRA_REFRESH_KHR.0,
+    );
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
 impl crate::vk::VideoEncodeH265CapabilityFlagBitsKHR {
     pub const B_PICTURE_INTRA_REFRESH_KHR: Self = Self(1 << 11);
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::VideoEncodeAV1CapabilityFlagsKHR {
+    pub const COMPOUND_PREDICTION_INTRA_REFRESH_KHR: Self = Self(
+        crate::vk::VideoEncodeAV1CapabilityFlagBitsKHR::COMPOUND_PREDICTION_INTRA_REFRESH_KHR
+            .0,
+    );
 }
 ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
 impl crate::vk::VideoEncodeAV1CapabilityFlagBitsKHR {
@@ -258,7 +299,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoEncodeIntraRefreshModeFlagsKHR(u32);
+    pub struct VideoEncodeIntraRefreshModeFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEncodeIntraRefreshModeFlagsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -276,21 +317,6 @@ pub(crate) mod items {
         }
     }
     impl VideoEncodeIntraRefreshModeFlagsKHR {
-        pub const NONE_KHR: Self = Self(
-            VideoEncodeIntraRefreshModeFlagBitsKHR::NONE_KHR.0,
-        );
-        pub const PER_PICTURE_PARTITION_KHR: Self = Self(
-            VideoEncodeIntraRefreshModeFlagBitsKHR::PER_PICTURE_PARTITION_KHR.0,
-        );
-        pub const BLOCK_BASED_KHR: Self = Self(
-            VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_BASED_KHR.0,
-        );
-        pub const BLOCK_ROW_BASED_KHR: Self = Self(
-            VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_ROW_BASED_KHR.0,
-        );
-        pub const BLOCK_COLUMN_BASED_KHR: Self = Self(
-            VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_COLUMN_BASED_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

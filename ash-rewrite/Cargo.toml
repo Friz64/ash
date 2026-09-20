@@ -33,6 +33,8 @@ loaded = ["libloading", "std"]
 debug = []
 # Whether the standard library should be required
 std = []
+# Enable provisional Vulkan extensions. May see *semver-breaking* code changes in non-breaking releases!
+provisional = []
 
 [package.metadata.docs.rs]
 all-features = true

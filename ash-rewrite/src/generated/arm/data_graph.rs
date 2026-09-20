@@ -109,8 +109,21 @@ impl PhysicalDeviceDataGraphOperationTypeARM {
     pub const SPIRV_EXTENDED_INSTRUCTION_SET_ARM: Self = Self(0);
 }
 ///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::QueueFlags {
+    pub const DATA_GRAPH_ARM: Self = Self(crate::vk::QueueFlagBits::DATA_GRAPH_ARM.0);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
 impl crate::vk::QueueFlagBits {
     pub const DATA_GRAPH_ARM: Self = Self(1 << 10);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::AccessFlags2 {
+    pub const DATA_GRAPH_READ_ARM: Self = Self(
+        crate::vk::AccessFlagBits2::DATA_GRAPH_READ_ARM.0,
+    );
+    pub const DATA_GRAPH_WRITE_ARM: Self = Self(
+        crate::vk::AccessFlagBits2::DATA_GRAPH_WRITE_ARM.0,
+    );
 }
 ///Provided by [`arm::data_graph`](crate::arm::data_graph)
 impl crate::vk::AccessFlagBits2 {
@@ -118,20 +131,50 @@ impl crate::vk::AccessFlagBits2 {
     pub const DATA_GRAPH_WRITE_ARM: Self = Self(1 << 48);
 }
 ///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::PipelineStageFlags2 {
+    pub const DATA_GRAPH_ARM: Self = Self(
+        crate::vk::PipelineStageFlagBits2::DATA_GRAPH_ARM.0,
+    );
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const DATA_GRAPH_ARM: Self = Self(1 << 42);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const TENSOR_DATA_GRAPH_ARM: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::TENSOR_DATA_GRAPH_ARM.0,
+    );
 }
 ///Provided by [`arm::data_graph`](crate::arm::data_graph)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const TENSOR_DATA_GRAPH_ARM: Self = Self(1 << 48);
 }
 ///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::BufferUsageFlags2 {
+    pub const DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM: Self = Self(
+        crate::vk::BufferUsageFlagBits2::DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM.0,
+    );
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
 impl crate::vk::BufferUsageFlagBits2 {
     pub const DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM: Self = Self(1 << 29);
 }
 ///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::TensorUsageFlagsARM {
+    pub const DATA_GRAPH_ARM: Self = Self(
+        crate::vk::TensorUsageFlagBitsARM::DATA_GRAPH_ARM.0,
+    );
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
 impl crate::vk::TensorUsageFlagBitsARM {
     pub const DATA_GRAPH_ARM: Self = Self(1 << 5);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl DataGraphPipelineSessionCreateFlagsARM {
+    pub const PROTECTED_ARM: Self = Self(
+        DataGraphPipelineSessionCreateFlagBitsARM::PROTECTED_ARM.0,
+    );
 }
 ///Provided by [`arm::data_graph`](crate::arm::data_graph)
 impl DataGraphPipelineSessionCreateFlagBitsARM {
@@ -1463,7 +1506,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DataGraphPipelineSessionCreateFlagsARM(u64);
+    pub struct DataGraphPipelineSessionCreateFlagsARM(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphPipelineSessionCreateFlagsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1478,12 +1521,6 @@ pub(crate) mod items {
         }
     }
     impl DataGraphPipelineSessionCreateFlagsARM {
-        pub const PROTECTED_ARM: Self = Self(
-            DataGraphPipelineSessionCreateFlagBitsARM::PROTECTED_ARM.0,
-        );
-        pub const OPTICAL_FLOW_CACHE_ARM: Self = Self(
-            DataGraphPipelineSessionCreateFlagBitsARM::OPTICAL_FLOW_CACHE_ARM.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1559,7 +1596,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DataGraphPipelineDispatchFlagsARM(u64);
+    pub struct DataGraphPipelineDispatchFlagsARM(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphPipelineDispatchFlagsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

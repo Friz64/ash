@@ -8,6 +8,16 @@ impl crate::vk::StructureType {
     pub const SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR: Self = Self::SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE;
 }
 ///Provided by [`khr::depth_stencil_resolve`](crate::khr::depth_stencil_resolve)
+impl crate::vk::ResolveModeFlags {
+    pub const NONE_KHR: Self = Self(crate::vk::ResolveModeFlagBits::NONE_KHR.0);
+    pub const SAMPLE_ZERO_KHR: Self = Self(
+        crate::vk::ResolveModeFlagBits::SAMPLE_ZERO_KHR.0,
+    );
+    pub const AVERAGE_KHR: Self = Self(crate::vk::ResolveModeFlagBits::AVERAGE_KHR.0);
+    pub const MIN_KHR: Self = Self(crate::vk::ResolveModeFlagBits::MIN_KHR.0);
+    pub const MAX_KHR: Self = Self(crate::vk::ResolveModeFlagBits::MAX_KHR.0);
+}
+///Provided by [`khr::depth_stencil_resolve`](crate::khr::depth_stencil_resolve)
 impl crate::vk::ResolveModeFlagBits {
     pub const NONE_KHR: Self = Self::NONE;
     pub const SAMPLE_ZERO_KHR: Self = Self::SAMPLE_ZERO;

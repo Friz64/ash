@@ -14,6 +14,24 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+impl VideoEncodeRgbModelConversionFlagsVALVE {
+    pub const RGB_IDENTITY_VALVE: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::RGB_IDENTITY_VALVE.0,
+    );
+    pub const YCBCR_IDENTITY_VALVE: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_IDENTITY_VALVE.0,
+    );
+    pub const YCBCR_709_VALVE: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_709_VALVE.0,
+    );
+    pub const YCBCR_601_VALVE: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_601_VALVE.0,
+    );
+    pub const YCBCR_2020_VALVE: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_2020_VALVE.0,
+    );
+}
+///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbModelConversionFlagBitsVALVE {
     pub const RGB_IDENTITY_VALVE: Self = Self(1 << 0);
     pub const YCBCR_IDENTITY_VALVE: Self = Self(1 << 1);
@@ -22,9 +40,27 @@ impl VideoEncodeRgbModelConversionFlagBitsVALVE {
     pub const YCBCR_2020_VALVE: Self = Self(1 << 4);
 }
 ///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+impl VideoEncodeRgbRangeCompressionFlagsVALVE {
+    pub const FULL_RANGE_VALVE: Self = Self(
+        VideoEncodeRgbRangeCompressionFlagBitsVALVE::FULL_RANGE_VALVE.0,
+    );
+    pub const NARROW_RANGE_VALVE: Self = Self(
+        VideoEncodeRgbRangeCompressionFlagBitsVALVE::NARROW_RANGE_VALVE.0,
+    );
+}
+///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbRangeCompressionFlagBitsVALVE {
     pub const FULL_RANGE_VALVE: Self = Self(1 << 0);
     pub const NARROW_RANGE_VALVE: Self = Self(1 << 1);
+}
+///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+impl VideoEncodeRgbChromaOffsetFlagsVALVE {
+    pub const COSITED_EVEN_VALVE: Self = Self(
+        VideoEncodeRgbChromaOffsetFlagBitsVALVE::COSITED_EVEN_VALVE.0,
+    );
+    pub const MIDPOINT_VALVE: Self = Self(
+        VideoEncodeRgbChromaOffsetFlagBitsVALVE::MIDPOINT_VALVE.0,
+    );
 }
 ///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbChromaOffsetFlagBitsVALVE {
@@ -228,7 +264,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoEncodeRgbModelConversionFlagsVALVE(u32);
+    pub struct VideoEncodeRgbModelConversionFlagsVALVE(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEncodeRgbModelConversionFlagsVALVE {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -246,21 +282,6 @@ pub(crate) mod items {
         }
     }
     impl VideoEncodeRgbModelConversionFlagsVALVE {
-        pub const RGB_IDENTITY_VALVE: Self = Self(
-            VideoEncodeRgbModelConversionFlagBitsVALVE::RGB_IDENTITY_VALVE.0,
-        );
-        pub const YCBCR_IDENTITY_VALVE: Self = Self(
-            VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_IDENTITY_VALVE.0,
-        );
-        pub const YCBCR_709_VALVE: Self = Self(
-            VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_709_VALVE.0,
-        );
-        pub const YCBCR_601_VALVE: Self = Self(
-            VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_601_VALVE.0,
-        );
-        pub const YCBCR_2020_VALVE: Self = Self(
-            VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_2020_VALVE.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -336,7 +357,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoEncodeRgbRangeCompressionFlagsVALVE(u32);
+    pub struct VideoEncodeRgbRangeCompressionFlagsVALVE(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEncodeRgbRangeCompressionFlagsVALVE {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -351,12 +372,6 @@ pub(crate) mod items {
         }
     }
     impl VideoEncodeRgbRangeCompressionFlagsVALVE {
-        pub const FULL_RANGE_VALVE: Self = Self(
-            VideoEncodeRgbRangeCompressionFlagBitsVALVE::FULL_RANGE_VALVE.0,
-        );
-        pub const NARROW_RANGE_VALVE: Self = Self(
-            VideoEncodeRgbRangeCompressionFlagBitsVALVE::NARROW_RANGE_VALVE.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -432,7 +447,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct VideoEncodeRgbChromaOffsetFlagsVALVE(u32);
+    pub struct VideoEncodeRgbChromaOffsetFlagsVALVE(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEncodeRgbChromaOffsetFlagsVALVE {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -447,12 +462,6 @@ pub(crate) mod items {
         }
     }
     impl VideoEncodeRgbChromaOffsetFlagsVALVE {
-        pub const COSITED_EVEN_VALVE: Self = Self(
-            VideoEncodeRgbChromaOffsetFlagBitsVALVE::COSITED_EVEN_VALVE.0,
-        );
-        pub const MIDPOINT_VALVE: Self = Self(
-            VideoEncodeRgbChromaOffsetFlagBitsVALVE::MIDPOINT_VALVE.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

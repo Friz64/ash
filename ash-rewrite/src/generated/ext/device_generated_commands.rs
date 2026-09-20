@@ -63,13 +63,37 @@ impl IndirectCommandsTokenTypeEXT {
     pub const DISPATCH_EXT: Self = Self(9);
 }
 ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl crate::vk::AccessFlags {
+    pub const COMMAND_PREPROCESS_READ_EXT: Self = Self(
+        crate::vk::AccessFlagBits::COMMAND_PREPROCESS_READ_EXT.0,
+    );
+    pub const COMMAND_PREPROCESS_WRITE_EXT: Self = Self(
+        crate::vk::AccessFlagBits::COMMAND_PREPROCESS_WRITE_EXT.0,
+    );
+}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
 impl crate::vk::AccessFlagBits {
     pub const COMMAND_PREPROCESS_READ_EXT: Self = Self(1 << 17);
     pub const COMMAND_PREPROCESS_WRITE_EXT: Self = Self(1 << 18);
 }
 ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl crate::vk::PipelineStageFlags {
+    pub const COMMAND_PREPROCESS_EXT: Self = Self(
+        crate::vk::PipelineStageFlagBits::COMMAND_PREPROCESS_EXT.0,
+    );
+}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
 impl crate::vk::PipelineStageFlagBits {
     pub const COMMAND_PREPROCESS_EXT: Self = Self(1 << 17);
+}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl IndirectCommandsLayoutUsageFlagsEXT {
+    pub const EXPLICIT_PREPROCESS_EXT: Self = Self(
+        IndirectCommandsLayoutUsageFlagBitsEXT::EXPLICIT_PREPROCESS_EXT.0,
+    );
+    pub const UNORDERED_SEQUENCES_EXT: Self = Self(
+        IndirectCommandsLayoutUsageFlagBitsEXT::UNORDERED_SEQUENCES_EXT.0,
+    );
 }
 ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
 impl IndirectCommandsLayoutUsageFlagBitsEXT {
@@ -77,17 +101,44 @@ impl IndirectCommandsLayoutUsageFlagBitsEXT {
     pub const UNORDERED_SEQUENCES_EXT: Self = Self(1 << 1);
 }
 ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl IndirectCommandsInputModeFlagsEXT {
+    pub const VULKAN_INDEX_BUFFER_EXT: Self = Self(
+        IndirectCommandsInputModeFlagBitsEXT::VULKAN_INDEX_BUFFER_EXT.0,
+    );
+    pub const DXGI_INDEX_BUFFER_EXT: Self = Self(
+        IndirectCommandsInputModeFlagBitsEXT::DXGI_INDEX_BUFFER_EXT.0,
+    );
+}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
 impl IndirectCommandsInputModeFlagBitsEXT {
     pub const VULKAN_INDEX_BUFFER_EXT: Self = Self(1 << 0);
     pub const DXGI_INDEX_BUFFER_EXT: Self = Self(1 << 1);
+}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl crate::vk::PipelineCreateFlags2 {
+    pub const INDIRECT_BINDABLE_EXT: Self = Self(
+        crate::vk::PipelineCreateFlagBits2::INDIRECT_BINDABLE_EXT.0,
+    );
 }
 ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
 impl crate::vk::PipelineCreateFlagBits2 {
     pub const INDIRECT_BINDABLE_EXT: Self = Self(1 << 38);
 }
 ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl crate::vk::BufferUsageFlags2 {
+    pub const PREPROCESS_BUFFER_EXT: Self = Self(
+        crate::vk::BufferUsageFlagBits2::PREPROCESS_BUFFER_EXT.0,
+    );
+}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
 impl crate::vk::BufferUsageFlagBits2 {
     pub const PREPROCESS_BUFFER_EXT: Self = Self(1 << 31);
+}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl crate::vk::ShaderCreateFlagsEXT {
+    pub const INDIRECT_BINDABLE_EXT: Self = Self(
+        crate::vk::ShaderCreateFlagBitsEXT::INDIRECT_BINDABLE_EXT.0,
+    );
 }
 ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
 impl crate::vk::ShaderCreateFlagBitsEXT {
@@ -1282,7 +1333,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct IndirectCommandsLayoutUsageFlagsEXT(u32);
+    pub struct IndirectCommandsLayoutUsageFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for IndirectCommandsLayoutUsageFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1297,12 +1348,6 @@ pub(crate) mod items {
         }
     }
     impl IndirectCommandsLayoutUsageFlagsEXT {
-        pub const EXPLICIT_PREPROCESS_EXT: Self = Self(
-            IndirectCommandsLayoutUsageFlagBitsEXT::EXPLICIT_PREPROCESS_EXT.0,
-        );
-        pub const UNORDERED_SEQUENCES_EXT: Self = Self(
-            IndirectCommandsLayoutUsageFlagBitsEXT::UNORDERED_SEQUENCES_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1378,7 +1423,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct IndirectCommandsInputModeFlagsEXT(u32);
+    pub struct IndirectCommandsInputModeFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for IndirectCommandsInputModeFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1393,12 +1438,6 @@ pub(crate) mod items {
         }
     }
     impl IndirectCommandsInputModeFlagsEXT {
-        pub const VULKAN_INDEX_BUFFER_EXT: Self = Self(
-            IndirectCommandsInputModeFlagBitsEXT::VULKAN_INDEX_BUFFER_EXT.0,
-        );
-        pub const DXGI_INDEX_BUFFER_EXT: Self = Self(
-            IndirectCommandsInputModeFlagBitsEXT::DXGI_INDEX_BUFFER_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

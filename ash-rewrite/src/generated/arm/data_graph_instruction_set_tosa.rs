@@ -20,6 +20,21 @@ impl DataGraphTOSALevelARM {
     pub const _8K_ARM: Self = Self(1);
 }
 ///Provided by [`arm::data_graph_instruction_set_tosa`](crate::arm::data_graph_instruction_set_tosa)
+impl DataGraphTOSAQualityFlagsARM {
+    pub const ACCELERATED_ARM: Self = Self(
+        DataGraphTOSAQualityFlagBitsARM::ACCELERATED_ARM.0,
+    );
+    pub const CONFORMANT_ARM: Self = Self(
+        DataGraphTOSAQualityFlagBitsARM::CONFORMANT_ARM.0,
+    );
+    pub const EXPERIMENTAL_ARM: Self = Self(
+        DataGraphTOSAQualityFlagBitsARM::EXPERIMENTAL_ARM.0,
+    );
+    pub const DEPRECATED_ARM: Self = Self(
+        DataGraphTOSAQualityFlagBitsARM::DEPRECATED_ARM.0,
+    );
+}
+///Provided by [`arm::data_graph_instruction_set_tosa`](crate::arm::data_graph_instruction_set_tosa)
 impl DataGraphTOSAQualityFlagBitsARM {
     pub const ACCELERATED_ARM: Self = Self(1 << 0);
     pub const CONFORMANT_ARM: Self = Self(1 << 1);
@@ -205,7 +220,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DataGraphTOSAQualityFlagsARM(u32);
+    pub struct DataGraphTOSAQualityFlagsARM(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphTOSAQualityFlagsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -222,18 +237,6 @@ pub(crate) mod items {
         }
     }
     impl DataGraphTOSAQualityFlagsARM {
-        pub const ACCELERATED_ARM: Self = Self(
-            DataGraphTOSAQualityFlagBitsARM::ACCELERATED_ARM.0,
-        );
-        pub const CONFORMANT_ARM: Self = Self(
-            DataGraphTOSAQualityFlagBitsARM::CONFORMANT_ARM.0,
-        );
-        pub const EXPERIMENTAL_ARM: Self = Self(
-            DataGraphTOSAQualityFlagBitsARM::EXPERIMENTAL_ARM.0,
-        );
-        pub const DEPRECATED_ARM: Self = Self(
-            DataGraphTOSAQualityFlagBitsARM::DEPRECATED_ARM.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

@@ -24,6 +24,24 @@ impl crate::vk::DebugReportObjectTypeEXT {
     pub const BUFFER_COLLECTION_FUCHSIA_EXT: Self = Self(1000366000);
 }
 ///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+impl ImageConstraintsInfoFlagsFUCHSIA {
+    pub const CPU_READ_RARELY_FUCHSIA: Self = Self(
+        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_RARELY_FUCHSIA.0,
+    );
+    pub const CPU_READ_OFTEN_FUCHSIA: Self = Self(
+        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_OFTEN_FUCHSIA.0,
+    );
+    pub const CPU_WRITE_RARELY_FUCHSIA: Self = Self(
+        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_RARELY_FUCHSIA.0,
+    );
+    pub const CPU_WRITE_OFTEN_FUCHSIA: Self = Self(
+        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_OFTEN_FUCHSIA.0,
+    );
+    pub const PROTECTED_OPTIONAL_FUCHSIA: Self = Self(
+        ImageConstraintsInfoFlagBitsFUCHSIA::PROTECTED_OPTIONAL_FUCHSIA.0,
+    );
+}
+///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
 impl ImageConstraintsInfoFlagBitsFUCHSIA {
     pub const CPU_READ_RARELY_FUCHSIA: Self = Self(1 << 0);
     pub const CPU_READ_OFTEN_FUCHSIA: Self = Self(1 << 1);
@@ -690,7 +708,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ImageFormatConstraintsFlagsFUCHSIA(u32);
+    pub struct ImageFormatConstraintsFlagsFUCHSIA(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageFormatConstraintsFlagsFUCHSIA {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -758,7 +776,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ImageConstraintsInfoFlagsFUCHSIA(u32);
+    pub struct ImageConstraintsInfoFlagsFUCHSIA(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -776,21 +794,6 @@ pub(crate) mod items {
         }
     }
     impl ImageConstraintsInfoFlagsFUCHSIA {
-        pub const CPU_READ_RARELY_FUCHSIA: Self = Self(
-            ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_RARELY_FUCHSIA.0,
-        );
-        pub const CPU_READ_OFTEN_FUCHSIA: Self = Self(
-            ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_OFTEN_FUCHSIA.0,
-        );
-        pub const CPU_WRITE_RARELY_FUCHSIA: Self = Self(
-            ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_RARELY_FUCHSIA.0,
-        );
-        pub const CPU_WRITE_OFTEN_FUCHSIA: Self = Self(
-            ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_OFTEN_FUCHSIA.0,
-        );
-        pub const PROTECTED_OPTIONAL_FUCHSIA: Self = Self(
-            ImageConstraintsInfoFlagBitsFUCHSIA::PROTECTED_OPTIONAL_FUCHSIA.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

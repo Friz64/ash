@@ -11,6 +11,12 @@ impl crate::vk::DescriptorUpdateTemplateType {
     pub const PUSH_DESCRIPTORS_KHR: Self = Self::PUSH_DESCRIPTORS;
 }
 ///Provided by [`khr::push_descriptor`](crate::khr::push_descriptor)
+impl crate::vk::DescriptorSetLayoutCreateFlags {
+    pub const PUSH_DESCRIPTOR_KHR: Self = Self(
+        crate::vk::DescriptorSetLayoutCreateFlagBits::PUSH_DESCRIPTOR_KHR.0,
+    );
+}
+///Provided by [`khr::push_descriptor`](crate::khr::push_descriptor)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const PUSH_DESCRIPTOR_KHR: Self = Self::PUSH_DESCRIPTOR;
 }

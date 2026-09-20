@@ -8,12 +8,30 @@ impl crate::vk::StructureType {
     pub const VIDEO_INLINE_QUERY_INFO_KHR: Self = Self(1000515001);
 }
 ///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+impl crate::vk::BufferCreateFlags {
+    pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(
+        crate::vk::BufferCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR.0,
+    );
+}
+///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
 impl crate::vk::BufferCreateFlagBits {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 6);
 }
 ///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+impl crate::vk::ImageCreateFlags {
+    pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(
+        crate::vk::ImageCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR.0,
+    );
+}
+///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
 impl crate::vk::ImageCreateFlagBits {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 20);
+}
+///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+impl crate::vk::VideoSessionCreateFlagsKHR {
+    pub const INLINE_QUERIES_KHR: Self = Self(
+        crate::vk::VideoSessionCreateFlagBitsKHR::INLINE_QUERIES_KHR.0,
+    );
 }
 ///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
 impl crate::vk::VideoSessionCreateFlagBitsKHR {

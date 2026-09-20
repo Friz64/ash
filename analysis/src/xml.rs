@@ -929,7 +929,8 @@ pub struct Extension {
     pub name: ExtensionName,
     pub number: Option<u32>,
     pub ty: Option<&'static str>,
-    pub is_ratified: Option<bool>,
+    pub ratified: Option<bool>,
+    pub provisional: bool,
     pub depends: Option<Depends>,
     pub requires: Vec<Require>,
 }
@@ -941,11 +942,12 @@ impl Extension {
             name: ExtensionName::new(attribute(node, "name").unwrap()),
             number: extension_num,
             ty: attribute(node, "type"),
-            is_ratified: matches!(library_name, LibraryName::Vk).then(|| {
+            ratified: matches!(library_name, LibraryName::Vk).then(|| {
                 node.attribute("ratified")
                     .map(|values| values.split(',').any(|support| support == api))
                     .unwrap_or(false)
             }),
+            provisional: matches!(node.attribute("provisional"), Some("true")),
             depends: attribute(node, "depends").map(|input| Depends::from_str(input).unwrap()),
             requires: node
                 .children()

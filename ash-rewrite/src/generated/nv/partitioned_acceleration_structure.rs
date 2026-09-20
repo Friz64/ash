@@ -38,6 +38,27 @@ impl PartitionedAccelerationStructureOpTypeNV {
     pub const WRITE_PARTITION_TRANSLATION_NV: Self = Self(2);
 }
 ///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
+impl PartitionedAccelerationStructureInstanceFlagsNV {
+    pub const FLAG_TRIANGLE_FACING_CULL_DISABLE_NV: Self = Self(
+        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FACING_CULL_DISABLE_NV
+            .0,
+    );
+    pub const FLAG_TRIANGLE_FLIP_FACING_NV: Self = Self(
+        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FLIP_FACING_NV
+            .0,
+    );
+    pub const FLAG_FORCE_OPAQUE_NV: Self = Self(
+        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_OPAQUE_NV.0,
+    );
+    pub const FLAG_FORCE_NO_OPAQUE_NV: Self = Self(
+        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_NO_OPAQUE_NV.0,
+    );
+    pub const FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV: Self = Self(
+        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV
+            .0,
+    );
+}
+///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
 impl PartitionedAccelerationStructureInstanceFlagBitsNV {
     pub const FLAG_TRIANGLE_FACING_CULL_DISABLE_NV: Self = Self(1 << 0);
     pub const FLAG_TRIANGLE_FLIP_FACING_NV: Self = Self(1 << 1);
@@ -581,7 +602,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PartitionedAccelerationStructureInstanceFlagsNV(u32);
+    pub struct PartitionedAccelerationStructureInstanceFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PartitionedAccelerationStructureInstanceFlagsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -608,24 +629,6 @@ pub(crate) mod items {
         }
     }
     impl PartitionedAccelerationStructureInstanceFlagsNV {
-        pub const FLAG_TRIANGLE_FACING_CULL_DISABLE_NV: Self = Self(
-            PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FACING_CULL_DISABLE_NV
-                .0,
-        );
-        pub const FLAG_TRIANGLE_FLIP_FACING_NV: Self = Self(
-            PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FLIP_FACING_NV
-                .0,
-        );
-        pub const FLAG_FORCE_OPAQUE_NV: Self = Self(
-            PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_OPAQUE_NV.0,
-        );
-        pub const FLAG_FORCE_NO_OPAQUE_NV: Self = Self(
-            PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_NO_OPAQUE_NV.0,
-        );
-        pub const FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV: Self = Self(
-            PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV
-                .0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

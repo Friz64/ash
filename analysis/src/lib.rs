@@ -5,7 +5,11 @@ pub mod name;
 pub mod rust;
 pub mod xml;
 
-use crate::name::TypeName;
+use crate::{
+    item::TypeItem,
+    name::{EnumeratorName, ExtensionName, TypeName},
+};
+use indexmap::IndexMap;
 use item::Items;
 use std::{collections::HashMap, ffi::OsStr, fs, path::Path};
 use tracing::{debug, error_span};
@@ -13,13 +17,19 @@ use tracing::{debug, error_span};
 /// Holds the analysis results for easy querying.
 #[derive(Debug)]
 pub struct AnalysisResult {
-    pub items: Items,
+    pub items: &'static Items,
+    pub enumerators: IndexMap<EnumeratorName, &'static item::enumeration::Item>,
     type_has_lifetime: HashMap<TypeName, bool>,
+    is_extension_provisional: HashMap<ExtensionName, bool>,
 }
 
 impl AnalysisResult {
     pub fn type_has_lifetime(&self, type_name: TypeName) -> bool {
         self.type_has_lifetime[&type_name]
+    }
+
+    pub fn is_extension_provisional(&self, ext_name: ExtensionName) -> bool {
+        self.is_extension_provisional[&ext_name]
     }
 }
 
@@ -37,13 +47,29 @@ impl Analysis {
         let vulkan_headers_path = vulkan_headers_path.as_ref();
         let vk = Library::new(vulkan_headers_path.join("registry/vk.xml"));
         let video = Library::new(vulkan_headers_path.join("registry/video.xml"));
+        let libraries = &[&vk, &video];
 
-        let items = Items::collect(&[&vk, &video]);
+        let items = Box::leak(Box::new(Items::collect(libraries)));
+        let enumerators = (items.types.values())
+            .flat_map(|type_item| match type_item {
+                TypeItem::Enum(en) => Some(en.items.iter().map(|(name, item)| (*name, item))),
+                _ => None,
+            })
+            .flatten()
+            .collect();
+
+        let is_extension_provisional = (libraries.iter())
+            .flat_map(|lib| &lib.xml.extensions)
+            .map(|extension| (extension.name, extension.provisional))
+            .collect();
+
         Analysis {
             vk,
             video,
             result: AnalysisResult {
+                enumerators,
                 type_has_lifetime: lifetime_propagation::run(&items.types),
+                is_extension_provisional,
                 items,
             },
         }

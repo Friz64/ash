@@ -14,6 +14,12 @@ impl crate::vk::StructureType {
     pub const VIDEO_DECODE_H265_DPB_SLOT_INFO_KHR: Self = Self(1000187005);
 }
 ///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
+impl crate::vk::VideoCodecOperationFlagsKHR {
+    pub const DECODE_H265_KHR: Self = Self(
+        crate::vk::VideoCodecOperationFlagBitsKHR::DECODE_H265_KHR.0,
+    );
+}
+///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_H265_KHR: Self = Self(1 << 1);
 }

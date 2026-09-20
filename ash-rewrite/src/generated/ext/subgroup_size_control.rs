@@ -9,6 +9,15 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES;
 }
 ///Provided by [`ext::subgroup_size_control`](crate::ext::subgroup_size_control)
+impl crate::vk::PipelineShaderStageCreateFlags {
+    pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(
+        crate::vk::PipelineShaderStageCreateFlagBits::ALLOW_VARYING_SUBGROUP_SIZE_EXT.0,
+    );
+    pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self(
+        crate::vk::PipelineShaderStageCreateFlagBits::REQUIRE_FULL_SUBGROUPS_EXT.0,
+    );
+}
+///Provided by [`ext::subgroup_size_control`](crate::ext::subgroup_size_control)
 impl crate::vk::PipelineShaderStageCreateFlagBits {
     pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self::ALLOW_VARYING_SUBGROUP_SIZE;
     pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self::REQUIRE_FULL_SUBGROUPS;

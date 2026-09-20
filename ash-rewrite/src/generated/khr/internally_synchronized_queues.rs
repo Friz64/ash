@@ -9,6 +9,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
+impl crate::vk::DeviceQueueCreateFlags {
+    pub const INTERNALLY_SYNCHRONIZED_KHR: Self = Self(
+        crate::vk::DeviceQueueCreateFlagBits::INTERNALLY_SYNCHRONIZED_KHR.0,
+    );
+}
+///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
 impl crate::vk::DeviceQueueCreateFlagBits {
     pub const INTERNALLY_SYNCHRONIZED_KHR: Self = Self(1 << 2);
 }

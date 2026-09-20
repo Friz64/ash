@@ -18,37 +18,95 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::SamplerCreateFlags {
+    pub const SUBSAMPLED_EXT: Self = Self(
+        crate::vk::SamplerCreateFlagBits::SUBSAMPLED_EXT.0,
+    );
+    pub const SUBSAMPLED_COARSE_RECONSTRUCTION_EXT: Self = Self(
+        crate::vk::SamplerCreateFlagBits::SUBSAMPLED_COARSE_RECONSTRUCTION_EXT.0,
+    );
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
 impl crate::vk::SamplerCreateFlagBits {
     pub const SUBSAMPLED_EXT: Self = Self(1 << 0);
     pub const SUBSAMPLED_COARSE_RECONSTRUCTION_EXT: Self = Self(1 << 1);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::AccessFlags {
+    pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(
+        crate::vk::AccessFlagBits::FRAGMENT_DENSITY_MAP_READ_EXT.0,
+    );
 }
 ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
 impl crate::vk::AccessFlagBits {
     pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(1 << 24);
 }
 ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::ImageUsageFlags {
+    pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(
+        crate::vk::ImageUsageFlagBits::FRAGMENT_DENSITY_MAP_EXT.0,
+    );
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
 impl crate::vk::ImageUsageFlagBits {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 9);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::ImageCreateFlags {
+    pub const SUBSAMPLED_EXT: Self = Self(
+        crate::vk::ImageCreateFlagBits::SUBSAMPLED_EXT.0,
+    );
 }
 ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
 impl crate::vk::ImageCreateFlagBits {
     pub const SUBSAMPLED_EXT: Self = Self(1 << 14);
 }
 ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::ImageViewCreateFlags {
+    pub const FRAGMENT_DENSITY_MAP_DYNAMIC_EXT: Self = Self(
+        crate::vk::ImageViewCreateFlagBits::FRAGMENT_DENSITY_MAP_DYNAMIC_EXT.0,
+    );
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
 impl crate::vk::ImageViewCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_DYNAMIC_EXT: Self = Self(1 << 0);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::PipelineCreateFlags {
+    pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(
+        crate::vk::PipelineCreateFlagBits::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT
+            .0,
+    );
 }
 ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
 impl crate::vk::PipelineCreateFlagBits {
     pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 22);
 }
 ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::FormatFeatureFlags {
+    pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(
+        crate::vk::FormatFeatureFlagBits::FRAGMENT_DENSITY_MAP_EXT.0,
+    );
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
 impl crate::vk::FormatFeatureFlagBits {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 24);
 }
 ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::PipelineStageFlags {
+    pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(
+        crate::vk::PipelineStageFlagBits::FRAGMENT_DENSITY_PROCESS_EXT.0,
+    );
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
 impl crate::vk::PipelineStageFlagBits {
     pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(1 << 23);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::FRAGMENT_DENSITY_MAP_EXT.0,
+    );
 }
 ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
 impl crate::vk::FormatFeatureFlagBits2 {

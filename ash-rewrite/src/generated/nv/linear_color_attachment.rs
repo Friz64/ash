@@ -9,6 +9,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const LINEAR_COLOR_ATTACHMENT_NV: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::LINEAR_COLOR_ATTACHMENT_NV.0,
+    );
+}
+///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const LINEAR_COLOR_ATTACHMENT_NV: Self = Self(1 << 38);
 }

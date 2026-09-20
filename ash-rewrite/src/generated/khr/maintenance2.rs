@@ -25,6 +25,15 @@ impl crate::vk::TessellationDomainOrigin {
     pub const LOWER_LEFT_KHR: Self = Self::LOWER_LEFT;
 }
 ///Provided by [`khr::maintenance2`](crate::khr::maintenance2)
+impl crate::vk::ImageCreateFlags {
+    pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self(
+        crate::vk::ImageCreateFlagBits::BLOCK_TEXEL_VIEW_COMPATIBLE_KHR.0,
+    );
+    pub const EXTENDED_USAGE_KHR: Self = Self(
+        crate::vk::ImageCreateFlagBits::EXTENDED_USAGE_KHR.0,
+    );
+}
+///Provided by [`khr::maintenance2`](crate::khr::maintenance2)
 impl crate::vk::ImageCreateFlagBits {
     pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self::BLOCK_TEXEL_VIEW_COMPATIBLE;
     pub const EXTENDED_USAGE_KHR: Self = Self::EXTENDED_USAGE;

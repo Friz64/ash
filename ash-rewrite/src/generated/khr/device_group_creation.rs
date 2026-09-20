@@ -8,6 +8,12 @@ impl crate::vk::StructureType {
     pub const DEVICE_GROUP_DEVICE_CREATE_INFO_KHR: Self = Self::DEVICE_GROUP_DEVICE_CREATE_INFO;
 }
 ///Provided by [`khr::device_group_creation`](crate::khr::device_group_creation)
+impl crate::vk::MemoryHeapFlags {
+    pub const MULTI_INSTANCE_KHR: Self = Self(
+        crate::vk::MemoryHeapFlagBits::MULTI_INSTANCE_KHR.0,
+    );
+}
+///Provided by [`khr::device_group_creation`](crate::khr::device_group_creation)
 impl crate::vk::MemoryHeapFlagBits {
     pub const MULTI_INSTANCE_KHR: Self = Self::MULTI_INSTANCE;
 }

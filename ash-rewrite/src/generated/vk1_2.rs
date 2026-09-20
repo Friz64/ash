@@ -196,32 +196,79 @@ impl ShaderFloatControlsIndependence {
     pub const NONE: Self = Self(2);
 }
 ///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::FramebufferCreateFlags {
+    pub const IMAGELESS: Self = Self(crate::vk::FramebufferCreateFlagBits::IMAGELESS.0);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
 impl crate::vk::FramebufferCreateFlagBits {
     pub const IMAGELESS: Self = Self(1 << 0);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::DescriptorSetLayoutCreateFlags {
+    pub const UPDATE_AFTER_BIND_POOL: Self = Self(
+        crate::vk::DescriptorSetLayoutCreateFlagBits::UPDATE_AFTER_BIND_POOL.0,
+    );
 }
 ///Provided by [`vk1_2`](crate::vk1_2)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const UPDATE_AFTER_BIND_POOL: Self = Self(1 << 1);
 }
 ///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::BufferUsageFlags {
+    pub const SHADER_DEVICE_ADDRESS: Self = Self(
+        crate::vk::BufferUsageFlagBits::SHADER_DEVICE_ADDRESS.0,
+    );
+}
+///Provided by [`vk1_2`](crate::vk1_2)
 impl crate::vk::BufferUsageFlagBits {
     pub const SHADER_DEVICE_ADDRESS: Self = Self(1 << 17);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::BufferCreateFlags {
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(
+        crate::vk::BufferCreateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
+    );
 }
 ///Provided by [`vk1_2`](crate::vk1_2)
 impl crate::vk::BufferCreateFlagBits {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 4);
 }
 ///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::FormatFeatureFlags {
+    pub const SAMPLED_IMAGE_FILTER_MINMAX: Self = Self(
+        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_MINMAX.0,
+    );
+}
+///Provided by [`vk1_2`](crate::vk1_2)
 impl crate::vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_MINMAX: Self = Self(1 << 16);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::DescriptorPoolCreateFlags {
+    pub const UPDATE_AFTER_BIND: Self = Self(
+        crate::vk::DescriptorPoolCreateFlagBits::UPDATE_AFTER_BIND.0,
+    );
 }
 ///Provided by [`vk1_2`](crate::vk1_2)
 impl crate::vk::DescriptorPoolCreateFlagBits {
     pub const UPDATE_AFTER_BIND: Self = Self(1 << 1);
 }
 ///Provided by [`vk1_2`](crate::vk1_2)
+impl SemaphoreWaitFlags {
+    pub const ANY: Self = Self(SemaphoreWaitFlagBits::ANY.0);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
 impl SemaphoreWaitFlagBits {
     pub const ANY: Self = Self(1 << 0);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::MemoryAllocateFlags {
+    pub const DEVICE_ADDRESS: Self = Self(
+        crate::vk::MemoryAllocateFlagBits::DEVICE_ADDRESS.0,
+    );
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(
+        crate::vk::MemoryAllocateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
+    );
 }
 ///Provided by [`vk1_2`](crate::vk1_2)
 impl crate::vk::MemoryAllocateFlagBits {
@@ -229,11 +276,32 @@ impl crate::vk::MemoryAllocateFlagBits {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 2);
 }
 ///Provided by [`vk1_2`](crate::vk1_2)
+impl DescriptorBindingFlags {
+    pub const UPDATE_AFTER_BIND: Self = Self(
+        DescriptorBindingFlagBits::UPDATE_AFTER_BIND.0,
+    );
+    pub const UPDATE_UNUSED_WHILE_PENDING: Self = Self(
+        DescriptorBindingFlagBits::UPDATE_UNUSED_WHILE_PENDING.0,
+    );
+    pub const PARTIALLY_BOUND: Self = Self(DescriptorBindingFlagBits::PARTIALLY_BOUND.0);
+    pub const VARIABLE_DESCRIPTOR_COUNT: Self = Self(
+        DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT.0,
+    );
+}
+///Provided by [`vk1_2`](crate::vk1_2)
 impl DescriptorBindingFlagBits {
     pub const UPDATE_AFTER_BIND: Self = Self(1 << 0);
     pub const UPDATE_UNUSED_WHILE_PENDING: Self = Self(1 << 1);
     pub const PARTIALLY_BOUND: Self = Self(1 << 2);
     pub const VARIABLE_DESCRIPTOR_COUNT: Self = Self(1 << 3);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl ResolveModeFlags {
+    pub const NONE: Self = Self(ResolveModeFlagBits::NONE.0);
+    pub const SAMPLE_ZERO: Self = Self(ResolveModeFlagBits::SAMPLE_ZERO.0);
+    pub const AVERAGE: Self = Self(ResolveModeFlagBits::AVERAGE.0);
+    pub const MIN: Self = Self(ResolveModeFlagBits::MIN.0);
+    pub const MAX: Self = Self(ResolveModeFlagBits::MAX.0);
 }
 ///Provided by [`vk1_2`](crate::vk1_2)
 impl ResolveModeFlagBits {
@@ -4569,7 +4637,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct SemaphoreWaitFlags(u32);
+    pub struct SemaphoreWaitFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SemaphoreWaitFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4577,8 +4645,6 @@ pub(crate) mod items {
         }
     }
     impl SemaphoreWaitFlags {
-        pub const ANY: Self = Self(SemaphoreWaitFlagBits::ANY.0);
-        pub const ANY_KHR: Self = Self(SemaphoreWaitFlagBits::ANY_KHR.0);
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4654,7 +4720,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DescriptorBindingFlags(u32);
+    pub struct DescriptorBindingFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DescriptorBindingFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4671,30 +4737,6 @@ pub(crate) mod items {
         }
     }
     impl DescriptorBindingFlags {
-        pub const UPDATE_AFTER_BIND: Self = Self(
-            DescriptorBindingFlagBits::UPDATE_AFTER_BIND.0,
-        );
-        pub const UPDATE_UNUSED_WHILE_PENDING: Self = Self(
-            DescriptorBindingFlagBits::UPDATE_UNUSED_WHILE_PENDING.0,
-        );
-        pub const PARTIALLY_BOUND: Self = Self(
-            DescriptorBindingFlagBits::PARTIALLY_BOUND.0,
-        );
-        pub const VARIABLE_DESCRIPTOR_COUNT: Self = Self(
-            DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT.0,
-        );
-        pub const UPDATE_AFTER_BIND_EXT: Self = Self(
-            DescriptorBindingFlagBits::UPDATE_AFTER_BIND_EXT.0,
-        );
-        pub const UPDATE_UNUSED_WHILE_PENDING_EXT: Self = Self(
-            DescriptorBindingFlagBits::UPDATE_UNUSED_WHILE_PENDING_EXT.0,
-        );
-        pub const PARTIALLY_BOUND_EXT: Self = Self(
-            DescriptorBindingFlagBits::PARTIALLY_BOUND_EXT.0,
-        );
-        pub const VARIABLE_DESCRIPTOR_COUNT_EXT: Self = Self(
-            DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4770,7 +4812,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ResolveModeFlags(u32);
+    pub struct ResolveModeFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ResolveModeFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4793,20 +4835,6 @@ pub(crate) mod items {
         }
     }
     impl ResolveModeFlags {
-        pub const NONE: Self = Self(ResolveModeFlagBits::NONE.0);
-        pub const SAMPLE_ZERO: Self = Self(ResolveModeFlagBits::SAMPLE_ZERO.0);
-        pub const AVERAGE: Self = Self(ResolveModeFlagBits::AVERAGE.0);
-        pub const MIN: Self = Self(ResolveModeFlagBits::MIN.0);
-        pub const MAX: Self = Self(ResolveModeFlagBits::MAX.0);
-        pub const NONE_KHR: Self = Self(ResolveModeFlagBits::NONE_KHR.0);
-        pub const SAMPLE_ZERO_KHR: Self = Self(ResolveModeFlagBits::SAMPLE_ZERO_KHR.0);
-        pub const AVERAGE_KHR: Self = Self(ResolveModeFlagBits::AVERAGE_KHR.0);
-        pub const MIN_KHR: Self = Self(ResolveModeFlagBits::MIN_KHR.0);
-        pub const MAX_KHR: Self = Self(ResolveModeFlagBits::MAX_KHR.0);
-        pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(
-            ResolveModeFlagBits::EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID.0,
-        );
-        pub const CUSTOM_EXT: Self = Self(ResolveModeFlagBits::CUSTOM_EXT.0);
         pub const fn empty() -> Self {
             Self(0)
         }

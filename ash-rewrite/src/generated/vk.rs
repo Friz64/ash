@@ -503,8 +503,11 @@ pub use super::khr::robustness2::items::*;
 pub use super::khr::workgroup_memory_explicit_layout::SPEC_VERSION as KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_SPEC_VERSION;
 pub use super::khr::workgroup_memory_explicit_layout::NAME as KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_NAME;
 pub use super::khr::workgroup_memory_explicit_layout::items::*;
+#[cfg(feature = "provisional")]
 pub use super::khr::portability_subset::SPEC_VERSION as KHR_PORTABILITY_SUBSET_SPEC_VERSION;
+#[cfg(feature = "provisional")]
 pub use super::khr::portability_subset::NAME as KHR_PORTABILITY_SUBSET_NAME;
+#[cfg(feature = "provisional")]
 pub use super::khr::portability_subset::items::*;
 pub use super::ext::_4444_formats::SPEC_VERSION as EXT_4444_FORMATS_SPEC_VERSION;
 pub use super::ext::_4444_formats::NAME as EXT_4444_FORMATS_NAME;
@@ -647,8 +650,11 @@ pub use super::nv::ray_tracing_validation::items::*;
 pub use super::fuchsia::buffer_collection::SPEC_VERSION as FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION;
 pub use super::fuchsia::buffer_collection::NAME as FUCHSIA_BUFFER_COLLECTION_NAME;
 pub use super::fuchsia::buffer_collection::items::*;
+#[cfg(feature = "provisional")]
 pub use super::nv::cuda_kernel_launch::SPEC_VERSION as NV_CUDA_KERNEL_LAUNCH_SPEC_VERSION;
+#[cfg(feature = "provisional")]
 pub use super::nv::cuda_kernel_launch::NAME as NV_CUDA_KERNEL_LAUNCH_NAME;
+#[cfg(feature = "provisional")]
 pub use super::nv::cuda_kernel_launch::items::*;
 pub use super::ext::rgba10x6_formats::SPEC_VERSION as EXT_RGBA10X6_FORMATS_SPEC_VERSION;
 pub use super::ext::rgba10x6_formats::NAME as EXT_RGBA10X6_FORMATS_NAME;
@@ -698,8 +704,11 @@ pub use super::ext::opacity_micromap::items::*;
 pub use super::khr::opacity_micromap::SPEC_VERSION as KHR_OPACITY_MICROMAP_SPEC_VERSION;
 pub use super::khr::opacity_micromap::NAME as KHR_OPACITY_MICROMAP_NAME;
 pub use super::khr::opacity_micromap::items::*;
+#[cfg(feature = "provisional")]
 pub use super::nv::displacement_micromap::SPEC_VERSION as NV_DISPLACEMENT_MICROMAP_SPEC_VERSION;
+#[cfg(feature = "provisional")]
 pub use super::nv::displacement_micromap::NAME as NV_DISPLACEMENT_MICROMAP_NAME;
+#[cfg(feature = "provisional")]
 pub use super::nv::displacement_micromap::items::*;
 pub use super::ext::pipeline_properties::SPEC_VERSION as EXT_PIPELINE_PROPERTIES_SPEC_VERSION;
 pub use super::ext::pipeline_properties::NAME as EXT_PIPELINE_PROPERTIES_NAME;
@@ -818,8 +827,11 @@ pub use super::ext::cooperative_matrix_maintenance1::items::*;
 pub use super::qcom::cooperative_matrix_conversion::SPEC_VERSION as QCOM_COOPERATIVE_MATRIX_CONVERSION_SPEC_VERSION;
 pub use super::qcom::cooperative_matrix_conversion::NAME as QCOM_COOPERATIVE_MATRIX_CONVERSION_NAME;
 pub use super::qcom::cooperative_matrix_conversion::items::*;
+#[cfg(feature = "provisional")]
 pub use super::amdx::shader_enqueue::SPEC_VERSION as AMDX_SHADER_ENQUEUE_SPEC_VERSION;
+#[cfg(feature = "provisional")]
 pub use super::amdx::shader_enqueue::NAME as AMDX_SHADER_ENQUEUE_NAME;
+#[cfg(feature = "provisional")]
 pub use super::amdx::shader_enqueue::items::*;
 pub use super::amd::anti_lag::SPEC_VERSION as AMD_ANTI_LAG_SPEC_VERSION;
 pub use super::amd::anti_lag::NAME as AMD_ANTI_LAG_NAME;
@@ -908,8 +920,11 @@ pub use super::nv::cooperative_matrix_decode_vector::items::*;
 pub use super::ext::vertex_attribute_robustness::SPEC_VERSION as EXT_VERTEX_ATTRIBUTE_ROBUSTNESS_SPEC_VERSION;
 pub use super::ext::vertex_attribute_robustness::NAME as EXT_VERTEX_ATTRIBUTE_ROBUSTNESS_NAME;
 pub use super::ext::vertex_attribute_robustness::items::*;
+#[cfg(feature = "provisional")]
 pub use super::amdx::dense_geometry_format::SPEC_VERSION as AMDX_DENSE_GEOMETRY_FORMAT_SPEC_VERSION;
+#[cfg(feature = "provisional")]
 pub use super::amdx::dense_geometry_format::NAME as AMDX_DENSE_GEOMETRY_FORMAT_NAME;
+#[cfg(feature = "provisional")]
 pub use super::amdx::dense_geometry_format::items::*;
 pub use super::khr::depth_clamp_zero_one::SPEC_VERSION as KHR_DEPTH_CLAMP_ZERO_ONE_SPEC_VERSION;
 pub use super::khr::depth_clamp_zero_one::NAME as KHR_DEPTH_CLAMP_ZERO_ONE_NAME;

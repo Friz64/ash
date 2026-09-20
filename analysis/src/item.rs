@@ -9,7 +9,7 @@ pub mod handle;
 pub mod structure;
 
 use crate::{
-    Library, LibraryName,
+    AnalysisResult, Library, LibraryName,
     item::{
         alias::{CommandAlias, TypeAlias},
         basetype::BaseType,
@@ -57,6 +57,16 @@ impl RequiredBy {
 pub enum RequireLocation {
     Core { major: u32, minor: u32 },
     Extension { name: ExtensionName },
+}
+
+impl RequireLocation {
+    pub fn is_provisional(&self, analysis_result: &AnalysisResult) -> bool {
+        matches!(
+            self,
+            RequireLocation::Extension { name }
+                if analysis_result.is_extension_provisional(*name)
+        )
+    }
 }
 
 impl Default for RequireLocation {

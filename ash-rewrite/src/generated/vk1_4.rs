@@ -151,12 +151,31 @@ impl PipelineRobustnessImageBehavior {
     pub const ROBUST_IMAGE_ACCESS_2: Self = Self(3);
 }
 ///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::DescriptorSetLayoutCreateFlags {
+    pub const PUSH_DESCRIPTOR: Self = Self(
+        crate::vk::DescriptorSetLayoutCreateFlagBits::PUSH_DESCRIPTOR.0,
+    );
+}
+///Provided by [`vk1_4`](crate::vk1_4)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const PUSH_DESCRIPTOR: Self = Self(1 << 0);
 }
 ///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::ImageUsageFlags {
+    pub const HOST_TRANSFER: Self = Self(crate::vk::ImageUsageFlagBits::HOST_TRANSFER.0);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
 impl crate::vk::ImageUsageFlagBits {
     pub const HOST_TRANSFER: Self = Self(1 << 22);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::PipelineCreateFlags {
+    pub const NO_PROTECTED_ACCESS: Self = Self(
+        crate::vk::PipelineCreateFlagBits::NO_PROTECTED_ACCESS.0,
+    );
+    pub const PROTECTED_ACCESS_ONLY: Self = Self(
+        crate::vk::PipelineCreateFlagBits::PROTECTED_ACCESS_ONLY.0,
+    );
 }
 ///Provided by [`vk1_4`](crate::vk1_4)
 impl crate::vk::PipelineCreateFlagBits {
@@ -164,13 +183,52 @@ impl crate::vk::PipelineCreateFlagBits {
     pub const PROTECTED_ACCESS_ONLY: Self = Self(1 << 30);
 }
 ///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::SubgroupFeatureFlags {
+    pub const ROTATE: Self = Self(crate::vk::SubgroupFeatureFlagBits::ROTATE.0);
+    pub const ROTATE_CLUSTERED: Self = Self(
+        crate::vk::SubgroupFeatureFlagBits::ROTATE_CLUSTERED.0,
+    );
+}
+///Provided by [`vk1_4`](crate::vk1_4)
 impl crate::vk::SubgroupFeatureFlagBits {
     pub const ROTATE: Self = Self(1 << 9);
     pub const ROTATE_CLUSTERED: Self = Self(1 << 10);
 }
 ///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::FormatFeatureFlags2 {
+    pub const HOST_IMAGE_TRANSFER: Self = Self(
+        crate::vk::FormatFeatureFlagBits2::HOST_IMAGE_TRANSFER.0,
+    );
+}
+///Provided by [`vk1_4`](crate::vk1_4)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const HOST_IMAGE_TRANSFER: Self = Self(1 << 46);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl PipelineCreateFlags2 {
+    pub const DISABLE_OPTIMIZATION: Self = Self(
+        PipelineCreateFlagBits2::DISABLE_OPTIMIZATION.0,
+    );
+    pub const ALLOW_DERIVATIVES: Self = Self(
+        PipelineCreateFlagBits2::ALLOW_DERIVATIVES.0,
+    );
+    pub const DERIVATIVE: Self = Self(PipelineCreateFlagBits2::DERIVATIVE.0);
+    pub const VIEW_INDEX_FROM_DEVICE_INDEX: Self = Self(
+        PipelineCreateFlagBits2::VIEW_INDEX_FROM_DEVICE_INDEX.0,
+    );
+    pub const DISPATCH_BASE: Self = Self(PipelineCreateFlagBits2::DISPATCH_BASE.0);
+    pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED: Self = Self(
+        PipelineCreateFlagBits2::FAIL_ON_PIPELINE_COMPILE_REQUIRED.0,
+    );
+    pub const EARLY_RETURN_ON_FAILURE: Self = Self(
+        PipelineCreateFlagBits2::EARLY_RETURN_ON_FAILURE.0,
+    );
+    pub const NO_PROTECTED_ACCESS: Self = Self(
+        PipelineCreateFlagBits2::NO_PROTECTED_ACCESS.0,
+    );
+    pub const PROTECTED_ACCESS_ONLY: Self = Self(
+        PipelineCreateFlagBits2::PROTECTED_ACCESS_ONLY.0,
+    );
 }
 ///Provided by [`vk1_4`](crate::vk1_4)
 impl PipelineCreateFlagBits2 {
@@ -185,6 +243,25 @@ impl PipelineCreateFlagBits2 {
     pub const PROTECTED_ACCESS_ONLY: Self = Self(1 << 30);
 }
 ///Provided by [`vk1_4`](crate::vk1_4)
+impl BufferUsageFlags2 {
+    pub const TRANSFER_SRC: Self = Self(BufferUsageFlagBits2::TRANSFER_SRC.0);
+    pub const TRANSFER_DST: Self = Self(BufferUsageFlagBits2::TRANSFER_DST.0);
+    pub const UNIFORM_TEXEL_BUFFER: Self = Self(
+        BufferUsageFlagBits2::UNIFORM_TEXEL_BUFFER.0,
+    );
+    pub const STORAGE_TEXEL_BUFFER: Self = Self(
+        BufferUsageFlagBits2::STORAGE_TEXEL_BUFFER.0,
+    );
+    pub const UNIFORM_BUFFER: Self = Self(BufferUsageFlagBits2::UNIFORM_BUFFER.0);
+    pub const STORAGE_BUFFER: Self = Self(BufferUsageFlagBits2::STORAGE_BUFFER.0);
+    pub const INDEX_BUFFER: Self = Self(BufferUsageFlagBits2::INDEX_BUFFER.0);
+    pub const VERTEX_BUFFER: Self = Self(BufferUsageFlagBits2::VERTEX_BUFFER.0);
+    pub const INDIRECT_BUFFER: Self = Self(BufferUsageFlagBits2::INDIRECT_BUFFER.0);
+    pub const SHADER_DEVICE_ADDRESS: Self = Self(
+        BufferUsageFlagBits2::SHADER_DEVICE_ADDRESS.0,
+    );
+}
+///Provided by [`vk1_4`](crate::vk1_4)
 impl BufferUsageFlagBits2 {
     pub const TRANSFER_SRC: Self = Self(1 << 0);
     pub const TRANSFER_DST: Self = Self(1 << 1);
@@ -196,6 +273,10 @@ impl BufferUsageFlagBits2 {
     pub const VERTEX_BUFFER: Self = Self(1 << 7);
     pub const INDIRECT_BUFFER: Self = Self(1 << 8);
     pub const SHADER_DEVICE_ADDRESS: Self = Self(1 << 17);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl HostImageCopyFlags {
+    pub const MEMCPY: Self = Self(HostImageCopyFlagBits::MEMCPY.0);
 }
 ///Provided by [`vk1_4`](crate::vk1_4)
 impl HostImageCopyFlagBits {
@@ -3214,7 +3295,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct MemoryUnmapFlags(u32);
+    pub struct MemoryUnmapFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for MemoryUnmapFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -3222,7 +3303,6 @@ pub(crate) mod items {
         }
     }
     impl MemoryUnmapFlags {
-        pub const RESERVE_EXT: Self = Self(MemoryUnmapFlagBits::RESERVE_EXT.0);
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -3298,7 +3378,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PipelineCreateFlags2(u64);
+    pub struct PipelineCreateFlags2(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineCreateFlags2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -3320,6 +3400,7 @@ pub(crate) mod items {
                     (Self::EARLY_RETURN_ON_FAILURE.0, "EARLY_RETURN_ON_FAILURE"),
                     (Self::NO_PROTECTED_ACCESS.0, "NO_PROTECTED_ACCESS"),
                     (Self::PROTECTED_ACCESS_ONLY.0, "PROTECTED_ACCESS_ONLY"),
+                    #[cfg(feature = "provisional")]
                     (Self::EXECUTION_GRAPH_AMDX.0, "EXECUTION_GRAPH_AMDX"),
                     (Self::DESCRIPTOR_HEAP_EXT.0, "DESCRIPTOR_HEAP_EXT"),
                     (
@@ -3413,158 +3494,6 @@ pub(crate) mod items {
         }
     }
     impl PipelineCreateFlags2 {
-        pub const DISABLE_OPTIMIZATION: Self = Self(
-            PipelineCreateFlagBits2::DISABLE_OPTIMIZATION.0,
-        );
-        pub const ALLOW_DERIVATIVES: Self = Self(
-            PipelineCreateFlagBits2::ALLOW_DERIVATIVES.0,
-        );
-        pub const DERIVATIVE: Self = Self(PipelineCreateFlagBits2::DERIVATIVE.0);
-        pub const VIEW_INDEX_FROM_DEVICE_INDEX: Self = Self(
-            PipelineCreateFlagBits2::VIEW_INDEX_FROM_DEVICE_INDEX.0,
-        );
-        pub const DISPATCH_BASE: Self = Self(PipelineCreateFlagBits2::DISPATCH_BASE.0);
-        pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED: Self = Self(
-            PipelineCreateFlagBits2::FAIL_ON_PIPELINE_COMPILE_REQUIRED.0,
-        );
-        pub const EARLY_RETURN_ON_FAILURE: Self = Self(
-            PipelineCreateFlagBits2::EARLY_RETURN_ON_FAILURE.0,
-        );
-        pub const NO_PROTECTED_ACCESS: Self = Self(
-            PipelineCreateFlagBits2::NO_PROTECTED_ACCESS.0,
-        );
-        pub const PROTECTED_ACCESS_ONLY: Self = Self(
-            PipelineCreateFlagBits2::PROTECTED_ACCESS_ONLY.0,
-        );
-        pub const EXECUTION_GRAPH_AMDX: Self = Self(
-            PipelineCreateFlagBits2::EXECUTION_GRAPH_AMDX.0,
-        );
-        pub const DESCRIPTOR_HEAP_EXT: Self = Self(
-            PipelineCreateFlagBits2::DESCRIPTOR_HEAP_EXT.0,
-        );
-        pub const RAY_TRACING_SKIP_BUILT_IN_PRIMITIVES_KHR: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_SKIP_BUILT_IN_PRIMITIVES_KHR.0,
-        );
-        pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_OPACITY_MICROMAP_EXT.0,
-        );
-        pub const RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV
-                .0,
-        );
-        pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(
-            PipelineCreateFlagBits2::ENABLE_LEGACY_DITHERING_EXT.0,
-        );
-        pub const DISABLE_OPTIMIZATION_KHR: Self = Self(
-            PipelineCreateFlagBits2::DISABLE_OPTIMIZATION_KHR.0,
-        );
-        pub const ALLOW_DERIVATIVES_KHR: Self = Self(
-            PipelineCreateFlagBits2::ALLOW_DERIVATIVES_KHR.0,
-        );
-        pub const DERIVATIVE_KHR: Self = Self(PipelineCreateFlagBits2::DERIVATIVE_KHR.0);
-        pub const VIEW_INDEX_FROM_DEVICE_INDEX_KHR: Self = Self(
-            PipelineCreateFlagBits2::VIEW_INDEX_FROM_DEVICE_INDEX_KHR.0,
-        );
-        pub const DISPATCH_BASE_KHR: Self = Self(
-            PipelineCreateFlagBits2::DISPATCH_BASE_KHR.0,
-        );
-        pub const DEFER_COMPILE_NV: Self = Self(
-            PipelineCreateFlagBits2::DEFER_COMPILE_NV.0,
-        );
-        pub const CAPTURE_STATISTICS_KHR: Self = Self(
-            PipelineCreateFlagBits2::CAPTURE_STATISTICS_KHR.0,
-        );
-        pub const CAPTURE_INTERNAL_REPRESENTATIONS_KHR: Self = Self(
-            PipelineCreateFlagBits2::CAPTURE_INTERNAL_REPRESENTATIONS_KHR.0,
-        );
-        pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED_KHR: Self = Self(
-            PipelineCreateFlagBits2::FAIL_ON_PIPELINE_COMPILE_REQUIRED_KHR.0,
-        );
-        pub const EARLY_RETURN_ON_FAILURE_KHR: Self = Self(
-            PipelineCreateFlagBits2::EARLY_RETURN_ON_FAILURE_KHR.0,
-        );
-        pub const LINK_TIME_OPTIMIZATION_EXT: Self = Self(
-            PipelineCreateFlagBits2::LINK_TIME_OPTIMIZATION_EXT.0,
-        );
-        pub const RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT: Self = Self(
-            PipelineCreateFlagBits2::RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT.0,
-        );
-        pub const LIBRARY_KHR: Self = Self(PipelineCreateFlagBits2::LIBRARY_KHR.0);
-        pub const RAY_TRACING_SKIP_TRIANGLES_KHR: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_SKIP_TRIANGLES_KHR.0,
-        );
-        pub const RAY_TRACING_SKIP_AABBS_KHR: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_SKIP_AABBS_KHR.0,
-        );
-        pub const RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR.0,
-        );
-        pub const RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR.0,
-        );
-        pub const RAY_TRACING_NO_NULL_MISS_SHADERS_KHR: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_NO_NULL_MISS_SHADERS_KHR.0,
-        );
-        pub const RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR.0,
-        );
-        pub const RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR.0,
-        );
-        pub const INDIRECT_BINDABLE_NV: Self = Self(
-            PipelineCreateFlagBits2::INDIRECT_BINDABLE_NV.0,
-        );
-        pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_ALLOW_MOTION_NV.0,
-        );
-        pub const RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
-            PipelineCreateFlagBits2::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
-        );
-        pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(
-            PipelineCreateFlagBits2::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0,
-        );
-        pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
-            PipelineCreateFlagBits2::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
-        );
-        pub const DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
-            PipelineCreateFlagBits2::DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
-        );
-        pub const NO_PROTECTED_ACCESS_EXT: Self = Self(
-            PipelineCreateFlagBits2::NO_PROTECTED_ACCESS_EXT.0,
-        );
-        pub const PROTECTED_ACCESS_ONLY_EXT: Self = Self(
-            PipelineCreateFlagBits2::PROTECTED_ACCESS_ONLY_EXT.0,
-        );
-        pub const RAY_TRACING_DISPLACEMENT_MICROMAP_NV: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_DISPLACEMENT_MICROMAP_NV.0,
-        );
-        pub const DESCRIPTOR_BUFFER_EXT: Self = Self(
-            PipelineCreateFlagBits2::DESCRIPTOR_BUFFER_EXT.0,
-        );
-        pub const DISALLOW_OPACITY_MICROMAP_ARM: Self = Self(
-            PipelineCreateFlagBits2::DISALLOW_OPACITY_MICROMAP_ARM.0,
-        );
-        pub const INSTRUMENT_SHADERS_ARM: Self = Self(
-            PipelineCreateFlagBits2::INSTRUMENT_SHADERS_ARM.0,
-        );
-        pub const CAPTURE_DATA_KHR: Self = Self(
-            PipelineCreateFlagBits2::CAPTURE_DATA_KHR.0,
-        );
-        pub const INDIRECT_BINDABLE_EXT: Self = Self(
-            PipelineCreateFlagBits2::INDIRECT_BINDABLE_EXT.0,
-        );
-        pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(
-            PipelineCreateFlagBits2::PER_LAYER_FRAGMENT_DENSITY_VALVE.0,
-        );
-        pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_OPACITY_MICROMAP_KHR.0,
-        );
-        pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR: Self = Self(
-            PipelineCreateFlagBits2::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR.0,
-        );
-        pub const _64_INDEXING_EXT: Self = Self(
-            PipelineCreateFlagBits2::_64_INDEXING_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -3640,7 +3569,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct BufferUsageFlags2(u64);
+    pub struct BufferUsageFlags2(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for BufferUsageFlags2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -3657,6 +3586,7 @@ pub(crate) mod items {
                     (Self::VERTEX_BUFFER.0, "VERTEX_BUFFER"),
                     (Self::INDIRECT_BUFFER.0, "INDIRECT_BUFFER"),
                     (Self::SHADER_DEVICE_ADDRESS.0, "SHADER_DEVICE_ADDRESS"),
+                    #[cfg(feature = "provisional")]
                     (
                         Self::EXECUTION_GRAPH_SCRATCH_AMDX.0,
                         "EXECUTION_GRAPH_SCRATCH_AMDX",
@@ -3701,6 +3631,7 @@ pub(crate) mod items {
                         Self::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT.0,
                         "PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT",
                     ),
+                    #[cfg(feature = "provisional")]
                     (Self::COMPRESSED_DATA_DGF1_AMDX.0, "COMPRESSED_DATA_DGF1_AMDX"),
                     (
                         Self::DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM.0,
@@ -3715,119 +3646,6 @@ pub(crate) mod items {
         }
     }
     impl BufferUsageFlags2 {
-        pub const TRANSFER_SRC: Self = Self(BufferUsageFlagBits2::TRANSFER_SRC.0);
-        pub const TRANSFER_DST: Self = Self(BufferUsageFlagBits2::TRANSFER_DST.0);
-        pub const UNIFORM_TEXEL_BUFFER: Self = Self(
-            BufferUsageFlagBits2::UNIFORM_TEXEL_BUFFER.0,
-        );
-        pub const STORAGE_TEXEL_BUFFER: Self = Self(
-            BufferUsageFlagBits2::STORAGE_TEXEL_BUFFER.0,
-        );
-        pub const UNIFORM_BUFFER: Self = Self(BufferUsageFlagBits2::UNIFORM_BUFFER.0);
-        pub const STORAGE_BUFFER: Self = Self(BufferUsageFlagBits2::STORAGE_BUFFER.0);
-        pub const INDEX_BUFFER: Self = Self(BufferUsageFlagBits2::INDEX_BUFFER.0);
-        pub const VERTEX_BUFFER: Self = Self(BufferUsageFlagBits2::VERTEX_BUFFER.0);
-        pub const INDIRECT_BUFFER: Self = Self(BufferUsageFlagBits2::INDIRECT_BUFFER.0);
-        pub const SHADER_DEVICE_ADDRESS: Self = Self(
-            BufferUsageFlagBits2::SHADER_DEVICE_ADDRESS.0,
-        );
-        pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(
-            BufferUsageFlagBits2::EXECUTION_GRAPH_SCRATCH_AMDX.0,
-        );
-        pub const DESCRIPTOR_HEAP_EXT: Self = Self(
-            BufferUsageFlagBits2::DESCRIPTOR_HEAP_EXT.0,
-        );
-        pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(
-            BufferUsageFlagBits2::MICROMAP_BUILD_INPUT_READ_ONLY_EXT.0,
-        );
-        pub const MICROMAP_STORAGE_EXT: Self = Self(
-            BufferUsageFlagBits2::MICROMAP_STORAGE_EXT.0,
-        );
-        pub const TRANSFER_SRC_KHR: Self = Self(
-            BufferUsageFlagBits2::TRANSFER_SRC_KHR.0,
-        );
-        pub const TRANSFER_DST_KHR: Self = Self(
-            BufferUsageFlagBits2::TRANSFER_DST_KHR.0,
-        );
-        pub const UNIFORM_TEXEL_BUFFER_KHR: Self = Self(
-            BufferUsageFlagBits2::UNIFORM_TEXEL_BUFFER_KHR.0,
-        );
-        pub const STORAGE_TEXEL_BUFFER_KHR: Self = Self(
-            BufferUsageFlagBits2::STORAGE_TEXEL_BUFFER_KHR.0,
-        );
-        pub const UNIFORM_BUFFER_KHR: Self = Self(
-            BufferUsageFlagBits2::UNIFORM_BUFFER_KHR.0,
-        );
-        pub const STORAGE_BUFFER_KHR: Self = Self(
-            BufferUsageFlagBits2::STORAGE_BUFFER_KHR.0,
-        );
-        pub const INDEX_BUFFER_KHR: Self = Self(
-            BufferUsageFlagBits2::INDEX_BUFFER_KHR.0,
-        );
-        pub const VERTEX_BUFFER_KHR: Self = Self(
-            BufferUsageFlagBits2::VERTEX_BUFFER_KHR.0,
-        );
-        pub const INDIRECT_BUFFER_KHR: Self = Self(
-            BufferUsageFlagBits2::INDIRECT_BUFFER_KHR.0,
-        );
-        pub const CONDITIONAL_RENDERING_EXT: Self = Self(
-            BufferUsageFlagBits2::CONDITIONAL_RENDERING_EXT.0,
-        );
-        pub const SHADER_BINDING_TABLE_KHR: Self = Self(
-            BufferUsageFlagBits2::SHADER_BINDING_TABLE_KHR.0,
-        );
-        pub const RAY_TRACING_NV: Self = Self(BufferUsageFlagBits2::RAY_TRACING_NV.0);
-        pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(
-            BufferUsageFlagBits2::TRANSFORM_FEEDBACK_BUFFER_EXT.0,
-        );
-        pub const TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT: Self = Self(
-            BufferUsageFlagBits2::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT.0,
-        );
-        pub const VIDEO_DECODE_SRC_KHR: Self = Self(
-            BufferUsageFlagBits2::VIDEO_DECODE_SRC_KHR.0,
-        );
-        pub const VIDEO_DECODE_DST_KHR: Self = Self(
-            BufferUsageFlagBits2::VIDEO_DECODE_DST_KHR.0,
-        );
-        pub const VIDEO_ENCODE_DST_KHR: Self = Self(
-            BufferUsageFlagBits2::VIDEO_ENCODE_DST_KHR.0,
-        );
-        pub const VIDEO_ENCODE_SRC_KHR: Self = Self(
-            BufferUsageFlagBits2::VIDEO_ENCODE_SRC_KHR.0,
-        );
-        pub const SHADER_DEVICE_ADDRESS_KHR: Self = Self(
-            BufferUsageFlagBits2::SHADER_DEVICE_ADDRESS_KHR.0,
-        );
-        pub const ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR: Self = Self(
-            BufferUsageFlagBits2::ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR.0,
-        );
-        pub const ACCELERATION_STRUCTURE_STORAGE_KHR: Self = Self(
-            BufferUsageFlagBits2::ACCELERATION_STRUCTURE_STORAGE_KHR.0,
-        );
-        pub const SAMPLER_DESCRIPTOR_BUFFER_EXT: Self = Self(
-            BufferUsageFlagBits2::SAMPLER_DESCRIPTOR_BUFFER_EXT.0,
-        );
-        pub const RESOURCE_DESCRIPTOR_BUFFER_EXT: Self = Self(
-            BufferUsageFlagBits2::RESOURCE_DESCRIPTOR_BUFFER_EXT.0,
-        );
-        pub const PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT: Self = Self(
-            BufferUsageFlagBits2::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT.0,
-        );
-        pub const COMPRESSED_DATA_DGF1_AMDX: Self = Self(
-            BufferUsageFlagBits2::COMPRESSED_DATA_DGF1_AMDX.0,
-        );
-        pub const DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM: Self = Self(
-            BufferUsageFlagBits2::DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM.0,
-        );
-        pub const TILE_MEMORY_QCOM: Self = Self(
-            BufferUsageFlagBits2::TILE_MEMORY_QCOM.0,
-        );
-        pub const MEMORY_DECOMPRESSION_EXT: Self = Self(
-            BufferUsageFlagBits2::MEMORY_DECOMPRESSION_EXT.0,
-        );
-        pub const PREPROCESS_BUFFER_EXT: Self = Self(
-            BufferUsageFlagBits2::PREPROCESS_BUFFER_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -3903,7 +3721,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct HostImageCopyFlags(u32);
+    pub struct HostImageCopyFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for HostImageCopyFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -3911,8 +3729,6 @@ pub(crate) mod items {
         }
     }
     impl HostImageCopyFlags {
-        pub const MEMCPY: Self = Self(HostImageCopyFlagBits::MEMCPY.0);
-        pub const MEMCPY_EXT: Self = Self(HostImageCopyFlagBits::MEMCPY_EXT.0);
         pub const fn empty() -> Self {
             Self(0)
         }

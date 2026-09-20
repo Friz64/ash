@@ -16,8 +16,20 @@ impl crate::vk::Result {
     pub const ERROR_INVALID_DEVICE_ADDRESS_EXT: Self = Self::ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS;
 }
 ///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+impl crate::vk::BufferUsageFlags {
+    pub const SHADER_DEVICE_ADDRESS_EXT: Self = Self(
+        crate::vk::BufferUsageFlagBits::SHADER_DEVICE_ADDRESS_EXT.0,
+    );
+}
+///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
 impl crate::vk::BufferUsageFlagBits {
     pub const SHADER_DEVICE_ADDRESS_EXT: Self = Self::SHADER_DEVICE_ADDRESS;
+}
+///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+impl crate::vk::BufferCreateFlags {
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self(
+        crate::vk::BufferCreateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY_EXT.0,
+    );
 }
 ///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
 impl crate::vk::BufferCreateFlagBits {

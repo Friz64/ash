@@ -13,6 +13,74 @@ impl crate::vk::StructureType {
     pub const SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR: Self = Self(1000668006);
 }
 ///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
+impl ImageUsageFlags2KHR {
+    pub const TRANSFER_SRC_KHR: Self = Self(ImageUsageFlagBits2KHR::TRANSFER_SRC_KHR.0);
+    pub const TRANSFER_DST_KHR: Self = Self(ImageUsageFlagBits2KHR::TRANSFER_DST_KHR.0);
+    pub const SAMPLED_KHR: Self = Self(ImageUsageFlagBits2KHR::SAMPLED_KHR.0);
+    pub const STORAGE_KHR: Self = Self(ImageUsageFlagBits2KHR::STORAGE_KHR.0);
+    pub const COLOR_ATTACHMENT_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::COLOR_ATTACHMENT_KHR.0,
+    );
+    pub const DEPTH_STENCIL_ATTACHMENT_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::DEPTH_STENCIL_ATTACHMENT_KHR.0,
+    );
+    pub const TRANSIENT_ATTACHMENT_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::TRANSIENT_ATTACHMENT_KHR.0,
+    );
+    pub const INPUT_ATTACHMENT_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::INPUT_ATTACHMENT_KHR.0,
+    );
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
+    );
+    pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(
+        ImageUsageFlagBits2KHR::FRAGMENT_DENSITY_MAP_EXT.0,
+    );
+    pub const VIDEO_DECODE_DST_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::VIDEO_DECODE_DST_KHR.0,
+    );
+    pub const VIDEO_DECODE_SRC_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::VIDEO_DECODE_SRC_KHR.0,
+    );
+    pub const VIDEO_DECODE_DPB_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::VIDEO_DECODE_DPB_KHR.0,
+    );
+    pub const VIDEO_ENCODE_DST_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::VIDEO_ENCODE_DST_KHR.0,
+    );
+    pub const VIDEO_ENCODE_SRC_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::VIDEO_ENCODE_SRC_KHR.0,
+    );
+    pub const VIDEO_ENCODE_DPB_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::VIDEO_ENCODE_DPB_KHR.0,
+    );
+    pub const INVOCATION_MASK_HUAWEI: Self = Self(
+        ImageUsageFlagBits2KHR::INVOCATION_MASK_HUAWEI.0,
+    );
+    pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
+        ImageUsageFlagBits2KHR::ATTACHMENT_FEEDBACK_LOOP_EXT.0,
+    );
+    pub const SAMPLE_WEIGHT_QCOM: Self = Self(
+        ImageUsageFlagBits2KHR::SAMPLE_WEIGHT_QCOM.0,
+    );
+    pub const SAMPLE_BLOCK_MATCH_QCOM: Self = Self(
+        ImageUsageFlagBits2KHR::SAMPLE_BLOCK_MATCH_QCOM.0,
+    );
+    pub const HOST_TRANSFER_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::HOST_TRANSFER_KHR.0,
+    );
+    pub const TENSOR_ALIASING_ARM: Self = Self(
+        ImageUsageFlagBits2KHR::TENSOR_ALIASING_ARM.0,
+    );
+    pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0,
+    );
+    pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(
+        ImageUsageFlagBits2KHR::VIDEO_ENCODE_EMPHASIS_MAP_KHR.0,
+    );
+    pub const TILE_MEMORY_QCOM: Self = Self(ImageUsageFlagBits2KHR::TILE_MEMORY_QCOM.0);
+}
+///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
 impl ImageUsageFlagBits2KHR {
     pub const TRANSFER_SRC_KHR: Self = Self(1 << 0);
     pub const TRANSFER_DST_KHR: Self = Self(1 << 1);
@@ -39,6 +107,61 @@ impl ImageUsageFlagBits2KHR {
     pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 25);
     pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 26);
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
+}
+///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
+impl ImageCreateFlags2KHR {
+    pub const SPARSE_BINDING_KHR: Self = Self(
+        ImageCreateFlagBits2KHR::SPARSE_BINDING_KHR.0,
+    );
+    pub const SPARSE_RESIDENCY_KHR: Self = Self(
+        ImageCreateFlagBits2KHR::SPARSE_RESIDENCY_KHR.0,
+    );
+    pub const SPARSE_ALIASED_KHR: Self = Self(
+        ImageCreateFlagBits2KHR::SPARSE_ALIASED_KHR.0,
+    );
+    pub const MUTABLE_FORMAT_KHR: Self = Self(
+        ImageCreateFlagBits2KHR::MUTABLE_FORMAT_KHR.0,
+    );
+    pub const CUBE_COMPATIBLE_KHR: Self = Self(
+        ImageCreateFlagBits2KHR::CUBE_COMPATIBLE_KHR.0,
+    );
+    pub const _2D_ARRAY_COMPATIBLE_KHR: Self = Self(
+        ImageCreateFlagBits2KHR::_2D_ARRAY_COMPATIBLE_KHR.0,
+    );
+    pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(
+        ImageCreateFlagBits2KHR::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
+    );
+    pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self(
+        ImageCreateFlagBits2KHR::BLOCK_TEXEL_VIEW_COMPATIBLE_KHR.0,
+    );
+    pub const EXTENDED_USAGE_KHR: Self = Self(
+        ImageCreateFlagBits2KHR::EXTENDED_USAGE_KHR.0,
+    );
+    pub const DISJOINT_KHR: Self = Self(ImageCreateFlagBits2KHR::DISJOINT_KHR.0);
+    pub const ALIAS_KHR: Self = Self(ImageCreateFlagBits2KHR::ALIAS_KHR.0);
+    pub const PROTECTED_KHR: Self = Self(ImageCreateFlagBits2KHR::PROTECTED_KHR.0);
+    pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(
+        ImageCreateFlagBits2KHR::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT.0,
+    );
+    pub const CORNER_SAMPLED_NV: Self = Self(
+        ImageCreateFlagBits2KHR::CORNER_SAMPLED_NV.0,
+    );
+    pub const SUBSAMPLED_EXT: Self = Self(ImageCreateFlagBits2KHR::SUBSAMPLED_EXT.0);
+    pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(
+        ImageCreateFlagBits2KHR::FRAGMENT_DENSITY_MAP_OFFSET_EXT.0,
+    );
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(
+        ImageCreateFlagBits2KHR::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
+    );
+    pub const _2D_VIEW_COMPATIBLE_EXT: Self = Self(
+        ImageCreateFlagBits2KHR::_2D_VIEW_COMPATIBLE_EXT.0,
+    );
+    pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(
+        ImageCreateFlagBits2KHR::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
+    );
+    pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(
+        ImageCreateFlagBits2KHR::VIDEO_PROFILE_INDEPENDENT_KHR.0,
+    );
 }
 ///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
 impl ImageCreateFlagBits2KHR {
@@ -331,7 +454,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct FormatFeatureFlags4KHR(u64);
+    pub struct FormatFeatureFlags4KHR(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for FormatFeatureFlags4KHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -414,7 +537,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ImageUsageFlags2KHR(u64);
+    pub struct ImageUsageFlags2KHR(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageUsageFlags2KHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -467,77 +590,6 @@ pub(crate) mod items {
         }
     }
     impl ImageUsageFlags2KHR {
-        pub const TRANSFER_SRC_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::TRANSFER_SRC_KHR.0,
-        );
-        pub const TRANSFER_DST_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::TRANSFER_DST_KHR.0,
-        );
-        pub const SAMPLED_KHR: Self = Self(ImageUsageFlagBits2KHR::SAMPLED_KHR.0);
-        pub const STORAGE_KHR: Self = Self(ImageUsageFlagBits2KHR::STORAGE_KHR.0);
-        pub const COLOR_ATTACHMENT_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::COLOR_ATTACHMENT_KHR.0,
-        );
-        pub const DEPTH_STENCIL_ATTACHMENT_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::DEPTH_STENCIL_ATTACHMENT_KHR.0,
-        );
-        pub const TRANSIENT_ATTACHMENT_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::TRANSIENT_ATTACHMENT_KHR.0,
-        );
-        pub const INPUT_ATTACHMENT_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::INPUT_ATTACHMENT_KHR.0,
-        );
-        pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
-        );
-        pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(
-            ImageUsageFlagBits2KHR::FRAGMENT_DENSITY_MAP_EXT.0,
-        );
-        pub const VIDEO_DECODE_DST_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::VIDEO_DECODE_DST_KHR.0,
-        );
-        pub const VIDEO_DECODE_SRC_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::VIDEO_DECODE_SRC_KHR.0,
-        );
-        pub const VIDEO_DECODE_DPB_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::VIDEO_DECODE_DPB_KHR.0,
-        );
-        pub const VIDEO_ENCODE_DST_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::VIDEO_ENCODE_DST_KHR.0,
-        );
-        pub const VIDEO_ENCODE_SRC_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::VIDEO_ENCODE_SRC_KHR.0,
-        );
-        pub const VIDEO_ENCODE_DPB_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::VIDEO_ENCODE_DPB_KHR.0,
-        );
-        pub const INVOCATION_MASK_HUAWEI: Self = Self(
-            ImageUsageFlagBits2KHR::INVOCATION_MASK_HUAWEI.0,
-        );
-        pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
-            ImageUsageFlagBits2KHR::ATTACHMENT_FEEDBACK_LOOP_EXT.0,
-        );
-        pub const SAMPLE_WEIGHT_QCOM: Self = Self(
-            ImageUsageFlagBits2KHR::SAMPLE_WEIGHT_QCOM.0,
-        );
-        pub const SAMPLE_BLOCK_MATCH_QCOM: Self = Self(
-            ImageUsageFlagBits2KHR::SAMPLE_BLOCK_MATCH_QCOM.0,
-        );
-        pub const HOST_TRANSFER_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::HOST_TRANSFER_KHR.0,
-        );
-        pub const TENSOR_ALIASING_ARM: Self = Self(
-            ImageUsageFlagBits2KHR::TENSOR_ALIASING_ARM.0,
-        );
-        pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0,
-        );
-        pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(
-            ImageUsageFlagBits2KHR::VIDEO_ENCODE_EMPHASIS_MAP_KHR.0,
-        );
-        pub const TILE_MEMORY_QCOM: Self = Self(
-            ImageUsageFlagBits2KHR::TILE_MEMORY_QCOM.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -613,7 +665,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ImageCreateFlags2KHR(u64);
+    pub struct ImageCreateFlags2KHR(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageCreateFlags2KHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -671,61 +723,6 @@ pub(crate) mod items {
         }
     }
     impl ImageCreateFlags2KHR {
-        pub const SPARSE_BINDING_KHR: Self = Self(
-            ImageCreateFlagBits2KHR::SPARSE_BINDING_KHR.0,
-        );
-        pub const SPARSE_RESIDENCY_KHR: Self = Self(
-            ImageCreateFlagBits2KHR::SPARSE_RESIDENCY_KHR.0,
-        );
-        pub const SPARSE_ALIASED_KHR: Self = Self(
-            ImageCreateFlagBits2KHR::SPARSE_ALIASED_KHR.0,
-        );
-        pub const MUTABLE_FORMAT_KHR: Self = Self(
-            ImageCreateFlagBits2KHR::MUTABLE_FORMAT_KHR.0,
-        );
-        pub const CUBE_COMPATIBLE_KHR: Self = Self(
-            ImageCreateFlagBits2KHR::CUBE_COMPATIBLE_KHR.0,
-        );
-        pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(
-            ImageCreateFlagBits2KHR::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR.0,
-        );
-        pub const _2D_ARRAY_COMPATIBLE_KHR: Self = Self(
-            ImageCreateFlagBits2KHR::_2D_ARRAY_COMPATIBLE_KHR.0,
-        );
-        pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(
-            ImageCreateFlagBits2KHR::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
-        );
-        pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self(
-            ImageCreateFlagBits2KHR::BLOCK_TEXEL_VIEW_COMPATIBLE_KHR.0,
-        );
-        pub const EXTENDED_USAGE_KHR: Self = Self(
-            ImageCreateFlagBits2KHR::EXTENDED_USAGE_KHR.0,
-        );
-        pub const DISJOINT_KHR: Self = Self(ImageCreateFlagBits2KHR::DISJOINT_KHR.0);
-        pub const ALIAS_KHR: Self = Self(ImageCreateFlagBits2KHR::ALIAS_KHR.0);
-        pub const PROTECTED_KHR: Self = Self(ImageCreateFlagBits2KHR::PROTECTED_KHR.0);
-        pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(
-            ImageCreateFlagBits2KHR::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT.0,
-        );
-        pub const CORNER_SAMPLED_NV: Self = Self(
-            ImageCreateFlagBits2KHR::CORNER_SAMPLED_NV.0,
-        );
-        pub const SUBSAMPLED_EXT: Self = Self(ImageCreateFlagBits2KHR::SUBSAMPLED_EXT.0);
-        pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(
-            ImageCreateFlagBits2KHR::FRAGMENT_DENSITY_MAP_OFFSET_EXT.0,
-        );
-        pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(
-            ImageCreateFlagBits2KHR::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
-        );
-        pub const _2D_VIEW_COMPATIBLE_EXT: Self = Self(
-            ImageCreateFlagBits2KHR::_2D_VIEW_COMPATIBLE_EXT.0,
-        );
-        pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(
-            ImageCreateFlagBits2KHR::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
-        );
-        pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(
-            ImageCreateFlagBits2KHR::VIDEO_PROFILE_INDEPENDENT_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }

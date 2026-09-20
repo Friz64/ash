@@ -9,6 +9,12 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [`nv::private_data_base_handle`](crate::nv::private_data_base_handle)
+impl crate::vk::PrivateDataSlotCreateFlags {
+    pub const BASE_OBJECT_HANDLE_NV: Self = Self(
+        crate::vk::PrivateDataSlotCreateFlagBits::BASE_OBJECT_HANDLE_NV.0,
+    );
+}
+///Provided by [`nv::private_data_base_handle`](crate::nv::private_data_base_handle)
 impl crate::vk::PrivateDataSlotCreateFlagBits {
     pub const BASE_OBJECT_HANDLE_NV: Self = Self(1 << 0);
 }

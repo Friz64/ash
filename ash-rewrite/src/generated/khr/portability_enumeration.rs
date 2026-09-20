@@ -3,6 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_portability_enumeration.html) · Extension `VK_KHR_portability_enumeration`
 #![doc(alias = "VK_KHR_portability_enumeration")]
 ///Provided by [`khr::portability_enumeration`](crate::khr::portability_enumeration)
+impl crate::vk::InstanceCreateFlags {
+    pub const ENUMERATE_PORTABILITY_KHR: Self = Self(
+        crate::vk::InstanceCreateFlagBits::ENUMERATE_PORTABILITY_KHR.0,
+    );
+}
+///Provided by [`khr::portability_enumeration`](crate::khr::portability_enumeration)
 impl crate::vk::InstanceCreateFlagBits {
     pub const ENUMERATE_PORTABILITY_KHR: Self = Self(1 << 0);
 }

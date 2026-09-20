@@ -22,8 +22,18 @@ impl DefaultVertexAttributeValueKHR {
     pub const ZERO_ZERO_ZERO_ONE_KHR: Self = Self(1);
 }
 ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
+impl crate::vk::QueryPoolCreateFlags {
+    pub const RESET_KHR: Self = Self(crate::vk::QueryPoolCreateFlagBits::RESET_KHR.0);
+}
+///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
 impl crate::vk::QueryPoolCreateFlagBits {
     pub const RESET_KHR: Self = Self(1 << 0);
+}
+///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
+impl crate::vk::DependencyFlags {
+    pub const ASYMMETRIC_EVENT_KHR: Self = Self(
+        crate::vk::DependencyFlagBits::ASYMMETRIC_EVENT_KHR.0,
+    );
 }
 ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
 impl crate::vk::DependencyFlagBits {

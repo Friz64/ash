@@ -136,8 +136,23 @@ impl crate::vk::ObjectType {
     pub const PRIVATE_DATA_SLOT: Self = Self(1000295000);
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::PipelineCacheCreateFlags {
+    pub const EXTERNALLY_SYNCHRONIZED: Self = Self(
+        crate::vk::PipelineCacheCreateFlagBits::EXTERNALLY_SYNCHRONIZED.0,
+    );
+}
+///Provided by [`vk1_3`](crate::vk1_3)
 impl crate::vk::PipelineCacheCreateFlagBits {
     pub const EXTERNALLY_SYNCHRONIZED: Self = Self(1 << 0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::PipelineShaderStageCreateFlags {
+    pub const ALLOW_VARYING_SUBGROUP_SIZE: Self = Self(
+        crate::vk::PipelineShaderStageCreateFlagBits::ALLOW_VARYING_SUBGROUP_SIZE.0,
+    );
+    pub const REQUIRE_FULL_SUBGROUPS: Self = Self(
+        crate::vk::PipelineShaderStageCreateFlagBits::REQUIRE_FULL_SUBGROUPS.0,
+    );
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
 impl crate::vk::PipelineShaderStageCreateFlagBits {
@@ -145,8 +160,21 @@ impl crate::vk::PipelineShaderStageCreateFlagBits {
     pub const REQUIRE_FULL_SUBGROUPS: Self = Self(1 << 1);
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::AccessFlags {
+    pub const NONE: Self = Self(crate::vk::AccessFlagBits::NONE.0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
 impl crate::vk::AccessFlagBits {
     pub const NONE: Self = Self(0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::PipelineCreateFlags {
+    pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED: Self = Self(
+        crate::vk::PipelineCreateFlagBits::FAIL_ON_PIPELINE_COMPILE_REQUIRED.0,
+    );
+    pub const EARLY_RETURN_ON_FAILURE: Self = Self(
+        crate::vk::PipelineCreateFlagBits::EARLY_RETURN_ON_FAILURE.0,
+    );
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
 impl crate::vk::PipelineCreateFlagBits {
@@ -154,22 +182,82 @@ impl crate::vk::PipelineCreateFlagBits {
     pub const EARLY_RETURN_ON_FAILURE: Self = Self(1 << 9);
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::EventCreateFlags {
+    pub const DEVICE_ONLY: Self = Self(crate::vk::EventCreateFlagBits::DEVICE_ONLY.0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
 impl crate::vk::EventCreateFlagBits {
     pub const DEVICE_ONLY: Self = Self(1 << 0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::ImageAspectFlags {
+    pub const NONE: Self = Self(crate::vk::ImageAspectFlagBits::NONE.0);
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
 impl crate::vk::ImageAspectFlagBits {
     pub const NONE: Self = Self(0);
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::PipelineStageFlags {
+    pub const NONE: Self = Self(crate::vk::PipelineStageFlagBits::NONE.0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
 impl crate::vk::PipelineStageFlagBits {
     pub const NONE: Self = Self(0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl PipelineCreationFeedbackFlags {
+    pub const VALID: Self = Self(PipelineCreationFeedbackFlagBits::VALID.0);
+    pub const APPLICATION_PIPELINE_CACHE_HIT: Self = Self(
+        PipelineCreationFeedbackFlagBits::APPLICATION_PIPELINE_CACHE_HIT.0,
+    );
+    pub const BASE_PIPELINE_ACCELERATION: Self = Self(
+        PipelineCreationFeedbackFlagBits::BASE_PIPELINE_ACCELERATION.0,
+    );
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
 impl PipelineCreationFeedbackFlagBits {
     pub const VALID: Self = Self(1 << 0);
     pub const APPLICATION_PIPELINE_CACHE_HIT: Self = Self(1 << 1);
     pub const BASE_PIPELINE_ACCELERATION: Self = Self(1 << 2);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl AccessFlags2 {
+    pub const NONE: Self = Self(AccessFlagBits2::NONE.0);
+    pub const INDIRECT_COMMAND_READ: Self = Self(
+        AccessFlagBits2::INDIRECT_COMMAND_READ.0,
+    );
+    pub const INDEX_READ: Self = Self(AccessFlagBits2::INDEX_READ.0);
+    pub const VERTEX_ATTRIBUTE_READ: Self = Self(
+        AccessFlagBits2::VERTEX_ATTRIBUTE_READ.0,
+    );
+    pub const UNIFORM_READ: Self = Self(AccessFlagBits2::UNIFORM_READ.0);
+    pub const INPUT_ATTACHMENT_READ: Self = Self(
+        AccessFlagBits2::INPUT_ATTACHMENT_READ.0,
+    );
+    pub const SHADER_READ: Self = Self(AccessFlagBits2::SHADER_READ.0);
+    pub const SHADER_WRITE: Self = Self(AccessFlagBits2::SHADER_WRITE.0);
+    pub const COLOR_ATTACHMENT_READ: Self = Self(
+        AccessFlagBits2::COLOR_ATTACHMENT_READ.0,
+    );
+    pub const COLOR_ATTACHMENT_WRITE: Self = Self(
+        AccessFlagBits2::COLOR_ATTACHMENT_WRITE.0,
+    );
+    pub const DEPTH_STENCIL_ATTACHMENT_READ: Self = Self(
+        AccessFlagBits2::DEPTH_STENCIL_ATTACHMENT_READ.0,
+    );
+    pub const DEPTH_STENCIL_ATTACHMENT_WRITE: Self = Self(
+        AccessFlagBits2::DEPTH_STENCIL_ATTACHMENT_WRITE.0,
+    );
+    pub const TRANSFER_READ: Self = Self(AccessFlagBits2::TRANSFER_READ.0);
+    pub const TRANSFER_WRITE: Self = Self(AccessFlagBits2::TRANSFER_WRITE.0);
+    pub const HOST_READ: Self = Self(AccessFlagBits2::HOST_READ.0);
+    pub const HOST_WRITE: Self = Self(AccessFlagBits2::HOST_WRITE.0);
+    pub const MEMORY_READ: Self = Self(AccessFlagBits2::MEMORY_READ.0);
+    pub const MEMORY_WRITE: Self = Self(AccessFlagBits2::MEMORY_WRITE.0);
+    pub const SHADER_SAMPLED_READ: Self = Self(AccessFlagBits2::SHADER_SAMPLED_READ.0);
+    pub const SHADER_STORAGE_READ: Self = Self(AccessFlagBits2::SHADER_STORAGE_READ.0);
+    pub const SHADER_STORAGE_WRITE: Self = Self(AccessFlagBits2::SHADER_STORAGE_WRITE.0);
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
 impl AccessFlagBits2 {
@@ -194,6 +282,49 @@ impl AccessFlagBits2 {
     pub const SHADER_SAMPLED_READ: Self = Self(1 << 32);
     pub const SHADER_STORAGE_READ: Self = Self(1 << 33);
     pub const SHADER_STORAGE_WRITE: Self = Self(1 << 34);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl PipelineStageFlags2 {
+    pub const NONE: Self = Self(PipelineStageFlagBits2::NONE.0);
+    pub const TOP_OF_PIPE: Self = Self(PipelineStageFlagBits2::TOP_OF_PIPE.0);
+    pub const DRAW_INDIRECT: Self = Self(PipelineStageFlagBits2::DRAW_INDIRECT.0);
+    pub const VERTEX_INPUT: Self = Self(PipelineStageFlagBits2::VERTEX_INPUT.0);
+    pub const VERTEX_SHADER: Self = Self(PipelineStageFlagBits2::VERTEX_SHADER.0);
+    pub const TESSELLATION_CONTROL_SHADER: Self = Self(
+        PipelineStageFlagBits2::TESSELLATION_CONTROL_SHADER.0,
+    );
+    pub const TESSELLATION_EVALUATION_SHADER: Self = Self(
+        PipelineStageFlagBits2::TESSELLATION_EVALUATION_SHADER.0,
+    );
+    pub const GEOMETRY_SHADER: Self = Self(PipelineStageFlagBits2::GEOMETRY_SHADER.0);
+    pub const FRAGMENT_SHADER: Self = Self(PipelineStageFlagBits2::FRAGMENT_SHADER.0);
+    pub const EARLY_FRAGMENT_TESTS: Self = Self(
+        PipelineStageFlagBits2::EARLY_FRAGMENT_TESTS.0,
+    );
+    pub const LATE_FRAGMENT_TESTS: Self = Self(
+        PipelineStageFlagBits2::LATE_FRAGMENT_TESTS.0,
+    );
+    pub const COLOR_ATTACHMENT_OUTPUT: Self = Self(
+        PipelineStageFlagBits2::COLOR_ATTACHMENT_OUTPUT.0,
+    );
+    pub const COMPUTE_SHADER: Self = Self(PipelineStageFlagBits2::COMPUTE_SHADER.0);
+    pub const ALL_TRANSFER: Self = Self(PipelineStageFlagBits2::ALL_TRANSFER.0);
+    pub const TRANSFER: Self = Self(PipelineStageFlagBits2::TRANSFER.0);
+    pub const BOTTOM_OF_PIPE: Self = Self(PipelineStageFlagBits2::BOTTOM_OF_PIPE.0);
+    pub const HOST: Self = Self(PipelineStageFlagBits2::HOST.0);
+    pub const ALL_GRAPHICS: Self = Self(PipelineStageFlagBits2::ALL_GRAPHICS.0);
+    pub const ALL_COMMANDS: Self = Self(PipelineStageFlagBits2::ALL_COMMANDS.0);
+    pub const COPY: Self = Self(PipelineStageFlagBits2::COPY.0);
+    pub const RESOLVE: Self = Self(PipelineStageFlagBits2::RESOLVE.0);
+    pub const BLIT: Self = Self(PipelineStageFlagBits2::BLIT.0);
+    pub const CLEAR: Self = Self(PipelineStageFlagBits2::CLEAR.0);
+    pub const INDEX_INPUT: Self = Self(PipelineStageFlagBits2::INDEX_INPUT.0);
+    pub const VERTEX_ATTRIBUTE_INPUT: Self = Self(
+        PipelineStageFlagBits2::VERTEX_ATTRIBUTE_INPUT.0,
+    );
+    pub const PRE_RASTERIZATION_SHADERS: Self = Self(
+        PipelineStageFlagBits2::PRE_RASTERIZATION_SHADERS.0,
+    );
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
 impl PipelineStageFlagBits2 {
@@ -223,6 +354,75 @@ impl PipelineStageFlagBits2 {
     pub const INDEX_INPUT: Self = Self(1 << 36);
     pub const VERTEX_ATTRIBUTE_INPUT: Self = Self(1 << 37);
     pub const PRE_RASTERIZATION_SHADERS: Self = Self(1 << 38);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl FormatFeatureFlags2 {
+    pub const SAMPLED_IMAGE: Self = Self(FormatFeatureFlagBits2::SAMPLED_IMAGE.0);
+    pub const STORAGE_IMAGE: Self = Self(FormatFeatureFlagBits2::STORAGE_IMAGE.0);
+    pub const STORAGE_IMAGE_ATOMIC: Self = Self(
+        FormatFeatureFlagBits2::STORAGE_IMAGE_ATOMIC.0,
+    );
+    pub const UNIFORM_TEXEL_BUFFER: Self = Self(
+        FormatFeatureFlagBits2::UNIFORM_TEXEL_BUFFER.0,
+    );
+    pub const STORAGE_TEXEL_BUFFER: Self = Self(
+        FormatFeatureFlagBits2::STORAGE_TEXEL_BUFFER.0,
+    );
+    pub const STORAGE_TEXEL_BUFFER_ATOMIC: Self = Self(
+        FormatFeatureFlagBits2::STORAGE_TEXEL_BUFFER_ATOMIC.0,
+    );
+    pub const VERTEX_BUFFER: Self = Self(FormatFeatureFlagBits2::VERTEX_BUFFER.0);
+    pub const COLOR_ATTACHMENT: Self = Self(FormatFeatureFlagBits2::COLOR_ATTACHMENT.0);
+    pub const COLOR_ATTACHMENT_BLEND: Self = Self(
+        FormatFeatureFlagBits2::COLOR_ATTACHMENT_BLEND.0,
+    );
+    pub const DEPTH_STENCIL_ATTACHMENT: Self = Self(
+        FormatFeatureFlagBits2::DEPTH_STENCIL_ATTACHMENT.0,
+    );
+    pub const BLIT_SRC: Self = Self(FormatFeatureFlagBits2::BLIT_SRC.0);
+    pub const BLIT_DST: Self = Self(FormatFeatureFlagBits2::BLIT_DST.0);
+    pub const SAMPLED_IMAGE_FILTER_LINEAR: Self = Self(
+        FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_LINEAR.0,
+    );
+    pub const TRANSFER_SRC: Self = Self(FormatFeatureFlagBits2::TRANSFER_SRC.0);
+    pub const TRANSFER_DST: Self = Self(FormatFeatureFlagBits2::TRANSFER_DST.0);
+    pub const SAMPLED_IMAGE_FILTER_MINMAX: Self = Self(
+        FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_MINMAX.0,
+    );
+    pub const MIDPOINT_CHROMA_SAMPLES: Self = Self(
+        FormatFeatureFlagBits2::MIDPOINT_CHROMA_SAMPLES.0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER: Self = Self(
+        FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER.0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER: Self = Self(
+        FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER
+            .0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT: Self = Self(
+        FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT
+            .0,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE: Self = Self(
+        FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE
+            .0,
+    );
+    pub const DISJOINT: Self = Self(FormatFeatureFlagBits2::DISJOINT.0);
+    pub const COSITED_CHROMA_SAMPLES: Self = Self(
+        FormatFeatureFlagBits2::COSITED_CHROMA_SAMPLES.0,
+    );
+    pub const STORAGE_READ_WITHOUT_FORMAT: Self = Self(
+        FormatFeatureFlagBits2::STORAGE_READ_WITHOUT_FORMAT.0,
+    );
+    pub const STORAGE_WRITE_WITHOUT_FORMAT: Self = Self(
+        FormatFeatureFlagBits2::STORAGE_WRITE_WITHOUT_FORMAT.0,
+    );
+    pub const SAMPLED_IMAGE_DEPTH_COMPARISON: Self = Self(
+        FormatFeatureFlagBits2::SAMPLED_IMAGE_DEPTH_COMPARISON.0,
+    );
+    pub const SAMPLED_IMAGE_FILTER_CUBIC: Self = Self(
+        FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_CUBIC.0,
+    );
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
 impl FormatFeatureFlagBits2 {
@@ -261,10 +461,28 @@ impl FormatFeatureFlagBits2 {
     pub const SAMPLED_IMAGE_FILTER_CUBIC: Self = Self(1 << 13);
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
+impl RenderingFlags {
+    pub const CONTENTS_SECONDARY_COMMAND_BUFFERS: Self = Self(
+        RenderingFlagBits::CONTENTS_SECONDARY_COMMAND_BUFFERS.0,
+    );
+    pub const SUSPENDING: Self = Self(RenderingFlagBits::SUSPENDING.0);
+    pub const RESUMING: Self = Self(RenderingFlagBits::RESUMING.0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
 impl RenderingFlagBits {
     pub const CONTENTS_SECONDARY_COMMAND_BUFFERS: Self = Self(1 << 0);
     pub const SUSPENDING: Self = Self(1 << 1);
     pub const RESUMING: Self = Self(1 << 2);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl ToolPurposeFlags {
+    pub const VALIDATION: Self = Self(ToolPurposeFlagBits::VALIDATION.0);
+    pub const PROFILING: Self = Self(ToolPurposeFlagBits::PROFILING.0);
+    pub const TRACING: Self = Self(ToolPurposeFlagBits::TRACING.0);
+    pub const ADDITIONAL_FEATURES: Self = Self(
+        ToolPurposeFlagBits::ADDITIONAL_FEATURES.0,
+    );
+    pub const MODIFYING_FEATURES: Self = Self(ToolPurposeFlagBits::MODIFYING_FEATURES.0);
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
 impl ToolPurposeFlagBits {
@@ -273,6 +491,10 @@ impl ToolPurposeFlagBits {
     pub const TRACING: Self = Self(1 << 2);
     pub const ADDITIONAL_FEATURES: Self = Self(1 << 3);
     pub const MODIFYING_FEATURES: Self = Self(1 << 4);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl SubmitFlags {
+    pub const PROTECTED: Self = Self(SubmitFlagBits::PROTECTED.0);
 }
 ///Provided by [`vk1_3`](crate::vk1_3)
 impl SubmitFlagBits {
@@ -1419,6 +1641,7 @@ pub(crate) mod items {
     for PipelineCreationFeedbackCreateInfo<'a> {}
     unsafe impl<'a> crate::Extends<crate::vk::RayTracingPipelineCreateInfoKHR<'_>>
     for PipelineCreationFeedbackCreateInfo<'a> {}
+    #[cfg(feature = "provisional")]
     unsafe impl<'a> crate::Extends<crate::vk::ExecutionGraphPipelineCreateInfoAMDX<'_>>
     for PipelineCreationFeedbackCreateInfo<'a> {}
     unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
@@ -4381,7 +4604,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PrivateDataSlotCreateFlags(u32);
+    pub struct PrivateDataSlotCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PrivateDataSlotCreateFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4393,9 +4616,6 @@ pub(crate) mod items {
         }
     }
     impl PrivateDataSlotCreateFlags {
-        pub const BASE_OBJECT_HANDLE_NV: Self = Self(
-            PrivateDataSlotCreateFlagBits::BASE_OBJECT_HANDLE_NV.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4471,7 +4691,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PipelineCreationFeedbackFlags(u32);
+    pub struct PipelineCreationFeedbackFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineCreationFeedbackFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4490,20 +4710,6 @@ pub(crate) mod items {
         }
     }
     impl PipelineCreationFeedbackFlags {
-        pub const VALID: Self = Self(PipelineCreationFeedbackFlagBits::VALID.0);
-        pub const APPLICATION_PIPELINE_CACHE_HIT: Self = Self(
-            PipelineCreationFeedbackFlagBits::APPLICATION_PIPELINE_CACHE_HIT.0,
-        );
-        pub const BASE_PIPELINE_ACCELERATION: Self = Self(
-            PipelineCreationFeedbackFlagBits::BASE_PIPELINE_ACCELERATION.0,
-        );
-        pub const VALID_EXT: Self = Self(PipelineCreationFeedbackFlagBits::VALID_EXT.0);
-        pub const APPLICATION_PIPELINE_CACHE_HIT_EXT: Self = Self(
-            PipelineCreationFeedbackFlagBits::APPLICATION_PIPELINE_CACHE_HIT_EXT.0,
-        );
-        pub const BASE_PIPELINE_ACCELERATION_EXT: Self = Self(
-            PipelineCreationFeedbackFlagBits::BASE_PIPELINE_ACCELERATION_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4579,7 +4785,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct AccessFlags2(u64);
+    pub struct AccessFlags2(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccessFlags2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -4694,189 +4900,6 @@ pub(crate) mod items {
         }
     }
     impl AccessFlags2 {
-        pub const NONE: Self = Self(AccessFlagBits2::NONE.0);
-        pub const INDIRECT_COMMAND_READ: Self = Self(
-            AccessFlagBits2::INDIRECT_COMMAND_READ.0,
-        );
-        pub const INDEX_READ: Self = Self(AccessFlagBits2::INDEX_READ.0);
-        pub const VERTEX_ATTRIBUTE_READ: Self = Self(
-            AccessFlagBits2::VERTEX_ATTRIBUTE_READ.0,
-        );
-        pub const UNIFORM_READ: Self = Self(AccessFlagBits2::UNIFORM_READ.0);
-        pub const INPUT_ATTACHMENT_READ: Self = Self(
-            AccessFlagBits2::INPUT_ATTACHMENT_READ.0,
-        );
-        pub const SHADER_READ: Self = Self(AccessFlagBits2::SHADER_READ.0);
-        pub const SHADER_WRITE: Self = Self(AccessFlagBits2::SHADER_WRITE.0);
-        pub const COLOR_ATTACHMENT_READ: Self = Self(
-            AccessFlagBits2::COLOR_ATTACHMENT_READ.0,
-        );
-        pub const COLOR_ATTACHMENT_WRITE: Self = Self(
-            AccessFlagBits2::COLOR_ATTACHMENT_WRITE.0,
-        );
-        pub const DEPTH_STENCIL_ATTACHMENT_READ: Self = Self(
-            AccessFlagBits2::DEPTH_STENCIL_ATTACHMENT_READ.0,
-        );
-        pub const DEPTH_STENCIL_ATTACHMENT_WRITE: Self = Self(
-            AccessFlagBits2::DEPTH_STENCIL_ATTACHMENT_WRITE.0,
-        );
-        pub const TRANSFER_READ: Self = Self(AccessFlagBits2::TRANSFER_READ.0);
-        pub const TRANSFER_WRITE: Self = Self(AccessFlagBits2::TRANSFER_WRITE.0);
-        pub const HOST_READ: Self = Self(AccessFlagBits2::HOST_READ.0);
-        pub const HOST_WRITE: Self = Self(AccessFlagBits2::HOST_WRITE.0);
-        pub const MEMORY_READ: Self = Self(AccessFlagBits2::MEMORY_READ.0);
-        pub const MEMORY_WRITE: Self = Self(AccessFlagBits2::MEMORY_WRITE.0);
-        pub const SHADER_SAMPLED_READ: Self = Self(
-            AccessFlagBits2::SHADER_SAMPLED_READ.0,
-        );
-        pub const SHADER_STORAGE_READ: Self = Self(
-            AccessFlagBits2::SHADER_STORAGE_READ.0,
-        );
-        pub const SHADER_STORAGE_WRITE: Self = Self(
-            AccessFlagBits2::SHADER_STORAGE_WRITE.0,
-        );
-        pub const VIDEO_DECODE_READ_KHR: Self = Self(
-            AccessFlagBits2::VIDEO_DECODE_READ_KHR.0,
-        );
-        pub const VIDEO_DECODE_WRITE_KHR: Self = Self(
-            AccessFlagBits2::VIDEO_DECODE_WRITE_KHR.0,
-        );
-        pub const SAMPLER_HEAP_READ_EXT: Self = Self(
-            AccessFlagBits2::SAMPLER_HEAP_READ_EXT.0,
-        );
-        pub const RESOURCE_HEAP_READ_EXT: Self = Self(
-            AccessFlagBits2::RESOURCE_HEAP_READ_EXT.0,
-        );
-        pub const VIDEO_ENCODE_READ_KHR: Self = Self(
-            AccessFlagBits2::VIDEO_ENCODE_READ_KHR.0,
-        );
-        pub const VIDEO_ENCODE_WRITE_KHR: Self = Self(
-            AccessFlagBits2::VIDEO_ENCODE_WRITE_KHR.0,
-        );
-        pub const SHADER_TILE_ATTACHMENT_READ_QCOM: Self = Self(
-            AccessFlagBits2::SHADER_TILE_ATTACHMENT_READ_QCOM.0,
-        );
-        pub const SHADER_TILE_ATTACHMENT_WRITE_QCOM: Self = Self(
-            AccessFlagBits2::SHADER_TILE_ATTACHMENT_WRITE_QCOM.0,
-        );
-        pub const NONE_KHR: Self = Self(AccessFlagBits2::NONE_KHR.0);
-        pub const INDIRECT_COMMAND_READ_KHR: Self = Self(
-            AccessFlagBits2::INDIRECT_COMMAND_READ_KHR.0,
-        );
-        pub const INDEX_READ_KHR: Self = Self(AccessFlagBits2::INDEX_READ_KHR.0);
-        pub const VERTEX_ATTRIBUTE_READ_KHR: Self = Self(
-            AccessFlagBits2::VERTEX_ATTRIBUTE_READ_KHR.0,
-        );
-        pub const UNIFORM_READ_KHR: Self = Self(AccessFlagBits2::UNIFORM_READ_KHR.0);
-        pub const INPUT_ATTACHMENT_READ_KHR: Self = Self(
-            AccessFlagBits2::INPUT_ATTACHMENT_READ_KHR.0,
-        );
-        pub const SHADER_READ_KHR: Self = Self(AccessFlagBits2::SHADER_READ_KHR.0);
-        pub const SHADER_WRITE_KHR: Self = Self(AccessFlagBits2::SHADER_WRITE_KHR.0);
-        pub const COLOR_ATTACHMENT_READ_KHR: Self = Self(
-            AccessFlagBits2::COLOR_ATTACHMENT_READ_KHR.0,
-        );
-        pub const COLOR_ATTACHMENT_WRITE_KHR: Self = Self(
-            AccessFlagBits2::COLOR_ATTACHMENT_WRITE_KHR.0,
-        );
-        pub const DEPTH_STENCIL_ATTACHMENT_READ_KHR: Self = Self(
-            AccessFlagBits2::DEPTH_STENCIL_ATTACHMENT_READ_KHR.0,
-        );
-        pub const DEPTH_STENCIL_ATTACHMENT_WRITE_KHR: Self = Self(
-            AccessFlagBits2::DEPTH_STENCIL_ATTACHMENT_WRITE_KHR.0,
-        );
-        pub const TRANSFER_READ_KHR: Self = Self(AccessFlagBits2::TRANSFER_READ_KHR.0);
-        pub const TRANSFER_WRITE_KHR: Self = Self(AccessFlagBits2::TRANSFER_WRITE_KHR.0);
-        pub const HOST_READ_KHR: Self = Self(AccessFlagBits2::HOST_READ_KHR.0);
-        pub const HOST_WRITE_KHR: Self = Self(AccessFlagBits2::HOST_WRITE_KHR.0);
-        pub const MEMORY_READ_KHR: Self = Self(AccessFlagBits2::MEMORY_READ_KHR.0);
-        pub const MEMORY_WRITE_KHR: Self = Self(AccessFlagBits2::MEMORY_WRITE_KHR.0);
-        pub const SHADER_SAMPLED_READ_KHR: Self = Self(
-            AccessFlagBits2::SHADER_SAMPLED_READ_KHR.0,
-        );
-        pub const SHADER_STORAGE_READ_KHR: Self = Self(
-            AccessFlagBits2::SHADER_STORAGE_READ_KHR.0,
-        );
-        pub const SHADER_STORAGE_WRITE_KHR: Self = Self(
-            AccessFlagBits2::SHADER_STORAGE_WRITE_KHR.0,
-        );
-        pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(
-            AccessFlagBits2::TRANSFORM_FEEDBACK_WRITE_EXT.0,
-        );
-        pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(
-            AccessFlagBits2::TRANSFORM_FEEDBACK_COUNTER_READ_EXT.0,
-        );
-        pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(
-            AccessFlagBits2::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT.0,
-        );
-        pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(
-            AccessFlagBits2::CONDITIONAL_RENDERING_READ_EXT.0,
-        );
-        pub const COMMAND_PREPROCESS_READ_NV: Self = Self(
-            AccessFlagBits2::COMMAND_PREPROCESS_READ_NV.0,
-        );
-        pub const COMMAND_PREPROCESS_WRITE_NV: Self = Self(
-            AccessFlagBits2::COMMAND_PREPROCESS_WRITE_NV.0,
-        );
-        pub const COMMAND_PREPROCESS_READ_EXT: Self = Self(
-            AccessFlagBits2::COMMAND_PREPROCESS_READ_EXT.0,
-        );
-        pub const COMMAND_PREPROCESS_WRITE_EXT: Self = Self(
-            AccessFlagBits2::COMMAND_PREPROCESS_WRITE_EXT.0,
-        );
-        pub const FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR: Self = Self(
-            AccessFlagBits2::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR.0,
-        );
-        pub const SHADING_RATE_IMAGE_READ_NV: Self = Self(
-            AccessFlagBits2::SHADING_RATE_IMAGE_READ_NV.0,
-        );
-        pub const ACCELERATION_STRUCTURE_READ_KHR: Self = Self(
-            AccessFlagBits2::ACCELERATION_STRUCTURE_READ_KHR.0,
-        );
-        pub const ACCELERATION_STRUCTURE_WRITE_KHR: Self = Self(
-            AccessFlagBits2::ACCELERATION_STRUCTURE_WRITE_KHR.0,
-        );
-        pub const ACCELERATION_STRUCTURE_READ_NV: Self = Self(
-            AccessFlagBits2::ACCELERATION_STRUCTURE_READ_NV.0,
-        );
-        pub const ACCELERATION_STRUCTURE_WRITE_NV: Self = Self(
-            AccessFlagBits2::ACCELERATION_STRUCTURE_WRITE_NV.0,
-        );
-        pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(
-            AccessFlagBits2::FRAGMENT_DENSITY_MAP_READ_EXT.0,
-        );
-        pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(
-            AccessFlagBits2::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT.0,
-        );
-        pub const DESCRIPTOR_BUFFER_READ_EXT: Self = Self(
-            AccessFlagBits2::DESCRIPTOR_BUFFER_READ_EXT.0,
-        );
-        pub const INVOCATION_MASK_READ_HUAWEI: Self = Self(
-            AccessFlagBits2::INVOCATION_MASK_READ_HUAWEI.0,
-        );
-        pub const SHADER_BINDING_TABLE_READ_KHR: Self = Self(
-            AccessFlagBits2::SHADER_BINDING_TABLE_READ_KHR.0,
-        );
-        pub const MICROMAP_READ_EXT: Self = Self(AccessFlagBits2::MICROMAP_READ_EXT.0);
-        pub const MICROMAP_WRITE_EXT: Self = Self(AccessFlagBits2::MICROMAP_WRITE_EXT.0);
-        pub const OPTICAL_FLOW_READ_NV: Self = Self(
-            AccessFlagBits2::OPTICAL_FLOW_READ_NV.0,
-        );
-        pub const OPTICAL_FLOW_WRITE_NV: Self = Self(
-            AccessFlagBits2::OPTICAL_FLOW_WRITE_NV.0,
-        );
-        pub const DATA_GRAPH_READ_ARM: Self = Self(
-            AccessFlagBits2::DATA_GRAPH_READ_ARM.0,
-        );
-        pub const DATA_GRAPH_WRITE_ARM: Self = Self(
-            AccessFlagBits2::DATA_GRAPH_WRITE_ARM.0,
-        );
-        pub const MEMORY_DECOMPRESSION_READ_EXT: Self = Self(
-            AccessFlagBits2::MEMORY_DECOMPRESSION_READ_EXT.0,
-        );
-        pub const MEMORY_DECOMPRESSION_WRITE_EXT: Self = Self(
-            AccessFlagBits2::MEMORY_DECOMPRESSION_WRITE_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4952,7 +4975,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct PipelineStageFlags2(u64);
+    pub struct PipelineStageFlags2(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineStageFlags2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -5032,189 +5055,6 @@ pub(crate) mod items {
         }
     }
     impl PipelineStageFlags2 {
-        pub const NONE: Self = Self(PipelineStageFlagBits2::NONE.0);
-        pub const TOP_OF_PIPE: Self = Self(PipelineStageFlagBits2::TOP_OF_PIPE.0);
-        pub const DRAW_INDIRECT: Self = Self(PipelineStageFlagBits2::DRAW_INDIRECT.0);
-        pub const VERTEX_INPUT: Self = Self(PipelineStageFlagBits2::VERTEX_INPUT.0);
-        pub const VERTEX_SHADER: Self = Self(PipelineStageFlagBits2::VERTEX_SHADER.0);
-        pub const TESSELLATION_CONTROL_SHADER: Self = Self(
-            PipelineStageFlagBits2::TESSELLATION_CONTROL_SHADER.0,
-        );
-        pub const TESSELLATION_EVALUATION_SHADER: Self = Self(
-            PipelineStageFlagBits2::TESSELLATION_EVALUATION_SHADER.0,
-        );
-        pub const GEOMETRY_SHADER: Self = Self(
-            PipelineStageFlagBits2::GEOMETRY_SHADER.0,
-        );
-        pub const FRAGMENT_SHADER: Self = Self(
-            PipelineStageFlagBits2::FRAGMENT_SHADER.0,
-        );
-        pub const EARLY_FRAGMENT_TESTS: Self = Self(
-            PipelineStageFlagBits2::EARLY_FRAGMENT_TESTS.0,
-        );
-        pub const LATE_FRAGMENT_TESTS: Self = Self(
-            PipelineStageFlagBits2::LATE_FRAGMENT_TESTS.0,
-        );
-        pub const COLOR_ATTACHMENT_OUTPUT: Self = Self(
-            PipelineStageFlagBits2::COLOR_ATTACHMENT_OUTPUT.0,
-        );
-        pub const COMPUTE_SHADER: Self = Self(PipelineStageFlagBits2::COMPUTE_SHADER.0);
-        pub const ALL_TRANSFER: Self = Self(PipelineStageFlagBits2::ALL_TRANSFER.0);
-        pub const TRANSFER: Self = Self(PipelineStageFlagBits2::TRANSFER.0);
-        pub const BOTTOM_OF_PIPE: Self = Self(PipelineStageFlagBits2::BOTTOM_OF_PIPE.0);
-        pub const HOST: Self = Self(PipelineStageFlagBits2::HOST.0);
-        pub const ALL_GRAPHICS: Self = Self(PipelineStageFlagBits2::ALL_GRAPHICS.0);
-        pub const ALL_COMMANDS: Self = Self(PipelineStageFlagBits2::ALL_COMMANDS.0);
-        pub const COPY: Self = Self(PipelineStageFlagBits2::COPY.0);
-        pub const RESOLVE: Self = Self(PipelineStageFlagBits2::RESOLVE.0);
-        pub const BLIT: Self = Self(PipelineStageFlagBits2::BLIT.0);
-        pub const CLEAR: Self = Self(PipelineStageFlagBits2::CLEAR.0);
-        pub const INDEX_INPUT: Self = Self(PipelineStageFlagBits2::INDEX_INPUT.0);
-        pub const VERTEX_ATTRIBUTE_INPUT: Self = Self(
-            PipelineStageFlagBits2::VERTEX_ATTRIBUTE_INPUT.0,
-        );
-        pub const PRE_RASTERIZATION_SHADERS: Self = Self(
-            PipelineStageFlagBits2::PRE_RASTERIZATION_SHADERS.0,
-        );
-        pub const VIDEO_DECODE_KHR: Self = Self(
-            PipelineStageFlagBits2::VIDEO_DECODE_KHR.0,
-        );
-        pub const VIDEO_ENCODE_KHR: Self = Self(
-            PipelineStageFlagBits2::VIDEO_ENCODE_KHR.0,
-        );
-        pub const NONE_KHR: Self = Self(PipelineStageFlagBits2::NONE_KHR.0);
-        pub const TOP_OF_PIPE_KHR: Self = Self(
-            PipelineStageFlagBits2::TOP_OF_PIPE_KHR.0,
-        );
-        pub const DRAW_INDIRECT_KHR: Self = Self(
-            PipelineStageFlagBits2::DRAW_INDIRECT_KHR.0,
-        );
-        pub const VERTEX_INPUT_KHR: Self = Self(
-            PipelineStageFlagBits2::VERTEX_INPUT_KHR.0,
-        );
-        pub const VERTEX_SHADER_KHR: Self = Self(
-            PipelineStageFlagBits2::VERTEX_SHADER_KHR.0,
-        );
-        pub const TESSELLATION_CONTROL_SHADER_KHR: Self = Self(
-            PipelineStageFlagBits2::TESSELLATION_CONTROL_SHADER_KHR.0,
-        );
-        pub const TESSELLATION_EVALUATION_SHADER_KHR: Self = Self(
-            PipelineStageFlagBits2::TESSELLATION_EVALUATION_SHADER_KHR.0,
-        );
-        pub const GEOMETRY_SHADER_KHR: Self = Self(
-            PipelineStageFlagBits2::GEOMETRY_SHADER_KHR.0,
-        );
-        pub const FRAGMENT_SHADER_KHR: Self = Self(
-            PipelineStageFlagBits2::FRAGMENT_SHADER_KHR.0,
-        );
-        pub const EARLY_FRAGMENT_TESTS_KHR: Self = Self(
-            PipelineStageFlagBits2::EARLY_FRAGMENT_TESTS_KHR.0,
-        );
-        pub const LATE_FRAGMENT_TESTS_KHR: Self = Self(
-            PipelineStageFlagBits2::LATE_FRAGMENT_TESTS_KHR.0,
-        );
-        pub const COLOR_ATTACHMENT_OUTPUT_KHR: Self = Self(
-            PipelineStageFlagBits2::COLOR_ATTACHMENT_OUTPUT_KHR.0,
-        );
-        pub const COMPUTE_SHADER_KHR: Self = Self(
-            PipelineStageFlagBits2::COMPUTE_SHADER_KHR.0,
-        );
-        pub const ALL_TRANSFER_KHR: Self = Self(
-            PipelineStageFlagBits2::ALL_TRANSFER_KHR.0,
-        );
-        pub const TRANSFER_KHR: Self = Self(PipelineStageFlagBits2::TRANSFER_KHR.0);
-        pub const BOTTOM_OF_PIPE_KHR: Self = Self(
-            PipelineStageFlagBits2::BOTTOM_OF_PIPE_KHR.0,
-        );
-        pub const HOST_KHR: Self = Self(PipelineStageFlagBits2::HOST_KHR.0);
-        pub const ALL_GRAPHICS_KHR: Self = Self(
-            PipelineStageFlagBits2::ALL_GRAPHICS_KHR.0,
-        );
-        pub const ALL_COMMANDS_KHR: Self = Self(
-            PipelineStageFlagBits2::ALL_COMMANDS_KHR.0,
-        );
-        pub const COPY_KHR: Self = Self(PipelineStageFlagBits2::COPY_KHR.0);
-        pub const RESOLVE_KHR: Self = Self(PipelineStageFlagBits2::RESOLVE_KHR.0);
-        pub const BLIT_KHR: Self = Self(PipelineStageFlagBits2::BLIT_KHR.0);
-        pub const CLEAR_KHR: Self = Self(PipelineStageFlagBits2::CLEAR_KHR.0);
-        pub const INDEX_INPUT_KHR: Self = Self(
-            PipelineStageFlagBits2::INDEX_INPUT_KHR.0,
-        );
-        pub const VERTEX_ATTRIBUTE_INPUT_KHR: Self = Self(
-            PipelineStageFlagBits2::VERTEX_ATTRIBUTE_INPUT_KHR.0,
-        );
-        pub const PRE_RASTERIZATION_SHADERS_KHR: Self = Self(
-            PipelineStageFlagBits2::PRE_RASTERIZATION_SHADERS_KHR.0,
-        );
-        pub const TRANSFORM_FEEDBACK_EXT: Self = Self(
-            PipelineStageFlagBits2::TRANSFORM_FEEDBACK_EXT.0,
-        );
-        pub const CONDITIONAL_RENDERING_EXT: Self = Self(
-            PipelineStageFlagBits2::CONDITIONAL_RENDERING_EXT.0,
-        );
-        pub const COMMAND_PREPROCESS_NV: Self = Self(
-            PipelineStageFlagBits2::COMMAND_PREPROCESS_NV.0,
-        );
-        pub const COMMAND_PREPROCESS_EXT: Self = Self(
-            PipelineStageFlagBits2::COMMAND_PREPROCESS_EXT.0,
-        );
-        pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
-            PipelineStageFlagBits2::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
-        );
-        pub const SHADING_RATE_IMAGE_NV: Self = Self(
-            PipelineStageFlagBits2::SHADING_RATE_IMAGE_NV.0,
-        );
-        pub const ACCELERATION_STRUCTURE_BUILD_KHR: Self = Self(
-            PipelineStageFlagBits2::ACCELERATION_STRUCTURE_BUILD_KHR.0,
-        );
-        pub const RAY_TRACING_SHADER_KHR: Self = Self(
-            PipelineStageFlagBits2::RAY_TRACING_SHADER_KHR.0,
-        );
-        pub const RAY_TRACING_SHADER_NV: Self = Self(
-            PipelineStageFlagBits2::RAY_TRACING_SHADER_NV.0,
-        );
-        pub const ACCELERATION_STRUCTURE_BUILD_NV: Self = Self(
-            PipelineStageFlagBits2::ACCELERATION_STRUCTURE_BUILD_NV.0,
-        );
-        pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(
-            PipelineStageFlagBits2::FRAGMENT_DENSITY_PROCESS_EXT.0,
-        );
-        pub const TASK_SHADER_NV: Self = Self(PipelineStageFlagBits2::TASK_SHADER_NV.0);
-        pub const MESH_SHADER_NV: Self = Self(PipelineStageFlagBits2::MESH_SHADER_NV.0);
-        pub const TASK_SHADER_EXT: Self = Self(
-            PipelineStageFlagBits2::TASK_SHADER_EXT.0,
-        );
-        pub const MESH_SHADER_EXT: Self = Self(
-            PipelineStageFlagBits2::MESH_SHADER_EXT.0,
-        );
-        pub const SUBPASS_SHADER_HUAWEI: Self = Self(
-            PipelineStageFlagBits2::SUBPASS_SHADER_HUAWEI.0,
-        );
-        pub const INVOCATION_MASK_HUAWEI: Self = Self(
-            PipelineStageFlagBits2::INVOCATION_MASK_HUAWEI.0,
-        );
-        pub const ACCELERATION_STRUCTURE_COPY_KHR: Self = Self(
-            PipelineStageFlagBits2::ACCELERATION_STRUCTURE_COPY_KHR.0,
-        );
-        pub const MICROMAP_BUILD_EXT: Self = Self(
-            PipelineStageFlagBits2::MICROMAP_BUILD_EXT.0,
-        );
-        pub const CLUSTER_CULLING_SHADER_HUAWEI: Self = Self(
-            PipelineStageFlagBits2::CLUSTER_CULLING_SHADER_HUAWEI.0,
-        );
-        pub const OPTICAL_FLOW_NV: Self = Self(
-            PipelineStageFlagBits2::OPTICAL_FLOW_NV.0,
-        );
-        pub const CONVERT_COOPERATIVE_VECTOR_MATRIX_NV: Self = Self(
-            PipelineStageFlagBits2::CONVERT_COOPERATIVE_VECTOR_MATRIX_NV.0,
-        );
-        pub const DATA_GRAPH_ARM: Self = Self(PipelineStageFlagBits2::DATA_GRAPH_ARM.0);
-        pub const COPY_INDIRECT_KHR: Self = Self(
-            PipelineStageFlagBits2::COPY_INDIRECT_KHR.0,
-        );
-        pub const MEMORY_DECOMPRESSION_EXT: Self = Self(
-            PipelineStageFlagBits2::MEMORY_DECOMPRESSION_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -5290,7 +5130,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct FormatFeatureFlags2(u64);
+    pub struct FormatFeatureFlags2(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for FormatFeatureFlags2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -5422,251 +5262,6 @@ pub(crate) mod items {
         }
     }
     impl FormatFeatureFlags2 {
-        pub const SAMPLED_IMAGE: Self = Self(FormatFeatureFlagBits2::SAMPLED_IMAGE.0);
-        pub const STORAGE_IMAGE: Self = Self(FormatFeatureFlagBits2::STORAGE_IMAGE.0);
-        pub const STORAGE_IMAGE_ATOMIC: Self = Self(
-            FormatFeatureFlagBits2::STORAGE_IMAGE_ATOMIC.0,
-        );
-        pub const UNIFORM_TEXEL_BUFFER: Self = Self(
-            FormatFeatureFlagBits2::UNIFORM_TEXEL_BUFFER.0,
-        );
-        pub const STORAGE_TEXEL_BUFFER: Self = Self(
-            FormatFeatureFlagBits2::STORAGE_TEXEL_BUFFER.0,
-        );
-        pub const STORAGE_TEXEL_BUFFER_ATOMIC: Self = Self(
-            FormatFeatureFlagBits2::STORAGE_TEXEL_BUFFER_ATOMIC.0,
-        );
-        pub const VERTEX_BUFFER: Self = Self(FormatFeatureFlagBits2::VERTEX_BUFFER.0);
-        pub const COLOR_ATTACHMENT: Self = Self(
-            FormatFeatureFlagBits2::COLOR_ATTACHMENT.0,
-        );
-        pub const COLOR_ATTACHMENT_BLEND: Self = Self(
-            FormatFeatureFlagBits2::COLOR_ATTACHMENT_BLEND.0,
-        );
-        pub const DEPTH_STENCIL_ATTACHMENT: Self = Self(
-            FormatFeatureFlagBits2::DEPTH_STENCIL_ATTACHMENT.0,
-        );
-        pub const BLIT_SRC: Self = Self(FormatFeatureFlagBits2::BLIT_SRC.0);
-        pub const BLIT_DST: Self = Self(FormatFeatureFlagBits2::BLIT_DST.0);
-        pub const SAMPLED_IMAGE_FILTER_LINEAR: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_LINEAR.0,
-        );
-        pub const TRANSFER_SRC: Self = Self(FormatFeatureFlagBits2::TRANSFER_SRC.0);
-        pub const TRANSFER_DST: Self = Self(FormatFeatureFlagBits2::TRANSFER_DST.0);
-        pub const SAMPLED_IMAGE_FILTER_MINMAX: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_MINMAX.0,
-        );
-        pub const MIDPOINT_CHROMA_SAMPLES: Self = Self(
-            FormatFeatureFlagBits2::MIDPOINT_CHROMA_SAMPLES.0,
-        );
-        pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER.0,
-        );
-        pub const SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER
-                .0,
-        );
-        pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT
-                .0,
-        );
-        pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE
-                .0,
-        );
-        pub const DISJOINT: Self = Self(FormatFeatureFlagBits2::DISJOINT.0);
-        pub const COSITED_CHROMA_SAMPLES: Self = Self(
-            FormatFeatureFlagBits2::COSITED_CHROMA_SAMPLES.0,
-        );
-        pub const STORAGE_READ_WITHOUT_FORMAT: Self = Self(
-            FormatFeatureFlagBits2::STORAGE_READ_WITHOUT_FORMAT.0,
-        );
-        pub const STORAGE_WRITE_WITHOUT_FORMAT: Self = Self(
-            FormatFeatureFlagBits2::STORAGE_WRITE_WITHOUT_FORMAT.0,
-        );
-        pub const SAMPLED_IMAGE_DEPTH_COMPARISON: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_DEPTH_COMPARISON.0,
-        );
-        pub const SAMPLED_IMAGE_FILTER_CUBIC: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_CUBIC.0,
-        );
-        pub const HOST_IMAGE_TRANSFER: Self = Self(
-            FormatFeatureFlagBits2::HOST_IMAGE_TRANSFER.0,
-        );
-        pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(
-            FormatFeatureFlagBits2::VIDEO_DECODE_OUTPUT_KHR.0,
-        );
-        pub const VIDEO_DECODE_DPB_KHR: Self = Self(
-            FormatFeatureFlagBits2::VIDEO_DECODE_DPB_KHR.0,
-        );
-        pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(
-            FormatFeatureFlagBits2::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR.0,
-        );
-        pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(
-            FormatFeatureFlagBits2::FRAGMENT_DENSITY_MAP_EXT.0,
-        );
-        pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
-            FormatFeatureFlagBits2::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
-        );
-        pub const HOST_IMAGE_TRANSFER_EXT: Self = Self(
-            FormatFeatureFlagBits2::HOST_IMAGE_TRANSFER_EXT.0,
-        );
-        pub const VIDEO_ENCODE_INPUT_KHR: Self = Self(
-            FormatFeatureFlagBits2::VIDEO_ENCODE_INPUT_KHR.0,
-        );
-        pub const VIDEO_ENCODE_DPB_KHR: Self = Self(
-            FormatFeatureFlagBits2::VIDEO_ENCODE_DPB_KHR.0,
-        );
-        pub const BLOCK_MATCHING_SXD_QCOM: Self = Self(
-            FormatFeatureFlagBits2::BLOCK_MATCHING_SXD_QCOM.0,
-        );
-        pub const SAMPLED_IMAGE_KHR: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_KHR.0,
-        );
-        pub const STORAGE_IMAGE_KHR: Self = Self(
-            FormatFeatureFlagBits2::STORAGE_IMAGE_KHR.0,
-        );
-        pub const STORAGE_IMAGE_ATOMIC_KHR: Self = Self(
-            FormatFeatureFlagBits2::STORAGE_IMAGE_ATOMIC_KHR.0,
-        );
-        pub const UNIFORM_TEXEL_BUFFER_KHR: Self = Self(
-            FormatFeatureFlagBits2::UNIFORM_TEXEL_BUFFER_KHR.0,
-        );
-        pub const STORAGE_TEXEL_BUFFER_KHR: Self = Self(
-            FormatFeatureFlagBits2::STORAGE_TEXEL_BUFFER_KHR.0,
-        );
-        pub const STORAGE_TEXEL_BUFFER_ATOMIC_KHR: Self = Self(
-            FormatFeatureFlagBits2::STORAGE_TEXEL_BUFFER_ATOMIC_KHR.0,
-        );
-        pub const VERTEX_BUFFER_KHR: Self = Self(
-            FormatFeatureFlagBits2::VERTEX_BUFFER_KHR.0,
-        );
-        pub const COLOR_ATTACHMENT_KHR: Self = Self(
-            FormatFeatureFlagBits2::COLOR_ATTACHMENT_KHR.0,
-        );
-        pub const COLOR_ATTACHMENT_BLEND_KHR: Self = Self(
-            FormatFeatureFlagBits2::COLOR_ATTACHMENT_BLEND_KHR.0,
-        );
-        pub const DEPTH_STENCIL_ATTACHMENT_KHR: Self = Self(
-            FormatFeatureFlagBits2::DEPTH_STENCIL_ATTACHMENT_KHR.0,
-        );
-        pub const BLIT_SRC_KHR: Self = Self(FormatFeatureFlagBits2::BLIT_SRC_KHR.0);
-        pub const BLIT_DST_KHR: Self = Self(FormatFeatureFlagBits2::BLIT_DST_KHR.0);
-        pub const SAMPLED_IMAGE_FILTER_LINEAR_KHR: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_LINEAR_KHR.0,
-        );
-        pub const TRANSFER_SRC_KHR: Self = Self(
-            FormatFeatureFlagBits2::TRANSFER_SRC_KHR.0,
-        );
-        pub const TRANSFER_DST_KHR: Self = Self(
-            FormatFeatureFlagBits2::TRANSFER_DST_KHR.0,
-        );
-        pub const MIDPOINT_CHROMA_SAMPLES_KHR: Self = Self(
-            FormatFeatureFlagBits2::MIDPOINT_CHROMA_SAMPLES_KHR.0,
-        );
-        pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR.0,
-        );
-        pub const SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR
-                .0,
-        );
-        pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_KHR: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_KHR
-                .0,
-        );
-        pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR
-                .0,
-        );
-        pub const DISJOINT_KHR: Self = Self(FormatFeatureFlagBits2::DISJOINT_KHR.0);
-        pub const COSITED_CHROMA_SAMPLES_KHR: Self = Self(
-            FormatFeatureFlagBits2::COSITED_CHROMA_SAMPLES_KHR.0,
-        );
-        pub const STORAGE_READ_WITHOUT_FORMAT_KHR: Self = Self(
-            FormatFeatureFlagBits2::STORAGE_READ_WITHOUT_FORMAT_KHR.0,
-        );
-        pub const STORAGE_WRITE_WITHOUT_FORMAT_KHR: Self = Self(
-            FormatFeatureFlagBits2::STORAGE_WRITE_WITHOUT_FORMAT_KHR.0,
-        );
-        pub const SAMPLED_IMAGE_DEPTH_COMPARISON_KHR: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_DEPTH_COMPARISON_KHR.0,
-        );
-        pub const SAMPLED_IMAGE_FILTER_MINMAX_KHR: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_MINMAX_KHR.0,
-        );
-        pub const SAMPLED_IMAGE_FILTER_CUBIC_EXT: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_CUBIC_EXT.0,
-        );
-        pub const ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV: Self = Self(
-            FormatFeatureFlagBits2::ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV.0,
-        );
-        pub const LINEAR_COLOR_ATTACHMENT_NV: Self = Self(
-            FormatFeatureFlagBits2::LINEAR_COLOR_ATTACHMENT_NV.0,
-        );
-        pub const WEIGHT_IMAGE_QCOM: Self = Self(
-            FormatFeatureFlagBits2::WEIGHT_IMAGE_QCOM.0,
-        );
-        pub const WEIGHT_SAMPLED_IMAGE_QCOM: Self = Self(
-            FormatFeatureFlagBits2::WEIGHT_SAMPLED_IMAGE_QCOM.0,
-        );
-        pub const BLOCK_MATCHING_QCOM: Self = Self(
-            FormatFeatureFlagBits2::BLOCK_MATCHING_QCOM.0,
-        );
-        pub const BOX_FILTER_SAMPLED_QCOM: Self = Self(
-            FormatFeatureFlagBits2::BOX_FILTER_SAMPLED_QCOM.0,
-        );
-        pub const TENSOR_SHADER_ARM: Self = Self(
-            FormatFeatureFlagBits2::TENSOR_SHADER_ARM.0,
-        );
-        pub const TENSOR_IMAGE_ALIASING_ARM: Self = Self(
-            FormatFeatureFlagBits2::TENSOR_IMAGE_ALIASING_ARM.0,
-        );
-        pub const OPTICAL_FLOW_IMAGE_NV: Self = Self(
-            FormatFeatureFlagBits2::OPTICAL_FLOW_IMAGE_NV.0,
-        );
-        pub const OPTICAL_FLOW_VECTOR_NV: Self = Self(
-            FormatFeatureFlagBits2::OPTICAL_FLOW_VECTOR_NV.0,
-        );
-        pub const OPTICAL_FLOW_COST_NV: Self = Self(
-            FormatFeatureFlagBits2::OPTICAL_FLOW_COST_NV.0,
-        );
-        pub const TENSOR_DATA_GRAPH_ARM: Self = Self(
-            FormatFeatureFlagBits2::TENSOR_DATA_GRAPH_ARM.0,
-        );
-        pub const COPY_IMAGE_INDIRECT_DST_KHR: Self = Self(
-            FormatFeatureFlagBits2::COPY_IMAGE_INDIRECT_DST_KHR.0,
-        );
-        pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(
-            FormatFeatureFlagBits2::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0,
-        );
-        pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(
-            FormatFeatureFlagBits2::VIDEO_ENCODE_EMPHASIS_MAP_KHR.0,
-        );
-        pub const SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG: Self = Self(
-            FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG.0,
-        );
-        pub const DEPTH_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(
-            FormatFeatureFlagBits2::DEPTH_COPY_ON_COMPUTE_QUEUE_KHR.0,
-        );
-        pub const DEPTH_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(
-            FormatFeatureFlagBits2::DEPTH_COPY_ON_TRANSFER_QUEUE_KHR.0,
-        );
-        pub const STENCIL_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(
-            FormatFeatureFlagBits2::STENCIL_COPY_ON_COMPUTE_QUEUE_KHR.0,
-        );
-        pub const STENCIL_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(
-            FormatFeatureFlagBits2::STENCIL_COPY_ON_TRANSFER_QUEUE_KHR.0,
-        );
-        pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM: Self = Self(
-            FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM.0,
-        );
-        pub const DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM: Self = Self(
-            FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM.0,
-        );
-        pub const DATA_GRAPH_OPTICAL_FLOW_COST_ARM: Self = Self(
-            FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_COST_ARM.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -5742,7 +5337,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct RenderingFlags(u32);
+    pub struct RenderingFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for RenderingFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -5773,37 +5368,6 @@ pub(crate) mod items {
         }
     }
     impl RenderingFlags {
-        pub const CONTENTS_SECONDARY_COMMAND_BUFFERS: Self = Self(
-            RenderingFlagBits::CONTENTS_SECONDARY_COMMAND_BUFFERS.0,
-        );
-        pub const SUSPENDING: Self = Self(RenderingFlagBits::SUSPENDING.0);
-        pub const RESUMING: Self = Self(RenderingFlagBits::RESUMING.0);
-        pub const CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self(
-            RenderingFlagBits::CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR.0,
-        );
-        pub const SUSPENDING_KHR: Self = Self(RenderingFlagBits::SUSPENDING_KHR.0);
-        pub const RESUMING_KHR: Self = Self(RenderingFlagBits::RESUMING_KHR.0);
-        pub const CONTENTS_INLINE_EXT: Self = Self(
-            RenderingFlagBits::CONTENTS_INLINE_EXT.0,
-        );
-        pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(
-            RenderingFlagBits::ENABLE_LEGACY_DITHERING_EXT.0,
-        );
-        pub const CONTENTS_INLINE_KHR: Self = Self(
-            RenderingFlagBits::CONTENTS_INLINE_KHR.0,
-        );
-        pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(
-            RenderingFlagBits::PER_LAYER_FRAGMENT_DENSITY_VALVE.0,
-        );
-        pub const FRAGMENT_REGION_EXT: Self = Self(
-            RenderingFlagBits::FRAGMENT_REGION_EXT.0,
-        );
-        pub const CUSTOM_RESOLVE_EXT: Self = Self(
-            RenderingFlagBits::CUSTOM_RESOLVE_EXT.0,
-        );
-        pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(
-            RenderingFlagBits::LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -5879,7 +5443,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ToolPurposeFlags(u32);
+    pub struct ToolPurposeFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ToolPurposeFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -5899,30 +5463,6 @@ pub(crate) mod items {
         }
     }
     impl ToolPurposeFlags {
-        pub const VALIDATION: Self = Self(ToolPurposeFlagBits::VALIDATION.0);
-        pub const PROFILING: Self = Self(ToolPurposeFlagBits::PROFILING.0);
-        pub const TRACING: Self = Self(ToolPurposeFlagBits::TRACING.0);
-        pub const ADDITIONAL_FEATURES: Self = Self(
-            ToolPurposeFlagBits::ADDITIONAL_FEATURES.0,
-        );
-        pub const MODIFYING_FEATURES: Self = Self(
-            ToolPurposeFlagBits::MODIFYING_FEATURES.0,
-        );
-        pub const VALIDATION_EXT: Self = Self(ToolPurposeFlagBits::VALIDATION_EXT.0);
-        pub const PROFILING_EXT: Self = Self(ToolPurposeFlagBits::PROFILING_EXT.0);
-        pub const TRACING_EXT: Self = Self(ToolPurposeFlagBits::TRACING_EXT.0);
-        pub const ADDITIONAL_FEATURES_EXT: Self = Self(
-            ToolPurposeFlagBits::ADDITIONAL_FEATURES_EXT.0,
-        );
-        pub const MODIFYING_FEATURES_EXT: Self = Self(
-            ToolPurposeFlagBits::MODIFYING_FEATURES_EXT.0,
-        );
-        pub const DEBUG_REPORTING_EXT: Self = Self(
-            ToolPurposeFlagBits::DEBUG_REPORTING_EXT.0,
-        );
-        pub const DEBUG_MARKERS_EXT: Self = Self(
-            ToolPurposeFlagBits::DEBUG_MARKERS_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -5998,7 +5538,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct SubmitFlags(u32);
+    pub struct SubmitFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SubmitFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -6006,8 +5546,6 @@ pub(crate) mod items {
         }
     }
     impl SubmitFlags {
-        pub const PROTECTED: Self = Self(SubmitFlagBits::PROTECTED.0);
-        pub const PROTECTED_KHR: Self = Self(SubmitFlagBits::PROTECTED_KHR.0);
         pub const fn empty() -> Self {
             Self(0)
         }

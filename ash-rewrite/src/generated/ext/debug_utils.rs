@@ -15,11 +15,32 @@ impl crate::vk::ObjectType {
     pub const DEBUG_UTILS_MESSENGER_EXT: Self = Self(1000128000);
 }
 ///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+impl DebugUtilsMessageSeverityFlagsEXT {
+    pub const VERBOSE_EXT: Self = Self(
+        DebugUtilsMessageSeverityFlagBitsEXT::VERBOSE_EXT.0,
+    );
+    pub const INFO_EXT: Self = Self(DebugUtilsMessageSeverityFlagBitsEXT::INFO_EXT.0);
+    pub const WARNING_EXT: Self = Self(
+        DebugUtilsMessageSeverityFlagBitsEXT::WARNING_EXT.0,
+    );
+    pub const ERROR_EXT: Self = Self(DebugUtilsMessageSeverityFlagBitsEXT::ERROR_EXT.0);
+}
+///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
 impl DebugUtilsMessageSeverityFlagBitsEXT {
     pub const VERBOSE_EXT: Self = Self(1 << 0);
     pub const INFO_EXT: Self = Self(1 << 4);
     pub const WARNING_EXT: Self = Self(1 << 8);
     pub const ERROR_EXT: Self = Self(1 << 12);
+}
+///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+impl DebugUtilsMessageTypeFlagsEXT {
+    pub const GENERAL_EXT: Self = Self(DebugUtilsMessageTypeFlagBitsEXT::GENERAL_EXT.0);
+    pub const VALIDATION_EXT: Self = Self(
+        DebugUtilsMessageTypeFlagBitsEXT::VALIDATION_EXT.0,
+    );
+    pub const PERFORMANCE_EXT: Self = Self(
+        DebugUtilsMessageTypeFlagBitsEXT::PERFORMANCE_EXT.0,
+    );
 }
 ///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
 impl DebugUtilsMessageTypeFlagBitsEXT {
@@ -589,7 +610,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DebugUtilsMessageSeverityFlagsEXT(u32);
+    pub struct DebugUtilsMessageSeverityFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -606,18 +627,6 @@ pub(crate) mod items {
         }
     }
     impl DebugUtilsMessageSeverityFlagsEXT {
-        pub const VERBOSE_EXT: Self = Self(
-            DebugUtilsMessageSeverityFlagBitsEXT::VERBOSE_EXT.0,
-        );
-        pub const INFO_EXT: Self = Self(
-            DebugUtilsMessageSeverityFlagBitsEXT::INFO_EXT.0,
-        );
-        pub const WARNING_EXT: Self = Self(
-            DebugUtilsMessageSeverityFlagBitsEXT::WARNING_EXT.0,
-        );
-        pub const ERROR_EXT: Self = Self(
-            DebugUtilsMessageSeverityFlagBitsEXT::ERROR_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -693,7 +702,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DebugUtilsMessageTypeFlagsEXT(u32);
+    pub struct DebugUtilsMessageTypeFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DebugUtilsMessageTypeFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -710,18 +719,6 @@ pub(crate) mod items {
         }
     }
     impl DebugUtilsMessageTypeFlagsEXT {
-        pub const GENERAL_EXT: Self = Self(
-            DebugUtilsMessageTypeFlagBitsEXT::GENERAL_EXT.0,
-        );
-        pub const VALIDATION_EXT: Self = Self(
-            DebugUtilsMessageTypeFlagBitsEXT::VALIDATION_EXT.0,
-        );
-        pub const PERFORMANCE_EXT: Self = Self(
-            DebugUtilsMessageTypeFlagBitsEXT::PERFORMANCE_EXT.0,
-        );
-        pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(
-            DebugUtilsMessageTypeFlagBitsEXT::DEVICE_ADDRESS_BINDING_EXT.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -797,7 +794,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DebugUtilsMessengerCreateFlagsEXT(u32);
+    pub struct DebugUtilsMessengerCreateFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DebugUtilsMessengerCreateFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -865,7 +862,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DebugUtilsMessengerCallbackDataFlagsEXT(u32);
+    pub struct DebugUtilsMessengerCallbackDataFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DebugUtilsMessengerCallbackDataFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

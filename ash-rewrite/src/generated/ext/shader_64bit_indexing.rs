@@ -7,8 +7,20 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT: Self = Self(1000627000);
 }
 ///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
+impl crate::vk::PipelineCreateFlags2 {
+    pub const _64_INDEXING_EXT: Self = Self(
+        crate::vk::PipelineCreateFlagBits2::_64_INDEXING_EXT.0,
+    );
+}
+///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
 impl crate::vk::PipelineCreateFlagBits2 {
     pub const _64_INDEXING_EXT: Self = Self(1 << 43);
+}
+///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
+impl crate::vk::ShaderCreateFlagsEXT {
+    pub const _64_INDEXING_EXT: Self = Self(
+        crate::vk::ShaderCreateFlagBitsEXT::_64_INDEXING_EXT.0,
+    );
 }
 ///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
 impl crate::vk::ShaderCreateFlagBitsEXT {

@@ -58,12 +58,33 @@ impl DescriptorMappingSourceEXT {
     pub const SHADER_RECORD_ADDRESS_EXT: Self = Self(10);
 }
 ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::BufferUsageFlags {
+    pub const DESCRIPTOR_HEAP_EXT: Self = Self(
+        crate::vk::BufferUsageFlagBits::DESCRIPTOR_HEAP_EXT.0,
+    );
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
 impl crate::vk::BufferUsageFlagBits {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 28);
 }
 ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::ImageCreateFlags {
+    pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT: Self = Self(
+        crate::vk::ImageCreateFlagBits::DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT.0,
+    );
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
 impl crate::vk::ImageCreateFlagBits {
     pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT: Self = Self(1 << 16);
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::AccessFlags2 {
+    pub const SAMPLER_HEAP_READ_EXT: Self = Self(
+        crate::vk::AccessFlagBits2::SAMPLER_HEAP_READ_EXT.0,
+    );
+    pub const RESOURCE_HEAP_READ_EXT: Self = Self(
+        crate::vk::AccessFlagBits2::RESOURCE_HEAP_READ_EXT.0,
+    );
 }
 ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
 impl crate::vk::AccessFlagBits2 {
@@ -71,16 +92,64 @@ impl crate::vk::AccessFlagBits2 {
     pub const RESOURCE_HEAP_READ_EXT: Self = Self(1 << 58);
 }
 ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::PipelineCreateFlags2 {
+    pub const DESCRIPTOR_HEAP_EXT: Self = Self(
+        crate::vk::PipelineCreateFlagBits2::DESCRIPTOR_HEAP_EXT.0,
+    );
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
 impl crate::vk::PipelineCreateFlagBits2 {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 36);
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::BufferUsageFlags2 {
+    pub const DESCRIPTOR_HEAP_EXT: Self = Self(
+        crate::vk::BufferUsageFlagBits2::DESCRIPTOR_HEAP_EXT.0,
+    );
 }
 ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
 impl crate::vk::BufferUsageFlagBits2 {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 28);
 }
 ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::TensorCreateFlagsARM {
+    pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM: Self = Self(
+        crate::vk::TensorCreateFlagBitsARM::DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM.0,
+    );
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
 impl crate::vk::TensorCreateFlagBitsARM {
     pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM: Self = Self(1 << 3);
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl SpirvResourceTypeFlagsEXT {
+    pub const ALL_EXT: Self = Self(SpirvResourceTypeFlagBitsEXT::ALL_EXT.0);
+    pub const SAMPLER_EXT: Self = Self(SpirvResourceTypeFlagBitsEXT::SAMPLER_EXT.0);
+    pub const SAMPLED_IMAGE_EXT: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::SAMPLED_IMAGE_EXT.0,
+    );
+    pub const READ_ONLY_IMAGE_EXT: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::READ_ONLY_IMAGE_EXT.0,
+    );
+    pub const READ_WRITE_IMAGE_EXT: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::READ_WRITE_IMAGE_EXT.0,
+    );
+    pub const COMBINED_SAMPLED_IMAGE_EXT: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::COMBINED_SAMPLED_IMAGE_EXT.0,
+    );
+    pub const UNIFORM_BUFFER_EXT: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::UNIFORM_BUFFER_EXT.0,
+    );
+    pub const READ_ONLY_STORAGE_BUFFER_EXT: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::READ_ONLY_STORAGE_BUFFER_EXT.0,
+    );
+    pub const READ_WRITE_STORAGE_BUFFER_EXT: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::READ_WRITE_STORAGE_BUFFER_EXT.0,
+    );
+    pub const ACCELERATION_STRUCTURE_EXT: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::ACCELERATION_STRUCTURE_EXT.0,
+    );
+    pub const TENSOR_ARM: Self = Self(SpirvResourceTypeFlagBitsEXT::TENSOR_ARM.0);
 }
 ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
 impl SpirvResourceTypeFlagBitsEXT {
@@ -95,6 +164,12 @@ impl SpirvResourceTypeFlagBitsEXT {
     pub const READ_WRITE_STORAGE_BUFFER_EXT: Self = Self(1 << 7);
     pub const ACCELERATION_STRUCTURE_EXT: Self = Self(1 << 8);
     pub const TENSOR_ARM: Self = Self(1 << 9);
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::ShaderCreateFlagsEXT {
+    pub const DESCRIPTOR_HEAP_EXT: Self = Self(
+        crate::vk::ShaderCreateFlagBitsEXT::DESCRIPTOR_HEAP_EXT.0,
+    );
 }
 ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
 impl crate::vk::ShaderCreateFlagBitsEXT {
@@ -1625,7 +1700,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct TensorViewCreateFlagsARM(u64);
+    pub struct TensorViewCreateFlagsARM(pub(crate) u64);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for TensorViewCreateFlagsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1642,9 +1717,6 @@ pub(crate) mod items {
         }
     }
     impl TensorViewCreateFlagsARM {
-        pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(
-            TensorViewCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
-        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1720,7 +1792,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct SpirvResourceTypeFlagsEXT(u32);
+    pub struct SpirvResourceTypeFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SpirvResourceTypeFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1750,33 +1822,6 @@ pub(crate) mod items {
         }
     }
     impl SpirvResourceTypeFlagsEXT {
-        pub const ALL_EXT: Self = Self(SpirvResourceTypeFlagBitsEXT::ALL_EXT.0);
-        pub const SAMPLER_EXT: Self = Self(SpirvResourceTypeFlagBitsEXT::SAMPLER_EXT.0);
-        pub const SAMPLED_IMAGE_EXT: Self = Self(
-            SpirvResourceTypeFlagBitsEXT::SAMPLED_IMAGE_EXT.0,
-        );
-        pub const READ_ONLY_IMAGE_EXT: Self = Self(
-            SpirvResourceTypeFlagBitsEXT::READ_ONLY_IMAGE_EXT.0,
-        );
-        pub const READ_WRITE_IMAGE_EXT: Self = Self(
-            SpirvResourceTypeFlagBitsEXT::READ_WRITE_IMAGE_EXT.0,
-        );
-        pub const COMBINED_SAMPLED_IMAGE_EXT: Self = Self(
-            SpirvResourceTypeFlagBitsEXT::COMBINED_SAMPLED_IMAGE_EXT.0,
-        );
-        pub const UNIFORM_BUFFER_EXT: Self = Self(
-            SpirvResourceTypeFlagBitsEXT::UNIFORM_BUFFER_EXT.0,
-        );
-        pub const READ_ONLY_STORAGE_BUFFER_EXT: Self = Self(
-            SpirvResourceTypeFlagBitsEXT::READ_ONLY_STORAGE_BUFFER_EXT.0,
-        );
-        pub const READ_WRITE_STORAGE_BUFFER_EXT: Self = Self(
-            SpirvResourceTypeFlagBitsEXT::READ_WRITE_STORAGE_BUFFER_EXT.0,
-        );
-        pub const ACCELERATION_STRUCTURE_EXT: Self = Self(
-            SpirvResourceTypeFlagBitsEXT::ACCELERATION_STRUCTURE_EXT.0,
-        );
-        pub const TENSOR_ARM: Self = Self(SpirvResourceTypeFlagBitsEXT::TENSOR_ARM.0);
         pub const fn empty() -> Self {
             Self(0)
         }

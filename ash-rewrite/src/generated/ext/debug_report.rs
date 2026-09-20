@@ -60,6 +60,16 @@ impl DebugReportObjectTypeEXT {
     pub const DESCRIPTOR_UPDATE_TEMPLATE_EXT: Self = Self(1000085000);
 }
 ///Provided by [`ext::debug_report`](crate::ext::debug_report)
+impl DebugReportFlagsEXT {
+    pub const INFORMATION_EXT: Self = Self(DebugReportFlagBitsEXT::INFORMATION_EXT.0);
+    pub const WARNING_EXT: Self = Self(DebugReportFlagBitsEXT::WARNING_EXT.0);
+    pub const PERFORMANCE_WARNING_EXT: Self = Self(
+        DebugReportFlagBitsEXT::PERFORMANCE_WARNING_EXT.0,
+    );
+    pub const ERROR_EXT: Self = Self(DebugReportFlagBitsEXT::ERROR_EXT.0);
+    pub const DEBUG_EXT: Self = Self(DebugReportFlagBitsEXT::DEBUG_EXT.0);
+}
+///Provided by [`ext::debug_report`](crate::ext::debug_report)
 impl DebugReportFlagBitsEXT {
     pub const INFORMATION_EXT: Self = Self(1 << 0);
     pub const WARNING_EXT: Self = Self(1 << 1);
@@ -264,7 +274,9 @@ pub(crate) mod items {
                 Self::ACCELERATION_STRUCTURE_NV_EXT => {
                     Some("ACCELERATION_STRUCTURE_NV_EXT")
                 }
+                #[cfg(feature = "provisional")]
                 Self::CUDA_MODULE_NV_EXT => Some("CUDA_MODULE_NV_EXT"),
+                #[cfg(feature = "provisional")]
                 Self::CUDA_FUNCTION_NV_EXT => Some("CUDA_FUNCTION_NV_EXT"),
                 Self::BUFFER_COLLECTION_FUCHSIA_EXT => {
                     Some("BUFFER_COLLECTION_FUCHSIA_EXT")
@@ -279,7 +291,7 @@ pub(crate) mod items {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct DebugReportFlagsEXT(u32);
+    pub struct DebugReportFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DebugReportFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -297,15 +309,6 @@ pub(crate) mod items {
         }
     }
     impl DebugReportFlagsEXT {
-        pub const INFORMATION_EXT: Self = Self(
-            DebugReportFlagBitsEXT::INFORMATION_EXT.0,
-        );
-        pub const WARNING_EXT: Self = Self(DebugReportFlagBitsEXT::WARNING_EXT.0);
-        pub const PERFORMANCE_WARNING_EXT: Self = Self(
-            DebugReportFlagBitsEXT::PERFORMANCE_WARNING_EXT.0,
-        );
-        pub const ERROR_EXT: Self = Self(DebugReportFlagBitsEXT::ERROR_EXT.0);
-        pub const DEBUG_EXT: Self = Self(DebugReportFlagBitsEXT::DEBUG_EXT.0);
         pub const fn empty() -> Self {
             Self(0)
         }
