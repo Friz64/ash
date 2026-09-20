@@ -663,6 +663,7 @@ impl EnumeratorValue {
 pub struct Enumerator {
     pub name: EnumeratorName,
     pub value: EnumeratorValue,
+    pub comment: Option<&'static str>,
 }
 
 impl Enumerator {
@@ -674,6 +675,7 @@ impl Enumerator {
             .map(|enumerator| Enumerator {
                 name: EnumeratorName::new(attribute(enumerator, "name").unwrap()),
                 value: EnumeratorValue::from_node(enumerator, None),
+                comment: attribute(enumerator, "comment"),
             })
             .collect()
     }

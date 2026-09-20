@@ -1,12 +1,12 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    item::enumeration::{Enum, Item, Value},
+    item::enumeration::{Enum, Value},
     name::TypeName,
     rust::{Lifetime, RustTokens},
     xml::cexpr::CExprItem,
 };
-use proc_macro2::Literal;
+use proc_macro2::{Literal, TokenStream};
 use quote::quote;
 use tracing::{instrument, trace};
 
@@ -48,12 +48,42 @@ impl Code for Enum {
             }
         };
 
+        let display = (self.name == TypeName::VK_RESULT).then(|| {
+            let display_items: TokenStream = (self.items.iter())
+                .filter_map(|(name, item)| {
+                    item.comment.and_then(|comment| {
+                        (!matches!(item.value, Value::Alias(..))).then_some((name, comment))
+                    })
+                })
+                .map(|(&name, comment)| {
+                    let name = ctx.enumerator_tokens(name, self.name, false);
+                    quote! { Self::#name => Some(#comment), }
+                })
+                .collect();
+
+            quote! {
+                impl core::fmt::Display for #name {
+                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                        if let Some(x) = match *self {
+                            #display_items
+                            _ => None,
+                        } {
+                            f.write_str(x)
+                        } else {
+                            core::fmt::Debug::fmt(&self.0, f)
+                        }
+                    }
+                }
+            }
+        });
+
         let code = quote! {
             #[repr(transparent)]
             #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
             pub struct #name(pub(crate) i32);
 
             #debug
+            #display
         };
 
         let mut codemap = CodeMap::new(Destination::primary_location(self.required_by), code);
@@ -72,9 +102,9 @@ impl Code for Enum {
             },
         );
 
-        for (&name, Item { required_by, value }) in &self.items {
+        for (&name, item) in &self.items {
             let name = ctx.enumerator_tokens(name, self.name, false);
-            let value = match &value {
+            let value = match &item.value {
                 Value::Variant(variant) => {
                     let literal = Literal::i32_unsuffixed(*variant);
                     quote! { Self(#literal) }
@@ -90,7 +120,7 @@ impl Code for Enum {
             };
 
             impl_map.extend(CodeMap::new(
-                Destination::primary_location(*required_by),
+                Destination::primary_location(item.required_by),
                 quote! { pub const #name: Self = #value; },
             ));
         }
@@ -115,27 +145,6 @@ impl Code for Enum {
                 },
             ));
         }
-
-        /*
-        codemap.extend(CodeMap::new(
-            Destination::new(self.required_by),
-            quote! {
-                #[cfg(feature = "std")]
-                impl std::error::Error for #name {}
-
-                impl fmt::Display for Result {
-                    fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
-                        let name = match * self {  Self :: ERROR_UNKNOWN => Some ("An unknown error has occurred, due to an implementation or application bug") , _ => None , } ;
-                        if let Some(x) = name {
-                            fmt.write_str(x)
-                        } else {
-                            <Self as fmt::Debug>::fmt(self, fmt)
-                        }
-                    }
-                }
-            },
-        ));
-        */
 
         codemap
     }

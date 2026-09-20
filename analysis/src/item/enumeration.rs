@@ -17,6 +17,7 @@ pub enum Value {
 pub struct Item {
     pub required_by: RequiredBy,
     pub value: Value,
+    pub comment: Option<&'static str>,
 }
 
 #[derive(Debug)]
@@ -32,6 +33,32 @@ impl NamedType for Enum {
     }
 }
 
+pub(crate) struct ExtendEnumerator<'a> {
+    name: EnumeratorName,
+    value: &'a xml::EnumeratorValue,
+    comment: Option<&'static str>,
+}
+
+impl<'a> From<&'a xml::Enumerator> for ExtendEnumerator<'a> {
+    fn from(xml: &'a xml::Enumerator) -> Self {
+        ExtendEnumerator {
+            name: xml.name,
+            value: &xml.value,
+            comment: xml.comment,
+        }
+    }
+}
+
+impl<'a> From<&'a xml::RequireEnumerator> for ExtendEnumerator<'a> {
+    fn from(xml: &'a xml::RequireEnumerator) -> Self {
+        ExtendEnumerator {
+            name: xml.name,
+            value: &xml.value,
+            comment: None,
+        }
+    }
+}
+
 impl Enum {
     #[instrument(skip(require_map))]
     pub(crate) fn new(require_map: &RequireMap, xml: &xml::Enum) -> Option<Enum> {
@@ -44,10 +71,7 @@ impl Enum {
             items: IndexMap::new(),
         };
 
-        enumeration.extend(
-            required_by,
-            xml.enumerators.iter().map(|en| (en.name, &en.value)),
-        );
+        enumeration.extend(required_by, xml.enumerators.iter());
 
         Some(enumeration)
     }
@@ -55,9 +79,14 @@ impl Enum {
     pub(crate) fn extend<'a>(
         &mut self,
         required_by: RequiredBy,
-        enumerators: impl Iterator<Item = (EnumeratorName, &'a xml::EnumeratorValue)>,
+        enumerators: impl Iterator<Item = impl Into<ExtendEnumerator<'a>>>,
     ) {
-        for (name, value) in enumerators {
+        for ExtendEnumerator {
+            name,
+            value,
+            comment,
+        } in enumerators.map(|e| e.into())
+        {
             let value = match value {
                 xml::EnumeratorValue::Expr(cexpr_items) => Value::Expr(cexpr_items.clone()),
                 xml::EnumeratorValue::BitPos(..) => unreachable!(),
@@ -74,7 +103,12 @@ impl Enum {
                 }
             };
 
-            let item = (self.items.entry(name)).or_insert_with(|| Item { required_by, value });
+            let item = (self.items.entry(name)).or_insert_with(|| Item {
+                required_by,
+                value,
+                comment,
+            });
+
             item.required_by.merge(required_by);
         }
     }

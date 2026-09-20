@@ -305,10 +305,7 @@ impl Items {
                         );
                     }
                     TypeItem::Enum(enumeration) => {
-                        enumeration.extend(
-                            required_by,
-                            iter::once((enumerator.name, &enumerator.value)),
-                        );
+                        enumeration.extend(required_by, iter::once(enumerator));
                     }
                     _ => unreachable!(),
                 }

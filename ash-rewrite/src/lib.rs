@@ -72,13 +72,6 @@ impl<T> RawMutPtr<T> for Option<&mut T> {
 #[cfg(feature = "std")]
 impl std::error::Error for vk::Result {}
 
-impl core::fmt::Display for vk::Result {
-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        // TODO: don't be lazy and bring back the old functionality in the generator
-        core::fmt::Debug::fmt("waf", f)
-    }
-}
-
 pub type VkResult<T> = Result<T, vk::Result>;
 
 impl vk::Result {
