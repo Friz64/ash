@@ -225,7 +225,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_performance_query";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -716,18 +716,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PerformanceCounterDescriptionFlagBitsKHR(pub(crate) u32);
+    impl PerformanceCounterDescriptionFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PerformanceCounterDescriptionFlagsKHR {
+            PerformanceCounterDescriptionFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PerformanceCounterDescriptionFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PERFORMANCE_IMPACTING_KHR => Some("PERFORMANCE_IMPACTING_KHR"),
-                Self::CONCURRENTLY_IMPACTED_KHR => Some("CONCURRENTLY_IMPACTED_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -801,10 +799,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) u32);
+    impl AcquireProfilingLockFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> AcquireProfilingLockFlagsKHR {
+            AcquireProfilingLockFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AcquireProfilingLockFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = unsafe extern "system" fn(
@@ -829,4 +833,4 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
     );
 }
-pub use reexport::*;
+pub use items::*;

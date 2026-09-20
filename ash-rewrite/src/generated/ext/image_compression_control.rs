@@ -110,7 +110,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -327,20 +327,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCompressionFlagBitsEXT(pub(crate) u32);
+    impl ImageCompressionFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ImageCompressionFlagsEXT {
+            ImageCompressionFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageCompressionFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DEFAULT_EXT => Some("DEFAULT_EXT"),
-                Self::FIXED_RATE_DEFAULT_EXT => Some("FIXED_RATE_DEFAULT_EXT"),
-                Self::FIXED_RATE_EXPLICIT_EXT => Some("FIXED_RATE_EXPLICIT_EXT"),
-                Self::DISABLED_EXT => Some("DISABLED_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -519,42 +515,17 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCompressionFixedRateFlagBitsEXT(pub(crate) u32);
+    impl ImageCompressionFixedRateFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ImageCompressionFixedRateFlagsEXT {
+            ImageCompressionFixedRateFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageCompressionFixedRateFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::NONE_EXT => Some("NONE_EXT"),
-                Self::_1BPC_EXT => Some("_1BPC_EXT"),
-                Self::_2BPC_EXT => Some("_2BPC_EXT"),
-                Self::_3BPC_EXT => Some("_3BPC_EXT"),
-                Self::_4BPC_EXT => Some("_4BPC_EXT"),
-                Self::_5BPC_EXT => Some("_5BPC_EXT"),
-                Self::_6BPC_EXT => Some("_6BPC_EXT"),
-                Self::_7BPC_EXT => Some("_7BPC_EXT"),
-                Self::_8BPC_EXT => Some("_8BPC_EXT"),
-                Self::_9BPC_EXT => Some("_9BPC_EXT"),
-                Self::_10BPC_EXT => Some("_10BPC_EXT"),
-                Self::_11BPC_EXT => Some("_11BPC_EXT"),
-                Self::_12BPC_EXT => Some("_12BPC_EXT"),
-                Self::_13BPC_EXT => Some("_13BPC_EXT"),
-                Self::_14BPC_EXT => Some("_14BPC_EXT"),
-                Self::_15BPC_EXT => Some("_15BPC_EXT"),
-                Self::_16BPC_EXT => Some("_16BPC_EXT"),
-                Self::_17BPC_EXT => Some("_17BPC_EXT"),
-                Self::_18BPC_EXT => Some("_18BPC_EXT"),
-                Self::_19BPC_EXT => Some("_19BPC_EXT"),
-                Self::_20BPC_EXT => Some("_20BPC_EXT"),
-                Self::_21BPC_EXT => Some("_21BPC_EXT"),
-                Self::_22BPC_EXT => Some("_22BPC_EXT"),
-                Self::_23BPC_EXT => Some("_23BPC_EXT"),
-                Self::_24BPC_EXT => Some("_24BPC_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
 }
-pub use reexport::*;
+pub use items::*;

@@ -4,9 +4,9 @@
 #![doc(alias = "vulkan_video_codec_vp9std_decode")]
 pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_VERSION_1_0_0;
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_vp9_decode";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DecodeVP9PictureInfoFlags {
         /**- `error_resilient_mode` @ `0..1`
 - `intra_only` @ `1..2`
@@ -17,13 +17,6 @@ pub(crate) mod reexport {
 - `show_frame` @ `6..7`
 - `UsePrevFrameMvs` @ `7..8`*/
         pub bitfield0: u32,
-    }
-    impl Default for DecodeVP9PictureInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeVP9PictureInfoFlags {
@@ -251,4 +244,4 @@ pub(crate) mod reexport {
         0,
     );
 }
-pub use reexport::*;
+pub use items::*;

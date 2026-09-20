@@ -77,7 +77,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_line_rasterization";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceLineRasterizationFeaturesEXT<'a> = crate::vk::PhysicalDeviceLineRasterizationFeatures<
         'a,
     >;
@@ -90,4 +90,4 @@ pub(crate) mod reexport {
     pub type LineRasterizationModeEXT = crate::vk::LineRasterizationMode;
     pub type PFN_vkCmdSetLineStippleEXT = crate::vk::PFN_vkCmdSetLineStipple;
 }
-pub use reexport::*;
+pub use items::*;

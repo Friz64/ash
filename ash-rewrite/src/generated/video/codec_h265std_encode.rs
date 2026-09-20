@@ -4,7 +4,7 @@
 #![doc(alias = "vulkan_video_codec_h265std_encode")]
 pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H265_ENCODE_API_VERSION_1_0_0;
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h265_encode";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -217,7 +217,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH265SliceSegmentHeaderFlags {
         /**- `first_slice_segment_in_pic_flag` @ `0..1`
 - `dependent_slice_segment_flag` @ `1..2`
@@ -232,13 +232,6 @@ pub(crate) mod reexport {
 - `collocated_from_l0_flag` @ `10..11`
 - `slice_loop_filter_across_slices_enabled_flag` @ `11..12`*/
         pub bitfield0: u32,
-    }
-    impl Default for EncodeH265SliceSegmentHeaderFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH265SliceSegmentHeaderFlags {
@@ -495,18 +488,11 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH265ReferenceListsInfoFlags {
         /**- `ref_pic_list_modification_flag_l0` @ `0..1`
 - `ref_pic_list_modification_flag_l1` @ `1..2`*/
         pub bitfield0: u32,
-    }
-    impl Default for EncodeH265ReferenceListsInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH265ReferenceListsInfoFlags {
@@ -625,7 +611,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH265PictureInfoFlags {
         /**- `is_reference` @ `0..1`
 - `IrapPicFlag` @ `1..2`
@@ -637,13 +623,6 @@ pub(crate) mod reexport {
 - `short_term_ref_pic_set_sps_flag` @ `7..8`
 - `slice_temporal_mvp_enabled_flag` @ `8..9`*/
         pub bitfield0: u32,
-    }
-    impl Default for EncodeH265PictureInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH265PictureInfoFlags {
@@ -866,18 +845,11 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH265ReferenceInfoFlags {
         /**- `used_for_long_term_reference` @ `0..1`
 - `unused_for_reference` @ `1..2`*/
         pub bitfield0: u32,
-    }
-    impl Default for EncodeH265ReferenceInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH265ReferenceInfoFlags {
@@ -945,4 +917,4 @@ pub(crate) mod reexport {
         0,
     );
 }
-pub use reexport::*;
+pub use items::*;

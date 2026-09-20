@@ -85,10 +85,10 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_bind_memory2";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type BindBufferMemoryInfoKHR<'a> = crate::vk::BindBufferMemoryInfo<'a>;
     pub type BindImageMemoryInfoKHR<'a> = crate::vk::BindImageMemoryInfo<'a>;
     pub type PFN_vkBindBufferMemory2KHR = crate::vk::PFN_vkBindBufferMemory2;
     pub type PFN_vkBindImageMemory2KHR = crate::vk::PFN_vkBindImageMemory2;
 }
-pub use reexport::*;
+pub use items::*;

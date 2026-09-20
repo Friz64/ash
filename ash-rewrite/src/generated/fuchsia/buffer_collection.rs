@@ -156,7 +156,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_buffer_collection";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -852,21 +852,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageConstraintsInfoFlagBitsFUCHSIA(pub(crate) u32);
+    impl ImageConstraintsInfoFlagBitsFUCHSIA {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ImageConstraintsInfoFlagsFUCHSIA {
+            ImageConstraintsInfoFlagsFUCHSIA::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageConstraintsInfoFlagBitsFUCHSIA {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::CPU_READ_RARELY_FUCHSIA => Some("CPU_READ_RARELY_FUCHSIA"),
-                Self::CPU_READ_OFTEN_FUCHSIA => Some("CPU_READ_OFTEN_FUCHSIA"),
-                Self::CPU_WRITE_RARELY_FUCHSIA => Some("CPU_WRITE_RARELY_FUCHSIA"),
-                Self::CPU_WRITE_OFTEN_FUCHSIA => Some("CPU_WRITE_OFTEN_FUCHSIA"),
-                Self::PROTECTED_OPTIONAL_FUCHSIA => Some("PROTECTED_OPTIONAL_FUCHSIA"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -923,4 +918,4 @@ pub(crate) mod reexport {
         p_properties: *mut crate::vk::BufferCollectionPropertiesFUCHSIA<'_>,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

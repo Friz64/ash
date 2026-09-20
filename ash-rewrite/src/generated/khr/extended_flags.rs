@@ -65,7 +65,7 @@ impl ImageCreateFlagBits2KHR {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_extended_flags";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -400,10 +400,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FormatFeatureFlagBits4KHR(pub(crate) u64);
+    impl FormatFeatureFlagBits4KHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> FormatFeatureFlags4KHR {
+            FormatFeatureFlags4KHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for FormatFeatureFlagBits4KHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -593,51 +599,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageUsageFlagBits2KHR(pub(crate) u64);
+    impl ImageUsageFlagBits2KHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ImageUsageFlags2KHR {
+            ImageUsageFlags2KHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageUsageFlagBits2KHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::TRANSFER_SRC_KHR => Some("TRANSFER_SRC_KHR"),
-                Self::TRANSFER_DST_KHR => Some("TRANSFER_DST_KHR"),
-                Self::SAMPLED_KHR => Some("SAMPLED_KHR"),
-                Self::STORAGE_KHR => Some("STORAGE_KHR"),
-                Self::COLOR_ATTACHMENT_KHR => Some("COLOR_ATTACHMENT_KHR"),
-                Self::DEPTH_STENCIL_ATTACHMENT_KHR => {
-                    Some("DEPTH_STENCIL_ATTACHMENT_KHR")
-                }
-                Self::TRANSIENT_ATTACHMENT_KHR => Some("TRANSIENT_ATTACHMENT_KHR"),
-                Self::INPUT_ATTACHMENT_KHR => Some("INPUT_ATTACHMENT_KHR"),
-                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
-                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
-                }
-                Self::FRAGMENT_DENSITY_MAP_EXT => Some("FRAGMENT_DENSITY_MAP_EXT"),
-                Self::VIDEO_DECODE_DST_KHR => Some("VIDEO_DECODE_DST_KHR"),
-                Self::VIDEO_DECODE_SRC_KHR => Some("VIDEO_DECODE_SRC_KHR"),
-                Self::VIDEO_DECODE_DPB_KHR => Some("VIDEO_DECODE_DPB_KHR"),
-                Self::VIDEO_ENCODE_DST_KHR => Some("VIDEO_ENCODE_DST_KHR"),
-                Self::VIDEO_ENCODE_SRC_KHR => Some("VIDEO_ENCODE_SRC_KHR"),
-                Self::VIDEO_ENCODE_DPB_KHR => Some("VIDEO_ENCODE_DPB_KHR"),
-                Self::INVOCATION_MASK_HUAWEI => Some("INVOCATION_MASK_HUAWEI"),
-                Self::ATTACHMENT_FEEDBACK_LOOP_EXT => {
-                    Some("ATTACHMENT_FEEDBACK_LOOP_EXT")
-                }
-                Self::SAMPLE_WEIGHT_QCOM => Some("SAMPLE_WEIGHT_QCOM"),
-                Self::SAMPLE_BLOCK_MATCH_QCOM => Some("SAMPLE_BLOCK_MATCH_QCOM"),
-                Self::HOST_TRANSFER_KHR => Some("HOST_TRANSFER_KHR"),
-                Self::TENSOR_ALIASING_ARM => Some("TENSOR_ALIASING_ARM"),
-                Self::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR => {
-                    Some("VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR")
-                }
-                Self::VIDEO_ENCODE_EMPHASIS_MAP_KHR => {
-                    Some("VIDEO_ENCODE_EMPHASIS_MAP_KHR")
-                }
-                Self::TILE_MEMORY_QCOM => Some("TILE_MEMORY_QCOM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -816,54 +787,17 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCreateFlagBits2KHR(pub(crate) u64);
+    impl ImageCreateFlagBits2KHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ImageCreateFlags2KHR {
+            ImageCreateFlags2KHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageCreateFlagBits2KHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::SPARSE_BINDING_KHR => Some("SPARSE_BINDING_KHR"),
-                Self::SPARSE_RESIDENCY_KHR => Some("SPARSE_RESIDENCY_KHR"),
-                Self::SPARSE_ALIASED_KHR => Some("SPARSE_ALIASED_KHR"),
-                Self::MUTABLE_FORMAT_KHR => Some("MUTABLE_FORMAT_KHR"),
-                Self::CUBE_COMPATIBLE_KHR => Some("CUBE_COMPATIBLE_KHR"),
-                Self::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR => {
-                    Some("ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR")
-                }
-                Self::_2D_ARRAY_COMPATIBLE_KHR => Some("_2D_ARRAY_COMPATIBLE_KHR"),
-                Self::SPLIT_INSTANCE_BIND_REGIONS_KHR => {
-                    Some("SPLIT_INSTANCE_BIND_REGIONS_KHR")
-                }
-                Self::BLOCK_TEXEL_VIEW_COMPATIBLE_KHR => {
-                    Some("BLOCK_TEXEL_VIEW_COMPATIBLE_KHR")
-                }
-                Self::EXTENDED_USAGE_KHR => Some("EXTENDED_USAGE_KHR"),
-                Self::DISJOINT_KHR => Some("DISJOINT_KHR"),
-                Self::ALIAS_KHR => Some("ALIAS_KHR"),
-                Self::PROTECTED_KHR => Some("PROTECTED_KHR"),
-                Self::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT => {
-                    Some("SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT")
-                }
-                Self::CORNER_SAMPLED_NV => Some("CORNER_SAMPLED_NV"),
-                Self::SUBSAMPLED_EXT => Some("SUBSAMPLED_EXT"),
-                Self::FRAGMENT_DENSITY_MAP_OFFSET_EXT => {
-                    Some("FRAGMENT_DENSITY_MAP_OFFSET_EXT")
-                }
-                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT => {
-                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT")
-                }
-                Self::_2D_VIEW_COMPATIBLE_EXT => Some("_2D_VIEW_COMPATIBLE_EXT"),
-                Self::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT => {
-                    Some("MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT")
-                }
-                Self::VIDEO_PROFILE_INDEPENDENT_KHR => {
-                    Some("VIDEO_PROFILE_INDEPENDENT_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
 }
-pub use reexport::*;
+pub use items::*;

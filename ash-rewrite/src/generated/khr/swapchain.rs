@@ -268,7 +268,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 70;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_swapchain";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -808,30 +808,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SwapchainCreateFlagBitsKHR(pub(crate) u32);
+    impl SwapchainCreateFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> SwapchainCreateFlagsKHR {
+            SwapchainCreateFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SwapchainCreateFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::SPLIT_INSTANCE_BIND_REGIONS_KHR => {
-                    Some("SPLIT_INSTANCE_BIND_REGIONS_KHR")
-                }
-                Self::PROTECTED_KHR => Some("PROTECTED_KHR"),
-                Self::MUTABLE_FORMAT_KHR => Some("MUTABLE_FORMAT_KHR"),
-                Self::PRESENT_TIMING_EXT => Some("PRESENT_TIMING_EXT"),
-                Self::PRESENT_ID_2_KHR => Some("PRESENT_ID_2_KHR"),
-                Self::PRESENT_WAIT_2_KHR => Some("PRESENT_WAIT_2_KHR"),
-                Self::DEFERRED_MEMORY_ALLOCATION_KHR => {
-                    Some("DEFERRED_MEMORY_ALLOCATION_KHR")
-                }
-                Self::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT => {
-                    Some("MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -922,20 +908,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceGroupPresentModeFlagBitsKHR(pub(crate) u32);
+    impl DeviceGroupPresentModeFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DeviceGroupPresentModeFlagsKHR {
+            DeviceGroupPresentModeFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DeviceGroupPresentModeFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::LOCAL_KHR => Some("LOCAL_KHR"),
-                Self::REMOTE_KHR => Some("REMOTE_KHR"),
-                Self::SUM_KHR => Some("SUM_KHR"),
-                Self::LOCAL_MULTI_DEVICE_KHR => Some("LOCAL_MULTI_DEVICE_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1017,4 +999,4 @@ pub(crate) mod reexport {
         p_rects: *mut crate::vk::Rect2D,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

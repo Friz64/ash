@@ -168,7 +168,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_get_physical_device_properties2";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceFeatures2KHR<'a> = crate::vk::PhysicalDeviceFeatures2<'a>;
     pub type PhysicalDeviceProperties2KHR<'a> = crate::vk::PhysicalDeviceProperties2<'a>;
     pub type FormatProperties2KHR<'a> = crate::vk::FormatProperties2<'a>;
@@ -194,4 +194,4 @@ pub(crate) mod reexport {
     pub type PFN_vkGetPhysicalDeviceMemoryProperties2KHR = crate::vk::PFN_vkGetPhysicalDeviceMemoryProperties2;
     pub type PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR = crate::vk::PFN_vkGetPhysicalDeviceSparseImageFormatProperties2;
 }
-pub use reexport::*;
+pub use items::*;

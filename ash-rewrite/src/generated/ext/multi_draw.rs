@@ -88,7 +88,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_multi_draw";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -210,4 +210,4 @@ pub(crate) mod reexport {
         p_vertex_offset: *const i32,
     );
 }
-pub use reexport::*;
+pub use items::*;

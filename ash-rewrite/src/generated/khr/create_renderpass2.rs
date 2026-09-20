@@ -118,7 +118,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_create_renderpass2";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type AttachmentDescription2KHR<'a> = crate::vk::AttachmentDescription2<'a>;
     pub type AttachmentReference2KHR<'a> = crate::vk::AttachmentReference2<'a>;
     pub type SubpassDescription2KHR<'a> = crate::vk::SubpassDescription2<'a>;
@@ -131,4 +131,4 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdNextSubpass2KHR = crate::vk::PFN_vkCmdNextSubpass2;
     pub type PFN_vkCmdEndRenderPass2KHR = crate::vk::PFN_vkCmdEndRenderPass2;
 }
-pub use reexport::*;
+pub use items::*;

@@ -182,7 +182,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 25;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_surface";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -417,20 +417,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CompositeAlphaFlagBitsKHR(pub(crate) u32);
+    impl CompositeAlphaFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> CompositeAlphaFlagsKHR {
+            CompositeAlphaFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for CompositeAlphaFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::OPAQUE_KHR => Some("OPAQUE_KHR"),
-                Self::PRE_MULTIPLIED_KHR => Some("PRE_MULTIPLIED_KHR"),
-                Self::POST_MULTIPLIED_KHR => Some("POST_MULTIPLIED_KHR"),
-                Self::INHERIT_KHR => Some("INHERIT_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -550,31 +546,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SurfaceTransformFlagBitsKHR(pub(crate) u32);
+    impl SurfaceTransformFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> SurfaceTransformFlagsKHR {
+            SurfaceTransformFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SurfaceTransformFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::IDENTITY_KHR => Some("IDENTITY_KHR"),
-                Self::ROTATE_90_KHR => Some("ROTATE_90_KHR"),
-                Self::ROTATE_180_KHR => Some("ROTATE_180_KHR"),
-                Self::ROTATE_270_KHR => Some("ROTATE_270_KHR"),
-                Self::HORIZONTAL_MIRROR_KHR => Some("HORIZONTAL_MIRROR_KHR"),
-                Self::HORIZONTAL_MIRROR_ROTATE_90_KHR => {
-                    Some("HORIZONTAL_MIRROR_ROTATE_90_KHR")
-                }
-                Self::HORIZONTAL_MIRROR_ROTATE_180_KHR => {
-                    Some("HORIZONTAL_MIRROR_ROTATE_180_KHR")
-                }
-                Self::HORIZONTAL_MIRROR_ROTATE_270_KHR => {
-                    Some("HORIZONTAL_MIRROR_ROTATE_270_KHR")
-                }
-                Self::INHERIT_KHR => Some("INHERIT_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -633,4 +614,4 @@ pub(crate) mod reexport {
         p_present_modes: *mut crate::vk::PresentModeKHR,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

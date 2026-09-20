@@ -74,7 +74,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_tooling_info";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceToolPropertiesEXT<'a> = crate::vk::PhysicalDeviceToolProperties<
         'a,
     >;
@@ -82,4 +82,4 @@ pub(crate) mod reexport {
     pub type ToolPurposeFlagsEXT = crate::vk::ToolPurposeFlags;
     pub type PFN_vkGetPhysicalDeviceToolPropertiesEXT = crate::vk::PFN_vkGetPhysicalDeviceToolProperties;
 }
-pub use reexport::*;
+pub use items::*;

@@ -153,7 +153,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_present_timing";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -746,22 +746,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PresentStageFlagBitsEXT(pub(crate) u32);
+    impl PresentStageFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PresentStageFlagsEXT {
+            PresentStageFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PresentStageFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::QUEUE_OPERATIONS_END_EXT => Some("QUEUE_OPERATIONS_END_EXT"),
-                Self::REQUEST_DEQUEUED_EXT => Some("REQUEST_DEQUEUED_EXT"),
-                Self::IMAGE_FIRST_PIXEL_OUT_EXT => Some("IMAGE_FIRST_PIXEL_OUT_EXT"),
-                Self::IMAGE_FIRST_PIXEL_VISIBLE_EXT => {
-                    Some("IMAGE_FIRST_PIXEL_VISIBLE_EXT")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -851,20 +845,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PastPresentationTimingFlagBitsEXT(pub(crate) u32);
+    impl PastPresentationTimingFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PastPresentationTimingFlagsEXT {
+            PastPresentationTimingFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PastPresentationTimingFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ALLOW_PARTIAL_RESULTS_EXT => Some("ALLOW_PARTIAL_RESULTS_EXT"),
-                Self::ALLOW_OUT_OF_ORDER_RESULTS_EXT => {
-                    Some("ALLOW_OUT_OF_ORDER_RESULTS_EXT")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -957,22 +947,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PresentTimingInfoFlagBitsEXT(pub(crate) u32);
+    impl PresentTimingInfoFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PresentTimingInfoFlagsEXT {
+            PresentTimingInfoFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PresentTimingInfoFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PRESENT_AT_RELATIVE_TIME_EXT => {
-                    Some("PRESENT_AT_RELATIVE_TIME_EXT")
-                }
-                Self::PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT => {
-                    Some("PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkSetSwapchainPresentTimingQueueSizeEXT = unsafe extern "system" fn(
@@ -1004,4 +988,4 @@ pub(crate) mod reexport {
         >,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

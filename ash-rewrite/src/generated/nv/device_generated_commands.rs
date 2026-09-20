@@ -202,7 +202,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -1005,19 +1005,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) u32);
+    impl IndirectCommandsLayoutUsageFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> IndirectCommandsLayoutUsageFlagsNV {
+            IndirectCommandsLayoutUsageFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for IndirectCommandsLayoutUsageFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::EXPLICIT_PREPROCESS_NV => Some("EXPLICIT_PREPROCESS_NV"),
-                Self::INDEXED_SEQUENCES_NV => Some("INDEXED_SEQUENCES_NV"),
-                Self::UNORDERED_SEQUENCES_NV => Some("UNORDERED_SEQUENCES_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1098,17 +1095,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectStateFlagBitsNV(pub(crate) u32);
+    impl IndirectStateFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> IndirectStateFlagsNV {
+            IndirectStateFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for IndirectStateFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::FLAG_FRONTFACE_NV => Some("FLAG_FRONTFACE_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1170,4 +1166,4 @@ pub(crate) mod reexport {
         p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

@@ -22,7 +22,7 @@ impl MemoryOverallocationBehaviorAMD {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_memory_overallocation_behavior";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -76,4 +76,4 @@ pub(crate) mod reexport {
         }
     }
 }
-pub use reexport::*;
+pub use items::*;

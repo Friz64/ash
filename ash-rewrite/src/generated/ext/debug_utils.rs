@@ -277,7 +277,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_utils";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -679,20 +679,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugUtilsMessageSeverityFlagBitsEXT(pub(crate) u32);
+    impl DebugUtilsMessageSeverityFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DebugUtilsMessageSeverityFlagsEXT {
+            DebugUtilsMessageSeverityFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DebugUtilsMessageSeverityFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::VERBOSE_EXT => Some("VERBOSE_EXT"),
-                Self::INFO_EXT => Some("INFO_EXT"),
-                Self::WARNING_EXT => Some("WARNING_EXT"),
-                Self::ERROR_EXT => Some("ERROR_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -787,20 +783,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) u32);
+    impl DebugUtilsMessageTypeFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DebugUtilsMessageTypeFlagsEXT {
+            DebugUtilsMessageTypeFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DebugUtilsMessageTypeFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::GENERAL_EXT => Some("GENERAL_EXT"),
-                Self::VALIDATION_EXT => Some("VALIDATION_EXT"),
-                Self::PERFORMANCE_EXT => Some("PERFORMANCE_EXT"),
-                Self::DEVICE_ADDRESS_BINDING_EXT => Some("DEVICE_ADDRESS_BINDING_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1022,4 +1014,4 @@ pub(crate) mod reexport {
         p_callback_data: *const crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

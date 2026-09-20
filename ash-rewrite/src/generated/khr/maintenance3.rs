@@ -65,7 +65,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance3";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceMaintenance3PropertiesKHR<'a> = crate::vk::PhysicalDeviceMaintenance3Properties<
         'a,
     >;
@@ -74,4 +74,4 @@ pub(crate) mod reexport {
     >;
     pub type PFN_vkGetDescriptorSetLayoutSupportKHR = crate::vk::PFN_vkGetDescriptorSetLayoutSupport;
 }
-pub use reexport::*;
+pub use items::*;

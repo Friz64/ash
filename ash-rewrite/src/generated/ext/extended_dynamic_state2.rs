@@ -133,7 +133,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state2";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -199,4 +199,4 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdSetDepthBiasEnableEXT = crate::vk::PFN_vkCmdSetDepthBiasEnable;
     pub type PFN_vkCmdSetPrimitiveRestartEnableEXT = crate::vk::PFN_vkCmdSetPrimitiveRestartEnable;
 }
-pub use reexport::*;
+pub use items::*;

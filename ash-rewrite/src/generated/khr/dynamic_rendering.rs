@@ -91,7 +91,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PipelineRenderingCreateInfoKHR<'a> = crate::vk::PipelineRenderingCreateInfo<
         'a,
     >;
@@ -108,4 +108,4 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdBeginRenderingKHR = crate::vk::PFN_vkCmdBeginRendering;
     pub type PFN_vkCmdEndRenderingKHR = crate::vk::PFN_vkCmdEndRendering;
 }
-pub use reexport::*;
+pub use items::*;

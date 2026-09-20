@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_8bit_storage";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDevice8BitStorageFeaturesKHR<'a> = crate::vk::PhysicalDevice8BitStorageFeatures<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

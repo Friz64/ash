@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_image_robustness";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceImageRobustnessFeaturesEXT<'a> = crate::vk::PhysicalDeviceImageRobustnessFeatures<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

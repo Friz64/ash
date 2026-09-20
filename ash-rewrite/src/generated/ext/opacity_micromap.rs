@@ -398,7 +398,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_opacity_micromap";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -1098,19 +1098,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BuildMicromapFlagBitsEXT(pub(crate) u32);
+    impl BuildMicromapFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> BuildMicromapFlagsEXT {
+            BuildMicromapFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for BuildMicromapFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PREFER_FAST_TRACE_EXT => Some("PREFER_FAST_TRACE_EXT"),
-                Self::PREFER_FAST_BUILD_EXT => Some("PREFER_FAST_BUILD_EXT"),
-                Self::ALLOW_COMPACTION_EXT => Some("ALLOW_COMPACTION_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1196,19 +1193,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MicromapCreateFlagBitsEXT(pub(crate) u32);
+    impl MicromapCreateFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> MicromapCreateFlagsEXT {
+            MicromapCreateFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for MicromapCreateFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DEVICE_ADDRESS_CAPTURE_REPLAY_EXT => {
-                    Some("DEVICE_ADDRESS_CAPTURE_REPLAY_EXT")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1316,4 +1310,4 @@ pub(crate) mod reexport {
         p_size_info: *mut crate::vk::MicromapBuildSizesInfoEXT<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

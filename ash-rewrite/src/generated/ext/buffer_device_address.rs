@@ -80,7 +80,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_buffer_device_address";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -173,4 +173,4 @@ pub(crate) mod reexport {
     pub type BufferDeviceAddressInfoEXT<'a> = crate::vk::BufferDeviceAddressInfo<'a>;
     pub type PFN_vkGetBufferDeviceAddressEXT = crate::vk::PFN_vkGetBufferDeviceAddress;
 }
-pub use reexport::*;
+pub use items::*;

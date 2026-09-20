@@ -355,7 +355,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_tensors";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -1530,24 +1530,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TensorCreateFlagBitsARM(pub(crate) u64);
+    impl TensorCreateFlagBitsARM {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> TensorCreateFlagsARM {
+            TensorCreateFlagsARM::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for TensorCreateFlagBitsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::MUTABLE_FORMAT_ARM => Some("MUTABLE_FORMAT_ARM"),
-                Self::PROTECTED_ARM => Some("PROTECTED_ARM"),
-                Self::DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM => {
-                    Some("DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM")
-                }
-                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM => {
-                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1642,21 +1634,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TensorUsageFlagBitsARM(pub(crate) u64);
+    impl TensorUsageFlagBitsARM {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> TensorUsageFlagsARM {
+            TensorUsageFlagsARM::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for TensorUsageFlagBitsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::SHADER_ARM => Some("SHADER_ARM"),
-                Self::TRANSFER_SRC_ARM => Some("TRANSFER_SRC_ARM"),
-                Self::TRANSFER_DST_ARM => Some("TRANSFER_DST_ARM"),
-                Self::IMAGE_ALIASING_ARM => Some("IMAGE_ALIASING_ARM"),
-                Self::DATA_GRAPH_ARM => Some("DATA_GRAPH_ARM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1745,4 +1732,4 @@ pub(crate) mod reexport {
         p_external_tensor_properties: *mut crate::vk::ExternalTensorPropertiesARM<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

@@ -101,7 +101,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_get_memory_requirements2";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type BufferMemoryRequirementsInfo2KHR<'a> = crate::vk::BufferMemoryRequirementsInfo2<
         'a,
     >;
@@ -119,4 +119,4 @@ pub(crate) mod reexport {
     pub type PFN_vkGetImageMemoryRequirements2KHR = crate::vk::PFN_vkGetImageMemoryRequirements2;
     pub type PFN_vkGetImageSparseMemoryRequirements2KHR = crate::vk::PFN_vkGetImageSparseMemoryRequirements2;
 }
-pub use reexport::*;
+pub use items::*;

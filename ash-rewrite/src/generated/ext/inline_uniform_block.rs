@@ -15,7 +15,7 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_inline_uniform_block";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceInlineUniformBlockFeaturesEXT<'a> = crate::vk::PhysicalDeviceInlineUniformBlockFeatures<
         'a,
     >;
@@ -29,4 +29,4 @@ pub(crate) mod reexport {
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

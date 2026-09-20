@@ -40,7 +40,7 @@ impl crate::vk::VideoEncodeAV1CapabilityFlagBitsKHR {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_intra_refresh";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -352,22 +352,17 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeIntraRefreshModeFlagBitsKHR(pub(crate) u32);
+    impl VideoEncodeIntraRefreshModeFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoEncodeIntraRefreshModeFlagsKHR {
+            VideoEncodeIntraRefreshModeFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEncodeIntraRefreshModeFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::NONE_KHR => Some("NONE_KHR"),
-                Self::PER_PICTURE_PARTITION_KHR => Some("PER_PICTURE_PARTITION_KHR"),
-                Self::BLOCK_BASED_KHR => Some("BLOCK_BASED_KHR"),
-                Self::BLOCK_ROW_BASED_KHR => Some("BLOCK_ROW_BASED_KHR"),
-                Self::BLOCK_COLUMN_BASED_KHR => Some("BLOCK_COLUMN_BASED_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
 }
-pub use reexport::*;
+pub use items::*;

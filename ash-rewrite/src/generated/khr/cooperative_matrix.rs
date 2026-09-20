@@ -83,7 +83,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_cooperative_matrix";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -262,4 +262,4 @@ pub(crate) mod reexport {
         p_properties: *mut crate::vk::CooperativeMatrixPropertiesKHR<'_>,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

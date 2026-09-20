@@ -84,7 +84,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 6;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_xlib_surface";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -206,4 +206,4 @@ pub(crate) mod reexport {
         visual_id: crate::platform_types::VisualID,
     ) -> crate::vk::Bool32;
 }
-pub use reexport::*;
+pub use items::*;

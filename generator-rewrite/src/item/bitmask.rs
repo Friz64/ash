@@ -24,49 +24,24 @@ impl Code for BitMask {
         let mut debug_content = None;
         if let Some(bits_name) = self.bits_name {
             let bits_name_tokens = ctx.type_tokens(bits_name, false, &Lifetime::placeholder());
-
-            let bits_debug = {
-                let content = if self.items.is_empty() {
-                    quote! { core::fmt::Debug::fmt(&self.0, f) }
-                } else {
-                    let debug_items = (self.items.iter())
-                        .filter_map(|(name, item)| {
-                            (!matches!(item.value, Value::Alias(..))).then_some(name)
-                        })
-                        .map(|&name| {
-                            let name = ctx.enumerator_tokens(name, bits_name, false);
-                            let name_string = name.to_string();
-                            quote! { Self::#name => Some(#name_string), }
-                        });
-
-                    quote! {
-                        if let Some(x) = match *self {
-                            #( #debug_items )*
-                            _ => None,
-                        } {
-                            f.write_str(x)
-                        } else {
-                            core::fmt::Debug::fmt(&self.0, f)
-                        }
-                    }
-                };
-
-                quote! {
-                    #[cfg(feature = "debug")]
-                    impl core::fmt::Debug for #bits_name_tokens {
-                        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-                            #content
-                        }
-                    }
-                }
-            };
-
             bits_code = quote! {
                 #[repr(transparent)]
                 #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
                 pub struct #bits_name_tokens(pub(crate) #base_ty);
 
-                #bits_debug
+                impl #bits_name_tokens {
+                    ///Converts this enum variant to the corresponding bitmask
+                    pub const fn bitmask(&self) -> #name_tokens {
+                        #name_tokens::from_raw(self.0)
+                    }
+                }
+
+                #[cfg(feature = "debug")]
+                impl core::fmt::Debug for #bits_name_tokens {
+                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                        core::fmt::Debug::fmt(&self.bitmask(), f)
+                    }
+                }
             };
 
             values = (self.items.iter())

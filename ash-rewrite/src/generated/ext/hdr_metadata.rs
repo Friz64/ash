@@ -65,7 +65,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_hdr_metadata";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -175,4 +175,4 @@ pub(crate) mod reexport {
         p_metadata: *const crate::vk::HdrMetadataEXT<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

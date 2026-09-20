@@ -9,7 +9,7 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_dedicated_allocation";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type MemoryDedicatedRequirementsKHR<'a> = crate::vk::MemoryDedicatedRequirements<
         'a,
     >;
@@ -17,4 +17,4 @@ pub(crate) mod reexport {
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

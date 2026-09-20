@@ -19,7 +19,7 @@ impl crate::vk::VideoCodecOperationFlagBitsKHR {
 }
 pub const SPEC_VERSION: u32 = 8;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_h265";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -281,4 +281,4 @@ pub(crate) mod reexport {
         }
     }
 }
-pub use reexport::*;
+pub use items::*;

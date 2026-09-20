@@ -14,7 +14,7 @@ impl crate::vk::DependencyFlagBits {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_multiview";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceMultiviewFeaturesKHR<'a> = crate::vk::PhysicalDeviceMultiviewFeatures<
         'a,
     >;
@@ -25,4 +25,4 @@ pub(crate) mod reexport {
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

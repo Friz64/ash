@@ -82,7 +82,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 6;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_win32_surface";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -202,4 +202,4 @@ pub(crate) mod reexport {
         queue_family_index: u32,
     ) -> crate::vk::Bool32;
 }
-pub use reexport::*;
+pub use items::*;

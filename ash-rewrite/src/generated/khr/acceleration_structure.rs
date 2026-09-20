@@ -493,7 +493,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 13;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_acceleration_structure";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -1127,7 +1127,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureInstanceKHR {
         pub transform: crate::vk::TransformMatrixKHR,
         /**- `instanceCustomIndex` @ `0..24`
@@ -1137,16 +1137,6 @@ pub(crate) mod reexport {
 - `flags` @ `24..32`*/
         pub bitfield1: u32,
         pub acceleration_structure_reference: u64,
-    }
-    impl Default for AccelerationStructureInstanceKHR {
-        fn default() -> Self {
-            Self {
-                transform: Default::default(),
-                bitfield0: Default::default(),
-                bitfield1: Default::default(),
-                acceleration_structure_reference: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureInstanceKHR {
@@ -1716,20 +1706,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GeometryFlagBitsKHR(pub(crate) u32);
+    impl GeometryFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> GeometryFlagsKHR {
+            GeometryFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for GeometryFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::OPAQUE_KHR => Some("OPAQUE_KHR"),
-                Self::NO_DUPLICATE_ANY_HIT_INVOCATION_KHR => {
-                    Some("NO_DUPLICATE_ANY_HIT_INVOCATION_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1862,28 +1848,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GeometryInstanceFlagBitsKHR(pub(crate) u32);
+    impl GeometryInstanceFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> GeometryInstanceFlagsKHR {
+            GeometryInstanceFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for GeometryInstanceFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::TRIANGLE_FACING_CULL_DISABLE_KHR => {
-                    Some("TRIANGLE_FACING_CULL_DISABLE_KHR")
-                }
-                Self::TRIANGLE_FLIP_FACING_KHR => Some("TRIANGLE_FLIP_FACING_KHR"),
-                Self::FORCE_OPAQUE_KHR => Some("FORCE_OPAQUE_KHR"),
-                Self::FORCE_NO_OPAQUE_KHR => Some("FORCE_NO_OPAQUE_KHR"),
-                Self::FORCE_OPACITY_MICROMAP_2_STATE_KHR => {
-                    Some("FORCE_OPACITY_MICROMAP_2_STATE_KHR")
-                }
-                Self::DISABLE_OPACITY_MICROMAPS_KHR => {
-                    Some("DISABLE_OPACITY_MICROMAPS_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -2052,39 +2026,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BuildAccelerationStructureFlagBitsKHR(pub(crate) u32);
+    impl BuildAccelerationStructureFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> BuildAccelerationStructureFlagsKHR {
+            BuildAccelerationStructureFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for BuildAccelerationStructureFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ALLOW_UPDATE_KHR => Some("ALLOW_UPDATE_KHR"),
-                Self::ALLOW_COMPACTION_KHR => Some("ALLOW_COMPACTION_KHR"),
-                Self::PREFER_FAST_TRACE_KHR => Some("PREFER_FAST_TRACE_KHR"),
-                Self::PREFER_FAST_BUILD_KHR => Some("PREFER_FAST_BUILD_KHR"),
-                Self::LOW_MEMORY_KHR => Some("LOW_MEMORY_KHR"),
-                Self::MOTION_NV => Some("MOTION_NV"),
-                Self::ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT => {
-                    Some("ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT")
-                }
-                Self::ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV => {
-                    Some("ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV")
-                }
-                Self::ALLOW_DATA_ACCESS_KHR => Some("ALLOW_DATA_ACCESS_KHR"),
-                Self::ALLOW_CLUSTER_OPACITY_MICROMAPS_NV => {
-                    Some("ALLOW_CLUSTER_OPACITY_MICROMAPS_NV")
-                }
-                Self::ALLOW_OPACITY_MICROMAP_UPDATE_KHR => {
-                    Some("ALLOW_OPACITY_MICROMAP_UPDATE_KHR")
-                }
-                Self::ALLOW_DISABLE_OPACITY_MICROMAPS_KHR => {
-                    Some("ALLOW_DISABLE_OPACITY_MICROMAPS_KHR")
-                }
-                Self::MICROMAP_LOSSY_KHR => Some("MICROMAP_LOSSY_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -2182,23 +2133,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccelerationStructureCreateFlagBitsKHR(pub(crate) u32);
+    impl AccelerationStructureCreateFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> AccelerationStructureCreateFlagsKHR {
+            AccelerationStructureCreateFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureCreateFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DEVICE_ADDRESS_CAPTURE_REPLAY_KHR => {
-                    Some("DEVICE_ADDRESS_CAPTURE_REPLAY_KHR")
-                }
-                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT => {
-                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT")
-                }
-                Self::MOTION_NV => Some("MOTION_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -2321,4 +2265,4 @@ pub(crate) mod reexport {
         p_size_info: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

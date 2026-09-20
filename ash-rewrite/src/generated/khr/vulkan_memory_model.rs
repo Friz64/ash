@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_vulkan_memory_model";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceVulkanMemoryModelFeaturesKHR<'a> = crate::vk::PhysicalDeviceVulkanMemoryModelFeatures<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

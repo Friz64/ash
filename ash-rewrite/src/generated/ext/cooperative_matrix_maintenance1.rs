@@ -75,7 +75,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_cooperative_matrix_maintenance1";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -339,17 +339,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CooperativeMatrixFlagBitsEXT(pub(crate) u32);
+    impl CooperativeMatrixFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> CooperativeMatrixFlagsEXT {
+            CooperativeMatrixFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for CooperativeMatrixFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::SATURATING_ACCUMULATION_EXT => Some("SATURATING_ACCUMULATION_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetPhysicalDeviceCooperativeMatrixProperties2EXT = unsafe extern "system" fn(
@@ -361,4 +360,4 @@ pub(crate) mod reexport {
         p_properties: *mut crate::vk::CooperativeMatrixProperties2EXT<'_>,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

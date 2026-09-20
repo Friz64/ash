@@ -25,7 +25,7 @@ impl VideoDecodeH264PictureLayoutFlagBitsKHR {
 }
 pub const SPEC_VERSION: u32 = 9;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_h264";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -377,24 +377,17 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoDecodeH264PictureLayoutFlagBitsKHR(pub(crate) u32);
+    impl VideoDecodeH264PictureLayoutFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoDecodeH264PictureLayoutFlagsKHR {
+            VideoDecodeH264PictureLayoutFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoDecodeH264PictureLayoutFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PROGRESSIVE_KHR => Some("PROGRESSIVE_KHR"),
-                Self::INTERLACED_INTERLEAVED_LINES_KHR => {
-                    Some("INTERLACED_INTERLEAVED_LINES_KHR")
-                }
-                Self::INTERLACED_SEPARATE_PLANES_KHR => {
-                    Some("INTERLACED_SEPARATE_PLANES_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
 }
-pub use reexport::*;
+pub use items::*;

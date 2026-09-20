@@ -31,7 +31,7 @@ impl crate::vk::ImageCreateFlagBits {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance2";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type InputAttachmentAspectReferenceKHR = crate::vk::InputAttachmentAspectReference;
     pub type RenderPassInputAttachmentAspectCreateInfoKHR<'a> = crate::vk::RenderPassInputAttachmentAspectCreateInfo<
         'a,
@@ -46,4 +46,4 @@ pub(crate) mod reexport {
     pub type PointClippingBehaviorKHR = crate::vk::PointClippingBehavior;
     pub type TessellationDomainOriginKHR = crate::vk::TessellationDomainOrigin;
 }
-pub use reexport::*;
+pub use items::*;

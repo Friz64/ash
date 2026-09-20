@@ -148,7 +148,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_copy_commands2";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type BufferCopy2KHR<'a> = crate::vk::BufferCopy2<'a>;
     pub type ImageCopy2KHR<'a> = crate::vk::ImageCopy2<'a>;
     pub type ImageBlit2KHR<'a> = crate::vk::ImageBlit2<'a>;
@@ -167,4 +167,4 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdCopyImageToBuffer2KHR = crate::vk::PFN_vkCmdCopyImageToBuffer2;
     pub type PFN_vkCmdResolveImage2KHR = crate::vk::PFN_vkCmdResolveImage2;
 }
-pub use reexport::*;
+pub use items::*;

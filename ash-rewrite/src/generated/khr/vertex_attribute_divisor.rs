@@ -10,7 +10,7 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_vertex_attribute_divisor";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type VertexInputBindingDivisorDescriptionKHR = crate::vk::VertexInputBindingDivisorDescription;
     pub type PipelineVertexInputDivisorStateCreateInfoKHR<'a> = crate::vk::PipelineVertexInputDivisorStateCreateInfo<
         'a,
@@ -22,4 +22,4 @@ pub(crate) mod reexport {
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

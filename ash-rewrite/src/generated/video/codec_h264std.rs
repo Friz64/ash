@@ -242,9 +242,9 @@ impl H264NonVclNaluType {
     pub const PRECODED: Self = Self(6);
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct H264SpsVuiFlags {
         /**- `aspect_ratio_info_present_flag` @ `0..1`
 - `overscan_info_present_flag` @ `1..2`
@@ -259,13 +259,6 @@ pub(crate) mod reexport {
 - `nal_hrd_parameters_present_flag` @ `10..11`
 - `vcl_hrd_parameters_present_flag` @ `11..12`*/
         pub bitfield0: u32,
-    }
-    impl Default for H264SpsVuiFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H264SpsVuiFlags {
@@ -644,7 +637,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct H264SpsFlags {
         /**- `constraint_set0_flag` @ `0..1`
 - `constraint_set1_flag` @ `1..2`
@@ -663,13 +656,6 @@ pub(crate) mod reexport {
 - `seq_scaling_matrix_present_flag` @ `14..15`
 - `vui_parameters_present_flag` @ `15..16`*/
         pub bitfield0: u32,
-    }
-    impl Default for H264SpsFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H264SpsFlags {
@@ -1091,7 +1077,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct H264PpsFlags {
         /**- `transform_8x8_mode_flag` @ `0..1`
 - `redundant_pic_cnt_present_flag` @ `1..2`
@@ -1102,13 +1088,6 @@ pub(crate) mod reexport {
 - `entropy_coding_mode_flag` @ `6..7`
 - `pic_scaling_matrix_present_flag` @ `7..8`*/
         pub bitfield0: u32,
-    }
-    impl Default for H264PpsFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H264PpsFlags {
@@ -1607,4 +1586,4 @@ pub(crate) mod reexport {
     pub const H264_MAX_CHROMA_PLANES: u32 = 2;
     pub const H264_NO_REFERENCE_PICTURE: u32 = 0xF;
 }
-pub use reexport::*;
+pub use items::*;

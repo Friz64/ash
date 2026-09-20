@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_subgroup_extended_types";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR<'a> = crate::vk::PhysicalDeviceShaderSubgroupExtendedTypesFeatures<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

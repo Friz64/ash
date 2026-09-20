@@ -101,7 +101,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -251,4 +251,4 @@ pub(crate) mod reexport {
         offset: crate::vk::DeviceSize,
     );
 }
-pub use reexport::*;
+pub use items::*;

@@ -142,7 +142,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NVX_binary_import";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -415,4 +415,4 @@ pub(crate) mod reexport {
         p_launch_info: *const crate::vk::CuLaunchInfoNVX<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

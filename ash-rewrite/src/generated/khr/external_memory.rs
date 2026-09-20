@@ -14,7 +14,7 @@ impl crate::vk::Result {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_external_memory";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type ExternalMemoryImageCreateInfoKHR<'a> = crate::vk::ExternalMemoryImageCreateInfo<
         'a,
     >;
@@ -23,4 +23,4 @@ pub(crate) mod reexport {
     >;
     pub type ExportMemoryAllocateInfoKHR<'a> = crate::vk::ExportMemoryAllocateInfo<'a>;
 }
-pub use reexport::*;
+pub use items::*;

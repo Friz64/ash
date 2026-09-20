@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_fragment_shader_barycentric";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceFragmentShaderBarycentricFeaturesNV<'a> = crate::vk::PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

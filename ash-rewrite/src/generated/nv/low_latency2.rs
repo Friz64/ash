@@ -171,7 +171,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_NV_low_latency2";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -642,4 +642,4 @@ pub(crate) mod reexport {
         p_queue_type_info: *const crate::vk::OutOfBandQueueTypeInfoNV<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

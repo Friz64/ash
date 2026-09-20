@@ -14,10 +14,10 @@ impl crate::vk::ShaderFloatControlsIndependence {
 }
 pub const SPEC_VERSION: u32 = 4;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_float_controls";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceFloatControlsPropertiesKHR<'a> = crate::vk::PhysicalDeviceFloatControlsProperties<
         'a,
     >;
     pub type ShaderFloatControlsIndependenceKHR = crate::vk::ShaderFloatControlsIndependence;
 }
-pub use reexport::*;
+pub use items::*;

@@ -12,9 +12,9 @@ impl crate::vk::FenceImportFlagBits {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_external_fence";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type ExportFenceCreateInfoKHR<'a> = crate::vk::ExportFenceCreateInfo<'a>;
     pub type FenceImportFlagBitsKHR = crate::vk::FenceImportFlagBits;
     pub type FenceImportFlagsKHR = crate::vk::FenceImportFlags;
 }
-pub use reexport::*;
+pub use items::*;

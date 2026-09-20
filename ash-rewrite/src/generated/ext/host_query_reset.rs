@@ -65,10 +65,10 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_host_query_reset";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceHostQueryResetFeaturesEXT<'a> = crate::vk::PhysicalDeviceHostQueryResetFeatures<
         'a,
     >;
     pub type PFN_vkResetQueryPoolEXT = crate::vk::PFN_vkResetQueryPool;
 }
-pub use reexport::*;
+pub use items::*;

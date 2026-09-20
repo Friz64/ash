@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_separate_stencil_usage";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type ImageStencilUsageCreateInfoEXT<'a> = crate::vk::ImageStencilUsageCreateInfo<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

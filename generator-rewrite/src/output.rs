@@ -243,11 +243,11 @@ impl CodeMap {
 
             if !reexport_content.is_empty() {
                 reexport_content = quote! {
-                    pub(crate) mod reexport { #reexport_content }
-                    pub use reexport::*;
+                    pub(crate) mod items { #reexport_content }
+                    pub use items::*;
                 };
 
-                reexport_items.push(quote! { reexport::* });
+                reexport_items.push(quote! { items::* });
             }
 
             let components = destination.path_components();

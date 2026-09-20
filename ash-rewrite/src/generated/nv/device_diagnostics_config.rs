@@ -16,7 +16,7 @@ impl DeviceDiagnosticsConfigFlagBitsNV {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NV_device_diagnostics_config";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -182,25 +182,17 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) u32);
+    impl DeviceDiagnosticsConfigFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DeviceDiagnosticsConfigFlagsNV {
+            DeviceDiagnosticsConfigFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DeviceDiagnosticsConfigFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ENABLE_SHADER_DEBUG_INFO_NV => Some("ENABLE_SHADER_DEBUG_INFO_NV"),
-                Self::ENABLE_RESOURCE_TRACKING_NV => Some("ENABLE_RESOURCE_TRACKING_NV"),
-                Self::ENABLE_AUTOMATIC_CHECKPOINTS_NV => {
-                    Some("ENABLE_AUTOMATIC_CHECKPOINTS_NV")
-                }
-                Self::ENABLE_SHADER_ERROR_REPORTING_NV => {
-                    Some("ENABLE_SHADER_ERROR_REPORTING_NV")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
 }
-pub use reexport::*;
+pub use items::*;

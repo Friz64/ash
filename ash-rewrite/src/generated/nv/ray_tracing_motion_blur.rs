@@ -40,7 +40,7 @@ impl crate::vk::AccelerationStructureCreateFlagBitsKHR {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_motion_blur";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -248,7 +248,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureSRTMotionInstanceNV {
         pub transform_t0: crate::vk::SRTDataNV,
         pub transform_t1: crate::vk::SRTDataNV,
@@ -259,17 +259,6 @@ pub(crate) mod reexport {
 - `flags` @ `24..32`*/
         pub bitfield1: u32,
         pub acceleration_structure_reference: u64,
-    }
-    impl Default for AccelerationStructureSRTMotionInstanceNV {
-        fn default() -> Self {
-            Self {
-                transform_t0: Default::default(),
-                transform_t1: Default::default(),
-                bitfield0: Default::default(),
-                bitfield1: Default::default(),
-                acceleration_structure_reference: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureSRTMotionInstanceNV {
@@ -345,7 +334,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureMatrixMotionInstanceNV {
         pub transform_t0: crate::vk::TransformMatrixKHR,
         pub transform_t1: crate::vk::TransformMatrixKHR,
@@ -356,17 +345,6 @@ pub(crate) mod reexport {
 - `flags` @ `24..32`*/
         pub bitfield1: u32,
         pub acceleration_structure_reference: u64,
-    }
-    impl Default for AccelerationStructureMatrixMotionInstanceNV {
-        fn default() -> Self {
-            Self {
-                transform_t0: Default::default(),
-                transform_t1: Default::default(),
-                bitfield0: Default::default(),
-                bitfield1: Default::default(),
-                acceleration_structure_reference: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureMatrixMotionInstanceNV {
@@ -651,4 +629,4 @@ pub(crate) mod reexport {
         }
     }
 }
-pub use reexport::*;
+pub use items::*;

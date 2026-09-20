@@ -23,11 +23,11 @@ impl crate::vk::DriverId {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_driver_properties";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type ConformanceVersionKHR = crate::vk::ConformanceVersion;
     pub type PhysicalDeviceDriverPropertiesKHR<'a> = crate::vk::PhysicalDeviceDriverProperties<
         'a,
     >;
     pub type DriverIdKHR = crate::vk::DriverId;
 }
-pub use reexport::*;
+pub use items::*;

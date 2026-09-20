@@ -30,7 +30,7 @@ impl GraphicsPipelineLibraryFlagBitsEXT {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_graphics_pipeline_library";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -244,25 +244,17 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GraphicsPipelineLibraryFlagBitsEXT(pub(crate) u32);
+    impl GraphicsPipelineLibraryFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> GraphicsPipelineLibraryFlagsEXT {
+            GraphicsPipelineLibraryFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for GraphicsPipelineLibraryFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::VERTEX_INPUT_INTERFACE_EXT => Some("VERTEX_INPUT_INTERFACE_EXT"),
-                Self::PRE_RASTERIZATION_SHADERS_EXT => {
-                    Some("PRE_RASTERIZATION_SHADERS_EXT")
-                }
-                Self::FRAGMENT_SHADER_EXT => Some("FRAGMENT_SHADER_EXT"),
-                Self::FRAGMENT_OUTPUT_INTERFACE_EXT => {
-                    Some("FRAGMENT_OUTPUT_INTERFACE_EXT")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
 }
-pub use reexport::*;
+pub use items::*;

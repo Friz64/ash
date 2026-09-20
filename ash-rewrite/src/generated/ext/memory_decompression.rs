@@ -104,7 +104,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_memory_decompression";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -338,17 +338,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryDecompressionMethodFlagBitsEXT(pub(crate) u64);
+    impl MemoryDecompressionMethodFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> MemoryDecompressionMethodFlagsEXT {
+            MemoryDecompressionMethodFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for MemoryDecompressionMethodFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::GDEFLATE_1_0_EXT => Some("GDEFLATE_1_0_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkCmdDecompressMemoryEXT = unsafe extern "system" fn(
@@ -364,4 +363,4 @@ pub(crate) mod reexport {
         stride: u32,
     );
 }
-pub use reexport::*;
+pub use items::*;

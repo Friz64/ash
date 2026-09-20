@@ -342,7 +342,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_descriptor_heap";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -1706,19 +1706,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TensorViewCreateFlagBitsARM(pub(crate) u64);
+    impl TensorViewCreateFlagBitsARM {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> TensorViewCreateFlagsARM {
+            TensorViewCreateFlagsARM::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for TensorViewCreateFlagBitsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM => {
-                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1841,31 +1838,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SpirvResourceTypeFlagBitsEXT(pub(crate) u32);
+    impl SpirvResourceTypeFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> SpirvResourceTypeFlagsEXT {
+            SpirvResourceTypeFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SpirvResourceTypeFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ALL_EXT => Some("ALL_EXT"),
-                Self::SAMPLER_EXT => Some("SAMPLER_EXT"),
-                Self::SAMPLED_IMAGE_EXT => Some("SAMPLED_IMAGE_EXT"),
-                Self::READ_ONLY_IMAGE_EXT => Some("READ_ONLY_IMAGE_EXT"),
-                Self::READ_WRITE_IMAGE_EXT => Some("READ_WRITE_IMAGE_EXT"),
-                Self::COMBINED_SAMPLED_IMAGE_EXT => Some("COMBINED_SAMPLED_IMAGE_EXT"),
-                Self::UNIFORM_BUFFER_EXT => Some("UNIFORM_BUFFER_EXT"),
-                Self::READ_ONLY_STORAGE_BUFFER_EXT => {
-                    Some("READ_ONLY_STORAGE_BUFFER_EXT")
-                }
-                Self::READ_WRITE_STORAGE_BUFFER_EXT => {
-                    Some("READ_WRITE_STORAGE_BUFFER_EXT")
-                }
-                Self::ACCELERATION_STRUCTURE_EXT => Some("ACCELERATION_STRUCTURE_EXT"),
-                Self::TENSOR_ARM => Some("TENSOR_ARM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1946,4 +1928,4 @@ pub(crate) mod reexport {
         p_datas: *mut crate::vk::HostAddressRangeEXT<'_>,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

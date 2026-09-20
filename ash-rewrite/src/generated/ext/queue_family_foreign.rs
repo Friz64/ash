@@ -4,7 +4,7 @@
 #![doc(alias = "VK_EXT_queue_family_foreign")]
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_queue_family_foreign";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub const QUEUE_FAMILY_FOREIGN_EXT: u32 = (!2);
 }
-pub use reexport::*;
+pub use items::*;

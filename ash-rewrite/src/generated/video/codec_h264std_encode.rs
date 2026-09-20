@@ -4,7 +4,7 @@
 #![doc(alias = "vulkan_video_codec_h264std_encode")]
 pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H264_ENCODE_API_VERSION_1_0_0;
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_encode";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -144,18 +144,11 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH264SliceHeaderFlags {
         /**- `direct_spatial_mv_pred_flag` @ `0..1`
 - `num_ref_idx_active_override_flag` @ `1..2`*/
         pub bitfield0: u32,
-    }
-    impl Default for EncodeH264SliceHeaderFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH264SliceHeaderFlags {
@@ -198,7 +191,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH264PictureInfoFlags {
         /**- `IdrPicFlag` @ `0..1`
 - `is_reference` @ `1..2`
@@ -206,13 +199,6 @@ pub(crate) mod reexport {
 - `long_term_reference_flag` @ `3..4`
 - `adaptive_ref_pic_marking_mode_flag` @ `4..5`*/
         pub bitfield0: u32,
-    }
-    impl Default for EncodeH264PictureInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH264PictureInfoFlags {
@@ -286,17 +272,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH264ReferenceInfoFlags {
         ///- `used_for_long_term_reference` @ `0..1`
         pub bitfield0: u32,
-    }
-    impl Default for EncodeH264ReferenceInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH264ReferenceInfoFlags {
@@ -323,18 +302,11 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH264ReferenceListsInfoFlags {
         /**- `ref_pic_list_modification_flag_l0` @ `0..1`
 - `ref_pic_list_modification_flag_l1` @ `1..2`*/
         pub bitfield0: u32,
-    }
-    impl Default for EncodeH264ReferenceListsInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH264ReferenceListsInfoFlags {
@@ -746,4 +718,4 @@ pub(crate) mod reexport {
         0,
     );
 }
-pub use reexport::*;
+pub use items::*;

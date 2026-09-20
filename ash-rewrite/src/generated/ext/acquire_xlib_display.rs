@@ -77,7 +77,7 @@ impl Instance {
         self.handle
     }
 }
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PFN_vkAcquireXlibDisplayEXT = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         dpy: *mut crate::platform_types::Display,
@@ -90,4 +90,4 @@ pub(crate) mod reexport {
         p_display: *mut crate::vk::DisplayKHR,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

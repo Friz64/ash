@@ -15,7 +15,7 @@ impl crate::vk::FramebufferCreateFlagBits {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_imageless_framebuffer";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceImagelessFramebufferFeaturesKHR<'a> = crate::vk::PhysicalDeviceImagelessFramebufferFeatures<
         'a,
     >;
@@ -29,4 +29,4 @@ pub(crate) mod reexport {
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

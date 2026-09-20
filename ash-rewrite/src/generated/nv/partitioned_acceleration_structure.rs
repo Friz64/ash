@@ -124,7 +124,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_partitioned_acceleration_structure";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -687,27 +687,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PartitionedAccelerationStructureInstanceFlagBitsNV(pub(crate) u32);
+    impl PartitionedAccelerationStructureInstanceFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PartitionedAccelerationStructureInstanceFlagsNV {
+            PartitionedAccelerationStructureInstanceFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PartitionedAccelerationStructureInstanceFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::FLAG_TRIANGLE_FACING_CULL_DISABLE_NV => {
-                    Some("FLAG_TRIANGLE_FACING_CULL_DISABLE_NV")
-                }
-                Self::FLAG_TRIANGLE_FLIP_FACING_NV => {
-                    Some("FLAG_TRIANGLE_FLIP_FACING_NV")
-                }
-                Self::FLAG_FORCE_OPAQUE_NV => Some("FLAG_FORCE_OPAQUE_NV"),
-                Self::FLAG_FORCE_NO_OPAQUE_NV => Some("FLAG_FORCE_NO_OPAQUE_NV"),
-                Self::FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV => {
-                    Some("FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV = unsafe extern "system" fn(
@@ -721,4 +710,4 @@ pub(crate) mod reexport {
     );
     pub const PARTITIONED_ACCELERATION_STRUCTURE_PARTITION_INDEX_GLOBAL_NV: u32 = (!0);
 }
-pub use reexport::*;
+pub use items::*;

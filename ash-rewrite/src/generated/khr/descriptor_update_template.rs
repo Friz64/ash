@@ -128,7 +128,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_descriptor_update_template";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type DescriptorUpdateTemplateEntryKHR = crate::vk::DescriptorUpdateTemplateEntry;
     pub type DescriptorUpdateTemplateCreateInfoKHR<'a> = crate::vk::DescriptorUpdateTemplateCreateInfo<
         'a,
@@ -140,4 +140,4 @@ pub(crate) mod reexport {
     pub type PFN_vkDestroyDescriptorUpdateTemplateKHR = crate::vk::PFN_vkDestroyDescriptorUpdateTemplate;
     pub type PFN_vkUpdateDescriptorSetWithTemplateKHR = crate::vk::PFN_vkUpdateDescriptorSetWithTemplate;
 }
-pub use reexport::*;
+pub use items::*;

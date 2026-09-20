@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_scalar_block_layout";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceScalarBlockLayoutFeaturesEXT<'a> = crate::vk::PhysicalDeviceScalarBlockLayoutFeatures<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

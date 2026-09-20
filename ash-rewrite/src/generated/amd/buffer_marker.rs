@@ -80,7 +80,7 @@ impl Device {
         self.handle
     }
 }
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PFN_vkCmdWriteBufferMarkerAMD = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         pipeline_stage: crate::vk::PipelineStageFlagBits,
@@ -96,4 +96,4 @@ pub(crate) mod reexport {
         marker: u32,
     );
 }
-pub use reexport::*;
+pub use items::*;

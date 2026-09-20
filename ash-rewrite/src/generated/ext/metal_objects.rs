@@ -83,7 +83,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_metal_objects";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -642,22 +642,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExportMetalObjectTypeFlagBitsEXT(pub(crate) u32);
+    impl ExportMetalObjectTypeFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ExportMetalObjectTypeFlagsEXT {
+            ExportMetalObjectTypeFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExportMetalObjectTypeFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::METAL_DEVICE_EXT => Some("METAL_DEVICE_EXT"),
-                Self::METAL_COMMAND_QUEUE_EXT => Some("METAL_COMMAND_QUEUE_EXT"),
-                Self::METAL_BUFFER_EXT => Some("METAL_BUFFER_EXT"),
-                Self::METAL_TEXTURE_EXT => Some("METAL_TEXTURE_EXT"),
-                Self::METAL_IOSURFACE_EXT => Some("METAL_IOSURFACE_EXT"),
-                Self::METAL_SHARED_EVENT_EXT => Some("METAL_SHARED_EVENT_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkExportMetalObjectsEXT = unsafe extern "system" fn(
@@ -665,4 +659,4 @@ pub(crate) mod reexport {
         p_metal_objects_info: *mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

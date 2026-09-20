@@ -148,7 +148,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance6";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -277,4 +277,4 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdPushDescriptorSet2KHR = crate::vk::PFN_vkCmdPushDescriptorSet2;
     pub type PFN_vkCmdPushDescriptorSetWithTemplate2KHR = crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate2;
 }
-pub use reexport::*;
+pub use items::*;

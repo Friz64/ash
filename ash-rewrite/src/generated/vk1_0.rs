@@ -3382,7 +3382,7 @@ impl DeviceV1_0 {
         self.handle
     }
 }
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -13967,7 +13967,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct Result(pub(crate) i32);
-    #[cfg(feature = "debug")]
     impl core::fmt::Debug for Result {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
@@ -14184,7 +14183,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ObjectType(pub(crate) i32);
-    #[cfg(feature = "debug")]
     impl core::fmt::Debug for ObjectType {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
@@ -14361,17 +14359,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FramebufferCreateFlagBits(pub(crate) u32);
+    impl FramebufferCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> FramebufferCreateFlags {
+            FramebufferCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for FramebufferCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::IMAGELESS => Some("IMAGELESS"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -14446,17 +14443,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryPoolCreateFlagBits(pub(crate) u32);
+    impl QueryPoolCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> QueryPoolCreateFlags {
+            QueryPoolCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for QueryPoolCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::RESET_KHR => Some("RESET_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -14546,20 +14542,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct RenderPassCreateFlagBits(pub(crate) u32);
+    impl RenderPassCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> RenderPassCreateFlags {
+            RenderPassCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for RenderPassCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::TRANSFORM_QCOM => Some("TRANSFORM_QCOM"),
-                Self::PER_LAYER_FRAGMENT_DENSITY_VALVE => {
-                    Some("PER_LAYER_FRAGMENT_DENSITY_VALVE")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -14662,25 +14654,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SamplerCreateFlagBits(pub(crate) u32);
+    impl SamplerCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> SamplerCreateFlags {
+            SamplerCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SamplerCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::SUBSAMPLED_EXT => Some("SUBSAMPLED_EXT"),
-                Self::SUBSAMPLED_COARSE_RECONSTRUCTION_EXT => {
-                    Some("SUBSAMPLED_COARSE_RECONSTRUCTION_EXT")
-                }
-                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT => {
-                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT")
-                }
-                Self::NON_SEAMLESS_CUBE_MAP_EXT => Some("NON_SEAMLESS_CUBE_MAP_EXT"),
-                Self::IMAGE_PROCESSING_QCOM => Some("IMAGE_PROCESSING_QCOM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -14767,18 +14750,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineLayoutCreateFlagBits(pub(crate) u32);
+    impl PipelineLayoutCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PipelineLayoutCreateFlags {
+            PipelineLayoutCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineLayoutCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::INDEPENDENT_SETS_EXT => Some("INDEPENDENT_SETS_EXT"),
-                Self::NO_TASK_SHADER_KHR => Some("NO_TASK_SHADER_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -14871,20 +14852,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCacheCreateFlagBits(pub(crate) u32);
+    impl PipelineCacheCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PipelineCacheCreateFlags {
+            PipelineCacheCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineCacheCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::EXTERNALLY_SYNCHRONIZED => Some("EXTERNALLY_SYNCHRONIZED"),
-                Self::INTERNALLY_SYNCHRONIZED_MERGE_KHR => {
-                    Some("INTERNALLY_SYNCHRONIZED_MERGE_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -14987,22 +14964,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineDepthStencilStateCreateFlagBits(pub(crate) u32);
+    impl PipelineDepthStencilStateCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PipelineDepthStencilStateCreateFlags {
+            PipelineDepthStencilStateCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineDepthStencilStateCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT => {
-                    Some("RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT")
-                }
-                Self::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT => {
-                    Some("RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -15161,19 +15132,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineColorBlendStateCreateFlagBits(pub(crate) u32);
+    impl PipelineColorBlendStateCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PipelineColorBlendStateCreateFlags {
+            PipelineColorBlendStateCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineColorBlendStateCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT => {
-                    Some("RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -15674,18 +15642,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineShaderStageCreateFlagBits(pub(crate) u32);
+    impl PipelineShaderStageCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PipelineShaderStageCreateFlags {
+            PipelineShaderStageCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineShaderStageCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ALLOW_VARYING_SUBGROUP_SIZE => Some("ALLOW_VARYING_SUBGROUP_SIZE"),
-                Self::REQUIRE_FULL_SUBGROUPS => Some("REQUIRE_FULL_SUBGROUPS"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -15804,25 +15770,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorSetLayoutCreateFlagBits(pub(crate) u32);
+    impl DescriptorSetLayoutCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DescriptorSetLayoutCreateFlags {
+            DescriptorSetLayoutCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DescriptorSetLayoutCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::UPDATE_AFTER_BIND_POOL => Some("UPDATE_AFTER_BIND_POOL"),
-                Self::PUSH_DESCRIPTOR => Some("PUSH_DESCRIPTOR"),
-                Self::DESCRIPTOR_BUFFER_EXT => Some("DESCRIPTOR_BUFFER_EXT"),
-                Self::EMBEDDED_IMMUTABLE_SAMPLERS_EXT => {
-                    Some("EMBEDDED_IMMUTABLE_SAMPLERS_EXT")
-                }
-                Self::INDIRECT_BINDABLE_NV => Some("INDIRECT_BINDABLE_NV"),
-                Self::HOST_ONLY_POOL_EXT => Some("HOST_ONLY_POOL_EXT"),
-                Self::PER_STAGE_NV => Some("PER_STAGE_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -15971,17 +15928,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct InstanceCreateFlagBits(pub(crate) u32);
+    impl InstanceCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> InstanceCreateFlags {
+            InstanceCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for InstanceCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ENUMERATE_PORTABILITY_KHR => Some("ENUMERATE_PORTABILITY_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -16134,18 +16090,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceQueueCreateFlagBits(pub(crate) u32);
+    impl DeviceQueueCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DeviceQueueCreateFlags {
+            DeviceQueueCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DeviceQueueCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PROTECTED => Some("PROTECTED"),
-                Self::INTERNALLY_SYNCHRONIZED_KHR => Some("INTERNALLY_SYNCHRONIZED_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -16242,25 +16196,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueueFlagBits(pub(crate) u32);
+    impl QueueFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> QueueFlags {
+            QueueFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for QueueFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::GRAPHICS => Some("GRAPHICS"),
-                Self::COMPUTE => Some("COMPUTE"),
-                Self::TRANSFER => Some("TRANSFER"),
-                Self::SPARSE_BINDING => Some("SPARSE_BINDING"),
-                Self::PROTECTED => Some("PROTECTED"),
-                Self::VIDEO_DECODE_KHR => Some("VIDEO_DECODE_KHR"),
-                Self::VIDEO_ENCODE_KHR => Some("VIDEO_ENCODE_KHR"),
-                Self::OPTICAL_FLOW_NV => Some("OPTICAL_FLOW_NV"),
-                Self::DATA_GRAPH_ARM => Some("DATA_GRAPH_ARM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -16365,25 +16310,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryPropertyFlagBits(pub(crate) u32);
+    impl MemoryPropertyFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> MemoryPropertyFlags {
+            MemoryPropertyFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for MemoryPropertyFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DEVICE_LOCAL => Some("DEVICE_LOCAL"),
-                Self::HOST_VISIBLE => Some("HOST_VISIBLE"),
-                Self::HOST_COHERENT => Some("HOST_COHERENT"),
-                Self::HOST_CACHED => Some("HOST_CACHED"),
-                Self::LAZILY_ALLOCATED => Some("LAZILY_ALLOCATED"),
-                Self::PROTECTED => Some("PROTECTED"),
-                Self::DEVICE_COHERENT_AMD => Some("DEVICE_COHERENT_AMD"),
-                Self::DEVICE_UNCACHED_AMD => Some("DEVICE_UNCACHED_AMD"),
-                Self::RDMA_CAPABLE_NV => Some("RDMA_CAPABLE_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -16471,19 +16407,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryHeapFlagBits(pub(crate) u32);
+    impl MemoryHeapFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> MemoryHeapFlags {
+            MemoryHeapFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for MemoryHeapFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DEVICE_LOCAL => Some("DEVICE_LOCAL"),
-                Self::MULTI_INSTANCE => Some("MULTI_INSTANCE"),
-                Self::TILE_MEMORY_QCOM => Some("TILE_MEMORY_QCOM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -16708,69 +16641,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccessFlagBits(pub(crate) u32);
+    impl AccessFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> AccessFlags {
+            AccessFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccessFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::INDIRECT_COMMAND_READ => Some("INDIRECT_COMMAND_READ"),
-                Self::INDEX_READ => Some("INDEX_READ"),
-                Self::VERTEX_ATTRIBUTE_READ => Some("VERTEX_ATTRIBUTE_READ"),
-                Self::UNIFORM_READ => Some("UNIFORM_READ"),
-                Self::INPUT_ATTACHMENT_READ => Some("INPUT_ATTACHMENT_READ"),
-                Self::SHADER_READ => Some("SHADER_READ"),
-                Self::SHADER_WRITE => Some("SHADER_WRITE"),
-                Self::COLOR_ATTACHMENT_READ => Some("COLOR_ATTACHMENT_READ"),
-                Self::COLOR_ATTACHMENT_WRITE => Some("COLOR_ATTACHMENT_WRITE"),
-                Self::DEPTH_STENCIL_ATTACHMENT_READ => {
-                    Some("DEPTH_STENCIL_ATTACHMENT_READ")
-                }
-                Self::DEPTH_STENCIL_ATTACHMENT_WRITE => {
-                    Some("DEPTH_STENCIL_ATTACHMENT_WRITE")
-                }
-                Self::TRANSFER_READ => Some("TRANSFER_READ"),
-                Self::TRANSFER_WRITE => Some("TRANSFER_WRITE"),
-                Self::HOST_READ => Some("HOST_READ"),
-                Self::HOST_WRITE => Some("HOST_WRITE"),
-                Self::MEMORY_READ => Some("MEMORY_READ"),
-                Self::MEMORY_WRITE => Some("MEMORY_WRITE"),
-                Self::NONE => Some("NONE"),
-                Self::TRANSFORM_FEEDBACK_WRITE_EXT => {
-                    Some("TRANSFORM_FEEDBACK_WRITE_EXT")
-                }
-                Self::TRANSFORM_FEEDBACK_COUNTER_READ_EXT => {
-                    Some("TRANSFORM_FEEDBACK_COUNTER_READ_EXT")
-                }
-                Self::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT => {
-                    Some("TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT")
-                }
-                Self::CONDITIONAL_RENDERING_READ_EXT => {
-                    Some("CONDITIONAL_RENDERING_READ_EXT")
-                }
-                Self::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT => {
-                    Some("COLOR_ATTACHMENT_READ_NONCOHERENT_EXT")
-                }
-                Self::ACCELERATION_STRUCTURE_READ_KHR => {
-                    Some("ACCELERATION_STRUCTURE_READ_KHR")
-                }
-                Self::ACCELERATION_STRUCTURE_WRITE_KHR => {
-                    Some("ACCELERATION_STRUCTURE_WRITE_KHR")
-                }
-                Self::FRAGMENT_DENSITY_MAP_READ_EXT => {
-                    Some("FRAGMENT_DENSITY_MAP_READ_EXT")
-                }
-                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR => {
-                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR")
-                }
-                Self::COMMAND_PREPROCESS_READ_EXT => Some("COMMAND_PREPROCESS_READ_EXT"),
-                Self::COMMAND_PREPROCESS_WRITE_EXT => {
-                    Some("COMMAND_PREPROCESS_WRITE_EXT")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -16979,62 +16859,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BufferUsageFlagBits(pub(crate) u32);
+    impl BufferUsageFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> BufferUsageFlags {
+            BufferUsageFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for BufferUsageFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::TRANSFER_SRC => Some("TRANSFER_SRC"),
-                Self::TRANSFER_DST => Some("TRANSFER_DST"),
-                Self::UNIFORM_TEXEL_BUFFER => Some("UNIFORM_TEXEL_BUFFER"),
-                Self::STORAGE_TEXEL_BUFFER => Some("STORAGE_TEXEL_BUFFER"),
-                Self::UNIFORM_BUFFER => Some("UNIFORM_BUFFER"),
-                Self::STORAGE_BUFFER => Some("STORAGE_BUFFER"),
-                Self::INDEX_BUFFER => Some("INDEX_BUFFER"),
-                Self::VERTEX_BUFFER => Some("VERTEX_BUFFER"),
-                Self::INDIRECT_BUFFER => Some("INDIRECT_BUFFER"),
-                Self::SHADER_DEVICE_ADDRESS => Some("SHADER_DEVICE_ADDRESS"),
-                Self::VIDEO_DECODE_SRC_KHR => Some("VIDEO_DECODE_SRC_KHR"),
-                Self::VIDEO_DECODE_DST_KHR => Some("VIDEO_DECODE_DST_KHR"),
-                Self::TRANSFORM_FEEDBACK_BUFFER_EXT => {
-                    Some("TRANSFORM_FEEDBACK_BUFFER_EXT")
-                }
-                Self::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT => {
-                    Some("TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT")
-                }
-                Self::CONDITIONAL_RENDERING_EXT => Some("CONDITIONAL_RENDERING_EXT"),
-                Self::EXECUTION_GRAPH_SCRATCH_AMDX => {
-                    Some("EXECUTION_GRAPH_SCRATCH_AMDX")
-                }
-                Self::DESCRIPTOR_HEAP_EXT => Some("DESCRIPTOR_HEAP_EXT"),
-                Self::ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR => {
-                    Some("ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR")
-                }
-                Self::ACCELERATION_STRUCTURE_STORAGE_KHR => {
-                    Some("ACCELERATION_STRUCTURE_STORAGE_KHR")
-                }
-                Self::SHADER_BINDING_TABLE_KHR => Some("SHADER_BINDING_TABLE_KHR"),
-                Self::VIDEO_ENCODE_DST_KHR => Some("VIDEO_ENCODE_DST_KHR"),
-                Self::VIDEO_ENCODE_SRC_KHR => Some("VIDEO_ENCODE_SRC_KHR"),
-                Self::SAMPLER_DESCRIPTOR_BUFFER_EXT => {
-                    Some("SAMPLER_DESCRIPTOR_BUFFER_EXT")
-                }
-                Self::RESOURCE_DESCRIPTOR_BUFFER_EXT => {
-                    Some("RESOURCE_DESCRIPTOR_BUFFER_EXT")
-                }
-                Self::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT => {
-                    Some("PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT")
-                }
-                Self::MICROMAP_BUILD_INPUT_READ_ONLY_EXT => {
-                    Some("MICROMAP_BUILD_INPUT_READ_ONLY_EXT")
-                }
-                Self::MICROMAP_STORAGE_EXT => Some("MICROMAP_STORAGE_EXT"),
-                Self::TILE_MEMORY_QCOM => Some("TILE_MEMORY_QCOM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -17150,29 +16984,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BufferCreateFlagBits(pub(crate) u32);
+    impl BufferCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> BufferCreateFlags {
+            BufferCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for BufferCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::SPARSE_BINDING => Some("SPARSE_BINDING"),
-                Self::SPARSE_RESIDENCY => Some("SPARSE_RESIDENCY"),
-                Self::SPARSE_ALIASED => Some("SPARSE_ALIASED"),
-                Self::PROTECTED => Some("PROTECTED"),
-                Self::DEVICE_ADDRESS_CAPTURE_REPLAY => {
-                    Some("DEVICE_ADDRESS_CAPTURE_REPLAY")
-                }
-                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT => {
-                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT")
-                }
-                Self::VIDEO_PROFILE_INDEPENDENT_KHR => {
-                    Some("VIDEO_PROFILE_INDEPENDENT_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -17303,34 +17124,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ShaderStageFlagBits(pub(crate) u32);
+    impl ShaderStageFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ShaderStageFlags {
+            ShaderStageFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ShaderStageFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::VERTEX => Some("VERTEX"),
-                Self::TESSELLATION_CONTROL => Some("TESSELLATION_CONTROL"),
-                Self::TESSELLATION_EVALUATION => Some("TESSELLATION_EVALUATION"),
-                Self::GEOMETRY => Some("GEOMETRY"),
-                Self::FRAGMENT => Some("FRAGMENT"),
-                Self::COMPUTE => Some("COMPUTE"),
-                Self::ALL_GRAPHICS => Some("ALL_GRAPHICS"),
-                Self::ALL => Some("ALL"),
-                Self::RAYGEN_KHR => Some("RAYGEN_KHR"),
-                Self::ANY_HIT_KHR => Some("ANY_HIT_KHR"),
-                Self::CLOSEST_HIT_KHR => Some("CLOSEST_HIT_KHR"),
-                Self::MISS_KHR => Some("MISS_KHR"),
-                Self::INTERSECTION_KHR => Some("INTERSECTION_KHR"),
-                Self::CALLABLE_KHR => Some("CALLABLE_KHR"),
-                Self::TASK_EXT => Some("TASK_EXT"),
-                Self::MESH_EXT => Some("MESH_EXT"),
-                Self::SUBPASS_SHADING_HUAWEI => Some("SUBPASS_SHADING_HUAWEI"),
-                Self::CLUSTER_CULLING_HUAWEI => Some("CLUSTER_CULLING_HUAWEI"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -17511,49 +17314,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageUsageFlagBits(pub(crate) u32);
+    impl ImageUsageFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ImageUsageFlags {
+            ImageUsageFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageUsageFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::TRANSFER_SRC => Some("TRANSFER_SRC"),
-                Self::TRANSFER_DST => Some("TRANSFER_DST"),
-                Self::SAMPLED => Some("SAMPLED"),
-                Self::STORAGE => Some("STORAGE"),
-                Self::COLOR_ATTACHMENT => Some("COLOR_ATTACHMENT"),
-                Self::DEPTH_STENCIL_ATTACHMENT => Some("DEPTH_STENCIL_ATTACHMENT"),
-                Self::TRANSIENT_ATTACHMENT => Some("TRANSIENT_ATTACHMENT"),
-                Self::INPUT_ATTACHMENT => Some("INPUT_ATTACHMENT"),
-                Self::HOST_TRANSFER => Some("HOST_TRANSFER"),
-                Self::VIDEO_DECODE_DST_KHR => Some("VIDEO_DECODE_DST_KHR"),
-                Self::VIDEO_DECODE_SRC_KHR => Some("VIDEO_DECODE_SRC_KHR"),
-                Self::VIDEO_DECODE_DPB_KHR => Some("VIDEO_DECODE_DPB_KHR"),
-                Self::FRAGMENT_DENSITY_MAP_EXT => Some("FRAGMENT_DENSITY_MAP_EXT"),
-                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
-                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
-                }
-                Self::VIDEO_ENCODE_DST_KHR => Some("VIDEO_ENCODE_DST_KHR"),
-                Self::VIDEO_ENCODE_SRC_KHR => Some("VIDEO_ENCODE_SRC_KHR"),
-                Self::VIDEO_ENCODE_DPB_KHR => Some("VIDEO_ENCODE_DPB_KHR"),
-                Self::ATTACHMENT_FEEDBACK_LOOP_EXT => {
-                    Some("ATTACHMENT_FEEDBACK_LOOP_EXT")
-                }
-                Self::INVOCATION_MASK_HUAWEI => Some("INVOCATION_MASK_HUAWEI"),
-                Self::SAMPLE_WEIGHT_QCOM => Some("SAMPLE_WEIGHT_QCOM"),
-                Self::SAMPLE_BLOCK_MATCH_QCOM => Some("SAMPLE_BLOCK_MATCH_QCOM"),
-                Self::TENSOR_ALIASING_ARM => Some("TENSOR_ALIASING_ARM"),
-                Self::TILE_MEMORY_QCOM => Some("TILE_MEMORY_QCOM"),
-                Self::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR => {
-                    Some("VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR")
-                }
-                Self::VIDEO_ENCODE_EMPHASIS_MAP_KHR => {
-                    Some("VIDEO_ENCODE_EMPHASIS_MAP_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -17734,49 +17504,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCreateFlagBits(pub(crate) u32);
+    impl ImageCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ImageCreateFlags {
+            ImageCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::SPARSE_BINDING => Some("SPARSE_BINDING"),
-                Self::SPARSE_RESIDENCY => Some("SPARSE_RESIDENCY"),
-                Self::SPARSE_ALIASED => Some("SPARSE_ALIASED"),
-                Self::MUTABLE_FORMAT => Some("MUTABLE_FORMAT"),
-                Self::CUBE_COMPATIBLE => Some("CUBE_COMPATIBLE"),
-                Self::ALIAS => Some("ALIAS"),
-                Self::SPLIT_INSTANCE_BIND_REGIONS => Some("SPLIT_INSTANCE_BIND_REGIONS"),
-                Self::_2D_ARRAY_COMPATIBLE => Some("_2D_ARRAY_COMPATIBLE"),
-                Self::BLOCK_TEXEL_VIEW_COMPATIBLE => Some("BLOCK_TEXEL_VIEW_COMPATIBLE"),
-                Self::EXTENDED_USAGE => Some("EXTENDED_USAGE"),
-                Self::PROTECTED => Some("PROTECTED"),
-                Self::DISJOINT => Some("DISJOINT"),
-                Self::CORNER_SAMPLED_NV => Some("CORNER_SAMPLED_NV"),
-                Self::DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT => {
-                    Some("DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT")
-                }
-                Self::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT => {
-                    Some("SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT")
-                }
-                Self::SUBSAMPLED_EXT => Some("SUBSAMPLED_EXT"),
-                Self::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT => {
-                    Some("MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT")
-                }
-                Self::_2D_VIEW_COMPATIBLE_EXT => Some("_2D_VIEW_COMPATIBLE_EXT"),
-                Self::VIDEO_PROFILE_INDEPENDENT_KHR => {
-                    Some("VIDEO_PROFILE_INDEPENDENT_KHR")
-                }
-                Self::FRAGMENT_DENSITY_MAP_OFFSET_EXT => {
-                    Some("FRAGMENT_DENSITY_MAP_OFFSET_EXT")
-                }
-                Self::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR => {
-                    Some("ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -17876,25 +17613,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageViewCreateFlagBits(pub(crate) u32);
+    impl ImageViewCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ImageViewCreateFlags {
+            ImageViewCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageViewCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::FRAGMENT_DENSITY_MAP_DYNAMIC_EXT => {
-                    Some("FRAGMENT_DENSITY_MAP_DYNAMIC_EXT")
-                }
-                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT => {
-                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT")
-                }
-                Self::FRAGMENT_DENSITY_MAP_DEFERRED_EXT => {
-                    Some("FRAGMENT_DENSITY_MAP_DEFERRED_EXT")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -18160,79 +17888,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCreateFlagBits(pub(crate) u32);
+    impl PipelineCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PipelineCreateFlags {
+            PipelineCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DISABLE_OPTIMIZATION => Some("DISABLE_OPTIMIZATION"),
-                Self::ALLOW_DERIVATIVES => Some("ALLOW_DERIVATIVES"),
-                Self::DERIVATIVE => Some("DERIVATIVE"),
-                Self::DISPATCH_BASE => Some("DISPATCH_BASE"),
-                Self::VIEW_INDEX_FROM_DEVICE_INDEX => {
-                    Some("VIEW_INDEX_FROM_DEVICE_INDEX")
-                }
-                Self::FAIL_ON_PIPELINE_COMPILE_REQUIRED => {
-                    Some("FAIL_ON_PIPELINE_COMPILE_REQUIRED")
-                }
-                Self::EARLY_RETURN_ON_FAILURE => Some("EARLY_RETURN_ON_FAILURE"),
-                Self::NO_PROTECTED_ACCESS => Some("NO_PROTECTED_ACCESS"),
-                Self::PROTECTED_ACCESS_ONLY => Some("PROTECTED_ACCESS_ONLY"),
-                Self::RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR => {
-                    Some("RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR")
-                }
-                Self::RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR => {
-                    Some("RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR")
-                }
-                Self::RAY_TRACING_NO_NULL_MISS_SHADERS_KHR => {
-                    Some("RAY_TRACING_NO_NULL_MISS_SHADERS_KHR")
-                }
-                Self::RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR => {
-                    Some("RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR")
-                }
-                Self::RAY_TRACING_SKIP_TRIANGLES_KHR => {
-                    Some("RAY_TRACING_SKIP_TRIANGLES_KHR")
-                }
-                Self::RAY_TRACING_SKIP_AABBS_KHR => Some("RAY_TRACING_SKIP_AABBS_KHR"),
-                Self::RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR => {
-                    Some("RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR")
-                }
-                Self::DEFER_COMPILE_NV => Some("DEFER_COMPILE_NV"),
-                Self::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT => {
-                    Some("RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT")
-                }
-                Self::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
-                    Some("RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
-                }
-                Self::CAPTURE_STATISTICS_KHR => Some("CAPTURE_STATISTICS_KHR"),
-                Self::CAPTURE_INTERNAL_REPRESENTATIONS_KHR => {
-                    Some("CAPTURE_INTERNAL_REPRESENTATIONS_KHR")
-                }
-                Self::INDIRECT_BINDABLE_NV => Some("INDIRECT_BINDABLE_NV"),
-                Self::LIBRARY_KHR => Some("LIBRARY_KHR"),
-                Self::DESCRIPTOR_BUFFER_EXT => Some("DESCRIPTOR_BUFFER_EXT"),
-                Self::RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT => {
-                    Some("RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT")
-                }
-                Self::LINK_TIME_OPTIMIZATION_EXT => Some("LINK_TIME_OPTIMIZATION_EXT"),
-                Self::RAY_TRACING_ALLOW_MOTION_NV => Some("RAY_TRACING_ALLOW_MOTION_NV"),
-                Self::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT => {
-                    Some("COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT")
-                }
-                Self::DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT => {
-                    Some("DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT")
-                }
-                Self::RAY_TRACING_DISPLACEMENT_MICROMAP_NV => {
-                    Some("RAY_TRACING_DISPLACEMENT_MICROMAP_NV")
-                }
-                Self::RAY_TRACING_OPACITY_MICROMAP_KHR => {
-                    Some("RAY_TRACING_OPACITY_MICROMAP_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -18319,20 +17984,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ColorComponentFlagBits(pub(crate) u32);
+    impl ColorComponentFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ColorComponentFlags {
+            ColorComponentFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ColorComponentFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::R => Some("R"),
-                Self::G => Some("G"),
-                Self::B => Some("B"),
-                Self::A => Some("A"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -18407,17 +18068,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FenceCreateFlagBits(pub(crate) u32);
+    impl FenceCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> FenceCreateFlags {
+            FenceCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for FenceCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::SIGNALED => Some("SIGNALED"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -18733,63 +18393,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FormatFeatureFlagBits(pub(crate) u32);
+    impl FormatFeatureFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> FormatFeatureFlags {
+            FormatFeatureFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for FormatFeatureFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::SAMPLED_IMAGE => Some("SAMPLED_IMAGE"),
-                Self::STORAGE_IMAGE => Some("STORAGE_IMAGE"),
-                Self::STORAGE_IMAGE_ATOMIC => Some("STORAGE_IMAGE_ATOMIC"),
-                Self::UNIFORM_TEXEL_BUFFER => Some("UNIFORM_TEXEL_BUFFER"),
-                Self::STORAGE_TEXEL_BUFFER => Some("STORAGE_TEXEL_BUFFER"),
-                Self::STORAGE_TEXEL_BUFFER_ATOMIC => Some("STORAGE_TEXEL_BUFFER_ATOMIC"),
-                Self::VERTEX_BUFFER => Some("VERTEX_BUFFER"),
-                Self::COLOR_ATTACHMENT => Some("COLOR_ATTACHMENT"),
-                Self::COLOR_ATTACHMENT_BLEND => Some("COLOR_ATTACHMENT_BLEND"),
-                Self::DEPTH_STENCIL_ATTACHMENT => Some("DEPTH_STENCIL_ATTACHMENT"),
-                Self::BLIT_SRC => Some("BLIT_SRC"),
-                Self::BLIT_DST => Some("BLIT_DST"),
-                Self::SAMPLED_IMAGE_FILTER_LINEAR => Some("SAMPLED_IMAGE_FILTER_LINEAR"),
-                Self::TRANSFER_SRC => Some("TRANSFER_SRC"),
-                Self::TRANSFER_DST => Some("TRANSFER_DST"),
-                Self::MIDPOINT_CHROMA_SAMPLES => Some("MIDPOINT_CHROMA_SAMPLES"),
-                Self::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER => {
-                    Some("SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER")
-                }
-                Self::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER => {
-                    Some("SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER")
-                }
-                Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT => {
-                    Some("SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT")
-                }
-                Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE => {
-                    Some(
-                        "SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE",
-                    )
-                }
-                Self::DISJOINT => Some("DISJOINT"),
-                Self::COSITED_CHROMA_SAMPLES => Some("COSITED_CHROMA_SAMPLES"),
-                Self::SAMPLED_IMAGE_FILTER_MINMAX => Some("SAMPLED_IMAGE_FILTER_MINMAX"),
-                Self::VIDEO_DECODE_OUTPUT_KHR => Some("VIDEO_DECODE_OUTPUT_KHR"),
-                Self::VIDEO_DECODE_DPB_KHR => Some("VIDEO_DECODE_DPB_KHR"),
-                Self::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR => {
-                    Some("ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR")
-                }
-                Self::SAMPLED_IMAGE_FILTER_CUBIC_EXT => {
-                    Some("SAMPLED_IMAGE_FILTER_CUBIC_EXT")
-                }
-                Self::FRAGMENT_DENSITY_MAP_EXT => Some("FRAGMENT_DENSITY_MAP_EXT"),
-                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
-                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
-                }
-                Self::VIDEO_ENCODE_INPUT_KHR => Some("VIDEO_ENCODE_INPUT_KHR"),
-                Self::VIDEO_ENCODE_DPB_KHR => Some("VIDEO_ENCODE_DPB_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -18864,17 +18477,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryControlFlagBits(pub(crate) u32);
+    impl QueryControlFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> QueryControlFlags {
+            QueryControlFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for QueryControlFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PRECISE => Some("PRECISE"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -18965,21 +18577,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryResultFlagBits(pub(crate) u32);
+    impl QueryResultFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> QueryResultFlags {
+            QueryResultFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for QueryResultFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::_64 => Some("_64"),
-                Self::WAIT => Some("WAIT"),
-                Self::WITH_AVAILABILITY => Some("WITH_AVAILABILITY"),
-                Self::PARTIAL => Some("PARTIAL"),
-                Self::WITH_STATUS_KHR => Some("WITH_STATUS_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -19123,17 +18730,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct EventCreateFlagBits(pub(crate) u32);
+    impl EventCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> EventCreateFlags {
+            EventCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EventCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DEVICE_ONLY => Some("DEVICE_ONLY"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -19220,19 +18826,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandPoolCreateFlagBits(pub(crate) u32);
+    impl CommandPoolCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> CommandPoolCreateFlags {
+            CommandPoolCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for CommandPoolCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::TRANSIENT => Some("TRANSIENT"),
-                Self::RESET_COMMAND_BUFFER => Some("RESET_COMMAND_BUFFER"),
-                Self::PROTECTED => Some("PROTECTED"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -19313,17 +18916,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandPoolResetFlagBits(pub(crate) u32);
+    impl CommandPoolResetFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> CommandPoolResetFlags {
+            CommandPoolResetFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for CommandPoolResetFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::RELEASE_RESOURCES => Some("RELEASE_RESOURCES"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -19404,17 +19006,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandBufferResetFlagBits(pub(crate) u32);
+    impl CommandBufferResetFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> CommandBufferResetFlags {
+            CommandBufferResetFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for CommandBufferResetFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::RELEASE_RESOURCES => Some("RELEASE_RESOURCES"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -19505,19 +19106,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandBufferUsageFlagBits(pub(crate) u32);
+    impl CommandBufferUsageFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> CommandBufferUsageFlags {
+            CommandBufferUsageFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for CommandBufferUsageFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ONE_TIME_SUBMIT => Some("ONE_TIME_SUBMIT"),
-                Self::RENDER_PASS_CONTINUE => Some("RENDER_PASS_CONTINUE"),
-                Self::SIMULTANEOUS_USE => Some("SIMULTANEOUS_USE"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -19661,36 +19259,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryPipelineStatisticFlagBits(pub(crate) u32);
+    impl QueryPipelineStatisticFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> QueryPipelineStatisticFlags {
+            QueryPipelineStatisticFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for QueryPipelineStatisticFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::INPUT_ASSEMBLY_VERTICES => Some("INPUT_ASSEMBLY_VERTICES"),
-                Self::INPUT_ASSEMBLY_PRIMITIVES => Some("INPUT_ASSEMBLY_PRIMITIVES"),
-                Self::VERTEX_SHADER_INVOCATIONS => Some("VERTEX_SHADER_INVOCATIONS"),
-                Self::GEOMETRY_SHADER_INVOCATIONS => Some("GEOMETRY_SHADER_INVOCATIONS"),
-                Self::GEOMETRY_SHADER_PRIMITIVES => Some("GEOMETRY_SHADER_PRIMITIVES"),
-                Self::CLIPPING_INVOCATIONS => Some("CLIPPING_INVOCATIONS"),
-                Self::CLIPPING_PRIMITIVES => Some("CLIPPING_PRIMITIVES"),
-                Self::FRAGMENT_SHADER_INVOCATIONS => Some("FRAGMENT_SHADER_INVOCATIONS"),
-                Self::TESSELLATION_CONTROL_SHADER_PATCHES => {
-                    Some("TESSELLATION_CONTROL_SHADER_PATCHES")
-                }
-                Self::TESSELLATION_EVALUATION_SHADER_INVOCATIONS => {
-                    Some("TESSELLATION_EVALUATION_SHADER_INVOCATIONS")
-                }
-                Self::COMPUTE_SHADER_INVOCATIONS => Some("COMPUTE_SHADER_INVOCATIONS"),
-                Self::TASK_SHADER_INVOCATIONS_EXT => Some("TASK_SHADER_INVOCATIONS_EXT"),
-                Self::MESH_SHADER_INVOCATIONS_EXT => Some("MESH_SHADER_INVOCATIONS_EXT"),
-                Self::CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI => {
-                    Some("CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -19765,17 +19343,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryMapFlagBits(pub(crate) u32);
+    impl MemoryMapFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> MemoryMapFlags {
+            MemoryMapFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for MemoryMapFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PLACED_EXT => Some("PLACED_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -19890,28 +19467,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageAspectFlagBits(pub(crate) u32);
+    impl ImageAspectFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ImageAspectFlags {
+            ImageAspectFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ImageAspectFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::COLOR => Some("COLOR"),
-                Self::DEPTH => Some("DEPTH"),
-                Self::STENCIL => Some("STENCIL"),
-                Self::METADATA => Some("METADATA"),
-                Self::PLANE_0 => Some("PLANE_0"),
-                Self::PLANE_1 => Some("PLANE_1"),
-                Self::PLANE_2 => Some("PLANE_2"),
-                Self::NONE => Some("NONE"),
-                Self::MEMORY_PLANE_0_EXT => Some("MEMORY_PLANE_0_EXT"),
-                Self::MEMORY_PLANE_1_EXT => Some("MEMORY_PLANE_1_EXT"),
-                Self::MEMORY_PLANE_2_EXT => Some("MEMORY_PLANE_2_EXT"),
-                Self::MEMORY_PLANE_3_EXT => Some("MEMORY_PLANE_3_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -19986,17 +19551,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SparseMemoryBindFlagBits(pub(crate) u32);
+    impl SparseMemoryBindFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> SparseMemoryBindFlags {
+            SparseMemoryBindFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SparseMemoryBindFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::METADATA => Some("METADATA"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -20087,19 +19651,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SparseImageFormatFlagBits(pub(crate) u32);
+    impl SparseImageFormatFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> SparseImageFormatFlags {
+            SparseImageFormatFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SparseImageFormatFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::SINGLE_MIPTAIL => Some("SINGLE_MIPTAIL"),
-                Self::ALIGNED_MIP_SIZE => Some("ALIGNED_MIP_SIZE"),
-                Self::NONSTANDARD_BLOCK_SIZE => Some("NONSTANDARD_BLOCK_SIZE"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -20243,33 +19804,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SubpassDescriptionFlagBits(pub(crate) u32);
+    impl SubpassDescriptionFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> SubpassDescriptionFlags {
+            SubpassDescriptionFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SubpassDescriptionFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PER_VIEW_ATTRIBUTES_NVX => Some("PER_VIEW_ATTRIBUTES_NVX"),
-                Self::PER_VIEW_POSITION_X_ONLY_NVX => {
-                    Some("PER_VIEW_POSITION_X_ONLY_NVX")
-                }
-                Self::TILE_SHADING_APRON_QCOM => Some("TILE_SHADING_APRON_QCOM"),
-                Self::RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT => {
-                    Some("RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT")
-                }
-                Self::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT => {
-                    Some("RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT")
-                }
-                Self::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT => {
-                    Some("RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT")
-                }
-                Self::ENABLE_LEGACY_DITHERING_EXT => Some("ENABLE_LEGACY_DITHERING_EXT"),
-                Self::FRAGMENT_REGION_EXT => Some("FRAGMENT_REGION_EXT"),
-                Self::CUSTOM_RESOLVE_EXT => Some("CUSTOM_RESOLVE_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -20453,51 +19997,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineStageFlagBits(pub(crate) u32);
+    impl PipelineStageFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PipelineStageFlags {
+            PipelineStageFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineStageFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::TOP_OF_PIPE => Some("TOP_OF_PIPE"),
-                Self::DRAW_INDIRECT => Some("DRAW_INDIRECT"),
-                Self::VERTEX_INPUT => Some("VERTEX_INPUT"),
-                Self::VERTEX_SHADER => Some("VERTEX_SHADER"),
-                Self::TESSELLATION_CONTROL_SHADER => Some("TESSELLATION_CONTROL_SHADER"),
-                Self::TESSELLATION_EVALUATION_SHADER => {
-                    Some("TESSELLATION_EVALUATION_SHADER")
-                }
-                Self::GEOMETRY_SHADER => Some("GEOMETRY_SHADER"),
-                Self::FRAGMENT_SHADER => Some("FRAGMENT_SHADER"),
-                Self::EARLY_FRAGMENT_TESTS => Some("EARLY_FRAGMENT_TESTS"),
-                Self::LATE_FRAGMENT_TESTS => Some("LATE_FRAGMENT_TESTS"),
-                Self::COLOR_ATTACHMENT_OUTPUT => Some("COLOR_ATTACHMENT_OUTPUT"),
-                Self::COMPUTE_SHADER => Some("COMPUTE_SHADER"),
-                Self::TRANSFER => Some("TRANSFER"),
-                Self::BOTTOM_OF_PIPE => Some("BOTTOM_OF_PIPE"),
-                Self::HOST => Some("HOST"),
-                Self::ALL_GRAPHICS => Some("ALL_GRAPHICS"),
-                Self::ALL_COMMANDS => Some("ALL_COMMANDS"),
-                Self::NONE => Some("NONE"),
-                Self::TRANSFORM_FEEDBACK_EXT => Some("TRANSFORM_FEEDBACK_EXT"),
-                Self::CONDITIONAL_RENDERING_EXT => Some("CONDITIONAL_RENDERING_EXT"),
-                Self::ACCELERATION_STRUCTURE_BUILD_KHR => {
-                    Some("ACCELERATION_STRUCTURE_BUILD_KHR")
-                }
-                Self::RAY_TRACING_SHADER_KHR => Some("RAY_TRACING_SHADER_KHR"),
-                Self::FRAGMENT_DENSITY_PROCESS_EXT => {
-                    Some("FRAGMENT_DENSITY_PROCESS_EXT")
-                }
-                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
-                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
-                }
-                Self::TASK_SHADER_EXT => Some("TASK_SHADER_EXT"),
-                Self::MESH_SHADER_EXT => Some("MESH_SHADER_EXT"),
-                Self::COMMAND_PREPROCESS_EXT => Some("COMMAND_PREPROCESS_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -20590,23 +20099,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SampleCountFlagBits(pub(crate) u32);
+    impl SampleCountFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> SampleCountFlags {
+            SampleCountFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SampleCountFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::_1 => Some("_1"),
-                Self::_2 => Some("_2"),
-                Self::_4 => Some("_4"),
-                Self::_8 => Some("_8"),
-                Self::_16 => Some("_16"),
-                Self::_32 => Some("_32"),
-                Self::_64 => Some("_64"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -20701,23 +20203,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AttachmentDescriptionFlagBits(pub(crate) u32);
+    impl AttachmentDescriptionFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> AttachmentDescriptionFlags {
+            AttachmentDescriptionFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AttachmentDescriptionFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::MAY_ALIAS => Some("MAY_ALIAS"),
-                Self::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR => {
-                    Some("RESOLVE_SKIP_TRANSFER_FUNCTION_KHR")
-                }
-                Self::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR => {
-                    Some("RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -20802,19 +20297,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct StencilFaceFlagBits(pub(crate) u32);
+    impl StencilFaceFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> StencilFaceFlags {
+            StencilFaceFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for StencilFaceFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::FRONT => Some("FRONT"),
-                Self::BACK => Some("BACK"),
-                Self::FRONT_AND_BACK => Some("FRONT_AND_BACK"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -20901,20 +20393,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CullModeFlagBits(pub(crate) u32);
+    impl CullModeFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> CullModeFlags {
+            CullModeFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for CullModeFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::NONE => Some("NONE"),
-                Self::FRONT => Some("FRONT"),
-                Self::BACK => Some("BACK"),
-                Self::FRONT_AND_BACK => Some("FRONT_AND_BACK"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -21025,25 +20513,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorPoolCreateFlagBits(pub(crate) u32);
+    impl DescriptorPoolCreateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DescriptorPoolCreateFlags {
+            DescriptorPoolCreateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DescriptorPoolCreateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::FREE_DESCRIPTOR_SET => Some("FREE_DESCRIPTOR_SET"),
-                Self::UPDATE_AFTER_BIND => Some("UPDATE_AFTER_BIND"),
-                Self::HOST_ONLY_EXT => Some("HOST_ONLY_EXT"),
-                Self::ALLOW_OVERALLOCATION_SETS_NV => {
-                    Some("ALLOW_OVERALLOCATION_SETS_NV")
-                }
-                Self::ALLOW_OVERALLOCATION_POOLS_NV => {
-                    Some("ALLOW_OVERALLOCATION_POOLS_NV")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -21213,24 +20692,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DependencyFlagBits(pub(crate) u32);
+    impl DependencyFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DependencyFlags {
+            DependencyFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DependencyFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::BY_REGION => Some("BY_REGION"),
-                Self::DEVICE_GROUP => Some("DEVICE_GROUP"),
-                Self::VIEW_LOCAL => Some("VIEW_LOCAL"),
-                Self::FEEDBACK_LOOP_EXT => Some("FEEDBACK_LOOP_EXT"),
-                Self::QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR => {
-                    Some("QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR")
-                }
-                Self::ASYMMETRIC_EVENT_KHR => Some("ASYMMETRIC_EVENT_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type SampleMask = u32;
@@ -22841,4 +22312,4 @@ pub(crate) mod reexport {
         crate::vk::HEADER_VERSION,
     );
 }
-pub use reexport::*;
+pub use items::*;

@@ -89,7 +89,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_instruction_set_tosa";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphTOSANameQualityARM {
@@ -295,20 +295,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphTOSAQualityFlagBitsARM(pub(crate) u32);
+    impl DataGraphTOSAQualityFlagBitsARM {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DataGraphTOSAQualityFlagsARM {
+            DataGraphTOSAQualityFlagsARM::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphTOSAQualityFlagBitsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ACCELERATED_ARM => Some("ACCELERATED_ARM"),
-                Self::CONFORMANT_ARM => Some("CONFORMANT_ARM"),
-                Self::EXPERIMENTAL_ARM => Some("EXPERIMENTAL_ARM"),
-                Self::DEPRECATED_ARM => Some("DEPRECATED_ARM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM = unsafe extern "system" fn(
@@ -321,4 +317,4 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub const MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM: u32 = 128;
 }
-pub use reexport::*;
+pub use items::*;

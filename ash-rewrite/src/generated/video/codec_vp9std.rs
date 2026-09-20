@@ -111,19 +111,12 @@ impl VP9ColorSpace {
     pub const RGB: Self = Self(7);
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct VP9ColorConfigFlags {
         ///- `color_range` @ `0..1`
         pub bitfield0: u32,
-    }
-    impl Default for VP9ColorConfigFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VP9ColorConfigFlags {
@@ -181,18 +174,11 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct VP9LoopFilterFlags {
         /**- `loop_filter_delta_enabled` @ `0..1`
 - `loop_filter_delta_update` @ `1..2`*/
         pub bitfield0: u32,
-    }
-    impl Default for VP9LoopFilterFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VP9LoopFilterFlags {
@@ -292,20 +278,13 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct VP9SegmentationFlags {
         /**- `segmentation_update_map` @ `0..1`
 - `segmentation_temporal_update` @ `1..2`
 - `segmentation_update_data` @ `2..3`
 - `segmentation_abs_or_delta_update` @ `3..4`*/
         pub bitfield0: u32,
-    }
-    impl Default for VP9SegmentationFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VP9SegmentationFlags {
@@ -570,4 +549,4 @@ pub(crate) mod reexport {
     pub const VP9_MAX_SEGMENTATION_TREE_PROBS: u32 = 7;
     pub const VP9_MAX_SEGMENTATION_PRED_PROB: u32 = 3;
 }
-pub use reexport::*;
+pub use items::*;

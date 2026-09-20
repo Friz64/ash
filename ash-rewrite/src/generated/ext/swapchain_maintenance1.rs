@@ -72,7 +72,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_swapchain_maintenance1";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceSwapchainMaintenance1FeaturesEXT<'a> = crate::vk::PhysicalDeviceSwapchainMaintenance1FeaturesKHR<
         'a,
     >;
@@ -93,4 +93,4 @@ pub(crate) mod reexport {
     >;
     pub type PFN_vkReleaseSwapchainImagesEXT = crate::vk::PFN_vkReleaseSwapchainImagesKHR;
 }
-pub use reexport::*;
+pub use items::*;

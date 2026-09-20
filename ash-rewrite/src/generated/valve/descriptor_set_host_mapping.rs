@@ -84,7 +84,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_VALVE_descriptor_set_host_mapping";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -205,4 +205,4 @@ pub(crate) mod reexport {
         pp_data: *mut *mut core::ffi::c_void,
     );
 }
-pub use reexport::*;
+pub use items::*;

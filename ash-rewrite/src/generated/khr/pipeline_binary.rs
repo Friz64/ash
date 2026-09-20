@@ -153,7 +153,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_pipeline_binary";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -629,4 +629,4 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub const MAX_PIPELINE_BINARY_KEY_SIZE_KHR: u32 = 32;
 }
-pub use reexport::*;
+pub use items::*;

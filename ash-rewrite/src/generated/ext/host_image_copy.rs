@@ -147,7 +147,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_host_image_copy";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceHostImageCopyFeaturesEXT<'a> = crate::vk::PhysicalDeviceHostImageCopyFeatures<
         'a,
     >;
@@ -176,4 +176,4 @@ pub(crate) mod reexport {
     pub type PFN_vkTransitionImageLayoutEXT = crate::vk::PFN_vkTransitionImageLayout;
     pub type PFN_vkGetImageSubresourceLayout2EXT = crate::vk::PFN_vkGetImageSubresourceLayout2;
 }
-pub use reexport::*;
+pub use items::*;

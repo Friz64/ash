@@ -283,7 +283,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_device_generated_commands";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -1364,18 +1364,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectCommandsLayoutUsageFlagBitsEXT(pub(crate) u32);
+    impl IndirectCommandsLayoutUsageFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> IndirectCommandsLayoutUsageFlagsEXT {
+            IndirectCommandsLayoutUsageFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for IndirectCommandsLayoutUsageFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::EXPLICIT_PREPROCESS_EXT => Some("EXPLICIT_PREPROCESS_EXT"),
-                Self::UNORDERED_SEQUENCES_EXT => Some("UNORDERED_SEQUENCES_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1462,18 +1460,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectCommandsInputModeFlagBitsEXT(pub(crate) u32);
+    impl IndirectCommandsInputModeFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> IndirectCommandsInputModeFlagsEXT {
+            IndirectCommandsInputModeFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for IndirectCommandsInputModeFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::VULKAN_INDEX_BUFFER_EXT => Some("VULKAN_INDEX_BUFFER_EXT"),
-                Self::DXGI_INDEX_BUFFER_EXT => Some("DXGI_INDEX_BUFFER_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1582,4 +1578,4 @@ pub(crate) mod reexport {
         p_execution_set_writes: *const crate::vk::WriteIndirectExecutionSetShaderEXT<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

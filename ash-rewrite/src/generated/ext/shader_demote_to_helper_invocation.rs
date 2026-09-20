@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_demote_to_helper_invocation";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT<'a> = crate::vk::PhysicalDeviceShaderDemoteToHelperInvocationFeatures<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

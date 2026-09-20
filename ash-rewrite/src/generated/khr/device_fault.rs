@@ -123,7 +123,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_device_fault";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -645,24 +645,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceFaultFlagBitsKHR(pub(crate) u32);
+    impl DeviceFaultFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DeviceFaultFlagsKHR {
+            DeviceFaultFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DeviceFaultFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::FLAG_DEVICE_LOST_KHR => Some("FLAG_DEVICE_LOST_KHR"),
-                Self::FLAG_MEMORY_ADDRESS_KHR => Some("FLAG_MEMORY_ADDRESS_KHR"),
-                Self::FLAG_INSTRUCTION_ADDRESS_KHR => {
-                    Some("FLAG_INSTRUCTION_ADDRESS_KHR")
-                }
-                Self::FLAG_VENDOR_KHR => Some("FLAG_VENDOR_KHR"),
-                Self::FLAG_WATCHDOG_TIMEOUT_KHR => Some("FLAG_WATCHDOG_TIMEOUT_KHR"),
-                Self::FLAG_OVERFLOW_KHR => Some("FLAG_OVERFLOW_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetDeviceFaultReportsKHR = unsafe extern "system" fn(
@@ -676,4 +668,4 @@ pub(crate) mod reexport {
         p_debug_info: *mut crate::vk::DeviceFaultDebugInfoKHR<'_>,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

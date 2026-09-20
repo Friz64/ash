@@ -73,8 +73,8 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance1";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type CommandPoolTrimFlagsKHR = crate::vk::CommandPoolTrimFlags;
     pub type PFN_vkTrimCommandPoolKHR = crate::vk::PFN_vkTrimCommandPool;
 }
-pub use reexport::*;
+pub use items::*;

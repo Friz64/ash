@@ -424,7 +424,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -1545,18 +1545,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphPipelineSessionCreateFlagBitsARM(pub(crate) u64);
+    impl DataGraphPipelineSessionCreateFlagBitsARM {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DataGraphPipelineSessionCreateFlagsARM {
+            DataGraphPipelineSessionCreateFlagsARM::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphPipelineSessionCreateFlagBitsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PROTECTED_ARM => Some("PROTECTED_ARM"),
-                Self::OPTICAL_FLOW_CACHE_ARM => Some("OPTICAL_FLOW_CACHE_ARM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1630,10 +1628,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphPipelineDispatchFlagBitsARM(pub(crate) u64);
+    impl DataGraphPipelineDispatchFlagBitsARM {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DataGraphPipelineDispatchFlagsARM {
+            DataGraphPipelineDispatchFlagsARM::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphPipelineDispatchFlagBitsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1739,4 +1743,4 @@ pub(crate) mod reexport {
     );
     pub const MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM: u32 = 128;
 }
-pub use reexport::*;
+pub use items::*;

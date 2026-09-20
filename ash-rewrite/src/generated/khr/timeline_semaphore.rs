@@ -109,7 +109,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_timeline_semaphore";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceTimelineSemaphoreFeaturesKHR<'a> = crate::vk::PhysicalDeviceTimelineSemaphoreFeatures<
         'a,
     >;
@@ -129,4 +129,4 @@ pub(crate) mod reexport {
     pub type PFN_vkWaitSemaphoresKHR = crate::vk::PFN_vkWaitSemaphores;
     pub type PFN_vkSignalSemaphoreKHR = crate::vk::PFN_vkSignalSemaphore;
 }
-pub use reexport::*;
+pub use items::*;

@@ -76,7 +76,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_map_memory2";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type MemoryMapInfoKHR<'a> = crate::vk::MemoryMapInfo<'a>;
     pub type MemoryUnmapInfoKHR<'a> = crate::vk::MemoryUnmapInfo<'a>;
     pub type MemoryUnmapFlagBitsKHR = crate::vk::MemoryUnmapFlagBits;
@@ -84,4 +84,4 @@ pub(crate) mod reexport {
     pub type PFN_vkMapMemory2KHR = crate::vk::PFN_vkMapMemory2;
     pub type PFN_vkUnmapMemory2KHR = crate::vk::PFN_vkUnmapMemory2;
 }
-pub use reexport::*;
+pub use items::*;

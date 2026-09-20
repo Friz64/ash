@@ -38,9 +38,9 @@ impl crate::vk::FormatFeatureFlagBits2 {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_format_feature_flags2";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type FormatProperties3KHR<'a> = crate::vk::FormatProperties3<'a>;
     pub type FormatFeatureFlagBits2KHR = crate::vk::FormatFeatureFlagBits2;
     pub type FormatFeatureFlags2KHR = crate::vk::FormatFeatureFlags2;
 }
-pub use reexport::*;
+pub use items::*;

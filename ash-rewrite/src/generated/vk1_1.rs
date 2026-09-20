@@ -901,7 +901,7 @@ impl DeviceV1_1 {
         self.handle
     }
 }
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -3751,27 +3751,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SubgroupFeatureFlagBits(pub(crate) u32);
+    impl SubgroupFeatureFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> SubgroupFeatureFlags {
+            SubgroupFeatureFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SubgroupFeatureFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::BASIC => Some("BASIC"),
-                Self::VOTE => Some("VOTE"),
-                Self::ARITHMETIC => Some("ARITHMETIC"),
-                Self::BALLOT => Some("BALLOT"),
-                Self::SHUFFLE => Some("SHUFFLE"),
-                Self::SHUFFLE_RELATIVE => Some("SHUFFLE_RELATIVE"),
-                Self::CLUSTERED => Some("CLUSTERED"),
-                Self::QUAD => Some("QUAD"),
-                Self::ROTATE => Some("ROTATE"),
-                Self::ROTATE_CLUSTERED => Some("ROTATE_CLUSTERED"),
-                Self::PARTITIONED_EXT => Some("PARTITIONED_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -3934,20 +3923,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PeerMemoryFeatureFlagBits(pub(crate) u32);
+    impl PeerMemoryFeatureFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PeerMemoryFeatureFlags {
+            PeerMemoryFeatureFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PeerMemoryFeatureFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::COPY_SRC => Some("COPY_SRC"),
-                Self::COPY_DST => Some("COPY_DST"),
-                Self::GENERIC_SRC => Some("GENERIC_SRC"),
-                Self::GENERIC_DST => Some("GENERIC_DST"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -4050,22 +4035,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryAllocateFlagBits(pub(crate) u32);
+    impl MemoryAllocateFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> MemoryAllocateFlags {
+            MemoryAllocateFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for MemoryAllocateFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DEVICE_MASK => Some("DEVICE_MASK"),
-                Self::DEVICE_ADDRESS => Some("DEVICE_ADDRESS"),
-                Self::DEVICE_ADDRESS_CAPTURE_REPLAY => {
-                    Some("DEVICE_ADDRESS_CAPTURE_REPLAY")
-                }
-                Self::ZERO_INITIALIZE_EXT => Some("ZERO_INITIALIZE_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -4309,38 +4288,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryHandleTypeFlagBits(pub(crate) u32);
+    impl ExternalMemoryHandleTypeFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ExternalMemoryHandleTypeFlags {
+            ExternalMemoryHandleTypeFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalMemoryHandleTypeFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::OPAQUE_FD => Some("OPAQUE_FD"),
-                Self::OPAQUE_WIN32 => Some("OPAQUE_WIN32"),
-                Self::OPAQUE_WIN32_KMT => Some("OPAQUE_WIN32_KMT"),
-                Self::D3D11_TEXTURE => Some("D3D11_TEXTURE"),
-                Self::D3D11_TEXTURE_KMT => Some("D3D11_TEXTURE_KMT"),
-                Self::D3D12_HEAP => Some("D3D12_HEAP"),
-                Self::D3D12_RESOURCE => Some("D3D12_RESOURCE"),
-                Self::DMA_BUF_EXT => Some("DMA_BUF_EXT"),
-                Self::ANDROID_HARDWARE_BUFFER_ANDROID => {
-                    Some("ANDROID_HARDWARE_BUFFER_ANDROID")
-                }
-                Self::HOST_ALLOCATION_EXT => Some("HOST_ALLOCATION_EXT"),
-                Self::HOST_MAPPED_FOREIGN_MEMORY_EXT => {
-                    Some("HOST_MAPPED_FOREIGN_MEMORY_EXT")
-                }
-                Self::ZIRCON_VMO_FUCHSIA => Some("ZIRCON_VMO_FUCHSIA"),
-                Self::RDMA_ADDRESS_NV => Some("RDMA_ADDRESS_NV"),
-                Self::OH_NATIVE_BUFFER_OHOS => Some("OH_NATIVE_BUFFER_OHOS"),
-                Self::SCREEN_BUFFER_QNX => Some("SCREEN_BUFFER_QNX"),
-                Self::MTLBUFFER_EXT => Some("MTLBUFFER_EXT"),
-                Self::MTLTEXTURE_EXT => Some("MTLTEXTURE_EXT"),
-                Self::MTLHEAP_EXT => Some("MTLHEAP_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -4436,19 +4393,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryFeatureFlagBits(pub(crate) u32);
+    impl ExternalMemoryFeatureFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ExternalMemoryFeatureFlags {
+            ExternalMemoryFeatureFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalMemoryFeatureFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DEDICATED_ONLY => Some("DEDICATED_ONLY"),
-                Self::EXPORTABLE => Some("EXPORTABLE"),
-                Self::IMPORTABLE => Some("IMPORTABLE"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -4567,22 +4521,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalSemaphoreHandleTypeFlagBits(pub(crate) u32);
+    impl ExternalSemaphoreHandleTypeFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ExternalSemaphoreHandleTypeFlags {
+            ExternalSemaphoreHandleTypeFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalSemaphoreHandleTypeFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::OPAQUE_FD => Some("OPAQUE_FD"),
-                Self::OPAQUE_WIN32 => Some("OPAQUE_WIN32"),
-                Self::OPAQUE_WIN32_KMT => Some("OPAQUE_WIN32_KMT"),
-                Self::D3D12_FENCE => Some("D3D12_FENCE"),
-                Self::SYNC_FD => Some("SYNC_FD"),
-                Self::ZIRCON_EVENT_FUCHSIA => Some("ZIRCON_EVENT_FUCHSIA"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -4675,18 +4623,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalSemaphoreFeatureFlagBits(pub(crate) u32);
+    impl ExternalSemaphoreFeatureFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ExternalSemaphoreFeatureFlags {
+            ExternalSemaphoreFeatureFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalSemaphoreFeatureFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::EXPORTABLE => Some("EXPORTABLE"),
-                Self::IMPORTABLE => Some("IMPORTABLE"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -4762,17 +4708,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SemaphoreImportFlagBits(pub(crate) u32);
+    impl SemaphoreImportFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> SemaphoreImportFlags {
+            SemaphoreImportFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SemaphoreImportFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::TEMPORARY => Some("TEMPORARY"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -4875,20 +4820,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalFenceHandleTypeFlagBits(pub(crate) u32);
+    impl ExternalFenceHandleTypeFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ExternalFenceHandleTypeFlags {
+            ExternalFenceHandleTypeFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalFenceHandleTypeFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::OPAQUE_FD => Some("OPAQUE_FD"),
-                Self::OPAQUE_WIN32 => Some("OPAQUE_WIN32"),
-                Self::OPAQUE_WIN32_KMT => Some("OPAQUE_WIN32_KMT"),
-                Self::SYNC_FD => Some("SYNC_FD"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -4977,18 +4918,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalFenceFeatureFlagBits(pub(crate) u32);
+    impl ExternalFenceFeatureFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ExternalFenceFeatureFlags {
+            ExternalFenceFeatureFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalFenceFeatureFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::EXPORTABLE => Some("EXPORTABLE"),
-                Self::IMPORTABLE => Some("IMPORTABLE"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -5064,17 +5003,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FenceImportFlagBits(pub(crate) u32);
+    impl FenceImportFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> FenceImportFlags {
+            FenceImportFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for FenceImportFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::TEMPORARY => Some("TEMPORARY"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -5285,4 +5223,4 @@ pub(crate) mod reexport {
     pub const MAX_DEVICE_GROUP_SIZE: u32 = 32;
     pub const API_VERSION_1_1: u32 = crate::vk::make_api_version(0, 1, 1, 0);
 }
-pub use reexport::*;
+pub use items::*;

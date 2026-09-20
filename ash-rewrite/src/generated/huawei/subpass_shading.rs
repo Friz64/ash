@@ -94,7 +94,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_subpass_shading";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -208,4 +208,4 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
     );
 }
-pub use reexport::*;
+pub use items::*;

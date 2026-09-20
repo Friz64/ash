@@ -19,10 +19,10 @@ impl crate::vk::QueueGlobalPriority {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_global_priority";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type DeviceQueueGlobalPriorityCreateInfoEXT<'a> = crate::vk::DeviceQueueGlobalPriorityCreateInfo<
         'a,
     >;
     pub type QueueGlobalPriorityEXT = crate::vk::QueueGlobalPriority;
 }
-pub use reexport::*;
+pub use items::*;

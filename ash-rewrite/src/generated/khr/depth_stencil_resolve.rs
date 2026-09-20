@@ -17,7 +17,7 @@ impl crate::vk::ResolveModeFlagBits {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_depth_stencil_resolve";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceDepthStencilResolvePropertiesKHR<'a> = crate::vk::PhysicalDeviceDepthStencilResolveProperties<
         'a,
     >;
@@ -27,4 +27,4 @@ pub(crate) mod reexport {
     pub type ResolveModeFlagBitsKHR = crate::vk::ResolveModeFlagBits;
     pub type ResolveModeFlagsKHR = crate::vk::ResolveModeFlags;
 }
-pub use reexport::*;
+pub use items::*;

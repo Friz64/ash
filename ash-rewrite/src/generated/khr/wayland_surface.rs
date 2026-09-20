@@ -83,7 +83,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 6;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_wayland_surface";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -210,4 +210,4 @@ pub(crate) mod reexport {
         display: *mut crate::platform_types::wl_display,
     ) -> crate::vk::Bool32;
 }
-pub use reexport::*;
+pub use items::*;

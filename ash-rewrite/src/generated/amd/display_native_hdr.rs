@@ -69,7 +69,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_display_native_hdr";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -138,4 +138,4 @@ pub(crate) mod reexport {
         local_dimming_enable: crate::vk::Bool32,
     );
 }
-pub use reexport::*;
+pub use items::*;

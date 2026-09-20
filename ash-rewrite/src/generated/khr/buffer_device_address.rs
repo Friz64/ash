@@ -114,7 +114,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_buffer_device_address";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceBufferDeviceAddressFeaturesKHR<'a> = crate::vk::PhysicalDeviceBufferDeviceAddressFeatures<
         'a,
     >;
@@ -132,4 +132,4 @@ pub(crate) mod reexport {
     pub type PFN_vkGetBufferDeviceAddressKHR = crate::vk::PFN_vkGetBufferDeviceAddress;
     pub type PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR = crate::vk::PFN_vkGetDeviceMemoryOpaqueCaptureAddress;
 }
-pub use reexport::*;
+pub use items::*;

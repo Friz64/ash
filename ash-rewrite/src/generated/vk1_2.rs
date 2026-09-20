@@ -461,7 +461,7 @@ impl DeviceV1_2 {
         self.handle
     }
 }
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -4609,17 +4609,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SemaphoreWaitFlagBits(pub(crate) u32);
+    impl SemaphoreWaitFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> SemaphoreWaitFlags {
+            SemaphoreWaitFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SemaphoreWaitFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ANY => Some("ANY"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -4726,20 +4725,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorBindingFlagBits(pub(crate) u32);
+    impl DescriptorBindingFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DescriptorBindingFlags {
+            DescriptorBindingFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DescriptorBindingFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::UPDATE_AFTER_BIND => Some("UPDATE_AFTER_BIND"),
-                Self::UPDATE_UNUSED_WHILE_PENDING => Some("UPDATE_UNUSED_WHILE_PENDING"),
-                Self::PARTIALLY_BOUND => Some("PARTIALLY_BOUND"),
-                Self::VARIABLE_DESCRIPTOR_COUNT => Some("VARIABLE_DESCRIPTOR_COUNT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -4842,25 +4837,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ResolveModeFlagBits(pub(crate) u32);
+    impl ResolveModeFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ResolveModeFlags {
+            ResolveModeFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ResolveModeFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::NONE => Some("NONE"),
-                Self::SAMPLE_ZERO => Some("SAMPLE_ZERO"),
-                Self::AVERAGE => Some("AVERAGE"),
-                Self::MIN => Some("MIN"),
-                Self::MAX => Some("MAX"),
-                Self::EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID => {
-                    Some("EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID")
-                }
-                Self::CUSTOM_EXT => Some("CUSTOM_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkResetQueryPool = unsafe extern "system" fn(
@@ -4937,4 +4923,4 @@ pub(crate) mod reexport {
     pub const MAX_DRIVER_INFO_SIZE: u32 = 256;
     pub const API_VERSION_1_2: u32 = crate::vk::make_api_version(0, 1, 2, 0);
 }
-pub use reexport::*;
+pub use items::*;

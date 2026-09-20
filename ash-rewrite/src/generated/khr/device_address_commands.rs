@@ -428,7 +428,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_device_address_commands";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -1372,28 +1372,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AddressCommandFlagBitsKHR(pub(crate) u32);
+    impl AddressCommandFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> AddressCommandFlagsKHR {
+            AddressCommandFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AddressCommandFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PROTECTED_KHR => Some("PROTECTED_KHR"),
-                Self::FULLY_BOUND_KHR => Some("FULLY_BOUND_KHR"),
-                Self::STORAGE_BUFFER_USAGE_KHR => Some("STORAGE_BUFFER_USAGE_KHR"),
-                Self::UNKNOWN_STORAGE_BUFFER_USAGE_KHR => {
-                    Some("UNKNOWN_STORAGE_BUFFER_USAGE_KHR")
-                }
-                Self::TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR => {
-                    Some("TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR")
-                }
-                Self::UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR => {
-                    Some("UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkCmdCopyMemoryKHR = unsafe extern "system" fn(
@@ -1511,4 +1499,4 @@ pub(crate) mod reexport {
         p_acceleration_structure: *mut crate::vk::AccelerationStructureKHR,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

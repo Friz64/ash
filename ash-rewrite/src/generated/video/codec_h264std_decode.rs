@@ -18,9 +18,9 @@ impl DecodeH264FieldOrderCount {
 }
 pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0;
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_decode";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DecodeH264PictureInfoFlags {
         /**- `field_pic_flag` @ `0..1`
 - `is_intra` @ `1..2`
@@ -29,13 +29,6 @@ pub(crate) mod reexport {
 - `is_reference` @ `4..5`
 - `complementary_field_pair` @ `5..6`*/
         pub bitfield0: u32,
-    }
-    impl Default for DecodeH264PictureInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeH264PictureInfoFlags {
@@ -169,20 +162,13 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DecodeH264ReferenceInfoFlags {
         /**- `top_field_flag` @ `0..1`
 - `bottom_field_flag` @ `1..2`
 - `used_for_long_term_reference` @ `2..3`
 - `is_non_existing` @ `3..4`*/
         pub bitfield0: u32,
-    }
-    impl Default for DecodeH264ReferenceInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeH264ReferenceInfoFlags {
@@ -302,4 +288,4 @@ pub(crate) mod reexport {
         0,
     );
 }
-pub use reexport::*;
+pub use items::*;

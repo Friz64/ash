@@ -163,7 +163,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 10;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_report";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -367,21 +367,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugReportFlagBitsEXT(pub(crate) u32);
+    impl DebugReportFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DebugReportFlagsEXT {
+            DebugReportFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DebugReportFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::INFORMATION_EXT => Some("INFORMATION_EXT"),
-                Self::WARNING_EXT => Some("WARNING_EXT"),
-                Self::PERFORMANCE_WARNING_EXT => Some("PERFORMANCE_WARNING_EXT"),
-                Self::ERROR_EXT => Some("ERROR_EXT"),
-                Self::DEBUG_EXT => Some("DEBUG_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -445,4 +440,4 @@ pub(crate) mod reexport {
         p_message: *const core::ffi::c_char,
     );
 }
-pub use reexport::*;
+pub use items::*;

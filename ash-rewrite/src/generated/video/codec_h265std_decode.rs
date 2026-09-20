@@ -4,22 +4,15 @@
 #![doc(alias = "vulkan_video_codec_h265std_decode")]
 pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0;
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h265_decode";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DecodeH265PictureInfoFlags {
         /**- `IrapPicFlag` @ `0..1`
 - `IdrPicFlag` @ `1..2`
 - `IsReference` @ `2..3`
 - `short_term_ref_pic_set_sps_flag` @ `3..4`*/
         pub bitfield0: u32,
-    }
-    impl Default for DecodeH265PictureInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeH265PictureInfoFlags {
@@ -175,18 +168,11 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DecodeH265ReferenceInfoFlags {
         /**- `used_for_long_term_reference` @ `0..1`
 - `unused_for_reference` @ `1..2`*/
         pub bitfield0: u32,
-    }
-    impl Default for DecodeH265ReferenceInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeH265ReferenceInfoFlags {
@@ -245,4 +231,4 @@ pub(crate) mod reexport {
         0,
     );
 }
-pub use reexport::*;
+pub use items::*;

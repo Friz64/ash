@@ -23,9 +23,9 @@ impl crate::vk::SubpassDescriptionFlagBits {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_rasterization_order_attachment_access";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM<'a> = crate::vk::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

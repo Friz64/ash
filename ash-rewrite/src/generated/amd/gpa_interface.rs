@@ -358,7 +358,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_gpa_interface";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -1040,23 +1040,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GpaSqShaderStageFlagBitsAMD(pub(crate) u32);
+    impl GpaSqShaderStageFlagBitsAMD {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> GpaSqShaderStageFlagsAMD {
+            GpaSqShaderStageFlagsAMD::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for GpaSqShaderStageFlagBitsAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PS_AMD => Some("PS_AMD"),
-                Self::VS_AMD => Some("VS_AMD"),
-                Self::GS_AMD => Some("GS_AMD"),
-                Self::ES_AMD => Some("ES_AMD"),
-                Self::HS_AMD => Some("HS_AMD"),
-                Self::LS_AMD => Some("LS_AMD"),
-                Self::CS_AMD => Some("CS_AMD"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1280,4 +1273,4 @@ pub(crate) mod reexport {
         gpa_session: crate::vk::GpaSessionAMD,
     );
 }
-pub use reexport::*;
+pub use items::*;

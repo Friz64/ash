@@ -108,7 +108,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -315,4 +315,4 @@ pub(crate) mod reexport {
         combiner_ops: *const [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
     );
 }
-pub use reexport::*;
+pub use items::*;

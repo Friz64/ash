@@ -31,7 +31,7 @@ impl crate::vk::DescriptorBindingFlagBits {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_descriptor_indexing";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceDescriptorIndexingFeaturesEXT<'a> = crate::vk::PhysicalDeviceDescriptorIndexingFeatures<
         'a,
     >;
@@ -50,4 +50,4 @@ pub(crate) mod reexport {
     pub type DescriptorBindingFlagBitsEXT = crate::vk::DescriptorBindingFlagBits;
     pub type DescriptorBindingFlagsEXT = crate::vk::DescriptorBindingFlags;
 }
-pub use reexport::*;
+pub use items::*;

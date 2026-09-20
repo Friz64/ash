@@ -76,7 +76,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_scheduling_controls";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -360,18 +360,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PhysicalDeviceSchedulingControlsFlagBitsARM(pub(crate) u64);
+    impl PhysicalDeviceSchedulingControlsFlagBitsARM {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PhysicalDeviceSchedulingControlsFlagsARM {
+            PhysicalDeviceSchedulingControlsFlagsARM::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PhysicalDeviceSchedulingControlsFlagBitsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::SHADER_CORE_COUNT_ARM => Some("SHADER_CORE_COUNT_ARM"),
-                Self::DISPATCH_PARAMETERS_ARM => Some("DISPATCH_PARAMETERS_ARM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkCmdSetDispatchParametersARM = unsafe extern "system" fn(
@@ -379,4 +377,4 @@ pub(crate) mod reexport {
         p_dispatch_parameters: *const crate::vk::DispatchParametersARM<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

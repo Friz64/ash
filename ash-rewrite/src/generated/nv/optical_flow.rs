@@ -269,7 +269,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_optical_flow";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -767,21 +767,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowGridSizeFlagBitsNV(pub(crate) u32);
+    impl OpticalFlowGridSizeFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> OpticalFlowGridSizeFlagsNV {
+            OpticalFlowGridSizeFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for OpticalFlowGridSizeFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::UNKNOWN_NV => Some("UNKNOWN_NV"),
-                Self::_1X1_NV => Some("_1X1_NV"),
-                Self::_2X2_NV => Some("_2X2_NV"),
-                Self::_4X4_NV => Some("_4X4_NV"),
-                Self::_8X8_NV => Some("_8X8_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -874,22 +869,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowUsageFlagBitsNV(pub(crate) u32);
+    impl OpticalFlowUsageFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> OpticalFlowUsageFlagsNV {
+            OpticalFlowUsageFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for OpticalFlowUsageFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::UNKNOWN_NV => Some("UNKNOWN_NV"),
-                Self::INPUT_NV => Some("INPUT_NV"),
-                Self::OUTPUT_NV => Some("OUTPUT_NV"),
-                Self::HINT_NV => Some("HINT_NV"),
-                Self::COST_NV => Some("COST_NV"),
-                Self::GLOBAL_FLOW_NV => Some("GLOBAL_FLOW_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -988,21 +977,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) u32);
+    impl OpticalFlowSessionCreateFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> OpticalFlowSessionCreateFlagsNV {
+            OpticalFlowSessionCreateFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for OpticalFlowSessionCreateFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ENABLE_HINT_NV => Some("ENABLE_HINT_NV"),
-                Self::ENABLE_COST_NV => Some("ENABLE_COST_NV"),
-                Self::ENABLE_GLOBAL_FLOW_NV => Some("ENABLE_GLOBAL_FLOW_NV"),
-                Self::ALLOW_REGIONS_NV => Some("ALLOW_REGIONS_NV"),
-                Self::BOTH_DIRECTIONS_NV => Some("BOTH_DIRECTIONS_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1083,17 +1067,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) u32);
+    impl OpticalFlowExecuteFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> OpticalFlowExecuteFlagsNV {
+            OpticalFlowExecuteFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for OpticalFlowExecuteFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DISABLE_TEMPORAL_HINTS_NV => Some("DISABLE_TEMPORAL_HINTS_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1155,4 +1138,4 @@ pub(crate) mod reexport {
         p_execute_info: *const crate::vk::OpticalFlowExecuteInfoNV<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

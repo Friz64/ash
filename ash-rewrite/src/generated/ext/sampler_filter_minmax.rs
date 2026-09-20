@@ -19,7 +19,7 @@ impl crate::vk::FormatFeatureFlagBits {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_sampler_filter_minmax";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceSamplerFilterMinmaxPropertiesEXT<'a> = crate::vk::PhysicalDeviceSamplerFilterMinmaxProperties<
         'a,
     >;
@@ -28,4 +28,4 @@ pub(crate) mod reexport {
     >;
     pub type SamplerReductionModeEXT = crate::vk::SamplerReductionMode;
 }
-pub use reexport::*;
+pub use items::*;

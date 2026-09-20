@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_library_group_handles";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> = crate::vk::PhysicalDevicePipelineLibraryGroupHandlesFeaturesKHR<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

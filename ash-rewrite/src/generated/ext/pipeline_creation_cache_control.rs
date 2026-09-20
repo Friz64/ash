@@ -22,9 +22,9 @@ impl crate::vk::PipelineCreateFlagBits {
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_creation_cache_control";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDevicePipelineCreationCacheControlFeaturesEXT<'a> = crate::vk::PhysicalDevicePipelineCreationCacheControlFeatures<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

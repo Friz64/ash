@@ -18,7 +18,7 @@ impl crate::vk::VideoCodecOperationFlagBitsKHR {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_av1";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -222,4 +222,4 @@ pub(crate) mod reexport {
     }
     pub const MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR: u32 = 7;
 }
-pub use reexport::*;
+pub use items::*;

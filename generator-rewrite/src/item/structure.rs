@@ -144,7 +144,6 @@ impl Code for Struct {
                     }
                 }
                 Member::Bitfield(_) => {
-                    custom_default = true;
                     let name = bitfield_name_token(bitfield_i);
                     bitfield_i += 1;
                     quote! { #name: Default::default() }

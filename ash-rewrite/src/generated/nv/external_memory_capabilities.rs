@@ -80,7 +80,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_capabilities";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -212,20 +212,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryHandleTypeFlagBitsNV(pub(crate) u32);
+    impl ExternalMemoryHandleTypeFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ExternalMemoryHandleTypeFlagsNV {
+            ExternalMemoryHandleTypeFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalMemoryHandleTypeFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::OPAQUE_WIN32_NV => Some("OPAQUE_WIN32_NV"),
-                Self::OPAQUE_WIN32_KMT_NV => Some("OPAQUE_WIN32_KMT_NV"),
-                Self::D3D11_IMAGE_NV => Some("D3D11_IMAGE_NV"),
-                Self::D3D11_IMAGE_KMT_NV => Some("D3D11_IMAGE_KMT_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -316,19 +312,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryFeatureFlagBitsNV(pub(crate) u32);
+    impl ExternalMemoryFeatureFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ExternalMemoryFeatureFlagsNV {
+            ExternalMemoryFeatureFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ExternalMemoryFeatureFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DEDICATED_ONLY_NV => Some("DEDICATED_ONLY_NV"),
-                Self::EXPORTABLE_NV => Some("EXPORTABLE_NV"),
-                Self::IMPORTABLE_NV => Some("IMPORTABLE_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV = unsafe extern "system" fn(
@@ -342,4 +335,4 @@ pub(crate) mod reexport {
         p_external_image_format_properties: *mut crate::vk::ExternalImageFormatPropertiesNV,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

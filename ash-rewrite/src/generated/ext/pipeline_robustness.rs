@@ -24,7 +24,7 @@ impl crate::vk::PipelineRobustnessImageBehavior {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_robustness";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDevicePipelineRobustnessFeaturesEXT<'a> = crate::vk::PhysicalDevicePipelineRobustnessFeatures<
         'a,
     >;
@@ -37,4 +37,4 @@ pub(crate) mod reexport {
     pub type PipelineRobustnessBufferBehaviorEXT = crate::vk::PipelineRobustnessBufferBehavior;
     pub type PipelineRobustnessImageBehaviorEXT = crate::vk::PipelineRobustnessImageBehavior;
 }
-pub use reexport::*;
+pub use items::*;

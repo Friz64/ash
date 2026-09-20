@@ -169,7 +169,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 14;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_sampler_ycbcr_conversion";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type SamplerYcbcrConversionInfoKHR<'a> = crate::vk::SamplerYcbcrConversionInfo<
         'a,
     >;
@@ -193,4 +193,4 @@ pub(crate) mod reexport {
     pub type PFN_vkCreateSamplerYcbcrConversionKHR = crate::vk::PFN_vkCreateSamplerYcbcrConversion;
     pub type PFN_vkDestroySamplerYcbcrConversionKHR = crate::vk::PFN_vkDestroySamplerYcbcrConversion;
 }
-pub use reexport::*;
+pub use items::*;

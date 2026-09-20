@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_zero_initialize_workgroup_memory";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR<'a> = crate::vk::PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

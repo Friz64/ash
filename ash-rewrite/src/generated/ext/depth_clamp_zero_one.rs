@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_clamp_zero_one";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceDepthClampZeroOneFeaturesEXT<'a> = crate::vk::PhysicalDeviceDepthClampZeroOneFeaturesKHR<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

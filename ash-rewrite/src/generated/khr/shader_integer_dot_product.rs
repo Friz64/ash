@@ -9,7 +9,7 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_integer_dot_product";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceShaderIntegerDotProductFeaturesKHR<'a> = crate::vk::PhysicalDeviceShaderIntegerDotProductFeatures<
         'a,
     >;
@@ -17,4 +17,4 @@ pub(crate) mod reexport {
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

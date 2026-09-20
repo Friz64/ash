@@ -235,22 +235,15 @@ impl AV1ChromaSamplePosition {
     pub const RESERVED: Self = Self(3);
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AV1ColorConfigFlags {
         /**- `mono_chrome` @ `0..1`
 - `color_range` @ `1..2`
 - `separate_uv_delta_q` @ `2..3`
 - `color_description_present_flag` @ `3..4`*/
         pub bitfield0: u32,
-    }
-    impl Default for AV1ColorConfigFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1ColorConfigFlags {
@@ -369,17 +362,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AV1TimingInfoFlags {
         ///- `equal_picture_interval` @ `0..1`
         pub bitfield0: u32,
-    }
-    impl Default for AV1TimingInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1TimingInfoFlags {
@@ -433,7 +419,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AV1SequenceHeaderFlags {
         /**- `still_picture` @ `0..1`
 - `reduced_still_picture_header` @ `1..2`
@@ -455,13 +441,6 @@ pub(crate) mod reexport {
 - `timing_info_present_flag` @ `17..18`
 - `initial_display_delay_present_flag` @ `18..19`*/
         pub bitfield0: u32,
-    }
-    impl Default for AV1SequenceHeaderFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1SequenceHeaderFlags {
@@ -800,18 +779,11 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AV1LoopFilterFlags {
         /**- `loop_filter_delta_enabled` @ `0..1`
 - `loop_filter_delta_update` @ `1..2`*/
         pub bitfield0: u32,
-    }
-    impl Default for AV1LoopFilterFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1LoopFilterFlags {
@@ -914,18 +886,11 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AV1QuantizationFlags {
         /**- `using_qmatrix` @ `0..1`
 - `diff_uv_delta` @ `1..2`*/
         pub bitfield0: u32,
-    }
-    impl Default for AV1QuantizationFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1QuantizationFlags {
@@ -1045,17 +1010,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AV1TileInfoFlags {
         ///- `uniform_tile_spacing_flag` @ `0..1`
         pub bitfield0: u32,
-    }
-    impl Default for AV1TileInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1TileInfoFlags {
@@ -1280,20 +1238,13 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AV1FilmGrainFlags {
         /**- `chroma_scaling_from_luma` @ `0..1`
 - `overlap_flag` @ `1..2`
 - `clip_to_restricted_range` @ `2..3`
 - `update_grain` @ `3..4`*/
         pub bitfield0: u32,
-    }
-    impl Default for AV1FilmGrainFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1FilmGrainFlags {
@@ -1838,4 +1789,4 @@ pub(crate) mod reexport {
     pub const AV1_MAX_NUM_POS_LUMA: u32 = 24;
     pub const AV1_MAX_NUM_POS_CHROMA: u32 = 25;
 }
-pub use reexport::*;
+pub use items::*;

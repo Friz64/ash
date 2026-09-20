@@ -201,7 +201,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_optical_flow";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -787,21 +787,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowGridSizeFlagBitsARM(pub(crate) u32);
+    impl DataGraphOpticalFlowGridSizeFlagBitsARM {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DataGraphOpticalFlowGridSizeFlagsARM {
+            DataGraphOpticalFlowGridSizeFlagsARM::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphOpticalFlowGridSizeFlagBitsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::UNKNOWN_ARM => Some("UNKNOWN_ARM"),
-                Self::_1X1_ARM => Some("_1X1_ARM"),
-                Self::_2X2_ARM => Some("_2X2_ARM"),
-                Self::_4X4_ARM => Some("_4X4_ARM"),
-                Self::_8X8_ARM => Some("_8X8_ARM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -900,21 +895,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowImageUsageFlagBitsARM(pub(crate) u32);
+    impl DataGraphOpticalFlowImageUsageFlagBitsARM {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DataGraphOpticalFlowImageUsageFlagsARM {
+            DataGraphOpticalFlowImageUsageFlagsARM::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphOpticalFlowImageUsageFlagBitsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::UNKNOWN_ARM => Some("UNKNOWN_ARM"),
-                Self::INPUT_ARM => Some("INPUT_ARM"),
-                Self::OUTPUT_ARM => Some("OUTPUT_ARM"),
-                Self::HINT_ARM => Some("HINT_ARM"),
-                Self::COST_ARM => Some("COST_ARM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1005,19 +995,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowCreateFlagBitsARM(pub(crate) u32);
+    impl DataGraphOpticalFlowCreateFlagBitsARM {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DataGraphOpticalFlowCreateFlagsARM {
+            DataGraphOpticalFlowCreateFlagsARM::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphOpticalFlowCreateFlagBitsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ENABLE_HINT_ARM => Some("ENABLE_HINT_ARM"),
-                Self::ENABLE_COST_ARM => Some("ENABLE_COST_ARM"),
-                Self::RESERVED_30_ARM => Some("RESERVED_30_ARM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1122,25 +1109,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowExecuteFlagBitsARM(pub(crate) u32);
+    impl DataGraphOpticalFlowExecuteFlagBitsARM {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DataGraphOpticalFlowExecuteFlagsARM {
+            DataGraphOpticalFlowExecuteFlagsARM::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DataGraphOpticalFlowExecuteFlagBitsARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DISABLE_TEMPORAL_HINTS_ARM => Some("DISABLE_TEMPORAL_HINTS_ARM"),
-                Self::INPUT_UNCHANGED_ARM => Some("INPUT_UNCHANGED_ARM"),
-                Self::REFERENCE_UNCHANGED_ARM => Some("REFERENCE_UNCHANGED_ARM"),
-                Self::INPUT_IS_PREVIOUS_REFERENCE_ARM => {
-                    Some("INPUT_IS_PREVIOUS_REFERENCE_ARM")
-                }
-                Self::REFERENCE_IS_PREVIOUS_INPUT_ARM => {
-                    Some("REFERENCE_IS_PREVIOUS_INPUT_ARM")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM = unsafe extern "system" fn(
@@ -1158,4 +1136,4 @@ pub(crate) mod reexport {
         >,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

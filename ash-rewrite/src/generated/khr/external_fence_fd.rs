@@ -80,7 +80,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_external_fence_fd";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -177,4 +177,4 @@ pub(crate) mod reexport {
         p_import_fence_fd_info: *const crate::vk::ImportFenceFdInfoKHR<'_>,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

@@ -4,9 +4,9 @@
 #![doc(alias = "vulkan_video_codec_av1std_decode")]
 pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_AV1_DECODE_API_VERSION_1_0_0;
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_av1_decode";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DecodeAV1PictureInfoFlags {
         /**- `error_resilient_mode` @ `0..1`
 - `disable_cdf_update` @ `1..2`
@@ -38,13 +38,6 @@ pub(crate) mod reexport {
 - `usesChromaLr` @ `27..28`
 - `apply_grain` @ `28..29`*/
         pub bitfield0: u32,
-    }
-    impl Default for DecodeAV1PictureInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeAV1PictureInfoFlags {
@@ -552,18 +545,11 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DecodeAV1ReferenceInfoFlags {
         /**- `disable_frame_end_update_cdf` @ `0..1`
 - `segmentation_enabled` @ `1..2`*/
         pub bitfield0: u32,
-    }
-    impl Default for DecodeAV1ReferenceInfoFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeAV1ReferenceInfoFlags {
@@ -650,4 +636,4 @@ pub(crate) mod reexport {
         0,
     );
 }
-pub use reexport::*;
+pub use items::*;

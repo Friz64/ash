@@ -12,9 +12,9 @@ impl crate::vk::PresentModeKHR {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_present_mode_fifo_latest_ready";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDevicePresentModeFifoLatestReadyFeaturesEXT<'a> = crate::vk::PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

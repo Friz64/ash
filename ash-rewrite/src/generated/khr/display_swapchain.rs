@@ -70,7 +70,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 10;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_display_swapchain";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -121,4 +121,4 @@ pub(crate) mod reexport {
         p_swapchains: *mut crate::vk::SwapchainKHR,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

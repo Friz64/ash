@@ -131,10 +131,10 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_calibrated_timestamps";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type CalibratedTimestampInfoEXT<'a> = crate::vk::CalibratedTimestampInfoKHR<'a>;
     pub type TimeDomainEXT = crate::vk::TimeDomainKHR;
     pub type PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT = crate::vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR;
     pub type PFN_vkGetCalibratedTimestampsEXT = crate::vk::PFN_vkGetCalibratedTimestampsKHR;
 }
-pub use reexport::*;
+pub use items::*;

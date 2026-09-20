@@ -10,7 +10,7 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_surface_maintenance1";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type SurfacePresentModeEXT<'a> = crate::vk::SurfacePresentModeKHR<'a>;
     pub type SurfacePresentScalingCapabilitiesEXT<'a> = crate::vk::SurfacePresentScalingCapabilitiesKHR<
         'a,
@@ -23,4 +23,4 @@ pub(crate) mod reexport {
     pub type PresentScalingFlagsEXT = crate::vk::PresentScalingFlagsKHR;
     pub type PresentGravityFlagsEXT = crate::vk::PresentGravityFlagsKHR;
 }
-pub use reexport::*;
+pub use items::*;

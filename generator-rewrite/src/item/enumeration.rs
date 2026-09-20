@@ -2,6 +2,7 @@ use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
     item::enumeration::{Enum, Item, Value},
+    name::TypeName,
     rust::{Lifetime, RustTokens},
     xml::cexpr::CExprItem,
 };
@@ -26,8 +27,12 @@ impl Code for Enum {
                     quote! { Self::#name => Some(#name_string), }
                 });
 
+            let cfg_guard = (self.name != TypeName::VK_RESULT
+                && self.name != TypeName::VK_OBJECT_TYPE)
+                .then_some(quote! { #[cfg(feature = "debug")] });
+
             quote! {
-                #[cfg(feature = "debug")]
+                #cfg_guard
                 impl core::fmt::Debug for #name {
                     fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                         if let Some(x) = match *self {

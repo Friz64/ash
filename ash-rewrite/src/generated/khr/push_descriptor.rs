@@ -93,11 +93,11 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_push_descriptor";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDevicePushDescriptorPropertiesKHR<'a> = crate::vk::PhysicalDevicePushDescriptorProperties<
         'a,
     >;
     pub type PFN_vkCmdPushDescriptorSetKHR = crate::vk::PFN_vkCmdPushDescriptorSet;
     pub type PFN_vkCmdPushDescriptorSetWithTemplateKHR = crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate;
 }
-pub use reexport::*;
+pub use items::*;

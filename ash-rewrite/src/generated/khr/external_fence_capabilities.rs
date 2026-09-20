@@ -79,7 +79,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_external_fence_capabilities";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceExternalFenceInfoKHR<'a> = crate::vk::PhysicalDeviceExternalFenceInfo<
         'a,
     >;
@@ -90,4 +90,4 @@ pub(crate) mod reexport {
     pub type ExternalFenceFeatureFlagsKHR = crate::vk::ExternalFenceFeatureFlags;
     pub type PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR = crate::vk::PFN_vkGetPhysicalDeviceExternalFenceProperties;
 }
-pub use reexport::*;
+pub use items::*;

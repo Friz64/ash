@@ -17,7 +17,7 @@ impl crate::vk::TensorTilingARM {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_tensor_controls";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -126,4 +126,4 @@ pub(crate) mod reexport {
     }
     pub const MAX_TENSOR_CREATE_INFO_ROLLING_BACKING_WRAP_COUNT_ARM: u32 = 4;
 }
-pub use reexport::*;
+pub use items::*;

@@ -263,7 +263,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_INTEL_performance_query";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -648,4 +648,4 @@ pub(crate) mod reexport {
         p_value: *mut crate::vk::PerformanceValueINTEL,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

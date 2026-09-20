@@ -86,7 +86,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_external_memory_capabilities";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type ExternalMemoryPropertiesKHR = crate::vk::ExternalMemoryProperties;
     pub type PhysicalDeviceExternalImageFormatInfoKHR<'a> = crate::vk::PhysicalDeviceExternalImageFormatInfo<
         'a,
@@ -107,4 +107,4 @@ pub(crate) mod reexport {
     pub type ExternalMemoryFeatureFlagsKHR = crate::vk::ExternalMemoryFeatureFlags;
     pub type PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR = crate::vk::PFN_vkGetPhysicalDeviceExternalBufferProperties;
 }
-pub use reexport::*;
+pub use items::*;

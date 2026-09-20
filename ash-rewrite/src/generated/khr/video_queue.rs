@@ -366,7 +366,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 8;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_queue";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -1309,24 +1309,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoCodecOperationFlagBitsKHR(pub(crate) u32);
+    impl VideoCodecOperationFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoCodecOperationFlagsKHR {
+            VideoCodecOperationFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoCodecOperationFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::NONE_KHR => Some("NONE_KHR"),
-                Self::ENCODE_H264_KHR => Some("ENCODE_H264_KHR"),
-                Self::ENCODE_H265_KHR => Some("ENCODE_H265_KHR"),
-                Self::DECODE_H264_KHR => Some("DECODE_H264_KHR"),
-                Self::DECODE_H265_KHR => Some("DECODE_H265_KHR"),
-                Self::DECODE_AV1_KHR => Some("DECODE_AV1_KHR"),
-                Self::ENCODE_AV1_KHR => Some("ENCODE_AV1_KHR"),
-                Self::DECODE_VP9_KHR => Some("DECODE_VP9_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1416,20 +1408,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoCapabilityFlagBitsKHR(pub(crate) u32);
+    impl VideoCapabilityFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoCapabilityFlagsKHR {
+            VideoCapabilityFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoCapabilityFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PROTECTED_CONTENT_KHR => Some("PROTECTED_CONTENT_KHR"),
-                Self::SEPARATE_REFERENCE_IMAGES_KHR => {
-                    Some("SEPARATE_REFERENCE_IMAGES_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1544,30 +1532,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoSessionCreateFlagBitsKHR(pub(crate) u32);
+    impl VideoSessionCreateFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoSessionCreateFlagsKHR {
+            VideoSessionCreateFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoSessionCreateFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::PROTECTED_CONTENT_KHR => Some("PROTECTED_CONTENT_KHR"),
-                Self::ALLOW_ENCODE_PARAMETER_OPTIMIZATIONS_KHR => {
-                    Some("ALLOW_ENCODE_PARAMETER_OPTIMIZATIONS_KHR")
-                }
-                Self::INLINE_QUERIES_KHR => Some("INLINE_QUERIES_KHR"),
-                Self::ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR => {
-                    Some("ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR")
-                }
-                Self::ALLOW_ENCODE_EMPHASIS_MAP_KHR => {
-                    Some("ALLOW_ENCODE_EMPHASIS_MAP_KHR")
-                }
-                Self::INLINE_SESSION_PARAMETERS_KHR => {
-                    Some("INLINE_SESSION_PARAMETERS_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1653,19 +1627,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoSessionParametersCreateFlagBitsKHR(pub(crate) u32);
+    impl VideoSessionParametersCreateFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoSessionParametersCreateFlagsKHR {
+            VideoSessionParametersCreateFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoSessionParametersCreateFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::QUANTIZATION_MAP_COMPATIBLE_KHR => {
-                    Some("QUANTIZATION_MAP_COMPATIBLE_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1890,19 +1861,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoCodingControlFlagBitsKHR(pub(crate) u32);
+    impl VideoCodingControlFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoCodingControlFlagsKHR {
+            VideoCodingControlFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoCodingControlFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::RESET_KHR => Some("RESET_KHR"),
-                Self::ENCODE_RATE_CONTROL_KHR => Some("ENCODE_RATE_CONTROL_KHR"),
-                Self::ENCODE_QUALITY_LEVEL_KHR => Some("ENCODE_QUALITY_LEVEL_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1995,21 +1963,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoChromaSubsamplingFlagBitsKHR(pub(crate) u32);
+    impl VideoChromaSubsamplingFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoChromaSubsamplingFlagsKHR {
+            VideoChromaSubsamplingFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoChromaSubsamplingFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::INVALID_KHR => Some("INVALID_KHR"),
-                Self::MONOCHROME_KHR => Some("MONOCHROME_KHR"),
-                Self::_420_KHR => Some("_420_KHR"),
-                Self::_422_KHR => Some("_422_KHR"),
-                Self::_444_KHR => Some("_444_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -2098,20 +2061,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoComponentBitDepthFlagBitsKHR(pub(crate) u32);
+    impl VideoComponentBitDepthFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoComponentBitDepthFlagsKHR {
+            VideoComponentBitDepthFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoComponentBitDepthFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::INVALID_KHR => Some("INVALID_KHR"),
-                Self::_8_KHR => Some("_8_KHR"),
-                Self::_10_KHR => Some("_10_KHR"),
-                Self::_12_KHR => Some("_12_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -2231,4 +2190,4 @@ pub(crate) mod reexport {
         p_end_coding_info: *const crate::vk::VideoEndCodingInfoKHR<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

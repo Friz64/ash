@@ -179,7 +179,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 23;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_display";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -564,20 +564,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DisplayPlaneAlphaFlagBitsKHR(pub(crate) u32);
+    impl DisplayPlaneAlphaFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> DisplayPlaneAlphaFlagsKHR {
+            DisplayPlaneAlphaFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DisplayPlaneAlphaFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::OPAQUE_KHR => Some("OPAQUE_KHR"),
-                Self::GLOBAL_KHR => Some("GLOBAL_KHR"),
-                Self::PER_PIXEL_KHR => Some("PER_PIXEL_KHR"),
-                Self::PER_PIXEL_PREMULTIPLIED_KHR => Some("PER_PIXEL_PREMULTIPLIED_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -812,4 +808,4 @@ pub(crate) mod reexport {
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

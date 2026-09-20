@@ -94,7 +94,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance10";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -378,25 +378,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct RenderingAttachmentFlagBitsKHR(pub(crate) u32);
+    impl RenderingAttachmentFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> RenderingAttachmentFlagsKHR {
+            RenderingAttachmentFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for RenderingAttachmentFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::INPUT_ATTACHMENT_FEEDBACK_KHR => {
-                    Some("INPUT_ATTACHMENT_FEEDBACK_KHR")
-                }
-                Self::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR => {
-                    Some("RESOLVE_SKIP_TRANSFER_FUNCTION_KHR")
-                }
-                Self::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR => {
-                    Some("RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -486,20 +477,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ResolveImageFlagBitsKHR(pub(crate) u32);
+    impl ResolveImageFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ResolveImageFlagsKHR {
+            ResolveImageFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ResolveImageFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::SKIP_TRANSFER_FUNCTION_KHR => Some("SKIP_TRANSFER_FUNCTION_KHR"),
-                Self::ENABLE_TRANSFER_FUNCTION_KHR => {
-                    Some("ENABLE_TRANSFER_FUNCTION_KHR")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkCmdEndRendering2KHR = unsafe extern "system" fn(
@@ -507,4 +494,4 @@ pub(crate) mod reexport {
         p_rendering_end_info: *const crate::vk::RenderingEndInfoKHR<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

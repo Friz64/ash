@@ -12,9 +12,9 @@ impl crate::vk::SemaphoreImportFlagBits {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type ExportSemaphoreCreateInfoKHR<'a> = crate::vk::ExportSemaphoreCreateInfo<'a>;
     pub type SemaphoreImportFlagBitsKHR = crate::vk::SemaphoreImportFlagBits;
     pub type SemaphoreImportFlagsKHR = crate::vk::SemaphoreImportFlags;
 }
-pub use reexport::*;
+pub use items::*;

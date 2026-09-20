@@ -132,7 +132,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 4;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_deferred_host_operations";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DeferredOperationKHR(u64);
@@ -183,4 +183,4 @@ pub(crate) mod reexport {
         operation: crate::vk::DeferredOperationKHR,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

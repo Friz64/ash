@@ -84,8 +84,8 @@ impl Device {
         self.handle
     }
 }
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PFN_vkCmdDrawIndirectCountAMD = crate::vk::PFN_vkCmdDrawIndirectCount;
     pub type PFN_vkCmdDrawIndexedIndirectCountAMD = crate::vk::PFN_vkCmdDrawIndexedIndirectCount;
 }
-pub use reexport::*;
+pub use items::*;

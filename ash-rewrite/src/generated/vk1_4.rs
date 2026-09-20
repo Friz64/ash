@@ -535,7 +535,7 @@ impl DeviceV1_4 {
         self.handle
     }
 }
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -3284,17 +3284,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryUnmapFlagBits(pub(crate) u32);
+    impl MemoryUnmapFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> MemoryUnmapFlags {
+            MemoryUnmapFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for MemoryUnmapFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::RESERVE_EXT => Some("RESERVE_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -3627,98 +3626,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCreateFlagBits2(pub(crate) u64);
+    impl PipelineCreateFlagBits2 {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> PipelineCreateFlags2 {
+            PipelineCreateFlags2::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for PipelineCreateFlagBits2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DISABLE_OPTIMIZATION => Some("DISABLE_OPTIMIZATION"),
-                Self::ALLOW_DERIVATIVES => Some("ALLOW_DERIVATIVES"),
-                Self::DERIVATIVE => Some("DERIVATIVE"),
-                Self::VIEW_INDEX_FROM_DEVICE_INDEX => {
-                    Some("VIEW_INDEX_FROM_DEVICE_INDEX")
-                }
-                Self::DISPATCH_BASE => Some("DISPATCH_BASE"),
-                Self::FAIL_ON_PIPELINE_COMPILE_REQUIRED => {
-                    Some("FAIL_ON_PIPELINE_COMPILE_REQUIRED")
-                }
-                Self::EARLY_RETURN_ON_FAILURE => Some("EARLY_RETURN_ON_FAILURE"),
-                Self::NO_PROTECTED_ACCESS => Some("NO_PROTECTED_ACCESS"),
-                Self::PROTECTED_ACCESS_ONLY => Some("PROTECTED_ACCESS_ONLY"),
-                Self::EXECUTION_GRAPH_AMDX => Some("EXECUTION_GRAPH_AMDX"),
-                Self::DESCRIPTOR_HEAP_EXT => Some("DESCRIPTOR_HEAP_EXT"),
-                Self::RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV => {
-                    Some("RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV")
-                }
-                Self::ENABLE_LEGACY_DITHERING_EXT => Some("ENABLE_LEGACY_DITHERING_EXT"),
-                Self::DEFER_COMPILE_NV => Some("DEFER_COMPILE_NV"),
-                Self::CAPTURE_STATISTICS_KHR => Some("CAPTURE_STATISTICS_KHR"),
-                Self::CAPTURE_INTERNAL_REPRESENTATIONS_KHR => {
-                    Some("CAPTURE_INTERNAL_REPRESENTATIONS_KHR")
-                }
-                Self::LINK_TIME_OPTIMIZATION_EXT => Some("LINK_TIME_OPTIMIZATION_EXT"),
-                Self::RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT => {
-                    Some("RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT")
-                }
-                Self::LIBRARY_KHR => Some("LIBRARY_KHR"),
-                Self::RAY_TRACING_SKIP_TRIANGLES_KHR => {
-                    Some("RAY_TRACING_SKIP_TRIANGLES_KHR")
-                }
-                Self::RAY_TRACING_SKIP_AABBS_KHR => Some("RAY_TRACING_SKIP_AABBS_KHR"),
-                Self::RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR => {
-                    Some("RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR")
-                }
-                Self::RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR => {
-                    Some("RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR")
-                }
-                Self::RAY_TRACING_NO_NULL_MISS_SHADERS_KHR => {
-                    Some("RAY_TRACING_NO_NULL_MISS_SHADERS_KHR")
-                }
-                Self::RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR => {
-                    Some("RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR")
-                }
-                Self::RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR => {
-                    Some("RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR")
-                }
-                Self::INDIRECT_BINDABLE_NV => Some("INDIRECT_BINDABLE_NV"),
-                Self::RAY_TRACING_ALLOW_MOTION_NV => Some("RAY_TRACING_ALLOW_MOTION_NV"),
-                Self::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
-                    Some("RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
-                }
-                Self::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT => {
-                    Some("RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT")
-                }
-                Self::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT => {
-                    Some("COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT")
-                }
-                Self::DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT => {
-                    Some("DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT")
-                }
-                Self::RAY_TRACING_DISPLACEMENT_MICROMAP_NV => {
-                    Some("RAY_TRACING_DISPLACEMENT_MICROMAP_NV")
-                }
-                Self::DESCRIPTOR_BUFFER_EXT => Some("DESCRIPTOR_BUFFER_EXT"),
-                Self::DISALLOW_OPACITY_MICROMAP_ARM => {
-                    Some("DISALLOW_OPACITY_MICROMAP_ARM")
-                }
-                Self::INSTRUMENT_SHADERS_ARM => Some("INSTRUMENT_SHADERS_ARM"),
-                Self::CAPTURE_DATA_KHR => Some("CAPTURE_DATA_KHR"),
-                Self::INDIRECT_BINDABLE_EXT => Some("INDIRECT_BINDABLE_EXT"),
-                Self::PER_LAYER_FRAGMENT_DENSITY_VALVE => {
-                    Some("PER_LAYER_FRAGMENT_DENSITY_VALVE")
-                }
-                Self::RAY_TRACING_OPACITY_MICROMAP_KHR => {
-                    Some("RAY_TRACING_OPACITY_MICROMAP_KHR")
-                }
-                Self::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR => {
-                    Some("OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR")
-                }
-                Self::_64_INDEXING_EXT => Some("_64_INDEXING_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -3972,68 +3889,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BufferUsageFlagBits2(pub(crate) u64);
+    impl BufferUsageFlagBits2 {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> BufferUsageFlags2 {
+            BufferUsageFlags2::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for BufferUsageFlagBits2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::TRANSFER_SRC => Some("TRANSFER_SRC"),
-                Self::TRANSFER_DST => Some("TRANSFER_DST"),
-                Self::UNIFORM_TEXEL_BUFFER => Some("UNIFORM_TEXEL_BUFFER"),
-                Self::STORAGE_TEXEL_BUFFER => Some("STORAGE_TEXEL_BUFFER"),
-                Self::UNIFORM_BUFFER => Some("UNIFORM_BUFFER"),
-                Self::STORAGE_BUFFER => Some("STORAGE_BUFFER"),
-                Self::INDEX_BUFFER => Some("INDEX_BUFFER"),
-                Self::VERTEX_BUFFER => Some("VERTEX_BUFFER"),
-                Self::INDIRECT_BUFFER => Some("INDIRECT_BUFFER"),
-                Self::SHADER_DEVICE_ADDRESS => Some("SHADER_DEVICE_ADDRESS"),
-                Self::EXECUTION_GRAPH_SCRATCH_AMDX => {
-                    Some("EXECUTION_GRAPH_SCRATCH_AMDX")
-                }
-                Self::DESCRIPTOR_HEAP_EXT => Some("DESCRIPTOR_HEAP_EXT"),
-                Self::MICROMAP_BUILD_INPUT_READ_ONLY_EXT => {
-                    Some("MICROMAP_BUILD_INPUT_READ_ONLY_EXT")
-                }
-                Self::MICROMAP_STORAGE_EXT => Some("MICROMAP_STORAGE_EXT"),
-                Self::CONDITIONAL_RENDERING_EXT => Some("CONDITIONAL_RENDERING_EXT"),
-                Self::SHADER_BINDING_TABLE_KHR => Some("SHADER_BINDING_TABLE_KHR"),
-                Self::TRANSFORM_FEEDBACK_BUFFER_EXT => {
-                    Some("TRANSFORM_FEEDBACK_BUFFER_EXT")
-                }
-                Self::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT => {
-                    Some("TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT")
-                }
-                Self::VIDEO_DECODE_SRC_KHR => Some("VIDEO_DECODE_SRC_KHR"),
-                Self::VIDEO_DECODE_DST_KHR => Some("VIDEO_DECODE_DST_KHR"),
-                Self::VIDEO_ENCODE_DST_KHR => Some("VIDEO_ENCODE_DST_KHR"),
-                Self::VIDEO_ENCODE_SRC_KHR => Some("VIDEO_ENCODE_SRC_KHR"),
-                Self::ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR => {
-                    Some("ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR")
-                }
-                Self::ACCELERATION_STRUCTURE_STORAGE_KHR => {
-                    Some("ACCELERATION_STRUCTURE_STORAGE_KHR")
-                }
-                Self::SAMPLER_DESCRIPTOR_BUFFER_EXT => {
-                    Some("SAMPLER_DESCRIPTOR_BUFFER_EXT")
-                }
-                Self::RESOURCE_DESCRIPTOR_BUFFER_EXT => {
-                    Some("RESOURCE_DESCRIPTOR_BUFFER_EXT")
-                }
-                Self::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT => {
-                    Some("PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT")
-                }
-                Self::COMPRESSED_DATA_DGF1_AMDX => Some("COMPRESSED_DATA_DGF1_AMDX"),
-                Self::DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM => {
-                    Some("DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM")
-                }
-                Self::TILE_MEMORY_QCOM => Some("TILE_MEMORY_QCOM"),
-                Self::MEMORY_DECOMPRESSION_EXT => Some("MEMORY_DECOMPRESSION_EXT"),
-                Self::PREPROCESS_BUFFER_EXT => Some("PREPROCESS_BUFFER_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -4109,17 +3974,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct HostImageCopyFlagBits(pub(crate) u32);
+    impl HostImageCopyFlagBits {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> HostImageCopyFlags {
+            HostImageCopyFlags::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for HostImageCopyFlagBits {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::MEMCPY => Some("MEMCPY"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetRenderingAreaGranularity = unsafe extern "system" fn(
@@ -4222,4 +4086,4 @@ pub(crate) mod reexport {
     pub const MAX_GLOBAL_PRIORITY_SIZE: u32 = 16;
     pub const API_VERSION_1_4: u32 = crate::vk::make_api_version(0, 1, 4, 0);
 }
-pub use reexport::*;
+pub use items::*;

@@ -80,7 +80,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_capabilities";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceExternalSemaphoreInfoKHR<'a> = crate::vk::PhysicalDeviceExternalSemaphoreInfo<
         'a,
     >;
@@ -93,4 +93,4 @@ pub(crate) mod reexport {
     pub type ExternalSemaphoreFeatureFlagsKHR = crate::vk::ExternalSemaphoreFeatureFlags;
     pub type PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR = crate::vk::PFN_vkGetPhysicalDeviceExternalSemaphoreProperties;
 }
-pub use reexport::*;
+pub use items::*;

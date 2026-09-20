@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_uniform_buffer_standard_layout";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceUniformBufferStandardLayoutFeaturesKHR<'a> = crate::vk::PhysicalDeviceUniformBufferStandardLayoutFeatures<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

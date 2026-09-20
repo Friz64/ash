@@ -6,6 +6,7 @@ use crate::LibraryName;
 pub struct TypeName(&'static str);
 
 impl TypeName {
+    pub const VK_RESULT: Self = Self::new("VkResult");
     pub const VK_OBJECT_TYPE: Self = Self::new("VkObjectType");
     pub const VK_DEVICE: Self = Self::new("VkDevice");
     pub const VK_COMMAND_BUFFER: Self = Self::new("VkCommandBuffer");

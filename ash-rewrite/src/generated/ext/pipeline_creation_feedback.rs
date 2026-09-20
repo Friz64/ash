@@ -14,7 +14,7 @@ impl crate::vk::PipelineCreationFeedbackFlagBits {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_creation_feedback";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PipelineCreationFeedbackEXT = crate::vk::PipelineCreationFeedback;
     pub type PipelineCreationFeedbackCreateInfoEXT<'a> = crate::vk::PipelineCreationFeedbackCreateInfo<
         'a,
@@ -22,4 +22,4 @@ pub(crate) mod reexport {
     pub type PipelineCreationFeedbackFlagBitsEXT = crate::vk::PipelineCreationFeedbackFlagBits;
     pub type PipelineCreationFeedbackFlagsEXT = crate::vk::PipelineCreationFeedbackFlags;
 }
-pub use reexport::*;
+pub use items::*;

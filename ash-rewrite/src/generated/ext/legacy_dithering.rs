@@ -20,7 +20,7 @@ impl crate::vk::PipelineCreateFlagBits2 {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_legacy_dithering";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -55,4 +55,4 @@ pub(crate) mod reexport {
         }
     }
 }
-pub use reexport::*;
+pub use items::*;

@@ -17,7 +17,7 @@ impl crate::vk::StructureType {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_separate_depth_stencil_layouts";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR<'a> = crate::vk::PhysicalDeviceSeparateDepthStencilLayoutsFeatures<
         'a,
     >;
@@ -28,4 +28,4 @@ pub(crate) mod reexport {
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

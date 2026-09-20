@@ -22,7 +22,7 @@ impl DirectDriverLoadingModeLUNARG {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_LUNARG_direct_driver_loading";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -197,4 +197,4 @@ pub(crate) mod reexport {
         ) -> crate::vk::PFN_vkVoidFunction,
     >;
 }
-pub use reexport::*;
+pub use items::*;

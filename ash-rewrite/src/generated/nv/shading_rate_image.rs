@@ -164,7 +164,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_NV_shading_rate_image";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -502,4 +502,4 @@ pub(crate) mod reexport {
         p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

@@ -59,10 +59,10 @@ impl Instance {
         self.handle
     }
 }
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PFN_vkReleaseDisplayEXT = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

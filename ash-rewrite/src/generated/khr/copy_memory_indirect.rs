@@ -97,7 +97,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_copy_memory_indirect";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -442,19 +442,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AddressCopyFlagBitsKHR(pub(crate) u32);
+    impl AddressCopyFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> AddressCopyFlagsKHR {
+            AddressCopyFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AddressCopyFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DEVICE_LOCAL_KHR => Some("DEVICE_LOCAL_KHR"),
-                Self::SPARSE_KHR => Some("SPARSE_KHR"),
-                Self::PROTECTED_KHR => Some("PROTECTED_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkCmdCopyMemoryIndirectKHR = unsafe extern "system" fn(
@@ -468,4 +465,4 @@ pub(crate) mod reexport {
         >,
     );
 }
-pub use reexport::*;
+pub use items::*;

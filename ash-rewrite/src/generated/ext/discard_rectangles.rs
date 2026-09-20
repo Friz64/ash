@@ -115,7 +115,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_discard_rectangles";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -302,4 +302,4 @@ pub(crate) mod reexport {
         discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
     );
 }
-pub use reexport::*;
+pub use items::*;

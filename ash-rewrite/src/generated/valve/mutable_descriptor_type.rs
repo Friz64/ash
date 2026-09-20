@@ -21,7 +21,7 @@ impl crate::vk::DescriptorPoolCreateFlagBits {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_VALVE_mutable_descriptor_type";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'a> = crate::vk::PhysicalDeviceMutableDescriptorTypeFeaturesEXT<
         'a,
     >;
@@ -32,4 +32,4 @@ pub(crate) mod reexport {
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

@@ -927,7 +927,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_object";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -1260,37 +1260,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ShaderCreateFlagBitsEXT(pub(crate) u32);
+    impl ShaderCreateFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ShaderCreateFlagsEXT {
+            ShaderCreateFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ShaderCreateFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::LINK_STAGE_EXT => Some("LINK_STAGE_EXT"),
-                Self::DESCRIPTOR_HEAP_EXT => Some("DESCRIPTOR_HEAP_EXT"),
-                Self::INSTRUMENT_SHADER_ARM => Some("INSTRUMENT_SHADER_ARM"),
-                Self::ALLOW_VARYING_SUBGROUP_SIZE_EXT => {
-                    Some("ALLOW_VARYING_SUBGROUP_SIZE_EXT")
-                }
-                Self::REQUIRE_FULL_SUBGROUPS_EXT => Some("REQUIRE_FULL_SUBGROUPS_EXT"),
-                Self::NO_TASK_SHADER_EXT => Some("NO_TASK_SHADER_EXT"),
-                Self::DISPATCH_BASE_EXT => Some("DISPATCH_BASE_EXT"),
-                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_EXT => {
-                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_EXT")
-                }
-                Self::FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT => {
-                    Some("FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT")
-                }
-                Self::INDIRECT_BINDABLE_EXT => Some("INDIRECT_BINDABLE_EXT"),
-                Self::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT => {
-                    Some("OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT")
-                }
-                Self::_64_INDEXING_EXT => Some("_64_INDEXING_EXT"),
-                Self::INDEPENDENT_SETS_KHR => Some("INDEPENDENT_SETS_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1350,4 +1329,4 @@ pub(crate) mod reexport {
         p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
     );
 }
-pub use reexport::*;
+pub use items::*;

@@ -117,7 +117,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 8;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_queue";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -353,20 +353,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoDecodeUsageFlagBitsKHR(pub(crate) u32);
+    impl VideoDecodeUsageFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoDecodeUsageFlagsKHR {
+            VideoDecodeUsageFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoDecodeUsageFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DEFAULT_KHR => Some("DEFAULT_KHR"),
-                Self::TRANSCODING_KHR => Some("TRANSCODING_KHR"),
-                Self::OFFLINE_KHR => Some("OFFLINE_KHR"),
-                Self::STREAMING_KHR => Some("STREAMING_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -453,18 +449,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoDecodeCapabilityFlagBitsKHR(pub(crate) u32);
+    impl VideoDecodeCapabilityFlagBitsKHR {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoDecodeCapabilityFlagsKHR {
+            VideoDecodeCapabilityFlagsKHR::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoDecodeCapabilityFlagBitsKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::DPB_AND_OUTPUT_COINCIDE_KHR => Some("DPB_AND_OUTPUT_COINCIDE_KHR"),
-                Self::DPB_AND_OUTPUT_DISTINCT_KHR => Some("DPB_AND_OUTPUT_DISTINCT_KHR"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -540,4 +534,4 @@ pub(crate) mod reexport {
         p_decode_info: *const crate::vk::VideoDecodeInfoKHR<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

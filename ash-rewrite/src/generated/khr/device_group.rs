@@ -235,7 +235,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 4;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_device_group";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type MemoryAllocateFlagsInfoKHR<'a> = crate::vk::MemoryAllocateFlagsInfo<'a>;
     pub type BindBufferMemoryDeviceGroupInfoKHR<'a> = crate::vk::BindBufferMemoryDeviceGroupInfo<
         'a,
@@ -259,4 +259,4 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdSetDeviceMaskKHR = crate::vk::PFN_vkCmdSetDeviceMask;
     pub type PFN_vkCmdDispatchBaseKHR = crate::vk::PFN_vkCmdDispatchBase;
 }
-pub use reexport::*;
+pub use items::*;

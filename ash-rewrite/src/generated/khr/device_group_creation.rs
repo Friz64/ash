@@ -69,7 +69,7 @@ impl Instance {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_device_group_creation";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceGroupPropertiesKHR<'a> = crate::vk::PhysicalDeviceGroupProperties<
         'a,
     >;
@@ -78,4 +78,4 @@ pub(crate) mod reexport {
     >;
     pub type PFN_vkEnumeratePhysicalDeviceGroupsKHR = crate::vk::PFN_vkEnumeratePhysicalDeviceGroups;
 }
-pub use reexport::*;
+pub use items::*;

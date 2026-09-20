@@ -14,7 +14,7 @@ impl crate::vk::PresentModeKHR {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_present_mode_fifo_latest_ready";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -52,4 +52,4 @@ pub(crate) mod reexport {
         }
     }
 }
-pub use reexport::*;
+pub use items::*;

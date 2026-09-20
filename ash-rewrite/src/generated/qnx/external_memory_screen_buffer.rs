@@ -74,7 +74,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QNX_external_memory_screen_buffer";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -312,4 +312,4 @@ pub(crate) mod reexport {
         p_properties: *mut crate::vk::ScreenBufferPropertiesQNX<'_>,
     ) -> crate::vk::Result;
 }
-pub use reexport::*;
+pub use items::*;

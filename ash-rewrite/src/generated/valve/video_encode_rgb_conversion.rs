@@ -33,7 +33,7 @@ impl VideoEncodeRgbChromaOffsetFlagBitsVALVE {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_VALVE_video_encode_rgb_conversion";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -322,21 +322,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRgbModelConversionFlagBitsVALVE(pub(crate) u32);
+    impl VideoEncodeRgbModelConversionFlagBitsVALVE {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoEncodeRgbModelConversionFlagsVALVE {
+            VideoEncodeRgbModelConversionFlagsVALVE::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEncodeRgbModelConversionFlagBitsVALVE {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::RGB_IDENTITY_VALVE => Some("RGB_IDENTITY_VALVE"),
-                Self::YCBCR_IDENTITY_VALVE => Some("YCBCR_IDENTITY_VALVE"),
-                Self::YCBCR_709_VALVE => Some("YCBCR_709_VALVE"),
-                Self::YCBCR_601_VALVE => Some("YCBCR_601_VALVE"),
-                Self::YCBCR_2020_VALVE => Some("YCBCR_2020_VALVE"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -423,18 +418,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRgbRangeCompressionFlagBitsVALVE(pub(crate) u32);
+    impl VideoEncodeRgbRangeCompressionFlagBitsVALVE {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoEncodeRgbRangeCompressionFlagsVALVE {
+            VideoEncodeRgbRangeCompressionFlagsVALVE::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEncodeRgbRangeCompressionFlagBitsVALVE {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::FULL_RANGE_VALVE => Some("FULL_RANGE_VALVE"),
-                Self::NARROW_RANGE_VALVE => Some("NARROW_RANGE_VALVE"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -521,19 +514,17 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRgbChromaOffsetFlagBitsVALVE(pub(crate) u32);
+    impl VideoEncodeRgbChromaOffsetFlagBitsVALVE {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> VideoEncodeRgbChromaOffsetFlagsVALVE {
+            VideoEncodeRgbChromaOffsetFlagsVALVE::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VideoEncodeRgbChromaOffsetFlagBitsVALVE {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::COSITED_EVEN_VALVE => Some("COSITED_EVEN_VALVE"),
-                Self::MIDPOINT_VALVE => Some("MIDPOINT_VALVE"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
 }
-pub use reexport::*;
+pub use items::*;

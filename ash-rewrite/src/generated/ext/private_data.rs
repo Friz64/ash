@@ -123,7 +123,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_private_data";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type DevicePrivateDataCreateInfoEXT<'a> = crate::vk::DevicePrivateDataCreateInfo<
         'a,
     >;
@@ -139,4 +139,4 @@ pub(crate) mod reexport {
     pub type PFN_vkSetPrivateDataEXT = crate::vk::PFN_vkSetPrivateData;
     pub type PFN_vkGetPrivateDataEXT = crate::vk::PFN_vkGetPrivateData;
 }
-pub use reexport::*;
+pub use items::*;

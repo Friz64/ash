@@ -13,9 +13,9 @@ impl crate::vk::PipelineCreateFlagBits {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_protected_access";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDevicePipelineProtectedAccessFeaturesEXT<'a> = crate::vk::PhysicalDevicePipelineProtectedAccessFeatures<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

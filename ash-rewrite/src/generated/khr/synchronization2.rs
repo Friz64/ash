@@ -258,7 +258,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_synchronization2";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type MemoryBarrier2KHR<'a> = crate::vk::MemoryBarrier2<'a>;
     pub type ImageMemoryBarrier2KHR<'a> = crate::vk::ImageMemoryBarrier2<'a>;
     pub type BufferMemoryBarrier2KHR<'a> = crate::vk::BufferMemoryBarrier2<'a>;
@@ -282,4 +282,4 @@ pub(crate) mod reexport {
     pub type PFN_vkQueueSubmit2KHR = crate::vk::PFN_vkQueueSubmit2;
     pub type PFN_vkCmdWriteTimestamp2KHR = crate::vk::PFN_vkCmdWriteTimestamp2;
 }
-pub use reexport::*;
+pub use items::*;

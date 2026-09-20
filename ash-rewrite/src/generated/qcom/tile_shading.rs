@@ -112,7 +112,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_tile_shading";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -507,18 +507,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TileShadingRenderPassFlagBitsQCOM(pub(crate) u32);
+    impl TileShadingRenderPassFlagBitsQCOM {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> TileShadingRenderPassFlagsQCOM {
+            TileShadingRenderPassFlagsQCOM::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for TileShadingRenderPassFlagBitsQCOM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ENABLE_QCOM => Some("ENABLE_QCOM"),
-                Self::PER_TILE_EXECUTION_QCOM => Some("PER_TILE_EXECUTION_QCOM"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkCmdDispatchTileQCOM = unsafe extern "system" fn(
@@ -534,4 +532,4 @@ pub(crate) mod reexport {
         p_per_tile_end_info: *const crate::vk::PerTileEndInfoQCOM<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

@@ -181,7 +181,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 4;
 pub const NAME: &core::ffi::CStr = c"VK_NV_cluster_acceleration_structure";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -368,18 +368,11 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
         /**- `geometryIndex` @ `0..24`
 - `geometryFlags` @ `29..32`*/
         pub bitfield0: u32,
-    }
-    impl Default for ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug
@@ -471,7 +464,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureBuildTriangleClusterInfoNV {
         pub cluster_id: u32,
         pub cluster_flags: crate::vk::ClusterAccelerationStructureClusterFlagsNV,
@@ -491,25 +484,6 @@ pub(crate) mod reexport {
         pub geometry_index_and_flags_buffer: crate::vk::DeviceAddress,
         pub opacity_micromap_array: crate::vk::DeviceAddress,
         pub opacity_micromap_index_buffer: crate::vk::DeviceAddress,
-    }
-    impl Default for ClusterAccelerationStructureBuildTriangleClusterInfoNV {
-        fn default() -> Self {
-            Self {
-                cluster_id: Default::default(),
-                cluster_flags: Default::default(),
-                bitfield0: Default::default(),
-                base_geometry_index_and_geometry_flags: Default::default(),
-                index_buffer_stride: Default::default(),
-                vertex_buffer_stride: Default::default(),
-                geometry_index_and_flags_buffer_stride: Default::default(),
-                opacity_micromap_index_buffer_stride: Default::default(),
-                index_buffer: Default::default(),
-                vertex_buffer: Default::default(),
-                geometry_index_and_flags_buffer: Default::default(),
-                opacity_micromap_array: Default::default(),
-                opacity_micromap_index_buffer: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureBuildTriangleClusterInfoNV {
@@ -676,7 +650,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
         pub cluster_id: u32,
         pub cluster_flags: crate::vk::ClusterAccelerationStructureClusterFlagsNV,
@@ -697,26 +671,6 @@ pub(crate) mod reexport {
         pub opacity_micromap_array: crate::vk::DeviceAddress,
         pub opacity_micromap_index_buffer: crate::vk::DeviceAddress,
         pub instantiation_bounding_box_limit: crate::vk::DeviceAddress,
-    }
-    impl Default for ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
-        fn default() -> Self {
-            Self {
-                cluster_id: Default::default(),
-                cluster_flags: Default::default(),
-                bitfield0: Default::default(),
-                base_geometry_index_and_geometry_flags: Default::default(),
-                index_buffer_stride: Default::default(),
-                vertex_buffer_stride: Default::default(),
-                geometry_index_and_flags_buffer_stride: Default::default(),
-                opacity_micromap_index_buffer_stride: Default::default(),
-                index_buffer: Default::default(),
-                vertex_buffer: Default::default(),
-                geometry_index_and_flags_buffer: Default::default(),
-                opacity_micromap_array: Default::default(),
-                opacity_micromap_index_buffer: Default::default(),
-                instantiation_bounding_box_limit: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug
@@ -897,23 +851,13 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureInstantiateClusterInfoNV {
         pub cluster_id_offset: u32,
         ///- `geometryIndexOffset` @ `0..24`
         pub bitfield0: u32,
         pub cluster_template_address: crate::vk::DeviceAddress,
         pub vertex_buffer: crate::vk::StridedDeviceAddressNV,
-    }
-    impl Default for ClusterAccelerationStructureInstantiateClusterInfoNV {
-        fn default() -> Self {
-            Self {
-                cluster_id_offset: Default::default(),
-                bitfield0: Default::default(),
-                cluster_template_address: Default::default(),
-                vertex_buffer: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureInstantiateClusterInfoNV {
@@ -1471,21 +1415,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) u32);
+    impl ClusterAccelerationStructureGeometryFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ClusterAccelerationStructureGeometryFlagsNV {
+            ClusterAccelerationStructureGeometryFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureGeometryFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::CULL_DISABLE_NV => Some("CULL_DISABLE_NV"),
-                Self::NO_DUPLICATE_ANYHIT_INVOCATION_NV => {
-                    Some("NO_DUPLICATE_ANYHIT_INVOCATION_NV")
-                }
-                Self::OPAQUE_NV => Some("OPAQUE_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1572,19 +1511,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) u32);
+    impl ClusterAccelerationStructureClusterFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ClusterAccelerationStructureClusterFlagsNV {
+            ClusterAccelerationStructureClusterFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureClusterFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::ALLOW_DISABLE_OPACITY_MICROMAPS_NV => {
-                    Some("ALLOW_DISABLE_OPACITY_MICROMAPS_NV")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1715,33 +1651,18 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) u32);
+    impl ClusterAccelerationStructureAddressResolutionFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(
+            &self,
+        ) -> ClusterAccelerationStructureAddressResolutionFlagsNV {
+            ClusterAccelerationStructureAddressResolutionFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureAddressResolutionFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::NONE_NV => Some("NONE_NV"),
-                Self::INDIRECTED_DST_IMPLICIT_DATA_NV => {
-                    Some("INDIRECTED_DST_IMPLICIT_DATA_NV")
-                }
-                Self::INDIRECTED_SCRATCH_DATA_NV => Some("INDIRECTED_SCRATCH_DATA_NV"),
-                Self::INDIRECTED_DST_ADDRESS_ARRAY_NV => {
-                    Some("INDIRECTED_DST_ADDRESS_ARRAY_NV")
-                }
-                Self::INDIRECTED_DST_SIZES_ARRAY_NV => {
-                    Some("INDIRECTED_DST_SIZES_ARRAY_NV")
-                }
-                Self::INDIRECTED_SRC_INFOS_ARRAY_NV => {
-                    Some("INDIRECTED_SRC_INFOS_ARRAY_NV")
-                }
-                Self::INDIRECTED_SRC_INFOS_COUNT_NV => {
-                    Some("INDIRECTED_SRC_INFOS_COUNT_NV")
-                }
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1832,19 +1753,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV(pub(crate) u32);
+    impl ClusterAccelerationStructureIndexFormatFlagBitsNV {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ClusterAccelerationStructureIndexFormatFlagsNV {
+            ClusterAccelerationStructureIndexFormatFlagsNV::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureIndexFormatFlagBitsNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::_8BIT_NV => Some("_8BIT_NV"),
-                Self::_16BIT_NV => Some("_16BIT_NV"),
-                Self::_32BIT_NV => Some("_32BIT_NV"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetClusterAccelerationStructureBuildSizesNV = unsafe extern "system" fn(
@@ -1857,4 +1775,4 @@ pub(crate) mod reexport {
         p_command_infos: *const crate::vk::ClusterAccelerationStructureCommandsInfoNV<'_>,
     );
 }
-pub use reexport::*;
+pub use items::*;

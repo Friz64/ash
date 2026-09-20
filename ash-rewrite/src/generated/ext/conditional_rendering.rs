@@ -99,7 +99,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_conditional_rendering";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -291,17 +291,16 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ConditionalRenderingFlagBitsEXT(pub(crate) u32);
+    impl ConditionalRenderingFlagBitsEXT {
+        ///Converts this enum variant to the corresponding bitmask
+        pub const fn bitmask(&self) -> ConditionalRenderingFlagsEXT {
+            ConditionalRenderingFlagsEXT::from_raw(self.0)
+        }
+    }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ConditionalRenderingFlagBitsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            if let Some(x) = match *self {
-                Self::INVERTED_EXT => Some("INVERTED_EXT"),
-                _ => None,
-            } {
-                f.write_str(x)
-            } else {
-                core::fmt::Debug::fmt(&self.0, f)
-            }
+            core::fmt::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkCmdBeginConditionalRenderingEXT = unsafe extern "system" fn(
@@ -314,4 +313,4 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
     );
 }
-pub use reexport::*;
+pub use items::*;

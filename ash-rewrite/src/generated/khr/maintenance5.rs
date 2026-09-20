@@ -193,7 +193,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance5";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type BufferUsageFlags2CreateInfoKHR<'a> = crate::vk::BufferUsageFlags2CreateInfo<
         'a,
     >;
@@ -221,4 +221,4 @@ pub(crate) mod reexport {
     pub type PFN_vkGetImageSubresourceLayout2KHR = crate::vk::PFN_vkGetImageSubresourceLayout2;
     pub type PFN_vkGetDeviceImageSubresourceLayoutKHR = crate::vk::PFN_vkGetDeviceImageSubresourceLayout;
 }
-pub use reexport::*;
+pub use items::*;

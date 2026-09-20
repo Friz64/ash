@@ -121,9 +121,9 @@ impl H265AspectRatioIdc {
     pub const EXTENDED_SAR: Self = Self(255);
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct H265ProfileTierLevelFlags {
         /**- `general_tier_flag` @ `0..1`
 - `general_progressive_source_flag` @ `1..2`
@@ -131,13 +131,6 @@ pub(crate) mod reexport {
 - `general_non_packed_constraint_flag` @ `3..4`
 - `general_frame_only_constraint_flag` @ `4..5`*/
         pub bitfield0: u32,
-    }
-    impl Default for H265ProfileTierLevelFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265ProfileTierLevelFlags {
@@ -345,7 +338,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct H265HrdFlags {
         /**- `nal_hrd_parameters_present_flag` @ `0..1`
 - `vcl_hrd_parameters_present_flag` @ `1..2`
@@ -355,13 +348,6 @@ pub(crate) mod reexport {
 - `fixed_pic_rate_within_cvs_flag` @ `12..20`
 - `low_delay_hrd_flag` @ `20..28`*/
         pub bitfield0: u32,
-    }
-    impl Default for H265HrdFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265HrdFlags {
@@ -610,20 +596,13 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct H265VpsFlags {
         /**- `vps_temporal_id_nesting_flag` @ `0..1`
 - `vps_sub_layer_ordering_info_present_flag` @ `1..2`
 - `vps_timing_info_present_flag` @ `2..3`
 - `vps_poc_proportional_to_timing_flag` @ `3..4`*/
         pub bitfield0: u32,
-    }
-    impl Default for H265VpsFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265VpsFlags {
@@ -863,18 +842,11 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct H265ShortTermRefPicSetFlags {
         /**- `inter_ref_pic_set_prediction_flag` @ `0..1`
 - `delta_rps_sign` @ `1..2`*/
         pub bitfield0: u32,
-    }
-    impl Default for H265ShortTermRefPicSetFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265ShortTermRefPicSetFlags {
@@ -1052,7 +1024,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct H265SpsVuiFlags {
         /**- `aspect_ratio_info_present_flag` @ `0..1`
 - `overscan_info_present_flag` @ `1..2`
@@ -1073,13 +1045,6 @@ pub(crate) mod reexport {
 - `motion_vectors_over_pic_boundaries_flag` @ `16..17`
 - `restricted_ref_pic_lists_flag` @ `17..18`*/
         pub bitfield0: u32,
-    }
-    impl Default for H265SpsVuiFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265SpsVuiFlags {
@@ -1558,7 +1523,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct H265SpsFlags {
         /**- `sps_temporal_id_nesting_flag` @ `0..1`
 - `separate_colour_plane_flag` @ `1..2`
@@ -1591,13 +1556,6 @@ pub(crate) mod reexport {
 - `sps_palette_predictor_initializers_present_flag` @ `28..29`
 - `intra_boundary_filtering_disabled_flag` @ `29..30`*/
         pub bitfield0: u32,
-    }
-    impl Default for H265SpsFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265SpsFlags {
@@ -2335,7 +2293,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct H265PpsFlags {
         /**- `dependent_slice_segments_enabled_flag` @ `0..1`
 - `output_flag_present_flag` @ `1..2`
@@ -2369,13 +2327,6 @@ pub(crate) mod reexport {
 - `monochrome_palette_flag` @ `29..30`
 - `pps_range_extension_flag` @ `30..31`*/
         pub bitfield0: u32,
-    }
-    impl Default for H265PpsFlags {
-        fn default() -> Self {
-            Self {
-                bitfield0: Default::default(),
-            }
-        }
     }
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265PpsFlags {
@@ -3292,4 +3243,4 @@ pub(crate) mod reexport {
     pub const H265_MAX_DELTA_POC: u32 = 48;
     pub const H265_NO_REFERENCE_PICTURE: u32 = 0xF;
 }
-pub use reexport::*;
+pub use items::*;

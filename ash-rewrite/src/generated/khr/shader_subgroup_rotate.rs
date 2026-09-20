@@ -13,9 +13,9 @@ impl crate::vk::SubgroupFeatureFlagBits {
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_subgroup_rotate";
-pub(crate) mod reexport {
+pub(crate) mod items {
     pub type PhysicalDeviceShaderSubgroupRotateFeaturesKHR<'a> = crate::vk::PhysicalDeviceShaderSubgroupRotateFeatures<
         'a,
     >;
 }
-pub use reexport::*;
+pub use items::*;

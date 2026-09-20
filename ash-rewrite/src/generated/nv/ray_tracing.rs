@@ -392,7 +392,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_NV_ray_tracing";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -1171,4 +1171,4 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkGetRayTracingShaderGroupHandlesNV = crate::vk::PFN_vkGetRayTracingShaderGroupHandlesKHR;
 }
-pub use reexport::*;
+pub use items::*;

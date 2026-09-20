@@ -69,7 +69,7 @@ impl Device {
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_clip_space_w_scaling";
-pub(crate) mod reexport {
+pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -140,4 +140,4 @@ pub(crate) mod reexport {
         p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
     );
 }
-pub use reexport::*;
+pub use items::*;
