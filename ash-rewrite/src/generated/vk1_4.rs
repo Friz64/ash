@@ -537,7 +537,8 @@ impl DeviceV1_4 {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct BufferUsageFlags2CreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -572,7 +573,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PipelineCreateFlags2CreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -607,7 +609,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDevicePushDescriptorProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -637,7 +640,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance5Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -669,7 +673,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance5Properties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -749,7 +754,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance6Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -781,7 +787,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance6Properties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -834,7 +841,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct RenderingAreaInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -891,7 +899,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DeviceQueueGlobalPriorityCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -924,7 +933,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGlobalPriorityQueryFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -956,7 +966,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct QueueFamilyGlobalPriorityProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -996,7 +1007,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct VertexInputBindingDivisorDescription {
         pub binding: u32,
         pub divisor: u32,
@@ -1012,7 +1024,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PipelineVertexInputDivisorStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1048,7 +1061,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVertexAttributeDivisorProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1091,7 +1105,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVertexAttributeDivisorFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1137,7 +1152,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceIndexTypeUint8Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1169,7 +1185,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceLineRasterizationFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1237,7 +1254,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceLineRasterizationProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1270,7 +1288,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PipelineRasterizationLineStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1321,7 +1340,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVulkan14Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1496,7 +1516,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVulkan14Properties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1737,7 +1758,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceHostImageCopyFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1769,7 +1791,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceHostImageCopyProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1836,7 +1859,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct MemoryToImageCopy<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1896,7 +1920,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ImageToMemoryCopy<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1956,7 +1981,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct CopyMemoryToImageInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2010,7 +2036,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct CopyImageToMemoryInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2064,7 +2091,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct CopyImageToImageInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2130,7 +2158,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct HostImageLayoutTransitionInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2178,7 +2207,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct SubresourceHostMemcpySize<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2207,7 +2237,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct HostImageCopyDevicePerformanceQuery<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2243,7 +2274,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineProtectedAccessFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2278,7 +2310,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ImageSubresource2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2308,7 +2341,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct SubresourceLayout2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2338,7 +2372,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineRobustnessFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2370,7 +2405,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PipelineRobustnessCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2435,7 +2471,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineRobustnessProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2495,7 +2532,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DeviceImageSubresourceInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2534,7 +2572,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct MemoryMapInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2579,7 +2618,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct MemoryUnmapInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2612,7 +2652,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct BindMemoryStatus<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2643,7 +2684,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct BindDescriptorSetsInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2703,7 +2745,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PushConstantsInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2751,7 +2794,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PushDescriptorSetInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2802,7 +2846,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PushDescriptorSetWithTemplateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2851,7 +2896,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderSubgroupRotateFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2893,7 +2939,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderExpectAssumeFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2925,7 +2972,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderFloatControls2Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2957,7 +3005,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDynamicRenderingLocalReadFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2992,7 +3041,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct RenderingAttachmentLocationInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -3029,7 +3079,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct RenderingInputAttachmentIndexInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -3087,20 +3138,80 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct QueueGlobalPriority(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for QueueGlobalPriority {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::LOW => Some("LOW"),
+                Self::MEDIUM => Some("MEDIUM"),
+                Self::HIGH => Some("HIGH"),
+                Self::REALTIME => Some("REALTIME"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct LineRasterizationMode(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for LineRasterizationMode {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEFAULT => Some("DEFAULT"),
+                Self::RECTANGULAR => Some("RECTANGULAR"),
+                Self::BRESENHAM => Some("BRESENHAM"),
+                Self::RECTANGULAR_SMOOTH => Some("RECTANGULAR_SMOOTH"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct PipelineRobustnessBufferBehavior(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineRobustnessBufferBehavior {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEVICE_DEFAULT => Some("DEVICE_DEFAULT"),
+                Self::DISABLED => Some("DISABLED"),
+                Self::ROBUST_BUFFER_ACCESS => Some("ROBUST_BUFFER_ACCESS"),
+                Self::ROBUST_BUFFER_ACCESS_2 => Some("ROBUST_BUFFER_ACCESS_2"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct PipelineRobustnessImageBehavior(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineRobustnessImageBehavior {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEVICE_DEFAULT => Some("DEVICE_DEFAULT"),
+                Self::DISABLED => Some("DISABLED"),
+                Self::ROBUST_IMAGE_ACCESS => Some("ROBUST_IMAGE_ACCESS"),
+                Self::ROBUST_IMAGE_ACCESS_2 => Some("ROBUST_IMAGE_ACCESS_2"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct MemoryUnmapFlags(u32);

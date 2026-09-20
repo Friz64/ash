@@ -25,8 +25,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeVP9PictureInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("DecodeVP9PictureInfoFlags")
                 .field("error_resilient_mode", &self.get_error_resilient_mode())
                 .field("intra_only", &self.get_intra_only())
@@ -113,7 +114,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DecodeVP9PictureInfo<'a> {
         pub flags: crate::vk::DecodeVP9PictureInfoFlags,
         pub profile: crate::vk::VP9Profile,

@@ -42,7 +42,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_motion_blur";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -84,7 +85,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -119,7 +121,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureMotionInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -158,7 +161,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct SRTDataNV {
         pub sx: core::ffi::c_float,
         pub a: core::ffi::c_float,
@@ -267,8 +271,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureSRTMotionInstanceNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("AccelerationStructureSRTMotionInstanceNV")
                 .field("transform_t0", &self.transform_t0)
                 .field("transform_t1", &self.transform_t1)
@@ -363,8 +368,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureMatrixMotionInstanceNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("AccelerationStructureMatrixMotionInstanceNV")
                 .field("transform_t0", &self.transform_t0)
                 .field("transform_t1", &self.transform_t1)
@@ -442,7 +448,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureMotionInstanceNV {
         pub _type: crate::vk::AccelerationStructureMotionInstanceTypeNV,
         pub flags: crate::vk::AccelerationStructureMotionInstanceFlagsNV,
@@ -483,15 +490,30 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureMotionInstanceDataNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            write!(f, "VkAccelerationStructureMotionInstanceDataNV")
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "AccelerationStructureMotionInstanceDataNV")
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AccelerationStructureMotionInstanceTypeNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccelerationStructureMotionInstanceTypeNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::STATIC_NV => Some("STATIC_NV"),
+                Self::MATRIX_MOTION_NV => Some("MATRIX_MOTION_NV"),
+                Self::SRT_MOTION_NV => Some("SRT_MOTION_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct AccelerationStructureMotionInfoFlagsNV(u32);

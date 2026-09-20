@@ -296,7 +296,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_descriptor_buffer";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorBufferFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -358,7 +359,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorBufferPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -681,7 +683,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -714,7 +717,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DescriptorAddressInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -753,7 +757,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DescriptorBufferBindingInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -786,7 +791,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DescriptorBufferBindingPushDescriptorBufferHandleEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -816,7 +822,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DescriptorGetInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -849,7 +856,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct BufferCaptureDescriptorDataInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -877,7 +885,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ImageCaptureDescriptorDataInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -905,7 +914,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ImageViewCaptureDescriptorDataInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -933,7 +943,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct SamplerCaptureDescriptorDataInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -961,7 +972,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureCaptureDescriptorDataInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1001,7 +1013,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1068,9 +1081,10 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    #[cfg(feature = "debug")]
     impl<'a> core::fmt::Debug for DescriptorDataEXT<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            write!(f, "VkDescriptorDataEXT")
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "DescriptorDataEXT < 'a >")
         }
     }
     pub type PFN_vkGetDescriptorSetLayoutSizeEXT = unsafe extern "system" fn(

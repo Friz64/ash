@@ -20,7 +20,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_invocation_reorder";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -55,7 +56,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,

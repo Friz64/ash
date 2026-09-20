@@ -400,7 +400,8 @@ pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_opacity_micromap";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct MicromapBuildInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -500,7 +501,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct MicromapCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -563,7 +565,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct MicromapVersionInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -593,7 +596,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct CopyMicromapInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -632,7 +636,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct CopyMicromapToMemoryInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -671,7 +676,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct CopyMemoryToMicromapInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -710,7 +716,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct MicromapBuildSizesInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -752,7 +759,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct MicromapUsageEXT {
         pub count: u32,
         pub subdivision_level: u32,
@@ -773,7 +781,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -817,7 +826,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpacityMicromapPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -859,7 +869,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureTrianglesOpacityMicromapEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -947,16 +958,56 @@ pub(crate) mod reexport {
     pub type MicromapTriangleEXT = crate::vk::MicromapTriangleKHR;
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct MicromapTypeEXT(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MicromapTypeEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::OPACITY_MICROMAP_EXT => Some("OPACITY_MICROMAP_EXT"),
+                Self::DISPLACEMENT_MICROMAP_NV => Some("DISPLACEMENT_MICROMAP_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct CopyMicromapModeEXT(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CopyMicromapModeEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::CLONE_EXT => Some("CLONE_EXT"),
+                Self::SERIALIZE_EXT => Some("SERIALIZE_EXT"),
+                Self::DESERIALIZE_EXT => Some("DESERIALIZE_EXT"),
+                Self::COMPACT_EXT => Some("COMPACT_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct BuildMicromapModeEXT(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for BuildMicromapModeEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::BUILD_EXT => Some("BUILD_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type OpacityMicromapFormatEXT = crate::vk::OpacityMicromapFormatKHR;
     pub type OpacityMicromapSpecialIndexEXT = crate::vk::OpacityMicromapSpecialIndexKHR;
     #[repr(transparent)]
@@ -1119,12 +1170,12 @@ pub(crate) mod reexport {
         }
     }
     impl core::fmt::Pointer for MicromapEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     impl core::fmt::Debug for MicromapEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

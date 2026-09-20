@@ -173,7 +173,8 @@ pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_NV_low_latency2";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct LatencySleepModeInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -212,7 +213,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct LatencySleepInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -248,7 +250,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct SetLatencyMarkerInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -281,7 +284,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GetLatencyMarkerInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -314,7 +318,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct LatencyTimingsFrameReportNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -434,7 +439,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct OutOfBandQueueTypeInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -464,7 +470,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct LatencySubmissionPresentIdNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -495,7 +502,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct SwapchainLatencyCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -524,7 +532,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct LatencySurfaceCapabilitiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -560,12 +569,54 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct LatencyMarkerNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for LatencyMarkerNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SIMULATION_START_NV => Some("SIMULATION_START_NV"),
+                Self::SIMULATION_END_NV => Some("SIMULATION_END_NV"),
+                Self::RENDERSUBMIT_START_NV => Some("RENDERSUBMIT_START_NV"),
+                Self::RENDERSUBMIT_END_NV => Some("RENDERSUBMIT_END_NV"),
+                Self::PRESENT_START_NV => Some("PRESENT_START_NV"),
+                Self::PRESENT_END_NV => Some("PRESENT_END_NV"),
+                Self::INPUT_SAMPLE_NV => Some("INPUT_SAMPLE_NV"),
+                Self::TRIGGER_FLASH_NV => Some("TRIGGER_FLASH_NV"),
+                Self::OUT_OF_BAND_RENDERSUBMIT_START_NV => {
+                    Some("OUT_OF_BAND_RENDERSUBMIT_START_NV")
+                }
+                Self::OUT_OF_BAND_RENDERSUBMIT_END_NV => {
+                    Some("OUT_OF_BAND_RENDERSUBMIT_END_NV")
+                }
+                Self::OUT_OF_BAND_PRESENT_START_NV => {
+                    Some("OUT_OF_BAND_PRESENT_START_NV")
+                }
+                Self::OUT_OF_BAND_PRESENT_END_NV => Some("OUT_OF_BAND_PRESENT_END_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct OutOfBandQueueTypeNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for OutOfBandQueueTypeNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::RENDER_NV => Some("RENDER_NV"),
+                Self::PRESENT_NV => Some("PRESENT_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkSetLatencySleepModeNV = unsafe extern "system" fn(
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,

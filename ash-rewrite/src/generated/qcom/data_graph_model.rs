@@ -39,7 +39,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_data_graph_model";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PipelineCacheHeaderVersionDataGraphQCOM {
         pub header_size: u32,
         pub header_version: crate::vk::PipelineCacheHeaderVersion,
@@ -92,7 +93,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -125,7 +127,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -158,8 +161,20 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct DataGraphModelCacheTypeQCOM(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphModelCacheTypeQCOM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::GENERIC_BINARY_QCOM => Some("GENERIC_BINARY_QCOM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub const DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM: u32 = 3;
 }
 pub use reexport::*;

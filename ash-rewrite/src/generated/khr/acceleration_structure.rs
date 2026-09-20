@@ -495,7 +495,8 @@ pub const SPEC_VERSION: u32 = 13;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_acceleration_structure";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetAccelerationStructureKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -531,7 +532,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -603,7 +605,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -690,7 +693,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryTrianglesDataKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -763,7 +767,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryAabbsDataKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -797,7 +802,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryInstancesDataKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -831,7 +837,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -876,7 +883,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureBuildGeometryInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -971,7 +979,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureBuildRangeInfoKHR {
         pub primitive_count: u32,
         pub primitive_offset: u32,
@@ -997,7 +1006,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1061,7 +1071,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct AabbPositionsKHR {
         pub min_x: core::ffi::c_float,
         pub min_y: core::ffi::c_float,
@@ -1097,7 +1108,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct TransformMatrixKHR {
         pub matrix: [[core::ffi::c_float; 4 as _]; 3 as _],
     }
@@ -1136,8 +1148,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureInstanceKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("AccelerationStructureInstanceKHR")
                 .field("transform", &self.transform)
                 .field("instance_custom_index", &self.get_instance_custom_index())
@@ -1204,7 +1217,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureDeviceAddressInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1235,7 +1249,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureVersionInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1266,7 +1281,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct CopyAccelerationStructureInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1308,7 +1324,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct CopyAccelerationStructureToMemoryInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1351,7 +1368,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct CopyMemoryToAccelerationStructureInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1394,7 +1412,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureBuildSizesInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1453,9 +1472,10 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for DeviceOrHostAddressKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            write!(f, "VkDeviceOrHostAddressKHR")
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "DeviceOrHostAddressKHR")
         }
     }
     #[repr(C)]
@@ -1469,9 +1489,10 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for DeviceOrHostAddressConstKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            write!(f, "VkDeviceOrHostAddressConstKHR")
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "DeviceOrHostAddressConstKHR")
         }
     }
     #[repr(C)]
@@ -1486,35 +1507,126 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    #[cfg(feature = "debug")]
     impl<'a> core::fmt::Debug for AccelerationStructureGeometryDataKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            write!(f, "VkAccelerationStructureGeometryDataKHR")
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "AccelerationStructureGeometryDataKHR < 'a >")
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct CopyAccelerationStructureModeKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CopyAccelerationStructureModeKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::CLONE_KHR => Some("CLONE_KHR"),
+                Self::COMPACT_KHR => Some("COMPACT_KHR"),
+                Self::SERIALIZE_KHR => Some("SERIALIZE_KHR"),
+                Self::DESERIALIZE_KHR => Some("DESERIALIZE_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct BuildAccelerationStructureModeKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for BuildAccelerationStructureModeKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::BUILD_KHR => Some("BUILD_KHR"),
+                Self::UPDATE_KHR => Some("UPDATE_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AccelerationStructureTypeKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccelerationStructureTypeKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::TOP_LEVEL_KHR => Some("TOP_LEVEL_KHR"),
+                Self::BOTTOM_LEVEL_KHR => Some("BOTTOM_LEVEL_KHR"),
+                Self::GENERIC_KHR => Some("GENERIC_KHR"),
+                Self::OPACITY_MICROMAP_KHR => Some("OPACITY_MICROMAP_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct GeometryTypeKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for GeometryTypeKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::TRIANGLES_KHR => Some("TRIANGLES_KHR"),
+                Self::AABBS_KHR => Some("AABBS_KHR"),
+                Self::INSTANCES_KHR => Some("INSTANCES_KHR"),
+                Self::SPHERES_NV => Some("SPHERES_NV"),
+                Self::LINEAR_SWEPT_SPHERES_NV => Some("LINEAR_SWEPT_SPHERES_NV"),
+                Self::DENSE_GEOMETRY_FORMAT_TRIANGLES_AMDX => {
+                    Some("DENSE_GEOMETRY_FORMAT_TRIANGLES_AMDX")
+                }
+                Self::MICROMAP_KHR => Some("MICROMAP_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AccelerationStructureBuildTypeKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccelerationStructureBuildTypeKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::HOST_KHR => Some("HOST_KHR"),
+                Self::DEVICE_KHR => Some("DEVICE_KHR"),
+                Self::HOST_OR_DEVICE_KHR => Some("HOST_OR_DEVICE_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AccelerationStructureCompatibilityKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccelerationStructureCompatibilityKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::COMPATIBLE_KHR => Some("COMPATIBLE_KHR"),
+                Self::INCOMPATIBLE_KHR => Some("INCOMPATIBLE_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct GeometryFlagsKHR(u32);
@@ -1912,12 +2024,12 @@ pub(crate) mod reexport {
         }
     }
     impl core::fmt::Pointer for AccelerationStructureKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     impl core::fmt::Debug for AccelerationStructureKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

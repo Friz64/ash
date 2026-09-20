@@ -139,8 +139,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265ProfileTierLevelFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("H265ProfileTierLevelFlags")
                 .field("general_tier_flag", &self.get_general_tier_flag())
                 .field(
@@ -221,7 +222,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct H265ProfileTierLevel {
         pub flags: crate::vk::H265ProfileTierLevelFlags,
         pub general_profile_idc: crate::vk::H265ProfileIdc,
@@ -248,7 +250,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct H265DecPicBufMgr {
         pub max_latency_increase_plus1: [u32; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
         pub max_dec_pic_buffering_minus1: [u8; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
@@ -287,7 +290,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct H265SubLayerHrdParameters {
         pub bit_rate_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
         pub cpb_size_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
@@ -359,8 +363,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265HrdFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("H265HrdFlags")
                 .field(
                     "nal_hrd_parameters_present_flag",
@@ -471,7 +476,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct H265HrdParameters<'a> {
         pub flags: crate::vk::H265HrdFlags,
         pub tick_divisor_minus2: u8,
@@ -619,8 +625,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265VpsFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("H265VpsFlags")
                 .field(
                     "vps_temporal_id_nesting_flag",
@@ -691,7 +698,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct H265VideoParameterSet<'a> {
         pub flags: crate::vk::H265VpsFlags,
         pub vps_video_parameter_set_id: u8,
@@ -776,7 +784,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct H265ScalingLists {
         pub scaling_list4x4: [[u8; crate::vk::H265_SCALING_LIST_4X4_NUM_ELEMENTS
             as _]; crate::vk::H265_SCALING_LIST_4X4_NUM_LISTS as _],
@@ -867,8 +876,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265ShortTermRefPicSetFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("H265ShortTermRefPicSetFlags")
                 .field(
                     "inter_ref_pic_set_prediction_flag",
@@ -900,7 +910,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct H265ShortTermRefPicSet {
         pub flags: crate::vk::H265ShortTermRefPicSetFlags,
         pub delta_idx_minus1: u32,
@@ -1008,7 +1019,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct H265LongTermRefPicsSps {
         pub used_by_curr_pic_lt_sps_flag: u32,
         pub lt_ref_pic_poc_lsb_sps: [u32; crate::vk::H265_MAX_LONG_TERM_REF_PICS_SPS
@@ -1069,8 +1081,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265SpsVuiFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("H265SpsVuiFlags")
                 .field(
                     "aspect_ratio_info_present_flag",
@@ -1347,7 +1360,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct H265SequenceParameterSetVui<'a> {
         pub flags: crate::vk::H265SpsVuiFlags,
         pub aspect_ratio_idc: crate::vk::H265AspectRatioIdc,
@@ -1520,7 +1534,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct H265PredictorPaletteEntries {
         pub predictor_palette_entries: [[u16; crate::vk::H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE
             as _]; crate::vk::H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE as _],
@@ -1584,8 +1599,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265SpsFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("H265SpsFlags")
                 .field(
                     "sps_temporal_id_nesting_flag",
@@ -2036,7 +2052,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct H265SequenceParameterSet<'a> {
         pub flags: crate::vk::H265SpsFlags,
         pub chroma_format_idc: crate::vk::H265ChromaFormatIdc,
@@ -2360,8 +2377,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265PpsFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("H265PpsFlags")
                 .field(
                     "dependent_slice_segments_enabled_flag",
@@ -2807,7 +2825,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct H265PictureParameterSet<'a> {
         pub flags: crate::vk::H265PpsFlags,
         pub pps_pic_parameter_set_id: u8,
@@ -3108,28 +3127,147 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H265ChromaFormatIdc(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H265ChromaFormatIdc {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::MONOCHROME => Some("MONOCHROME"),
+                Self::_420 => Some("_420"),
+                Self::_422 => Some("_422"),
+                Self::_444 => Some("_444"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H265ProfileIdc(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H265ProfileIdc {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::MAIN => Some("MAIN"),
+                Self::MAIN_10 => Some("MAIN_10"),
+                Self::MAIN_STILL_PICTURE => Some("MAIN_STILL_PICTURE"),
+                Self::FORMAT_RANGE_EXTENSIONS => Some("FORMAT_RANGE_EXTENSIONS"),
+                Self::SCC_EXTENSIONS => Some("SCC_EXTENSIONS"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H265LevelIdc(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H265LevelIdc {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::_1_0 => Some("_1_0"),
+                Self::_2_0 => Some("_2_0"),
+                Self::_2_1 => Some("_2_1"),
+                Self::_3_0 => Some("_3_0"),
+                Self::_3_1 => Some("_3_1"),
+                Self::_4_0 => Some("_4_0"),
+                Self::_4_1 => Some("_4_1"),
+                Self::_5_0 => Some("_5_0"),
+                Self::_5_1 => Some("_5_1"),
+                Self::_5_2 => Some("_5_2"),
+                Self::_6_0 => Some("_6_0"),
+                Self::_6_1 => Some("_6_1"),
+                Self::_6_2 => Some("_6_2"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H265SliceType(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H265SliceType {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::B => Some("B"),
+                Self::P => Some("P"),
+                Self::I => Some("I"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H265PictureType(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H265PictureType {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::P => Some("P"),
+                Self::B => Some("B"),
+                Self::I => Some("I"),
+                Self::IDR => Some("IDR"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H265AspectRatioIdc(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H265AspectRatioIdc {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UNSPECIFIED => Some("UNSPECIFIED"),
+                Self::SQUARE => Some("SQUARE"),
+                Self::_12_11 => Some("_12_11"),
+                Self::_10_11 => Some("_10_11"),
+                Self::_16_11 => Some("_16_11"),
+                Self::_40_33 => Some("_40_33"),
+                Self::_24_11 => Some("_24_11"),
+                Self::_20_11 => Some("_20_11"),
+                Self::_32_11 => Some("_32_11"),
+                Self::_80_33 => Some("_80_33"),
+                Self::_18_11 => Some("_18_11"),
+                Self::_15_11 => Some("_15_11"),
+                Self::_64_33 => Some("_64_33"),
+                Self::_160_99 => Some("_160_99"),
+                Self::_4_3 => Some("_4_3"),
+                Self::_3_2 => Some("_3_2"),
+                Self::_2_1 => Some("_2_1"),
+                Self::EXTENDED_SAR => Some("EXTENDED_SAR"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub const H265_CPB_CNT_LIST_SIZE: u32 = 32;
     pub const H265_SUBLAYERS_LIST_SIZE: u32 = 7;
     pub const H265_SCALING_LIST_4X4_NUM_LISTS: u32 = 6;

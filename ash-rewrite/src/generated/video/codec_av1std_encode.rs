@@ -6,7 +6,8 @@ pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_API_V
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_av1_encode";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeAV1ExtensionHeader {
         pub temporal_id: u8,
         pub spatial_id: u8,
@@ -22,7 +23,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeAV1DecoderModelInfo {
         pub buffer_delay_length_minus_1: u8,
         pub buffer_removal_time_length_minus_1: u8,
@@ -79,8 +81,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeAV1OperatingPointInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("EncodeAV1OperatingPointInfoFlags")
                 .field(
                     "decoder_model_present_for_this_op",
@@ -128,7 +131,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeAV1OperatingPointInfo {
         pub flags: crate::vk::EncodeAV1OperatingPointInfoFlags,
         pub operating_point_idc: u16,
@@ -215,8 +219,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeAV1PictureInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("EncodeAV1PictureInfoFlags")
                 .field("error_resilient_mode", &self.get_error_resilient_mode())
                 .field("disable_cdf_update", &self.get_disable_cdf_update())
@@ -537,7 +542,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct EncodeAV1PictureInfo<'a> {
         pub flags: crate::vk::EncodeAV1PictureInfoFlags,
         pub frame_type: crate::vk::AV1FrameType,
@@ -753,8 +759,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeAV1ReferenceInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("EncodeAV1ReferenceInfoFlags")
                 .field(
                     "disable_frame_end_update_cdf",
@@ -786,7 +793,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct EncodeAV1ReferenceInfo<'a> {
         pub flags: crate::vk::EncodeAV1ReferenceInfoFlags,
         pub ref_frame_id: u32,

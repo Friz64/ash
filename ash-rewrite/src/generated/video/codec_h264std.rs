@@ -267,8 +267,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for H264SpsVuiFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("H264SpsVuiFlags")
                 .field(
                     "aspect_ratio_info_present_flag",
@@ -446,7 +447,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct H264HrdParameters {
         pub cpb_cnt_minus1: u8,
         pub bit_rate_scale: u8,
@@ -542,7 +544,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct H264SequenceParameterSetVui<'a> {
         pub flags: crate::vk::H264SpsVuiFlags,
         pub aspect_ratio_idc: crate::vk::H264AspectRatioIdc,
@@ -668,8 +671,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for H264SpsFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("H264SpsFlags")
                 .field("constraint_set0_flag", &self.get_constraint_set0_flag())
                 .field("constraint_set1_flag", &self.get_constraint_set1_flag())
@@ -875,7 +879,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct H264ScalingLists {
         pub scaling_list_present_mask: u16,
         pub use_default_scaling_matrix_mask: u16,
@@ -927,7 +932,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct H264SequenceParameterSet<'a> {
         pub flags: crate::vk::H264SpsFlags,
         pub profile_idc: crate::vk::H264ProfileIdc,
@@ -1104,8 +1110,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for H264PpsFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("H264PpsFlags")
                 .field("transform_8x8_mode_flag", &self.get_transform_8x8_mode_flag())
                 .field(
@@ -1222,7 +1229,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct H264PictureParameterSet<'a> {
         pub flags: crate::vk::H264PpsFlags,
         pub seq_parameter_set_id: u8,
@@ -1300,56 +1308,296 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264ChromaFormatIdc(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264ChromaFormatIdc {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::MONOCHROME => Some("MONOCHROME"),
+                Self::_420 => Some("_420"),
+                Self::_422 => Some("_422"),
+                Self::_444 => Some("_444"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264ProfileIdc(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264ProfileIdc {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::BASELINE => Some("BASELINE"),
+                Self::MAIN => Some("MAIN"),
+                Self::HIGH => Some("HIGH"),
+                Self::HIGH_10 => Some("HIGH_10"),
+                Self::HIGH_422 => Some("HIGH_422"),
+                Self::HIGH_444_PREDICTIVE => Some("HIGH_444_PREDICTIVE"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264LevelIdc(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264LevelIdc {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::_1_0 => Some("_1_0"),
+                Self::_1_1 => Some("_1_1"),
+                Self::_1_2 => Some("_1_2"),
+                Self::_1_3 => Some("_1_3"),
+                Self::_2_0 => Some("_2_0"),
+                Self::_2_1 => Some("_2_1"),
+                Self::_2_2 => Some("_2_2"),
+                Self::_3_0 => Some("_3_0"),
+                Self::_3_1 => Some("_3_1"),
+                Self::_3_2 => Some("_3_2"),
+                Self::_4_0 => Some("_4_0"),
+                Self::_4_1 => Some("_4_1"),
+                Self::_4_2 => Some("_4_2"),
+                Self::_5_0 => Some("_5_0"),
+                Self::_5_1 => Some("_5_1"),
+                Self::_5_2 => Some("_5_2"),
+                Self::_6_0 => Some("_6_0"),
+                Self::_6_1 => Some("_6_1"),
+                Self::_6_2 => Some("_6_2"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264PocType(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264PocType {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::_0 => Some("_0"),
+                Self::_1 => Some("_1"),
+                Self::_2 => Some("_2"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264AspectRatioIdc(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264AspectRatioIdc {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UNSPECIFIED => Some("UNSPECIFIED"),
+                Self::SQUARE => Some("SQUARE"),
+                Self::_12_11 => Some("_12_11"),
+                Self::_10_11 => Some("_10_11"),
+                Self::_16_11 => Some("_16_11"),
+                Self::_40_33 => Some("_40_33"),
+                Self::_24_11 => Some("_24_11"),
+                Self::_20_11 => Some("_20_11"),
+                Self::_32_11 => Some("_32_11"),
+                Self::_80_33 => Some("_80_33"),
+                Self::_18_11 => Some("_18_11"),
+                Self::_15_11 => Some("_15_11"),
+                Self::_64_33 => Some("_64_33"),
+                Self::_160_99 => Some("_160_99"),
+                Self::_4_3 => Some("_4_3"),
+                Self::_3_2 => Some("_3_2"),
+                Self::_2_1 => Some("_2_1"),
+                Self::EXTENDED_SAR => Some("EXTENDED_SAR"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264WeightedBipredIdc(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264WeightedBipredIdc {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEFAULT => Some("DEFAULT"),
+                Self::EXPLICIT => Some("EXPLICIT"),
+                Self::IMPLICIT => Some("IMPLICIT"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264ModificationOfPicNumsIdc(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264ModificationOfPicNumsIdc {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SHORT_TERM_SUBTRACT => Some("SHORT_TERM_SUBTRACT"),
+                Self::SHORT_TERM_ADD => Some("SHORT_TERM_ADD"),
+                Self::LONG_TERM => Some("LONG_TERM"),
+                Self::END => Some("END"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264MemMgmtControlOp(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264MemMgmtControlOp {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::END => Some("END"),
+                Self::UNMARK_SHORT_TERM => Some("UNMARK_SHORT_TERM"),
+                Self::UNMARK_LONG_TERM => Some("UNMARK_LONG_TERM"),
+                Self::MARK_LONG_TERM => Some("MARK_LONG_TERM"),
+                Self::SET_MAX_LONG_TERM_INDEX => Some("SET_MAX_LONG_TERM_INDEX"),
+                Self::UNMARK_ALL => Some("UNMARK_ALL"),
+                Self::MARK_CURRENT_AS_LONG_TERM => Some("MARK_CURRENT_AS_LONG_TERM"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264CabacInitIdc(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264CabacInitIdc {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::_0 => Some("_0"),
+                Self::_1 => Some("_1"),
+                Self::_2 => Some("_2"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264DisableDeblockingFilterIdc(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264DisableDeblockingFilterIdc {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DISABLED => Some("DISABLED"),
+                Self::ENABLED => Some("ENABLED"),
+                Self::PARTIAL => Some("PARTIAL"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264SliceType(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264SliceType {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::P => Some("P"),
+                Self::B => Some("B"),
+                Self::I => Some("I"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264PictureType(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264PictureType {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::P => Some("P"),
+                Self::B => Some("B"),
+                Self::I => Some("I"),
+                Self::IDR => Some("IDR"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct H264NonVclNaluType(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for H264NonVclNaluType {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SPS => Some("SPS"),
+                Self::PPS => Some("PPS"),
+                Self::AUD => Some("AUD"),
+                Self::PREFIX => Some("PREFIX"),
+                Self::END_OF_SEQUENCE => Some("END_OF_SEQUENCE"),
+                Self::END_OF_STREAM => Some("END_OF_STREAM"),
+                Self::PRECODED => Some("PRECODED"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub const H264_CPB_CNT_LIST_SIZE: u32 = 32;
     pub const H264_SCALING_LIST_4X4_NUM_LISTS: u32 = 6;
     pub const H264_SCALING_LIST_4X4_NUM_ELEMENTS: u32 = 16;

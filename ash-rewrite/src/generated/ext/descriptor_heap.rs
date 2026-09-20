@@ -344,7 +344,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_descriptor_heap";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct TensorViewCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -383,7 +384,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct HostAddressRangeEXT<'a> {
         pub address: *mut core::ffi::c_void,
         pub size: usize,
@@ -397,7 +399,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct HostAddressRangeConstEXT<'a> {
         pub address: *const core::ffi::c_void,
         pub size: usize,
@@ -411,7 +414,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct TexelBufferDescriptorInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -447,7 +451,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ImageDescriptorInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -480,7 +485,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ResourceDescriptorInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -513,7 +519,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct BindHeapInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -561,7 +568,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PushDataInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -594,7 +602,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourceConstantOffsetEXT<'a> {
         pub heap_offset: u32,
         pub heap_array_stride: u32,
@@ -632,7 +641,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourcePushIndexEXT<'a> {
         pub heap_offset: u32,
         pub push_offset: u32,
@@ -702,7 +712,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourceIndirectIndexEXT<'a> {
         pub heap_offset: u32,
         pub push_offset: u32,
@@ -782,7 +793,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourceIndirectIndexArrayEXT<'a> {
         pub heap_offset: u32,
         pub push_offset: u32,
@@ -849,7 +861,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourceHeapDataEXT {
         pub heap_offset: u32,
         pub push_offset: u32,
@@ -865,7 +878,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourceShaderRecordIndexEXT<'a> {
         pub heap_offset: u32,
         pub shader_record_offset: u32,
@@ -938,7 +952,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourceIndirectAddressEXT {
         pub push_offset: u32,
         pub address_offset: u32,
@@ -954,7 +969,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DescriptorSetAndBindingMappingEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1018,7 +1034,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1056,7 +1073,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1086,7 +1104,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct OpaqueCaptureDataCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1120,7 +1139,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutPushDataTokenNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1156,7 +1176,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct SubsampledImageFormatPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1189,7 +1210,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1230,7 +1252,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1422,7 +1445,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1464,7 +1488,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1528,9 +1553,10 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    #[cfg(feature = "debug")]
     impl<'a> core::fmt::Debug for ResourceDescriptorDataEXT<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            write!(f, "VkResourceDescriptorDataEXT")
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "ResourceDescriptorDataEXT < 'a >")
         }
     }
     #[repr(C)]
@@ -1557,15 +1583,46 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    #[cfg(feature = "debug")]
     impl<'a> core::fmt::Debug for DescriptorMappingSourceDataEXT<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            write!(f, "VkDescriptorMappingSourceDataEXT")
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "DescriptorMappingSourceDataEXT < 'a >")
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct DescriptorMappingSourceEXT(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DescriptorMappingSourceEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::HEAP_WITH_CONSTANT_OFFSET_EXT => {
+                    Some("HEAP_WITH_CONSTANT_OFFSET_EXT")
+                }
+                Self::HEAP_WITH_PUSH_INDEX_EXT => Some("HEAP_WITH_PUSH_INDEX_EXT"),
+                Self::HEAP_WITH_INDIRECT_INDEX_EXT => {
+                    Some("HEAP_WITH_INDIRECT_INDEX_EXT")
+                }
+                Self::HEAP_WITH_INDIRECT_INDEX_ARRAY_EXT => {
+                    Some("HEAP_WITH_INDIRECT_INDEX_ARRAY_EXT")
+                }
+                Self::RESOURCE_HEAP_DATA_EXT => Some("RESOURCE_HEAP_DATA_EXT"),
+                Self::PUSH_DATA_EXT => Some("PUSH_DATA_EXT"),
+                Self::PUSH_ADDRESS_EXT => Some("PUSH_ADDRESS_EXT"),
+                Self::INDIRECT_ADDRESS_EXT => Some("INDIRECT_ADDRESS_EXT"),
+                Self::HEAP_WITH_SHADER_RECORD_INDEX_EXT => {
+                    Some("HEAP_WITH_SHADER_RECORD_INDEX_EXT")
+                }
+                Self::SHADER_RECORD_DATA_EXT => Some("SHADER_RECORD_DATA_EXT"),
+                Self::SHADER_RECORD_ADDRESS_EXT => Some("SHADER_RECORD_ADDRESS_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct TensorViewCreateFlagsARM(u64);
@@ -1744,12 +1801,12 @@ pub(crate) mod reexport {
         }
     }
     impl core::fmt::Pointer for TensorARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     impl core::fmt::Debug for TensorARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

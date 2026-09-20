@@ -14,12 +14,41 @@ impl Code for Enum {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
         let name = ctx.type_tokens(self.name, false, &Lifetime::placeholder());
-        // TODO: proper Debug impl
+
+        let debug = {
+            let debug_items = (self.items.iter())
+                .filter_map(|(name, item)| {
+                    (!matches!(item.value, Value::Alias(..))).then_some(name)
+                })
+                .map(|&name| {
+                    let name = ctx.enumerator_tokens(name, self.name, false);
+                    let name_string = name.to_string();
+                    quote! { Self::#name => Some(#name_string), }
+                });
+
+            quote! {
+                #[cfg(feature = "debug")]
+                impl core::fmt::Debug for #name {
+                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                        if let Some(x) = match *self {
+                            #( #debug_items )*
+                            _ => None,
+                        } {
+                            f.write_str(x)
+                        } else {
+                            core::fmt::Debug::fmt(&self.0, f)
+                        }
+                    }
+                }
+            }
+        };
+
         let code = quote! {
             #[repr(transparent)]
             #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-            #[derive(Debug)]
             pub struct #name(pub(crate) i32);
+
+            #debug
         };
 
         let mut codemap = CodeMap::new(Destination::primary_location(self.required_by), code);

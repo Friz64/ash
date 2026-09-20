@@ -116,6 +116,34 @@ impl vk::Result {
     }
 }
 
+#[cfg(feature = "debug")]
+pub(crate) fn debug_flags<Value: Into<u64> + Copy>(
+    f: &mut core::fmt::Formatter<'_>,
+    known: &[(Value, &'static str)],
+    value: Value,
+) -> core::fmt::Result {
+    let mut first = true;
+    let mut accum = value.into();
+    for &(bit, name) in known {
+        let bit = bit.into();
+        if bit != 0 && accum & bit == bit {
+            if !first {
+                f.write_str(" | ")?;
+            }
+            f.write_str(name)?;
+            first = false;
+            accum &= !bit;
+        }
+    }
+    if accum != 0 {
+        if !first {
+            f.write_str(" | ")?;
+        }
+        write!(f, "{accum:b}")?;
+    }
+    Ok(())
+}
+
 /// Repeatedly calls `f` until it does not return [`vk::Result::INCOMPLETE`] anymore, ensuring all
 /// available data has been read into the vector.
 ///

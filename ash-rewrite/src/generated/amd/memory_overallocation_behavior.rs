@@ -24,7 +24,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_memory_overallocation_behavior";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DeviceMemoryOverallocationCreateInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -58,7 +59,21 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct MemoryOverallocationBehaviorAMD(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MemoryOverallocationBehaviorAMD {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEFAULT_AMD => Some("DEFAULT_AMD"),
+                Self::ALLOWED_AMD => Some("ALLOWED_AMD"),
+                Self::DISALLOWED_AMD => Some("DISALLOWED_AMD"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

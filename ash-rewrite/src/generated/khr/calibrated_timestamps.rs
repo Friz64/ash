@@ -141,7 +141,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_calibrated_timestamps";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct CalibratedTimestampInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -169,8 +170,27 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct TimeDomainKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for TimeDomainKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEVICE_KHR => Some("DEVICE_KHR"),
+                Self::CLOCK_MONOTONIC_KHR => Some("CLOCK_MONOTONIC_KHR"),
+                Self::CLOCK_MONOTONIC_RAW_KHR => Some("CLOCK_MONOTONIC_RAW_KHR"),
+                Self::QUERY_PERFORMANCE_COUNTER_KHR => {
+                    Some("QUERY_PERFORMANCE_COUNTER_KHR")
+                }
+                Self::PRESENT_STAGE_LOCAL_EXT => Some("PRESENT_STAGE_LOCAL_EXT"),
+                Self::SWAPCHAIN_LOCAL_EXT => Some("SWAPCHAIN_LOCAL_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_time_domain_count: *mut u32,

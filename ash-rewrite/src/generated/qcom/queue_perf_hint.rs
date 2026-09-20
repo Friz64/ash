@@ -82,7 +82,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_queue_perf_hint";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PerfHintInfoQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -115,7 +116,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -147,7 +149,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -181,8 +184,23 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct PerfHintTypeQCOM(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PerfHintTypeQCOM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEFAULT_QCOM => Some("DEFAULT_QCOM"),
+                Self::FREQUENCY_MIN_QCOM => Some("FREQUENCY_MIN_QCOM"),
+                Self::FREQUENCY_MAX_QCOM => Some("FREQUENCY_MAX_QCOM"),
+                Self::FREQUENCY_SCALED_QCOM => Some("FREQUENCY_SCALED_QCOM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkQueueSetPerfHintQCOM = unsafe extern "system" fn(
         queue: crate::vk::Queue,
         p_perf_hint_info: *const crate::vk::PerfHintInfoQCOM<'_>,

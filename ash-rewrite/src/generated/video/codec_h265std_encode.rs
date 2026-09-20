@@ -6,7 +6,8 @@ pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H265_ENCODE_API_
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h265_encode";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH265WeightTableFlags {
         pub luma_weight_l0_flag: u16,
         pub chroma_weight_l0_flag: u16,
@@ -32,7 +33,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct EncodeH265WeightTable {
         pub flags: crate::vk::EncodeH265WeightTableFlags,
         pub luma_log2_weight_denom: u8,
@@ -145,7 +147,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct EncodeH265LongTermRefPics {
         pub num_long_term_sps: u8,
         pub num_long_term_pics: u8,
@@ -237,8 +240,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH265SliceSegmentHeaderFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("EncodeH265SliceSegmentHeaderFlags")
                 .field(
                     "first_slice_segment_in_pic_flag",
@@ -402,7 +406,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH265SliceSegmentHeader<'a> {
         pub flags: crate::vk::EncodeH265SliceSegmentHeaderFlags,
         pub slice_type: crate::vk::H265SliceType,
@@ -503,8 +508,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH265ReferenceListsInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("EncodeH265ReferenceListsInfoFlags")
                 .field(
                     "ref_pic_list_modification_flag_l0",
@@ -543,7 +549,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct EncodeH265ReferenceListsInfo {
         pub flags: crate::vk::EncodeH265ReferenceListsInfoFlags,
         pub num_ref_idx_l0_active_minus1: u8,
@@ -638,8 +645,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH265PictureInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("EncodeH265PictureInfoFlags")
                 .field("is_reference", &self.get_is_reference())
                 .field("irap_pic_flag", &self.get_irap_pic_flag())
@@ -756,7 +764,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct EncodeH265PictureInfo<'a> {
         pub flags: crate::vk::EncodeH265PictureInfoFlags,
         pub pic_type: crate::vk::H265PictureType,
@@ -870,8 +879,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH265ReferenceInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("EncodeH265ReferenceInfoFlags")
                 .field(
                     "used_for_long_term_reference",
@@ -903,7 +913,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH265ReferenceInfo {
         pub flags: crate::vk::EncodeH265ReferenceInfoFlags,
         pub pic_type: crate::vk::H265PictureType,

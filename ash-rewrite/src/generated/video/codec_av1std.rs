@@ -252,8 +252,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1ColorConfigFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("AV1ColorConfigFlags")
                 .field("mono_chrome", &self.get_mono_chrome())
                 .field("color_range", &self.get_color_range())
@@ -304,7 +305,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct AV1ColorConfig {
         pub flags: crate::vk::AV1ColorConfigFlags,
         pub bit_depth: u8,
@@ -379,8 +381,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1TimingInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("AV1TimingInfoFlags")
                 .field("equal_picture_interval", &self.get_equal_picture_interval())
                 .finish()
@@ -397,7 +400,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct AV1TimingInfo {
         pub flags: crate::vk::AV1TimingInfoFlags,
         pub num_units_in_display_tick: u32,
@@ -459,8 +463,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1SequenceHeaderFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("AV1SequenceHeaderFlags")
                 .field("still_picture", &self.get_still_picture())
                 .field(
@@ -678,7 +683,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AV1SequenceHeader<'a> {
         pub flags: crate::vk::AV1SequenceHeaderFlags,
         pub seq_profile: crate::vk::AV1Profile,
@@ -807,8 +813,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1LoopFilterFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("AV1LoopFilterFlags")
                 .field(
                     "loop_filter_delta_enabled",
@@ -843,7 +850,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AV1LoopFilter {
         pub flags: crate::vk::AV1LoopFilterFlags,
         pub loop_filter_level: [u8; crate::vk::AV1_MAX_LOOP_FILTER_STRENGTHS as _],
@@ -919,8 +927,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1QuantizationFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("AV1QuantizationFlags")
                 .field("using_qmatrix", &self.get_using_qmatrix())
                 .field("diff_uv_delta", &self.get_diff_uv_delta())
@@ -946,7 +955,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct AV1Quantization {
         pub flags: crate::vk::AV1QuantizationFlags,
         pub base_q_idx: u8,
@@ -1002,7 +1012,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AV1Segmentation {
         pub feature_enabled: [u8; crate::vk::AV1_MAX_SEGMENTS as _],
         pub feature_data: [[i16; crate::vk::AV1_SEG_LVL_MAX
@@ -1046,8 +1057,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1TileInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("AV1TileInfoFlags")
                 .field(
                     "uniform_tile_spacing_flag",
@@ -1070,7 +1082,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AV1TileInfo<'a> {
         pub flags: crate::vk::AV1TileInfoFlags,
         pub tile_cols: u8,
@@ -1140,7 +1153,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AV1CDEF {
         pub cdef_damping_minus_3: u8,
         pub cdef_bits: u8,
@@ -1200,7 +1214,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AV1LoopRestoration {
         pub frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::AV1_MAX_NUM_PLANES
             as _],
@@ -1232,7 +1247,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AV1GlobalMotion {
         pub gm_type: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
         pub gm_params: [[i32; crate::vk::AV1_GLOBAL_MOTION_PARAMS
@@ -1279,8 +1295,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1FilmGrainFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("AV1FilmGrainFlags")
                 .field("chroma_scaling_from_luma", &self.get_chroma_scaling_from_luma())
                 .field("overlap_flag", &self.get_overlap_flag())
@@ -1330,7 +1347,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AV1FilmGrain {
         pub flags: crate::vk::AV1FilmGrainFlags,
         pub grain_scaling_minus_8: u8,
@@ -1523,48 +1541,281 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AV1Profile(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AV1Profile {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::MAIN => Some("MAIN"),
+                Self::HIGH => Some("HIGH"),
+                Self::PROFESSIONAL => Some("PROFESSIONAL"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AV1Level(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AV1Level {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::_2_0 => Some("_2_0"),
+                Self::_2_1 => Some("_2_1"),
+                Self::_2_2 => Some("_2_2"),
+                Self::_2_3 => Some("_2_3"),
+                Self::_3_0 => Some("_3_0"),
+                Self::_3_1 => Some("_3_1"),
+                Self::_3_2 => Some("_3_2"),
+                Self::_3_3 => Some("_3_3"),
+                Self::_4_0 => Some("_4_0"),
+                Self::_4_1 => Some("_4_1"),
+                Self::_4_2 => Some("_4_2"),
+                Self::_4_3 => Some("_4_3"),
+                Self::_5_0 => Some("_5_0"),
+                Self::_5_1 => Some("_5_1"),
+                Self::_5_2 => Some("_5_2"),
+                Self::_5_3 => Some("_5_3"),
+                Self::_6_0 => Some("_6_0"),
+                Self::_6_1 => Some("_6_1"),
+                Self::_6_2 => Some("_6_2"),
+                Self::_6_3 => Some("_6_3"),
+                Self::_7_0 => Some("_7_0"),
+                Self::_7_1 => Some("_7_1"),
+                Self::_7_2 => Some("_7_2"),
+                Self::_7_3 => Some("_7_3"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AV1FrameType(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AV1FrameType {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::KEY => Some("KEY"),
+                Self::INTER => Some("INTER"),
+                Self::INTRA_ONLY => Some("INTRA_ONLY"),
+                Self::SWITCH => Some("SWITCH"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AV1ReferenceName(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AV1ReferenceName {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::INTRA_FRAME => Some("INTRA_FRAME"),
+                Self::LAST_FRAME => Some("LAST_FRAME"),
+                Self::LAST2_FRAME => Some("LAST2_FRAME"),
+                Self::LAST3_FRAME => Some("LAST3_FRAME"),
+                Self::GOLDEN_FRAME => Some("GOLDEN_FRAME"),
+                Self::BWDREF_FRAME => Some("BWDREF_FRAME"),
+                Self::ALTREF2_FRAME => Some("ALTREF2_FRAME"),
+                Self::ALTREF_FRAME => Some("ALTREF_FRAME"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AV1InterpolationFilter(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AV1InterpolationFilter {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::EIGHTTAP => Some("EIGHTTAP"),
+                Self::EIGHTTAP_SMOOTH => Some("EIGHTTAP_SMOOTH"),
+                Self::EIGHTTAP_SHARP => Some("EIGHTTAP_SHARP"),
+                Self::BILINEAR => Some("BILINEAR"),
+                Self::SWITCHABLE => Some("SWITCHABLE"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AV1TxMode(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AV1TxMode {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ONLY_4X4 => Some("ONLY_4X4"),
+                Self::LARGEST => Some("LARGEST"),
+                Self::SELECT => Some("SELECT"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AV1FrameRestorationType(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AV1FrameRestorationType {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::NONE => Some("NONE"),
+                Self::WIENER => Some("WIENER"),
+                Self::SGRPROJ => Some("SGRPROJ"),
+                Self::SWITCHABLE => Some("SWITCHABLE"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AV1ColorPrimaries(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AV1ColorPrimaries {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::BT_709 => Some("BT_709"),
+                Self::UNSPECIFIED => Some("UNSPECIFIED"),
+                Self::BT_470_M => Some("BT_470_M"),
+                Self::BT_470_B_G => Some("BT_470_B_G"),
+                Self::BT_601 => Some("BT_601"),
+                Self::SMPTE_240 => Some("SMPTE_240"),
+                Self::GENERIC_FILM => Some("GENERIC_FILM"),
+                Self::BT_2020 => Some("BT_2020"),
+                Self::XYZ => Some("XYZ"),
+                Self::SMPTE_431 => Some("SMPTE_431"),
+                Self::SMPTE_432 => Some("SMPTE_432"),
+                Self::EBU_3213 => Some("EBU_3213"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AV1TransferCharacteristics(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AV1TransferCharacteristics {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::RESERVED_0 => Some("RESERVED_0"),
+                Self::BT_709 => Some("BT_709"),
+                Self::UNSPECIFIED => Some("UNSPECIFIED"),
+                Self::RESERVED_3 => Some("RESERVED_3"),
+                Self::BT_470_M => Some("BT_470_M"),
+                Self::BT_470_B_G => Some("BT_470_B_G"),
+                Self::BT_601 => Some("BT_601"),
+                Self::SMPTE_240 => Some("SMPTE_240"),
+                Self::LINEAR => Some("LINEAR"),
+                Self::LOG_100 => Some("LOG_100"),
+                Self::LOG_100_SQRT10 => Some("LOG_100_SQRT10"),
+                Self::IEC_61966 => Some("IEC_61966"),
+                Self::BT_1361 => Some("BT_1361"),
+                Self::SRGB => Some("SRGB"),
+                Self::BT_2020_10 => Some("BT_2020_10"),
+                Self::BT_2020_12 => Some("BT_2020_12"),
+                Self::SMPTE_2084 => Some("SMPTE_2084"),
+                Self::SMPTE_428 => Some("SMPTE_428"),
+                Self::HLG => Some("HLG"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AV1MatrixCoefficients(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AV1MatrixCoefficients {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::IDENTITY => Some("IDENTITY"),
+                Self::BT_709 => Some("BT_709"),
+                Self::UNSPECIFIED => Some("UNSPECIFIED"),
+                Self::RESERVED_3 => Some("RESERVED_3"),
+                Self::FCC => Some("FCC"),
+                Self::BT_470_B_G => Some("BT_470_B_G"),
+                Self::BT_601 => Some("BT_601"),
+                Self::SMPTE_240 => Some("SMPTE_240"),
+                Self::SMPTE_YCGCO => Some("SMPTE_YCGCO"),
+                Self::BT_2020_NCL => Some("BT_2020_NCL"),
+                Self::BT_2020_CL => Some("BT_2020_CL"),
+                Self::SMPTE_2085 => Some("SMPTE_2085"),
+                Self::CHROMAT_NCL => Some("CHROMAT_NCL"),
+                Self::CHROMAT_CL => Some("CHROMAT_CL"),
+                Self::ICTCP => Some("ICTCP"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct AV1ChromaSamplePosition(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AV1ChromaSamplePosition {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UNKNOWN => Some("UNKNOWN"),
+                Self::VERTICAL => Some("VERTICAL"),
+                Self::COLOCATED => Some("COLOCATED"),
+                Self::RESERVED => Some("RESERVED"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub const AV1_NUM_REF_FRAMES: u32 = 8;
     pub const AV1_REFS_PER_FRAME: u32 = 7;
     pub const AV1_TOTAL_REFS_PER_FRAME: u32 = 8;

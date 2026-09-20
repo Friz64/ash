@@ -165,7 +165,8 @@ pub const SPEC_VERSION: u32 = 10;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_report";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DebugReportCallbackCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -210,8 +211,72 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct DebugReportObjectTypeEXT(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DebugReportObjectTypeEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UNKNOWN_EXT => Some("UNKNOWN_EXT"),
+                Self::INSTANCE_EXT => Some("INSTANCE_EXT"),
+                Self::PHYSICAL_DEVICE_EXT => Some("PHYSICAL_DEVICE_EXT"),
+                Self::DEVICE_EXT => Some("DEVICE_EXT"),
+                Self::QUEUE_EXT => Some("QUEUE_EXT"),
+                Self::SEMAPHORE_EXT => Some("SEMAPHORE_EXT"),
+                Self::COMMAND_BUFFER_EXT => Some("COMMAND_BUFFER_EXT"),
+                Self::FENCE_EXT => Some("FENCE_EXT"),
+                Self::DEVICE_MEMORY_EXT => Some("DEVICE_MEMORY_EXT"),
+                Self::BUFFER_EXT => Some("BUFFER_EXT"),
+                Self::IMAGE_EXT => Some("IMAGE_EXT"),
+                Self::EVENT_EXT => Some("EVENT_EXT"),
+                Self::QUERY_POOL_EXT => Some("QUERY_POOL_EXT"),
+                Self::BUFFER_VIEW_EXT => Some("BUFFER_VIEW_EXT"),
+                Self::IMAGE_VIEW_EXT => Some("IMAGE_VIEW_EXT"),
+                Self::SHADER_MODULE_EXT => Some("SHADER_MODULE_EXT"),
+                Self::PIPELINE_CACHE_EXT => Some("PIPELINE_CACHE_EXT"),
+                Self::PIPELINE_LAYOUT_EXT => Some("PIPELINE_LAYOUT_EXT"),
+                Self::RENDER_PASS_EXT => Some("RENDER_PASS_EXT"),
+                Self::PIPELINE_EXT => Some("PIPELINE_EXT"),
+                Self::DESCRIPTOR_SET_LAYOUT_EXT => Some("DESCRIPTOR_SET_LAYOUT_EXT"),
+                Self::SAMPLER_EXT => Some("SAMPLER_EXT"),
+                Self::DESCRIPTOR_POOL_EXT => Some("DESCRIPTOR_POOL_EXT"),
+                Self::DESCRIPTOR_SET_EXT => Some("DESCRIPTOR_SET_EXT"),
+                Self::FRAMEBUFFER_EXT => Some("FRAMEBUFFER_EXT"),
+                Self::COMMAND_POOL_EXT => Some("COMMAND_POOL_EXT"),
+                Self::SURFACE_KHR_EXT => Some("SURFACE_KHR_EXT"),
+                Self::SWAPCHAIN_KHR_EXT => Some("SWAPCHAIN_KHR_EXT"),
+                Self::DEBUG_REPORT_CALLBACK_EXT_EXT => {
+                    Some("DEBUG_REPORT_CALLBACK_EXT_EXT")
+                }
+                Self::DISPLAY_KHR_EXT => Some("DISPLAY_KHR_EXT"),
+                Self::DISPLAY_MODE_KHR_EXT => Some("DISPLAY_MODE_KHR_EXT"),
+                Self::VALIDATION_CACHE_EXT_EXT => Some("VALIDATION_CACHE_EXT_EXT"),
+                Self::SAMPLER_YCBCR_CONVERSION_EXT => {
+                    Some("SAMPLER_YCBCR_CONVERSION_EXT")
+                }
+                Self::DESCRIPTOR_UPDATE_TEMPLATE_EXT => {
+                    Some("DESCRIPTOR_UPDATE_TEMPLATE_EXT")
+                }
+                Self::CU_MODULE_NVX_EXT => Some("CU_MODULE_NVX_EXT"),
+                Self::CU_FUNCTION_NVX_EXT => Some("CU_FUNCTION_NVX_EXT"),
+                Self::ACCELERATION_STRUCTURE_KHR_EXT => {
+                    Some("ACCELERATION_STRUCTURE_KHR_EXT")
+                }
+                Self::ACCELERATION_STRUCTURE_NV_EXT => {
+                    Some("ACCELERATION_STRUCTURE_NV_EXT")
+                }
+                Self::CUDA_MODULE_NV_EXT => Some("CUDA_MODULE_NV_EXT"),
+                Self::CUDA_FUNCTION_NV_EXT => Some("CUDA_FUNCTION_NV_EXT"),
+                Self::BUFFER_COLLECTION_FUCHSIA_EXT => {
+                    Some("BUFFER_COLLECTION_FUCHSIA_EXT")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct DebugReportFlagsEXT(u32);
@@ -304,12 +369,12 @@ pub(crate) mod reexport {
         }
     }
     impl core::fmt::Pointer for DebugReportCallbackEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     impl core::fmt::Debug for DebugReportCallbackEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

@@ -187,7 +187,8 @@ pub const SPEC_VERSION: u32 = 4;
 pub const NAME: &core::ffi::CStr = c"VK_NV_cooperative_vector";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -228,7 +229,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct CooperativeVectorPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -294,7 +296,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -356,7 +359,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ConvertCooperativeVectorMatrixInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -466,12 +470,59 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct ComponentTypeKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ComponentTypeKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::FLOAT16_KHR => Some("FLOAT16_KHR"),
+                Self::FLOAT32_KHR => Some("FLOAT32_KHR"),
+                Self::FLOAT64_KHR => Some("FLOAT64_KHR"),
+                Self::SINT8_KHR => Some("SINT8_KHR"),
+                Self::SINT16_KHR => Some("SINT16_KHR"),
+                Self::SINT32_KHR => Some("SINT32_KHR"),
+                Self::SINT64_KHR => Some("SINT64_KHR"),
+                Self::UINT8_KHR => Some("UINT8_KHR"),
+                Self::UINT16_KHR => Some("UINT16_KHR"),
+                Self::UINT32_KHR => Some("UINT32_KHR"),
+                Self::UINT64_KHR => Some("UINT64_KHR"),
+                Self::BFLOAT16_KHR => Some("BFLOAT16_KHR"),
+                Self::SINT8_PACKED_NV => Some("SINT8_PACKED_NV"),
+                Self::UINT8_PACKED_NV => Some("UINT8_PACKED_NV"),
+                Self::FLOAT8_E4M3_EXT => Some("FLOAT8_E4M3_EXT"),
+                Self::FLOAT8_E5M2_EXT => Some("FLOAT8_E5M2_EXT"),
+                Self::FLOAT6_E2M3_EXT => Some("FLOAT6_E2M3_EXT"),
+                Self::FLOAT6_E3M2_EXT => Some("FLOAT6_E3M2_EXT"),
+                Self::FLOAT4_E2M1_EXT => Some("FLOAT4_E2M1_EXT"),
+                Self::FLOAT8_UNSIGNED_E8M0_EXT => Some("FLOAT8_UNSIGNED_E8M0_EXT"),
+                Self::MXINT8_EXT => Some("MXINT8_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct CooperativeVectorMatrixLayoutNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CooperativeVectorMatrixLayoutNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ROW_MAJOR_NV => Some("ROW_MAJOR_NV"),
+                Self::COLUMN_MAJOR_NV => Some("COLUMN_MAJOR_NV"),
+                Self::INFERENCING_OPTIMAL_NV => Some("INFERENCING_OPTIMAL_NV"),
+                Self::TRAINING_OPTIMAL_NV => Some("TRAINING_OPTIMAL_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_property_count: *mut u32,

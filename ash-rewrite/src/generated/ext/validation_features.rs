@@ -45,7 +45,8 @@ pub const SPEC_VERSION: u32 = 6;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_features";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ValidationFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -107,11 +108,50 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct ValidationFeatureEnableEXT(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ValidationFeatureEnableEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::GPU_ASSISTED_EXT => Some("GPU_ASSISTED_EXT"),
+                Self::GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT => {
+                    Some("GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT")
+                }
+                Self::BEST_PRACTICES_EXT => Some("BEST_PRACTICES_EXT"),
+                Self::DEBUG_PRINTF_EXT => Some("DEBUG_PRINTF_EXT"),
+                Self::SYNCHRONIZATION_VALIDATION_EXT => {
+                    Some("SYNCHRONIZATION_VALIDATION_EXT")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct ValidationFeatureDisableEXT(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ValidationFeatureDisableEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ALL_EXT => Some("ALL_EXT"),
+                Self::SHADERS_EXT => Some("SHADERS_EXT"),
+                Self::THREAD_SAFETY_EXT => Some("THREAD_SAFETY_EXT"),
+                Self::API_PARAMETERS_EXT => Some("API_PARAMETERS_EXT"),
+                Self::OBJECT_LIFETIMES_EXT => Some("OBJECT_LIFETIMES_EXT"),
+                Self::CORE_CHECKS_EXT => Some("CORE_CHECKS_EXT"),
+                Self::UNIQUE_HANDLES_EXT => Some("UNIQUE_HANDLES_EXT"),
+                Self::SHADER_VALIDATION_CACHE_EXT => Some("SHADER_VALIDATION_CACHE_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

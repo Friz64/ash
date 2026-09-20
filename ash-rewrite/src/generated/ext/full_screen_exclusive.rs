@@ -174,7 +174,8 @@ pub const SPEC_VERSION: u32 = 4;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_full_screen_exclusive";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct SurfaceFullScreenExclusiveInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -209,7 +210,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -241,7 +243,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -276,8 +279,23 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct FullScreenExclusiveEXT(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FullScreenExclusiveEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEFAULT_EXT => Some("DEFAULT_EXT"),
+                Self::ALLOWED_EXT => Some("ALLOWED_EXT"),
+                Self::DISALLOWED_EXT => Some("DISALLOWED_EXT"),
+                Self::APPLICATION_CONTROLLED_EXT => Some("APPLICATION_CONTROLLED_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,

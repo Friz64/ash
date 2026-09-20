@@ -79,7 +79,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_shader_info";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct ShaderResourceUsageAMD {
         pub num_used_vgprs: u32,
         pub num_used_sgprs: u32,
@@ -119,7 +120,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ShaderStatisticsInfoAMD {
         pub shader_stage_mask: crate::vk::ShaderStageFlags,
         pub resource_usage: crate::vk::ShaderResourceUsageAMD,
@@ -183,8 +185,22 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct ShaderInfoTypeAMD(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ShaderInfoTypeAMD {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::STATISTICS_AMD => Some("STATISTICS_AMD"),
+                Self::BINARY_AMD => Some("BINARY_AMD"),
+                Self::DISASSEMBLY_AMD => Some("DISASSEMBLY_AMD"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetShaderInfoAMD = unsafe extern "system" fn(
         device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,

@@ -84,7 +84,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_memory_decompression";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct DecompressMemoryRegionNV {
         pub src_address: crate::vk::DeviceAddress,
         pub dst_address: crate::vk::DeviceAddress,

@@ -37,8 +37,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeH264PictureInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("DecodeH264PictureInfoFlags")
                 .field("field_pic_flag", &self.get_field_pic_flag())
                 .field("is_intra", &self.get_is_intra())
@@ -103,7 +104,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DecodeH264PictureInfo {
         pub flags: crate::vk::DecodeH264PictureInfoFlags,
         pub seq_parameter_set_id: u8,
@@ -182,8 +184,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeH264ReferenceInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("DecodeH264ReferenceInfoFlags")
                 .field("top_field_flag", &self.get_top_field_flag())
                 .field("bottom_field_flag", &self.get_bottom_field_flag())
@@ -234,7 +237,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DecodeH264ReferenceInfo {
         pub flags: crate::vk::DecodeH264ReferenceInfoFlags,
         pub frame_num: u16,
@@ -275,8 +279,22 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct DecodeH264FieldOrderCount(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DecodeH264FieldOrderCount {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::TOP => Some("TOP"),
+                Self::BOTTOM => Some("BOTTOM"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub const DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE: u32 = 2;
     pub const STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0: u32 = crate::vk::make_video_std_version(
         1,

@@ -21,8 +21,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeH265PictureInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("DecodeH265PictureInfoFlags")
                 .field("irap_pic_flag", &self.get_irap_pic_flag())
                 .field("idr_pic_flag", &self.get_idr_pic_flag())
@@ -73,7 +74,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DecodeH265PictureInfo {
         pub flags: crate::vk::DecodeH265PictureInfoFlags,
         pub sps_video_parameter_set_id: u8,
@@ -186,8 +188,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeH265ReferenceInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("DecodeH265ReferenceInfoFlags")
                 .field(
                     "used_for_long_term_reference",
@@ -219,7 +222,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct DecodeH265ReferenceInfo {
         pub flags: crate::vk::DecodeH265ReferenceInfoFlags,
         pub pic_order_cnt_val: i32,

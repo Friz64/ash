@@ -265,7 +265,8 @@ pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_INTEL_performance_query";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct PerformanceValueINTEL {
         pub _type: crate::vk::PerformanceValueTypeINTEL,
         pub data: crate::vk::PerformanceValueDataINTEL,
@@ -281,7 +282,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct InitializePerformanceApiInfoINTEL<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -309,7 +311,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -342,7 +345,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PerformanceMarkerInfoINTEL<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -369,7 +373,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PerformanceStreamMarkerInfoINTEL<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -396,7 +401,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PerformanceOverrideInfoINTEL<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -435,7 +441,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PerformanceConfigurationAcquireInfoINTEL<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -482,31 +489,100 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for PerformanceValueDataINTEL {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            write!(f, "VkPerformanceValueDataINTEL")
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "PerformanceValueDataINTEL")
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct PerformanceConfigurationTypeINTEL(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PerformanceConfigurationTypeINTEL {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL => {
+                    Some("COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct QueryPoolSamplingModeINTEL(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for QueryPoolSamplingModeINTEL {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::MANUAL_INTEL => Some("MANUAL_INTEL"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct PerformanceOverrideTypeINTEL(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PerformanceOverrideTypeINTEL {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::NULL_HARDWARE_INTEL => Some("NULL_HARDWARE_INTEL"),
+                Self::FLUSH_GPU_CACHES_INTEL => Some("FLUSH_GPU_CACHES_INTEL"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct PerformanceParameterTypeINTEL(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PerformanceParameterTypeINTEL {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::HW_COUNTERS_SUPPORTED_INTEL => Some("HW_COUNTERS_SUPPORTED_INTEL"),
+                Self::STREAM_MARKER_VALIDS_INTEL => Some("STREAM_MARKER_VALIDS_INTEL"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct PerformanceValueTypeINTEL(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PerformanceValueTypeINTEL {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UINT32_INTEL => Some("UINT32_INTEL"),
+                Self::UINT64_INTEL => Some("UINT64_INTEL"),
+                Self::FLOAT_INTEL => Some("FLOAT_INTEL"),
+                Self::BOOL_INTEL => Some("BOOL_INTEL"),
+                Self::STRING_INTEL => Some("STRING_INTEL"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct PerformanceConfigurationINTEL(u64);
@@ -525,12 +601,12 @@ pub(crate) mod reexport {
         }
     }
     impl core::fmt::Pointer for PerformanceConfigurationINTEL {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     impl core::fmt::Debug for PerformanceConfigurationINTEL {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

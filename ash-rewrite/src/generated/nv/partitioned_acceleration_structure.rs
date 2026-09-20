@@ -126,7 +126,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_partitioned_acceleration_structure";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -162,7 +163,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -192,7 +194,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct BuildPartitionedAccelerationStructureIndirectCommandNV {
         pub op_type: crate::vk::PartitionedAccelerationStructureOpTypeNV,
         pub arg_count: u32,
@@ -216,7 +219,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PartitionedAccelerationStructureFlagsNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -251,7 +255,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PartitionedAccelerationStructureWriteInstanceDataNV {
         pub transform: crate::vk::TransformMatrixKHR,
         pub explicit_aabb: [core::ffi::c_float; 6 as _],
@@ -329,7 +334,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct PartitionedAccelerationStructureUpdateInstanceDataNV {
         pub instance_index: u32,
         pub instance_contribution_to_hit_group_index: u32,
@@ -356,7 +362,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PartitionedAccelerationStructureWritePartitionTranslationDataNV {
         pub partition_index: u32,
         pub partition_translation: [core::ffi::c_float; 3 as _],
@@ -383,7 +390,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -419,7 +427,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PartitionedAccelerationStructureInstancesInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -480,7 +489,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct BuildPartitionedAccelerationStructureInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -551,8 +561,24 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct PartitionedAccelerationStructureOpTypeNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PartitionedAccelerationStructureOpTypeNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::WRITE_INSTANCE_NV => Some("WRITE_INSTANCE_NV"),
+                Self::UPDATE_INSTANCE_NV => Some("UPDATE_INSTANCE_NV"),
+                Self::WRITE_PARTITION_TRANSLATION_NV => {
+                    Some("WRITE_PARTITION_TRANSLATION_NV")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct PartitionedAccelerationStructureInstanceFlagsNV(u32);

@@ -6,7 +6,8 @@ pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H264_ENCODE_API_
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_encode";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH264WeightTableFlags {
         pub luma_weight_l0_flag: u32,
         pub chroma_weight_l0_flag: u32,
@@ -32,7 +33,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct EncodeH264WeightTable {
         pub flags: crate::vk::EncodeH264WeightTableFlags,
         pub luma_log2_weight_denom: u8,
@@ -155,8 +157,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH264SliceHeaderFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("EncodeH264SliceHeaderFlags")
                 .field(
                     "direct_spatial_mv_pred_flag",
@@ -211,8 +214,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH264PictureInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("EncodeH264PictureInfoFlags")
                 .field("idr_pic_flag", &self.get_idr_pic_flag())
                 .field("is_reference", &self.get_is_reference())
@@ -294,8 +298,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH264ReferenceInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("EncodeH264ReferenceInfoFlags")
                 .field(
                     "used_for_long_term_reference",
@@ -331,8 +336,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH264ReferenceListsInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("EncodeH264ReferenceListsInfoFlags")
                 .field(
                     "ref_pic_list_modification_flag_l0",
@@ -371,7 +377,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH264RefListModEntry {
         pub modification_of_pic_nums_idc: crate::vk::H264ModificationOfPicNumsIdc,
         pub abs_diff_pic_num_minus1: u16,
@@ -395,7 +402,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH264RefPicMarkingEntry {
         pub memory_management_control_operation: crate::vk::H264MemMgmtControlOp,
         pub difference_of_pic_nums_minus1: u16,
@@ -435,7 +443,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct EncodeH264ReferenceListsInfo<'a> {
         pub flags: crate::vk::EncodeH264ReferenceListsInfoFlags,
         pub num_ref_idx_l0_active_minus1: u8,
@@ -536,7 +545,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct EncodeH264PictureInfo<'a> {
         pub flags: crate::vk::EncodeH264PictureInfoFlags,
         pub seq_parameter_set_id: u8,
@@ -616,7 +626,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH264ReferenceInfo {
         pub flags: crate::vk::EncodeH264ReferenceInfoFlags,
         pub primary_pic_type: crate::vk::H264PictureType,
@@ -660,7 +671,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct EncodeH264SliceHeader<'a> {
         pub flags: crate::vk::EncodeH264SliceHeaderFlags,
         pub first_mb_in_slice: u32,

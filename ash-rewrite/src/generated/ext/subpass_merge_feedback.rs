@@ -40,7 +40,8 @@ pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_subpass_merge_feedback";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct RenderPassCreationControlEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -71,7 +72,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct RenderPassCreationFeedbackInfoEXT {
         pub post_merge_subpass_count: u32,
     }
@@ -85,7 +87,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct RenderPassCreationFeedbackCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -133,8 +136,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for RenderPassSubpassFeedbackInfoEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("RenderPassSubpassFeedbackInfoEXT")
                 .field("subpass_merge_status", &self.subpass_merge_status)
                 .field("description", &self.description_as_c_str())
@@ -168,7 +172,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct RenderPassSubpassFeedbackCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -201,7 +206,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -234,7 +240,48 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct SubpassMergeStatusEXT(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SubpassMergeStatusEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::MERGED_EXT => Some("MERGED_EXT"),
+                Self::DISALLOWED_EXT => Some("DISALLOWED_EXT"),
+                Self::NOT_MERGED_SIDE_EFFECTS_EXT => Some("NOT_MERGED_SIDE_EFFECTS_EXT"),
+                Self::NOT_MERGED_SAMPLES_MISMATCH_EXT => {
+                    Some("NOT_MERGED_SAMPLES_MISMATCH_EXT")
+                }
+                Self::NOT_MERGED_VIEWS_MISMATCH_EXT => {
+                    Some("NOT_MERGED_VIEWS_MISMATCH_EXT")
+                }
+                Self::NOT_MERGED_ALIASING_EXT => Some("NOT_MERGED_ALIASING_EXT"),
+                Self::NOT_MERGED_DEPENDENCIES_EXT => Some("NOT_MERGED_DEPENDENCIES_EXT"),
+                Self::NOT_MERGED_INCOMPATIBLE_INPUT_ATTACHMENT_EXT => {
+                    Some("NOT_MERGED_INCOMPATIBLE_INPUT_ATTACHMENT_EXT")
+                }
+                Self::NOT_MERGED_TOO_MANY_ATTACHMENTS_EXT => {
+                    Some("NOT_MERGED_TOO_MANY_ATTACHMENTS_EXT")
+                }
+                Self::NOT_MERGED_INSUFFICIENT_STORAGE_EXT => {
+                    Some("NOT_MERGED_INSUFFICIENT_STORAGE_EXT")
+                }
+                Self::NOT_MERGED_DEPTH_STENCIL_COUNT_EXT => {
+                    Some("NOT_MERGED_DEPTH_STENCIL_COUNT_EXT")
+                }
+                Self::NOT_MERGED_RESOLVE_ATTACHMENT_REUSE_EXT => {
+                    Some("NOT_MERGED_RESOLVE_ATTACHMENT_REUSE_EXT")
+                }
+                Self::NOT_MERGED_SINGLE_SUBPASS_EXT => {
+                    Some("NOT_MERGED_SINGLE_SUBPASS_EXT")
+                }
+                Self::NOT_MERGED_UNSPECIFIED_EXT => Some("NOT_MERGED_UNSPECIFIED_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

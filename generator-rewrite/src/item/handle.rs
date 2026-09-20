@@ -49,13 +49,13 @@ impl Code for Handle {
                 }
 
                 impl core::fmt::Pointer for #name {
-                    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                         core::fmt::Pointer::fmt(&self.0, f)
                     }
                 }
 
                 impl core::fmt::Debug for #name {
-                    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                         core::fmt::Debug::fmt(&self.0, f)
                     }
                 }
@@ -85,13 +85,13 @@ impl Code for Handle {
                 }
 
                 impl core::fmt::Pointer for #name {
-                    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                         write!(f, "0x{:x}", self.0)
                     }
                 }
 
                 impl core::fmt::Debug for #name {
-                    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                         write!(f, "0x{:x}", self.0)
                     }
                 }

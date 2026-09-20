@@ -125,7 +125,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_device_fault";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct DeviceFaultAddressInfoKHR {
         pub address_type: crate::vk::DeviceFaultAddressTypeKHR,
         pub reported_address: crate::vk::DeviceAddress,
@@ -170,8 +171,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for DeviceFaultVendorInfoKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("DeviceFaultVendorInfoKHR")
                 .field("description", &self.description_as_c_str())
                 .field("vendor_fault_code", &self.vendor_fault_code)
@@ -232,8 +234,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl<'a> core::fmt::Debug for DeviceFaultInfoKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("DeviceFaultInfoKHR < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
@@ -290,7 +293,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DeviceFaultDebugInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -320,7 +324,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DeviceFaultVendorBinaryHeaderVersionOneKHR {
         pub header_size: u32,
         pub header_version: crate::vk::DeviceFaultVendorBinaryHeaderVersionKHR,
@@ -404,7 +409,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFaultFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -463,7 +469,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFaultPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -493,12 +500,48 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct DeviceFaultAddressTypeKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceFaultAddressTypeKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::NONE_KHR => Some("NONE_KHR"),
+                Self::READ_INVALID_KHR => Some("READ_INVALID_KHR"),
+                Self::WRITE_INVALID_KHR => Some("WRITE_INVALID_KHR"),
+                Self::EXECUTE_INVALID_KHR => Some("EXECUTE_INVALID_KHR"),
+                Self::INSTRUCTION_POINTER_UNKNOWN_KHR => {
+                    Some("INSTRUCTION_POINTER_UNKNOWN_KHR")
+                }
+                Self::INSTRUCTION_POINTER_INVALID_KHR => {
+                    Some("INSTRUCTION_POINTER_INVALID_KHR")
+                }
+                Self::INSTRUCTION_POINTER_FAULT_KHR => {
+                    Some("INSTRUCTION_POINTER_FAULT_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct DeviceFaultVendorBinaryHeaderVersionKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceFaultVendorBinaryHeaderVersionKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ONE_KHR => Some("ONE_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct DeviceFaultFlagsKHR(u32);

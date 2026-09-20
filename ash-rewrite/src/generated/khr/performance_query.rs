@@ -227,7 +227,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_performance_query";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -273,7 +274,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -307,7 +309,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PerformanceCounterKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -381,8 +384,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl<'a> core::fmt::Debug for PerformanceCounterDescriptionKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("PerformanceCounterDescriptionKHR < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
@@ -437,7 +441,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct QueryPoolPerformanceCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -476,7 +481,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct AcquireProfilingLockInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -509,7 +515,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PerformanceQuerySubmitInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -554,23 +561,77 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for PerformanceCounterResultKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            write!(f, "VkPerformanceCounterResultKHR")
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "PerformanceCounterResultKHR")
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct PerformanceCounterScopeKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PerformanceCounterScopeKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::COMMAND_BUFFER_KHR => Some("COMMAND_BUFFER_KHR"),
+                Self::RENDER_PASS_KHR => Some("RENDER_PASS_KHR"),
+                Self::COMMAND_KHR => Some("COMMAND_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct PerformanceCounterUnitKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PerformanceCounterUnitKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::GENERIC_KHR => Some("GENERIC_KHR"),
+                Self::PERCENTAGE_KHR => Some("PERCENTAGE_KHR"),
+                Self::NANOSECONDS_KHR => Some("NANOSECONDS_KHR"),
+                Self::BYTES_KHR => Some("BYTES_KHR"),
+                Self::BYTES_PER_SECOND_KHR => Some("BYTES_PER_SECOND_KHR"),
+                Self::KELVIN_KHR => Some("KELVIN_KHR"),
+                Self::WATTS_KHR => Some("WATTS_KHR"),
+                Self::VOLTS_KHR => Some("VOLTS_KHR"),
+                Self::AMPS_KHR => Some("AMPS_KHR"),
+                Self::HERTZ_KHR => Some("HERTZ_KHR"),
+                Self::CYCLES_KHR => Some("CYCLES_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct PerformanceCounterStorageKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PerformanceCounterStorageKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::INT32_KHR => Some("INT32_KHR"),
+                Self::INT64_KHR => Some("INT64_KHR"),
+                Self::UINT32_KHR => Some("UINT32_KHR"),
+                Self::UINT64_KHR => Some("UINT64_KHR"),
+                Self::FLOAT32_KHR => Some("FLOAT32_KHR"),
+                Self::FLOAT64_KHR => Some("FLOAT64_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct PerformanceCounterDescriptionFlagsKHR(u32);

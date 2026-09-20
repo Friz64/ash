@@ -29,7 +29,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_viewport_swizzle";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct ViewportSwizzleNV {
         pub x: crate::vk::ViewportCoordinateSwizzleNV,
         pub y: crate::vk::ViewportCoordinateSwizzleNV,
@@ -55,7 +56,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PipelineViewportSwizzleStateCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -101,8 +103,27 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct ViewportCoordinateSwizzleNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ViewportCoordinateSwizzleNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::POSITIVE_X_NV => Some("POSITIVE_X_NV"),
+                Self::NEGATIVE_X_NV => Some("NEGATIVE_X_NV"),
+                Self::POSITIVE_Y_NV => Some("POSITIVE_Y_NV"),
+                Self::NEGATIVE_Y_NV => Some("NEGATIVE_Y_NV"),
+                Self::POSITIVE_Z_NV => Some("POSITIVE_Z_NV"),
+                Self::NEGATIVE_Z_NV => Some("NEGATIVE_Z_NV"),
+                Self::POSITIVE_W_NV => Some("POSITIVE_W_NV"),
+                Self::NEGATIVE_W_NV => Some("NEGATIVE_W_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineViewportSwizzleStateCreateFlagsNV(u32);

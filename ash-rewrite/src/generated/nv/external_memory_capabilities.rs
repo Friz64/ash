@@ -82,7 +82,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_capabilities";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct ExternalImageFormatPropertiesNV {
         pub image_format_properties: crate::vk::ImageFormatProperties,
         pub external_memory_features: crate::vk::ExternalMemoryFeatureFlagsNV,

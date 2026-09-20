@@ -166,7 +166,8 @@ pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_NV_shading_rate_image";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct ShadingRatePaletteNV<'a> {
         pub shading_rate_palette_entry_count: u32,
         pub p_shading_rate_palette_entries: *const crate::vk::ShadingRatePaletteEntryNV,
@@ -184,7 +185,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -229,7 +231,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShadingRateImageFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -271,7 +274,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShadingRateImagePropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -322,7 +326,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct CoarseSampleLocationNV {
         pub pixel_x: u32,
         pub pixel_y: u32,
@@ -343,7 +348,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct CoarseSampleOrderCustomNV<'a> {
         pub shading_rate: crate::vk::ShadingRatePaletteEntryNV,
         pub sample_count: u32,
@@ -373,7 +379,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -419,12 +426,64 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct ShadingRatePaletteEntryNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ShadingRatePaletteEntryNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::NO_INVOCATIONS_NV => Some("NO_INVOCATIONS_NV"),
+                Self::_16_INVOCATIONS_PER_PIXEL_NV => {
+                    Some("_16_INVOCATIONS_PER_PIXEL_NV")
+                }
+                Self::_8_INVOCATIONS_PER_PIXEL_NV => Some("_8_INVOCATIONS_PER_PIXEL_NV"),
+                Self::_4_INVOCATIONS_PER_PIXEL_NV => Some("_4_INVOCATIONS_PER_PIXEL_NV"),
+                Self::_2_INVOCATIONS_PER_PIXEL_NV => Some("_2_INVOCATIONS_PER_PIXEL_NV"),
+                Self::_1_INVOCATION_PER_PIXEL_NV => Some("_1_INVOCATION_PER_PIXEL_NV"),
+                Self::_1_INVOCATION_PER_2X1_PIXELS_NV => {
+                    Some("_1_INVOCATION_PER_2X1_PIXELS_NV")
+                }
+                Self::_1_INVOCATION_PER_1X2_PIXELS_NV => {
+                    Some("_1_INVOCATION_PER_1X2_PIXELS_NV")
+                }
+                Self::_1_INVOCATION_PER_2X2_PIXELS_NV => {
+                    Some("_1_INVOCATION_PER_2X2_PIXELS_NV")
+                }
+                Self::_1_INVOCATION_PER_4X2_PIXELS_NV => {
+                    Some("_1_INVOCATION_PER_4X2_PIXELS_NV")
+                }
+                Self::_1_INVOCATION_PER_2X4_PIXELS_NV => {
+                    Some("_1_INVOCATION_PER_2X4_PIXELS_NV")
+                }
+                Self::_1_INVOCATION_PER_4X4_PIXELS_NV => {
+                    Some("_1_INVOCATION_PER_4X4_PIXELS_NV")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct CoarseSampleOrderTypeNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CoarseSampleOrderTypeNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEFAULT_NV => Some("DEFAULT_NV"),
+                Self::CUSTOM_NV => Some("CUSTOM_NV"),
+                Self::PIXEL_MAJOR_NV => Some("PIXEL_MAJOR_NV"),
+                Self::SAMPLE_MAJOR_NV => Some("SAMPLE_MAJOR_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkCmdBindShadingRateImageNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         image_view: crate::vk::ImageView,

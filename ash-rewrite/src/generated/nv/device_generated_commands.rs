@@ -204,7 +204,8 @@ pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -239,7 +240,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -344,7 +346,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GraphicsShaderGroupCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -399,7 +402,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -444,7 +448,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct BindShaderGroupIndirectCommandNV {
         pub group_index: u32,
     }
@@ -455,7 +460,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct BindIndexBufferIndirectCommandNV {
         pub buffer_address: crate::vk::DeviceAddress,
         pub size: u32,
@@ -479,7 +485,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct BindVertexBufferIndirectCommandNV {
         pub buffer_address: crate::vk::DeviceAddress,
         pub size: u32,
@@ -503,7 +510,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct SetStateFlagsIndirectCommandNV {
         pub data: u32,
     }
@@ -514,7 +522,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsStreamNV {
         pub buffer: crate::vk::Buffer,
         pub offset: crate::vk::DeviceSize,
@@ -530,7 +539,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutTokenNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -639,7 +649,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -700,7 +711,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GeneratedCommandsInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -826,7 +838,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GeneratedCommandsMemoryRequirementsInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -879,8 +892,31 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct IndirectCommandsTokenTypeNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for IndirectCommandsTokenTypeNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SHADER_GROUP_NV => Some("SHADER_GROUP_NV"),
+                Self::STATE_FLAGS_NV => Some("STATE_FLAGS_NV"),
+                Self::INDEX_BUFFER_NV => Some("INDEX_BUFFER_NV"),
+                Self::VERTEX_BUFFER_NV => Some("VERTEX_BUFFER_NV"),
+                Self::PUSH_CONSTANT_NV => Some("PUSH_CONSTANT_NV"),
+                Self::DRAW_INDEXED_NV => Some("DRAW_INDEXED_NV"),
+                Self::DRAW_NV => Some("DRAW_NV"),
+                Self::DRAW_TASKS_NV => Some("DRAW_TASKS_NV"),
+                Self::PUSH_DATA_NV => Some("PUSH_DATA_NV"),
+                Self::DRAW_MESH_TASKS_NV => Some("DRAW_MESH_TASKS_NV"),
+                Self::PIPELINE_NV => Some("PIPELINE_NV"),
+                Self::DISPATCH_NV => Some("DISPATCH_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct IndirectCommandsLayoutUsageFlagsNV(u32);
@@ -1041,12 +1077,12 @@ pub(crate) mod reexport {
         }
     }
     impl core::fmt::Pointer for IndirectCommandsLayoutNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     impl core::fmt::Debug for IndirectCommandsLayoutNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

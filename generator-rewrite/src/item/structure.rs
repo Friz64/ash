@@ -53,9 +53,9 @@ impl Code for Struct {
         let lifetime = Lifetime(format_ident!("a"));
         let name = ctx.type_tokens(self.name, false, &lifetime);
 
-        let lifetime_tok = ctx
+        let lifetime_brackets = ctx
             .type_has_lifetime(self.name)
-            .then(|| quote! { #lifetime });
+            .then(|| quote! { <#lifetime> });
         let mut bitfield_i = 0;
 
         let mut contains_static_array = false;
@@ -106,7 +106,7 @@ impl Code for Struct {
                     const STRUCTURE_TYPE: #structure_ty = #ty;
                 }
 
-                #(unsafe impl<#lifetime_tok> crate::Extends<#extends> for #name {})*
+                #(unsafe impl #lifetime_brackets crate::Extends<#extends> for #name {})*
             }
         });
 
@@ -152,7 +152,7 @@ impl Code for Struct {
             });
 
             quote! {
-                impl<#lifetime_tok> Default for #name {
+                impl #lifetime_brackets Default for #name {
                     fn default() -> Self {
                         Self {
                             #( #defaults, )*
@@ -198,8 +198,9 @@ impl Code for Struct {
 
             let name_string = name.to_string();
             quote! {
-                impl<#lifetime_tok> core::fmt::Debug for #name {
-                    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                #[cfg(feature = "debug")]
+                impl #lifetime_brackets core::fmt::Debug for #name {
+                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                         f.debug_struct(#name_string)
                             #( #debug_fields )*
                             .finish()
@@ -210,10 +211,12 @@ impl Code for Struct {
 
         let derive_default = (!custom_default).then_some(quote! {, Default});
         let default = custom_default.then_some(default);
-        let derive_debug = (!custom_debug).then_some(quote! {, Debug});
+        let derive_debug =
+            (!custom_debug).then_some(quote! { #[cfg_attr(feature = "debug", derive(Debug))] });
         let debug = custom_debug.then_some(debug);
         let derives = quote! {
-            #[derive(Clone, Copy #derive_default #derive_debug)]
+            #derive_debug
+            #[derive(Clone, Copy #derive_default)]
         };
 
         let mut bitfield_i = 0;
@@ -235,7 +238,7 @@ impl Code for Struct {
             #default
             #debug
 
-            impl<#lifetime_tok> #name {
+            impl #lifetime_brackets #name {
                 #(#builders)*
             }
         };
@@ -495,13 +498,13 @@ impl Code for Union {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
         let lifetime = Lifetime(format_ident!("a"));
-        let lifetime_tok = ctx
+        let lifetime_brackets = ctx
             .type_has_lifetime(self.name)
-            .then(|| quote! { #lifetime });
+            .then(|| quote! { <#lifetime> });
         let name = ctx.type_tokens(self.name, false, &lifetime);
         let members = (self.members.iter()).map(|decl| decl.to_rust().tokens(ctx, &lifetime));
 
-        let name_str = self.name.original();
+        let name_string = name.to_string();
         let code = quote! {
             #[repr(C)]
             #[derive(Clone, Copy)]
@@ -509,15 +512,16 @@ impl Code for Union {
                 #( pub #members ),*
             }
 
-            impl<#lifetime_tok> Default for #name {
+            impl #lifetime_brackets Default for #name {
                 fn default() -> Self {
                     unsafe { core::mem::zeroed() }
                 }
             }
 
-            impl<#lifetime_tok> core::fmt::Debug for #name {
-                fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                    write!(f, #name_str)
+            #[cfg(feature = "debug")]
+            impl #lifetime_brackets core::fmt::Debug for #name {
+                fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                    write!(f, #name_string)
                 }
             }
         };

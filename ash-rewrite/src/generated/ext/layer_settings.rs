@@ -29,7 +29,8 @@ pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_layer_settings";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct LayerSettingsCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -64,7 +65,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct LayerSettingEXT<'a> {
         pub p_layer_name: *const core::ffi::c_char,
         pub p_setting_name: *const core::ffi::c_char,
@@ -108,7 +110,26 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct LayerSettingTypeEXT(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for LayerSettingTypeEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::BOOL32_EXT => Some("BOOL32_EXT"),
+                Self::INT32_EXT => Some("INT32_EXT"),
+                Self::INT64_EXT => Some("INT64_EXT"),
+                Self::UINT32_EXT => Some("UINT32_EXT"),
+                Self::UINT64_EXT => Some("UINT64_EXT"),
+                Self::FLOAT32_EXT => Some("FLOAT32_EXT"),
+                Self::FLOAT64_EXT => Some("FLOAT64_EXT"),
+                Self::STRING_EXT => Some("STRING_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

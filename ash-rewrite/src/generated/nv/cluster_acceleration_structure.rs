@@ -183,7 +183,8 @@ pub const SPEC_VERSION: u32 = 4;
 pub const NAME: &core::ffi::CStr = c"VK_NV_cluster_acceleration_structure";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -218,7 +219,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -311,7 +313,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct StridedDeviceAddressNV {
         pub start_address: crate::vk::DeviceAddress,
         pub stride_in_bytes: crate::vk::DeviceSize,
@@ -330,7 +333,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -377,9 +381,10 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug
     for ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV")
                 .field("geometry_index", &self.get_geometry_index())
                 .field("geometry_flags", &self.get_geometry_flags())
@@ -405,7 +410,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureMoveObjectsInfoNV {
         pub src_acceleration_structure: crate::vk::DeviceAddress,
     }
@@ -419,7 +425,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureBuildClustersBottomLevelInfoNV {
         pub cluster_references_count: u32,
         pub cluster_references_stride: u32,
@@ -449,7 +456,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureGetTemplateIndicesInfoNV {
         pub cluster_template_address: crate::vk::DeviceAddress,
     }
@@ -503,8 +511,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureBuildTriangleClusterInfoNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("ClusterAccelerationStructureBuildTriangleClusterInfoNV")
                 .field("cluster_id", &self.cluster_id)
                 .field("cluster_flags", &self.cluster_flags)
@@ -709,9 +718,10 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug
     for ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct(
                     "ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV",
                 )
@@ -905,8 +915,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureInstantiateClusterInfoNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("ClusterAccelerationStructureInstantiateClusterInfoNV")
                 .field("cluster_id_offset", &self.cluster_id_offset)
                 .field("geometry_index_offset", &self.get_geometry_index_offset())
@@ -944,7 +955,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureClustersBottomLevelInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -981,7 +993,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureTriangleClusterInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1069,7 +1082,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureMoveObjectsInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1115,7 +1129,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureInputInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1182,7 +1197,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureCommandsInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1290,23 +1306,79 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    #[cfg(feature = "debug")]
     impl<'a> core::fmt::Debug for ClusterAccelerationStructureOpInputNV<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            write!(f, "VkClusterAccelerationStructureOpInputNV")
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "ClusterAccelerationStructureOpInputNV < 'a >")
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct ClusterAccelerationStructureTypeNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ClusterAccelerationStructureTypeNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::CLUSTERS_BOTTOM_LEVEL_NV => Some("CLUSTERS_BOTTOM_LEVEL_NV"),
+                Self::TRIANGLE_CLUSTER_NV => Some("TRIANGLE_CLUSTER_NV"),
+                Self::TRIANGLE_CLUSTER_TEMPLATE_NV => {
+                    Some("TRIANGLE_CLUSTER_TEMPLATE_NV")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct ClusterAccelerationStructureOpTypeNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ClusterAccelerationStructureOpTypeNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::MOVE_OBJECTS_NV => Some("MOVE_OBJECTS_NV"),
+                Self::BUILD_CLUSTERS_BOTTOM_LEVEL_NV => {
+                    Some("BUILD_CLUSTERS_BOTTOM_LEVEL_NV")
+                }
+                Self::BUILD_TRIANGLE_CLUSTER_NV => Some("BUILD_TRIANGLE_CLUSTER_NV"),
+                Self::BUILD_TRIANGLE_CLUSTER_TEMPLATE_NV => {
+                    Some("BUILD_TRIANGLE_CLUSTER_TEMPLATE_NV")
+                }
+                Self::INSTANTIATE_TRIANGLE_CLUSTER_NV => {
+                    Some("INSTANTIATE_TRIANGLE_CLUSTER_NV")
+                }
+                Self::GET_CLUSTER_TEMPLATE_INDICES_NV => {
+                    Some("GET_CLUSTER_TEMPLATE_INDICES_NV")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct ClusterAccelerationStructureOpModeNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ClusterAccelerationStructureOpModeNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::IMPLICIT_DESTINATIONS_NV => Some("IMPLICIT_DESTINATIONS_NV"),
+                Self::EXPLICIT_DESTINATIONS_NV => Some("EXPLICIT_DESTINATIONS_NV"),
+                Self::COMPUTE_SIZES_NV => Some("COMPUTE_SIZES_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct ClusterAccelerationStructureGeometryFlagsNV(u32);

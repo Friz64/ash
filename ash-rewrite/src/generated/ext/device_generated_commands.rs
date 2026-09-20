@@ -285,7 +285,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_device_generated_commands";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -330,7 +331,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -464,7 +466,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GeneratedCommandsPipelineInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -497,7 +500,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GeneratedCommandsShaderInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -533,7 +537,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GeneratedCommandsMemoryRequirementsInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -585,7 +590,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct IndirectExecutionSetPipelineInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -622,7 +628,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct IndirectExecutionSetShaderLayoutInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -656,7 +663,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct IndirectExecutionSetShaderInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -722,7 +730,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct IndirectExecutionSetCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -759,7 +768,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GeneratedCommandsInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -864,7 +874,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct WriteIndirectExecutionSetPipelineEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -898,7 +909,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct WriteIndirectExecutionSetShaderEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -932,7 +944,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -999,7 +1012,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutTokenEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1038,7 +1052,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct DrawIndirectCountIndirectCommandEXT {
         pub buffer_address: crate::vk::DeviceAddress,
         pub stride: u32,
@@ -1062,7 +1077,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsVertexBufferTokenEXT {
         pub vertex_binding_unit: u32,
     }
@@ -1073,7 +1089,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct BindVertexBufferIndirectCommandEXT {
         pub buffer_address: crate::vk::DeviceAddress,
         pub size: u32,
@@ -1097,7 +1114,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsIndexBufferTokenEXT {
         pub mode: crate::vk::IndirectCommandsInputModeFlagBitsEXT,
     }
@@ -1111,7 +1129,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct BindIndexBufferIndirectCommandEXT {
         pub buffer_address: crate::vk::DeviceAddress,
         pub size: u32,
@@ -1135,7 +1154,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsPushConstantTokenEXT {
         pub update_range: crate::vk::PushConstantRange,
     }
@@ -1149,7 +1169,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsExecutionSetTokenEXT {
         pub _type: crate::vk::IndirectExecutionSetInfoTypeEXT,
         pub shader_stages: crate::vk::ShaderStageFlags,
@@ -1181,9 +1202,10 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    #[cfg(feature = "debug")]
     impl<'a> core::fmt::Debug for IndirectExecutionSetInfoEXT<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            write!(f, "VkIndirectExecutionSetInfoEXT")
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "IndirectExecutionSetInfoEXT < 'a >")
         }
     }
     #[repr(C)]
@@ -1199,19 +1221,65 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for IndirectCommandsTokenDataEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            write!(f, "VkIndirectCommandsTokenDataEXT")
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "IndirectCommandsTokenDataEXT")
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct IndirectExecutionSetInfoTypeEXT(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for IndirectExecutionSetInfoTypeEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PIPELINES_EXT => Some("PIPELINES_EXT"),
+                Self::SHADER_OBJECTS_EXT => Some("SHADER_OBJECTS_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct IndirectCommandsTokenTypeEXT(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for IndirectCommandsTokenTypeEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::EXECUTION_SET_EXT => Some("EXECUTION_SET_EXT"),
+                Self::PUSH_CONSTANT_EXT => Some("PUSH_CONSTANT_EXT"),
+                Self::SEQUENCE_INDEX_EXT => Some("SEQUENCE_INDEX_EXT"),
+                Self::INDEX_BUFFER_EXT => Some("INDEX_BUFFER_EXT"),
+                Self::VERTEX_BUFFER_EXT => Some("VERTEX_BUFFER_EXT"),
+                Self::DRAW_INDEXED_EXT => Some("DRAW_INDEXED_EXT"),
+                Self::DRAW_EXT => Some("DRAW_EXT"),
+                Self::DRAW_INDEXED_COUNT_EXT => Some("DRAW_INDEXED_COUNT_EXT"),
+                Self::DRAW_COUNT_EXT => Some("DRAW_COUNT_EXT"),
+                Self::DISPATCH_EXT => Some("DISPATCH_EXT"),
+                Self::PUSH_DATA_EXT => Some("PUSH_DATA_EXT"),
+                Self::PUSH_DATA_SEQUENCE_INDEX_EXT => {
+                    Some("PUSH_DATA_SEQUENCE_INDEX_EXT")
+                }
+                Self::DRAW_MESH_TASKS_NV_EXT => Some("DRAW_MESH_TASKS_NV_EXT"),
+                Self::DRAW_MESH_TASKS_COUNT_NV_EXT => {
+                    Some("DRAW_MESH_TASKS_COUNT_NV_EXT")
+                }
+                Self::DRAW_MESH_TASKS_EXT => Some("DRAW_MESH_TASKS_EXT"),
+                Self::DRAW_MESH_TASKS_COUNT_EXT => Some("DRAW_MESH_TASKS_COUNT_EXT"),
+                Self::TRACE_RAYS2_EXT => Some("TRACE_RAYS2_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct IndirectCommandsLayoutUsageFlagsEXT(u32);
@@ -1372,12 +1440,12 @@ pub(crate) mod reexport {
         }
     }
     impl core::fmt::Pointer for IndirectCommandsLayoutEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     impl core::fmt::Debug for IndirectCommandsLayoutEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -1399,12 +1467,12 @@ pub(crate) mod reexport {
         }
     }
     impl core::fmt::Pointer for IndirectExecutionSetEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     impl core::fmt::Debug for IndirectExecutionSetEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

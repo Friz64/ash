@@ -110,7 +110,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -165,7 +166,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -198,7 +200,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -250,12 +253,62 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct FragmentShadingRateNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FragmentShadingRateNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::_1_INVOCATION_PER_PIXEL_NV => Some("_1_INVOCATION_PER_PIXEL_NV"),
+                Self::_1_INVOCATION_PER_1X2_PIXELS_NV => {
+                    Some("_1_INVOCATION_PER_1X2_PIXELS_NV")
+                }
+                Self::_1_INVOCATION_PER_2X1_PIXELS_NV => {
+                    Some("_1_INVOCATION_PER_2X1_PIXELS_NV")
+                }
+                Self::_1_INVOCATION_PER_2X2_PIXELS_NV => {
+                    Some("_1_INVOCATION_PER_2X2_PIXELS_NV")
+                }
+                Self::_1_INVOCATION_PER_2X4_PIXELS_NV => {
+                    Some("_1_INVOCATION_PER_2X4_PIXELS_NV")
+                }
+                Self::_1_INVOCATION_PER_4X2_PIXELS_NV => {
+                    Some("_1_INVOCATION_PER_4X2_PIXELS_NV")
+                }
+                Self::_1_INVOCATION_PER_4X4_PIXELS_NV => {
+                    Some("_1_INVOCATION_PER_4X4_PIXELS_NV")
+                }
+                Self::_2_INVOCATIONS_PER_PIXEL_NV => Some("_2_INVOCATIONS_PER_PIXEL_NV"),
+                Self::_4_INVOCATIONS_PER_PIXEL_NV => Some("_4_INVOCATIONS_PER_PIXEL_NV"),
+                Self::_8_INVOCATIONS_PER_PIXEL_NV => Some("_8_INVOCATIONS_PER_PIXEL_NV"),
+                Self::_16_INVOCATIONS_PER_PIXEL_NV => {
+                    Some("_16_INVOCATIONS_PER_PIXEL_NV")
+                }
+                Self::NO_INVOCATIONS_NV => Some("NO_INVOCATIONS_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct FragmentShadingRateTypeNV(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FragmentShadingRateTypeNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::FRAGMENT_SIZE_NV => Some("FRAGMENT_SIZE_NV"),
+                Self::ENUMS_NV => Some("ENUMS_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkCmdSetFragmentShadingRateEnumNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         shading_rate: crate::vk::FragmentShadingRateNV,

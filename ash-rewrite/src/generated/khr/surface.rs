@@ -184,7 +184,8 @@ pub const SPEC_VERSION: u32 = 25;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_surface";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct SurfaceCapabilitiesKHR {
         pub min_image_count: u32,
         pub max_image_count: u32,
@@ -258,7 +259,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct SurfaceFormatKHR {
         pub format: crate::vk::Format,
         pub color_space: crate::vk::ColorSpaceKHR,
@@ -275,12 +277,58 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct PresentModeKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PresentModeKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::IMMEDIATE_KHR => Some("IMMEDIATE_KHR"),
+                Self::MAILBOX_KHR => Some("MAILBOX_KHR"),
+                Self::FIFO_KHR => Some("FIFO_KHR"),
+                Self::FIFO_RELAXED_KHR => Some("FIFO_RELAXED_KHR"),
+                Self::SHARED_DEMAND_REFRESH_KHR => Some("SHARED_DEMAND_REFRESH_KHR"),
+                Self::SHARED_CONTINUOUS_REFRESH_KHR => {
+                    Some("SHARED_CONTINUOUS_REFRESH_KHR")
+                }
+                Self::FIFO_LATEST_READY_KHR => Some("FIFO_LATEST_READY_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct ColorSpaceKHR(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ColorSpaceKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SRGB_NONLINEAR_KHR => Some("SRGB_NONLINEAR_KHR"),
+                Self::DISPLAY_P3_NONLINEAR_EXT => Some("DISPLAY_P3_NONLINEAR_EXT"),
+                Self::EXTENDED_SRGB_LINEAR_EXT => Some("EXTENDED_SRGB_LINEAR_EXT"),
+                Self::DISPLAY_P3_LINEAR_EXT => Some("DISPLAY_P3_LINEAR_EXT"),
+                Self::DCI_P3_NONLINEAR_EXT => Some("DCI_P3_NONLINEAR_EXT"),
+                Self::BT709_LINEAR_EXT => Some("BT709_LINEAR_EXT"),
+                Self::BT709_NONLINEAR_EXT => Some("BT709_NONLINEAR_EXT"),
+                Self::BT2020_LINEAR_EXT => Some("BT2020_LINEAR_EXT"),
+                Self::HDR10_ST2084_EXT => Some("HDR10_ST2084_EXT"),
+                Self::HDR10_HLG_EXT => Some("HDR10_HLG_EXT"),
+                Self::ADOBERGB_LINEAR_EXT => Some("ADOBERGB_LINEAR_EXT"),
+                Self::ADOBERGB_NONLINEAR_EXT => Some("ADOBERGB_NONLINEAR_EXT"),
+                Self::PASS_THROUGH_EXT => Some("PASS_THROUGH_EXT"),
+                Self::EXTENDED_SRGB_NONLINEAR_EXT => Some("EXTENDED_SRGB_NONLINEAR_EXT"),
+                Self::DISPLAY_NATIVE_AMD => Some("DISPLAY_NATIVE_AMD"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct CompositeAlphaFlagsKHR(u32);
@@ -460,12 +508,12 @@ pub(crate) mod reexport {
         }
     }
     impl core::fmt::Pointer for SurfaceKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     impl core::fmt::Debug for SurfaceKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

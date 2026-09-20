@@ -360,7 +360,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_gpa_interface";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct GpaPerfBlockPropertiesAMD {
         pub block_type: crate::vk::GpaPerfBlockAMD,
         pub flags: crate::vk::GpaPerfBlockPropertiesFlagsAMD,
@@ -410,7 +411,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGpaFeaturesAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -459,7 +461,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGpaPropertiesAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -518,7 +521,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGpaProperties2AMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -547,7 +551,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct GpaPerfCounterAMD {
         pub block_type: crate::vk::GpaPerfBlockAMD,
         pub block_instance: u32,
@@ -568,7 +573,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GpaSampleBeginInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -702,7 +708,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GpaDeviceClockModeInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -750,7 +757,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GpaDeviceGetClockInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -801,7 +809,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct GpaSessionCreateInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -832,16 +841,115 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct GpaPerfBlockAMD(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for GpaPerfBlockAMD {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::CPF_AMD => Some("CPF_AMD"),
+                Self::IA_AMD => Some("IA_AMD"),
+                Self::VGT_AMD => Some("VGT_AMD"),
+                Self::PA_AMD => Some("PA_AMD"),
+                Self::SC_AMD => Some("SC_AMD"),
+                Self::SPI_AMD => Some("SPI_AMD"),
+                Self::SQ_AMD => Some("SQ_AMD"),
+                Self::SX_AMD => Some("SX_AMD"),
+                Self::TA_AMD => Some("TA_AMD"),
+                Self::TD_AMD => Some("TD_AMD"),
+                Self::TCP_AMD => Some("TCP_AMD"),
+                Self::TCC_AMD => Some("TCC_AMD"),
+                Self::TCA_AMD => Some("TCA_AMD"),
+                Self::DB_AMD => Some("DB_AMD"),
+                Self::CB_AMD => Some("CB_AMD"),
+                Self::GDS_AMD => Some("GDS_AMD"),
+                Self::SRBM_AMD => Some("SRBM_AMD"),
+                Self::GRBM_AMD => Some("GRBM_AMD"),
+                Self::GRBM_SE_AMD => Some("GRBM_SE_AMD"),
+                Self::RLC_AMD => Some("RLC_AMD"),
+                Self::DMA_AMD => Some("DMA_AMD"),
+                Self::MC_AMD => Some("MC_AMD"),
+                Self::CPG_AMD => Some("CPG_AMD"),
+                Self::CPC_AMD => Some("CPC_AMD"),
+                Self::WD_AMD => Some("WD_AMD"),
+                Self::TCS_AMD => Some("TCS_AMD"),
+                Self::ATC_AMD => Some("ATC_AMD"),
+                Self::ATC_L2_AMD => Some("ATC_L2_AMD"),
+                Self::MC_VM_L2_AMD => Some("MC_VM_L2_AMD"),
+                Self::EA_AMD => Some("EA_AMD"),
+                Self::RPB_AMD => Some("RPB_AMD"),
+                Self::RMI_AMD => Some("RMI_AMD"),
+                Self::UMCCH_AMD => Some("UMCCH_AMD"),
+                Self::GE_AMD => Some("GE_AMD"),
+                Self::GL1A_AMD => Some("GL1A_AMD"),
+                Self::GL1C_AMD => Some("GL1C_AMD"),
+                Self::GL1CG_AMD => Some("GL1CG_AMD"),
+                Self::GL2A_AMD => Some("GL2A_AMD"),
+                Self::GL2C_AMD => Some("GL2C_AMD"),
+                Self::CHA_AMD => Some("CHA_AMD"),
+                Self::CHC_AMD => Some("CHC_AMD"),
+                Self::CHCG_AMD => Some("CHCG_AMD"),
+                Self::GUS_AMD => Some("GUS_AMD"),
+                Self::GCR_AMD => Some("GCR_AMD"),
+                Self::PH_AMD => Some("PH_AMD"),
+                Self::UTCL1_AMD => Some("UTCL1_AMD"),
+                Self::GE_DIST_AMD => Some("GE_DIST_AMD"),
+                Self::GE_SE_AMD => Some("GE_SE_AMD"),
+                Self::DF_MALL_AMD => Some("DF_MALL_AMD"),
+                Self::SQ_WGP_AMD => Some("SQ_WGP_AMD"),
+                Self::PC_AMD => Some("PC_AMD"),
+                Self::GL1XA_AMD => Some("GL1XA_AMD"),
+                Self::GL1XC_AMD => Some("GL1XC_AMD"),
+                Self::WGS_AMD => Some("WGS_AMD"),
+                Self::EACPWD_AMD => Some("EACPWD_AMD"),
+                Self::EASE_AMD => Some("EASE_AMD"),
+                Self::RLCUSER_AMD => Some("RLCUSER_AMD"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct GpaSampleTypeAMD(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for GpaSampleTypeAMD {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::CUMULATIVE_AMD => Some("CUMULATIVE_AMD"),
+                Self::TRACE_AMD => Some("TRACE_AMD"),
+                Self::TIMING_AMD => Some("TIMING_AMD"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct GpaDeviceClockModeAMD(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for GpaDeviceClockModeAMD {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEFAULT_AMD => Some("DEFAULT_AMD"),
+                Self::QUERY_AMD => Some("QUERY_AMD"),
+                Self::PROFILING_AMD => Some("PROFILING_AMD"),
+                Self::MIN_MEMORY_AMD => Some("MIN_MEMORY_AMD"),
+                Self::MIN_ENGINE_AMD => Some("MIN_ENGINE_AMD"),
+                Self::PEAK_AMD => Some("PEAK_AMD"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, Debug)]
     pub struct GpaSqShaderStageFlagsAMD(u32);
@@ -1056,12 +1164,12 @@ pub(crate) mod reexport {
         }
     }
     impl core::fmt::Pointer for GpaSessionAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     impl core::fmt::Debug for GpaSessionAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

@@ -125,8 +125,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for VP9ColorConfigFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("VP9ColorConfigFlags")
                 .field("color_range", &self.get_color_range())
                 .finish()
@@ -143,7 +144,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy, Default)]
     pub struct VP9ColorConfig {
         pub flags: crate::vk::VP9ColorConfigFlags,
         pub bit_depth: u8,
@@ -192,8 +194,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for VP9LoopFilterFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("VP9LoopFilterFlags")
                 .field(
                     "loop_filter_delta_enabled",
@@ -228,7 +231,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct VP9LoopFilter {
         pub flags: crate::vk::VP9LoopFilterFlags,
         pub loop_filter_level: u8,
@@ -303,8 +307,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for VP9SegmentationFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("VP9SegmentationFlags")
                 .field("segmentation_update_map", &self.get_segmentation_update_map())
                 .field(
@@ -365,7 +370,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct VP9Segmentation {
         pub flags: crate::vk::VP9SegmentationFlags,
         pub segmentation_tree_probs: [u8; crate::vk::VP9_MAX_SEGMENTATION_TREE_PROBS
@@ -424,28 +430,137 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct VP9Profile(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VP9Profile {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::_0 => Some("_0"),
+                Self::_1 => Some("_1"),
+                Self::_2 => Some("_2"),
+                Self::_3 => Some("_3"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct VP9Level(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VP9Level {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::_1_0 => Some("_1_0"),
+                Self::_1_1 => Some("_1_1"),
+                Self::_2_0 => Some("_2_0"),
+                Self::_2_1 => Some("_2_1"),
+                Self::_3_0 => Some("_3_0"),
+                Self::_3_1 => Some("_3_1"),
+                Self::_4_0 => Some("_4_0"),
+                Self::_4_1 => Some("_4_1"),
+                Self::_5_0 => Some("_5_0"),
+                Self::_5_1 => Some("_5_1"),
+                Self::_5_2 => Some("_5_2"),
+                Self::_6_0 => Some("_6_0"),
+                Self::_6_1 => Some("_6_1"),
+                Self::_6_2 => Some("_6_2"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct VP9FrameType(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VP9FrameType {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::KEY => Some("KEY"),
+                Self::NON_KEY => Some("NON_KEY"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct VP9ReferenceName(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VP9ReferenceName {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::INTRA_FRAME => Some("INTRA_FRAME"),
+                Self::LAST_FRAME => Some("LAST_FRAME"),
+                Self::GOLDEN_FRAME => Some("GOLDEN_FRAME"),
+                Self::ALTREF_FRAME => Some("ALTREF_FRAME"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct VP9InterpolationFilter(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VP9InterpolationFilter {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::EIGHTTAP => Some("EIGHTTAP"),
+                Self::EIGHTTAP_SMOOTH => Some("EIGHTTAP_SMOOTH"),
+                Self::EIGHTTAP_SHARP => Some("EIGHTTAP_SHARP"),
+                Self::BILINEAR => Some("BILINEAR"),
+                Self::SWITCHABLE => Some("SWITCHABLE"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
     pub struct VP9ColorSpace(pub(crate) i32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VP9ColorSpace {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UNKNOWN => Some("UNKNOWN"),
+                Self::BT_601 => Some("BT_601"),
+                Self::BT_709 => Some("BT_709"),
+                Self::SMPTE_170 => Some("SMPTE_170"),
+                Self::SMPTE_240 => Some("SMPTE_240"),
+                Self::BT_2020 => Some("BT_2020"),
+                Self::RESERVED => Some("RESERVED"),
+                Self::RGB => Some("RGB"),
+                Self::INVALID => Some("INVALID"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub const VP9_NUM_REF_FRAMES: u32 = 8;
     pub const VP9_REFS_PER_FRAME: u32 = 3;
     pub const VP9_MAX_REF_FRAMES: u32 = 4;

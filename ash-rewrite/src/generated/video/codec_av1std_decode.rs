@@ -46,8 +46,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeAV1PictureInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("DecodeAV1PictureInfoFlags")
                 .field("error_resilient_mode", &self.get_error_resilient_mode())
                 .field("disable_cdf_update", &self.get_disable_cdf_update())
@@ -368,7 +369,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DecodeAV1PictureInfo<'a> {
         pub flags: crate::vk::DecodeAV1PictureInfoFlags,
         pub frame_type: crate::vk::AV1FrameType,
@@ -563,8 +565,9 @@ pub(crate) mod reexport {
             }
         }
     }
+    #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeAV1ReferenceInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             f.debug_struct("DecodeAV1ReferenceInfoFlags")
                 .field(
                     "disable_frame_end_update_cdf",
@@ -596,7 +599,8 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Debug)]
+    #[cfg_attr(feature = "debug", derive(Debug))]
+    #[derive(Clone, Copy)]
     pub struct DecodeAV1ReferenceInfo {
         pub flags: crate::vk::DecodeAV1ReferenceInfoFlags,
         pub frame_type: u8,
