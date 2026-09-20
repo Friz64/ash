@@ -543,8 +543,28 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceFaultFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceFaultFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::FLAG_DEVICE_LOST_KHR.0, "FLAG_DEVICE_LOST_KHR"),
+                    (Self::FLAG_MEMORY_ADDRESS_KHR.0, "FLAG_MEMORY_ADDRESS_KHR"),
+                    (
+                        Self::FLAG_INSTRUCTION_ADDRESS_KHR.0,
+                        "FLAG_INSTRUCTION_ADDRESS_KHR",
+                    ),
+                    (Self::FLAG_VENDOR_KHR.0, "FLAG_VENDOR_KHR"),
+                    (Self::FLAG_WATCHDOG_TIMEOUT_KHR.0, "FLAG_WATCHDOG_TIMEOUT_KHR"),
+                    (Self::FLAG_OVERFLOW_KHR.0, "FLAG_OVERFLOW_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DeviceFaultFlagsKHR {
         pub const FLAG_DEVICE_LOST_KHR: Self = Self(
             DeviceFaultFlagBitsKHR::FLAG_DEVICE_LOST_KHR.0,
@@ -623,8 +643,28 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceFaultFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceFaultFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::FLAG_DEVICE_LOST_KHR => Some("FLAG_DEVICE_LOST_KHR"),
+                Self::FLAG_MEMORY_ADDRESS_KHR => Some("FLAG_MEMORY_ADDRESS_KHR"),
+                Self::FLAG_INSTRUCTION_ADDRESS_KHR => {
+                    Some("FLAG_INSTRUCTION_ADDRESS_KHR")
+                }
+                Self::FLAG_VENDOR_KHR => Some("FLAG_VENDOR_KHR"),
+                Self::FLAG_WATCHDOG_TIMEOUT_KHR => Some("FLAG_WATCHDOG_TIMEOUT_KHR"),
+                Self::FLAG_OVERFLOW_KHR => Some("FLAG_OVERFLOW_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetDeviceFaultReportsKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         timeout: u64,

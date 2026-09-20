@@ -689,8 +689,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageFormatConstraintsFlagsFUCHSIA(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageFormatConstraintsFlagsFUCHSIA {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl ImageFormatConstraintsFlagsFUCHSIA {
         pub const fn empty() -> Self {
             Self(0)
@@ -751,8 +757,24 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageConstraintsInfoFlagsFUCHSIA(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::CPU_READ_RARELY_FUCHSIA.0, "CPU_READ_RARELY_FUCHSIA"),
+                    (Self::CPU_READ_OFTEN_FUCHSIA.0, "CPU_READ_OFTEN_FUCHSIA"),
+                    (Self::CPU_WRITE_RARELY_FUCHSIA.0, "CPU_WRITE_RARELY_FUCHSIA"),
+                    (Self::CPU_WRITE_OFTEN_FUCHSIA.0, "CPU_WRITE_OFTEN_FUCHSIA"),
+                    (Self::PROTECTED_OPTIONAL_FUCHSIA.0, "PROTECTED_OPTIONAL_FUCHSIA"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ImageConstraintsInfoFlagsFUCHSIA {
         pub const CPU_READ_RARELY_FUCHSIA: Self = Self(
             ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_RARELY_FUCHSIA.0,
@@ -828,8 +850,25 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageConstraintsInfoFlagBitsFUCHSIA(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageConstraintsInfoFlagBitsFUCHSIA {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::CPU_READ_RARELY_FUCHSIA => Some("CPU_READ_RARELY_FUCHSIA"),
+                Self::CPU_READ_OFTEN_FUCHSIA => Some("CPU_READ_OFTEN_FUCHSIA"),
+                Self::CPU_WRITE_RARELY_FUCHSIA => Some("CPU_WRITE_RARELY_FUCHSIA"),
+                Self::CPU_WRITE_OFTEN_FUCHSIA => Some("CPU_WRITE_OFTEN_FUCHSIA"),
+                Self::PROTECTED_OPTIONAL_FUCHSIA => Some("PROTECTED_OPTIONAL_FUCHSIA"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct BufferCollectionFUCHSIA(u64);

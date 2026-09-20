@@ -179,8 +179,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SurfaceCounterFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SurfaceCounterFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::VBLANK_EXT.0, "VBLANK_EXT")], self.0)
+        }
+    }
     impl SurfaceCounterFlagsEXT {
         pub const VBLANK_EXT: Self = Self(SurfaceCounterFlagBitsEXT::VBLANK_EXT.0);
         pub const fn empty() -> Self {
@@ -242,8 +248,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SurfaceCounterFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SurfaceCounterFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::VBLANK_EXT => Some("VBLANK_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,

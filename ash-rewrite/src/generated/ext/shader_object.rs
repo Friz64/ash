@@ -1123,8 +1123,44 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ShaderCreateFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ShaderCreateFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::LINK_STAGE_EXT.0, "LINK_STAGE_EXT"),
+                    (Self::DESCRIPTOR_HEAP_EXT.0, "DESCRIPTOR_HEAP_EXT"),
+                    (Self::INSTRUMENT_SHADER_ARM.0, "INSTRUMENT_SHADER_ARM"),
+                    (
+                        Self::ALLOW_VARYING_SUBGROUP_SIZE_EXT.0,
+                        "ALLOW_VARYING_SUBGROUP_SIZE_EXT",
+                    ),
+                    (Self::REQUIRE_FULL_SUBGROUPS_EXT.0, "REQUIRE_FULL_SUBGROUPS_EXT"),
+                    (Self::NO_TASK_SHADER_EXT.0, "NO_TASK_SHADER_EXT"),
+                    (Self::DISPATCH_BASE_EXT.0, "DISPATCH_BASE_EXT"),
+                    (
+                        Self::FRAGMENT_SHADING_RATE_ATTACHMENT_EXT.0,
+                        "FRAGMENT_SHADING_RATE_ATTACHMENT_EXT",
+                    ),
+                    (
+                        Self::FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0,
+                        "FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT",
+                    ),
+                    (Self::INDIRECT_BINDABLE_EXT.0, "INDIRECT_BINDABLE_EXT"),
+                    (
+                        Self::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT.0,
+                        "OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT",
+                    ),
+                    (Self::_64_INDEXING_EXT.0, "_64_INDEXING_EXT"),
+                    (Self::INDEPENDENT_SETS_KHR.0, "INDEPENDENT_SETS_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ShaderCreateFlagsEXT {
         pub const LINK_STAGE_EXT: Self = Self(ShaderCreateFlagBitsEXT::LINK_STAGE_EXT.0);
         pub const DESCRIPTOR_HEAP_EXT: Self = Self(
@@ -1222,8 +1258,41 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ShaderCreateFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ShaderCreateFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::LINK_STAGE_EXT => Some("LINK_STAGE_EXT"),
+                Self::DESCRIPTOR_HEAP_EXT => Some("DESCRIPTOR_HEAP_EXT"),
+                Self::INSTRUMENT_SHADER_ARM => Some("INSTRUMENT_SHADER_ARM"),
+                Self::ALLOW_VARYING_SUBGROUP_SIZE_EXT => {
+                    Some("ALLOW_VARYING_SUBGROUP_SIZE_EXT")
+                }
+                Self::REQUIRE_FULL_SUBGROUPS_EXT => Some("REQUIRE_FULL_SUBGROUPS_EXT"),
+                Self::NO_TASK_SHADER_EXT => Some("NO_TASK_SHADER_EXT"),
+                Self::DISPATCH_BASE_EXT => Some("DISPATCH_BASE_EXT"),
+                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_EXT => {
+                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_EXT")
+                }
+                Self::FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT => {
+                    Some("FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT")
+                }
+                Self::INDIRECT_BINDABLE_EXT => Some("INDIRECT_BINDABLE_EXT"),
+                Self::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT => {
+                    Some("OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT")
+                }
+                Self::_64_INDEXING_EXT => Some("_64_INDEXING_EXT"),
+                Self::INDEPENDENT_SETS_KHR => Some("INDEPENDENT_SETS_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct ShaderEXT(u64);

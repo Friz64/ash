@@ -908,8 +908,36 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeH264CapabilityFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeH264CapabilityFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::HRD_COMPLIANCE_KHR.0, "HRD_COMPLIANCE_KHR"),
+                    (
+                        Self::PREDICTION_WEIGHT_TABLE_GENERATED_KHR.0,
+                        "PREDICTION_WEIGHT_TABLE_GENERATED_KHR",
+                    ),
+                    (Self::ROW_UNALIGNED_SLICE_KHR.0, "ROW_UNALIGNED_SLICE_KHR"),
+                    (Self::DIFFERENT_SLICE_TYPE_KHR.0, "DIFFERENT_SLICE_TYPE_KHR"),
+                    (Self::B_FRAME_IN_L0_LIST_KHR.0, "B_FRAME_IN_L0_LIST_KHR"),
+                    (Self::B_FRAME_IN_L1_LIST_KHR.0, "B_FRAME_IN_L1_LIST_KHR"),
+                    (
+                        Self::PER_PICTURE_TYPE_MIN_MAX_QP_KHR.0,
+                        "PER_PICTURE_TYPE_MIN_MAX_QP_KHR",
+                    ),
+                    (Self::PER_SLICE_CONSTANT_QP_KHR.0, "PER_SLICE_CONSTANT_QP_KHR"),
+                    (Self::GENERATE_PREFIX_NALU_KHR.0, "GENERATE_PREFIX_NALU_KHR"),
+                    (Self::B_PICTURE_INTRA_REFRESH_KHR.0, "B_PICTURE_INTRA_REFRESH_KHR"),
+                    (Self::MB_QP_DIFF_WRAPAROUND_KHR.0, "MB_QP_DIFF_WRAPAROUND_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeH264CapabilityFlagsKHR {
         pub const HRD_COMPLIANCE_KHR: Self = Self(
             VideoEncodeH264CapabilityFlagBitsKHR::HRD_COMPLIANCE_KHR.0,
@@ -1003,11 +1031,117 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeH264CapabilityFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeH264CapabilityFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::HRD_COMPLIANCE_KHR => Some("HRD_COMPLIANCE_KHR"),
+                Self::PREDICTION_WEIGHT_TABLE_GENERATED_KHR => {
+                    Some("PREDICTION_WEIGHT_TABLE_GENERATED_KHR")
+                }
+                Self::ROW_UNALIGNED_SLICE_KHR => Some("ROW_UNALIGNED_SLICE_KHR"),
+                Self::DIFFERENT_SLICE_TYPE_KHR => Some("DIFFERENT_SLICE_TYPE_KHR"),
+                Self::B_FRAME_IN_L0_LIST_KHR => Some("B_FRAME_IN_L0_LIST_KHR"),
+                Self::B_FRAME_IN_L1_LIST_KHR => Some("B_FRAME_IN_L1_LIST_KHR"),
+                Self::PER_PICTURE_TYPE_MIN_MAX_QP_KHR => {
+                    Some("PER_PICTURE_TYPE_MIN_MAX_QP_KHR")
+                }
+                Self::PER_SLICE_CONSTANT_QP_KHR => Some("PER_SLICE_CONSTANT_QP_KHR"),
+                Self::GENERATE_PREFIX_NALU_KHR => Some("GENERATE_PREFIX_NALU_KHR"),
+                Self::B_PICTURE_INTRA_REFRESH_KHR => Some("B_PICTURE_INTRA_REFRESH_KHR"),
+                Self::MB_QP_DIFF_WRAPAROUND_KHR => Some("MB_QP_DIFF_WRAPAROUND_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeH264StdFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeH264StdFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::SEPARATE_COLOR_PLANE_FLAG_SET_KHR.0,
+                        "SEPARATE_COLOR_PLANE_FLAG_SET_KHR",
+                    ),
+                    (
+                        Self::QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR.0,
+                        "QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR",
+                    ),
+                    (
+                        Self::SCALING_MATRIX_PRESENT_FLAG_SET_KHR.0,
+                        "SCALING_MATRIX_PRESENT_FLAG_SET_KHR",
+                    ),
+                    (Self::CHROMA_QP_INDEX_OFFSET_KHR.0, "CHROMA_QP_INDEX_OFFSET_KHR"),
+                    (
+                        Self::SECOND_CHROMA_QP_INDEX_OFFSET_KHR.0,
+                        "SECOND_CHROMA_QP_INDEX_OFFSET_KHR",
+                    ),
+                    (Self::PIC_INIT_QP_MINUS26_KHR.0, "PIC_INIT_QP_MINUS26_KHR"),
+                    (Self::WEIGHTED_PRED_FLAG_SET_KHR.0, "WEIGHTED_PRED_FLAG_SET_KHR"),
+                    (
+                        Self::WEIGHTED_BIPRED_IDC_EXPLICIT_KHR.0,
+                        "WEIGHTED_BIPRED_IDC_EXPLICIT_KHR",
+                    ),
+                    (
+                        Self::WEIGHTED_BIPRED_IDC_IMPLICIT_KHR.0,
+                        "WEIGHTED_BIPRED_IDC_IMPLICIT_KHR",
+                    ),
+                    (
+                        Self::TRANSFORM_8X8_MODE_FLAG_SET_KHR.0,
+                        "TRANSFORM_8X8_MODE_FLAG_SET_KHR",
+                    ),
+                    (
+                        Self::DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR.0,
+                        "DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR",
+                    ),
+                    (
+                        Self::ENTROPY_CODING_MODE_FLAG_UNSET_KHR.0,
+                        "ENTROPY_CODING_MODE_FLAG_UNSET_KHR",
+                    ),
+                    (
+                        Self::ENTROPY_CODING_MODE_FLAG_SET_KHR.0,
+                        "ENTROPY_CODING_MODE_FLAG_SET_KHR",
+                    ),
+                    (
+                        Self::DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR.0,
+                        "DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR",
+                    ),
+                    (
+                        Self::CONSTRAINED_INTRA_PRED_FLAG_SET_KHR.0,
+                        "CONSTRAINED_INTRA_PRED_FLAG_SET_KHR",
+                    ),
+                    (
+                        Self::DEBLOCKING_FILTER_DISABLED_KHR.0,
+                        "DEBLOCKING_FILTER_DISABLED_KHR",
+                    ),
+                    (
+                        Self::DEBLOCKING_FILTER_ENABLED_KHR.0,
+                        "DEBLOCKING_FILTER_ENABLED_KHR",
+                    ),
+                    (
+                        Self::DEBLOCKING_FILTER_PARTIAL_KHR.0,
+                        "DEBLOCKING_FILTER_PARTIAL_KHR",
+                    ),
+                    (Self::SLICE_QP_DELTA_KHR.0, "SLICE_QP_DELTA_KHR"),
+                    (
+                        Self::DIFFERENT_SLICE_QP_DELTA_KHR.0,
+                        "DIFFERENT_SLICE_QP_DELTA_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeH264StdFlagsKHR {
         pub const SEPARATE_COLOR_PLANE_FLAG_SET_KHR: Self = Self(
             VideoEncodeH264StdFlagBitsKHR::SEPARATE_COLOR_PLANE_FLAG_SET_KHR.0,
@@ -1128,11 +1262,97 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeH264StdFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeH264StdFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SEPARATE_COLOR_PLANE_FLAG_SET_KHR => {
+                    Some("SEPARATE_COLOR_PLANE_FLAG_SET_KHR")
+                }
+                Self::QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR => {
+                    Some("QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR")
+                }
+                Self::SCALING_MATRIX_PRESENT_FLAG_SET_KHR => {
+                    Some("SCALING_MATRIX_PRESENT_FLAG_SET_KHR")
+                }
+                Self::CHROMA_QP_INDEX_OFFSET_KHR => Some("CHROMA_QP_INDEX_OFFSET_KHR"),
+                Self::SECOND_CHROMA_QP_INDEX_OFFSET_KHR => {
+                    Some("SECOND_CHROMA_QP_INDEX_OFFSET_KHR")
+                }
+                Self::PIC_INIT_QP_MINUS26_KHR => Some("PIC_INIT_QP_MINUS26_KHR"),
+                Self::WEIGHTED_PRED_FLAG_SET_KHR => Some("WEIGHTED_PRED_FLAG_SET_KHR"),
+                Self::WEIGHTED_BIPRED_IDC_EXPLICIT_KHR => {
+                    Some("WEIGHTED_BIPRED_IDC_EXPLICIT_KHR")
+                }
+                Self::WEIGHTED_BIPRED_IDC_IMPLICIT_KHR => {
+                    Some("WEIGHTED_BIPRED_IDC_IMPLICIT_KHR")
+                }
+                Self::TRANSFORM_8X8_MODE_FLAG_SET_KHR => {
+                    Some("TRANSFORM_8X8_MODE_FLAG_SET_KHR")
+                }
+                Self::DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR => {
+                    Some("DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR")
+                }
+                Self::ENTROPY_CODING_MODE_FLAG_UNSET_KHR => {
+                    Some("ENTROPY_CODING_MODE_FLAG_UNSET_KHR")
+                }
+                Self::ENTROPY_CODING_MODE_FLAG_SET_KHR => {
+                    Some("ENTROPY_CODING_MODE_FLAG_SET_KHR")
+                }
+                Self::DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR => {
+                    Some("DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR")
+                }
+                Self::CONSTRAINED_INTRA_PRED_FLAG_SET_KHR => {
+                    Some("CONSTRAINED_INTRA_PRED_FLAG_SET_KHR")
+                }
+                Self::DEBLOCKING_FILTER_DISABLED_KHR => {
+                    Some("DEBLOCKING_FILTER_DISABLED_KHR")
+                }
+                Self::DEBLOCKING_FILTER_ENABLED_KHR => {
+                    Some("DEBLOCKING_FILTER_ENABLED_KHR")
+                }
+                Self::DEBLOCKING_FILTER_PARTIAL_KHR => {
+                    Some("DEBLOCKING_FILTER_PARTIAL_KHR")
+                }
+                Self::SLICE_QP_DELTA_KHR => Some("SLICE_QP_DELTA_KHR"),
+                Self::DIFFERENT_SLICE_QP_DELTA_KHR => {
+                    Some("DIFFERENT_SLICE_QP_DELTA_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeH264RateControlFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeH264RateControlFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::ATTEMPT_HRD_COMPLIANCE_KHR.0, "ATTEMPT_HRD_COMPLIANCE_KHR"),
+                    (Self::REGULAR_GOP_KHR.0, "REGULAR_GOP_KHR"),
+                    (Self::REFERENCE_PATTERN_FLAT_KHR.0, "REFERENCE_PATTERN_FLAT_KHR"),
+                    (
+                        Self::REFERENCE_PATTERN_DYADIC_KHR.0,
+                        "REFERENCE_PATTERN_DYADIC_KHR",
+                    ),
+                    (
+                        Self::TEMPORAL_LAYER_PATTERN_DYADIC_KHR.0,
+                        "TEMPORAL_LAYER_PATTERN_DYADIC_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeH264RateControlFlagsKHR {
         pub const ATTEMPT_HRD_COMPLIANCE_KHR: Self = Self(
             VideoEncodeH264RateControlFlagBitsKHR::ATTEMPT_HRD_COMPLIANCE_KHR.0,
@@ -1208,7 +1428,28 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeH264RateControlFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeH264RateControlFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ATTEMPT_HRD_COMPLIANCE_KHR => Some("ATTEMPT_HRD_COMPLIANCE_KHR"),
+                Self::REGULAR_GOP_KHR => Some("REGULAR_GOP_KHR"),
+                Self::REFERENCE_PATTERN_FLAT_KHR => Some("REFERENCE_PATTERN_FLAT_KHR"),
+                Self::REFERENCE_PATTERN_DYADIC_KHR => {
+                    Some("REFERENCE_PATTERN_DYADIC_KHR")
+                }
+                Self::TEMPORAL_LAYER_PATTERN_DYADIC_KHR => {
+                    Some("TEMPORAL_LAYER_PATTERN_DYADIC_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

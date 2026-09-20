@@ -1011,8 +1011,22 @@ pub(crate) mod reexport {
     pub type OpacityMicromapFormatEXT = crate::vk::OpacityMicromapFormatKHR;
     pub type OpacityMicromapSpecialIndexEXT = crate::vk::OpacityMicromapSpecialIndexKHR;
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BuildMicromapFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for BuildMicromapFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::PREFER_FAST_TRACE_EXT.0, "PREFER_FAST_TRACE_EXT"),
+                    (Self::PREFER_FAST_BUILD_EXT.0, "PREFER_FAST_BUILD_EXT"),
+                    (Self::ALLOW_COMPACTION_EXT.0, "ALLOW_COMPACTION_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl BuildMicromapFlagsEXT {
         pub const PREFER_FAST_TRACE_EXT: Self = Self(
             BuildMicromapFlagBitsEXT::PREFER_FAST_TRACE_EXT.0,
@@ -1082,11 +1096,41 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BuildMicromapFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for BuildMicromapFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PREFER_FAST_TRACE_EXT => Some("PREFER_FAST_TRACE_EXT"),
+                Self::PREFER_FAST_BUILD_EXT => Some("PREFER_FAST_BUILD_EXT"),
+                Self::ALLOW_COMPACTION_EXT => Some("ALLOW_COMPACTION_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MicromapCreateFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MicromapCreateFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::DEVICE_ADDRESS_CAPTURE_REPLAY_EXT.0,
+                        "DEVICE_ADDRESS_CAPTURE_REPLAY_EXT",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl MicromapCreateFlagsEXT {
         pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self(
             MicromapCreateFlagBitsEXT::DEVICE_ADDRESS_CAPTURE_REPLAY_EXT.0,
@@ -1150,8 +1194,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MicromapCreateFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MicromapCreateFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEVICE_ADDRESS_CAPTURE_REPLAY_EXT => {
+                    Some("DEVICE_ADDRESS_CAPTURE_REPLAY_EXT")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct MicromapEXT(u64);

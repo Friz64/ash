@@ -3643,8 +3643,30 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SubgroupFeatureFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SubgroupFeatureFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::BASIC.0, "BASIC"),
+                    (Self::VOTE.0, "VOTE"),
+                    (Self::ARITHMETIC.0, "ARITHMETIC"),
+                    (Self::BALLOT.0, "BALLOT"),
+                    (Self::SHUFFLE.0, "SHUFFLE"),
+                    (Self::SHUFFLE_RELATIVE.0, "SHUFFLE_RELATIVE"),
+                    (Self::CLUSTERED.0, "CLUSTERED"),
+                    (Self::QUAD.0, "QUAD"),
+                    (Self::ROTATE.0, "ROTATE"),
+                    (Self::ROTATE_CLUSTERED.0, "ROTATE_CLUSTERED"),
+                    (Self::PARTITIONED_EXT.0, "PARTITIONED_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl SubgroupFeatureFlags {
         pub const BASIC: Self = Self(SubgroupFeatureFlagBits::BASIC.0);
         pub const VOTE: Self = Self(SubgroupFeatureFlagBits::VOTE.0);
@@ -3727,11 +3749,40 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SubgroupFeatureFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SubgroupFeatureFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::BASIC => Some("BASIC"),
+                Self::VOTE => Some("VOTE"),
+                Self::ARITHMETIC => Some("ARITHMETIC"),
+                Self::BALLOT => Some("BALLOT"),
+                Self::SHUFFLE => Some("SHUFFLE"),
+                Self::SHUFFLE_RELATIVE => Some("SHUFFLE_RELATIVE"),
+                Self::CLUSTERED => Some("CLUSTERED"),
+                Self::QUAD => Some("QUAD"),
+                Self::ROTATE => Some("ROTATE"),
+                Self::ROTATE_CLUSTERED => Some("ROTATE_CLUSTERED"),
+                Self::PARTITIONED_EXT => Some("PARTITIONED_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorUpdateTemplateCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DescriptorUpdateTemplateCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl DescriptorUpdateTemplateCreateFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -3792,8 +3843,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PeerMemoryFeatureFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PeerMemoryFeatureFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::COPY_SRC.0, "COPY_SRC"),
+                    (Self::COPY_DST.0, "COPY_DST"),
+                    (Self::GENERIC_SRC.0, "GENERIC_SRC"),
+                    (Self::GENERIC_DST.0, "GENERIC_DST"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PeerMemoryFeatureFlags {
         pub const COPY_SRC: Self = Self(PeerMemoryFeatureFlagBits::COPY_SRC.0);
         pub const COPY_DST: Self = Self(PeerMemoryFeatureFlagBits::COPY_DST.0);
@@ -3866,11 +3932,45 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PeerMemoryFeatureFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PeerMemoryFeatureFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::COPY_SRC => Some("COPY_SRC"),
+                Self::COPY_DST => Some("COPY_DST"),
+                Self::GENERIC_SRC => Some("GENERIC_SRC"),
+                Self::GENERIC_DST => Some("GENERIC_DST"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryAllocateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MemoryAllocateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DEVICE_MASK.0, "DEVICE_MASK"),
+                    (Self::DEVICE_ADDRESS.0, "DEVICE_ADDRESS"),
+                    (
+                        Self::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
+                        "DEVICE_ADDRESS_CAPTURE_REPLAY",
+                    ),
+                    (Self::ZERO_INITIALIZE_EXT.0, "ZERO_INITIALIZE_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl MemoryAllocateFlags {
         pub const DEVICE_MASK: Self = Self(MemoryAllocateFlagBits::DEVICE_MASK.0);
         pub const DEVICE_ADDRESS: Self = Self(MemoryAllocateFlagBits::DEVICE_ADDRESS.0);
@@ -3948,11 +4048,35 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryAllocateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MemoryAllocateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEVICE_MASK => Some("DEVICE_MASK"),
+                Self::DEVICE_ADDRESS => Some("DEVICE_ADDRESS"),
+                Self::DEVICE_ADDRESS_CAPTURE_REPLAY => {
+                    Some("DEVICE_ADDRESS_CAPTURE_REPLAY")
+                }
+                Self::ZERO_INITIALIZE_EXT => Some("ZERO_INITIALIZE_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandPoolTrimFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CommandPoolTrimFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl CommandPoolTrimFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -4013,8 +4137,43 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryHandleTypeFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalMemoryHandleTypeFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::OPAQUE_FD.0, "OPAQUE_FD"),
+                    (Self::OPAQUE_WIN32.0, "OPAQUE_WIN32"),
+                    (Self::OPAQUE_WIN32_KMT.0, "OPAQUE_WIN32_KMT"),
+                    (Self::D3D11_TEXTURE.0, "D3D11_TEXTURE"),
+                    (Self::D3D11_TEXTURE_KMT.0, "D3D11_TEXTURE_KMT"),
+                    (Self::D3D12_HEAP.0, "D3D12_HEAP"),
+                    (Self::D3D12_RESOURCE.0, "D3D12_RESOURCE"),
+                    (Self::DMA_BUF_EXT.0, "DMA_BUF_EXT"),
+                    (
+                        Self::ANDROID_HARDWARE_BUFFER_ANDROID.0,
+                        "ANDROID_HARDWARE_BUFFER_ANDROID",
+                    ),
+                    (Self::HOST_ALLOCATION_EXT.0, "HOST_ALLOCATION_EXT"),
+                    (
+                        Self::HOST_MAPPED_FOREIGN_MEMORY_EXT.0,
+                        "HOST_MAPPED_FOREIGN_MEMORY_EXT",
+                    ),
+                    (Self::ZIRCON_VMO_FUCHSIA.0, "ZIRCON_VMO_FUCHSIA"),
+                    (Self::RDMA_ADDRESS_NV.0, "RDMA_ADDRESS_NV"),
+                    (Self::OH_NATIVE_BUFFER_OHOS.0, "OH_NATIVE_BUFFER_OHOS"),
+                    (Self::SCREEN_BUFFER_QNX.0, "SCREEN_BUFFER_QNX"),
+                    (Self::MTLBUFFER_EXT.0, "MTLBUFFER_EXT"),
+                    (Self::MTLTEXTURE_EXT.0, "MTLTEXTURE_EXT"),
+                    (Self::MTLHEAP_EXT.0, "MTLHEAP_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ExternalMemoryHandleTypeFlags {
         pub const OPAQUE_FD: Self = Self(ExternalMemoryHandleTypeFlagBits::OPAQUE_FD.0);
         pub const OPAQUE_WIN32: Self = Self(
@@ -4148,11 +4307,59 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryHandleTypeFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalMemoryHandleTypeFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::OPAQUE_FD => Some("OPAQUE_FD"),
+                Self::OPAQUE_WIN32 => Some("OPAQUE_WIN32"),
+                Self::OPAQUE_WIN32_KMT => Some("OPAQUE_WIN32_KMT"),
+                Self::D3D11_TEXTURE => Some("D3D11_TEXTURE"),
+                Self::D3D11_TEXTURE_KMT => Some("D3D11_TEXTURE_KMT"),
+                Self::D3D12_HEAP => Some("D3D12_HEAP"),
+                Self::D3D12_RESOURCE => Some("D3D12_RESOURCE"),
+                Self::DMA_BUF_EXT => Some("DMA_BUF_EXT"),
+                Self::ANDROID_HARDWARE_BUFFER_ANDROID => {
+                    Some("ANDROID_HARDWARE_BUFFER_ANDROID")
+                }
+                Self::HOST_ALLOCATION_EXT => Some("HOST_ALLOCATION_EXT"),
+                Self::HOST_MAPPED_FOREIGN_MEMORY_EXT => {
+                    Some("HOST_MAPPED_FOREIGN_MEMORY_EXT")
+                }
+                Self::ZIRCON_VMO_FUCHSIA => Some("ZIRCON_VMO_FUCHSIA"),
+                Self::RDMA_ADDRESS_NV => Some("RDMA_ADDRESS_NV"),
+                Self::OH_NATIVE_BUFFER_OHOS => Some("OH_NATIVE_BUFFER_OHOS"),
+                Self::SCREEN_BUFFER_QNX => Some("SCREEN_BUFFER_QNX"),
+                Self::MTLBUFFER_EXT => Some("MTLBUFFER_EXT"),
+                Self::MTLTEXTURE_EXT => Some("MTLTEXTURE_EXT"),
+                Self::MTLHEAP_EXT => Some("MTLHEAP_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryFeatureFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalMemoryFeatureFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DEDICATED_ONLY.0, "DEDICATED_ONLY"),
+                    (Self::EXPORTABLE.0, "EXPORTABLE"),
+                    (Self::IMPORTABLE.0, "IMPORTABLE"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ExternalMemoryFeatureFlags {
         pub const DEDICATED_ONLY: Self = Self(
             ExternalMemoryFeatureFlagBits::DEDICATED_ONLY.0,
@@ -4227,11 +4434,43 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryFeatureFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalMemoryFeatureFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEDICATED_ONLY => Some("DEDICATED_ONLY"),
+                Self::EXPORTABLE => Some("EXPORTABLE"),
+                Self::IMPORTABLE => Some("IMPORTABLE"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalSemaphoreHandleTypeFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalSemaphoreHandleTypeFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::OPAQUE_FD.0, "OPAQUE_FD"),
+                    (Self::OPAQUE_WIN32.0, "OPAQUE_WIN32"),
+                    (Self::OPAQUE_WIN32_KMT.0, "OPAQUE_WIN32_KMT"),
+                    (Self::D3D12_FENCE.0, "D3D12_FENCE"),
+                    (Self::SYNC_FD.0, "SYNC_FD"),
+                    (Self::ZIRCON_EVENT_FUCHSIA.0, "ZIRCON_EVENT_FUCHSIA"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ExternalSemaphoreHandleTypeFlags {
         pub const OPAQUE_FD: Self = Self(
             ExternalSemaphoreHandleTypeFlagBits::OPAQUE_FD.0,
@@ -4326,11 +4565,42 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalSemaphoreHandleTypeFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalSemaphoreHandleTypeFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::OPAQUE_FD => Some("OPAQUE_FD"),
+                Self::OPAQUE_WIN32 => Some("OPAQUE_WIN32"),
+                Self::OPAQUE_WIN32_KMT => Some("OPAQUE_WIN32_KMT"),
+                Self::D3D12_FENCE => Some("D3D12_FENCE"),
+                Self::SYNC_FD => Some("SYNC_FD"),
+                Self::ZIRCON_EVENT_FUCHSIA => Some("ZIRCON_EVENT_FUCHSIA"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalSemaphoreFeatureFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalSemaphoreFeatureFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::EXPORTABLE.0, "EXPORTABLE"),
+                    (Self::IMPORTABLE.0, "IMPORTABLE"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ExternalSemaphoreFeatureFlags {
         pub const EXPORTABLE: Self = Self(
             ExternalSemaphoreFeatureFlagBits::EXPORTABLE.0,
@@ -4403,11 +4673,31 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalSemaphoreFeatureFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalSemaphoreFeatureFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::EXPORTABLE => Some("EXPORTABLE"),
+                Self::IMPORTABLE => Some("IMPORTABLE"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SemaphoreImportFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SemaphoreImportFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::TEMPORARY.0, "TEMPORARY")], self.0)
+        }
+    }
     impl SemaphoreImportFlags {
         pub const TEMPORARY: Self = Self(SemaphoreImportFlagBits::TEMPORARY.0);
         pub const TEMPORARY_KHR: Self = Self(SemaphoreImportFlagBits::TEMPORARY_KHR.0);
@@ -4470,11 +4760,39 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SemaphoreImportFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SemaphoreImportFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::TEMPORARY => Some("TEMPORARY"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalFenceHandleTypeFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalFenceHandleTypeFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::OPAQUE_FD.0, "OPAQUE_FD"),
+                    (Self::OPAQUE_WIN32.0, "OPAQUE_WIN32"),
+                    (Self::OPAQUE_WIN32_KMT.0, "OPAQUE_WIN32_KMT"),
+                    (Self::SYNC_FD.0, "SYNC_FD"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ExternalFenceHandleTypeFlags {
         pub const OPAQUE_FD: Self = Self(ExternalFenceHandleTypeFlagBits::OPAQUE_FD.0);
         pub const OPAQUE_WIN32: Self = Self(
@@ -4555,11 +4873,40 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalFenceHandleTypeFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalFenceHandleTypeFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::OPAQUE_FD => Some("OPAQUE_FD"),
+                Self::OPAQUE_WIN32 => Some("OPAQUE_WIN32"),
+                Self::OPAQUE_WIN32_KMT => Some("OPAQUE_WIN32_KMT"),
+                Self::SYNC_FD => Some("SYNC_FD"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalFenceFeatureFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalFenceFeatureFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::EXPORTABLE.0, "EXPORTABLE"),
+                    (Self::IMPORTABLE.0, "IMPORTABLE"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ExternalFenceFeatureFlags {
         pub const EXPORTABLE: Self = Self(ExternalFenceFeatureFlagBits::EXPORTABLE.0);
         pub const IMPORTABLE: Self = Self(ExternalFenceFeatureFlagBits::IMPORTABLE.0);
@@ -4628,11 +4975,31 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalFenceFeatureFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalFenceFeatureFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::EXPORTABLE => Some("EXPORTABLE"),
+                Self::IMPORTABLE => Some("IMPORTABLE"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FenceImportFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FenceImportFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::TEMPORARY.0, "TEMPORARY")], self.0)
+        }
+    }
     impl FenceImportFlags {
         pub const TEMPORARY: Self = Self(FenceImportFlagBits::TEMPORARY.0);
         pub const TEMPORARY_KHR: Self = Self(FenceImportFlagBits::TEMPORARY_KHR.0);
@@ -4695,8 +5062,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FenceImportFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FenceImportFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::TEMPORARY => Some("TEMPORARY"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DescriptorUpdateTemplate(u64);

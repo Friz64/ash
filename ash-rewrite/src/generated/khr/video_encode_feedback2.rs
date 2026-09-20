@@ -151,8 +151,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodePerPartitionFeedbackFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodePerPartitionFeedbackFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::STATUS_KHR.0, "STATUS_KHR"),
+                    (Self::BITSTREAM_BUFFER_OFFSET_KHR.0, "BITSTREAM_BUFFER_OFFSET_KHR"),
+                    (Self::BITSTREAM_BYTES_WRITTEN_KHR.0, "BITSTREAM_BYTES_WRITTEN_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodePerPartitionFeedbackFlagsKHR {
         pub const STATUS_KHR: Self = Self(
             VideoEncodePerPartitionFeedbackFlagBitsKHR::STATUS_KHR.0,
@@ -222,7 +236,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodePerPartitionFeedbackFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodePerPartitionFeedbackFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::STATUS_KHR => Some("STATUS_KHR"),
+                Self::BITSTREAM_BUFFER_OFFSET_KHR => Some("BITSTREAM_BUFFER_OFFSET_KHR"),
+                Self::BITSTREAM_BYTES_WRITTEN_KHR => Some("BITSTREAM_BYTES_WRITTEN_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

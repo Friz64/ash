@@ -282,8 +282,31 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct RenderingAttachmentFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for RenderingAttachmentFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::INPUT_ATTACHMENT_FEEDBACK_KHR.0,
+                        "INPUT_ATTACHMENT_FEEDBACK_KHR",
+                    ),
+                    (
+                        Self::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0,
+                        "RESOLVE_SKIP_TRANSFER_FUNCTION_KHR",
+                    ),
+                    (
+                        Self::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
+                        "RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl RenderingAttachmentFlagsKHR {
         pub const INPUT_ATTACHMENT_FEEDBACK_KHR: Self = Self(
             RenderingAttachmentFlagBitsKHR::INPUT_ATTACHMENT_FEEDBACK_KHR.0,
@@ -353,11 +376,48 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct RenderingAttachmentFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for RenderingAttachmentFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::INPUT_ATTACHMENT_FEEDBACK_KHR => {
+                    Some("INPUT_ATTACHMENT_FEEDBACK_KHR")
+                }
+                Self::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR => {
+                    Some("RESOLVE_SKIP_TRANSFER_FUNCTION_KHR")
+                }
+                Self::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR => {
+                    Some("RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ResolveImageFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ResolveImageFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::SKIP_TRANSFER_FUNCTION_KHR.0, "SKIP_TRANSFER_FUNCTION_KHR"),
+                    (
+                        Self::ENABLE_TRANSFER_FUNCTION_KHR.0,
+                        "ENABLE_TRANSFER_FUNCTION_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ResolveImageFlagsKHR {
         pub const SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
             ResolveImageFlagBitsKHR::SKIP_TRANSFER_FUNCTION_KHR.0,
@@ -424,8 +484,24 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ResolveImageFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ResolveImageFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SKIP_TRANSFER_FUNCTION_KHR => Some("SKIP_TRANSFER_FUNCTION_KHR"),
+                Self::ENABLE_TRANSFER_FUNCTION_KHR => {
+                    Some("ENABLE_TRANSFER_FUNCTION_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkCmdEndRendering2KHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_rendering_end_info: *const crate::vk::RenderingEndInfoKHR<'_>,

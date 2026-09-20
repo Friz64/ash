@@ -1624,8 +1624,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TensorViewCreateFlagsARM(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for TensorViewCreateFlagsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
+                        "DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl TensorViewCreateFlagsARM {
         pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(
             TensorViewCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
@@ -1689,11 +1704,54 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TensorViewCreateFlagBitsARM(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for TensorViewCreateFlagBitsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM => {
+                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SpirvResourceTypeFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SpirvResourceTypeFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::ALL_EXT.0, "ALL_EXT"),
+                    (Self::SAMPLER_EXT.0, "SAMPLER_EXT"),
+                    (Self::SAMPLED_IMAGE_EXT.0, "SAMPLED_IMAGE_EXT"),
+                    (Self::READ_ONLY_IMAGE_EXT.0, "READ_ONLY_IMAGE_EXT"),
+                    (Self::READ_WRITE_IMAGE_EXT.0, "READ_WRITE_IMAGE_EXT"),
+                    (Self::COMBINED_SAMPLED_IMAGE_EXT.0, "COMBINED_SAMPLED_IMAGE_EXT"),
+                    (Self::UNIFORM_BUFFER_EXT.0, "UNIFORM_BUFFER_EXT"),
+                    (
+                        Self::READ_ONLY_STORAGE_BUFFER_EXT.0,
+                        "READ_ONLY_STORAGE_BUFFER_EXT",
+                    ),
+                    (
+                        Self::READ_WRITE_STORAGE_BUFFER_EXT.0,
+                        "READ_WRITE_STORAGE_BUFFER_EXT",
+                    ),
+                    (Self::ACCELERATION_STRUCTURE_EXT.0, "ACCELERATION_STRUCTURE_EXT"),
+                    (Self::TENSOR_ARM.0, "TENSOR_ARM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl SpirvResourceTypeFlagsEXT {
         pub const ALL_EXT: Self = Self(SpirvResourceTypeFlagBitsEXT::ALL_EXT.0);
         pub const SAMPLER_EXT: Self = Self(SpirvResourceTypeFlagBitsEXT::SAMPLER_EXT.0);
@@ -1781,8 +1839,35 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SpirvResourceTypeFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SpirvResourceTypeFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ALL_EXT => Some("ALL_EXT"),
+                Self::SAMPLER_EXT => Some("SAMPLER_EXT"),
+                Self::SAMPLED_IMAGE_EXT => Some("SAMPLED_IMAGE_EXT"),
+                Self::READ_ONLY_IMAGE_EXT => Some("READ_ONLY_IMAGE_EXT"),
+                Self::READ_WRITE_IMAGE_EXT => Some("READ_WRITE_IMAGE_EXT"),
+                Self::COMBINED_SAMPLED_IMAGE_EXT => Some("COMBINED_SAMPLED_IMAGE_EXT"),
+                Self::UNIFORM_BUFFER_EXT => Some("UNIFORM_BUFFER_EXT"),
+                Self::READ_ONLY_STORAGE_BUFFER_EXT => {
+                    Some("READ_ONLY_STORAGE_BUFFER_EXT")
+                }
+                Self::READ_WRITE_STORAGE_BUFFER_EXT => {
+                    Some("READ_WRITE_STORAGE_BUFFER_EXT")
+                }
+                Self::ACCELERATION_STRUCTURE_EXT => Some("ACCELERATION_STRUCTURE_EXT"),
+                Self::TENSOR_ARM => Some("TENSOR_ARM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct TensorARM(u64);

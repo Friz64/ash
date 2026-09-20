@@ -218,8 +218,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ConditionalRenderingFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ConditionalRenderingFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::INVERTED_EXT.0, "INVERTED_EXT")], self.0)
+        }
+    }
     impl ConditionalRenderingFlagsEXT {
         pub const INVERTED_EXT: Self = Self(
             ConditionalRenderingFlagBitsEXT::INVERTED_EXT.0,
@@ -283,8 +289,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ConditionalRenderingFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ConditionalRenderingFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::INVERTED_EXT => Some("INVERTED_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkCmdBeginConditionalRenderingEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfoEXT<

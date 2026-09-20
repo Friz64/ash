@@ -652,8 +652,26 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PresentStageFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PresentStageFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::QUEUE_OPERATIONS_END_EXT.0, "QUEUE_OPERATIONS_END_EXT"),
+                    (Self::REQUEST_DEQUEUED_EXT.0, "REQUEST_DEQUEUED_EXT"),
+                    (Self::IMAGE_FIRST_PIXEL_OUT_EXT.0, "IMAGE_FIRST_PIXEL_OUT_EXT"),
+                    (
+                        Self::IMAGE_FIRST_PIXEL_VISIBLE_EXT.0,
+                        "IMAGE_FIRST_PIXEL_VISIBLE_EXT",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PresentStageFlagsEXT {
         pub const QUEUE_OPERATIONS_END_EXT: Self = Self(
             PresentStageFlagBitsEXT::QUEUE_OPERATIONS_END_EXT.0,
@@ -726,11 +744,45 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PresentStageFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PresentStageFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::QUEUE_OPERATIONS_END_EXT => Some("QUEUE_OPERATIONS_END_EXT"),
+                Self::REQUEST_DEQUEUED_EXT => Some("REQUEST_DEQUEUED_EXT"),
+                Self::IMAGE_FIRST_PIXEL_OUT_EXT => Some("IMAGE_FIRST_PIXEL_OUT_EXT"),
+                Self::IMAGE_FIRST_PIXEL_VISIBLE_EXT => {
+                    Some("IMAGE_FIRST_PIXEL_VISIBLE_EXT")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PastPresentationTimingFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PastPresentationTimingFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::ALLOW_PARTIAL_RESULTS_EXT.0, "ALLOW_PARTIAL_RESULTS_EXT"),
+                    (
+                        Self::ALLOW_OUT_OF_ORDER_RESULTS_EXT.0,
+                        "ALLOW_OUT_OF_ORDER_RESULTS_EXT",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PastPresentationTimingFlagsEXT {
         pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(
             PastPresentationTimingFlagBitsEXT::ALLOW_PARTIAL_RESULTS_EXT.0,
@@ -797,11 +849,46 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PastPresentationTimingFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PastPresentationTimingFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ALLOW_PARTIAL_RESULTS_EXT => Some("ALLOW_PARTIAL_RESULTS_EXT"),
+                Self::ALLOW_OUT_OF_ORDER_RESULTS_EXT => {
+                    Some("ALLOW_OUT_OF_ORDER_RESULTS_EXT")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PresentTimingInfoFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PresentTimingInfoFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::PRESENT_AT_RELATIVE_TIME_EXT.0,
+                        "PRESENT_AT_RELATIVE_TIME_EXT",
+                    ),
+                    (
+                        Self::PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT.0,
+                        "PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PresentTimingInfoFlagsEXT {
         pub const PRESENT_AT_RELATIVE_TIME_EXT: Self = Self(
             PresentTimingInfoFlagBitsEXT::PRESENT_AT_RELATIVE_TIME_EXT.0,
@@ -868,8 +955,26 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PresentTimingInfoFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PresentTimingInfoFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PRESENT_AT_RELATIVE_TIME_EXT => {
+                    Some("PRESENT_AT_RELATIVE_TIME_EXT")
+                }
+                Self::PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT => {
+                    Some("PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkSetSwapchainPresentTimingQueueSizeEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,

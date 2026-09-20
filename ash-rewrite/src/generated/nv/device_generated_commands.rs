@@ -918,8 +918,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectCommandsLayoutUsageFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::EXPLICIT_PREPROCESS_NV.0, "EXPLICIT_PREPROCESS_NV"),
+                    (Self::INDEXED_SEQUENCES_NV.0, "INDEXED_SEQUENCES_NV"),
+                    (Self::UNORDERED_SEQUENCES_NV.0, "UNORDERED_SEQUENCES_NV"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl IndirectCommandsLayoutUsageFlagsNV {
         pub const EXPLICIT_PREPROCESS_NV: Self = Self(
             IndirectCommandsLayoutUsageFlagBitsNV::EXPLICIT_PREPROCESS_NV.0,
@@ -989,11 +1003,36 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for IndirectCommandsLayoutUsageFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::EXPLICIT_PREPROCESS_NV => Some("EXPLICIT_PREPROCESS_NV"),
+                Self::INDEXED_SEQUENCES_NV => Some("INDEXED_SEQUENCES_NV"),
+                Self::UNORDERED_SEQUENCES_NV => Some("UNORDERED_SEQUENCES_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectStateFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for IndirectStateFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[(Self::FLAG_FRONTFACE_NV.0, "FLAG_FRONTFACE_NV")],
+                self.0,
+            )
+        }
+    }
     impl IndirectStateFlagsNV {
         pub const FLAG_FRONTFACE_NV: Self = Self(
             IndirectStateFlagBitsNV::FLAG_FRONTFACE_NV.0,
@@ -1057,8 +1096,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectStateFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for IndirectStateFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::FLAG_FRONTFACE_NV => Some("FLAG_FRONTFACE_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct IndirectCommandsLayoutNV(u64);

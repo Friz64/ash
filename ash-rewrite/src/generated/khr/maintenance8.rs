@@ -104,8 +104,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccessFlags3KHR(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccessFlags3KHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::NONE_KHR.0, "NONE_KHR")], self.0)
+        }
+    }
     impl AccessFlags3KHR {
         pub const NONE_KHR: Self = Self(AccessFlagBits3KHR::NONE_KHR.0);
         pub const fn empty() -> Self {
@@ -167,7 +173,20 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccessFlagBits3KHR(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccessFlagBits3KHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::NONE_KHR => Some("NONE_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

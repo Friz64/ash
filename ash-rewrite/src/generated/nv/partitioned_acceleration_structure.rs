@@ -580,8 +580,33 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PartitionedAccelerationStructureInstanceFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PartitionedAccelerationStructureInstanceFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::FLAG_TRIANGLE_FACING_CULL_DISABLE_NV.0,
+                        "FLAG_TRIANGLE_FACING_CULL_DISABLE_NV",
+                    ),
+                    (
+                        Self::FLAG_TRIANGLE_FLIP_FACING_NV.0,
+                        "FLAG_TRIANGLE_FLIP_FACING_NV",
+                    ),
+                    (Self::FLAG_FORCE_OPAQUE_NV.0, "FLAG_FORCE_OPAQUE_NV"),
+                    (Self::FLAG_FORCE_NO_OPAQUE_NV.0, "FLAG_FORCE_NO_OPAQUE_NV"),
+                    (
+                        Self::FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV.0,
+                        "FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PartitionedAccelerationStructureInstanceFlagsNV {
         pub const FLAG_TRIANGLE_FACING_CULL_DISABLE_NV: Self = Self(
             PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FACING_CULL_DISABLE_NV
@@ -660,8 +685,31 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PartitionedAccelerationStructureInstanceFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PartitionedAccelerationStructureInstanceFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::FLAG_TRIANGLE_FACING_CULL_DISABLE_NV => {
+                    Some("FLAG_TRIANGLE_FACING_CULL_DISABLE_NV")
+                }
+                Self::FLAG_TRIANGLE_FLIP_FACING_NV => {
+                    Some("FLAG_TRIANGLE_FLIP_FACING_NV")
+                }
+                Self::FLAG_FORCE_OPAQUE_NV => Some("FLAG_FORCE_OPAQUE_NV"),
+                Self::FLAG_FORCE_NO_OPAQUE_NV => Some("FLAG_FORCE_NO_OPAQUE_NV"),
+                Self::FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV => {
+                    Some("FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV = unsafe extern "system" fn(
         device: crate::vk::Device,
         p_info: *const crate::vk::PartitionedAccelerationStructureInstancesInputNV<'_>,

@@ -1435,8 +1435,29 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TensorCreateFlagsARM(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for TensorCreateFlagsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::MUTABLE_FORMAT_ARM.0, "MUTABLE_FORMAT_ARM"),
+                    (Self::PROTECTED_ARM.0, "PROTECTED_ARM"),
+                    (
+                        Self::DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM.0,
+                        "DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM",
+                    ),
+                    (
+                        Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
+                        "DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl TensorCreateFlagsARM {
         pub const MUTABLE_FORMAT_ARM: Self = Self(
             TensorCreateFlagBitsARM::MUTABLE_FORMAT_ARM.0,
@@ -1507,11 +1528,47 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TensorCreateFlagBitsARM(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for TensorCreateFlagBitsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::MUTABLE_FORMAT_ARM => Some("MUTABLE_FORMAT_ARM"),
+                Self::PROTECTED_ARM => Some("PROTECTED_ARM"),
+                Self::DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM => {
+                    Some("DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM")
+                }
+                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM => {
+                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TensorUsageFlagsARM(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for TensorUsageFlagsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::SHADER_ARM.0, "SHADER_ARM"),
+                    (Self::TRANSFER_SRC_ARM.0, "TRANSFER_SRC_ARM"),
+                    (Self::TRANSFER_DST_ARM.0, "TRANSFER_DST_ARM"),
+                    (Self::IMAGE_ALIASING_ARM.0, "IMAGE_ALIASING_ARM"),
+                    (Self::DATA_GRAPH_ARM.0, "DATA_GRAPH_ARM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl TensorUsageFlagsARM {
         pub const SHADER_ARM: Self = Self(TensorUsageFlagBitsARM::SHADER_ARM.0);
         pub const TRANSFER_SRC_ARM: Self = Self(
@@ -1583,8 +1640,25 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TensorUsageFlagBitsARM(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for TensorUsageFlagBitsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SHADER_ARM => Some("SHADER_ARM"),
+                Self::TRANSFER_SRC_ARM => Some("TRANSFER_SRC_ARM"),
+                Self::TRANSFER_DST_ARM => Some("TRANSFER_DST_ARM"),
+                Self::IMAGE_ALIASING_ARM => Some("IMAGE_ALIASING_ARM"),
+                Self::DATA_GRAPH_ARM => Some("DATA_GRAPH_ARM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct TensorViewARM(u64);

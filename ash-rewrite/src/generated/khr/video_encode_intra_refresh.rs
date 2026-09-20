@@ -257,8 +257,24 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeIntraRefreshModeFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeIntraRefreshModeFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::NONE_KHR.0, "NONE_KHR"),
+                    (Self::PER_PICTURE_PARTITION_KHR.0, "PER_PICTURE_PARTITION_KHR"),
+                    (Self::BLOCK_BASED_KHR.0, "BLOCK_BASED_KHR"),
+                    (Self::BLOCK_ROW_BASED_KHR.0, "BLOCK_ROW_BASED_KHR"),
+                    (Self::BLOCK_COLUMN_BASED_KHR.0, "BLOCK_COLUMN_BASED_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeIntraRefreshModeFlagsKHR {
         pub const NONE_KHR: Self = Self(
             VideoEncodeIntraRefreshModeFlagBitsKHR::NONE_KHR.0,
@@ -334,7 +350,24 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeIntraRefreshModeFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeIntraRefreshModeFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::NONE_KHR => Some("NONE_KHR"),
+                Self::PER_PICTURE_PARTITION_KHR => Some("PER_PICTURE_PARTITION_KHR"),
+                Self::BLOCK_BASED_KHR => Some("BLOCK_BASED_KHR"),
+                Self::BLOCK_ROW_BASED_KHR => Some("BLOCK_ROW_BASED_KHR"),
+                Self::BLOCK_COLUMN_BASED_KHR => Some("BLOCK_COLUMN_BASED_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

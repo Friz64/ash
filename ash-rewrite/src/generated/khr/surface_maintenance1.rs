@@ -167,8 +167,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PresentScalingFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PresentScalingFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::ONE_TO_ONE_KHR.0, "ONE_TO_ONE_KHR"),
+                    (Self::ASPECT_RATIO_STRETCH_KHR.0, "ASPECT_RATIO_STRETCH_KHR"),
+                    (Self::STRETCH_KHR.0, "STRETCH_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PresentScalingFlagsKHR {
         pub const ONE_TO_ONE_KHR: Self = Self(
             PresentScalingFlagBitsKHR::ONE_TO_ONE_KHR.0,
@@ -243,11 +257,40 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PresentScalingFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PresentScalingFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ONE_TO_ONE_KHR => Some("ONE_TO_ONE_KHR"),
+                Self::ASPECT_RATIO_STRETCH_KHR => Some("ASPECT_RATIO_STRETCH_KHR"),
+                Self::STRETCH_KHR => Some("STRETCH_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PresentGravityFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PresentGravityFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::MIN_KHR.0, "MIN_KHR"),
+                    (Self::MAX_KHR.0, "MAX_KHR"),
+                    (Self::CENTERED_KHR.0, "CENTERED_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PresentGravityFlagsKHR {
         pub const MIN_KHR: Self = Self(PresentGravityFlagBitsKHR::MIN_KHR.0);
         pub const MIN_EXT: Self = Self(PresentGravityFlagBitsKHR::MIN_EXT.0);
@@ -314,7 +357,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PresentGravityFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PresentGravityFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::MIN_KHR => Some("MIN_KHR"),
+                Self::MAX_KHR => Some("MAX_KHR"),
+                Self::CENTERED_KHR => Some("CENTERED_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

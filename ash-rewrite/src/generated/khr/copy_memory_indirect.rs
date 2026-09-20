@@ -359,8 +359,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AddressCopyFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AddressCopyFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DEVICE_LOCAL_KHR.0, "DEVICE_LOCAL_KHR"),
+                    (Self::SPARSE_KHR.0, "SPARSE_KHR"),
+                    (Self::PROTECTED_KHR.0, "PROTECTED_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl AddressCopyFlagsKHR {
         pub const DEVICE_LOCAL_KHR: Self = Self(
             AddressCopyFlagBitsKHR::DEVICE_LOCAL_KHR.0,
@@ -426,8 +440,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AddressCopyFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AddressCopyFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEVICE_LOCAL_KHR => Some("DEVICE_LOCAL_KHR"),
+                Self::SPARSE_KHR => Some("SPARSE_KHR"),
+                Self::PROTECTED_KHR => Some("PROTECTED_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkCmdCopyMemoryIndirectKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_copy_memory_indirect_info: *const crate::vk::CopyMemoryIndirectInfoKHR<'_>,

@@ -1628,8 +1628,24 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GeometryFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for GeometryFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::OPAQUE_KHR.0, "OPAQUE_KHR"),
+                    (
+                        Self::NO_DUPLICATE_ANY_HIT_INVOCATION_KHR.0,
+                        "NO_DUPLICATE_ANY_HIT_INVOCATION_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl GeometryFlagsKHR {
         pub const OPAQUE_KHR: Self = Self(GeometryFlagBitsKHR::OPAQUE_KHR.0);
         pub const NO_DUPLICATE_ANY_HIT_INVOCATION_KHR: Self = Self(
@@ -1698,11 +1714,53 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GeometryFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for GeometryFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::OPAQUE_KHR => Some("OPAQUE_KHR"),
+                Self::NO_DUPLICATE_ANY_HIT_INVOCATION_KHR => {
+                    Some("NO_DUPLICATE_ANY_HIT_INVOCATION_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GeometryInstanceFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for GeometryInstanceFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::TRIANGLE_FACING_CULL_DISABLE_KHR.0,
+                        "TRIANGLE_FACING_CULL_DISABLE_KHR",
+                    ),
+                    (Self::TRIANGLE_FLIP_FACING_KHR.0, "TRIANGLE_FLIP_FACING_KHR"),
+                    (Self::FORCE_OPAQUE_KHR.0, "FORCE_OPAQUE_KHR"),
+                    (Self::FORCE_NO_OPAQUE_KHR.0, "FORCE_NO_OPAQUE_KHR"),
+                    (
+                        Self::FORCE_OPACITY_MICROMAP_2_STATE_KHR.0,
+                        "FORCE_OPACITY_MICROMAP_2_STATE_KHR",
+                    ),
+                    (
+                        Self::DISABLE_OPACITY_MICROMAPS_KHR.0,
+                        "DISABLE_OPACITY_MICROMAPS_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl GeometryInstanceFlagsKHR {
         pub const TRIANGLE_FACING_CULL_DISABLE_KHR: Self = Self(
             GeometryInstanceFlagBitsKHR::TRIANGLE_FACING_CULL_DISABLE_KHR.0,
@@ -1802,11 +1860,74 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GeometryInstanceFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for GeometryInstanceFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::TRIANGLE_FACING_CULL_DISABLE_KHR => {
+                    Some("TRIANGLE_FACING_CULL_DISABLE_KHR")
+                }
+                Self::TRIANGLE_FLIP_FACING_KHR => Some("TRIANGLE_FLIP_FACING_KHR"),
+                Self::FORCE_OPAQUE_KHR => Some("FORCE_OPAQUE_KHR"),
+                Self::FORCE_NO_OPAQUE_KHR => Some("FORCE_NO_OPAQUE_KHR"),
+                Self::FORCE_OPACITY_MICROMAP_2_STATE_KHR => {
+                    Some("FORCE_OPACITY_MICROMAP_2_STATE_KHR")
+                }
+                Self::DISABLE_OPACITY_MICROMAPS_KHR => {
+                    Some("DISABLE_OPACITY_MICROMAPS_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BuildAccelerationStructureFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for BuildAccelerationStructureFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::ALLOW_UPDATE_KHR.0, "ALLOW_UPDATE_KHR"),
+                    (Self::ALLOW_COMPACTION_KHR.0, "ALLOW_COMPACTION_KHR"),
+                    (Self::PREFER_FAST_TRACE_KHR.0, "PREFER_FAST_TRACE_KHR"),
+                    (Self::PREFER_FAST_BUILD_KHR.0, "PREFER_FAST_BUILD_KHR"),
+                    (Self::LOW_MEMORY_KHR.0, "LOW_MEMORY_KHR"),
+                    (Self::MOTION_NV.0, "MOTION_NV"),
+                    (
+                        Self::ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT.0,
+                        "ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT",
+                    ),
+                    (
+                        Self::ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV.0,
+                        "ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV",
+                    ),
+                    (Self::ALLOW_DATA_ACCESS_KHR.0, "ALLOW_DATA_ACCESS_KHR"),
+                    (
+                        Self::ALLOW_CLUSTER_OPACITY_MICROMAPS_NV.0,
+                        "ALLOW_CLUSTER_OPACITY_MICROMAPS_NV",
+                    ),
+                    (
+                        Self::ALLOW_OPACITY_MICROMAP_UPDATE_KHR.0,
+                        "ALLOW_OPACITY_MICROMAP_UPDATE_KHR",
+                    ),
+                    (
+                        Self::ALLOW_DISABLE_OPACITY_MICROMAPS_KHR.0,
+                        "ALLOW_DISABLE_OPACITY_MICROMAPS_KHR",
+                    ),
+                    (Self::MICROMAP_LOSSY_KHR.0, "MICROMAP_LOSSY_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl BuildAccelerationStructureFlagsKHR {
         pub const ALLOW_UPDATE_KHR: Self = Self(
             BuildAccelerationStructureFlagBitsKHR::ALLOW_UPDATE_KHR.0,
@@ -1929,11 +2050,66 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BuildAccelerationStructureFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for BuildAccelerationStructureFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ALLOW_UPDATE_KHR => Some("ALLOW_UPDATE_KHR"),
+                Self::ALLOW_COMPACTION_KHR => Some("ALLOW_COMPACTION_KHR"),
+                Self::PREFER_FAST_TRACE_KHR => Some("PREFER_FAST_TRACE_KHR"),
+                Self::PREFER_FAST_BUILD_KHR => Some("PREFER_FAST_BUILD_KHR"),
+                Self::LOW_MEMORY_KHR => Some("LOW_MEMORY_KHR"),
+                Self::MOTION_NV => Some("MOTION_NV"),
+                Self::ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT => {
+                    Some("ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT")
+                }
+                Self::ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV => {
+                    Some("ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV")
+                }
+                Self::ALLOW_DATA_ACCESS_KHR => Some("ALLOW_DATA_ACCESS_KHR"),
+                Self::ALLOW_CLUSTER_OPACITY_MICROMAPS_NV => {
+                    Some("ALLOW_CLUSTER_OPACITY_MICROMAPS_NV")
+                }
+                Self::ALLOW_OPACITY_MICROMAP_UPDATE_KHR => {
+                    Some("ALLOW_OPACITY_MICROMAP_UPDATE_KHR")
+                }
+                Self::ALLOW_DISABLE_OPACITY_MICROMAPS_KHR => {
+                    Some("ALLOW_DISABLE_OPACITY_MICROMAPS_KHR")
+                }
+                Self::MICROMAP_LOSSY_KHR => Some("MICROMAP_LOSSY_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccelerationStructureCreateFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccelerationStructureCreateFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::DEVICE_ADDRESS_CAPTURE_REPLAY_KHR.0,
+                        "DEVICE_ADDRESS_CAPTURE_REPLAY_KHR",
+                    ),
+                    (
+                        Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
+                        "DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT",
+                    ),
+                    (Self::MOTION_NV.0, "MOTION_NV"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl AccelerationStructureCreateFlagsKHR {
         pub const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self(
             AccelerationStructureCreateFlagBitsKHR::DEVICE_ADDRESS_CAPTURE_REPLAY_KHR.0,
@@ -2004,8 +2180,27 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccelerationStructureCreateFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccelerationStructureCreateFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEVICE_ADDRESS_CAPTURE_REPLAY_KHR => {
+                    Some("DEVICE_ADDRESS_CAPTURE_REPLAY_KHR")
+                }
+                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT => {
+                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT")
+                }
+                Self::MOTION_NV => Some("MOTION_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct AccelerationStructureKHR(u64);

@@ -258,8 +258,18 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryDecompressionMethodFlagsEXT(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MemoryDecompressionMethodFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[(Self::GDEFLATE_1_0_EXT.0, "GDEFLATE_1_0_EXT")],
+                self.0,
+            )
+        }
+    }
     impl MemoryDecompressionMethodFlagsEXT {
         pub const GDEFLATE_1_0_EXT: Self = Self(
             MemoryDecompressionMethodFlagBitsEXT::GDEFLATE_1_0_EXT.0,
@@ -326,8 +336,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryDecompressionMethodFlagBitsEXT(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MemoryDecompressionMethodFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::GDEFLATE_1_0_EXT => Some("GDEFLATE_1_0_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkCmdDecompressMemoryEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_decompress_memory_info_ext: *const crate::vk::DecompressMemoryInfoEXT<'_>,

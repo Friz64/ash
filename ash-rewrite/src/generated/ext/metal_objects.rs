@@ -543,8 +543,25 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExportMetalObjectTypeFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExportMetalObjectTypeFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::METAL_DEVICE_EXT.0, "METAL_DEVICE_EXT"),
+                    (Self::METAL_COMMAND_QUEUE_EXT.0, "METAL_COMMAND_QUEUE_EXT"),
+                    (Self::METAL_BUFFER_EXT.0, "METAL_BUFFER_EXT"),
+                    (Self::METAL_TEXTURE_EXT.0, "METAL_TEXTURE_EXT"),
+                    (Self::METAL_IOSURFACE_EXT.0, "METAL_IOSURFACE_EXT"),
+                    (Self::METAL_SHARED_EVENT_EXT.0, "METAL_SHARED_EVENT_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ExportMetalObjectTypeFlagsEXT {
         pub const METAL_DEVICE_EXT: Self = Self(
             ExportMetalObjectTypeFlagBitsEXT::METAL_DEVICE_EXT.0,
@@ -623,8 +640,26 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExportMetalObjectTypeFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExportMetalObjectTypeFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::METAL_DEVICE_EXT => Some("METAL_DEVICE_EXT"),
+                Self::METAL_COMMAND_QUEUE_EXT => Some("METAL_COMMAND_QUEUE_EXT"),
+                Self::METAL_BUFFER_EXT => Some("METAL_BUFFER_EXT"),
+                Self::METAL_TEXTURE_EXT => Some("METAL_TEXTURE_EXT"),
+                Self::METAL_IOSURFACE_EXT => Some("METAL_IOSURFACE_EXT"),
+                Self::METAL_SHARED_EVENT_EXT => Some("METAL_SHARED_EVENT_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkExportMetalObjectsEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         p_metal_objects_info: *mut crate::vk::ExportMetalObjectsInfoEXT<'_>,

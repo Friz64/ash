@@ -127,8 +127,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct XcbSurfaceCreateFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for XcbSurfaceCreateFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl XcbSurfaceCreateFlagsKHR {
         pub const fn empty() -> Self {
             Self(0)

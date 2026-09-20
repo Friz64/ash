@@ -278,8 +278,24 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugReportFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DebugReportFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::INFORMATION_EXT.0, "INFORMATION_EXT"),
+                    (Self::WARNING_EXT.0, "WARNING_EXT"),
+                    (Self::PERFORMANCE_WARNING_EXT.0, "PERFORMANCE_WARNING_EXT"),
+                    (Self::ERROR_EXT.0, "ERROR_EXT"),
+                    (Self::DEBUG_EXT.0, "DEBUG_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DebugReportFlagsEXT {
         pub const INFORMATION_EXT: Self = Self(
             DebugReportFlagBitsEXT::INFORMATION_EXT.0,
@@ -349,8 +365,25 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugReportFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DebugReportFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::INFORMATION_EXT => Some("INFORMATION_EXT"),
+                Self::WARNING_EXT => Some("WARNING_EXT"),
+                Self::PERFORMANCE_WARNING_EXT => Some("PERFORMANCE_WARNING_EXT"),
+                Self::ERROR_EXT => Some("ERROR_EXT"),
+                Self::DEBUG_EXT => Some("DEBUG_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DebugReportCallbackEXT(u64);

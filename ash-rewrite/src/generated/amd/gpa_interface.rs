@@ -951,8 +951,26 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GpaSqShaderStageFlagsAMD(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for GpaSqShaderStageFlagsAMD {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::PS_AMD.0, "PS_AMD"),
+                    (Self::VS_AMD.0, "VS_AMD"),
+                    (Self::GS_AMD.0, "GS_AMD"),
+                    (Self::ES_AMD.0, "ES_AMD"),
+                    (Self::HS_AMD.0, "HS_AMD"),
+                    (Self::LS_AMD.0, "LS_AMD"),
+                    (Self::CS_AMD.0, "CS_AMD"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl GpaSqShaderStageFlagsAMD {
         pub const PS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::PS_AMD.0);
         pub const VS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::VS_AMD.0);
@@ -1020,11 +1038,36 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GpaSqShaderStageFlagBitsAMD(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for GpaSqShaderStageFlagBitsAMD {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PS_AMD => Some("PS_AMD"),
+                Self::VS_AMD => Some("VS_AMD"),
+                Self::GS_AMD => Some("GS_AMD"),
+                Self::ES_AMD => Some("ES_AMD"),
+                Self::HS_AMD => Some("HS_AMD"),
+                Self::LS_AMD => Some("LS_AMD"),
+                Self::CS_AMD => Some("CS_AMD"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GpaPerfBlockPropertiesFlagsAMD(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for GpaPerfBlockPropertiesFlagsAMD {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl GpaPerfBlockPropertiesFlagsAMD {
         pub const fn empty() -> Self {
             Self(0)
@@ -1085,8 +1128,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PhysicalDeviceGpaPropertiesFlagsAMD(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PhysicalDeviceGpaPropertiesFlagsAMD {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl PhysicalDeviceGpaPropertiesFlagsAMD {
         pub const fn empty() -> Self {
             Self(0)

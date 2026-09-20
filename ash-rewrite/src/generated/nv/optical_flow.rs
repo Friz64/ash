@@ -682,8 +682,24 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowGridSizeFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for OpticalFlowGridSizeFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::UNKNOWN_NV.0, "UNKNOWN_NV"),
+                    (Self::_1X1_NV.0, "_1X1_NV"),
+                    (Self::_2X2_NV.0, "_2X2_NV"),
+                    (Self::_4X4_NV.0, "_4X4_NV"),
+                    (Self::_8X8_NV.0, "_8X8_NV"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl OpticalFlowGridSizeFlagsNV {
         pub const UNKNOWN_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::UNKNOWN_NV.0);
         pub const _1X1_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_1X1_NV.0);
@@ -749,11 +765,45 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowGridSizeFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for OpticalFlowGridSizeFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UNKNOWN_NV => Some("UNKNOWN_NV"),
+                Self::_1X1_NV => Some("_1X1_NV"),
+                Self::_2X2_NV => Some("_2X2_NV"),
+                Self::_4X4_NV => Some("_4X4_NV"),
+                Self::_8X8_NV => Some("_8X8_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowUsageFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for OpticalFlowUsageFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::UNKNOWN_NV.0, "UNKNOWN_NV"),
+                    (Self::INPUT_NV.0, "INPUT_NV"),
+                    (Self::OUTPUT_NV.0, "OUTPUT_NV"),
+                    (Self::HINT_NV.0, "HINT_NV"),
+                    (Self::COST_NV.0, "COST_NV"),
+                    (Self::GLOBAL_FLOW_NV.0, "GLOBAL_FLOW_NV"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl OpticalFlowUsageFlagsNV {
         pub const UNKNOWN_NV: Self = Self(OpticalFlowUsageFlagBitsNV::UNKNOWN_NV.0);
         pub const INPUT_NV: Self = Self(OpticalFlowUsageFlagBitsNV::INPUT_NV.0);
@@ -822,11 +872,45 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowUsageFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for OpticalFlowUsageFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UNKNOWN_NV => Some("UNKNOWN_NV"),
+                Self::INPUT_NV => Some("INPUT_NV"),
+                Self::OUTPUT_NV => Some("OUTPUT_NV"),
+                Self::HINT_NV => Some("HINT_NV"),
+                Self::COST_NV => Some("COST_NV"),
+                Self::GLOBAL_FLOW_NV => Some("GLOBAL_FLOW_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowSessionCreateFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for OpticalFlowSessionCreateFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::ENABLE_HINT_NV.0, "ENABLE_HINT_NV"),
+                    (Self::ENABLE_COST_NV.0, "ENABLE_COST_NV"),
+                    (Self::ENABLE_GLOBAL_FLOW_NV.0, "ENABLE_GLOBAL_FLOW_NV"),
+                    (Self::ALLOW_REGIONS_NV.0, "ALLOW_REGIONS_NV"),
+                    (Self::BOTH_DIRECTIONS_NV.0, "BOTH_DIRECTIONS_NV"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl OpticalFlowSessionCreateFlagsNV {
         pub const ENABLE_HINT_NV: Self = Self(
             OpticalFlowSessionCreateFlagBitsNV::ENABLE_HINT_NV.0,
@@ -902,11 +986,38 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for OpticalFlowSessionCreateFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ENABLE_HINT_NV => Some("ENABLE_HINT_NV"),
+                Self::ENABLE_COST_NV => Some("ENABLE_COST_NV"),
+                Self::ENABLE_GLOBAL_FLOW_NV => Some("ENABLE_GLOBAL_FLOW_NV"),
+                Self::ALLOW_REGIONS_NV => Some("ALLOW_REGIONS_NV"),
+                Self::BOTH_DIRECTIONS_NV => Some("BOTH_DIRECTIONS_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowExecuteFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for OpticalFlowExecuteFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[(Self::DISABLE_TEMPORAL_HINTS_NV.0, "DISABLE_TEMPORAL_HINTS_NV")],
+                self.0,
+            )
+        }
+    }
     impl OpticalFlowExecuteFlagsNV {
         pub const DISABLE_TEMPORAL_HINTS_NV: Self = Self(
             OpticalFlowExecuteFlagBitsNV::DISABLE_TEMPORAL_HINTS_NV.0,
@@ -970,8 +1081,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for OpticalFlowExecuteFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DISABLE_TEMPORAL_HINTS_NV => Some("DISABLE_TEMPORAL_HINTS_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct OpticalFlowSessionNV(u64);

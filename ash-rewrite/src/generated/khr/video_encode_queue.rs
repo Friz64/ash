@@ -831,8 +831,25 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::INTRA_REFRESH_KHR.0, "INTRA_REFRESH_KHR"),
+                    (
+                        Self::WITH_QUANTIZATION_DELTA_MAP_KHR.0,
+                        "WITH_QUANTIZATION_DELTA_MAP_KHR",
+                    ),
+                    (Self::WITH_EMPHASIS_MAP_KHR.0, "WITH_EMPHASIS_MAP_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeFlagsKHR {
         pub const INTRA_REFRESH_KHR: Self = Self(
             VideoEncodeFlagBitsKHR::INTRA_REFRESH_KHR.0,
@@ -902,11 +919,44 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::INTRA_REFRESH_KHR => Some("INTRA_REFRESH_KHR"),
+                Self::WITH_QUANTIZATION_DELTA_MAP_KHR => {
+                    Some("WITH_QUANTIZATION_DELTA_MAP_KHR")
+                }
+                Self::WITH_EMPHASIS_MAP_KHR => Some("WITH_EMPHASIS_MAP_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeUsageFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeUsageFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DEFAULT_KHR.0, "DEFAULT_KHR"),
+                    (Self::TRANSCODING_KHR.0, "TRANSCODING_KHR"),
+                    (Self::STREAMING_KHR.0, "STREAMING_KHR"),
+                    (Self::RECORDING_KHR.0, "RECORDING_KHR"),
+                    (Self::CONFERENCING_KHR.0, "CONFERENCING_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeUsageFlagsKHR {
         pub const DEFAULT_KHR: Self = Self(VideoEncodeUsageFlagBitsKHR::DEFAULT_KHR.0);
         pub const TRANSCODING_KHR: Self = Self(
@@ -980,11 +1030,43 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeUsageFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeUsageFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEFAULT_KHR => Some("DEFAULT_KHR"),
+                Self::TRANSCODING_KHR => Some("TRANSCODING_KHR"),
+                Self::STREAMING_KHR => Some("STREAMING_KHR"),
+                Self::RECORDING_KHR => Some("RECORDING_KHR"),
+                Self::CONFERENCING_KHR => Some("CONFERENCING_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeContentFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeContentFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DEFAULT_KHR.0, "DEFAULT_KHR"),
+                    (Self::CAMERA_KHR.0, "CAMERA_KHR"),
+                    (Self::DESKTOP_KHR.0, "DESKTOP_KHR"),
+                    (Self::RENDERED_KHR.0, "RENDERED_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeContentFlagsKHR {
         pub const DEFAULT_KHR: Self = Self(VideoEncodeContentFlagBitsKHR::DEFAULT_KHR.0);
         pub const CAMERA_KHR: Self = Self(VideoEncodeContentFlagBitsKHR::CAMERA_KHR.0);
@@ -1051,11 +1133,48 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeContentFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeContentFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEFAULT_KHR => Some("DEFAULT_KHR"),
+                Self::CAMERA_KHR => Some("CAMERA_KHR"),
+                Self::DESKTOP_KHR => Some("DESKTOP_KHR"),
+                Self::RENDERED_KHR => Some("RENDERED_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeCapabilityFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeCapabilityFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR.0,
+                        "PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR",
+                    ),
+                    (
+                        Self::INSUFFICIENTSTREAM_BUFFER_RANGE_DETECTION_KHR.0,
+                        "INSUFFICIENTSTREAM_BUFFER_RANGE_DETECTION_KHR",
+                    ),
+                    (Self::QUANTIZATION_DELTA_MAP_KHR.0, "QUANTIZATION_DELTA_MAP_KHR"),
+                    (Self::EMPHASIS_MAP_KHR.0, "EMPHASIS_MAP_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeCapabilityFlagsKHR {
         pub const PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR: Self = Self(
             VideoEncodeCapabilityFlagBitsKHR::PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR.0,
@@ -1129,11 +1248,52 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeCapabilityFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeCapabilityFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR => {
+                    Some("PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR")
+                }
+                Self::INSUFFICIENTSTREAM_BUFFER_RANGE_DETECTION_KHR => {
+                    Some("INSUFFICIENTSTREAM_BUFFER_RANGE_DETECTION_KHR")
+                }
+                Self::QUANTIZATION_DELTA_MAP_KHR => Some("QUANTIZATION_DELTA_MAP_KHR"),
+                Self::EMPHASIS_MAP_KHR => Some("EMPHASIS_MAP_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeFeedbackFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeFeedbackFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::BITSTREAM_BUFFER_OFFSET_KHR.0, "BITSTREAM_BUFFER_OFFSET_KHR"),
+                    (Self::BITSTREAM_BYTES_WRITTEN_KHR.0, "BITSTREAM_BYTES_WRITTEN_KHR"),
+                    (Self::BITSTREAM_HAS_OVERRIDES_KHR.0, "BITSTREAM_HAS_OVERRIDES_KHR"),
+                    (Self::AVERAGE_QUANTIZATION_KHR.0, "AVERAGE_QUANTIZATION_KHR"),
+                    (Self::MIN_QUANTIZATION_KHR.0, "MIN_QUANTIZATION_KHR"),
+                    (Self::MAX_QUANTIZATION_KHR.0, "MAX_QUANTIZATION_KHR"),
+                    (Self::INTRA_PIXELS_KHR.0, "INTRA_PIXELS_KHR"),
+                    (Self::INTER_PIXELS_KHR.0, "INTER_PIXELS_KHR"),
+                    (Self::SKIPPED_PIXELS_KHR.0, "SKIPPED_PIXELS_KHR"),
+                    (Self::PICTURE_PARTITION_COUNT_KHR.0, "PICTURE_PARTITION_COUNT_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeFeedbackFlagsKHR {
         pub const BITSTREAM_BUFFER_OFFSET_KHR: Self = Self(
             VideoEncodeFeedbackFlagBitsKHR::BITSTREAM_BUFFER_OFFSET_KHR.0,
@@ -1224,11 +1384,39 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeFeedbackFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeFeedbackFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::BITSTREAM_BUFFER_OFFSET_KHR => Some("BITSTREAM_BUFFER_OFFSET_KHR"),
+                Self::BITSTREAM_BYTES_WRITTEN_KHR => Some("BITSTREAM_BYTES_WRITTEN_KHR"),
+                Self::BITSTREAM_HAS_OVERRIDES_KHR => Some("BITSTREAM_HAS_OVERRIDES_KHR"),
+                Self::AVERAGE_QUANTIZATION_KHR => Some("AVERAGE_QUANTIZATION_KHR"),
+                Self::MIN_QUANTIZATION_KHR => Some("MIN_QUANTIZATION_KHR"),
+                Self::MAX_QUANTIZATION_KHR => Some("MAX_QUANTIZATION_KHR"),
+                Self::INTRA_PIXELS_KHR => Some("INTRA_PIXELS_KHR"),
+                Self::INTER_PIXELS_KHR => Some("INTER_PIXELS_KHR"),
+                Self::SKIPPED_PIXELS_KHR => Some("SKIPPED_PIXELS_KHR"),
+                Self::PICTURE_PARTITION_COUNT_KHR => Some("PICTURE_PARTITION_COUNT_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRateControlFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeRateControlFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl VideoEncodeRateControlFlagsKHR {
         pub const fn empty() -> Self {
             Self(0)
@@ -1289,8 +1477,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRateControlModeFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DEFAULT_KHR.0, "DEFAULT_KHR"),
+                    (Self::DISABLED_KHR.0, "DISABLED_KHR"),
+                    (Self::CBR_KHR.0, "CBR_KHR"),
+                    (Self::VBR_KHR.0, "VBR_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeRateControlModeFlagsKHR {
         pub const DEFAULT_KHR: Self = Self(
             VideoEncodeRateControlModeFlagBitsKHR::DEFAULT_KHR.0,
@@ -1359,8 +1562,24 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRateControlModeFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeRateControlModeFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEFAULT_KHR => Some("DEFAULT_KHR"),
+                Self::DISABLED_KHR => Some("DISABLED_KHR"),
+                Self::CBR_KHR => Some("CBR_KHR"),
+                Self::VBR_KHR => Some("VBR_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_quality_level_info: *const crate::vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR<

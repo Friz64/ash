@@ -240,8 +240,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCompressionFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageCompressionFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DEFAULT_EXT.0, "DEFAULT_EXT"),
+                    (Self::FIXED_RATE_DEFAULT_EXT.0, "FIXED_RATE_DEFAULT_EXT"),
+                    (Self::FIXED_RATE_EXPLICIT_EXT.0, "FIXED_RATE_EXPLICIT_EXT"),
+                    (Self::DISABLED_EXT.0, "DISABLED_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ImageCompressionFlagsEXT {
         pub const DEFAULT_EXT: Self = Self(ImageCompressionFlagBitsEXT::DEFAULT_EXT.0);
         pub const FIXED_RATE_DEFAULT_EXT: Self = Self(
@@ -310,11 +325,63 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCompressionFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageCompressionFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEFAULT_EXT => Some("DEFAULT_EXT"),
+                Self::FIXED_RATE_DEFAULT_EXT => Some("FIXED_RATE_DEFAULT_EXT"),
+                Self::FIXED_RATE_EXPLICIT_EXT => Some("FIXED_RATE_EXPLICIT_EXT"),
+                Self::DISABLED_EXT => Some("DISABLED_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCompressionFixedRateFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageCompressionFixedRateFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::NONE_EXT.0, "NONE_EXT"),
+                    (Self::_1BPC_EXT.0, "_1BPC_EXT"),
+                    (Self::_2BPC_EXT.0, "_2BPC_EXT"),
+                    (Self::_3BPC_EXT.0, "_3BPC_EXT"),
+                    (Self::_4BPC_EXT.0, "_4BPC_EXT"),
+                    (Self::_5BPC_EXT.0, "_5BPC_EXT"),
+                    (Self::_6BPC_EXT.0, "_6BPC_EXT"),
+                    (Self::_7BPC_EXT.0, "_7BPC_EXT"),
+                    (Self::_8BPC_EXT.0, "_8BPC_EXT"),
+                    (Self::_9BPC_EXT.0, "_9BPC_EXT"),
+                    (Self::_10BPC_EXT.0, "_10BPC_EXT"),
+                    (Self::_11BPC_EXT.0, "_11BPC_EXT"),
+                    (Self::_12BPC_EXT.0, "_12BPC_EXT"),
+                    (Self::_13BPC_EXT.0, "_13BPC_EXT"),
+                    (Self::_14BPC_EXT.0, "_14BPC_EXT"),
+                    (Self::_15BPC_EXT.0, "_15BPC_EXT"),
+                    (Self::_16BPC_EXT.0, "_16BPC_EXT"),
+                    (Self::_17BPC_EXT.0, "_17BPC_EXT"),
+                    (Self::_18BPC_EXT.0, "_18BPC_EXT"),
+                    (Self::_19BPC_EXT.0, "_19BPC_EXT"),
+                    (Self::_20BPC_EXT.0, "_20BPC_EXT"),
+                    (Self::_21BPC_EXT.0, "_21BPC_EXT"),
+                    (Self::_22BPC_EXT.0, "_22BPC_EXT"),
+                    (Self::_23BPC_EXT.0, "_23BPC_EXT"),
+                    (Self::_24BPC_EXT.0, "_24BPC_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ImageCompressionFixedRateFlagsEXT {
         pub const NONE_EXT: Self = Self(
             ImageCompressionFixedRateFlagBitsEXT::NONE_EXT.0,
@@ -450,7 +517,44 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCompressionFixedRateFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageCompressionFixedRateFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::NONE_EXT => Some("NONE_EXT"),
+                Self::_1BPC_EXT => Some("_1BPC_EXT"),
+                Self::_2BPC_EXT => Some("_2BPC_EXT"),
+                Self::_3BPC_EXT => Some("_3BPC_EXT"),
+                Self::_4BPC_EXT => Some("_4BPC_EXT"),
+                Self::_5BPC_EXT => Some("_5BPC_EXT"),
+                Self::_6BPC_EXT => Some("_6BPC_EXT"),
+                Self::_7BPC_EXT => Some("_7BPC_EXT"),
+                Self::_8BPC_EXT => Some("_8BPC_EXT"),
+                Self::_9BPC_EXT => Some("_9BPC_EXT"),
+                Self::_10BPC_EXT => Some("_10BPC_EXT"),
+                Self::_11BPC_EXT => Some("_11BPC_EXT"),
+                Self::_12BPC_EXT => Some("_12BPC_EXT"),
+                Self::_13BPC_EXT => Some("_13BPC_EXT"),
+                Self::_14BPC_EXT => Some("_14BPC_EXT"),
+                Self::_15BPC_EXT => Some("_15BPC_EXT"),
+                Self::_16BPC_EXT => Some("_16BPC_EXT"),
+                Self::_17BPC_EXT => Some("_17BPC_EXT"),
+                Self::_18BPC_EXT => Some("_18BPC_EXT"),
+                Self::_19BPC_EXT => Some("_19BPC_EXT"),
+                Self::_20BPC_EXT => Some("_20BPC_EXT"),
+                Self::_21BPC_EXT => Some("_21BPC_EXT"),
+                Self::_22BPC_EXT => Some("_22BPC_EXT"),
+                Self::_23BPC_EXT => Some("_23BPC_EXT"),
+                Self::_24BPC_EXT => Some("_24BPC_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

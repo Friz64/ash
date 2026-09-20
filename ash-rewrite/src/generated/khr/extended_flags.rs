@@ -330,8 +330,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FormatFeatureFlags4KHR(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FormatFeatureFlags4KHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl FormatFeatureFlags4KHR {
         pub const fn empty() -> Self {
             Self(0)
@@ -392,11 +398,68 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FormatFeatureFlagBits4KHR(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FormatFeatureFlagBits4KHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageUsageFlags2KHR(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageUsageFlags2KHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::TRANSFER_SRC_KHR.0, "TRANSFER_SRC_KHR"),
+                    (Self::TRANSFER_DST_KHR.0, "TRANSFER_DST_KHR"),
+                    (Self::SAMPLED_KHR.0, "SAMPLED_KHR"),
+                    (Self::STORAGE_KHR.0, "STORAGE_KHR"),
+                    (Self::COLOR_ATTACHMENT_KHR.0, "COLOR_ATTACHMENT_KHR"),
+                    (
+                        Self::DEPTH_STENCIL_ATTACHMENT_KHR.0,
+                        "DEPTH_STENCIL_ATTACHMENT_KHR",
+                    ),
+                    (Self::TRANSIENT_ATTACHMENT_KHR.0, "TRANSIENT_ATTACHMENT_KHR"),
+                    (Self::INPUT_ATTACHMENT_KHR.0, "INPUT_ATTACHMENT_KHR"),
+                    (
+                        Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
+                        "FRAGMENT_SHADING_RATE_ATTACHMENT_KHR",
+                    ),
+                    (Self::FRAGMENT_DENSITY_MAP_EXT.0, "FRAGMENT_DENSITY_MAP_EXT"),
+                    (Self::VIDEO_DECODE_DST_KHR.0, "VIDEO_DECODE_DST_KHR"),
+                    (Self::VIDEO_DECODE_SRC_KHR.0, "VIDEO_DECODE_SRC_KHR"),
+                    (Self::VIDEO_DECODE_DPB_KHR.0, "VIDEO_DECODE_DPB_KHR"),
+                    (Self::VIDEO_ENCODE_DST_KHR.0, "VIDEO_ENCODE_DST_KHR"),
+                    (Self::VIDEO_ENCODE_SRC_KHR.0, "VIDEO_ENCODE_SRC_KHR"),
+                    (Self::VIDEO_ENCODE_DPB_KHR.0, "VIDEO_ENCODE_DPB_KHR"),
+                    (Self::INVOCATION_MASK_HUAWEI.0, "INVOCATION_MASK_HUAWEI"),
+                    (
+                        Self::ATTACHMENT_FEEDBACK_LOOP_EXT.0,
+                        "ATTACHMENT_FEEDBACK_LOOP_EXT",
+                    ),
+                    (Self::SAMPLE_WEIGHT_QCOM.0, "SAMPLE_WEIGHT_QCOM"),
+                    (Self::SAMPLE_BLOCK_MATCH_QCOM.0, "SAMPLE_BLOCK_MATCH_QCOM"),
+                    (Self::HOST_TRANSFER_KHR.0, "HOST_TRANSFER_KHR"),
+                    (Self::TENSOR_ALIASING_ARM.0, "TENSOR_ALIASING_ARM"),
+                    (
+                        Self::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0,
+                        "VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR",
+                    ),
+                    (
+                        Self::VIDEO_ENCODE_EMPHASIS_MAP_KHR.0,
+                        "VIDEO_ENCODE_EMPHASIS_MAP_KHR",
+                    ),
+                    (Self::TILE_MEMORY_QCOM.0, "TILE_MEMORY_QCOM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ImageUsageFlags2KHR {
         pub const TRANSFER_SRC_KHR: Self = Self(
             ImageUsageFlagBits2KHR::TRANSFER_SRC_KHR.0,
@@ -528,11 +591,114 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageUsageFlagBits2KHR(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageUsageFlagBits2KHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::TRANSFER_SRC_KHR => Some("TRANSFER_SRC_KHR"),
+                Self::TRANSFER_DST_KHR => Some("TRANSFER_DST_KHR"),
+                Self::SAMPLED_KHR => Some("SAMPLED_KHR"),
+                Self::STORAGE_KHR => Some("STORAGE_KHR"),
+                Self::COLOR_ATTACHMENT_KHR => Some("COLOR_ATTACHMENT_KHR"),
+                Self::DEPTH_STENCIL_ATTACHMENT_KHR => {
+                    Some("DEPTH_STENCIL_ATTACHMENT_KHR")
+                }
+                Self::TRANSIENT_ATTACHMENT_KHR => Some("TRANSIENT_ATTACHMENT_KHR"),
+                Self::INPUT_ATTACHMENT_KHR => Some("INPUT_ATTACHMENT_KHR"),
+                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
+                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
+                }
+                Self::FRAGMENT_DENSITY_MAP_EXT => Some("FRAGMENT_DENSITY_MAP_EXT"),
+                Self::VIDEO_DECODE_DST_KHR => Some("VIDEO_DECODE_DST_KHR"),
+                Self::VIDEO_DECODE_SRC_KHR => Some("VIDEO_DECODE_SRC_KHR"),
+                Self::VIDEO_DECODE_DPB_KHR => Some("VIDEO_DECODE_DPB_KHR"),
+                Self::VIDEO_ENCODE_DST_KHR => Some("VIDEO_ENCODE_DST_KHR"),
+                Self::VIDEO_ENCODE_SRC_KHR => Some("VIDEO_ENCODE_SRC_KHR"),
+                Self::VIDEO_ENCODE_DPB_KHR => Some("VIDEO_ENCODE_DPB_KHR"),
+                Self::INVOCATION_MASK_HUAWEI => Some("INVOCATION_MASK_HUAWEI"),
+                Self::ATTACHMENT_FEEDBACK_LOOP_EXT => {
+                    Some("ATTACHMENT_FEEDBACK_LOOP_EXT")
+                }
+                Self::SAMPLE_WEIGHT_QCOM => Some("SAMPLE_WEIGHT_QCOM"),
+                Self::SAMPLE_BLOCK_MATCH_QCOM => Some("SAMPLE_BLOCK_MATCH_QCOM"),
+                Self::HOST_TRANSFER_KHR => Some("HOST_TRANSFER_KHR"),
+                Self::TENSOR_ALIASING_ARM => Some("TENSOR_ALIASING_ARM"),
+                Self::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR => {
+                    Some("VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR")
+                }
+                Self::VIDEO_ENCODE_EMPHASIS_MAP_KHR => {
+                    Some("VIDEO_ENCODE_EMPHASIS_MAP_KHR")
+                }
+                Self::TILE_MEMORY_QCOM => Some("TILE_MEMORY_QCOM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCreateFlags2KHR(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageCreateFlags2KHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::SPARSE_BINDING_KHR.0, "SPARSE_BINDING_KHR"),
+                    (Self::SPARSE_RESIDENCY_KHR.0, "SPARSE_RESIDENCY_KHR"),
+                    (Self::SPARSE_ALIASED_KHR.0, "SPARSE_ALIASED_KHR"),
+                    (Self::MUTABLE_FORMAT_KHR.0, "MUTABLE_FORMAT_KHR"),
+                    (Self::CUBE_COMPATIBLE_KHR.0, "CUBE_COMPATIBLE_KHR"),
+                    (
+                        Self::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR.0,
+                        "ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR",
+                    ),
+                    (Self::_2D_ARRAY_COMPATIBLE_KHR.0, "_2D_ARRAY_COMPATIBLE_KHR"),
+                    (
+                        Self::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
+                        "SPLIT_INSTANCE_BIND_REGIONS_KHR",
+                    ),
+                    (
+                        Self::BLOCK_TEXEL_VIEW_COMPATIBLE_KHR.0,
+                        "BLOCK_TEXEL_VIEW_COMPATIBLE_KHR",
+                    ),
+                    (Self::EXTENDED_USAGE_KHR.0, "EXTENDED_USAGE_KHR"),
+                    (Self::DISJOINT_KHR.0, "DISJOINT_KHR"),
+                    (Self::ALIAS_KHR.0, "ALIAS_KHR"),
+                    (Self::PROTECTED_KHR.0, "PROTECTED_KHR"),
+                    (
+                        Self::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT.0,
+                        "SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT",
+                    ),
+                    (Self::CORNER_SAMPLED_NV.0, "CORNER_SAMPLED_NV"),
+                    (Self::SUBSAMPLED_EXT.0, "SUBSAMPLED_EXT"),
+                    (
+                        Self::FRAGMENT_DENSITY_MAP_OFFSET_EXT.0,
+                        "FRAGMENT_DENSITY_MAP_OFFSET_EXT",
+                    ),
+                    (
+                        Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
+                        "DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT",
+                    ),
+                    (Self::_2D_VIEW_COMPATIBLE_EXT.0, "_2D_VIEW_COMPATIBLE_EXT"),
+                    (
+                        Self::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
+                        "MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT",
+                    ),
+                    (
+                        Self::VIDEO_PROFILE_INDEPENDENT_KHR.0,
+                        "VIDEO_PROFILE_INDEPENDENT_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ImageCreateFlags2KHR {
         pub const SPARSE_BINDING_KHR: Self = Self(
             ImageCreateFlagBits2KHR::SPARSE_BINDING_KHR.0,
@@ -648,7 +814,56 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCreateFlagBits2KHR(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageCreateFlagBits2KHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SPARSE_BINDING_KHR => Some("SPARSE_BINDING_KHR"),
+                Self::SPARSE_RESIDENCY_KHR => Some("SPARSE_RESIDENCY_KHR"),
+                Self::SPARSE_ALIASED_KHR => Some("SPARSE_ALIASED_KHR"),
+                Self::MUTABLE_FORMAT_KHR => Some("MUTABLE_FORMAT_KHR"),
+                Self::CUBE_COMPATIBLE_KHR => Some("CUBE_COMPATIBLE_KHR"),
+                Self::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR => {
+                    Some("ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR")
+                }
+                Self::_2D_ARRAY_COMPATIBLE_KHR => Some("_2D_ARRAY_COMPATIBLE_KHR"),
+                Self::SPLIT_INSTANCE_BIND_REGIONS_KHR => {
+                    Some("SPLIT_INSTANCE_BIND_REGIONS_KHR")
+                }
+                Self::BLOCK_TEXEL_VIEW_COMPATIBLE_KHR => {
+                    Some("BLOCK_TEXEL_VIEW_COMPATIBLE_KHR")
+                }
+                Self::EXTENDED_USAGE_KHR => Some("EXTENDED_USAGE_KHR"),
+                Self::DISJOINT_KHR => Some("DISJOINT_KHR"),
+                Self::ALIAS_KHR => Some("ALIAS_KHR"),
+                Self::PROTECTED_KHR => Some("PROTECTED_KHR"),
+                Self::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT => {
+                    Some("SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT")
+                }
+                Self::CORNER_SAMPLED_NV => Some("CORNER_SAMPLED_NV"),
+                Self::SUBSAMPLED_EXT => Some("SUBSAMPLED_EXT"),
+                Self::FRAGMENT_DENSITY_MAP_OFFSET_EXT => {
+                    Some("FRAGMENT_DENSITY_MAP_OFFSET_EXT")
+                }
+                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT => {
+                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT")
+                }
+                Self::_2D_VIEW_COMPATIBLE_EXT => Some("_2D_VIEW_COMPATIBLE_EXT"),
+                Self::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT => {
+                    Some("MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT")
+                }
+                Self::VIDEO_PROFILE_INDEPENDENT_KHR => {
+                    Some("VIDEO_PROFILE_INDEPENDENT_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

@@ -4380,8 +4380,18 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PrivateDataSlotCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PrivateDataSlotCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[(Self::BASE_OBJECT_HANDLE_NV.0, "BASE_OBJECT_HANDLE_NV")],
+                self.0,
+            )
+        }
+    }
     impl PrivateDataSlotCreateFlags {
         pub const BASE_OBJECT_HANDLE_NV: Self = Self(
             PrivateDataSlotCreateFlagBits::BASE_OBJECT_HANDLE_NV.0,
@@ -4445,11 +4455,41 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PrivateDataSlotCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PrivateDataSlotCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::BASE_OBJECT_HANDLE_NV => Some("BASE_OBJECT_HANDLE_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCreationFeedbackFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineCreationFeedbackFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::VALID.0, "VALID"),
+                    (
+                        Self::APPLICATION_PIPELINE_CACHE_HIT.0,
+                        "APPLICATION_PIPELINE_CACHE_HIT",
+                    ),
+                    (Self::BASE_PIPELINE_ACCELERATION.0, "BASE_PIPELINE_ACCELERATION"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PipelineCreationFeedbackFlags {
         pub const VALID: Self = Self(PipelineCreationFeedbackFlagBits::VALID.0);
         pub const APPLICATION_PIPELINE_CACHE_HIT: Self = Self(
@@ -4524,11 +4564,141 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCreationFeedbackFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineCreationFeedbackFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::VALID => Some("VALID"),
+                Self::APPLICATION_PIPELINE_CACHE_HIT => {
+                    Some("APPLICATION_PIPELINE_CACHE_HIT")
+                }
+                Self::BASE_PIPELINE_ACCELERATION => Some("BASE_PIPELINE_ACCELERATION"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccessFlags2(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccessFlags2 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::NONE.0, "NONE"),
+                    (Self::INDIRECT_COMMAND_READ.0, "INDIRECT_COMMAND_READ"),
+                    (Self::INDEX_READ.0, "INDEX_READ"),
+                    (Self::VERTEX_ATTRIBUTE_READ.0, "VERTEX_ATTRIBUTE_READ"),
+                    (Self::UNIFORM_READ.0, "UNIFORM_READ"),
+                    (Self::INPUT_ATTACHMENT_READ.0, "INPUT_ATTACHMENT_READ"),
+                    (Self::SHADER_READ.0, "SHADER_READ"),
+                    (Self::SHADER_WRITE.0, "SHADER_WRITE"),
+                    (Self::COLOR_ATTACHMENT_READ.0, "COLOR_ATTACHMENT_READ"),
+                    (Self::COLOR_ATTACHMENT_WRITE.0, "COLOR_ATTACHMENT_WRITE"),
+                    (
+                        Self::DEPTH_STENCIL_ATTACHMENT_READ.0,
+                        "DEPTH_STENCIL_ATTACHMENT_READ",
+                    ),
+                    (
+                        Self::DEPTH_STENCIL_ATTACHMENT_WRITE.0,
+                        "DEPTH_STENCIL_ATTACHMENT_WRITE",
+                    ),
+                    (Self::TRANSFER_READ.0, "TRANSFER_READ"),
+                    (Self::TRANSFER_WRITE.0, "TRANSFER_WRITE"),
+                    (Self::HOST_READ.0, "HOST_READ"),
+                    (Self::HOST_WRITE.0, "HOST_WRITE"),
+                    (Self::MEMORY_READ.0, "MEMORY_READ"),
+                    (Self::MEMORY_WRITE.0, "MEMORY_WRITE"),
+                    (Self::SHADER_SAMPLED_READ.0, "SHADER_SAMPLED_READ"),
+                    (Self::SHADER_STORAGE_READ.0, "SHADER_STORAGE_READ"),
+                    (Self::SHADER_STORAGE_WRITE.0, "SHADER_STORAGE_WRITE"),
+                    (Self::VIDEO_DECODE_READ_KHR.0, "VIDEO_DECODE_READ_KHR"),
+                    (Self::VIDEO_DECODE_WRITE_KHR.0, "VIDEO_DECODE_WRITE_KHR"),
+                    (Self::SAMPLER_HEAP_READ_EXT.0, "SAMPLER_HEAP_READ_EXT"),
+                    (Self::RESOURCE_HEAP_READ_EXT.0, "RESOURCE_HEAP_READ_EXT"),
+                    (Self::VIDEO_ENCODE_READ_KHR.0, "VIDEO_ENCODE_READ_KHR"),
+                    (Self::VIDEO_ENCODE_WRITE_KHR.0, "VIDEO_ENCODE_WRITE_KHR"),
+                    (
+                        Self::SHADER_TILE_ATTACHMENT_READ_QCOM.0,
+                        "SHADER_TILE_ATTACHMENT_READ_QCOM",
+                    ),
+                    (
+                        Self::SHADER_TILE_ATTACHMENT_WRITE_QCOM.0,
+                        "SHADER_TILE_ATTACHMENT_WRITE_QCOM",
+                    ),
+                    (
+                        Self::TRANSFORM_FEEDBACK_WRITE_EXT.0,
+                        "TRANSFORM_FEEDBACK_WRITE_EXT",
+                    ),
+                    (
+                        Self::TRANSFORM_FEEDBACK_COUNTER_READ_EXT.0,
+                        "TRANSFORM_FEEDBACK_COUNTER_READ_EXT",
+                    ),
+                    (
+                        Self::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT.0,
+                        "TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT",
+                    ),
+                    (
+                        Self::CONDITIONAL_RENDERING_READ_EXT.0,
+                        "CONDITIONAL_RENDERING_READ_EXT",
+                    ),
+                    (Self::COMMAND_PREPROCESS_READ_EXT.0, "COMMAND_PREPROCESS_READ_EXT"),
+                    (
+                        Self::COMMAND_PREPROCESS_WRITE_EXT.0,
+                        "COMMAND_PREPROCESS_WRITE_EXT",
+                    ),
+                    (
+                        Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR.0,
+                        "FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR",
+                    ),
+                    (
+                        Self::ACCELERATION_STRUCTURE_READ_KHR.0,
+                        "ACCELERATION_STRUCTURE_READ_KHR",
+                    ),
+                    (
+                        Self::ACCELERATION_STRUCTURE_WRITE_KHR.0,
+                        "ACCELERATION_STRUCTURE_WRITE_KHR",
+                    ),
+                    (
+                        Self::FRAGMENT_DENSITY_MAP_READ_EXT.0,
+                        "FRAGMENT_DENSITY_MAP_READ_EXT",
+                    ),
+                    (
+                        Self::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT.0,
+                        "COLOR_ATTACHMENT_READ_NONCOHERENT_EXT",
+                    ),
+                    (Self::DESCRIPTOR_BUFFER_READ_EXT.0, "DESCRIPTOR_BUFFER_READ_EXT"),
+                    (Self::INVOCATION_MASK_READ_HUAWEI.0, "INVOCATION_MASK_READ_HUAWEI"),
+                    (
+                        Self::SHADER_BINDING_TABLE_READ_KHR.0,
+                        "SHADER_BINDING_TABLE_READ_KHR",
+                    ),
+                    (Self::MICROMAP_READ_EXT.0, "MICROMAP_READ_EXT"),
+                    (Self::MICROMAP_WRITE_EXT.0, "MICROMAP_WRITE_EXT"),
+                    (Self::OPTICAL_FLOW_READ_NV.0, "OPTICAL_FLOW_READ_NV"),
+                    (Self::OPTICAL_FLOW_WRITE_NV.0, "OPTICAL_FLOW_WRITE_NV"),
+                    (Self::DATA_GRAPH_READ_ARM.0, "DATA_GRAPH_READ_ARM"),
+                    (Self::DATA_GRAPH_WRITE_ARM.0, "DATA_GRAPH_WRITE_ARM"),
+                    (
+                        Self::MEMORY_DECOMPRESSION_READ_EXT.0,
+                        "MEMORY_DECOMPRESSION_READ_EXT",
+                    ),
+                    (
+                        Self::MEMORY_DECOMPRESSION_WRITE_EXT.0,
+                        "MEMORY_DECOMPRESSION_WRITE_EXT",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl AccessFlags2 {
         pub const NONE: Self = Self(AccessFlagBits2::NONE.0);
         pub const INDIRECT_COMMAND_READ: Self = Self(
@@ -4772,11 +4942,186 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccessFlagBits2(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccessFlagBits2 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::NONE => Some("NONE"),
+                Self::INDIRECT_COMMAND_READ => Some("INDIRECT_COMMAND_READ"),
+                Self::INDEX_READ => Some("INDEX_READ"),
+                Self::VERTEX_ATTRIBUTE_READ => Some("VERTEX_ATTRIBUTE_READ"),
+                Self::UNIFORM_READ => Some("UNIFORM_READ"),
+                Self::INPUT_ATTACHMENT_READ => Some("INPUT_ATTACHMENT_READ"),
+                Self::SHADER_READ => Some("SHADER_READ"),
+                Self::SHADER_WRITE => Some("SHADER_WRITE"),
+                Self::COLOR_ATTACHMENT_READ => Some("COLOR_ATTACHMENT_READ"),
+                Self::COLOR_ATTACHMENT_WRITE => Some("COLOR_ATTACHMENT_WRITE"),
+                Self::DEPTH_STENCIL_ATTACHMENT_READ => {
+                    Some("DEPTH_STENCIL_ATTACHMENT_READ")
+                }
+                Self::DEPTH_STENCIL_ATTACHMENT_WRITE => {
+                    Some("DEPTH_STENCIL_ATTACHMENT_WRITE")
+                }
+                Self::TRANSFER_READ => Some("TRANSFER_READ"),
+                Self::TRANSFER_WRITE => Some("TRANSFER_WRITE"),
+                Self::HOST_READ => Some("HOST_READ"),
+                Self::HOST_WRITE => Some("HOST_WRITE"),
+                Self::MEMORY_READ => Some("MEMORY_READ"),
+                Self::MEMORY_WRITE => Some("MEMORY_WRITE"),
+                Self::SHADER_SAMPLED_READ => Some("SHADER_SAMPLED_READ"),
+                Self::SHADER_STORAGE_READ => Some("SHADER_STORAGE_READ"),
+                Self::SHADER_STORAGE_WRITE => Some("SHADER_STORAGE_WRITE"),
+                Self::VIDEO_DECODE_READ_KHR => Some("VIDEO_DECODE_READ_KHR"),
+                Self::VIDEO_DECODE_WRITE_KHR => Some("VIDEO_DECODE_WRITE_KHR"),
+                Self::SAMPLER_HEAP_READ_EXT => Some("SAMPLER_HEAP_READ_EXT"),
+                Self::RESOURCE_HEAP_READ_EXT => Some("RESOURCE_HEAP_READ_EXT"),
+                Self::VIDEO_ENCODE_READ_KHR => Some("VIDEO_ENCODE_READ_KHR"),
+                Self::VIDEO_ENCODE_WRITE_KHR => Some("VIDEO_ENCODE_WRITE_KHR"),
+                Self::SHADER_TILE_ATTACHMENT_READ_QCOM => {
+                    Some("SHADER_TILE_ATTACHMENT_READ_QCOM")
+                }
+                Self::SHADER_TILE_ATTACHMENT_WRITE_QCOM => {
+                    Some("SHADER_TILE_ATTACHMENT_WRITE_QCOM")
+                }
+                Self::TRANSFORM_FEEDBACK_WRITE_EXT => {
+                    Some("TRANSFORM_FEEDBACK_WRITE_EXT")
+                }
+                Self::TRANSFORM_FEEDBACK_COUNTER_READ_EXT => {
+                    Some("TRANSFORM_FEEDBACK_COUNTER_READ_EXT")
+                }
+                Self::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT => {
+                    Some("TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT")
+                }
+                Self::CONDITIONAL_RENDERING_READ_EXT => {
+                    Some("CONDITIONAL_RENDERING_READ_EXT")
+                }
+                Self::COMMAND_PREPROCESS_READ_EXT => Some("COMMAND_PREPROCESS_READ_EXT"),
+                Self::COMMAND_PREPROCESS_WRITE_EXT => {
+                    Some("COMMAND_PREPROCESS_WRITE_EXT")
+                }
+                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR => {
+                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR")
+                }
+                Self::ACCELERATION_STRUCTURE_READ_KHR => {
+                    Some("ACCELERATION_STRUCTURE_READ_KHR")
+                }
+                Self::ACCELERATION_STRUCTURE_WRITE_KHR => {
+                    Some("ACCELERATION_STRUCTURE_WRITE_KHR")
+                }
+                Self::FRAGMENT_DENSITY_MAP_READ_EXT => {
+                    Some("FRAGMENT_DENSITY_MAP_READ_EXT")
+                }
+                Self::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT => {
+                    Some("COLOR_ATTACHMENT_READ_NONCOHERENT_EXT")
+                }
+                Self::DESCRIPTOR_BUFFER_READ_EXT => Some("DESCRIPTOR_BUFFER_READ_EXT"),
+                Self::INVOCATION_MASK_READ_HUAWEI => Some("INVOCATION_MASK_READ_HUAWEI"),
+                Self::SHADER_BINDING_TABLE_READ_KHR => {
+                    Some("SHADER_BINDING_TABLE_READ_KHR")
+                }
+                Self::MICROMAP_READ_EXT => Some("MICROMAP_READ_EXT"),
+                Self::MICROMAP_WRITE_EXT => Some("MICROMAP_WRITE_EXT"),
+                Self::OPTICAL_FLOW_READ_NV => Some("OPTICAL_FLOW_READ_NV"),
+                Self::OPTICAL_FLOW_WRITE_NV => Some("OPTICAL_FLOW_WRITE_NV"),
+                Self::DATA_GRAPH_READ_ARM => Some("DATA_GRAPH_READ_ARM"),
+                Self::DATA_GRAPH_WRITE_ARM => Some("DATA_GRAPH_WRITE_ARM"),
+                Self::MEMORY_DECOMPRESSION_READ_EXT => {
+                    Some("MEMORY_DECOMPRESSION_READ_EXT")
+                }
+                Self::MEMORY_DECOMPRESSION_WRITE_EXT => {
+                    Some("MEMORY_DECOMPRESSION_WRITE_EXT")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineStageFlags2(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineStageFlags2 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::NONE.0, "NONE"),
+                    (Self::TOP_OF_PIPE.0, "TOP_OF_PIPE"),
+                    (Self::DRAW_INDIRECT.0, "DRAW_INDIRECT"),
+                    (Self::VERTEX_INPUT.0, "VERTEX_INPUT"),
+                    (Self::VERTEX_SHADER.0, "VERTEX_SHADER"),
+                    (Self::TESSELLATION_CONTROL_SHADER.0, "TESSELLATION_CONTROL_SHADER"),
+                    (
+                        Self::TESSELLATION_EVALUATION_SHADER.0,
+                        "TESSELLATION_EVALUATION_SHADER",
+                    ),
+                    (Self::GEOMETRY_SHADER.0, "GEOMETRY_SHADER"),
+                    (Self::FRAGMENT_SHADER.0, "FRAGMENT_SHADER"),
+                    (Self::EARLY_FRAGMENT_TESTS.0, "EARLY_FRAGMENT_TESTS"),
+                    (Self::LATE_FRAGMENT_TESTS.0, "LATE_FRAGMENT_TESTS"),
+                    (Self::COLOR_ATTACHMENT_OUTPUT.0, "COLOR_ATTACHMENT_OUTPUT"),
+                    (Self::COMPUTE_SHADER.0, "COMPUTE_SHADER"),
+                    (Self::ALL_TRANSFER.0, "ALL_TRANSFER"),
+                    (Self::BOTTOM_OF_PIPE.0, "BOTTOM_OF_PIPE"),
+                    (Self::HOST.0, "HOST"),
+                    (Self::ALL_GRAPHICS.0, "ALL_GRAPHICS"),
+                    (Self::ALL_COMMANDS.0, "ALL_COMMANDS"),
+                    (Self::COPY.0, "COPY"),
+                    (Self::RESOLVE.0, "RESOLVE"),
+                    (Self::BLIT.0, "BLIT"),
+                    (Self::CLEAR.0, "CLEAR"),
+                    (Self::INDEX_INPUT.0, "INDEX_INPUT"),
+                    (Self::VERTEX_ATTRIBUTE_INPUT.0, "VERTEX_ATTRIBUTE_INPUT"),
+                    (Self::PRE_RASTERIZATION_SHADERS.0, "PRE_RASTERIZATION_SHADERS"),
+                    (Self::VIDEO_DECODE_KHR.0, "VIDEO_DECODE_KHR"),
+                    (Self::VIDEO_ENCODE_KHR.0, "VIDEO_ENCODE_KHR"),
+                    (Self::TRANSFORM_FEEDBACK_EXT.0, "TRANSFORM_FEEDBACK_EXT"),
+                    (Self::CONDITIONAL_RENDERING_EXT.0, "CONDITIONAL_RENDERING_EXT"),
+                    (Self::COMMAND_PREPROCESS_EXT.0, "COMMAND_PREPROCESS_EXT"),
+                    (
+                        Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
+                        "FRAGMENT_SHADING_RATE_ATTACHMENT_KHR",
+                    ),
+                    (
+                        Self::ACCELERATION_STRUCTURE_BUILD_KHR.0,
+                        "ACCELERATION_STRUCTURE_BUILD_KHR",
+                    ),
+                    (Self::RAY_TRACING_SHADER_KHR.0, "RAY_TRACING_SHADER_KHR"),
+                    (
+                        Self::FRAGMENT_DENSITY_PROCESS_EXT.0,
+                        "FRAGMENT_DENSITY_PROCESS_EXT",
+                    ),
+                    (Self::TASK_SHADER_EXT.0, "TASK_SHADER_EXT"),
+                    (Self::MESH_SHADER_EXT.0, "MESH_SHADER_EXT"),
+                    (Self::SUBPASS_SHADER_HUAWEI.0, "SUBPASS_SHADER_HUAWEI"),
+                    (Self::INVOCATION_MASK_HUAWEI.0, "INVOCATION_MASK_HUAWEI"),
+                    (
+                        Self::ACCELERATION_STRUCTURE_COPY_KHR.0,
+                        "ACCELERATION_STRUCTURE_COPY_KHR",
+                    ),
+                    (Self::MICROMAP_BUILD_EXT.0, "MICROMAP_BUILD_EXT"),
+                    (
+                        Self::CLUSTER_CULLING_SHADER_HUAWEI.0,
+                        "CLUSTER_CULLING_SHADER_HUAWEI",
+                    ),
+                    (Self::OPTICAL_FLOW_NV.0, "OPTICAL_FLOW_NV"),
+                    (
+                        Self::CONVERT_COOPERATIVE_VECTOR_MATRIX_NV.0,
+                        "CONVERT_COOPERATIVE_VECTOR_MATRIX_NV",
+                    ),
+                    (Self::DATA_GRAPH_ARM.0, "DATA_GRAPH_ARM"),
+                    (Self::COPY_INDIRECT_KHR.0, "COPY_INDIRECT_KHR"),
+                    (Self::MEMORY_DECOMPRESSION_EXT.0, "MEMORY_DECOMPRESSION_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PipelineStageFlags2 {
         pub const NONE: Self = Self(PipelineStageFlagBits2::NONE.0);
         pub const TOP_OF_PIPE: Self = Self(PipelineStageFlagBits2::TOP_OF_PIPE.0);
@@ -5020,11 +5365,213 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineStageFlagBits2(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineStageFlagBits2 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::NONE => Some("NONE"),
+                Self::TOP_OF_PIPE => Some("TOP_OF_PIPE"),
+                Self::DRAW_INDIRECT => Some("DRAW_INDIRECT"),
+                Self::VERTEX_INPUT => Some("VERTEX_INPUT"),
+                Self::VERTEX_SHADER => Some("VERTEX_SHADER"),
+                Self::TESSELLATION_CONTROL_SHADER => Some("TESSELLATION_CONTROL_SHADER"),
+                Self::TESSELLATION_EVALUATION_SHADER => {
+                    Some("TESSELLATION_EVALUATION_SHADER")
+                }
+                Self::GEOMETRY_SHADER => Some("GEOMETRY_SHADER"),
+                Self::FRAGMENT_SHADER => Some("FRAGMENT_SHADER"),
+                Self::EARLY_FRAGMENT_TESTS => Some("EARLY_FRAGMENT_TESTS"),
+                Self::LATE_FRAGMENT_TESTS => Some("LATE_FRAGMENT_TESTS"),
+                Self::COLOR_ATTACHMENT_OUTPUT => Some("COLOR_ATTACHMENT_OUTPUT"),
+                Self::COMPUTE_SHADER => Some("COMPUTE_SHADER"),
+                Self::ALL_TRANSFER => Some("ALL_TRANSFER"),
+                Self::BOTTOM_OF_PIPE => Some("BOTTOM_OF_PIPE"),
+                Self::HOST => Some("HOST"),
+                Self::ALL_GRAPHICS => Some("ALL_GRAPHICS"),
+                Self::ALL_COMMANDS => Some("ALL_COMMANDS"),
+                Self::COPY => Some("COPY"),
+                Self::RESOLVE => Some("RESOLVE"),
+                Self::BLIT => Some("BLIT"),
+                Self::CLEAR => Some("CLEAR"),
+                Self::INDEX_INPUT => Some("INDEX_INPUT"),
+                Self::VERTEX_ATTRIBUTE_INPUT => Some("VERTEX_ATTRIBUTE_INPUT"),
+                Self::PRE_RASTERIZATION_SHADERS => Some("PRE_RASTERIZATION_SHADERS"),
+                Self::VIDEO_DECODE_KHR => Some("VIDEO_DECODE_KHR"),
+                Self::VIDEO_ENCODE_KHR => Some("VIDEO_ENCODE_KHR"),
+                Self::TRANSFORM_FEEDBACK_EXT => Some("TRANSFORM_FEEDBACK_EXT"),
+                Self::CONDITIONAL_RENDERING_EXT => Some("CONDITIONAL_RENDERING_EXT"),
+                Self::COMMAND_PREPROCESS_EXT => Some("COMMAND_PREPROCESS_EXT"),
+                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
+                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
+                }
+                Self::ACCELERATION_STRUCTURE_BUILD_KHR => {
+                    Some("ACCELERATION_STRUCTURE_BUILD_KHR")
+                }
+                Self::RAY_TRACING_SHADER_KHR => Some("RAY_TRACING_SHADER_KHR"),
+                Self::FRAGMENT_DENSITY_PROCESS_EXT => {
+                    Some("FRAGMENT_DENSITY_PROCESS_EXT")
+                }
+                Self::TASK_SHADER_EXT => Some("TASK_SHADER_EXT"),
+                Self::MESH_SHADER_EXT => Some("MESH_SHADER_EXT"),
+                Self::SUBPASS_SHADER_HUAWEI => Some("SUBPASS_SHADER_HUAWEI"),
+                Self::INVOCATION_MASK_HUAWEI => Some("INVOCATION_MASK_HUAWEI"),
+                Self::ACCELERATION_STRUCTURE_COPY_KHR => {
+                    Some("ACCELERATION_STRUCTURE_COPY_KHR")
+                }
+                Self::MICROMAP_BUILD_EXT => Some("MICROMAP_BUILD_EXT"),
+                Self::CLUSTER_CULLING_SHADER_HUAWEI => {
+                    Some("CLUSTER_CULLING_SHADER_HUAWEI")
+                }
+                Self::OPTICAL_FLOW_NV => Some("OPTICAL_FLOW_NV"),
+                Self::CONVERT_COOPERATIVE_VECTOR_MATRIX_NV => {
+                    Some("CONVERT_COOPERATIVE_VECTOR_MATRIX_NV")
+                }
+                Self::DATA_GRAPH_ARM => Some("DATA_GRAPH_ARM"),
+                Self::COPY_INDIRECT_KHR => Some("COPY_INDIRECT_KHR"),
+                Self::MEMORY_DECOMPRESSION_EXT => Some("MEMORY_DECOMPRESSION_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FormatFeatureFlags2(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FormatFeatureFlags2 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::SAMPLED_IMAGE.0, "SAMPLED_IMAGE"),
+                    (Self::STORAGE_IMAGE.0, "STORAGE_IMAGE"),
+                    (Self::STORAGE_IMAGE_ATOMIC.0, "STORAGE_IMAGE_ATOMIC"),
+                    (Self::UNIFORM_TEXEL_BUFFER.0, "UNIFORM_TEXEL_BUFFER"),
+                    (Self::STORAGE_TEXEL_BUFFER.0, "STORAGE_TEXEL_BUFFER"),
+                    (Self::STORAGE_TEXEL_BUFFER_ATOMIC.0, "STORAGE_TEXEL_BUFFER_ATOMIC"),
+                    (Self::VERTEX_BUFFER.0, "VERTEX_BUFFER"),
+                    (Self::COLOR_ATTACHMENT.0, "COLOR_ATTACHMENT"),
+                    (Self::COLOR_ATTACHMENT_BLEND.0, "COLOR_ATTACHMENT_BLEND"),
+                    (Self::DEPTH_STENCIL_ATTACHMENT.0, "DEPTH_STENCIL_ATTACHMENT"),
+                    (Self::BLIT_SRC.0, "BLIT_SRC"),
+                    (Self::BLIT_DST.0, "BLIT_DST"),
+                    (Self::SAMPLED_IMAGE_FILTER_LINEAR.0, "SAMPLED_IMAGE_FILTER_LINEAR"),
+                    (Self::TRANSFER_SRC.0, "TRANSFER_SRC"),
+                    (Self::TRANSFER_DST.0, "TRANSFER_DST"),
+                    (Self::SAMPLED_IMAGE_FILTER_MINMAX.0, "SAMPLED_IMAGE_FILTER_MINMAX"),
+                    (Self::MIDPOINT_CHROMA_SAMPLES.0, "MIDPOINT_CHROMA_SAMPLES"),
+                    (
+                        Self::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER.0,
+                        "SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER",
+                    ),
+                    (
+                        Self::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER
+                            .0,
+                        "SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER",
+                    ),
+                    (
+                        Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT
+                            .0,
+                        "SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT",
+                    ),
+                    (
+                        Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE
+                            .0,
+                        "SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE",
+                    ),
+                    (Self::DISJOINT.0, "DISJOINT"),
+                    (Self::COSITED_CHROMA_SAMPLES.0, "COSITED_CHROMA_SAMPLES"),
+                    (Self::STORAGE_READ_WITHOUT_FORMAT.0, "STORAGE_READ_WITHOUT_FORMAT"),
+                    (
+                        Self::STORAGE_WRITE_WITHOUT_FORMAT.0,
+                        "STORAGE_WRITE_WITHOUT_FORMAT",
+                    ),
+                    (
+                        Self::SAMPLED_IMAGE_DEPTH_COMPARISON.0,
+                        "SAMPLED_IMAGE_DEPTH_COMPARISON",
+                    ),
+                    (Self::SAMPLED_IMAGE_FILTER_CUBIC.0, "SAMPLED_IMAGE_FILTER_CUBIC"),
+                    (Self::HOST_IMAGE_TRANSFER.0, "HOST_IMAGE_TRANSFER"),
+                    (Self::VIDEO_DECODE_OUTPUT_KHR.0, "VIDEO_DECODE_OUTPUT_KHR"),
+                    (Self::VIDEO_DECODE_DPB_KHR.0, "VIDEO_DECODE_DPB_KHR"),
+                    (
+                        Self::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR.0,
+                        "ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR",
+                    ),
+                    (Self::FRAGMENT_DENSITY_MAP_EXT.0, "FRAGMENT_DENSITY_MAP_EXT"),
+                    (
+                        Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
+                        "FRAGMENT_SHADING_RATE_ATTACHMENT_KHR",
+                    ),
+                    (Self::VIDEO_ENCODE_INPUT_KHR.0, "VIDEO_ENCODE_INPUT_KHR"),
+                    (Self::VIDEO_ENCODE_DPB_KHR.0, "VIDEO_ENCODE_DPB_KHR"),
+                    (Self::BLOCK_MATCHING_SXD_QCOM.0, "BLOCK_MATCHING_SXD_QCOM"),
+                    (
+                        Self::ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV.0,
+                        "ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV",
+                    ),
+                    (Self::LINEAR_COLOR_ATTACHMENT_NV.0, "LINEAR_COLOR_ATTACHMENT_NV"),
+                    (Self::WEIGHT_IMAGE_QCOM.0, "WEIGHT_IMAGE_QCOM"),
+                    (Self::WEIGHT_SAMPLED_IMAGE_QCOM.0, "WEIGHT_SAMPLED_IMAGE_QCOM"),
+                    (Self::BLOCK_MATCHING_QCOM.0, "BLOCK_MATCHING_QCOM"),
+                    (Self::BOX_FILTER_SAMPLED_QCOM.0, "BOX_FILTER_SAMPLED_QCOM"),
+                    (Self::TENSOR_SHADER_ARM.0, "TENSOR_SHADER_ARM"),
+                    (Self::TENSOR_IMAGE_ALIASING_ARM.0, "TENSOR_IMAGE_ALIASING_ARM"),
+                    (Self::OPTICAL_FLOW_IMAGE_NV.0, "OPTICAL_FLOW_IMAGE_NV"),
+                    (Self::OPTICAL_FLOW_VECTOR_NV.0, "OPTICAL_FLOW_VECTOR_NV"),
+                    (Self::OPTICAL_FLOW_COST_NV.0, "OPTICAL_FLOW_COST_NV"),
+                    (Self::TENSOR_DATA_GRAPH_ARM.0, "TENSOR_DATA_GRAPH_ARM"),
+                    (Self::COPY_IMAGE_INDIRECT_DST_KHR.0, "COPY_IMAGE_INDIRECT_DST_KHR"),
+                    (
+                        Self::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0,
+                        "VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR",
+                    ),
+                    (
+                        Self::VIDEO_ENCODE_EMPHASIS_MAP_KHR.0,
+                        "VIDEO_ENCODE_EMPHASIS_MAP_KHR",
+                    ),
+                    (
+                        Self::SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG.0,
+                        "SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG",
+                    ),
+                    (
+                        Self::DEPTH_COPY_ON_COMPUTE_QUEUE_KHR.0,
+                        "DEPTH_COPY_ON_COMPUTE_QUEUE_KHR",
+                    ),
+                    (
+                        Self::DEPTH_COPY_ON_TRANSFER_QUEUE_KHR.0,
+                        "DEPTH_COPY_ON_TRANSFER_QUEUE_KHR",
+                    ),
+                    (
+                        Self::STENCIL_COPY_ON_COMPUTE_QUEUE_KHR.0,
+                        "STENCIL_COPY_ON_COMPUTE_QUEUE_KHR",
+                    ),
+                    (
+                        Self::STENCIL_COPY_ON_TRANSFER_QUEUE_KHR.0,
+                        "STENCIL_COPY_ON_TRANSFER_QUEUE_KHR",
+                    ),
+                    (
+                        Self::DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM.0,
+                        "DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM",
+                    ),
+                    (
+                        Self::DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM.0,
+                        "DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM",
+                    ),
+                    (
+                        Self::DATA_GRAPH_OPTICAL_FLOW_COST_ARM.0,
+                        "DATA_GRAPH_OPTICAL_FLOW_COST_ARM",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl FormatFeatureFlags2 {
         pub const SAMPLED_IMAGE: Self = Self(FormatFeatureFlagBits2::SAMPLED_IMAGE.0);
         pub const STORAGE_IMAGE: Self = Self(FormatFeatureFlagBits2::STORAGE_IMAGE.0);
@@ -5330,11 +5877,151 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FormatFeatureFlagBits2(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FormatFeatureFlagBits2 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SAMPLED_IMAGE => Some("SAMPLED_IMAGE"),
+                Self::STORAGE_IMAGE => Some("STORAGE_IMAGE"),
+                Self::STORAGE_IMAGE_ATOMIC => Some("STORAGE_IMAGE_ATOMIC"),
+                Self::UNIFORM_TEXEL_BUFFER => Some("UNIFORM_TEXEL_BUFFER"),
+                Self::STORAGE_TEXEL_BUFFER => Some("STORAGE_TEXEL_BUFFER"),
+                Self::STORAGE_TEXEL_BUFFER_ATOMIC => Some("STORAGE_TEXEL_BUFFER_ATOMIC"),
+                Self::VERTEX_BUFFER => Some("VERTEX_BUFFER"),
+                Self::COLOR_ATTACHMENT => Some("COLOR_ATTACHMENT"),
+                Self::COLOR_ATTACHMENT_BLEND => Some("COLOR_ATTACHMENT_BLEND"),
+                Self::DEPTH_STENCIL_ATTACHMENT => Some("DEPTH_STENCIL_ATTACHMENT"),
+                Self::BLIT_SRC => Some("BLIT_SRC"),
+                Self::BLIT_DST => Some("BLIT_DST"),
+                Self::SAMPLED_IMAGE_FILTER_LINEAR => Some("SAMPLED_IMAGE_FILTER_LINEAR"),
+                Self::TRANSFER_SRC => Some("TRANSFER_SRC"),
+                Self::TRANSFER_DST => Some("TRANSFER_DST"),
+                Self::SAMPLED_IMAGE_FILTER_MINMAX => Some("SAMPLED_IMAGE_FILTER_MINMAX"),
+                Self::MIDPOINT_CHROMA_SAMPLES => Some("MIDPOINT_CHROMA_SAMPLES"),
+                Self::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER => {
+                    Some("SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER")
+                }
+                Self::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER => {
+                    Some("SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER")
+                }
+                Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT => {
+                    Some("SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT")
+                }
+                Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE => {
+                    Some(
+                        "SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE",
+                    )
+                }
+                Self::DISJOINT => Some("DISJOINT"),
+                Self::COSITED_CHROMA_SAMPLES => Some("COSITED_CHROMA_SAMPLES"),
+                Self::STORAGE_READ_WITHOUT_FORMAT => Some("STORAGE_READ_WITHOUT_FORMAT"),
+                Self::STORAGE_WRITE_WITHOUT_FORMAT => {
+                    Some("STORAGE_WRITE_WITHOUT_FORMAT")
+                }
+                Self::SAMPLED_IMAGE_DEPTH_COMPARISON => {
+                    Some("SAMPLED_IMAGE_DEPTH_COMPARISON")
+                }
+                Self::SAMPLED_IMAGE_FILTER_CUBIC => Some("SAMPLED_IMAGE_FILTER_CUBIC"),
+                Self::HOST_IMAGE_TRANSFER => Some("HOST_IMAGE_TRANSFER"),
+                Self::VIDEO_DECODE_OUTPUT_KHR => Some("VIDEO_DECODE_OUTPUT_KHR"),
+                Self::VIDEO_DECODE_DPB_KHR => Some("VIDEO_DECODE_DPB_KHR"),
+                Self::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR => {
+                    Some("ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR")
+                }
+                Self::FRAGMENT_DENSITY_MAP_EXT => Some("FRAGMENT_DENSITY_MAP_EXT"),
+                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
+                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
+                }
+                Self::VIDEO_ENCODE_INPUT_KHR => Some("VIDEO_ENCODE_INPUT_KHR"),
+                Self::VIDEO_ENCODE_DPB_KHR => Some("VIDEO_ENCODE_DPB_KHR"),
+                Self::BLOCK_MATCHING_SXD_QCOM => Some("BLOCK_MATCHING_SXD_QCOM"),
+                Self::ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV => {
+                    Some("ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV")
+                }
+                Self::LINEAR_COLOR_ATTACHMENT_NV => Some("LINEAR_COLOR_ATTACHMENT_NV"),
+                Self::WEIGHT_IMAGE_QCOM => Some("WEIGHT_IMAGE_QCOM"),
+                Self::WEIGHT_SAMPLED_IMAGE_QCOM => Some("WEIGHT_SAMPLED_IMAGE_QCOM"),
+                Self::BLOCK_MATCHING_QCOM => Some("BLOCK_MATCHING_QCOM"),
+                Self::BOX_FILTER_SAMPLED_QCOM => Some("BOX_FILTER_SAMPLED_QCOM"),
+                Self::TENSOR_SHADER_ARM => Some("TENSOR_SHADER_ARM"),
+                Self::TENSOR_IMAGE_ALIASING_ARM => Some("TENSOR_IMAGE_ALIASING_ARM"),
+                Self::OPTICAL_FLOW_IMAGE_NV => Some("OPTICAL_FLOW_IMAGE_NV"),
+                Self::OPTICAL_FLOW_VECTOR_NV => Some("OPTICAL_FLOW_VECTOR_NV"),
+                Self::OPTICAL_FLOW_COST_NV => Some("OPTICAL_FLOW_COST_NV"),
+                Self::TENSOR_DATA_GRAPH_ARM => Some("TENSOR_DATA_GRAPH_ARM"),
+                Self::COPY_IMAGE_INDIRECT_DST_KHR => Some("COPY_IMAGE_INDIRECT_DST_KHR"),
+                Self::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR => {
+                    Some("VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR")
+                }
+                Self::VIDEO_ENCODE_EMPHASIS_MAP_KHR => {
+                    Some("VIDEO_ENCODE_EMPHASIS_MAP_KHR")
+                }
+                Self::SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG => {
+                    Some("SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG")
+                }
+                Self::DEPTH_COPY_ON_COMPUTE_QUEUE_KHR => {
+                    Some("DEPTH_COPY_ON_COMPUTE_QUEUE_KHR")
+                }
+                Self::DEPTH_COPY_ON_TRANSFER_QUEUE_KHR => {
+                    Some("DEPTH_COPY_ON_TRANSFER_QUEUE_KHR")
+                }
+                Self::STENCIL_COPY_ON_COMPUTE_QUEUE_KHR => {
+                    Some("STENCIL_COPY_ON_COMPUTE_QUEUE_KHR")
+                }
+                Self::STENCIL_COPY_ON_TRANSFER_QUEUE_KHR => {
+                    Some("STENCIL_COPY_ON_TRANSFER_QUEUE_KHR")
+                }
+                Self::DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM => {
+                    Some("DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM")
+                }
+                Self::DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM => {
+                    Some("DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM")
+                }
+                Self::DATA_GRAPH_OPTICAL_FLOW_COST_ARM => {
+                    Some("DATA_GRAPH_OPTICAL_FLOW_COST_ARM")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct RenderingFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for RenderingFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::CONTENTS_SECONDARY_COMMAND_BUFFERS.0,
+                        "CONTENTS_SECONDARY_COMMAND_BUFFERS",
+                    ),
+                    (Self::SUSPENDING.0, "SUSPENDING"),
+                    (Self::RESUMING.0, "RESUMING"),
+                    (Self::ENABLE_LEGACY_DITHERING_EXT.0, "ENABLE_LEGACY_DITHERING_EXT"),
+                    (Self::CONTENTS_INLINE_KHR.0, "CONTENTS_INLINE_KHR"),
+                    (
+                        Self::PER_LAYER_FRAGMENT_DENSITY_VALVE.0,
+                        "PER_LAYER_FRAGMENT_DENSITY_VALVE",
+                    ),
+                    (Self::FRAGMENT_REGION_EXT.0, "FRAGMENT_REGION_EXT"),
+                    (Self::CUSTOM_RESOLVE_EXT.0, "CUSTOM_RESOLVE_EXT"),
+                    (
+                        Self::LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR.0,
+                        "LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl RenderingFlags {
         pub const CONTENTS_SECONDARY_COMMAND_BUFFERS: Self = Self(
             RenderingFlagBits::CONTENTS_SECONDARY_COMMAND_BUFFERS.0,
@@ -5426,11 +6113,56 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct RenderingFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for RenderingFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::CONTENTS_SECONDARY_COMMAND_BUFFERS => {
+                    Some("CONTENTS_SECONDARY_COMMAND_BUFFERS")
+                }
+                Self::SUSPENDING => Some("SUSPENDING"),
+                Self::RESUMING => Some("RESUMING"),
+                Self::ENABLE_LEGACY_DITHERING_EXT => Some("ENABLE_LEGACY_DITHERING_EXT"),
+                Self::CONTENTS_INLINE_KHR => Some("CONTENTS_INLINE_KHR"),
+                Self::PER_LAYER_FRAGMENT_DENSITY_VALVE => {
+                    Some("PER_LAYER_FRAGMENT_DENSITY_VALVE")
+                }
+                Self::FRAGMENT_REGION_EXT => Some("FRAGMENT_REGION_EXT"),
+                Self::CUSTOM_RESOLVE_EXT => Some("CUSTOM_RESOLVE_EXT"),
+                Self::LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR => {
+                    Some("LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ToolPurposeFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ToolPurposeFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::VALIDATION.0, "VALIDATION"),
+                    (Self::PROFILING.0, "PROFILING"),
+                    (Self::TRACING.0, "TRACING"),
+                    (Self::ADDITIONAL_FEATURES.0, "ADDITIONAL_FEATURES"),
+                    (Self::MODIFYING_FEATURES.0, "MODIFYING_FEATURES"),
+                    (Self::DEBUG_REPORTING_EXT.0, "DEBUG_REPORTING_EXT"),
+                    (Self::DEBUG_MARKERS_EXT.0, "DEBUG_MARKERS_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ToolPurposeFlags {
         pub const VALIDATION: Self = Self(ToolPurposeFlagBits::VALIDATION.0);
         pub const PROFILING: Self = Self(ToolPurposeFlagBits::PROFILING.0);
@@ -5515,11 +6247,36 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ToolPurposeFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ToolPurposeFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::VALIDATION => Some("VALIDATION"),
+                Self::PROFILING => Some("PROFILING"),
+                Self::TRACING => Some("TRACING"),
+                Self::ADDITIONAL_FEATURES => Some("ADDITIONAL_FEATURES"),
+                Self::MODIFYING_FEATURES => Some("MODIFYING_FEATURES"),
+                Self::DEBUG_REPORTING_EXT => Some("DEBUG_REPORTING_EXT"),
+                Self::DEBUG_MARKERS_EXT => Some("DEBUG_MARKERS_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SubmitFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SubmitFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::PROTECTED.0, "PROTECTED")], self.0)
+        }
+    }
     impl SubmitFlags {
         pub const PROTECTED: Self = Self(SubmitFlagBits::PROTECTED.0);
         pub const PROTECTED_KHR: Self = Self(SubmitFlagBits::PROTECTED_KHR.0);
@@ -5582,8 +6339,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SubmitFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SubmitFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PROTECTED => Some("PROTECTED"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type Flags64 = u64;
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]

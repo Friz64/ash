@@ -588,8 +588,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugUtilsMessageSeverityFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::VERBOSE_EXT.0, "VERBOSE_EXT"),
+                    (Self::INFO_EXT.0, "INFO_EXT"),
+                    (Self::WARNING_EXT.0, "WARNING_EXT"),
+                    (Self::ERROR_EXT.0, "ERROR_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DebugUtilsMessageSeverityFlagsEXT {
         pub const VERBOSE_EXT: Self = Self(
             DebugUtilsMessageSeverityFlagBitsEXT::VERBOSE_EXT.0,
@@ -662,11 +677,42 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugUtilsMessageSeverityFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DebugUtilsMessageSeverityFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::VERBOSE_EXT => Some("VERBOSE_EXT"),
+                Self::INFO_EXT => Some("INFO_EXT"),
+                Self::WARNING_EXT => Some("WARNING_EXT"),
+                Self::ERROR_EXT => Some("ERROR_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugUtilsMessageTypeFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DebugUtilsMessageTypeFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::GENERAL_EXT.0, "GENERAL_EXT"),
+                    (Self::VALIDATION_EXT.0, "VALIDATION_EXT"),
+                    (Self::PERFORMANCE_EXT.0, "PERFORMANCE_EXT"),
+                    (Self::DEVICE_ADDRESS_BINDING_EXT.0, "DEVICE_ADDRESS_BINDING_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DebugUtilsMessageTypeFlagsEXT {
         pub const GENERAL_EXT: Self = Self(
             DebugUtilsMessageTypeFlagBitsEXT::GENERAL_EXT.0,
@@ -739,11 +785,33 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DebugUtilsMessageTypeFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::GENERAL_EXT => Some("GENERAL_EXT"),
+                Self::VALIDATION_EXT => Some("VALIDATION_EXT"),
+                Self::PERFORMANCE_EXT => Some("PERFORMANCE_EXT"),
+                Self::DEVICE_ADDRESS_BINDING_EXT => Some("DEVICE_ADDRESS_BINDING_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugUtilsMessengerCreateFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DebugUtilsMessengerCreateFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl DebugUtilsMessengerCreateFlagsEXT {
         pub const fn empty() -> Self {
             Self(0)
@@ -804,8 +872,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugUtilsMessengerCallbackDataFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DebugUtilsMessengerCallbackDataFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl DebugUtilsMessengerCallbackDataFlagsEXT {
         pub const fn empty() -> Self {
             Self(0)

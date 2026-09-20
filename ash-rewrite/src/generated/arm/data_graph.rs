@@ -1462,8 +1462,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphPipelineSessionCreateFlagsARM(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphPipelineSessionCreateFlagsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::PROTECTED_ARM.0, "PROTECTED_ARM"),
+                    (Self::OPTICAL_FLOW_CACHE_ARM.0, "OPTICAL_FLOW_CACHE_ARM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DataGraphPipelineSessionCreateFlagsARM {
         pub const PROTECTED_ARM: Self = Self(
             DataGraphPipelineSessionCreateFlagBitsARM::PROTECTED_ARM.0,
@@ -1530,11 +1543,31 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphPipelineSessionCreateFlagBitsARM(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphPipelineSessionCreateFlagBitsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PROTECTED_ARM => Some("PROTECTED_ARM"),
+                Self::OPTICAL_FLOW_CACHE_ARM => Some("OPTICAL_FLOW_CACHE_ARM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphPipelineDispatchFlagsARM(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphPipelineDispatchFlagsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl DataGraphPipelineDispatchFlagsARM {
         pub const fn empty() -> Self {
             Self(0)
@@ -1595,8 +1628,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphPipelineDispatchFlagBitsARM(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphPipelineDispatchFlagBitsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DataGraphPipelineSessionARM(u64);

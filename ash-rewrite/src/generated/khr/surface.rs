@@ -330,8 +330,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CompositeAlphaFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CompositeAlphaFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::OPAQUE_KHR.0, "OPAQUE_KHR"),
+                    (Self::PRE_MULTIPLIED_KHR.0, "PRE_MULTIPLIED_KHR"),
+                    (Self::POST_MULTIPLIED_KHR.0, "POST_MULTIPLIED_KHR"),
+                    (Self::INHERIT_KHR.0, "INHERIT_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl CompositeAlphaFlagsKHR {
         pub const OPAQUE_KHR: Self = Self(CompositeAlphaFlagBitsKHR::OPAQUE_KHR.0);
         pub const PRE_MULTIPLIED_KHR: Self = Self(
@@ -400,11 +415,56 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CompositeAlphaFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CompositeAlphaFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::OPAQUE_KHR => Some("OPAQUE_KHR"),
+                Self::PRE_MULTIPLIED_KHR => Some("PRE_MULTIPLIED_KHR"),
+                Self::POST_MULTIPLIED_KHR => Some("POST_MULTIPLIED_KHR"),
+                Self::INHERIT_KHR => Some("INHERIT_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SurfaceTransformFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SurfaceTransformFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::IDENTITY_KHR.0, "IDENTITY_KHR"),
+                    (Self::ROTATE_90_KHR.0, "ROTATE_90_KHR"),
+                    (Self::ROTATE_180_KHR.0, "ROTATE_180_KHR"),
+                    (Self::ROTATE_270_KHR.0, "ROTATE_270_KHR"),
+                    (Self::HORIZONTAL_MIRROR_KHR.0, "HORIZONTAL_MIRROR_KHR"),
+                    (
+                        Self::HORIZONTAL_MIRROR_ROTATE_90_KHR.0,
+                        "HORIZONTAL_MIRROR_ROTATE_90_KHR",
+                    ),
+                    (
+                        Self::HORIZONTAL_MIRROR_ROTATE_180_KHR.0,
+                        "HORIZONTAL_MIRROR_ROTATE_180_KHR",
+                    ),
+                    (
+                        Self::HORIZONTAL_MIRROR_ROTATE_270_KHR.0,
+                        "HORIZONTAL_MIRROR_ROTATE_270_KHR",
+                    ),
+                    (Self::INHERIT_KHR.0, "INHERIT_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl SurfaceTransformFlagsKHR {
         pub const IDENTITY_KHR: Self = Self(SurfaceTransformFlagBitsKHR::IDENTITY_KHR.0);
         pub const ROTATE_90_KHR: Self = Self(
@@ -488,8 +548,35 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SurfaceTransformFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SurfaceTransformFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::IDENTITY_KHR => Some("IDENTITY_KHR"),
+                Self::ROTATE_90_KHR => Some("ROTATE_90_KHR"),
+                Self::ROTATE_180_KHR => Some("ROTATE_180_KHR"),
+                Self::ROTATE_270_KHR => Some("ROTATE_270_KHR"),
+                Self::HORIZONTAL_MIRROR_KHR => Some("HORIZONTAL_MIRROR_KHR"),
+                Self::HORIZONTAL_MIRROR_ROTATE_90_KHR => {
+                    Some("HORIZONTAL_MIRROR_ROTATE_90_KHR")
+                }
+                Self::HORIZONTAL_MIRROR_ROTATE_180_KHR => {
+                    Some("HORIZONTAL_MIRROR_ROTATE_180_KHR")
+                }
+                Self::HORIZONTAL_MIRROR_ROTATE_270_KHR => {
+                    Some("HORIZONTAL_MIRROR_ROTATE_270_KHR")
+                }
+                Self::INHERIT_KHR => Some("INHERIT_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct SurfaceKHR(u64);

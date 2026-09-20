@@ -633,8 +633,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PerformanceCounterDescriptionFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::PERFORMANCE_IMPACTING_KHR.0, "PERFORMANCE_IMPACTING_KHR"),
+                    (Self::CONCURRENTLY_IMPACTED_KHR.0, "CONCURRENTLY_IMPACTED_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PerformanceCounterDescriptionFlagsKHR {
         pub const PERFORMANCE_IMPACTING_KHR: Self = Self(
             PerformanceCounterDescriptionFlagBitsKHR::PERFORMANCE_IMPACTING_KHR.0,
@@ -701,11 +714,31 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PerformanceCounterDescriptionFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PerformanceCounterDescriptionFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PERFORMANCE_IMPACTING_KHR => Some("PERFORMANCE_IMPACTING_KHR"),
+                Self::CONCURRENTLY_IMPACTED_KHR => Some("CONCURRENTLY_IMPACTED_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AcquireProfilingLockFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AcquireProfilingLockFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl AcquireProfilingLockFlagsKHR {
         pub const fn empty() -> Self {
             Self(0)
@@ -766,8 +799,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AcquireProfilingLockFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     pub type PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,

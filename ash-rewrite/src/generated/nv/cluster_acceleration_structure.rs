@@ -1380,8 +1380,25 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureGeometryFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ClusterAccelerationStructureGeometryFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::CULL_DISABLE_NV.0, "CULL_DISABLE_NV"),
+                    (
+                        Self::NO_DUPLICATE_ANYHIT_INVOCATION_NV.0,
+                        "NO_DUPLICATE_ANYHIT_INVOCATION_NV",
+                    ),
+                    (Self::OPAQUE_NV.0, "OPAQUE_NV"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ClusterAccelerationStructureGeometryFlagsNV {
         pub const CULL_DISABLE_NV: Self = Self(
             ClusterAccelerationStructureGeometryFlagBitsNV::CULL_DISABLE_NV.0,
@@ -1452,11 +1469,43 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ClusterAccelerationStructureGeometryFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::CULL_DISABLE_NV => Some("CULL_DISABLE_NV"),
+                Self::NO_DUPLICATE_ANYHIT_INVOCATION_NV => {
+                    Some("NO_DUPLICATE_ANYHIT_INVOCATION_NV")
+                }
+                Self::OPAQUE_NV => Some("OPAQUE_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureClusterFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ClusterAccelerationStructureClusterFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::ALLOW_DISABLE_OPACITY_MICROMAPS_NV.0,
+                        "ALLOW_DISABLE_OPACITY_MICROMAPS_NV",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ClusterAccelerationStructureClusterFlagsNV {
         pub const ALLOW_DISABLE_OPACITY_MICROMAPS_NV: Self = Self(
             ClusterAccelerationStructureClusterFlagBitsNV::ALLOW_DISABLE_OPACITY_MICROMAPS_NV
@@ -1521,11 +1570,59 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ClusterAccelerationStructureClusterFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ALLOW_DISABLE_OPACITY_MICROMAPS_NV => {
+                    Some("ALLOW_DISABLE_OPACITY_MICROMAPS_NV")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureAddressResolutionFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ClusterAccelerationStructureAddressResolutionFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::NONE_NV.0, "NONE_NV"),
+                    (
+                        Self::INDIRECTED_DST_IMPLICIT_DATA_NV.0,
+                        "INDIRECTED_DST_IMPLICIT_DATA_NV",
+                    ),
+                    (Self::INDIRECTED_SCRATCH_DATA_NV.0, "INDIRECTED_SCRATCH_DATA_NV"),
+                    (
+                        Self::INDIRECTED_DST_ADDRESS_ARRAY_NV.0,
+                        "INDIRECTED_DST_ADDRESS_ARRAY_NV",
+                    ),
+                    (
+                        Self::INDIRECTED_DST_SIZES_ARRAY_NV.0,
+                        "INDIRECTED_DST_SIZES_ARRAY_NV",
+                    ),
+                    (
+                        Self::INDIRECTED_SRC_INFOS_ARRAY_NV.0,
+                        "INDIRECTED_SRC_INFOS_ARRAY_NV",
+                    ),
+                    (
+                        Self::INDIRECTED_SRC_INFOS_COUNT_NV.0,
+                        "INDIRECTED_SRC_INFOS_COUNT_NV",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ClusterAccelerationStructureAddressResolutionFlagsNV {
         pub const NONE_NV: Self = Self(
             ClusterAccelerationStructureAddressResolutionFlagBitsNV::NONE_NV.0,
@@ -1616,11 +1713,54 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ClusterAccelerationStructureAddressResolutionFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::NONE_NV => Some("NONE_NV"),
+                Self::INDIRECTED_DST_IMPLICIT_DATA_NV => {
+                    Some("INDIRECTED_DST_IMPLICIT_DATA_NV")
+                }
+                Self::INDIRECTED_SCRATCH_DATA_NV => Some("INDIRECTED_SCRATCH_DATA_NV"),
+                Self::INDIRECTED_DST_ADDRESS_ARRAY_NV => {
+                    Some("INDIRECTED_DST_ADDRESS_ARRAY_NV")
+                }
+                Self::INDIRECTED_DST_SIZES_ARRAY_NV => {
+                    Some("INDIRECTED_DST_SIZES_ARRAY_NV")
+                }
+                Self::INDIRECTED_SRC_INFOS_ARRAY_NV => {
+                    Some("INDIRECTED_SRC_INFOS_ARRAY_NV")
+                }
+                Self::INDIRECTED_SRC_INFOS_COUNT_NV => {
+                    Some("INDIRECTED_SRC_INFOS_COUNT_NV")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureIndexFormatFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ClusterAccelerationStructureIndexFormatFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::_8BIT_NV.0, "_8BIT_NV"),
+                    (Self::_16BIT_NV.0, "_16BIT_NV"),
+                    (Self::_32BIT_NV.0, "_32BIT_NV"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ClusterAccelerationStructureIndexFormatFlagsNV {
         pub const _8BIT_NV: Self = Self(
             ClusterAccelerationStructureIndexFormatFlagBitsNV::_8BIT_NV.0,
@@ -1690,8 +1830,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ClusterAccelerationStructureIndexFormatFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::_8BIT_NV => Some("_8BIT_NV"),
+                Self::_16BIT_NV => Some("_16BIT_NV"),
+                Self::_32BIT_NV => Some("_32BIT_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetClusterAccelerationStructureBuildSizesNV = unsafe extern "system" fn(
         device: crate::vk::Device,
         p_info: *const crate::vk::ClusterAccelerationStructureInputInfoNV<'_>,

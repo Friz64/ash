@@ -85,8 +85,29 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceDiagnosticsConfigFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::ENABLE_SHADER_DEBUG_INFO_NV.0, "ENABLE_SHADER_DEBUG_INFO_NV"),
+                    (Self::ENABLE_RESOURCE_TRACKING_NV.0, "ENABLE_RESOURCE_TRACKING_NV"),
+                    (
+                        Self::ENABLE_AUTOMATIC_CHECKPOINTS_NV.0,
+                        "ENABLE_AUTOMATIC_CHECKPOINTS_NV",
+                    ),
+                    (
+                        Self::ENABLE_SHADER_ERROR_REPORTING_NV.0,
+                        "ENABLE_SHADER_ERROR_REPORTING_NV",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DeviceDiagnosticsConfigFlagsNV {
         pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(
             DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_DEBUG_INFO_NV.0,
@@ -159,7 +180,27 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceDiagnosticsConfigFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ENABLE_SHADER_DEBUG_INFO_NV => Some("ENABLE_SHADER_DEBUG_INFO_NV"),
+                Self::ENABLE_RESOURCE_TRACKING_NV => Some("ENABLE_RESOURCE_TRACKING_NV"),
+                Self::ENABLE_AUTOMATIC_CHECKPOINTS_NV => {
+                    Some("ENABLE_AUTOMATIC_CHECKPOINTS_NV")
+                }
+                Self::ENABLE_SHADER_ERROR_REPORTING_NV => {
+                    Some("ENABLE_SHADER_ERROR_REPORTING_NV")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

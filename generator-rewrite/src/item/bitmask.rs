@@ -13,7 +13,7 @@ impl Code for BitMask {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.type_tokens(self.bitmask_name, false, &Lifetime::placeholder());
+        let name_tokens = ctx.type_tokens(self.bitmask_name, false, &Lifetime::placeholder());
         let base_ty = match self.bitwidth {
             BitWidth::Bits32 => quote! { u32 },
             BitWidth::Bits64 => quote! { u64 },
@@ -21,14 +21,52 @@ impl Code for BitMask {
 
         let mut bits_code = TokenStream::default();
         let mut values = TokenStream::default();
-        // TODO: proper Debug impl
+        let mut debug_content = None;
         if let Some(bits_name) = self.bits_name {
             let bits_name_tokens = ctx.type_tokens(bits_name, false, &Lifetime::placeholder());
 
+            let bits_debug = {
+                let content = if self.items.is_empty() {
+                    quote! { core::fmt::Debug::fmt(&self.0, f) }
+                } else {
+                    let debug_items = (self.items.iter())
+                        .filter_map(|(name, item)| {
+                            (!matches!(item.value, Value::Alias(..))).then_some(name)
+                        })
+                        .map(|&name| {
+                            let name = ctx.enumerator_tokens(name, bits_name, false);
+                            let name_string = name.to_string();
+                            quote! { Self::#name => Some(#name_string), }
+                        });
+
+                    quote! {
+                        if let Some(x) = match *self {
+                            #( #debug_items )*
+                            _ => None,
+                        } {
+                            f.write_str(x)
+                        } else {
+                            core::fmt::Debug::fmt(&self.0, f)
+                        }
+                    }
+                };
+
+                quote! {
+                    #[cfg(feature = "debug")]
+                    impl core::fmt::Debug for #bits_name_tokens {
+                        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                            #content
+                        }
+                    }
+                }
+            };
+
             bits_code = quote! {
                 #[repr(transparent)]
-                #[derive(Clone, Copy, Default, Debug)]
+                #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
                 pub struct #bits_name_tokens(pub(crate) #base_ty);
+
+                #bits_debug
             };
 
             values = (self.items.iter())
@@ -37,15 +75,38 @@ impl Code for BitMask {
                     quote! { pub const #name: Self = Self(#bits_name_tokens::#name.0); }
                 })
                 .collect::<TokenStream>();
+
+            debug_content = (!self.items.is_empty()).then(|| {
+                let debug_items = (self.items.iter())
+                    .filter_map(|(name, item)| {
+                        (!matches!(item.value, Value::Alias(..))).then_some(name)
+                    })
+                    .map(|&name| {
+                        let name = ctx.enumerator_tokens(name, bits_name, false);
+                        let name_string = name.to_string();
+                        quote! { (Self::#name.0, #name_string) }
+                    });
+
+                quote! {
+                    crate::debug_flags(f, &[ #( #debug_items, )* ], self.0)
+                }
+            });
         }
 
-        // TODO: proper Debug impl
+        let debug_content = debug_content.unwrap_or(quote! { core::fmt::Debug::fmt(&self.0, f) });
         let code = quote! {
             #[repr(transparent)]
-                #[derive(Clone, Copy, Default, Debug)]
-            pub struct #name(#base_ty);
+            #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
+            pub struct #name_tokens(#base_ty);
 
-            impl #name {
+            #[cfg(feature = "debug")]
+            impl core::fmt::Debug for #name_tokens {
+                fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                    #debug_content
+                }
+            }
+
+            impl #name_tokens {
                 #values
 
                 pub const fn empty() -> Self {
@@ -73,7 +134,7 @@ impl Code for BitMask {
                 }
             }
 
-            impl core::ops::BitOr for #name {
+            impl core::ops::BitOr for #name_tokens {
                 type Output = Self;
 
                 fn bitor(self, rhs: Self) -> Self {
@@ -81,13 +142,13 @@ impl Code for BitMask {
                 }
             }
 
-            impl core::ops::BitOrAssign for #name {
+            impl core::ops::BitOrAssign for #name_tokens {
                 fn bitor_assign(&mut self, rhs: Self) {
                     *self = *self | rhs;
                 }
             }
 
-            impl core::ops::BitAnd for #name {
+            impl core::ops::BitAnd for #name_tokens {
                 type Output = Self;
 
                 fn bitand(self, rhs: Self) -> Self {
@@ -95,13 +156,13 @@ impl Code for BitMask {
                 }
             }
 
-            impl core::ops::BitAndAssign for #name {
+            impl core::ops::BitAndAssign for #name_tokens {
                 fn bitand_assign(&mut self, rhs: Self) {
                     *self = *self & rhs;
                 }
             }
 
-            impl core::ops::BitXor for #name {
+            impl core::ops::BitXor for #name_tokens {
                 type Output = Self;
 
                 fn bitxor(self, rhs: Self) -> Self {
@@ -109,13 +170,13 @@ impl Code for BitMask {
                 }
             }
 
-            impl core::ops::BitXorAssign for #name {
+            impl core::ops::BitXorAssign for #name_tokens {
                 fn bitxor_assign(&mut self, rhs: Self) {
                     *self = *self ^ rhs;
                 }
             }
 
-            impl core::ops::Not for #name {
+            impl core::ops::Not for #name_tokens {
                 type Output = Self;
 
                 fn not(self) -> Self {

@@ -266,8 +266,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoDecodeUsageFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoDecodeUsageFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DEFAULT_KHR.0, "DEFAULT_KHR"),
+                    (Self::TRANSCODING_KHR.0, "TRANSCODING_KHR"),
+                    (Self::OFFLINE_KHR.0, "OFFLINE_KHR"),
+                    (Self::STREAMING_KHR.0, "STREAMING_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoDecodeUsageFlagsKHR {
         pub const DEFAULT_KHR: Self = Self(VideoDecodeUsageFlagBitsKHR::DEFAULT_KHR.0);
         pub const TRANSCODING_KHR: Self = Self(
@@ -336,11 +351,40 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoDecodeUsageFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoDecodeUsageFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEFAULT_KHR => Some("DEFAULT_KHR"),
+                Self::TRANSCODING_KHR => Some("TRANSCODING_KHR"),
+                Self::OFFLINE_KHR => Some("OFFLINE_KHR"),
+                Self::STREAMING_KHR => Some("STREAMING_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoDecodeCapabilityFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoDecodeCapabilityFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DPB_AND_OUTPUT_COINCIDE_KHR.0, "DPB_AND_OUTPUT_COINCIDE_KHR"),
+                    (Self::DPB_AND_OUTPUT_DISTINCT_KHR.0, "DPB_AND_OUTPUT_DISTINCT_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoDecodeCapabilityFlagsKHR {
         pub const DPB_AND_OUTPUT_COINCIDE_KHR: Self = Self(
             VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_COINCIDE_KHR.0,
@@ -407,11 +451,31 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoDecodeCapabilityFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoDecodeCapabilityFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DPB_AND_OUTPUT_COINCIDE_KHR => Some("DPB_AND_OUTPUT_COINCIDE_KHR"),
+                Self::DPB_AND_OUTPUT_DISTINCT_KHR => Some("DPB_AND_OUTPUT_DISTINCT_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoDecodeFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoDecodeFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl VideoDecodeFlagsKHR {
         pub const fn empty() -> Self {
             Self(0)

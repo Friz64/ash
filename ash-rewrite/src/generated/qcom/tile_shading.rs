@@ -424,8 +424,21 @@ pub(crate) mod reexport {
     }
     impl<'a> DispatchTileInfoQCOM<'a> {}
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TileShadingRenderPassFlagsQCOM(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for TileShadingRenderPassFlagsQCOM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::ENABLE_QCOM.0, "ENABLE_QCOM"),
+                    (Self::PER_TILE_EXECUTION_QCOM.0, "PER_TILE_EXECUTION_QCOM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl TileShadingRenderPassFlagsQCOM {
         pub const ENABLE_QCOM: Self = Self(
             TileShadingRenderPassFlagBitsQCOM::ENABLE_QCOM.0,
@@ -492,8 +505,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TileShadingRenderPassFlagBitsQCOM(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for TileShadingRenderPassFlagBitsQCOM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ENABLE_QCOM => Some("ENABLE_QCOM"),
+                Self::PER_TILE_EXECUTION_QCOM => Some("PER_TILE_EXECUTION_QCOM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkCmdDispatchTileQCOM = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_dispatch_tile_info: *const crate::vk::DispatchTileInfoQCOM<'_>,

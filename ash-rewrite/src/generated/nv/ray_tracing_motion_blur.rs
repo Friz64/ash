@@ -515,8 +515,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccelerationStructureMotionInfoFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccelerationStructureMotionInfoFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl AccelerationStructureMotionInfoFlagsNV {
         pub const fn empty() -> Self {
             Self(0)
@@ -577,8 +583,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccelerationStructureMotionInstanceFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccelerationStructureMotionInstanceFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl AccelerationStructureMotionInstanceFlagsNV {
         pub const fn empty() -> Self {
             Self(0)

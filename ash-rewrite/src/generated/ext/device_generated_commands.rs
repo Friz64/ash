@@ -1281,8 +1281,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectCommandsLayoutUsageFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for IndirectCommandsLayoutUsageFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::EXPLICIT_PREPROCESS_EXT.0, "EXPLICIT_PREPROCESS_EXT"),
+                    (Self::UNORDERED_SEQUENCES_EXT.0, "UNORDERED_SEQUENCES_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl IndirectCommandsLayoutUsageFlagsEXT {
         pub const EXPLICIT_PREPROCESS_EXT: Self = Self(
             IndirectCommandsLayoutUsageFlagBitsEXT::EXPLICIT_PREPROCESS_EXT.0,
@@ -1349,11 +1362,38 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectCommandsLayoutUsageFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for IndirectCommandsLayoutUsageFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::EXPLICIT_PREPROCESS_EXT => Some("EXPLICIT_PREPROCESS_EXT"),
+                Self::UNORDERED_SEQUENCES_EXT => Some("UNORDERED_SEQUENCES_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectCommandsInputModeFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for IndirectCommandsInputModeFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::VULKAN_INDEX_BUFFER_EXT.0, "VULKAN_INDEX_BUFFER_EXT"),
+                    (Self::DXGI_INDEX_BUFFER_EXT.0, "DXGI_INDEX_BUFFER_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl IndirectCommandsInputModeFlagsEXT {
         pub const VULKAN_INDEX_BUFFER_EXT: Self = Self(
             IndirectCommandsInputModeFlagBitsEXT::VULKAN_INDEX_BUFFER_EXT.0,
@@ -1420,8 +1460,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectCommandsInputModeFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for IndirectCommandsInputModeFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::VULKAN_INDEX_BUFFER_EXT => Some("VULKAN_INDEX_BUFFER_EXT"),
+                Self::DXGI_INDEX_BUFFER_EXT => Some("DXGI_INDEX_BUFFER_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct IndirectCommandsLayoutEXT(u64);

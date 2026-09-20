@@ -4537,8 +4537,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SemaphoreWaitFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SemaphoreWaitFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::ANY.0, "ANY")], self.0)
+        }
+    }
     impl SemaphoreWaitFlags {
         pub const ANY: Self = Self(SemaphoreWaitFlagBits::ANY.0);
         pub const ANY_KHR: Self = Self(SemaphoreWaitFlagBits::ANY_KHR.0);
@@ -4601,11 +4607,39 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SemaphoreWaitFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SemaphoreWaitFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ANY => Some("ANY"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorBindingFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DescriptorBindingFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::UPDATE_AFTER_BIND.0, "UPDATE_AFTER_BIND"),
+                    (Self::UPDATE_UNUSED_WHILE_PENDING.0, "UPDATE_UNUSED_WHILE_PENDING"),
+                    (Self::PARTIALLY_BOUND.0, "PARTIALLY_BOUND"),
+                    (Self::VARIABLE_DESCRIPTOR_COUNT.0, "VARIABLE_DESCRIPTOR_COUNT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DescriptorBindingFlags {
         pub const UPDATE_AFTER_BIND: Self = Self(
             DescriptorBindingFlagBits::UPDATE_AFTER_BIND.0,
@@ -4690,11 +4724,48 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorBindingFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DescriptorBindingFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UPDATE_AFTER_BIND => Some("UPDATE_AFTER_BIND"),
+                Self::UPDATE_UNUSED_WHILE_PENDING => Some("UPDATE_UNUSED_WHILE_PENDING"),
+                Self::PARTIALLY_BOUND => Some("PARTIALLY_BOUND"),
+                Self::VARIABLE_DESCRIPTOR_COUNT => Some("VARIABLE_DESCRIPTOR_COUNT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ResolveModeFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ResolveModeFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::NONE.0, "NONE"),
+                    (Self::SAMPLE_ZERO.0, "SAMPLE_ZERO"),
+                    (Self::AVERAGE.0, "AVERAGE"),
+                    (Self::MIN.0, "MIN"),
+                    (Self::MAX.0, "MAX"),
+                    (
+                        Self::EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID.0,
+                        "EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID",
+                    ),
+                    (Self::CUSTOM_EXT.0, "CUSTOM_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ResolveModeFlags {
         pub const NONE: Self = Self(ResolveModeFlagBits::NONE.0);
         pub const SAMPLE_ZERO: Self = Self(ResolveModeFlagBits::SAMPLE_ZERO.0);
@@ -4769,8 +4840,29 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ResolveModeFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ResolveModeFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::NONE => Some("NONE"),
+                Self::SAMPLE_ZERO => Some("SAMPLE_ZERO"),
+                Self::AVERAGE => Some("AVERAGE"),
+                Self::MIN => Some("MIN"),
+                Self::MAX => Some("MAX"),
+                Self::EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID => {
+                    Some("EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID")
+                }
+                Self::CUSTOM_EXT => Some("CUSTOM_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkResetQueryPool = unsafe extern "system" fn(
         device: crate::vk::Device,
         query_pool: crate::vk::QueryPool,

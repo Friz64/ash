@@ -53,8 +53,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ShaderCorePropertiesFlagsAMD(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ShaderCorePropertiesFlagsAMD {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl ShaderCorePropertiesFlagsAMD {
         pub const fn empty() -> Self {
             Self(0)
@@ -115,7 +121,13 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ShaderCorePropertiesFlagBitsAMD(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ShaderCorePropertiesFlagBitsAMD {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
 }
 pub use reexport::*;

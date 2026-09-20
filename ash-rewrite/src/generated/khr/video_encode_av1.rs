@@ -1005,8 +1005,37 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeAV1CapabilityFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeAV1CapabilityFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR.0,
+                        "PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR",
+                    ),
+                    (
+                        Self::GENERATE_OBU_EXTENSION_HEADER_KHR.0,
+                        "GENERATE_OBU_EXTENSION_HEADER_KHR",
+                    ),
+                    (
+                        Self::PRIMARY_REFERENCE_CDF_ONLY_KHR.0,
+                        "PRIMARY_REFERENCE_CDF_ONLY_KHR",
+                    ),
+                    (Self::FRAME_SIZE_OVERRIDE_KHR.0, "FRAME_SIZE_OVERRIDE_KHR"),
+                    (Self::MOTION_VECTOR_SCALING_KHR.0, "MOTION_VECTOR_SCALING_KHR"),
+                    (
+                        Self::COMPOUND_PREDICTION_INTRA_REFRESH_KHR.0,
+                        "COMPOUND_PREDICTION_INTRA_REFRESH_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeAV1CapabilityFlagsKHR {
         pub const PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR: Self = Self(
             VideoEncodeAV1CapabilityFlagBitsKHR::PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR
@@ -1086,11 +1115,55 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeAV1CapabilityFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeAV1CapabilityFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR => {
+                    Some("PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR")
+                }
+                Self::GENERATE_OBU_EXTENSION_HEADER_KHR => {
+                    Some("GENERATE_OBU_EXTENSION_HEADER_KHR")
+                }
+                Self::PRIMARY_REFERENCE_CDF_ONLY_KHR => {
+                    Some("PRIMARY_REFERENCE_CDF_ONLY_KHR")
+                }
+                Self::FRAME_SIZE_OVERRIDE_KHR => Some("FRAME_SIZE_OVERRIDE_KHR"),
+                Self::MOTION_VECTOR_SCALING_KHR => Some("MOTION_VECTOR_SCALING_KHR"),
+                Self::COMPOUND_PREDICTION_INTRA_REFRESH_KHR => {
+                    Some("COMPOUND_PREDICTION_INTRA_REFRESH_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeAV1StdFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeAV1StdFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::UNIFORM_TILE_SPACING_FLAG_SET_KHR.0,
+                        "UNIFORM_TILE_SPACING_FLAG_SET_KHR",
+                    ),
+                    (Self::SKIP_MODE_PRESENT_UNSET_KHR.0, "SKIP_MODE_PRESENT_UNSET_KHR"),
+                    (Self::PRIMARY_REF_FRAME_KHR.0, "PRIMARY_REF_FRAME_KHR"),
+                    (Self::DELTA_Q_KHR.0, "DELTA_Q_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeAV1StdFlagsKHR {
         pub const UNIFORM_TILE_SPACING_FLAG_SET_KHR: Self = Self(
             VideoEncodeAV1StdFlagBitsKHR::UNIFORM_TILE_SPACING_FLAG_SET_KHR.0,
@@ -1161,11 +1234,50 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeAV1StdFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeAV1StdFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UNIFORM_TILE_SPACING_FLAG_SET_KHR => {
+                    Some("UNIFORM_TILE_SPACING_FLAG_SET_KHR")
+                }
+                Self::SKIP_MODE_PRESENT_UNSET_KHR => Some("SKIP_MODE_PRESENT_UNSET_KHR"),
+                Self::PRIMARY_REF_FRAME_KHR => Some("PRIMARY_REF_FRAME_KHR"),
+                Self::DELTA_Q_KHR => Some("DELTA_Q_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeAV1RateControlFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeAV1RateControlFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::REGULAR_GOP_KHR.0, "REGULAR_GOP_KHR"),
+                    (
+                        Self::TEMPORAL_LAYER_PATTERN_DYADIC_KHR.0,
+                        "TEMPORAL_LAYER_PATTERN_DYADIC_KHR",
+                    ),
+                    (Self::REFERENCE_PATTERN_FLAT_KHR.0, "REFERENCE_PATTERN_FLAT_KHR"),
+                    (
+                        Self::REFERENCE_PATTERN_DYADIC_KHR.0,
+                        "REFERENCE_PATTERN_DYADIC_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeAV1RateControlFlagsKHR {
         pub const REGULAR_GOP_KHR: Self = Self(
             VideoEncodeAV1RateControlFlagBitsKHR::REGULAR_GOP_KHR.0,
@@ -1238,11 +1350,41 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeAV1RateControlFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeAV1RateControlFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::REGULAR_GOP_KHR => Some("REGULAR_GOP_KHR"),
+                Self::TEMPORAL_LAYER_PATTERN_DYADIC_KHR => {
+                    Some("TEMPORAL_LAYER_PATTERN_DYADIC_KHR")
+                }
+                Self::REFERENCE_PATTERN_FLAT_KHR => Some("REFERENCE_PATTERN_FLAT_KHR"),
+                Self::REFERENCE_PATTERN_DYADIC_KHR => {
+                    Some("REFERENCE_PATTERN_DYADIC_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeAV1SuperblockSizeFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeAV1SuperblockSizeFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[(Self::_64_KHR.0, "_64_KHR"), (Self::_128_KHR.0, "_128_KHR")],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeAV1SuperblockSizeFlagsKHR {
         pub const _64_KHR: Self = Self(
             VideoEncodeAV1SuperblockSizeFlagBitsKHR::_64_KHR.0,
@@ -1309,7 +1451,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeAV1SuperblockSizeFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeAV1SuperblockSizeFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::_64_KHR => Some("_64_KHR"),
+                Self::_128_KHR => Some("_128_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

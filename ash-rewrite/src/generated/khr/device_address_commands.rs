@@ -1266,8 +1266,34 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AddressCommandFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AddressCommandFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::PROTECTED_KHR.0, "PROTECTED_KHR"),
+                    (Self::FULLY_BOUND_KHR.0, "FULLY_BOUND_KHR"),
+                    (Self::STORAGE_BUFFER_USAGE_KHR.0, "STORAGE_BUFFER_USAGE_KHR"),
+                    (
+                        Self::UNKNOWN_STORAGE_BUFFER_USAGE_KHR.0,
+                        "UNKNOWN_STORAGE_BUFFER_USAGE_KHR",
+                    ),
+                    (
+                        Self::TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
+                        "TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR",
+                    ),
+                    (
+                        Self::UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
+                        "UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl AddressCommandFlagsKHR {
         pub const PROTECTED_KHR: Self = Self(AddressCommandFlagBitsKHR::PROTECTED_KHR.0);
         pub const FULLY_BOUND_KHR: Self = Self(
@@ -1344,8 +1370,32 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AddressCommandFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AddressCommandFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PROTECTED_KHR => Some("PROTECTED_KHR"),
+                Self::FULLY_BOUND_KHR => Some("FULLY_BOUND_KHR"),
+                Self::STORAGE_BUFFER_USAGE_KHR => Some("STORAGE_BUFFER_USAGE_KHR"),
+                Self::UNKNOWN_STORAGE_BUFFER_USAGE_KHR => {
+                    Some("UNKNOWN_STORAGE_BUFFER_USAGE_KHR")
+                }
+                Self::TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR => {
+                    Some("TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR")
+                }
+                Self::UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR => {
+                    Some("UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkCmdCopyMemoryKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_copy_memory_info: *const crate::vk::CopyDeviceMemoryInfoKHR<'_>,

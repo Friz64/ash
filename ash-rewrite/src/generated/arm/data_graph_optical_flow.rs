@@ -692,8 +692,24 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowGridSizeFlagsARM(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphOpticalFlowGridSizeFlagsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::UNKNOWN_ARM.0, "UNKNOWN_ARM"),
+                    (Self::_1X1_ARM.0, "_1X1_ARM"),
+                    (Self::_2X2_ARM.0, "_2X2_ARM"),
+                    (Self::_4X4_ARM.0, "_4X4_ARM"),
+                    (Self::_8X8_ARM.0, "_8X8_ARM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DataGraphOpticalFlowGridSizeFlagsARM {
         pub const UNKNOWN_ARM: Self = Self(
             DataGraphOpticalFlowGridSizeFlagBitsARM::UNKNOWN_ARM.0,
@@ -769,11 +785,44 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowGridSizeFlagBitsARM(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphOpticalFlowGridSizeFlagBitsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UNKNOWN_ARM => Some("UNKNOWN_ARM"),
+                Self::_1X1_ARM => Some("_1X1_ARM"),
+                Self::_2X2_ARM => Some("_2X2_ARM"),
+                Self::_4X4_ARM => Some("_4X4_ARM"),
+                Self::_8X8_ARM => Some("_8X8_ARM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowImageUsageFlagsARM(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphOpticalFlowImageUsageFlagsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::UNKNOWN_ARM.0, "UNKNOWN_ARM"),
+                    (Self::INPUT_ARM.0, "INPUT_ARM"),
+                    (Self::OUTPUT_ARM.0, "OUTPUT_ARM"),
+                    (Self::HINT_ARM.0, "HINT_ARM"),
+                    (Self::COST_ARM.0, "COST_ARM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DataGraphOpticalFlowImageUsageFlagsARM {
         pub const UNKNOWN_ARM: Self = Self(
             DataGraphOpticalFlowImageUsageFlagBitsARM::UNKNOWN_ARM.0,
@@ -849,11 +898,42 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowImageUsageFlagBitsARM(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphOpticalFlowImageUsageFlagBitsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UNKNOWN_ARM => Some("UNKNOWN_ARM"),
+                Self::INPUT_ARM => Some("INPUT_ARM"),
+                Self::OUTPUT_ARM => Some("OUTPUT_ARM"),
+                Self::HINT_ARM => Some("HINT_ARM"),
+                Self::COST_ARM => Some("COST_ARM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowCreateFlagsARM(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphOpticalFlowCreateFlagsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::ENABLE_HINT_ARM.0, "ENABLE_HINT_ARM"),
+                    (Self::ENABLE_COST_ARM.0, "ENABLE_COST_ARM"),
+                    (Self::RESERVED_30_ARM.0, "RESERVED_30_ARM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DataGraphOpticalFlowCreateFlagsARM {
         pub const ENABLE_HINT_ARM: Self = Self(
             DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_HINT_ARM.0,
@@ -923,11 +1003,48 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowCreateFlagBitsARM(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphOpticalFlowCreateFlagBitsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ENABLE_HINT_ARM => Some("ENABLE_HINT_ARM"),
+                Self::ENABLE_COST_ARM => Some("ENABLE_COST_ARM"),
+                Self::RESERVED_30_ARM => Some("RESERVED_30_ARM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowExecuteFlagsARM(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphOpticalFlowExecuteFlagsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DISABLE_TEMPORAL_HINTS_ARM.0, "DISABLE_TEMPORAL_HINTS_ARM"),
+                    (Self::INPUT_UNCHANGED_ARM.0, "INPUT_UNCHANGED_ARM"),
+                    (Self::REFERENCE_UNCHANGED_ARM.0, "REFERENCE_UNCHANGED_ARM"),
+                    (
+                        Self::INPUT_IS_PREVIOUS_REFERENCE_ARM.0,
+                        "INPUT_IS_PREVIOUS_REFERENCE_ARM",
+                    ),
+                    (
+                        Self::REFERENCE_IS_PREVIOUS_INPUT_ARM.0,
+                        "REFERENCE_IS_PREVIOUS_INPUT_ARM",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DataGraphOpticalFlowExecuteFlagsARM {
         pub const DISABLE_TEMPORAL_HINTS_ARM: Self = Self(
             DataGraphOpticalFlowExecuteFlagBitsARM::DISABLE_TEMPORAL_HINTS_ARM.0,
@@ -1003,8 +1120,29 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowExecuteFlagBitsARM(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphOpticalFlowExecuteFlagBitsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DISABLE_TEMPORAL_HINTS_ARM => Some("DISABLE_TEMPORAL_HINTS_ARM"),
+                Self::INPUT_UNCHANGED_ARM => Some("INPUT_UNCHANGED_ARM"),
+                Self::REFERENCE_UNCHANGED_ARM => Some("REFERENCE_UNCHANGED_ARM"),
+                Self::INPUT_IS_PREVIOUS_REFERENCE_ARM => {
+                    Some("INPUT_IS_PREVIOUS_REFERENCE_ARM")
+                }
+                Self::REFERENCE_IS_PREVIOUS_INPUT_ARM => {
+                    Some("REFERENCE_IS_PREVIOUS_INPUT_ARM")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,

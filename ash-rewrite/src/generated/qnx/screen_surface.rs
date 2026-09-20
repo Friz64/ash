@@ -131,8 +131,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ScreenSurfaceCreateFlagsQNX(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ScreenSurfaceCreateFlagsQNX {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl ScreenSurfaceCreateFlagsQNX {
         pub const fn empty() -> Self {
             Self(0)

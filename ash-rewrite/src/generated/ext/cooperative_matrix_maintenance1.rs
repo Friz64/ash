@@ -262,8 +262,18 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CooperativeMatrixFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CooperativeMatrixFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[(Self::SATURATING_ACCUMULATION_EXT.0, "SATURATING_ACCUMULATION_EXT")],
+                self.0,
+            )
+        }
+    }
     impl CooperativeMatrixFlagsEXT {
         pub const SATURATING_ACCUMULATION_EXT: Self = Self(
             CooperativeMatrixFlagBitsEXT::SATURATING_ACCUMULATION_EXT.0,
@@ -327,8 +337,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CooperativeMatrixFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CooperativeMatrixFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SATURATING_ACCUMULATION_EXT => Some("SATURATING_ACCUMULATION_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetPhysicalDeviceCooperativeMatrixProperties2EXT = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_cooperative_matrix_info: *const crate::vk::PhysicalDeviceCooperativeMatrixInfo2EXT<

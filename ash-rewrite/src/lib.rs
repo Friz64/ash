@@ -11,6 +11,7 @@ mod instance;
     unused_parens,
     clippy::double_parens,
     non_camel_case_types,
+    unreachable_patterns,
     clippy::missing_transmute_annotations,
     clippy::missing_safety_doc
 )]
@@ -117,10 +118,10 @@ impl vk::Result {
 }
 
 #[cfg(feature = "debug")]
-pub(crate) fn debug_flags<Value: Into<u64> + Copy>(
+pub(crate) fn debug_flags<V: Into<u64> + Copy>(
     f: &mut core::fmt::Formatter<'_>,
-    known: &[(Value, &'static str)],
-    value: Value,
+    known: &[(V, &'static str)],
+    value: V,
 ) -> core::fmt::Result {
     let mut first = true;
     let mut accum = value.into();
@@ -135,7 +136,7 @@ pub(crate) fn debug_flags<Value: Into<u64> + Copy>(
             accum &= !bit;
         }
     }
-    if accum != 0 {
+    if first || accum != 0 {
         if !first {
             f.write_str(" | ")?;
         }

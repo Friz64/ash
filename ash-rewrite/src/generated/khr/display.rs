@@ -477,8 +477,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DisplayPlaneAlphaFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::OPAQUE_KHR.0, "OPAQUE_KHR"),
+                    (Self::GLOBAL_KHR.0, "GLOBAL_KHR"),
+                    (Self::PER_PIXEL_KHR.0, "PER_PIXEL_KHR"),
+                    (Self::PER_PIXEL_PREMULTIPLIED_KHR.0, "PER_PIXEL_PREMULTIPLIED_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DisplayPlaneAlphaFlagsKHR {
         pub const OPAQUE_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::OPAQUE_KHR.0);
         pub const GLOBAL_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::GLOBAL_KHR.0);
@@ -547,11 +562,33 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DisplayPlaneAlphaFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DisplayPlaneAlphaFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::OPAQUE_KHR => Some("OPAQUE_KHR"),
+                Self::GLOBAL_KHR => Some("GLOBAL_KHR"),
+                Self::PER_PIXEL_KHR => Some("PER_PIXEL_KHR"),
+                Self::PER_PIXEL_PREMULTIPLIED_KHR => Some("PER_PIXEL_PREMULTIPLIED_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DisplayModeCreateFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DisplayModeCreateFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl DisplayModeCreateFlagsKHR {
         pub const fn empty() -> Self {
             Self(0)
@@ -612,8 +649,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DisplaySurfaceCreateFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DisplaySurfaceCreateFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl DisplaySurfaceCreateFlagsKHR {
         pub const fn empty() -> Self {
             Self(0)

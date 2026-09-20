@@ -14289,8 +14289,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FramebufferCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FramebufferCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::IMAGELESS.0, "IMAGELESS")], self.0)
+        }
+    }
     impl FramebufferCreateFlags {
         pub const IMAGELESS: Self = Self(FramebufferCreateFlagBits::IMAGELESS.0);
         pub const IMAGELESS_KHR: Self = Self(FramebufferCreateFlagBits::IMAGELESS_KHR.0);
@@ -14353,11 +14359,30 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FramebufferCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FramebufferCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::IMAGELESS => Some("IMAGELESS"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryPoolCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for QueryPoolCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::RESET_KHR.0, "RESET_KHR")], self.0)
+        }
+    }
     impl QueryPoolCreateFlags {
         pub const RESET_KHR: Self = Self(QueryPoolCreateFlagBits::RESET_KHR.0);
         pub const fn empty() -> Self {
@@ -14419,11 +14444,40 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryPoolCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for QueryPoolCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::RESET_KHR => Some("RESET_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct RenderPassCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for RenderPassCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::TRANSFORM_QCOM.0, "TRANSFORM_QCOM"),
+                    (
+                        Self::PER_LAYER_FRAGMENT_DENSITY_VALVE.0,
+                        "PER_LAYER_FRAGMENT_DENSITY_VALVE",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl RenderPassCreateFlags {
         pub const TRANSFORM_QCOM: Self = Self(
             RenderPassCreateFlagBits::TRANSFORM_QCOM.0,
@@ -14490,11 +14544,49 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct RenderPassCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for RenderPassCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::TRANSFORM_QCOM => Some("TRANSFORM_QCOM"),
+                Self::PER_LAYER_FRAGMENT_DENSITY_VALVE => {
+                    Some("PER_LAYER_FRAGMENT_DENSITY_VALVE")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SamplerCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SamplerCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::SUBSAMPLED_EXT.0, "SUBSAMPLED_EXT"),
+                    (
+                        Self::SUBSAMPLED_COARSE_RECONSTRUCTION_EXT.0,
+                        "SUBSAMPLED_COARSE_RECONSTRUCTION_EXT",
+                    ),
+                    (
+                        Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
+                        "DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT",
+                    ),
+                    (Self::NON_SEAMLESS_CUBE_MAP_EXT.0, "NON_SEAMLESS_CUBE_MAP_EXT"),
+                    (Self::IMAGE_PROCESSING_QCOM.0, "IMAGE_PROCESSING_QCOM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl SamplerCreateFlags {
         pub const SUBSAMPLED_EXT: Self = Self(SamplerCreateFlagBits::SUBSAMPLED_EXT.0);
         pub const SUBSAMPLED_COARSE_RECONSTRUCTION_EXT: Self = Self(
@@ -14568,11 +14660,45 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SamplerCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SamplerCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SUBSAMPLED_EXT => Some("SUBSAMPLED_EXT"),
+                Self::SUBSAMPLED_COARSE_RECONSTRUCTION_EXT => {
+                    Some("SUBSAMPLED_COARSE_RECONSTRUCTION_EXT")
+                }
+                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT => {
+                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT")
+                }
+                Self::NON_SEAMLESS_CUBE_MAP_EXT => Some("NON_SEAMLESS_CUBE_MAP_EXT"),
+                Self::IMAGE_PROCESSING_QCOM => Some("IMAGE_PROCESSING_QCOM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineLayoutCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineLayoutCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::INDEPENDENT_SETS_EXT.0, "INDEPENDENT_SETS_EXT"),
+                    (Self::NO_TASK_SHADER_KHR.0, "NO_TASK_SHADER_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PipelineLayoutCreateFlags {
         pub const INDEPENDENT_SETS_EXT: Self = Self(
             PipelineLayoutCreateFlagBits::INDEPENDENT_SETS_EXT.0,
@@ -14639,11 +14765,41 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineLayoutCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineLayoutCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::INDEPENDENT_SETS_EXT => Some("INDEPENDENT_SETS_EXT"),
+                Self::NO_TASK_SHADER_KHR => Some("NO_TASK_SHADER_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCacheCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineCacheCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::EXTERNALLY_SYNCHRONIZED.0, "EXTERNALLY_SYNCHRONIZED"),
+                    (
+                        Self::INTERNALLY_SYNCHRONIZED_MERGE_KHR.0,
+                        "INTERNALLY_SYNCHRONIZED_MERGE_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PipelineCacheCreateFlags {
         pub const EXTERNALLY_SYNCHRONIZED: Self = Self(
             PipelineCacheCreateFlagBits::EXTERNALLY_SYNCHRONIZED.0,
@@ -14713,11 +14869,46 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCacheCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineCacheCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::EXTERNALLY_SYNCHRONIZED => Some("EXTERNALLY_SYNCHRONIZED"),
+                Self::INTERNALLY_SYNCHRONIZED_MERGE_KHR => {
+                    Some("INTERNALLY_SYNCHRONIZED_MERGE_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineDepthStencilStateCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineDepthStencilStateCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT.0,
+                        "RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT",
+                    ),
+                    (
+                        Self::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT.0,
+                        "RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PipelineDepthStencilStateCreateFlags {
         pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM: Self = Self(
             PipelineDepthStencilStateCreateFlagBits::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM
@@ -14794,11 +14985,35 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineDepthStencilStateCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineDepthStencilStateCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT => {
+                    Some("RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT")
+                }
+                Self::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT => {
+                    Some("RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineDynamicStateCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineDynamicStateCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl PipelineDynamicStateCreateFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -14859,8 +15074,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineColorBlendStateCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineColorBlendStateCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT.0,
+                        "RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PipelineColorBlendStateCreateFlags {
         pub const RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM: Self = Self(
             PipelineColorBlendStateCreateFlagBits::RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM
@@ -14929,11 +15159,32 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineColorBlendStateCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineColorBlendStateCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT => {
+                    Some("RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineMultisampleStateCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineMultisampleStateCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl PipelineMultisampleStateCreateFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -14994,8 +15245,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineRasterizationStateCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineRasterizationStateCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl PipelineRasterizationStateCreateFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -15056,8 +15313,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineViewportStateCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineViewportStateCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl PipelineViewportStateCreateFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -15118,8 +15381,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineTessellationStateCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineTessellationStateCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl PipelineTessellationStateCreateFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -15180,8 +15449,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineInputAssemblyStateCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineInputAssemblyStateCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl PipelineInputAssemblyStateCreateFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -15242,8 +15517,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineVertexInputStateCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineVertexInputStateCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl PipelineVertexInputStateCreateFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -15304,8 +15585,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineShaderStageCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineShaderStageCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::ALLOW_VARYING_SUBGROUP_SIZE.0, "ALLOW_VARYING_SUBGROUP_SIZE"),
+                    (Self::REQUIRE_FULL_SUBGROUPS.0, "REQUIRE_FULL_SUBGROUPS"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PipelineShaderStageCreateFlags {
         pub const ALLOW_VARYING_SUBGROUP_SIZE: Self = Self(
             PipelineShaderStageCreateFlagBits::ALLOW_VARYING_SUBGROUP_SIZE.0,
@@ -15378,11 +15672,46 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineShaderStageCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineShaderStageCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ALLOW_VARYING_SUBGROUP_SIZE => Some("ALLOW_VARYING_SUBGROUP_SIZE"),
+                Self::REQUIRE_FULL_SUBGROUPS => Some("REQUIRE_FULL_SUBGROUPS"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorSetLayoutCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DescriptorSetLayoutCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::UPDATE_AFTER_BIND_POOL.0, "UPDATE_AFTER_BIND_POOL"),
+                    (Self::PUSH_DESCRIPTOR.0, "PUSH_DESCRIPTOR"),
+                    (Self::DESCRIPTOR_BUFFER_EXT.0, "DESCRIPTOR_BUFFER_EXT"),
+                    (
+                        Self::EMBEDDED_IMMUTABLE_SAMPLERS_EXT.0,
+                        "EMBEDDED_IMMUTABLE_SAMPLERS_EXT",
+                    ),
+                    (Self::INDIRECT_BINDABLE_NV.0, "INDIRECT_BINDABLE_NV"),
+                    (Self::HOST_ONLY_POOL_EXT.0, "HOST_ONLY_POOL_EXT"),
+                    (Self::PER_STAGE_NV.0, "PER_STAGE_NV"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DescriptorSetLayoutCreateFlags {
         pub const UPDATE_AFTER_BIND_POOL: Self = Self(
             DescriptorSetLayoutCreateFlagBits::UPDATE_AFTER_BIND_POOL.0,
@@ -15473,11 +15802,38 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorSetLayoutCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DescriptorSetLayoutCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::UPDATE_AFTER_BIND_POOL => Some("UPDATE_AFTER_BIND_POOL"),
+                Self::PUSH_DESCRIPTOR => Some("PUSH_DESCRIPTOR"),
+                Self::DESCRIPTOR_BUFFER_EXT => Some("DESCRIPTOR_BUFFER_EXT"),
+                Self::EMBEDDED_IMMUTABLE_SAMPLERS_EXT => {
+                    Some("EMBEDDED_IMMUTABLE_SAMPLERS_EXT")
+                }
+                Self::INDIRECT_BINDABLE_NV => Some("INDIRECT_BINDABLE_NV"),
+                Self::HOST_ONLY_POOL_EXT => Some("HOST_ONLY_POOL_EXT"),
+                Self::PER_STAGE_NV => Some("PER_STAGE_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BufferViewCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for BufferViewCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl BufferViewCreateFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -15538,8 +15894,18 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct InstanceCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for InstanceCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[(Self::ENUMERATE_PORTABILITY_KHR.0, "ENUMERATE_PORTABILITY_KHR")],
+                self.0,
+            )
+        }
+    }
     impl InstanceCreateFlags {
         pub const ENUMERATE_PORTABILITY_KHR: Self = Self(
             InstanceCreateFlagBits::ENUMERATE_PORTABILITY_KHR.0,
@@ -15603,11 +15969,30 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct InstanceCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for InstanceCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ENUMERATE_PORTABILITY_KHR => Some("ENUMERATE_PORTABILITY_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl DeviceCreateFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -15668,8 +16053,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceQueueCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceQueueCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::PROTECTED.0, "PROTECTED"),
+                    (Self::INTERNALLY_SYNCHRONIZED_KHR.0, "INTERNALLY_SYNCHRONIZED_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DeviceQueueCreateFlags {
         pub const PROTECTED: Self = Self(DeviceQueueCreateFlagBits::PROTECTED.0);
         pub const INTERNALLY_SYNCHRONIZED_KHR: Self = Self(
@@ -15734,11 +16132,45 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceQueueCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceQueueCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PROTECTED => Some("PROTECTED"),
+                Self::INTERNALLY_SYNCHRONIZED_KHR => Some("INTERNALLY_SYNCHRONIZED_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueueFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for QueueFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::GRAPHICS.0, "GRAPHICS"),
+                    (Self::COMPUTE.0, "COMPUTE"),
+                    (Self::TRANSFER.0, "TRANSFER"),
+                    (Self::SPARSE_BINDING.0, "SPARSE_BINDING"),
+                    (Self::PROTECTED.0, "PROTECTED"),
+                    (Self::VIDEO_DECODE_KHR.0, "VIDEO_DECODE_KHR"),
+                    (Self::VIDEO_ENCODE_KHR.0, "VIDEO_ENCODE_KHR"),
+                    (Self::OPTICAL_FLOW_NV.0, "OPTICAL_FLOW_NV"),
+                    (Self::DATA_GRAPH_ARM.0, "DATA_GRAPH_ARM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl QueueFlags {
         pub const GRAPHICS: Self = Self(QueueFlagBits::GRAPHICS.0);
         pub const COMPUTE: Self = Self(QueueFlagBits::COMPUTE.0);
@@ -15808,11 +16240,52 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueueFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for QueueFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::GRAPHICS => Some("GRAPHICS"),
+                Self::COMPUTE => Some("COMPUTE"),
+                Self::TRANSFER => Some("TRANSFER"),
+                Self::SPARSE_BINDING => Some("SPARSE_BINDING"),
+                Self::PROTECTED => Some("PROTECTED"),
+                Self::VIDEO_DECODE_KHR => Some("VIDEO_DECODE_KHR"),
+                Self::VIDEO_ENCODE_KHR => Some("VIDEO_ENCODE_KHR"),
+                Self::OPTICAL_FLOW_NV => Some("OPTICAL_FLOW_NV"),
+                Self::DATA_GRAPH_ARM => Some("DATA_GRAPH_ARM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryPropertyFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MemoryPropertyFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DEVICE_LOCAL.0, "DEVICE_LOCAL"),
+                    (Self::HOST_VISIBLE.0, "HOST_VISIBLE"),
+                    (Self::HOST_COHERENT.0, "HOST_COHERENT"),
+                    (Self::HOST_CACHED.0, "HOST_CACHED"),
+                    (Self::LAZILY_ALLOCATED.0, "LAZILY_ALLOCATED"),
+                    (Self::PROTECTED.0, "PROTECTED"),
+                    (Self::DEVICE_COHERENT_AMD.0, "DEVICE_COHERENT_AMD"),
+                    (Self::DEVICE_UNCACHED_AMD.0, "DEVICE_UNCACHED_AMD"),
+                    (Self::RDMA_CAPABLE_NV.0, "RDMA_CAPABLE_NV"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl MemoryPropertyFlags {
         pub const DEVICE_LOCAL: Self = Self(MemoryPropertyFlagBits::DEVICE_LOCAL.0);
         pub const HOST_VISIBLE: Self = Self(MemoryPropertyFlagBits::HOST_VISIBLE.0);
@@ -15890,11 +16363,46 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryPropertyFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MemoryPropertyFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEVICE_LOCAL => Some("DEVICE_LOCAL"),
+                Self::HOST_VISIBLE => Some("HOST_VISIBLE"),
+                Self::HOST_COHERENT => Some("HOST_COHERENT"),
+                Self::HOST_CACHED => Some("HOST_CACHED"),
+                Self::LAZILY_ALLOCATED => Some("LAZILY_ALLOCATED"),
+                Self::PROTECTED => Some("PROTECTED"),
+                Self::DEVICE_COHERENT_AMD => Some("DEVICE_COHERENT_AMD"),
+                Self::DEVICE_UNCACHED_AMD => Some("DEVICE_UNCACHED_AMD"),
+                Self::RDMA_CAPABLE_NV => Some("RDMA_CAPABLE_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryHeapFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MemoryHeapFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DEVICE_LOCAL.0, "DEVICE_LOCAL"),
+                    (Self::MULTI_INSTANCE.0, "MULTI_INSTANCE"),
+                    (Self::TILE_MEMORY_QCOM.0, "TILE_MEMORY_QCOM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl MemoryHeapFlags {
         pub const DEVICE_LOCAL: Self = Self(MemoryHeapFlagBits::DEVICE_LOCAL.0);
         pub const MULTI_INSTANCE: Self = Self(MemoryHeapFlagBits::MULTI_INSTANCE.0);
@@ -15961,11 +16469,102 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryHeapFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MemoryHeapFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEVICE_LOCAL => Some("DEVICE_LOCAL"),
+                Self::MULTI_INSTANCE => Some("MULTI_INSTANCE"),
+                Self::TILE_MEMORY_QCOM => Some("TILE_MEMORY_QCOM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccessFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccessFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::INDIRECT_COMMAND_READ.0, "INDIRECT_COMMAND_READ"),
+                    (Self::INDEX_READ.0, "INDEX_READ"),
+                    (Self::VERTEX_ATTRIBUTE_READ.0, "VERTEX_ATTRIBUTE_READ"),
+                    (Self::UNIFORM_READ.0, "UNIFORM_READ"),
+                    (Self::INPUT_ATTACHMENT_READ.0, "INPUT_ATTACHMENT_READ"),
+                    (Self::SHADER_READ.0, "SHADER_READ"),
+                    (Self::SHADER_WRITE.0, "SHADER_WRITE"),
+                    (Self::COLOR_ATTACHMENT_READ.0, "COLOR_ATTACHMENT_READ"),
+                    (Self::COLOR_ATTACHMENT_WRITE.0, "COLOR_ATTACHMENT_WRITE"),
+                    (
+                        Self::DEPTH_STENCIL_ATTACHMENT_READ.0,
+                        "DEPTH_STENCIL_ATTACHMENT_READ",
+                    ),
+                    (
+                        Self::DEPTH_STENCIL_ATTACHMENT_WRITE.0,
+                        "DEPTH_STENCIL_ATTACHMENT_WRITE",
+                    ),
+                    (Self::TRANSFER_READ.0, "TRANSFER_READ"),
+                    (Self::TRANSFER_WRITE.0, "TRANSFER_WRITE"),
+                    (Self::HOST_READ.0, "HOST_READ"),
+                    (Self::HOST_WRITE.0, "HOST_WRITE"),
+                    (Self::MEMORY_READ.0, "MEMORY_READ"),
+                    (Self::MEMORY_WRITE.0, "MEMORY_WRITE"),
+                    (Self::NONE.0, "NONE"),
+                    (
+                        Self::TRANSFORM_FEEDBACK_WRITE_EXT.0,
+                        "TRANSFORM_FEEDBACK_WRITE_EXT",
+                    ),
+                    (
+                        Self::TRANSFORM_FEEDBACK_COUNTER_READ_EXT.0,
+                        "TRANSFORM_FEEDBACK_COUNTER_READ_EXT",
+                    ),
+                    (
+                        Self::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT.0,
+                        "TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT",
+                    ),
+                    (
+                        Self::CONDITIONAL_RENDERING_READ_EXT.0,
+                        "CONDITIONAL_RENDERING_READ_EXT",
+                    ),
+                    (
+                        Self::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT.0,
+                        "COLOR_ATTACHMENT_READ_NONCOHERENT_EXT",
+                    ),
+                    (
+                        Self::ACCELERATION_STRUCTURE_READ_KHR.0,
+                        "ACCELERATION_STRUCTURE_READ_KHR",
+                    ),
+                    (
+                        Self::ACCELERATION_STRUCTURE_WRITE_KHR.0,
+                        "ACCELERATION_STRUCTURE_WRITE_KHR",
+                    ),
+                    (
+                        Self::FRAGMENT_DENSITY_MAP_READ_EXT.0,
+                        "FRAGMENT_DENSITY_MAP_READ_EXT",
+                    ),
+                    (
+                        Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR.0,
+                        "FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR",
+                    ),
+                    (Self::COMMAND_PREPROCESS_READ_EXT.0, "COMMAND_PREPROCESS_READ_EXT"),
+                    (
+                        Self::COMMAND_PREPROCESS_WRITE_EXT.0,
+                        "COMMAND_PREPROCESS_WRITE_EXT",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl AccessFlags {
         pub const INDIRECT_COMMAND_READ: Self = Self(
             AccessFlagBits::INDIRECT_COMMAND_READ.0,
@@ -16107,11 +16706,142 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccessFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AccessFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::INDIRECT_COMMAND_READ => Some("INDIRECT_COMMAND_READ"),
+                Self::INDEX_READ => Some("INDEX_READ"),
+                Self::VERTEX_ATTRIBUTE_READ => Some("VERTEX_ATTRIBUTE_READ"),
+                Self::UNIFORM_READ => Some("UNIFORM_READ"),
+                Self::INPUT_ATTACHMENT_READ => Some("INPUT_ATTACHMENT_READ"),
+                Self::SHADER_READ => Some("SHADER_READ"),
+                Self::SHADER_WRITE => Some("SHADER_WRITE"),
+                Self::COLOR_ATTACHMENT_READ => Some("COLOR_ATTACHMENT_READ"),
+                Self::COLOR_ATTACHMENT_WRITE => Some("COLOR_ATTACHMENT_WRITE"),
+                Self::DEPTH_STENCIL_ATTACHMENT_READ => {
+                    Some("DEPTH_STENCIL_ATTACHMENT_READ")
+                }
+                Self::DEPTH_STENCIL_ATTACHMENT_WRITE => {
+                    Some("DEPTH_STENCIL_ATTACHMENT_WRITE")
+                }
+                Self::TRANSFER_READ => Some("TRANSFER_READ"),
+                Self::TRANSFER_WRITE => Some("TRANSFER_WRITE"),
+                Self::HOST_READ => Some("HOST_READ"),
+                Self::HOST_WRITE => Some("HOST_WRITE"),
+                Self::MEMORY_READ => Some("MEMORY_READ"),
+                Self::MEMORY_WRITE => Some("MEMORY_WRITE"),
+                Self::NONE => Some("NONE"),
+                Self::TRANSFORM_FEEDBACK_WRITE_EXT => {
+                    Some("TRANSFORM_FEEDBACK_WRITE_EXT")
+                }
+                Self::TRANSFORM_FEEDBACK_COUNTER_READ_EXT => {
+                    Some("TRANSFORM_FEEDBACK_COUNTER_READ_EXT")
+                }
+                Self::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT => {
+                    Some("TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT")
+                }
+                Self::CONDITIONAL_RENDERING_READ_EXT => {
+                    Some("CONDITIONAL_RENDERING_READ_EXT")
+                }
+                Self::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT => {
+                    Some("COLOR_ATTACHMENT_READ_NONCOHERENT_EXT")
+                }
+                Self::ACCELERATION_STRUCTURE_READ_KHR => {
+                    Some("ACCELERATION_STRUCTURE_READ_KHR")
+                }
+                Self::ACCELERATION_STRUCTURE_WRITE_KHR => {
+                    Some("ACCELERATION_STRUCTURE_WRITE_KHR")
+                }
+                Self::FRAGMENT_DENSITY_MAP_READ_EXT => {
+                    Some("FRAGMENT_DENSITY_MAP_READ_EXT")
+                }
+                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR => {
+                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR")
+                }
+                Self::COMMAND_PREPROCESS_READ_EXT => Some("COMMAND_PREPROCESS_READ_EXT"),
+                Self::COMMAND_PREPROCESS_WRITE_EXT => {
+                    Some("COMMAND_PREPROCESS_WRITE_EXT")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BufferUsageFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for BufferUsageFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::TRANSFER_SRC.0, "TRANSFER_SRC"),
+                    (Self::TRANSFER_DST.0, "TRANSFER_DST"),
+                    (Self::UNIFORM_TEXEL_BUFFER.0, "UNIFORM_TEXEL_BUFFER"),
+                    (Self::STORAGE_TEXEL_BUFFER.0, "STORAGE_TEXEL_BUFFER"),
+                    (Self::UNIFORM_BUFFER.0, "UNIFORM_BUFFER"),
+                    (Self::STORAGE_BUFFER.0, "STORAGE_BUFFER"),
+                    (Self::INDEX_BUFFER.0, "INDEX_BUFFER"),
+                    (Self::VERTEX_BUFFER.0, "VERTEX_BUFFER"),
+                    (Self::INDIRECT_BUFFER.0, "INDIRECT_BUFFER"),
+                    (Self::SHADER_DEVICE_ADDRESS.0, "SHADER_DEVICE_ADDRESS"),
+                    (Self::VIDEO_DECODE_SRC_KHR.0, "VIDEO_DECODE_SRC_KHR"),
+                    (Self::VIDEO_DECODE_DST_KHR.0, "VIDEO_DECODE_DST_KHR"),
+                    (
+                        Self::TRANSFORM_FEEDBACK_BUFFER_EXT.0,
+                        "TRANSFORM_FEEDBACK_BUFFER_EXT",
+                    ),
+                    (
+                        Self::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT.0,
+                        "TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT",
+                    ),
+                    (Self::CONDITIONAL_RENDERING_EXT.0, "CONDITIONAL_RENDERING_EXT"),
+                    (
+                        Self::EXECUTION_GRAPH_SCRATCH_AMDX.0,
+                        "EXECUTION_GRAPH_SCRATCH_AMDX",
+                    ),
+                    (Self::DESCRIPTOR_HEAP_EXT.0, "DESCRIPTOR_HEAP_EXT"),
+                    (
+                        Self::ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR.0,
+                        "ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR",
+                    ),
+                    (
+                        Self::ACCELERATION_STRUCTURE_STORAGE_KHR.0,
+                        "ACCELERATION_STRUCTURE_STORAGE_KHR",
+                    ),
+                    (Self::SHADER_BINDING_TABLE_KHR.0, "SHADER_BINDING_TABLE_KHR"),
+                    (Self::VIDEO_ENCODE_DST_KHR.0, "VIDEO_ENCODE_DST_KHR"),
+                    (Self::VIDEO_ENCODE_SRC_KHR.0, "VIDEO_ENCODE_SRC_KHR"),
+                    (
+                        Self::SAMPLER_DESCRIPTOR_BUFFER_EXT.0,
+                        "SAMPLER_DESCRIPTOR_BUFFER_EXT",
+                    ),
+                    (
+                        Self::RESOURCE_DESCRIPTOR_BUFFER_EXT.0,
+                        "RESOURCE_DESCRIPTOR_BUFFER_EXT",
+                    ),
+                    (
+                        Self::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT.0,
+                        "PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT",
+                    ),
+                    (
+                        Self::MICROMAP_BUILD_INPUT_READ_ONLY_EXT.0,
+                        "MICROMAP_BUILD_INPUT_READ_ONLY_EXT",
+                    ),
+                    (Self::MICROMAP_STORAGE_EXT.0, "MICROMAP_STORAGE_EXT"),
+                    (Self::TILE_MEMORY_QCOM.0, "TILE_MEMORY_QCOM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl BufferUsageFlags {
         pub const TRANSFER_SRC: Self = Self(BufferUsageFlagBits::TRANSFER_SRC.0);
         pub const TRANSFER_DST: Self = Self(BufferUsageFlagBits::TRANSFER_DST.0);
@@ -16247,11 +16977,96 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BufferUsageFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for BufferUsageFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::TRANSFER_SRC => Some("TRANSFER_SRC"),
+                Self::TRANSFER_DST => Some("TRANSFER_DST"),
+                Self::UNIFORM_TEXEL_BUFFER => Some("UNIFORM_TEXEL_BUFFER"),
+                Self::STORAGE_TEXEL_BUFFER => Some("STORAGE_TEXEL_BUFFER"),
+                Self::UNIFORM_BUFFER => Some("UNIFORM_BUFFER"),
+                Self::STORAGE_BUFFER => Some("STORAGE_BUFFER"),
+                Self::INDEX_BUFFER => Some("INDEX_BUFFER"),
+                Self::VERTEX_BUFFER => Some("VERTEX_BUFFER"),
+                Self::INDIRECT_BUFFER => Some("INDIRECT_BUFFER"),
+                Self::SHADER_DEVICE_ADDRESS => Some("SHADER_DEVICE_ADDRESS"),
+                Self::VIDEO_DECODE_SRC_KHR => Some("VIDEO_DECODE_SRC_KHR"),
+                Self::VIDEO_DECODE_DST_KHR => Some("VIDEO_DECODE_DST_KHR"),
+                Self::TRANSFORM_FEEDBACK_BUFFER_EXT => {
+                    Some("TRANSFORM_FEEDBACK_BUFFER_EXT")
+                }
+                Self::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT => {
+                    Some("TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT")
+                }
+                Self::CONDITIONAL_RENDERING_EXT => Some("CONDITIONAL_RENDERING_EXT"),
+                Self::EXECUTION_GRAPH_SCRATCH_AMDX => {
+                    Some("EXECUTION_GRAPH_SCRATCH_AMDX")
+                }
+                Self::DESCRIPTOR_HEAP_EXT => Some("DESCRIPTOR_HEAP_EXT"),
+                Self::ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR => {
+                    Some("ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR")
+                }
+                Self::ACCELERATION_STRUCTURE_STORAGE_KHR => {
+                    Some("ACCELERATION_STRUCTURE_STORAGE_KHR")
+                }
+                Self::SHADER_BINDING_TABLE_KHR => Some("SHADER_BINDING_TABLE_KHR"),
+                Self::VIDEO_ENCODE_DST_KHR => Some("VIDEO_ENCODE_DST_KHR"),
+                Self::VIDEO_ENCODE_SRC_KHR => Some("VIDEO_ENCODE_SRC_KHR"),
+                Self::SAMPLER_DESCRIPTOR_BUFFER_EXT => {
+                    Some("SAMPLER_DESCRIPTOR_BUFFER_EXT")
+                }
+                Self::RESOURCE_DESCRIPTOR_BUFFER_EXT => {
+                    Some("RESOURCE_DESCRIPTOR_BUFFER_EXT")
+                }
+                Self::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT => {
+                    Some("PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT")
+                }
+                Self::MICROMAP_BUILD_INPUT_READ_ONLY_EXT => {
+                    Some("MICROMAP_BUILD_INPUT_READ_ONLY_EXT")
+                }
+                Self::MICROMAP_STORAGE_EXT => Some("MICROMAP_STORAGE_EXT"),
+                Self::TILE_MEMORY_QCOM => Some("TILE_MEMORY_QCOM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BufferCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for BufferCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::SPARSE_BINDING.0, "SPARSE_BINDING"),
+                    (Self::SPARSE_RESIDENCY.0, "SPARSE_RESIDENCY"),
+                    (Self::SPARSE_ALIASED.0, "SPARSE_ALIASED"),
+                    (Self::PROTECTED.0, "PROTECTED"),
+                    (
+                        Self::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
+                        "DEVICE_ADDRESS_CAPTURE_REPLAY",
+                    ),
+                    (
+                        Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
+                        "DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT",
+                    ),
+                    (
+                        Self::VIDEO_PROFILE_INDEPENDENT_KHR.0,
+                        "VIDEO_PROFILE_INDEPENDENT_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl BufferCreateFlags {
         pub const SPARSE_BINDING: Self = Self(BufferCreateFlagBits::SPARSE_BINDING.0);
         pub const SPARSE_RESIDENCY: Self = Self(
@@ -16333,11 +17148,65 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BufferCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for BufferCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SPARSE_BINDING => Some("SPARSE_BINDING"),
+                Self::SPARSE_RESIDENCY => Some("SPARSE_RESIDENCY"),
+                Self::SPARSE_ALIASED => Some("SPARSE_ALIASED"),
+                Self::PROTECTED => Some("PROTECTED"),
+                Self::DEVICE_ADDRESS_CAPTURE_REPLAY => {
+                    Some("DEVICE_ADDRESS_CAPTURE_REPLAY")
+                }
+                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT => {
+                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT")
+                }
+                Self::VIDEO_PROFILE_INDEPENDENT_KHR => {
+                    Some("VIDEO_PROFILE_INDEPENDENT_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ShaderStageFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ShaderStageFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::VERTEX.0, "VERTEX"),
+                    (Self::TESSELLATION_CONTROL.0, "TESSELLATION_CONTROL"),
+                    (Self::TESSELLATION_EVALUATION.0, "TESSELLATION_EVALUATION"),
+                    (Self::GEOMETRY.0, "GEOMETRY"),
+                    (Self::FRAGMENT.0, "FRAGMENT"),
+                    (Self::COMPUTE.0, "COMPUTE"),
+                    (Self::ALL_GRAPHICS.0, "ALL_GRAPHICS"),
+                    (Self::ALL.0, "ALL"),
+                    (Self::RAYGEN_KHR.0, "RAYGEN_KHR"),
+                    (Self::ANY_HIT_KHR.0, "ANY_HIT_KHR"),
+                    (Self::CLOSEST_HIT_KHR.0, "CLOSEST_HIT_KHR"),
+                    (Self::MISS_KHR.0, "MISS_KHR"),
+                    (Self::INTERSECTION_KHR.0, "INTERSECTION_KHR"),
+                    (Self::CALLABLE_KHR.0, "CALLABLE_KHR"),
+                    (Self::TASK_EXT.0, "TASK_EXT"),
+                    (Self::MESH_EXT.0, "MESH_EXT"),
+                    (Self::SUBPASS_SHADING_HUAWEI.0, "SUBPASS_SHADING_HUAWEI"),
+                    (Self::CLUSTER_CULLING_HUAWEI.0, "CLUSTER_CULLING_HUAWEI"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ShaderStageFlags {
         pub const VERTEX: Self = Self(ShaderStageFlagBits::VERTEX.0);
         pub const TESSELLATION_CONTROL: Self = Self(
@@ -16432,11 +17301,89 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ShaderStageFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ShaderStageFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::VERTEX => Some("VERTEX"),
+                Self::TESSELLATION_CONTROL => Some("TESSELLATION_CONTROL"),
+                Self::TESSELLATION_EVALUATION => Some("TESSELLATION_EVALUATION"),
+                Self::GEOMETRY => Some("GEOMETRY"),
+                Self::FRAGMENT => Some("FRAGMENT"),
+                Self::COMPUTE => Some("COMPUTE"),
+                Self::ALL_GRAPHICS => Some("ALL_GRAPHICS"),
+                Self::ALL => Some("ALL"),
+                Self::RAYGEN_KHR => Some("RAYGEN_KHR"),
+                Self::ANY_HIT_KHR => Some("ANY_HIT_KHR"),
+                Self::CLOSEST_HIT_KHR => Some("CLOSEST_HIT_KHR"),
+                Self::MISS_KHR => Some("MISS_KHR"),
+                Self::INTERSECTION_KHR => Some("INTERSECTION_KHR"),
+                Self::CALLABLE_KHR => Some("CALLABLE_KHR"),
+                Self::TASK_EXT => Some("TASK_EXT"),
+                Self::MESH_EXT => Some("MESH_EXT"),
+                Self::SUBPASS_SHADING_HUAWEI => Some("SUBPASS_SHADING_HUAWEI"),
+                Self::CLUSTER_CULLING_HUAWEI => Some("CLUSTER_CULLING_HUAWEI"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageUsageFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageUsageFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::TRANSFER_SRC.0, "TRANSFER_SRC"),
+                    (Self::TRANSFER_DST.0, "TRANSFER_DST"),
+                    (Self::SAMPLED.0, "SAMPLED"),
+                    (Self::STORAGE.0, "STORAGE"),
+                    (Self::COLOR_ATTACHMENT.0, "COLOR_ATTACHMENT"),
+                    (Self::DEPTH_STENCIL_ATTACHMENT.0, "DEPTH_STENCIL_ATTACHMENT"),
+                    (Self::TRANSIENT_ATTACHMENT.0, "TRANSIENT_ATTACHMENT"),
+                    (Self::INPUT_ATTACHMENT.0, "INPUT_ATTACHMENT"),
+                    (Self::HOST_TRANSFER.0, "HOST_TRANSFER"),
+                    (Self::VIDEO_DECODE_DST_KHR.0, "VIDEO_DECODE_DST_KHR"),
+                    (Self::VIDEO_DECODE_SRC_KHR.0, "VIDEO_DECODE_SRC_KHR"),
+                    (Self::VIDEO_DECODE_DPB_KHR.0, "VIDEO_DECODE_DPB_KHR"),
+                    (Self::FRAGMENT_DENSITY_MAP_EXT.0, "FRAGMENT_DENSITY_MAP_EXT"),
+                    (
+                        Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
+                        "FRAGMENT_SHADING_RATE_ATTACHMENT_KHR",
+                    ),
+                    (Self::VIDEO_ENCODE_DST_KHR.0, "VIDEO_ENCODE_DST_KHR"),
+                    (Self::VIDEO_ENCODE_SRC_KHR.0, "VIDEO_ENCODE_SRC_KHR"),
+                    (Self::VIDEO_ENCODE_DPB_KHR.0, "VIDEO_ENCODE_DPB_KHR"),
+                    (
+                        Self::ATTACHMENT_FEEDBACK_LOOP_EXT.0,
+                        "ATTACHMENT_FEEDBACK_LOOP_EXT",
+                    ),
+                    (Self::INVOCATION_MASK_HUAWEI.0, "INVOCATION_MASK_HUAWEI"),
+                    (Self::SAMPLE_WEIGHT_QCOM.0, "SAMPLE_WEIGHT_QCOM"),
+                    (Self::SAMPLE_BLOCK_MATCH_QCOM.0, "SAMPLE_BLOCK_MATCH_QCOM"),
+                    (Self::TENSOR_ALIASING_ARM.0, "TENSOR_ALIASING_ARM"),
+                    (Self::TILE_MEMORY_QCOM.0, "TILE_MEMORY_QCOM"),
+                    (
+                        Self::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0,
+                        "VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR",
+                    ),
+                    (
+                        Self::VIDEO_ENCODE_EMPHASIS_MAP_KHR.0,
+                        "VIDEO_ENCODE_EMPHASIS_MAP_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ImageUsageFlags {
         pub const TRANSFER_SRC: Self = Self(ImageUsageFlagBits::TRANSFER_SRC.0);
         pub const TRANSFER_DST: Self = Self(ImageUsageFlagBits::TRANSFER_DST.0);
@@ -16562,11 +17509,106 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageUsageFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageUsageFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::TRANSFER_SRC => Some("TRANSFER_SRC"),
+                Self::TRANSFER_DST => Some("TRANSFER_DST"),
+                Self::SAMPLED => Some("SAMPLED"),
+                Self::STORAGE => Some("STORAGE"),
+                Self::COLOR_ATTACHMENT => Some("COLOR_ATTACHMENT"),
+                Self::DEPTH_STENCIL_ATTACHMENT => Some("DEPTH_STENCIL_ATTACHMENT"),
+                Self::TRANSIENT_ATTACHMENT => Some("TRANSIENT_ATTACHMENT"),
+                Self::INPUT_ATTACHMENT => Some("INPUT_ATTACHMENT"),
+                Self::HOST_TRANSFER => Some("HOST_TRANSFER"),
+                Self::VIDEO_DECODE_DST_KHR => Some("VIDEO_DECODE_DST_KHR"),
+                Self::VIDEO_DECODE_SRC_KHR => Some("VIDEO_DECODE_SRC_KHR"),
+                Self::VIDEO_DECODE_DPB_KHR => Some("VIDEO_DECODE_DPB_KHR"),
+                Self::FRAGMENT_DENSITY_MAP_EXT => Some("FRAGMENT_DENSITY_MAP_EXT"),
+                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
+                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
+                }
+                Self::VIDEO_ENCODE_DST_KHR => Some("VIDEO_ENCODE_DST_KHR"),
+                Self::VIDEO_ENCODE_SRC_KHR => Some("VIDEO_ENCODE_SRC_KHR"),
+                Self::VIDEO_ENCODE_DPB_KHR => Some("VIDEO_ENCODE_DPB_KHR"),
+                Self::ATTACHMENT_FEEDBACK_LOOP_EXT => {
+                    Some("ATTACHMENT_FEEDBACK_LOOP_EXT")
+                }
+                Self::INVOCATION_MASK_HUAWEI => Some("INVOCATION_MASK_HUAWEI"),
+                Self::SAMPLE_WEIGHT_QCOM => Some("SAMPLE_WEIGHT_QCOM"),
+                Self::SAMPLE_BLOCK_MATCH_QCOM => Some("SAMPLE_BLOCK_MATCH_QCOM"),
+                Self::TENSOR_ALIASING_ARM => Some("TENSOR_ALIASING_ARM"),
+                Self::TILE_MEMORY_QCOM => Some("TILE_MEMORY_QCOM"),
+                Self::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR => {
+                    Some("VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR")
+                }
+                Self::VIDEO_ENCODE_EMPHASIS_MAP_KHR => {
+                    Some("VIDEO_ENCODE_EMPHASIS_MAP_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::SPARSE_BINDING.0, "SPARSE_BINDING"),
+                    (Self::SPARSE_RESIDENCY.0, "SPARSE_RESIDENCY"),
+                    (Self::SPARSE_ALIASED.0, "SPARSE_ALIASED"),
+                    (Self::MUTABLE_FORMAT.0, "MUTABLE_FORMAT"),
+                    (Self::CUBE_COMPATIBLE.0, "CUBE_COMPATIBLE"),
+                    (Self::ALIAS.0, "ALIAS"),
+                    (Self::SPLIT_INSTANCE_BIND_REGIONS.0, "SPLIT_INSTANCE_BIND_REGIONS"),
+                    (Self::_2D_ARRAY_COMPATIBLE.0, "_2D_ARRAY_COMPATIBLE"),
+                    (Self::BLOCK_TEXEL_VIEW_COMPATIBLE.0, "BLOCK_TEXEL_VIEW_COMPATIBLE"),
+                    (Self::EXTENDED_USAGE.0, "EXTENDED_USAGE"),
+                    (Self::PROTECTED.0, "PROTECTED"),
+                    (Self::DISJOINT.0, "DISJOINT"),
+                    (Self::CORNER_SAMPLED_NV.0, "CORNER_SAMPLED_NV"),
+                    (
+                        Self::DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT.0,
+                        "DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT",
+                    ),
+                    (
+                        Self::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT.0,
+                        "SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT",
+                    ),
+                    (Self::SUBSAMPLED_EXT.0, "SUBSAMPLED_EXT"),
+                    (
+                        Self::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
+                        "MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT",
+                    ),
+                    (Self::_2D_VIEW_COMPATIBLE_EXT.0, "_2D_VIEW_COMPATIBLE_EXT"),
+                    (
+                        Self::VIDEO_PROFILE_INDEPENDENT_KHR.0,
+                        "VIDEO_PROFILE_INDEPENDENT_KHR",
+                    ),
+                    (
+                        Self::FRAGMENT_DENSITY_MAP_OFFSET_EXT.0,
+                        "FRAGMENT_DENSITY_MAP_OFFSET_EXT",
+                    ),
+                    (
+                        Self::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR.0,
+                        "ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ImageCreateFlags {
         pub const SPARSE_BINDING: Self = Self(ImageCreateFlagBits::SPARSE_BINDING.0);
         pub const SPARSE_RESIDENCY: Self = Self(ImageCreateFlagBits::SPARSE_RESIDENCY.0);
@@ -16690,11 +17732,79 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SPARSE_BINDING => Some("SPARSE_BINDING"),
+                Self::SPARSE_RESIDENCY => Some("SPARSE_RESIDENCY"),
+                Self::SPARSE_ALIASED => Some("SPARSE_ALIASED"),
+                Self::MUTABLE_FORMAT => Some("MUTABLE_FORMAT"),
+                Self::CUBE_COMPATIBLE => Some("CUBE_COMPATIBLE"),
+                Self::ALIAS => Some("ALIAS"),
+                Self::SPLIT_INSTANCE_BIND_REGIONS => Some("SPLIT_INSTANCE_BIND_REGIONS"),
+                Self::_2D_ARRAY_COMPATIBLE => Some("_2D_ARRAY_COMPATIBLE"),
+                Self::BLOCK_TEXEL_VIEW_COMPATIBLE => Some("BLOCK_TEXEL_VIEW_COMPATIBLE"),
+                Self::EXTENDED_USAGE => Some("EXTENDED_USAGE"),
+                Self::PROTECTED => Some("PROTECTED"),
+                Self::DISJOINT => Some("DISJOINT"),
+                Self::CORNER_SAMPLED_NV => Some("CORNER_SAMPLED_NV"),
+                Self::DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT => {
+                    Some("DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT")
+                }
+                Self::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT => {
+                    Some("SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT")
+                }
+                Self::SUBSAMPLED_EXT => Some("SUBSAMPLED_EXT"),
+                Self::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT => {
+                    Some("MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT")
+                }
+                Self::_2D_VIEW_COMPATIBLE_EXT => Some("_2D_VIEW_COMPATIBLE_EXT"),
+                Self::VIDEO_PROFILE_INDEPENDENT_KHR => {
+                    Some("VIDEO_PROFILE_INDEPENDENT_KHR")
+                }
+                Self::FRAGMENT_DENSITY_MAP_OFFSET_EXT => {
+                    Some("FRAGMENT_DENSITY_MAP_OFFSET_EXT")
+                }
+                Self::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR => {
+                    Some("ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageViewCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageViewCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::FRAGMENT_DENSITY_MAP_DYNAMIC_EXT.0,
+                        "FRAGMENT_DENSITY_MAP_DYNAMIC_EXT",
+                    ),
+                    (
+                        Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
+                        "DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT",
+                    ),
+                    (
+                        Self::FRAGMENT_DENSITY_MAP_DEFERRED_EXT.0,
+                        "FRAGMENT_DENSITY_MAP_DEFERRED_EXT",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ImageViewCreateFlags {
         pub const FRAGMENT_DENSITY_MAP_DYNAMIC_EXT: Self = Self(
             ImageViewCreateFlagBits::FRAGMENT_DENSITY_MAP_DYNAMIC_EXT.0,
@@ -16764,11 +17874,122 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageViewCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageViewCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::FRAGMENT_DENSITY_MAP_DYNAMIC_EXT => {
+                    Some("FRAGMENT_DENSITY_MAP_DYNAMIC_EXT")
+                }
+                Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT => {
+                    Some("DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT")
+                }
+                Self::FRAGMENT_DENSITY_MAP_DEFERRED_EXT => {
+                    Some("FRAGMENT_DENSITY_MAP_DEFERRED_EXT")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DISABLE_OPTIMIZATION.0, "DISABLE_OPTIMIZATION"),
+                    (Self::ALLOW_DERIVATIVES.0, "ALLOW_DERIVATIVES"),
+                    (Self::DERIVATIVE.0, "DERIVATIVE"),
+                    (Self::DISPATCH_BASE.0, "DISPATCH_BASE"),
+                    (
+                        Self::VIEW_INDEX_FROM_DEVICE_INDEX.0,
+                        "VIEW_INDEX_FROM_DEVICE_INDEX",
+                    ),
+                    (
+                        Self::FAIL_ON_PIPELINE_COMPILE_REQUIRED.0,
+                        "FAIL_ON_PIPELINE_COMPILE_REQUIRED",
+                    ),
+                    (Self::EARLY_RETURN_ON_FAILURE.0, "EARLY_RETURN_ON_FAILURE"),
+                    (Self::NO_PROTECTED_ACCESS.0, "NO_PROTECTED_ACCESS"),
+                    (Self::PROTECTED_ACCESS_ONLY.0, "PROTECTED_ACCESS_ONLY"),
+                    (
+                        Self::RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR.0,
+                        "RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR",
+                    ),
+                    (
+                        Self::RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR.0,
+                        "RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR",
+                    ),
+                    (
+                        Self::RAY_TRACING_NO_NULL_MISS_SHADERS_KHR.0,
+                        "RAY_TRACING_NO_NULL_MISS_SHADERS_KHR",
+                    ),
+                    (
+                        Self::RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR.0,
+                        "RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR",
+                    ),
+                    (
+                        Self::RAY_TRACING_SKIP_TRIANGLES_KHR.0,
+                        "RAY_TRACING_SKIP_TRIANGLES_KHR",
+                    ),
+                    (Self::RAY_TRACING_SKIP_AABBS_KHR.0, "RAY_TRACING_SKIP_AABBS_KHR"),
+                    (
+                        Self::RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR.0,
+                        "RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR",
+                    ),
+                    (Self::DEFER_COMPILE_NV.0, "DEFER_COMPILE_NV"),
+                    (
+                        Self::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0,
+                        "RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT",
+                    ),
+                    (
+                        Self::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
+                        "RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR",
+                    ),
+                    (Self::CAPTURE_STATISTICS_KHR.0, "CAPTURE_STATISTICS_KHR"),
+                    (
+                        Self::CAPTURE_INTERNAL_REPRESENTATIONS_KHR.0,
+                        "CAPTURE_INTERNAL_REPRESENTATIONS_KHR",
+                    ),
+                    (Self::INDIRECT_BINDABLE_NV.0, "INDIRECT_BINDABLE_NV"),
+                    (Self::LIBRARY_KHR.0, "LIBRARY_KHR"),
+                    (Self::DESCRIPTOR_BUFFER_EXT.0, "DESCRIPTOR_BUFFER_EXT"),
+                    (
+                        Self::RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT.0,
+                        "RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT",
+                    ),
+                    (Self::LINK_TIME_OPTIMIZATION_EXT.0, "LINK_TIME_OPTIMIZATION_EXT"),
+                    (Self::RAY_TRACING_ALLOW_MOTION_NV.0, "RAY_TRACING_ALLOW_MOTION_NV"),
+                    (
+                        Self::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
+                        "COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT",
+                    ),
+                    (
+                        Self::DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
+                        "DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT",
+                    ),
+                    (
+                        Self::RAY_TRACING_DISPLACEMENT_MICROMAP_NV.0,
+                        "RAY_TRACING_DISPLACEMENT_MICROMAP_NV",
+                    ),
+                    (
+                        Self::RAY_TRACING_OPACITY_MICROMAP_KHR.0,
+                        "RAY_TRACING_OPACITY_MICROMAP_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PipelineCreateFlags {
         pub const DISABLE_OPTIMIZATION: Self = Self(
             PipelineCreateFlagBits::DISABLE_OPTIMIZATION.0,
@@ -16937,11 +18158,101 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DISABLE_OPTIMIZATION => Some("DISABLE_OPTIMIZATION"),
+                Self::ALLOW_DERIVATIVES => Some("ALLOW_DERIVATIVES"),
+                Self::DERIVATIVE => Some("DERIVATIVE"),
+                Self::DISPATCH_BASE => Some("DISPATCH_BASE"),
+                Self::VIEW_INDEX_FROM_DEVICE_INDEX => {
+                    Some("VIEW_INDEX_FROM_DEVICE_INDEX")
+                }
+                Self::FAIL_ON_PIPELINE_COMPILE_REQUIRED => {
+                    Some("FAIL_ON_PIPELINE_COMPILE_REQUIRED")
+                }
+                Self::EARLY_RETURN_ON_FAILURE => Some("EARLY_RETURN_ON_FAILURE"),
+                Self::NO_PROTECTED_ACCESS => Some("NO_PROTECTED_ACCESS"),
+                Self::PROTECTED_ACCESS_ONLY => Some("PROTECTED_ACCESS_ONLY"),
+                Self::RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR => {
+                    Some("RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR")
+                }
+                Self::RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR => {
+                    Some("RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR")
+                }
+                Self::RAY_TRACING_NO_NULL_MISS_SHADERS_KHR => {
+                    Some("RAY_TRACING_NO_NULL_MISS_SHADERS_KHR")
+                }
+                Self::RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR => {
+                    Some("RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR")
+                }
+                Self::RAY_TRACING_SKIP_TRIANGLES_KHR => {
+                    Some("RAY_TRACING_SKIP_TRIANGLES_KHR")
+                }
+                Self::RAY_TRACING_SKIP_AABBS_KHR => Some("RAY_TRACING_SKIP_AABBS_KHR"),
+                Self::RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR => {
+                    Some("RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR")
+                }
+                Self::DEFER_COMPILE_NV => Some("DEFER_COMPILE_NV"),
+                Self::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT => {
+                    Some("RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT")
+                }
+                Self::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
+                    Some("RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
+                }
+                Self::CAPTURE_STATISTICS_KHR => Some("CAPTURE_STATISTICS_KHR"),
+                Self::CAPTURE_INTERNAL_REPRESENTATIONS_KHR => {
+                    Some("CAPTURE_INTERNAL_REPRESENTATIONS_KHR")
+                }
+                Self::INDIRECT_BINDABLE_NV => Some("INDIRECT_BINDABLE_NV"),
+                Self::LIBRARY_KHR => Some("LIBRARY_KHR"),
+                Self::DESCRIPTOR_BUFFER_EXT => Some("DESCRIPTOR_BUFFER_EXT"),
+                Self::RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT => {
+                    Some("RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT")
+                }
+                Self::LINK_TIME_OPTIMIZATION_EXT => Some("LINK_TIME_OPTIMIZATION_EXT"),
+                Self::RAY_TRACING_ALLOW_MOTION_NV => Some("RAY_TRACING_ALLOW_MOTION_NV"),
+                Self::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT => {
+                    Some("COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT")
+                }
+                Self::DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT => {
+                    Some("DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT")
+                }
+                Self::RAY_TRACING_DISPLACEMENT_MICROMAP_NV => {
+                    Some("RAY_TRACING_DISPLACEMENT_MICROMAP_NV")
+                }
+                Self::RAY_TRACING_OPACITY_MICROMAP_KHR => {
+                    Some("RAY_TRACING_OPACITY_MICROMAP_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ColorComponentFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ColorComponentFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::R.0, "R"),
+                    (Self::G.0, "G"),
+                    (Self::B.0, "B"),
+                    (Self::A.0, "A"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ColorComponentFlags {
         pub const R: Self = Self(ColorComponentFlagBits::R.0);
         pub const G: Self = Self(ColorComponentFlagBits::G.0);
@@ -17006,11 +18317,33 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ColorComponentFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ColorComponentFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::R => Some("R"),
+                Self::G => Some("G"),
+                Self::B => Some("B"),
+                Self::A => Some("A"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FenceCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FenceCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::SIGNALED.0, "SIGNALED")], self.0)
+        }
+    }
     impl FenceCreateFlags {
         pub const SIGNALED: Self = Self(FenceCreateFlagBits::SIGNALED.0);
         pub const fn empty() -> Self {
@@ -17072,11 +18405,30 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FenceCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FenceCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SIGNALED => Some("SIGNALED"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SemaphoreCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SemaphoreCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl SemaphoreCreateFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -17137,8 +18489,74 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FormatFeatureFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FormatFeatureFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::SAMPLED_IMAGE.0, "SAMPLED_IMAGE"),
+                    (Self::STORAGE_IMAGE.0, "STORAGE_IMAGE"),
+                    (Self::STORAGE_IMAGE_ATOMIC.0, "STORAGE_IMAGE_ATOMIC"),
+                    (Self::UNIFORM_TEXEL_BUFFER.0, "UNIFORM_TEXEL_BUFFER"),
+                    (Self::STORAGE_TEXEL_BUFFER.0, "STORAGE_TEXEL_BUFFER"),
+                    (Self::STORAGE_TEXEL_BUFFER_ATOMIC.0, "STORAGE_TEXEL_BUFFER_ATOMIC"),
+                    (Self::VERTEX_BUFFER.0, "VERTEX_BUFFER"),
+                    (Self::COLOR_ATTACHMENT.0, "COLOR_ATTACHMENT"),
+                    (Self::COLOR_ATTACHMENT_BLEND.0, "COLOR_ATTACHMENT_BLEND"),
+                    (Self::DEPTH_STENCIL_ATTACHMENT.0, "DEPTH_STENCIL_ATTACHMENT"),
+                    (Self::BLIT_SRC.0, "BLIT_SRC"),
+                    (Self::BLIT_DST.0, "BLIT_DST"),
+                    (Self::SAMPLED_IMAGE_FILTER_LINEAR.0, "SAMPLED_IMAGE_FILTER_LINEAR"),
+                    (Self::TRANSFER_SRC.0, "TRANSFER_SRC"),
+                    (Self::TRANSFER_DST.0, "TRANSFER_DST"),
+                    (Self::MIDPOINT_CHROMA_SAMPLES.0, "MIDPOINT_CHROMA_SAMPLES"),
+                    (
+                        Self::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER.0,
+                        "SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER",
+                    ),
+                    (
+                        Self::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER
+                            .0,
+                        "SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER",
+                    ),
+                    (
+                        Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT
+                            .0,
+                        "SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT",
+                    ),
+                    (
+                        Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE
+                            .0,
+                        "SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE",
+                    ),
+                    (Self::DISJOINT.0, "DISJOINT"),
+                    (Self::COSITED_CHROMA_SAMPLES.0, "COSITED_CHROMA_SAMPLES"),
+                    (Self::SAMPLED_IMAGE_FILTER_MINMAX.0, "SAMPLED_IMAGE_FILTER_MINMAX"),
+                    (Self::VIDEO_DECODE_OUTPUT_KHR.0, "VIDEO_DECODE_OUTPUT_KHR"),
+                    (Self::VIDEO_DECODE_DPB_KHR.0, "VIDEO_DECODE_DPB_KHR"),
+                    (
+                        Self::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR.0,
+                        "ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR",
+                    ),
+                    (
+                        Self::SAMPLED_IMAGE_FILTER_CUBIC_EXT.0,
+                        "SAMPLED_IMAGE_FILTER_CUBIC_EXT",
+                    ),
+                    (Self::FRAGMENT_DENSITY_MAP_EXT.0, "FRAGMENT_DENSITY_MAP_EXT"),
+                    (
+                        Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
+                        "FRAGMENT_SHADING_RATE_ATTACHMENT_KHR",
+                    ),
+                    (Self::VIDEO_ENCODE_INPUT_KHR.0, "VIDEO_ENCODE_INPUT_KHR"),
+                    (Self::VIDEO_ENCODE_DPB_KHR.0, "VIDEO_ENCODE_DPB_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl FormatFeatureFlags {
         pub const SAMPLED_IMAGE: Self = Self(FormatFeatureFlagBits::SAMPLED_IMAGE.0);
         pub const STORAGE_IMAGE: Self = Self(FormatFeatureFlagBits::STORAGE_IMAGE.0);
@@ -17313,11 +18731,76 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FormatFeatureFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for FormatFeatureFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SAMPLED_IMAGE => Some("SAMPLED_IMAGE"),
+                Self::STORAGE_IMAGE => Some("STORAGE_IMAGE"),
+                Self::STORAGE_IMAGE_ATOMIC => Some("STORAGE_IMAGE_ATOMIC"),
+                Self::UNIFORM_TEXEL_BUFFER => Some("UNIFORM_TEXEL_BUFFER"),
+                Self::STORAGE_TEXEL_BUFFER => Some("STORAGE_TEXEL_BUFFER"),
+                Self::STORAGE_TEXEL_BUFFER_ATOMIC => Some("STORAGE_TEXEL_BUFFER_ATOMIC"),
+                Self::VERTEX_BUFFER => Some("VERTEX_BUFFER"),
+                Self::COLOR_ATTACHMENT => Some("COLOR_ATTACHMENT"),
+                Self::COLOR_ATTACHMENT_BLEND => Some("COLOR_ATTACHMENT_BLEND"),
+                Self::DEPTH_STENCIL_ATTACHMENT => Some("DEPTH_STENCIL_ATTACHMENT"),
+                Self::BLIT_SRC => Some("BLIT_SRC"),
+                Self::BLIT_DST => Some("BLIT_DST"),
+                Self::SAMPLED_IMAGE_FILTER_LINEAR => Some("SAMPLED_IMAGE_FILTER_LINEAR"),
+                Self::TRANSFER_SRC => Some("TRANSFER_SRC"),
+                Self::TRANSFER_DST => Some("TRANSFER_DST"),
+                Self::MIDPOINT_CHROMA_SAMPLES => Some("MIDPOINT_CHROMA_SAMPLES"),
+                Self::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER => {
+                    Some("SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER")
+                }
+                Self::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER => {
+                    Some("SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER")
+                }
+                Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT => {
+                    Some("SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT")
+                }
+                Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE => {
+                    Some(
+                        "SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE",
+                    )
+                }
+                Self::DISJOINT => Some("DISJOINT"),
+                Self::COSITED_CHROMA_SAMPLES => Some("COSITED_CHROMA_SAMPLES"),
+                Self::SAMPLED_IMAGE_FILTER_MINMAX => Some("SAMPLED_IMAGE_FILTER_MINMAX"),
+                Self::VIDEO_DECODE_OUTPUT_KHR => Some("VIDEO_DECODE_OUTPUT_KHR"),
+                Self::VIDEO_DECODE_DPB_KHR => Some("VIDEO_DECODE_DPB_KHR"),
+                Self::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR => {
+                    Some("ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR")
+                }
+                Self::SAMPLED_IMAGE_FILTER_CUBIC_EXT => {
+                    Some("SAMPLED_IMAGE_FILTER_CUBIC_EXT")
+                }
+                Self::FRAGMENT_DENSITY_MAP_EXT => Some("FRAGMENT_DENSITY_MAP_EXT"),
+                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
+                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
+                }
+                Self::VIDEO_ENCODE_INPUT_KHR => Some("VIDEO_ENCODE_INPUT_KHR"),
+                Self::VIDEO_ENCODE_DPB_KHR => Some("VIDEO_ENCODE_DPB_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryControlFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for QueryControlFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::PRECISE.0, "PRECISE")], self.0)
+        }
+    }
     impl QueryControlFlags {
         pub const PRECISE: Self = Self(QueryControlFlagBits::PRECISE.0);
         pub const fn empty() -> Self {
@@ -17379,11 +18862,40 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryControlFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for QueryControlFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PRECISE => Some("PRECISE"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryResultFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for QueryResultFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::_64.0, "_64"),
+                    (Self::WAIT.0, "WAIT"),
+                    (Self::WITH_AVAILABILITY.0, "WITH_AVAILABILITY"),
+                    (Self::PARTIAL.0, "PARTIAL"),
+                    (Self::WITH_STATUS_KHR.0, "WITH_STATUS_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl QueryResultFlags {
         pub const _64: Self = Self(QueryResultFlagBits::_64.0);
         pub const WAIT: Self = Self(QueryResultFlagBits::WAIT.0);
@@ -17451,11 +18963,34 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryResultFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for QueryResultFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::_64 => Some("_64"),
+                Self::WAIT => Some("WAIT"),
+                Self::WITH_AVAILABILITY => Some("WITH_AVAILABILITY"),
+                Self::PARTIAL => Some("PARTIAL"),
+                Self::WITH_STATUS_KHR => Some("WITH_STATUS_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ShaderModuleCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ShaderModuleCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl ShaderModuleCreateFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -17516,8 +19051,14 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct EventCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for EventCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::DEVICE_ONLY.0, "DEVICE_ONLY")], self.0)
+        }
+    }
     impl EventCreateFlags {
         pub const DEVICE_ONLY: Self = Self(EventCreateFlagBits::DEVICE_ONLY.0);
         pub const DEVICE_ONLY_KHR: Self = Self(EventCreateFlagBits::DEVICE_ONLY_KHR.0);
@@ -17580,11 +19121,38 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct EventCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for EventCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEVICE_ONLY => Some("DEVICE_ONLY"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandPoolCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CommandPoolCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::TRANSIENT.0, "TRANSIENT"),
+                    (Self::RESET_COMMAND_BUFFER.0, "RESET_COMMAND_BUFFER"),
+                    (Self::PROTECTED.0, "PROTECTED"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl CommandPoolCreateFlags {
         pub const TRANSIENT: Self = Self(CommandPoolCreateFlagBits::TRANSIENT.0);
         pub const RESET_COMMAND_BUFFER: Self = Self(
@@ -17650,11 +19218,36 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandPoolCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CommandPoolCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::TRANSIENT => Some("TRANSIENT"),
+                Self::RESET_COMMAND_BUFFER => Some("RESET_COMMAND_BUFFER"),
+                Self::PROTECTED => Some("PROTECTED"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandPoolResetFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CommandPoolResetFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[(Self::RELEASE_RESOURCES.0, "RELEASE_RESOURCES")],
+                self.0,
+            )
+        }
+    }
     impl CommandPoolResetFlags {
         pub const RELEASE_RESOURCES: Self = Self(
             CommandPoolResetFlagBits::RELEASE_RESOURCES.0,
@@ -17718,11 +19311,34 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandPoolResetFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CommandPoolResetFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::RELEASE_RESOURCES => Some("RELEASE_RESOURCES"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandBufferResetFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CommandBufferResetFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[(Self::RELEASE_RESOURCES.0, "RELEASE_RESOURCES")],
+                self.0,
+            )
+        }
+    }
     impl CommandBufferResetFlags {
         pub const RELEASE_RESOURCES: Self = Self(
             CommandBufferResetFlagBits::RELEASE_RESOURCES.0,
@@ -17786,11 +19402,38 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandBufferResetFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CommandBufferResetFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::RELEASE_RESOURCES => Some("RELEASE_RESOURCES"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandBufferUsageFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CommandBufferUsageFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::ONE_TIME_SUBMIT.0, "ONE_TIME_SUBMIT"),
+                    (Self::RENDER_PASS_CONTINUE.0, "RENDER_PASS_CONTINUE"),
+                    (Self::SIMULTANEOUS_USE.0, "SIMULTANEOUS_USE"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl CommandBufferUsageFlags {
         pub const ONE_TIME_SUBMIT: Self = Self(
             CommandBufferUsageFlagBits::ONE_TIME_SUBMIT.0,
@@ -17860,11 +19503,60 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandBufferUsageFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CommandBufferUsageFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ONE_TIME_SUBMIT => Some("ONE_TIME_SUBMIT"),
+                Self::RENDER_PASS_CONTINUE => Some("RENDER_PASS_CONTINUE"),
+                Self::SIMULTANEOUS_USE => Some("SIMULTANEOUS_USE"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryPipelineStatisticFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for QueryPipelineStatisticFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::INPUT_ASSEMBLY_VERTICES.0, "INPUT_ASSEMBLY_VERTICES"),
+                    (Self::INPUT_ASSEMBLY_PRIMITIVES.0, "INPUT_ASSEMBLY_PRIMITIVES"),
+                    (Self::VERTEX_SHADER_INVOCATIONS.0, "VERTEX_SHADER_INVOCATIONS"),
+                    (Self::GEOMETRY_SHADER_INVOCATIONS.0, "GEOMETRY_SHADER_INVOCATIONS"),
+                    (Self::GEOMETRY_SHADER_PRIMITIVES.0, "GEOMETRY_SHADER_PRIMITIVES"),
+                    (Self::CLIPPING_INVOCATIONS.0, "CLIPPING_INVOCATIONS"),
+                    (Self::CLIPPING_PRIMITIVES.0, "CLIPPING_PRIMITIVES"),
+                    (Self::FRAGMENT_SHADER_INVOCATIONS.0, "FRAGMENT_SHADER_INVOCATIONS"),
+                    (
+                        Self::TESSELLATION_CONTROL_SHADER_PATCHES.0,
+                        "TESSELLATION_CONTROL_SHADER_PATCHES",
+                    ),
+                    (
+                        Self::TESSELLATION_EVALUATION_SHADER_INVOCATIONS.0,
+                        "TESSELLATION_EVALUATION_SHADER_INVOCATIONS",
+                    ),
+                    (Self::COMPUTE_SHADER_INVOCATIONS.0, "COMPUTE_SHADER_INVOCATIONS"),
+                    (Self::TASK_SHADER_INVOCATIONS_EXT.0, "TASK_SHADER_INVOCATIONS_EXT"),
+                    (Self::MESH_SHADER_INVOCATIONS_EXT.0, "MESH_SHADER_INVOCATIONS_EXT"),
+                    (
+                        Self::CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI.0,
+                        "CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl QueryPipelineStatisticFlags {
         pub const INPUT_ASSEMBLY_VERTICES: Self = Self(
             QueryPipelineStatisticFlagBits::INPUT_ASSEMBLY_VERTICES.0,
@@ -17967,11 +19659,49 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryPipelineStatisticFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for QueryPipelineStatisticFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::INPUT_ASSEMBLY_VERTICES => Some("INPUT_ASSEMBLY_VERTICES"),
+                Self::INPUT_ASSEMBLY_PRIMITIVES => Some("INPUT_ASSEMBLY_PRIMITIVES"),
+                Self::VERTEX_SHADER_INVOCATIONS => Some("VERTEX_SHADER_INVOCATIONS"),
+                Self::GEOMETRY_SHADER_INVOCATIONS => Some("GEOMETRY_SHADER_INVOCATIONS"),
+                Self::GEOMETRY_SHADER_PRIMITIVES => Some("GEOMETRY_SHADER_PRIMITIVES"),
+                Self::CLIPPING_INVOCATIONS => Some("CLIPPING_INVOCATIONS"),
+                Self::CLIPPING_PRIMITIVES => Some("CLIPPING_PRIMITIVES"),
+                Self::FRAGMENT_SHADER_INVOCATIONS => Some("FRAGMENT_SHADER_INVOCATIONS"),
+                Self::TESSELLATION_CONTROL_SHADER_PATCHES => {
+                    Some("TESSELLATION_CONTROL_SHADER_PATCHES")
+                }
+                Self::TESSELLATION_EVALUATION_SHADER_INVOCATIONS => {
+                    Some("TESSELLATION_EVALUATION_SHADER_INVOCATIONS")
+                }
+                Self::COMPUTE_SHADER_INVOCATIONS => Some("COMPUTE_SHADER_INVOCATIONS"),
+                Self::TASK_SHADER_INVOCATIONS_EXT => Some("TASK_SHADER_INVOCATIONS_EXT"),
+                Self::MESH_SHADER_INVOCATIONS_EXT => Some("MESH_SHADER_INVOCATIONS_EXT"),
+                Self::CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI => {
+                    Some("CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryMapFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MemoryMapFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::PLACED_EXT.0, "PLACED_EXT")], self.0)
+        }
+    }
     impl MemoryMapFlags {
         pub const PLACED_EXT: Self = Self(MemoryMapFlagBits::PLACED_EXT.0);
         pub const fn empty() -> Self {
@@ -18033,11 +19763,47 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryMapFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for MemoryMapFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PLACED_EXT => Some("PLACED_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageAspectFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageAspectFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::COLOR.0, "COLOR"),
+                    (Self::DEPTH.0, "DEPTH"),
+                    (Self::STENCIL.0, "STENCIL"),
+                    (Self::METADATA.0, "METADATA"),
+                    (Self::PLANE_0.0, "PLANE_0"),
+                    (Self::PLANE_1.0, "PLANE_1"),
+                    (Self::PLANE_2.0, "PLANE_2"),
+                    (Self::NONE.0, "NONE"),
+                    (Self::MEMORY_PLANE_0_EXT.0, "MEMORY_PLANE_0_EXT"),
+                    (Self::MEMORY_PLANE_1_EXT.0, "MEMORY_PLANE_1_EXT"),
+                    (Self::MEMORY_PLANE_2_EXT.0, "MEMORY_PLANE_2_EXT"),
+                    (Self::MEMORY_PLANE_3_EXT.0, "MEMORY_PLANE_3_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ImageAspectFlags {
         pub const COLOR: Self = Self(ImageAspectFlagBits::COLOR.0);
         pub const DEPTH: Self = Self(ImageAspectFlagBits::DEPTH.0);
@@ -18122,11 +19888,41 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageAspectFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ImageAspectFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::COLOR => Some("COLOR"),
+                Self::DEPTH => Some("DEPTH"),
+                Self::STENCIL => Some("STENCIL"),
+                Self::METADATA => Some("METADATA"),
+                Self::PLANE_0 => Some("PLANE_0"),
+                Self::PLANE_1 => Some("PLANE_1"),
+                Self::PLANE_2 => Some("PLANE_2"),
+                Self::NONE => Some("NONE"),
+                Self::MEMORY_PLANE_0_EXT => Some("MEMORY_PLANE_0_EXT"),
+                Self::MEMORY_PLANE_1_EXT => Some("MEMORY_PLANE_1_EXT"),
+                Self::MEMORY_PLANE_2_EXT => Some("MEMORY_PLANE_2_EXT"),
+                Self::MEMORY_PLANE_3_EXT => Some("MEMORY_PLANE_3_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SparseMemoryBindFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SparseMemoryBindFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(f, &[(Self::METADATA.0, "METADATA")], self.0)
+        }
+    }
     impl SparseMemoryBindFlags {
         pub const METADATA: Self = Self(SparseMemoryBindFlagBits::METADATA.0);
         pub const fn empty() -> Self {
@@ -18188,11 +19984,38 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SparseMemoryBindFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SparseMemoryBindFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::METADATA => Some("METADATA"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SparseImageFormatFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SparseImageFormatFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::SINGLE_MIPTAIL.0, "SINGLE_MIPTAIL"),
+                    (Self::ALIGNED_MIP_SIZE.0, "ALIGNED_MIP_SIZE"),
+                    (Self::NONSTANDARD_BLOCK_SIZE.0, "NONSTANDARD_BLOCK_SIZE"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl SparseImageFormatFlags {
         pub const SINGLE_MIPTAIL: Self = Self(
             SparseImageFormatFlagBits::SINGLE_MIPTAIL.0,
@@ -18262,11 +20085,58 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SparseImageFormatFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SparseImageFormatFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SINGLE_MIPTAIL => Some("SINGLE_MIPTAIL"),
+                Self::ALIGNED_MIP_SIZE => Some("ALIGNED_MIP_SIZE"),
+                Self::NONSTANDARD_BLOCK_SIZE => Some("NONSTANDARD_BLOCK_SIZE"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SubpassDescriptionFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SubpassDescriptionFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::PER_VIEW_ATTRIBUTES_NVX.0, "PER_VIEW_ATTRIBUTES_NVX"),
+                    (
+                        Self::PER_VIEW_POSITION_X_ONLY_NVX.0,
+                        "PER_VIEW_POSITION_X_ONLY_NVX",
+                    ),
+                    (Self::TILE_SHADING_APRON_QCOM.0, "TILE_SHADING_APRON_QCOM"),
+                    (
+                        Self::RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT.0,
+                        "RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT",
+                    ),
+                    (
+                        Self::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT.0,
+                        "RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT",
+                    ),
+                    (
+                        Self::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT.0,
+                        "RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT",
+                    ),
+                    (Self::ENABLE_LEGACY_DITHERING_EXT.0, "ENABLE_LEGACY_DITHERING_EXT"),
+                    (Self::FRAGMENT_REGION_EXT.0, "FRAGMENT_REGION_EXT"),
+                    (Self::CUSTOM_RESOLVE_EXT.0, "CUSTOM_RESOLVE_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl SubpassDescriptionFlags {
         pub const PER_VIEW_ATTRIBUTES_NVX: Self = Self(
             SubpassDescriptionFlagBits::PER_VIEW_ATTRIBUTES_NVX.0,
@@ -18371,11 +20241,90 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SubpassDescriptionFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SubpassDescriptionFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PER_VIEW_ATTRIBUTES_NVX => Some("PER_VIEW_ATTRIBUTES_NVX"),
+                Self::PER_VIEW_POSITION_X_ONLY_NVX => {
+                    Some("PER_VIEW_POSITION_X_ONLY_NVX")
+                }
+                Self::TILE_SHADING_APRON_QCOM => Some("TILE_SHADING_APRON_QCOM"),
+                Self::RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT => {
+                    Some("RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT")
+                }
+                Self::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT => {
+                    Some("RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT")
+                }
+                Self::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT => {
+                    Some("RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT")
+                }
+                Self::ENABLE_LEGACY_DITHERING_EXT => Some("ENABLE_LEGACY_DITHERING_EXT"),
+                Self::FRAGMENT_REGION_EXT => Some("FRAGMENT_REGION_EXT"),
+                Self::CUSTOM_RESOLVE_EXT => Some("CUSTOM_RESOLVE_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineStageFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineStageFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::TOP_OF_PIPE.0, "TOP_OF_PIPE"),
+                    (Self::DRAW_INDIRECT.0, "DRAW_INDIRECT"),
+                    (Self::VERTEX_INPUT.0, "VERTEX_INPUT"),
+                    (Self::VERTEX_SHADER.0, "VERTEX_SHADER"),
+                    (Self::TESSELLATION_CONTROL_SHADER.0, "TESSELLATION_CONTROL_SHADER"),
+                    (
+                        Self::TESSELLATION_EVALUATION_SHADER.0,
+                        "TESSELLATION_EVALUATION_SHADER",
+                    ),
+                    (Self::GEOMETRY_SHADER.0, "GEOMETRY_SHADER"),
+                    (Self::FRAGMENT_SHADER.0, "FRAGMENT_SHADER"),
+                    (Self::EARLY_FRAGMENT_TESTS.0, "EARLY_FRAGMENT_TESTS"),
+                    (Self::LATE_FRAGMENT_TESTS.0, "LATE_FRAGMENT_TESTS"),
+                    (Self::COLOR_ATTACHMENT_OUTPUT.0, "COLOR_ATTACHMENT_OUTPUT"),
+                    (Self::COMPUTE_SHADER.0, "COMPUTE_SHADER"),
+                    (Self::TRANSFER.0, "TRANSFER"),
+                    (Self::BOTTOM_OF_PIPE.0, "BOTTOM_OF_PIPE"),
+                    (Self::HOST.0, "HOST"),
+                    (Self::ALL_GRAPHICS.0, "ALL_GRAPHICS"),
+                    (Self::ALL_COMMANDS.0, "ALL_COMMANDS"),
+                    (Self::NONE.0, "NONE"),
+                    (Self::TRANSFORM_FEEDBACK_EXT.0, "TRANSFORM_FEEDBACK_EXT"),
+                    (Self::CONDITIONAL_RENDERING_EXT.0, "CONDITIONAL_RENDERING_EXT"),
+                    (
+                        Self::ACCELERATION_STRUCTURE_BUILD_KHR.0,
+                        "ACCELERATION_STRUCTURE_BUILD_KHR",
+                    ),
+                    (Self::RAY_TRACING_SHADER_KHR.0, "RAY_TRACING_SHADER_KHR"),
+                    (
+                        Self::FRAGMENT_DENSITY_PROCESS_EXT.0,
+                        "FRAGMENT_DENSITY_PROCESS_EXT",
+                    ),
+                    (
+                        Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
+                        "FRAGMENT_SHADING_RATE_ATTACHMENT_KHR",
+                    ),
+                    (Self::TASK_SHADER_EXT.0, "TASK_SHADER_EXT"),
+                    (Self::MESH_SHADER_EXT.0, "MESH_SHADER_EXT"),
+                    (Self::COMMAND_PREPROCESS_EXT.0, "COMMAND_PREPROCESS_EXT"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PipelineStageFlags {
         pub const TOP_OF_PIPE: Self = Self(PipelineStageFlagBits::TOP_OF_PIPE.0);
         pub const DRAW_INDIRECT: Self = Self(PipelineStageFlagBits::DRAW_INDIRECT.0);
@@ -18502,11 +20451,76 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineStageFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PipelineStageFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::TOP_OF_PIPE => Some("TOP_OF_PIPE"),
+                Self::DRAW_INDIRECT => Some("DRAW_INDIRECT"),
+                Self::VERTEX_INPUT => Some("VERTEX_INPUT"),
+                Self::VERTEX_SHADER => Some("VERTEX_SHADER"),
+                Self::TESSELLATION_CONTROL_SHADER => Some("TESSELLATION_CONTROL_SHADER"),
+                Self::TESSELLATION_EVALUATION_SHADER => {
+                    Some("TESSELLATION_EVALUATION_SHADER")
+                }
+                Self::GEOMETRY_SHADER => Some("GEOMETRY_SHADER"),
+                Self::FRAGMENT_SHADER => Some("FRAGMENT_SHADER"),
+                Self::EARLY_FRAGMENT_TESTS => Some("EARLY_FRAGMENT_TESTS"),
+                Self::LATE_FRAGMENT_TESTS => Some("LATE_FRAGMENT_TESTS"),
+                Self::COLOR_ATTACHMENT_OUTPUT => Some("COLOR_ATTACHMENT_OUTPUT"),
+                Self::COMPUTE_SHADER => Some("COMPUTE_SHADER"),
+                Self::TRANSFER => Some("TRANSFER"),
+                Self::BOTTOM_OF_PIPE => Some("BOTTOM_OF_PIPE"),
+                Self::HOST => Some("HOST"),
+                Self::ALL_GRAPHICS => Some("ALL_GRAPHICS"),
+                Self::ALL_COMMANDS => Some("ALL_COMMANDS"),
+                Self::NONE => Some("NONE"),
+                Self::TRANSFORM_FEEDBACK_EXT => Some("TRANSFORM_FEEDBACK_EXT"),
+                Self::CONDITIONAL_RENDERING_EXT => Some("CONDITIONAL_RENDERING_EXT"),
+                Self::ACCELERATION_STRUCTURE_BUILD_KHR => {
+                    Some("ACCELERATION_STRUCTURE_BUILD_KHR")
+                }
+                Self::RAY_TRACING_SHADER_KHR => Some("RAY_TRACING_SHADER_KHR"),
+                Self::FRAGMENT_DENSITY_PROCESS_EXT => {
+                    Some("FRAGMENT_DENSITY_PROCESS_EXT")
+                }
+                Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR => {
+                    Some("FRAGMENT_SHADING_RATE_ATTACHMENT_KHR")
+                }
+                Self::TASK_SHADER_EXT => Some("TASK_SHADER_EXT"),
+                Self::MESH_SHADER_EXT => Some("MESH_SHADER_EXT"),
+                Self::COMMAND_PREPROCESS_EXT => Some("COMMAND_PREPROCESS_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SampleCountFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SampleCountFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::_1.0, "_1"),
+                    (Self::_2.0, "_2"),
+                    (Self::_4.0, "_4"),
+                    (Self::_8.0, "_8"),
+                    (Self::_16.0, "_16"),
+                    (Self::_32.0, "_32"),
+                    (Self::_64.0, "_64"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl SampleCountFlags {
         pub const _1: Self = Self(SampleCountFlagBits::_1.0);
         pub const _2: Self = Self(SampleCountFlagBits::_2.0);
@@ -18574,11 +20588,50 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SampleCountFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SampleCountFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::_1 => Some("_1"),
+                Self::_2 => Some("_2"),
+                Self::_4 => Some("_4"),
+                Self::_8 => Some("_8"),
+                Self::_16 => Some("_16"),
+                Self::_32 => Some("_32"),
+                Self::_64 => Some("_64"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AttachmentDescriptionFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AttachmentDescriptionFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::MAY_ALIAS.0, "MAY_ALIAS"),
+                    (
+                        Self::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0,
+                        "RESOLVE_SKIP_TRANSFER_FUNCTION_KHR",
+                    ),
+                    (
+                        Self::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
+                        "RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl AttachmentDescriptionFlags {
         pub const MAY_ALIAS: Self = Self(AttachmentDescriptionFlagBits::MAY_ALIAS.0);
         pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
@@ -18646,11 +20699,44 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AttachmentDescriptionFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for AttachmentDescriptionFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::MAY_ALIAS => Some("MAY_ALIAS"),
+                Self::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR => {
+                    Some("RESOLVE_SKIP_TRANSFER_FUNCTION_KHR")
+                }
+                Self::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR => {
+                    Some("RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct StencilFaceFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for StencilFaceFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::FRONT.0, "FRONT"),
+                    (Self::BACK.0, "BACK"),
+                    (Self::FRONT_AND_BACK.0, "FRONT_AND_BACK"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl StencilFaceFlags {
         pub const FRONT: Self = Self(StencilFaceFlagBits::FRONT.0);
         pub const BACK: Self = Self(StencilFaceFlagBits::BACK.0);
@@ -18714,11 +20800,41 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct StencilFaceFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for StencilFaceFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::FRONT => Some("FRONT"),
+                Self::BACK => Some("BACK"),
+                Self::FRONT_AND_BACK => Some("FRONT_AND_BACK"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CullModeFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CullModeFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::NONE.0, "NONE"),
+                    (Self::FRONT.0, "FRONT"),
+                    (Self::BACK.0, "BACK"),
+                    (Self::FRONT_AND_BACK.0, "FRONT_AND_BACK"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl CullModeFlags {
         pub const NONE: Self = Self(CullModeFlagBits::NONE.0);
         pub const FRONT: Self = Self(CullModeFlagBits::FRONT.0);
@@ -18783,11 +20899,49 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CullModeFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for CullModeFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::NONE => Some("NONE"),
+                Self::FRONT => Some("FRONT"),
+                Self::BACK => Some("BACK"),
+                Self::FRONT_AND_BACK => Some("FRONT_AND_BACK"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorPoolCreateFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DescriptorPoolCreateFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::FREE_DESCRIPTOR_SET.0, "FREE_DESCRIPTOR_SET"),
+                    (Self::UPDATE_AFTER_BIND.0, "UPDATE_AFTER_BIND"),
+                    (Self::HOST_ONLY_EXT.0, "HOST_ONLY_EXT"),
+                    (
+                        Self::ALLOW_OVERALLOCATION_SETS_NV.0,
+                        "ALLOW_OVERALLOCATION_SETS_NV",
+                    ),
+                    (
+                        Self::ALLOW_OVERALLOCATION_POOLS_NV.0,
+                        "ALLOW_OVERALLOCATION_POOLS_NV",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DescriptorPoolCreateFlags {
         pub const FREE_DESCRIPTOR_SET: Self = Self(
             DescriptorPoolCreateFlagBits::FREE_DESCRIPTOR_SET.0,
@@ -18869,11 +21023,38 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorPoolCreateFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DescriptorPoolCreateFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::FREE_DESCRIPTOR_SET => Some("FREE_DESCRIPTOR_SET"),
+                Self::UPDATE_AFTER_BIND => Some("UPDATE_AFTER_BIND"),
+                Self::HOST_ONLY_EXT => Some("HOST_ONLY_EXT"),
+                Self::ALLOW_OVERALLOCATION_SETS_NV => {
+                    Some("ALLOW_OVERALLOCATION_SETS_NV")
+                }
+                Self::ALLOW_OVERALLOCATION_POOLS_NV => {
+                    Some("ALLOW_OVERALLOCATION_POOLS_NV")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorPoolResetFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DescriptorPoolResetFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            core::fmt::Debug::fmt(&self.0, f)
+        }
+    }
     impl DescriptorPoolResetFlags {
         pub const fn empty() -> Self {
             Self(0)
@@ -18934,8 +21115,28 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DependencyFlags(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DependencyFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::BY_REGION.0, "BY_REGION"),
+                    (Self::DEVICE_GROUP.0, "DEVICE_GROUP"),
+                    (Self::VIEW_LOCAL.0, "VIEW_LOCAL"),
+                    (Self::FEEDBACK_LOOP_EXT.0, "FEEDBACK_LOOP_EXT"),
+                    (
+                        Self::QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR.0,
+                        "QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR",
+                    ),
+                    (Self::ASYMMETRIC_EVENT_KHR.0, "ASYMMETRIC_EVENT_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DependencyFlags {
         pub const BY_REGION: Self = Self(DependencyFlagBits::BY_REGION.0);
         pub const DEVICE_GROUP: Self = Self(DependencyFlagBits::DEVICE_GROUP.0);
@@ -19010,8 +21211,28 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DependencyFlagBits(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DependencyFlagBits {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::BY_REGION => Some("BY_REGION"),
+                Self::DEVICE_GROUP => Some("DEVICE_GROUP"),
+                Self::VIEW_LOCAL => Some("VIEW_LOCAL"),
+                Self::FEEDBACK_LOOP_EXT => Some("FEEDBACK_LOOP_EXT"),
+                Self::QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR => {
+                    Some("QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR")
+                }
+                Self::ASYMMETRIC_EVENT_KHR => Some("ASYMMETRIC_EVENT_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type SampleMask = u32;
     pub type Bool32 = u32;
     pub type Flags = u32;

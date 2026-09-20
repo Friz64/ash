@@ -227,8 +227,24 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRgbModelConversionFlagsVALVE(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeRgbModelConversionFlagsVALVE {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::RGB_IDENTITY_VALVE.0, "RGB_IDENTITY_VALVE"),
+                    (Self::YCBCR_IDENTITY_VALVE.0, "YCBCR_IDENTITY_VALVE"),
+                    (Self::YCBCR_709_VALVE.0, "YCBCR_709_VALVE"),
+                    (Self::YCBCR_601_VALVE.0, "YCBCR_601_VALVE"),
+                    (Self::YCBCR_2020_VALVE.0, "YCBCR_2020_VALVE"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeRgbModelConversionFlagsVALVE {
         pub const RGB_IDENTITY_VALVE: Self = Self(
             VideoEncodeRgbModelConversionFlagBitsVALVE::RGB_IDENTITY_VALVE.0,
@@ -304,11 +320,41 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRgbModelConversionFlagBitsVALVE(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeRgbModelConversionFlagBitsVALVE {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::RGB_IDENTITY_VALVE => Some("RGB_IDENTITY_VALVE"),
+                Self::YCBCR_IDENTITY_VALVE => Some("YCBCR_IDENTITY_VALVE"),
+                Self::YCBCR_709_VALVE => Some("YCBCR_709_VALVE"),
+                Self::YCBCR_601_VALVE => Some("YCBCR_601_VALVE"),
+                Self::YCBCR_2020_VALVE => Some("YCBCR_2020_VALVE"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRgbRangeCompressionFlagsVALVE(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeRgbRangeCompressionFlagsVALVE {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::FULL_RANGE_VALVE.0, "FULL_RANGE_VALVE"),
+                    (Self::NARROW_RANGE_VALVE.0, "NARROW_RANGE_VALVE"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeRgbRangeCompressionFlagsVALVE {
         pub const FULL_RANGE_VALVE: Self = Self(
             VideoEncodeRgbRangeCompressionFlagBitsVALVE::FULL_RANGE_VALVE.0,
@@ -375,11 +421,38 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRgbRangeCompressionFlagBitsVALVE(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeRgbRangeCompressionFlagBitsVALVE {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::FULL_RANGE_VALVE => Some("FULL_RANGE_VALVE"),
+                Self::NARROW_RANGE_VALVE => Some("NARROW_RANGE_VALVE"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRgbChromaOffsetFlagsVALVE(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeRgbChromaOffsetFlagsVALVE {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::COSITED_EVEN_VALVE.0, "COSITED_EVEN_VALVE"),
+                    (Self::MIDPOINT_VALVE.0, "MIDPOINT_VALVE"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoEncodeRgbChromaOffsetFlagsVALVE {
         pub const COSITED_EVEN_VALVE: Self = Self(
             VideoEncodeRgbChromaOffsetFlagBitsVALVE::COSITED_EVEN_VALVE.0,
@@ -446,7 +519,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRgbChromaOffsetFlagBitsVALVE(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoEncodeRgbChromaOffsetFlagBitsVALVE {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::COSITED_EVEN_VALVE => Some("COSITED_EVEN_VALVE"),
+                Self::MIDPOINT_VALVE => Some("MIDPOINT_VALVE"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

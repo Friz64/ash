@@ -204,8 +204,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphTOSAQualityFlagsARM(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphTOSAQualityFlagsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::ACCELERATED_ARM.0, "ACCELERATED_ARM"),
+                    (Self::CONFORMANT_ARM.0, "CONFORMANT_ARM"),
+                    (Self::EXPERIMENTAL_ARM.0, "EXPERIMENTAL_ARM"),
+                    (Self::DEPRECATED_ARM.0, "DEPRECATED_ARM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DataGraphTOSAQualityFlagsARM {
         pub const ACCELERATED_ARM: Self = Self(
             DataGraphTOSAQualityFlagBitsARM::ACCELERATED_ARM.0,
@@ -278,8 +293,24 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphTOSAQualityFlagBitsARM(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DataGraphTOSAQualityFlagBitsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::ACCELERATED_ARM => Some("ACCELERATED_ARM"),
+                Self::CONFORMANT_ARM => Some("CONFORMANT_ARM"),
+                Self::EXPERIMENTAL_ARM => Some("EXPERIMENTAL_ARM"),
+                Self::DEPRECATED_ARM => Some("DEPRECATED_ARM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,

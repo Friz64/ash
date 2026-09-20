@@ -689,8 +689,36 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SwapchainCreateFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SwapchainCreateFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (
+                        Self::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
+                        "SPLIT_INSTANCE_BIND_REGIONS_KHR",
+                    ),
+                    (Self::PROTECTED_KHR.0, "PROTECTED_KHR"),
+                    (Self::MUTABLE_FORMAT_KHR.0, "MUTABLE_FORMAT_KHR"),
+                    (Self::PRESENT_TIMING_EXT.0, "PRESENT_TIMING_EXT"),
+                    (Self::PRESENT_ID_2_KHR.0, "PRESENT_ID_2_KHR"),
+                    (Self::PRESENT_WAIT_2_KHR.0, "PRESENT_WAIT_2_KHR"),
+                    (
+                        Self::DEFERRED_MEMORY_ALLOCATION_KHR.0,
+                        "DEFERRED_MEMORY_ALLOCATION_KHR",
+                    ),
+                    (
+                        Self::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
+                        "MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl SwapchainCreateFlagsKHR {
         pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(
             SwapchainCreateFlagBitsKHR::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
@@ -778,11 +806,52 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SwapchainCreateFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for SwapchainCreateFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SPLIT_INSTANCE_BIND_REGIONS_KHR => {
+                    Some("SPLIT_INSTANCE_BIND_REGIONS_KHR")
+                }
+                Self::PROTECTED_KHR => Some("PROTECTED_KHR"),
+                Self::MUTABLE_FORMAT_KHR => Some("MUTABLE_FORMAT_KHR"),
+                Self::PRESENT_TIMING_EXT => Some("PRESENT_TIMING_EXT"),
+                Self::PRESENT_ID_2_KHR => Some("PRESENT_ID_2_KHR"),
+                Self::PRESENT_WAIT_2_KHR => Some("PRESENT_WAIT_2_KHR"),
+                Self::DEFERRED_MEMORY_ALLOCATION_KHR => {
+                    Some("DEFERRED_MEMORY_ALLOCATION_KHR")
+                }
+                Self::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT => {
+                    Some("MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceGroupPresentModeFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::LOCAL_KHR.0, "LOCAL_KHR"),
+                    (Self::REMOTE_KHR.0, "REMOTE_KHR"),
+                    (Self::SUM_KHR.0, "SUM_KHR"),
+                    (Self::LOCAL_MULTI_DEVICE_KHR.0, "LOCAL_MULTI_DEVICE_KHR"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl DeviceGroupPresentModeFlagsKHR {
         pub const LOCAL_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::LOCAL_KHR.0);
         pub const REMOTE_KHR: Self = Self(
@@ -851,8 +920,24 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceGroupPresentModeFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceGroupPresentModeFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::LOCAL_KHR => Some("LOCAL_KHR"),
+                Self::REMOTE_KHR => Some("REMOTE_KHR"),
+                Self::SUM_KHR => Some("SUM_KHR"),
+                Self::LOCAL_MULTI_DEVICE_KHR => Some("LOCAL_MULTI_DEVICE_KHR"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct SwapchainKHR(u64);

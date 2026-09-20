@@ -136,8 +136,18 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceAddressBindingFlagsEXT(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceAddressBindingFlagsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[(Self::INTERNAL_OBJECT_EXT.0, "INTERNAL_OBJECT_EXT")],
+                self.0,
+            )
+        }
+    }
     impl DeviceAddressBindingFlagsEXT {
         pub const INTERNAL_OBJECT_EXT: Self = Self(
             DeviceAddressBindingFlagBitsEXT::INTERNAL_OBJECT_EXT.0,
@@ -201,7 +211,20 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for DeviceAddressBindingFlagBitsEXT {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::INTERNAL_OBJECT_EXT => Some("INTERNAL_OBJECT_EXT"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

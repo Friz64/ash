@@ -277,8 +277,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PhysicalDeviceSchedulingControlsFlagsARM(u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PhysicalDeviceSchedulingControlsFlagsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::SHADER_CORE_COUNT_ARM.0, "SHADER_CORE_COUNT_ARM"),
+                    (Self::DISPATCH_PARAMETERS_ARM.0, "DISPATCH_PARAMETERS_ARM"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl PhysicalDeviceSchedulingControlsFlagsARM {
         pub const SHADER_CORE_COUNT_ARM: Self = Self(
             PhysicalDeviceSchedulingControlsFlagBitsARM::SHADER_CORE_COUNT_ARM.0,
@@ -345,8 +358,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PhysicalDeviceSchedulingControlsFlagBitsARM(pub(crate) u64);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for PhysicalDeviceSchedulingControlsFlagBitsARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::SHADER_CORE_COUNT_ARM => Some("SHADER_CORE_COUNT_ARM"),
+                Self::DISPATCH_PARAMETERS_ARM => Some("DISPATCH_PARAMETERS_ARM"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkCmdSetDispatchParametersARM = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_dispatch_parameters: *const crate::vk::DispatchParametersARM<'_>,

@@ -344,7 +344,6 @@ impl ExampleBase {
                 .queue_create_infos(std::slice::from_ref(&queue_info))
                 .enabled_extension_names(&device_extension_names_raw)
                 .enabled_features(&features);
-            dbg!(device_create_info);
 
             let device: Device = instance
                 .create_device(pdevice, &device_create_info, None)

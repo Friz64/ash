@@ -284,8 +284,28 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoDecodeH264PictureLayoutFlagsKHR(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoDecodeH264PictureLayoutFlagsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::PROGRESSIVE_KHR.0, "PROGRESSIVE_KHR"),
+                    (
+                        Self::INTERLACED_INTERLEAVED_LINES_KHR.0,
+                        "INTERLACED_INTERLEAVED_LINES_KHR",
+                    ),
+                    (
+                        Self::INTERLACED_SEPARATE_PLANES_KHR.0,
+                        "INTERLACED_SEPARATE_PLANES_KHR",
+                    ),
+                ],
+                self.0,
+            )
+        }
+    }
     impl VideoDecodeH264PictureLayoutFlagsKHR {
         pub const PROGRESSIVE_KHR: Self = Self(
             VideoDecodeH264PictureLayoutFlagBitsKHR::PROGRESSIVE_KHR.0,
@@ -355,7 +375,26 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoDecodeH264PictureLayoutFlagBitsKHR(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for VideoDecodeH264PictureLayoutFlagBitsKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::PROGRESSIVE_KHR => Some("PROGRESSIVE_KHR"),
+                Self::INTERLACED_INTERLEAVED_LINES_KHR => {
+                    Some("INTERLACED_INTERLEAVED_LINES_KHR")
+                }
+                Self::INTERLACED_SEPARATE_PLANES_KHR => {
+                    Some("INTERLACED_SEPARATE_PLANES_KHR")
+                }
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
 }
 pub use reexport::*;

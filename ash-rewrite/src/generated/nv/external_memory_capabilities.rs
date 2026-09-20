@@ -121,8 +121,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryHandleTypeFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::OPAQUE_WIN32_NV.0, "OPAQUE_WIN32_NV"),
+                    (Self::OPAQUE_WIN32_KMT_NV.0, "OPAQUE_WIN32_KMT_NV"),
+                    (Self::D3D11_IMAGE_NV.0, "D3D11_IMAGE_NV"),
+                    (Self::D3D11_IMAGE_KMT_NV.0, "D3D11_IMAGE_KMT_NV"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ExternalMemoryHandleTypeFlagsNV {
         pub const OPAQUE_WIN32_NV: Self = Self(
             ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_NV.0,
@@ -195,11 +210,41 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryHandleTypeFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalMemoryHandleTypeFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::OPAQUE_WIN32_NV => Some("OPAQUE_WIN32_NV"),
+                Self::OPAQUE_WIN32_KMT_NV => Some("OPAQUE_WIN32_KMT_NV"),
+                Self::D3D11_IMAGE_NV => Some("D3D11_IMAGE_NV"),
+                Self::D3D11_IMAGE_KMT_NV => Some("D3D11_IMAGE_KMT_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryFeatureFlagsNV(u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalMemoryFeatureFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            crate::debug_flags(
+                f,
+                &[
+                    (Self::DEDICATED_ONLY_NV.0, "DEDICATED_ONLY_NV"),
+                    (Self::EXPORTABLE_NV.0, "EXPORTABLE_NV"),
+                    (Self::IMPORTABLE_NV.0, "IMPORTABLE_NV"),
+                ],
+                self.0,
+            )
+        }
+    }
     impl ExternalMemoryFeatureFlagsNV {
         pub const DEDICATED_ONLY_NV: Self = Self(
             ExternalMemoryFeatureFlagBitsNV::DEDICATED_ONLY_NV.0,
@@ -269,8 +314,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default, Debug)]
+    #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryFeatureFlagBitsNV(pub(crate) u32);
+    #[cfg(feature = "debug")]
+    impl core::fmt::Debug for ExternalMemoryFeatureFlagBitsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            if let Some(x) = match *self {
+                Self::DEDICATED_ONLY_NV => Some("DEDICATED_ONLY_NV"),
+                Self::EXPORTABLE_NV => Some("EXPORTABLE_NV"),
+                Self::IMPORTABLE_NV => Some("IMPORTABLE_NV"),
+                _ => None,
+            } {
+                f.write_str(x)
+            } else {
+                core::fmt::Debug::fmt(&self.0, f)
+            }
+        }
+    }
     pub type PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
