@@ -12,14 +12,23 @@ impl ImageLayout {
     pub const fn as_raw(self) -> i32 {
         self.0
     }
+    ///Implicit layout an image is when its contents are undefined due to various reasons (e.g. right after creation)
     pub const UNDEFINED: Self = Self(0);
+    ///General layout when image can be used for any kind of access
     pub const GENERAL: Self = Self(1);
+    ///Optimal layout when image is only used for color attachment read/write
     pub const COLOR_ATTACHMENT_OPTIMAL: Self = Self(2);
+    ///Optimal layout when image is only used for depth/stencil attachment read/write
     pub const DEPTH_STENCIL_ATTACHMENT_OPTIMAL: Self = Self(3);
+    ///Optimal layout when image is used for read only depth/stencil attachment and shader access
     pub const DEPTH_STENCIL_READ_ONLY_OPTIMAL: Self = Self(4);
+    ///Optimal layout when image is used for read only shader access
     pub const SHADER_READ_ONLY_OPTIMAL: Self = Self(5);
+    ///Optimal layout when image is used only as source of transfer operations
     pub const TRANSFER_SRC_OPTIMAL: Self = Self(6);
+    ///Optimal layout when image is used only as destination of transfer operations
     pub const TRANSFER_DST_OPTIMAL: Self = Self(7);
+    ///Initial layout used when the data is populated by the CPU
     pub const PREINITIALIZED: Self = Self(8);
 }
 ///Provided by [`vk1_0`](crate::vk1_0)
@@ -158,6 +167,7 @@ impl QueryType {
         self.0
     }
     pub const OCCLUSION: Self = Self(0);
+    ///Optional
     pub const PIPELINE_STATISTICS: Self = Self(1);
     pub const TIMESTAMP: Self = Self(2);
 }
@@ -274,7 +284,9 @@ impl SamplerMipmapMode {
     pub const fn as_raw(self) -> i32 {
         self.0
     }
+    ///Choose nearest mip level
     pub const NEAREST: Self = Self(0);
+    ///Linear filter between mip levels
     pub const LINEAR: Self = Self(1);
 }
 ///Provided by [`vk1_0`](crate::vk1_0)
@@ -740,7 +752,9 @@ impl StructureType {
     pub const BUFFER_MEMORY_BARRIER: Self = Self(44);
     pub const IMAGE_MEMORY_BARRIER: Self = Self(45);
     pub const MEMORY_BARRIER: Self = Self(46);
+    ///Reserved for internal use by the loader, layers, and ICDs
     pub const LOADER_INSTANCE_CREATE_INFO: Self = Self(47);
+    ///Reserved for internal use by the loader, layers, and ICDs
     pub const LOADER_DEVICE_CREATE_INFO: Self = Self(48);
 }
 ///Provided by [`vk1_0`](crate::vk1_0)
@@ -766,24 +780,43 @@ impl Result {
     pub const fn as_raw(self) -> i32 {
         self.0
     }
+    ///Command completed successfully
     pub const SUCCESS: Self = Self(0);
+    ///A fence or query has not yet completed
     pub const NOT_READY: Self = Self(1);
+    ///A wait operation has not completed in the specified time
     pub const TIMEOUT: Self = Self(2);
+    ///An event is signaled
     pub const EVENT_SET: Self = Self(3);
+    ///An event is unsignaled
     pub const EVENT_RESET: Self = Self(4);
+    ///A return array was too small for the result
     pub const INCOMPLETE: Self = Self(5);
+    ///A host memory allocation has failed
     pub const ERROR_OUT_OF_HOST_MEMORY: Self = Self(-1);
+    ///A device memory allocation has failed
     pub const ERROR_OUT_OF_DEVICE_MEMORY: Self = Self(-2);
+    ///Initialization of an object has failed
     pub const ERROR_INITIALIZATION_FAILED: Self = Self(-3);
+    ///The logical device has been lost. See <<devsandqueues-lost-device>>
     pub const ERROR_DEVICE_LOST: Self = Self(-4);
+    ///Mapping of a memory object has failed
     pub const ERROR_MEMORY_MAP_FAILED: Self = Self(-5);
+    ///Layer specified does not exist
     pub const ERROR_LAYER_NOT_PRESENT: Self = Self(-6);
+    ///Extension specified does not exist
     pub const ERROR_EXTENSION_NOT_PRESENT: Self = Self(-7);
+    ///Requested feature is not available on this device
     pub const ERROR_FEATURE_NOT_PRESENT: Self = Self(-8);
+    ///Unable to find a Vulkan driver
     pub const ERROR_INCOMPATIBLE_DRIVER: Self = Self(-9);
+    ///Too many objects of the type have already been created
     pub const ERROR_TOO_MANY_OBJECTS: Self = Self(-10);
+    ///Requested format is not supported on this device
     pub const ERROR_FORMAT_NOT_SUPPORTED: Self = Self(-11);
+    ///A requested pool allocation has failed due to fragmentation of the pool's memory
     pub const ERROR_FRAGMENTED_POOL: Self = Self(-12);
+    ///An unknown error has occurred, due to an implementation or application bug
     pub const ERROR_UNKNOWN: Self = Self(-13);
     pub const ERROR_VALIDATION_FAILED: Self = Self(-1000011001);
 }
@@ -854,14 +887,23 @@ impl VendorId {
     pub const fn as_raw(self) -> i32 {
         self.0
     }
+    ///Khronos vendor ID
     pub const KHRONOS: Self = Self(0x10000);
+    ///Vivante vendor ID
     pub const VIV: Self = Self(0x10001);
+    ///VeriSilicon vendor ID
     pub const VSI: Self = Self(0x10002);
+    ///Kazan Software Renderer
     pub const KAZAN: Self = Self(0x10003);
+    ///Codeplay Software Ltd. vendor ID
     pub const CODEPLAY: Self = Self(0x10004);
+    ///Mesa vendor ID
     pub const MESA: Self = Self(0x10005);
+    ///PoCL vendor ID
     pub const POCL: Self = Self(0x10006);
+    ///Mobileye vendor ID
     pub const MOBILEYE: Self = Self(0x10007);
+    ///Ape vendor ID
     pub const APE: Self = Self(0x10008);
 }
 ///Provided by [`vk1_0`](crate::vk1_0)

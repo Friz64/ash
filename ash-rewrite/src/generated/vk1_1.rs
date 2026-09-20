@@ -131,6 +131,7 @@ impl DescriptorUpdateTemplateType {
     pub const fn as_raw(self) -> i32 {
         self.0
     }
+    ///Create descriptor update template for descriptor set updates
     pub const DESCRIPTOR_SET: Self = Self(0);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
@@ -175,9 +176,13 @@ impl SamplerYcbcrModelConversion {
         self.0
     }
     pub const RGB_IDENTITY: Self = Self(0);
+    ///just range expansion
     pub const YCBCR_IDENTITY: Self = Self(1);
+    ///aka HD YUV
     pub const YCBCR_709: Self = Self(2);
+    ///aka SD YUV
     pub const YCBCR_601: Self = Self(3);
+    ///aka UHD YUV
     pub const YCBCR_2020: Self = Self(4);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)
@@ -190,7 +195,9 @@ impl SamplerYcbcrRange {
     pub const fn as_raw(self) -> i32 {
         self.0
     }
+    ///Luma 0..1 maps to 0..255, chroma -0.5..0.5 to 1..255 (clamped)
     pub const ITU_FULL: Self = Self(0);
+    ///Luma 0..1 maps to 16..235, chroma -0.5..0.5 to 16..240
     pub const ITU_NARROW: Self = Self(1);
 }
 ///Provided by [`vk1_1`](crate::vk1_1)

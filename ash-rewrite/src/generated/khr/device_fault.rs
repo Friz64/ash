@@ -19,6 +19,7 @@ impl DeviceFaultAddressTypeKHR {
     pub const fn as_raw(self) -> i32 {
         self.0
     }
+    ///Currently unused
     pub const NONE_KHR: Self = Self(0);
     pub const READ_INVALID_KHR: Self = Self(1);
     pub const WRITE_INVALID_KHR: Self = Self(2);

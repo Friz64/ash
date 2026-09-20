@@ -119,9 +119,13 @@ impl Code for Enum {
                 }
             };
 
+            let comment = item.comment.map(|comment| quote! { #[doc = #comment] });
             impl_map.extend(CodeMap::new(
                 Destination::primary_location(item.required_by),
-                quote! { pub const #name: Self = #value; },
+                quote! {
+                   #comment
+                   pub const #name: Self = #value;
+                },
             ));
         }
 
