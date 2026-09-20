@@ -132,6 +132,29 @@ pub(crate) mod reexport {
 - `general_frame_only_constraint_flag` @ `4..5`*/
         pub bitfield0: u32,
     }
+    impl core::fmt::Debug for H265ProfileTierLevelFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265ProfileTierLevelFlags")
+                .field("general_tier_flag", &self.get_general_tier_flag())
+                .field(
+                    "general_progressive_source_flag",
+                    &self.get_general_progressive_source_flag(),
+                )
+                .field(
+                    "general_interlaced_source_flag",
+                    &self.get_general_interlaced_source_flag(),
+                )
+                .field(
+                    "general_non_packed_constraint_flag",
+                    &self.get_general_non_packed_constraint_flag(),
+                )
+                .field(
+                    "general_frame_only_constraint_flag",
+                    &self.get_general_frame_only_constraint_flag(),
+                )
+                .finish()
+        }
+    }
     impl H265ProfileTierLevelFlags {
         pub fn general_tier_flag(mut self, general_tier_flag: u32) -> Self {
             let rest = self.bitfield0 & 0xFFFFFFFE;
@@ -191,7 +214,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct H265ProfileTierLevel {
         pub flags: crate::vk::H265ProfileTierLevelFlags,
         pub general_profile_idc: crate::vk::H265ProfileIdc,
@@ -231,6 +254,21 @@ pub(crate) mod reexport {
                 max_dec_pic_buffering_minus1: unsafe { core::mem::zeroed() },
                 max_num_reorder_pics: unsafe { core::mem::zeroed() },
             }
+        }
+    }
+    impl core::fmt::Debug for H265DecPicBufMgr {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265DecPicBufMgr")
+                .field(
+                    "max_latency_increase_plus1",
+                    self.max_latency_increase_plus1_as_c_str(),
+                )
+                .field(
+                    "max_dec_pic_buffering_minus1",
+                    self.max_dec_pic_buffering_minus1_as_c_str(),
+                )
+                .field("max_num_reorder_pics", self.max_num_reorder_pics_as_c_str())
+                .finish()
         }
     }
     impl H265DecPicBufMgr {
@@ -274,6 +312,23 @@ pub(crate) mod reexport {
                 bit_rate_du_value_minus1: unsafe { core::mem::zeroed() },
                 cbr_flag: Default::default(),
             }
+        }
+    }
+    impl core::fmt::Debug for H265SubLayerHrdParameters {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265SubLayerHrdParameters")
+                .field("bit_rate_value_minus1", self.bit_rate_value_minus1_as_c_str())
+                .field("cpb_size_value_minus1", self.cpb_size_value_minus1_as_c_str())
+                .field(
+                    "cpb_size_du_value_minus1",
+                    self.cpb_size_du_value_minus1_as_c_str(),
+                )
+                .field(
+                    "bit_rate_du_value_minus1",
+                    self.bit_rate_du_value_minus1_as_c_str(),
+                )
+                .field("cbr_flag", &self.cbr_flag)
+                .finish()
         }
     }
     impl H265SubLayerHrdParameters {
@@ -321,6 +376,37 @@ pub(crate) mod reexport {
 - `fixed_pic_rate_within_cvs_flag` @ `12..20`
 - `low_delay_hrd_flag` @ `20..28`*/
         pub bitfield0: u32,
+    }
+    impl core::fmt::Debug for H265HrdFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265HrdFlags")
+                .field(
+                    "nal_hrd_parameters_present_flag",
+                    &self.get_nal_hrd_parameters_present_flag(),
+                )
+                .field(
+                    "vcl_hrd_parameters_present_flag",
+                    &self.get_vcl_hrd_parameters_present_flag(),
+                )
+                .field(
+                    "sub_pic_hrd_params_present_flag",
+                    &self.get_sub_pic_hrd_params_present_flag(),
+                )
+                .field(
+                    "sub_pic_cpb_params_in_pic_timing_sei_flag",
+                    &self.get_sub_pic_cpb_params_in_pic_timing_sei_flag(),
+                )
+                .field(
+                    "fixed_pic_rate_general_flag",
+                    &self.get_fixed_pic_rate_general_flag(),
+                )
+                .field(
+                    "fixed_pic_rate_within_cvs_flag",
+                    &self.get_fixed_pic_rate_within_cvs_flag(),
+                )
+                .field("low_delay_hrd_flag", &self.get_low_delay_hrd_flag())
+                .finish()
+        }
     }
     impl H265HrdFlags {
         pub fn nal_hrd_parameters_present_flag(
@@ -445,6 +531,51 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for H265HrdParameters<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265HrdParameters")
+                .field("flags", &self.flags)
+                .field("tick_divisor_minus2", &self.tick_divisor_minus2)
+                .field(
+                    "du_cpb_removal_delay_increment_length_minus1",
+                    &self.du_cpb_removal_delay_increment_length_minus1,
+                )
+                .field(
+                    "dpb_output_delay_du_length_minus1",
+                    &self.dpb_output_delay_du_length_minus1,
+                )
+                .field("bit_rate_scale", &self.bit_rate_scale)
+                .field("cpb_size_scale", &self.cpb_size_scale)
+                .field("cpb_size_du_scale", &self.cpb_size_du_scale)
+                .field(
+                    "initial_cpb_removal_delay_length_minus1",
+                    &self.initial_cpb_removal_delay_length_minus1,
+                )
+                .field(
+                    "au_cpb_removal_delay_length_minus1",
+                    &self.au_cpb_removal_delay_length_minus1,
+                )
+                .field(
+                    "dpb_output_delay_length_minus1",
+                    &self.dpb_output_delay_length_minus1,
+                )
+                .field("cpb_cnt_minus1", self.cpb_cnt_minus1_as_c_str())
+                .field(
+                    "elemental_duration_in_tc_minus1",
+                    self.elemental_duration_in_tc_minus1_as_c_str(),
+                )
+                .field("reserved", self.reserved_as_c_str())
+                .field(
+                    "p_sub_layer_hrd_parameters_nal",
+                    &self.p_sub_layer_hrd_parameters_nal,
+                )
+                .field(
+                    "p_sub_layer_hrd_parameters_vcl",
+                    &self.p_sub_layer_hrd_parameters_vcl,
+                )
+                .finish()
+        }
+    }
     impl<'a> H265HrdParameters<'a> {
         pub fn flags(mut self, flags: crate::vk::H265HrdFlags) -> Self {
             self.flags = flags;
@@ -544,6 +675,28 @@ pub(crate) mod reexport {
 - `vps_poc_proportional_to_timing_flag` @ `3..4`*/
         pub bitfield0: u32,
     }
+    impl core::fmt::Debug for H265VpsFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265VpsFlags")
+                .field(
+                    "vps_temporal_id_nesting_flag",
+                    &self.get_vps_temporal_id_nesting_flag(),
+                )
+                .field(
+                    "vps_sub_layer_ordering_info_present_flag",
+                    &self.get_vps_sub_layer_ordering_info_present_flag(),
+                )
+                .field(
+                    "vps_timing_info_present_flag",
+                    &self.get_vps_timing_info_present_flag(),
+                )
+                .field(
+                    "vps_poc_proportional_to_timing_flag",
+                    &self.get_vps_poc_proportional_to_timing_flag(),
+                )
+                .finish()
+        }
+    }
     impl H265VpsFlags {
         pub fn vps_temporal_id_nesting_flag(
             mut self,
@@ -594,7 +747,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct H265VideoParameterSet<'a> {
         pub flags: crate::vk::H265VpsFlags,
         pub vps_video_parameter_set_id: u8,
@@ -706,6 +859,24 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for H265ScalingLists {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265ScalingLists")
+                .field("scaling_list4x4", self.scaling_list4x4_as_c_str())
+                .field("scaling_list8x8", self.scaling_list8x8_as_c_str())
+                .field("scaling_list16x16", self.scaling_list16x16_as_c_str())
+                .field("scaling_list32x32", self.scaling_list32x32_as_c_str())
+                .field(
+                    "scaling_list_dc_coef16x16",
+                    self.scaling_list_dc_coef16x16_as_c_str(),
+                )
+                .field(
+                    "scaling_list_dc_coef32x32",
+                    self.scaling_list_dc_coef32x32_as_c_str(),
+                )
+                .finish()
+        }
+    }
     impl H265ScalingLists {
         pub fn scaling_list4x4(
             mut self,
@@ -762,6 +933,17 @@ pub(crate) mod reexport {
         /**- `inter_ref_pic_set_prediction_flag` @ `0..1`
 - `delta_rps_sign` @ `1..2`*/
         pub bitfield0: u32,
+    }
+    impl core::fmt::Debug for H265ShortTermRefPicSetFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265ShortTermRefPicSetFlags")
+                .field(
+                    "inter_ref_pic_set_prediction_flag",
+                    &self.get_inter_ref_pic_set_prediction_flag(),
+                )
+                .field("delta_rps_sign", &self.get_delta_rps_sign())
+                .finish()
+        }
     }
     impl H265ShortTermRefPicSetFlags {
         pub fn inter_ref_pic_set_prediction_flag(
@@ -820,6 +1002,26 @@ pub(crate) mod reexport {
                 delta_poc_s0_minus1: unsafe { core::mem::zeroed() },
                 delta_poc_s1_minus1: unsafe { core::mem::zeroed() },
             }
+        }
+    }
+    impl core::fmt::Debug for H265ShortTermRefPicSet {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265ShortTermRefPicSet")
+                .field("flags", &self.flags)
+                .field("delta_idx_minus1", &self.delta_idx_minus1)
+                .field("use_delta_flag", &self.use_delta_flag)
+                .field("abs_delta_rps_minus1", &self.abs_delta_rps_minus1)
+                .field("used_by_curr_pic_flag", &self.used_by_curr_pic_flag)
+                .field("used_by_curr_pic_s0_flag", &self.used_by_curr_pic_s0_flag)
+                .field("used_by_curr_pic_s1_flag", &self.used_by_curr_pic_s1_flag)
+                .field("reserved1", &self.reserved1)
+                .field("reserved2", &self.reserved2)
+                .field("reserved3", &self.reserved3)
+                .field("num_negative_pics", &self.num_negative_pics)
+                .field("num_positive_pics", &self.num_positive_pics)
+                .field("delta_poc_s0_minus1", self.delta_poc_s0_minus1_as_c_str())
+                .field("delta_poc_s1_minus1", self.delta_poc_s1_minus1_as_c_str())
+                .finish()
         }
     }
     impl H265ShortTermRefPicSet {
@@ -907,6 +1109,17 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for H265LongTermRefPicsSps {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265LongTermRefPicsSps")
+                .field(
+                    "used_by_curr_pic_lt_sps_flag",
+                    &self.used_by_curr_pic_lt_sps_flag,
+                )
+                .field("lt_ref_pic_poc_lsb_sps", self.lt_ref_pic_poc_lsb_sps_as_c_str())
+                .finish()
+        }
+    }
     impl H265LongTermRefPicsSps {
         pub fn used_by_curr_pic_lt_sps_flag(
             mut self,
@@ -946,6 +1159,78 @@ pub(crate) mod reexport {
 - `motion_vectors_over_pic_boundaries_flag` @ `16..17`
 - `restricted_ref_pic_lists_flag` @ `17..18`*/
         pub bitfield0: u32,
+    }
+    impl core::fmt::Debug for H265SpsVuiFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265SpsVuiFlags")
+                .field(
+                    "aspect_ratio_info_present_flag",
+                    &self.get_aspect_ratio_info_present_flag(),
+                )
+                .field(
+                    "overscan_info_present_flag",
+                    &self.get_overscan_info_present_flag(),
+                )
+                .field(
+                    "overscan_appropriate_flag",
+                    &self.get_overscan_appropriate_flag(),
+                )
+                .field(
+                    "video_signal_type_present_flag",
+                    &self.get_video_signal_type_present_flag(),
+                )
+                .field("video_full_range_flag", &self.get_video_full_range_flag())
+                .field(
+                    "colour_description_present_flag",
+                    &self.get_colour_description_present_flag(),
+                )
+                .field(
+                    "chroma_loc_info_present_flag",
+                    &self.get_chroma_loc_info_present_flag(),
+                )
+                .field(
+                    "neutral_chroma_indication_flag",
+                    &self.get_neutral_chroma_indication_flag(),
+                )
+                .field("field_seq_flag", &self.get_field_seq_flag())
+                .field(
+                    "frame_field_info_present_flag",
+                    &self.get_frame_field_info_present_flag(),
+                )
+                .field(
+                    "default_display_window_flag",
+                    &self.get_default_display_window_flag(),
+                )
+                .field(
+                    "vui_timing_info_present_flag",
+                    &self.get_vui_timing_info_present_flag(),
+                )
+                .field(
+                    "vui_poc_proportional_to_timing_flag",
+                    &self.get_vui_poc_proportional_to_timing_flag(),
+                )
+                .field(
+                    "vui_hrd_parameters_present_flag",
+                    &self.get_vui_hrd_parameters_present_flag(),
+                )
+                .field(
+                    "bitstream_restriction_flag",
+                    &self.get_bitstream_restriction_flag(),
+                )
+                .field(
+                    "tiles_fixed_structure_flag",
+                    &self.get_tiles_fixed_structure_flag(),
+                )
+                .field(
+                    "motion_vectors_over_pic_boundaries_flag",
+                    &self.get_motion_vectors_over_pic_boundaries_flag(),
+                )
+                .field(
+                    "restricted_ref_pic_lists_flag",
+                    &self.get_restricted_ref_pic_lists_flag(),
+                )
+                .finish()
+        }
     }
     impl H265SpsVuiFlags {
         pub fn aspect_ratio_info_present_flag(
@@ -1153,7 +1438,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct H265SequenceParameterSetVui<'a> {
         pub flags: crate::vk::H265SpsVuiFlags,
         pub aspect_ratio_idc: crate::vk::H265AspectRatioIdc,
@@ -1338,6 +1623,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for H265PredictorPaletteEntries {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265PredictorPaletteEntries")
+                .field(
+                    "predictor_palette_entries",
+                    self.predictor_palette_entries_as_c_str(),
+                )
+                .finish()
+        }
+    }
     impl H265PredictorPaletteEntries {
         pub fn predictor_palette_entries(
             mut self,
@@ -1382,6 +1677,117 @@ pub(crate) mod reexport {
 - `sps_palette_predictor_initializers_present_flag` @ `28..29`
 - `intra_boundary_filtering_disabled_flag` @ `29..30`*/
         pub bitfield0: u32,
+    }
+    impl core::fmt::Debug for H265SpsFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265SpsFlags")
+                .field(
+                    "sps_temporal_id_nesting_flag",
+                    &self.get_sps_temporal_id_nesting_flag(),
+                )
+                .field(
+                    "separate_colour_plane_flag",
+                    &self.get_separate_colour_plane_flag(),
+                )
+                .field("conformance_window_flag", &self.get_conformance_window_flag())
+                .field(
+                    "sps_sub_layer_ordering_info_present_flag",
+                    &self.get_sps_sub_layer_ordering_info_present_flag(),
+                )
+                .field(
+                    "scaling_list_enabled_flag",
+                    &self.get_scaling_list_enabled_flag(),
+                )
+                .field(
+                    "sps_scaling_list_data_present_flag",
+                    &self.get_sps_scaling_list_data_present_flag(),
+                )
+                .field("amp_enabled_flag", &self.get_amp_enabled_flag())
+                .field(
+                    "sample_adaptive_offset_enabled_flag",
+                    &self.get_sample_adaptive_offset_enabled_flag(),
+                )
+                .field("pcm_enabled_flag", &self.get_pcm_enabled_flag())
+                .field(
+                    "pcm_loop_filter_disabled_flag",
+                    &self.get_pcm_loop_filter_disabled_flag(),
+                )
+                .field(
+                    "long_term_ref_pics_present_flag",
+                    &self.get_long_term_ref_pics_present_flag(),
+                )
+                .field(
+                    "sps_temporal_mvp_enabled_flag",
+                    &self.get_sps_temporal_mvp_enabled_flag(),
+                )
+                .field(
+                    "strong_intra_smoothing_enabled_flag",
+                    &self.get_strong_intra_smoothing_enabled_flag(),
+                )
+                .field(
+                    "vui_parameters_present_flag",
+                    &self.get_vui_parameters_present_flag(),
+                )
+                .field(
+                    "sps_extension_present_flag",
+                    &self.get_sps_extension_present_flag(),
+                )
+                .field("sps_range_extension_flag", &self.get_sps_range_extension_flag())
+                .field(
+                    "transform_skip_rotation_enabled_flag",
+                    &self.get_transform_skip_rotation_enabled_flag(),
+                )
+                .field(
+                    "transform_skip_context_enabled_flag",
+                    &self.get_transform_skip_context_enabled_flag(),
+                )
+                .field(
+                    "implicit_rdpcm_enabled_flag",
+                    &self.get_implicit_rdpcm_enabled_flag(),
+                )
+                .field(
+                    "explicit_rdpcm_enabled_flag",
+                    &self.get_explicit_rdpcm_enabled_flag(),
+                )
+                .field(
+                    "extended_precision_processing_flag",
+                    &self.get_extended_precision_processing_flag(),
+                )
+                .field(
+                    "intra_smoothing_disabled_flag",
+                    &self.get_intra_smoothing_disabled_flag(),
+                )
+                .field(
+                    "high_precision_offsets_enabled_flag",
+                    &self.get_high_precision_offsets_enabled_flag(),
+                )
+                .field(
+                    "persistent_rice_adaptation_enabled_flag",
+                    &self.get_persistent_rice_adaptation_enabled_flag(),
+                )
+                .field(
+                    "cabac_bypass_alignment_enabled_flag",
+                    &self.get_cabac_bypass_alignment_enabled_flag(),
+                )
+                .field("sps_scc_extension_flag", &self.get_sps_scc_extension_flag())
+                .field(
+                    "sps_curr_pic_ref_enabled_flag",
+                    &self.get_sps_curr_pic_ref_enabled_flag(),
+                )
+                .field(
+                    "palette_mode_enabled_flag",
+                    &self.get_palette_mode_enabled_flag(),
+                )
+                .field(
+                    "sps_palette_predictor_initializers_present_flag",
+                    &self.get_sps_palette_predictor_initializers_present_flag(),
+                )
+                .field(
+                    "intra_boundary_filtering_disabled_flag",
+                    &self.get_intra_boundary_filtering_disabled_flag(),
+                )
+                .finish()
+        }
     }
     impl H265SpsFlags {
         pub fn sps_temporal_id_nesting_flag(
@@ -1724,7 +2130,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct H265SequenceParameterSet<'a> {
         pub flags: crate::vk::H265SpsFlags,
         pub chroma_format_idc: crate::vk::H265ChromaFormatIdc,
@@ -2040,6 +2446,109 @@ pub(crate) mod reexport {
 - `monochrome_palette_flag` @ `29..30`
 - `pps_range_extension_flag` @ `30..31`*/
         pub bitfield0: u32,
+    }
+    impl core::fmt::Debug for H265PpsFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265PpsFlags")
+                .field(
+                    "dependent_slice_segments_enabled_flag",
+                    &self.get_dependent_slice_segments_enabled_flag(),
+                )
+                .field("output_flag_present_flag", &self.get_output_flag_present_flag())
+                .field(
+                    "sign_data_hiding_enabled_flag",
+                    &self.get_sign_data_hiding_enabled_flag(),
+                )
+                .field("cabac_init_present_flag", &self.get_cabac_init_present_flag())
+                .field(
+                    "constrained_intra_pred_flag",
+                    &self.get_constrained_intra_pred_flag(),
+                )
+                .field(
+                    "transform_skip_enabled_flag",
+                    &self.get_transform_skip_enabled_flag(),
+                )
+                .field("cu_qp_delta_enabled_flag", &self.get_cu_qp_delta_enabled_flag())
+                .field(
+                    "pps_slice_chroma_qp_offsets_present_flag",
+                    &self.get_pps_slice_chroma_qp_offsets_present_flag(),
+                )
+                .field("weighted_pred_flag", &self.get_weighted_pred_flag())
+                .field("weighted_bipred_flag", &self.get_weighted_bipred_flag())
+                .field(
+                    "transquant_bypass_enabled_flag",
+                    &self.get_transquant_bypass_enabled_flag(),
+                )
+                .field("tiles_enabled_flag", &self.get_tiles_enabled_flag())
+                .field(
+                    "entropy_coding_sync_enabled_flag",
+                    &self.get_entropy_coding_sync_enabled_flag(),
+                )
+                .field("uniform_spacing_flag", &self.get_uniform_spacing_flag())
+                .field(
+                    "loop_filter_across_tiles_enabled_flag",
+                    &self.get_loop_filter_across_tiles_enabled_flag(),
+                )
+                .field(
+                    "pps_loop_filter_across_slices_enabled_flag",
+                    &self.get_pps_loop_filter_across_slices_enabled_flag(),
+                )
+                .field(
+                    "deblocking_filter_control_present_flag",
+                    &self.get_deblocking_filter_control_present_flag(),
+                )
+                .field(
+                    "deblocking_filter_override_enabled_flag",
+                    &self.get_deblocking_filter_override_enabled_flag(),
+                )
+                .field(
+                    "pps_deblocking_filter_disabled_flag",
+                    &self.get_pps_deblocking_filter_disabled_flag(),
+                )
+                .field(
+                    "pps_scaling_list_data_present_flag",
+                    &self.get_pps_scaling_list_data_present_flag(),
+                )
+                .field(
+                    "lists_modification_present_flag",
+                    &self.get_lists_modification_present_flag(),
+                )
+                .field(
+                    "slice_segment_header_extension_present_flag",
+                    &self.get_slice_segment_header_extension_present_flag(),
+                )
+                .field(
+                    "pps_extension_present_flag",
+                    &self.get_pps_extension_present_flag(),
+                )
+                .field(
+                    "cross_component_prediction_enabled_flag",
+                    &self.get_cross_component_prediction_enabled_flag(),
+                )
+                .field(
+                    "chroma_qp_offset_list_enabled_flag",
+                    &self.get_chroma_qp_offset_list_enabled_flag(),
+                )
+                .field(
+                    "pps_curr_pic_ref_enabled_flag",
+                    &self.get_pps_curr_pic_ref_enabled_flag(),
+                )
+                .field(
+                    "residual_adaptive_colour_transform_enabled_flag",
+                    &self.get_residual_adaptive_colour_transform_enabled_flag(),
+                )
+                .field(
+                    "pps_slice_act_qp_offsets_present_flag",
+                    &self.get_pps_slice_act_qp_offsets_present_flag(),
+                )
+                .field(
+                    "pps_palette_predictor_initializers_present_flag",
+                    &self.get_pps_palette_predictor_initializers_present_flag(),
+                )
+                .field("monochrome_palette_flag", &self.get_monochrome_palette_flag())
+                .field("pps_range_extension_flag", &self.get_pps_range_extension_flag())
+                .finish()
+        }
     }
     impl H265PpsFlags {
         pub fn dependent_slice_segments_enabled_flag(
@@ -2468,6 +2977,75 @@ pub(crate) mod reexport {
                 p_predictor_palette_entries: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> core::fmt::Debug for H265PictureParameterSet<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH265PictureParameterSet")
+                .field("flags", &self.flags)
+                .field("pps_pic_parameter_set_id", &self.pps_pic_parameter_set_id)
+                .field("pps_seq_parameter_set_id", &self.pps_seq_parameter_set_id)
+                .field("sps_video_parameter_set_id", &self.sps_video_parameter_set_id)
+                .field("num_extra_slice_header_bits", &self.num_extra_slice_header_bits)
+                .field(
+                    "num_ref_idx_l0_default_active_minus1",
+                    &self.num_ref_idx_l0_default_active_minus1,
+                )
+                .field(
+                    "num_ref_idx_l1_default_active_minus1",
+                    &self.num_ref_idx_l1_default_active_minus1,
+                )
+                .field("init_qp_minus26", &self.init_qp_minus26)
+                .field("diff_cu_qp_delta_depth", &self.diff_cu_qp_delta_depth)
+                .field("pps_cb_qp_offset", &self.pps_cb_qp_offset)
+                .field("pps_cr_qp_offset", &self.pps_cr_qp_offset)
+                .field("pps_beta_offset_div2", &self.pps_beta_offset_div2)
+                .field("pps_tc_offset_div2", &self.pps_tc_offset_div2)
+                .field(
+                    "log2_parallel_merge_level_minus2",
+                    &self.log2_parallel_merge_level_minus2,
+                )
+                .field(
+                    "log2_max_transform_skip_block_size_minus2",
+                    &self.log2_max_transform_skip_block_size_minus2,
+                )
+                .field(
+                    "diff_cu_chroma_qp_offset_depth",
+                    &self.diff_cu_chroma_qp_offset_depth,
+                )
+                .field(
+                    "chroma_qp_offset_list_len_minus1",
+                    &self.chroma_qp_offset_list_len_minus1,
+                )
+                .field("cb_qp_offset_list", self.cb_qp_offset_list_as_c_str())
+                .field("cr_qp_offset_list", self.cr_qp_offset_list_as_c_str())
+                .field("log2_sao_offset_scale_luma", &self.log2_sao_offset_scale_luma)
+                .field(
+                    "log2_sao_offset_scale_chroma",
+                    &self.log2_sao_offset_scale_chroma,
+                )
+                .field("pps_act_y_qp_offset_plus5", &self.pps_act_y_qp_offset_plus5)
+                .field("pps_act_cb_qp_offset_plus5", &self.pps_act_cb_qp_offset_plus5)
+                .field("pps_act_cr_qp_offset_plus3", &self.pps_act_cr_qp_offset_plus3)
+                .field(
+                    "pps_num_palette_predictor_initializers",
+                    &self.pps_num_palette_predictor_initializers,
+                )
+                .field("luma_bit_depth_entry_minus8", &self.luma_bit_depth_entry_minus8)
+                .field(
+                    "chroma_bit_depth_entry_minus8",
+                    &self.chroma_bit_depth_entry_minus8,
+                )
+                .field("num_tile_columns_minus1", &self.num_tile_columns_minus1)
+                .field("num_tile_rows_minus1", &self.num_tile_rows_minus1)
+                .field("reserved1", &self.reserved1)
+                .field("reserved2", &self.reserved2)
+                .field("column_width_minus1", self.column_width_minus1_as_c_str())
+                .field("row_height_minus1", self.row_height_minus1_as_c_str())
+                .field("reserved3", &self.reserved3)
+                .field("p_scaling_lists", &self.p_scaling_lists)
+                .field("p_predictor_palette_entries", &self.p_predictor_palette_entries)
+                .finish()
         }
     }
     impl<'a> H265PictureParameterSet<'a> {

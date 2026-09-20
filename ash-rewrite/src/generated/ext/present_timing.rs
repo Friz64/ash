@@ -155,7 +155,7 @@ pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_present_timing";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDevicePresentTimingFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -205,7 +205,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PresentTimingSurfaceCapabilitiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -267,7 +267,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SwapchainTimingPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -300,7 +300,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SwapchainTimeDomainPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -340,7 +340,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PresentStageTimeEXT {
         pub stage: crate::vk::PresentStageFlagsEXT,
         pub time: u64,
@@ -356,7 +356,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PastPresentationTimingInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -392,7 +392,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PastPresentationTimingPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -441,7 +441,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PastPresentationTimingEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -504,7 +504,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PresentTimingsInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -539,7 +539,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PresentTimingInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -596,7 +596,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SwapchainCalibratedTimestampInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -641,7 +641,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PresentStageFlagsEXT(u32);
     impl PresentStageFlagsEXT {
         pub const QUEUE_OPERATIONS_END_EXT: Self = Self(
@@ -673,11 +673,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PresentStageFlagsEXT {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PresentStageFlagsEXT {
@@ -720,10 +715,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PresentStageFlagBitsEXT(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PastPresentationTimingFlagsEXT(u32);
     impl PastPresentationTimingFlagsEXT {
         pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(
@@ -749,11 +744,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PastPresentationTimingFlagsEXT {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PastPresentationTimingFlagsEXT {
@@ -796,10 +786,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PastPresentationTimingFlagBitsEXT(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PresentTimingInfoFlagsEXT(u32);
     impl PresentTimingInfoFlagsEXT {
         pub const PRESENT_AT_RELATIVE_TIME_EXT: Self = Self(
@@ -825,11 +815,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PresentTimingInfoFlagsEXT {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PresentTimingInfoFlagsEXT {
@@ -872,7 +857,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PresentTimingInfoFlagBitsEXT(pub(crate) u32);
     pub type PFN_vkSetSwapchainPresentTimingQueueSizeEXT = unsafe extern "system" fn(
         device: crate::vk::Device,

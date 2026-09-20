@@ -82,7 +82,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_performance_counters_by_region";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -117,7 +117,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -180,7 +180,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PerformanceCounterARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -229,6 +229,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PerformanceCounterDescriptionARM<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPerformanceCounterDescriptionARM")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("flags", &self.flags)
+                .field("name", self.name_as_c_str())
+                .finish()
+        }
+    }
     impl<'a> PerformanceCounterDescriptionARM<'a> {
         pub fn flags(
             mut self,
@@ -250,7 +260,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -303,7 +313,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PerformanceCounterDescriptionFlagsARM(u32);
     impl PerformanceCounterDescriptionFlagsARM {
         pub const fn empty() -> Self {
@@ -323,11 +333,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PerformanceCounterDescriptionFlagsARM {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PerformanceCounterDescriptionFlagsARM {

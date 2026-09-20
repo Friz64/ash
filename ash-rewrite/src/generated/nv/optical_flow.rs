@@ -271,7 +271,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_optical_flow";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceOpticalFlowFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -303,7 +303,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceOpticalFlowPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -405,7 +405,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct OpticalFlowImageFormatInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -436,7 +436,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct OpticalFlowImageFormatPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -464,7 +464,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct OpticalFlowSessionCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -554,7 +554,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -596,7 +596,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct OpticalFlowExecuteInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -640,7 +640,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct OpticalFlowSessionBindingPointNV(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct OpticalFlowGridSizeFlagsNV(u32);
     impl OpticalFlowGridSizeFlagsNV {
         pub const UNKNOWN_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::UNKNOWN_NV.0);
@@ -665,11 +665,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for OpticalFlowGridSizeFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for OpticalFlowGridSizeFlagsNV {
@@ -712,10 +707,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct OpticalFlowGridSizeFlagBitsNV(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct OpticalFlowUsageFlagsNV(u32);
     impl OpticalFlowUsageFlagsNV {
         pub const UNKNOWN_NV: Self = Self(OpticalFlowUsageFlagBitsNV::UNKNOWN_NV.0);
@@ -743,11 +738,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for OpticalFlowUsageFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for OpticalFlowUsageFlagsNV {
@@ -790,10 +780,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct OpticalFlowUsageFlagBitsNV(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct OpticalFlowSessionCreateFlagsNV(u32);
     impl OpticalFlowSessionCreateFlagsNV {
         pub const ENABLE_HINT_NV: Self = Self(
@@ -828,11 +818,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for OpticalFlowSessionCreateFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for OpticalFlowSessionCreateFlagsNV {
@@ -875,10 +860,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct OpticalFlowExecuteFlagsNV(u32);
     impl OpticalFlowExecuteFlagsNV {
         pub const DISABLE_TEMPORAL_HINTS_NV: Self = Self(
@@ -901,11 +886,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for OpticalFlowExecuteFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for OpticalFlowExecuteFlagsNV {
@@ -948,7 +928,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) u32);
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]

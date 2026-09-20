@@ -78,7 +78,7 @@ pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_device_fault";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceFaultFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -118,7 +118,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DeviceFaultCountsEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -184,6 +184,18 @@ pub(crate) mod reexport {
                 p_vendor_binary_data: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> core::fmt::Debug for DeviceFaultInfoEXT<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkDeviceFaultInfoEXT")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("description", self.description_as_c_str())
+                .field("p_address_infos", &self.p_address_infos)
+                .field("p_vendor_infos", &self.p_vendor_infos)
+                .field("p_vendor_binary_data", &self.p_vendor_binary_data)
+                .finish()
         }
     }
     impl<'a> DeviceFaultInfoEXT<'a> {

@@ -125,7 +125,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_device_fault";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DeviceFaultAddressInfoKHR {
         pub address_type: crate::vk::DeviceFaultAddressTypeKHR,
         pub reported_address: crate::vk::DeviceAddress,
@@ -168,6 +168,15 @@ pub(crate) mod reexport {
                 vendor_fault_code: Default::default(),
                 vendor_fault_data: Default::default(),
             }
+        }
+    }
+    impl core::fmt::Debug for DeviceFaultVendorInfoKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkDeviceFaultVendorInfoKHR")
+                .field("description", self.description_as_c_str())
+                .field("vendor_fault_code", &self.vendor_fault_code)
+                .field("vendor_fault_data", &self.vendor_fault_data)
+                .finish()
         }
     }
     impl DeviceFaultVendorInfoKHR {
@@ -223,6 +232,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for DeviceFaultInfoKHR<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkDeviceFaultInfoKHR")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("flags", &self.flags)
+                .field("group_id", &self.group_id)
+                .field("description", self.description_as_c_str())
+                .field("fault_address_info", &self.fault_address_info)
+                .field("instruction_address_info", &self.instruction_address_info)
+                .field("vendor_info", &self.vendor_info)
+                .finish()
+        }
+    }
     impl<'a> DeviceFaultInfoKHR<'a> {
         pub fn flags(mut self, flags: crate::vk::DeviceFaultFlagsKHR) -> Self {
             self.flags = flags;
@@ -267,7 +290,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DeviceFaultDebugInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -328,6 +351,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for DeviceFaultVendorBinaryHeaderVersionOneKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkDeviceFaultVendorBinaryHeaderVersionOneKHR")
+                .field("header_size", &self.header_size)
+                .field("header_version", &self.header_version)
+                .field("vendor_id", &self.vendor_id)
+                .field("device_id", &self.device_id)
+                .field("driver_version", &self.driver_version)
+                .field("pipeline_cache_uuid", self.pipeline_cache_uuid_as_c_str())
+                .field("application_name_offset", &self.application_name_offset)
+                .field("application_version", &self.application_version)
+                .field("engine_name_offset", &self.engine_name_offset)
+                .field("engine_version", &self.engine_version)
+                .field("api_version", &self.api_version)
+                .finish()
+        }
+    }
     impl DeviceFaultVendorBinaryHeaderVersionOneKHR {
         pub fn header_size(mut self, header_size: u32) -> Self {
             self.header_size = header_size;
@@ -381,7 +421,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceFaultFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -440,7 +480,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceFaultPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -477,7 +517,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct DeviceFaultVendorBinaryHeaderVersionKHR(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DeviceFaultFlagsKHR(u32);
     impl DeviceFaultFlagsKHR {
         pub const FLAG_DEVICE_LOST_KHR: Self = Self(
@@ -515,11 +555,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DeviceFaultFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DeviceFaultFlagsKHR {
@@ -562,7 +597,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DeviceFaultFlagBitsKHR(pub(crate) u32);
     pub type PFN_vkGetDeviceFaultReportsKHR = unsafe extern "system" fn(
         device: crate::vk::Device,

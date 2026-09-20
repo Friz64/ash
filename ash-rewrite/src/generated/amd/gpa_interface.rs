@@ -360,7 +360,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_gpa_interface";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct GpaPerfBlockPropertiesAMD {
         pub block_type: crate::vk::GpaPerfBlockAMD,
         pub flags: crate::vk::GpaPerfBlockPropertiesFlagsAMD,
@@ -410,7 +410,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceGpaFeaturesAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -459,7 +459,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceGpaPropertiesAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -518,7 +518,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceGpaProperties2AMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -547,7 +547,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct GpaPerfCounterAMD {
         pub block_type: crate::vk::GpaPerfBlockAMD,
         pub block_instance: u32,
@@ -568,7 +568,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct GpaSampleBeginInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -702,7 +702,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct GpaDeviceClockModeInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -750,7 +750,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct GpaDeviceGetClockInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -801,7 +801,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct GpaSessionCreateInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -843,7 +843,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct GpaDeviceClockModeAMD(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct GpaSqShaderStageFlagsAMD(u32);
     impl GpaSqShaderStageFlagsAMD {
         pub const PS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::PS_AMD.0);
@@ -870,11 +870,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for GpaSqShaderStageFlagsAMD {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for GpaSqShaderStageFlagsAMD {
@@ -917,10 +912,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct GpaSqShaderStageFlagBitsAMD(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct GpaPerfBlockPropertiesFlagsAMD(u32);
     impl GpaPerfBlockPropertiesFlagsAMD {
         pub const fn empty() -> Self {
@@ -940,11 +935,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for GpaPerfBlockPropertiesFlagsAMD {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for GpaPerfBlockPropertiesFlagsAMD {
@@ -987,7 +977,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PhysicalDeviceGpaPropertiesFlagsAMD(u32);
     impl PhysicalDeviceGpaPropertiesFlagsAMD {
         pub const fn empty() -> Self {
@@ -1007,11 +997,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PhysicalDeviceGpaPropertiesFlagsAMD {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PhysicalDeviceGpaPropertiesFlagsAMD {

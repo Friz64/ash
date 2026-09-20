@@ -134,7 +134,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_cache";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ValidationCacheCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -170,7 +170,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ShaderModuleValidationCacheCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -209,7 +209,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct ValidationCacheHeaderVersionEXT(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ValidationCacheCreateFlagsEXT(u32);
     impl ValidationCacheCreateFlagsEXT {
         pub const fn empty() -> Self {
@@ -229,11 +229,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for ValidationCacheCreateFlagsEXT {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for ValidationCacheCreateFlagsEXT {

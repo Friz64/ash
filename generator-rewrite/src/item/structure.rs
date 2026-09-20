@@ -11,7 +11,16 @@ use analysis::{
 use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};
 use std::iter;
+use syn::Ident;
 use tracing::{instrument, trace};
+
+fn as_c_str_method_token(field_name: &Ident) -> Ident {
+    format_ident!("{field_name}_as_c_str")
+}
+
+fn bitfield_name_token(bitfield_i: usize) -> Ident {
+    format_ident!("bitfield{bitfield_i}")
+}
 
 impl Code for Struct {
     #[instrument(skip(ctx))]
@@ -26,23 +35,24 @@ impl Code for Struct {
         let mut bitfield_i = 0;
 
         let mut contains_static_array = false;
+        let mut contains_bitfield = false;
         let members = (self.members.iter()).map(|member| match member {
             Member::Regular(RegularMember { decl, .. }) => {
-                if let Ty::Array(_, _) = &decl.ty {
-                    contains_static_array = true
-                }
+                contains_static_array |= matches!(decl.ty, Ty::Array(..));
 
                 let decl = decl.to_rust().tokens(ctx, &lifetime);
                 quote! { pub #decl }
             }
             Member::Bitfield(ranges) => {
+                contains_bitfield = true;
+
                 let doc: String = ranges
                     .iter()
                     .map(|part| format!("- `{}` @ `{:?}`\n", part.decl.name.original(), part.range))
                     .collect();
                 let doc = doc.trim_ascii_end();
 
-                let name = format_ident!("bitfield{bitfield_i}");
+                let name = bitfield_name_token(bitfield_i);
                 bitfield_i += 1;
                 quote! {
                     #[doc = #doc]
@@ -90,7 +100,7 @@ impl Code for Struct {
         };
 
         let mut bitfield_i = 0;
-        let default = if contains_static_array || tagged_structure.is_some() {
+        let default = (contains_static_array || tagged_structure.is_some()).then(|| {
             let defaults = self.members.iter().map(|member| match member {
                 Member::Regular(RegularMember { decl, .. }) => {
                     let field_name = ctx.variable_token(decl.name);
@@ -107,13 +117,13 @@ impl Code for Struct {
                     }
                 }
                 Member::Bitfield(_) => {
-                    let name = format_ident!("bitfield{bitfield_i}");
+                    let name = bitfield_name_token(bitfield_i);
                     bitfield_i += 1;
                     quote! { #name: Default::default() }
                 }
             });
 
-            Some(quote! {
+            quote! {
                 impl<#lifetime_tok> Default for #name {
                     fn default() -> Self {
                         Self {
@@ -122,19 +132,16 @@ impl Code for Struct {
                         }
                     }
                 }
-            })
-        } else {
-            None
-        };
+            }
+        });
 
-        let derive_default = if default.is_none() {
-            Some(quote! {Default})
-        } else {
-            None
-        };
+        let name_str = self.name.original();
+        let debug = (contains_static_array || contains_bitfield).then(|| quote! { todo });
 
+        let derive_default = default.is_none().then_some(quote! {, Default});
+        let derive_debug = debug.is_none().then_some(quote! {, Debug});
         let derives = quote! {
-            #[derive(Clone, Copy, #derive_default)]
+            #[derive(Clone, Copy #derive_default #derive_debug)]
         };
 
         let mut bitfield_i = 0;
@@ -154,6 +161,7 @@ impl Code for Struct {
             #derives
             #code
             #default
+            #debug
 
             impl<#lifetime_tok> #name {
                 #(#builders)*
@@ -280,7 +288,7 @@ fn regular_builder(
             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
             let ty = RustTy::Ref(Box::new(RustTy::CStr), mutability).tokens(ctx, lifetime);
-            let method_name_as_cstr = format_ident!("{method_name}_as_c_str");
+            let method_name_as_cstr = as_c_str_method_token(&method_name);
             quote! {
                 pub fn #method_name(mut self, #method_name: #ty) -> Self {
                     self.#field_name = #method_name.as_ptr();
@@ -299,7 +307,7 @@ fn regular_builder(
         Ty::Array(Ty::CPrimary(CPrimaryType::Char), _)
             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
-            let method_name_as_cstr = format_ident!("{method_name}_as_c_str");
+            let method_name_as_cstr = as_c_str_method_token(&method_name);
             quote! {
                 pub fn #method_name(mut self, #method_name: &core::ffi::CStr) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
                     crate::write_c_str_slice_with_nul(&mut self.#field_name, #method_name).map(|_| self)
@@ -395,7 +403,7 @@ fn bitfield_builder(
     bitfield_i: usize,
     bitfield_ranges: &[BitfieldMemberRange],
 ) -> impl Iterator<Item = TokenStream> {
-    let name = format_ident!("bitfield{bitfield_i}");
+    let name = bitfield_name_token(bitfield_i);
     bitfield_ranges.iter().map(move |member| {
         let field_name = ctx.variable_token(member.decl.name);
         let mask = {
@@ -432,6 +440,47 @@ fn bitfield_builder(
     })
 }
 
+fn debug_impl() {
+    let debug_fields = self.members.iter().map(|member| match member {
+        Member::Regular(member @ RegularMember { decl, .. }) => {
+            let field_name = ctx.variable_token(decl.name);
+            let field_name_string = field_name.to_string();
+            let value = match decl.ty {
+                Ty::Array(Ty::CPrimary(CPrimaryType::Char), ..)
+                | Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), ..)
+                    if member.length_at_depth(0) == Some(Length::NullTerminated) =>
+                {
+                    let field_as_c_str = as_c_str_method_token(&field_name);
+                    quote! { self.#field_as_c_str() }
+                }
+                _ => quote! { &self.#field_name },
+            };
+
+            quote! { .field(#field_name_string, #value) }
+        }
+        Member::Bitfield(bitfield_ranges) => {
+            let debug_fields = bitfield_ranges.iter().map(|bitfield_member| {
+                let field_name = ctx.variable_token(bitfield_member.decl.name);
+                let field_name_string = field_name.to_string();
+                let get_field_name = format_ident!("get_{field_name}");
+                quote! { .field(#field_name_string, &self.#get_field_name()) }
+            });
+
+            quote! { #( #debug_fields )* }
+        }
+    });
+
+    quote! {
+        impl<#lifetime_tok> core::fmt::Debug for #name {
+            fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                f.debug_struct(#name_str)
+                    #( #debug_fields )*
+                    .finish()
+            }
+        }
+    }
+}
+
 impl Code for Union {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
@@ -443,6 +492,7 @@ impl Code for Union {
         let name = ctx.type_tokens(self.name, false, &lifetime);
         let members = (self.members.iter()).map(|decl| decl.to_rust().tokens(ctx, &lifetime));
 
+        let name_str = self.name.original();
         let code = quote! {
             #[repr(C)]
             #[derive(Clone, Copy)]
@@ -453,6 +503,12 @@ impl Code for Union {
             impl<#lifetime_tok> Default for #name {
                 fn default() -> Self {
                     unsafe { core::mem::zeroed() }
+                }
+            }
+
+            impl<#lifetime_tok> core::fmt::Debug for #name {
+                fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                    write!(f, #name_str)
                 }
             }
         };

@@ -112,7 +112,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageCompressionControlEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -157,7 +157,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -192,7 +192,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageCompressionPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -237,7 +237,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageCompressionFlagsEXT(u32);
     impl ImageCompressionFlagsEXT {
         pub const DEFAULT_EXT: Self = Self(ImageCompressionFlagBitsEXT::DEFAULT_EXT.0);
@@ -265,11 +265,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for ImageCompressionFlagsEXT {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for ImageCompressionFlagsEXT {
@@ -312,10 +307,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageCompressionFlagBitsEXT(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageCompressionFixedRateFlagsEXT(u32);
     impl ImageCompressionFixedRateFlagsEXT {
         pub const NONE_EXT: Self = Self(
@@ -412,11 +407,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for ImageCompressionFixedRateFlagsEXT {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for ImageCompressionFixedRateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -457,7 +447,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageCompressionFixedRateFlagBitsEXT(pub(crate) u32);
 }
 pub use reexport::*;

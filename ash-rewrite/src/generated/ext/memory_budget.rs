@@ -35,6 +35,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceMemoryBudgetPropertiesEXT")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("heap_budget", self.heap_budget_as_c_str())
+                .field("heap_usage", self.heap_usage_as_c_str())
+                .finish()
+        }
+    }
     impl<'a> PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
         pub fn heap_budget(
             mut self,

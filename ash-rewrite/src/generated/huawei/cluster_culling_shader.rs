@@ -132,6 +132,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug
+    for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceClusterCullingShaderPropertiesHUAWEI")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("max_work_group_count", self.max_work_group_count_as_c_str())
+                .field("max_work_group_size", self.max_work_group_size_as_c_str())
+                .field("max_output_cluster_count", &self.max_output_cluster_count)
+                .field(
+                    "indirect_buffer_offset_alignment",
+                    &self.indirect_buffer_offset_alignment,
+                )
+                .finish()
+        }
+    }
     impl<'a> PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
         pub fn max_work_group_count(
             mut self,
@@ -163,7 +179,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -205,7 +221,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,

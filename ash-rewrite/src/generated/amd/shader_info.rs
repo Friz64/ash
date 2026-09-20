@@ -79,7 +79,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_shader_info";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ShaderResourceUsageAMD {
         pub num_used_vgprs: u32,
         pub num_used_sgprs: u32,
@@ -140,6 +140,22 @@ pub(crate) mod reexport {
                 num_available_sgprs: Default::default(),
                 compute_work_group_size: unsafe { core::mem::zeroed() },
             }
+        }
+    }
+    impl core::fmt::Debug for ShaderStatisticsInfoAMD {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkShaderStatisticsInfoAMD")
+                .field("shader_stage_mask", &self.shader_stage_mask)
+                .field("resource_usage", &self.resource_usage)
+                .field("num_physical_vgprs", &self.num_physical_vgprs)
+                .field("num_physical_sgprs", &self.num_physical_sgprs)
+                .field("num_available_vgprs", &self.num_available_vgprs)
+                .field("num_available_sgprs", &self.num_available_sgprs)
+                .field(
+                    "compute_work_group_size",
+                    self.compute_work_group_size_as_c_str(),
+                )
+                .finish()
         }
     }
     impl ShaderStatisticsInfoAMD {

@@ -34,7 +34,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_device_address_binding_report";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -66,7 +66,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DeviceAddressBindingCallbackDataEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -121,7 +121,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DeviceAddressBindingFlagsEXT(u32);
     impl DeviceAddressBindingFlagsEXT {
         pub const INTERNAL_OBJECT_EXT: Self = Self(
@@ -144,11 +144,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DeviceAddressBindingFlagsEXT {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DeviceAddressBindingFlagsEXT {
@@ -191,7 +186,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) u32);
 }
 pub use reexport::*;

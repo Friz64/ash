@@ -10,7 +10,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_pipeline_compiler_control";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineCompilerControlCreateInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -47,7 +47,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineCompilerControlFlagsAMD(u32);
     impl PipelineCompilerControlFlagsAMD {
         pub const fn empty() -> Self {
@@ -67,11 +67,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineCompilerControlFlagsAMD {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineCompilerControlFlagsAMD {
@@ -114,7 +109,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineCompilerControlFlagBitsAMD(pub(crate) u32);
 }
 pub use reexport::*;

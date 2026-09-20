@@ -14,10 +14,11 @@ impl Code for Enum {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
         let name = ctx.type_tokens(self.name, false, &Lifetime::placeholder());
+        // TODO: proper Debug impl
         let code = quote! {
             #[repr(transparent)]
             #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-            #[derive(Debug)] // TODO: proper impl
+            #[derive(Debug)]
             pub struct #name(pub(crate) i32);
         };
 

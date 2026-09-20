@@ -120,7 +120,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_mesh_shader";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceMeshShaderFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -203,6 +203,48 @@ pub(crate) mod reexport {
                 mesh_output_per_primitive_granularity: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> core::fmt::Debug for PhysicalDeviceMeshShaderPropertiesNV<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceMeshShaderPropertiesNV")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("max_draw_mesh_tasks_count", &self.max_draw_mesh_tasks_count)
+                .field(
+                    "max_task_work_group_invocations",
+                    &self.max_task_work_group_invocations,
+                )
+                .field(
+                    "max_task_work_group_size",
+                    self.max_task_work_group_size_as_c_str(),
+                )
+                .field("max_task_total_memory_size", &self.max_task_total_memory_size)
+                .field("max_task_output_count", &self.max_task_output_count)
+                .field(
+                    "max_mesh_work_group_invocations",
+                    &self.max_mesh_work_group_invocations,
+                )
+                .field(
+                    "max_mesh_work_group_size",
+                    self.max_mesh_work_group_size_as_c_str(),
+                )
+                .field("max_mesh_total_memory_size", &self.max_mesh_total_memory_size)
+                .field("max_mesh_output_vertices", &self.max_mesh_output_vertices)
+                .field("max_mesh_output_primitives", &self.max_mesh_output_primitives)
+                .field(
+                    "max_mesh_multiview_view_count",
+                    &self.max_mesh_multiview_view_count,
+                )
+                .field(
+                    "mesh_output_per_vertex_granularity",
+                    &self.mesh_output_per_vertex_granularity,
+                )
+                .field(
+                    "mesh_output_per_primitive_granularity",
+                    &self.mesh_output_per_primitive_granularity,
+                )
+                .finish()
         }
     }
     impl<'a> PhysicalDeviceMeshShaderPropertiesNV<'a> {
@@ -296,7 +338,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DrawMeshTasksIndirectCommandNV {
         pub task_count: u32,
         pub first_task: u32,

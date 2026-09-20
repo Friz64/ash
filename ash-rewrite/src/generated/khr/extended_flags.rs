@@ -67,7 +67,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_extended_flags";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageCreateFlags2CreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -102,7 +102,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageUsageFlags2CreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -145,7 +145,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SharedPresentSurfaceCapabilities2KHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -178,7 +178,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageViewUsage2CreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -207,7 +207,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageStencilUsage2CreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -241,7 +241,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -273,7 +273,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct FormatProperties4KHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -323,7 +323,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct FormatFeatureFlags4KHR(u64);
     impl FormatFeatureFlags4KHR {
         pub const fn empty() -> Self {
@@ -343,11 +343,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for FormatFeatureFlags4KHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for FormatFeatureFlags4KHR {
@@ -390,10 +385,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct FormatFeatureFlagBits4KHR(pub(crate) u64);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageUsageFlags2KHR(u64);
     impl ImageUsageFlags2KHR {
         pub const TRANSFER_SRC_KHR: Self = Self(
@@ -486,11 +481,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for ImageUsageFlags2KHR {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for ImageUsageFlags2KHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -531,10 +521,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageUsageFlagBits2KHR(pub(crate) u64);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageCreateFlags2KHR(u64);
     impl ImageCreateFlags2KHR {
         pub const SPARSE_BINDING_KHR: Self = Self(
@@ -611,11 +601,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for ImageCreateFlags2KHR {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for ImageCreateFlags2KHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -656,7 +641,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageCreateFlagBits2KHR(pub(crate) u64);
 }
 pub use reexport::*;

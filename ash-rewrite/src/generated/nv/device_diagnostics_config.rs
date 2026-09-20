@@ -18,7 +18,7 @@ pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NV_device_diagnostics_config";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -50,7 +50,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -83,7 +83,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DeviceDiagnosticsConfigFlagsNV(u32);
     impl DeviceDiagnosticsConfigFlagsNV {
         pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(
@@ -115,11 +115,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DeviceDiagnosticsConfigFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DeviceDiagnosticsConfigFlagsNV {
@@ -162,7 +157,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) u32);
 }
 pub use reexport::*;

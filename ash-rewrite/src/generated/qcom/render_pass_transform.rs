@@ -17,7 +17,7 @@ pub const SPEC_VERSION: u32 = 5;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_render_pass_transform";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct RenderPassTransformBeginInfoQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -49,7 +49,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,

@@ -20,7 +20,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_av1";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoDecodeAV1ProfileInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -57,7 +57,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoDecodeAV1CapabilitiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -86,7 +86,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -152,6 +152,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for VideoDecodeAV1PictureInfoKHR<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkVideoDecodeAV1PictureInfoKHR")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("p_std_picture_info", &self.p_std_picture_info)
+                .field(
+                    "reference_name_slot_indices",
+                    self.reference_name_slot_indices_as_c_str(),
+                )
+                .field("frame_header_offset", &self.frame_header_offset)
+                .field("tile_count", &self.tile_count)
+                .field("p_tile_offsets", &self.p_tile_offsets)
+                .field("p_tile_sizes", &self.p_tile_sizes)
+                .finish()
+        }
+    }
     impl<'a> VideoDecodeAV1PictureInfoKHR<'a> {
         pub fn std_picture_info(
             mut self,
@@ -184,7 +201,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoDecodeAV1DpbSlotInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,

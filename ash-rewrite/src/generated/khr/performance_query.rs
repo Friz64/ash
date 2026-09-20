@@ -227,7 +227,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_performance_query";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -273,7 +273,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -333,6 +333,18 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PerformanceCounterKHR<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPerformanceCounterKHR")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("unit", &self.unit)
+                .field("scope", &self.scope)
+                .field("storage", &self.storage)
+                .field("uuid", self.uuid_as_c_str())
+                .finish()
+        }
+    }
     impl<'a> PerformanceCounterKHR<'a> {
         pub fn unit(mut self, unit: crate::vk::PerformanceCounterUnitKHR) -> Self {
             self.unit = unit;
@@ -381,6 +393,18 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PerformanceCounterDescriptionKHR<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPerformanceCounterDescriptionKHR")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("flags", &self.flags)
+                .field("name", self.name_as_c_str())
+                .field("category", self.category_as_c_str())
+                .field("description", self.description_as_c_str())
+                .finish()
+        }
+    }
     impl<'a> PerformanceCounterDescriptionKHR<'a> {
         pub fn flags(
             mut self,
@@ -425,7 +449,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct QueryPoolPerformanceCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -464,7 +488,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AcquireProfilingLockInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -497,7 +521,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PerformanceQuerySubmitInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -542,6 +566,11 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    impl core::fmt::Debug for PerformanceCounterResultKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            write!(f, "VkPerformanceCounterResultKHR")
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
@@ -555,7 +584,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct PerformanceCounterStorageKHR(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PerformanceCounterDescriptionFlagsKHR(u32);
     impl PerformanceCounterDescriptionFlagsKHR {
         pub const PERFORMANCE_IMPACTING_KHR: Self = Self(
@@ -581,11 +610,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PerformanceCounterDescriptionFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PerformanceCounterDescriptionFlagsKHR {
@@ -628,10 +652,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PerformanceCounterDescriptionFlagBitsKHR(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AcquireProfilingLockFlagsKHR(u32);
     impl AcquireProfilingLockFlagsKHR {
         pub const fn empty() -> Self {
@@ -651,11 +675,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for AcquireProfilingLockFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for AcquireProfilingLockFlagsKHR {
@@ -698,7 +717,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) u32);
     pub type PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,

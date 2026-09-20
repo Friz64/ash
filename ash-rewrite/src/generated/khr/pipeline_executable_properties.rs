@@ -130,7 +130,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_pipeline_executable_properties";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -165,7 +165,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -218,6 +218,18 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PipelineExecutablePropertiesKHR<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPipelineExecutablePropertiesKHR")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("stages", &self.stages)
+                .field("name", self.name_as_c_str())
+                .field("description", self.description_as_c_str())
+                .field("subgroup_size", &self.subgroup_size)
+                .finish()
+        }
+    }
     impl<'a> PipelineExecutablePropertiesKHR<'a> {
         pub fn stages(mut self, stages: crate::vk::ShaderStageFlags) -> Self {
             self.stages = stages;
@@ -252,7 +264,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineExecutableInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -309,6 +321,18 @@ pub(crate) mod reexport {
                 value: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> core::fmt::Debug for PipelineExecutableStatisticKHR<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPipelineExecutableStatisticKHR")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("name", self.name_as_c_str())
+                .field("description", self.description_as_c_str())
+                .field("format", &self.format)
+                .field("value", &self.value)
+                .finish()
         }
     }
     impl<'a> PipelineExecutableStatisticKHR<'a> {
@@ -380,6 +404,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PipelineExecutableInternalRepresentationKHR<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPipelineExecutableInternalRepresentationKHR")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("name", self.name_as_c_str())
+                .field("description", self.description_as_c_str())
+                .field("is_text", &self.is_text)
+                .field("data_size", &self.data_size)
+                .field("p_data", &self.p_data)
+                .finish()
+        }
+    }
     impl<'a> PipelineExecutableInternalRepresentationKHR<'a> {
         pub fn name(
             mut self,
@@ -425,6 +462,11 @@ pub(crate) mod reexport {
     impl Default for PipelineExecutableStatisticValueKHR {
         fn default() -> Self {
             unsafe { core::mem::zeroed() }
+        }
+    }
+    impl core::fmt::Debug for PipelineExecutableStatisticValueKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            write!(f, "VkPipelineExecutableStatisticValueKHR")
         }
     }
     #[repr(transparent)]

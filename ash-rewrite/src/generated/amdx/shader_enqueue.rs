@@ -225,6 +225,39 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceShaderEnqueuePropertiesAMDX")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("max_execution_graph_depth", &self.max_execution_graph_depth)
+                .field(
+                    "max_execution_graph_shader_output_nodes",
+                    &self.max_execution_graph_shader_output_nodes,
+                )
+                .field(
+                    "max_execution_graph_shader_payload_size",
+                    &self.max_execution_graph_shader_payload_size,
+                )
+                .field(
+                    "max_execution_graph_shader_payload_count",
+                    &self.max_execution_graph_shader_payload_count,
+                )
+                .field(
+                    "execution_graph_dispatch_address_alignment",
+                    &self.execution_graph_dispatch_address_alignment,
+                )
+                .field(
+                    "max_execution_graph_workgroup_count",
+                    self.max_execution_graph_workgroup_count_as_c_str(),
+                )
+                .field(
+                    "max_execution_graph_workgroups",
+                    &self.max_execution_graph_workgroups,
+                )
+                .finish()
+        }
+    }
     impl<'a> PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
         pub fn max_execution_graph_depth(
             mut self,
@@ -277,7 +310,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -315,7 +348,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ExecutionGraphPipelineCreateInfoAMDX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -385,7 +418,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineShaderStageNodeCreateInfoAMDX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -428,7 +461,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ExecutionGraphPipelineScratchSizeAMDX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -471,7 +504,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DispatchGraphInfoAMDX {
         pub node_index: u32,
         pub payload_count: u32,
@@ -500,7 +533,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DispatchGraphCountInfoAMDX {
         pub count: u32,
         pub infos: crate::vk::DeviceOrHostAddressConstAMDX,
@@ -529,6 +562,11 @@ pub(crate) mod reexport {
     impl Default for DeviceOrHostAddressConstAMDX {
         fn default() -> Self {
             unsafe { core::mem::zeroed() }
+        }
+    }
+    impl core::fmt::Debug for DeviceOrHostAddressConstAMDX {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            write!(f, "VkDeviceOrHostAddressConstAMDX")
         }
     }
     pub type PFN_vkGetExecutionGraphPipelineScratchSizeAMDX = unsafe extern "system" fn(

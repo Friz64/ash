@@ -203,7 +203,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_optical_flow";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DataGraphPipelineResourceInfoImageLayoutARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -233,7 +233,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DataGraphPipelineSingleNodeConnectionARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -276,7 +276,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -308,7 +308,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -384,7 +384,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DataGraphOpticalFlowImageFormatInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -419,7 +419,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -447,7 +447,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DataGraphPipelineSingleNodeCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -494,7 +494,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -587,7 +587,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -638,7 +638,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct DataGraphPipelineNodeTypeARM(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DataGraphOpticalFlowGridSizeFlagsARM(u32);
     impl DataGraphOpticalFlowGridSizeFlagsARM {
         pub const UNKNOWN_ARM: Self = Self(
@@ -673,11 +673,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DataGraphOpticalFlowGridSizeFlagsARM {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DataGraphOpticalFlowGridSizeFlagsARM {
@@ -720,10 +715,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DataGraphOpticalFlowGridSizeFlagBitsARM(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DataGraphOpticalFlowImageUsageFlagsARM(u32);
     impl DataGraphOpticalFlowImageUsageFlagsARM {
         pub const UNKNOWN_ARM: Self = Self(
@@ -758,11 +753,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DataGraphOpticalFlowImageUsageFlagsARM {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DataGraphOpticalFlowImageUsageFlagsARM {
@@ -805,10 +795,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DataGraphOpticalFlowImageUsageFlagBitsARM(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DataGraphOpticalFlowCreateFlagsARM(u32);
     impl DataGraphOpticalFlowCreateFlagsARM {
         pub const ENABLE_HINT_ARM: Self = Self(
@@ -837,11 +827,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DataGraphOpticalFlowCreateFlagsARM {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DataGraphOpticalFlowCreateFlagsARM {
@@ -884,10 +869,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DataGraphOpticalFlowCreateFlagBitsARM(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DataGraphOpticalFlowExecuteFlagsARM(u32);
     impl DataGraphOpticalFlowExecuteFlagsARM {
         pub const DISABLE_TEMPORAL_HINTS_ARM: Self = Self(
@@ -922,11 +907,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DataGraphOpticalFlowExecuteFlagsARM {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DataGraphOpticalFlowExecuteFlagsARM {
@@ -969,7 +949,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DataGraphOpticalFlowExecuteFlagBitsARM(pub(crate) u32);
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,

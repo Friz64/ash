@@ -929,7 +929,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_object";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceShaderObjectFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -986,6 +986,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PhysicalDeviceShaderObjectPropertiesEXT<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceShaderObjectPropertiesEXT")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("shader_binary_uuid", self.shader_binary_uuid_as_c_str())
+                .field("shader_binary_version", &self.shader_binary_version)
+                .finish()
+        }
+    }
     impl<'a> PhysicalDeviceShaderObjectPropertiesEXT<'a> {
         pub fn shader_binary_uuid(
             mut self,
@@ -1000,7 +1010,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ShaderCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1107,7 +1117,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct ShaderCodeTypeEXT(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ShaderCreateFlagsEXT(u32);
     impl ShaderCreateFlagsEXT {
         pub const LINK_STAGE_EXT: Self = Self(ShaderCreateFlagBitsEXT::LINK_STAGE_EXT.0);
@@ -1166,11 +1176,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for ShaderCreateFlagsEXT {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for ShaderCreateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -1211,7 +1216,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ShaderCreateFlagBitsEXT(pub(crate) u32);
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]

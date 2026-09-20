@@ -126,7 +126,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_partitioned_acceleration_structure";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -162,7 +162,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -192,7 +192,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct BuildPartitionedAccelerationStructureIndirectCommandNV {
         pub op_type: crate::vk::PartitionedAccelerationStructureOpTypeNV,
         pub arg_count: u32,
@@ -216,7 +216,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PartitionedAccelerationStructureFlagsNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -278,6 +278,24 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for PartitionedAccelerationStructureWriteInstanceDataNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPartitionedAccelerationStructureWriteInstanceDataNV")
+                .field("transform", &self.transform)
+                .field("explicit_aabb", self.explicit_aabb_as_c_str())
+                .field("instance_id", &self.instance_id)
+                .field("instance_mask", &self.instance_mask)
+                .field(
+                    "instance_contribution_to_hit_group_index",
+                    &self.instance_contribution_to_hit_group_index,
+                )
+                .field("instance_flags", &self.instance_flags)
+                .field("instance_index", &self.instance_index)
+                .field("partition_index", &self.partition_index)
+                .field("acceleration_structure", &self.acceleration_structure)
+                .finish()
+        }
+    }
     impl PartitionedAccelerationStructureWriteInstanceDataNV {
         pub fn transform(mut self, transform: crate::vk::TransformMatrixKHR) -> Self {
             self.transform = transform;
@@ -329,7 +347,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PartitionedAccelerationStructureUpdateInstanceDataNV {
         pub instance_index: u32,
         pub instance_contribution_to_hit_group_index: u32,
@@ -369,6 +387,17 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug
+    for PartitionedAccelerationStructureWritePartitionTranslationDataNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct(
+                    "VkPartitionedAccelerationStructureWritePartitionTranslationDataNV",
+                )
+                .field("partition_index", &self.partition_index)
+                .field("partition_translation", self.partition_translation_as_c_str())
+                .finish()
+        }
+    }
     impl PartitionedAccelerationStructureWritePartitionTranslationDataNV {
         pub fn partition_index(mut self, partition_index: u32) -> Self {
             self.partition_index = partition_index;
@@ -383,7 +412,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -419,7 +448,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PartitionedAccelerationStructureInstancesInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -480,7 +509,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct BuildPartitionedAccelerationStructureInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -554,7 +583,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct PartitionedAccelerationStructureOpTypeNV(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PartitionedAccelerationStructureInstanceFlagsNV(u32);
     impl PartitionedAccelerationStructureInstanceFlagsNV {
         pub const FLAG_TRIANGLE_FACING_CULL_DISABLE_NV: Self = Self(
@@ -592,11 +621,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PartitionedAccelerationStructureInstanceFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PartitionedAccelerationStructureInstanceFlagsNV {
@@ -639,7 +663,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PartitionedAccelerationStructureInstanceFlagBitsNV(pub(crate) u32);
     pub type PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV = unsafe extern "system" fn(
         device: crate::vk::Device,

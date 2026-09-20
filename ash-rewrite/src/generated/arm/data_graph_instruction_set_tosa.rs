@@ -104,6 +104,14 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for DataGraphTOSANameQualityARM {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkDataGraphTOSANameQualityARM")
+                .field("name", self.name_as_c_str())
+                .field("quality_flags", &self.quality_flags)
+                .finish()
+        }
+    }
     impl DataGraphTOSANameQualityARM {
         pub fn name(
             mut self,
@@ -125,7 +133,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct QueueFamilyDataGraphTOSAPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -181,7 +189,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct DataGraphTOSALevelARM(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DataGraphTOSAQualityFlagsARM(u32);
     impl DataGraphTOSAQualityFlagsARM {
         pub const ACCELERATED_ARM: Self = Self(
@@ -213,11 +221,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DataGraphTOSAQualityFlagsARM {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DataGraphTOSAQualityFlagsARM {
@@ -260,7 +263,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DataGraphTOSAQualityFlagBitsARM(pub(crate) u32);
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,

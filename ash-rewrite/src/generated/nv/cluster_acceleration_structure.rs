@@ -183,7 +183,7 @@ pub const SPEC_VERSION: u32 = 4;
 pub const NAME: &core::ffi::CStr = c"VK_NV_cluster_acceleration_structure";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -218,7 +218,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -311,7 +311,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct StridedDeviceAddressNV {
         pub start_address: crate::vk::DeviceAddress,
         pub stride_in_bytes: crate::vk::DeviceSize,
@@ -330,7 +330,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -370,6 +370,17 @@ pub(crate) mod reexport {
 - `geometryFlags` @ `29..32`*/
         pub bitfield0: u32,
     }
+    impl core::fmt::Debug
+    for ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct(
+                    "VkClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV",
+                )
+                .field("geometry_index", &self.get_geometry_index())
+                .field("geometry_flags", &self.get_geometry_flags())
+                .finish()
+        }
+    }
     impl ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
         pub fn geometry_index(mut self, geometry_index: u32) -> Self {
             let rest = self.bitfield0 & 0xFF000000;
@@ -389,7 +400,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClusterAccelerationStructureMoveObjectsInfoNV {
         pub src_acceleration_structure: crate::vk::DeviceAddress,
     }
@@ -403,7 +414,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClusterAccelerationStructureBuildClustersBottomLevelInfoNV {
         pub cluster_references_count: u32,
         pub cluster_references_stride: u32,
@@ -433,7 +444,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClusterAccelerationStructureGetTemplateIndicesInfoNV {
         pub cluster_template_address: crate::vk::DeviceAddress,
     }
@@ -467,6 +478,50 @@ pub(crate) mod reexport {
         pub geometry_index_and_flags_buffer: crate::vk::DeviceAddress,
         pub opacity_micromap_array: crate::vk::DeviceAddress,
         pub opacity_micromap_index_buffer: crate::vk::DeviceAddress,
+    }
+    impl core::fmt::Debug for ClusterAccelerationStructureBuildTriangleClusterInfoNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkClusterAccelerationStructureBuildTriangleClusterInfoNV")
+                .field("cluster_id", &self.cluster_id)
+                .field("cluster_flags", &self.cluster_flags)
+                .field("triangle_count", &self.get_triangle_count())
+                .field("vertex_count", &self.get_vertex_count())
+                .field(
+                    "position_truncate_bit_count",
+                    &self.get_position_truncate_bit_count(),
+                )
+                .field("index_type", &self.get_index_type())
+                .field(
+                    "opacity_micromap_index_type",
+                    &self.get_opacity_micromap_index_type(),
+                )
+                .field(
+                    "base_geometry_index_and_geometry_flags",
+                    &self.base_geometry_index_and_geometry_flags,
+                )
+                .field("index_buffer_stride", &self.index_buffer_stride)
+                .field("vertex_buffer_stride", &self.vertex_buffer_stride)
+                .field(
+                    "geometry_index_and_flags_buffer_stride",
+                    &self.geometry_index_and_flags_buffer_stride,
+                )
+                .field(
+                    "opacity_micromap_index_buffer_stride",
+                    &self.opacity_micromap_index_buffer_stride,
+                )
+                .field("index_buffer", &self.index_buffer)
+                .field("vertex_buffer", &self.vertex_buffer)
+                .field(
+                    "geometry_index_and_flags_buffer",
+                    &self.geometry_index_and_flags_buffer,
+                )
+                .field("opacity_micromap_array", &self.opacity_micromap_array)
+                .field(
+                    "opacity_micromap_index_buffer",
+                    &self.opacity_micromap_index_buffer,
+                )
+                .finish()
+        }
     }
     impl ClusterAccelerationStructureBuildTriangleClusterInfoNV {
         pub fn cluster_id(mut self, cluster_id: u32) -> Self {
@@ -610,6 +665,57 @@ pub(crate) mod reexport {
         pub opacity_micromap_index_buffer: crate::vk::DeviceAddress,
         pub instantiation_bounding_box_limit: crate::vk::DeviceAddress,
     }
+    impl core::fmt::Debug
+    for ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct(
+                    "VkClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV",
+                )
+                .field("cluster_id", &self.cluster_id)
+                .field("cluster_flags", &self.cluster_flags)
+                .field("triangle_count", &self.get_triangle_count())
+                .field("vertex_count", &self.get_vertex_count())
+                .field(
+                    "position_truncate_bit_count",
+                    &self.get_position_truncate_bit_count(),
+                )
+                .field("index_type", &self.get_index_type())
+                .field(
+                    "opacity_micromap_index_type",
+                    &self.get_opacity_micromap_index_type(),
+                )
+                .field(
+                    "base_geometry_index_and_geometry_flags",
+                    &self.base_geometry_index_and_geometry_flags,
+                )
+                .field("index_buffer_stride", &self.index_buffer_stride)
+                .field("vertex_buffer_stride", &self.vertex_buffer_stride)
+                .field(
+                    "geometry_index_and_flags_buffer_stride",
+                    &self.geometry_index_and_flags_buffer_stride,
+                )
+                .field(
+                    "opacity_micromap_index_buffer_stride",
+                    &self.opacity_micromap_index_buffer_stride,
+                )
+                .field("index_buffer", &self.index_buffer)
+                .field("vertex_buffer", &self.vertex_buffer)
+                .field(
+                    "geometry_index_and_flags_buffer",
+                    &self.geometry_index_and_flags_buffer,
+                )
+                .field("opacity_micromap_array", &self.opacity_micromap_array)
+                .field(
+                    "opacity_micromap_index_buffer",
+                    &self.opacity_micromap_index_buffer,
+                )
+                .field(
+                    "instantiation_bounding_box_limit",
+                    &self.instantiation_bounding_box_limit,
+                )
+                .finish()
+        }
+    }
     impl ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
         pub fn cluster_id(mut self, cluster_id: u32) -> Self {
             self.cluster_id = cluster_id;
@@ -745,6 +851,16 @@ pub(crate) mod reexport {
         pub cluster_template_address: crate::vk::DeviceAddress,
         pub vertex_buffer: crate::vk::StridedDeviceAddressNV,
     }
+    impl core::fmt::Debug for ClusterAccelerationStructureInstantiateClusterInfoNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkClusterAccelerationStructureInstantiateClusterInfoNV")
+                .field("cluster_id_offset", &self.cluster_id_offset)
+                .field("geometry_index_offset", &self.get_geometry_index_offset())
+                .field("cluster_template_address", &self.cluster_template_address)
+                .field("vertex_buffer", &self.vertex_buffer)
+                .finish()
+        }
+    }
     impl ClusterAccelerationStructureInstantiateClusterInfoNV {
         pub fn cluster_id_offset(mut self, cluster_id_offset: u32) -> Self {
             self.cluster_id_offset = cluster_id_offset;
@@ -774,7 +890,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ClusterAccelerationStructureClustersBottomLevelInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -811,7 +927,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ClusterAccelerationStructureTriangleClusterInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -899,7 +1015,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ClusterAccelerationStructureMoveObjectsInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -945,7 +1061,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ClusterAccelerationStructureInputInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1012,7 +1128,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ClusterAccelerationStructureCommandsInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1120,6 +1236,11 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    impl<'a> core::fmt::Debug for ClusterAccelerationStructureOpInputNV<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            write!(f, "VkClusterAccelerationStructureOpInputNV")
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
@@ -1133,7 +1254,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct ClusterAccelerationStructureOpModeNV(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClusterAccelerationStructureGeometryFlagsNV(u32);
     impl ClusterAccelerationStructureGeometryFlagsNV {
         pub const CULL_DISABLE_NV: Self = Self(
@@ -1163,11 +1284,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for ClusterAccelerationStructureGeometryFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for ClusterAccelerationStructureGeometryFlagsNV {
@@ -1210,10 +1326,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClusterAccelerationStructureClusterFlagsNV(u32);
     impl ClusterAccelerationStructureClusterFlagsNV {
         pub const ALLOW_DISABLE_OPACITY_MICROMAPS_NV: Self = Self(
@@ -1237,11 +1353,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for ClusterAccelerationStructureClusterFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for ClusterAccelerationStructureClusterFlagsNV {
@@ -1284,10 +1395,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClusterAccelerationStructureAddressResolutionFlagsNV(u32);
     impl ClusterAccelerationStructureAddressResolutionFlagsNV {
         pub const NONE_NV: Self = Self(
@@ -1336,11 +1447,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for ClusterAccelerationStructureAddressResolutionFlagsNV {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for ClusterAccelerationStructureAddressResolutionFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -1384,10 +1490,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClusterAccelerationStructureIndexFormatFlagsNV(u32);
     impl ClusterAccelerationStructureIndexFormatFlagsNV {
         pub const _8BIT_NV: Self = Self(
@@ -1416,11 +1522,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for ClusterAccelerationStructureIndexFormatFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for ClusterAccelerationStructureIndexFormatFlagsNV {
@@ -1463,7 +1564,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV(pub(crate) u32);
     pub type PFN_vkGetClusterAccelerationStructureBuildSizesNV = unsafe extern "system" fn(
         device: crate::vk::Device,

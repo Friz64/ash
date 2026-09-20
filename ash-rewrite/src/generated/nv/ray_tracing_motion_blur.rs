@@ -42,7 +42,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_motion_blur";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -84,7 +84,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -119,7 +119,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AccelerationStructureMotionInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -158,7 +158,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SRTDataNV {
         pub sx: core::ffi::c_float,
         pub a: core::ffi::c_float,
@@ -256,6 +256,25 @@ pub(crate) mod reexport {
         pub bitfield1: u32,
         pub acceleration_structure_reference: u64,
     }
+    impl core::fmt::Debug for AccelerationStructureSRTMotionInstanceNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkAccelerationStructureSRTMotionInstanceNV")
+                .field("transform_t0", &self.transform_t0)
+                .field("transform_t1", &self.transform_t1)
+                .field("instance_custom_index", &self.get_instance_custom_index())
+                .field("mask", &self.get_mask())
+                .field(
+                    "instance_shader_binding_table_record_offset",
+                    &self.get_instance_shader_binding_table_record_offset(),
+                )
+                .field("flags", &self.get_flags())
+                .field(
+                    "acceleration_structure_reference",
+                    &self.acceleration_structure_reference,
+                )
+                .finish()
+        }
+    }
     impl AccelerationStructureSRTMotionInstanceNV {
         pub fn transform_t0(mut self, transform_t0: crate::vk::SRTDataNV) -> Self {
             self.transform_t0 = transform_t0;
@@ -322,6 +341,25 @@ pub(crate) mod reexport {
         pub bitfield1: u32,
         pub acceleration_structure_reference: u64,
     }
+    impl core::fmt::Debug for AccelerationStructureMatrixMotionInstanceNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkAccelerationStructureMatrixMotionInstanceNV")
+                .field("transform_t0", &self.transform_t0)
+                .field("transform_t1", &self.transform_t1)
+                .field("instance_custom_index", &self.get_instance_custom_index())
+                .field("mask", &self.get_mask())
+                .field(
+                    "instance_shader_binding_table_record_offset",
+                    &self.get_instance_shader_binding_table_record_offset(),
+                )
+                .field("flags", &self.get_flags())
+                .field(
+                    "acceleration_structure_reference",
+                    &self.acceleration_structure_reference,
+                )
+                .finish()
+        }
+    }
     impl AccelerationStructureMatrixMotionInstanceNV {
         pub fn transform_t0(
             mut self,
@@ -382,7 +420,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AccelerationStructureMotionInstanceNV {
         pub _type: crate::vk::AccelerationStructureMotionInstanceTypeNV,
         pub flags: crate::vk::AccelerationStructureMotionInstanceFlagsNV,
@@ -423,12 +461,17 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    impl core::fmt::Debug for AccelerationStructureMotionInstanceDataNV {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            write!(f, "VkAccelerationStructureMotionInstanceDataNV")
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct AccelerationStructureMotionInstanceTypeNV(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AccelerationStructureMotionInfoFlagsNV(u32);
     impl AccelerationStructureMotionInfoFlagsNV {
         pub const fn empty() -> Self {
@@ -448,11 +491,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for AccelerationStructureMotionInfoFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for AccelerationStructureMotionInfoFlagsNV {
@@ -495,7 +533,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AccelerationStructureMotionInstanceFlagsNV(u32);
     impl AccelerationStructureMotionInstanceFlagsNV {
         pub const fn empty() -> Self {
@@ -515,11 +553,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for AccelerationStructureMotionInstanceFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for AccelerationStructureMotionInstanceFlagsNV {

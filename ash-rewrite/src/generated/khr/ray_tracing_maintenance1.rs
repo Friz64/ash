@@ -86,7 +86,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_maintenance1";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct TraceRaysIndirectCommand2KHR {
         pub raygen_shader_record_address: crate::vk::DeviceAddress,
         pub raygen_shader_record_size: crate::vk::DeviceSize,
@@ -195,7 +195,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,

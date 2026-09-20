@@ -181,7 +181,7 @@ pub const SPEC_VERSION: u32 = 23;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_display";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DisplayPropertiesKHR<'a> {
         pub display: crate::vk::DisplayKHR,
         pub display_name: *const core::ffi::c_char,
@@ -239,7 +239,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DisplayPlanePropertiesKHR {
         pub current_display: crate::vk::DisplayKHR,
         pub current_stack_index: u32,
@@ -258,7 +258,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DisplayModeParametersKHR {
         pub visible_region: crate::vk::Extent2D,
         pub refresh_rate: u32,
@@ -274,7 +274,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DisplayModePropertiesKHR {
         pub display_mode: crate::vk::DisplayModeKHR,
         pub parameters: crate::vk::DisplayModeParametersKHR,
@@ -293,7 +293,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DisplayModeCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -329,7 +329,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DisplayPlaneCapabilitiesKHR {
         pub supported_alpha: crate::vk::DisplayPlaneAlphaFlagsKHR,
         pub min_src_position: crate::vk::Offset2D,
@@ -395,7 +395,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DisplaySurfaceCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -470,7 +470,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DisplayPlaneAlphaFlagsKHR(u32);
     impl DisplayPlaneAlphaFlagsKHR {
         pub const OPAQUE_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::OPAQUE_KHR.0);
@@ -498,11 +498,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DisplayPlaneAlphaFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DisplayPlaneAlphaFlagsKHR {
@@ -545,10 +540,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DisplayPlaneAlphaFlagBitsKHR(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DisplayModeCreateFlagsKHR(u32);
     impl DisplayModeCreateFlagsKHR {
         pub const fn empty() -> Self {
@@ -568,11 +563,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DisplayModeCreateFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DisplayModeCreateFlagsKHR {
@@ -615,7 +605,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DisplaySurfaceCreateFlagsKHR(u32);
     impl DisplaySurfaceCreateFlagsKHR {
         pub const fn empty() -> Self {
@@ -635,11 +625,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DisplaySurfaceCreateFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DisplaySurfaceCreateFlagsKHR {

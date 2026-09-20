@@ -463,7 +463,7 @@ impl DeviceV1_2 {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ConformanceVersion {
         pub major: u8,
         pub minor: u8,
@@ -517,6 +517,18 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PhysicalDeviceDriverProperties<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceDriverProperties")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("driver_id", &self.driver_id)
+                .field("driver_name", self.driver_name_as_c_str())
+                .field("driver_info", self.driver_info_as_c_str())
+                .field("conformance_version", &self.conformance_version)
+                .finish()
+        }
+    }
     impl<'a> PhysicalDeviceDriverProperties<'a> {
         pub fn driver_id(mut self, driver_id: crate::vk::DriverId) -> Self {
             self.driver_id = driver_id;
@@ -555,7 +567,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -590,7 +602,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceSamplerFilterMinmaxProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -634,7 +646,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SamplerReductionModeCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -666,7 +678,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageFormatListCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -702,7 +714,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceShaderFloat16Int8Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -740,7 +752,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceFloatControlsProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -929,7 +941,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceHostQueryResetFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -961,7 +973,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceDescriptorIndexingFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1186,7 +1198,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceDescriptorIndexingProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1423,7 +1435,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DescriptorSetLayoutBindingFlagsCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1459,7 +1471,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DescriptorSetVariableDescriptorCountAllocateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1492,7 +1504,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DescriptorSetVariableDescriptorCountLayoutSupport<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1525,7 +1537,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AttachmentDescription2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1606,7 +1618,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AttachmentReference2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1645,7 +1657,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SubpassDescription2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1739,7 +1751,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SubpassDependency2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1823,7 +1835,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct RenderPassCreateInfo2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1898,7 +1910,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SubpassBeginInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1925,7 +1937,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SubpassEndInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1945,7 +1957,7 @@ pub(crate) mod reexport {
     }
     impl<'a> SubpassEndInfo<'a> {}
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceTimelineSemaphoreFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1977,7 +1989,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceTimelineSemaphoreProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2010,7 +2022,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SemaphoreTypeCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2050,7 +2062,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct TimelineSemaphoreSubmitInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2099,7 +2111,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SemaphoreWaitInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2142,7 +2154,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SemaphoreSignalInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2175,7 +2187,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDevice8BitStorageFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2226,7 +2238,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceVulkanMemoryModelFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2278,7 +2290,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceShaderAtomicInt64Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2322,7 +2334,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceDepthStencilResolveProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2379,7 +2391,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SubpassDescriptionDepthStencilResolve<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2432,7 +2444,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageStencilUsageCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2466,7 +2478,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceScalarBlockLayoutFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2498,7 +2510,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceUniformBufferStandardLayoutFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2533,7 +2545,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceBufferDeviceAddressFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2585,7 +2597,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct BufferDeviceAddressInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2612,7 +2624,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct BufferOpaqueCaptureAddressCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2642,7 +2654,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceImagelessFramebufferFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2674,7 +2686,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct FramebufferAttachmentsCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2711,7 +2723,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct FramebufferAttachmentImageInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2771,7 +2783,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct RenderPassAttachmentBeginInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2803,7 +2815,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2838,7 +2850,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AttachmentReferenceStencilLayout<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2867,7 +2879,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AttachmentDescriptionStencilLayout<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -2909,7 +2921,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct MemoryOpaqueCaptureAddressAllocateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2939,7 +2951,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DeviceMemoryOpaqueCaptureAddressInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2967,7 +2979,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceVulkan11Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -3134,6 +3146,38 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PhysicalDeviceVulkan11Properties<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceVulkan11Properties")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("device_uuid", self.device_uuid_as_c_str())
+                .field("driver_uuid", self.driver_uuid_as_c_str())
+                .field("device_luid", self.device_luid_as_c_str())
+                .field("device_node_mask", &self.device_node_mask)
+                .field("device_luid_valid", &self.device_luid_valid)
+                .field("subgroup_size", &self.subgroup_size)
+                .field("subgroup_supported_stages", &self.subgroup_supported_stages)
+                .field(
+                    "subgroup_supported_operations",
+                    &self.subgroup_supported_operations,
+                )
+                .field(
+                    "subgroup_quad_operations_in_all_stages",
+                    &self.subgroup_quad_operations_in_all_stages,
+                )
+                .field("point_clipping_behavior", &self.point_clipping_behavior)
+                .field("max_multiview_view_count", &self.max_multiview_view_count)
+                .field(
+                    "max_multiview_instance_index",
+                    &self.max_multiview_instance_index,
+                )
+                .field("protected_no_fault", &self.protected_no_fault)
+                .field("max_per_set_descriptors", &self.max_per_set_descriptors)
+                .field("max_memory_allocation_size", &self.max_memory_allocation_size)
+                .finish()
+        }
+    }
     impl<'a> PhysicalDeviceVulkan11Properties<'a> {
         pub fn device_uuid(
             mut self,
@@ -3228,7 +3272,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceVulkan12Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -3785,6 +3829,198 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PhysicalDeviceVulkan12Properties<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceVulkan12Properties")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("driver_id", &self.driver_id)
+                .field("driver_name", self.driver_name_as_c_str())
+                .field("driver_info", self.driver_info_as_c_str())
+                .field("conformance_version", &self.conformance_version)
+                .field(
+                    "denorm_behavior_independence",
+                    &self.denorm_behavior_independence,
+                )
+                .field("rounding_mode_independence", &self.rounding_mode_independence)
+                .field(
+                    "shader_signed_zero_inf_nan_preserve_float16",
+                    &self.shader_signed_zero_inf_nan_preserve_float16,
+                )
+                .field(
+                    "shader_signed_zero_inf_nan_preserve_float32",
+                    &self.shader_signed_zero_inf_nan_preserve_float32,
+                )
+                .field(
+                    "shader_signed_zero_inf_nan_preserve_float64",
+                    &self.shader_signed_zero_inf_nan_preserve_float64,
+                )
+                .field(
+                    "shader_denorm_preserve_float16",
+                    &self.shader_denorm_preserve_float16,
+                )
+                .field(
+                    "shader_denorm_preserve_float32",
+                    &self.shader_denorm_preserve_float32,
+                )
+                .field(
+                    "shader_denorm_preserve_float64",
+                    &self.shader_denorm_preserve_float64,
+                )
+                .field(
+                    "shader_denorm_flush_to_zero_float16",
+                    &self.shader_denorm_flush_to_zero_float16,
+                )
+                .field(
+                    "shader_denorm_flush_to_zero_float32",
+                    &self.shader_denorm_flush_to_zero_float32,
+                )
+                .field(
+                    "shader_denorm_flush_to_zero_float64",
+                    &self.shader_denorm_flush_to_zero_float64,
+                )
+                .field(
+                    "shader_rounding_mode_rte_float16",
+                    &self.shader_rounding_mode_rte_float16,
+                )
+                .field(
+                    "shader_rounding_mode_rte_float32",
+                    &self.shader_rounding_mode_rte_float32,
+                )
+                .field(
+                    "shader_rounding_mode_rte_float64",
+                    &self.shader_rounding_mode_rte_float64,
+                )
+                .field(
+                    "shader_rounding_mode_rtz_float16",
+                    &self.shader_rounding_mode_rtz_float16,
+                )
+                .field(
+                    "shader_rounding_mode_rtz_float32",
+                    &self.shader_rounding_mode_rtz_float32,
+                )
+                .field(
+                    "shader_rounding_mode_rtz_float64",
+                    &self.shader_rounding_mode_rtz_float64,
+                )
+                .field(
+                    "max_update_after_bind_descriptors_in_all_pools",
+                    &self.max_update_after_bind_descriptors_in_all_pools,
+                )
+                .field(
+                    "shader_uniform_buffer_array_non_uniform_indexing_native",
+                    &self.shader_uniform_buffer_array_non_uniform_indexing_native,
+                )
+                .field(
+                    "shader_sampled_image_array_non_uniform_indexing_native",
+                    &self.shader_sampled_image_array_non_uniform_indexing_native,
+                )
+                .field(
+                    "shader_storage_buffer_array_non_uniform_indexing_native",
+                    &self.shader_storage_buffer_array_non_uniform_indexing_native,
+                )
+                .field(
+                    "shader_storage_image_array_non_uniform_indexing_native",
+                    &self.shader_storage_image_array_non_uniform_indexing_native,
+                )
+                .field(
+                    "shader_input_attachment_array_non_uniform_indexing_native",
+                    &self.shader_input_attachment_array_non_uniform_indexing_native,
+                )
+                .field(
+                    "robust_buffer_access_update_after_bind",
+                    &self.robust_buffer_access_update_after_bind,
+                )
+                .field("quad_divergent_implicit_lod", &self.quad_divergent_implicit_lod)
+                .field(
+                    "max_per_stage_descriptor_update_after_bind_samplers",
+                    &self.max_per_stage_descriptor_update_after_bind_samplers,
+                )
+                .field(
+                    "max_per_stage_descriptor_update_after_bind_uniform_buffers",
+                    &self.max_per_stage_descriptor_update_after_bind_uniform_buffers,
+                )
+                .field(
+                    "max_per_stage_descriptor_update_after_bind_storage_buffers",
+                    &self.max_per_stage_descriptor_update_after_bind_storage_buffers,
+                )
+                .field(
+                    "max_per_stage_descriptor_update_after_bind_sampled_images",
+                    &self.max_per_stage_descriptor_update_after_bind_sampled_images,
+                )
+                .field(
+                    "max_per_stage_descriptor_update_after_bind_storage_images",
+                    &self.max_per_stage_descriptor_update_after_bind_storage_images,
+                )
+                .field(
+                    "max_per_stage_descriptor_update_after_bind_input_attachments",
+                    &self.max_per_stage_descriptor_update_after_bind_input_attachments,
+                )
+                .field(
+                    "max_per_stage_update_after_bind_resources",
+                    &self.max_per_stage_update_after_bind_resources,
+                )
+                .field(
+                    "max_descriptor_set_update_after_bind_samplers",
+                    &self.max_descriptor_set_update_after_bind_samplers,
+                )
+                .field(
+                    "max_descriptor_set_update_after_bind_uniform_buffers",
+                    &self.max_descriptor_set_update_after_bind_uniform_buffers,
+                )
+                .field(
+                    "max_descriptor_set_update_after_bind_uniform_buffers_dynamic",
+                    &self.max_descriptor_set_update_after_bind_uniform_buffers_dynamic,
+                )
+                .field(
+                    "max_descriptor_set_update_after_bind_storage_buffers",
+                    &self.max_descriptor_set_update_after_bind_storage_buffers,
+                )
+                .field(
+                    "max_descriptor_set_update_after_bind_storage_buffers_dynamic",
+                    &self.max_descriptor_set_update_after_bind_storage_buffers_dynamic,
+                )
+                .field(
+                    "max_descriptor_set_update_after_bind_sampled_images",
+                    &self.max_descriptor_set_update_after_bind_sampled_images,
+                )
+                .field(
+                    "max_descriptor_set_update_after_bind_storage_images",
+                    &self.max_descriptor_set_update_after_bind_storage_images,
+                )
+                .field(
+                    "max_descriptor_set_update_after_bind_input_attachments",
+                    &self.max_descriptor_set_update_after_bind_input_attachments,
+                )
+                .field(
+                    "supported_depth_resolve_modes",
+                    &self.supported_depth_resolve_modes,
+                )
+                .field(
+                    "supported_stencil_resolve_modes",
+                    &self.supported_stencil_resolve_modes,
+                )
+                .field("independent_resolve_none", &self.independent_resolve_none)
+                .field("independent_resolve", &self.independent_resolve)
+                .field(
+                    "filter_minmax_single_component_formats",
+                    &self.filter_minmax_single_component_formats,
+                )
+                .field(
+                    "filter_minmax_image_component_mapping",
+                    &self.filter_minmax_image_component_mapping,
+                )
+                .field(
+                    "max_timeline_semaphore_value_difference",
+                    &self.max_timeline_semaphore_value_difference,
+                )
+                .field(
+                    "framebuffer_integer_color_sample_counts",
+                    &self.framebuffer_integer_color_sample_counts,
+                )
+                .finish()
+        }
+    }
     impl<'a> PhysicalDeviceVulkan12Properties<'a> {
         pub fn driver_id(mut self, driver_id: crate::vk::DriverId) -> Self {
             self.driver_id = driver_id;
@@ -4192,7 +4428,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct ShaderFloatControlsIndependence(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SemaphoreWaitFlags(u32);
     impl SemaphoreWaitFlags {
         pub const ANY: Self = Self(SemaphoreWaitFlagBits::ANY.0);
@@ -4214,11 +4450,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for SemaphoreWaitFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for SemaphoreWaitFlags {
@@ -4261,10 +4492,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SemaphoreWaitFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DescriptorBindingFlags(u32);
     impl DescriptorBindingFlags {
         pub const UPDATE_AFTER_BIND: Self = Self(
@@ -4310,11 +4541,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for DescriptorBindingFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for DescriptorBindingFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -4355,10 +4581,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DescriptorBindingFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ResolveModeFlags(u32);
     impl ResolveModeFlags {
         pub const NONE: Self = Self(ResolveModeFlagBits::NONE.0);
@@ -4392,11 +4618,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for ResolveModeFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for ResolveModeFlags {
@@ -4439,7 +4660,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ResolveModeFlagBits(pub(crate) u32);
     pub type PFN_vkResetQueryPool = unsafe extern "system" fn(
         device: crate::vk::Device,

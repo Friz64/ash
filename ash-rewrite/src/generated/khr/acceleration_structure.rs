@@ -495,7 +495,7 @@ pub const SPEC_VERSION: u32 = 13;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_acceleration_structure";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct WriteDescriptorSetAccelerationStructureKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -531,7 +531,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -603,7 +603,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -690,7 +690,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AccelerationStructureGeometryTrianglesDataKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -763,7 +763,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AccelerationStructureGeometryAabbsDataKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -797,7 +797,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AccelerationStructureGeometryInstancesDataKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -831,7 +831,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AccelerationStructureGeometryKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -876,7 +876,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AccelerationStructureBuildGeometryInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -971,7 +971,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AccelerationStructureBuildRangeInfoKHR {
         pub primitive_count: u32,
         pub primitive_offset: u32,
@@ -997,7 +997,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AccelerationStructureCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1061,7 +1061,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AabbPositionsKHR {
         pub min_x: core::ffi::c_float,
         pub min_y: core::ffi::c_float,
@@ -1108,6 +1108,13 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for TransformMatrixKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkTransformMatrixKHR")
+                .field("matrix", self.matrix_as_c_str())
+                .finish()
+        }
+    }
     impl TransformMatrixKHR {
         pub fn matrix(mut self, matrix: [[core::ffi::c_float; 4 as _]; 3 as _]) -> Self {
             self.matrix = matrix;
@@ -1125,6 +1132,24 @@ pub(crate) mod reexport {
 - `flags` @ `24..32`*/
         pub bitfield1: u32,
         pub acceleration_structure_reference: u64,
+    }
+    impl core::fmt::Debug for AccelerationStructureInstanceKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkAccelerationStructureInstanceKHR")
+                .field("transform", &self.transform)
+                .field("instance_custom_index", &self.get_instance_custom_index())
+                .field("mask", &self.get_mask())
+                .field(
+                    "instance_shader_binding_table_record_offset",
+                    &self.get_instance_shader_binding_table_record_offset(),
+                )
+                .field("flags", &self.get_flags())
+                .field(
+                    "acceleration_structure_reference",
+                    &self.acceleration_structure_reference,
+                )
+                .finish()
+        }
     }
     impl AccelerationStructureInstanceKHR {
         pub fn transform(mut self, transform: crate::vk::TransformMatrixKHR) -> Self {
@@ -1176,7 +1201,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AccelerationStructureDeviceAddressInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1207,7 +1232,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AccelerationStructureVersionInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1238,7 +1263,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct CopyAccelerationStructureInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1280,7 +1305,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct CopyAccelerationStructureToMemoryInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1323,7 +1348,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct CopyMemoryToAccelerationStructureInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -1366,7 +1391,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AccelerationStructureBuildSizesInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1425,6 +1450,11 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    impl core::fmt::Debug for DeviceOrHostAddressKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            write!(f, "VkDeviceOrHostAddressKHR")
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union DeviceOrHostAddressConstKHR {
@@ -1434,6 +1464,11 @@ pub(crate) mod reexport {
     impl Default for DeviceOrHostAddressConstKHR {
         fn default() -> Self {
             unsafe { core::mem::zeroed() }
+        }
+    }
+    impl core::fmt::Debug for DeviceOrHostAddressConstKHR {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            write!(f, "VkDeviceOrHostAddressConstKHR")
         }
     }
     #[repr(C)]
@@ -1446,6 +1481,11 @@ pub(crate) mod reexport {
     impl<'a> Default for AccelerationStructureGeometryDataKHR<'a> {
         fn default() -> Self {
             unsafe { core::mem::zeroed() }
+        }
+    }
+    impl<'a> core::fmt::Debug for AccelerationStructureGeometryDataKHR<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            write!(f, "VkAccelerationStructureGeometryDataKHR")
         }
     }
     #[repr(transparent)]
@@ -1473,7 +1513,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct AccelerationStructureCompatibilityKHR(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct GeometryFlagsKHR(u32);
     impl GeometryFlagsKHR {
         pub const OPAQUE_KHR: Self = Self(GeometryFlagBitsKHR::OPAQUE_KHR.0);
@@ -1501,11 +1541,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for GeometryFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for GeometryFlagsKHR {
@@ -1548,10 +1583,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct GeometryFlagBitsKHR(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct GeometryInstanceFlagsKHR(u32);
     impl GeometryInstanceFlagsKHR {
         pub const TRIANGLE_FACING_CULL_DISABLE_KHR: Self = Self(
@@ -1612,11 +1647,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for GeometryInstanceFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for GeometryInstanceFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -1657,10 +1687,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct GeometryInstanceFlagBitsKHR(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct BuildAccelerationStructureFlagsKHR(u32);
     impl BuildAccelerationStructureFlagsKHR {
         pub const ALLOW_UPDATE_KHR: Self = Self(
@@ -1744,11 +1774,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for BuildAccelerationStructureFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for BuildAccelerationStructureFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -1789,10 +1814,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct BuildAccelerationStructureFlagBitsKHR(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AccelerationStructureCreateFlagsKHR(u32);
     impl AccelerationStructureCreateFlagsKHR {
         pub const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self(
@@ -1822,11 +1847,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for AccelerationStructureCreateFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for AccelerationStructureCreateFlagsKHR {
@@ -1869,7 +1889,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AccelerationStructureCreateFlagBitsKHR(pub(crate) u32);
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]

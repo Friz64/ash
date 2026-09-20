@@ -88,6 +88,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PipelinePropertiesIdentifierEXT<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPipelinePropertiesIdentifierEXT")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("pipeline_identifier", self.pipeline_identifier_as_c_str())
+                .finish()
+        }
+    }
     impl<'a> PipelinePropertiesIdentifierEXT<'a> {
         pub fn pipeline_identifier(
             mut self,
@@ -98,7 +107,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,

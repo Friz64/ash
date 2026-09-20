@@ -82,7 +82,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_capabilities";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ExternalImageFormatPropertiesNV {
         pub image_format_properties: crate::vk::ImageFormatProperties,
         pub external_memory_features: crate::vk::ExternalMemoryFeatureFlagsNV,
@@ -120,7 +120,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ExternalMemoryHandleTypeFlagsNV(u32);
     impl ExternalMemoryHandleTypeFlagsNV {
         pub const OPAQUE_WIN32_NV: Self = Self(
@@ -152,11 +152,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for ExternalMemoryHandleTypeFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for ExternalMemoryHandleTypeFlagsNV {
@@ -199,10 +194,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ExternalMemoryHandleTypeFlagBitsNV(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ExternalMemoryFeatureFlagsNV(u32);
     impl ExternalMemoryFeatureFlagsNV {
         pub const DEDICATED_ONLY_NV: Self = Self(
@@ -231,11 +226,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for ExternalMemoryFeatureFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for ExternalMemoryFeatureFlagsNV {
@@ -278,7 +268,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ExternalMemoryFeatureFlagBitsNV(pub(crate) u32);
     pub type PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,

@@ -184,7 +184,7 @@ pub const SPEC_VERSION: u32 = 25;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_surface";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SurfaceCapabilitiesKHR {
         pub min_image_count: u32,
         pub max_image_count: u32,
@@ -258,7 +258,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SurfaceFormatKHR {
         pub format: crate::vk::Format,
         pub color_space: crate::vk::ColorSpaceKHR,
@@ -282,7 +282,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct ColorSpaceKHR(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct CompositeAlphaFlagsKHR(u32);
     impl CompositeAlphaFlagsKHR {
         pub const OPAQUE_KHR: Self = Self(CompositeAlphaFlagBitsKHR::OPAQUE_KHR.0);
@@ -310,11 +310,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for CompositeAlphaFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for CompositeAlphaFlagsKHR {
@@ -357,10 +352,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct CompositeAlphaFlagBitsKHR(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SurfaceTransformFlagsKHR(u32);
     impl SurfaceTransformFlagsKHR {
         pub const IDENTITY_KHR: Self = Self(SurfaceTransformFlagBitsKHR::IDENTITY_KHR.0);
@@ -405,11 +400,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for SurfaceTransformFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for SurfaceTransformFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -450,7 +440,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SurfaceTransformFlagBitsKHR(pub(crate) u32);
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]

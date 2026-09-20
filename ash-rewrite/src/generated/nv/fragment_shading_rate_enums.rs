@@ -110,7 +110,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -165,7 +165,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -223,6 +223,17 @@ pub(crate) mod reexport {
                 combiner_ops: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> core::fmt::Debug for PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPipelineFragmentShadingRateEnumStateCreateInfoNV")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("shading_rate_type", &self.shading_rate_type)
+                .field("shading_rate", &self.shading_rate)
+                .field("combiner_ops", self.combiner_ops_as_c_str())
+                .finish()
         }
     }
     impl<'a> PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {

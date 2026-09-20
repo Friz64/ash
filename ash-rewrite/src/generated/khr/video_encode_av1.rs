@@ -82,7 +82,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_av1";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeAV1CapabilitiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -297,7 +297,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeAV1QualityLevelPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -456,7 +456,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -488,7 +488,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeAV1SessionCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -524,7 +524,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -578,7 +578,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeAV1DpbSlotInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -645,6 +645,27 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for VideoEncodeAV1PictureInfoKHR<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkVideoEncodeAV1PictureInfoKHR")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("prediction_mode", &self.prediction_mode)
+                .field("rate_control_group", &self.rate_control_group)
+                .field("constant_q_index", &self.constant_q_index)
+                .field("p_std_picture_info", &self.p_std_picture_info)
+                .field(
+                    "reference_name_slot_indices",
+                    self.reference_name_slot_indices_as_c_str(),
+                )
+                .field("primary_reference_cdf_only", &self.primary_reference_cdf_only)
+                .field(
+                    "generate_obu_extension_header",
+                    &self.generate_obu_extension_header,
+                )
+                .finish()
+        }
+    }
     impl<'a> VideoEncodeAV1PictureInfoKHR<'a> {
         pub fn prediction_mode(
             mut self,
@@ -695,7 +716,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeAV1ProfileInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -726,7 +747,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeAV1RateControlInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -787,7 +808,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeAV1QIndexKHR {
         pub intra_q_index: u32,
         pub predictive_q_index: u32,
@@ -808,7 +829,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeAV1FrameSizeKHR {
         pub intra_frame_size: u32,
         pub predictive_frame_size: u32,
@@ -829,7 +850,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeAV1GopRemainingFrameInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -886,7 +907,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeAV1RateControlLayerInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -963,7 +984,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct VideoEncodeAV1RateControlGroupKHR(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeAV1CapabilityFlagsKHR(u32);
     impl VideoEncodeAV1CapabilityFlagsKHR {
         pub const PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR: Self = Self(
@@ -1002,11 +1023,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for VideoEncodeAV1CapabilityFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for VideoEncodeAV1CapabilityFlagsKHR {
@@ -1049,10 +1065,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeAV1CapabilityFlagBitsKHR(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeAV1StdFlagsKHR(u32);
     impl VideoEncodeAV1StdFlagsKHR {
         pub const UNIFORM_TILE_SPACING_FLAG_SET_KHR: Self = Self(
@@ -1082,11 +1098,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for VideoEncodeAV1StdFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for VideoEncodeAV1StdFlagsKHR {
@@ -1129,10 +1140,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeAV1StdFlagBitsKHR(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeAV1RateControlFlagsKHR(u32);
     impl VideoEncodeAV1RateControlFlagsKHR {
         pub const REGULAR_GOP_KHR: Self = Self(
@@ -1164,11 +1175,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for VideoEncodeAV1RateControlFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for VideoEncodeAV1RateControlFlagsKHR {
@@ -1211,10 +1217,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeAV1RateControlFlagBitsKHR(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeAV1SuperblockSizeFlagsKHR(u32);
     impl VideoEncodeAV1SuperblockSizeFlagsKHR {
         pub const _64_KHR: Self = Self(
@@ -1240,11 +1246,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for VideoEncodeAV1SuperblockSizeFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for VideoEncodeAV1SuperblockSizeFlagsKHR {
@@ -1287,7 +1288,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeAV1SuperblockSizeFlagBitsKHR(pub(crate) u32);
 }
 pub use reexport::*;

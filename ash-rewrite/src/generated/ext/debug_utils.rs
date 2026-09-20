@@ -279,7 +279,7 @@ pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_utils";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DebugUtilsObjectNameInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -331,7 +331,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DebugUtilsObjectTagInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -401,6 +401,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for DebugUtilsLabelEXT<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkDebugUtilsLabelEXT")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("p_label_name", &self.p_label_name)
+                .field("color", self.color_as_c_str())
+                .finish()
+        }
+    }
     impl<'a> DebugUtilsLabelEXT<'a> {
         pub fn label_name(mut self, label_name: &'a core::ffi::CStr) -> Self {
             self.p_label_name = label_name.as_ptr();
@@ -419,7 +429,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DebugUtilsMessengerCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -484,7 +494,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DebugUtilsMessengerCallbackDataEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -583,7 +593,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DebugUtilsMessageSeverityFlagsEXT(u32);
     impl DebugUtilsMessageSeverityFlagsEXT {
         pub const VERBOSE_EXT: Self = Self(
@@ -615,11 +625,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DebugUtilsMessageSeverityFlagsEXT {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DebugUtilsMessageSeverityFlagsEXT {
@@ -662,10 +667,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DebugUtilsMessageSeverityFlagBitsEXT(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DebugUtilsMessageTypeFlagsEXT(u32);
     impl DebugUtilsMessageTypeFlagsEXT {
         pub const GENERAL_EXT: Self = Self(
@@ -697,11 +702,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DebugUtilsMessageTypeFlagsEXT {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DebugUtilsMessageTypeFlagsEXT {
@@ -744,10 +744,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DebugUtilsMessengerCreateFlagsEXT(u32);
     impl DebugUtilsMessengerCreateFlagsEXT {
         pub const fn empty() -> Self {
@@ -767,11 +767,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DebugUtilsMessengerCreateFlagsEXT {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DebugUtilsMessengerCreateFlagsEXT {
@@ -814,7 +809,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DebugUtilsMessengerCallbackDataFlagsEXT(u32);
     impl DebugUtilsMessengerCallbackDataFlagsEXT {
         pub const fn empty() -> Self {
@@ -834,11 +829,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DebugUtilsMessengerCallbackDataFlagsEXT {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DebugUtilsMessengerCallbackDataFlagsEXT {

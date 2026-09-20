@@ -3384,7 +3384,7 @@ impl DeviceV1_0 {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct BaseOutStructure<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut crate::vk::BaseOutStructure<'a>,
@@ -3392,7 +3392,7 @@ pub(crate) mod reexport {
     }
     impl<'a> BaseOutStructure<'a> {}
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct BaseInStructure<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const crate::vk::BaseInStructure<'a>,
@@ -3400,7 +3400,7 @@ pub(crate) mod reexport {
     }
     impl<'a> BaseInStructure<'a> {}
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct Offset2D {
         pub x: i32,
         pub y: i32,
@@ -3416,7 +3416,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct Offset3D {
         pub x: i32,
         pub y: i32,
@@ -3437,7 +3437,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct Extent2D {
         pub width: u32,
         pub height: u32,
@@ -3453,7 +3453,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct Extent3D {
         pub width: u32,
         pub height: u32,
@@ -3474,7 +3474,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct Viewport {
         pub x: core::ffi::c_float,
         pub y: core::ffi::c_float,
@@ -3510,7 +3510,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct Rect2D {
         pub offset: crate::vk::Offset2D,
         pub extent: crate::vk::Extent2D,
@@ -3526,7 +3526,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClearRect {
         pub rect: crate::vk::Rect2D,
         pub base_array_layer: u32,
@@ -3547,7 +3547,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ComponentMapping {
         pub r: crate::vk::ComponentSwizzle,
         pub g: crate::vk::ComponentSwizzle,
@@ -3599,6 +3599,21 @@ pub(crate) mod reexport {
                 limits: Default::default(),
                 sparse_properties: Default::default(),
             }
+        }
+    }
+    impl core::fmt::Debug for PhysicalDeviceProperties {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceProperties")
+                .field("api_version", &self.api_version)
+                .field("driver_version", &self.driver_version)
+                .field("vendor_id", &self.vendor_id)
+                .field("device_id", &self.device_id)
+                .field("device_type", &self.device_type)
+                .field("device_name", self.device_name_as_c_str())
+                .field("pipeline_cache_uuid", self.pipeline_cache_uuid_as_c_str())
+                .field("limits", &self.limits)
+                .field("sparse_properties", &self.sparse_properties)
+                .finish()
         }
     }
     impl PhysicalDeviceProperties {
@@ -3670,6 +3685,14 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for ExtensionProperties {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkExtensionProperties")
+                .field("extension_name", self.extension_name_as_c_str())
+                .field("spec_version", &self.spec_version)
+                .finish()
+        }
+    }
     impl ExtensionProperties {
         pub fn extension_name(
             mut self,
@@ -3704,6 +3727,16 @@ pub(crate) mod reexport {
                 implementation_version: Default::default(),
                 description: unsafe { core::mem::zeroed() },
             }
+        }
+    }
+    impl core::fmt::Debug for LayerProperties {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkLayerProperties")
+                .field("layer_name", self.layer_name_as_c_str())
+                .field("spec_version", &self.spec_version)
+                .field("implementation_version", &self.implementation_version)
+                .field("description", self.description_as_c_str())
+                .finish()
         }
     }
     impl LayerProperties {
@@ -3741,7 +3774,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ApplicationInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -3809,7 +3842,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AllocationCallbacks<'a> {
         pub p_user_data: *mut core::ffi::c_void,
         pub pfn_allocation: crate::vk::PFN_vkAllocationFunction,
@@ -3858,7 +3891,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DeviceQueueCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -3903,7 +3936,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DeviceCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -3975,7 +4008,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct InstanceCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -4035,7 +4068,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct QueueFamilyProperties {
         pub queue_flags: crate::vk::QueueFlags,
         pub queue_count: u32,
@@ -4081,6 +4114,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for PhysicalDeviceMemoryProperties {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceMemoryProperties")
+                .field("memory_type_count", &self.memory_type_count)
+                .field("memory_types", self.memory_types_as_c_str())
+                .field("memory_heap_count", &self.memory_heap_count)
+                .field("memory_heaps", self.memory_heaps_as_c_str())
+                .finish()
+        }
+    }
     impl PhysicalDeviceMemoryProperties {
         pub fn memory_types(
             mut self,
@@ -4106,7 +4149,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct MemoryAllocateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -4142,7 +4185,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct MemoryRequirements {
         pub size: crate::vk::DeviceSize,
         pub alignment: crate::vk::DeviceSize,
@@ -4163,7 +4206,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SparseImageFormatProperties {
         pub aspect_mask: crate::vk::ImageAspectFlags,
         pub image_granularity: crate::vk::Extent3D,
@@ -4187,7 +4230,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SparseImageMemoryRequirements {
         pub format_properties: crate::vk::SparseImageFormatProperties,
         pub image_mip_tail_first_lod: u32,
@@ -4233,7 +4276,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct MemoryType {
         pub property_flags: crate::vk::MemoryPropertyFlags,
         pub heap_index: u32,
@@ -4252,7 +4295,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct MemoryHeap {
         pub size: crate::vk::DeviceSize,
         pub flags: crate::vk::MemoryHeapFlags,
@@ -4268,7 +4311,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct MappedMemoryRange<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -4307,7 +4350,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct FormatProperties {
         pub linear_tiling_features: crate::vk::FormatFeatureFlags,
         pub optimal_tiling_features: crate::vk::FormatFeatureFlags,
@@ -4337,7 +4380,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageFormatProperties {
         pub max_extent: crate::vk::Extent3D,
         pub max_mip_levels: u32,
@@ -4374,7 +4417,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DescriptorBufferInfo {
         pub buffer: crate::vk::Buffer,
         pub offset: crate::vk::DeviceSize,
@@ -4395,7 +4438,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DescriptorImageInfo {
         pub sampler: crate::vk::Sampler,
         pub image_view: crate::vk::ImageView,
@@ -4416,7 +4459,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct WriteDescriptorSet<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -4500,7 +4543,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct CopyDescriptorSet<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -4563,7 +4606,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct BufferCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -4617,7 +4660,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct BufferViewCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -4668,7 +4711,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageSubresource {
         pub aspect_mask: crate::vk::ImageAspectFlags,
         pub mip_level: u32,
@@ -4689,7 +4732,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageSubresourceLayers {
         pub aspect_mask: crate::vk::ImageAspectFlags,
         pub mip_level: u32,
@@ -4715,7 +4758,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageSubresourceRange {
         pub aspect_mask: crate::vk::ImageAspectFlags,
         pub base_mip_level: u32,
@@ -4746,7 +4789,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct MemoryBarrier<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -4785,7 +4828,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct BufferMemoryBarrier<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -4854,7 +4897,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageMemoryBarrier<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -4932,7 +4975,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -5028,7 +5071,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SubresourceLayout {
         pub offset: crate::vk::DeviceSize,
         pub size: crate::vk::DeviceSize,
@@ -5059,7 +5102,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageViewCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -5119,7 +5162,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct BufferCopy {
         pub src_offset: crate::vk::DeviceSize,
         pub dst_offset: crate::vk::DeviceSize,
@@ -5140,7 +5183,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SparseMemoryBind {
         pub resource_offset: crate::vk::DeviceSize,
         pub size: crate::vk::DeviceSize,
@@ -5174,7 +5217,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SparseImageMemoryBind {
         pub subresource: crate::vk::ImageSubresource,
         pub offset: crate::vk::Offset3D,
@@ -5210,7 +5253,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SparseBufferMemoryBindInfo<'a> {
         pub buffer: crate::vk::Buffer,
         pub bind_count: u32,
@@ -5229,7 +5272,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SparseImageOpaqueMemoryBindInfo<'a> {
         pub image: crate::vk::Image,
         pub bind_count: u32,
@@ -5248,7 +5291,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SparseImageMemoryBindInfo<'a> {
         pub image: crate::vk::Image,
         pub bind_count: u32,
@@ -5267,7 +5310,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct BindSparseInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -5348,7 +5391,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageCopy {
         pub src_subresource: crate::vk::ImageSubresourceLayers,
         pub src_offset: crate::vk::Offset3D,
@@ -5402,6 +5445,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for ImageBlit {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkImageBlit")
+                .field("src_subresource", &self.src_subresource)
+                .field("src_offsets", self.src_offsets_as_c_str())
+                .field("dst_subresource", &self.dst_subresource)
+                .field("dst_offsets", self.dst_offsets_as_c_str())
+                .finish()
+        }
+    }
     impl ImageBlit {
         pub fn src_subresource(
             mut self,
@@ -5433,7 +5486,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct BufferImageCopy {
         pub buffer_offset: crate::vk::DeviceSize,
         pub buffer_row_length: u32,
@@ -5472,7 +5525,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageResolve {
         pub src_subresource: crate::vk::ImageSubresourceLayers,
         pub src_offset: crate::vk::Offset3D,
@@ -5509,7 +5562,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ShaderModuleCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -5549,7 +5602,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DescriptorSetLayoutBinding<'a> {
         pub binding: u32,
         pub descriptor_type: crate::vk::DescriptorType,
@@ -5588,7 +5641,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DescriptorSetLayoutCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -5630,7 +5683,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DescriptorPoolSize {
         pub _type: crate::vk::DescriptorType,
         pub descriptor_count: u32,
@@ -5646,7 +5699,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DescriptorPoolCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -5691,7 +5744,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DescriptorSetAllocateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -5733,7 +5786,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SpecializationMapEntry {
         pub constant_id: u32,
         pub offset: u32,
@@ -5754,7 +5807,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SpecializationInfo<'a> {
         pub map_entry_count: u32,
         pub p_map_entries: *const crate::vk::SpecializationMapEntry,
@@ -5778,7 +5831,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineShaderStageCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -5842,7 +5895,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ComputePipelineCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -5899,7 +5952,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VertexInputBindingDescription {
         pub binding: u32,
         pub stride: u32,
@@ -5920,7 +5973,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VertexInputAttributeDescription {
         pub location: u32,
         pub binding: u32,
@@ -5946,7 +5999,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineVertexInputStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -6004,7 +6057,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineInputAssemblyStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -6050,7 +6103,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineTessellationStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -6087,7 +6140,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineViewportStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -6143,7 +6196,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineRasterizationStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -6243,7 +6296,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineMultisampleStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -6319,7 +6372,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineColorBlendAttachmentState {
         pub blend_enable: crate::vk::Bool32,
         pub src_color_blend_factor: crate::vk::BlendFactor,
@@ -6411,6 +6464,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PipelineColorBlendStateCreateInfo<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPipelineColorBlendStateCreateInfo")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("flags", &self.flags)
+                .field("logic_op_enable", &self.logic_op_enable)
+                .field("logic_op", &self.logic_op)
+                .field("attachment_count", &self.attachment_count)
+                .field("p_attachments", &self.p_attachments)
+                .field("blend_constants", self.blend_constants_as_c_str())
+                .finish()
+        }
+    }
     impl<'a> PipelineColorBlendStateCreateInfo<'a> {
         pub fn flags(
             mut self,
@@ -6444,7 +6511,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineDynamicStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -6486,7 +6553,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct StencilOpState {
         pub fail_op: crate::vk::StencilOp,
         pub pass_op: crate::vk::StencilOp,
@@ -6527,7 +6594,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineDepthStencilStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -6618,7 +6685,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct GraphicsPipelineCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -6783,7 +6850,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineCacheCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -6838,6 +6905,17 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for PipelineCacheHeaderVersionOne {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPipelineCacheHeaderVersionOne")
+                .field("header_size", &self.header_size)
+                .field("header_version", &self.header_version)
+                .field("vendor_id", &self.vendor_id)
+                .field("device_id", &self.device_id)
+                .field("pipeline_cache_uuid", self.pipeline_cache_uuid_as_c_str())
+                .finish()
+        }
+    }
     impl PipelineCacheHeaderVersionOne {
         pub fn header_size(mut self, header_size: u32) -> Self {
             self.header_size = header_size;
@@ -6867,7 +6945,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PushConstantRange {
         pub stage_flags: crate::vk::ShaderStageFlags,
         pub offset: u32,
@@ -6888,7 +6966,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineLayoutCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -6955,7 +7033,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SamplerCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -7084,7 +7162,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct CommandPoolCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -7117,7 +7195,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct CommandBufferAllocateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -7156,7 +7234,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct CommandBufferInheritanceInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -7216,7 +7294,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct CommandBufferBeginInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -7252,7 +7330,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct RenderPassBeginInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -7303,7 +7381,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClearDepthStencilValue {
         pub depth: core::ffi::c_float,
         pub stencil: u32,
@@ -7319,7 +7397,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ClearAttachment {
         pub aspect_mask: crate::vk::ImageAspectFlags,
         pub color_attachment: u32,
@@ -7340,7 +7418,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AttachmentDescription {
         pub flags: crate::vk::AttachmentDescriptionFlags,
         pub format: crate::vk::Format,
@@ -7397,7 +7475,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AttachmentReference {
         pub attachment: u32,
         pub layout: crate::vk::ImageLayout,
@@ -7413,7 +7491,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SubpassDescription<'a> {
         pub flags: crate::vk::SubpassDescriptionFlags,
         pub pipeline_bind_point: crate::vk::PipelineBindPoint,
@@ -7477,7 +7555,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SubpassDependency {
         pub src_subpass: u32,
         pub dst_subpass: u32,
@@ -7533,7 +7611,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct RenderPassCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -7596,7 +7674,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct EventCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -7623,7 +7701,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct FenceCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -7650,7 +7728,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PhysicalDeviceFeatures {
         pub robust_buffer_access: crate::vk::Bool32,
         pub full_draw_index_uint32: crate::vk::Bool32,
@@ -8016,7 +8094,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PhysicalDeviceSparseProperties {
         pub residency_standard2_d_block_shape: crate::vk::Bool32,
         pub residency_standard2_d_multisample_block_shape: crate::vk::Bool32,
@@ -8284,6 +8362,283 @@ pub(crate) mod reexport {
                 optimal_buffer_copy_row_pitch_alignment: Default::default(),
                 non_coherent_atom_size: Default::default(),
             }
+        }
+    }
+    impl core::fmt::Debug for PhysicalDeviceLimits {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceLimits")
+                .field("max_image_dimension1_d", &self.max_image_dimension1_d)
+                .field("max_image_dimension2_d", &self.max_image_dimension2_d)
+                .field("max_image_dimension3_d", &self.max_image_dimension3_d)
+                .field("max_image_dimension_cube", &self.max_image_dimension_cube)
+                .field("max_image_array_layers", &self.max_image_array_layers)
+                .field("max_texel_buffer_elements", &self.max_texel_buffer_elements)
+                .field("max_uniform_buffer_range", &self.max_uniform_buffer_range)
+                .field("max_storage_buffer_range", &self.max_storage_buffer_range)
+                .field("max_push_constants_size", &self.max_push_constants_size)
+                .field("max_memory_allocation_count", &self.max_memory_allocation_count)
+                .field(
+                    "max_sampler_allocation_count",
+                    &self.max_sampler_allocation_count,
+                )
+                .field("buffer_image_granularity", &self.buffer_image_granularity)
+                .field("sparse_address_space_size", &self.sparse_address_space_size)
+                .field("max_bound_descriptor_sets", &self.max_bound_descriptor_sets)
+                .field(
+                    "max_per_stage_descriptor_samplers",
+                    &self.max_per_stage_descriptor_samplers,
+                )
+                .field(
+                    "max_per_stage_descriptor_uniform_buffers",
+                    &self.max_per_stage_descriptor_uniform_buffers,
+                )
+                .field(
+                    "max_per_stage_descriptor_storage_buffers",
+                    &self.max_per_stage_descriptor_storage_buffers,
+                )
+                .field(
+                    "max_per_stage_descriptor_sampled_images",
+                    &self.max_per_stage_descriptor_sampled_images,
+                )
+                .field(
+                    "max_per_stage_descriptor_storage_images",
+                    &self.max_per_stage_descriptor_storage_images,
+                )
+                .field(
+                    "max_per_stage_descriptor_input_attachments",
+                    &self.max_per_stage_descriptor_input_attachments,
+                )
+                .field("max_per_stage_resources", &self.max_per_stage_resources)
+                .field("max_descriptor_set_samplers", &self.max_descriptor_set_samplers)
+                .field(
+                    "max_descriptor_set_uniform_buffers",
+                    &self.max_descriptor_set_uniform_buffers,
+                )
+                .field(
+                    "max_descriptor_set_uniform_buffers_dynamic",
+                    &self.max_descriptor_set_uniform_buffers_dynamic,
+                )
+                .field(
+                    "max_descriptor_set_storage_buffers",
+                    &self.max_descriptor_set_storage_buffers,
+                )
+                .field(
+                    "max_descriptor_set_storage_buffers_dynamic",
+                    &self.max_descriptor_set_storage_buffers_dynamic,
+                )
+                .field(
+                    "max_descriptor_set_sampled_images",
+                    &self.max_descriptor_set_sampled_images,
+                )
+                .field(
+                    "max_descriptor_set_storage_images",
+                    &self.max_descriptor_set_storage_images,
+                )
+                .field(
+                    "max_descriptor_set_input_attachments",
+                    &self.max_descriptor_set_input_attachments,
+                )
+                .field("max_vertex_input_attributes", &self.max_vertex_input_attributes)
+                .field("max_vertex_input_bindings", &self.max_vertex_input_bindings)
+                .field(
+                    "max_vertex_input_attribute_offset",
+                    &self.max_vertex_input_attribute_offset,
+                )
+                .field(
+                    "max_vertex_input_binding_stride",
+                    &self.max_vertex_input_binding_stride,
+                )
+                .field(
+                    "max_vertex_output_components",
+                    &self.max_vertex_output_components,
+                )
+                .field(
+                    "max_tessellation_generation_level",
+                    &self.max_tessellation_generation_level,
+                )
+                .field("max_tessellation_patch_size", &self.max_tessellation_patch_size)
+                .field(
+                    "max_tessellation_control_per_vertex_input_components",
+                    &self.max_tessellation_control_per_vertex_input_components,
+                )
+                .field(
+                    "max_tessellation_control_per_vertex_output_components",
+                    &self.max_tessellation_control_per_vertex_output_components,
+                )
+                .field(
+                    "max_tessellation_control_per_patch_output_components",
+                    &self.max_tessellation_control_per_patch_output_components,
+                )
+                .field(
+                    "max_tessellation_control_total_output_components",
+                    &self.max_tessellation_control_total_output_components,
+                )
+                .field(
+                    "max_tessellation_evaluation_input_components",
+                    &self.max_tessellation_evaluation_input_components,
+                )
+                .field(
+                    "max_tessellation_evaluation_output_components",
+                    &self.max_tessellation_evaluation_output_components,
+                )
+                .field(
+                    "max_geometry_shader_invocations",
+                    &self.max_geometry_shader_invocations,
+                )
+                .field(
+                    "max_geometry_input_components",
+                    &self.max_geometry_input_components,
+                )
+                .field(
+                    "max_geometry_output_components",
+                    &self.max_geometry_output_components,
+                )
+                .field(
+                    "max_geometry_output_vertices",
+                    &self.max_geometry_output_vertices,
+                )
+                .field(
+                    "max_geometry_total_output_components",
+                    &self.max_geometry_total_output_components,
+                )
+                .field(
+                    "max_fragment_input_components",
+                    &self.max_fragment_input_components,
+                )
+                .field(
+                    "max_fragment_output_attachments",
+                    &self.max_fragment_output_attachments,
+                )
+                .field(
+                    "max_fragment_dual_src_attachments",
+                    &self.max_fragment_dual_src_attachments,
+                )
+                .field(
+                    "max_fragment_combined_output_resources",
+                    &self.max_fragment_combined_output_resources,
+                )
+                .field(
+                    "max_compute_shared_memory_size",
+                    &self.max_compute_shared_memory_size,
+                )
+                .field(
+                    "max_compute_work_group_count",
+                    self.max_compute_work_group_count_as_c_str(),
+                )
+                .field(
+                    "max_compute_work_group_invocations",
+                    &self.max_compute_work_group_invocations,
+                )
+                .field(
+                    "max_compute_work_group_size",
+                    self.max_compute_work_group_size_as_c_str(),
+                )
+                .field("sub_pixel_precision_bits", &self.sub_pixel_precision_bits)
+                .field("sub_texel_precision_bits", &self.sub_texel_precision_bits)
+                .field("mipmap_precision_bits", &self.mipmap_precision_bits)
+                .field(
+                    "max_draw_indexed_index_value",
+                    &self.max_draw_indexed_index_value,
+                )
+                .field("max_draw_indirect_count", &self.max_draw_indirect_count)
+                .field("max_sampler_lod_bias", &self.max_sampler_lod_bias)
+                .field("max_sampler_anisotropy", &self.max_sampler_anisotropy)
+                .field("max_viewports", &self.max_viewports)
+                .field(
+                    "max_viewport_dimensions",
+                    self.max_viewport_dimensions_as_c_str(),
+                )
+                .field("viewport_bounds_range", self.viewport_bounds_range_as_c_str())
+                .field("viewport_sub_pixel_bits", &self.viewport_sub_pixel_bits)
+                .field("min_memory_map_alignment", &self.min_memory_map_alignment)
+                .field(
+                    "min_texel_buffer_offset_alignment",
+                    &self.min_texel_buffer_offset_alignment,
+                )
+                .field(
+                    "min_uniform_buffer_offset_alignment",
+                    &self.min_uniform_buffer_offset_alignment,
+                )
+                .field(
+                    "min_storage_buffer_offset_alignment",
+                    &self.min_storage_buffer_offset_alignment,
+                )
+                .field("min_texel_offset", &self.min_texel_offset)
+                .field("max_texel_offset", &self.max_texel_offset)
+                .field("min_texel_gather_offset", &self.min_texel_gather_offset)
+                .field("max_texel_gather_offset", &self.max_texel_gather_offset)
+                .field("min_interpolation_offset", &self.min_interpolation_offset)
+                .field("max_interpolation_offset", &self.max_interpolation_offset)
+                .field(
+                    "sub_pixel_interpolation_offset_bits",
+                    &self.sub_pixel_interpolation_offset_bits,
+                )
+                .field("max_framebuffer_width", &self.max_framebuffer_width)
+                .field("max_framebuffer_height", &self.max_framebuffer_height)
+                .field("max_framebuffer_layers", &self.max_framebuffer_layers)
+                .field(
+                    "framebuffer_color_sample_counts",
+                    &self.framebuffer_color_sample_counts,
+                )
+                .field(
+                    "framebuffer_depth_sample_counts",
+                    &self.framebuffer_depth_sample_counts,
+                )
+                .field(
+                    "framebuffer_stencil_sample_counts",
+                    &self.framebuffer_stencil_sample_counts,
+                )
+                .field(
+                    "framebuffer_no_attachments_sample_counts",
+                    &self.framebuffer_no_attachments_sample_counts,
+                )
+                .field("max_color_attachments", &self.max_color_attachments)
+                .field(
+                    "sampled_image_color_sample_counts",
+                    &self.sampled_image_color_sample_counts,
+                )
+                .field(
+                    "sampled_image_integer_sample_counts",
+                    &self.sampled_image_integer_sample_counts,
+                )
+                .field(
+                    "sampled_image_depth_sample_counts",
+                    &self.sampled_image_depth_sample_counts,
+                )
+                .field(
+                    "sampled_image_stencil_sample_counts",
+                    &self.sampled_image_stencil_sample_counts,
+                )
+                .field("storage_image_sample_counts", &self.storage_image_sample_counts)
+                .field("max_sample_mask_words", &self.max_sample_mask_words)
+                .field(
+                    "timestamp_compute_and_graphics",
+                    &self.timestamp_compute_and_graphics,
+                )
+                .field("timestamp_period", &self.timestamp_period)
+                .field("max_clip_distances", &self.max_clip_distances)
+                .field("max_cull_distances", &self.max_cull_distances)
+                .field(
+                    "max_combined_clip_and_cull_distances",
+                    &self.max_combined_clip_and_cull_distances,
+                )
+                .field("discrete_queue_priorities", &self.discrete_queue_priorities)
+                .field("point_size_range", self.point_size_range_as_c_str())
+                .field("line_width_range", self.line_width_range_as_c_str())
+                .field("point_size_granularity", &self.point_size_granularity)
+                .field("line_width_granularity", &self.line_width_granularity)
+                .field("strict_lines", &self.strict_lines)
+                .field("standard_sample_locations", &self.standard_sample_locations)
+                .field(
+                    "optimal_buffer_copy_offset_alignment",
+                    &self.optimal_buffer_copy_offset_alignment,
+                )
+                .field(
+                    "optimal_buffer_copy_row_pitch_alignment",
+                    &self.optimal_buffer_copy_row_pitch_alignment,
+                )
+                .field("non_coherent_atom_size", &self.non_coherent_atom_size)
+                .finish()
         }
     }
     impl PhysicalDeviceLimits {
@@ -8962,7 +9317,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SemaphoreCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -8989,7 +9344,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct QueryPoolCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -9037,7 +9392,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct FramebufferCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -9101,7 +9456,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DrawIndirectCommand {
         pub vertex_count: u32,
         pub instance_count: u32,
@@ -9127,7 +9482,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DrawIndexedIndirectCommand {
         pub index_count: u32,
         pub instance_count: u32,
@@ -9158,7 +9513,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DispatchIndirectCommand {
         pub x: u32,
         pub y: u32,
@@ -9179,7 +9534,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct SubmitInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -9257,6 +9612,11 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
+    impl core::fmt::Debug for ClearColorValue {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            write!(f, "VkClearColorValue")
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union ClearValue {
@@ -9266,6 +9626,11 @@ pub(crate) mod reexport {
     impl Default for ClearValue {
         fn default() -> Self {
             unsafe { core::mem::zeroed() }
+        }
+    }
+    impl core::fmt::Debug for ClearValue {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            write!(f, "VkClearValue")
         }
     }
     #[repr(transparent)]
@@ -9417,7 +9782,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct VendorId(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct FramebufferCreateFlags(u32);
     impl FramebufferCreateFlags {
         pub const IMAGELESS: Self = Self(FramebufferCreateFlagBits::IMAGELESS.0);
@@ -9439,11 +9804,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for FramebufferCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for FramebufferCreateFlags {
@@ -9486,10 +9846,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct FramebufferCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct QueryPoolCreateFlags(u32);
     impl QueryPoolCreateFlags {
         pub const RESET_KHR: Self = Self(QueryPoolCreateFlagBits::RESET_KHR.0);
@@ -9510,11 +9870,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for QueryPoolCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for QueryPoolCreateFlags {
@@ -9557,10 +9912,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct QueryPoolCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct RenderPassCreateFlags(u32);
     impl RenderPassCreateFlags {
         pub const TRANSFORM_QCOM: Self = Self(
@@ -9586,11 +9941,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for RenderPassCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for RenderPassCreateFlags {
@@ -9633,10 +9983,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct RenderPassCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SamplerCreateFlags(u32);
     impl SamplerCreateFlags {
         pub const SUBSAMPLED_EXT: Self = Self(SamplerCreateFlagBits::SUBSAMPLED_EXT.0);
@@ -9669,11 +10019,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for SamplerCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for SamplerCreateFlags {
@@ -9716,10 +10061,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SamplerCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineLayoutCreateFlags(u32);
     impl PipelineLayoutCreateFlags {
         pub const INDEPENDENT_SETS_EXT: Self = Self(
@@ -9745,11 +10090,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineLayoutCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineLayoutCreateFlags {
@@ -9792,10 +10132,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineLayoutCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineCacheCreateFlags(u32);
     impl PipelineCacheCreateFlags {
         pub const EXTERNALLY_SYNCHRONIZED: Self = Self(
@@ -9824,11 +10164,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineCacheCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineCacheCreateFlags {
@@ -9871,10 +10206,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineCacheCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineDepthStencilStateCreateFlags(u32);
     impl PipelineDepthStencilStateCreateFlags {
         pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM: Self = Self(
@@ -9910,11 +10245,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineDepthStencilStateCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineDepthStencilStateCreateFlags {
@@ -9957,10 +10287,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineDepthStencilStateCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineDynamicStateCreateFlags(u32);
     impl PipelineDynamicStateCreateFlags {
         pub const fn empty() -> Self {
@@ -9980,11 +10310,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineDynamicStateCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineDynamicStateCreateFlags {
@@ -10027,7 +10352,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineColorBlendStateCreateFlags(u32);
     impl PipelineColorBlendStateCreateFlags {
         pub const RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM: Self = Self(
@@ -10055,11 +10380,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineColorBlendStateCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineColorBlendStateCreateFlags {
@@ -10102,10 +10422,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineColorBlendStateCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineMultisampleStateCreateFlags(u32);
     impl PipelineMultisampleStateCreateFlags {
         pub const fn empty() -> Self {
@@ -10125,11 +10445,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineMultisampleStateCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineMultisampleStateCreateFlags {
@@ -10172,7 +10487,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineRasterizationStateCreateFlags(u32);
     impl PipelineRasterizationStateCreateFlags {
         pub const fn empty() -> Self {
@@ -10192,11 +10507,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineRasterizationStateCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineRasterizationStateCreateFlags {
@@ -10239,7 +10549,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineViewportStateCreateFlags(u32);
     impl PipelineViewportStateCreateFlags {
         pub const fn empty() -> Self {
@@ -10259,11 +10569,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineViewportStateCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineViewportStateCreateFlags {
@@ -10306,7 +10611,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineTessellationStateCreateFlags(u32);
     impl PipelineTessellationStateCreateFlags {
         pub const fn empty() -> Self {
@@ -10326,11 +10631,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineTessellationStateCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineTessellationStateCreateFlags {
@@ -10373,7 +10673,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineInputAssemblyStateCreateFlags(u32);
     impl PipelineInputAssemblyStateCreateFlags {
         pub const fn empty() -> Self {
@@ -10393,11 +10693,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineInputAssemblyStateCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineInputAssemblyStateCreateFlags {
@@ -10440,7 +10735,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineVertexInputStateCreateFlags(u32);
     impl PipelineVertexInputStateCreateFlags {
         pub const fn empty() -> Self {
@@ -10460,11 +10755,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineVertexInputStateCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineVertexInputStateCreateFlags {
@@ -10507,7 +10797,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineShaderStageCreateFlags(u32);
     impl PipelineShaderStageCreateFlags {
         pub const ALLOW_VARYING_SUBGROUP_SIZE: Self = Self(
@@ -10539,11 +10829,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineShaderStageCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineShaderStageCreateFlags {
@@ -10586,10 +10871,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineShaderStageCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DescriptorSetLayoutCreateFlags(u32);
     impl DescriptorSetLayoutCreateFlags {
         pub const UPDATE_AFTER_BIND_POOL: Self = Self(
@@ -10641,11 +10926,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for DescriptorSetLayoutCreateFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for DescriptorSetLayoutCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -10686,10 +10966,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DescriptorSetLayoutCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct BufferViewCreateFlags(u32);
     impl BufferViewCreateFlags {
         pub const fn empty() -> Self {
@@ -10709,11 +10989,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for BufferViewCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for BufferViewCreateFlags {
@@ -10756,7 +11031,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct InstanceCreateFlags(u32);
     impl InstanceCreateFlags {
         pub const ENUMERATE_PORTABILITY_KHR: Self = Self(
@@ -10779,11 +11054,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for InstanceCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for InstanceCreateFlags {
@@ -10826,10 +11096,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct InstanceCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DeviceCreateFlags(u32);
     impl DeviceCreateFlags {
         pub const fn empty() -> Self {
@@ -10849,11 +11119,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DeviceCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DeviceCreateFlags {
@@ -10896,7 +11161,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DeviceQueueCreateFlags(u32);
     impl DeviceQueueCreateFlags {
         pub const PROTECTED: Self = Self(DeviceQueueCreateFlagBits::PROTECTED.0);
@@ -10920,11 +11185,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DeviceQueueCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DeviceQueueCreateFlags {
@@ -10967,10 +11227,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DeviceQueueCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct QueueFlags(u32);
     impl QueueFlags {
         pub const GRAPHICS: Self = Self(QueueFlagBits::GRAPHICS.0);
@@ -10999,11 +11259,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for QueueFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for QueueFlags {
@@ -11046,10 +11301,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct QueueFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct MemoryPropertyFlags(u32);
     impl MemoryPropertyFlags {
         pub const DEVICE_LOCAL: Self = Self(MemoryPropertyFlagBits::DEVICE_LOCAL.0);
@@ -11086,11 +11341,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for MemoryPropertyFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for MemoryPropertyFlags {
@@ -11133,10 +11383,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct MemoryPropertyFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct MemoryHeapFlags(u32);
     impl MemoryHeapFlags {
         pub const DEVICE_LOCAL: Self = Self(MemoryHeapFlagBits::DEVICE_LOCAL.0);
@@ -11162,11 +11412,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for MemoryHeapFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for MemoryHeapFlags {
@@ -11209,10 +11454,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct MemoryHeapFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AccessFlags(u32);
     impl AccessFlags {
         pub const INDIRECT_COMMAND_READ: Self = Self(
@@ -11315,11 +11560,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for AccessFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for AccessFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -11360,10 +11600,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AccessFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct BufferUsageFlags(u32);
     impl BufferUsageFlags {
         pub const TRANSFER_SRC: Self = Self(BufferUsageFlagBits::TRANSFER_SRC.0);
@@ -11460,11 +11700,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for BufferUsageFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for BufferUsageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -11505,10 +11740,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct BufferUsageFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct BufferCreateFlags(u32);
     impl BufferCreateFlags {
         pub const SPARSE_BINDING: Self = Self(BufferCreateFlagBits::SPARSE_BINDING.0);
@@ -11551,11 +11786,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for BufferCreateFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for BufferCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -11596,10 +11826,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct BufferCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ShaderStageFlags(u32);
     impl ShaderStageFlags {
         pub const VERTEX: Self = Self(ShaderStageFlagBits::VERTEX.0);
@@ -11655,11 +11885,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for ShaderStageFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for ShaderStageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -11700,10 +11925,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ShaderStageFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageUsageFlags(u32);
     impl ImageUsageFlags {
         pub const TRANSFER_SRC: Self = Self(ImageUsageFlagBits::TRANSFER_SRC.0);
@@ -11790,11 +12015,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for ImageUsageFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for ImageUsageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -11835,10 +12055,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageUsageFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageCreateFlags(u32);
     impl ImageCreateFlags {
         pub const SPARSE_BINDING: Self = Self(ImageCreateFlagBits::SPARSE_BINDING.0);
@@ -11923,11 +12143,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for ImageCreateFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for ImageCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -11968,10 +12183,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageViewCreateFlags(u32);
     impl ImageViewCreateFlags {
         pub const FRAGMENT_DENSITY_MAP_DYNAMIC_EXT: Self = Self(
@@ -12000,11 +12215,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for ImageViewCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for ImageViewCreateFlags {
@@ -12047,10 +12257,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageViewCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineCreateFlags(u32);
     impl PipelineCreateFlags {
         pub const DISABLE_OPTIMIZATION: Self = Self(
@@ -12180,11 +12390,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for PipelineCreateFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for PipelineCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -12225,10 +12430,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ColorComponentFlags(u32);
     impl ColorComponentFlags {
         pub const R: Self = Self(ColorComponentFlagBits::R.0);
@@ -12252,11 +12457,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for ColorComponentFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for ColorComponentFlags {
@@ -12299,10 +12499,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ColorComponentFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct FenceCreateFlags(u32);
     impl FenceCreateFlags {
         pub const SIGNALED: Self = Self(FenceCreateFlagBits::SIGNALED.0);
@@ -12323,11 +12523,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for FenceCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for FenceCreateFlags {
@@ -12370,10 +12565,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct FenceCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SemaphoreCreateFlags(u32);
     impl SemaphoreCreateFlags {
         pub const fn empty() -> Self {
@@ -12393,11 +12588,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for SemaphoreCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for SemaphoreCreateFlags {
@@ -12440,7 +12630,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct FormatFeatureFlags(u32);
     impl FormatFeatureFlags {
         pub const SAMPLED_IMAGE: Self = Self(FormatFeatureFlagBits::SAMPLED_IMAGE.0);
@@ -12576,11 +12766,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for FormatFeatureFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for FormatFeatureFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -12621,10 +12806,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct FormatFeatureFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct QueryControlFlags(u32);
     impl QueryControlFlags {
         pub const PRECISE: Self = Self(QueryControlFlagBits::PRECISE.0);
@@ -12645,11 +12830,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for QueryControlFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for QueryControlFlags {
@@ -12692,10 +12872,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct QueryControlFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct QueryResultFlags(u32);
     impl QueryResultFlags {
         pub const _64: Self = Self(QueryResultFlagBits::_64.0);
@@ -12722,11 +12902,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for QueryResultFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for QueryResultFlags {
@@ -12769,10 +12944,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct QueryResultFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ShaderModuleCreateFlags(u32);
     impl ShaderModuleCreateFlags {
         pub const fn empty() -> Self {
@@ -12792,11 +12967,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for ShaderModuleCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for ShaderModuleCreateFlags {
@@ -12839,7 +13009,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct EventCreateFlags(u32);
     impl EventCreateFlags {
         pub const DEVICE_ONLY: Self = Self(EventCreateFlagBits::DEVICE_ONLY.0);
@@ -12861,11 +13031,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for EventCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for EventCreateFlags {
@@ -12908,10 +13073,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct EventCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct CommandPoolCreateFlags(u32);
     impl CommandPoolCreateFlags {
         pub const TRANSIENT: Self = Self(CommandPoolCreateFlagBits::TRANSIENT.0);
@@ -12936,11 +13101,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for CommandPoolCreateFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for CommandPoolCreateFlags {
@@ -12983,10 +13143,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct CommandPoolCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct CommandPoolResetFlags(u32);
     impl CommandPoolResetFlags {
         pub const RELEASE_RESOURCES: Self = Self(
@@ -13009,11 +13169,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for CommandPoolResetFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for CommandPoolResetFlags {
@@ -13056,10 +13211,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct CommandPoolResetFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct CommandBufferResetFlags(u32);
     impl CommandBufferResetFlags {
         pub const RELEASE_RESOURCES: Self = Self(
@@ -13082,11 +13237,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for CommandBufferResetFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for CommandBufferResetFlags {
@@ -13129,10 +13279,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct CommandBufferResetFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct CommandBufferUsageFlags(u32);
     impl CommandBufferUsageFlags {
         pub const ONE_TIME_SUBMIT: Self = Self(
@@ -13161,11 +13311,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for CommandBufferUsageFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for CommandBufferUsageFlags {
@@ -13208,10 +13353,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct CommandBufferUsageFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct QueryPipelineStatisticFlags(u32);
     impl QueryPipelineStatisticFlags {
         pub const INPUT_ASSEMBLY_VERTICES: Self = Self(
@@ -13275,11 +13420,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for QueryPipelineStatisticFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for QueryPipelineStatisticFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -13320,10 +13460,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct QueryPipelineStatisticFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct MemoryMapFlags(u32);
     impl MemoryMapFlags {
         pub const PLACED_EXT: Self = Self(MemoryMapFlagBits::PLACED_EXT.0);
@@ -13344,11 +13484,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for MemoryMapFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for MemoryMapFlags {
@@ -13391,10 +13526,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct MemoryMapFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageAspectFlags(u32);
     impl ImageAspectFlags {
         pub const COLOR: Self = Self(ImageAspectFlagBits::COLOR.0);
@@ -13440,11 +13575,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for ImageAspectFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for ImageAspectFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -13485,10 +13615,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ImageAspectFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SparseMemoryBindFlags(u32);
     impl SparseMemoryBindFlags {
         pub const METADATA: Self = Self(SparseMemoryBindFlagBits::METADATA.0);
@@ -13509,11 +13639,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for SparseMemoryBindFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for SparseMemoryBindFlags {
@@ -13556,10 +13681,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SparseMemoryBindFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SparseImageFormatFlags(u32);
     impl SparseImageFormatFlags {
         pub const SINGLE_MIPTAIL: Self = Self(
@@ -13588,11 +13713,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for SparseImageFormatFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for SparseImageFormatFlags {
@@ -13635,10 +13755,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SparseImageFormatFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SubpassDescriptionFlags(u32);
     impl SubpassDescriptionFlags {
         pub const PER_VIEW_ATTRIBUTES_NVX: Self = Self(
@@ -13704,11 +13824,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for SubpassDescriptionFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for SubpassDescriptionFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -13749,10 +13864,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SubpassDescriptionFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineStageFlags(u32);
     impl PipelineStageFlags {
         pub const TOP_OF_PIPE: Self = Self(PipelineStageFlagBits::TOP_OF_PIPE.0);
@@ -13840,11 +13955,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for PipelineStageFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for PipelineStageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -13885,10 +13995,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineStageFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SampleCountFlags(u32);
     impl SampleCountFlags {
         pub const _1: Self = Self(SampleCountFlagBits::_1.0);
@@ -13915,11 +14025,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for SampleCountFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for SampleCountFlags {
@@ -13962,10 +14067,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct SampleCountFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AttachmentDescriptionFlags(u32);
     impl AttachmentDescriptionFlags {
         pub const MAY_ALIAS: Self = Self(AttachmentDescriptionFlagBits::MAY_ALIAS.0);
@@ -13992,11 +14097,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for AttachmentDescriptionFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for AttachmentDescriptionFlags {
@@ -14039,10 +14139,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct AttachmentDescriptionFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct StencilFaceFlags(u32);
     impl StencilFaceFlags {
         pub const FRONT: Self = Self(StencilFaceFlagBits::FRONT.0);
@@ -14065,11 +14165,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for StencilFaceFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for StencilFaceFlags {
@@ -14112,10 +14207,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct StencilFaceFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct CullModeFlags(u32);
     impl CullModeFlags {
         pub const NONE: Self = Self(CullModeFlagBits::NONE.0);
@@ -14139,11 +14234,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for CullModeFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for CullModeFlags {
@@ -14186,10 +14276,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct CullModeFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DescriptorPoolCreateFlags(u32);
     impl DescriptorPoolCreateFlags {
         pub const FREE_DESCRIPTOR_SET: Self = Self(
@@ -14232,11 +14322,6 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl Default for DescriptorPoolCreateFlags {
-        fn default() -> Self {
-            Self::empty()
-        }
-    }
     impl core::ops::BitOr for DescriptorPoolCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
@@ -14277,10 +14362,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DescriptorPoolCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DescriptorPoolResetFlags(u32);
     impl DescriptorPoolResetFlags {
         pub const fn empty() -> Self {
@@ -14300,11 +14385,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DescriptorPoolResetFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DescriptorPoolResetFlags {
@@ -14347,7 +14427,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DependencyFlags(u32);
     impl DependencyFlags {
         pub const BY_REGION: Self = Self(DependencyFlagBits::BY_REGION.0);
@@ -14381,11 +14461,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for DependencyFlags {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for DependencyFlags {
@@ -14428,7 +14503,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DependencyFlagBits(pub(crate) u32);
     pub type SampleMask = u32;
     pub type Bool32 = u32;

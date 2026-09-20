@@ -35,7 +35,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_VALVE_video_encode_rgb_conversion";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -70,7 +70,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -130,7 +130,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeProfileRgbConversionInfoVALVE<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -163,7 +163,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -223,7 +223,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeRgbModelConversionFlagsVALVE(u32);
     impl VideoEncodeRgbModelConversionFlagsVALVE {
         pub const RGB_IDENTITY_VALVE: Self = Self(
@@ -258,11 +258,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for VideoEncodeRgbModelConversionFlagsVALVE {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for VideoEncodeRgbModelConversionFlagsVALVE {
@@ -305,10 +300,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeRgbModelConversionFlagBitsVALVE(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeRgbRangeCompressionFlagsVALVE(u32);
     impl VideoEncodeRgbRangeCompressionFlagsVALVE {
         pub const FULL_RANGE_VALVE: Self = Self(
@@ -334,11 +329,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for VideoEncodeRgbRangeCompressionFlagsVALVE {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for VideoEncodeRgbRangeCompressionFlagsVALVE {
@@ -381,10 +371,10 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeRgbRangeCompressionFlagBitsVALVE(pub(crate) u32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeRgbChromaOffsetFlagsVALVE(u32);
     impl VideoEncodeRgbChromaOffsetFlagsVALVE {
         pub const COSITED_EVEN_VALVE: Self = Self(
@@ -410,11 +400,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for VideoEncodeRgbChromaOffsetFlagsVALVE {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for VideoEncodeRgbChromaOffsetFlagsVALVE {
@@ -457,7 +442,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct VideoEncodeRgbChromaOffsetFlagBitsVALVE(pub(crate) u32);
 }
 pub use reexport::*;

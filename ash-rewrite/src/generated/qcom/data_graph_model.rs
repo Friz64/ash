@@ -59,6 +59,17 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for PipelineCacheHeaderVersionDataGraphQCOM {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPipelineCacheHeaderVersionDataGraphQCOM")
+                .field("header_size", &self.header_size)
+                .field("header_version", &self.header_version)
+                .field("cache_type", &self.cache_type)
+                .field("cache_version", &self.cache_version)
+                .field("toolchain_version", self.toolchain_version_as_c_str())
+                .finish()
+        }
+    }
     impl PipelineCacheHeaderVersionDataGraphQCOM {
         pub fn header_size(mut self, header_size: u32) -> Self {
             self.header_size = header_size;
@@ -92,7 +103,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -125,7 +136,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,

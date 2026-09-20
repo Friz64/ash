@@ -134,7 +134,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_mesh_shader";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceMeshShaderFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -269,6 +269,102 @@ pub(crate) mod reexport {
                 prefers_compact_primitive_output: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> core::fmt::Debug for PhysicalDeviceMeshShaderPropertiesEXT<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceMeshShaderPropertiesEXT")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field(
+                    "max_task_work_group_total_count",
+                    &self.max_task_work_group_total_count,
+                )
+                .field(
+                    "max_task_work_group_count",
+                    self.max_task_work_group_count_as_c_str(),
+                )
+                .field(
+                    "max_task_work_group_invocations",
+                    &self.max_task_work_group_invocations,
+                )
+                .field(
+                    "max_task_work_group_size",
+                    self.max_task_work_group_size_as_c_str(),
+                )
+                .field("max_task_payload_size", &self.max_task_payload_size)
+                .field("max_task_shared_memory_size", &self.max_task_shared_memory_size)
+                .field(
+                    "max_task_payload_and_shared_memory_size",
+                    &self.max_task_payload_and_shared_memory_size,
+                )
+                .field(
+                    "max_mesh_work_group_total_count",
+                    &self.max_mesh_work_group_total_count,
+                )
+                .field(
+                    "max_mesh_work_group_count",
+                    self.max_mesh_work_group_count_as_c_str(),
+                )
+                .field(
+                    "max_mesh_work_group_invocations",
+                    &self.max_mesh_work_group_invocations,
+                )
+                .field(
+                    "max_mesh_work_group_size",
+                    self.max_mesh_work_group_size_as_c_str(),
+                )
+                .field("max_mesh_shared_memory_size", &self.max_mesh_shared_memory_size)
+                .field(
+                    "max_mesh_payload_and_shared_memory_size",
+                    &self.max_mesh_payload_and_shared_memory_size,
+                )
+                .field("max_mesh_output_memory_size", &self.max_mesh_output_memory_size)
+                .field(
+                    "max_mesh_payload_and_output_memory_size",
+                    &self.max_mesh_payload_and_output_memory_size,
+                )
+                .field("max_mesh_output_components", &self.max_mesh_output_components)
+                .field("max_mesh_output_vertices", &self.max_mesh_output_vertices)
+                .field("max_mesh_output_primitives", &self.max_mesh_output_primitives)
+                .field("max_mesh_output_layers", &self.max_mesh_output_layers)
+                .field(
+                    "max_mesh_multiview_view_count",
+                    &self.max_mesh_multiview_view_count,
+                )
+                .field(
+                    "mesh_output_per_vertex_granularity",
+                    &self.mesh_output_per_vertex_granularity,
+                )
+                .field(
+                    "mesh_output_per_primitive_granularity",
+                    &self.mesh_output_per_primitive_granularity,
+                )
+                .field(
+                    "max_preferred_task_work_group_invocations",
+                    &self.max_preferred_task_work_group_invocations,
+                )
+                .field(
+                    "max_preferred_mesh_work_group_invocations",
+                    &self.max_preferred_mesh_work_group_invocations,
+                )
+                .field(
+                    "prefers_local_invocation_vertex_output",
+                    &self.prefers_local_invocation_vertex_output,
+                )
+                .field(
+                    "prefers_local_invocation_primitive_output",
+                    &self.prefers_local_invocation_primitive_output,
+                )
+                .field(
+                    "prefers_compact_vertex_output",
+                    &self.prefers_compact_vertex_output,
+                )
+                .field(
+                    "prefers_compact_primitive_output",
+                    &self.prefers_compact_primitive_output,
+                )
+                .finish()
         }
     }
     impl<'a> PhysicalDeviceMeshShaderPropertiesEXT<'a> {
@@ -467,7 +563,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DrawMeshTasksIndirectCommandEXT {
         pub group_count_x: u32,
         pub group_count_y: u32,

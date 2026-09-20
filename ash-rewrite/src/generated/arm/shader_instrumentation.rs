@@ -216,7 +216,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_shader_instrumentation";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -248,7 +248,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -287,7 +287,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ShaderInstrumentationCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -331,6 +331,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for ShaderInstrumentationMetricDescriptionARM<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkShaderInstrumentationMetricDescriptionARM")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("name", self.name_as_c_str())
+                .field("description", self.description_as_c_str())
+                .finish()
+        }
+    }
     impl<'a> ShaderInstrumentationMetricDescriptionARM<'a> {
         pub fn name(
             mut self,
@@ -357,7 +367,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ShaderInstrumentationMetricDataHeaderARM {
         pub result_index: u32,
         pub result_sub_index: u32,
@@ -383,7 +393,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct ShaderInstrumentationValuesFlagsARM(u32);
     impl ShaderInstrumentationValuesFlagsARM {
         pub const fn empty() -> Self {
@@ -403,11 +413,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for ShaderInstrumentationValuesFlagsARM {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for ShaderInstrumentationValuesFlagsARM {

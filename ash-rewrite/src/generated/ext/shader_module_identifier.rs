@@ -91,7 +91,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_module_identifier";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -149,6 +149,18 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkPhysicalDeviceShaderModuleIdentifierPropertiesEXT")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field(
+                    "shader_module_identifier_algorithm_uuid",
+                    self.shader_module_identifier_algorithm_uuid_as_c_str(),
+                )
+                .finish()
+        }
+    }
     impl<'a> PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
         pub fn shader_module_identifier_algorithm_uuid(
             mut self,
@@ -159,7 +171,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -212,6 +224,16 @@ pub(crate) mod reexport {
                 identifier: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> core::fmt::Debug for ShaderModuleIdentifierEXT<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("VkShaderModuleIdentifierEXT")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("identifier_size", &self.identifier_size)
+                .field("identifier", self.identifier_as_c_str())
+                .finish()
         }
     }
     impl<'a> ShaderModuleIdentifierEXT<'a> {

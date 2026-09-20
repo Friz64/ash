@@ -21,12 +21,13 @@ impl Code for BitMask {
 
         let mut bits_code = TokenStream::default();
         let mut values = TokenStream::default();
+        // TODO: proper Debug impl
         if let Some(bits_name) = self.bits_name {
             let bits_name_tokens = ctx.type_tokens(bits_name, false, &Lifetime::placeholder());
 
             bits_code = quote! {
                 #[repr(transparent)]
-                #[derive(Clone, Copy, Default)]
+                #[derive(Clone, Copy, Default, Debug)]
                 pub struct #bits_name_tokens(pub(crate) #base_ty);
             };
 
@@ -38,9 +39,10 @@ impl Code for BitMask {
                 .collect::<TokenStream>();
         }
 
+        // TODO: proper Debug impl
         let code = quote! {
             #[repr(transparent)]
-            #[derive(Clone, Copy)]
+                #[derive(Clone, Copy, Default, Debug)]
             pub struct #name(#base_ty);
 
             impl #name {
@@ -68,12 +70,6 @@ impl Code for BitMask {
 
                 pub const fn contains(self, other: Self) -> bool {
                     self.0 & other.0 == other.0
-                }
-            }
-
-            impl Default for #name {
-                fn default() -> Self {
-                    Self::empty()
                 }
             }
 

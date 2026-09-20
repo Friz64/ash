@@ -30,6 +30,18 @@ pub(crate) mod reexport {
 - `complementary_field_pair` @ `5..6`*/
         pub bitfield0: u32,
     }
+    impl core::fmt::Debug for DecodeH264PictureInfoFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoDecodeH264PictureInfoFlags")
+                .field("field_pic_flag", &self.get_field_pic_flag())
+                .field("is_intra", &self.get_is_intra())
+                .field("idr_pic_flag", &self.get_idr_pic_flag())
+                .field("bottom_field_flag", &self.get_bottom_field_flag())
+                .field("is_reference", &self.get_is_reference())
+                .field("complementary_field_pair", &self.get_complementary_field_pair())
+                .finish()
+        }
+    }
     impl DecodeH264PictureInfoFlags {
         pub fn field_pic_flag(mut self, field_pic_flag: u32) -> Self {
             let rest = self.bitfield0 & 0xFFFFFFFE;
@@ -110,6 +122,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for DecodeH264PictureInfo {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoDecodeH264PictureInfo")
+                .field("flags", &self.flags)
+                .field("seq_parameter_set_id", &self.seq_parameter_set_id)
+                .field("pic_parameter_set_id", &self.pic_parameter_set_id)
+                .field("reserved1", &self.reserved1)
+                .field("reserved2", &self.reserved2)
+                .field("frame_num", &self.frame_num)
+                .field("idr_pic_id", &self.idr_pic_id)
+                .field("pic_order_cnt", self.pic_order_cnt_as_c_str())
+                .finish()
+        }
+    }
     impl DecodeH264PictureInfo {
         pub fn flags(mut self, flags: crate::vk::DecodeH264PictureInfoFlags) -> Self {
             self.flags = flags;
@@ -155,6 +181,19 @@ pub(crate) mod reexport {
 - `used_for_long_term_reference` @ `2..3`
 - `is_non_existing` @ `3..4`*/
         pub bitfield0: u32,
+    }
+    impl core::fmt::Debug for DecodeH264ReferenceInfoFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoDecodeH264ReferenceInfoFlags")
+                .field("top_field_flag", &self.get_top_field_flag())
+                .field("bottom_field_flag", &self.get_bottom_field_flag())
+                .field(
+                    "used_for_long_term_reference",
+                    &self.get_used_for_long_term_reference(),
+                )
+                .field("is_non_existing", &self.get_is_non_existing())
+                .finish()
+        }
     }
     impl DecodeH264ReferenceInfoFlags {
         pub fn top_field_flag(mut self, top_field_flag: u32) -> Self {
@@ -211,6 +250,16 @@ pub(crate) mod reexport {
                 reserved: Default::default(),
                 pic_order_cnt: unsafe { core::mem::zeroed() },
             }
+        }
+    }
+    impl core::fmt::Debug for DecodeH264ReferenceInfo {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoDecodeH264ReferenceInfo")
+                .field("flags", &self.flags)
+                .field("frame_num", &self.frame_num)
+                .field("reserved", &self.reserved)
+                .field("pic_order_cnt", self.pic_order_cnt_as_c_str())
+                .finish()
         }
     }
     impl DecodeH264ReferenceInfo {

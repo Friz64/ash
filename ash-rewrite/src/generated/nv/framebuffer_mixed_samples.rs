@@ -26,7 +26,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_framebuffer_mixed_samples";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineCoverageModulationStateCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -97,7 +97,7 @@ pub(crate) mod reexport {
     #[derive(Debug)]
     pub struct CoverageModulationModeNV(pub(crate) i32);
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct PipelineCoverageModulationStateCreateFlagsNV(u32);
     impl PipelineCoverageModulationStateCreateFlagsNV {
         pub const fn empty() -> Self {
@@ -117,11 +117,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for PipelineCoverageModulationStateCreateFlagsNV {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for PipelineCoverageModulationStateCreateFlagsNV {

@@ -260,6 +260,51 @@ pub(crate) mod reexport {
 - `vcl_hrd_parameters_present_flag` @ `11..12`*/
         pub bitfield0: u32,
     }
+    impl core::fmt::Debug for H264SpsVuiFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH264SpsVuiFlags")
+                .field(
+                    "aspect_ratio_info_present_flag",
+                    &self.get_aspect_ratio_info_present_flag(),
+                )
+                .field(
+                    "overscan_info_present_flag",
+                    &self.get_overscan_info_present_flag(),
+                )
+                .field(
+                    "overscan_appropriate_flag",
+                    &self.get_overscan_appropriate_flag(),
+                )
+                .field(
+                    "video_signal_type_present_flag",
+                    &self.get_video_signal_type_present_flag(),
+                )
+                .field("video_full_range_flag", &self.get_video_full_range_flag())
+                .field(
+                    "color_description_present_flag",
+                    &self.get_color_description_present_flag(),
+                )
+                .field(
+                    "chroma_loc_info_present_flag",
+                    &self.get_chroma_loc_info_present_flag(),
+                )
+                .field("timing_info_present_flag", &self.get_timing_info_present_flag())
+                .field("fixed_frame_rate_flag", &self.get_fixed_frame_rate_flag())
+                .field(
+                    "bitstream_restriction_flag",
+                    &self.get_bitstream_restriction_flag(),
+                )
+                .field(
+                    "nal_hrd_parameters_present_flag",
+                    &self.get_nal_hrd_parameters_present_flag(),
+                )
+                .field(
+                    "vcl_hrd_parameters_present_flag",
+                    &self.get_vcl_hrd_parameters_present_flag(),
+                )
+                .finish()
+        }
+    }
     impl H264SpsVuiFlags {
         pub fn aspect_ratio_info_present_flag(
             mut self,
@@ -425,6 +470,32 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for H264HrdParameters {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH264HrdParameters")
+                .field("cpb_cnt_minus1", &self.cpb_cnt_minus1)
+                .field("bit_rate_scale", &self.bit_rate_scale)
+                .field("cpb_size_scale", &self.cpb_size_scale)
+                .field("reserved1", &self.reserved1)
+                .field("bit_rate_value_minus1", self.bit_rate_value_minus1_as_c_str())
+                .field("cpb_size_value_minus1", self.cpb_size_value_minus1_as_c_str())
+                .field("cbr_flag", self.cbr_flag_as_c_str())
+                .field(
+                    "initial_cpb_removal_delay_length_minus1",
+                    &self.initial_cpb_removal_delay_length_minus1,
+                )
+                .field(
+                    "cpb_removal_delay_length_minus1",
+                    &self.cpb_removal_delay_length_minus1,
+                )
+                .field(
+                    "dpb_output_delay_length_minus1",
+                    &self.dpb_output_delay_length_minus1,
+                )
+                .field("time_offset_length", &self.time_offset_length)
+                .finish()
+        }
+    }
     impl H264HrdParameters {
         pub fn cpb_cnt_minus1(mut self, cpb_cnt_minus1: u8) -> Self {
             self.cpb_cnt_minus1 = cpb_cnt_minus1;
@@ -490,7 +561,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct H264SequenceParameterSetVui<'a> {
         pub flags: crate::vk::H264SpsVuiFlags,
         pub aspect_ratio_idc: crate::vk::H264AspectRatioIdc,
@@ -608,6 +679,52 @@ pub(crate) mod reexport {
 - `seq_scaling_matrix_present_flag` @ `14..15`
 - `vui_parameters_present_flag` @ `15..16`*/
         pub bitfield0: u32,
+    }
+    impl core::fmt::Debug for H264SpsFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH264SpsFlags")
+                .field("constraint_set0_flag", &self.get_constraint_set0_flag())
+                .field("constraint_set1_flag", &self.get_constraint_set1_flag())
+                .field("constraint_set2_flag", &self.get_constraint_set2_flag())
+                .field("constraint_set3_flag", &self.get_constraint_set3_flag())
+                .field("constraint_set4_flag", &self.get_constraint_set4_flag())
+                .field("constraint_set5_flag", &self.get_constraint_set5_flag())
+                .field(
+                    "direct_8x8_inference_flag",
+                    &self.get_direct_8x8_inference_flag(),
+                )
+                .field(
+                    "mb_adaptive_frame_field_flag",
+                    &self.get_mb_adaptive_frame_field_flag(),
+                )
+                .field("frame_mbs_only_flag", &self.get_frame_mbs_only_flag())
+                .field(
+                    "delta_pic_order_always_zero_flag",
+                    &self.get_delta_pic_order_always_zero_flag(),
+                )
+                .field(
+                    "separate_colour_plane_flag",
+                    &self.get_separate_colour_plane_flag(),
+                )
+                .field(
+                    "gaps_in_frame_num_value_allowed_flag",
+                    &self.get_gaps_in_frame_num_value_allowed_flag(),
+                )
+                .field(
+                    "qpprime_y_zero_transform_bypass_flag",
+                    &self.get_qpprime_y_zero_transform_bypass_flag(),
+                )
+                .field("frame_cropping_flag", &self.get_frame_cropping_flag())
+                .field(
+                    "seq_scaling_matrix_present_flag",
+                    &self.get_seq_scaling_matrix_present_flag(),
+                )
+                .field(
+                    "vui_parameters_present_flag",
+                    &self.get_vui_parameters_present_flag(),
+                )
+                .finish()
+        }
     }
     impl H264SpsFlags {
         pub fn constraint_set0_flag(mut self, constraint_set0_flag: u32) -> Self {
@@ -789,6 +906,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl core::fmt::Debug for H264ScalingLists {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH264ScalingLists")
+                .field("scaling_list_present_mask", &self.scaling_list_present_mask)
+                .field(
+                    "use_default_scaling_matrix_mask",
+                    &self.use_default_scaling_matrix_mask,
+                )
+                .field("scaling_list4x4", self.scaling_list4x4_as_c_str())
+                .field("scaling_list8x8", self.scaling_list8x8_as_c_str())
+                .finish()
+        }
+    }
     impl H264ScalingLists {
         pub fn scaling_list_present_mask(
             mut self,
@@ -822,7 +952,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct H264SequenceParameterSet<'a> {
         pub flags: crate::vk::H264SpsFlags,
         pub profile_idc: crate::vk::H264ProfileIdc,
@@ -992,6 +1122,35 @@ pub(crate) mod reexport {
 - `pic_scaling_matrix_present_flag` @ `7..8`*/
         pub bitfield0: u32,
     }
+    impl core::fmt::Debug for H264PpsFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoH264PpsFlags")
+                .field("transform_8x8_mode_flag", &self.get_transform_8x8_mode_flag())
+                .field(
+                    "redundant_pic_cnt_present_flag",
+                    &self.get_redundant_pic_cnt_present_flag(),
+                )
+                .field(
+                    "constrained_intra_pred_flag",
+                    &self.get_constrained_intra_pred_flag(),
+                )
+                .field(
+                    "deblocking_filter_control_present_flag",
+                    &self.get_deblocking_filter_control_present_flag(),
+                )
+                .field("weighted_pred_flag", &self.get_weighted_pred_flag())
+                .field(
+                    "bottom_field_pic_order_in_frame_present_flag",
+                    &self.get_bottom_field_pic_order_in_frame_present_flag(),
+                )
+                .field("entropy_coding_mode_flag", &self.get_entropy_coding_mode_flag())
+                .field(
+                    "pic_scaling_matrix_present_flag",
+                    &self.get_pic_scaling_matrix_present_flag(),
+                )
+                .finish()
+        }
+    }
     impl H264PpsFlags {
         pub fn transform_8x8_mode_flag(mut self, transform_8x8_mode_flag: u32) -> Self {
             let rest = self.bitfield0 & 0xFFFFFFFE;
@@ -1081,7 +1240,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct H264PictureParameterSet<'a> {
         pub flags: crate::vk::H264PpsFlags,
         pub seq_parameter_set_id: u8,

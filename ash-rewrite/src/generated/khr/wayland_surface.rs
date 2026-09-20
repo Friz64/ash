@@ -85,7 +85,7 @@ pub const SPEC_VERSION: u32 = 6;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_wayland_surface";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct WaylandSurfaceCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -130,7 +130,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct WaylandSurfaceCreateFlagsKHR(u32);
     impl WaylandSurfaceCreateFlagsKHR {
         pub const fn empty() -> Self {
@@ -150,11 +150,6 @@ pub(crate) mod reexport {
         }
         pub const fn contains(self, other: Self) -> bool {
             self.0 & other.0 == other.0
-        }
-    }
-    impl Default for WaylandSurfaceCreateFlagsKHR {
-        fn default() -> Self {
-            Self::empty()
         }
     }
     impl core::ops::BitOr for WaylandSurfaceCreateFlagsKHR {

@@ -6,7 +6,7 @@ pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_API_V
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_av1_encode";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct EncodeAV1ExtensionHeader {
         pub temporal_id: u8,
         pub spatial_id: u8,
@@ -22,7 +22,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct EncodeAV1DecoderModelInfo {
         pub buffer_delay_length_minus_1: u8,
         pub buffer_removal_time_length_minus_1: u8,
@@ -72,6 +72,21 @@ pub(crate) mod reexport {
 - `initial_display_delay_present_for_this_op` @ `2..3`*/
         pub bitfield0: u32,
     }
+    impl core::fmt::Debug for EncodeAV1OperatingPointInfoFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoEncodeAV1OperatingPointInfoFlags")
+                .field(
+                    "decoder_model_present_for_this_op",
+                    &self.get_decoder_model_present_for_this_op(),
+                )
+                .field("low_delay_mode_flag", &self.get_low_delay_mode_flag())
+                .field(
+                    "initial_display_delay_present_for_this_op",
+                    &self.get_initial_display_delay_present_for_this_op(),
+                )
+                .finish()
+        }
+    }
     impl EncodeAV1OperatingPointInfoFlags {
         pub fn decoder_model_present_for_this_op(
             mut self,
@@ -106,7 +121,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct EncodeAV1OperatingPointInfo {
         pub flags: crate::vk::EncodeAV1OperatingPointInfoFlags,
         pub operating_point_idc: u16,
@@ -185,6 +200,62 @@ pub(crate) mod reexport {
 - `show_frame` @ `27..28`
 - `showable_frame` @ `28..29`*/
         pub bitfield0: u32,
+    }
+    impl core::fmt::Debug for EncodeAV1PictureInfoFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoEncodeAV1PictureInfoFlags")
+                .field("error_resilient_mode", &self.get_error_resilient_mode())
+                .field("disable_cdf_update", &self.get_disable_cdf_update())
+                .field("use_superres", &self.get_use_superres())
+                .field(
+                    "render_and_frame_size_different",
+                    &self.get_render_and_frame_size_different(),
+                )
+                .field(
+                    "allow_screen_content_tools",
+                    &self.get_allow_screen_content_tools(),
+                )
+                .field("is_filter_switchable", &self.get_is_filter_switchable())
+                .field("force_integer_mv", &self.get_force_integer_mv())
+                .field("frame_size_override_flag", &self.get_frame_size_override_flag())
+                .field(
+                    "buffer_removal_time_present_flag",
+                    &self.get_buffer_removal_time_present_flag(),
+                )
+                .field("allow_intrabc", &self.get_allow_intrabc())
+                .field(
+                    "frame_refs_short_signaling",
+                    &self.get_frame_refs_short_signaling(),
+                )
+                .field("allow_high_precision_mv", &self.get_allow_high_precision_mv())
+                .field(
+                    "is_motion_mode_switchable",
+                    &self.get_is_motion_mode_switchable(),
+                )
+                .field("use_ref_frame_mvs", &self.get_use_ref_frame_mvs())
+                .field(
+                    "disable_frame_end_update_cdf",
+                    &self.get_disable_frame_end_update_cdf(),
+                )
+                .field("allow_warped_motion", &self.get_allow_warped_motion())
+                .field("reduced_tx_set", &self.get_reduced_tx_set())
+                .field("skip_mode_present", &self.get_skip_mode_present())
+                .field("delta_q_present", &self.get_delta_q_present())
+                .field("delta_lf_present", &self.get_delta_lf_present())
+                .field("delta_lf_multi", &self.get_delta_lf_multi())
+                .field("segmentation_enabled", &self.get_segmentation_enabled())
+                .field("segmentation_update_map", &self.get_segmentation_update_map())
+                .field(
+                    "segmentation_temporal_update",
+                    &self.get_segmentation_temporal_update(),
+                )
+                .field("segmentation_update_data", &self.get_segmentation_update_data())
+                .field("uses_lr", &self.get_uses_lr())
+                .field("uses_chroma_lr", &self.get_uses_chroma_lr())
+                .field("show_frame", &self.get_show_frame())
+                .field("showable_frame", &self.get_showable_frame())
+                .finish()
+        }
     }
     impl EncodeAV1PictureInfoFlags {
         pub fn error_resilient_mode(mut self, error_resilient_mode: u32) -> Self {
@@ -517,6 +588,39 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> core::fmt::Debug for EncodeAV1PictureInfo<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoEncodeAV1PictureInfo")
+                .field("flags", &self.flags)
+                .field("frame_type", &self.frame_type)
+                .field("frame_presentation_time", &self.frame_presentation_time)
+                .field("current_frame_id", &self.current_frame_id)
+                .field("order_hint", &self.order_hint)
+                .field("primary_ref_frame", &self.primary_ref_frame)
+                .field("refresh_frame_flags", &self.refresh_frame_flags)
+                .field("coded_denom", &self.coded_denom)
+                .field("render_width_minus_1", &self.render_width_minus_1)
+                .field("render_height_minus_1", &self.render_height_minus_1)
+                .field("interpolation_filter", &self.interpolation_filter)
+                .field("tx_mode", &self.tx_mode)
+                .field("delta_q_res", &self.delta_q_res)
+                .field("delta_lf_res", &self.delta_lf_res)
+                .field("ref_order_hint", self.ref_order_hint_as_c_str())
+                .field("ref_frame_idx", self.ref_frame_idx_as_c_str())
+                .field("reserved1", self.reserved1_as_c_str())
+                .field("delta_frame_id_minus_1", self.delta_frame_id_minus_1_as_c_str())
+                .field("p_tile_info", &self.p_tile_info)
+                .field("p_quantization", &self.p_quantization)
+                .field("p_segmentation", &self.p_segmentation)
+                .field("p_loop_filter", &self.p_loop_filter)
+                .field("p_cdef", &self.p_cdef)
+                .field("p_loop_restoration", &self.p_loop_restoration)
+                .field("p_global_motion", &self.p_global_motion)
+                .field("p_extension_header", &self.p_extension_header)
+                .field("p_buffer_removal_times", &self.p_buffer_removal_times)
+                .finish()
+        }
+    }
     impl<'a> EncodeAV1PictureInfo<'a> {
         pub fn flags(mut self, flags: crate::vk::EncodeAV1PictureInfoFlags) -> Self {
             self.flags = flags;
@@ -661,6 +765,17 @@ pub(crate) mod reexport {
 - `segmentation_enabled` @ `1..2`*/
         pub bitfield0: u32,
     }
+    impl core::fmt::Debug for EncodeAV1ReferenceInfoFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoEncodeAV1ReferenceInfoFlags")
+                .field(
+                    "disable_frame_end_update_cdf",
+                    &self.get_disable_frame_end_update_cdf(),
+                )
+                .field("segmentation_enabled", &self.get_segmentation_enabled())
+                .finish()
+        }
+    }
     impl EncodeAV1ReferenceInfoFlags {
         pub fn disable_frame_end_update_cdf(
             mut self,
@@ -704,6 +819,18 @@ pub(crate) mod reexport {
                 p_extension_header: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> core::fmt::Debug for EncodeAV1ReferenceInfo<'a> {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoEncodeAV1ReferenceInfo")
+                .field("flags", &self.flags)
+                .field("ref_frame_id", &self.ref_frame_id)
+                .field("frame_type", &self.frame_type)
+                .field("order_hint", &self.order_hint)
+                .field("reserved1", self.reserved1_as_c_str())
+                .field("p_extension_header", &self.p_extension_header)
+                .finish()
         }
     }
     impl<'a> EncodeAV1ReferenceInfo<'a> {

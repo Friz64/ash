@@ -14,6 +14,19 @@ pub(crate) mod reexport {
 - `short_term_ref_pic_set_sps_flag` @ `3..4`*/
         pub bitfield0: u32,
     }
+    impl core::fmt::Debug for DecodeH265PictureInfoFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoDecodeH265PictureInfoFlags")
+                .field("irap_pic_flag", &self.get_irap_pic_flag())
+                .field("idr_pic_flag", &self.get_idr_pic_flag())
+                .field("is_reference", &self.get_is_reference())
+                .field(
+                    "short_term_ref_pic_set_sps_flag",
+                    &self.get_short_term_ref_pic_set_sps_flag(),
+                )
+                .finish()
+        }
+    }
     impl DecodeH265PictureInfoFlags {
         pub fn irap_pic_flag(mut self, irap_pic_flag: u32) -> Self {
             let rest = self.bitfield0 & 0xFFFFFFFE;
@@ -84,6 +97,35 @@ pub(crate) mod reexport {
                 ref_pic_set_st_curr_after: unsafe { core::mem::zeroed() },
                 ref_pic_set_lt_curr: unsafe { core::mem::zeroed() },
             }
+        }
+    }
+    impl core::fmt::Debug for DecodeH265PictureInfo {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoDecodeH265PictureInfo")
+                .field("flags", &self.flags)
+                .field("sps_video_parameter_set_id", &self.sps_video_parameter_set_id)
+                .field("pps_seq_parameter_set_id", &self.pps_seq_parameter_set_id)
+                .field("pps_pic_parameter_set_id", &self.pps_pic_parameter_set_id)
+                .field(
+                    "num_delta_pocs_of_ref_rps_idx",
+                    &self.num_delta_pocs_of_ref_rps_idx,
+                )
+                .field("pic_order_cnt_val", &self.pic_order_cnt_val)
+                .field(
+                    "num_bits_for_st_ref_pic_set_in_slice",
+                    &self.num_bits_for_st_ref_pic_set_in_slice,
+                )
+                .field("reserved", &self.reserved)
+                .field(
+                    "ref_pic_set_st_curr_before",
+                    self.ref_pic_set_st_curr_before_as_c_str(),
+                )
+                .field(
+                    "ref_pic_set_st_curr_after",
+                    self.ref_pic_set_st_curr_after_as_c_str(),
+                )
+                .field("ref_pic_set_lt_curr", self.ref_pic_set_lt_curr_as_c_str())
+                .finish()
         }
     }
     impl DecodeH265PictureInfo {
@@ -159,6 +201,17 @@ pub(crate) mod reexport {
 - `unused_for_reference` @ `1..2`*/
         pub bitfield0: u32,
     }
+    impl core::fmt::Debug for DecodeH265ReferenceInfoFlags {
+        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+            f.debug_struct("StdVideoDecodeH265ReferenceInfoFlags")
+                .field(
+                    "used_for_long_term_reference",
+                    &self.get_used_for_long_term_reference(),
+                )
+                .field("unused_for_reference", &self.get_unused_for_reference())
+                .finish()
+        }
+    }
     impl DecodeH265ReferenceInfoFlags {
         pub fn used_for_long_term_reference(
             mut self,
@@ -181,7 +234,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy, Default, Debug)]
     pub struct DecodeH265ReferenceInfo {
         pub flags: crate::vk::DecodeH265ReferenceInfoFlags,
         pub pic_order_cnt_val: i32,
