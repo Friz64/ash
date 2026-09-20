@@ -190,7 +190,7 @@ pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_AMDX_shader_enqueue";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -223,39 +223,6 @@ pub(crate) mod reexport {
                 max_execution_graph_workgroups: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceShaderEnqueuePropertiesAMDX")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("max_execution_graph_depth", &self.max_execution_graph_depth)
-                .field(
-                    "max_execution_graph_shader_output_nodes",
-                    &self.max_execution_graph_shader_output_nodes,
-                )
-                .field(
-                    "max_execution_graph_shader_payload_size",
-                    &self.max_execution_graph_shader_payload_size,
-                )
-                .field(
-                    "max_execution_graph_shader_payload_count",
-                    &self.max_execution_graph_shader_payload_count,
-                )
-                .field(
-                    "execution_graph_dispatch_address_alignment",
-                    &self.execution_graph_dispatch_address_alignment,
-                )
-                .field(
-                    "max_execution_graph_workgroup_count",
-                    self.max_execution_graph_workgroup_count_as_c_str(),
-                )
-                .field(
-                    "max_execution_graph_workgroups",
-                    &self.max_execution_graph_workgroups,
-                )
-                .finish()
         }
     }
     impl<'a> PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {

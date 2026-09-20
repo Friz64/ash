@@ -452,7 +452,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DeviceGroupPresentCapabilitiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -473,16 +473,6 @@ pub(crate) mod reexport {
                 modes: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for DeviceGroupPresentCapabilitiesKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkDeviceGroupPresentCapabilitiesKHR")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("present_mask", self.present_mask_as_c_str())
-                .field("modes", &self.modes)
-                .finish()
         }
     }
     impl<'a> DeviceGroupPresentCapabilitiesKHR<'a> {

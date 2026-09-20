@@ -251,7 +251,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PartitionedAccelerationStructureWriteInstanceDataNV {
         pub transform: crate::vk::TransformMatrixKHR,
         pub explicit_aabb: [core::ffi::c_float; 6 as _],
@@ -276,24 +276,6 @@ pub(crate) mod reexport {
                 partition_index: Default::default(),
                 acceleration_structure: Default::default(),
             }
-        }
-    }
-    impl core::fmt::Debug for PartitionedAccelerationStructureWriteInstanceDataNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPartitionedAccelerationStructureWriteInstanceDataNV")
-                .field("transform", &self.transform)
-                .field("explicit_aabb", self.explicit_aabb_as_c_str())
-                .field("instance_id", &self.instance_id)
-                .field("instance_mask", &self.instance_mask)
-                .field(
-                    "instance_contribution_to_hit_group_index",
-                    &self.instance_contribution_to_hit_group_index,
-                )
-                .field("instance_flags", &self.instance_flags)
-                .field("instance_index", &self.instance_index)
-                .field("partition_index", &self.partition_index)
-                .field("acceleration_structure", &self.acceleration_structure)
-                .finish()
         }
     }
     impl PartitionedAccelerationStructureWriteInstanceDataNV {
@@ -374,7 +356,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PartitionedAccelerationStructureWritePartitionTranslationDataNV {
         pub partition_index: u32,
         pub partition_translation: [core::ffi::c_float; 3 as _],
@@ -385,17 +367,6 @@ pub(crate) mod reexport {
                 partition_index: Default::default(),
                 partition_translation: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug
-    for PartitionedAccelerationStructureWritePartitionTranslationDataNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct(
-                    "VkPartitionedAccelerationStructureWritePartitionTranslationDataNV",
-                )
-                .field("partition_index", &self.partition_index)
-                .field("partition_translation", self.partition_translation_as_c_str())
-                .finish()
         }
     }
     impl PartitionedAccelerationStructureWritePartitionTranslationDataNV {

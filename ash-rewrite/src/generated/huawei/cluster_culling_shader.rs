@@ -103,7 +103,7 @@ pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -130,22 +130,6 @@ pub(crate) mod reexport {
                 indirect_buffer_offset_alignment: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug
-    for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceClusterCullingShaderPropertiesHUAWEI")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("max_work_group_count", self.max_work_group_count_as_c_str())
-                .field("max_work_group_size", self.max_work_group_size_as_c_str())
-                .field("max_output_cluster_count", &self.max_output_cluster_count)
-                .field(
-                    "indirect_buffer_offset_alignment",
-                    &self.indirect_buffer_offset_alignment,
-                )
-                .finish()
         }
     }
     impl<'a> PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {

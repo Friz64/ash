@@ -32,7 +32,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct EncodeH265WeightTable {
         pub flags: crate::vk::EncodeH265WeightTableFlags,
         pub luma_log2_weight_denom: u8,
@@ -65,26 +65,6 @@ pub(crate) mod reexport {
                 delta_chroma_weight_l1: unsafe { core::mem::zeroed() },
                 delta_chroma_offset_l1: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for EncodeH265WeightTable {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH265WeightTable")
-                .field("flags", &self.flags)
-                .field("luma_log2_weight_denom", &self.luma_log2_weight_denom)
-                .field(
-                    "delta_chroma_log2_weight_denom",
-                    &self.delta_chroma_log2_weight_denom,
-                )
-                .field("delta_luma_weight_l0", self.delta_luma_weight_l0_as_c_str())
-                .field("luma_offset_l0", self.luma_offset_l0_as_c_str())
-                .field("delta_chroma_weight_l0", self.delta_chroma_weight_l0_as_c_str())
-                .field("delta_chroma_offset_l0", self.delta_chroma_offset_l0_as_c_str())
-                .field("delta_luma_weight_l1", self.delta_luma_weight_l1_as_c_str())
-                .field("luma_offset_l1", self.luma_offset_l1_as_c_str())
-                .field("delta_chroma_weight_l1", self.delta_chroma_weight_l1_as_c_str())
-                .field("delta_chroma_offset_l1", self.delta_chroma_offset_l1_as_c_str())
-                .finish()
         }
     }
     impl EncodeH265WeightTable {
@@ -165,7 +145,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct EncodeH265LongTermRefPics {
         pub num_long_term_sps: u8,
         pub num_long_term_pics: u8,
@@ -186,22 +166,6 @@ pub(crate) mod reexport {
                 delta_poc_msb_present_flag: unsafe { core::mem::zeroed() },
                 delta_poc_msb_cycle_lt: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for EncodeH265LongTermRefPics {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH265LongTermRefPics")
-                .field("num_long_term_sps", &self.num_long_term_sps)
-                .field("num_long_term_pics", &self.num_long_term_pics)
-                .field("lt_idx_sps", self.lt_idx_sps_as_c_str())
-                .field("poc_lsb_lt", self.poc_lsb_lt_as_c_str())
-                .field("used_by_curr_pic_lt_flag", &self.used_by_curr_pic_lt_flag)
-                .field(
-                    "delta_poc_msb_present_flag",
-                    self.delta_poc_msb_present_flag_as_c_str(),
-                )
-                .field("delta_poc_msb_cycle_lt", self.delta_poc_msb_cycle_lt_as_c_str())
-                .finish()
         }
     }
     impl EncodeH265LongTermRefPics {
@@ -250,7 +214,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct EncodeH265SliceSegmentHeaderFlags {
         /**- `first_slice_segment_in_pic_flag` @ `0..1`
 - `dependent_slice_segment_flag` @ `1..2`
@@ -266,9 +230,16 @@ pub(crate) mod reexport {
 - `slice_loop_filter_across_slices_enabled_flag` @ `11..12`*/
         pub bitfield0: u32,
     }
+    impl Default for EncodeH265SliceSegmentHeaderFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for EncodeH265SliceSegmentHeaderFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH265SliceSegmentHeaderFlags")
+            f.debug_struct("EncodeH265SliceSegmentHeaderFlags")
                 .field(
                     "first_slice_segment_in_pic_flag",
                     &self.get_first_slice_segment_in_pic_flag(),
@@ -519,15 +490,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct EncodeH265ReferenceListsInfoFlags {
         /**- `ref_pic_list_modification_flag_l0` @ `0..1`
 - `ref_pic_list_modification_flag_l1` @ `1..2`*/
         pub bitfield0: u32,
     }
+    impl Default for EncodeH265ReferenceListsInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for EncodeH265ReferenceListsInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH265ReferenceListsInfoFlags")
+            f.debug_struct("EncodeH265ReferenceListsInfoFlags")
                 .field(
                     "ref_pic_list_modification_flag_l0",
                     &self.get_ref_pic_list_modification_flag_l0(),
@@ -565,7 +543,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct EncodeH265ReferenceListsInfo {
         pub flags: crate::vk::EncodeH265ReferenceListsInfoFlags,
         pub num_ref_idx_l0_active_minus1: u8,
@@ -586,25 +564,6 @@ pub(crate) mod reexport {
                 list_entry_l0: unsafe { core::mem::zeroed() },
                 list_entry_l1: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for EncodeH265ReferenceListsInfo {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH265ReferenceListsInfo")
-                .field("flags", &self.flags)
-                .field(
-                    "num_ref_idx_l0_active_minus1",
-                    &self.num_ref_idx_l0_active_minus1,
-                )
-                .field(
-                    "num_ref_idx_l1_active_minus1",
-                    &self.num_ref_idx_l1_active_minus1,
-                )
-                .field("ref_pic_list0", self.ref_pic_list0_as_c_str())
-                .field("ref_pic_list1", self.ref_pic_list1_as_c_str())
-                .field("list_entry_l0", self.list_entry_l0_as_c_str())
-                .field("list_entry_l1", self.list_entry_l1_as_c_str())
-                .finish()
         }
     }
     impl EncodeH265ReferenceListsInfo {
@@ -659,7 +618,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct EncodeH265PictureInfoFlags {
         /**- `is_reference` @ `0..1`
 - `IrapPicFlag` @ `1..2`
@@ -672,9 +631,16 @@ pub(crate) mod reexport {
 - `slice_temporal_mvp_enabled_flag` @ `8..9`*/
         pub bitfield0: u32,
     }
+    impl Default for EncodeH265PictureInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for EncodeH265PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH265PictureInfoFlags")
+            f.debug_struct("EncodeH265PictureInfoFlags")
                 .field("is_reference", &self.get_is_reference())
                 .field("irap_pic_flag", &self.get_irap_pic_flag())
                 .field(
@@ -790,7 +756,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct EncodeH265PictureInfo<'a> {
         pub flags: crate::vk::EncodeH265PictureInfoFlags,
         pub pic_type: crate::vk::H265PictureType,
@@ -823,24 +789,6 @@ pub(crate) mod reexport {
                 p_long_term_ref_pics: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for EncodeH265PictureInfo<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH265PictureInfo")
-                .field("flags", &self.flags)
-                .field("pic_type", &self.pic_type)
-                .field("sps_video_parameter_set_id", &self.sps_video_parameter_set_id)
-                .field("pps_seq_parameter_set_id", &self.pps_seq_parameter_set_id)
-                .field("pps_pic_parameter_set_id", &self.pps_pic_parameter_set_id)
-                .field("short_term_ref_pic_set_idx", &self.short_term_ref_pic_set_idx)
-                .field("pic_order_cnt_val", &self.pic_order_cnt_val)
-                .field("temporal_id", &self.temporal_id)
-                .field("reserved1", self.reserved1_as_c_str())
-                .field("p_ref_lists", &self.p_ref_lists)
-                .field("p_short_term_ref_pic_set", &self.p_short_term_ref_pic_set)
-                .field("p_long_term_ref_pics", &self.p_long_term_ref_pics)
-                .finish()
         }
     }
     impl<'a> EncodeH265PictureInfo<'a> {
@@ -909,15 +857,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct EncodeH265ReferenceInfoFlags {
         /**- `used_for_long_term_reference` @ `0..1`
 - `unused_for_reference` @ `1..2`*/
         pub bitfield0: u32,
     }
+    impl Default for EncodeH265ReferenceInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for EncodeH265ReferenceInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH265ReferenceInfoFlags")
+            f.debug_struct("EncodeH265ReferenceInfoFlags")
                 .field(
                     "used_for_long_term_reference",
                     &self.get_used_for_long_term_reference(),

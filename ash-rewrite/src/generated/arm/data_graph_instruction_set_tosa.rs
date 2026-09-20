@@ -106,8 +106,8 @@ pub(crate) mod reexport {
     }
     impl core::fmt::Debug for DataGraphTOSANameQualityARM {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkDataGraphTOSANameQualityARM")
-                .field("name", self.name_as_c_str())
+            f.debug_struct("DataGraphTOSANameQualityARM")
+                .field("name", &self.name_as_c_str())
                 .field("quality_flags", &self.quality_flags)
                 .finish()
         }

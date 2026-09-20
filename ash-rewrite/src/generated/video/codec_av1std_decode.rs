@@ -6,7 +6,7 @@ pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_AV1_DECODE_API_V
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_av1_decode";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct DecodeAV1PictureInfoFlags {
         /**- `error_resilient_mode` @ `0..1`
 - `disable_cdf_update` @ `1..2`
@@ -39,9 +39,16 @@ pub(crate) mod reexport {
 - `apply_grain` @ `28..29`*/
         pub bitfield0: u32,
     }
+    impl Default for DecodeAV1PictureInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for DecodeAV1PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoDecodeAV1PictureInfoFlags")
+            f.debug_struct("DecodeAV1PictureInfoFlags")
                 .field("error_resilient_mode", &self.get_error_resilient_mode())
                 .field("disable_cdf_update", &self.get_disable_cdf_update())
                 .field("use_superres", &self.get_use_superres())
@@ -361,7 +368,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DecodeAV1PictureInfo<'a> {
         pub flags: crate::vk::DecodeAV1PictureInfoFlags,
         pub frame_type: crate::vk::AV1FrameType,
@@ -418,36 +425,6 @@ pub(crate) mod reexport {
                 p_film_grain: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for DecodeAV1PictureInfo<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoDecodeAV1PictureInfo")
-                .field("flags", &self.flags)
-                .field("frame_type", &self.frame_type)
-                .field("current_frame_id", &self.current_frame_id)
-                .field("order_hint", &self.order_hint)
-                .field("primary_ref_frame", &self.primary_ref_frame)
-                .field("refresh_frame_flags", &self.refresh_frame_flags)
-                .field("reserved1", &self.reserved1)
-                .field("interpolation_filter", &self.interpolation_filter)
-                .field("tx_mode", &self.tx_mode)
-                .field("delta_q_res", &self.delta_q_res)
-                .field("delta_lf_res", &self.delta_lf_res)
-                .field("skip_mode_frame", self.skip_mode_frame_as_c_str())
-                .field("coded_denom", &self.coded_denom)
-                .field("reserved2", self.reserved2_as_c_str())
-                .field("order_hints", self.order_hints_as_c_str())
-                .field("expected_frame_id", self.expected_frame_id_as_c_str())
-                .field("p_tile_info", &self.p_tile_info)
-                .field("p_quantization", &self.p_quantization)
-                .field("p_segmentation", &self.p_segmentation)
-                .field("p_loop_filter", &self.p_loop_filter)
-                .field("p_cdef", &self.p_cdef)
-                .field("p_loop_restoration", &self.p_loop_restoration)
-                .field("p_global_motion", &self.p_global_motion)
-                .field("p_film_grain", &self.p_film_grain)
-                .finish()
         }
     }
     impl<'a> DecodeAV1PictureInfo<'a> {
@@ -573,15 +550,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct DecodeAV1ReferenceInfoFlags {
         /**- `disable_frame_end_update_cdf` @ `0..1`
 - `segmentation_enabled` @ `1..2`*/
         pub bitfield0: u32,
     }
+    impl Default for DecodeAV1ReferenceInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for DecodeAV1ReferenceInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoDecodeAV1ReferenceInfoFlags")
+            f.debug_struct("DecodeAV1ReferenceInfoFlags")
                 .field(
                     "disable_frame_end_update_cdf",
                     &self.get_disable_frame_end_update_cdf(),
@@ -612,7 +596,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DecodeAV1ReferenceInfo {
         pub flags: crate::vk::DecodeAV1ReferenceInfoFlags,
         pub frame_type: u8,
@@ -629,17 +613,6 @@ pub(crate) mod reexport {
                 order_hint: Default::default(),
                 saved_order_hints: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for DecodeAV1ReferenceInfo {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoDecodeAV1ReferenceInfo")
-                .field("flags", &self.flags)
-                .field("frame_type", &self.frame_type)
-                .field("ref_frame_sign_bias", &self.ref_frame_sign_bias)
-                .field("order_hint", &self.order_hint)
-                .field("saved_order_hints", self.saved_order_hints_as_c_str())
-                .finish()
         }
     }
     impl DecodeAV1ReferenceInfo {

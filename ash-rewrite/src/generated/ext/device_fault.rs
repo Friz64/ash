@@ -188,10 +188,10 @@ pub(crate) mod reexport {
     }
     impl<'a> core::fmt::Debug for DeviceFaultInfoEXT<'a> {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkDeviceFaultInfoEXT")
+            f.debug_struct("DeviceFaultInfoEXT < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
-                .field("description", self.description_as_c_str())
+                .field("description", &self.description_as_c_str())
                 .field("p_address_infos", &self.p_address_infos)
                 .field("p_vendor_infos", &self.p_vendor_infos)
                 .field("p_vendor_binary_data", &self.p_vendor_binary_data)

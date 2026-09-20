@@ -3603,14 +3603,14 @@ pub(crate) mod reexport {
     }
     impl core::fmt::Debug for PhysicalDeviceProperties {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceProperties")
+            f.debug_struct("PhysicalDeviceProperties")
                 .field("api_version", &self.api_version)
                 .field("driver_version", &self.driver_version)
                 .field("vendor_id", &self.vendor_id)
                 .field("device_id", &self.device_id)
                 .field("device_type", &self.device_type)
-                .field("device_name", self.device_name_as_c_str())
-                .field("pipeline_cache_uuid", self.pipeline_cache_uuid_as_c_str())
+                .field("device_name", &self.device_name_as_c_str())
+                .field("pipeline_cache_uuid", &self.pipeline_cache_uuid)
                 .field("limits", &self.limits)
                 .field("sparse_properties", &self.sparse_properties)
                 .finish()
@@ -3687,8 +3687,8 @@ pub(crate) mod reexport {
     }
     impl core::fmt::Debug for ExtensionProperties {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkExtensionProperties")
-                .field("extension_name", self.extension_name_as_c_str())
+            f.debug_struct("ExtensionProperties")
+                .field("extension_name", &self.extension_name_as_c_str())
                 .field("spec_version", &self.spec_version)
                 .finish()
         }
@@ -3731,11 +3731,11 @@ pub(crate) mod reexport {
     }
     impl core::fmt::Debug for LayerProperties {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkLayerProperties")
-                .field("layer_name", self.layer_name_as_c_str())
+            f.debug_struct("LayerProperties")
+                .field("layer_name", &self.layer_name_as_c_str())
                 .field("spec_version", &self.spec_version)
                 .field("implementation_version", &self.implementation_version)
-                .field("description", self.description_as_c_str())
+                .field("description", &self.description_as_c_str())
                 .finish()
         }
     }
@@ -4097,7 +4097,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceMemoryProperties {
         pub memory_type_count: u32,
         pub memory_types: [crate::vk::MemoryType; crate::vk::MAX_MEMORY_TYPES as _],
@@ -4112,16 +4112,6 @@ pub(crate) mod reexport {
                 memory_heap_count: Default::default(),
                 memory_heaps: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for PhysicalDeviceMemoryProperties {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceMemoryProperties")
-                .field("memory_type_count", &self.memory_type_count)
-                .field("memory_types", self.memory_types_as_c_str())
-                .field("memory_heap_count", &self.memory_heap_count)
-                .field("memory_heaps", self.memory_heaps_as_c_str())
-                .finish()
         }
     }
     impl PhysicalDeviceMemoryProperties {
@@ -5428,7 +5418,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageBlit {
         pub src_subresource: crate::vk::ImageSubresourceLayers,
         pub src_offsets: [crate::vk::Offset3D; 2 as _],
@@ -5443,16 +5433,6 @@ pub(crate) mod reexport {
                 dst_subresource: Default::default(),
                 dst_offsets: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for ImageBlit {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkImageBlit")
-                .field("src_subresource", &self.src_subresource)
-                .field("src_offsets", self.src_offsets_as_c_str())
-                .field("dst_subresource", &self.dst_subresource)
-                .field("dst_offsets", self.dst_offsets_as_c_str())
-                .finish()
         }
     }
     impl ImageBlit {
@@ -6433,7 +6413,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineColorBlendStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -6462,20 +6442,6 @@ pub(crate) mod reexport {
                 blend_constants: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PipelineColorBlendStateCreateInfo<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPipelineColorBlendStateCreateInfo")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("flags", &self.flags)
-                .field("logic_op_enable", &self.logic_op_enable)
-                .field("logic_op", &self.logic_op)
-                .field("attachment_count", &self.attachment_count)
-                .field("p_attachments", &self.p_attachments)
-                .field("blend_constants", self.blend_constants_as_c_str())
-                .finish()
         }
     }
     impl<'a> PipelineColorBlendStateCreateInfo<'a> {
@@ -6886,7 +6852,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineCacheHeaderVersionOne {
         pub header_size: u32,
         pub header_version: crate::vk::PipelineCacheHeaderVersion,
@@ -6903,17 +6869,6 @@ pub(crate) mod reexport {
                 device_id: Default::default(),
                 pipeline_cache_uuid: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for PipelineCacheHeaderVersionOne {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPipelineCacheHeaderVersionOne")
-                .field("header_size", &self.header_size)
-                .field("header_version", &self.header_version)
-                .field("vendor_id", &self.vendor_id)
-                .field("device_id", &self.device_id)
-                .field("pipeline_cache_uuid", self.pipeline_cache_uuid_as_c_str())
-                .finish()
         }
     }
     impl PipelineCacheHeaderVersionOne {
@@ -8143,7 +8098,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceLimits {
         pub max_image_dimension1_d: u32,
         pub max_image_dimension2_d: u32,
@@ -8362,283 +8317,6 @@ pub(crate) mod reexport {
                 optimal_buffer_copy_row_pitch_alignment: Default::default(),
                 non_coherent_atom_size: Default::default(),
             }
-        }
-    }
-    impl core::fmt::Debug for PhysicalDeviceLimits {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceLimits")
-                .field("max_image_dimension1_d", &self.max_image_dimension1_d)
-                .field("max_image_dimension2_d", &self.max_image_dimension2_d)
-                .field("max_image_dimension3_d", &self.max_image_dimension3_d)
-                .field("max_image_dimension_cube", &self.max_image_dimension_cube)
-                .field("max_image_array_layers", &self.max_image_array_layers)
-                .field("max_texel_buffer_elements", &self.max_texel_buffer_elements)
-                .field("max_uniform_buffer_range", &self.max_uniform_buffer_range)
-                .field("max_storage_buffer_range", &self.max_storage_buffer_range)
-                .field("max_push_constants_size", &self.max_push_constants_size)
-                .field("max_memory_allocation_count", &self.max_memory_allocation_count)
-                .field(
-                    "max_sampler_allocation_count",
-                    &self.max_sampler_allocation_count,
-                )
-                .field("buffer_image_granularity", &self.buffer_image_granularity)
-                .field("sparse_address_space_size", &self.sparse_address_space_size)
-                .field("max_bound_descriptor_sets", &self.max_bound_descriptor_sets)
-                .field(
-                    "max_per_stage_descriptor_samplers",
-                    &self.max_per_stage_descriptor_samplers,
-                )
-                .field(
-                    "max_per_stage_descriptor_uniform_buffers",
-                    &self.max_per_stage_descriptor_uniform_buffers,
-                )
-                .field(
-                    "max_per_stage_descriptor_storage_buffers",
-                    &self.max_per_stage_descriptor_storage_buffers,
-                )
-                .field(
-                    "max_per_stage_descriptor_sampled_images",
-                    &self.max_per_stage_descriptor_sampled_images,
-                )
-                .field(
-                    "max_per_stage_descriptor_storage_images",
-                    &self.max_per_stage_descriptor_storage_images,
-                )
-                .field(
-                    "max_per_stage_descriptor_input_attachments",
-                    &self.max_per_stage_descriptor_input_attachments,
-                )
-                .field("max_per_stage_resources", &self.max_per_stage_resources)
-                .field("max_descriptor_set_samplers", &self.max_descriptor_set_samplers)
-                .field(
-                    "max_descriptor_set_uniform_buffers",
-                    &self.max_descriptor_set_uniform_buffers,
-                )
-                .field(
-                    "max_descriptor_set_uniform_buffers_dynamic",
-                    &self.max_descriptor_set_uniform_buffers_dynamic,
-                )
-                .field(
-                    "max_descriptor_set_storage_buffers",
-                    &self.max_descriptor_set_storage_buffers,
-                )
-                .field(
-                    "max_descriptor_set_storage_buffers_dynamic",
-                    &self.max_descriptor_set_storage_buffers_dynamic,
-                )
-                .field(
-                    "max_descriptor_set_sampled_images",
-                    &self.max_descriptor_set_sampled_images,
-                )
-                .field(
-                    "max_descriptor_set_storage_images",
-                    &self.max_descriptor_set_storage_images,
-                )
-                .field(
-                    "max_descriptor_set_input_attachments",
-                    &self.max_descriptor_set_input_attachments,
-                )
-                .field("max_vertex_input_attributes", &self.max_vertex_input_attributes)
-                .field("max_vertex_input_bindings", &self.max_vertex_input_bindings)
-                .field(
-                    "max_vertex_input_attribute_offset",
-                    &self.max_vertex_input_attribute_offset,
-                )
-                .field(
-                    "max_vertex_input_binding_stride",
-                    &self.max_vertex_input_binding_stride,
-                )
-                .field(
-                    "max_vertex_output_components",
-                    &self.max_vertex_output_components,
-                )
-                .field(
-                    "max_tessellation_generation_level",
-                    &self.max_tessellation_generation_level,
-                )
-                .field("max_tessellation_patch_size", &self.max_tessellation_patch_size)
-                .field(
-                    "max_tessellation_control_per_vertex_input_components",
-                    &self.max_tessellation_control_per_vertex_input_components,
-                )
-                .field(
-                    "max_tessellation_control_per_vertex_output_components",
-                    &self.max_tessellation_control_per_vertex_output_components,
-                )
-                .field(
-                    "max_tessellation_control_per_patch_output_components",
-                    &self.max_tessellation_control_per_patch_output_components,
-                )
-                .field(
-                    "max_tessellation_control_total_output_components",
-                    &self.max_tessellation_control_total_output_components,
-                )
-                .field(
-                    "max_tessellation_evaluation_input_components",
-                    &self.max_tessellation_evaluation_input_components,
-                )
-                .field(
-                    "max_tessellation_evaluation_output_components",
-                    &self.max_tessellation_evaluation_output_components,
-                )
-                .field(
-                    "max_geometry_shader_invocations",
-                    &self.max_geometry_shader_invocations,
-                )
-                .field(
-                    "max_geometry_input_components",
-                    &self.max_geometry_input_components,
-                )
-                .field(
-                    "max_geometry_output_components",
-                    &self.max_geometry_output_components,
-                )
-                .field(
-                    "max_geometry_output_vertices",
-                    &self.max_geometry_output_vertices,
-                )
-                .field(
-                    "max_geometry_total_output_components",
-                    &self.max_geometry_total_output_components,
-                )
-                .field(
-                    "max_fragment_input_components",
-                    &self.max_fragment_input_components,
-                )
-                .field(
-                    "max_fragment_output_attachments",
-                    &self.max_fragment_output_attachments,
-                )
-                .field(
-                    "max_fragment_dual_src_attachments",
-                    &self.max_fragment_dual_src_attachments,
-                )
-                .field(
-                    "max_fragment_combined_output_resources",
-                    &self.max_fragment_combined_output_resources,
-                )
-                .field(
-                    "max_compute_shared_memory_size",
-                    &self.max_compute_shared_memory_size,
-                )
-                .field(
-                    "max_compute_work_group_count",
-                    self.max_compute_work_group_count_as_c_str(),
-                )
-                .field(
-                    "max_compute_work_group_invocations",
-                    &self.max_compute_work_group_invocations,
-                )
-                .field(
-                    "max_compute_work_group_size",
-                    self.max_compute_work_group_size_as_c_str(),
-                )
-                .field("sub_pixel_precision_bits", &self.sub_pixel_precision_bits)
-                .field("sub_texel_precision_bits", &self.sub_texel_precision_bits)
-                .field("mipmap_precision_bits", &self.mipmap_precision_bits)
-                .field(
-                    "max_draw_indexed_index_value",
-                    &self.max_draw_indexed_index_value,
-                )
-                .field("max_draw_indirect_count", &self.max_draw_indirect_count)
-                .field("max_sampler_lod_bias", &self.max_sampler_lod_bias)
-                .field("max_sampler_anisotropy", &self.max_sampler_anisotropy)
-                .field("max_viewports", &self.max_viewports)
-                .field(
-                    "max_viewport_dimensions",
-                    self.max_viewport_dimensions_as_c_str(),
-                )
-                .field("viewport_bounds_range", self.viewport_bounds_range_as_c_str())
-                .field("viewport_sub_pixel_bits", &self.viewport_sub_pixel_bits)
-                .field("min_memory_map_alignment", &self.min_memory_map_alignment)
-                .field(
-                    "min_texel_buffer_offset_alignment",
-                    &self.min_texel_buffer_offset_alignment,
-                )
-                .field(
-                    "min_uniform_buffer_offset_alignment",
-                    &self.min_uniform_buffer_offset_alignment,
-                )
-                .field(
-                    "min_storage_buffer_offset_alignment",
-                    &self.min_storage_buffer_offset_alignment,
-                )
-                .field("min_texel_offset", &self.min_texel_offset)
-                .field("max_texel_offset", &self.max_texel_offset)
-                .field("min_texel_gather_offset", &self.min_texel_gather_offset)
-                .field("max_texel_gather_offset", &self.max_texel_gather_offset)
-                .field("min_interpolation_offset", &self.min_interpolation_offset)
-                .field("max_interpolation_offset", &self.max_interpolation_offset)
-                .field(
-                    "sub_pixel_interpolation_offset_bits",
-                    &self.sub_pixel_interpolation_offset_bits,
-                )
-                .field("max_framebuffer_width", &self.max_framebuffer_width)
-                .field("max_framebuffer_height", &self.max_framebuffer_height)
-                .field("max_framebuffer_layers", &self.max_framebuffer_layers)
-                .field(
-                    "framebuffer_color_sample_counts",
-                    &self.framebuffer_color_sample_counts,
-                )
-                .field(
-                    "framebuffer_depth_sample_counts",
-                    &self.framebuffer_depth_sample_counts,
-                )
-                .field(
-                    "framebuffer_stencil_sample_counts",
-                    &self.framebuffer_stencil_sample_counts,
-                )
-                .field(
-                    "framebuffer_no_attachments_sample_counts",
-                    &self.framebuffer_no_attachments_sample_counts,
-                )
-                .field("max_color_attachments", &self.max_color_attachments)
-                .field(
-                    "sampled_image_color_sample_counts",
-                    &self.sampled_image_color_sample_counts,
-                )
-                .field(
-                    "sampled_image_integer_sample_counts",
-                    &self.sampled_image_integer_sample_counts,
-                )
-                .field(
-                    "sampled_image_depth_sample_counts",
-                    &self.sampled_image_depth_sample_counts,
-                )
-                .field(
-                    "sampled_image_stencil_sample_counts",
-                    &self.sampled_image_stencil_sample_counts,
-                )
-                .field("storage_image_sample_counts", &self.storage_image_sample_counts)
-                .field("max_sample_mask_words", &self.max_sample_mask_words)
-                .field(
-                    "timestamp_compute_and_graphics",
-                    &self.timestamp_compute_and_graphics,
-                )
-                .field("timestamp_period", &self.timestamp_period)
-                .field("max_clip_distances", &self.max_clip_distances)
-                .field("max_cull_distances", &self.max_cull_distances)
-                .field(
-                    "max_combined_clip_and_cull_distances",
-                    &self.max_combined_clip_and_cull_distances,
-                )
-                .field("discrete_queue_priorities", &self.discrete_queue_priorities)
-                .field("point_size_range", self.point_size_range_as_c_str())
-                .field("line_width_range", self.line_width_range_as_c_str())
-                .field("point_size_granularity", &self.point_size_granularity)
-                .field("line_width_granularity", &self.line_width_granularity)
-                .field("strict_lines", &self.strict_lines)
-                .field("standard_sample_locations", &self.standard_sample_locations)
-                .field(
-                    "optimal_buffer_copy_offset_alignment",
-                    &self.optimal_buffer_copy_offset_alignment,
-                )
-                .field(
-                    "optimal_buffer_copy_row_pitch_alignment",
-                    &self.optimal_buffer_copy_row_pitch_alignment,
-                )
-                .field("non_coherent_atom_size", &self.non_coherent_atom_size)
-                .finish()
         }
     }
     impl PhysicalDeviceLimits {

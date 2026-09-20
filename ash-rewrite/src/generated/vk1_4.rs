@@ -956,7 +956,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct QueueFamilyGlobalPriorityProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -980,16 +980,6 @@ pub(crate) mod reexport {
                 priorities: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for QueueFamilyGlobalPriorityProperties<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkQueueFamilyGlobalPriorityProperties")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("priority_count", &self.priority_count)
-                .field("priorities", self.priorities_as_c_str())
-                .finish()
         }
     }
     impl<'a> QueueFamilyGlobalPriorityProperties<'a> {
@@ -1506,7 +1496,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceVulkan14Properties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1574,90 +1564,6 @@ pub(crate) mod reexport {
                 identical_memory_type_requirements: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PhysicalDeviceVulkan14Properties<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceVulkan14Properties")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field(
-                    "line_sub_pixel_precision_bits",
-                    &self.line_sub_pixel_precision_bits,
-                )
-                .field("max_vertex_attrib_divisor", &self.max_vertex_attrib_divisor)
-                .field(
-                    "supports_non_zero_first_instance",
-                    &self.supports_non_zero_first_instance,
-                )
-                .field("max_push_descriptors", &self.max_push_descriptors)
-                .field(
-                    "dynamic_rendering_local_read_depth_stencil_attachments",
-                    &self.dynamic_rendering_local_read_depth_stencil_attachments,
-                )
-                .field(
-                    "dynamic_rendering_local_read_multisampled_attachments",
-                    &self.dynamic_rendering_local_read_multisampled_attachments,
-                )
-                .field(
-                    "early_fragment_multisample_coverage_after_sample_counting",
-                    &self.early_fragment_multisample_coverage_after_sample_counting,
-                )
-                .field(
-                    "early_fragment_sample_mask_test_before_sample_counting",
-                    &self.early_fragment_sample_mask_test_before_sample_counting,
-                )
-                .field(
-                    "depth_stencil_swizzle_one_support",
-                    &self.depth_stencil_swizzle_one_support,
-                )
-                .field("polygon_mode_point_size", &self.polygon_mode_point_size)
-                .field(
-                    "non_strict_single_pixel_wide_lines_use_parallelogram",
-                    &self.non_strict_single_pixel_wide_lines_use_parallelogram,
-                )
-                .field(
-                    "non_strict_wide_lines_use_parallelogram",
-                    &self.non_strict_wide_lines_use_parallelogram,
-                )
-                .field(
-                    "block_texel_view_compatible_multiple_layers",
-                    &self.block_texel_view_compatible_multiple_layers,
-                )
-                .field(
-                    "max_combined_image_sampler_descriptor_count",
-                    &self.max_combined_image_sampler_descriptor_count,
-                )
-                .field(
-                    "fragment_shading_rate_clamp_combiner_inputs",
-                    &self.fragment_shading_rate_clamp_combiner_inputs,
-                )
-                .field(
-                    "default_robustness_storage_buffers",
-                    &self.default_robustness_storage_buffers,
-                )
-                .field(
-                    "default_robustness_uniform_buffers",
-                    &self.default_robustness_uniform_buffers,
-                )
-                .field(
-                    "default_robustness_vertex_inputs",
-                    &self.default_robustness_vertex_inputs,
-                )
-                .field("default_robustness_images", &self.default_robustness_images)
-                .field("copy_src_layout_count", &self.copy_src_layout_count)
-                .field("p_copy_src_layouts", &self.p_copy_src_layouts)
-                .field("copy_dst_layout_count", &self.copy_dst_layout_count)
-                .field("p_copy_dst_layouts", &self.p_copy_dst_layouts)
-                .field(
-                    "optimal_tiling_layout_uuid",
-                    self.optimal_tiling_layout_uuid_as_c_str(),
-                )
-                .field(
-                    "identical_memory_type_requirements",
-                    &self.identical_memory_type_requirements,
-                )
-                .finish()
         }
     }
     impl<'a> PhysicalDeviceVulkan14Properties<'a> {
@@ -1863,7 +1769,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceHostImageCopyProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1894,26 +1800,6 @@ pub(crate) mod reexport {
                 identical_memory_type_requirements: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PhysicalDeviceHostImageCopyProperties<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceHostImageCopyProperties")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("copy_src_layout_count", &self.copy_src_layout_count)
-                .field("p_copy_src_layouts", &self.p_copy_src_layouts)
-                .field("copy_dst_layout_count", &self.copy_dst_layout_count)
-                .field("p_copy_dst_layouts", &self.p_copy_dst_layouts)
-                .field(
-                    "optimal_tiling_layout_uuid",
-                    self.optimal_tiling_layout_uuid_as_c_str(),
-                )
-                .field(
-                    "identical_memory_type_requirements",
-                    &self.identical_memory_type_requirements,
-                )
-                .finish()
         }
     }
     impl<'a> PhysicalDeviceHostImageCopyProperties<'a> {

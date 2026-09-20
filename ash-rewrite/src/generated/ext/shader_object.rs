@@ -961,7 +961,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceShaderObjectPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -984,16 +984,6 @@ pub(crate) mod reexport {
                 shader_binary_version: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PhysicalDeviceShaderObjectPropertiesEXT<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceShaderObjectPropertiesEXT")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("shader_binary_uuid", self.shader_binary_uuid_as_c_str())
-                .field("shader_binary_version", &self.shader_binary_version)
-                .finish()
         }
     }
     impl<'a> PhysicalDeviceShaderObjectPropertiesEXT<'a> {

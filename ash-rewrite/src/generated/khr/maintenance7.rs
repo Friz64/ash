@@ -204,7 +204,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceLayeredApiPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -230,18 +230,6 @@ pub(crate) mod reexport {
                 device_name: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PhysicalDeviceLayeredApiPropertiesKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceLayeredApiPropertiesKHR")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("vendor_id", &self.vendor_id)
-                .field("device_id", &self.device_id)
-                .field("layered_api", &self.layered_api)
-                .field("device_name", self.device_name_as_c_str())
-                .finish()
         }
     }
     impl<'a> PhysicalDeviceLayeredApiPropertiesKHR<'a> {

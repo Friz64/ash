@@ -610,7 +610,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VideoEncodeAV1PictureInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -643,27 +643,6 @@ pub(crate) mod reexport {
                 generate_obu_extension_header: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for VideoEncodeAV1PictureInfoKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkVideoEncodeAV1PictureInfoKHR")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("prediction_mode", &self.prediction_mode)
-                .field("rate_control_group", &self.rate_control_group)
-                .field("constant_q_index", &self.constant_q_index)
-                .field("p_std_picture_info", &self.p_std_picture_info)
-                .field(
-                    "reference_name_slot_indices",
-                    self.reference_name_slot_indices_as_c_str(),
-                )
-                .field("primary_reference_cdf_only", &self.primary_reference_cdf_only)
-                .field(
-                    "generate_obu_extension_header",
-                    &self.generate_obu_extension_header,
-                )
-                .finish()
         }
     }
     impl<'a> VideoEncodeAV1PictureInfoKHR<'a> {

@@ -341,7 +341,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -370,31 +370,6 @@ pub(crate) mod reexport {
                 variable_sample_locations: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceSampleLocationsPropertiesEXT")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field(
-                    "sample_location_sample_counts",
-                    &self.sample_location_sample_counts,
-                )
-                .field(
-                    "max_sample_location_grid_size",
-                    &self.max_sample_location_grid_size,
-                )
-                .field(
-                    "sample_location_coordinate_range",
-                    self.sample_location_coordinate_range_as_c_str(),
-                )
-                .field(
-                    "sample_location_sub_pixel_bits",
-                    &self.sample_location_sub_pixel_bits,
-                )
-                .field("variable_sample_locations", &self.variable_sample_locations)
-                .finish()
         }
     }
     impl<'a> PhysicalDeviceSampleLocationsPropertiesEXT<'a> {

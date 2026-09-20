@@ -20,7 +20,7 @@ pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_decode";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct DecodeH264PictureInfoFlags {
         /**- `field_pic_flag` @ `0..1`
 - `is_intra` @ `1..2`
@@ -30,9 +30,16 @@ pub(crate) mod reexport {
 - `complementary_field_pair` @ `5..6`*/
         pub bitfield0: u32,
     }
+    impl Default for DecodeH264PictureInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for DecodeH264PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoDecodeH264PictureInfoFlags")
+            f.debug_struct("DecodeH264PictureInfoFlags")
                 .field("field_pic_flag", &self.get_field_pic_flag())
                 .field("is_intra", &self.get_is_intra())
                 .field("idr_pic_flag", &self.get_idr_pic_flag())
@@ -96,7 +103,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DecodeH264PictureInfo {
         pub flags: crate::vk::DecodeH264PictureInfoFlags,
         pub seq_parameter_set_id: u8,
@@ -120,20 +127,6 @@ pub(crate) mod reexport {
                 idr_pic_id: Default::default(),
                 pic_order_cnt: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for DecodeH264PictureInfo {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoDecodeH264PictureInfo")
-                .field("flags", &self.flags)
-                .field("seq_parameter_set_id", &self.seq_parameter_set_id)
-                .field("pic_parameter_set_id", &self.pic_parameter_set_id)
-                .field("reserved1", &self.reserved1)
-                .field("reserved2", &self.reserved2)
-                .field("frame_num", &self.frame_num)
-                .field("idr_pic_id", &self.idr_pic_id)
-                .field("pic_order_cnt", self.pic_order_cnt_as_c_str())
-                .finish()
         }
     }
     impl DecodeH264PictureInfo {
@@ -174,7 +167,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct DecodeH264ReferenceInfoFlags {
         /**- `top_field_flag` @ `0..1`
 - `bottom_field_flag` @ `1..2`
@@ -182,9 +175,16 @@ pub(crate) mod reexport {
 - `is_non_existing` @ `3..4`*/
         pub bitfield0: u32,
     }
+    impl Default for DecodeH264ReferenceInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for DecodeH264ReferenceInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoDecodeH264ReferenceInfoFlags")
+            f.debug_struct("DecodeH264ReferenceInfoFlags")
                 .field("top_field_flag", &self.get_top_field_flag())
                 .field("bottom_field_flag", &self.get_bottom_field_flag())
                 .field(
@@ -234,7 +234,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DecodeH264ReferenceInfo {
         pub flags: crate::vk::DecodeH264ReferenceInfoFlags,
         pub frame_num: u16,
@@ -250,16 +250,6 @@ pub(crate) mod reexport {
                 reserved: Default::default(),
                 pic_order_cnt: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for DecodeH264ReferenceInfo {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoDecodeH264ReferenceInfo")
-                .field("flags", &self.flags)
-                .field("frame_num", &self.frame_num)
-                .field("reserved", &self.reserved)
-                .field("pic_order_cnt", self.pic_order_cnt_as_c_str())
-                .finish()
         }
     }
     impl DecodeH264ReferenceInfo {

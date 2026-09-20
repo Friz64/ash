@@ -220,12 +220,12 @@ pub(crate) mod reexport {
     }
     impl<'a> core::fmt::Debug for PipelineExecutablePropertiesKHR<'a> {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPipelineExecutablePropertiesKHR")
+            f.debug_struct("PipelineExecutablePropertiesKHR < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
                 .field("stages", &self.stages)
-                .field("name", self.name_as_c_str())
-                .field("description", self.description_as_c_str())
+                .field("name", &self.name_as_c_str())
+                .field("description", &self.description_as_c_str())
                 .field("subgroup_size", &self.subgroup_size)
                 .finish()
         }
@@ -325,11 +325,11 @@ pub(crate) mod reexport {
     }
     impl<'a> core::fmt::Debug for PipelineExecutableStatisticKHR<'a> {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPipelineExecutableStatisticKHR")
+            f.debug_struct("PipelineExecutableStatisticKHR < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
-                .field("name", self.name_as_c_str())
-                .field("description", self.description_as_c_str())
+                .field("name", &self.name_as_c_str())
+                .field("description", &self.description_as_c_str())
                 .field("format", &self.format)
                 .field("value", &self.value)
                 .finish()
@@ -406,11 +406,11 @@ pub(crate) mod reexport {
     }
     impl<'a> core::fmt::Debug for PipelineExecutableInternalRepresentationKHR<'a> {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPipelineExecutableInternalRepresentationKHR")
+            f.debug_struct("PipelineExecutableInternalRepresentationKHR < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
-                .field("name", self.name_as_c_str())
-                .field("description", self.description_as_c_str())
+                .field("name", &self.name_as_c_str())
+                .field("description", &self.description_as_c_str())
                 .field("is_text", &self.is_text)
                 .field("data_size", &self.data_size)
                 .field("p_data", &self.p_data)

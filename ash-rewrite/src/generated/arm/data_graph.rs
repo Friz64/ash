@@ -1153,9 +1153,9 @@ pub(crate) mod reexport {
     }
     impl core::fmt::Debug for PhysicalDeviceDataGraphOperationSupportARM {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceDataGraphOperationSupportARM")
+            f.debug_struct("PhysicalDeviceDataGraphOperationSupportARM")
                 .field("operation_type", &self.operation_type)
-                .field("name", self.name_as_c_str())
+                .field("name", &self.name_as_c_str())
                 .field("version", &self.version)
                 .finish()
         }

@@ -123,7 +123,7 @@ impl H265AspectRatioIdc {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct H265ProfileTierLevelFlags {
         /**- `general_tier_flag` @ `0..1`
 - `general_progressive_source_flag` @ `1..2`
@@ -132,9 +132,16 @@ pub(crate) mod reexport {
 - `general_frame_only_constraint_flag` @ `4..5`*/
         pub bitfield0: u32,
     }
+    impl Default for H265ProfileTierLevelFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for H265ProfileTierLevelFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265ProfileTierLevelFlags")
+            f.debug_struct("H265ProfileTierLevelFlags")
                 .field("general_tier_flag", &self.get_general_tier_flag())
                 .field(
                     "general_progressive_source_flag",
@@ -241,7 +248,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct H265DecPicBufMgr {
         pub max_latency_increase_plus1: [u32; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
         pub max_dec_pic_buffering_minus1: [u8; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
@@ -254,21 +261,6 @@ pub(crate) mod reexport {
                 max_dec_pic_buffering_minus1: unsafe { core::mem::zeroed() },
                 max_num_reorder_pics: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for H265DecPicBufMgr {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265DecPicBufMgr")
-                .field(
-                    "max_latency_increase_plus1",
-                    self.max_latency_increase_plus1_as_c_str(),
-                )
-                .field(
-                    "max_dec_pic_buffering_minus1",
-                    self.max_dec_pic_buffering_minus1_as_c_str(),
-                )
-                .field("max_num_reorder_pics", self.max_num_reorder_pics_as_c_str())
-                .finish()
         }
     }
     impl H265DecPicBufMgr {
@@ -295,7 +287,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct H265SubLayerHrdParameters {
         pub bit_rate_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
         pub cpb_size_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
@@ -312,23 +304,6 @@ pub(crate) mod reexport {
                 bit_rate_du_value_minus1: unsafe { core::mem::zeroed() },
                 cbr_flag: Default::default(),
             }
-        }
-    }
-    impl core::fmt::Debug for H265SubLayerHrdParameters {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265SubLayerHrdParameters")
-                .field("bit_rate_value_minus1", self.bit_rate_value_minus1_as_c_str())
-                .field("cpb_size_value_minus1", self.cpb_size_value_minus1_as_c_str())
-                .field(
-                    "cpb_size_du_value_minus1",
-                    self.cpb_size_du_value_minus1_as_c_str(),
-                )
-                .field(
-                    "bit_rate_du_value_minus1",
-                    self.bit_rate_du_value_minus1_as_c_str(),
-                )
-                .field("cbr_flag", &self.cbr_flag)
-                .finish()
         }
     }
     impl H265SubLayerHrdParameters {
@@ -366,7 +341,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct H265HrdFlags {
         /**- `nal_hrd_parameters_present_flag` @ `0..1`
 - `vcl_hrd_parameters_present_flag` @ `1..2`
@@ -377,9 +352,16 @@ pub(crate) mod reexport {
 - `low_delay_hrd_flag` @ `20..28`*/
         pub bitfield0: u32,
     }
+    impl Default for H265HrdFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for H265HrdFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265HrdFlags")
+            f.debug_struct("H265HrdFlags")
                 .field(
                     "nal_hrd_parameters_present_flag",
                     &self.get_nal_hrd_parameters_present_flag(),
@@ -489,7 +471,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct H265HrdParameters<'a> {
         pub flags: crate::vk::H265HrdFlags,
         pub tick_divisor_minus2: u8,
@@ -529,51 +511,6 @@ pub(crate) mod reexport {
                 p_sub_layer_hrd_parameters_vcl: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for H265HrdParameters<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265HrdParameters")
-                .field("flags", &self.flags)
-                .field("tick_divisor_minus2", &self.tick_divisor_minus2)
-                .field(
-                    "du_cpb_removal_delay_increment_length_minus1",
-                    &self.du_cpb_removal_delay_increment_length_minus1,
-                )
-                .field(
-                    "dpb_output_delay_du_length_minus1",
-                    &self.dpb_output_delay_du_length_minus1,
-                )
-                .field("bit_rate_scale", &self.bit_rate_scale)
-                .field("cpb_size_scale", &self.cpb_size_scale)
-                .field("cpb_size_du_scale", &self.cpb_size_du_scale)
-                .field(
-                    "initial_cpb_removal_delay_length_minus1",
-                    &self.initial_cpb_removal_delay_length_minus1,
-                )
-                .field(
-                    "au_cpb_removal_delay_length_minus1",
-                    &self.au_cpb_removal_delay_length_minus1,
-                )
-                .field(
-                    "dpb_output_delay_length_minus1",
-                    &self.dpb_output_delay_length_minus1,
-                )
-                .field("cpb_cnt_minus1", self.cpb_cnt_minus1_as_c_str())
-                .field(
-                    "elemental_duration_in_tc_minus1",
-                    self.elemental_duration_in_tc_minus1_as_c_str(),
-                )
-                .field("reserved", self.reserved_as_c_str())
-                .field(
-                    "p_sub_layer_hrd_parameters_nal",
-                    &self.p_sub_layer_hrd_parameters_nal,
-                )
-                .field(
-                    "p_sub_layer_hrd_parameters_vcl",
-                    &self.p_sub_layer_hrd_parameters_vcl,
-                )
-                .finish()
         }
     }
     impl<'a> H265HrdParameters<'a> {
@@ -667,7 +604,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct H265VpsFlags {
         /**- `vps_temporal_id_nesting_flag` @ `0..1`
 - `vps_sub_layer_ordering_info_present_flag` @ `1..2`
@@ -675,9 +612,16 @@ pub(crate) mod reexport {
 - `vps_poc_proportional_to_timing_flag` @ `3..4`*/
         pub bitfield0: u32,
     }
+    impl Default for H265VpsFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for H265VpsFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265VpsFlags")
+            f.debug_struct("H265VpsFlags")
                 .field(
                     "vps_temporal_id_nesting_flag",
                     &self.get_vps_temporal_id_nesting_flag(),
@@ -832,7 +776,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct H265ScalingLists {
         pub scaling_list4x4: [[u8; crate::vk::H265_SCALING_LIST_4X4_NUM_ELEMENTS
             as _]; crate::vk::H265_SCALING_LIST_4X4_NUM_LISTS as _],
@@ -857,24 +801,6 @@ pub(crate) mod reexport {
                 scaling_list_dc_coef16x16: unsafe { core::mem::zeroed() },
                 scaling_list_dc_coef32x32: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for H265ScalingLists {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265ScalingLists")
-                .field("scaling_list4x4", self.scaling_list4x4_as_c_str())
-                .field("scaling_list8x8", self.scaling_list8x8_as_c_str())
-                .field("scaling_list16x16", self.scaling_list16x16_as_c_str())
-                .field("scaling_list32x32", self.scaling_list32x32_as_c_str())
-                .field(
-                    "scaling_list_dc_coef16x16",
-                    self.scaling_list_dc_coef16x16_as_c_str(),
-                )
-                .field(
-                    "scaling_list_dc_coef32x32",
-                    self.scaling_list_dc_coef32x32_as_c_str(),
-                )
-                .finish()
         }
     }
     impl H265ScalingLists {
@@ -928,15 +854,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct H265ShortTermRefPicSetFlags {
         /**- `inter_ref_pic_set_prediction_flag` @ `0..1`
 - `delta_rps_sign` @ `1..2`*/
         pub bitfield0: u32,
     }
+    impl Default for H265ShortTermRefPicSetFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for H265ShortTermRefPicSetFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265ShortTermRefPicSetFlags")
+            f.debug_struct("H265ShortTermRefPicSetFlags")
                 .field(
                     "inter_ref_pic_set_prediction_flag",
                     &self.get_inter_ref_pic_set_prediction_flag(),
@@ -967,7 +900,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct H265ShortTermRefPicSet {
         pub flags: crate::vk::H265ShortTermRefPicSetFlags,
         pub delta_idx_minus1: u32,
@@ -1002,26 +935,6 @@ pub(crate) mod reexport {
                 delta_poc_s0_minus1: unsafe { core::mem::zeroed() },
                 delta_poc_s1_minus1: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for H265ShortTermRefPicSet {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265ShortTermRefPicSet")
-                .field("flags", &self.flags)
-                .field("delta_idx_minus1", &self.delta_idx_minus1)
-                .field("use_delta_flag", &self.use_delta_flag)
-                .field("abs_delta_rps_minus1", &self.abs_delta_rps_minus1)
-                .field("used_by_curr_pic_flag", &self.used_by_curr_pic_flag)
-                .field("used_by_curr_pic_s0_flag", &self.used_by_curr_pic_s0_flag)
-                .field("used_by_curr_pic_s1_flag", &self.used_by_curr_pic_s1_flag)
-                .field("reserved1", &self.reserved1)
-                .field("reserved2", &self.reserved2)
-                .field("reserved3", &self.reserved3)
-                .field("num_negative_pics", &self.num_negative_pics)
-                .field("num_positive_pics", &self.num_positive_pics)
-                .field("delta_poc_s0_minus1", self.delta_poc_s0_minus1_as_c_str())
-                .field("delta_poc_s1_minus1", self.delta_poc_s1_minus1_as_c_str())
-                .finish()
         }
     }
     impl H265ShortTermRefPicSet {
@@ -1095,7 +1008,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct H265LongTermRefPicsSps {
         pub used_by_curr_pic_lt_sps_flag: u32,
         pub lt_ref_pic_poc_lsb_sps: [u32; crate::vk::H265_MAX_LONG_TERM_REF_PICS_SPS
@@ -1107,17 +1020,6 @@ pub(crate) mod reexport {
                 used_by_curr_pic_lt_sps_flag: Default::default(),
                 lt_ref_pic_poc_lsb_sps: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for H265LongTermRefPicsSps {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265LongTermRefPicsSps")
-                .field(
-                    "used_by_curr_pic_lt_sps_flag",
-                    &self.used_by_curr_pic_lt_sps_flag,
-                )
-                .field("lt_ref_pic_poc_lsb_sps", self.lt_ref_pic_poc_lsb_sps_as_c_str())
-                .finish()
         }
     }
     impl H265LongTermRefPicsSps {
@@ -1138,7 +1040,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct H265SpsVuiFlags {
         /**- `aspect_ratio_info_present_flag` @ `0..1`
 - `overscan_info_present_flag` @ `1..2`
@@ -1160,9 +1062,16 @@ pub(crate) mod reexport {
 - `restricted_ref_pic_lists_flag` @ `17..18`*/
         pub bitfield0: u32,
     }
+    impl Default for H265SpsVuiFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for H265SpsVuiFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265SpsVuiFlags")
+            f.debug_struct("H265SpsVuiFlags")
                 .field(
                     "aspect_ratio_info_present_flag",
                     &self.get_aspect_ratio_info_present_flag(),
@@ -1611,7 +1520,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct H265PredictorPaletteEntries {
         pub predictor_palette_entries: [[u16; crate::vk::H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE
             as _]; crate::vk::H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE as _],
@@ -1621,16 +1530,6 @@ pub(crate) mod reexport {
             Self {
                 predictor_palette_entries: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for H265PredictorPaletteEntries {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265PredictorPaletteEntries")
-                .field(
-                    "predictor_palette_entries",
-                    self.predictor_palette_entries_as_c_str(),
-                )
-                .finish()
         }
     }
     impl H265PredictorPaletteEntries {
@@ -1644,7 +1543,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct H265SpsFlags {
         /**- `sps_temporal_id_nesting_flag` @ `0..1`
 - `separate_colour_plane_flag` @ `1..2`
@@ -1678,9 +1577,16 @@ pub(crate) mod reexport {
 - `intra_boundary_filtering_disabled_flag` @ `29..30`*/
         pub bitfield0: u32,
     }
+    impl Default for H265SpsFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for H265SpsFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265SpsFlags")
+            f.debug_struct("H265SpsFlags")
                 .field(
                     "sps_temporal_id_nesting_flag",
                     &self.get_sps_temporal_id_nesting_flag(),
@@ -2412,7 +2318,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct H265PpsFlags {
         /**- `dependent_slice_segments_enabled_flag` @ `0..1`
 - `output_flag_present_flag` @ `1..2`
@@ -2447,9 +2353,16 @@ pub(crate) mod reexport {
 - `pps_range_extension_flag` @ `30..31`*/
         pub bitfield0: u32,
     }
+    impl Default for H265PpsFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for H265PpsFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265PpsFlags")
+            f.debug_struct("H265PpsFlags")
                 .field(
                     "dependent_slice_segments_enabled_flag",
                     &self.get_dependent_slice_segments_enabled_flag(),
@@ -2894,7 +2807,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct H265PictureParameterSet<'a> {
         pub flags: crate::vk::H265PpsFlags,
         pub pps_pic_parameter_set_id: u8,
@@ -2977,75 +2890,6 @@ pub(crate) mod reexport {
                 p_predictor_palette_entries: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for H265PictureParameterSet<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH265PictureParameterSet")
-                .field("flags", &self.flags)
-                .field("pps_pic_parameter_set_id", &self.pps_pic_parameter_set_id)
-                .field("pps_seq_parameter_set_id", &self.pps_seq_parameter_set_id)
-                .field("sps_video_parameter_set_id", &self.sps_video_parameter_set_id)
-                .field("num_extra_slice_header_bits", &self.num_extra_slice_header_bits)
-                .field(
-                    "num_ref_idx_l0_default_active_minus1",
-                    &self.num_ref_idx_l0_default_active_minus1,
-                )
-                .field(
-                    "num_ref_idx_l1_default_active_minus1",
-                    &self.num_ref_idx_l1_default_active_minus1,
-                )
-                .field("init_qp_minus26", &self.init_qp_minus26)
-                .field("diff_cu_qp_delta_depth", &self.diff_cu_qp_delta_depth)
-                .field("pps_cb_qp_offset", &self.pps_cb_qp_offset)
-                .field("pps_cr_qp_offset", &self.pps_cr_qp_offset)
-                .field("pps_beta_offset_div2", &self.pps_beta_offset_div2)
-                .field("pps_tc_offset_div2", &self.pps_tc_offset_div2)
-                .field(
-                    "log2_parallel_merge_level_minus2",
-                    &self.log2_parallel_merge_level_minus2,
-                )
-                .field(
-                    "log2_max_transform_skip_block_size_minus2",
-                    &self.log2_max_transform_skip_block_size_minus2,
-                )
-                .field(
-                    "diff_cu_chroma_qp_offset_depth",
-                    &self.diff_cu_chroma_qp_offset_depth,
-                )
-                .field(
-                    "chroma_qp_offset_list_len_minus1",
-                    &self.chroma_qp_offset_list_len_minus1,
-                )
-                .field("cb_qp_offset_list", self.cb_qp_offset_list_as_c_str())
-                .field("cr_qp_offset_list", self.cr_qp_offset_list_as_c_str())
-                .field("log2_sao_offset_scale_luma", &self.log2_sao_offset_scale_luma)
-                .field(
-                    "log2_sao_offset_scale_chroma",
-                    &self.log2_sao_offset_scale_chroma,
-                )
-                .field("pps_act_y_qp_offset_plus5", &self.pps_act_y_qp_offset_plus5)
-                .field("pps_act_cb_qp_offset_plus5", &self.pps_act_cb_qp_offset_plus5)
-                .field("pps_act_cr_qp_offset_plus3", &self.pps_act_cr_qp_offset_plus3)
-                .field(
-                    "pps_num_palette_predictor_initializers",
-                    &self.pps_num_palette_predictor_initializers,
-                )
-                .field("luma_bit_depth_entry_minus8", &self.luma_bit_depth_entry_minus8)
-                .field(
-                    "chroma_bit_depth_entry_minus8",
-                    &self.chroma_bit_depth_entry_minus8,
-                )
-                .field("num_tile_columns_minus1", &self.num_tile_columns_minus1)
-                .field("num_tile_rows_minus1", &self.num_tile_rows_minus1)
-                .field("reserved1", &self.reserved1)
-                .field("reserved2", &self.reserved2)
-                .field("column_width_minus1", self.column_width_minus1_as_c_str())
-                .field("row_height_minus1", self.row_height_minus1_as_c_str())
-                .field("reserved3", &self.reserved3)
-                .field("p_scaling_lists", &self.p_scaling_lists)
-                .field("p_predictor_palette_entries", &self.p_predictor_palette_entries)
-                .finish()
         }
     }
     impl<'a> H265PictureParameterSet<'a> {

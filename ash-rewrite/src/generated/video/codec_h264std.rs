@@ -244,7 +244,7 @@ impl H264NonVclNaluType {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct H264SpsVuiFlags {
         /**- `aspect_ratio_info_present_flag` @ `0..1`
 - `overscan_info_present_flag` @ `1..2`
@@ -260,9 +260,16 @@ pub(crate) mod reexport {
 - `vcl_hrd_parameters_present_flag` @ `11..12`*/
         pub bitfield0: u32,
     }
+    impl Default for H264SpsVuiFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for H264SpsVuiFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH264SpsVuiFlags")
+            f.debug_struct("H264SpsVuiFlags")
                 .field(
                     "aspect_ratio_info_present_flag",
                     &self.get_aspect_ratio_info_present_flag(),
@@ -439,7 +446,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct H264HrdParameters {
         pub cpb_cnt_minus1: u8,
         pub bit_rate_scale: u8,
@@ -468,32 +475,6 @@ pub(crate) mod reexport {
                 dpb_output_delay_length_minus1: Default::default(),
                 time_offset_length: Default::default(),
             }
-        }
-    }
-    impl core::fmt::Debug for H264HrdParameters {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH264HrdParameters")
-                .field("cpb_cnt_minus1", &self.cpb_cnt_minus1)
-                .field("bit_rate_scale", &self.bit_rate_scale)
-                .field("cpb_size_scale", &self.cpb_size_scale)
-                .field("reserved1", &self.reserved1)
-                .field("bit_rate_value_minus1", self.bit_rate_value_minus1_as_c_str())
-                .field("cpb_size_value_minus1", self.cpb_size_value_minus1_as_c_str())
-                .field("cbr_flag", self.cbr_flag_as_c_str())
-                .field(
-                    "initial_cpb_removal_delay_length_minus1",
-                    &self.initial_cpb_removal_delay_length_minus1,
-                )
-                .field(
-                    "cpb_removal_delay_length_minus1",
-                    &self.cpb_removal_delay_length_minus1,
-                )
-                .field(
-                    "dpb_output_delay_length_minus1",
-                    &self.dpb_output_delay_length_minus1,
-                )
-                .field("time_offset_length", &self.time_offset_length)
-                .finish()
         }
     }
     impl H264HrdParameters {
@@ -660,7 +641,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct H264SpsFlags {
         /**- `constraint_set0_flag` @ `0..1`
 - `constraint_set1_flag` @ `1..2`
@@ -680,9 +661,16 @@ pub(crate) mod reexport {
 - `vui_parameters_present_flag` @ `15..16`*/
         pub bitfield0: u32,
     }
+    impl Default for H264SpsFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for H264SpsFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH264SpsFlags")
+            f.debug_struct("H264SpsFlags")
                 .field("constraint_set0_flag", &self.get_constraint_set0_flag())
                 .field("constraint_set1_flag", &self.get_constraint_set1_flag())
                 .field("constraint_set2_flag", &self.get_constraint_set2_flag())
@@ -887,7 +875,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct H264ScalingLists {
         pub scaling_list_present_mask: u16,
         pub use_default_scaling_matrix_mask: u16,
@@ -904,19 +892,6 @@ pub(crate) mod reexport {
                 scaling_list4x4: unsafe { core::mem::zeroed() },
                 scaling_list8x8: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for H264ScalingLists {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH264ScalingLists")
-                .field("scaling_list_present_mask", &self.scaling_list_present_mask)
-                .field(
-                    "use_default_scaling_matrix_mask",
-                    &self.use_default_scaling_matrix_mask,
-                )
-                .field("scaling_list4x4", self.scaling_list4x4_as_c_str())
-                .field("scaling_list8x8", self.scaling_list8x8_as_c_str())
-                .finish()
         }
     }
     impl H264ScalingLists {
@@ -1110,7 +1085,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct H264PpsFlags {
         /**- `transform_8x8_mode_flag` @ `0..1`
 - `redundant_pic_cnt_present_flag` @ `1..2`
@@ -1122,9 +1097,16 @@ pub(crate) mod reexport {
 - `pic_scaling_matrix_present_flag` @ `7..8`*/
         pub bitfield0: u32,
     }
+    impl Default for H264PpsFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for H264PpsFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoH264PpsFlags")
+            f.debug_struct("H264PpsFlags")
                 .field("transform_8x8_mode_flag", &self.get_transform_8x8_mode_flag())
                 .field(
                     "redundant_pic_cnt_present_flag",

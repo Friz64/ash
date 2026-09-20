@@ -519,12 +519,12 @@ pub(crate) mod reexport {
     }
     impl<'a> core::fmt::Debug for PhysicalDeviceDriverProperties<'a> {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceDriverProperties")
+            f.debug_struct("PhysicalDeviceDriverProperties < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
                 .field("driver_id", &self.driver_id)
-                .field("driver_name", self.driver_name_as_c_str())
-                .field("driver_info", self.driver_info_as_c_str())
+                .field("driver_name", &self.driver_name_as_c_str())
+                .field("driver_info", &self.driver_info_as_c_str())
                 .field("conformance_version", &self.conformance_version)
                 .finish()
         }
@@ -3096,7 +3096,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceVulkan11Properties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -3144,38 +3144,6 @@ pub(crate) mod reexport {
                 max_memory_allocation_size: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PhysicalDeviceVulkan11Properties<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceVulkan11Properties")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("device_uuid", self.device_uuid_as_c_str())
-                .field("driver_uuid", self.driver_uuid_as_c_str())
-                .field("device_luid", self.device_luid_as_c_str())
-                .field("device_node_mask", &self.device_node_mask)
-                .field("device_luid_valid", &self.device_luid_valid)
-                .field("subgroup_size", &self.subgroup_size)
-                .field("subgroup_supported_stages", &self.subgroup_supported_stages)
-                .field(
-                    "subgroup_supported_operations",
-                    &self.subgroup_supported_operations,
-                )
-                .field(
-                    "subgroup_quad_operations_in_all_stages",
-                    &self.subgroup_quad_operations_in_all_stages,
-                )
-                .field("point_clipping_behavior", &self.point_clipping_behavior)
-                .field("max_multiview_view_count", &self.max_multiview_view_count)
-                .field(
-                    "max_multiview_instance_index",
-                    &self.max_multiview_instance_index,
-                )
-                .field("protected_no_fault", &self.protected_no_fault)
-                .field("max_per_set_descriptors", &self.max_per_set_descriptors)
-                .field("max_memory_allocation_size", &self.max_memory_allocation_size)
-                .finish()
         }
     }
     impl<'a> PhysicalDeviceVulkan11Properties<'a> {
@@ -3831,12 +3799,12 @@ pub(crate) mod reexport {
     }
     impl<'a> core::fmt::Debug for PhysicalDeviceVulkan12Properties<'a> {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceVulkan12Properties")
+            f.debug_struct("PhysicalDeviceVulkan12Properties < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
                 .field("driver_id", &self.driver_id)
-                .field("driver_name", self.driver_name_as_c_str())
-                .field("driver_info", self.driver_info_as_c_str())
+                .field("driver_name", &self.driver_name_as_c_str())
+                .field("driver_info", &self.driver_info_as_c_str())
                 .field("conformance_version", &self.conformance_version)
                 .field(
                     "denorm_behavior_independence",

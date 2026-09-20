@@ -172,8 +172,8 @@ pub(crate) mod reexport {
     }
     impl core::fmt::Debug for DeviceFaultVendorInfoKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkDeviceFaultVendorInfoKHR")
-                .field("description", self.description_as_c_str())
+            f.debug_struct("DeviceFaultVendorInfoKHR")
+                .field("description", &self.description_as_c_str())
                 .field("vendor_fault_code", &self.vendor_fault_code)
                 .field("vendor_fault_data", &self.vendor_fault_data)
                 .finish()
@@ -234,12 +234,12 @@ pub(crate) mod reexport {
     }
     impl<'a> core::fmt::Debug for DeviceFaultInfoKHR<'a> {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkDeviceFaultInfoKHR")
+            f.debug_struct("DeviceFaultInfoKHR < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
                 .field("flags", &self.flags)
                 .field("group_id", &self.group_id)
-                .field("description", self.description_as_c_str())
+                .field("description", &self.description_as_c_str())
                 .field("fault_address_info", &self.fault_address_info)
                 .field("instruction_address_info", &self.instruction_address_info)
                 .field("vendor_info", &self.vendor_info)
@@ -320,7 +320,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DeviceFaultVendorBinaryHeaderVersionOneKHR {
         pub header_size: u32,
         pub header_version: crate::vk::DeviceFaultVendorBinaryHeaderVersionKHR,
@@ -349,23 +349,6 @@ pub(crate) mod reexport {
                 engine_version: Default::default(),
                 api_version: Default::default(),
             }
-        }
-    }
-    impl core::fmt::Debug for DeviceFaultVendorBinaryHeaderVersionOneKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkDeviceFaultVendorBinaryHeaderVersionOneKHR")
-                .field("header_size", &self.header_size)
-                .field("header_version", &self.header_version)
-                .field("vendor_id", &self.vendor_id)
-                .field("device_id", &self.device_id)
-                .field("driver_version", &self.driver_version)
-                .field("pipeline_cache_uuid", self.pipeline_cache_uuid_as_c_str())
-                .field("application_name_offset", &self.application_name_offset)
-                .field("application_version", &self.application_version)
-                .field("engine_name_offset", &self.engine_name_offset)
-                .field("engine_version", &self.engine_version)
-                .field("api_version", &self.api_version)
-                .finish()
         }
     }
     impl DeviceFaultVendorBinaryHeaderVersionOneKHR {

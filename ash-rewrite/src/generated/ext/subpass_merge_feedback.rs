@@ -135,9 +135,9 @@ pub(crate) mod reexport {
     }
     impl core::fmt::Debug for RenderPassSubpassFeedbackInfoEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkRenderPassSubpassFeedbackInfoEXT")
+            f.debug_struct("RenderPassSubpassFeedbackInfoEXT")
                 .field("subpass_merge_status", &self.subpass_merge_status)
-                .field("description", self.description_as_c_str())
+                .field("description", &self.description_as_c_str())
                 .field("post_merge_index", &self.post_merge_index)
                 .finish()
         }

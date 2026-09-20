@@ -10,7 +10,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_memory_budget";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -33,16 +33,6 @@ pub(crate) mod reexport {
                 heap_usage: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceMemoryBudgetPropertiesEXT")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("heap_budget", self.heap_budget_as_c_str())
-                .field("heap_usage", self.heap_usage_as_c_str())
-                .finish()
         }
     }
     impl<'a> PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {

@@ -379,7 +379,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DebugUtilsLabelEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -399,16 +399,6 @@ pub(crate) mod reexport {
                 color: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for DebugUtilsLabelEXT<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkDebugUtilsLabelEXT")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("p_label_name", &self.p_label_name)
-                .field("color", self.color_as_c_str())
-                .finish()
         }
     }
     impl<'a> DebugUtilsLabelEXT<'a> {

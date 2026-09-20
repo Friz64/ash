@@ -1424,7 +1424,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceIDProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1452,19 +1452,6 @@ pub(crate) mod reexport {
                 device_luid_valid: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PhysicalDeviceIDProperties<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceIDProperties")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("device_uuid", self.device_uuid_as_c_str())
-                .field("driver_uuid", self.driver_uuid_as_c_str())
-                .field("device_luid", self.device_luid_as_c_str())
-                .field("device_node_mask", &self.device_node_mask)
-                .field("device_luid_valid", &self.device_luid_valid)
-                .finish()
         }
     }
     impl<'a> PhysicalDeviceIDProperties<'a> {
@@ -1957,7 +1944,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PhysicalDeviceGroupProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -1980,17 +1967,6 @@ pub(crate) mod reexport {
                 subset_allocation: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PhysicalDeviceGroupProperties<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceGroupProperties")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("physical_device_count", &self.physical_device_count)
-                .field("physical_devices", self.physical_devices_as_c_str())
-                .field("subset_allocation", &self.subset_allocation)
-                .finish()
         }
     }
     impl<'a> PhysicalDeviceGroupProperties<'a> {

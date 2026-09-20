@@ -68,7 +68,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_properties";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelinePropertiesIdentifierEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -86,15 +86,6 @@ pub(crate) mod reexport {
                 pipeline_identifier: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PipelinePropertiesIdentifierEXT<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPipelinePropertiesIdentifierEXT")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("pipeline_identifier", self.pipeline_identifier_as_c_str())
-                .finish()
         }
     }
     impl<'a> PipelinePropertiesIdentifierEXT<'a> {

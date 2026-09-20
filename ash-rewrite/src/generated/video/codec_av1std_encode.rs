@@ -65,16 +65,23 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct EncodeAV1OperatingPointInfoFlags {
         /**- `decoder_model_present_for_this_op` @ `0..1`
 - `low_delay_mode_flag` @ `1..2`
 - `initial_display_delay_present_for_this_op` @ `2..3`*/
         pub bitfield0: u32,
     }
+    impl Default for EncodeAV1OperatingPointInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for EncodeAV1OperatingPointInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeAV1OperatingPointInfoFlags")
+            f.debug_struct("EncodeAV1OperatingPointInfoFlags")
                 .field(
                     "decoder_model_present_for_this_op",
                     &self.get_decoder_model_present_for_this_op(),
@@ -168,7 +175,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct EncodeAV1PictureInfoFlags {
         /**- `error_resilient_mode` @ `0..1`
 - `disable_cdf_update` @ `1..2`
@@ -201,9 +208,16 @@ pub(crate) mod reexport {
 - `showable_frame` @ `28..29`*/
         pub bitfield0: u32,
     }
+    impl Default for EncodeAV1PictureInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for EncodeAV1PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeAV1PictureInfoFlags")
+            f.debug_struct("EncodeAV1PictureInfoFlags")
                 .field("error_resilient_mode", &self.get_error_resilient_mode())
                 .field("disable_cdf_update", &self.get_disable_cdf_update())
                 .field("use_superres", &self.get_use_superres())
@@ -523,7 +537,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct EncodeAV1PictureInfo<'a> {
         pub flags: crate::vk::EncodeAV1PictureInfoFlags,
         pub frame_type: crate::vk::AV1FrameType,
@@ -586,39 +600,6 @@ pub(crate) mod reexport {
                 p_buffer_removal_times: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for EncodeAV1PictureInfo<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeAV1PictureInfo")
-                .field("flags", &self.flags)
-                .field("frame_type", &self.frame_type)
-                .field("frame_presentation_time", &self.frame_presentation_time)
-                .field("current_frame_id", &self.current_frame_id)
-                .field("order_hint", &self.order_hint)
-                .field("primary_ref_frame", &self.primary_ref_frame)
-                .field("refresh_frame_flags", &self.refresh_frame_flags)
-                .field("coded_denom", &self.coded_denom)
-                .field("render_width_minus_1", &self.render_width_minus_1)
-                .field("render_height_minus_1", &self.render_height_minus_1)
-                .field("interpolation_filter", &self.interpolation_filter)
-                .field("tx_mode", &self.tx_mode)
-                .field("delta_q_res", &self.delta_q_res)
-                .field("delta_lf_res", &self.delta_lf_res)
-                .field("ref_order_hint", self.ref_order_hint_as_c_str())
-                .field("ref_frame_idx", self.ref_frame_idx_as_c_str())
-                .field("reserved1", self.reserved1_as_c_str())
-                .field("delta_frame_id_minus_1", self.delta_frame_id_minus_1_as_c_str())
-                .field("p_tile_info", &self.p_tile_info)
-                .field("p_quantization", &self.p_quantization)
-                .field("p_segmentation", &self.p_segmentation)
-                .field("p_loop_filter", &self.p_loop_filter)
-                .field("p_cdef", &self.p_cdef)
-                .field("p_loop_restoration", &self.p_loop_restoration)
-                .field("p_global_motion", &self.p_global_motion)
-                .field("p_extension_header", &self.p_extension_header)
-                .field("p_buffer_removal_times", &self.p_buffer_removal_times)
-                .finish()
         }
     }
     impl<'a> EncodeAV1PictureInfo<'a> {
@@ -759,15 +740,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct EncodeAV1ReferenceInfoFlags {
         /**- `disable_frame_end_update_cdf` @ `0..1`
 - `segmentation_enabled` @ `1..2`*/
         pub bitfield0: u32,
     }
+    impl Default for EncodeAV1ReferenceInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for EncodeAV1ReferenceInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeAV1ReferenceInfoFlags")
+            f.debug_struct("EncodeAV1ReferenceInfoFlags")
                 .field(
                     "disable_frame_end_update_cdf",
                     &self.get_disable_frame_end_update_cdf(),
@@ -798,7 +786,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct EncodeAV1ReferenceInfo<'a> {
         pub flags: crate::vk::EncodeAV1ReferenceInfoFlags,
         pub ref_frame_id: u32,
@@ -819,18 +807,6 @@ pub(crate) mod reexport {
                 p_extension_header: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for EncodeAV1ReferenceInfo<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeAV1ReferenceInfo")
-                .field("flags", &self.flags)
-                .field("ref_frame_id", &self.ref_frame_id)
-                .field("frame_type", &self.frame_type)
-                .field("order_hint", &self.order_hint)
-                .field("reserved1", self.reserved1_as_c_str())
-                .field("p_extension_header", &self.p_extension_header)
-                .finish()
         }
     }
     impl<'a> EncodeAV1ReferenceInfo<'a> {

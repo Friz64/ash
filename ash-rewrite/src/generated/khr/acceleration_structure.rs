@@ -1097,7 +1097,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct TransformMatrixKHR {
         pub matrix: [[core::ffi::c_float; 4 as _]; 3 as _],
     }
@@ -1108,13 +1108,6 @@ pub(crate) mod reexport {
             }
         }
     }
-    impl core::fmt::Debug for TransformMatrixKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkTransformMatrixKHR")
-                .field("matrix", self.matrix_as_c_str())
-                .finish()
-        }
-    }
     impl TransformMatrixKHR {
         pub fn matrix(mut self, matrix: [[core::ffi::c_float; 4 as _]; 3 as _]) -> Self {
             self.matrix = matrix;
@@ -1122,7 +1115,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureInstanceKHR {
         pub transform: crate::vk::TransformMatrixKHR,
         /**- `instanceCustomIndex` @ `0..24`
@@ -1133,9 +1126,19 @@ pub(crate) mod reexport {
         pub bitfield1: u32,
         pub acceleration_structure_reference: u64,
     }
+    impl Default for AccelerationStructureInstanceKHR {
+        fn default() -> Self {
+            Self {
+                transform: Default::default(),
+                bitfield0: Default::default(),
+                bitfield1: Default::default(),
+                acceleration_structure_reference: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for AccelerationStructureInstanceKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkAccelerationStructureInstanceKHR")
+            f.debug_struct("AccelerationStructureInstanceKHR")
                 .field("transform", &self.transform)
                 .field("instance_custom_index", &self.get_instance_custom_index())
                 .field("mask", &self.get_mask())

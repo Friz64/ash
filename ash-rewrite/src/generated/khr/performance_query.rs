@@ -307,7 +307,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PerformanceCounterKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -331,18 +331,6 @@ pub(crate) mod reexport {
                 uuid: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PerformanceCounterKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPerformanceCounterKHR")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("unit", &self.unit)
-                .field("scope", &self.scope)
-                .field("storage", &self.storage)
-                .field("uuid", self.uuid_as_c_str())
-                .finish()
         }
     }
     impl<'a> PerformanceCounterKHR<'a> {
@@ -395,13 +383,13 @@ pub(crate) mod reexport {
     }
     impl<'a> core::fmt::Debug for PerformanceCounterDescriptionKHR<'a> {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPerformanceCounterDescriptionKHR")
+            f.debug_struct("PerformanceCounterDescriptionKHR < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
                 .field("flags", &self.flags)
-                .field("name", self.name_as_c_str())
-                .field("category", self.category_as_c_str())
-                .field("description", self.description_as_c_str())
+                .field("name", &self.name_as_c_str())
+                .field("category", &self.category_as_c_str())
+                .field("description", &self.description_as_c_str())
                 .finish()
         }
     }

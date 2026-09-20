@@ -273,7 +273,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct PipelineBinaryKeyKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
@@ -293,16 +293,6 @@ pub(crate) mod reexport {
                 key: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for PipelineBinaryKeyKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPipelineBinaryKeyKHR")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("key_size", &self.key_size)
-                .field("key", self.key_as_c_str())
-                .finish()
         }
     }
     impl<'a> PipelineBinaryKeyKHR<'a> {

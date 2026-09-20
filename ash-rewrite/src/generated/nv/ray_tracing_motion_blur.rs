@@ -244,7 +244,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureSRTMotionInstanceNV {
         pub transform_t0: crate::vk::SRTDataNV,
         pub transform_t1: crate::vk::SRTDataNV,
@@ -256,9 +256,20 @@ pub(crate) mod reexport {
         pub bitfield1: u32,
         pub acceleration_structure_reference: u64,
     }
+    impl Default for AccelerationStructureSRTMotionInstanceNV {
+        fn default() -> Self {
+            Self {
+                transform_t0: Default::default(),
+                transform_t1: Default::default(),
+                bitfield0: Default::default(),
+                bitfield1: Default::default(),
+                acceleration_structure_reference: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for AccelerationStructureSRTMotionInstanceNV {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkAccelerationStructureSRTMotionInstanceNV")
+            f.debug_struct("AccelerationStructureSRTMotionInstanceNV")
                 .field("transform_t0", &self.transform_t0)
                 .field("transform_t1", &self.transform_t1)
                 .field("instance_custom_index", &self.get_instance_custom_index())
@@ -329,7 +340,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct AccelerationStructureMatrixMotionInstanceNV {
         pub transform_t0: crate::vk::TransformMatrixKHR,
         pub transform_t1: crate::vk::TransformMatrixKHR,
@@ -341,9 +352,20 @@ pub(crate) mod reexport {
         pub bitfield1: u32,
         pub acceleration_structure_reference: u64,
     }
+    impl Default for AccelerationStructureMatrixMotionInstanceNV {
+        fn default() -> Self {
+            Self {
+                transform_t0: Default::default(),
+                transform_t1: Default::default(),
+                bitfield0: Default::default(),
+                bitfield1: Default::default(),
+                acceleration_structure_reference: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for AccelerationStructureMatrixMotionInstanceNV {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkAccelerationStructureMatrixMotionInstanceNV")
+            f.debug_struct("AccelerationStructureMatrixMotionInstanceNV")
                 .field("transform_t0", &self.transform_t0)
                 .field("transform_t1", &self.transform_t1)
                 .field("instance_custom_index", &self.get_instance_custom_index())

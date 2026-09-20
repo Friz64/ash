@@ -113,14 +113,21 @@ impl VP9ColorSpace {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct VP9ColorConfigFlags {
         ///- `color_range` @ `0..1`
         pub bitfield0: u32,
     }
+    impl Default for VP9ColorConfigFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for VP9ColorConfigFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoVP9ColorConfigFlags")
+            f.debug_struct("VP9ColorConfigFlags")
                 .field("color_range", &self.get_color_range())
                 .finish()
         }
@@ -172,15 +179,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct VP9LoopFilterFlags {
         /**- `loop_filter_delta_enabled` @ `0..1`
 - `loop_filter_delta_update` @ `1..2`*/
         pub bitfield0: u32,
     }
+    impl Default for VP9LoopFilterFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for VP9LoopFilterFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoVP9LoopFilterFlags")
+            f.debug_struct("VP9LoopFilterFlags")
                 .field(
                     "loop_filter_delta_enabled",
                     &self.get_loop_filter_delta_enabled(),
@@ -214,7 +228,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VP9LoopFilter {
         pub flags: crate::vk::VP9LoopFilterFlags,
         pub loop_filter_level: u8,
@@ -235,22 +249,6 @@ pub(crate) mod reexport {
                 update_mode_delta: Default::default(),
                 loop_filter_mode_deltas: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for VP9LoopFilter {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoVP9LoopFilter")
-                .field("flags", &self.flags)
-                .field("loop_filter_level", &self.loop_filter_level)
-                .field("loop_filter_sharpness", &self.loop_filter_sharpness)
-                .field("update_ref_delta", &self.update_ref_delta)
-                .field("loop_filter_ref_deltas", self.loop_filter_ref_deltas_as_c_str())
-                .field("update_mode_delta", &self.update_mode_delta)
-                .field(
-                    "loop_filter_mode_deltas",
-                    self.loop_filter_mode_deltas_as_c_str(),
-                )
-                .finish()
         }
     }
     impl VP9LoopFilter {
@@ -290,7 +288,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct VP9SegmentationFlags {
         /**- `segmentation_update_map` @ `0..1`
 - `segmentation_temporal_update` @ `1..2`
@@ -298,9 +296,16 @@ pub(crate) mod reexport {
 - `segmentation_abs_or_delta_update` @ `3..4`*/
         pub bitfield0: u32,
     }
+    impl Default for VP9SegmentationFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for VP9SegmentationFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoVP9SegmentationFlags")
+            f.debug_struct("VP9SegmentationFlags")
                 .field("segmentation_update_map", &self.get_segmentation_update_map())
                 .field(
                     "segmentation_temporal_update",
@@ -360,7 +365,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct VP9Segmentation {
         pub flags: crate::vk::VP9SegmentationFlags,
         pub segmentation_tree_probs: [u8; crate::vk::VP9_MAX_SEGMENTATION_TREE_PROBS
@@ -379,20 +384,6 @@ pub(crate) mod reexport {
                 feature_enabled: unsafe { core::mem::zeroed() },
                 feature_data: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for VP9Segmentation {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoVP9Segmentation")
-                .field("flags", &self.flags)
-                .field(
-                    "segmentation_tree_probs",
-                    self.segmentation_tree_probs_as_c_str(),
-                )
-                .field("segmentation_pred_prob", self.segmentation_pred_prob_as_c_str())
-                .field("feature_enabled", self.feature_enabled_as_c_str())
-                .field("feature_data", self.feature_data_as_c_str())
-                .finish()
         }
     }
     impl VP9Segmentation {

@@ -32,7 +32,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct EncodeH264WeightTable {
         pub flags: crate::vk::EncodeH264WeightTableFlags,
         pub luma_log2_weight_denom: u8,
@@ -65,23 +65,6 @@ pub(crate) mod reexport {
                 chroma_weight_l1: unsafe { core::mem::zeroed() },
                 chroma_offset_l1: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for EncodeH264WeightTable {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH264WeightTable")
-                .field("flags", &self.flags)
-                .field("luma_log2_weight_denom", &self.luma_log2_weight_denom)
-                .field("chroma_log2_weight_denom", &self.chroma_log2_weight_denom)
-                .field("luma_weight_l0", self.luma_weight_l0_as_c_str())
-                .field("luma_offset_l0", self.luma_offset_l0_as_c_str())
-                .field("chroma_weight_l0", self.chroma_weight_l0_as_c_str())
-                .field("chroma_offset_l0", self.chroma_offset_l0_as_c_str())
-                .field("luma_weight_l1", self.luma_weight_l1_as_c_str())
-                .field("luma_offset_l1", self.luma_offset_l1_as_c_str())
-                .field("chroma_weight_l1", self.chroma_weight_l1_as_c_str())
-                .field("chroma_offset_l1", self.chroma_offset_l1_as_c_str())
-                .finish()
         }
     }
     impl EncodeH264WeightTable {
@@ -159,15 +142,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct EncodeH264SliceHeaderFlags {
         /**- `direct_spatial_mv_pred_flag` @ `0..1`
 - `num_ref_idx_active_override_flag` @ `1..2`*/
         pub bitfield0: u32,
     }
+    impl Default for EncodeH264SliceHeaderFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for EncodeH264SliceHeaderFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH264SliceHeaderFlags")
+            f.debug_struct("EncodeH264SliceHeaderFlags")
                 .field(
                     "direct_spatial_mv_pred_flag",
                     &self.get_direct_spatial_mv_pred_flag(),
@@ -205,7 +195,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct EncodeH264PictureInfoFlags {
         /**- `IdrPicFlag` @ `0..1`
 - `is_reference` @ `1..2`
@@ -214,9 +204,16 @@ pub(crate) mod reexport {
 - `adaptive_ref_pic_marking_mode_flag` @ `4..5`*/
         pub bitfield0: u32,
     }
+    impl Default for EncodeH264PictureInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for EncodeH264PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH264PictureInfoFlags")
+            f.debug_struct("EncodeH264PictureInfoFlags")
                 .field("idr_pic_flag", &self.get_idr_pic_flag())
                 .field("is_reference", &self.get_is_reference())
                 .field(
@@ -285,14 +282,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct EncodeH264ReferenceInfoFlags {
         ///- `used_for_long_term_reference` @ `0..1`
         pub bitfield0: u32,
     }
+    impl Default for EncodeH264ReferenceInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for EncodeH264ReferenceInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH264ReferenceInfoFlags")
+            f.debug_struct("EncodeH264ReferenceInfoFlags")
                 .field(
                     "used_for_long_term_reference",
                     &self.get_used_for_long_term_reference(),
@@ -314,15 +318,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct EncodeH264ReferenceListsInfoFlags {
         /**- `ref_pic_list_modification_flag_l0` @ `0..1`
 - `ref_pic_list_modification_flag_l1` @ `1..2`*/
         pub bitfield0: u32,
     }
+    impl Default for EncodeH264ReferenceListsInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for EncodeH264ReferenceListsInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH264ReferenceListsInfoFlags")
+            f.debug_struct("EncodeH264ReferenceListsInfoFlags")
                 .field(
                     "ref_pic_list_modification_flag_l0",
                     &self.get_ref_pic_list_modification_flag_l0(),
@@ -424,7 +435,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct EncodeH264ReferenceListsInfo<'a> {
         pub flags: crate::vk::EncodeH264ReferenceListsInfoFlags,
         pub num_ref_idx_l0_active_minus1: u8,
@@ -457,33 +468,6 @@ pub(crate) mod reexport {
                 p_ref_pic_marking_operations: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for EncodeH264ReferenceListsInfo<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH264ReferenceListsInfo")
-                .field("flags", &self.flags)
-                .field(
-                    "num_ref_idx_l0_active_minus1",
-                    &self.num_ref_idx_l0_active_minus1,
-                )
-                .field(
-                    "num_ref_idx_l1_active_minus1",
-                    &self.num_ref_idx_l1_active_minus1,
-                )
-                .field("ref_pic_list0", self.ref_pic_list0_as_c_str())
-                .field("ref_pic_list1", self.ref_pic_list1_as_c_str())
-                .field("ref_list0_mod_op_count", &self.ref_list0_mod_op_count)
-                .field("ref_list1_mod_op_count", &self.ref_list1_mod_op_count)
-                .field("ref_pic_marking_op_count", &self.ref_pic_marking_op_count)
-                .field("reserved1", self.reserved1_as_c_str())
-                .field("p_ref_list0_mod_operations", &self.p_ref_list0_mod_operations)
-                .field("p_ref_list1_mod_operations", &self.p_ref_list1_mod_operations)
-                .field(
-                    "p_ref_pic_marking_operations",
-                    &self.p_ref_pic_marking_operations,
-                )
-                .finish()
         }
     }
     impl<'a> EncodeH264ReferenceListsInfo<'a> {
@@ -552,7 +536,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct EncodeH264PictureInfo<'a> {
         pub flags: crate::vk::EncodeH264PictureInfoFlags,
         pub seq_parameter_set_id: u8,
@@ -581,22 +565,6 @@ pub(crate) mod reexport {
                 p_ref_lists: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for EncodeH264PictureInfo<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoEncodeH264PictureInfo")
-                .field("flags", &self.flags)
-                .field("seq_parameter_set_id", &self.seq_parameter_set_id)
-                .field("pic_parameter_set_id", &self.pic_parameter_set_id)
-                .field("idr_pic_id", &self.idr_pic_id)
-                .field("primary_pic_type", &self.primary_pic_type)
-                .field("frame_num", &self.frame_num)
-                .field("pic_order_cnt", &self.pic_order_cnt)
-                .field("temporal_id", &self.temporal_id)
-                .field("reserved1", self.reserved1_as_c_str())
-                .field("p_ref_lists", &self.p_ref_lists)
-                .finish()
         }
     }
     impl<'a> EncodeH264PictureInfo<'a> {

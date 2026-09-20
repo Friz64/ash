@@ -2333,14 +2333,14 @@ pub(crate) mod reexport {
     }
     impl<'a> core::fmt::Debug for PhysicalDeviceToolProperties<'a> {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkPhysicalDeviceToolProperties")
+            f.debug_struct("PhysicalDeviceToolProperties < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
-                .field("name", self.name_as_c_str())
-                .field("version", self.version_as_c_str())
+                .field("name", &self.name_as_c_str())
+                .field("version", &self.version_as_c_str())
                 .field("purposes", &self.purposes)
-                .field("description", self.description_as_c_str())
-                .field("layer", self.layer_as_c_str())
+                .field("description", &self.description_as_c_str())
+                .field("layer", &self.layer_as_c_str())
                 .finish()
         }
     }
@@ -2560,7 +2560,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct ImageBlit2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
@@ -2584,18 +2584,6 @@ pub(crate) mod reexport {
                 dst_offsets: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for ImageBlit2<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("VkImageBlit2")
-                .field("s_type", &self.s_type)
-                .field("p_next", &self.p_next)
-                .field("src_subresource", &self.src_subresource)
-                .field("src_offsets", self.src_offsets_as_c_str())
-                .field("dst_subresource", &self.dst_subresource)
-                .field("dst_offsets", self.dst_offsets_as_c_str())
-                .finish()
         }
     }
     impl<'a> ImageBlit2<'a> {

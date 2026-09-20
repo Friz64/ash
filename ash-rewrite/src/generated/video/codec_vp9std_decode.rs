@@ -6,7 +6,7 @@ pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_V
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_vp9_decode";
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct DecodeVP9PictureInfoFlags {
         /**- `error_resilient_mode` @ `0..1`
 - `intra_only` @ `1..2`
@@ -18,9 +18,16 @@ pub(crate) mod reexport {
 - `UsePrevFrameMvs` @ `7..8`*/
         pub bitfield0: u32,
     }
+    impl Default for DecodeVP9PictureInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for DecodeVP9PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoDecodeVP9PictureInfoFlags")
+            f.debug_struct("DecodeVP9PictureInfoFlags")
                 .field("error_resilient_mode", &self.get_error_resilient_mode())
                 .field("intra_only", &self.get_intra_only())
                 .field("allow_high_precision_mv", &self.get_allow_high_precision_mv())
@@ -106,7 +113,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct DecodeVP9PictureInfo<'a> {
         pub flags: crate::vk::DecodeVP9PictureInfoFlags,
         pub profile: crate::vk::VP9Profile,
@@ -151,30 +158,6 @@ pub(crate) mod reexport {
                 p_segmentation: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for DecodeVP9PictureInfo<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoDecodeVP9PictureInfo")
-                .field("flags", &self.flags)
-                .field("profile", &self.profile)
-                .field("frame_type", &self.frame_type)
-                .field("frame_context_idx", &self.frame_context_idx)
-                .field("reset_frame_context", &self.reset_frame_context)
-                .field("refresh_frame_flags", &self.refresh_frame_flags)
-                .field("ref_frame_sign_bias_mask", &self.ref_frame_sign_bias_mask)
-                .field("interpolation_filter", &self.interpolation_filter)
-                .field("base_q_idx", &self.base_q_idx)
-                .field("delta_q_y_dc", &self.delta_q_y_dc)
-                .field("delta_q_uv_dc", &self.delta_q_uv_dc)
-                .field("delta_q_uv_ac", &self.delta_q_uv_ac)
-                .field("tile_cols_log2", &self.tile_cols_log2)
-                .field("tile_rows_log2", &self.tile_rows_log2)
-                .field("reserved1", self.reserved1_as_c_str())
-                .field("p_color_config", &self.p_color_config)
-                .field("p_loop_filter", &self.p_loop_filter)
-                .field("p_segmentation", &self.p_segmentation)
-                .finish()
         }
     }
     impl<'a> DecodeVP9PictureInfo<'a> {

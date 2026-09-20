@@ -237,7 +237,7 @@ impl AV1ChromaSamplePosition {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct AV1ColorConfigFlags {
         /**- `mono_chrome` @ `0..1`
 - `color_range` @ `1..2`
@@ -245,9 +245,16 @@ pub(crate) mod reexport {
 - `color_description_present_flag` @ `3..4`*/
         pub bitfield0: u32,
     }
+    impl Default for AV1ColorConfigFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for AV1ColorConfigFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1ColorConfigFlags")
+            f.debug_struct("AV1ColorConfigFlags")
                 .field("mono_chrome", &self.get_mono_chrome())
                 .field("color_range", &self.get_color_range())
                 .field("separate_uv_delta_q", &self.get_separate_uv_delta_q())
@@ -360,14 +367,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct AV1TimingInfoFlags {
         ///- `equal_picture_interval` @ `0..1`
         pub bitfield0: u32,
     }
+    impl Default for AV1TimingInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for AV1TimingInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1TimingInfoFlags")
+            f.debug_struct("AV1TimingInfoFlags")
                 .field("equal_picture_interval", &self.get_equal_picture_interval())
                 .finish()
         }
@@ -415,7 +429,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct AV1SequenceHeaderFlags {
         /**- `still_picture` @ `0..1`
 - `reduced_still_picture_header` @ `1..2`
@@ -438,9 +452,16 @@ pub(crate) mod reexport {
 - `initial_display_delay_present_flag` @ `18..19`*/
         pub bitfield0: u32,
     }
+    impl Default for AV1SequenceHeaderFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for AV1SequenceHeaderFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1SequenceHeaderFlags")
+            f.debug_struct("AV1SequenceHeaderFlags")
                 .field("still_picture", &self.get_still_picture())
                 .field(
                     "reduced_still_picture_header",
@@ -657,7 +678,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AV1SequenceHeader<'a> {
         pub flags: crate::vk::AV1SequenceHeaderFlags,
         pub seq_profile: crate::vk::AV1Profile,
@@ -694,35 +715,6 @@ pub(crate) mod reexport {
                 p_timing_info: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for AV1SequenceHeader<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1SequenceHeader")
-                .field("flags", &self.flags)
-                .field("seq_profile", &self.seq_profile)
-                .field("frame_width_bits_minus_1", &self.frame_width_bits_minus_1)
-                .field("frame_height_bits_minus_1", &self.frame_height_bits_minus_1)
-                .field("max_frame_width_minus_1", &self.max_frame_width_minus_1)
-                .field("max_frame_height_minus_1", &self.max_frame_height_minus_1)
-                .field(
-                    "delta_frame_id_length_minus_2",
-                    &self.delta_frame_id_length_minus_2,
-                )
-                .field(
-                    "additional_frame_id_length_minus_1",
-                    &self.additional_frame_id_length_minus_1,
-                )
-                .field("order_hint_bits_minus_1", &self.order_hint_bits_minus_1)
-                .field("seq_force_integer_mv", &self.seq_force_integer_mv)
-                .field(
-                    "seq_force_screen_content_tools",
-                    &self.seq_force_screen_content_tools,
-                )
-                .field("reserved1", self.reserved1_as_c_str())
-                .field("p_color_config", &self.p_color_config)
-                .field("p_timing_info", &self.p_timing_info)
-                .finish()
         }
     }
     impl<'a> AV1SequenceHeader<'a> {
@@ -802,15 +794,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct AV1LoopFilterFlags {
         /**- `loop_filter_delta_enabled` @ `0..1`
 - `loop_filter_delta_update` @ `1..2`*/
         pub bitfield0: u32,
     }
+    impl Default for AV1LoopFilterFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for AV1LoopFilterFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1LoopFilterFlags")
+            f.debug_struct("AV1LoopFilterFlags")
                 .field(
                     "loop_filter_delta_enabled",
                     &self.get_loop_filter_delta_enabled(),
@@ -844,7 +843,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AV1LoopFilter {
         pub flags: crate::vk::AV1LoopFilterFlags,
         pub loop_filter_level: [u8; crate::vk::AV1_MAX_LOOP_FILTER_STRENGTHS as _],
@@ -865,22 +864,6 @@ pub(crate) mod reexport {
                 update_mode_delta: Default::default(),
                 loop_filter_mode_deltas: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for AV1LoopFilter {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1LoopFilter")
-                .field("flags", &self.flags)
-                .field("loop_filter_level", self.loop_filter_level_as_c_str())
-                .field("loop_filter_sharpness", &self.loop_filter_sharpness)
-                .field("update_ref_delta", &self.update_ref_delta)
-                .field("loop_filter_ref_deltas", self.loop_filter_ref_deltas_as_c_str())
-                .field("update_mode_delta", &self.update_mode_delta)
-                .field(
-                    "loop_filter_mode_deltas",
-                    self.loop_filter_mode_deltas_as_c_str(),
-                )
-                .finish()
         }
     }
     impl AV1LoopFilter {
@@ -923,15 +906,22 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct AV1QuantizationFlags {
         /**- `using_qmatrix` @ `0..1`
 - `diff_uv_delta` @ `1..2`*/
         pub bitfield0: u32,
     }
+    impl Default for AV1QuantizationFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for AV1QuantizationFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1QuantizationFlags")
+            f.debug_struct("AV1QuantizationFlags")
                 .field("using_qmatrix", &self.get_using_qmatrix())
                 .field("diff_uv_delta", &self.get_diff_uv_delta())
                 .finish()
@@ -1012,7 +1002,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AV1Segmentation {
         pub feature_enabled: [u8; crate::vk::AV1_MAX_SEGMENTS as _],
         pub feature_data: [[i16; crate::vk::AV1_SEG_LVL_MAX
@@ -1024,14 +1014,6 @@ pub(crate) mod reexport {
                 feature_enabled: unsafe { core::mem::zeroed() },
                 feature_data: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for AV1Segmentation {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1Segmentation")
-                .field("feature_enabled", self.feature_enabled_as_c_str())
-                .field("feature_data", self.feature_data_as_c_str())
-                .finish()
         }
     }
     impl AV1Segmentation {
@@ -1052,14 +1034,21 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct AV1TileInfoFlags {
         ///- `uniform_tile_spacing_flag` @ `0..1`
         pub bitfield0: u32,
     }
+    impl Default for AV1TileInfoFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for AV1TileInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1TileInfoFlags")
+            f.debug_struct("AV1TileInfoFlags")
                 .field(
                     "uniform_tile_spacing_flag",
                     &self.get_uniform_tile_spacing_flag(),
@@ -1081,7 +1070,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AV1TileInfo<'a> {
         pub flags: crate::vk::AV1TileInfoFlags,
         pub tile_cols: u8,
@@ -1110,22 +1099,6 @@ pub(crate) mod reexport {
                 p_height_in_sbs_minus1: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
-        }
-    }
-    impl<'a> core::fmt::Debug for AV1TileInfo<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1TileInfo")
-                .field("flags", &self.flags)
-                .field("tile_cols", &self.tile_cols)
-                .field("tile_rows", &self.tile_rows)
-                .field("context_update_tile_id", &self.context_update_tile_id)
-                .field("tile_size_bytes_minus_1", &self.tile_size_bytes_minus_1)
-                .field("reserved1", self.reserved1_as_c_str())
-                .field("p_mi_col_starts", &self.p_mi_col_starts)
-                .field("p_mi_row_starts", &self.p_mi_row_starts)
-                .field("p_width_in_sbs_minus1", &self.p_width_in_sbs_minus1)
-                .field("p_height_in_sbs_minus1", &self.p_height_in_sbs_minus1)
-                .finish()
         }
     }
     impl<'a> AV1TileInfo<'a> {
@@ -1167,7 +1140,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AV1CDEF {
         pub cdef_damping_minus_3: u8,
         pub cdef_bits: u8,
@@ -1186,18 +1159,6 @@ pub(crate) mod reexport {
                 cdef_uv_pri_strength: unsafe { core::mem::zeroed() },
                 cdef_uv_sec_strength: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for AV1CDEF {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1CDEF")
-                .field("cdef_damping_minus_3", &self.cdef_damping_minus_3)
-                .field("cdef_bits", &self.cdef_bits)
-                .field("cdef_y_pri_strength", self.cdef_y_pri_strength_as_c_str())
-                .field("cdef_y_sec_strength", self.cdef_y_sec_strength_as_c_str())
-                .field("cdef_uv_pri_strength", self.cdef_uv_pri_strength_as_c_str())
-                .field("cdef_uv_sec_strength", self.cdef_uv_sec_strength_as_c_str())
-                .finish()
         }
     }
     impl AV1CDEF {
@@ -1239,7 +1200,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AV1LoopRestoration {
         pub frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::AV1_MAX_NUM_PLANES
             as _],
@@ -1251,14 +1212,6 @@ pub(crate) mod reexport {
                 frame_restoration_type: unsafe { core::mem::zeroed() },
                 loop_restoration_size: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for AV1LoopRestoration {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1LoopRestoration")
-                .field("frame_restoration_type", self.frame_restoration_type_as_c_str())
-                .field("loop_restoration_size", self.loop_restoration_size_as_c_str())
-                .finish()
         }
     }
     impl AV1LoopRestoration {
@@ -1279,7 +1232,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AV1GlobalMotion {
         pub gm_type: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
         pub gm_params: [[i32; crate::vk::AV1_GLOBAL_MOTION_PARAMS
@@ -1291,14 +1244,6 @@ pub(crate) mod reexport {
                 gm_type: unsafe { core::mem::zeroed() },
                 gm_params: unsafe { core::mem::zeroed() },
             }
-        }
-    }
-    impl core::fmt::Debug for AV1GlobalMotion {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1GlobalMotion")
-                .field("gm_type", self.gm_type_as_c_str())
-                .field("gm_params", self.gm_params_as_c_str())
-                .finish()
         }
     }
     impl AV1GlobalMotion {
@@ -1319,7 +1264,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
+    #[derive(Clone, Copy)]
     pub struct AV1FilmGrainFlags {
         /**- `chroma_scaling_from_luma` @ `0..1`
 - `overlap_flag` @ `1..2`
@@ -1327,9 +1272,16 @@ pub(crate) mod reexport {
 - `update_grain` @ `3..4`*/
         pub bitfield0: u32,
     }
+    impl Default for AV1FilmGrainFlags {
+        fn default() -> Self {
+            Self {
+                bitfield0: Default::default(),
+            }
+        }
+    }
     impl core::fmt::Debug for AV1FilmGrainFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1FilmGrainFlags")
+            f.debug_struct("AV1FilmGrainFlags")
                 .field("chroma_scaling_from_luma", &self.get_chroma_scaling_from_luma())
                 .field("overlap_flag", &self.get_overlap_flag())
                 .field("clip_to_restricted_range", &self.get_clip_to_restricted_range())
@@ -1378,7 +1330,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Debug)]
     pub struct AV1FilmGrain {
         pub flags: crate::vk::AV1FilmGrainFlags,
         pub grain_scaling_minus_8: u8,
@@ -1435,37 +1387,6 @@ pub(crate) mod reexport {
                 cr_luma_mult: Default::default(),
                 cr_offset: Default::default(),
             }
-        }
-    }
-    impl core::fmt::Debug for AV1FilmGrain {
-        fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-            f.debug_struct("StdVideoAV1FilmGrain")
-                .field("flags", &self.flags)
-                .field("grain_scaling_minus_8", &self.grain_scaling_minus_8)
-                .field("ar_coeff_lag", &self.ar_coeff_lag)
-                .field("ar_coeff_shift_minus_6", &self.ar_coeff_shift_minus_6)
-                .field("grain_scale_shift", &self.grain_scale_shift)
-                .field("grain_seed", &self.grain_seed)
-                .field("film_grain_params_ref_idx", &self.film_grain_params_ref_idx)
-                .field("num_y_points", &self.num_y_points)
-                .field("point_y_value", self.point_y_value_as_c_str())
-                .field("point_y_scaling", self.point_y_scaling_as_c_str())
-                .field("num_cb_points", &self.num_cb_points)
-                .field("point_cb_value", self.point_cb_value_as_c_str())
-                .field("point_cb_scaling", self.point_cb_scaling_as_c_str())
-                .field("num_cr_points", &self.num_cr_points)
-                .field("point_cr_value", self.point_cr_value_as_c_str())
-                .field("point_cr_scaling", self.point_cr_scaling_as_c_str())
-                .field("ar_coeffs_y_plus_128", self.ar_coeffs_y_plus_128_as_c_str())
-                .field("ar_coeffs_cb_plus_128", self.ar_coeffs_cb_plus_128_as_c_str())
-                .field("ar_coeffs_cr_plus_128", self.ar_coeffs_cr_plus_128_as_c_str())
-                .field("cb_mult", &self.cb_mult)
-                .field("cb_luma_mult", &self.cb_luma_mult)
-                .field("cb_offset", &self.cb_offset)
-                .field("cr_mult", &self.cr_mult)
-                .field("cr_luma_mult", &self.cr_luma_mult)
-                .field("cr_offset", &self.cr_offset)
-                .finish()
         }
     }
     impl AV1FilmGrain {
