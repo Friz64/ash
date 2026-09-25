@@ -58,7 +58,7 @@ impl Code for Enum {
             let display_items = (self.items.iter())
                 .filter_map(|(name, item)| match (item.comment, &item.value) {
                     (_, Value::Alias(..)) => None, // filter out aliases
-                    (Some(comment), _) => Some((name, comment)),
+                    (Some(comment), _) => Some((name, crate::expand_doc_comment(comment))),
                     _ => None,
                 })
                 .map(|(&name, comment)| {
@@ -124,7 +124,11 @@ impl Code for Enum {
                 }
             };
 
-            let comment = item.comment.map(|comment| quote! { #[doc = #comment] });
+            let comment = item.comment.map(|comment| {
+                let expanded = crate::expand_doc_comment(comment);
+                quote! { #[doc = #expanded] }
+            });
+
             impl_map.extend(CodeMap::new(
                 Destination::primary_location(item.required_by),
                 quote! {

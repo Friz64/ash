@@ -798,7 +798,7 @@ impl Result {
     pub const ERROR_OUT_OF_DEVICE_MEMORY: Self = Self(-2);
     ///Initialization of an object has failed
     pub const ERROR_INITIALIZATION_FAILED: Self = Self(-3);
-    ///The logical device has been lost. See <<devsandqueues-lost-device>>
+    ///The logical device has been lost. See <https://registry.khronos.org/vulkan/specs/latest/html/vkspec.html#devsandqueues-lost-device>
     pub const ERROR_DEVICE_LOST: Self = Self(-4);
     ///Mapping of a memory object has failed
     pub const ERROR_MEMORY_MAP_FAILED: Self = Self(-5);
@@ -14472,7 +14472,7 @@ pub(crate) mod items {
                 }
                 Self::ERROR_DEVICE_LOST => {
                     Some(
-                        "The logical device has been lost. See <<devsandqueues-lost-device>>",
+                        "The logical device has been lost. See <https://registry.khronos.org/vulkan/specs/latest/html/vkspec.html#devsandqueues-lost-device>",
                     )
                 }
                 Self::ERROR_MEMORY_MAP_FAILED => {

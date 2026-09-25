@@ -71,7 +71,7 @@ impl Destination {
         match self.location {
             RequireLocation::Core { major, minor } => vec![DestinationPathComponent {
                 module_name: format_ident!("vk{major}_{minor}"),
-                doc_comment: crate::refpage_doc(
+                doc_comment: crate::generate_target_doc_comment(
                     &original_name,
                     format!("Vulkan version {major}.{minor}"),
                 ),
@@ -86,7 +86,7 @@ impl Destination {
                         },
                         DestinationPathComponent {
                             module_name: crate::escape_ident(&ext_name.to_snek_case()),
-                            doc_comment: crate::refpage_doc(
+                            doc_comment: crate::generate_target_doc_comment(
                                 &original_name,
                                 format!("Extension `{}`", original_name),
                             ),

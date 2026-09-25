@@ -16,7 +16,8 @@ use heck::{ToShoutySnekCase, ToSnekCase};
 use proc_macro2::TokenStream;
 use quote::format_ident;
 use quote::quote;
-use std::{fmt::Display, io, ops::Deref, path::Path};
+use regex::Regex;
+use std::{borrow::Cow, fmt::Display, io, ops::Deref, path::Path, sync::LazyLock};
 use syn::Ident;
 use tracing::debug;
 
@@ -31,7 +32,7 @@ pub fn generate(analysis: &Analysis, output_path: impl AsRef<Path>) -> io::Resul
     codemap.write(&ctx, output_path)
 }
 
-pub(crate) fn refpage_doc(target: &str, description: impl Display) -> String {
+fn generate_target_doc_comment(target: &str, description: impl Display) -> String {
     let valid = matches!(
         target.get(0..2).map(|ab| ab.eq_ignore_ascii_case("vk")),
         Some(true)
@@ -47,6 +48,16 @@ pub(crate) fn refpage_doc(target: &str, description: impl Display) -> String {
     };
 
     format!("{} · {}", refpage, description)
+}
+
+fn expand_doc_comment(doc: &str) -> Cow<'_, str> {
+    static DOC_LINK: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"<<([\w-]+)>>").unwrap());
+    DOC_LINK.replace_all(
+        doc,
+        // There is no trivial docs.vulkan.org link, but the only existing <#devsandqueues-lost-device>
+        // seems to require a link to https://docs.vulkan.org/spec/latest/chapters/devsandqueues.html#devsandqueues-lost-device.
+        "<https://registry.khronos.org/vulkan/specs/latest/html/vkspec.html#${1}>",
+    )
 }
 
 /// Tries to prepend an underscore in case the name is not a valid identifier
