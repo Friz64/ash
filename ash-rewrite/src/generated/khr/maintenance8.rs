@@ -2,37 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance8.html) · Extension `VK_KHR_maintenance8`
 #![doc(alias = "VK_KHR_maintenance8")]
-///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR: Self = Self(1000574000);
     pub const MEMORY_BARRIER_ACCESS_FLAGS_3_KHR: Self = Self(1000574002);
 }
-///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl crate::vk::PipelineCacheCreateFlags {
     pub const INTERNALLY_SYNCHRONIZED_MERGE_KHR: Self = Self(
         crate::vk::PipelineCacheCreateFlagBits::INTERNALLY_SYNCHRONIZED_MERGE_KHR.0,
     );
 }
-///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl crate::vk::PipelineCacheCreateFlagBits {
     pub const INTERNALLY_SYNCHRONIZED_MERGE_KHR: Self = Self(1 << 3);
 }
-///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl crate::vk::DependencyFlags {
     pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR: Self = Self(
         crate::vk::DependencyFlagBits::QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR
             .0,
     );
 }
-///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl crate::vk::DependencyFlagBits {
     pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR: Self = Self(1 << 5);
 }
-///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl AccessFlags3KHR {
     pub const NONE_KHR: Self = Self(AccessFlagBits3KHR::NONE_KHR.0);
 }
-///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl AccessFlagBits3KHR {
     pub const NONE_KHR: Self = Self(0);
 }

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_map_memory2.html) · Extension `VK_KHR_map_memory2`
 #![doc(alias = "VK_KHR_map_memory2")]
-///Provided by [`khr::map_memory2`](crate::khr::map_memory2)
+///Provided by [VK_KHR_map_memory2](crate::khr::map_memory2)
 impl crate::vk::StructureType {
     pub const MEMORY_MAP_INFO_KHR: Self = Self::MEMORY_MAP_INFO;
     pub const MEMORY_UNMAP_INFO_KHR: Self = Self::MEMORY_UNMAP_INFO;

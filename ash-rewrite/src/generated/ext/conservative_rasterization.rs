@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conservative_rasterization.html) · Extension `VK_EXT_conservative_rasterization`
 #![doc(alias = "VK_EXT_conservative_rasterization")]
-///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
+///Provided by [VK_EXT_conservative_rasterization](crate::ext::conservative_rasterization)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT: Self = Self(
         1000101000,
@@ -11,16 +11,8 @@ impl crate::vk::StructureType {
         1000101001,
     );
 }
-///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
+///Provided by [VK_EXT_conservative_rasterization](crate::ext::conservative_rasterization)
 impl ConservativeRasterizationModeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DISABLED_EXT: Self = Self(0);
     pub const OVERESTIMATE_EXT: Self = Self(1);
     pub const UNDERESTIMATE_EXT: Self = Self(2);
@@ -206,6 +198,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ConservativeRasterizationModeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

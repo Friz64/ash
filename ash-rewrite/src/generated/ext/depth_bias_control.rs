@@ -2,22 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_bias_control.html) · Extension `VK_EXT_depth_bias_control`
 #![doc(alias = "VK_EXT_depth_bias_control")]
-///Provided by [`ext::depth_bias_control`](crate::ext::depth_bias_control)
+///Provided by [VK_EXT_depth_bias_control](crate::ext::depth_bias_control)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DEPTH_BIAS_CONTROL_FEATURES_EXT: Self = Self(1000283000);
     pub const DEPTH_BIAS_INFO_EXT: Self = Self(1000283001);
     pub const DEPTH_BIAS_REPRESENTATION_INFO_EXT: Self = Self(1000283002);
 }
-///Provided by [`ext::depth_bias_control`](crate::ext::depth_bias_control)
+///Provided by [VK_EXT_depth_bias_control](crate::ext::depth_bias_control)
 impl DepthBiasRepresentationEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const LEAST_REPRESENTABLE_VALUE_FORMAT_EXT: Self = Self(0);
     pub const LEAST_REPRESENTABLE_VALUE_FORCE_UNORM_EXT: Self = Self(1);
     pub const FLOAT_EXT: Self = Self(2);
@@ -242,6 +234,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl DepthBiasRepresentationEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type PFN_vkCmdSetDepthBias2EXT = unsafe extern "system" fn(

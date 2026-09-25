@@ -2,13 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_metal.html) · Extension `VK_EXT_external_memory_metal`
 #![doc(alias = "VK_EXT_external_memory_metal")]
-///Provided by [`ext::external_memory_metal`](crate::ext::external_memory_metal)
+///Provided by [VK_EXT_external_memory_metal](crate::ext::external_memory_metal)
 impl crate::vk::StructureType {
     pub const IMPORT_MEMORY_METAL_HANDLE_INFO_EXT: Self = Self(1000602000);
     pub const MEMORY_METAL_HANDLE_PROPERTIES_EXT: Self = Self(1000602001);
     pub const MEMORY_GET_METAL_HANDLE_INFO_EXT: Self = Self(1000602002);
 }
-///Provided by [`ext::external_memory_metal`](crate::ext::external_memory_metal)
+///Provided by [VK_EXT_external_memory_metal](crate::ext::external_memory_metal)
 impl crate::vk::ExternalMemoryHandleTypeFlags {
     pub const MTLBUFFER_EXT: Self = Self(
         crate::vk::ExternalMemoryHandleTypeFlagBits::MTLBUFFER_EXT.0,
@@ -20,7 +20,7 @@ impl crate::vk::ExternalMemoryHandleTypeFlags {
         crate::vk::ExternalMemoryHandleTypeFlagBits::MTLHEAP_EXT.0,
     );
 }
-///Provided by [`ext::external_memory_metal`](crate::ext::external_memory_metal)
+///Provided by [VK_EXT_external_memory_metal](crate::ext::external_memory_metal)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const MTLBUFFER_EXT: Self = Self(1 << 16);
     pub const MTLTEXTURE_EXT: Self = Self(1 << 17);

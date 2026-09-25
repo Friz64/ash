@@ -2,21 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_throttle_hint.html) · Extension `VK_SEC_throttle_hint`
 #![doc(alias = "VK_SEC_throttle_hint")]
-///Provided by [`sec::throttle_hint`](crate::sec::throttle_hint)
+///Provided by [VK_SEC_throttle_hint](crate::sec::throttle_hint)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_THROTTLE_HINT_FEATURES_SEC: Self = Self(1000674000);
     pub const THROTTLE_HINT_SUBMIT_INFO_SEC: Self = Self(1000674001);
 }
-///Provided by [`sec::throttle_hint`](crate::sec::throttle_hint)
+///Provided by [VK_SEC_throttle_hint](crate::sec::throttle_hint)
 impl ThrottleHintTypeSEC {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DEFAULT_SEC: Self = Self(0);
     pub const LOW_SEC: Self = Self(1);
     pub const HIGH_SEC: Self = Self(2);
@@ -106,6 +98,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ThrottleHintTypeSEC {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

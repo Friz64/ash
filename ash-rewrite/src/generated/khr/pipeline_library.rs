@@ -2,15 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_library.html) · Extension `VK_KHR_pipeline_library`
 #![doc(alias = "VK_KHR_pipeline_library")]
-///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
+///Provided by [VK_KHR_pipeline_library](crate::khr::pipeline_library)
 impl crate::vk::StructureType {
     pub const PIPELINE_LIBRARY_CREATE_INFO_KHR: Self = Self(1000290000);
 }
-///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
+///Provided by [VK_KHR_pipeline_library](crate::khr::pipeline_library)
 impl crate::vk::PipelineCreateFlags {
     pub const LIBRARY_KHR: Self = Self(crate::vk::PipelineCreateFlagBits::LIBRARY_KHR.0);
 }
-///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
+///Provided by [VK_KHR_pipeline_library](crate::khr::pipeline_library)
 impl crate::vk::PipelineCreateFlagBits {
     pub const LIBRARY_KHR: Self = Self(1 << 11);
 }

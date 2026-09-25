@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_primitives_generated_query.html) · Extension `VK_EXT_primitives_generated_query`
 #![doc(alias = "VK_EXT_primitives_generated_query")]
-///Provided by [`ext::primitives_generated_query`](crate::ext::primitives_generated_query)
+///Provided by [VK_EXT_primitives_generated_query](crate::ext::primitives_generated_query)
 impl crate::vk::QueryType {
     pub const PRIMITIVES_GENERATED_EXT: Self = Self(1000382000);
 }
-///Provided by [`ext::primitives_generated_query`](crate::ext::primitives_generated_query)
+///Provided by [VK_EXT_primitives_generated_query](crate::ext::primitives_generated_query)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRIMITIVES_GENERATED_QUERY_FEATURES_EXT: Self = Self(
         1000382000,

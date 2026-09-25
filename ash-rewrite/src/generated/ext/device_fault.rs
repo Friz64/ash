@@ -2,13 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_fault.html) · Extension `VK_EXT_device_fault`
 #![doc(alias = "VK_EXT_device_fault")]
-///Provided by [`ext::device_fault`](crate::ext::device_fault)
+///Provided by [VK_EXT_device_fault](crate::ext::device_fault)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_FAULT_FEATURES_EXT: Self = Self(1000341000);
     pub const DEVICE_FAULT_COUNTS_EXT: Self = Self(1000341001);
     pub const DEVICE_FAULT_INFO_EXT: Self = Self(1000341002);
 }
-///Provided by [`ext::device_fault`](crate::ext::device_fault)
+///Provided by [VK_EXT_device_fault](crate::ext::device_fault)
 impl crate::vk::DeviceFaultAddressTypeKHR {
     pub const NONE_EXT: Self = Self::NONE_KHR;
     pub const READ_INVALID_EXT: Self = Self::READ_INVALID_KHR;

@@ -2,23 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_zero_initialize_device_memory.html) · Extension `VK_EXT_zero_initialize_device_memory`
 #![doc(alias = "VK_EXT_zero_initialize_device_memory")]
-///Provided by [`ext::zero_initialize_device_memory`](crate::ext::zero_initialize_device_memory)
+///Provided by [VK_EXT_zero_initialize_device_memory](crate::ext::zero_initialize_device_memory)
 impl crate::vk::ImageLayout {
     pub const ZERO_INITIALIZED_EXT: Self = Self(1000620000);
 }
-///Provided by [`ext::zero_initialize_device_memory`](crate::ext::zero_initialize_device_memory)
+///Provided by [VK_EXT_zero_initialize_device_memory](crate::ext::zero_initialize_device_memory)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_ZERO_INITIALIZE_DEVICE_MEMORY_FEATURES_EXT: Self = Self(
         1000620000,
     );
 }
-///Provided by [`ext::zero_initialize_device_memory`](crate::ext::zero_initialize_device_memory)
+///Provided by [VK_EXT_zero_initialize_device_memory](crate::ext::zero_initialize_device_memory)
 impl crate::vk::MemoryAllocateFlags {
     pub const ZERO_INITIALIZE_EXT: Self = Self(
         crate::vk::MemoryAllocateFlagBits::ZERO_INITIALIZE_EXT.0,
     );
 }
-///Provided by [`ext::zero_initialize_device_memory`](crate::ext::zero_initialize_device_memory)
+///Provided by [VK_EXT_zero_initialize_device_memory](crate::ext::zero_initialize_device_memory)
 impl crate::vk::MemoryAllocateFlagBits {
     pub const ZERO_INITIALIZE_EXT: Self = Self(1 << 3);
 }

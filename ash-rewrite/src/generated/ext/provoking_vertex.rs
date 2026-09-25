@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_provoking_vertex.html) · Extension `VK_EXT_provoking_vertex`
 #![doc(alias = "VK_EXT_provoking_vertex")]
-///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
+///Provided by [VK_EXT_provoking_vertex](crate::ext::provoking_vertex)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT: Self = Self(1000254000);
     pub const PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT: Self = Self(
@@ -10,16 +10,8 @@ impl crate::vk::StructureType {
     );
     pub const PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT: Self = Self(1000254002);
 }
-///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
+///Provided by [VK_EXT_provoking_vertex](crate::ext::provoking_vertex)
 impl ProvokingVertexModeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const FIRST_VERTEX_EXT: Self = Self(0);
     pub const LAST_VERTEX_EXT: Self = Self(1);
 }
@@ -163,6 +155,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ProvokingVertexModeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

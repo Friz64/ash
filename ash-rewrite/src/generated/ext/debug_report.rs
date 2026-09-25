@@ -2,28 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_report.html) · Extension `VK_EXT_debug_report`
 #![doc(alias = "VK_EXT_debug_report")]
-///Provided by [`ext::debug_report`](crate::ext::debug_report)
+///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
 impl crate::vk::StructureType {
     pub const DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT: Self = Self(1000011000);
 }
-///Provided by [`ext::debug_report`](crate::ext::debug_report)
+///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
 impl crate::vk::Result {
     pub const ERROR_VALIDATION_FAILED_EXT: Self = Self::ERROR_VALIDATION_FAILED;
 }
-///Provided by [`ext::debug_report`](crate::ext::debug_report)
+///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
 impl crate::vk::ObjectType {
     pub const DEBUG_REPORT_CALLBACK_EXT: Self = Self(1000011000);
 }
-///Provided by [`ext::debug_report`](crate::ext::debug_report)
+///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
 impl DebugReportObjectTypeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const UNKNOWN_EXT: Self = Self(0);
     pub const INSTANCE_EXT: Self = Self(1);
     pub const PHYSICAL_DEVICE_EXT: Self = Self(2);
@@ -59,7 +51,7 @@ impl DebugReportObjectTypeEXT {
     pub const SAMPLER_YCBCR_CONVERSION_EXT: Self = Self(1000156000);
     pub const DESCRIPTOR_UPDATE_TEMPLATE_EXT: Self = Self(1000085000);
 }
-///Provided by [`ext::debug_report`](crate::ext::debug_report)
+///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
 impl DebugReportFlagsEXT {
     pub const INFORMATION_EXT: Self = Self(DebugReportFlagBitsEXT::INFORMATION_EXT.0);
     pub const WARNING_EXT: Self = Self(DebugReportFlagBitsEXT::WARNING_EXT.0);
@@ -69,7 +61,7 @@ impl DebugReportFlagsEXT {
     pub const ERROR_EXT: Self = Self(DebugReportFlagBitsEXT::ERROR_EXT.0);
     pub const DEBUG_EXT: Self = Self(DebugReportFlagBitsEXT::DEBUG_EXT.0);
 }
-///Provided by [`ext::debug_report`](crate::ext::debug_report)
+///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
 impl DebugReportFlagBitsEXT {
     pub const INFORMATION_EXT: Self = Self(1 << 0);
     pub const WARNING_EXT: Self = Self(1 << 1);
@@ -287,6 +279,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl DebugReportObjectTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

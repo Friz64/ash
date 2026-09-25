@@ -2,27 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_mesh_shader.html) · Extension `VK_NV_mesh_shader`
 #![doc(alias = "VK_NV_mesh_shader")]
-///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+///Provided by [VK_NV_mesh_shader](crate::nv::mesh_shader)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV: Self = Self(1000202000);
     pub const PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV: Self = Self(1000202001);
 }
-///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+///Provided by [VK_NV_mesh_shader](crate::nv::mesh_shader)
 impl crate::vk::IndirectCommandsTokenTypeEXT {
     pub const DRAW_MESH_TASKS_NV_EXT: Self = Self(1000202002);
     pub const DRAW_MESH_TASKS_COUNT_NV_EXT: Self = Self(1000202003);
 }
-///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+///Provided by [VK_NV_mesh_shader](crate::nv::mesh_shader)
 impl crate::vk::ShaderStageFlags {
     pub const TASK_NV: Self = Self(crate::vk::ShaderStageFlagBits::TASK_NV.0);
     pub const MESH_NV: Self = Self(crate::vk::ShaderStageFlagBits::MESH_NV.0);
 }
-///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+///Provided by [VK_NV_mesh_shader](crate::nv::mesh_shader)
 impl crate::vk::ShaderStageFlagBits {
     pub const TASK_NV: Self = Self::TASK_EXT;
     pub const MESH_NV: Self = Self::MESH_EXT;
 }
-///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+///Provided by [VK_NV_mesh_shader](crate::nv::mesh_shader)
 impl crate::vk::PipelineStageFlags {
     pub const TASK_SHADER_NV: Self = Self(
         crate::vk::PipelineStageFlagBits::TASK_SHADER_NV.0,
@@ -31,7 +31,7 @@ impl crate::vk::PipelineStageFlags {
         crate::vk::PipelineStageFlagBits::MESH_SHADER_NV.0,
     );
 }
-///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+///Provided by [VK_NV_mesh_shader](crate::nv::mesh_shader)
 impl crate::vk::PipelineStageFlagBits {
     pub const TASK_SHADER_NV: Self = Self::TASK_SHADER_EXT;
     pub const MESH_SHADER_NV: Self = Self::MESH_SHADER_EXT;

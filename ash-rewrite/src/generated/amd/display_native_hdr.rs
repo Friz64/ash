@@ -2,12 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_display_native_hdr.html) · Extension `VK_AMD_display_native_hdr`
 #![doc(alias = "VK_AMD_display_native_hdr")]
-///Provided by [`amd::display_native_hdr`](crate::amd::display_native_hdr)
+///Provided by [VK_AMD_display_native_hdr](crate::amd::display_native_hdr)
 impl crate::vk::StructureType {
     pub const DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD: Self = Self(1000213000);
     pub const SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD: Self = Self(1000213001);
 }
-///Provided by [`amd::display_native_hdr`](crate::amd::display_native_hdr)
+///Provided by [VK_AMD_display_native_hdr](crate::amd::display_native_hdr)
 impl crate::vk::ColorSpaceKHR {
     pub const DISPLAY_NATIVE_AMD: Self = Self(1000213000);
 }

@@ -2,23 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing.html) · Extension `VK_NV_ray_tracing`
 #![doc(alias = "VK_NV_ray_tracing")]
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::DescriptorType {
     pub const ACCELERATION_STRUCTURE_NV: Self = Self(1000165000);
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::QueryType {
     pub const ACCELERATION_STRUCTURE_COMPACTED_SIZE_NV: Self = Self(1000165000);
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::PipelineBindPoint {
     pub const RAY_TRACING_NV: Self = Self::RAY_TRACING_KHR;
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::IndexType {
     pub const NONE_NV: Self = Self::NONE_KHR;
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::StructureType {
     pub const RAY_TRACING_PIPELINE_CREATE_INFO_NV: Self = Self(1000165000);
     pub const ACCELERATION_STRUCTURE_CREATE_INFO_NV: Self = Self(1000165001);
@@ -34,50 +34,42 @@ impl crate::vk::StructureType {
     pub const RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV: Self = Self(1000165011);
     pub const ACCELERATION_STRUCTURE_INFO_NV: Self = Self(1000165012);
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::ObjectType {
     pub const ACCELERATION_STRUCTURE_NV: Self = Self(1000165000);
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::DebugReportObjectTypeEXT {
     pub const ACCELERATION_STRUCTURE_NV_EXT: Self = Self(1000165000);
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::CopyAccelerationStructureModeKHR {
     pub const CLONE_NV: Self = Self::CLONE_KHR;
     pub const COMPACT_NV: Self = Self::COMPACT_KHR;
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::AccelerationStructureTypeKHR {
     pub const TOP_LEVEL_NV: Self = Self::TOP_LEVEL_KHR;
     pub const BOTTOM_LEVEL_NV: Self = Self::BOTTOM_LEVEL_KHR;
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::GeometryTypeKHR {
     pub const TRIANGLES_NV: Self = Self::TRIANGLES_KHR;
     pub const AABBS_NV: Self = Self::AABBS_KHR;
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl AccelerationStructureMemoryRequirementsTypeNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const OBJECT_NV: Self = Self(0);
     pub const BUILD_SCRATCH_NV: Self = Self(1);
     pub const UPDATE_SCRATCH_NV: Self = Self(2);
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::RayTracingShaderGroupTypeKHR {
     pub const GENERAL_NV: Self = Self::GENERAL_KHR;
     pub const TRIANGLES_HIT_GROUP_NV: Self = Self::TRIANGLES_HIT_GROUP_KHR;
     pub const PROCEDURAL_HIT_GROUP_NV: Self = Self::PROCEDURAL_HIT_GROUP_KHR;
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::AccessFlags {
     pub const ACCELERATION_STRUCTURE_READ_NV: Self = Self(
         crate::vk::AccessFlagBits::ACCELERATION_STRUCTURE_READ_NV.0,
@@ -86,22 +78,22 @@ impl crate::vk::AccessFlags {
         crate::vk::AccessFlagBits::ACCELERATION_STRUCTURE_WRITE_NV.0,
     );
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::AccessFlagBits {
     pub const ACCELERATION_STRUCTURE_READ_NV: Self = Self::ACCELERATION_STRUCTURE_READ_KHR;
     pub const ACCELERATION_STRUCTURE_WRITE_NV: Self = Self::ACCELERATION_STRUCTURE_WRITE_KHR;
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::BufferUsageFlags {
     pub const RAY_TRACING_NV: Self = Self(
         crate::vk::BufferUsageFlagBits::RAY_TRACING_NV.0,
     );
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::BufferUsageFlagBits {
     pub const RAY_TRACING_NV: Self = Self::SHADER_BINDING_TABLE_KHR;
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::ShaderStageFlags {
     pub const RAYGEN_NV: Self = Self(crate::vk::ShaderStageFlagBits::RAYGEN_NV.0);
     pub const ANY_HIT_NV: Self = Self(crate::vk::ShaderStageFlagBits::ANY_HIT_NV.0);
@@ -114,7 +106,7 @@ impl crate::vk::ShaderStageFlags {
     );
     pub const CALLABLE_NV: Self = Self(crate::vk::ShaderStageFlagBits::CALLABLE_NV.0);
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::ShaderStageFlagBits {
     pub const RAYGEN_NV: Self = Self::RAYGEN_KHR;
     pub const ANY_HIT_NV: Self = Self::ANY_HIT_KHR;
@@ -123,17 +115,17 @@ impl crate::vk::ShaderStageFlagBits {
     pub const INTERSECTION_NV: Self = Self::INTERSECTION_KHR;
     pub const CALLABLE_NV: Self = Self::CALLABLE_KHR;
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::PipelineCreateFlags {
     pub const DEFER_COMPILE_NV: Self = Self(
         crate::vk::PipelineCreateFlagBits::DEFER_COMPILE_NV.0,
     );
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::PipelineCreateFlagBits {
     pub const DEFER_COMPILE_NV: Self = Self(1 << 5);
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::PipelineStageFlags {
     pub const RAY_TRACING_SHADER_NV: Self = Self(
         crate::vk::PipelineStageFlagBits::RAY_TRACING_SHADER_NV.0,
@@ -142,24 +134,24 @@ impl crate::vk::PipelineStageFlags {
         crate::vk::PipelineStageFlagBits::ACCELERATION_STRUCTURE_BUILD_NV.0,
     );
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::PipelineStageFlagBits {
     pub const RAY_TRACING_SHADER_NV: Self = Self::RAY_TRACING_SHADER_KHR;
     pub const ACCELERATION_STRUCTURE_BUILD_NV: Self = Self::ACCELERATION_STRUCTURE_BUILD_KHR;
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::GeometryFlagsKHR {
     pub const OPAQUE_NV: Self = Self(crate::vk::GeometryFlagBitsKHR::OPAQUE_NV.0);
     pub const NO_DUPLICATE_ANY_HIT_INVOCATION_NV: Self = Self(
         crate::vk::GeometryFlagBitsKHR::NO_DUPLICATE_ANY_HIT_INVOCATION_NV.0,
     );
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::GeometryFlagBitsKHR {
     pub const OPAQUE_NV: Self = Self::OPAQUE_KHR;
     pub const NO_DUPLICATE_ANY_HIT_INVOCATION_NV: Self = Self::NO_DUPLICATE_ANY_HIT_INVOCATION_KHR;
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::GeometryInstanceFlagsKHR {
     pub const TRIANGLE_CULL_DISABLE_NV: Self = Self(
         crate::vk::GeometryInstanceFlagBitsKHR::TRIANGLE_CULL_DISABLE_NV.0,
@@ -174,14 +166,14 @@ impl crate::vk::GeometryInstanceFlagsKHR {
         crate::vk::GeometryInstanceFlagBitsKHR::FORCE_NO_OPAQUE_NV.0,
     );
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::GeometryInstanceFlagBitsKHR {
     pub const TRIANGLE_CULL_DISABLE_NV: Self = Self::TRIANGLE_FACING_CULL_DISABLE_KHR;
     pub const TRIANGLE_FRONT_COUNTERCLOCKWISE_NV: Self = Self::TRIANGLE_FRONT_COUNTERCLOCKWISE_KHR;
     pub const FORCE_OPAQUE_NV: Self = Self::FORCE_OPAQUE_KHR;
     pub const FORCE_NO_OPAQUE_NV: Self = Self::FORCE_NO_OPAQUE_KHR;
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::BuildAccelerationStructureFlagsKHR {
     pub const ALLOW_UPDATE_NV: Self = Self(
         crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_UPDATE_NV.0,
@@ -199,7 +191,7 @@ impl crate::vk::BuildAccelerationStructureFlagsKHR {
         crate::vk::BuildAccelerationStructureFlagBitsKHR::LOW_MEMORY_NV.0,
     );
 }
-///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_UPDATE_NV: Self = Self::ALLOW_UPDATE_KHR;
     pub const ALLOW_COMPACTION_NV: Self = Self::ALLOW_COMPACTION_KHR;
@@ -1131,6 +1123,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl AccelerationStructureMemoryRequirementsTypeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type GeometryFlagBitsNV = crate::vk::GeometryFlagBitsKHR;

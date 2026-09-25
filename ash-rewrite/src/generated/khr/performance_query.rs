@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_performance_query.html) · Extension `VK_KHR_performance_query`
 #![doc(alias = "VK_KHR_performance_query")]
-///Provided by [`khr::performance_query`](crate::khr::performance_query)
+///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl crate::vk::QueryType {
     pub const PERFORMANCE_QUERY_KHR: Self = Self(1000116000);
 }
-///Provided by [`khr::performance_query`](crate::khr::performance_query)
+///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR: Self = Self(1000116000);
     pub const PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR: Self = Self(1000116001);
@@ -16,30 +16,14 @@ impl crate::vk::StructureType {
     pub const PERFORMANCE_COUNTER_KHR: Self = Self(1000116005);
     pub const PERFORMANCE_COUNTER_DESCRIPTION_KHR: Self = Self(1000116006);
 }
-///Provided by [`khr::performance_query`](crate::khr::performance_query)
+///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl PerformanceCounterScopeKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const COMMAND_BUFFER_KHR: Self = Self(0);
     pub const RENDER_PASS_KHR: Self = Self(1);
     pub const COMMAND_KHR: Self = Self(2);
 }
-///Provided by [`khr::performance_query`](crate::khr::performance_query)
+///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl PerformanceCounterUnitKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const GENERIC_KHR: Self = Self(0);
     pub const PERCENTAGE_KHR: Self = Self(1);
     pub const NANOSECONDS_KHR: Self = Self(2);
@@ -52,16 +36,8 @@ impl PerformanceCounterUnitKHR {
     pub const HERTZ_KHR: Self = Self(9);
     pub const CYCLES_KHR: Self = Self(10);
 }
-///Provided by [`khr::performance_query`](crate::khr::performance_query)
+///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl PerformanceCounterStorageKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const INT32_KHR: Self = Self(0);
     pub const INT64_KHR: Self = Self(1);
     pub const UINT32_KHR: Self = Self(2);
@@ -69,7 +45,7 @@ impl PerformanceCounterStorageKHR {
     pub const FLOAT32_KHR: Self = Self(4);
     pub const FLOAT64_KHR: Self = Self(5);
 }
-///Provided by [`khr::performance_query`](crate::khr::performance_query)
+///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl PerformanceCounterDescriptionFlagsKHR {
     pub const PERFORMANCE_IMPACTING_KHR: Self = Self(
         PerformanceCounterDescriptionFlagBitsKHR::PERFORMANCE_IMPACTING_KHR.0,
@@ -78,7 +54,7 @@ impl PerformanceCounterDescriptionFlagsKHR {
         PerformanceCounterDescriptionFlagBitsKHR::CONCURRENTLY_IMPACTED_KHR.0,
     );
 }
-///Provided by [`khr::performance_query`](crate::khr::performance_query)
+///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl PerformanceCounterDescriptionFlagBitsKHR {
     pub const PERFORMANCE_IMPACTING_KHR: Self = Self(1 << 0);
     pub const CONCURRENTLY_IMPACTED_KHR: Self = Self(1 << 1);
@@ -594,6 +570,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl PerformanceCounterScopeKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PerformanceCounterUnitKHR(pub(crate) i32);
@@ -620,6 +606,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl PerformanceCounterUnitKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PerformanceCounterStorageKHR(pub(crate) i32);
@@ -639,6 +635,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl PerformanceCounterStorageKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

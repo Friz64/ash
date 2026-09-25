@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_core_builtins.html) · Extension `VK_ARM_shader_core_builtins`
 #![doc(alias = "VK_ARM_shader_core_builtins")]
-///Provided by [`arm::shader_core_builtins`](crate::arm::shader_core_builtins)
+///Provided by [VK_ARM_shader_core_builtins](crate::arm::shader_core_builtins)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_FEATURES_ARM: Self = Self(1000497000);
     pub const PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_PROPERTIES_ARM: Self = Self(

@@ -2,22 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_rasterization_order.html) · Extension `VK_AMD_rasterization_order`
 #![doc(alias = "VK_AMD_rasterization_order")]
-///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
+///Provided by [VK_AMD_rasterization_order](crate::amd::rasterization_order)
 impl crate::vk::StructureType {
     pub const PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD: Self = Self(
         1000018000,
     );
 }
-///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
+///Provided by [VK_AMD_rasterization_order](crate::amd::rasterization_order)
 impl RasterizationOrderAMD {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const STRICT_AMD: Self = Self(0);
     pub const RELAXED_AMD: Self = Self(1);
 }
@@ -73,6 +65,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl RasterizationOrderAMD {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

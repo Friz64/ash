@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_raw_access_chains.html) · Extension `VK_NV_raw_access_chains`
 #![doc(alias = "VK_NV_raw_access_chains")]
-///Provided by [`nv::raw_access_chains`](crate::nv::raw_access_chains)
+///Provided by [VK_NV_raw_access_chains](crate::nv::raw_access_chains)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV: Self = Self(1000555000);
 }

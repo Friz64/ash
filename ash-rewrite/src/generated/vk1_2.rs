@@ -2,18 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_2.html) · Vulkan version 1.2
 #![doc(alias = "VK_VERSION_1_2")]
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::ImageLayout {
     pub const DEPTH_ATTACHMENT_OPTIMAL: Self = Self(1000241000);
     pub const DEPTH_READ_ONLY_OPTIMAL: Self = Self(1000241001);
     pub const STENCIL_ATTACHMENT_OPTIMAL: Self = Self(1000241002);
     pub const STENCIL_READ_ONLY_OPTIMAL: Self = Self(1000241003);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::SamplerAddressMode {
     pub const MIRROR_CLAMP_TO_EDGE: Self = Self(4);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DRIVER_PROPERTIES: Self = Self(1000196000);
     pub const PHYSICAL_DEVICE_VULKAN_1_1_FEATURES: Self = Self(49);
@@ -76,48 +76,24 @@ impl crate::vk::StructureType {
     pub const ATTACHMENT_REFERENCE_STENCIL_LAYOUT: Self = Self(1000241001);
     pub const ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT: Self = Self(1000241002);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::Result {
     pub const ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS: Self = Self(-1000257000);
     pub const ERROR_FRAGMENTATION: Self = Self(-1000161000);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl SemaphoreType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const BINARY: Self = Self(0);
     pub const TIMELINE: Self = Self(1);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl SamplerReductionMode {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const WEIGHTED_AVERAGE: Self = Self(0);
     pub const MIN: Self = Self(1);
     pub const MAX: Self = Self(2);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl DriverId {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     ///Advanced Micro Devices, Inc.
     pub const AMD_PROPRIETARY: Self = Self(1);
     ///Advanced Micro Devices, Inc.
@@ -181,87 +157,79 @@ impl DriverId {
     ///Reserved for undisclosed driver project
     pub const RESERVED_31: Self = Self(31);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl ShaderFloatControlsIndependence {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const _32_ONLY: Self = Self(0);
     pub const ALL: Self = Self(1);
     pub const NONE: Self = Self(2);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::FramebufferCreateFlags {
     pub const IMAGELESS: Self = Self(crate::vk::FramebufferCreateFlagBits::IMAGELESS.0);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::FramebufferCreateFlagBits {
     pub const IMAGELESS: Self = Self(1 << 0);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::DescriptorSetLayoutCreateFlags {
     pub const UPDATE_AFTER_BIND_POOL: Self = Self(
         crate::vk::DescriptorSetLayoutCreateFlagBits::UPDATE_AFTER_BIND_POOL.0,
     );
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const UPDATE_AFTER_BIND_POOL: Self = Self(1 << 1);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::BufferUsageFlags {
     pub const SHADER_DEVICE_ADDRESS: Self = Self(
         crate::vk::BufferUsageFlagBits::SHADER_DEVICE_ADDRESS.0,
     );
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::BufferUsageFlagBits {
     pub const SHADER_DEVICE_ADDRESS: Self = Self(1 << 17);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::BufferCreateFlags {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(
         crate::vk::BufferCreateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
     );
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::BufferCreateFlagBits {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 4);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::FormatFeatureFlags {
     pub const SAMPLED_IMAGE_FILTER_MINMAX: Self = Self(
         crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_MINMAX.0,
     );
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_MINMAX: Self = Self(1 << 16);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::DescriptorPoolCreateFlags {
     pub const UPDATE_AFTER_BIND: Self = Self(
         crate::vk::DescriptorPoolCreateFlagBits::UPDATE_AFTER_BIND.0,
     );
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::DescriptorPoolCreateFlagBits {
     pub const UPDATE_AFTER_BIND: Self = Self(1 << 1);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl SemaphoreWaitFlags {
     pub const ANY: Self = Self(SemaphoreWaitFlagBits::ANY.0);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl SemaphoreWaitFlagBits {
     pub const ANY: Self = Self(1 << 0);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::MemoryAllocateFlags {
     pub const DEVICE_ADDRESS: Self = Self(
         crate::vk::MemoryAllocateFlagBits::DEVICE_ADDRESS.0,
@@ -270,12 +238,12 @@ impl crate::vk::MemoryAllocateFlags {
         crate::vk::MemoryAllocateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
     );
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl crate::vk::MemoryAllocateFlagBits {
     pub const DEVICE_ADDRESS: Self = Self(1 << 1);
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 2);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl DescriptorBindingFlags {
     pub const UPDATE_AFTER_BIND: Self = Self(
         DescriptorBindingFlagBits::UPDATE_AFTER_BIND.0,
@@ -288,14 +256,14 @@ impl DescriptorBindingFlags {
         DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT.0,
     );
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl DescriptorBindingFlagBits {
     pub const UPDATE_AFTER_BIND: Self = Self(1 << 0);
     pub const UPDATE_UNUSED_WHILE_PENDING: Self = Self(1 << 1);
     pub const PARTIALLY_BOUND: Self = Self(1 << 2);
     pub const VARIABLE_DESCRIPTOR_COUNT: Self = Self(1 << 3);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl ResolveModeFlags {
     pub const NONE: Self = Self(ResolveModeFlagBits::NONE.0);
     pub const SAMPLE_ZERO: Self = Self(ResolveModeFlagBits::SAMPLE_ZERO.0);
@@ -303,7 +271,7 @@ impl ResolveModeFlags {
     pub const MIN: Self = Self(ResolveModeFlagBits::MIN.0);
     pub const MAX: Self = Self(ResolveModeFlagBits::MAX.0);
 }
-///Provided by [`vk1_2`](crate::vk1_2)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl ResolveModeFlagBits {
     pub const NONE: Self = Self(0);
     pub const SAMPLE_ZERO: Self = Self(1 << 0);
@@ -4546,6 +4514,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl SemaphoreType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct SamplerReductionMode(pub(crate) i32);
@@ -4565,6 +4543,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl SamplerReductionMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -4617,6 +4605,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl DriverId {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ShaderFloatControlsIndependence(pub(crate) i32);
@@ -4633,6 +4631,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ShaderFloatControlsIndependence {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

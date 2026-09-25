@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_cooperative_matrix_maintenance1.html) · Extension `VK_EXT_cooperative_matrix_maintenance1`
 #![doc(alias = "VK_EXT_cooperative_matrix_maintenance1")]
-///Provided by [`ext::cooperative_matrix_maintenance1`](crate::ext::cooperative_matrix_maintenance1)
+///Provided by [VK_EXT_cooperative_matrix_maintenance1](crate::ext::cooperative_matrix_maintenance1)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_MAINTENANCE_1_FEATURES_EXT: Self = Self(
         1000659000,
@@ -10,13 +10,13 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_INFO_2_EXT: Self = Self(1000659001);
     pub const COOPERATIVE_MATRIX_PROPERTIES_2_EXT: Self = Self(1000659002);
 }
-///Provided by [`ext::cooperative_matrix_maintenance1`](crate::ext::cooperative_matrix_maintenance1)
+///Provided by [VK_EXT_cooperative_matrix_maintenance1](crate::ext::cooperative_matrix_maintenance1)
 impl CooperativeMatrixFlagsEXT {
     pub const SATURATING_ACCUMULATION_EXT: Self = Self(
         CooperativeMatrixFlagBitsEXT::SATURATING_ACCUMULATION_EXT.0,
     );
 }
-///Provided by [`ext::cooperative_matrix_maintenance1`](crate::ext::cooperative_matrix_maintenance1)
+///Provided by [VK_EXT_cooperative_matrix_maintenance1](crate::ext::cooperative_matrix_maintenance1)
 impl CooperativeMatrixFlagBitsEXT {
     pub const SATURATING_ACCUMULATION_EXT: Self = Self(1 << 0);
 }

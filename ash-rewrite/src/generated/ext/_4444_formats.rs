@@ -2,12 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_4444_formats.html) · Extension `VK_EXT_4444_formats`
 #![doc(alias = "VK_EXT_4444_formats")]
-///Provided by [`ext::_4444_formats`](crate::ext::_4444_formats)
+///Provided by [VK_EXT_4444_formats](crate::ext::_4444_formats)
 impl crate::vk::Format {
     pub const A4R4G4B4_UNORM_PACK16_EXT: Self = Self::A4R4G4B4_UNORM_PACK16;
     pub const A4B4G4R4_UNORM_PACK16_EXT: Self = Self::A4B4G4R4_UNORM_PACK16;
 }
-///Provided by [`ext::_4444_formats`](crate::ext::_4444_formats)
+///Provided by [VK_EXT_4444_formats](crate::ext::_4444_formats)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT: Self = Self(1000340000);
 }

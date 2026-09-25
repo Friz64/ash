@@ -89,12 +89,8 @@ impl Code for Enum {
 
             #debug
             #display
-        };
 
-        let mut codemap = CodeMap::new(Destination::primary_location(self.required_by), code);
-        let mut impl_map = CodeMap::new(
-            Destination::primary_location(self.required_by),
-            quote! {
+            impl #name {
                 #[inline]
                 pub const fn from_raw(x: i32) -> Self {
                     Self(x)
@@ -104,9 +100,10 @@ impl Code for Enum {
                 pub const fn as_raw(self) -> i32 {
                     self.0
                 }
-            },
-        );
+            }
+        };
 
+        let mut impl_map = CodeMap::default();
         for (&name, item) in &self.items {
             let name = ctx.enumerator_tokens(name, self.name, false);
             let value = match &item.value {
@@ -138,6 +135,7 @@ impl Code for Enum {
             ));
         }
 
+        let mut codemap = CodeMap::new(Destination::primary_location(self.required_by), code);
         for (mut dest, impl_tokens) in impl_map.into_iter() {
             let name = ctx.type_tokens(
                 self.name,

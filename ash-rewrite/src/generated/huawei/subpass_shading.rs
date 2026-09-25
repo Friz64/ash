@@ -2,33 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_subpass_shading.html) · Extension `VK_HUAWEI_subpass_shading`
 #![doc(alias = "VK_HUAWEI_subpass_shading")]
-///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
 impl crate::vk::PipelineBindPoint {
     pub const SUBPASS_SHADING_HUAWEI: Self = Self(1000369003);
 }
-///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
 impl crate::vk::StructureType {
     pub const SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI: Self = Self(1000369000);
     pub const PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI: Self = Self(1000369001);
     pub const PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI: Self = Self(1000369002);
 }
-///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
 impl crate::vk::ShaderStageFlags {
     pub const SUBPASS_SHADING_HUAWEI: Self = Self(
         crate::vk::ShaderStageFlagBits::SUBPASS_SHADING_HUAWEI.0,
     );
 }
-///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
 impl crate::vk::ShaderStageFlagBits {
     pub const SUBPASS_SHADING_HUAWEI: Self = Self(1 << 14);
 }
-///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
 impl crate::vk::PipelineStageFlags2 {
     pub const SUBPASS_SHADER_HUAWEI: Self = Self(
         crate::vk::PipelineStageFlagBits2::SUBPASS_SHADER_HUAWEI.0,
     );
 }
-///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const SUBPASS_SHADER_HUAWEI: Self = Self(1 << 39);
 }

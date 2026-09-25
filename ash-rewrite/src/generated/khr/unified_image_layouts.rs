@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_unified_image_layouts.html) · Extension `VK_KHR_unified_image_layouts`
 #![doc(alias = "VK_KHR_unified_image_layouts")]
-///Provided by [`khr::unified_image_layouts`](crate::khr::unified_image_layouts)
+///Provided by [VK_KHR_unified_image_layouts](crate::khr::unified_image_layouts)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR: Self = Self(
         1000527000,

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_surface_capabilities2.html) · Extension `VK_KHR_get_surface_capabilities2`
 #![doc(alias = "VK_KHR_get_surface_capabilities2")]
-///Provided by [`khr::get_surface_capabilities2`](crate::khr::get_surface_capabilities2)
+///Provided by [VK_KHR_get_surface_capabilities2](crate::khr::get_surface_capabilities2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SURFACE_INFO_2_KHR: Self = Self(1000119000);
     pub const SURFACE_CAPABILITIES_2_KHR: Self = Self(1000119001);

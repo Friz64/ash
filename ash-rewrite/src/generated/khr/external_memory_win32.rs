@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory_win32.html) · Extension `VK_KHR_external_memory_win32`
 #![doc(alias = "VK_KHR_external_memory_win32")]
-///Provided by [`khr::external_memory_win32`](crate::khr::external_memory_win32)
+///Provided by [VK_KHR_external_memory_win32](crate::khr::external_memory_win32)
 impl crate::vk::StructureType {
     pub const IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR: Self = Self(1000073000);
     pub const EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR: Self = Self(1000073001);

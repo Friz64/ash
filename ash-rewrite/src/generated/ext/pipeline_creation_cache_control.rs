@@ -2,26 +2,26 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_creation_cache_control.html) · Extension `VK_EXT_pipeline_creation_cache_control`
 #![doc(alias = "VK_EXT_pipeline_creation_cache_control")]
-///Provided by [`ext::pipeline_creation_cache_control`](crate::ext::pipeline_creation_cache_control)
+///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES;
 }
-///Provided by [`ext::pipeline_creation_cache_control`](crate::ext::pipeline_creation_cache_control)
+///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
 impl crate::vk::Result {
     pub const PIPELINE_COMPILE_REQUIRED_EXT: Self = Self::PIPELINE_COMPILE_REQUIRED;
     pub const ERROR_PIPELINE_COMPILE_REQUIRED_EXT: Self = Self::PIPELINE_COMPILE_REQUIRED;
 }
-///Provided by [`ext::pipeline_creation_cache_control`](crate::ext::pipeline_creation_cache_control)
+///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
 impl crate::vk::PipelineCacheCreateFlags {
     pub const EXTERNALLY_SYNCHRONIZED_EXT: Self = Self(
         crate::vk::PipelineCacheCreateFlagBits::EXTERNALLY_SYNCHRONIZED_EXT.0,
     );
 }
-///Provided by [`ext::pipeline_creation_cache_control`](crate::ext::pipeline_creation_cache_control)
+///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
 impl crate::vk::PipelineCacheCreateFlagBits {
     pub const EXTERNALLY_SYNCHRONIZED_EXT: Self = Self::EXTERNALLY_SYNCHRONIZED;
 }
-///Provided by [`ext::pipeline_creation_cache_control`](crate::ext::pipeline_creation_cache_control)
+///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
 impl crate::vk::PipelineCreateFlags {
     pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT: Self = Self(
         crate::vk::PipelineCreateFlagBits::FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT.0,
@@ -30,7 +30,7 @@ impl crate::vk::PipelineCreateFlags {
         crate::vk::PipelineCreateFlagBits::EARLY_RETURN_ON_FAILURE_EXT.0,
     );
 }
-///Provided by [`ext::pipeline_creation_cache_control`](crate::ext::pipeline_creation_cache_control)
+///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
 impl crate::vk::PipelineCreateFlagBits {
     pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT: Self = Self::FAIL_ON_PIPELINE_COMPILE_REQUIRED;
     pub const EARLY_RETURN_ON_FAILURE_EXT: Self = Self::EARLY_RETURN_ON_FAILURE;

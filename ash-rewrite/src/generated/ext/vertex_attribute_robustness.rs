@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_attribute_robustness.html) · Extension `VK_EXT_vertex_attribute_robustness`
 #![doc(alias = "VK_EXT_vertex_attribute_robustness")]
-///Provided by [`ext::vertex_attribute_robustness`](crate::ext::vertex_attribute_robustness)
+///Provided by [VK_EXT_vertex_attribute_robustness](crate::ext::vertex_attribute_robustness)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT: Self = Self(
         1000608000,

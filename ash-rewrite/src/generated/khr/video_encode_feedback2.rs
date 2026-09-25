@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_feedback2.html) · Extension `VK_KHR_video_encode_feedback2`
 #![doc(alias = "VK_KHR_video_encode_feedback2")]
-///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
+///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VIDEO_ENCODE_FEEDBACK_2_FEATURES_KHR: Self = Self(
         1000598000,
@@ -12,7 +12,7 @@ impl crate::vk::StructureType {
         1000598002,
     );
 }
-///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
+///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
 impl crate::vk::VideoEncodeFeedbackFlagsKHR {
     pub const AVERAGE_QUANTIZATION_KHR: Self = Self(
         crate::vk::VideoEncodeFeedbackFlagBitsKHR::AVERAGE_QUANTIZATION_KHR.0,
@@ -36,7 +36,7 @@ impl crate::vk::VideoEncodeFeedbackFlagsKHR {
         crate::vk::VideoEncodeFeedbackFlagBitsKHR::PICTURE_PARTITION_COUNT_KHR.0,
     );
 }
-///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
+///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
 impl crate::vk::VideoEncodeFeedbackFlagBitsKHR {
     pub const AVERAGE_QUANTIZATION_KHR: Self = Self(1 << 3);
     pub const MIN_QUANTIZATION_KHR: Self = Self(1 << 4);
@@ -46,7 +46,7 @@ impl crate::vk::VideoEncodeFeedbackFlagBitsKHR {
     pub const SKIPPED_PIXELS_KHR: Self = Self(1 << 8);
     pub const PICTURE_PARTITION_COUNT_KHR: Self = Self(1 << 9);
 }
-///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
+///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
 impl VideoEncodePerPartitionFeedbackFlagsKHR {
     pub const STATUS_KHR: Self = Self(
         VideoEncodePerPartitionFeedbackFlagBitsKHR::STATUS_KHR.0,
@@ -58,7 +58,7 @@ impl VideoEncodePerPartitionFeedbackFlagsKHR {
         VideoEncodePerPartitionFeedbackFlagBitsKHR::BITSTREAM_BYTES_WRITTEN_KHR.0,
     );
 }
-///Provided by [`khr::video_encode_feedback2`](crate::khr::video_encode_feedback2)
+///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
 impl VideoEncodePerPartitionFeedbackFlagBitsKHR {
     pub const STATUS_KHR: Self = Self(1 << 0);
     pub const BITSTREAM_BUFFER_OFFSET_KHR: Self = Self(1 << 1);

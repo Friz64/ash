@@ -2,12 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_synchronization2.html) · Extension `VK_KHR_synchronization2`
 #![doc(alias = "VK_KHR_synchronization2")]
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::ImageLayout {
     pub const READ_ONLY_OPTIMAL_KHR: Self = Self::READ_ONLY_OPTIMAL;
     pub const ATTACHMENT_OPTIMAL_KHR: Self = Self::ATTACHMENT_OPTIMAL;
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::StructureType {
     pub const MEMORY_BARRIER_2_KHR: Self = Self::MEMORY_BARRIER_2;
     pub const BUFFER_MEMORY_BARRIER_2_KHR: Self = Self::BUFFER_MEMORY_BARRIER_2;
@@ -18,33 +18,33 @@ impl crate::vk::StructureType {
     pub const COMMAND_BUFFER_SUBMIT_INFO_KHR: Self = Self::COMMAND_BUFFER_SUBMIT_INFO;
     pub const PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES;
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::AccessFlags {
     pub const NONE_KHR: Self = Self(crate::vk::AccessFlagBits::NONE_KHR.0);
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::AccessFlagBits {
     pub const NONE_KHR: Self = Self::NONE;
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::EventCreateFlags {
     pub const DEVICE_ONLY_KHR: Self = Self(
         crate::vk::EventCreateFlagBits::DEVICE_ONLY_KHR.0,
     );
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::EventCreateFlagBits {
     pub const DEVICE_ONLY_KHR: Self = Self::DEVICE_ONLY;
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::PipelineStageFlags {
     pub const NONE_KHR: Self = Self(crate::vk::PipelineStageFlagBits::NONE_KHR.0);
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::PipelineStageFlagBits {
     pub const NONE_KHR: Self = Self::NONE;
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::AccessFlags2 {
     pub const NONE_KHR: Self = Self(crate::vk::AccessFlagBits2::NONE_KHR.0);
     pub const INDIRECT_COMMAND_READ_KHR: Self = Self(
@@ -150,7 +150,7 @@ impl crate::vk::AccessFlags2 {
         crate::vk::AccessFlagBits2::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT.0,
     );
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::AccessFlagBits2 {
     pub const NONE_KHR: Self = Self::NONE;
     pub const INDIRECT_COMMAND_READ_KHR: Self = Self::INDIRECT_COMMAND_READ;
@@ -190,7 +190,7 @@ impl crate::vk::AccessFlagBits2 {
     pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(1 << 24);
     pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(1 << 19);
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::PipelineStageFlags2 {
     pub const NONE_KHR: Self = Self(crate::vk::PipelineStageFlagBits2::NONE_KHR.0);
     pub const TOP_OF_PIPE_KHR: Self = Self(
@@ -304,7 +304,7 @@ impl crate::vk::PipelineStageFlags2 {
         crate::vk::PipelineStageFlagBits2::MESH_SHADER_EXT.0,
     );
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const NONE_KHR: Self = Self::NONE;
     pub const TOP_OF_PIPE_KHR: Self = Self::TOP_OF_PIPE;
@@ -348,11 +348,11 @@ impl crate::vk::PipelineStageFlagBits2 {
     pub const TASK_SHADER_EXT: Self = Self(1 << 19);
     pub const MESH_SHADER_EXT: Self = Self(1 << 20);
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::SubmitFlags {
     pub const PROTECTED_KHR: Self = Self(crate::vk::SubmitFlagBits::PROTECTED_KHR.0);
 }
-///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl crate::vk::SubmitFlagBits {
     pub const PROTECTED_KHR: Self = Self::PROTECTED;
 }

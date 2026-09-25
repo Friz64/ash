@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_physical_device_properties2.html) · Extension `VK_KHR_get_physical_device_properties2`
 #![doc(alias = "VK_KHR_get_physical_device_properties2")]
-///Provided by [`khr::get_physical_device_properties2`](crate::khr::get_physical_device_properties2)
+///Provided by [VK_KHR_get_physical_device_properties2](crate::khr::get_physical_device_properties2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_FEATURES_2_KHR: Self = Self::PHYSICAL_DEVICE_FEATURES_2;
     pub const PHYSICAL_DEVICE_PROPERTIES_2_KHR: Self = Self::PHYSICAL_DEVICE_PROPERTIES_2;

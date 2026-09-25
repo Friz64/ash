@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_marker.html) · Extension `VK_EXT_debug_marker`
 #![doc(alias = "VK_EXT_debug_marker")]
-///Provided by [`ext::debug_marker`](crate::ext::debug_marker)
+///Provided by [VK_EXT_debug_marker](crate::ext::debug_marker)
 impl crate::vk::StructureType {
     pub const DEBUG_MARKER_OBJECT_NAME_INFO_EXT: Self = Self(1000022000);
     pub const DEBUG_MARKER_OBJECT_TAG_INFO_EXT: Self = Self(1000022001);

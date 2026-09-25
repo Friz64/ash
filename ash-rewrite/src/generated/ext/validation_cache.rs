@@ -2,25 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_cache.html) · Extension `VK_EXT_validation_cache`
 #![doc(alias = "VK_EXT_validation_cache")]
-///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
+///Provided by [VK_EXT_validation_cache](crate::ext::validation_cache)
 impl crate::vk::StructureType {
     pub const VALIDATION_CACHE_CREATE_INFO_EXT: Self = Self(1000160000);
     pub const SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT: Self = Self(1000160001);
 }
-///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
+///Provided by [VK_EXT_validation_cache](crate::ext::validation_cache)
 impl crate::vk::ObjectType {
     pub const VALIDATION_CACHE_EXT: Self = Self(1000160000);
 }
-///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
+///Provided by [VK_EXT_validation_cache](crate::ext::validation_cache)
 impl ValidationCacheHeaderVersionEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const ONE_EXT: Self = Self(1);
 }
 #[derive(Clone)]
@@ -220,6 +212,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ValidationCacheHeaderVersionEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_surface.html) · Extension `VK_OHOS_surface`
 #![doc(alias = "VK_OHOS_surface")]
-///Provided by [`ohos::surface`](crate::ohos::surface)
+///Provided by [VK_OHOS_surface](crate::ohos::surface)
 impl crate::vk::StructureType {
     pub const SURFACE_CREATE_INFO_OHOS: Self = Self(1000685000);
 }

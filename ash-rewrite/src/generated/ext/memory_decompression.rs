@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_memory_decompression.html) · Extension `VK_EXT_memory_decompression`
 #![doc(alias = "VK_EXT_memory_decompression")]
-///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+///Provided by [VK_EXT_memory_decompression](crate::ext::memory_decompression)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT: Self = Self(1000427000);
     pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_EXT: Self = Self(
@@ -10,7 +10,7 @@ impl crate::vk::StructureType {
     );
     pub const DECOMPRESS_MEMORY_INFO_EXT: Self = Self(1000550002);
 }
-///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+///Provided by [VK_EXT_memory_decompression](crate::ext::memory_decompression)
 impl crate::vk::AccessFlags2 {
     pub const MEMORY_DECOMPRESSION_READ_EXT: Self = Self(
         crate::vk::AccessFlagBits2::MEMORY_DECOMPRESSION_READ_EXT.0,
@@ -19,22 +19,22 @@ impl crate::vk::AccessFlags2 {
         crate::vk::AccessFlagBits2::MEMORY_DECOMPRESSION_WRITE_EXT.0,
     );
 }
-///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+///Provided by [VK_EXT_memory_decompression](crate::ext::memory_decompression)
 impl crate::vk::AccessFlagBits2 {
     pub const MEMORY_DECOMPRESSION_READ_EXT: Self = Self(1 << 55);
     pub const MEMORY_DECOMPRESSION_WRITE_EXT: Self = Self(1 << 56);
 }
-///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+///Provided by [VK_EXT_memory_decompression](crate::ext::memory_decompression)
 impl crate::vk::PipelineStageFlags2 {
     pub const MEMORY_DECOMPRESSION_EXT: Self = Self(
         crate::vk::PipelineStageFlagBits2::MEMORY_DECOMPRESSION_EXT.0,
     );
 }
-///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+///Provided by [VK_EXT_memory_decompression](crate::ext::memory_decompression)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const MEMORY_DECOMPRESSION_EXT: Self = Self(1 << 45);
 }
-///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+///Provided by [VK_EXT_memory_decompression](crate::ext::memory_decompression)
 impl MemoryDecompressionMethodFlagsEXT {
     pub const GDEFLATE_1_0_EXT: Self = Self(
         MemoryDecompressionMethodFlagBitsEXT::GDEFLATE_1_0_EXT.0,
@@ -43,18 +43,18 @@ impl MemoryDecompressionMethodFlagsEXT {
         MemoryDecompressionMethodFlagBitsEXT::GDEFLATE_1_0_NV.0,
     );
 }
-///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+///Provided by [VK_EXT_memory_decompression](crate::ext::memory_decompression)
 impl MemoryDecompressionMethodFlagBitsEXT {
     pub const GDEFLATE_1_0_EXT: Self = Self(1 << 0);
     pub const GDEFLATE_1_0_NV: Self = Self::GDEFLATE_1_0_EXT;
 }
-///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+///Provided by [VK_EXT_memory_decompression](crate::ext::memory_decompression)
 impl crate::vk::BufferUsageFlags2 {
     pub const MEMORY_DECOMPRESSION_EXT: Self = Self(
         crate::vk::BufferUsageFlagBits2::MEMORY_DECOMPRESSION_EXT.0,
     );
 }
-///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+///Provided by [VK_EXT_memory_decompression](crate::ext::memory_decompression)
 impl crate::vk::BufferUsageFlagBits2 {
     pub const MEMORY_DECOMPRESSION_EXT: Self = Self(1 << 32);
 }

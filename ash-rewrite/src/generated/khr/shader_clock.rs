@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_clock.html) · Extension `VK_KHR_shader_clock`
 #![doc(alias = "VK_KHR_shader_clock")]
-///Provided by [`khr::shader_clock`](crate::khr::shader_clock)
+///Provided by [VK_KHR_shader_clock](crate::khr::shader_clock)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR: Self = Self(1000181000);
 }

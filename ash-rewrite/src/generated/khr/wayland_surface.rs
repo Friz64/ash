@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_wayland_surface.html) · Extension `VK_KHR_wayland_surface`
 #![doc(alias = "VK_KHR_wayland_surface")]
-///Provided by [`khr::wayland_surface`](crate::khr::wayland_surface)
+///Provided by [VK_KHR_wayland_surface](crate::khr::wayland_surface)
 impl crate::vk::StructureType {
     pub const WAYLAND_SURFACE_CREATE_INFO_KHR: Self = Self(1000006000);
 }

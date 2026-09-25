@@ -2,22 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_cooperative_matrix.html) · Extension `VK_KHR_cooperative_matrix`
 #![doc(alias = "VK_KHR_cooperative_matrix")]
-///Provided by [`khr::cooperative_matrix`](crate::khr::cooperative_matrix)
+///Provided by [VK_KHR_cooperative_matrix](crate::khr::cooperative_matrix)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_KHR: Self = Self(1000506000);
     pub const COOPERATIVE_MATRIX_PROPERTIES_KHR: Self = Self(1000506001);
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_KHR: Self = Self(1000506002);
 }
-///Provided by [`khr::cooperative_matrix`](crate::khr::cooperative_matrix)
+///Provided by [VK_KHR_cooperative_matrix](crate::khr::cooperative_matrix)
 impl ScopeKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DEVICE_KHR: Self = Self(1);
     pub const WORKGROUP_KHR: Self = Self(2);
     pub const SUBGROUP_KHR: Self = Self(3);
@@ -254,6 +246,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ScopeKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR = unsafe extern "system" fn(

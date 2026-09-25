@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_8bit_storage.html) · Extension `VK_KHR_8bit_storage`
 #![doc(alias = "VK_KHR_8bit_storage")]
-///Provided by [`khr::_8bit_storage`](crate::khr::_8bit_storage)
+///Provided by [VK_KHR_8bit_storage](crate::khr::_8bit_storage)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES;
 }

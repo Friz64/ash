@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_generated_commands.html) · Extension `VK_NV_device_generated_commands`
 #![doc(alias = "VK_NV_device_generated_commands")]
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV: Self = Self(
         1000277000,
@@ -17,20 +17,12 @@ impl crate::vk::StructureType {
         1000277007,
     );
 }
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl crate::vk::ObjectType {
     pub const INDIRECT_COMMANDS_LAYOUT_NV: Self = Self(1000277000);
 }
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl IndirectCommandsTokenTypeNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const SHADER_GROUP_NV: Self = Self(0);
     pub const STATE_FLAGS_NV: Self = Self(1);
     pub const INDEX_BUFFER_NV: Self = Self(2);
@@ -40,7 +32,7 @@ impl IndirectCommandsTokenTypeNV {
     pub const DRAW_NV: Self = Self(6);
     pub const DRAW_TASKS_NV: Self = Self(7);
 }
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl crate::vk::AccessFlags {
     pub const COMMAND_PREPROCESS_READ_NV: Self = Self(
         crate::vk::AccessFlagBits::COMMAND_PREPROCESS_READ_NV.0,
@@ -49,32 +41,32 @@ impl crate::vk::AccessFlags {
         crate::vk::AccessFlagBits::COMMAND_PREPROCESS_WRITE_NV.0,
     );
 }
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl crate::vk::AccessFlagBits {
     pub const COMMAND_PREPROCESS_READ_NV: Self = Self::COMMAND_PREPROCESS_READ_EXT;
     pub const COMMAND_PREPROCESS_WRITE_NV: Self = Self::COMMAND_PREPROCESS_WRITE_EXT;
 }
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl crate::vk::PipelineCreateFlags {
     pub const INDIRECT_BINDABLE_NV: Self = Self(
         crate::vk::PipelineCreateFlagBits::INDIRECT_BINDABLE_NV.0,
     );
 }
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl crate::vk::PipelineCreateFlagBits {
     pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 18);
 }
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl crate::vk::PipelineStageFlags {
     pub const COMMAND_PREPROCESS_NV: Self = Self(
         crate::vk::PipelineStageFlagBits::COMMAND_PREPROCESS_NV.0,
     );
 }
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl crate::vk::PipelineStageFlagBits {
     pub const COMMAND_PREPROCESS_NV: Self = Self::COMMAND_PREPROCESS_EXT;
 }
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl IndirectCommandsLayoutUsageFlagsNV {
     pub const EXPLICIT_PREPROCESS_NV: Self = Self(
         IndirectCommandsLayoutUsageFlagBitsNV::EXPLICIT_PREPROCESS_NV.0,
@@ -86,19 +78,19 @@ impl IndirectCommandsLayoutUsageFlagsNV {
         IndirectCommandsLayoutUsageFlagBitsNV::UNORDERED_SEQUENCES_NV.0,
     );
 }
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl IndirectCommandsLayoutUsageFlagBitsNV {
     pub const EXPLICIT_PREPROCESS_NV: Self = Self(1 << 0);
     pub const INDEXED_SEQUENCES_NV: Self = Self(1 << 1);
     pub const UNORDERED_SEQUENCES_NV: Self = Self(1 << 2);
 }
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl IndirectStateFlagsNV {
     pub const FLAG_FRONTFACE_NV: Self = Self(
         IndirectStateFlagBitsNV::FLAG_FRONTFACE_NV.0,
     );
 }
-///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl IndirectStateFlagBitsNV {
     pub const FLAG_FRONTFACE_NV: Self = Self(1 << 0);
 }
@@ -954,6 +946,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl IndirectCommandsTokenTypeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

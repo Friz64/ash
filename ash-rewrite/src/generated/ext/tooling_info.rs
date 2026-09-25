@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_tooling_info.html) · Extension `VK_EXT_tooling_info`
 #![doc(alias = "VK_EXT_tooling_info")]
-///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
+///Provided by [VK_EXT_tooling_info](crate::ext::tooling_info)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TOOL_PROPERTIES;
 }
-///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
+///Provided by [VK_EXT_tooling_info](crate::ext::tooling_info)
 impl crate::vk::ToolPurposeFlags {
     pub const VALIDATION_EXT: Self = Self(
         crate::vk::ToolPurposeFlagBits::VALIDATION_EXT.0,
@@ -28,7 +28,7 @@ impl crate::vk::ToolPurposeFlags {
         crate::vk::ToolPurposeFlagBits::DEBUG_MARKERS_EXT.0,
     );
 }
-///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
+///Provided by [VK_EXT_tooling_info](crate::ext::tooling_info)
 impl crate::vk::ToolPurposeFlagBits {
     pub const VALIDATION_EXT: Self = Self::VALIDATION;
     pub const PROFILING_EXT: Self = Self::PROFILING;

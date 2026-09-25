@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_coverage_reduction_mode.html) · Extension `VK_NV_coverage_reduction_mode`
 #![doc(alias = "VK_NV_coverage_reduction_mode")]
-///Provided by [`nv::coverage_reduction_mode`](crate::nv::coverage_reduction_mode)
+///Provided by [VK_NV_coverage_reduction_mode](crate::nv::coverage_reduction_mode)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV: Self = Self(
         1000250000,
@@ -10,16 +10,8 @@ impl crate::vk::StructureType {
     pub const PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV: Self = Self(1000250001);
     pub const FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV: Self = Self(1000250002);
 }
-///Provided by [`nv::coverage_reduction_mode`](crate::nv::coverage_reduction_mode)
+///Provided by [VK_NV_coverage_reduction_mode](crate::nv::coverage_reduction_mode)
 impl CoverageReductionModeNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const MERGE_NV: Self = Self(0);
     pub const TRUNCATE_NV: Self = Self(1);
 }
@@ -236,6 +228,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl CoverageReductionModeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

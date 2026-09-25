@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_memory_android_hardware_buffer.html) · Extension `VK_ANDROID_external_memory_android_hardware_buffer`
 #![doc(alias = "VK_ANDROID_external_memory_android_hardware_buffer")]
-///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
+///Provided by [VK_ANDROID_external_memory_android_hardware_buffer](crate::android::external_memory_android_hardware_buffer)
 impl crate::vk::StructureType {
     pub const ANDROID_HARDWARE_BUFFER_USAGE_ANDROID: Self = Self(1000129000);
     pub const ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID: Self = Self(1000129001);
@@ -14,13 +14,13 @@ impl crate::vk::StructureType {
         1000129006,
     );
 }
-///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
+///Provided by [VK_ANDROID_external_memory_android_hardware_buffer](crate::android::external_memory_android_hardware_buffer)
 impl crate::vk::ExternalMemoryHandleTypeFlags {
     pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(
         crate::vk::ExternalMemoryHandleTypeFlagBits::ANDROID_HARDWARE_BUFFER_ANDROID.0,
     );
 }
-///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
+///Provided by [VK_ANDROID_external_memory_android_hardware_buffer](crate::android::external_memory_android_hardware_buffer)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(1 << 10);
 }

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_video_encode_rgb_conversion.html) · Extension `VK_VALVE_video_encode_rgb_conversion`
 #![doc(alias = "VK_VALVE_video_encode_rgb_conversion")]
-///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VIDEO_ENCODE_RGB_CONVERSION_FEATURES_VALVE: Self = Self(
         1000390000,
@@ -13,7 +13,7 @@ impl crate::vk::StructureType {
         1000390003,
     );
 }
-///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbModelConversionFlagsVALVE {
     pub const RGB_IDENTITY_VALVE: Self = Self(
         VideoEncodeRgbModelConversionFlagBitsVALVE::RGB_IDENTITY_VALVE.0,
@@ -31,7 +31,7 @@ impl VideoEncodeRgbModelConversionFlagsVALVE {
         VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_2020_VALVE.0,
     );
 }
-///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbModelConversionFlagBitsVALVE {
     pub const RGB_IDENTITY_VALVE: Self = Self(1 << 0);
     pub const YCBCR_IDENTITY_VALVE: Self = Self(1 << 1);
@@ -39,7 +39,7 @@ impl VideoEncodeRgbModelConversionFlagBitsVALVE {
     pub const YCBCR_601_VALVE: Self = Self(1 << 3);
     pub const YCBCR_2020_VALVE: Self = Self(1 << 4);
 }
-///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbRangeCompressionFlagsVALVE {
     pub const FULL_RANGE_VALVE: Self = Self(
         VideoEncodeRgbRangeCompressionFlagBitsVALVE::FULL_RANGE_VALVE.0,
@@ -48,12 +48,12 @@ impl VideoEncodeRgbRangeCompressionFlagsVALVE {
         VideoEncodeRgbRangeCompressionFlagBitsVALVE::NARROW_RANGE_VALVE.0,
     );
 }
-///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbRangeCompressionFlagBitsVALVE {
     pub const FULL_RANGE_VALVE: Self = Self(1 << 0);
     pub const NARROW_RANGE_VALVE: Self = Self(1 << 1);
 }
-///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbChromaOffsetFlagsVALVE {
     pub const COSITED_EVEN_VALVE: Self = Self(
         VideoEncodeRgbChromaOffsetFlagBitsVALVE::COSITED_EVEN_VALVE.0,
@@ -62,7 +62,7 @@ impl VideoEncodeRgbChromaOffsetFlagsVALVE {
         VideoEncodeRgbChromaOffsetFlagBitsVALVE::MIDPOINT_VALVE.0,
     );
 }
-///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbChromaOffsetFlagBitsVALVE {
     pub const COSITED_EVEN_VALVE: Self = Self(1 << 0);
     pub const MIDPOINT_VALVE: Self = Self(1 << 1);

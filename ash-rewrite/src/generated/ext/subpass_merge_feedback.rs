@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_subpass_merge_feedback.html) · Extension `VK_EXT_subpass_merge_feedback`
 #![doc(alias = "VK_EXT_subpass_merge_feedback")]
-///Provided by [`ext::subpass_merge_feedback`](crate::ext::subpass_merge_feedback)
+///Provided by [VK_EXT_subpass_merge_feedback](crate::ext::subpass_merge_feedback)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT: Self = Self(
         1000458000,
@@ -11,16 +11,8 @@ impl crate::vk::StructureType {
     pub const RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT: Self = Self(1000458002);
     pub const RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT: Self = Self(1000458003);
 }
-///Provided by [`ext::subpass_merge_feedback`](crate::ext::subpass_merge_feedback)
+///Provided by [VK_EXT_subpass_merge_feedback](crate::ext::subpass_merge_feedback)
 impl SubpassMergeStatusEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const MERGED_EXT: Self = Self(0);
     pub const DISALLOWED_EXT: Self = Self(1);
     pub const NOT_MERGED_SIDE_EFFECTS_EXT: Self = Self(2);
@@ -281,6 +273,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl SubpassMergeStatusEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

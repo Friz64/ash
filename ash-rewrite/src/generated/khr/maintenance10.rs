@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance10.html) · Extension `VK_KHR_maintenance10`
 #![doc(alias = "VK_KHR_maintenance10")]
-///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR: Self = Self(1000630000);
     pub const PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR: Self = Self(1000630001);
@@ -10,7 +10,7 @@ impl crate::vk::StructureType {
     pub const RENDERING_END_INFO_KHR: Self = Self(1000619003);
     pub const RESOLVE_IMAGE_MODE_INFO_KHR: Self = Self(1000630004);
 }
-///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl crate::vk::AttachmentDescriptionFlags {
     pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
         crate::vk::AttachmentDescriptionFlagBits::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0,
@@ -19,12 +19,12 @@ impl crate::vk::AttachmentDescriptionFlags {
         crate::vk::AttachmentDescriptionFlagBits::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
     );
 }
-///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl crate::vk::AttachmentDescriptionFlagBits {
     pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
     pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
 }
-///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl crate::vk::FormatFeatureFlags2 {
     pub const DEPTH_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(
         crate::vk::FormatFeatureFlagBits2::DEPTH_COPY_ON_COMPUTE_QUEUE_KHR.0,
@@ -39,24 +39,24 @@ impl crate::vk::FormatFeatureFlags2 {
         crate::vk::FormatFeatureFlagBits2::STENCIL_COPY_ON_TRANSFER_QUEUE_KHR.0,
     );
 }
-///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const DEPTH_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(1 << 52);
     pub const DEPTH_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 53);
     pub const STENCIL_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(1 << 54);
     pub const STENCIL_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 55);
 }
-///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl crate::vk::RenderingFlags {
     pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(
         crate::vk::RenderingFlagBits::LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR.0,
     );
 }
-///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl crate::vk::RenderingFlagBits {
     pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(1 << 8);
 }
-///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl RenderingAttachmentFlagsKHR {
     pub const INPUT_ATTACHMENT_FEEDBACK_KHR: Self = Self(
         RenderingAttachmentFlagBitsKHR::INPUT_ATTACHMENT_FEEDBACK_KHR.0,
@@ -68,13 +68,13 @@ impl RenderingAttachmentFlagsKHR {
         RenderingAttachmentFlagBitsKHR::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
     );
 }
-///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl RenderingAttachmentFlagBitsKHR {
     pub const INPUT_ATTACHMENT_FEEDBACK_KHR: Self = Self(1 << 0);
     pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
     pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
 }
-///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl ResolveImageFlagsKHR {
     pub const SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
         ResolveImageFlagBitsKHR::SKIP_TRANSFER_FUNCTION_KHR.0,
@@ -83,7 +83,7 @@ impl ResolveImageFlagsKHR {
         ResolveImageFlagBitsKHR::ENABLE_TRANSFER_FUNCTION_KHR.0,
     );
 }
-///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl ResolveImageFlagBitsKHR {
     pub const SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 0);
     pub const ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);

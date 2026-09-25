@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_vertex_attribute_divisor.html) · Extension `VK_KHR_vertex_attribute_divisor`
 #![doc(alias = "VK_KHR_vertex_attribute_divisor")]
-///Provided by [`khr::vertex_attribute_divisor`](crate::khr::vertex_attribute_divisor)
+///Provided by [VK_KHR_vertex_attribute_divisor](crate::khr::vertex_attribute_divisor)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES;
     pub const PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_KHR: Self = Self::PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO;

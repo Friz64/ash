@@ -2,29 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_queue.html) · Extension `VK_KHR_video_decode_queue`
 #![doc(alias = "VK_KHR_video_decode_queue")]
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::ImageLayout {
     pub const VIDEO_DECODE_DST_KHR: Self = Self(1000024000);
     pub const VIDEO_DECODE_SRC_KHR: Self = Self(1000024001);
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(1000024002);
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::StructureType {
     pub const VIDEO_DECODE_INFO_KHR: Self = Self(1000024000);
     pub const VIDEO_DECODE_CAPABILITIES_KHR: Self = Self(1000024001);
     pub const VIDEO_DECODE_USAGE_INFO_KHR: Self = Self(1000024002);
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::QueueFlags {
     pub const VIDEO_DECODE_KHR: Self = Self(
         crate::vk::QueueFlagBits::VIDEO_DECODE_KHR.0,
     );
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::QueueFlagBits {
     pub const VIDEO_DECODE_KHR: Self = Self(1 << 5);
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::BufferUsageFlags {
     pub const VIDEO_DECODE_SRC_KHR: Self = Self(
         crate::vk::BufferUsageFlagBits::VIDEO_DECODE_SRC_KHR.0,
@@ -33,12 +33,12 @@ impl crate::vk::BufferUsageFlags {
         crate::vk::BufferUsageFlagBits::VIDEO_DECODE_DST_KHR.0,
     );
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::BufferUsageFlagBits {
     pub const VIDEO_DECODE_SRC_KHR: Self = Self(1 << 13);
     pub const VIDEO_DECODE_DST_KHR: Self = Self(1 << 14);
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::ImageUsageFlags {
     pub const VIDEO_DECODE_DST_KHR: Self = Self(
         crate::vk::ImageUsageFlagBits::VIDEO_DECODE_DST_KHR.0,
@@ -50,13 +50,13 @@ impl crate::vk::ImageUsageFlags {
         crate::vk::ImageUsageFlagBits::VIDEO_DECODE_DPB_KHR.0,
     );
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::ImageUsageFlagBits {
     pub const VIDEO_DECODE_DST_KHR: Self = Self(1 << 10);
     pub const VIDEO_DECODE_SRC_KHR: Self = Self(1 << 11);
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 12);
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::FormatFeatureFlags {
     pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(
         crate::vk::FormatFeatureFlagBits::VIDEO_DECODE_OUTPUT_KHR.0,
@@ -65,12 +65,12 @@ impl crate::vk::FormatFeatureFlags {
         crate::vk::FormatFeatureFlagBits::VIDEO_DECODE_DPB_KHR.0,
     );
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::FormatFeatureFlagBits {
     pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(1 << 25);
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 26);
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::AccessFlags2 {
     pub const VIDEO_DECODE_READ_KHR: Self = Self(
         crate::vk::AccessFlagBits2::VIDEO_DECODE_READ_KHR.0,
@@ -79,22 +79,22 @@ impl crate::vk::AccessFlags2 {
         crate::vk::AccessFlagBits2::VIDEO_DECODE_WRITE_KHR.0,
     );
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::AccessFlagBits2 {
     pub const VIDEO_DECODE_READ_KHR: Self = Self(1 << 35);
     pub const VIDEO_DECODE_WRITE_KHR: Self = Self(1 << 36);
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::PipelineStageFlags2 {
     pub const VIDEO_DECODE_KHR: Self = Self(
         crate::vk::PipelineStageFlagBits2::VIDEO_DECODE_KHR.0,
     );
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const VIDEO_DECODE_KHR: Self = Self(1 << 26);
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::FormatFeatureFlags2 {
     pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(
         crate::vk::FormatFeatureFlagBits2::VIDEO_DECODE_OUTPUT_KHR.0,
@@ -103,12 +103,12 @@ impl crate::vk::FormatFeatureFlags2 {
         crate::vk::FormatFeatureFlagBits2::VIDEO_DECODE_DPB_KHR.0,
     );
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(1 << 25);
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 26);
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl VideoDecodeUsageFlagsKHR {
     pub const DEFAULT_KHR: Self = Self(VideoDecodeUsageFlagBitsKHR::DEFAULT_KHR.0);
     pub const TRANSCODING_KHR: Self = Self(
@@ -117,14 +117,14 @@ impl VideoDecodeUsageFlagsKHR {
     pub const OFFLINE_KHR: Self = Self(VideoDecodeUsageFlagBitsKHR::OFFLINE_KHR.0);
     pub const STREAMING_KHR: Self = Self(VideoDecodeUsageFlagBitsKHR::STREAMING_KHR.0);
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl VideoDecodeUsageFlagBitsKHR {
     pub const DEFAULT_KHR: Self = Self(0);
     pub const TRANSCODING_KHR: Self = Self(1 << 0);
     pub const OFFLINE_KHR: Self = Self(1 << 1);
     pub const STREAMING_KHR: Self = Self(1 << 2);
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl VideoDecodeCapabilityFlagsKHR {
     pub const DPB_AND_OUTPUT_COINCIDE_KHR: Self = Self(
         VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_COINCIDE_KHR.0,
@@ -133,7 +133,7 @@ impl VideoDecodeCapabilityFlagsKHR {
         VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_DISTINCT_KHR.0,
     );
 }
-///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl VideoDecodeCapabilityFlagBitsKHR {
     pub const DPB_AND_OUTPUT_COINCIDE_KHR: Self = Self(1 << 0);
     pub const DPB_AND_OUTPUT_DISTINCT_KHR: Self = Self(1 << 1);

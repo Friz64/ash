@@ -2,24 +2,24 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_4.html) · Vulkan version 1.4
 #![doc(alias = "VK_VERSION_1_4")]
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::ImageLayout {
     pub const RENDERING_LOCAL_READ: Self = Self(1000232000);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::AttachmentLoadOp {
     pub const NONE: Self = Self(1000400000);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::IndexType {
     pub const UINT8: Self = Self(1000265000);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::Format {
     pub const A1B5G5R5_UNORM_PACK16: Self = Self(1000470000);
     pub const A8_UNORM: Self = Self(1000470001);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VULKAN_1_4_FEATURES: Self = Self(55);
     pub const PHYSICAL_DEVICE_VULKAN_1_4_PROPERTIES: Self = Self(56);
@@ -78,97 +78,65 @@ impl crate::vk::StructureType {
     pub const RENDERING_ATTACHMENT_LOCATION_INFO: Self = Self(1000232001);
     pub const RENDERING_INPUT_ATTACHMENT_INDEX_INFO: Self = Self(1000232002);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::Result {
     pub const ERROR_NOT_PERMITTED: Self = Self(-1000174001);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::DynamicState {
     pub const LINE_STIPPLE: Self = Self(1000259000);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::DescriptorUpdateTemplateType {
     pub const PUSH_DESCRIPTORS: Self = Self(1);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl QueueGlobalPriority {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const LOW: Self = Self(128);
     pub const MEDIUM: Self = Self(256);
     pub const HIGH: Self = Self(512);
     pub const REALTIME: Self = Self(1024);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl LineRasterizationMode {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DEFAULT: Self = Self(0);
     pub const RECTANGULAR: Self = Self(1);
     pub const BRESENHAM: Self = Self(2);
     pub const RECTANGULAR_SMOOTH: Self = Self(3);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl PipelineRobustnessBufferBehavior {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DEVICE_DEFAULT: Self = Self(0);
     pub const DISABLED: Self = Self(1);
     pub const ROBUST_BUFFER_ACCESS: Self = Self(2);
     pub const ROBUST_BUFFER_ACCESS_2: Self = Self(3);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl PipelineRobustnessImageBehavior {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DEVICE_DEFAULT: Self = Self(0);
     pub const DISABLED: Self = Self(1);
     pub const ROBUST_IMAGE_ACCESS: Self = Self(2);
     pub const ROBUST_IMAGE_ACCESS_2: Self = Self(3);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::DescriptorSetLayoutCreateFlags {
     pub const PUSH_DESCRIPTOR: Self = Self(
         crate::vk::DescriptorSetLayoutCreateFlagBits::PUSH_DESCRIPTOR.0,
     );
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const PUSH_DESCRIPTOR: Self = Self(1 << 0);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::ImageUsageFlags {
     pub const HOST_TRANSFER: Self = Self(crate::vk::ImageUsageFlagBits::HOST_TRANSFER.0);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::ImageUsageFlagBits {
     pub const HOST_TRANSFER: Self = Self(1 << 22);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::PipelineCreateFlags {
     pub const NO_PROTECTED_ACCESS: Self = Self(
         crate::vk::PipelineCreateFlagBits::NO_PROTECTED_ACCESS.0,
@@ -177,34 +145,34 @@ impl crate::vk::PipelineCreateFlags {
         crate::vk::PipelineCreateFlagBits::PROTECTED_ACCESS_ONLY.0,
     );
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::PipelineCreateFlagBits {
     pub const NO_PROTECTED_ACCESS: Self = Self(1 << 27);
     pub const PROTECTED_ACCESS_ONLY: Self = Self(1 << 30);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::SubgroupFeatureFlags {
     pub const ROTATE: Self = Self(crate::vk::SubgroupFeatureFlagBits::ROTATE.0);
     pub const ROTATE_CLUSTERED: Self = Self(
         crate::vk::SubgroupFeatureFlagBits::ROTATE_CLUSTERED.0,
     );
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::SubgroupFeatureFlagBits {
     pub const ROTATE: Self = Self(1 << 9);
     pub const ROTATE_CLUSTERED: Self = Self(1 << 10);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::FormatFeatureFlags2 {
     pub const HOST_IMAGE_TRANSFER: Self = Self(
         crate::vk::FormatFeatureFlagBits2::HOST_IMAGE_TRANSFER.0,
     );
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const HOST_IMAGE_TRANSFER: Self = Self(1 << 46);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl PipelineCreateFlags2 {
     pub const DISABLE_OPTIMIZATION: Self = Self(
         PipelineCreateFlagBits2::DISABLE_OPTIMIZATION.0,
@@ -230,7 +198,7 @@ impl PipelineCreateFlags2 {
         PipelineCreateFlagBits2::PROTECTED_ACCESS_ONLY.0,
     );
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl PipelineCreateFlagBits2 {
     pub const DISABLE_OPTIMIZATION: Self = Self(1 << 0);
     pub const ALLOW_DERIVATIVES: Self = Self(1 << 1);
@@ -242,7 +210,7 @@ impl PipelineCreateFlagBits2 {
     pub const NO_PROTECTED_ACCESS: Self = Self(1 << 27);
     pub const PROTECTED_ACCESS_ONLY: Self = Self(1 << 30);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl BufferUsageFlags2 {
     pub const TRANSFER_SRC: Self = Self(BufferUsageFlagBits2::TRANSFER_SRC.0);
     pub const TRANSFER_DST: Self = Self(BufferUsageFlagBits2::TRANSFER_DST.0);
@@ -261,7 +229,7 @@ impl BufferUsageFlags2 {
         BufferUsageFlagBits2::SHADER_DEVICE_ADDRESS.0,
     );
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl BufferUsageFlagBits2 {
     pub const TRANSFER_SRC: Self = Self(1 << 0);
     pub const TRANSFER_DST: Self = Self(1 << 1);
@@ -274,11 +242,11 @@ impl BufferUsageFlagBits2 {
     pub const INDIRECT_BUFFER: Self = Self(1 << 8);
     pub const SHADER_DEVICE_ADDRESS: Self = Self(1 << 17);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl HostImageCopyFlags {
     pub const MEMCPY: Self = Self(HostImageCopyFlagBits::MEMCPY.0);
 }
-///Provided by [`vk1_4`](crate::vk1_4)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl HostImageCopyFlagBits {
     pub const MEMCPY: Self = Self(1 << 0);
 }
@@ -3236,6 +3204,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl QueueGlobalPriority {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct LineRasterizationMode(pub(crate) i32);
@@ -3253,6 +3231,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl LineRasterizationMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -3274,6 +3262,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl PipelineRobustnessBufferBehavior {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PipelineRobustnessImageBehavior(pub(crate) i32);
@@ -3291,6 +3289,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl PipelineRobustnessImageBehavior {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

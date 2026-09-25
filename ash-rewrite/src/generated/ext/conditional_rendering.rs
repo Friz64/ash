@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conditional_rendering.html) · Extension `VK_EXT_conditional_rendering`
 #![doc(alias = "VK_EXT_conditional_rendering")]
-///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl crate::vk::StructureType {
     pub const COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT: Self = Self(
         1000081000,
@@ -12,41 +12,41 @@ impl crate::vk::StructureType {
     );
     pub const CONDITIONAL_RENDERING_BEGIN_INFO_EXT: Self = Self(1000081002);
 }
-///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl crate::vk::AccessFlags {
     pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(
         crate::vk::AccessFlagBits::CONDITIONAL_RENDERING_READ_EXT.0,
     );
 }
-///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl crate::vk::AccessFlagBits {
     pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(1 << 20);
 }
-///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl crate::vk::BufferUsageFlags {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(
         crate::vk::BufferUsageFlagBits::CONDITIONAL_RENDERING_EXT.0,
     );
 }
-///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl crate::vk::BufferUsageFlagBits {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 9);
 }
-///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl crate::vk::PipelineStageFlags {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(
         crate::vk::PipelineStageFlagBits::CONDITIONAL_RENDERING_EXT.0,
     );
 }
-///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl crate::vk::PipelineStageFlagBits {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 18);
 }
-///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl ConditionalRenderingFlagsEXT {
     pub const INVERTED_EXT: Self = Self(ConditionalRenderingFlagBitsEXT::INVERTED_EXT.0);
 }
-///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl ConditionalRenderingFlagBitsEXT {
     pub const INVERTED_EXT: Self = Self(1 << 0);
 }

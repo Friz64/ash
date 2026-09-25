@@ -2,35 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_object.html) · Extension `VK_EXT_shader_object`
 #![doc(alias = "VK_EXT_shader_object")]
-///Provided by [`ext::shader_object`](crate::ext::shader_object)
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT: Self = Self(1000482000);
     pub const PHYSICAL_DEVICE_SHADER_OBJECT_PROPERTIES_EXT: Self = Self(1000482001);
     pub const SHADER_CREATE_INFO_EXT: Self = Self(1000482002);
     pub const SHADER_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT: Self = Self::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO;
 }
-///Provided by [`ext::shader_object`](crate::ext::shader_object)
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
 impl crate::vk::Result {
     pub const INCOMPATIBLE_SHADER_BINARY_EXT: Self = Self(1000482000);
 }
-///Provided by [`ext::shader_object`](crate::ext::shader_object)
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
 impl crate::vk::ObjectType {
     pub const SHADER_EXT: Self = Self(1000482000);
 }
-///Provided by [`ext::shader_object`](crate::ext::shader_object)
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
 impl ShaderCodeTypeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const BINARY_EXT: Self = Self(0);
     pub const SPIRV_EXT: Self = Self(1);
 }
-///Provided by [`ext::shader_object`](crate::ext::shader_object)
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
 impl ShaderCreateFlagsEXT {
     pub const LINK_STAGE_EXT: Self = Self(ShaderCreateFlagBitsEXT::LINK_STAGE_EXT.0);
     pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(
@@ -52,7 +44,7 @@ impl ShaderCreateFlagsEXT {
         ShaderCreateFlagBitsEXT::FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0,
     );
 }
-///Provided by [`ext::shader_object`](crate::ext::shader_object)
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
 impl ShaderCreateFlagBitsEXT {
     pub const LINK_STAGE_EXT: Self = Self(1 << 0);
     pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(1 << 1);
@@ -1142,6 +1134,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ShaderCodeTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

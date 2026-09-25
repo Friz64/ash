@@ -2,17 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore.html) · Extension `VK_KHR_external_semaphore`
 #![doc(alias = "VK_KHR_external_semaphore")]
-///Provided by [`khr::external_semaphore`](crate::khr::external_semaphore)
+///Provided by [VK_KHR_external_semaphore](crate::khr::external_semaphore)
 impl crate::vk::StructureType {
     pub const EXPORT_SEMAPHORE_CREATE_INFO_KHR: Self = Self::EXPORT_SEMAPHORE_CREATE_INFO;
 }
-///Provided by [`khr::external_semaphore`](crate::khr::external_semaphore)
+///Provided by [VK_KHR_external_semaphore](crate::khr::external_semaphore)
 impl crate::vk::SemaphoreImportFlags {
     pub const TEMPORARY_KHR: Self = Self(
         crate::vk::SemaphoreImportFlagBits::TEMPORARY_KHR.0,
     );
 }
-///Provided by [`khr::external_semaphore`](crate::khr::external_semaphore)
+///Provided by [VK_KHR_external_semaphore](crate::khr::external_semaphore)
 impl crate::vk::SemaphoreImportFlagBits {
     pub const TEMPORARY_KHR: Self = Self::TEMPORARY;
 }

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_memory_heap.html) · Extension `VK_QCOM_tile_memory_heap`
 #![doc(alias = "VK_QCOM_tile_memory_heap")]
-///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_TILE_MEMORY_HEAP_FEATURES_QCOM: Self = Self(1000547000);
     pub const PHYSICAL_DEVICE_TILE_MEMORY_HEAP_PROPERTIES_QCOM: Self = Self(1000547001);
@@ -10,43 +10,43 @@ impl crate::vk::StructureType {
     pub const TILE_MEMORY_BIND_INFO_QCOM: Self = Self(1000547003);
     pub const TILE_MEMORY_SIZE_INFO_QCOM: Self = Self(1000547004);
 }
-///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl crate::vk::MemoryHeapFlags {
     pub const TILE_MEMORY_QCOM: Self = Self(
         crate::vk::MemoryHeapFlagBits::TILE_MEMORY_QCOM.0,
     );
 }
-///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl crate::vk::MemoryHeapFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 3);
 }
-///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl crate::vk::BufferUsageFlags {
     pub const TILE_MEMORY_QCOM: Self = Self(
         crate::vk::BufferUsageFlagBits::TILE_MEMORY_QCOM.0,
     );
 }
-///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl crate::vk::BufferUsageFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
 }
-///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl crate::vk::ImageUsageFlags {
     pub const TILE_MEMORY_QCOM: Self = Self(
         crate::vk::ImageUsageFlagBits::TILE_MEMORY_QCOM.0,
     );
 }
-///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl crate::vk::ImageUsageFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
 }
-///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl crate::vk::BufferUsageFlags2 {
     pub const TILE_MEMORY_QCOM: Self = Self(
         crate::vk::BufferUsageFlagBits2::TILE_MEMORY_QCOM.0,
     );
 }
-///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl crate::vk::BufferUsageFlagBits2 {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
 }

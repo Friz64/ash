@@ -2,22 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_queue_perf_hint.html) · Extension `VK_QCOM_queue_perf_hint`
 #![doc(alias = "VK_QCOM_queue_perf_hint")]
-///Provided by [`qcom::queue_perf_hint`](crate::qcom::queue_perf_hint)
+///Provided by [VK_QCOM_queue_perf_hint](crate::qcom::queue_perf_hint)
 impl crate::vk::StructureType {
     pub const PERF_HINT_INFO_QCOM: Self = Self(1000302000);
     pub const PHYSICAL_DEVICE_QUEUE_PERF_HINT_FEATURES_QCOM: Self = Self(1000302001);
     pub const PHYSICAL_DEVICE_QUEUE_PERF_HINT_PROPERTIES_QCOM: Self = Self(1000302002);
 }
-///Provided by [`qcom::queue_perf_hint`](crate::qcom::queue_perf_hint)
+///Provided by [VK_QCOM_queue_perf_hint](crate::qcom::queue_perf_hint)
 impl PerfHintTypeQCOM {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DEFAULT_QCOM: Self = Self(0);
     pub const FREQUENCY_MIN_QCOM: Self = Self(1);
     pub const FREQUENCY_MAX_QCOM: Self = Self(2);
@@ -199,6 +191,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl PerfHintTypeQCOM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type PFN_vkQueueSetPerfHintQCOM = unsafe extern "system" fn(

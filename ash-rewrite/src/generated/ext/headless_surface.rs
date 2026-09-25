@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_headless_surface.html) · Extension `VK_EXT_headless_surface`
 #![doc(alias = "VK_EXT_headless_surface")]
-///Provided by [`ext::headless_surface`](crate::ext::headless_surface)
+///Provided by [VK_EXT_headless_surface](crate::ext::headless_surface)
 impl crate::vk::StructureType {
     pub const HEADLESS_SURFACE_CREATE_INFO_EXT: Self = Self(1000256000);
 }

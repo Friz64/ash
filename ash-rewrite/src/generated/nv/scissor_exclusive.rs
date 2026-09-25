@@ -2,14 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_scissor_exclusive.html) · Extension `VK_NV_scissor_exclusive`
 #![doc(alias = "VK_NV_scissor_exclusive")]
-///Provided by [`nv::scissor_exclusive`](crate::nv::scissor_exclusive)
+///Provided by [VK_NV_scissor_exclusive](crate::nv::scissor_exclusive)
 impl crate::vk::StructureType {
     pub const PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV: Self = Self(
         1000205000,
     );
     pub const PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV: Self = Self(1000205002);
 }
-///Provided by [`nv::scissor_exclusive`](crate::nv::scissor_exclusive)
+///Provided by [VK_NV_scissor_exclusive](crate::nv::scissor_exclusive)
 impl crate::vk::DynamicState {
     pub const EXCLUSIVE_SCISSOR_ENABLE_NV: Self = Self(1000205000);
     pub const EXCLUSIVE_SCISSOR_NV: Self = Self(1000205001);

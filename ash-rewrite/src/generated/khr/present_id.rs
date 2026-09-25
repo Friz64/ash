@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_id.html) · Extension `VK_KHR_present_id`
 #![doc(alias = "VK_KHR_present_id")]
-///Provided by [`khr::present_id`](crate::khr::present_id)
+///Provided by [VK_KHR_present_id](crate::khr::present_id)
 impl crate::vk::StructureType {
     pub const PRESENT_ID_KHR: Self = Self(1000294000);
     pub const PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR: Self = Self(1000294001);

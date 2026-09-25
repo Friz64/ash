@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_legacy_vertex_attributes.html) · Extension `VK_EXT_legacy_vertex_attributes`
 #![doc(alias = "VK_EXT_legacy_vertex_attributes")]
-///Provided by [`ext::legacy_vertex_attributes`](crate::ext::legacy_vertex_attributes)
+///Provided by [VK_EXT_legacy_vertex_attributes](crate::ext::legacy_vertex_attributes)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_FEATURES_EXT: Self = Self(
         1000495000,

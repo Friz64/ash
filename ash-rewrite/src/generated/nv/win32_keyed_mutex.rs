@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_win32_keyed_mutex.html) · Extension `VK_NV_win32_keyed_mutex`
 #![doc(alias = "VK_NV_win32_keyed_mutex")]
-///Provided by [`nv::win32_keyed_mutex`](crate::nv::win32_keyed_mutex)
+///Provided by [VK_NV_win32_keyed_mutex](crate::nv::win32_keyed_mutex)
 impl crate::vk::StructureType {
     pub const WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV: Self = Self(1000058000);
 }

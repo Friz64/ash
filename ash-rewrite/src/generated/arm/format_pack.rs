@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_format_pack.html) · Extension `VK_ARM_format_pack`
 #![doc(alias = "VK_ARM_format_pack")]
-///Provided by [`arm::format_pack`](crate::arm::format_pack)
+///Provided by [VK_ARM_format_pack](crate::arm::format_pack)
 impl crate::vk::Format {
     pub const R10X6_UINT_PACK16_ARM: Self = Self(1000609000);
     pub const R10X6G10X6_UINT_2PACK16_ARM: Self = Self(1000609001);
@@ -19,7 +19,7 @@ impl crate::vk::Format {
     pub const G14X2_B14X2R14X2_2PLANE_420_UNORM_3PACK16_ARM: Self = Self(1000609012);
     pub const G14X2_B14X2R14X2_2PLANE_422_UNORM_3PACK16_ARM: Self = Self(1000609013);
 }
-///Provided by [`arm::format_pack`](crate::arm::format_pack)
+///Provided by [VK_ARM_format_pack](crate::arm::format_pack)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM: Self = Self(1000609000);
 }

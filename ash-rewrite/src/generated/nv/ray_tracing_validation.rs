@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_validation.html) · Extension `VK_NV_ray_tracing_validation`
 #![doc(alias = "VK_NV_ray_tracing_validation")]
-///Provided by [`nv::ray_tracing_validation`](crate::nv::ray_tracing_validation)
+///Provided by [VK_NV_ray_tracing_validation](crate::nv::ray_tracing_validation)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_TRACING_VALIDATION_FEATURES_NV: Self = Self(
         1000568000,

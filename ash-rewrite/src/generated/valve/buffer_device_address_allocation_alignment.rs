@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_buffer_device_address_allocation_alignment.html) · Extension `VK_VALVE_buffer_device_address_allocation_alignment`
 #![doc(alias = "VK_VALVE_buffer_device_address_allocation_alignment")]
-///Provided by [`valve::buffer_device_address_allocation_alignment`](crate::valve::buffer_device_address_allocation_alignment)
+///Provided by [VK_VALVE_buffer_device_address_allocation_alignment](crate::valve::buffer_device_address_allocation_alignment)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_FEATURES_VALVE: Self = Self(
         1000709000,

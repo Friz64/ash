@@ -2,36 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_features.html) · Extension `VK_EXT_validation_features`
 #![doc(alias = "VK_EXT_validation_features")]
-///Provided by [`ext::validation_features`](crate::ext::validation_features)
+///Provided by [VK_EXT_validation_features](crate::ext::validation_features)
 impl crate::vk::StructureType {
     pub const VALIDATION_FEATURES_EXT: Self = Self(1000247000);
 }
-///Provided by [`ext::validation_features`](crate::ext::validation_features)
+///Provided by [VK_EXT_validation_features](crate::ext::validation_features)
 impl ValidationFeatureEnableEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const GPU_ASSISTED_EXT: Self = Self(0);
     pub const GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT: Self = Self(1);
     pub const BEST_PRACTICES_EXT: Self = Self(2);
     pub const DEBUG_PRINTF_EXT: Self = Self(3);
     pub const SYNCHRONIZATION_VALIDATION_EXT: Self = Self(4);
 }
-///Provided by [`ext::validation_features`](crate::ext::validation_features)
+///Provided by [VK_EXT_validation_features](crate::ext::validation_features)
 impl ValidationFeatureDisableEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const ALL_EXT: Self = Self(0);
     pub const SHADERS_EXT: Self = Self(1);
     pub const THREAD_SAFETY_EXT: Self = Self(2);
@@ -130,6 +114,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl ValidationFeatureEnableEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ValidationFeatureDisableEXT(pub(crate) i32);
@@ -151,6 +145,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ValidationFeatureDisableEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

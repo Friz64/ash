@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_amigo_profiling.html) · Extension `VK_SEC_amigo_profiling`
 #![doc(alias = "VK_SEC_amigo_profiling")]
-///Provided by [`sec::amigo_profiling`](crate::sec::amigo_profiling)
+///Provided by [VK_SEC_amigo_profiling](crate::sec::amigo_profiling)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC: Self = Self(1000485000);
     pub const AMIGO_PROFILING_SUBMIT_INFO_SEC: Self = Self(1000485001);

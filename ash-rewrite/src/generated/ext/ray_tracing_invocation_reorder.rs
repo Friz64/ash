@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ray_tracing_invocation_reorder.html) · Extension `VK_EXT_ray_tracing_invocation_reorder`
 #![doc(alias = "VK_EXT_ray_tracing_invocation_reorder")]
-///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)
+///Provided by [VK_EXT_ray_tracing_invocation_reorder](crate::ext::ray_tracing_invocation_reorder)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_EXT: Self = Self(
         1000581000,
@@ -11,16 +11,8 @@ impl crate::vk::StructureType {
         1000581001,
     );
 }
-///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)
+///Provided by [VK_EXT_ray_tracing_invocation_reorder](crate::ext::ray_tracing_invocation_reorder)
 impl RayTracingInvocationReorderModeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const NONE_EXT: Self = Self(0);
     pub const REORDER_EXT: Self = Self(1);
 }
@@ -121,6 +113,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl RayTracingInvocationReorderModeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

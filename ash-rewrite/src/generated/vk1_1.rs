@@ -2,12 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_1.html) · Vulkan version 1.1
 #![doc(alias = "VK_VERSION_1_1")]
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::ImageLayout {
     pub const DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL: Self = Self(1000117000);
     pub const DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL: Self = Self(1000117001);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::Format {
     pub const G8B8G8R8_422_UNORM: Self = Self(1000156000);
     pub const B8G8R8G8_422_UNORM: Self = Self(1000156001);
@@ -44,7 +44,7 @@ impl crate::vk::Format {
     pub const G16_B16R16_2PLANE_422_UNORM: Self = Self(1000156032);
     pub const G16_B16_R16_3PLANE_444_UNORM: Self = Self(1000156033);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::StructureType {
     pub const BIND_BUFFER_MEMORY_INFO: Self = Self(1000157000);
     pub const BIND_IMAGE_MEMORY_INFO: Self = Self(1000157001);
@@ -116,65 +116,33 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES: Self = Self(1000063000);
     pub const PHYSICAL_DEVICE_SHADER_DRAW_PARAMETER_FEATURES: Self = Self::PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES;
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::Result {
     pub const ERROR_OUT_OF_POOL_MEMORY: Self = Self(-1000069000);
     pub const ERROR_INVALID_EXTERNAL_HANDLE: Self = Self(-1000072003);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl DescriptorUpdateTemplateType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     ///Create descriptor update template for descriptor set updates
     pub const DESCRIPTOR_SET: Self = Self(0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::ObjectType {
     pub const DESCRIPTOR_UPDATE_TEMPLATE: Self = Self(1000085000);
     pub const SAMPLER_YCBCR_CONVERSION: Self = Self(1000156000);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl PointClippingBehavior {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const ALL_CLIP_PLANES: Self = Self(0);
     pub const USER_CLIP_PLANES_ONLY: Self = Self(1);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl TessellationDomainOrigin {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const UPPER_LEFT: Self = Self(0);
     pub const LOWER_LEFT: Self = Self(1);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl SamplerYcbcrModelConversion {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const RGB_IDENTITY: Self = Self(0);
     ///just range expansion
     pub const YCBCR_IDENTITY: Self = Self(1);
@@ -185,77 +153,61 @@ impl SamplerYcbcrModelConversion {
     ///aka UHD YUV
     pub const YCBCR_2020: Self = Self(4);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl SamplerYcbcrRange {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     ///Luma 0..1 maps to 0..255, chroma -0.5..0.5 to 1..255 (clamped)
     pub const ITU_FULL: Self = Self(0);
     ///Luma 0..1 maps to 16..235, chroma -0.5..0.5 to 16..240
     pub const ITU_NARROW: Self = Self(1);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ChromaLocation {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const COSITED_EVEN: Self = Self(0);
     pub const MIDPOINT: Self = Self(1);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::DeviceQueueCreateFlags {
     pub const PROTECTED: Self = Self(crate::vk::DeviceQueueCreateFlagBits::PROTECTED.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::DeviceQueueCreateFlagBits {
     pub const PROTECTED: Self = Self(1 << 0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::QueueFlags {
     pub const PROTECTED: Self = Self(crate::vk::QueueFlagBits::PROTECTED.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::QueueFlagBits {
     pub const PROTECTED: Self = Self(1 << 4);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::MemoryPropertyFlags {
     pub const PROTECTED: Self = Self(crate::vk::MemoryPropertyFlagBits::PROTECTED.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::MemoryPropertyFlagBits {
     pub const PROTECTED: Self = Self(1 << 5);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::MemoryHeapFlags {
     pub const MULTI_INSTANCE: Self = Self(
         crate::vk::MemoryHeapFlagBits::MULTI_INSTANCE.0,
     );
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::MemoryHeapFlagBits {
     pub const MULTI_INSTANCE: Self = Self(1 << 1);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::BufferCreateFlags {
     pub const PROTECTED: Self = Self(crate::vk::BufferCreateFlagBits::PROTECTED.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::BufferCreateFlagBits {
     pub const PROTECTED: Self = Self(1 << 3);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::ImageCreateFlags {
     pub const ALIAS: Self = Self(crate::vk::ImageCreateFlagBits::ALIAS.0);
     pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(
@@ -273,7 +225,7 @@ impl crate::vk::ImageCreateFlags {
     pub const PROTECTED: Self = Self(crate::vk::ImageCreateFlagBits::PROTECTED.0);
     pub const DISJOINT: Self = Self(crate::vk::ImageCreateFlagBits::DISJOINT.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::ImageCreateFlagBits {
     pub const ALIAS: Self = Self(1 << 10);
     pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(1 << 6);
@@ -283,7 +235,7 @@ impl crate::vk::ImageCreateFlagBits {
     pub const PROTECTED: Self = Self(1 << 11);
     pub const DISJOINT: Self = Self(1 << 9);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::PipelineCreateFlags {
     pub const DISPATCH_BASE: Self = Self(
         crate::vk::PipelineCreateFlagBits::DISPATCH_BASE.0,
@@ -292,12 +244,12 @@ impl crate::vk::PipelineCreateFlags {
         crate::vk::PipelineCreateFlagBits::VIEW_INDEX_FROM_DEVICE_INDEX.0,
     );
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::PipelineCreateFlagBits {
     pub const DISPATCH_BASE: Self = Self(1 << 4);
     pub const VIEW_INDEX_FROM_DEVICE_INDEX: Self = Self(1 << 3);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::FormatFeatureFlags {
     pub const TRANSFER_SRC: Self = Self(
         crate::vk::FormatFeatureFlagBits::TRANSFER_SRC.0,
@@ -328,7 +280,7 @@ impl crate::vk::FormatFeatureFlags {
         crate::vk::FormatFeatureFlagBits::COSITED_CHROMA_SAMPLES.0,
     );
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::FormatFeatureFlagBits {
     pub const TRANSFER_SRC: Self = Self(1 << 14);
     pub const TRANSFER_DST: Self = Self(1 << 15);
@@ -346,37 +298,37 @@ impl crate::vk::FormatFeatureFlagBits {
     pub const DISJOINT: Self = Self(1 << 22);
     pub const COSITED_CHROMA_SAMPLES: Self = Self(1 << 23);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::CommandPoolCreateFlags {
     pub const PROTECTED: Self = Self(crate::vk::CommandPoolCreateFlagBits::PROTECTED.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::CommandPoolCreateFlagBits {
     pub const PROTECTED: Self = Self(1 << 2);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::ImageAspectFlags {
     pub const PLANE_0: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_0.0);
     pub const PLANE_1: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_1.0);
     pub const PLANE_2: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_2.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::ImageAspectFlagBits {
     pub const PLANE_0: Self = Self(1 << 4);
     pub const PLANE_1: Self = Self(1 << 5);
     pub const PLANE_2: Self = Self(1 << 6);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::DependencyFlags {
     pub const DEVICE_GROUP: Self = Self(crate::vk::DependencyFlagBits::DEVICE_GROUP.0);
     pub const VIEW_LOCAL: Self = Self(crate::vk::DependencyFlagBits::VIEW_LOCAL.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl crate::vk::DependencyFlagBits {
     pub const DEVICE_GROUP: Self = Self(1 << 2);
     pub const VIEW_LOCAL: Self = Self(1 << 1);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl SubgroupFeatureFlags {
     pub const BASIC: Self = Self(SubgroupFeatureFlagBits::BASIC.0);
     pub const VOTE: Self = Self(SubgroupFeatureFlagBits::VOTE.0);
@@ -387,7 +339,7 @@ impl SubgroupFeatureFlags {
     pub const CLUSTERED: Self = Self(SubgroupFeatureFlagBits::CLUSTERED.0);
     pub const QUAD: Self = Self(SubgroupFeatureFlagBits::QUAD.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl SubgroupFeatureFlagBits {
     pub const BASIC: Self = Self(1 << 0);
     pub const VOTE: Self = Self(1 << 1);
@@ -398,29 +350,29 @@ impl SubgroupFeatureFlagBits {
     pub const CLUSTERED: Self = Self(1 << 6);
     pub const QUAD: Self = Self(1 << 7);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl PeerMemoryFeatureFlags {
     pub const COPY_SRC: Self = Self(PeerMemoryFeatureFlagBits::COPY_SRC.0);
     pub const COPY_DST: Self = Self(PeerMemoryFeatureFlagBits::COPY_DST.0);
     pub const GENERIC_SRC: Self = Self(PeerMemoryFeatureFlagBits::GENERIC_SRC.0);
     pub const GENERIC_DST: Self = Self(PeerMemoryFeatureFlagBits::GENERIC_DST.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl PeerMemoryFeatureFlagBits {
     pub const COPY_SRC: Self = Self(1 << 0);
     pub const COPY_DST: Self = Self(1 << 1);
     pub const GENERIC_SRC: Self = Self(1 << 2);
     pub const GENERIC_DST: Self = Self(1 << 3);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl MemoryAllocateFlags {
     pub const DEVICE_MASK: Self = Self(MemoryAllocateFlagBits::DEVICE_MASK.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl MemoryAllocateFlagBits {
     pub const DEVICE_MASK: Self = Self(1 << 0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ExternalMemoryHandleTypeFlags {
     pub const OPAQUE_FD: Self = Self(ExternalMemoryHandleTypeFlagBits::OPAQUE_FD.0);
     pub const OPAQUE_WIN32: Self = Self(
@@ -440,7 +392,7 @@ impl ExternalMemoryHandleTypeFlags {
         ExternalMemoryHandleTypeFlagBits::D3D12_RESOURCE.0,
     );
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ExternalMemoryHandleTypeFlagBits {
     pub const OPAQUE_FD: Self = Self(1 << 0);
     pub const OPAQUE_WIN32: Self = Self(1 << 1);
@@ -450,7 +402,7 @@ impl ExternalMemoryHandleTypeFlagBits {
     pub const D3D12_HEAP: Self = Self(1 << 5);
     pub const D3D12_RESOURCE: Self = Self(1 << 6);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ExternalMemoryFeatureFlags {
     pub const DEDICATED_ONLY: Self = Self(
         ExternalMemoryFeatureFlagBits::DEDICATED_ONLY.0,
@@ -458,13 +410,13 @@ impl ExternalMemoryFeatureFlags {
     pub const EXPORTABLE: Self = Self(ExternalMemoryFeatureFlagBits::EXPORTABLE.0);
     pub const IMPORTABLE: Self = Self(ExternalMemoryFeatureFlagBits::IMPORTABLE.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ExternalMemoryFeatureFlagBits {
     pub const DEDICATED_ONLY: Self = Self(1 << 0);
     pub const EXPORTABLE: Self = Self(1 << 1);
     pub const IMPORTABLE: Self = Self(1 << 2);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ExternalSemaphoreHandleTypeFlags {
     pub const OPAQUE_FD: Self = Self(ExternalSemaphoreHandleTypeFlagBits::OPAQUE_FD.0);
     pub const OPAQUE_WIN32: Self = Self(
@@ -481,7 +433,7 @@ impl ExternalSemaphoreHandleTypeFlags {
     );
     pub const SYNC_FD: Self = Self(ExternalSemaphoreHandleTypeFlagBits::SYNC_FD.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ExternalSemaphoreHandleTypeFlagBits {
     pub const OPAQUE_FD: Self = Self(1 << 0);
     pub const OPAQUE_WIN32: Self = Self(1 << 1);
@@ -490,25 +442,25 @@ impl ExternalSemaphoreHandleTypeFlagBits {
     pub const D3D11_FENCE: Self = Self::D3D12_FENCE;
     pub const SYNC_FD: Self = Self(1 << 4);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ExternalSemaphoreFeatureFlags {
     pub const EXPORTABLE: Self = Self(ExternalSemaphoreFeatureFlagBits::EXPORTABLE.0);
     pub const IMPORTABLE: Self = Self(ExternalSemaphoreFeatureFlagBits::IMPORTABLE.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ExternalSemaphoreFeatureFlagBits {
     pub const EXPORTABLE: Self = Self(1 << 0);
     pub const IMPORTABLE: Self = Self(1 << 1);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl SemaphoreImportFlags {
     pub const TEMPORARY: Self = Self(SemaphoreImportFlagBits::TEMPORARY.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl SemaphoreImportFlagBits {
     pub const TEMPORARY: Self = Self(1 << 0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ExternalFenceHandleTypeFlags {
     pub const OPAQUE_FD: Self = Self(ExternalFenceHandleTypeFlagBits::OPAQUE_FD.0);
     pub const OPAQUE_WIN32: Self = Self(ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32.0);
@@ -517,28 +469,28 @@ impl ExternalFenceHandleTypeFlags {
     );
     pub const SYNC_FD: Self = Self(ExternalFenceHandleTypeFlagBits::SYNC_FD.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ExternalFenceHandleTypeFlagBits {
     pub const OPAQUE_FD: Self = Self(1 << 0);
     pub const OPAQUE_WIN32: Self = Self(1 << 1);
     pub const OPAQUE_WIN32_KMT: Self = Self(1 << 2);
     pub const SYNC_FD: Self = Self(1 << 3);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ExternalFenceFeatureFlags {
     pub const EXPORTABLE: Self = Self(ExternalFenceFeatureFlagBits::EXPORTABLE.0);
     pub const IMPORTABLE: Self = Self(ExternalFenceFeatureFlagBits::IMPORTABLE.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl ExternalFenceFeatureFlagBits {
     pub const EXPORTABLE: Self = Self(1 << 0);
     pub const IMPORTABLE: Self = Self(1 << 1);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl FenceImportFlags {
     pub const TEMPORARY: Self = Self(FenceImportFlagBits::TEMPORARY.0);
 }
-///Provided by [`vk1_1`](crate::vk1_1)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl FenceImportFlagBits {
     pub const TEMPORARY: Self = Self(1 << 0);
 }
@@ -3750,6 +3702,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl DescriptorUpdateTemplateType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PointClippingBehavior(pub(crate) i32);
@@ -3767,6 +3729,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl PointClippingBehavior {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct TessellationDomainOrigin(pub(crate) i32);
@@ -3782,6 +3754,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl TessellationDomainOrigin {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -3804,6 +3786,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl SamplerYcbcrModelConversion {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct SamplerYcbcrRange(pub(crate) i32);
@@ -3821,6 +3813,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl SamplerYcbcrRange {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ChromaLocation(pub(crate) i32);
@@ -3836,6 +3838,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ChromaLocation {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

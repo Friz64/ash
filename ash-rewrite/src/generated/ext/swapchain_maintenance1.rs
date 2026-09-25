@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_swapchain_maintenance1.html) · Extension `VK_EXT_swapchain_maintenance1`
 #![doc(alias = "VK_EXT_swapchain_maintenance1")]
-///Provided by [`ext::swapchain_maintenance1`](crate::ext::swapchain_maintenance1)
+///Provided by [VK_EXT_swapchain_maintenance1](crate::ext::swapchain_maintenance1)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR;
     pub const SWAPCHAIN_PRESENT_FENCE_INFO_EXT: Self = Self::SWAPCHAIN_PRESENT_FENCE_INFO_KHR;
@@ -11,13 +11,13 @@ impl crate::vk::StructureType {
     pub const SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_EXT: Self = Self::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR;
     pub const RELEASE_SWAPCHAIN_IMAGES_INFO_EXT: Self = Self::RELEASE_SWAPCHAIN_IMAGES_INFO_KHR;
 }
-///Provided by [`ext::swapchain_maintenance1`](crate::ext::swapchain_maintenance1)
+///Provided by [VK_EXT_swapchain_maintenance1](crate::ext::swapchain_maintenance1)
 impl crate::vk::SwapchainCreateFlagsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self(
         crate::vk::SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_EXT.0,
     );
 }
-///Provided by [`ext::swapchain_maintenance1`](crate::ext::swapchain_maintenance1)
+///Provided by [VK_EXT_swapchain_maintenance1](crate::ext::swapchain_maintenance1)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self::DEFERRED_MEMORY_ALLOCATION_KHR;
 }

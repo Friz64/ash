@@ -2,38 +2,38 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_maintenance1.html) · Extension `VK_KHR_video_maintenance1`
 #![doc(alias = "VK_KHR_video_maintenance1")]
-///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR: Self = Self(1000515000);
     pub const VIDEO_INLINE_QUERY_INFO_KHR: Self = Self(1000515001);
 }
-///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl crate::vk::BufferCreateFlags {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(
         crate::vk::BufferCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR.0,
     );
 }
-///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl crate::vk::BufferCreateFlagBits {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 6);
 }
-///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl crate::vk::ImageCreateFlags {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(
         crate::vk::ImageCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR.0,
     );
 }
-///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl crate::vk::ImageCreateFlagBits {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 20);
 }
-///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl crate::vk::VideoSessionCreateFlagsKHR {
     pub const INLINE_QUERIES_KHR: Self = Self(
         crate::vk::VideoSessionCreateFlagBitsKHR::INLINE_QUERIES_KHR.0,
     );
 }
-///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl crate::vk::VideoSessionCreateFlagBitsKHR {
     pub const INLINE_QUERIES_KHR: Self = Self(1 << 2);
 }

@@ -2,22 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_tensors.html) · Extension `VK_ARM_tensors`
 #![doc(alias = "VK_ARM_tensors")]
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::ImageLayout {
     pub const TENSOR_ALIASING_ARM: Self = Self(1000460000);
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::DescriptorType {
     pub const TENSOR_ARM: Self = Self(1000460000);
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::Format {
     pub const R8_BOOL_ARM: Self = Self(1000460000);
     pub const R16_SFLOAT_FPENCODING_BFLOAT16_ARM: Self = Self(1000460001);
     pub const R8_SFLOAT_FPENCODING_FLOAT8E4M3_ARM: Self = Self(1000460002);
     pub const R8_SFLOAT_FPENCODING_FLOAT8E5M2_ARM: Self = Self(1000460003);
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::StructureType {
     pub const TENSOR_CREATE_INFO_ARM: Self = Self(1000460000);
     pub const TENSOR_VIEW_CREATE_INFO_ARM: Self = Self(1000460001);
@@ -48,35 +48,27 @@ impl crate::vk::StructureType {
     pub const TENSOR_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_ARM: Self = Self(1000460022);
     pub const FRAME_BOUNDARY_TENSORS_ARM: Self = Self(1000460023);
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::ObjectType {
     pub const TENSOR_ARM: Self = Self(1000460000);
     pub const TENSOR_VIEW_ARM: Self = Self(1000460001);
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl TensorTilingARM {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const OPTIMAL_ARM: Self = Self(0);
     pub const LINEAR_ARM: Self = Self(1);
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::ImageUsageFlags {
     pub const TENSOR_ALIASING_ARM: Self = Self(
         crate::vk::ImageUsageFlagBits::TENSOR_ALIASING_ARM.0,
     );
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::ImageUsageFlagBits {
     pub const TENSOR_ALIASING_ARM: Self = Self(1 << 23);
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::FormatFeatureFlags2 {
     pub const TENSOR_SHADER_ARM: Self = Self(
         crate::vk::FormatFeatureFlagBits2::TENSOR_SHADER_ARM.0,
@@ -85,12 +77,12 @@ impl crate::vk::FormatFeatureFlags2 {
         crate::vk::FormatFeatureFlagBits2::TENSOR_IMAGE_ALIASING_ARM.0,
     );
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const TENSOR_SHADER_ARM: Self = Self(1 << 39);
     pub const TENSOR_IMAGE_ALIASING_ARM: Self = Self(1 << 43);
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl TensorCreateFlagsARM {
     pub const MUTABLE_FORMAT_ARM: Self = Self(
         TensorCreateFlagBitsARM::MUTABLE_FORMAT_ARM.0,
@@ -100,13 +92,13 @@ impl TensorCreateFlagsARM {
         TensorCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
     );
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl TensorCreateFlagBitsARM {
     pub const MUTABLE_FORMAT_ARM: Self = Self(1 << 0);
     pub const PROTECTED_ARM: Self = Self(1 << 1);
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 2);
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl TensorUsageFlagsARM {
     pub const SHADER_ARM: Self = Self(TensorUsageFlagBitsARM::SHADER_ARM.0);
     pub const TRANSFER_SRC_ARM: Self = Self(TensorUsageFlagBitsARM::TRANSFER_SRC_ARM.0);
@@ -115,20 +107,20 @@ impl TensorUsageFlagsARM {
         TensorUsageFlagBitsARM::IMAGE_ALIASING_ARM.0,
     );
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl TensorUsageFlagBitsARM {
     pub const SHADER_ARM: Self = Self(1 << 1);
     pub const TRANSFER_SRC_ARM: Self = Self(1 << 2);
     pub const TRANSFER_DST_ARM: Self = Self(1 << 3);
     pub const IMAGE_ALIASING_ARM: Self = Self(1 << 4);
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::TensorViewCreateFlagsARM {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(
         crate::vk::TensorViewCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
     );
 }
-///Provided by [`arm::tensors`](crate::arm::tensors)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::TensorViewCreateFlagBitsARM {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 0);
 }
@@ -1472,6 +1464,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl TensorTilingARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

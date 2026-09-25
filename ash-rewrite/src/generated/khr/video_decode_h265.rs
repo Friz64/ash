@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_h265.html) · Extension `VK_KHR_video_decode_h265`
 #![doc(alias = "VK_KHR_video_decode_h265")]
-///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
+///Provided by [VK_KHR_video_decode_h265](crate::khr::video_decode_h265)
 impl crate::vk::StructureType {
     pub const VIDEO_DECODE_H265_CAPABILITIES_KHR: Self = Self(1000187000);
     pub const VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
@@ -13,13 +13,13 @@ impl crate::vk::StructureType {
     pub const VIDEO_DECODE_H265_PICTURE_INFO_KHR: Self = Self(1000187004);
     pub const VIDEO_DECODE_H265_DPB_SLOT_INFO_KHR: Self = Self(1000187005);
 }
-///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
+///Provided by [VK_KHR_video_decode_h265](crate::khr::video_decode_h265)
 impl crate::vk::VideoCodecOperationFlagsKHR {
     pub const DECODE_H265_KHR: Self = Self(
         crate::vk::VideoCodecOperationFlagBitsKHR::DECODE_H265_KHR.0,
     );
 }
-///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
+///Provided by [VK_KHR_video_decode_h265](crate::khr::video_decode_h265)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_H265_KHR: Self = Self(1 << 1);
 }

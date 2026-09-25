@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_sampler_ycbcr_conversion.html) · Extension `VK_KHR_sampler_ycbcr_conversion`
 #![doc(alias = "VK_KHR_sampler_ycbcr_conversion")]
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::Format {
     pub const G8B8G8R8_422_UNORM_KHR: Self = Self::G8B8G8R8_422_UNORM;
     pub const B8G8R8G8_422_UNORM_KHR: Self = Self::B8G8R8G8_422_UNORM;
@@ -39,7 +39,7 @@ impl crate::vk::Format {
     pub const G16_B16R16_2PLANE_422_UNORM_KHR: Self = Self::G16_B16R16_2PLANE_422_UNORM;
     pub const G16_B16_R16_3PLANE_444_UNORM_KHR: Self = Self::G16_B16_R16_3PLANE_444_UNORM;
 }
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::StructureType {
     pub const SAMPLER_YCBCR_CONVERSION_CREATE_INFO_KHR: Self = Self::SAMPLER_YCBCR_CONVERSION_CREATE_INFO;
     pub const SAMPLER_YCBCR_CONVERSION_INFO_KHR: Self = Self::SAMPLER_YCBCR_CONVERSION_INFO;
@@ -48,15 +48,15 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES;
     pub const SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES_KHR: Self = Self::SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES;
 }
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::ObjectType {
     pub const SAMPLER_YCBCR_CONVERSION_KHR: Self = Self::SAMPLER_YCBCR_CONVERSION;
 }
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::DebugReportObjectTypeEXT {
     pub const SAMPLER_YCBCR_CONVERSION_KHR_EXT: Self = Self::SAMPLER_YCBCR_CONVERSION_EXT;
 }
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::SamplerYcbcrModelConversion {
     pub const RGB_IDENTITY_KHR: Self = Self::RGB_IDENTITY;
     pub const YCBCR_IDENTITY_KHR: Self = Self::YCBCR_IDENTITY;
@@ -64,25 +64,25 @@ impl crate::vk::SamplerYcbcrModelConversion {
     pub const YCBCR_601_KHR: Self = Self::YCBCR_601;
     pub const YCBCR_2020_KHR: Self = Self::YCBCR_2020;
 }
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::SamplerYcbcrRange {
     pub const ITU_FULL_KHR: Self = Self::ITU_FULL;
     pub const ITU_NARROW_KHR: Self = Self::ITU_NARROW;
 }
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::ChromaLocation {
     pub const COSITED_EVEN_KHR: Self = Self::COSITED_EVEN;
     pub const MIDPOINT_KHR: Self = Self::MIDPOINT;
 }
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::ImageCreateFlags {
     pub const DISJOINT_KHR: Self = Self(crate::vk::ImageCreateFlagBits::DISJOINT_KHR.0);
 }
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::ImageCreateFlagBits {
     pub const DISJOINT_KHR: Self = Self::DISJOINT;
 }
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::FormatFeatureFlags {
     pub const MIDPOINT_CHROMA_SAMPLES_KHR: Self = Self(
         crate::vk::FormatFeatureFlagBits::MIDPOINT_CHROMA_SAMPLES_KHR.0,
@@ -110,7 +110,7 @@ impl crate::vk::FormatFeatureFlags {
         crate::vk::FormatFeatureFlagBits::COSITED_CHROMA_SAMPLES_KHR.0,
     );
 }
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::FormatFeatureFlagBits {
     pub const MIDPOINT_CHROMA_SAMPLES_KHR: Self = Self::MIDPOINT_CHROMA_SAMPLES;
     pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR: Self = Self::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER;
@@ -120,13 +120,13 @@ impl crate::vk::FormatFeatureFlagBits {
     pub const DISJOINT_KHR: Self = Self::DISJOINT;
     pub const COSITED_CHROMA_SAMPLES_KHR: Self = Self::COSITED_CHROMA_SAMPLES;
 }
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::ImageAspectFlags {
     pub const PLANE_0_KHR: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_0_KHR.0);
     pub const PLANE_1_KHR: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_1_KHR.0);
     pub const PLANE_2_KHR: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_2_KHR.0);
 }
-///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::ImageAspectFlagBits {
     pub const PLANE_0_KHR: Self = Self::PLANE_0;
     pub const PLANE_1_KHR: Self = Self::PLANE_1;

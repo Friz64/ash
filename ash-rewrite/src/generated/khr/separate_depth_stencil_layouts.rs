@@ -2,14 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_separate_depth_stencil_layouts.html) · Extension `VK_KHR_separate_depth_stencil_layouts`
 #![doc(alias = "VK_KHR_separate_depth_stencil_layouts")]
-///Provided by [`khr::separate_depth_stencil_layouts`](crate::khr::separate_depth_stencil_layouts)
+///Provided by [VK_KHR_separate_depth_stencil_layouts](crate::khr::separate_depth_stencil_layouts)
 impl crate::vk::ImageLayout {
     pub const DEPTH_ATTACHMENT_OPTIMAL_KHR: Self = Self::DEPTH_ATTACHMENT_OPTIMAL;
     pub const DEPTH_READ_ONLY_OPTIMAL_KHR: Self = Self::DEPTH_READ_ONLY_OPTIMAL;
     pub const STENCIL_ATTACHMENT_OPTIMAL_KHR: Self = Self::STENCIL_ATTACHMENT_OPTIMAL;
     pub const STENCIL_READ_ONLY_OPTIMAL_KHR: Self = Self::STENCIL_READ_ONLY_OPTIMAL;
 }
-///Provided by [`khr::separate_depth_stencil_layouts`](crate::khr::separate_depth_stencil_layouts)
+///Provided by [VK_KHR_separate_depth_stencil_layouts](crate::khr::separate_depth_stencil_layouts)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES;
     pub const ATTACHMENT_REFERENCE_STENCIL_LAYOUT_KHR: Self = Self::ATTACHMENT_REFERENCE_STENCIL_LAYOUT;

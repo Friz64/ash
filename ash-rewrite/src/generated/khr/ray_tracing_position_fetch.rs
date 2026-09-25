@@ -2,19 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_tracing_position_fetch.html) · Extension `VK_KHR_ray_tracing_position_fetch`
 #![doc(alias = "VK_KHR_ray_tracing_position_fetch")]
-///Provided by [`khr::ray_tracing_position_fetch`](crate::khr::ray_tracing_position_fetch)
+///Provided by [VK_KHR_ray_tracing_position_fetch](crate::khr::ray_tracing_position_fetch)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_TRACING_POSITION_FETCH_FEATURES_KHR: Self = Self(
         1000481000,
     );
 }
-///Provided by [`khr::ray_tracing_position_fetch`](crate::khr::ray_tracing_position_fetch)
+///Provided by [VK_KHR_ray_tracing_position_fetch](crate::khr::ray_tracing_position_fetch)
 impl crate::vk::BuildAccelerationStructureFlagsKHR {
     pub const ALLOW_DATA_ACCESS_KHR: Self = Self(
         crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_DATA_ACCESS_KHR.0,
     );
 }
-///Provided by [`khr::ray_tracing_position_fetch`](crate::khr::ray_tracing_position_fetch)
+///Provided by [VK_KHR_ray_tracing_position_fetch](crate::khr::ray_tracing_position_fetch)
 impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_DATA_ACCESS_KHR: Self = Self(1 << 11);
 }

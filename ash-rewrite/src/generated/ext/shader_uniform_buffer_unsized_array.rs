@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_uniform_buffer_unsized_array.html) · Extension `VK_EXT_shader_uniform_buffer_unsized_array`
 #![doc(alias = "VK_EXT_shader_uniform_buffer_unsized_array")]
-///Provided by [`ext::shader_uniform_buffer_unsized_array`](crate::ext::shader_uniform_buffer_unsized_array)
+///Provided by [VK_EXT_shader_uniform_buffer_unsized_array](crate::ext::shader_uniform_buffer_unsized_array)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT: Self = Self(
         1000642000,

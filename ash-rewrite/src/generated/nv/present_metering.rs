@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_present_metering.html) · Extension `VK_NV_present_metering`
 #![doc(alias = "VK_NV_present_metering")]
-///Provided by [`nv::present_metering`](crate::nv::present_metering)
+///Provided by [VK_NV_present_metering](crate::nv::present_metering)
 impl crate::vk::StructureType {
     pub const SET_PRESENT_CONFIG_NV: Self = Self(1000613000);
     pub const PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV: Self = Self(1000613001);

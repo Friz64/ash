@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_representative_fragment_test.html) · Extension `VK_NV_representative_fragment_test`
 #![doc(alias = "VK_NV_representative_fragment_test")]
-///Provided by [`nv::representative_fragment_test`](crate::nv::representative_fragment_test)
+///Provided by [VK_NV_representative_fragment_test](crate::nv::representative_fragment_test)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV: Self = Self(
         1000166000,

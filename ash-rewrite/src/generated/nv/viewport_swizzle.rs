@@ -2,20 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_viewport_swizzle.html) · Extension `VK_NV_viewport_swizzle`
 #![doc(alias = "VK_NV_viewport_swizzle")]
-///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
+///Provided by [VK_NV_viewport_swizzle](crate::nv::viewport_swizzle)
 impl crate::vk::StructureType {
     pub const PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV: Self = Self(1000098000);
 }
-///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
+///Provided by [VK_NV_viewport_swizzle](crate::nv::viewport_swizzle)
 impl ViewportCoordinateSwizzleNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const POSITIVE_X_NV: Self = Self(0);
     pub const NEGATIVE_X_NV: Self = Self(1);
     pub const POSITIVE_Y_NV: Self = Self(2);
@@ -122,6 +114,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ViewportCoordinateSwizzleNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

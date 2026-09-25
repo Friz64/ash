@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_float_controls.html) · Extension `VK_KHR_shader_float_controls`
 #![doc(alias = "VK_KHR_shader_float_controls")]
-///Provided by [`khr::shader_float_controls`](crate::khr::shader_float_controls)
+///Provided by [VK_KHR_shader_float_controls](crate::khr::shader_float_controls)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES;
 }
-///Provided by [`khr::shader_float_controls`](crate::khr::shader_float_controls)
+///Provided by [VK_KHR_shader_float_controls](crate::khr::shader_float_controls)
 impl crate::vk::ShaderFloatControlsIndependence {
     pub const _32_ONLY_KHR: Self = Self::_32_ONLY;
     pub const ALL_KHR: Self = Self::ALL;

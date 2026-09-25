@@ -2,13 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface_maintenance1.html) · Extension `VK_KHR_surface_maintenance1`
 #![doc(alias = "VK_KHR_surface_maintenance1")]
-///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+///Provided by [VK_KHR_surface_maintenance1](crate::khr::surface_maintenance1)
 impl crate::vk::StructureType {
     pub const SURFACE_PRESENT_MODE_KHR: Self = Self(1000274000);
     pub const SURFACE_PRESENT_SCALING_CAPABILITIES_KHR: Self = Self(1000274001);
     pub const SURFACE_PRESENT_MODE_COMPATIBILITY_KHR: Self = Self(1000274002);
 }
-///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+///Provided by [VK_KHR_surface_maintenance1](crate::khr::surface_maintenance1)
 impl PresentScalingFlagsKHR {
     pub const ONE_TO_ONE_KHR: Self = Self(PresentScalingFlagBitsKHR::ONE_TO_ONE_KHR.0);
     pub const ONE_TO_ONE_EXT: Self = Self(PresentScalingFlagBitsKHR::ONE_TO_ONE_EXT.0);
@@ -21,7 +21,7 @@ impl PresentScalingFlagsKHR {
     pub const STRETCH_KHR: Self = Self(PresentScalingFlagBitsKHR::STRETCH_KHR.0);
     pub const STRETCH_EXT: Self = Self(PresentScalingFlagBitsKHR::STRETCH_EXT.0);
 }
-///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+///Provided by [VK_KHR_surface_maintenance1](crate::khr::surface_maintenance1)
 impl PresentScalingFlagBitsKHR {
     pub const ONE_TO_ONE_KHR: Self = Self(1 << 0);
     pub const ONE_TO_ONE_EXT: Self = Self::ONE_TO_ONE_KHR;
@@ -30,7 +30,7 @@ impl PresentScalingFlagBitsKHR {
     pub const STRETCH_KHR: Self = Self(1 << 2);
     pub const STRETCH_EXT: Self = Self::STRETCH_KHR;
 }
-///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+///Provided by [VK_KHR_surface_maintenance1](crate::khr::surface_maintenance1)
 impl PresentGravityFlagsKHR {
     pub const MIN_KHR: Self = Self(PresentGravityFlagBitsKHR::MIN_KHR.0);
     pub const MIN_EXT: Self = Self(PresentGravityFlagBitsKHR::MIN_EXT.0);
@@ -39,7 +39,7 @@ impl PresentGravityFlagsKHR {
     pub const CENTERED_KHR: Self = Self(PresentGravityFlagBitsKHR::CENTERED_KHR.0);
     pub const CENTERED_EXT: Self = Self(PresentGravityFlagBitsKHR::CENTERED_EXT.0);
 }
-///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+///Provided by [VK_KHR_surface_maintenance1](crate::khr::surface_maintenance1)
 impl PresentGravityFlagBitsKHR {
     pub const MIN_KHR: Self = Self(1 << 0);
     pub const MIN_EXT: Self = Self::MIN_KHR;

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_properties.html) · Extension `VK_EXT_pipeline_properties`
 #![doc(alias = "VK_EXT_pipeline_properties")]
-///Provided by [`ext::pipeline_properties`](crate::ext::pipeline_properties)
+///Provided by [VK_EXT_pipeline_properties](crate::ext::pipeline_properties)
 impl crate::vk::StructureType {
     pub const PIPELINE_PROPERTIES_IDENTIFIER_EXT: Self = Self(1000372000);
     pub const PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT: Self = Self(1000372001);

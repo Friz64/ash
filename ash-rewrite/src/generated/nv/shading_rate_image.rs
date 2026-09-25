@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shading_rate_image.html) · Extension `VK_NV_shading_rate_image`
 #![doc(alias = "VK_NV_shading_rate_image")]
-///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl crate::vk::ImageLayout {
     pub const SHADING_RATE_OPTIMAL_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR;
 }
-///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl crate::vk::StructureType {
     pub const PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV: Self = Self(
         1000164000,
@@ -17,21 +17,13 @@ impl crate::vk::StructureType {
         1000164005,
     );
 }
-///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl crate::vk::DynamicState {
     pub const VIEWPORT_SHADING_RATE_PALETTE_NV: Self = Self(1000164004);
     pub const VIEWPORT_COARSE_SAMPLE_ORDER_NV: Self = Self(1000164006);
 }
-///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl ShadingRatePaletteEntryNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const NO_INVOCATIONS_NV: Self = Self(0);
     pub const _16_INVOCATIONS_PER_PIXEL_NV: Self = Self(1);
     pub const _8_INVOCATIONS_PER_PIXEL_NV: Self = Self(2);
@@ -45,48 +37,40 @@ impl ShadingRatePaletteEntryNV {
     pub const _1_INVOCATION_PER_2X4_PIXELS_NV: Self = Self(10);
     pub const _1_INVOCATION_PER_4X4_PIXELS_NV: Self = Self(11);
 }
-///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl CoarseSampleOrderTypeNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DEFAULT_NV: Self = Self(0);
     pub const CUSTOM_NV: Self = Self(1);
     pub const PIXEL_MAJOR_NV: Self = Self(2);
     pub const SAMPLE_MAJOR_NV: Self = Self(3);
 }
-///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl crate::vk::AccessFlags {
     pub const SHADING_RATE_IMAGE_READ_NV: Self = Self(
         crate::vk::AccessFlagBits::SHADING_RATE_IMAGE_READ_NV.0,
     );
 }
-///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl crate::vk::AccessFlagBits {
     pub const SHADING_RATE_IMAGE_READ_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR;
 }
-///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl crate::vk::ImageUsageFlags {
     pub const SHADING_RATE_IMAGE_NV: Self = Self(
         crate::vk::ImageUsageFlagBits::SHADING_RATE_IMAGE_NV.0,
     );
 }
-///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl crate::vk::ImageUsageFlagBits {
     pub const SHADING_RATE_IMAGE_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
 }
-///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl crate::vk::PipelineStageFlags {
     pub const SHADING_RATE_IMAGE_NV: Self = Self(
         crate::vk::PipelineStageFlagBits::SHADING_RATE_IMAGE_NV.0,
     );
 }
-///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl crate::vk::PipelineStageFlagBits {
     pub const SHADING_RATE_IMAGE_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
 }
@@ -483,6 +467,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl ShadingRatePaletteEntryNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct CoarseSampleOrderTypeNV(pub(crate) i32);
@@ -500,6 +494,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl CoarseSampleOrderTypeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type PFN_vkCmdBindShadingRateImageNV = unsafe extern "system" fn(

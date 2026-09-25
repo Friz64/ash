@@ -2,20 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_3.html) · Vulkan version 1.3
 #![doc(alias = "VK_VERSION_1_3")]
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::ImageLayout {
     pub const READ_ONLY_OPTIMAL: Self = Self(1000314000);
     pub const ATTACHMENT_OPTIMAL: Self = Self(1000314001);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::AttachmentStoreOp {
     pub const NONE: Self = Self(1000301000);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::DescriptorType {
     pub const INLINE_UNIFORM_BLOCK: Self = Self(1000138000);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::Format {
     pub const G8_B8R8_2PLANE_444_UNORM: Self = Self(1000330000);
     pub const G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16: Self = Self(1000330001);
@@ -38,7 +38,7 @@ impl crate::vk::Format {
     pub const ASTC_12X10_SFLOAT_BLOCK: Self = Self(1000066012);
     pub const ASTC_12X12_SFLOAT_BLOCK: Self = Self(1000066013);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VULKAN_1_3_FEATURES: Self = Self(53);
     pub const PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES: Self = Self(54);
@@ -109,11 +109,11 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES: Self = Self(1000044003);
     pub const COMMAND_BUFFER_INHERITANCE_RENDERING_INFO: Self = Self(1000044004);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::Result {
     pub const PIPELINE_COMPILE_REQUIRED: Self = Self(1000297000);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::DynamicState {
     pub const CULL_MODE: Self = Self(1000267000);
     pub const FRONT_FACE: Self = Self(1000267001);
@@ -131,21 +131,21 @@ impl crate::vk::DynamicState {
     pub const DEPTH_BIAS_ENABLE: Self = Self(1000377002);
     pub const PRIMITIVE_RESTART_ENABLE: Self = Self(1000377004);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::ObjectType {
     pub const PRIVATE_DATA_SLOT: Self = Self(1000295000);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::PipelineCacheCreateFlags {
     pub const EXTERNALLY_SYNCHRONIZED: Self = Self(
         crate::vk::PipelineCacheCreateFlagBits::EXTERNALLY_SYNCHRONIZED.0,
     );
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::PipelineCacheCreateFlagBits {
     pub const EXTERNALLY_SYNCHRONIZED: Self = Self(1 << 0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::PipelineShaderStageCreateFlags {
     pub const ALLOW_VARYING_SUBGROUP_SIZE: Self = Self(
         crate::vk::PipelineShaderStageCreateFlagBits::ALLOW_VARYING_SUBGROUP_SIZE.0,
@@ -154,20 +154,20 @@ impl crate::vk::PipelineShaderStageCreateFlags {
         crate::vk::PipelineShaderStageCreateFlagBits::REQUIRE_FULL_SUBGROUPS.0,
     );
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::PipelineShaderStageCreateFlagBits {
     pub const ALLOW_VARYING_SUBGROUP_SIZE: Self = Self(1 << 0);
     pub const REQUIRE_FULL_SUBGROUPS: Self = Self(1 << 1);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::AccessFlags {
     pub const NONE: Self = Self(crate::vk::AccessFlagBits::NONE.0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::AccessFlagBits {
     pub const NONE: Self = Self(0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::PipelineCreateFlags {
     pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED: Self = Self(
         crate::vk::PipelineCreateFlagBits::FAIL_ON_PIPELINE_COMPILE_REQUIRED.0,
@@ -176,36 +176,36 @@ impl crate::vk::PipelineCreateFlags {
         crate::vk::PipelineCreateFlagBits::EARLY_RETURN_ON_FAILURE.0,
     );
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::PipelineCreateFlagBits {
     pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED: Self = Self(1 << 8);
     pub const EARLY_RETURN_ON_FAILURE: Self = Self(1 << 9);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::EventCreateFlags {
     pub const DEVICE_ONLY: Self = Self(crate::vk::EventCreateFlagBits::DEVICE_ONLY.0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::EventCreateFlagBits {
     pub const DEVICE_ONLY: Self = Self(1 << 0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::ImageAspectFlags {
     pub const NONE: Self = Self(crate::vk::ImageAspectFlagBits::NONE.0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::ImageAspectFlagBits {
     pub const NONE: Self = Self(0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::PipelineStageFlags {
     pub const NONE: Self = Self(crate::vk::PipelineStageFlagBits::NONE.0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl crate::vk::PipelineStageFlagBits {
     pub const NONE: Self = Self(0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl PipelineCreationFeedbackFlags {
     pub const VALID: Self = Self(PipelineCreationFeedbackFlagBits::VALID.0);
     pub const APPLICATION_PIPELINE_CACHE_HIT: Self = Self(
@@ -215,13 +215,13 @@ impl PipelineCreationFeedbackFlags {
         PipelineCreationFeedbackFlagBits::BASE_PIPELINE_ACCELERATION.0,
     );
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl PipelineCreationFeedbackFlagBits {
     pub const VALID: Self = Self(1 << 0);
     pub const APPLICATION_PIPELINE_CACHE_HIT: Self = Self(1 << 1);
     pub const BASE_PIPELINE_ACCELERATION: Self = Self(1 << 2);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl AccessFlags2 {
     pub const NONE: Self = Self(AccessFlagBits2::NONE.0);
     pub const INDIRECT_COMMAND_READ: Self = Self(
@@ -259,7 +259,7 @@ impl AccessFlags2 {
     pub const SHADER_STORAGE_READ: Self = Self(AccessFlagBits2::SHADER_STORAGE_READ.0);
     pub const SHADER_STORAGE_WRITE: Self = Self(AccessFlagBits2::SHADER_STORAGE_WRITE.0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl AccessFlagBits2 {
     pub const NONE: Self = Self(0);
     pub const INDIRECT_COMMAND_READ: Self = Self(1 << 0);
@@ -283,7 +283,7 @@ impl AccessFlagBits2 {
     pub const SHADER_STORAGE_READ: Self = Self(1 << 33);
     pub const SHADER_STORAGE_WRITE: Self = Self(1 << 34);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl PipelineStageFlags2 {
     pub const NONE: Self = Self(PipelineStageFlagBits2::NONE.0);
     pub const TOP_OF_PIPE: Self = Self(PipelineStageFlagBits2::TOP_OF_PIPE.0);
@@ -326,7 +326,7 @@ impl PipelineStageFlags2 {
         PipelineStageFlagBits2::PRE_RASTERIZATION_SHADERS.0,
     );
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl PipelineStageFlagBits2 {
     pub const NONE: Self = Self(0);
     pub const TOP_OF_PIPE: Self = Self(1 << 0);
@@ -355,7 +355,7 @@ impl PipelineStageFlagBits2 {
     pub const VERTEX_ATTRIBUTE_INPUT: Self = Self(1 << 37);
     pub const PRE_RASTERIZATION_SHADERS: Self = Self(1 << 38);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl FormatFeatureFlags2 {
     pub const SAMPLED_IMAGE: Self = Self(FormatFeatureFlagBits2::SAMPLED_IMAGE.0);
     pub const STORAGE_IMAGE: Self = Self(FormatFeatureFlagBits2::STORAGE_IMAGE.0);
@@ -424,7 +424,7 @@ impl FormatFeatureFlags2 {
         FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_CUBIC.0,
     );
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl FormatFeatureFlagBits2 {
     pub const SAMPLED_IMAGE: Self = Self(1 << 0);
     pub const STORAGE_IMAGE: Self = Self(1 << 1);
@@ -460,7 +460,7 @@ impl FormatFeatureFlagBits2 {
     pub const SAMPLED_IMAGE_DEPTH_COMPARISON: Self = Self(1 << 33);
     pub const SAMPLED_IMAGE_FILTER_CUBIC: Self = Self(1 << 13);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl RenderingFlags {
     pub const CONTENTS_SECONDARY_COMMAND_BUFFERS: Self = Self(
         RenderingFlagBits::CONTENTS_SECONDARY_COMMAND_BUFFERS.0,
@@ -468,13 +468,13 @@ impl RenderingFlags {
     pub const SUSPENDING: Self = Self(RenderingFlagBits::SUSPENDING.0);
     pub const RESUMING: Self = Self(RenderingFlagBits::RESUMING.0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl RenderingFlagBits {
     pub const CONTENTS_SECONDARY_COMMAND_BUFFERS: Self = Self(1 << 0);
     pub const SUSPENDING: Self = Self(1 << 1);
     pub const RESUMING: Self = Self(1 << 2);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl ToolPurposeFlags {
     pub const VALIDATION: Self = Self(ToolPurposeFlagBits::VALIDATION.0);
     pub const PROFILING: Self = Self(ToolPurposeFlagBits::PROFILING.0);
@@ -484,7 +484,7 @@ impl ToolPurposeFlags {
     );
     pub const MODIFYING_FEATURES: Self = Self(ToolPurposeFlagBits::MODIFYING_FEATURES.0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl ToolPurposeFlagBits {
     pub const VALIDATION: Self = Self(1 << 0);
     pub const PROFILING: Self = Self(1 << 1);
@@ -492,11 +492,11 @@ impl ToolPurposeFlagBits {
     pub const ADDITIONAL_FEATURES: Self = Self(1 << 3);
     pub const MODIFYING_FEATURES: Self = Self(1 << 4);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl SubmitFlags {
     pub const PROTECTED: Self = Self(SubmitFlagBits::PROTECTED.0);
 }
-///Provided by [`vk1_3`](crate::vk1_3)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl SubmitFlagBits {
     pub const PROTECTED: Self = Self(1 << 0);
 }

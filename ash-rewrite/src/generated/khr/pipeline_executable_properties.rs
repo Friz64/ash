@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_executable_properties.html) · Extension `VK_KHR_pipeline_executable_properties`
 #![doc(alias = "VK_KHR_pipeline_executable_properties")]
-///Provided by [`khr::pipeline_executable_properties`](crate::khr::pipeline_executable_properties)
+///Provided by [VK_KHR_pipeline_executable_properties](crate::khr::pipeline_executable_properties)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR: Self = Self(
         1000269000,
@@ -13,22 +13,14 @@ impl crate::vk::StructureType {
     pub const PIPELINE_EXECUTABLE_STATISTIC_KHR: Self = Self(1000269004);
     pub const PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR: Self = Self(1000269005);
 }
-///Provided by [`khr::pipeline_executable_properties`](crate::khr::pipeline_executable_properties)
+///Provided by [VK_KHR_pipeline_executable_properties](crate::khr::pipeline_executable_properties)
 impl PipelineExecutableStatisticFormatKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const BOOL32_KHR: Self = Self(0);
     pub const INT64_KHR: Self = Self(1);
     pub const UINT64_KHR: Self = Self(2);
     pub const FLOAT64_KHR: Self = Self(3);
 }
-///Provided by [`khr::pipeline_executable_properties`](crate::khr::pipeline_executable_properties)
+///Provided by [VK_KHR_pipeline_executable_properties](crate::khr::pipeline_executable_properties)
 impl crate::vk::PipelineCreateFlags {
     pub const CAPTURE_STATISTICS_KHR: Self = Self(
         crate::vk::PipelineCreateFlagBits::CAPTURE_STATISTICS_KHR.0,
@@ -37,7 +29,7 @@ impl crate::vk::PipelineCreateFlags {
         crate::vk::PipelineCreateFlagBits::CAPTURE_INTERNAL_REPRESENTATIONS_KHR.0,
     );
 }
-///Provided by [`khr::pipeline_executable_properties`](crate::khr::pipeline_executable_properties)
+///Provided by [VK_KHR_pipeline_executable_properties](crate::khr::pipeline_executable_properties)
 impl crate::vk::PipelineCreateFlagBits {
     pub const CAPTURE_STATISTICS_KHR: Self = Self(1 << 6);
     pub const CAPTURE_INTERNAL_REPRESENTATIONS_KHR: Self = Self(1 << 7);
@@ -502,6 +494,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl PipelineExecutableStatisticFormatKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type PFN_vkGetPipelineExecutablePropertiesKHR = unsafe extern "system" fn(

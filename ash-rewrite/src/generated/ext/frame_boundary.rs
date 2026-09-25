@@ -2,16 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_frame_boundary.html) · Extension `VK_EXT_frame_boundary`
 #![doc(alias = "VK_EXT_frame_boundary")]
-///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
+///Provided by [VK_EXT_frame_boundary](crate::ext::frame_boundary)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT: Self = Self(1000375000);
     pub const FRAME_BOUNDARY_EXT: Self = Self(1000375001);
 }
-///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
+///Provided by [VK_EXT_frame_boundary](crate::ext::frame_boundary)
 impl FrameBoundaryFlagsEXT {
     pub const FRAME_END_EXT: Self = Self(FrameBoundaryFlagBitsEXT::FRAME_END_EXT.0);
 }
-///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
+///Provided by [VK_EXT_frame_boundary](crate::ext::frame_boundary)
 impl FrameBoundaryFlagBitsEXT {
     pub const FRAME_END_EXT: Self = Self(1 << 0);
 }

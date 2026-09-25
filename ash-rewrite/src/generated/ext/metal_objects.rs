@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_metal_objects.html) · Extension `VK_EXT_metal_objects`
 #![doc(alias = "VK_EXT_metal_objects")]
-///Provided by [`ext::metal_objects`](crate::ext::metal_objects)
+///Provided by [VK_EXT_metal_objects](crate::ext::metal_objects)
 impl crate::vk::StructureType {
     pub const EXPORT_METAL_OBJECT_CREATE_INFO_EXT: Self = Self(1000311000);
     pub const EXPORT_METAL_OBJECTS_INFO_EXT: Self = Self(1000311001);
@@ -17,7 +17,7 @@ impl crate::vk::StructureType {
     pub const EXPORT_METAL_SHARED_EVENT_INFO_EXT: Self = Self(1000311010);
     pub const IMPORT_METAL_SHARED_EVENT_INFO_EXT: Self = Self(1000311011);
 }
-///Provided by [`ext::metal_objects`](crate::ext::metal_objects)
+///Provided by [VK_EXT_metal_objects](crate::ext::metal_objects)
 impl ExportMetalObjectTypeFlagsEXT {
     pub const METAL_DEVICE_EXT: Self = Self(
         ExportMetalObjectTypeFlagBitsEXT::METAL_DEVICE_EXT.0,
@@ -38,7 +38,7 @@ impl ExportMetalObjectTypeFlagsEXT {
         ExportMetalObjectTypeFlagBitsEXT::METAL_SHARED_EVENT_EXT.0,
     );
 }
-///Provided by [`ext::metal_objects`](crate::ext::metal_objects)
+///Provided by [VK_EXT_metal_objects](crate::ext::metal_objects)
 impl ExportMetalObjectTypeFlagBitsEXT {
     pub const METAL_DEVICE_EXT: Self = Self(1 << 0);
     pub const METAL_COMMAND_QUEUE_EXT: Self = Self(1 << 1);

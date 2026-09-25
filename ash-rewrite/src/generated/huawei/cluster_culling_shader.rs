@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_cluster_culling_shader.html) · Extension `VK_HUAWEI_cluster_culling_shader`
 #![doc(alias = "VK_HUAWEI_cluster_culling_shader")]
-///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI: Self = Self(
         1000404000,
@@ -14,34 +14,34 @@ impl crate::vk::StructureType {
         1000404002,
     );
 }
-///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl crate::vk::ShaderStageFlags {
     pub const CLUSTER_CULLING_HUAWEI: Self = Self(
         crate::vk::ShaderStageFlagBits::CLUSTER_CULLING_HUAWEI.0,
     );
 }
-///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl crate::vk::ShaderStageFlagBits {
     pub const CLUSTER_CULLING_HUAWEI: Self = Self(1 << 19);
 }
-///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl crate::vk::QueryPipelineStatisticFlags {
     pub const CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI: Self = Self(
         crate::vk::QueryPipelineStatisticFlagBits::CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI
             .0,
     );
 }
-///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl crate::vk::QueryPipelineStatisticFlagBits {
     pub const CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI: Self = Self(1 << 13);
 }
-///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl crate::vk::PipelineStageFlags2 {
     pub const CLUSTER_CULLING_SHADER_HUAWEI: Self = Self(
         crate::vk::PipelineStageFlagBits2::CLUSTER_CULLING_SHADER_HUAWEI.0,
     );
 }
-///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const CLUSTER_CULLING_SHADER_HUAWEI: Self = Self(1 << 41);
 }

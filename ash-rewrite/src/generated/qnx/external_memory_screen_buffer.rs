@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_external_memory_screen_buffer.html) · Extension `VK_QNX_external_memory_screen_buffer`
 #![doc(alias = "VK_QNX_external_memory_screen_buffer")]
-///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
+///Provided by [VK_QNX_external_memory_screen_buffer](crate::qnx::external_memory_screen_buffer)
 impl crate::vk::StructureType {
     pub const SCREEN_BUFFER_PROPERTIES_QNX: Self = Self(1000529000);
     pub const SCREEN_BUFFER_FORMAT_PROPERTIES_QNX: Self = Self(1000529001);
@@ -12,13 +12,13 @@ impl crate::vk::StructureType {
         1000529004,
     );
 }
-///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
+///Provided by [VK_QNX_external_memory_screen_buffer](crate::qnx::external_memory_screen_buffer)
 impl crate::vk::ExternalMemoryHandleTypeFlags {
     pub const SCREEN_BUFFER_QNX: Self = Self(
         crate::vk::ExternalMemoryHandleTypeFlagBits::SCREEN_BUFFER_QNX.0,
     );
 }
-///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
+///Provided by [VK_QNX_external_memory_screen_buffer](crate::qnx::external_memory_screen_buffer)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const SCREEN_BUFFER_QNX: Self = Self(1 << 14);
 }

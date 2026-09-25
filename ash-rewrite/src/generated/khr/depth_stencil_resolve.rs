@@ -2,12 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_depth_stencil_resolve.html) · Extension `VK_KHR_depth_stencil_resolve`
 #![doc(alias = "VK_KHR_depth_stencil_resolve")]
-///Provided by [`khr::depth_stencil_resolve`](crate::khr::depth_stencil_resolve)
+///Provided by [VK_KHR_depth_stencil_resolve](crate::khr::depth_stencil_resolve)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES;
     pub const SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR: Self = Self::SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE;
 }
-///Provided by [`khr::depth_stencil_resolve`](crate::khr::depth_stencil_resolve)
+///Provided by [VK_KHR_depth_stencil_resolve](crate::khr::depth_stencil_resolve)
 impl crate::vk::ResolveModeFlags {
     pub const NONE_KHR: Self = Self(crate::vk::ResolveModeFlagBits::NONE_KHR.0);
     pub const SAMPLE_ZERO_KHR: Self = Self(
@@ -17,7 +17,7 @@ impl crate::vk::ResolveModeFlags {
     pub const MIN_KHR: Self = Self(crate::vk::ResolveModeFlagBits::MIN_KHR.0);
     pub const MAX_KHR: Self = Self(crate::vk::ResolveModeFlagBits::MAX_KHR.0);
 }
-///Provided by [`khr::depth_stencil_resolve`](crate::khr::depth_stencil_resolve)
+///Provided by [VK_KHR_depth_stencil_resolve](crate::khr::depth_stencil_resolve)
 impl crate::vk::ResolveModeFlagBits {
     pub const NONE_KHR: Self = Self::NONE;
     pub const SAMPLE_ZERO_KHR: Self = Self::SAMPLE_ZERO;

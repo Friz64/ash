@@ -2,16 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_0.html) · Vulkan version 1.0
 #![doc(alias = "VK_VERSION_1_0")]
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageLayout {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     ///Implicit layout an image is when its contents are undefined due to various reasons (e.g. right after creation)
     pub const UNDEFINED: Self = Self(0);
     ///General layout when image can be used for any kind of access
@@ -31,70 +23,30 @@ impl ImageLayout {
     ///Initial layout used when the data is populated by the CPU
     pub const PREINITIALIZED: Self = Self(8);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl AttachmentLoadOp {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const LOAD: Self = Self(0);
     pub const CLEAR: Self = Self(1);
     pub const DONT_CARE: Self = Self(2);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl AttachmentStoreOp {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const STORE: Self = Self(0);
     pub const DONT_CARE: Self = Self(1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const _1D: Self = Self(0);
     pub const _2D: Self = Self(1);
     pub const _3D: Self = Self(2);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageTiling {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const OPTIMAL: Self = Self(0);
     pub const LINEAR: Self = Self(1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageViewType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const _1D: Self = Self(0);
     pub const _2D: Self = Self(1);
     pub const _3D: Self = Self(2);
@@ -103,29 +55,13 @@ impl ImageViewType {
     pub const _2D_ARRAY: Self = Self(5);
     pub const CUBE_ARRAY: Self = Self(6);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl CommandBufferLevel {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const PRIMARY: Self = Self(0);
     pub const SECONDARY: Self = Self(1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ComponentSwizzle {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const IDENTITY: Self = Self(0);
     pub const ZERO: Self = Self(1);
     pub const ONE: Self = Self(2);
@@ -134,16 +70,8 @@ impl ComponentSwizzle {
     pub const B: Self = Self(5);
     pub const A: Self = Self(6);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl DescriptorType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const SAMPLER: Self = Self(0);
     pub const COMBINED_IMAGE_SAMPLER: Self = Self(1);
     pub const SAMPLED_IMAGE: Self = Self(2);
@@ -156,31 +84,15 @@ impl DescriptorType {
     pub const STORAGE_BUFFER_DYNAMIC: Self = Self(9);
     pub const INPUT_ATTACHMENT: Self = Self(10);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl QueryType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const OCCLUSION: Self = Self(0);
     ///Optional
     pub const PIPELINE_STATISTICS: Self = Self(1);
     pub const TIMESTAMP: Self = Self(2);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl BorderColor {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const FLOAT_TRANSPARENT_BLACK: Self = Self(0);
     pub const INT_TRANSPARENT_BLACK: Self = Self(1);
     pub const FLOAT_OPAQUE_BLACK: Self = Self(2);
@@ -188,41 +100,17 @@ impl BorderColor {
     pub const FLOAT_OPAQUE_WHITE: Self = Self(4);
     pub const INT_OPAQUE_WHITE: Self = Self(5);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl PipelineBindPoint {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const GRAPHICS: Self = Self(0);
     pub const COMPUTE: Self = Self(1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl PipelineCacheHeaderVersion {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const ONE: Self = Self(1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl PrimitiveTopology {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const POINT_LIST: Self = Self(0);
     pub const LINE_LIST: Self = Self(1);
     pub const LINE_STRIP: Self = Self(2);
@@ -235,85 +123,37 @@ impl PrimitiveTopology {
     pub const TRIANGLE_STRIP_WITH_ADJACENCY: Self = Self(9);
     pub const PATCH_LIST: Self = Self(10);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SharingMode {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const EXCLUSIVE: Self = Self(0);
     pub const CONCURRENT: Self = Self(1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl IndexType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const UINT16: Self = Self(0);
     pub const UINT32: Self = Self(1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl Filter {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const NEAREST: Self = Self(0);
     pub const LINEAR: Self = Self(1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SamplerMipmapMode {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     ///Choose nearest mip level
     pub const NEAREST: Self = Self(0);
     ///Linear filter between mip levels
     pub const LINEAR: Self = Self(1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SamplerAddressMode {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const REPEAT: Self = Self(0);
     pub const MIRRORED_REPEAT: Self = Self(1);
     pub const CLAMP_TO_EDGE: Self = Self(2);
     pub const CLAMP_TO_BORDER: Self = Self(3);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl CompareOp {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const NEVER: Self = Self(0);
     pub const LESS: Self = Self(1);
     pub const EQUAL: Self = Self(2);
@@ -323,43 +163,19 @@ impl CompareOp {
     pub const GREATER_OR_EQUAL: Self = Self(6);
     pub const ALWAYS: Self = Self(7);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl PolygonMode {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const FILL: Self = Self(0);
     pub const LINE: Self = Self(1);
     pub const POINT: Self = Self(2);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl FrontFace {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const COUNTER_CLOCKWISE: Self = Self(0);
     pub const CLOCKWISE: Self = Self(1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl BlendFactor {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const ZERO: Self = Self(0);
     pub const ONE: Self = Self(1);
     pub const SRC_COLOR: Self = Self(2);
@@ -380,32 +196,16 @@ impl BlendFactor {
     pub const SRC1_ALPHA: Self = Self(17);
     pub const ONE_MINUS_SRC1_ALPHA: Self = Self(18);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl BlendOp {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const ADD: Self = Self(0);
     pub const SUBTRACT: Self = Self(1);
     pub const REVERSE_SUBTRACT: Self = Self(2);
     pub const MIN: Self = Self(3);
     pub const MAX: Self = Self(4);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl StencilOp {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const KEEP: Self = Self(0);
     pub const ZERO: Self = Self(1);
     pub const REPLACE: Self = Self(2);
@@ -415,16 +215,8 @@ impl StencilOp {
     pub const INCREMENT_AND_WRAP: Self = Self(6);
     pub const DECREMENT_AND_WRAP: Self = Self(7);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl LogicOp {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const CLEAR: Self = Self(0);
     pub const AND: Self = Self(1);
     pub const AND_REVERSE: Self = Self(2);
@@ -442,73 +234,33 @@ impl LogicOp {
     pub const NAND: Self = Self(14);
     pub const SET: Self = Self(15);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl InternalAllocationType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const EXECUTABLE: Self = Self(0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SystemAllocationScope {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const COMMAND: Self = Self(0);
     pub const OBJECT: Self = Self(1);
     pub const CACHE: Self = Self(2);
     pub const DEVICE: Self = Self(3);
     pub const INSTANCE: Self = Self(4);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl PhysicalDeviceType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const OTHER: Self = Self(0);
     pub const INTEGRATED_GPU: Self = Self(1);
     pub const DISCRETE_GPU: Self = Self(2);
     pub const VIRTUAL_GPU: Self = Self(3);
     pub const CPU: Self = Self(4);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl VertexInputRate {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const VERTEX: Self = Self(0);
     pub const INSTANCE: Self = Self(1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl Format {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const UNDEFINED: Self = Self(0);
     pub const R4G4_UNORM_PACK8: Self = Self(1);
     pub const R4G4B4A4_UNORM_PACK16: Self = Self(2);
@@ -695,16 +447,8 @@ impl Format {
     pub const ASTC_12X12_UNORM_BLOCK: Self = Self(183);
     pub const ASTC_12X12_SRGB_BLOCK: Self = Self(184);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl StructureType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const APPLICATION_INFO: Self = Self(0);
     pub const INSTANCE_CREATE_INFO: Self = Self(1);
     pub const DEVICE_QUEUE_CREATE_INFO: Self = Self(2);
@@ -757,29 +501,13 @@ impl StructureType {
     ///Reserved for internal use by the loader, layers, and ICDs
     pub const LOADER_DEVICE_CREATE_INFO: Self = Self(48);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SubpassContents {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const INLINE: Self = Self(0);
     pub const SECONDARY_COMMAND_BUFFERS: Self = Self(1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl Result {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     ///Command completed successfully
     pub const SUCCESS: Self = Self(0);
     ///A fence or query has not yet completed
@@ -820,16 +548,8 @@ impl Result {
     pub const ERROR_UNKNOWN: Self = Self(-13);
     pub const ERROR_VALIDATION_FAILED: Self = Self(-1000011001);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl DynamicState {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const VIEWPORT: Self = Self(0);
     pub const SCISSOR: Self = Self(1);
     pub const LINE_WIDTH: Self = Self(2);
@@ -840,16 +560,8 @@ impl DynamicState {
     pub const STENCIL_WRITE_MASK: Self = Self(7);
     pub const STENCIL_REFERENCE: Self = Self(8);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ObjectType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const UNKNOWN: Self = Self(0);
     pub const INSTANCE: Self = Self(1);
     pub const PHYSICAL_DEVICE: Self = Self(2);
@@ -877,16 +589,8 @@ impl ObjectType {
     pub const FRAMEBUFFER: Self = Self(24);
     pub const COMMAND_POOL: Self = Self(25);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl VendorId {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     ///Khronos vendor ID
     pub const KHRONOS: Self = Self(0x10000);
     ///Vivante vendor ID
@@ -906,21 +610,21 @@ impl VendorId {
     ///Ape vendor ID
     pub const APE: Self = Self(0x10008);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl QueueFlags {
     pub const GRAPHICS: Self = Self(QueueFlagBits::GRAPHICS.0);
     pub const COMPUTE: Self = Self(QueueFlagBits::COMPUTE.0);
     pub const TRANSFER: Self = Self(QueueFlagBits::TRANSFER.0);
     pub const SPARSE_BINDING: Self = Self(QueueFlagBits::SPARSE_BINDING.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl QueueFlagBits {
     pub const GRAPHICS: Self = Self(1 << 0);
     pub const COMPUTE: Self = Self(1 << 1);
     pub const TRANSFER: Self = Self(1 << 2);
     pub const SPARSE_BINDING: Self = Self(1 << 3);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl MemoryPropertyFlags {
     pub const DEVICE_LOCAL: Self = Self(MemoryPropertyFlagBits::DEVICE_LOCAL.0);
     pub const HOST_VISIBLE: Self = Self(MemoryPropertyFlagBits::HOST_VISIBLE.0);
@@ -928,7 +632,7 @@ impl MemoryPropertyFlags {
     pub const HOST_CACHED: Self = Self(MemoryPropertyFlagBits::HOST_CACHED.0);
     pub const LAZILY_ALLOCATED: Self = Self(MemoryPropertyFlagBits::LAZILY_ALLOCATED.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl MemoryPropertyFlagBits {
     pub const DEVICE_LOCAL: Self = Self(1 << 0);
     pub const HOST_VISIBLE: Self = Self(1 << 1);
@@ -936,15 +640,15 @@ impl MemoryPropertyFlagBits {
     pub const HOST_CACHED: Self = Self(1 << 3);
     pub const LAZILY_ALLOCATED: Self = Self(1 << 4);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl MemoryHeapFlags {
     pub const DEVICE_LOCAL: Self = Self(MemoryHeapFlagBits::DEVICE_LOCAL.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl MemoryHeapFlagBits {
     pub const DEVICE_LOCAL: Self = Self(1 << 0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl AccessFlags {
     pub const INDIRECT_COMMAND_READ: Self = Self(
         AccessFlagBits::INDIRECT_COMMAND_READ.0,
@@ -978,7 +682,7 @@ impl AccessFlags {
     pub const MEMORY_READ: Self = Self(AccessFlagBits::MEMORY_READ.0);
     pub const MEMORY_WRITE: Self = Self(AccessFlagBits::MEMORY_WRITE.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl AccessFlagBits {
     pub const INDIRECT_COMMAND_READ: Self = Self(1 << 0);
     pub const INDEX_READ: Self = Self(1 << 1);
@@ -998,7 +702,7 @@ impl AccessFlagBits {
     pub const MEMORY_READ: Self = Self(1 << 15);
     pub const MEMORY_WRITE: Self = Self(1 << 16);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl BufferUsageFlags {
     pub const TRANSFER_SRC: Self = Self(BufferUsageFlagBits::TRANSFER_SRC.0);
     pub const TRANSFER_DST: Self = Self(BufferUsageFlagBits::TRANSFER_DST.0);
@@ -1014,7 +718,7 @@ impl BufferUsageFlags {
     pub const VERTEX_BUFFER: Self = Self(BufferUsageFlagBits::VERTEX_BUFFER.0);
     pub const INDIRECT_BUFFER: Self = Self(BufferUsageFlagBits::INDIRECT_BUFFER.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl BufferUsageFlagBits {
     pub const TRANSFER_SRC: Self = Self(1 << 0);
     pub const TRANSFER_DST: Self = Self(1 << 1);
@@ -1026,19 +730,19 @@ impl BufferUsageFlagBits {
     pub const VERTEX_BUFFER: Self = Self(1 << 7);
     pub const INDIRECT_BUFFER: Self = Self(1 << 8);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl BufferCreateFlags {
     pub const SPARSE_BINDING: Self = Self(BufferCreateFlagBits::SPARSE_BINDING.0);
     pub const SPARSE_RESIDENCY: Self = Self(BufferCreateFlagBits::SPARSE_RESIDENCY.0);
     pub const SPARSE_ALIASED: Self = Self(BufferCreateFlagBits::SPARSE_ALIASED.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl BufferCreateFlagBits {
     pub const SPARSE_BINDING: Self = Self(1 << 0);
     pub const SPARSE_RESIDENCY: Self = Self(1 << 1);
     pub const SPARSE_ALIASED: Self = Self(1 << 2);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ShaderStageFlags {
     pub const VERTEX: Self = Self(ShaderStageFlagBits::VERTEX.0);
     pub const TESSELLATION_CONTROL: Self = Self(
@@ -1053,7 +757,7 @@ impl ShaderStageFlags {
     pub const ALL_GRAPHICS: Self = Self(ShaderStageFlagBits::ALL_GRAPHICS.0);
     pub const ALL: Self = Self(ShaderStageFlagBits::ALL.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ShaderStageFlagBits {
     pub const VERTEX: Self = Self(1 << 0);
     pub const TESSELLATION_CONTROL: Self = Self(1 << 1);
@@ -1064,7 +768,7 @@ impl ShaderStageFlagBits {
     pub const ALL_GRAPHICS: Self = Self(0x0000001);
     pub const ALL: Self = Self(0x7FFFFFF);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageUsageFlags {
     pub const TRANSFER_SRC: Self = Self(ImageUsageFlagBits::TRANSFER_SRC.0);
     pub const TRANSFER_DST: Self = Self(ImageUsageFlagBits::TRANSFER_DST.0);
@@ -1079,7 +783,7 @@ impl ImageUsageFlags {
     );
     pub const INPUT_ATTACHMENT: Self = Self(ImageUsageFlagBits::INPUT_ATTACHMENT.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageUsageFlagBits {
     pub const TRANSFER_SRC: Self = Self(1 << 0);
     pub const TRANSFER_DST: Self = Self(1 << 1);
@@ -1090,7 +794,7 @@ impl ImageUsageFlagBits {
     pub const TRANSIENT_ATTACHMENT: Self = Self(1 << 6);
     pub const INPUT_ATTACHMENT: Self = Self(1 << 7);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageCreateFlags {
     pub const SPARSE_BINDING: Self = Self(ImageCreateFlagBits::SPARSE_BINDING.0);
     pub const SPARSE_RESIDENCY: Self = Self(ImageCreateFlagBits::SPARSE_RESIDENCY.0);
@@ -1098,7 +802,7 @@ impl ImageCreateFlags {
     pub const MUTABLE_FORMAT: Self = Self(ImageCreateFlagBits::MUTABLE_FORMAT.0);
     pub const CUBE_COMPATIBLE: Self = Self(ImageCreateFlagBits::CUBE_COMPATIBLE.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageCreateFlagBits {
     pub const SPARSE_BINDING: Self = Self(1 << 0);
     pub const SPARSE_RESIDENCY: Self = Self(1 << 1);
@@ -1106,7 +810,7 @@ impl ImageCreateFlagBits {
     pub const MUTABLE_FORMAT: Self = Self(1 << 3);
     pub const CUBE_COMPATIBLE: Self = Self(1 << 4);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl PipelineCreateFlags {
     pub const DISABLE_OPTIMIZATION: Self = Self(
         PipelineCreateFlagBits::DISABLE_OPTIMIZATION.0,
@@ -1116,35 +820,35 @@ impl PipelineCreateFlags {
     );
     pub const DERIVATIVE: Self = Self(PipelineCreateFlagBits::DERIVATIVE.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl PipelineCreateFlagBits {
     pub const DISABLE_OPTIMIZATION: Self = Self(1 << 0);
     pub const ALLOW_DERIVATIVES: Self = Self(1 << 1);
     pub const DERIVATIVE: Self = Self(1 << 2);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ColorComponentFlags {
     pub const R: Self = Self(ColorComponentFlagBits::R.0);
     pub const G: Self = Self(ColorComponentFlagBits::G.0);
     pub const B: Self = Self(ColorComponentFlagBits::B.0);
     pub const A: Self = Self(ColorComponentFlagBits::A.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ColorComponentFlagBits {
     pub const R: Self = Self(1 << 0);
     pub const G: Self = Self(1 << 1);
     pub const B: Self = Self(1 << 2);
     pub const A: Self = Self(1 << 3);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl FenceCreateFlags {
     pub const SIGNALED: Self = Self(FenceCreateFlagBits::SIGNALED.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl FenceCreateFlagBits {
     pub const SIGNALED: Self = Self(1 << 0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl FormatFeatureFlags {
     pub const SAMPLED_IMAGE: Self = Self(FormatFeatureFlagBits::SAMPLED_IMAGE.0);
     pub const STORAGE_IMAGE: Self = Self(FormatFeatureFlagBits::STORAGE_IMAGE.0);
@@ -1174,7 +878,7 @@ impl FormatFeatureFlags {
         FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_LINEAR.0,
     );
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE: Self = Self(1 << 0);
     pub const STORAGE_IMAGE: Self = Self(1 << 1);
@@ -1190,61 +894,61 @@ impl FormatFeatureFlagBits {
     pub const BLIT_DST: Self = Self(1 << 11);
     pub const SAMPLED_IMAGE_FILTER_LINEAR: Self = Self(1 << 12);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl QueryControlFlags {
     pub const PRECISE: Self = Self(QueryControlFlagBits::PRECISE.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl QueryControlFlagBits {
     pub const PRECISE: Self = Self(1 << 0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl QueryResultFlags {
     pub const _64: Self = Self(QueryResultFlagBits::_64.0);
     pub const WAIT: Self = Self(QueryResultFlagBits::WAIT.0);
     pub const WITH_AVAILABILITY: Self = Self(QueryResultFlagBits::WITH_AVAILABILITY.0);
     pub const PARTIAL: Self = Self(QueryResultFlagBits::PARTIAL.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl QueryResultFlagBits {
     pub const _64: Self = Self(1 << 0);
     pub const WAIT: Self = Self(1 << 1);
     pub const WITH_AVAILABILITY: Self = Self(1 << 2);
     pub const PARTIAL: Self = Self(1 << 3);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl CommandPoolCreateFlags {
     pub const TRANSIENT: Self = Self(CommandPoolCreateFlagBits::TRANSIENT.0);
     pub const RESET_COMMAND_BUFFER: Self = Self(
         CommandPoolCreateFlagBits::RESET_COMMAND_BUFFER.0,
     );
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl CommandPoolCreateFlagBits {
     pub const TRANSIENT: Self = Self(1 << 0);
     pub const RESET_COMMAND_BUFFER: Self = Self(1 << 1);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl CommandPoolResetFlags {
     pub const RELEASE_RESOURCES: Self = Self(
         CommandPoolResetFlagBits::RELEASE_RESOURCES.0,
     );
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl CommandPoolResetFlagBits {
     pub const RELEASE_RESOURCES: Self = Self(1 << 0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl CommandBufferResetFlags {
     pub const RELEASE_RESOURCES: Self = Self(
         CommandBufferResetFlagBits::RELEASE_RESOURCES.0,
     );
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl CommandBufferResetFlagBits {
     pub const RELEASE_RESOURCES: Self = Self(1 << 0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl CommandBufferUsageFlags {
     pub const ONE_TIME_SUBMIT: Self = Self(
         CommandBufferUsageFlagBits::ONE_TIME_SUBMIT.0,
@@ -1256,13 +960,13 @@ impl CommandBufferUsageFlags {
         CommandBufferUsageFlagBits::SIMULTANEOUS_USE.0,
     );
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl CommandBufferUsageFlagBits {
     pub const ONE_TIME_SUBMIT: Self = Self(1 << 0);
     pub const RENDER_PASS_CONTINUE: Self = Self(1 << 1);
     pub const SIMULTANEOUS_USE: Self = Self(1 << 2);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl QueryPipelineStatisticFlags {
     pub const INPUT_ASSEMBLY_VERTICES: Self = Self(
         QueryPipelineStatisticFlagBits::INPUT_ASSEMBLY_VERTICES.0,
@@ -1298,7 +1002,7 @@ impl QueryPipelineStatisticFlags {
         QueryPipelineStatisticFlagBits::COMPUTE_SHADER_INVOCATIONS.0,
     );
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl QueryPipelineStatisticFlagBits {
     pub const INPUT_ASSEMBLY_VERTICES: Self = Self(1 << 0);
     pub const INPUT_ASSEMBLY_PRIMITIVES: Self = Self(1 << 1);
@@ -1312,29 +1016,29 @@ impl QueryPipelineStatisticFlagBits {
     pub const TESSELLATION_EVALUATION_SHADER_INVOCATIONS: Self = Self(1 << 9);
     pub const COMPUTE_SHADER_INVOCATIONS: Self = Self(1 << 10);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageAspectFlags {
     pub const COLOR: Self = Self(ImageAspectFlagBits::COLOR.0);
     pub const DEPTH: Self = Self(ImageAspectFlagBits::DEPTH.0);
     pub const STENCIL: Self = Self(ImageAspectFlagBits::STENCIL.0);
     pub const METADATA: Self = Self(ImageAspectFlagBits::METADATA.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageAspectFlagBits {
     pub const COLOR: Self = Self(1 << 0);
     pub const DEPTH: Self = Self(1 << 1);
     pub const STENCIL: Self = Self(1 << 2);
     pub const METADATA: Self = Self(1 << 3);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SparseMemoryBindFlags {
     pub const METADATA: Self = Self(SparseMemoryBindFlagBits::METADATA.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SparseMemoryBindFlagBits {
     pub const METADATA: Self = Self(1 << 0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SparseImageFormatFlags {
     pub const SINGLE_MIPTAIL: Self = Self(SparseImageFormatFlagBits::SINGLE_MIPTAIL.0);
     pub const ALIGNED_MIP_SIZE: Self = Self(
@@ -1344,13 +1048,13 @@ impl SparseImageFormatFlags {
         SparseImageFormatFlagBits::NONSTANDARD_BLOCK_SIZE.0,
     );
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SparseImageFormatFlagBits {
     pub const SINGLE_MIPTAIL: Self = Self(1 << 0);
     pub const ALIGNED_MIP_SIZE: Self = Self(1 << 1);
     pub const NONSTANDARD_BLOCK_SIZE: Self = Self(1 << 2);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl PipelineStageFlags {
     pub const TOP_OF_PIPE: Self = Self(PipelineStageFlagBits::TOP_OF_PIPE.0);
     pub const DRAW_INDIRECT: Self = Self(PipelineStageFlagBits::DRAW_INDIRECT.0);
@@ -1380,7 +1084,7 @@ impl PipelineStageFlags {
     pub const ALL_GRAPHICS: Self = Self(PipelineStageFlagBits::ALL_GRAPHICS.0);
     pub const ALL_COMMANDS: Self = Self(PipelineStageFlagBits::ALL_COMMANDS.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl PipelineStageFlagBits {
     pub const TOP_OF_PIPE: Self = Self(1 << 0);
     pub const DRAW_INDIRECT: Self = Self(1 << 1);
@@ -1400,7 +1104,7 @@ impl PipelineStageFlagBits {
     pub const ALL_GRAPHICS: Self = Self(1 << 15);
     pub const ALL_COMMANDS: Self = Self(1 << 16);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SampleCountFlags {
     pub const _1: Self = Self(SampleCountFlagBits::_1.0);
     pub const _2: Self = Self(SampleCountFlagBits::_2.0);
@@ -1410,7 +1114,7 @@ impl SampleCountFlags {
     pub const _32: Self = Self(SampleCountFlagBits::_32.0);
     pub const _64: Self = Self(SampleCountFlagBits::_64.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SampleCountFlagBits {
     pub const _1: Self = Self(1 << 0);
     pub const _2: Self = Self(1 << 1);
@@ -1420,55 +1124,55 @@ impl SampleCountFlagBits {
     pub const _32: Self = Self(1 << 5);
     pub const _64: Self = Self(1 << 6);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl AttachmentDescriptionFlags {
     pub const MAY_ALIAS: Self = Self(AttachmentDescriptionFlagBits::MAY_ALIAS.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl AttachmentDescriptionFlagBits {
     pub const MAY_ALIAS: Self = Self(1 << 0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl StencilFaceFlags {
     pub const FRONT: Self = Self(StencilFaceFlagBits::FRONT.0);
     pub const BACK: Self = Self(StencilFaceFlagBits::BACK.0);
     pub const FRONT_AND_BACK: Self = Self(StencilFaceFlagBits::FRONT_AND_BACK.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl StencilFaceFlagBits {
     pub const FRONT: Self = Self(1 << 0);
     pub const BACK: Self = Self(1 << 1);
     pub const FRONT_AND_BACK: Self = Self(0x00000003);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl CullModeFlags {
     pub const NONE: Self = Self(CullModeFlagBits::NONE.0);
     pub const FRONT: Self = Self(CullModeFlagBits::FRONT.0);
     pub const BACK: Self = Self(CullModeFlagBits::BACK.0);
     pub const FRONT_AND_BACK: Self = Self(CullModeFlagBits::FRONT_AND_BACK.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl CullModeFlagBits {
     pub const NONE: Self = Self(0);
     pub const FRONT: Self = Self(1 << 0);
     pub const BACK: Self = Self(1 << 1);
     pub const FRONT_AND_BACK: Self = Self(0x00000003);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl DescriptorPoolCreateFlags {
     pub const FREE_DESCRIPTOR_SET: Self = Self(
         DescriptorPoolCreateFlagBits::FREE_DESCRIPTOR_SET.0,
     );
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl DescriptorPoolCreateFlagBits {
     pub const FREE_DESCRIPTOR_SET: Self = Self(1 << 0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl DependencyFlags {
     pub const BY_REGION: Self = Self(DependencyFlagBits::BY_REGION.0);
 }
-///Provided by [`vk1_0`](crate::vk1_0)
+///Provided by [Vulkan 1.0](crate::vk1_0)
 impl DependencyFlagBits {
     pub const BY_REGION: Self = Self(1 << 0);
 }
@@ -9856,6 +9560,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl ImageLayout {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AttachmentLoadOp(pub(crate) i32);
@@ -9873,6 +9587,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl AttachmentLoadOp {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -9893,6 +9617,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl AttachmentStoreOp {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ImageType(pub(crate) i32);
@@ -9911,6 +9645,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl ImageType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ImageTiling(pub(crate) i32);
@@ -9927,6 +9671,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ImageTiling {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -9951,6 +9705,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl ImageViewType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct CommandBufferLevel(pub(crate) i32);
@@ -9966,6 +9730,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl CommandBufferLevel {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -9988,6 +9762,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ComponentSwizzle {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -10024,6 +9808,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl DescriptorType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -10077,6 +9871,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl QueryType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct BorderColor(pub(crate) i32);
@@ -10098,6 +9902,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl BorderColor {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -10122,6 +9936,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl PipelineBindPoint {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PipelineCacheHeaderVersion(pub(crate) i32);
@@ -10137,6 +9961,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl PipelineCacheHeaderVersion {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -10169,6 +10003,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl PrimitiveTopology {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct SharingMode(pub(crate) i32);
@@ -10184,6 +10028,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl SharingMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -10205,6 +10059,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl IndexType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct Filter(pub(crate) i32);
@@ -10223,6 +10087,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl Filter {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct SamplerMipmapMode(pub(crate) i32);
@@ -10238,6 +10112,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl SamplerMipmapMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -10258,6 +10142,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl SamplerAddressMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -10283,6 +10177,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl CompareOp {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PolygonMode(pub(crate) i32);
@@ -10302,6 +10206,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl PolygonMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct FrontFace(pub(crate) i32);
@@ -10317,6 +10231,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl FrontFace {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -10351,6 +10275,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl BlendFactor {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -10419,6 +10353,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl BlendOp {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct StencilOp(pub(crate) i32);
@@ -10440,6 +10384,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl StencilOp {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -10473,6 +10427,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl LogicOp {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct InternalAllocationType(pub(crate) i32);
@@ -10487,6 +10451,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl InternalAllocationType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -10509,6 +10483,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl SystemAllocationScope {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PhysicalDeviceType(pub(crate) i32);
@@ -10529,6 +10513,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl PhysicalDeviceType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VertexInputRate(pub(crate) i32);
@@ -10544,6 +10538,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl VertexInputRate {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -10919,6 +10923,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl Format {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -14334,6 +14348,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl StructureType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct SubpassContents(pub(crate) i32);
@@ -14352,6 +14376,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl SubpassContents {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -14510,6 +14544,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl Result {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DynamicState(pub(crate) i32);
@@ -14630,6 +14674,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl DynamicState {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ObjectType(pub(crate) i32);
@@ -14714,6 +14768,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl ObjectType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VendorId(pub(crate) i32);
@@ -14736,6 +14800,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl VendorId {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

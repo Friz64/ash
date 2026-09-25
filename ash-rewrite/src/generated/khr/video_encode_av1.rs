@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_av1.html) · Extension `VK_KHR_video_encode_av1`
 #![doc(alias = "VK_KHR_video_encode_av1")]
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl crate::vk::StructureType {
     pub const VIDEO_ENCODE_AV1_CAPABILITIES_KHR: Self = Self(1000513000);
     pub const VIDEO_ENCODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
@@ -18,46 +18,30 @@ impl crate::vk::StructureType {
     pub const VIDEO_ENCODE_AV1_SESSION_CREATE_INFO_KHR: Self = Self(1000513009);
     pub const VIDEO_ENCODE_AV1_GOP_REMAINING_FRAME_INFO_KHR: Self = Self(1000513010);
 }
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1PredictionModeKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const INTRA_ONLY_KHR: Self = Self(0);
     pub const SINGLE_REFERENCE_KHR: Self = Self(1);
     pub const UNIDIRECTIONAL_COMPOUND_KHR: Self = Self(2);
     pub const BIDIRECTIONAL_COMPOUND_KHR: Self = Self(3);
 }
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1RateControlGroupKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const INTRA_KHR: Self = Self(0);
     pub const PREDICTIVE_KHR: Self = Self(1);
     pub const BIPREDICTIVE_KHR: Self = Self(2);
 }
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl crate::vk::VideoCodecOperationFlagsKHR {
     pub const ENCODE_AV1_KHR: Self = Self(
         crate::vk::VideoCodecOperationFlagBitsKHR::ENCODE_AV1_KHR.0,
     );
 }
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const ENCODE_AV1_KHR: Self = Self(1 << 18);
 }
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1CapabilityFlagsKHR {
     pub const PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR: Self = Self(
         VideoEncodeAV1CapabilityFlagBitsKHR::PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR.0,
@@ -75,7 +59,7 @@ impl VideoEncodeAV1CapabilityFlagsKHR {
         VideoEncodeAV1CapabilityFlagBitsKHR::MOTION_VECTOR_SCALING_KHR.0,
     );
 }
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1CapabilityFlagBitsKHR {
     pub const PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR: Self = Self(1 << 0);
     pub const GENERATE_OBU_EXTENSION_HEADER_KHR: Self = Self(1 << 1);
@@ -83,7 +67,7 @@ impl VideoEncodeAV1CapabilityFlagBitsKHR {
     pub const FRAME_SIZE_OVERRIDE_KHR: Self = Self(1 << 3);
     pub const MOTION_VECTOR_SCALING_KHR: Self = Self(1 << 4);
 }
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1StdFlagsKHR {
     pub const UNIFORM_TILE_SPACING_FLAG_SET_KHR: Self = Self(
         VideoEncodeAV1StdFlagBitsKHR::UNIFORM_TILE_SPACING_FLAG_SET_KHR.0,
@@ -96,14 +80,14 @@ impl VideoEncodeAV1StdFlagsKHR {
     );
     pub const DELTA_Q_KHR: Self = Self(VideoEncodeAV1StdFlagBitsKHR::DELTA_Q_KHR.0);
 }
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1StdFlagBitsKHR {
     pub const UNIFORM_TILE_SPACING_FLAG_SET_KHR: Self = Self(1 << 0);
     pub const SKIP_MODE_PRESENT_UNSET_KHR: Self = Self(1 << 1);
     pub const PRIMARY_REF_FRAME_KHR: Self = Self(1 << 2);
     pub const DELTA_Q_KHR: Self = Self(1 << 3);
 }
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1RateControlFlagsKHR {
     pub const REGULAR_GOP_KHR: Self = Self(
         VideoEncodeAV1RateControlFlagBitsKHR::REGULAR_GOP_KHR.0,
@@ -118,19 +102,19 @@ impl VideoEncodeAV1RateControlFlagsKHR {
         VideoEncodeAV1RateControlFlagBitsKHR::REFERENCE_PATTERN_DYADIC_KHR.0,
     );
 }
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1RateControlFlagBitsKHR {
     pub const REGULAR_GOP_KHR: Self = Self(1 << 0);
     pub const TEMPORAL_LAYER_PATTERN_DYADIC_KHR: Self = Self(1 << 1);
     pub const REFERENCE_PATTERN_FLAT_KHR: Self = Self(1 << 2);
     pub const REFERENCE_PATTERN_DYADIC_KHR: Self = Self(1 << 3);
 }
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1SuperblockSizeFlagsKHR {
     pub const _64_KHR: Self = Self(VideoEncodeAV1SuperblockSizeFlagBitsKHR::_64_KHR.0);
     pub const _128_KHR: Self = Self(VideoEncodeAV1SuperblockSizeFlagBitsKHR::_128_KHR.0);
 }
-///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1SuperblockSizeFlagBitsKHR {
     pub const _64_KHR: Self = Self(1 << 0);
     pub const _128_KHR: Self = Self(1 << 1);
@@ -1043,6 +1027,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl VideoEncodeAV1PredictionModeKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VideoEncodeAV1RateControlGroupKHR(pub(crate) i32);
@@ -1059,6 +1053,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl VideoEncodeAV1RateControlGroupKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

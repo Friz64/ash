@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_metal_surface.html) · Extension `VK_EXT_metal_surface`
 #![doc(alias = "VK_EXT_metal_surface")]
-///Provided by [`ext::metal_surface`](crate::ext::metal_surface)
+///Provided by [VK_EXT_metal_surface](crate::ext::metal_surface)
 impl crate::vk::StructureType {
     pub const METAL_SURFACE_CREATE_INFO_EXT: Self = Self(1000217000);
 }

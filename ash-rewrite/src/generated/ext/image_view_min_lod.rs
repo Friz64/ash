@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_view_min_lod.html) · Extension `VK_EXT_image_view_min_lod`
 #![doc(alias = "VK_EXT_image_view_min_lod")]
-///Provided by [`ext::image_view_min_lod`](crate::ext::image_view_min_lod)
+///Provided by [VK_EXT_image_view_min_lod](crate::ext::image_view_min_lod)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT: Self = Self(1000391000);
     pub const IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT: Self = Self(1000391001);

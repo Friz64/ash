@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_buffer_device_address.html) · Extension `VK_EXT_buffer_device_address`
 #![doc(alias = "VK_EXT_buffer_device_address")]
-///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+///Provided by [VK_EXT_buffer_device_address](crate::ext::buffer_device_address)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT: Self = Self(
         1000244000,
@@ -11,27 +11,27 @@ impl crate::vk::StructureType {
     pub const BUFFER_DEVICE_ADDRESS_INFO_EXT: Self = Self::BUFFER_DEVICE_ADDRESS_INFO;
     pub const BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT: Self = Self(1000244002);
 }
-///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+///Provided by [VK_EXT_buffer_device_address](crate::ext::buffer_device_address)
 impl crate::vk::Result {
     pub const ERROR_INVALID_DEVICE_ADDRESS_EXT: Self = Self::ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS;
 }
-///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+///Provided by [VK_EXT_buffer_device_address](crate::ext::buffer_device_address)
 impl crate::vk::BufferUsageFlags {
     pub const SHADER_DEVICE_ADDRESS_EXT: Self = Self(
         crate::vk::BufferUsageFlagBits::SHADER_DEVICE_ADDRESS_EXT.0,
     );
 }
-///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+///Provided by [VK_EXT_buffer_device_address](crate::ext::buffer_device_address)
 impl crate::vk::BufferUsageFlagBits {
     pub const SHADER_DEVICE_ADDRESS_EXT: Self = Self::SHADER_DEVICE_ADDRESS;
 }
-///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+///Provided by [VK_EXT_buffer_device_address](crate::ext::buffer_device_address)
 impl crate::vk::BufferCreateFlags {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self(
         crate::vk::BufferCreateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY_EXT.0,
     );
 }
-///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+///Provided by [VK_EXT_buffer_device_address](crate::ext::buffer_device_address)
 impl crate::vk::BufferCreateFlagBits {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
 }

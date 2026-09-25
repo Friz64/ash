@@ -2,34 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_mutable_descriptor_type.html) · Extension `VK_EXT_mutable_descriptor_type`
 #![doc(alias = "VK_EXT_mutable_descriptor_type")]
-///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)
+///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
 impl crate::vk::DescriptorType {
     pub const MUTABLE_EXT: Self = Self(1000351000);
 }
-///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)
+///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT: Self = Self(
         1000351000,
     );
     pub const MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT: Self = Self(1000351002);
 }
-///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)
+///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
 impl crate::vk::DescriptorSetLayoutCreateFlags {
     pub const HOST_ONLY_POOL_EXT: Self = Self(
         crate::vk::DescriptorSetLayoutCreateFlagBits::HOST_ONLY_POOL_EXT.0,
     );
 }
-///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)
+///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const HOST_ONLY_POOL_EXT: Self = Self(1 << 2);
 }
-///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)
+///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
 impl crate::vk::DescriptorPoolCreateFlags {
     pub const HOST_ONLY_EXT: Self = Self(
         crate::vk::DescriptorPoolCreateFlagBits::HOST_ONLY_EXT.0,
     );
 }
-///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)
+///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
 impl crate::vk::DescriptorPoolCreateFlagBits {
     pub const HOST_ONLY_EXT: Self = Self(1 << 2);
 }

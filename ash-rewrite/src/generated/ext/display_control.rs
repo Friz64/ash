@@ -2,49 +2,25 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_control.html) · Extension `VK_EXT_display_control`
 #![doc(alias = "VK_EXT_display_control")]
-///Provided by [`ext::display_control`](crate::ext::display_control)
+///Provided by [VK_EXT_display_control](crate::ext::display_control)
 impl crate::vk::StructureType {
     pub const DISPLAY_POWER_INFO_EXT: Self = Self(1000091000);
     pub const DEVICE_EVENT_INFO_EXT: Self = Self(1000091001);
     pub const DISPLAY_EVENT_INFO_EXT: Self = Self(1000091002);
     pub const SWAPCHAIN_COUNTER_CREATE_INFO_EXT: Self = Self(1000091003);
 }
-///Provided by [`ext::display_control`](crate::ext::display_control)
+///Provided by [VK_EXT_display_control](crate::ext::display_control)
 impl DisplayPowerStateEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const OFF_EXT: Self = Self(0);
     pub const SUSPEND_EXT: Self = Self(1);
     pub const ON_EXT: Self = Self(2);
 }
-///Provided by [`ext::display_control`](crate::ext::display_control)
+///Provided by [VK_EXT_display_control](crate::ext::display_control)
 impl DeviceEventTypeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DISPLAY_HOTPLUG_EXT: Self = Self(0);
 }
-///Provided by [`ext::display_control`](crate::ext::display_control)
+///Provided by [VK_EXT_display_control](crate::ext::display_control)
 impl DisplayEventTypeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const FIRST_PIXEL_OUT_EXT: Self = Self(0);
 }
 #[derive(Clone)]
@@ -302,6 +278,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl DisplayPowerStateEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DeviceEventTypeEXT(pub(crate) i32);
@@ -318,6 +304,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl DeviceEventTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DisplayEventTypeEXT(pub(crate) i32);
@@ -332,6 +328,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl DisplayEventTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type PFN_vkDisplayPowerControlEXT = unsafe extern "system" fn(

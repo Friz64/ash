@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_maintenance2.html) · Extension `VK_KHR_video_maintenance2`
 #![doc(alias = "VK_KHR_video_maintenance2")]
-///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
+///Provided by [VK_KHR_video_maintenance2](crate::khr::video_maintenance2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VIDEO_MAINTENANCE_2_FEATURES_KHR: Self = Self(1000586000);
     pub const VIDEO_DECODE_H264_INLINE_SESSION_PARAMETERS_INFO_KHR: Self = Self(
@@ -15,13 +15,13 @@ impl crate::vk::StructureType {
         1000586003,
     );
 }
-///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
+///Provided by [VK_KHR_video_maintenance2](crate::khr::video_maintenance2)
 impl crate::vk::VideoSessionCreateFlagsKHR {
     pub const INLINE_SESSION_PARAMETERS_KHR: Self = Self(
         crate::vk::VideoSessionCreateFlagBitsKHR::INLINE_SESSION_PARAMETERS_KHR.0,
     );
 }
-///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
+///Provided by [VK_KHR_video_maintenance2](crate::khr::video_maintenance2)
 impl crate::vk::VideoSessionCreateFlagBitsKHR {
     pub const INLINE_SESSION_PARAMETERS_KHR: Self = Self(1 << 5);
 }

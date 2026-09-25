@@ -2,16 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_bind_memory2.html) · Extension `VK_KHR_bind_memory2`
 #![doc(alias = "VK_KHR_bind_memory2")]
-///Provided by [`khr::bind_memory2`](crate::khr::bind_memory2)
+///Provided by [VK_KHR_bind_memory2](crate::khr::bind_memory2)
 impl crate::vk::StructureType {
     pub const BIND_BUFFER_MEMORY_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_INFO;
     pub const BIND_IMAGE_MEMORY_INFO_KHR: Self = Self::BIND_IMAGE_MEMORY_INFO;
 }
-///Provided by [`khr::bind_memory2`](crate::khr::bind_memory2)
+///Provided by [VK_KHR_bind_memory2](crate::khr::bind_memory2)
 impl crate::vk::ImageCreateFlags {
     pub const ALIAS_KHR: Self = Self(crate::vk::ImageCreateFlagBits::ALIAS_KHR.0);
 }
-///Provided by [`khr::bind_memory2`](crate::khr::bind_memory2)
+///Provided by [VK_KHR_bind_memory2](crate::khr::bind_memory2)
 impl crate::vk::ImageCreateFlagBits {
     pub const ALIAS_KHR: Self = Self::ALIAS;
 }

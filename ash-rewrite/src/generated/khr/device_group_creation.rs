@@ -2,18 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_group_creation.html) · Extension `VK_KHR_device_group_creation`
 #![doc(alias = "VK_KHR_device_group_creation")]
-///Provided by [`khr::device_group_creation`](crate::khr::device_group_creation)
+///Provided by [VK_KHR_device_group_creation](crate::khr::device_group_creation)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_GROUP_PROPERTIES;
     pub const DEVICE_GROUP_DEVICE_CREATE_INFO_KHR: Self = Self::DEVICE_GROUP_DEVICE_CREATE_INFO;
 }
-///Provided by [`khr::device_group_creation`](crate::khr::device_group_creation)
+///Provided by [VK_KHR_device_group_creation](crate::khr::device_group_creation)
 impl crate::vk::MemoryHeapFlags {
     pub const MULTI_INSTANCE_KHR: Self = Self(
         crate::vk::MemoryHeapFlagBits::MULTI_INSTANCE_KHR.0,
     );
 }
-///Provided by [`khr::device_group_creation`](crate::khr::device_group_creation)
+///Provided by [VK_KHR_device_group_creation](crate::khr::device_group_creation)
 impl crate::vk::MemoryHeapFlagBits {
     pub const MULTI_INSTANCE_KHR: Self = Self::MULTI_INSTANCE;
 }

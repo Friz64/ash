@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_display_properties2.html) · Extension `VK_KHR_get_display_properties2`
 #![doc(alias = "VK_KHR_get_display_properties2")]
-///Provided by [`khr::get_display_properties2`](crate::khr::get_display_properties2)
+///Provided by [VK_KHR_get_display_properties2](crate::khr::get_display_properties2)
 impl crate::vk::StructureType {
     pub const DISPLAY_PROPERTIES_2_KHR: Self = Self(1000121000);
     pub const DISPLAY_PLANE_PROPERTIES_2_KHR: Self = Self(1000121001);

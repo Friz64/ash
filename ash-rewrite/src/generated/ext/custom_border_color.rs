@@ -2,12 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_custom_border_color.html) · Extension `VK_EXT_custom_border_color`
 #![doc(alias = "VK_EXT_custom_border_color")]
-///Provided by [`ext::custom_border_color`](crate::ext::custom_border_color)
+///Provided by [VK_EXT_custom_border_color](crate::ext::custom_border_color)
 impl crate::vk::BorderColor {
     pub const FLOAT_CUSTOM_EXT: Self = Self(1000287003);
     pub const INT_CUSTOM_EXT: Self = Self(1000287004);
 }
-///Provided by [`ext::custom_border_color`](crate::ext::custom_border_color)
+///Provided by [VK_EXT_custom_border_color](crate::ext::custom_border_color)
 impl crate::vk::StructureType {
     pub const SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT: Self = Self(1000287000);
     pub const PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT: Self = Self(

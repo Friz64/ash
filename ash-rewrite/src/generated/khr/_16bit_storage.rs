@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_16bit_storage.html) · Extension `VK_KHR_16bit_storage`
 #![doc(alias = "VK_KHR_16bit_storage")]
-///Provided by [`khr::_16bit_storage`](crate::khr::_16bit_storage)
+///Provided by [VK_KHR_16bit_storage](crate::khr::_16bit_storage)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES;
 }

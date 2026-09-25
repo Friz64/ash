@@ -2,12 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance5.html) · Extension `VK_KHR_maintenance5`
 #![doc(alias = "VK_KHR_maintenance5")]
-///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl crate::vk::Format {
     pub const A1B5G5R5_UNORM_PACK16_KHR: Self = Self::A1B5G5R5_UNORM_PACK16;
     pub const A8_UNORM_KHR: Self = Self::A8_UNORM;
 }
-///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES;
     pub const PHYSICAL_DEVICE_MAINTENANCE_5_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_5_PROPERTIES;
@@ -18,7 +18,7 @@ impl crate::vk::StructureType {
     pub const PIPELINE_CREATE_FLAGS_2_CREATE_INFO_KHR: Self = Self::PIPELINE_CREATE_FLAGS_2_CREATE_INFO;
     pub const BUFFER_USAGE_FLAGS_2_CREATE_INFO_KHR: Self = Self::BUFFER_USAGE_FLAGS_2_CREATE_INFO;
 }
-///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl crate::vk::PipelineCreateFlags2 {
     pub const DISABLE_OPTIMIZATION_KHR: Self = Self(
         crate::vk::PipelineCreateFlagBits2::DISABLE_OPTIMIZATION_KHR.0,
@@ -121,7 +121,7 @@ impl crate::vk::PipelineCreateFlags2 {
         crate::vk::PipelineCreateFlagBits2::INSTRUMENT_SHADERS_ARM.0,
     );
 }
-///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl crate::vk::PipelineCreateFlagBits2 {
     pub const DISABLE_OPTIMIZATION_KHR: Self = Self::DISABLE_OPTIMIZATION;
     pub const ALLOW_DERIVATIVES_KHR: Self = Self::ALLOW_DERIVATIVES;
@@ -156,7 +156,7 @@ impl crate::vk::PipelineCreateFlagBits2 {
     pub const DISALLOW_OPACITY_MICROMAP_ARM: Self = Self(1 << 37);
     pub const INSTRUMENT_SHADERS_ARM: Self = Self(1 << 39);
 }
-///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl crate::vk::BufferUsageFlags2 {
     pub const TRANSFER_SRC_KHR: Self = Self(
         crate::vk::BufferUsageFlagBits2::TRANSFER_SRC_KHR.0,
@@ -232,7 +232,7 @@ impl crate::vk::BufferUsageFlags2 {
         crate::vk::BufferUsageFlagBits2::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT.0,
     );
 }
-///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl crate::vk::BufferUsageFlagBits2 {
     pub const TRANSFER_SRC_KHR: Self = Self::TRANSFER_SRC;
     pub const TRANSFER_DST_KHR: Self = Self::TRANSFER_DST;
@@ -259,13 +259,13 @@ impl crate::vk::BufferUsageFlagBits2 {
     pub const RESOURCE_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 22);
     pub const PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 26);
 }
-///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl crate::vk::ShaderCreateFlagsEXT {
     pub const INSTRUMENT_SHADER_ARM: Self = Self(
         crate::vk::ShaderCreateFlagBitsEXT::INSTRUMENT_SHADER_ARM.0,
     );
 }
-///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl crate::vk::ShaderCreateFlagBitsEXT {
     pub const INSTRUMENT_SHADER_ARM: Self = Self(1 << 11);
 }

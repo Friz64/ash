@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_gpa_interface.html) · Extension `VK_AMD_gpa_interface`
 #![doc(alias = "VK_AMD_gpa_interface")]
-///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_GPA_FEATURES_AMD: Self = Self(1000133000);
     pub const PHYSICAL_DEVICE_GPA_PROPERTIES_AMD: Self = Self(1000133001);
@@ -12,20 +12,12 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_GPA_PROPERTIES_2_AMD: Self = Self(1000133005);
     pub const GPA_DEVICE_GET_CLOCK_INFO_AMD: Self = Self(1000133006);
 }
-///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl crate::vk::ObjectType {
     pub const GPA_SESSION_AMD: Self = Self(1000133000);
 }
-///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl GpaPerfBlockAMD {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const CPF_AMD: Self = Self(0);
     pub const IA_AMD: Self = Self(1);
     pub const VGT_AMD: Self = Self(2);
@@ -86,30 +78,14 @@ impl GpaPerfBlockAMD {
     pub const RLCUSER_AMD: Self = Self(56);
     pub const RLCLOCAL_AMD: Self = Self::RLCUSER_AMD;
 }
-///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl GpaSampleTypeAMD {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const CUMULATIVE_AMD: Self = Self(0);
     pub const TRACE_AMD: Self = Self(1);
     pub const TIMING_AMD: Self = Self(2);
 }
-///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl GpaDeviceClockModeAMD {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DEFAULT_AMD: Self = Self(0);
     pub const QUERY_AMD: Self = Self(1);
     pub const PROFILING_AMD: Self = Self(2);
@@ -117,7 +93,7 @@ impl GpaDeviceClockModeAMD {
     pub const MIN_ENGINE_AMD: Self = Self(4);
     pub const PEAK_AMD: Self = Self(5);
 }
-///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl GpaSqShaderStageFlagsAMD {
     pub const PS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::PS_AMD.0);
     pub const VS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::VS_AMD.0);
@@ -127,7 +103,7 @@ impl GpaSqShaderStageFlagsAMD {
     pub const LS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::LS_AMD.0);
     pub const CS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::CS_AMD.0);
 }
-///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl GpaSqShaderStageFlagBitsAMD {
     pub const PS_AMD: Self = Self(1 << 0);
     pub const VS_AMD: Self = Self(1 << 1);
@@ -921,6 +897,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl GpaPerfBlockAMD {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct GpaSampleTypeAMD(pub(crate) i32);
@@ -937,6 +923,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl GpaSampleTypeAMD {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -958,6 +954,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl GpaDeviceClockModeAMD {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

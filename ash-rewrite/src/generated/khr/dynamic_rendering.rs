@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_dynamic_rendering.html) · Extension `VK_KHR_dynamic_rendering`
 #![doc(alias = "VK_KHR_dynamic_rendering")]
-///Provided by [`khr::dynamic_rendering`](crate::khr::dynamic_rendering)
+///Provided by [VK_KHR_dynamic_rendering](crate::khr::dynamic_rendering)
 impl crate::vk::AttachmentStoreOp {
     pub const NONE_KHR: Self = Self::NONE;
 }
-///Provided by [`khr::dynamic_rendering`](crate::khr::dynamic_rendering)
+///Provided by [VK_KHR_dynamic_rendering](crate::khr::dynamic_rendering)
 impl crate::vk::StructureType {
     pub const RENDERING_INFO_KHR: Self = Self::RENDERING_INFO;
     pub const RENDERING_ATTACHMENT_INFO_KHR: Self = Self::RENDERING_ATTACHMENT_INFO;
@@ -14,7 +14,7 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES;
     pub const COMMAND_BUFFER_INHERITANCE_RENDERING_INFO_KHR: Self = Self::COMMAND_BUFFER_INHERITANCE_RENDERING_INFO;
 }
-///Provided by [`khr::dynamic_rendering`](crate::khr::dynamic_rendering)
+///Provided by [VK_KHR_dynamic_rendering](crate::khr::dynamic_rendering)
 impl crate::vk::RenderingFlags {
     pub const CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self(
         crate::vk::RenderingFlagBits::CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR.0,
@@ -24,7 +24,7 @@ impl crate::vk::RenderingFlags {
     );
     pub const RESUMING_KHR: Self = Self(crate::vk::RenderingFlagBits::RESUMING_KHR.0);
 }
-///Provided by [`khr::dynamic_rendering`](crate::khr::dynamic_rendering)
+///Provided by [VK_KHR_dynamic_rendering](crate::khr::dynamic_rendering)
 impl crate::vk::RenderingFlagBits {
     pub const CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self::CONTENTS_SECONDARY_COMMAND_BUFFERS;
     pub const SUSPENDING_KHR: Self = Self::SUSPENDING;

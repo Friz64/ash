@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_instrumentation.html) · Extension `VK_ARM_shader_instrumentation`
 #![doc(alias = "VK_ARM_shader_instrumentation")]
-///Provided by [`arm::shader_instrumentation`](crate::arm::shader_instrumentation)
+///Provided by [VK_ARM_shader_instrumentation](crate::arm::shader_instrumentation)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM: Self = Self(
         1000607000,
@@ -13,7 +13,7 @@ impl crate::vk::StructureType {
     pub const SHADER_INSTRUMENTATION_CREATE_INFO_ARM: Self = Self(1000607002);
     pub const SHADER_INSTRUMENTATION_METRIC_DESCRIPTION_ARM: Self = Self(1000607003);
 }
-///Provided by [`arm::shader_instrumentation`](crate::arm::shader_instrumentation)
+///Provided by [VK_ARM_shader_instrumentation](crate::arm::shader_instrumentation)
 impl crate::vk::ObjectType {
     pub const SHADER_INSTRUMENTATION_ARM: Self = Self(1000607000);
 }

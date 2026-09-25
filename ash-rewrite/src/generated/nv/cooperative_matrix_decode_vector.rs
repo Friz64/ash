@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_matrix_decode_vector.html) · Extension `VK_NV_cooperative_matrix_decode_vector`
 #![doc(alias = "VK_NV_cooperative_matrix_decode_vector")]
-///Provided by [`nv::cooperative_matrix_decode_vector`](crate::nv::cooperative_matrix_decode_vector)
+///Provided by [VK_NV_cooperative_matrix_decode_vector](crate::nv::cooperative_matrix_decode_vector)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_DECODE_VECTOR_FEATURES_NV: Self = Self(
         1000689000,

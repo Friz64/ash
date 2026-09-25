@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_buffer_collection.html) · Extension `VK_FUCHSIA_buffer_collection`
 #![doc(alias = "VK_FUCHSIA_buffer_collection")]
-///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+///Provided by [VK_FUCHSIA_buffer_collection](crate::fuchsia::buffer_collection)
 impl crate::vk::StructureType {
     pub const BUFFER_COLLECTION_CREATE_INFO_FUCHSIA: Self = Self(1000366000);
     pub const IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA: Self = Self(1000366001);
@@ -15,15 +15,15 @@ impl crate::vk::StructureType {
     pub const SYSMEM_COLOR_SPACE_FUCHSIA: Self = Self(1000366008);
     pub const BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366009);
 }
-///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+///Provided by [VK_FUCHSIA_buffer_collection](crate::fuchsia::buffer_collection)
 impl crate::vk::ObjectType {
     pub const BUFFER_COLLECTION_FUCHSIA: Self = Self(1000366000);
 }
-///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+///Provided by [VK_FUCHSIA_buffer_collection](crate::fuchsia::buffer_collection)
 impl crate::vk::DebugReportObjectTypeEXT {
     pub const BUFFER_COLLECTION_FUCHSIA_EXT: Self = Self(1000366000);
 }
-///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+///Provided by [VK_FUCHSIA_buffer_collection](crate::fuchsia::buffer_collection)
 impl ImageConstraintsInfoFlagsFUCHSIA {
     pub const CPU_READ_RARELY_FUCHSIA: Self = Self(
         ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_RARELY_FUCHSIA.0,
@@ -41,7 +41,7 @@ impl ImageConstraintsInfoFlagsFUCHSIA {
         ImageConstraintsInfoFlagBitsFUCHSIA::PROTECTED_OPTIONAL_FUCHSIA.0,
     );
 }
-///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+///Provided by [VK_FUCHSIA_buffer_collection](crate::fuchsia::buffer_collection)
 impl ImageConstraintsInfoFlagBitsFUCHSIA {
     pub const CPU_READ_RARELY_FUCHSIA: Self = Self(1 << 0);
     pub const CPU_READ_OFTEN_FUCHSIA: Self = Self(1 << 1);

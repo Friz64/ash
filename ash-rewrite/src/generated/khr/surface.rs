@@ -2,43 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface.html) · Extension `VK_KHR_surface`
 #![doc(alias = "VK_KHR_surface")]
-///Provided by [`khr::surface`](crate::khr::surface)
+///Provided by [VK_KHR_surface](crate::khr::surface)
 impl crate::vk::Result {
     pub const ERROR_SURFACE_LOST_KHR: Self = Self(-1000000000);
     pub const ERROR_NATIVE_WINDOW_IN_USE_KHR: Self = Self(-1000000001);
 }
-///Provided by [`khr::surface`](crate::khr::surface)
+///Provided by [VK_KHR_surface](crate::khr::surface)
 impl crate::vk::ObjectType {
     pub const SURFACE_KHR: Self = Self(1000000000);
 }
-///Provided by [`khr::surface`](crate::khr::surface)
+///Provided by [VK_KHR_surface](crate::khr::surface)
 impl PresentModeKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const IMMEDIATE_KHR: Self = Self(0);
     pub const MAILBOX_KHR: Self = Self(1);
     pub const FIFO_KHR: Self = Self(2);
     pub const FIFO_RELAXED_KHR: Self = Self(3);
 }
-///Provided by [`khr::surface`](crate::khr::surface)
+///Provided by [VK_KHR_surface](crate::khr::surface)
 impl ColorSpaceKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const SRGB_NONLINEAR_KHR: Self = Self(0);
 }
-///Provided by [`khr::surface`](crate::khr::surface)
+///Provided by [VK_KHR_surface](crate::khr::surface)
 impl CompositeAlphaFlagsKHR {
     pub const OPAQUE_KHR: Self = Self(CompositeAlphaFlagBitsKHR::OPAQUE_KHR.0);
     pub const PRE_MULTIPLIED_KHR: Self = Self(
@@ -49,14 +33,14 @@ impl CompositeAlphaFlagsKHR {
     );
     pub const INHERIT_KHR: Self = Self(CompositeAlphaFlagBitsKHR::INHERIT_KHR.0);
 }
-///Provided by [`khr::surface`](crate::khr::surface)
+///Provided by [VK_KHR_surface](crate::khr::surface)
 impl CompositeAlphaFlagBitsKHR {
     pub const OPAQUE_KHR: Self = Self(1 << 0);
     pub const PRE_MULTIPLIED_KHR: Self = Self(1 << 1);
     pub const POST_MULTIPLIED_KHR: Self = Self(1 << 2);
     pub const INHERIT_KHR: Self = Self(1 << 3);
 }
-///Provided by [`khr::surface`](crate::khr::surface)
+///Provided by [VK_KHR_surface](crate::khr::surface)
 impl SurfaceTransformFlagsKHR {
     pub const IDENTITY_KHR: Self = Self(SurfaceTransformFlagBitsKHR::IDENTITY_KHR.0);
     pub const ROTATE_90_KHR: Self = Self(SurfaceTransformFlagBitsKHR::ROTATE_90_KHR.0);
@@ -76,7 +60,7 @@ impl SurfaceTransformFlagsKHR {
     );
     pub const INHERIT_KHR: Self = Self(SurfaceTransformFlagBitsKHR::INHERIT_KHR.0);
 }
-///Provided by [`khr::surface`](crate::khr::surface)
+///Provided by [VK_KHR_surface](crate::khr::surface)
 impl SurfaceTransformFlagBitsKHR {
     pub const IDENTITY_KHR: Self = Self(1 << 0);
     pub const ROTATE_90_KHR: Self = Self(1 << 1);
@@ -330,6 +314,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl PresentModeKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ColorSpaceKHR(pub(crate) i32);
@@ -358,6 +352,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ColorSpaceKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

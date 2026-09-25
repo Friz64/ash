@@ -2,20 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_render_pass_transform.html) · Extension `VK_QCOM_render_pass_transform`
 #![doc(alias = "VK_QCOM_render_pass_transform")]
-///Provided by [`qcom::render_pass_transform`](crate::qcom::render_pass_transform)
+///Provided by [VK_QCOM_render_pass_transform](crate::qcom::render_pass_transform)
 impl crate::vk::StructureType {
     pub const COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM: Self = Self(
         1000282000,
     );
     pub const RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM: Self = Self(1000282001);
 }
-///Provided by [`qcom::render_pass_transform`](crate::qcom::render_pass_transform)
+///Provided by [VK_QCOM_render_pass_transform](crate::qcom::render_pass_transform)
 impl crate::vk::RenderPassCreateFlags {
     pub const TRANSFORM_QCOM: Self = Self(
         crate::vk::RenderPassCreateFlagBits::TRANSFORM_QCOM.0,
     );
 }
-///Provided by [`qcom::render_pass_transform`](crate::qcom::render_pass_transform)
+///Provided by [VK_QCOM_render_pass_transform](crate::qcom::render_pass_transform)
 impl crate::vk::RenderPassCreateFlagBits {
     pub const TRANSFORM_QCOM: Self = Self(1 << 1);
 }

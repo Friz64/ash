@@ -2,13 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state2.html) · Extension `VK_EXT_extended_dynamic_state2`
 #![doc(alias = "VK_EXT_extended_dynamic_state2")]
-///Provided by [`ext::extended_dynamic_state2`](crate::ext::extended_dynamic_state2)
+///Provided by [VK_EXT_extended_dynamic_state2](crate::ext::extended_dynamic_state2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT: Self = Self(
         1000377000,
     );
 }
-///Provided by [`ext::extended_dynamic_state2`](crate::ext::extended_dynamic_state2)
+///Provided by [VK_EXT_extended_dynamic_state2](crate::ext::extended_dynamic_state2)
 impl crate::vk::DynamicState {
     pub const PATCH_CONTROL_POINTS_EXT: Self = Self(1000377000);
     pub const RASTERIZER_DISCARD_ENABLE_EXT: Self = Self::RASTERIZER_DISCARD_ENABLE;

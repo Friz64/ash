@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_generated_commands.html) · Extension `VK_EXT_device_generated_commands`
 #![doc(alias = "VK_EXT_device_generated_commands")]
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_EXT: Self = Self(
         1000572000,
@@ -23,34 +23,18 @@ impl crate::vk::StructureType {
     pub const GENERATED_COMMANDS_PIPELINE_INFO_EXT: Self = Self(1000572013);
     pub const GENERATED_COMMANDS_SHADER_INFO_EXT: Self = Self(1000572014);
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::ObjectType {
     pub const INDIRECT_COMMANDS_LAYOUT_EXT: Self = Self(1000572000);
     pub const INDIRECT_EXECUTION_SET_EXT: Self = Self(1000572001);
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl IndirectExecutionSetInfoTypeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const PIPELINES_EXT: Self = Self(0);
     pub const SHADER_OBJECTS_EXT: Self = Self(1);
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl IndirectCommandsTokenTypeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const EXECUTION_SET_EXT: Self = Self(0);
     pub const PUSH_CONSTANT_EXT: Self = Self(1);
     pub const SEQUENCE_INDEX_EXT: Self = Self(2);
@@ -62,7 +46,7 @@ impl IndirectCommandsTokenTypeEXT {
     pub const DRAW_COUNT_EXT: Self = Self(8);
     pub const DISPATCH_EXT: Self = Self(9);
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::AccessFlags {
     pub const COMMAND_PREPROCESS_READ_EXT: Self = Self(
         crate::vk::AccessFlagBits::COMMAND_PREPROCESS_READ_EXT.0,
@@ -71,22 +55,22 @@ impl crate::vk::AccessFlags {
         crate::vk::AccessFlagBits::COMMAND_PREPROCESS_WRITE_EXT.0,
     );
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::AccessFlagBits {
     pub const COMMAND_PREPROCESS_READ_EXT: Self = Self(1 << 17);
     pub const COMMAND_PREPROCESS_WRITE_EXT: Self = Self(1 << 18);
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::PipelineStageFlags {
     pub const COMMAND_PREPROCESS_EXT: Self = Self(
         crate::vk::PipelineStageFlagBits::COMMAND_PREPROCESS_EXT.0,
     );
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::PipelineStageFlagBits {
     pub const COMMAND_PREPROCESS_EXT: Self = Self(1 << 17);
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl IndirectCommandsLayoutUsageFlagsEXT {
     pub const EXPLICIT_PREPROCESS_EXT: Self = Self(
         IndirectCommandsLayoutUsageFlagBitsEXT::EXPLICIT_PREPROCESS_EXT.0,
@@ -95,12 +79,12 @@ impl IndirectCommandsLayoutUsageFlagsEXT {
         IndirectCommandsLayoutUsageFlagBitsEXT::UNORDERED_SEQUENCES_EXT.0,
     );
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl IndirectCommandsLayoutUsageFlagBitsEXT {
     pub const EXPLICIT_PREPROCESS_EXT: Self = Self(1 << 0);
     pub const UNORDERED_SEQUENCES_EXT: Self = Self(1 << 1);
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl IndirectCommandsInputModeFlagsEXT {
     pub const VULKAN_INDEX_BUFFER_EXT: Self = Self(
         IndirectCommandsInputModeFlagBitsEXT::VULKAN_INDEX_BUFFER_EXT.0,
@@ -109,38 +93,38 @@ impl IndirectCommandsInputModeFlagsEXT {
         IndirectCommandsInputModeFlagBitsEXT::DXGI_INDEX_BUFFER_EXT.0,
     );
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl IndirectCommandsInputModeFlagBitsEXT {
     pub const VULKAN_INDEX_BUFFER_EXT: Self = Self(1 << 0);
     pub const DXGI_INDEX_BUFFER_EXT: Self = Self(1 << 1);
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::PipelineCreateFlags2 {
     pub const INDIRECT_BINDABLE_EXT: Self = Self(
         crate::vk::PipelineCreateFlagBits2::INDIRECT_BINDABLE_EXT.0,
     );
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::PipelineCreateFlagBits2 {
     pub const INDIRECT_BINDABLE_EXT: Self = Self(1 << 38);
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::BufferUsageFlags2 {
     pub const PREPROCESS_BUFFER_EXT: Self = Self(
         crate::vk::BufferUsageFlagBits2::PREPROCESS_BUFFER_EXT.0,
     );
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::BufferUsageFlagBits2 {
     pub const PREPROCESS_BUFFER_EXT: Self = Self(1 << 31);
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::ShaderCreateFlagsEXT {
     pub const INDIRECT_BINDABLE_EXT: Self = Self(
         crate::vk::ShaderCreateFlagBitsEXT::INDIRECT_BINDABLE_EXT.0,
     );
 }
-///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::ShaderCreateFlagBitsEXT {
     pub const INDIRECT_BINDABLE_EXT: Self = Self(1 << 7);
 }
@@ -1295,6 +1279,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl IndirectExecutionSetInfoTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct IndirectCommandsTokenTypeEXT(pub(crate) i32);
@@ -1329,6 +1323,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl IndirectCommandsTokenTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

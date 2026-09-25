@@ -3,11 +3,11 @@
 #![cfg(feature = "provisional")]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_shader_enqueue.html) · Extension `VK_AMDX_shader_enqueue`
 #![doc(alias = "VK_AMDX_shader_enqueue")]
-///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl crate::vk::PipelineBindPoint {
     pub const EXECUTION_GRAPH_AMDX: Self = Self(1000134000);
 }
-///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX: Self = Self(1000134000);
     pub const PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX: Self = Self(1000134001);
@@ -15,33 +15,33 @@ impl crate::vk::StructureType {
     pub const EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX: Self = Self(1000134003);
     pub const PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX: Self = Self(1000134004);
 }
-///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl crate::vk::BufferUsageFlags {
     pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(
         crate::vk::BufferUsageFlagBits::EXECUTION_GRAPH_SCRATCH_AMDX.0,
     );
 }
-///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl crate::vk::BufferUsageFlagBits {
     pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(1 << 25);
 }
-///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl crate::vk::PipelineCreateFlags2 {
     pub const EXECUTION_GRAPH_AMDX: Self = Self(
         crate::vk::PipelineCreateFlagBits2::EXECUTION_GRAPH_AMDX.0,
     );
 }
-///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl crate::vk::PipelineCreateFlagBits2 {
     pub const EXECUTION_GRAPH_AMDX: Self = Self(1 << 32);
 }
-///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl crate::vk::BufferUsageFlags2 {
     pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(
         crate::vk::BufferUsageFlagBits2::EXECUTION_GRAPH_SCRATCH_AMDX.0,
     );
 }
-///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl crate::vk::BufferUsageFlagBits2 {
     pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(1 << 25);
 }

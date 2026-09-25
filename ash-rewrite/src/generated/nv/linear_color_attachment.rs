@@ -2,19 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_linear_color_attachment.html) · Extension `VK_NV_linear_color_attachment`
 #![doc(alias = "VK_NV_linear_color_attachment")]
-///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
+///Provided by [VK_NV_linear_color_attachment](crate::nv::linear_color_attachment)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV: Self = Self(
         1000430000,
     );
 }
-///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
+///Provided by [VK_NV_linear_color_attachment](crate::nv::linear_color_attachment)
 impl crate::vk::FormatFeatureFlags2 {
     pub const LINEAR_COLOR_ATTACHMENT_NV: Self = Self(
         crate::vk::FormatFeatureFlagBits2::LINEAR_COLOR_ATTACHMENT_NV.0,
     );
 }
-///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
+///Provided by [VK_NV_linear_color_attachment](crate::nv::linear_color_attachment)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const LINEAR_COLOR_ATTACHMENT_NV: Self = Self(1 << 38);
 }

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_relaxed_extended_instruction.html) · Extension `VK_KHR_shader_relaxed_extended_instruction`
 #![doc(alias = "VK_KHR_shader_relaxed_extended_instruction")]
-///Provided by [`khr::shader_relaxed_extended_instruction`](crate::khr::shader_relaxed_extended_instruction)
+///Provided by [VK_KHR_shader_relaxed_extended_instruction](crate::khr::shader_relaxed_extended_instruction)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR: Self = Self(
         1000558000,

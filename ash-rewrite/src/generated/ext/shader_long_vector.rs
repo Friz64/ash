@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_long_vector.html) · Extension `VK_EXT_shader_long_vector`
 #![doc(alias = "VK_EXT_shader_long_vector")]
-///Provided by [`ext::shader_long_vector`](crate::ext::shader_long_vector)
+///Provided by [VK_EXT_shader_long_vector](crate::ext::shader_long_vector)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_LONG_VECTOR_FEATURES_EXT: Self = Self(1000635000);
     pub const PHYSICAL_DEVICE_SHADER_LONG_VECTOR_PROPERTIES_EXT: Self = Self(1000635001);

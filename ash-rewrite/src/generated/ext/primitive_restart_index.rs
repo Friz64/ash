@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_primitive_restart_index.html) · Extension `VK_EXT_primitive_restart_index`
 #![doc(alias = "VK_EXT_primitive_restart_index")]
-///Provided by [`ext::primitive_restart_index`](crate::ext::primitive_restart_index)
+///Provided by [VK_EXT_primitive_restart_index](crate::ext::primitive_restart_index)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT: Self = Self(
         1000678000,

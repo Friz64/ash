@@ -2,29 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance2.html) · Extension `VK_KHR_maintenance2`
 #![doc(alias = "VK_KHR_maintenance2")]
-///Provided by [`khr::maintenance2`](crate::khr::maintenance2)
+///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
 impl crate::vk::ImageLayout {
     pub const DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR: Self = Self::DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL;
     pub const DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR: Self = Self::DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL;
 }
-///Provided by [`khr::maintenance2`](crate::khr::maintenance2)
+///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES;
     pub const RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO_KHR: Self = Self::RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO;
     pub const IMAGE_VIEW_USAGE_CREATE_INFO_KHR: Self = Self::IMAGE_VIEW_USAGE_CREATE_INFO;
     pub const PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO_KHR: Self = Self::PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO;
 }
-///Provided by [`khr::maintenance2`](crate::khr::maintenance2)
+///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
 impl crate::vk::PointClippingBehavior {
     pub const ALL_CLIP_PLANES_KHR: Self = Self::ALL_CLIP_PLANES;
     pub const USER_CLIP_PLANES_ONLY_KHR: Self = Self::USER_CLIP_PLANES_ONLY;
 }
-///Provided by [`khr::maintenance2`](crate::khr::maintenance2)
+///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
 impl crate::vk::TessellationDomainOrigin {
     pub const UPPER_LEFT_KHR: Self = Self::UPPER_LEFT;
     pub const LOWER_LEFT_KHR: Self = Self::LOWER_LEFT;
 }
-///Provided by [`khr::maintenance2`](crate::khr::maintenance2)
+///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
 impl crate::vk::ImageCreateFlags {
     pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self(
         crate::vk::ImageCreateFlagBits::BLOCK_TEXEL_VIEW_COMPATIBLE_KHR.0,
@@ -33,7 +33,7 @@ impl crate::vk::ImageCreateFlags {
         crate::vk::ImageCreateFlagBits::EXTENDED_USAGE_KHR.0,
     );
 }
-///Provided by [`khr::maintenance2`](crate::khr::maintenance2)
+///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
 impl crate::vk::ImageCreateFlagBits {
     pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self::BLOCK_TEXEL_VIEW_COMPATIBLE;
     pub const EXTENDED_USAGE_KHR: Self = Self::EXTENDED_USAGE;

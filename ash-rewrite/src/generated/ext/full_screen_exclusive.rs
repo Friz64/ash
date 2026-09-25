@@ -2,26 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_full_screen_exclusive.html) · Extension `VK_EXT_full_screen_exclusive`
 #![doc(alias = "VK_EXT_full_screen_exclusive")]
-///Provided by [`ext::full_screen_exclusive`](crate::ext::full_screen_exclusive)
+///Provided by [VK_EXT_full_screen_exclusive](crate::ext::full_screen_exclusive)
 impl crate::vk::StructureType {
     pub const SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT: Self = Self(1000255000);
     pub const SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT: Self = Self(1000255002);
     pub const SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT: Self = Self(1000255001);
 }
-///Provided by [`ext::full_screen_exclusive`](crate::ext::full_screen_exclusive)
+///Provided by [VK_EXT_full_screen_exclusive](crate::ext::full_screen_exclusive)
 impl crate::vk::Result {
     pub const ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT: Self = Self(-1000255000);
 }
-///Provided by [`ext::full_screen_exclusive`](crate::ext::full_screen_exclusive)
+///Provided by [VK_EXT_full_screen_exclusive](crate::ext::full_screen_exclusive)
 impl FullScreenExclusiveEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DEFAULT_EXT: Self = Self(0);
     pub const ALLOWED_EXT: Self = Self(1);
     pub const DISALLOWED_EXT: Self = Self(2);
@@ -294,6 +286,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl FullScreenExclusiveEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT = unsafe extern "system" fn(

@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph.html) · Extension `VK_ARM_data_graph`
 #![doc(alias = "VK_ARM_data_graph")]
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::PipelineBindPoint {
     pub const DATA_GRAPH_ARM: Self = Self(1000507000);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::StructureType {
     pub const DATA_GRAPH_PIPELINE_CREATE_INFO_ARM: Self = Self(1000507000);
     pub const DATA_GRAPH_PIPELINE_SESSION_CREATE_INFO_ARM: Self = Self(1000507001);
@@ -43,80 +43,40 @@ impl crate::vk::StructureType {
         1000507015,
     );
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::ObjectType {
     pub const DATA_GRAPH_PIPELINE_SESSION_ARM: Self = Self(1000507000);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl DataGraphPipelineSessionBindPointARM {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const TRANSIENT_ARM: Self = Self(0);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl DataGraphPipelineSessionBindPointTypeARM {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const MEMORY_ARM: Self = Self(0);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl DataGraphPipelinePropertyARM {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const CREATION_LOG_ARM: Self = Self(0);
     pub const IDENTIFIER_ARM: Self = Self(1);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl PhysicalDeviceDataGraphProcessingEngineTypeARM {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DEFAULT_ARM: Self = Self(0);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl PhysicalDeviceDataGraphOperationTypeARM {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const SPIRV_EXTENDED_INSTRUCTION_SET_ARM: Self = Self(0);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::QueueFlags {
     pub const DATA_GRAPH_ARM: Self = Self(crate::vk::QueueFlagBits::DATA_GRAPH_ARM.0);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::QueueFlagBits {
     pub const DATA_GRAPH_ARM: Self = Self(1 << 10);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::AccessFlags2 {
     pub const DATA_GRAPH_READ_ARM: Self = Self(
         crate::vk::AccessFlagBits2::DATA_GRAPH_READ_ARM.0,
@@ -125,58 +85,58 @@ impl crate::vk::AccessFlags2 {
         crate::vk::AccessFlagBits2::DATA_GRAPH_WRITE_ARM.0,
     );
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::AccessFlagBits2 {
     pub const DATA_GRAPH_READ_ARM: Self = Self(1 << 47);
     pub const DATA_GRAPH_WRITE_ARM: Self = Self(1 << 48);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::PipelineStageFlags2 {
     pub const DATA_GRAPH_ARM: Self = Self(
         crate::vk::PipelineStageFlagBits2::DATA_GRAPH_ARM.0,
     );
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const DATA_GRAPH_ARM: Self = Self(1 << 42);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::FormatFeatureFlags2 {
     pub const TENSOR_DATA_GRAPH_ARM: Self = Self(
         crate::vk::FormatFeatureFlagBits2::TENSOR_DATA_GRAPH_ARM.0,
     );
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const TENSOR_DATA_GRAPH_ARM: Self = Self(1 << 48);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::BufferUsageFlags2 {
     pub const DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM: Self = Self(
         crate::vk::BufferUsageFlagBits2::DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM.0,
     );
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::BufferUsageFlagBits2 {
     pub const DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM: Self = Self(1 << 29);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::TensorUsageFlagsARM {
     pub const DATA_GRAPH_ARM: Self = Self(
         crate::vk::TensorUsageFlagBitsARM::DATA_GRAPH_ARM.0,
     );
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::TensorUsageFlagBitsARM {
     pub const DATA_GRAPH_ARM: Self = Self(1 << 5);
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl DataGraphPipelineSessionCreateFlagsARM {
     pub const PROTECTED_ARM: Self = Self(
         DataGraphPipelineSessionCreateFlagBitsARM::PROTECTED_ARM.0,
     );
 }
-///Provided by [`arm::data_graph`](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl DataGraphPipelineSessionCreateFlagBitsARM {
     pub const PROTECTED_ARM: Self = Self(1 << 0);
 }
@@ -1426,6 +1386,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl DataGraphPipelineSessionBindPointARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DataGraphPipelineSessionBindPointTypeARM(pub(crate) i32);
@@ -1440,6 +1410,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl DataGraphPipelineSessionBindPointTypeARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -1465,6 +1445,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl DataGraphPipelinePropertyARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PhysicalDeviceDataGraphProcessingEngineTypeARM(pub(crate) i32);
@@ -1481,6 +1471,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl PhysicalDeviceDataGraphProcessingEngineTypeARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -1502,6 +1502,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl PhysicalDeviceDataGraphOperationTypeARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

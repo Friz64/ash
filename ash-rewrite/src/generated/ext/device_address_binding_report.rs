@@ -2,43 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_address_binding_report.html) · Extension `VK_EXT_device_address_binding_report`
 #![doc(alias = "VK_EXT_device_address_binding_report")]
-///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT: Self = Self(
         1000354000,
     );
     pub const DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT: Self = Self(1000354001);
 }
-///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl DeviceAddressBindingTypeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const BIND_EXT: Self = Self(0);
     pub const UNBIND_EXT: Self = Self(1);
 }
-///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl crate::vk::DebugUtilsMessageTypeFlagsEXT {
     pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(
         crate::vk::DebugUtilsMessageTypeFlagBitsEXT::DEVICE_ADDRESS_BINDING_EXT.0,
     );
 }
-///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl crate::vk::DebugUtilsMessageTypeFlagBitsEXT {
     pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(1 << 3);
 }
-///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl DeviceAddressBindingFlagsEXT {
     pub const INTERNAL_OBJECT_EXT: Self = Self(
         DeviceAddressBindingFlagBitsEXT::INTERNAL_OBJECT_EXT.0,
     );
 }
-///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl DeviceAddressBindingFlagBitsEXT {
     pub const INTERNAL_OBJECT_EXT: Self = Self(1 << 0);
 }
@@ -145,6 +137,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl DeviceAddressBindingTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

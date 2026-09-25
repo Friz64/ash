@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_compute_shader_derivatives.html) · Extension `VK_NV_compute_shader_derivatives`
 #![doc(alias = "VK_NV_compute_shader_derivatives")]
-///Provided by [`nv::compute_shader_derivatives`](crate::nv::compute_shader_derivatives)
+///Provided by [VK_NV_compute_shader_derivatives](crate::nv::compute_shader_derivatives)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_NV: Self = Self::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_KHR;
 }

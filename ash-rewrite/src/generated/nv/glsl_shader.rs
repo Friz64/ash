@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_glsl_shader.html) · Extension `VK_NV_glsl_shader`
 #![doc(alias = "VK_NV_glsl_shader")]
-///Provided by [`nv::glsl_shader`](crate::nv::glsl_shader)
+///Provided by [VK_NV_glsl_shader](crate::nv::glsl_shader)
 impl crate::vk::Result {
     pub const ERROR_INVALID_SHADER_NV: Self = Self(-1000012000);
 }

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_screen_surface.html) · Extension `VK_QNX_screen_surface`
 #![doc(alias = "VK_QNX_screen_surface")]
-///Provided by [`qnx::screen_surface`](crate::qnx::screen_surface)
+///Provided by [VK_QNX_screen_surface](crate::qnx::screen_surface)
 impl crate::vk::StructureType {
     pub const SCREEN_SURFACE_CREATE_INFO_QNX: Self = Self(1000378000);
 }

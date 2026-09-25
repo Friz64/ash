@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map_offset.html) · Extension `VK_EXT_fragment_density_map_offset`
 #![doc(alias = "VK_EXT_fragment_density_map_offset")]
-///Provided by [`ext::fragment_density_map_offset`](crate::ext::fragment_density_map_offset)
+///Provided by [VK_EXT_fragment_density_map_offset](crate::ext::fragment_density_map_offset)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT: Self = Self(
         1000425000,
@@ -15,13 +15,13 @@ impl crate::vk::StructureType {
     );
     pub const RENDERING_END_INFO_EXT: Self = Self::RENDERING_END_INFO_KHR;
 }
-///Provided by [`ext::fragment_density_map_offset`](crate::ext::fragment_density_map_offset)
+///Provided by [VK_EXT_fragment_density_map_offset](crate::ext::fragment_density_map_offset)
 impl crate::vk::ImageCreateFlags {
     pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(
         crate::vk::ImageCreateFlagBits::FRAGMENT_DENSITY_MAP_OFFSET_EXT.0,
     );
 }
-///Provided by [`ext::fragment_density_map_offset`](crate::ext::fragment_density_map_offset)
+///Provided by [VK_EXT_fragment_density_map_offset](crate::ext::fragment_density_map_offset)
 impl crate::vk::ImageCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(1 << 15);
 }

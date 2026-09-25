@@ -2,37 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_invocation_mask.html) · Extension `VK_HUAWEI_invocation_mask`
 #![doc(alias = "VK_HUAWEI_invocation_mask")]
-///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI: Self = Self(1000370000);
 }
-///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl crate::vk::ImageUsageFlags {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(
         crate::vk::ImageUsageFlagBits::INVOCATION_MASK_HUAWEI.0,
     );
 }
-///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl crate::vk::ImageUsageFlagBits {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 18);
 }
-///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl crate::vk::AccessFlags2 {
     pub const INVOCATION_MASK_READ_HUAWEI: Self = Self(
         crate::vk::AccessFlagBits2::INVOCATION_MASK_READ_HUAWEI.0,
     );
 }
-///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl crate::vk::AccessFlagBits2 {
     pub const INVOCATION_MASK_READ_HUAWEI: Self = Self(1 << 39);
 }
-///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl crate::vk::PipelineStageFlags2 {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(
         crate::vk::PipelineStageFlagBits2::INVOCATION_MASK_HUAWEI.0,
     );
 }
-///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 40);
 }

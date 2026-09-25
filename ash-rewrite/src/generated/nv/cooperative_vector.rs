@@ -2,23 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_vector.html) · Extension `VK_NV_cooperative_vector`
 #![doc(alias = "VK_NV_cooperative_vector")]
-///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
+///Provided by [VK_NV_cooperative_vector](crate::nv::cooperative_vector)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV: Self = Self(1000491000);
     pub const PHYSICAL_DEVICE_COOPERATIVE_VECTOR_PROPERTIES_NV: Self = Self(1000491001);
     pub const COOPERATIVE_VECTOR_PROPERTIES_NV: Self = Self(1000491002);
     pub const CONVERT_COOPERATIVE_VECTOR_MATRIX_INFO_NV: Self = Self(1000491004);
 }
-///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
+///Provided by [VK_NV_cooperative_vector](crate::nv::cooperative_vector)
 impl ComponentTypeKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const FLOAT16_KHR: Self = Self(0);
     pub const FLOAT32_KHR: Self = Self(1);
     pub const FLOAT64_KHR: Self = Self(2);
@@ -35,28 +27,20 @@ impl ComponentTypeKHR {
     pub const FLOAT_E4M3_NV: Self = Self::FLOAT8_E4M3_EXT;
     pub const FLOAT_E5M2_NV: Self = Self::FLOAT8_E5M2_EXT;
 }
-///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
+///Provided by [VK_NV_cooperative_vector](crate::nv::cooperative_vector)
 impl CooperativeVectorMatrixLayoutNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const ROW_MAJOR_NV: Self = Self(0);
     pub const COLUMN_MAJOR_NV: Self = Self(1);
     pub const INFERENCING_OPTIMAL_NV: Self = Self(2);
     pub const TRAINING_OPTIMAL_NV: Self = Self(3);
 }
-///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
+///Provided by [VK_NV_cooperative_vector](crate::nv::cooperative_vector)
 impl crate::vk::PipelineStageFlags2 {
     pub const CONVERT_COOPERATIVE_VECTOR_MATRIX_NV: Self = Self(
         crate::vk::PipelineStageFlagBits2::CONVERT_COOPERATIVE_VECTOR_MATRIX_NV.0,
     );
 }
-///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
+///Provided by [VK_NV_cooperative_vector](crate::nv::cooperative_vector)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const CONVERT_COOPERATIVE_VECTOR_MATRIX_NV: Self = Self(1 << 44);
 }
@@ -510,6 +494,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl ComponentTypeKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct CooperativeVectorMatrixLayoutNV(pub(crate) i32);
@@ -527,6 +521,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl CooperativeVectorMatrixLayoutNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV = unsafe extern "system" fn(

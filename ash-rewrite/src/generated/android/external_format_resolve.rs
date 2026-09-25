@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_format_resolve.html) · Extension `VK_ANDROID_external_format_resolve`
 #![doc(alias = "VK_ANDROID_external_format_resolve")]
-///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
+///Provided by [VK_ANDROID_external_format_resolve](crate::android::external_format_resolve)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID: Self = Self(
         1000468000,
@@ -14,13 +14,13 @@ impl crate::vk::StructureType {
         1000468002,
     );
 }
-///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
+///Provided by [VK_ANDROID_external_format_resolve](crate::android::external_format_resolve)
 impl crate::vk::ResolveModeFlags {
     pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(
         crate::vk::ResolveModeFlagBits::EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID.0,
     );
 }
-///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
+///Provided by [VK_ANDROID_external_format_resolve](crate::android::external_format_resolve)
 impl crate::vk::ResolveModeFlagBits {
     pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(1 << 4);
 }

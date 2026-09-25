@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_diagnostic_checkpoints.html) · Extension `VK_NV_device_diagnostic_checkpoints`
 #![doc(alias = "VK_NV_device_diagnostic_checkpoints")]
-///Provided by [`nv::device_diagnostic_checkpoints`](crate::nv::device_diagnostic_checkpoints)
+///Provided by [VK_NV_device_diagnostic_checkpoints](crate::nv::device_diagnostic_checkpoints)
 impl crate::vk::StructureType {
     pub const CHECKPOINT_DATA_NV: Self = Self(1000206000);
     pub const QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV: Self = Self(1000206001);

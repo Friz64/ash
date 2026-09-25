@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface_protected_capabilities.html) · Extension `VK_KHR_surface_protected_capabilities`
 #![doc(alias = "VK_KHR_surface_protected_capabilities")]
-///Provided by [`khr::surface_protected_capabilities`](crate::khr::surface_protected_capabilities)
+///Provided by [VK_KHR_surface_protected_capabilities](crate::khr::surface_protected_capabilities)
 impl crate::vk::StructureType {
     pub const SURFACE_PROTECTED_CAPABILITIES_KHR: Self = Self(1000239000);
 }

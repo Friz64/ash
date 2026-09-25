@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_maximal_reconvergence.html) · Extension `VK_KHR_shader_maximal_reconvergence`
 #![doc(alias = "VK_KHR_shader_maximal_reconvergence")]
-///Provided by [`khr::shader_maximal_reconvergence`](crate::khr::shader_maximal_reconvergence)
+///Provided by [VK_KHR_shader_maximal_reconvergence](crate::khr::shader_maximal_reconvergence)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_MAXIMAL_RECONVERGENCE_FEATURES_KHR: Self = Self(
         1000434000,

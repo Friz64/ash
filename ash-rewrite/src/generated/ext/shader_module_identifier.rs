@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_module_identifier.html) · Extension `VK_EXT_shader_module_identifier`
 #![doc(alias = "VK_EXT_shader_module_identifier")]
-///Provided by [`ext::shader_module_identifier`](crate::ext::shader_module_identifier)
+///Provided by [VK_EXT_shader_module_identifier](crate::ext::shader_module_identifier)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT: Self = Self(
         1000462000,

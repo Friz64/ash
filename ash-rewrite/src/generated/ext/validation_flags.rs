@@ -2,20 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_flags.html) · Extension `VK_EXT_validation_flags`
 #![doc(alias = "VK_EXT_validation_flags")]
-///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
+///Provided by [VK_EXT_validation_flags](crate::ext::validation_flags)
 impl crate::vk::StructureType {
     pub const VALIDATION_FLAGS_EXT: Self = Self(1000061000);
 }
-///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
+///Provided by [VK_EXT_validation_flags](crate::ext::validation_flags)
 impl ValidationCheckEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const ALL_EXT: Self = Self(0);
     pub const SHADERS_EXT: Self = Self(1);
 }
@@ -73,6 +65,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ValidationCheckEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

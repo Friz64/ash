@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain.html) · Extension `VK_KHR_swapchain`
 #![doc(alias = "VK_KHR_swapchain")]
-///Provided by [`khr::swapchain`](crate::khr::swapchain)
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl crate::vk::ImageLayout {
     pub const PRESENT_SRC_KHR: Self = Self(1000001002);
 }
-///Provided by [`khr::swapchain`](crate::khr::swapchain)
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl crate::vk::StructureType {
     pub const SWAPCHAIN_CREATE_INFO_KHR: Self = Self(1000001000);
     pub const PRESENT_INFO_KHR: Self = Self(1000001001);
@@ -17,28 +17,28 @@ impl crate::vk::StructureType {
     pub const DEVICE_GROUP_PRESENT_INFO_KHR: Self = Self(1000060011);
     pub const DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR: Self = Self(1000060012);
 }
-///Provided by [`khr::swapchain`](crate::khr::swapchain)
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl crate::vk::Result {
     pub const SUBOPTIMAL_KHR: Self = Self(1000001003);
     pub const ERROR_OUT_OF_DATE_KHR: Self = Self(-1000001004);
 }
-///Provided by [`khr::swapchain`](crate::khr::swapchain)
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl crate::vk::ObjectType {
     pub const SWAPCHAIN_KHR: Self = Self(1000001000);
 }
-///Provided by [`khr::swapchain`](crate::khr::swapchain)
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl SwapchainCreateFlagsKHR {
     pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(
         SwapchainCreateFlagBitsKHR::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
     );
     pub const PROTECTED_KHR: Self = Self(SwapchainCreateFlagBitsKHR::PROTECTED_KHR.0);
 }
-///Provided by [`khr::swapchain`](crate::khr::swapchain)
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl SwapchainCreateFlagBitsKHR {
     pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(1 << 0);
     pub const PROTECTED_KHR: Self = Self(1 << 1);
 }
-///Provided by [`khr::swapchain`](crate::khr::swapchain)
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl DeviceGroupPresentModeFlagsKHR {
     pub const LOCAL_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::LOCAL_KHR.0);
     pub const REMOTE_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::REMOTE_KHR.0);
@@ -47,7 +47,7 @@ impl DeviceGroupPresentModeFlagsKHR {
         DeviceGroupPresentModeFlagBitsKHR::LOCAL_MULTI_DEVICE_KHR.0,
     );
 }
-///Provided by [`khr::swapchain`](crate::khr::swapchain)
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl DeviceGroupPresentModeFlagBitsKHR {
     pub const LOCAL_KHR: Self = Self(1 << 0);
     pub const REMOTE_KHR: Self = Self(1 << 1);

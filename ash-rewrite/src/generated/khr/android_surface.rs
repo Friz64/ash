@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_android_surface.html) · Extension `VK_KHR_android_surface`
 #![doc(alias = "VK_KHR_android_surface")]
-///Provided by [`khr::android_surface`](crate::khr::android_surface)
+///Provided by [VK_KHR_android_surface](crate::khr::android_surface)
 impl crate::vk::StructureType {
     pub const ANDROID_SURFACE_CREATE_INFO_KHR: Self = Self(1000008000);
 }

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pci_bus_info.html) · Extension `VK_EXT_pci_bus_info`
 #![doc(alias = "VK_EXT_pci_bus_info")]
-///Provided by [`ext::pci_bus_info`](crate::ext::pci_bus_info)
+///Provided by [VK_EXT_pci_bus_info](crate::ext::pci_bus_info)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT: Self = Self(1000212000);
 }

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_extended_flags.html) · Extension `VK_KHR_extended_flags`
 #![doc(alias = "VK_KHR_extended_flags")]
-///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
+///Provided by [VK_KHR_extended_flags](crate::khr::extended_flags)
 impl crate::vk::StructureType {
     pub const FORMAT_PROPERTIES_4_KHR: Self = Self(1000668000);
     pub const IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR: Self = Self(1000668001);
@@ -12,7 +12,7 @@ impl crate::vk::StructureType {
     pub const IMAGE_STENCIL_USAGE_2_CREATE_INFO_KHR: Self = Self(1000668005);
     pub const SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR: Self = Self(1000668006);
 }
-///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
+///Provided by [VK_KHR_extended_flags](crate::khr::extended_flags)
 impl ImageUsageFlags2KHR {
     pub const TRANSFER_SRC_KHR: Self = Self(ImageUsageFlagBits2KHR::TRANSFER_SRC_KHR.0);
     pub const TRANSFER_DST_KHR: Self = Self(ImageUsageFlagBits2KHR::TRANSFER_DST_KHR.0);
@@ -80,7 +80,7 @@ impl ImageUsageFlags2KHR {
     );
     pub const TILE_MEMORY_QCOM: Self = Self(ImageUsageFlagBits2KHR::TILE_MEMORY_QCOM.0);
 }
-///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
+///Provided by [VK_KHR_extended_flags](crate::khr::extended_flags)
 impl ImageUsageFlagBits2KHR {
     pub const TRANSFER_SRC_KHR: Self = Self(1 << 0);
     pub const TRANSFER_DST_KHR: Self = Self(1 << 1);
@@ -108,7 +108,7 @@ impl ImageUsageFlagBits2KHR {
     pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 26);
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
 }
-///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
+///Provided by [VK_KHR_extended_flags](crate::khr::extended_flags)
 impl ImageCreateFlags2KHR {
     pub const SPARSE_BINDING_KHR: Self = Self(
         ImageCreateFlagBits2KHR::SPARSE_BINDING_KHR.0,
@@ -163,7 +163,7 @@ impl ImageCreateFlags2KHR {
         ImageCreateFlagBits2KHR::VIDEO_PROFILE_INDEPENDENT_KHR.0,
     );
 }
-///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
+///Provided by [VK_KHR_extended_flags](crate::khr::extended_flags)
 impl ImageCreateFlagBits2KHR {
     pub const SPARSE_BINDING_KHR: Self = Self(1 << 0);
     pub const SPARSE_RESIDENCY_KHR: Self = Self(1 << 1);

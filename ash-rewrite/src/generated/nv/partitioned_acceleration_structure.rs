@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_partitioned_acceleration_structure.html) · Extension `VK_NV_partitioned_acceleration_structure`
 #![doc(alias = "VK_NV_partitioned_acceleration_structure")]
-///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
+///Provided by [VK_NV_partitioned_acceleration_structure](crate::nv::partitioned_acceleration_structure)
 impl crate::vk::DescriptorType {
     pub const PARTITIONED_ACCELERATION_STRUCTURE_NV: Self = Self(1000570000);
 }
-///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
+///Provided by [VK_NV_partitioned_acceleration_structure](crate::nv::partitioned_acceleration_structure)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_FEATURES_NV: Self = Self(
         1000570000,
@@ -23,21 +23,13 @@ impl crate::vk::StructureType {
     pub const BUILD_PARTITIONED_ACCELERATION_STRUCTURE_INFO_NV: Self = Self(1000570004);
     pub const PARTITIONED_ACCELERATION_STRUCTURE_FLAGS_NV: Self = Self(1000570005);
 }
-///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
+///Provided by [VK_NV_partitioned_acceleration_structure](crate::nv::partitioned_acceleration_structure)
 impl PartitionedAccelerationStructureOpTypeNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const WRITE_INSTANCE_NV: Self = Self(0);
     pub const UPDATE_INSTANCE_NV: Self = Self(1);
     pub const WRITE_PARTITION_TRANSLATION_NV: Self = Self(2);
 }
-///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
+///Provided by [VK_NV_partitioned_acceleration_structure](crate::nv::partitioned_acceleration_structure)
 impl PartitionedAccelerationStructureInstanceFlagsNV {
     pub const FLAG_TRIANGLE_FACING_CULL_DISABLE_NV: Self = Self(
         PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FACING_CULL_DISABLE_NV
@@ -58,7 +50,7 @@ impl PartitionedAccelerationStructureInstanceFlagsNV {
             .0,
     );
 }
-///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
+///Provided by [VK_NV_partitioned_acceleration_structure](crate::nv::partitioned_acceleration_structure)
 impl PartitionedAccelerationStructureInstanceFlagBitsNV {
     pub const FLAG_TRIANGLE_FACING_CULL_DISABLE_NV: Self = Self(1 << 0);
     pub const FLAG_TRIANGLE_FLIP_FACING_NV: Self = Self(1 << 1);
@@ -598,6 +590,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl PartitionedAccelerationStructureOpTypeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

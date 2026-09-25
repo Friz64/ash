@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory_capabilities.html) · Extension `VK_KHR_external_memory_capabilities`
 #![doc(alias = "VK_KHR_external_memory_capabilities")]
-///Provided by [`khr::external_memory_capabilities`](crate::khr::external_memory_capabilities)
+///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO;
     pub const EXTERNAL_IMAGE_FORMAT_PROPERTIES_KHR: Self = Self::EXTERNAL_IMAGE_FORMAT_PROPERTIES;
@@ -10,7 +10,7 @@ impl crate::vk::StructureType {
     pub const EXTERNAL_BUFFER_PROPERTIES_KHR: Self = Self::EXTERNAL_BUFFER_PROPERTIES;
     pub const PHYSICAL_DEVICE_ID_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_ID_PROPERTIES;
 }
-///Provided by [`khr::external_memory_capabilities`](crate::khr::external_memory_capabilities)
+///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
 impl crate::vk::ExternalMemoryHandleTypeFlags {
     pub const OPAQUE_FD_KHR: Self = Self(
         crate::vk::ExternalMemoryHandleTypeFlagBits::OPAQUE_FD_KHR.0,
@@ -34,7 +34,7 @@ impl crate::vk::ExternalMemoryHandleTypeFlags {
         crate::vk::ExternalMemoryHandleTypeFlagBits::D3D12_RESOURCE_KHR.0,
     );
 }
-///Provided by [`khr::external_memory_capabilities`](crate::khr::external_memory_capabilities)
+///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const OPAQUE_FD_KHR: Self = Self::OPAQUE_FD;
     pub const OPAQUE_WIN32_KHR: Self = Self::OPAQUE_WIN32;
@@ -44,7 +44,7 @@ impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const D3D12_HEAP_KHR: Self = Self::D3D12_HEAP;
     pub const D3D12_RESOURCE_KHR: Self = Self::D3D12_RESOURCE;
 }
-///Provided by [`khr::external_memory_capabilities`](crate::khr::external_memory_capabilities)
+///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
 impl crate::vk::ExternalMemoryFeatureFlags {
     pub const DEDICATED_ONLY_KHR: Self = Self(
         crate::vk::ExternalMemoryFeatureFlagBits::DEDICATED_ONLY_KHR.0,
@@ -56,7 +56,7 @@ impl crate::vk::ExternalMemoryFeatureFlags {
         crate::vk::ExternalMemoryFeatureFlagBits::IMPORTABLE_KHR.0,
     );
 }
-///Provided by [`khr::external_memory_capabilities`](crate::khr::external_memory_capabilities)
+///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
 impl crate::vk::ExternalMemoryFeatureFlagBits {
     pub const DEDICATED_ONLY_KHR: Self = Self::DEDICATED_ONLY;
     pub const EXPORTABLE_KHR: Self = Self::EXPORTABLE;

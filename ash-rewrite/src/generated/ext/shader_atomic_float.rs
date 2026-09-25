@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_atomic_float.html) · Extension `VK_EXT_shader_atomic_float`
 #![doc(alias = "VK_EXT_shader_atomic_float")]
-///Provided by [`ext::shader_atomic_float`](crate::ext::shader_atomic_float)
+///Provided by [VK_EXT_shader_atomic_float](crate::ext::shader_atomic_float)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT: Self = Self(1000260000);
 }

@@ -2,18 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance4.html) · Extension `VK_KHR_maintenance4`
 #![doc(alias = "VK_KHR_maintenance4")]
-///Provided by [`khr::maintenance4`](crate::khr::maintenance4)
+///Provided by [VK_KHR_maintenance4](crate::khr::maintenance4)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES;
     pub const PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES;
     pub const DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR: Self = Self::DEVICE_BUFFER_MEMORY_REQUIREMENTS;
     pub const DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR: Self = Self::DEVICE_IMAGE_MEMORY_REQUIREMENTS;
 }
-///Provided by [`khr::maintenance4`](crate::khr::maintenance4)
+///Provided by [VK_KHR_maintenance4](crate::khr::maintenance4)
 impl crate::vk::ImageAspectFlags {
     pub const NONE_KHR: Self = Self(crate::vk::ImageAspectFlagBits::NONE_KHR.0);
 }
-///Provided by [`khr::maintenance4`](crate::khr::maintenance4)
+///Provided by [VK_KHR_maintenance4](crate::khr::maintenance4)
 impl crate::vk::ImageAspectFlagBits {
     pub const NONE_KHR: Self = Self::NONE;
 }

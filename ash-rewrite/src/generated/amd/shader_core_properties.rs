@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_core_properties.html) · Extension `VK_AMD_shader_core_properties`
 #![doc(alias = "VK_AMD_shader_core_properties")]
-///Provided by [`amd::shader_core_properties`](crate::amd::shader_core_properties)
+///Provided by [VK_AMD_shader_core_properties](crate::amd::shader_core_properties)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD: Self = Self(1000185000);
 }

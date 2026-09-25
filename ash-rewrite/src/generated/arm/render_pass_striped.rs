@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_render_pass_striped.html) · Extension `VK_ARM_render_pass_striped`
 #![doc(alias = "VK_ARM_render_pass_striped")]
-///Provided by [`arm::render_pass_striped`](crate::arm::render_pass_striped)
+///Provided by [VK_ARM_render_pass_striped](crate::arm::render_pass_striped)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RENDER_PASS_STRIPED_FEATURES_ARM: Self = Self(1000424000);
     pub const PHYSICAL_DEVICE_RENDER_PASS_STRIPED_PROPERTIES_ARM: Self = Self(

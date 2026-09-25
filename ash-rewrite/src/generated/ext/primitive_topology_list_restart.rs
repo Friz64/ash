@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_primitive_topology_list_restart.html) · Extension `VK_EXT_primitive_topology_list_restart`
 #![doc(alias = "VK_EXT_primitive_topology_list_restart")]
-///Provided by [`ext::primitive_topology_list_restart`](crate::ext::primitive_topology_list_restart)
+///Provided by [VK_EXT_primitive_topology_list_restart](crate::ext::primitive_topology_list_restart)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT: Self = Self(
         1000356000,

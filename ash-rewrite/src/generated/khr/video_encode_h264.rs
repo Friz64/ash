@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_h264.html) · Extension `VK_KHR_video_encode_h264`
 #![doc(alias = "VK_KHR_video_encode_h264")]
-///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl crate::vk::StructureType {
     pub const VIDEO_ENCODE_H264_CAPABILITIES_KHR: Self = Self(1000038000);
     pub const VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
@@ -23,17 +23,17 @@ impl crate::vk::StructureType {
         1000038013,
     );
 }
-///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl crate::vk::VideoCodecOperationFlagsKHR {
     pub const ENCODE_H264_KHR: Self = Self(
         crate::vk::VideoCodecOperationFlagBitsKHR::ENCODE_H264_KHR.0,
     );
 }
-///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const ENCODE_H264_KHR: Self = Self(1 << 16);
 }
-///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl VideoEncodeH264CapabilityFlagsKHR {
     pub const HRD_COMPLIANCE_KHR: Self = Self(
         VideoEncodeH264CapabilityFlagBitsKHR::HRD_COMPLIANCE_KHR.0,
@@ -63,7 +63,7 @@ impl VideoEncodeH264CapabilityFlagsKHR {
         VideoEncodeH264CapabilityFlagBitsKHR::GENERATE_PREFIX_NALU_KHR.0,
     );
 }
-///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl VideoEncodeH264CapabilityFlagBitsKHR {
     pub const HRD_COMPLIANCE_KHR: Self = Self(1 << 0);
     pub const PREDICTION_WEIGHT_TABLE_GENERATED_KHR: Self = Self(1 << 1);
@@ -75,7 +75,7 @@ impl VideoEncodeH264CapabilityFlagBitsKHR {
     pub const PER_SLICE_CONSTANT_QP_KHR: Self = Self(1 << 7);
     pub const GENERATE_PREFIX_NALU_KHR: Self = Self(1 << 8);
 }
-///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl VideoEncodeH264StdFlagsKHR {
     pub const SEPARATE_COLOR_PLANE_FLAG_SET_KHR: Self = Self(
         VideoEncodeH264StdFlagBitsKHR::SEPARATE_COLOR_PLANE_FLAG_SET_KHR.0,
@@ -138,7 +138,7 @@ impl VideoEncodeH264StdFlagsKHR {
         VideoEncodeH264StdFlagBitsKHR::DIFFERENT_SLICE_QP_DELTA_KHR.0,
     );
 }
-///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl VideoEncodeH264StdFlagBitsKHR {
     pub const SEPARATE_COLOR_PLANE_FLAG_SET_KHR: Self = Self(1 << 0);
     pub const QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR: Self = Self(1 << 1);
@@ -161,7 +161,7 @@ impl VideoEncodeH264StdFlagBitsKHR {
     pub const SLICE_QP_DELTA_KHR: Self = Self(1 << 19);
     pub const DIFFERENT_SLICE_QP_DELTA_KHR: Self = Self(1 << 20);
 }
-///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl VideoEncodeH264RateControlFlagsKHR {
     pub const ATTEMPT_HRD_COMPLIANCE_KHR: Self = Self(
         VideoEncodeH264RateControlFlagBitsKHR::ATTEMPT_HRD_COMPLIANCE_KHR.0,
@@ -179,7 +179,7 @@ impl VideoEncodeH264RateControlFlagsKHR {
         VideoEncodeH264RateControlFlagBitsKHR::TEMPORAL_LAYER_PATTERN_DYADIC_KHR.0,
     );
 }
-///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl VideoEncodeH264RateControlFlagBitsKHR {
     pub const ATTEMPT_HRD_COMPLIANCE_KHR: Self = Self(1 << 0);
     pub const REGULAR_GOP_KHR: Self = Self(1 << 1);

@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_transform_feedback.html) · Extension `VK_EXT_transform_feedback`
 #![doc(alias = "VK_EXT_transform_feedback")]
-///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl crate::vk::QueryType {
     pub const TRANSFORM_FEEDBACK_STREAM_EXT: Self = Self(1000028004);
 }
-///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT: Self = Self(1000028000);
     pub const PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT: Self = Self(1000028001);
@@ -14,7 +14,7 @@ impl crate::vk::StructureType {
         1000028002,
     );
 }
-///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl crate::vk::AccessFlags {
     pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(
         crate::vk::AccessFlagBits::TRANSFORM_FEEDBACK_WRITE_EXT.0,
@@ -26,13 +26,13 @@ impl crate::vk::AccessFlags {
         crate::vk::AccessFlagBits::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT.0,
     );
 }
-///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl crate::vk::AccessFlagBits {
     pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(1 << 25);
     pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(1 << 26);
     pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(1 << 27);
 }
-///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl crate::vk::BufferUsageFlags {
     pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(
         crate::vk::BufferUsageFlagBits::TRANSFORM_FEEDBACK_BUFFER_EXT.0,
@@ -41,18 +41,18 @@ impl crate::vk::BufferUsageFlags {
         crate::vk::BufferUsageFlagBits::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT.0,
     );
 }
-///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl crate::vk::BufferUsageFlagBits {
     pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(1 << 11);
     pub const TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT: Self = Self(1 << 12);
 }
-///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl crate::vk::PipelineStageFlags {
     pub const TRANSFORM_FEEDBACK_EXT: Self = Self(
         crate::vk::PipelineStageFlagBits::TRANSFORM_FEEDBACK_EXT.0,
     );
 }
-///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl crate::vk::PipelineStageFlagBits {
     pub const TRANSFORM_FEEDBACK_EXT: Self = Self(1 << 24);
 }

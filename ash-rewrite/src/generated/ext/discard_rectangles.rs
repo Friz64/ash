@@ -2,27 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_discard_rectangles.html) · Extension `VK_EXT_discard_rectangles`
 #![doc(alias = "VK_EXT_discard_rectangles")]
-///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
+///Provided by [VK_EXT_discard_rectangles](crate::ext::discard_rectangles)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT: Self = Self(1000099000);
     pub const PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT: Self = Self(1000099001);
 }
-///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
+///Provided by [VK_EXT_discard_rectangles](crate::ext::discard_rectangles)
 impl crate::vk::DynamicState {
     pub const DISCARD_RECTANGLE_EXT: Self = Self(1000099000);
     pub const DISCARD_RECTANGLE_ENABLE_EXT: Self = Self(1000099001);
     pub const DISCARD_RECTANGLE_MODE_EXT: Self = Self(1000099002);
 }
-///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
+///Provided by [VK_EXT_discard_rectangles](crate::ext::discard_rectangles)
 impl DiscardRectangleModeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const INCLUSIVE_EXT: Self = Self(0);
     pub const EXCLUSIVE_EXT: Self = Self(1);
 }
@@ -217,6 +209,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl DiscardRectangleModeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

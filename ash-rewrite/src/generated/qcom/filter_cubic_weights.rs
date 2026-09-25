@@ -2,22 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_filter_cubic_weights.html) · Extension `VK_QCOM_filter_cubic_weights`
 #![doc(alias = "VK_QCOM_filter_cubic_weights")]
-///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
+///Provided by [VK_QCOM_filter_cubic_weights](crate::qcom::filter_cubic_weights)
 impl crate::vk::StructureType {
     pub const SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM: Self = Self(1000519000);
     pub const PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM: Self = Self(1000519001);
     pub const BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM: Self = Self(1000519002);
 }
-///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
+///Provided by [VK_QCOM_filter_cubic_weights](crate::qcom::filter_cubic_weights)
 impl CubicFilterWeightsQCOM {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const CATMULL_ROM_QCOM: Self = Self(0);
     pub const ZERO_TANGENT_CARDINAL_QCOM: Self = Self(1);
     pub const B_SPLINE_QCOM: Self = Self(2);
@@ -146,6 +138,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl CubicFilterWeightsQCOM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

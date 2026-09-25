@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_fragment_shading_rate.html) · Extension `VK_KHR_fragment_shading_rate`
 #![doc(alias = "VK_KHR_fragment_shading_rate")]
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::ImageLayout {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR: Self = Self(1000164003);
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::StructureType {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR: Self = Self(1000226000);
     pub const PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR: Self = Self(
@@ -23,84 +23,76 @@ impl crate::vk::StructureType {
         1000044006,
     );
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::DynamicState {
     pub const FRAGMENT_SHADING_RATE_KHR: Self = Self(1000226000);
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl FragmentShadingRateCombinerOpKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const KEEP_KHR: Self = Self(0);
     pub const REPLACE_KHR: Self = Self(1);
     pub const MIN_KHR: Self = Self(2);
     pub const MAX_KHR: Self = Self(3);
     pub const MUL_KHR: Self = Self(4);
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::AccessFlags {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR: Self = Self(
         crate::vk::AccessFlagBits::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR.0,
     );
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::AccessFlagBits {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR: Self = Self(1 << 23);
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::ImageUsageFlags {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
         crate::vk::ImageUsageFlagBits::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
     );
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::ImageUsageFlagBits {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 8);
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::PipelineCreateFlags {
     pub const RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
         crate::vk::PipelineCreateFlagBits::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR
             .0,
     );
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::PipelineCreateFlagBits {
     pub const RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 21);
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::FormatFeatureFlags {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
         crate::vk::FormatFeatureFlagBits::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
     );
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::FormatFeatureFlagBits {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 30);
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::PipelineStageFlags {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
         crate::vk::PipelineStageFlagBits::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
     );
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::PipelineStageFlagBits {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 22);
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::FormatFeatureFlags2 {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
         crate::vk::FormatFeatureFlagBits2::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
     );
 }
-///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 30);
 }
@@ -650,6 +642,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl FragmentShadingRateCombinerOpKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type PFN_vkCmdSetFragmentShadingRateKHR = unsafe extern "system" fn(

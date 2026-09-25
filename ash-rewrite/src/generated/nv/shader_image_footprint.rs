@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shader_image_footprint.html) · Extension `VK_NV_shader_image_footprint`
 #![doc(alias = "VK_NV_shader_image_footprint")]
-///Provided by [`nv::shader_image_footprint`](crate::nv::shader_image_footprint)
+///Provided by [VK_NV_shader_image_footprint](crate::nv::shader_image_footprint)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV: Self = Self(
         1000204000,

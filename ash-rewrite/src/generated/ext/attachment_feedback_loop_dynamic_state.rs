@@ -2,13 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_attachment_feedback_loop_dynamic_state.html) · Extension `VK_EXT_attachment_feedback_loop_dynamic_state`
 #![doc(alias = "VK_EXT_attachment_feedback_loop_dynamic_state")]
-///Provided by [`ext::attachment_feedback_loop_dynamic_state`](crate::ext::attachment_feedback_loop_dynamic_state)
+///Provided by [VK_EXT_attachment_feedback_loop_dynamic_state](crate::ext::attachment_feedback_loop_dynamic_state)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
         1000524000,
     );
 }
-///Provided by [`ext::attachment_feedback_loop_dynamic_state`](crate::ext::attachment_feedback_loop_dynamic_state)
+///Provided by [VK_EXT_attachment_feedback_loop_dynamic_state](crate::ext::attachment_feedback_loop_dynamic_state)
 impl crate::vk::DynamicState {
     pub const ATTACHMENT_FEEDBACK_LOOP_ENABLE_EXT: Self = Self(1000524000);
 }

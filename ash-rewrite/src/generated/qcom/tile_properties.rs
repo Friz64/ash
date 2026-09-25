@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_properties.html) · Extension `VK_QCOM_tile_properties`
 #![doc(alias = "VK_QCOM_tile_properties")]
-///Provided by [`qcom::tile_properties`](crate::qcom::tile_properties)
+///Provided by [VK_QCOM_tile_properties](crate::qcom::tile_properties)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM: Self = Self(1000484000);
     pub const TILE_PROPERTIES_QCOM: Self = Self(1000484001);

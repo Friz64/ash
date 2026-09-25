@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_low_latency.html) · Extension `VK_NV_low_latency`
 #![doc(alias = "VK_NV_low_latency")]
-///Provided by [`nv::low_latency`](crate::nv::low_latency)
+///Provided by [VK_NV_low_latency](crate::nv::low_latency)
 impl crate::vk::StructureType {
     pub const QUERY_LOW_LATENCY_SUPPORT_NV: Self = Self(1000310000);
 }

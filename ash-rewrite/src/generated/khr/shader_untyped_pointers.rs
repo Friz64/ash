@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_untyped_pointers.html) · Extension `VK_KHR_shader_untyped_pointers`
 #![doc(alias = "VK_KHR_shader_untyped_pointers")]
-///Provided by [`khr::shader_untyped_pointers`](crate::khr::shader_untyped_pointers)
+///Provided by [VK_KHR_shader_untyped_pointers](crate::khr::shader_untyped_pointers)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR: Self = Self(
         1000387000,

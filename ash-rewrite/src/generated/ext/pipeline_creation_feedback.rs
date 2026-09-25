@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_creation_feedback.html) · Extension `VK_EXT_pipeline_creation_feedback`
 #![doc(alias = "VK_EXT_pipeline_creation_feedback")]
-///Provided by [`ext::pipeline_creation_feedback`](crate::ext::pipeline_creation_feedback)
+///Provided by [VK_EXT_pipeline_creation_feedback](crate::ext::pipeline_creation_feedback)
 impl crate::vk::StructureType {
     pub const PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT: Self = Self::PIPELINE_CREATION_FEEDBACK_CREATE_INFO;
 }
-///Provided by [`ext::pipeline_creation_feedback`](crate::ext::pipeline_creation_feedback)
+///Provided by [VK_EXT_pipeline_creation_feedback](crate::ext::pipeline_creation_feedback)
 impl crate::vk::PipelineCreationFeedbackFlags {
     pub const VALID_EXT: Self = Self(
         crate::vk::PipelineCreationFeedbackFlagBits::VALID_EXT.0,
@@ -18,7 +18,7 @@ impl crate::vk::PipelineCreationFeedbackFlags {
         crate::vk::PipelineCreationFeedbackFlagBits::BASE_PIPELINE_ACCELERATION_EXT.0,
     );
 }
-///Provided by [`ext::pipeline_creation_feedback`](crate::ext::pipeline_creation_feedback)
+///Provided by [VK_EXT_pipeline_creation_feedback](crate::ext::pipeline_creation_feedback)
 impl crate::vk::PipelineCreationFeedbackFlagBits {
     pub const VALID_EXT: Self = Self::VALID;
     pub const APPLICATION_PIPELINE_CACHE_HIT_EXT: Self = Self::APPLICATION_PIPELINE_CACHE_HIT;

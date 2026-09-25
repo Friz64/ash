@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ycbcr_image_arrays.html) · Extension `VK_EXT_ycbcr_image_arrays`
 #![doc(alias = "VK_EXT_ycbcr_image_arrays")]
-///Provided by [`ext::ycbcr_image_arrays`](crate::ext::ycbcr_image_arrays)
+///Provided by [VK_EXT_ycbcr_image_arrays](crate::ext::ycbcr_image_arrays)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT: Self = Self(1000252000);
 }

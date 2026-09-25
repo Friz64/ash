@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_win32_surface.html) · Extension `VK_KHR_win32_surface`
 #![doc(alias = "VK_KHR_win32_surface")]
-///Provided by [`khr::win32_surface`](crate::khr::win32_surface)
+///Provided by [VK_KHR_win32_surface](crate::khr::win32_surface)
 impl crate::vk::StructureType {
     pub const WIN32_SURFACE_CREATE_INFO_KHR: Self = Self(1000009000);
 }

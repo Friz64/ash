@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_memory_priority.html) · Extension `VK_EXT_memory_priority`
 #![doc(alias = "VK_EXT_memory_priority")]
-///Provided by [`ext::memory_priority`](crate::ext::memory_priority)
+///Provided by [VK_EXT_memory_priority](crate::ext::memory_priority)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT: Self = Self(1000238000);
     pub const MEMORY_PRIORITY_ALLOCATE_INFO_EXT: Self = Self(1000238001);

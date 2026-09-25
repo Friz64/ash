@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_subgroup_uniform_control_flow.html) · Extension `VK_KHR_shader_subgroup_uniform_control_flow`
 #![doc(alias = "VK_KHR_shader_subgroup_uniform_control_flow")]
-///Provided by [`khr::shader_subgroup_uniform_control_flow`](crate::khr::shader_subgroup_uniform_control_flow)
+///Provided by [VK_KHR_shader_subgroup_uniform_control_flow](crate::khr::shader_subgroup_uniform_control_flow)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR: Self = Self(
         1000323000,

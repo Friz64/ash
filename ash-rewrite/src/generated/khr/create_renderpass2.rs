@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_create_renderpass2.html) · Extension `VK_KHR_create_renderpass2`
 #![doc(alias = "VK_KHR_create_renderpass2")]
-///Provided by [`khr::create_renderpass2`](crate::khr::create_renderpass2)
+///Provided by [VK_KHR_create_renderpass2](crate::khr::create_renderpass2)
 impl crate::vk::StructureType {
     pub const ATTACHMENT_DESCRIPTION_2_KHR: Self = Self::ATTACHMENT_DESCRIPTION_2;
     pub const ATTACHMENT_REFERENCE_2_KHR: Self = Self::ATTACHMENT_REFERENCE_2;

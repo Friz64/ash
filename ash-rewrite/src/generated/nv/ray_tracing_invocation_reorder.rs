@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_invocation_reorder.html) · Extension `VK_NV_ray_tracing_invocation_reorder`
 #![doc(alias = "VK_NV_ray_tracing_invocation_reorder")]
-///Provided by [`nv::ray_tracing_invocation_reorder`](crate::nv::ray_tracing_invocation_reorder)
+///Provided by [VK_NV_ray_tracing_invocation_reorder](crate::nv::ray_tracing_invocation_reorder)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_NV: Self = Self(
         1000490000,
@@ -11,7 +11,7 @@ impl crate::vk::StructureType {
         1000490001,
     );
 }
-///Provided by [`nv::ray_tracing_invocation_reorder`](crate::nv::ray_tracing_invocation_reorder)
+///Provided by [VK_NV_ray_tracing_invocation_reorder](crate::nv::ray_tracing_invocation_reorder)
 impl crate::vk::RayTracingInvocationReorderModeEXT {
     pub const NONE_NV: Self = Self::NONE_EXT;
     pub const REORDER_NV: Self = Self::REORDER_EXT;

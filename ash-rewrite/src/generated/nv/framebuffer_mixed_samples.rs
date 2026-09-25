@@ -2,21 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_framebuffer_mixed_samples.html) · Extension `VK_NV_framebuffer_mixed_samples`
 #![doc(alias = "VK_NV_framebuffer_mixed_samples")]
-///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
+///Provided by [VK_NV_framebuffer_mixed_samples](crate::nv::framebuffer_mixed_samples)
 impl crate::vk::StructureType {
     pub const PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV: Self = Self(1000152000);
     pub const ATTACHMENT_SAMPLE_COUNT_INFO_NV: Self = Self::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
 }
-///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
+///Provided by [VK_NV_framebuffer_mixed_samples](crate::nv::framebuffer_mixed_samples)
 impl CoverageModulationModeNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const NONE_NV: Self = Self(0);
     pub const RGB_NV: Self = Self(1);
     pub const ALPHA_NV: Self = Self(2);
@@ -110,6 +102,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl CoverageModulationModeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

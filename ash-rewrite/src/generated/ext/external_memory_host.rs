@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_host.html) · Extension `VK_EXT_external_memory_host`
 #![doc(alias = "VK_EXT_external_memory_host")]
-///Provided by [`ext::external_memory_host`](crate::ext::external_memory_host)
+///Provided by [VK_EXT_external_memory_host](crate::ext::external_memory_host)
 impl crate::vk::StructureType {
     pub const IMPORT_MEMORY_HOST_POINTER_INFO_EXT: Self = Self(1000178000);
     pub const MEMORY_HOST_POINTER_PROPERTIES_EXT: Self = Self(1000178001);
@@ -10,7 +10,7 @@ impl crate::vk::StructureType {
         1000178002,
     );
 }
-///Provided by [`ext::external_memory_host`](crate::ext::external_memory_host)
+///Provided by [VK_EXT_external_memory_host](crate::ext::external_memory_host)
 impl crate::vk::ExternalMemoryHandleTypeFlags {
     pub const HOST_ALLOCATION_EXT: Self = Self(
         crate::vk::ExternalMemoryHandleTypeFlagBits::HOST_ALLOCATION_EXT.0,
@@ -19,7 +19,7 @@ impl crate::vk::ExternalMemoryHandleTypeFlags {
         crate::vk::ExternalMemoryHandleTypeFlagBits::HOST_MAPPED_FOREIGN_MEMORY_EXT.0,
     );
 }
-///Provided by [`ext::external_memory_host`](crate::ext::external_memory_host)
+///Provided by [VK_EXT_external_memory_host](crate::ext::external_memory_host)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const HOST_ALLOCATION_EXT: Self = Self(1 << 7);
     pub const HOST_MAPPED_FOREIGN_MEMORY_EXT: Self = Self(1 << 8);

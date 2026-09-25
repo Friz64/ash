@@ -2,20 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_calibrated_timestamps.html) · Extension `VK_KHR_calibrated_timestamps`
 #![doc(alias = "VK_KHR_calibrated_timestamps")]
-///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
+///Provided by [VK_KHR_calibrated_timestamps](crate::khr::calibrated_timestamps)
 impl crate::vk::StructureType {
     pub const CALIBRATED_TIMESTAMP_INFO_KHR: Self = Self(1000184000);
 }
-///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
+///Provided by [VK_KHR_calibrated_timestamps](crate::khr::calibrated_timestamps)
 impl TimeDomainKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DEVICE_KHR: Self = Self(0);
     pub const CLOCK_MONOTONIC_KHR: Self = Self(1);
     pub const CLOCK_MONOTONIC_RAW_KHR: Self = Self(2);
@@ -189,6 +181,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl TimeDomainKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR = unsafe extern "system" fn(

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_multiview_per_view_render_areas.html) · Extension `VK_QCOM_multiview_per_view_render_areas`
 #![doc(alias = "VK_QCOM_multiview_per_view_render_areas")]
-///Provided by [`qcom::multiview_per_view_render_areas`](crate::qcom::multiview_per_view_render_areas)
+///Provided by [VK_QCOM_multiview_per_view_render_areas](crate::qcom::multiview_per_view_render_areas)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM: Self = Self(
         1000510000,

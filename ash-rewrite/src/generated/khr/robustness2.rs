@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_robustness2.html) · Extension `VK_KHR_robustness2`
 #![doc(alias = "VK_KHR_robustness2")]
-///Provided by [`khr::robustness2`](crate::khr::robustness2)
+///Provided by [VK_KHR_robustness2](crate::khr::robustness2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR: Self = Self(1000286000);
     pub const PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR: Self = Self(1000286001);

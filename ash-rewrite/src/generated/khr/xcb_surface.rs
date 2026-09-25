@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_xcb_surface.html) · Extension `VK_KHR_xcb_surface`
 #![doc(alias = "VK_KHR_xcb_surface")]
-///Provided by [`khr::xcb_surface`](crate::khr::xcb_surface)
+///Provided by [VK_KHR_xcb_surface](crate::khr::xcb_surface)
 impl crate::vk::StructureType {
     pub const XCB_SURFACE_CREATE_INFO_KHR: Self = Self(1000005000);
 }

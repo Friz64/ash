@@ -2,15 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_surface_counter.html) · Extension `VK_EXT_display_surface_counter`
 #![doc(alias = "VK_EXT_display_surface_counter")]
-///Provided by [`ext::display_surface_counter`](crate::ext::display_surface_counter)
+///Provided by [VK_EXT_display_surface_counter](crate::ext::display_surface_counter)
 impl crate::vk::StructureType {
     pub const SURFACE_CAPABILITIES_2_EXT: Self = Self(1000090000);
 }
-///Provided by [`ext::display_surface_counter`](crate::ext::display_surface_counter)
+///Provided by [VK_EXT_display_surface_counter](crate::ext::display_surface_counter)
 impl SurfaceCounterFlagsEXT {
     pub const VBLANK_EXT: Self = Self(SurfaceCounterFlagBitsEXT::VBLANK_EXT.0);
 }
-///Provided by [`ext::display_surface_counter`](crate::ext::display_surface_counter)
+///Provided by [VK_EXT_display_surface_counter](crate::ext::display_surface_counter)
 impl SurfaceCounterFlagBitsEXT {
     pub const VBLANK_EXT: Self = Self(1 << 0);
 }

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_nested_command_buffer.html) · Extension `VK_EXT_nested_command_buffer`
 #![doc(alias = "VK_EXT_nested_command_buffer")]
-///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
+///Provided by [VK_EXT_nested_command_buffer](crate::ext::nested_command_buffer)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT: Self = Self(
         1000451000,
@@ -11,17 +11,17 @@ impl crate::vk::StructureType {
         1000451001,
     );
 }
-///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
+///Provided by [VK_EXT_nested_command_buffer](crate::ext::nested_command_buffer)
 impl crate::vk::SubpassContents {
     pub const INLINE_AND_SECONDARY_COMMAND_BUFFERS_EXT: Self = Self::INLINE_AND_SECONDARY_COMMAND_BUFFERS_KHR;
 }
-///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
+///Provided by [VK_EXT_nested_command_buffer](crate::ext::nested_command_buffer)
 impl crate::vk::RenderingFlags {
     pub const CONTENTS_INLINE_EXT: Self = Self(
         crate::vk::RenderingFlagBits::CONTENTS_INLINE_EXT.0,
     );
 }
-///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
+///Provided by [VK_EXT_nested_command_buffer](crate::ext::nested_command_buffer)
 impl crate::vk::RenderingFlagBits {
     pub const CONTENTS_INLINE_EXT: Self = Self::CONTENTS_INLINE_KHR;
 }

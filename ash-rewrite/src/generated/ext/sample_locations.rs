@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_sample_locations.html) · Extension `VK_EXT_sample_locations`
 #![doc(alias = "VK_EXT_sample_locations")]
-///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
+///Provided by [VK_EXT_sample_locations](crate::ext::sample_locations)
 impl crate::vk::StructureType {
     pub const SAMPLE_LOCATIONS_INFO_EXT: Self = Self(1000143000);
     pub const RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT: Self = Self(1000143001);
@@ -10,17 +10,17 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT: Self = Self(1000143003);
     pub const MULTISAMPLE_PROPERTIES_EXT: Self = Self(1000143004);
 }
-///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
+///Provided by [VK_EXT_sample_locations](crate::ext::sample_locations)
 impl crate::vk::DynamicState {
     pub const SAMPLE_LOCATIONS_EXT: Self = Self(1000143000);
 }
-///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
+///Provided by [VK_EXT_sample_locations](crate::ext::sample_locations)
 impl crate::vk::ImageCreateFlags {
     pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(
         crate::vk::ImageCreateFlagBits::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT.0,
     );
 }
-///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
+///Provided by [VK_EXT_sample_locations](crate::ext::sample_locations)
 impl crate::vk::ImageCreateFlagBits {
     pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(1 << 12);
 }

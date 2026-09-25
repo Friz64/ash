@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_hdr_metadata.html) · Extension `VK_EXT_hdr_metadata`
 #![doc(alias = "VK_EXT_hdr_metadata")]
-///Provided by [`ext::hdr_metadata`](crate::ext::hdr_metadata)
+///Provided by [VK_EXT_hdr_metadata](crate::ext::hdr_metadata)
 impl crate::vk::StructureType {
     pub const HDR_METADATA_EXT: Self = Self(1000105000);
 }

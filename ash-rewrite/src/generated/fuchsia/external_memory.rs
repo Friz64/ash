@@ -2,19 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_external_memory.html) · Extension `VK_FUCHSIA_external_memory`
 #![doc(alias = "VK_FUCHSIA_external_memory")]
-///Provided by [`fuchsia::external_memory`](crate::fuchsia::external_memory)
+///Provided by [VK_FUCHSIA_external_memory](crate::fuchsia::external_memory)
 impl crate::vk::StructureType {
     pub const IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000364000);
     pub const MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA: Self = Self(1000364001);
     pub const MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000364002);
 }
-///Provided by [`fuchsia::external_memory`](crate::fuchsia::external_memory)
+///Provided by [VK_FUCHSIA_external_memory](crate::fuchsia::external_memory)
 impl crate::vk::ExternalMemoryHandleTypeFlags {
     pub const ZIRCON_VMO_FUCHSIA: Self = Self(
         crate::vk::ExternalMemoryHandleTypeFlagBits::ZIRCON_VMO_FUCHSIA.0,
     );
 }
-///Provided by [`fuchsia::external_memory`](crate::fuchsia::external_memory)
+///Provided by [VK_FUCHSIA_external_memory](crate::fuchsia::external_memory)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const ZIRCON_VMO_FUCHSIA: Self = Self(1 << 11);
 }

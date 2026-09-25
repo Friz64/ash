@@ -2,15 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shared_presentable_image.html) · Extension `VK_KHR_shared_presentable_image`
 #![doc(alias = "VK_KHR_shared_presentable_image")]
-///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
+///Provided by [VK_KHR_shared_presentable_image](crate::khr::shared_presentable_image)
 impl crate::vk::ImageLayout {
     pub const SHARED_PRESENT_KHR: Self = Self(1000111000);
 }
-///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
+///Provided by [VK_KHR_shared_presentable_image](crate::khr::shared_presentable_image)
 impl crate::vk::StructureType {
     pub const SHARED_PRESENT_SURFACE_CAPABILITIES_KHR: Self = Self(1000111000);
 }
-///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
+///Provided by [VK_KHR_shared_presentable_image](crate::khr::shared_presentable_image)
 impl crate::vk::PresentModeKHR {
     pub const SHARED_DEMAND_REFRESH_KHR: Self = Self(1000111000);
     pub const SHARED_CONTINUOUS_REFRESH_KHR: Self = Self(1000111001);

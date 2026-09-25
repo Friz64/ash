@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_library_group_handles.html) · Extension `VK_EXT_pipeline_library_group_handles`
 #![doc(alias = "VK_EXT_pipeline_library_group_handles")]
-///Provided by [`ext::pipeline_library_group_handles`](crate::ext::pipeline_library_group_handles)
+///Provided by [VK_EXT_pipeline_library_group_handles](crate::ext::pipeline_library_group_handles)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_KHR;
 }

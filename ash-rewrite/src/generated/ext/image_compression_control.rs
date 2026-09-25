@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_compression_control.html) · Extension `VK_EXT_image_compression_control`
 #![doc(alias = "VK_EXT_image_compression_control")]
-///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT: Self = Self(
         1000338000,
@@ -12,11 +12,11 @@ impl crate::vk::StructureType {
     pub const IMAGE_SUBRESOURCE_2_EXT: Self = Self::IMAGE_SUBRESOURCE_2;
     pub const IMAGE_COMPRESSION_PROPERTIES_EXT: Self = Self(1000338004);
 }
-///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
 impl crate::vk::Result {
     pub const ERROR_COMPRESSION_EXHAUSTED_EXT: Self = Self(-1000338000);
 }
-///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
 impl ImageCompressionFlagsEXT {
     pub const DEFAULT_EXT: Self = Self(ImageCompressionFlagBitsEXT::DEFAULT_EXT.0);
     pub const FIXED_RATE_DEFAULT_EXT: Self = Self(
@@ -27,14 +27,14 @@ impl ImageCompressionFlagsEXT {
     );
     pub const DISABLED_EXT: Self = Self(ImageCompressionFlagBitsEXT::DISABLED_EXT.0);
 }
-///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
 impl ImageCompressionFlagBitsEXT {
     pub const DEFAULT_EXT: Self = Self(0);
     pub const FIXED_RATE_DEFAULT_EXT: Self = Self(1 << 0);
     pub const FIXED_RATE_EXPLICIT_EXT: Self = Self(1 << 1);
     pub const DISABLED_EXT: Self = Self(1 << 2);
 }
-///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
 impl ImageCompressionFixedRateFlagsEXT {
     pub const NONE_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::NONE_EXT.0);
     pub const _1BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_1BPC_EXT.0);
@@ -92,7 +92,7 @@ impl ImageCompressionFixedRateFlagsEXT {
         ImageCompressionFixedRateFlagBitsEXT::_24BPC_EXT.0,
     );
 }
-///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
 impl ImageCompressionFixedRateFlagBitsEXT {
     pub const NONE_EXT: Self = Self(0);
     pub const _1BPC_EXT: Self = Self(1 << 0);

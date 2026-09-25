@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_motion_blur.html) · Extension `VK_NV_ray_tracing_motion_blur`
 #![doc(alias = "VK_NV_ray_tracing_motion_blur")]
-///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::StructureType {
     pub const ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV: Self = Self(
         1000327000,
@@ -12,47 +12,39 @@ impl crate::vk::StructureType {
     );
     pub const ACCELERATION_STRUCTURE_MOTION_INFO_NV: Self = Self(1000327002);
 }
-///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl AccelerationStructureMotionInstanceTypeNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const STATIC_NV: Self = Self(0);
     pub const MATRIX_MOTION_NV: Self = Self(1);
     pub const SRT_MOTION_NV: Self = Self(2);
 }
-///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::PipelineCreateFlags {
     pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(
         crate::vk::PipelineCreateFlagBits::RAY_TRACING_ALLOW_MOTION_NV.0,
     );
 }
-///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(1 << 20);
 }
-///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::BuildAccelerationStructureFlagsKHR {
     pub const MOTION_NV: Self = Self(
         crate::vk::BuildAccelerationStructureFlagBitsKHR::MOTION_NV.0,
     );
 }
-///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
     pub const MOTION_NV: Self = Self(1 << 5);
 }
-///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::AccelerationStructureCreateFlagsKHR {
     pub const MOTION_NV: Self = Self(
         crate::vk::AccelerationStructureCreateFlagBitsKHR::MOTION_NV.0,
     );
 }
-///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::AccelerationStructureCreateFlagBitsKHR {
     pub const MOTION_NV: Self = Self(1 << 2);
 }
@@ -508,6 +500,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl AccelerationStructureMotionInstanceTypeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

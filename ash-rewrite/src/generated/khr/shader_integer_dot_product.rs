@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_integer_dot_product.html) · Extension `VK_KHR_shader_integer_dot_product`
 #![doc(alias = "VK_KHR_shader_integer_dot_product")]
-///Provided by [`khr::shader_integer_dot_product`](crate::khr::shader_integer_dot_product)
+///Provided by [VK_KHR_shader_integer_dot_product](crate::khr::shader_integer_dot_product)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES;
     pub const PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES;

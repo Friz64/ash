@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_incremental_present.html) · Extension `VK_KHR_incremental_present`
 #![doc(alias = "VK_KHR_incremental_present")]
-///Provided by [`khr::incremental_present`](crate::khr::incremental_present)
+///Provided by [VK_KHR_incremental_present](crate::khr::incremental_present)
 impl crate::vk::StructureType {
     pub const PRESENT_REGIONS_KHR: Self = Self(1000084000);
 }

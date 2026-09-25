@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_filter_cubic_clamp.html) · Extension `VK_QCOM_filter_cubic_clamp`
 #![doc(alias = "VK_QCOM_filter_cubic_clamp")]
-///Provided by [`qcom::filter_cubic_clamp`](crate::qcom::filter_cubic_clamp)
+///Provided by [VK_QCOM_filter_cubic_clamp](crate::qcom::filter_cubic_clamp)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM: Self = Self(1000521000);
 }
-///Provided by [`qcom::filter_cubic_clamp`](crate::qcom::filter_cubic_clamp)
+///Provided by [VK_QCOM_filter_cubic_clamp](crate::qcom::filter_cubic_clamp)
 impl crate::vk::SamplerReductionMode {
     pub const WEIGHTED_AVERAGE_RANGECLAMP_QCOM: Self = Self(1000521000);
 }

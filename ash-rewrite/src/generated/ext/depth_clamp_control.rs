@@ -2,27 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clamp_control.html) · Extension `VK_EXT_depth_clamp_control`
 #![doc(alias = "VK_EXT_depth_clamp_control")]
-///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
+///Provided by [VK_EXT_depth_clamp_control](crate::ext::depth_clamp_control)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT: Self = Self(1000582000);
     pub const PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT: Self = Self(
         1000582001,
     );
 }
-///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
+///Provided by [VK_EXT_depth_clamp_control](crate::ext::depth_clamp_control)
 impl crate::vk::DynamicState {
     pub const DEPTH_CLAMP_RANGE_EXT: Self = Self(1000582000);
 }
-///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
+///Provided by [VK_EXT_depth_clamp_control](crate::ext::depth_clamp_control)
 impl DepthClampModeEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const VIEWPORT_RANGE_EXT: Self = Self(0);
     pub const USER_DEFINED_RANGE_EXT: Self = Self(1);
 }
@@ -193,6 +185,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl DepthClampModeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

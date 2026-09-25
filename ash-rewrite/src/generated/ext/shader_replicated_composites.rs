@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_replicated_composites.html) · Extension `VK_EXT_shader_replicated_composites`
 #![doc(alias = "VK_EXT_shader_replicated_composites")]
-///Provided by [`ext::shader_replicated_composites`](crate::ext::shader_replicated_composites)
+///Provided by [VK_EXT_shader_replicated_composites](crate::ext::shader_replicated_composites)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT: Self = Self(
         1000564000,

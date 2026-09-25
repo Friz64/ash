@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_address_commands.html) · Extension `VK_KHR_device_address_commands`
 #![doc(alias = "VK_KHR_device_address_commands")]
-///Provided by [`khr::device_address_commands`](crate::khr::device_address_commands)
+///Provided by [VK_KHR_device_address_commands](crate::khr::device_address_commands)
 impl crate::vk::StructureType {
     pub const DEVICE_MEMORY_COPY_KHR: Self = Self(1000318000);
     pub const COPY_DEVICE_MEMORY_INFO_KHR: Self = Self(1000318001);
@@ -23,7 +23,7 @@ impl crate::vk::StructureType {
     pub const MEMORY_MARKER_INFO_AMD: Self = Self(1000318014);
     pub const ACCELERATION_STRUCTURE_CREATE_INFO_2_KHR: Self = Self(1000318015);
 }
-///Provided by [`khr::device_address_commands`](crate::khr::device_address_commands)
+///Provided by [VK_KHR_device_address_commands](crate::khr::device_address_commands)
 impl AddressCommandFlagsKHR {
     pub const PROTECTED_KHR: Self = Self(AddressCommandFlagBitsKHR::PROTECTED_KHR.0);
     pub const FULLY_BOUND_KHR: Self = Self(AddressCommandFlagBitsKHR::FULLY_BOUND_KHR.0);
@@ -40,7 +40,7 @@ impl AddressCommandFlagsKHR {
         AddressCommandFlagBitsKHR::UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
     );
 }
-///Provided by [`khr::device_address_commands`](crate::khr::device_address_commands)
+///Provided by [VK_KHR_device_address_commands](crate::khr::device_address_commands)
 impl AddressCommandFlagBitsKHR {
     pub const PROTECTED_KHR: Self = Self(1 << 0);
     pub const FULLY_BOUND_KHR: Self = Self(1 << 1);

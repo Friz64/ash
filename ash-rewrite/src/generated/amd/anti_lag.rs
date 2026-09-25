@@ -2,36 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_anti_lag.html) · Extension `VK_AMD_anti_lag`
 #![doc(alias = "VK_AMD_anti_lag")]
-///Provided by [`amd::anti_lag`](crate::amd::anti_lag)
+///Provided by [VK_AMD_anti_lag](crate::amd::anti_lag)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD: Self = Self(1000476000);
     pub const ANTI_LAG_DATA_AMD: Self = Self(1000476001);
     pub const ANTI_LAG_PRESENTATION_INFO_AMD: Self = Self(1000476002);
 }
-///Provided by [`amd::anti_lag`](crate::amd::anti_lag)
+///Provided by [VK_AMD_anti_lag](crate::amd::anti_lag)
 impl AntiLagModeAMD {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DRIVER_CONTROL_AMD: Self = Self(0);
     pub const ON_AMD: Self = Self(1);
     pub const OFF_AMD: Self = Self(2);
 }
-///Provided by [`amd::anti_lag`](crate::amd::anti_lag)
+///Provided by [VK_AMD_anti_lag](crate::amd::anti_lag)
 impl AntiLagStageAMD {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const INPUT_AMD: Self = Self(0);
     pub const PRESENT_AMD: Self = Self(1);
 }
@@ -220,6 +204,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl AntiLagModeAMD {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AntiLagStageAMD(pub(crate) i32);
@@ -235,6 +229,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl AntiLagStageAMD {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type PFN_vkAntiLagUpdateAMD = unsafe extern "system" fn(

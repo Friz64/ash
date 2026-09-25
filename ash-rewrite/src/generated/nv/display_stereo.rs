@@ -2,21 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_display_stereo.html) · Extension `VK_NV_display_stereo`
 #![doc(alias = "VK_NV_display_stereo")]
-///Provided by [`nv::display_stereo`](crate::nv::display_stereo)
+///Provided by [VK_NV_display_stereo](crate::nv::display_stereo)
 impl crate::vk::StructureType {
     pub const DISPLAY_SURFACE_STEREO_CREATE_INFO_NV: Self = Self(1000551000);
     pub const DISPLAY_MODE_STEREO_PROPERTIES_NV: Self = Self(1000551001);
 }
-///Provided by [`nv::display_stereo`](crate::nv::display_stereo)
+///Provided by [VK_NV_display_stereo](crate::nv::display_stereo)
 impl DisplaySurfaceStereoTypeNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const NONE_NV: Self = Self(0);
     pub const ONBOARD_DIN_NV: Self = Self(1);
     pub const HDMI_3D_NV: Self = Self(2);
@@ -105,6 +97,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl DisplaySurfaceStereoTypeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

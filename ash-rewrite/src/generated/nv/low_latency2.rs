@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_low_latency2.html) · Extension `VK_NV_low_latency2`
 #![doc(alias = "VK_NV_low_latency2")]
-///Provided by [`nv::low_latency2`](crate::nv::low_latency2)
+///Provided by [VK_NV_low_latency2](crate::nv::low_latency2)
 impl crate::vk::StructureType {
     pub const LATENCY_SLEEP_MODE_INFO_NV: Self = Self(1000505000);
     pub const LATENCY_SLEEP_INFO_NV: Self = Self(1000505001);
@@ -14,16 +14,8 @@ impl crate::vk::StructureType {
     pub const SWAPCHAIN_LATENCY_CREATE_INFO_NV: Self = Self(1000505007);
     pub const LATENCY_SURFACE_CAPABILITIES_NV: Self = Self(1000505008);
 }
-///Provided by [`nv::low_latency2`](crate::nv::low_latency2)
+///Provided by [VK_NV_low_latency2](crate::nv::low_latency2)
 impl LatencyMarkerNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const SIMULATION_START_NV: Self = Self(0);
     pub const SIMULATION_END_NV: Self = Self(1);
     pub const RENDERSUBMIT_START_NV: Self = Self(2);
@@ -37,16 +29,8 @@ impl LatencyMarkerNV {
     pub const OUT_OF_BAND_PRESENT_START_NV: Self = Self(10);
     pub const OUT_OF_BAND_PRESENT_END_NV: Self = Self(11);
 }
-///Provided by [`nv::low_latency2`](crate::nv::low_latency2)
+///Provided by [VK_NV_low_latency2](crate::nv::low_latency2)
 impl OutOfBandQueueTypeNV {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const RENDER_NV: Self = Self(0);
     pub const PRESENT_NV: Self = Self(1);
 }
@@ -600,6 +584,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl LatencyMarkerNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct OutOfBandQueueTypeNV(pub(crate) i32);
@@ -615,6 +609,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl OutOfBandQueueTypeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub type PFN_vkSetLatencySleepModeNV = unsafe extern "system" fn(

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_compute_queue.html) · Extension `VK_NV_external_compute_queue`
 #![doc(alias = "VK_NV_external_compute_queue")]
-///Provided by [`nv::external_compute_queue`](crate::nv::external_compute_queue)
+///Provided by [VK_NV_external_compute_queue](crate::nv::external_compute_queue)
 impl crate::vk::StructureType {
     pub const EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV: Self = Self(1000556000);
     pub const EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV: Self = Self(1000556001);
@@ -11,7 +11,7 @@ impl crate::vk::StructureType {
         1000556003,
     );
 }
-///Provided by [`nv::external_compute_queue`](crate::nv::external_compute_queue)
+///Provided by [VK_NV_external_compute_queue](crate::nv::external_compute_queue)
 impl crate::vk::ObjectType {
     pub const EXTERNAL_COMPUTE_QUEUE_NV: Self = Self(1000556000);
 }

@@ -2,19 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_per_stage_descriptor_set.html) · Extension `VK_NV_per_stage_descriptor_set`
 #![doc(alias = "VK_NV_per_stage_descriptor_set")]
-///Provided by [`nv::per_stage_descriptor_set`](crate::nv::per_stage_descriptor_set)
+///Provided by [VK_NV_per_stage_descriptor_set](crate::nv::per_stage_descriptor_set)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV: Self = Self(
         1000516000,
     );
 }
-///Provided by [`nv::per_stage_descriptor_set`](crate::nv::per_stage_descriptor_set)
+///Provided by [VK_NV_per_stage_descriptor_set](crate::nv::per_stage_descriptor_set)
 impl crate::vk::DescriptorSetLayoutCreateFlags {
     pub const PER_STAGE_NV: Self = Self(
         crate::vk::DescriptorSetLayoutCreateFlagBits::PER_STAGE_NV.0,
     );
 }
-///Provided by [`nv::per_stage_descriptor_set`](crate::nv::per_stage_descriptor_set)
+///Provided by [VK_NV_per_stage_descriptor_set](crate::nv::per_stage_descriptor_set)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const PER_STAGE_NV: Self = Self(1 << 6);
 }

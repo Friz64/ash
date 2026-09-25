@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_extended_sparse_address_space.html) · Extension `VK_NV_extended_sparse_address_space`
 #![doc(alias = "VK_NV_extended_sparse_address_space")]
-///Provided by [`nv::extended_sparse_address_space`](crate::nv::extended_sparse_address_space)
+///Provided by [VK_NV_extended_sparse_address_space](crate::nv::extended_sparse_address_space)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_FEATURES_NV: Self = Self(
         1000492000,

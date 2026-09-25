@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_inline_uniform_block.html) · Extension `VK_EXT_inline_uniform_block`
 #![doc(alias = "VK_EXT_inline_uniform_block")]
-///Provided by [`ext::inline_uniform_block`](crate::ext::inline_uniform_block)
+///Provided by [VK_EXT_inline_uniform_block](crate::ext::inline_uniform_block)
 impl crate::vk::DescriptorType {
     pub const INLINE_UNIFORM_BLOCK_EXT: Self = Self::INLINE_UNIFORM_BLOCK;
 }
-///Provided by [`ext::inline_uniform_block`](crate::ext::inline_uniform_block)
+///Provided by [VK_EXT_inline_uniform_block](crate::ext::inline_uniform_block)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES;
     pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES;

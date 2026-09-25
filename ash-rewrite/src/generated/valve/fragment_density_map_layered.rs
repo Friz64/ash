@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_fragment_density_map_layered.html) · Extension `VK_VALVE_fragment_density_map_layered`
 #![doc(alias = "VK_VALVE_fragment_density_map_layered")]
-///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+///Provided by [VK_VALVE_fragment_density_map_layered](crate::valve::fragment_density_map_layered)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_FEATURES_VALVE: Self = Self(
         1000611000,
@@ -14,33 +14,33 @@ impl crate::vk::StructureType {
         1000611002,
     );
 }
-///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+///Provided by [VK_VALVE_fragment_density_map_layered](crate::valve::fragment_density_map_layered)
 impl crate::vk::RenderPassCreateFlags {
     pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(
         crate::vk::RenderPassCreateFlagBits::PER_LAYER_FRAGMENT_DENSITY_VALVE.0,
     );
 }
-///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+///Provided by [VK_VALVE_fragment_density_map_layered](crate::valve::fragment_density_map_layered)
 impl crate::vk::RenderPassCreateFlagBits {
     pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(1 << 2);
 }
-///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+///Provided by [VK_VALVE_fragment_density_map_layered](crate::valve::fragment_density_map_layered)
 impl crate::vk::RenderingFlags {
     pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(
         crate::vk::RenderingFlagBits::PER_LAYER_FRAGMENT_DENSITY_VALVE.0,
     );
 }
-///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+///Provided by [VK_VALVE_fragment_density_map_layered](crate::valve::fragment_density_map_layered)
 impl crate::vk::RenderingFlagBits {
     pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(1 << 5);
 }
-///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+///Provided by [VK_VALVE_fragment_density_map_layered](crate::valve::fragment_density_map_layered)
 impl crate::vk::PipelineCreateFlags2 {
     pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(
         crate::vk::PipelineCreateFlagBits2::PER_LAYER_FRAGMENT_DENSITY_VALVE.0,
     );
 }
-///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+///Provided by [VK_VALVE_fragment_density_map_layered](crate::valve::fragment_density_map_layered)
 impl crate::vk::PipelineCreateFlagBits2 {
     pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(1 << 40);
 }

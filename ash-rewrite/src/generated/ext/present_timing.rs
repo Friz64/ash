@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_present_timing.html) · Extension `VK_EXT_present_timing`
 #![doc(alias = "VK_EXT_present_timing")]
-///Provided by [`ext::present_timing`](crate::ext::present_timing)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT: Self = Self(1000208000);
     pub const SWAPCHAIN_TIMING_PROPERTIES_EXT: Self = Self(1000208001);
@@ -15,26 +15,26 @@ impl crate::vk::StructureType {
     pub const PRESENT_TIMING_SURFACE_CAPABILITIES_EXT: Self = Self(1000208008);
     pub const SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT: Self = Self(1000208009);
 }
-///Provided by [`ext::present_timing`](crate::ext::present_timing)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl crate::vk::Result {
     pub const ERROR_PRESENT_TIMING_QUEUE_FULL_EXT: Self = Self(-1000208000);
 }
-///Provided by [`ext::present_timing`](crate::ext::present_timing)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl crate::vk::TimeDomainKHR {
     pub const PRESENT_STAGE_LOCAL_EXT: Self = Self(1000208000);
     pub const SWAPCHAIN_LOCAL_EXT: Self = Self(1000208001);
 }
-///Provided by [`ext::present_timing`](crate::ext::present_timing)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl crate::vk::SwapchainCreateFlagsKHR {
     pub const PRESENT_TIMING_EXT: Self = Self(
         crate::vk::SwapchainCreateFlagBitsKHR::PRESENT_TIMING_EXT.0,
     );
 }
-///Provided by [`ext::present_timing`](crate::ext::present_timing)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_TIMING_EXT: Self = Self(1 << 9);
 }
-///Provided by [`ext::present_timing`](crate::ext::present_timing)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl PresentStageFlagsEXT {
     pub const QUEUE_OPERATIONS_END_EXT: Self = Self(
         PresentStageFlagBitsEXT::QUEUE_OPERATIONS_END_EXT.0,
@@ -49,14 +49,14 @@ impl PresentStageFlagsEXT {
         PresentStageFlagBitsEXT::IMAGE_FIRST_PIXEL_VISIBLE_EXT.0,
     );
 }
-///Provided by [`ext::present_timing`](crate::ext::present_timing)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl PresentStageFlagBitsEXT {
     pub const QUEUE_OPERATIONS_END_EXT: Self = Self(1 << 0);
     pub const REQUEST_DEQUEUED_EXT: Self = Self(1 << 1);
     pub const IMAGE_FIRST_PIXEL_OUT_EXT: Self = Self(1 << 2);
     pub const IMAGE_FIRST_PIXEL_VISIBLE_EXT: Self = Self(1 << 3);
 }
-///Provided by [`ext::present_timing`](crate::ext::present_timing)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl PastPresentationTimingFlagsEXT {
     pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(
         PastPresentationTimingFlagBitsEXT::ALLOW_PARTIAL_RESULTS_EXT.0,
@@ -65,12 +65,12 @@ impl PastPresentationTimingFlagsEXT {
         PastPresentationTimingFlagBitsEXT::ALLOW_OUT_OF_ORDER_RESULTS_EXT.0,
     );
 }
-///Provided by [`ext::present_timing`](crate::ext::present_timing)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl PastPresentationTimingFlagBitsEXT {
     pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(1 << 0);
     pub const ALLOW_OUT_OF_ORDER_RESULTS_EXT: Self = Self(1 << 1);
 }
-///Provided by [`ext::present_timing`](crate::ext::present_timing)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl PresentTimingInfoFlagsEXT {
     pub const PRESENT_AT_RELATIVE_TIME_EXT: Self = Self(
         PresentTimingInfoFlagBitsEXT::PRESENT_AT_RELATIVE_TIME_EXT.0,
@@ -79,7 +79,7 @@ impl PresentTimingInfoFlagsEXT {
         PresentTimingInfoFlagBitsEXT::PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT.0,
     );
 }
-///Provided by [`ext::present_timing`](crate::ext::present_timing)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl PresentTimingInfoFlagBitsEXT {
     pub const PRESENT_AT_RELATIVE_TIME_EXT: Self = Self(1 << 0);
     pub const PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT: Self = Self(1 << 1);

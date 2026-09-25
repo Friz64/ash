@@ -2,20 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_matrix.html) · Extension `VK_NV_cooperative_matrix`
 #![doc(alias = "VK_NV_cooperative_matrix")]
-///Provided by [`nv::cooperative_matrix`](crate::nv::cooperative_matrix)
+///Provided by [VK_NV_cooperative_matrix](crate::nv::cooperative_matrix)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV: Self = Self(1000249000);
     pub const COOPERATIVE_MATRIX_PROPERTIES_NV: Self = Self(1000249001);
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV: Self = Self(1000249002);
 }
-///Provided by [`nv::cooperative_matrix`](crate::nv::cooperative_matrix)
+///Provided by [VK_NV_cooperative_matrix](crate::nv::cooperative_matrix)
 impl crate::vk::ScopeKHR {
     pub const DEVICE_NV: Self = Self::DEVICE_KHR;
     pub const WORKGROUP_NV: Self = Self::WORKGROUP_KHR;
     pub const SUBGROUP_NV: Self = Self::SUBGROUP_KHR;
     pub const QUEUE_FAMILY_NV: Self = Self::QUEUE_FAMILY_KHR;
 }
-///Provided by [`nv::cooperative_matrix`](crate::nv::cooperative_matrix)
+///Provided by [VK_NV_cooperative_matrix](crate::nv::cooperative_matrix)
 impl crate::vk::ComponentTypeKHR {
     pub const FLOAT16_NV: Self = Self::FLOAT16_KHR;
     pub const FLOAT32_NV: Self = Self::FLOAT32_KHR;

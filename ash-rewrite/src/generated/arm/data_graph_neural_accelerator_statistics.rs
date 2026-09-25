@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph_neural_accelerator_statistics.html) · Extension `VK_ARM_data_graph_neural_accelerator_statistics`
 #![doc(alias = "VK_ARM_data_graph_neural_accelerator_statistics")]
-///Provided by [`arm::data_graph_neural_accelerator_statistics`](crate::arm::data_graph_neural_accelerator_statistics)
+///Provided by [VK_ARM_data_graph_neural_accelerator_statistics](crate::arm::data_graph_neural_accelerator_statistics)
 impl crate::vk::StructureType {
     pub const DATA_GRAPH_PIPELINE_NEURAL_STATISTICS_CREATE_INFO_ARM: Self = Self(
         1000676000,
@@ -14,25 +14,17 @@ impl crate::vk::StructureType {
         1000676002,
     );
 }
-///Provided by [`arm::data_graph_neural_accelerator_statistics`](crate::arm::data_graph_neural_accelerator_statistics)
+///Provided by [VK_ARM_data_graph_neural_accelerator_statistics](crate::arm::data_graph_neural_accelerator_statistics)
 impl crate::vk::DataGraphPipelineSessionBindPointARM {
     pub const NEURAL_ACCELERATOR_STATISTICS_ARM: Self = Self(1000676000);
 }
-///Provided by [`arm::data_graph_neural_accelerator_statistics`](crate::arm::data_graph_neural_accelerator_statistics)
+///Provided by [VK_ARM_data_graph_neural_accelerator_statistics](crate::arm::data_graph_neural_accelerator_statistics)
 impl crate::vk::DataGraphPipelinePropertyARM {
     pub const NEURAL_ACCELERATOR_DEBUG_DATABASE_ARM: Self = Self(1000676000);
     pub const NEURAL_ACCELERATOR_STATISTICS_INFO_ARM: Self = Self(1000676001);
 }
-///Provided by [`arm::data_graph_neural_accelerator_statistics`](crate::arm::data_graph_neural_accelerator_statistics)
+///Provided by [VK_ARM_data_graph_neural_accelerator_statistics](crate::arm::data_graph_neural_accelerator_statistics)
 impl NeuralAcceleratorStatisticsModeARM {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DISABLED_ARM: Self = Self(0);
     pub const STATISTICS0_ARM: Self = Self(1);
     pub const STATISTICS1_ARM: Self = Self(2);
@@ -159,6 +151,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl NeuralAcceleratorStatisticsModeARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

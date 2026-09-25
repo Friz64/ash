@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fill_rectangle.html) · Extension `VK_NV_fill_rectangle`
 #![doc(alias = "VK_NV_fill_rectangle")]
-///Provided by [`nv::fill_rectangle`](crate::nv::fill_rectangle)
+///Provided by [VK_NV_fill_rectangle](crate::nv::fill_rectangle)
 impl crate::vk::PolygonMode {
     pub const FILL_RECTANGLE_NV: Self = Self(1000153000);
 }

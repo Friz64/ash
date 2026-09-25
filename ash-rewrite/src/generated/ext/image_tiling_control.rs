@@ -2,21 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_tiling_control.html) · Extension `VK_EXT_image_tiling_control`
 #![doc(alias = "VK_EXT_image_tiling_control")]
-///Provided by [`ext::image_tiling_control`](crate::ext::image_tiling_control)
+///Provided by [VK_EXT_image_tiling_control](crate::ext::image_tiling_control)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_TILING_CONTROL_FEATURES_EXT: Self = Self(1000687000);
     pub const IMAGE_TILING_CONTROL_CREATE_INFO_EXT: Self = Self(1000687001);
 }
-///Provided by [`ext::image_tiling_control`](crate::ext::image_tiling_control)
+///Provided by [VK_EXT_image_tiling_control](crate::ext::image_tiling_control)
 impl ImageTilingControlEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DEFAULT_EXT: Self = Self(0);
     pub const MIN_SIZE_EXT: Self = Self(1);
     pub const MAX_PERFORMANCE_EXT: Self = Self(2);
@@ -106,6 +98,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl ImageTilingControlEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

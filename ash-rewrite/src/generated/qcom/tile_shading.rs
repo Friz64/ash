@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_shading.html) · Extension `VK_QCOM_tile_shading`
 #![doc(alias = "VK_QCOM_tile_shading")]
-///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM: Self = Self(1000309000);
     pub const PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM: Self = Self(1000309001);
@@ -11,17 +11,17 @@ impl crate::vk::StructureType {
     pub const PER_TILE_END_INFO_QCOM: Self = Self(1000309004);
     pub const DISPATCH_TILE_INFO_QCOM: Self = Self(1000309005);
 }
-///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
 impl crate::vk::SubpassDescriptionFlags {
     pub const TILE_SHADING_APRON_QCOM: Self = Self(
         crate::vk::SubpassDescriptionFlagBits::TILE_SHADING_APRON_QCOM.0,
     );
 }
-///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
 impl crate::vk::SubpassDescriptionFlagBits {
     pub const TILE_SHADING_APRON_QCOM: Self = Self(1 << 8);
 }
-///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
 impl crate::vk::AccessFlags2 {
     pub const SHADER_TILE_ATTACHMENT_READ_QCOM: Self = Self(
         crate::vk::AccessFlagBits2::SHADER_TILE_ATTACHMENT_READ_QCOM.0,
@@ -30,19 +30,19 @@ impl crate::vk::AccessFlags2 {
         crate::vk::AccessFlagBits2::SHADER_TILE_ATTACHMENT_WRITE_QCOM.0,
     );
 }
-///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
 impl crate::vk::AccessFlagBits2 {
     pub const SHADER_TILE_ATTACHMENT_READ_QCOM: Self = Self(1 << 51);
     pub const SHADER_TILE_ATTACHMENT_WRITE_QCOM: Self = Self(1 << 52);
 }
-///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
 impl TileShadingRenderPassFlagsQCOM {
     pub const ENABLE_QCOM: Self = Self(TileShadingRenderPassFlagBitsQCOM::ENABLE_QCOM.0);
     pub const PER_TILE_EXECUTION_QCOM: Self = Self(
         TileShadingRenderPassFlagBitsQCOM::PER_TILE_EXECUTION_QCOM.0,
     );
 }
-///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
 impl TileShadingRenderPassFlagBitsQCOM {
     pub const ENABLE_QCOM: Self = Self(1 << 0);
     pub const PER_TILE_EXECUTION_QCOM: Self = Self(1 << 1);

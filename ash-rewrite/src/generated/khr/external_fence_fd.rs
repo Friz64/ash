@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence_fd.html) · Extension `VK_KHR_external_fence_fd`
 #![doc(alias = "VK_KHR_external_fence_fd")]
-///Provided by [`khr::external_fence_fd`](crate::khr::external_fence_fd)
+///Provided by [VK_KHR_external_fence_fd](crate::khr::external_fence_fd)
 impl crate::vk::StructureType {
     pub const IMPORT_FENCE_FD_INFO_KHR: Self = Self(1000115000);
     pub const FENCE_GET_FD_INFO_KHR: Self = Self(1000115001);

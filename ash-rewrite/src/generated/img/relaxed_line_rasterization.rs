@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_IMG_relaxed_line_rasterization.html) · Extension `VK_IMG_relaxed_line_rasterization`
 #![doc(alias = "VK_IMG_relaxed_line_rasterization")]
-///Provided by [`img::relaxed_line_rasterization`](crate::img::relaxed_line_rasterization)
+///Provided by [VK_IMG_relaxed_line_rasterization](crate::img::relaxed_line_rasterization)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RELAXED_LINE_RASTERIZATION_FEATURES_IMG: Self = Self(
         1000110000,

@@ -2,27 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_attachment_feedback_loop_layout.html) · Extension `VK_EXT_attachment_feedback_loop_layout`
 #![doc(alias = "VK_EXT_attachment_feedback_loop_layout")]
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl crate::vk::ImageLayout {
     pub const ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT: Self = Self(1000339000);
 }
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT: Self = Self(
         1000339000,
     );
 }
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl crate::vk::ImageUsageFlags {
     pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
         crate::vk::ImageUsageFlagBits::ATTACHMENT_FEEDBACK_LOOP_EXT.0,
     );
 }
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl crate::vk::ImageUsageFlagBits {
     pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 19);
 }
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl crate::vk::PipelineCreateFlags {
     pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
         crate::vk::PipelineCreateFlagBits::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
@@ -31,18 +31,18 @@ impl crate::vk::PipelineCreateFlags {
         crate::vk::PipelineCreateFlagBits::DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
     );
 }
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl crate::vk::PipelineCreateFlagBits {
     pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 25);
     pub const DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 26);
 }
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl crate::vk::DependencyFlags {
     pub const FEEDBACK_LOOP_EXT: Self = Self(
         crate::vk::DependencyFlagBits::FEEDBACK_LOOP_EXT.0,
     );
 }
-///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl crate::vk::DependencyFlagBits {
     pub const FEEDBACK_LOOP_EXT: Self = Self(1 << 3);
 }

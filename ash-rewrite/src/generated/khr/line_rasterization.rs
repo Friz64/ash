@@ -2,17 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_line_rasterization.html) · Extension `VK_KHR_line_rasterization`
 #![doc(alias = "VK_KHR_line_rasterization")]
-///Provided by [`khr::line_rasterization`](crate::khr::line_rasterization)
+///Provided by [VK_KHR_line_rasterization](crate::khr::line_rasterization)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES;
     pub const PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_KHR: Self = Self::PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO;
     pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES;
 }
-///Provided by [`khr::line_rasterization`](crate::khr::line_rasterization)
+///Provided by [VK_KHR_line_rasterization](crate::khr::line_rasterization)
 impl crate::vk::DynamicState {
     pub const LINE_STIPPLE_KHR: Self = Self::LINE_STIPPLE;
 }
-///Provided by [`khr::line_rasterization`](crate::khr::line_rasterization)
+///Provided by [VK_KHR_line_rasterization](crate::khr::line_rasterization)
 impl crate::vk::LineRasterizationMode {
     pub const DEFAULT_KHR: Self = Self::DEFAULT;
     pub const RECTANGULAR_KHR: Self = Self::RECTANGULAR;

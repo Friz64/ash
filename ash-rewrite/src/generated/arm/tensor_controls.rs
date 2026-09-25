@@ -2,12 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_tensor_controls.html) · Extension `VK_ARM_tensor_controls`
 #![doc(alias = "VK_ARM_tensor_controls")]
-///Provided by [`arm::tensor_controls`](crate::arm::tensor_controls)
+///Provided by [VK_ARM_tensor_controls](crate::arm::tensor_controls)
 impl crate::vk::StructureType {
     pub const TENSOR_EXPLICIT_TILING_FORMAT_PROPERTIES_ARM: Self = Self(1000565000);
     pub const TENSOR_ROLLING_BACKING_CREATE_INFO_ARM: Self = Self(1000565001);
 }
-///Provided by [`arm::tensor_controls`](crate::arm::tensor_controls)
+///Provided by [VK_ARM_tensor_controls](crate::arm::tensor_controls)
 impl crate::vk::TensorTilingARM {
     pub const BRICK_16_WIDE_ARM: Self = Self(1000565000);
     pub const BRICK_8_WIDE_ARM: Self = Self(1000565001);

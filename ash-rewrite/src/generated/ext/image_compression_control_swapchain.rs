@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_compression_control_swapchain.html) · Extension `VK_EXT_image_compression_control_swapchain`
 #![doc(alias = "VK_EXT_image_compression_control_swapchain")]
-///Provided by [`ext::image_compression_control_swapchain`](crate::ext::image_compression_control_swapchain)
+///Provided by [VK_EXT_image_compression_control_swapchain](crate::ext::image_compression_control_swapchain)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_FEATURES_EXT: Self = Self(
         1000437000,

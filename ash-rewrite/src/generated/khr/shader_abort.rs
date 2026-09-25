@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_abort.html) · Extension `VK_KHR_shader_abort`
 #![doc(alias = "VK_KHR_shader_abort")]
-///Provided by [`khr::shader_abort`](crate::khr::shader_abort)
+///Provided by [VK_KHR_shader_abort](crate::khr::shader_abort)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_ABORT_FEATURES_KHR: Self = Self(1000233000);
     pub const DEVICE_FAULT_SHADER_ABORT_MESSAGE_INFO_KHR: Self = Self(1000233001);

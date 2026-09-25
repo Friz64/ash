@@ -2,32 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_vp9std`
 #![doc(alias = "vulkan_video_codec_vp9std")]
-///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
+///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9Profile {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const _0: Self = Self(0);
     pub const _1: Self = Self(1);
     pub const _2: Self = Self(2);
     pub const _3: Self = Self(3);
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
-///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
+///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9Level {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const _1_0: Self = Self(0);
     pub const _1_1: Self = Self(1);
     pub const _2_0: Self = Self(2);
@@ -44,46 +28,22 @@ impl VP9Level {
     pub const _6_2: Self = Self(13);
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
-///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
+///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9FrameType {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const KEY: Self = Self(0);
     pub const NON_KEY: Self = Self(1);
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
-///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
+///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9ReferenceName {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const INTRA_FRAME: Self = Self(0);
     pub const LAST_FRAME: Self = Self(1);
     pub const GOLDEN_FRAME: Self = Self(2);
     pub const ALTREF_FRAME: Self = Self(3);
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
-///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
+///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9InterpolationFilter {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const EIGHTTAP: Self = Self(0);
     pub const EIGHTTAP_SMOOTH: Self = Self(1);
     pub const EIGHTTAP_SHARP: Self = Self(2);
@@ -91,16 +51,8 @@ impl VP9InterpolationFilter {
     pub const SWITCHABLE: Self = Self(4);
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
-///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
+///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9ColorSpace {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const UNKNOWN: Self = Self(0);
     pub const BT_601: Self = Self(1);
     pub const BT_709: Self = Self(2);
@@ -427,6 +379,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl VP9Profile {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VP9Level(pub(crate) i32);
@@ -457,6 +419,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl VP9Level {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VP9FrameType(pub(crate) i32);
@@ -473,6 +445,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl VP9FrameType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -495,6 +477,16 @@ pub(crate) mod items {
             }
         }
     }
+    impl VP9ReferenceName {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VP9InterpolationFilter(pub(crate) i32);
@@ -514,6 +506,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl VP9InterpolationFilter {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]
@@ -538,6 +540,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl VP9ColorSpace {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub const VP9_NUM_REF_FRAMES: u32 = 8;

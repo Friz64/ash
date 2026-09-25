@@ -2,19 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_subgroup_partitioned.html) · Extension `VK_EXT_shader_subgroup_partitioned`
 #![doc(alias = "VK_EXT_shader_subgroup_partitioned")]
-///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
+///Provided by [VK_EXT_shader_subgroup_partitioned](crate::ext::shader_subgroup_partitioned)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_PARTITIONED_FEATURES_EXT: Self = Self(
         1000662000,
     );
 }
-///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
+///Provided by [VK_EXT_shader_subgroup_partitioned](crate::ext::shader_subgroup_partitioned)
 impl crate::vk::SubgroupFeatureFlags {
     pub const PARTITIONED_EXT: Self = Self(
         crate::vk::SubgroupFeatureFlagBits::PARTITIONED_EXT.0,
     );
 }
-///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
+///Provided by [VK_EXT_shader_subgroup_partitioned](crate::ext::shader_subgroup_partitioned)
 impl crate::vk::SubgroupFeatureFlagBits {
     pub const PARTITIONED_EXT: Self = Self(1 << 8);
 }

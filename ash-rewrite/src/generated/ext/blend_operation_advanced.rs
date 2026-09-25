@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_blend_operation_advanced.html) · Extension `VK_EXT_blend_operation_advanced`
 #![doc(alias = "VK_EXT_blend_operation_advanced")]
-///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
+///Provided by [VK_EXT_blend_operation_advanced](crate::ext::blend_operation_advanced)
 impl crate::vk::BlendOp {
     pub const ZERO_EXT: Self = Self(1000148000);
     pub const SRC_EXT: Self = Self(1000148001);
@@ -51,7 +51,7 @@ impl crate::vk::BlendOp {
     pub const GREEN_EXT: Self = Self(1000148044);
     pub const BLUE_EXT: Self = Self(1000148045);
 }
-///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
+///Provided by [VK_EXT_blend_operation_advanced](crate::ext::blend_operation_advanced)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT: Self = Self(
         1000148000,
@@ -63,27 +63,19 @@ impl crate::vk::StructureType {
         1000148002,
     );
 }
-///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
+///Provided by [VK_EXT_blend_operation_advanced](crate::ext::blend_operation_advanced)
 impl BlendOverlapEXT {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const UNCORRELATED_EXT: Self = Self(0);
     pub const DISJOINT_EXT: Self = Self(1);
     pub const CONJOINT_EXT: Self = Self(2);
 }
-///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
+///Provided by [VK_EXT_blend_operation_advanced](crate::ext::blend_operation_advanced)
 impl crate::vk::AccessFlags {
     pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(
         crate::vk::AccessFlagBits::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT.0,
     );
 }
-///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
+///Provided by [VK_EXT_blend_operation_advanced](crate::ext::blend_operation_advanced)
 impl crate::vk::AccessFlagBits {
     pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(1 << 19);
 }
@@ -272,6 +264,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl BlendOverlapEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
 }

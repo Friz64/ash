@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_multisampled_render_to_single_sampled.html) · Extension `VK_EXT_multisampled_render_to_single_sampled`
 #![doc(alias = "VK_EXT_multisampled_render_to_single_sampled")]
-///Provided by [`ext::multisampled_render_to_single_sampled`](crate::ext::multisampled_render_to_single_sampled)
+///Provided by [VK_EXT_multisampled_render_to_single_sampled](crate::ext::multisampled_render_to_single_sampled)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_FEATURES_EXT: Self = Self(
         1000376000,
@@ -10,13 +10,13 @@ impl crate::vk::StructureType {
     pub const SUBPASS_RESOLVE_PERFORMANCE_QUERY_EXT: Self = Self(1000376001);
     pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_INFO_EXT: Self = Self(1000376002);
 }
-///Provided by [`ext::multisampled_render_to_single_sampled`](crate::ext::multisampled_render_to_single_sampled)
+///Provided by [VK_EXT_multisampled_render_to_single_sampled](crate::ext::multisampled_render_to_single_sampled)
 impl crate::vk::ImageCreateFlags {
     pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(
         crate::vk::ImageCreateFlagBits::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
     );
 }
-///Provided by [`ext::multisampled_render_to_single_sampled`](crate::ext::multisampled_render_to_single_sampled)
+///Provided by [VK_EXT_multisampled_render_to_single_sampled](crate::ext::multisampled_render_to_single_sampled)
 impl crate::vk::ImageCreateFlagBits {
     pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(1 << 18);
 }

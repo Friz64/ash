@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_external_memory.html) · Extension `VK_OHOS_external_memory`
 #![doc(alias = "VK_OHOS_external_memory")]
-///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
+///Provided by [VK_OHOS_external_memory](crate::ohos::external_memory)
 impl crate::vk::StructureType {
     pub const NATIVE_BUFFER_USAGE_OHOS: Self = Self(1000452000);
     pub const NATIVE_BUFFER_PROPERTIES_OHOS: Self = Self(1000452001);
@@ -11,13 +11,13 @@ impl crate::vk::StructureType {
     pub const MEMORY_GET_NATIVE_BUFFER_INFO_OHOS: Self = Self(1000452004);
     pub const EXTERNAL_FORMAT_OHOS: Self = Self(1000452005);
 }
-///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
+///Provided by [VK_OHOS_external_memory](crate::ohos::external_memory)
 impl crate::vk::ExternalMemoryHandleTypeFlags {
     pub const OH_NATIVE_BUFFER_OHOS: Self = Self(
         crate::vk::ExternalMemoryHandleTypeFlagBits::OH_NATIVE_BUFFER_OHOS.0,
     );
 }
-///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
+///Provided by [VK_OHOS_external_memory](crate::ohos::external_memory)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const OH_NATIVE_BUFFER_OHOS: Self = Self(1 << 15);
 }

@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_driver_properties.html) · Extension `VK_KHR_driver_properties`
 #![doc(alias = "VK_KHR_driver_properties")]
-///Provided by [`khr::driver_properties`](crate::khr::driver_properties)
+///Provided by [VK_KHR_driver_properties](crate::khr::driver_properties)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_DRIVER_PROPERTIES;
 }
-///Provided by [`khr::driver_properties`](crate::khr::driver_properties)
+///Provided by [VK_KHR_driver_properties](crate::khr::driver_properties)
 impl crate::vk::DriverId {
     pub const AMD_PROPRIETARY_KHR: Self = Self::AMD_PROPRIETARY;
     pub const AMD_OPEN_SOURCE_KHR: Self = Self::AMD_OPEN_SOURCE;

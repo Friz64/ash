@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_utils.html) · Extension `VK_EXT_debug_utils`
 #![doc(alias = "VK_EXT_debug_utils")]
-///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl crate::vk::StructureType {
     pub const DEBUG_UTILS_OBJECT_NAME_INFO_EXT: Self = Self(1000128000);
     pub const DEBUG_UTILS_OBJECT_TAG_INFO_EXT: Self = Self(1000128001);
@@ -10,11 +10,11 @@ impl crate::vk::StructureType {
     pub const DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT: Self = Self(1000128003);
     pub const DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT: Self = Self(1000128004);
 }
-///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl crate::vk::ObjectType {
     pub const DEBUG_UTILS_MESSENGER_EXT: Self = Self(1000128000);
 }
-///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl DebugUtilsMessageSeverityFlagsEXT {
     pub const VERBOSE_EXT: Self = Self(
         DebugUtilsMessageSeverityFlagBitsEXT::VERBOSE_EXT.0,
@@ -25,14 +25,14 @@ impl DebugUtilsMessageSeverityFlagsEXT {
     );
     pub const ERROR_EXT: Self = Self(DebugUtilsMessageSeverityFlagBitsEXT::ERROR_EXT.0);
 }
-///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl DebugUtilsMessageSeverityFlagBitsEXT {
     pub const VERBOSE_EXT: Self = Self(1 << 0);
     pub const INFO_EXT: Self = Self(1 << 4);
     pub const WARNING_EXT: Self = Self(1 << 8);
     pub const ERROR_EXT: Self = Self(1 << 12);
 }
-///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl DebugUtilsMessageTypeFlagsEXT {
     pub const GENERAL_EXT: Self = Self(DebugUtilsMessageTypeFlagBitsEXT::GENERAL_EXT.0);
     pub const VALIDATION_EXT: Self = Self(
@@ -42,7 +42,7 @@ impl DebugUtilsMessageTypeFlagsEXT {
         DebugUtilsMessageTypeFlagBitsEXT::PERFORMANCE_EXT.0,
     );
 }
-///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl DebugUtilsMessageTypeFlagBitsEXT {
     pub const GENERAL_EXT: Self = Self(1 << 0);
     pub const VALIDATION_EXT: Self = Self(1 << 1);

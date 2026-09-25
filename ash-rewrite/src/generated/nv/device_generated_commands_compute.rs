@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_generated_commands_compute.html) · Extension `VK_NV_device_generated_commands_compute`
 #![doc(alias = "VK_NV_device_generated_commands_compute")]
-///Provided by [`nv::device_generated_commands_compute`](crate::nv::device_generated_commands_compute)
+///Provided by [VK_NV_device_generated_commands_compute](crate::nv::device_generated_commands_compute)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_COMPUTE_FEATURES_NV: Self = Self(
         1000428000,
@@ -10,18 +10,18 @@ impl crate::vk::StructureType {
     pub const COMPUTE_PIPELINE_INDIRECT_BUFFER_INFO_NV: Self = Self(1000428001);
     pub const PIPELINE_INDIRECT_DEVICE_ADDRESS_INFO_NV: Self = Self(1000428002);
 }
-///Provided by [`nv::device_generated_commands_compute`](crate::nv::device_generated_commands_compute)
+///Provided by [VK_NV_device_generated_commands_compute](crate::nv::device_generated_commands_compute)
 impl crate::vk::IndirectCommandsTokenTypeNV {
     pub const PIPELINE_NV: Self = Self(1000428003);
     pub const DISPATCH_NV: Self = Self(1000428004);
 }
-///Provided by [`nv::device_generated_commands_compute`](crate::nv::device_generated_commands_compute)
+///Provided by [VK_NV_device_generated_commands_compute](crate::nv::device_generated_commands_compute)
 impl crate::vk::DescriptorSetLayoutCreateFlags {
     pub const INDIRECT_BINDABLE_NV: Self = Self(
         crate::vk::DescriptorSetLayoutCreateFlagBits::INDIRECT_BINDABLE_NV.0,
     );
 }
-///Provided by [`nv::device_generated_commands_compute`](crate::nv::device_generated_commands_compute)
+///Provided by [VK_NV_device_generated_commands_compute](crate::nv::device_generated_commands_compute)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 7);
 }

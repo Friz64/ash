@@ -2,17 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display.html) · Extension `VK_KHR_display`
 #![doc(alias = "VK_KHR_display")]
-///Provided by [`khr::display`](crate::khr::display)
+///Provided by [VK_KHR_display](crate::khr::display)
 impl crate::vk::StructureType {
     pub const DISPLAY_MODE_CREATE_INFO_KHR: Self = Self(1000002000);
     pub const DISPLAY_SURFACE_CREATE_INFO_KHR: Self = Self(1000002001);
 }
-///Provided by [`khr::display`](crate::khr::display)
+///Provided by [VK_KHR_display](crate::khr::display)
 impl crate::vk::ObjectType {
     pub const DISPLAY_KHR: Self = Self(1000002000);
     pub const DISPLAY_MODE_KHR: Self = Self(1000002001);
 }
-///Provided by [`khr::display`](crate::khr::display)
+///Provided by [VK_KHR_display](crate::khr::display)
 impl DisplayPlaneAlphaFlagsKHR {
     pub const OPAQUE_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::OPAQUE_KHR.0);
     pub const GLOBAL_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::GLOBAL_KHR.0);
@@ -21,7 +21,7 @@ impl DisplayPlaneAlphaFlagsKHR {
         DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL_PREMULTIPLIED_KHR.0,
     );
 }
-///Provided by [`khr::display`](crate::khr::display)
+///Provided by [VK_KHR_display](crate::khr::display)
 impl DisplayPlaneAlphaFlagBitsKHR {
     pub const OPAQUE_KHR: Self = Self(1 << 0);
     pub const GLOBAL_KHR: Self = Self(1 << 1);

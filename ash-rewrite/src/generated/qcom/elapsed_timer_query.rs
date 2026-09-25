@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_elapsed_timer_query.html) · Extension `VK_QCOM_elapsed_timer_query`
 #![doc(alias = "VK_QCOM_elapsed_timer_query")]
-///Provided by [`qcom::elapsed_timer_query`](crate::qcom::elapsed_timer_query)
+///Provided by [VK_QCOM_elapsed_timer_query](crate::qcom::elapsed_timer_query)
 impl crate::vk::QueryType {
     pub const TIME_ELAPSED_QCOM: Self = Self(1000173000);
 }
-///Provided by [`qcom::elapsed_timer_query`](crate::qcom::elapsed_timer_query)
+///Provided by [VK_QCOM_elapsed_timer_query](crate::qcom::elapsed_timer_query)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_ELAPSED_TIMER_QUERY_FEATURES_QCOM: Self = Self(1000173000);
 }

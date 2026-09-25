@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_memory_requirements2.html) · Extension `VK_KHR_get_memory_requirements2`
 #![doc(alias = "VK_KHR_get_memory_requirements2")]
-///Provided by [`khr::get_memory_requirements2`](crate::khr::get_memory_requirements2)
+///Provided by [VK_KHR_get_memory_requirements2](crate::khr::get_memory_requirements2)
 impl crate::vk::StructureType {
     pub const BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::BUFFER_MEMORY_REQUIREMENTS_INFO_2;
     pub const IMAGE_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::IMAGE_MEMORY_REQUIREMENTS_INFO_2;

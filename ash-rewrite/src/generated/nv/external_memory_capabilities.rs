@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_capabilities.html) · Extension `VK_NV_external_memory_capabilities`
 #![doc(alias = "VK_NV_external_memory_capabilities")]
-///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
+///Provided by [VK_NV_external_memory_capabilities](crate::nv::external_memory_capabilities)
 impl ExternalMemoryHandleTypeFlagsNV {
     pub const OPAQUE_WIN32_NV: Self = Self(
         ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_NV.0,
@@ -17,14 +17,14 @@ impl ExternalMemoryHandleTypeFlagsNV {
         ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE_KMT_NV.0,
     );
 }
-///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
+///Provided by [VK_NV_external_memory_capabilities](crate::nv::external_memory_capabilities)
 impl ExternalMemoryHandleTypeFlagBitsNV {
     pub const OPAQUE_WIN32_NV: Self = Self(1 << 0);
     pub const OPAQUE_WIN32_KMT_NV: Self = Self(1 << 1);
     pub const D3D11_IMAGE_NV: Self = Self(1 << 2);
     pub const D3D11_IMAGE_KMT_NV: Self = Self(1 << 3);
 }
-///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
+///Provided by [VK_NV_external_memory_capabilities](crate::nv::external_memory_capabilities)
 impl ExternalMemoryFeatureFlagsNV {
     pub const DEDICATED_ONLY_NV: Self = Self(
         ExternalMemoryFeatureFlagBitsNV::DEDICATED_ONLY_NV.0,
@@ -36,7 +36,7 @@ impl ExternalMemoryFeatureFlagsNV {
         ExternalMemoryFeatureFlagBitsNV::IMPORTABLE_NV.0,
     );
 }
-///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
+///Provided by [VK_NV_external_memory_capabilities](crate::nv::external_memory_capabilities)
 impl ExternalMemoryFeatureFlagBitsNV {
     pub const DEDICATED_ONLY_NV: Self = Self(1 << 0);
     pub const EXPORTABLE_NV: Self = Self(1 << 1);

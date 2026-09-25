@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_present_barrier.html) · Extension `VK_NV_present_barrier`
 #![doc(alias = "VK_NV_present_barrier")]
-///Provided by [`nv::present_barrier`](crate::nv::present_barrier)
+///Provided by [VK_NV_present_barrier](crate::nv::present_barrier)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRESENT_BARRIER_FEATURES_NV: Self = Self(1000292000);
     pub const SURFACE_CAPABILITIES_PRESENT_BARRIER_NV: Self = Self(1000292001);

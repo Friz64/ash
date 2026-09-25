@@ -3,7 +3,7 @@
 #![cfg(feature = "provisional")]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cuda_kernel_launch.html) · Extension `VK_NV_cuda_kernel_launch`
 #![doc(alias = "VK_NV_cuda_kernel_launch")]
-///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
+///Provided by [VK_NV_cuda_kernel_launch](crate::nv::cuda_kernel_launch)
 impl crate::vk::StructureType {
     pub const CUDA_MODULE_CREATE_INFO_NV: Self = Self(1000307000);
     pub const CUDA_FUNCTION_CREATE_INFO_NV: Self = Self(1000307001);
@@ -11,12 +11,12 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV: Self = Self(1000307003);
     pub const PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV: Self = Self(1000307004);
 }
-///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
+///Provided by [VK_NV_cuda_kernel_launch](crate::nv::cuda_kernel_launch)
 impl crate::vk::ObjectType {
     pub const CUDA_MODULE_NV: Self = Self(1000307000);
     pub const CUDA_FUNCTION_NV: Self = Self(1000307001);
 }
-///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
+///Provided by [VK_NV_cuda_kernel_launch](crate::nv::cuda_kernel_launch)
 impl crate::vk::DebugReportObjectTypeEXT {
     pub const CUDA_MODULE_NV_EXT: Self = Self(1000307000);
     pub const CUDA_FUNCTION_NV_EXT: Self = Self(1000307001);

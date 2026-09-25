@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_performance_counters_by_region.html) · Extension `VK_ARM_performance_counters_by_region`
 #![doc(alias = "VK_ARM_performance_counters_by_region")]
-///Provided by [`arm::performance_counters_by_region`](crate::arm::performance_counters_by_region)
+///Provided by [VK_ARM_performance_counters_by_region](crate::arm::performance_counters_by_region)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_FEATURES_ARM: Self = Self(
         1000605000,

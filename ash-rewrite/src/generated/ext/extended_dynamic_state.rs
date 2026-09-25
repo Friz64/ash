@@ -2,13 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state.html) · Extension `VK_EXT_extended_dynamic_state`
 #![doc(alias = "VK_EXT_extended_dynamic_state")]
-///Provided by [`ext::extended_dynamic_state`](crate::ext::extended_dynamic_state)
+///Provided by [VK_EXT_extended_dynamic_state](crate::ext::extended_dynamic_state)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
         1000267000,
     );
 }
-///Provided by [`ext::extended_dynamic_state`](crate::ext::extended_dynamic_state)
+///Provided by [VK_EXT_extended_dynamic_state](crate::ext::extended_dynamic_state)
 impl crate::vk::DynamicState {
     pub const CULL_MODE_EXT: Self = Self::CULL_MODE;
     pub const FRONT_FACE_EXT: Self = Self::FRONT_FACE;

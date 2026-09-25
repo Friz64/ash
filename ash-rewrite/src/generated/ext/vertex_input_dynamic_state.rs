@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_input_dynamic_state.html) · Extension `VK_EXT_vertex_input_dynamic_state`
 #![doc(alias = "VK_EXT_vertex_input_dynamic_state")]
-///Provided by [`ext::vertex_input_dynamic_state`](crate::ext::vertex_input_dynamic_state)
+///Provided by [VK_EXT_vertex_input_dynamic_state](crate::ext::vertex_input_dynamic_state)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
         1000352000,
@@ -10,7 +10,7 @@ impl crate::vk::StructureType {
     pub const VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT: Self = Self(1000352001);
     pub const VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT: Self = Self(1000352002);
 }
-///Provided by [`ext::vertex_input_dynamic_state`](crate::ext::vertex_input_dynamic_state)
+///Provided by [VK_EXT_vertex_input_dynamic_state](crate::ext::vertex_input_dynamic_state)
 impl crate::vk::DynamicState {
     pub const VERTEX_INPUT_EXT: Self = Self(1000352000);
 }

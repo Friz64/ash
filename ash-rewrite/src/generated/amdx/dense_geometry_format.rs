@@ -3,7 +3,7 @@
 #![cfg(feature = "provisional")]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_dense_geometry_format.html) · Extension `VK_AMDX_dense_geometry_format`
 #![doc(alias = "VK_AMDX_dense_geometry_format")]
-///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX: Self = Self(
         1000478000,
@@ -12,29 +12,21 @@ impl crate::vk::StructureType {
         1000478001,
     );
 }
-///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
 impl crate::vk::GeometryTypeKHR {
     pub const DENSE_GEOMETRY_FORMAT_TRIANGLES_AMDX: Self = Self(1000478000);
 }
-///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
 impl CompressedTriangleFormatAMDX {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const DGF1_AMDX: Self = Self(0);
 }
-///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
 impl crate::vk::BufferUsageFlags2 {
     pub const COMPRESSED_DATA_DGF1_AMDX: Self = Self(
         crate::vk::BufferUsageFlagBits2::COMPRESSED_DATA_DGF1_AMDX.0,
     );
 }
-///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
 impl crate::vk::BufferUsageFlagBits2 {
     pub const COMPRESSED_DATA_DGF1_AMDX: Self = Self(1 << 33);
 }
@@ -162,6 +154,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl CompressedTriangleFormatAMDX {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub const COMPRESSED_TRIANGLE_FORMAT_DGF1_BYTE_ALIGNMENT_AMDX: u32 = 128;

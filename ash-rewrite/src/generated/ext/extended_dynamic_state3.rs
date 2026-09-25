@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state3.html) · Extension `VK_EXT_extended_dynamic_state3`
 #![doc(alias = "VK_EXT_extended_dynamic_state3")]
-///Provided by [`ext::extended_dynamic_state3`](crate::ext::extended_dynamic_state3)
+///Provided by [VK_EXT_extended_dynamic_state3](crate::ext::extended_dynamic_state3)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT: Self = Self(
         1000455000,
@@ -11,7 +11,7 @@ impl crate::vk::StructureType {
         1000455001,
     );
 }
-///Provided by [`ext::extended_dynamic_state3`](crate::ext::extended_dynamic_state3)
+///Provided by [VK_EXT_extended_dynamic_state3](crate::ext::extended_dynamic_state3)
 impl crate::vk::DynamicState {
     pub const DEPTH_CLAMP_ENABLE_EXT: Self = Self(1000455003);
     pub const POLYGON_MODE_EXT: Self = Self(1000455004);

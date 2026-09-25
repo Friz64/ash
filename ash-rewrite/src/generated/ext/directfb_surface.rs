@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_directfb_surface.html) · Extension `VK_EXT_directfb_surface`
 #![doc(alias = "VK_EXT_directfb_surface")]
-///Provided by [`ext::directfb_surface`](crate::ext::directfb_surface)
+///Provided by [VK_EXT_directfb_surface](crate::ext::directfb_surface)
 impl crate::vk::StructureType {
     pub const DIRECTFB_SURFACE_CREATE_INFO_EXT: Self = Self(1000346000);
 }

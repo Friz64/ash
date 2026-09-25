@@ -6,7 +6,7 @@ use analysis::{
     item::{RequireLocation, RequiredBy},
 };
 use heck::ToSnekCase;
-use indexmap::{IndexMap, IndexSet};
+use indexmap::IndexMap;
 use itertools::Itertools;
 use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
@@ -111,10 +111,16 @@ impl Destination {
     }
 
     pub fn doc_link(&self) -> String {
+        let friendly_name = match self.location {
+            RequireLocation::Core { major, minor } => format!("Vulkan {major}.{minor}"),
+            RequireLocation::Extension { name } => name.original().into(),
+        };
+
         let components = (self.path_components().iter())
             .map(|component| component.module_name.to_string())
             .join("::");
-        format!("Provided by [`{components}`](crate::{components})")
+
+        format!("Provided by [{friendly_name}](crate::{components})")
     }
 }
 
@@ -154,7 +160,7 @@ impl CodeMap {
 
         struct ModFile {
             doc_comment: Option<String>,
-            child_modules: IndexSet<Ident>,
+            child_modules: IndexMap<Ident, RequireLocation>,
         }
 
         struct SourceFile<'a> {
@@ -205,12 +211,6 @@ impl CodeMap {
                 (source_file.reexport_items).push(quote! { #original as #alias });
             }
 
-            // this affects the order impl blocks show up in rustdoc
-            let sort_order = match destination.location {
-                RequireLocation::Core { .. } => 1,
-                RequireLocation::Extension { .. } => 2,
-            };
-
             // collect mod.rs files to be created
             for (i, component) in components.iter().enumerate() {
                 let parent_path = &components[0..i];
@@ -223,11 +223,14 @@ impl CodeMap {
                 let mod_file = mod_files.entry(mod_path).or_insert_with(|| ModFile {
                     doc_comment: (parent_path.last())
                         .map(|component| component.doc_comment.clone()),
-                    child_modules: IndexSet::new(),
+                    child_modules: IndexMap::new(),
                 });
 
-                (mod_file.child_modules)
-                    .insert_sorted_by_key(component.module_name.clone(), |_| sort_order);
+                (mod_file.child_modules).insert_sorted_by_key(
+                    component.module_name.clone(),
+                    destination.location,
+                    |_k, v| *v,
+                );
             }
         }
 
@@ -287,7 +290,7 @@ impl CodeMap {
 
         for (mod_path, mod_file) in mod_files {
             let doc = mod_file.doc_comment.map(|doc| quote! { #![doc = #doc] });
-            let mod_child_idents = mod_file.child_modules.iter();
+            let mod_child_idents = mod_file.child_modules.keys();
             vfs.write(
                 mod_path,
                 quote! {

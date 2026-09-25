@@ -2,17 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_corner_sampled_image.html) · Extension `VK_NV_corner_sampled_image`
 #![doc(alias = "VK_NV_corner_sampled_image")]
-///Provided by [`nv::corner_sampled_image`](crate::nv::corner_sampled_image)
+///Provided by [VK_NV_corner_sampled_image](crate::nv::corner_sampled_image)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV: Self = Self(1000050000);
 }
-///Provided by [`nv::corner_sampled_image`](crate::nv::corner_sampled_image)
+///Provided by [VK_NV_corner_sampled_image](crate::nv::corner_sampled_image)
 impl crate::vk::ImageCreateFlags {
     pub const CORNER_SAMPLED_NV: Self = Self(
         crate::vk::ImageCreateFlagBits::CORNER_SAMPLED_NV.0,
     );
 }
-///Provided by [`nv::corner_sampled_image`](crate::nv::corner_sampled_image)
+///Provided by [VK_NV_corner_sampled_image](crate::nv::corner_sampled_image)
 impl crate::vk::ImageCreateFlagBits {
     pub const CORNER_SAMPLED_NV: Self = Self(1 << 13);
 }

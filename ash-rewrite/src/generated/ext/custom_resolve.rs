@@ -2,13 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_custom_resolve.html) · Extension `VK_EXT_custom_resolve`
 #![doc(alias = "VK_EXT_custom_resolve")]
-///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT: Self = Self(1000628000);
     pub const BEGIN_CUSTOM_RESOLVE_INFO_EXT: Self = Self(1000628001);
     pub const CUSTOM_RESOLVE_CREATE_INFO_EXT: Self = Self(1000628002);
 }
-///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl crate::vk::SubpassDescriptionFlags {
     pub const FRAGMENT_REGION_EXT: Self = Self(
         crate::vk::SubpassDescriptionFlagBits::FRAGMENT_REGION_EXT.0,
@@ -17,12 +17,12 @@ impl crate::vk::SubpassDescriptionFlags {
         crate::vk::SubpassDescriptionFlagBits::CUSTOM_RESOLVE_EXT.0,
     );
 }
-///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl crate::vk::SubpassDescriptionFlagBits {
     pub const FRAGMENT_REGION_EXT: Self = Self(1 << 2);
     pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 3);
 }
-///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl crate::vk::RenderingFlags {
     pub const FRAGMENT_REGION_EXT: Self = Self(
         crate::vk::RenderingFlagBits::FRAGMENT_REGION_EXT.0,
@@ -31,16 +31,16 @@ impl crate::vk::RenderingFlags {
         crate::vk::RenderingFlagBits::CUSTOM_RESOLVE_EXT.0,
     );
 }
-///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl crate::vk::RenderingFlagBits {
     pub const FRAGMENT_REGION_EXT: Self = Self(1 << 6);
     pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 7);
 }
-///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl crate::vk::ResolveModeFlags {
     pub const CUSTOM_EXT: Self = Self(crate::vk::ResolveModeFlagBits::CUSTOM_EXT.0);
 }
-///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl crate::vk::ResolveModeFlagBits {
     pub const CUSTOM_EXT: Self = Self(1 << 5);
 }

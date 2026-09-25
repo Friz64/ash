@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_scheduling_controls.html) · Extension `VK_ARM_scheduling_controls`
 #![doc(alias = "VK_ARM_scheduling_controls")]
-///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
+///Provided by [VK_ARM_scheduling_controls](crate::arm::scheduling_controls)
 impl crate::vk::StructureType {
     pub const DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM: Self = Self(1000417000);
     pub const PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM: Self = Self(1000417001);
@@ -14,7 +14,7 @@ impl crate::vk::StructureType {
         1000417004,
     );
 }
-///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
+///Provided by [VK_ARM_scheduling_controls](crate::arm::scheduling_controls)
 impl PhysicalDeviceSchedulingControlsFlagsARM {
     pub const SHADER_CORE_COUNT_ARM: Self = Self(
         PhysicalDeviceSchedulingControlsFlagBitsARM::SHADER_CORE_COUNT_ARM.0,
@@ -23,7 +23,7 @@ impl PhysicalDeviceSchedulingControlsFlagsARM {
         PhysicalDeviceSchedulingControlsFlagBitsARM::DISPATCH_PARAMETERS_ARM.0,
     );
 }
-///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
+///Provided by [VK_ARM_scheduling_controls](crate::arm::scheduling_controls)
 impl PhysicalDeviceSchedulingControlsFlagBitsARM {
     pub const SHADER_CORE_COUNT_ARM: Self = Self(1 << 0);
     pub const DISPATCH_PARAMETERS_ARM: Self = Self(1 << 1);

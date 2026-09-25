@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_av1.html) · Extension `VK_KHR_video_decode_av1`
 #![doc(alias = "VK_KHR_video_decode_av1")]
-///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
+///Provided by [VK_KHR_video_decode_av1](crate::khr::video_decode_av1)
 impl crate::vk::StructureType {
     pub const VIDEO_DECODE_AV1_CAPABILITIES_KHR: Self = Self(1000512000);
     pub const VIDEO_DECODE_AV1_PICTURE_INFO_KHR: Self = Self(1000512001);
@@ -12,13 +12,13 @@ impl crate::vk::StructureType {
     );
     pub const VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR: Self = Self(1000512005);
 }
-///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
+///Provided by [VK_KHR_video_decode_av1](crate::khr::video_decode_av1)
 impl crate::vk::VideoCodecOperationFlagsKHR {
     pub const DECODE_AV1_KHR: Self = Self(
         crate::vk::VideoCodecOperationFlagBitsKHR::DECODE_AV1_KHR.0,
     );
 }
-///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
+///Provided by [VK_KHR_video_decode_av1](crate::khr::video_decode_av1)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_AV1_KHR: Self = Self(1 << 2);
 }

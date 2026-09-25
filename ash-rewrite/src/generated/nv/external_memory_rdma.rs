@@ -2,28 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_rdma.html) · Extension `VK_NV_external_memory_rdma`
 #![doc(alias = "VK_NV_external_memory_rdma")]
-///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
+///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
 impl crate::vk::StructureType {
     pub const MEMORY_GET_REMOTE_ADDRESS_INFO_NV: Self = Self(1000371000);
     pub const PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV: Self = Self(1000371001);
 }
-///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
+///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
 impl crate::vk::MemoryPropertyFlags {
     pub const RDMA_CAPABLE_NV: Self = Self(
         crate::vk::MemoryPropertyFlagBits::RDMA_CAPABLE_NV.0,
     );
 }
-///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
+///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
 impl crate::vk::MemoryPropertyFlagBits {
     pub const RDMA_CAPABLE_NV: Self = Self(1 << 8);
 }
-///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
+///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
 impl crate::vk::ExternalMemoryHandleTypeFlags {
     pub const RDMA_ADDRESS_NV: Self = Self(
         crate::vk::ExternalMemoryHandleTypeFlagBits::RDMA_ADDRESS_NV.0,
     );
 }
-///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
+///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const RDMA_ADDRESS_NV: Self = Self(1 << 12);
 }

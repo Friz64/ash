@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory_fd.html) · Extension `VK_KHR_external_memory_fd`
 #![doc(alias = "VK_KHR_external_memory_fd")]
-///Provided by [`khr::external_memory_fd`](crate::khr::external_memory_fd)
+///Provided by [VK_KHR_external_memory_fd](crate::khr::external_memory_fd)
 impl crate::vk::StructureType {
     pub const IMPORT_MEMORY_FD_INFO_KHR: Self = Self(1000074000);
     pub const MEMORY_FD_PROPERTIES_KHR: Self = Self(1000074001);

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_texture_compression_astc_3d.html) · Extension `VK_EXT_texture_compression_astc_3d`
 #![doc(alias = "VK_EXT_texture_compression_astc_3d")]
-///Provided by [`ext::texture_compression_astc_3d`](crate::ext::texture_compression_astc_3d)
+///Provided by [VK_EXT_texture_compression_astc_3d](crate::ext::texture_compression_astc_3d)
 impl crate::vk::Format {
     pub const ASTC_3X3X3_UNORM_BLOCK_EXT: Self = Self(1000288000);
     pub const ASTC_3X3X3_SRGB_BLOCK_EXT: Self = Self(1000288001);
@@ -35,7 +35,7 @@ impl crate::vk::Format {
     pub const ASTC_6X6X6_SRGB_BLOCK_EXT: Self = Self(1000288028);
     pub const ASTC_6X6X6_SFLOAT_BLOCK_EXT: Self = Self(1000288029);
 }
-///Provided by [`ext::texture_compression_astc_3d`](crate::ext::texture_compression_astc_3d)
+///Provided by [VK_EXT_texture_compression_astc_3d](crate::ext::texture_compression_astc_3d)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT: Self = Self(
         1000288000,

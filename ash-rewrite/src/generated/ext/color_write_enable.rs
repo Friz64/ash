@@ -2,12 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_color_write_enable.html) · Extension `VK_EXT_color_write_enable`
 #![doc(alias = "VK_EXT_color_write_enable")]
-///Provided by [`ext::color_write_enable`](crate::ext::color_write_enable)
+///Provided by [VK_EXT_color_write_enable](crate::ext::color_write_enable)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT: Self = Self(1000381000);
     pub const PIPELINE_COLOR_WRITE_CREATE_INFO_EXT: Self = Self(1000381001);
 }
-///Provided by [`ext::color_write_enable`](crate::ext::color_write_enable)
+///Provided by [VK_EXT_color_write_enable](crate::ext::color_write_enable)
 impl crate::vk::DynamicState {
     pub const COLOR_WRITE_ENABLE_EXT: Self = Self(1000381000);
 }

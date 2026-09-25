@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain_maintenance1.html) · Extension `VK_KHR_swapchain_maintenance1`
 #![doc(alias = "VK_KHR_swapchain_maintenance1")]
-///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
+///Provided by [VK_KHR_swapchain_maintenance1](crate::khr::swapchain_maintenance1)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR: Self = Self(
         1000275000,
@@ -13,13 +13,13 @@ impl crate::vk::StructureType {
     pub const SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR: Self = Self(1000275004);
     pub const RELEASE_SWAPCHAIN_IMAGES_INFO_KHR: Self = Self(1000275005);
 }
-///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
+///Provided by [VK_KHR_swapchain_maintenance1](crate::khr::swapchain_maintenance1)
 impl crate::vk::SwapchainCreateFlagsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(
         crate::vk::SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_KHR.0,
     );
 }
-///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
+///Provided by [VK_KHR_swapchain_maintenance1](crate::khr::swapchain_maintenance1)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(1 << 3);
 }

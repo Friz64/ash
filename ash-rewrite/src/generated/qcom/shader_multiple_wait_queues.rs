@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_shader_multiple_wait_queues.html) · Extension `VK_QCOM_shader_multiple_wait_queues`
 #![doc(alias = "VK_QCOM_shader_multiple_wait_queues")]
-///Provided by [`qcom::shader_multiple_wait_queues`](crate::qcom::shader_multiple_wait_queues)
+///Provided by [VK_QCOM_shader_multiple_wait_queues](crate::qcom::shader_multiple_wait_queues)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_MULTIPLE_WAIT_QUEUES_FEATURES_QCOM: Self = Self(
         1000304000,

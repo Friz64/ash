@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_atomic_int64.html) · Extension `VK_KHR_shader_atomic_int64`
 #![doc(alias = "VK_KHR_shader_atomic_int64")]
-///Provided by [`khr::shader_atomic_int64`](crate::khr::shader_atomic_int64)
+///Provided by [VK_KHR_shader_atomic_int64](crate::khr::shader_atomic_int64)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES;
 }

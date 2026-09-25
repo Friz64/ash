@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_queue.html) · Extension `VK_KHR_video_queue`
 #![doc(alias = "VK_KHR_video_queue")]
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl crate::vk::QueryType {
     pub const RESULT_STATUS_ONLY_KHR: Self = Self(1000023000);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl crate::vk::StructureType {
     pub const VIDEO_PROFILE_INFO_KHR: Self = Self(1000023000);
     pub const VIDEO_CAPABILITIES_KHR: Self = Self(1000023001);
@@ -26,7 +26,7 @@ impl crate::vk::StructureType {
     pub const VIDEO_FORMAT_PROPERTIES_KHR: Self = Self(1000023015);
     pub const QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_KHR: Self = Self(1000023016);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl crate::vk::Result {
     pub const ERROR_IMAGE_USAGE_NOT_SUPPORTED_KHR: Self = Self(-1000023000);
     pub const ERROR_VIDEO_PICTURE_LAYOUT_NOT_SUPPORTED_KHR: Self = Self(-1000023001);
@@ -35,44 +35,36 @@ impl crate::vk::Result {
     pub const ERROR_VIDEO_PROFILE_CODEC_NOT_SUPPORTED_KHR: Self = Self(-1000023004);
     pub const ERROR_VIDEO_STD_VERSION_NOT_SUPPORTED_KHR: Self = Self(-1000023005);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl crate::vk::ObjectType {
     pub const VIDEO_SESSION_KHR: Self = Self(1000023000);
     pub const VIDEO_SESSION_PARAMETERS_KHR: Self = Self(1000023001);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl QueryResultStatusKHR {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const ERROR_KHR: Self = Self(-1);
     pub const NOT_READY_KHR: Self = Self(0);
     pub const COMPLETE_KHR: Self = Self(1);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl crate::vk::QueryResultFlags {
     pub const WITH_STATUS_KHR: Self = Self(
         crate::vk::QueryResultFlagBits::WITH_STATUS_KHR.0,
     );
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl crate::vk::QueryResultFlagBits {
     pub const WITH_STATUS_KHR: Self = Self(1 << 4);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoCodecOperationFlagsKHR {
     pub const NONE_KHR: Self = Self(VideoCodecOperationFlagBitsKHR::NONE_KHR.0);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoCodecOperationFlagBitsKHR {
     pub const NONE_KHR: Self = Self(0);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoCapabilityFlagsKHR {
     pub const PROTECTED_CONTENT_KHR: Self = Self(
         VideoCapabilityFlagBitsKHR::PROTECTED_CONTENT_KHR.0,
@@ -81,30 +73,30 @@ impl VideoCapabilityFlagsKHR {
         VideoCapabilityFlagBitsKHR::SEPARATE_REFERENCE_IMAGES_KHR.0,
     );
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoCapabilityFlagBitsKHR {
     pub const PROTECTED_CONTENT_KHR: Self = Self(1 << 0);
     pub const SEPARATE_REFERENCE_IMAGES_KHR: Self = Self(1 << 1);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoSessionCreateFlagsKHR {
     pub const PROTECTED_CONTENT_KHR: Self = Self(
         VideoSessionCreateFlagBitsKHR::PROTECTED_CONTENT_KHR.0,
     );
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoSessionCreateFlagBitsKHR {
     pub const PROTECTED_CONTENT_KHR: Self = Self(1 << 0);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoCodingControlFlagsKHR {
     pub const RESET_KHR: Self = Self(VideoCodingControlFlagBitsKHR::RESET_KHR.0);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoCodingControlFlagBitsKHR {
     pub const RESET_KHR: Self = Self(1 << 0);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoChromaSubsamplingFlagsKHR {
     pub const INVALID_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::INVALID_KHR.0);
     pub const MONOCHROME_KHR: Self = Self(
@@ -114,7 +106,7 @@ impl VideoChromaSubsamplingFlagsKHR {
     pub const _422_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_422_KHR.0);
     pub const _444_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_444_KHR.0);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoChromaSubsamplingFlagBitsKHR {
     pub const INVALID_KHR: Self = Self(0);
     pub const MONOCHROME_KHR: Self = Self(1 << 0);
@@ -122,14 +114,14 @@ impl VideoChromaSubsamplingFlagBitsKHR {
     pub const _422_KHR: Self = Self(1 << 2);
     pub const _444_KHR: Self = Self(1 << 3);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoComponentBitDepthFlagsKHR {
     pub const INVALID_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::INVALID_KHR.0);
     pub const _8_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_8_KHR.0);
     pub const _10_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_10_KHR.0);
     pub const _12_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_12_KHR.0);
 }
-///Provided by [`khr::video_queue`](crate::khr::video_queue)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoComponentBitDepthFlagBitsKHR {
     pub const INVALID_KHR: Self = Self(0);
     pub const _8_KHR: Self = Self(1 << 0);
@@ -1247,6 +1239,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl QueryResultStatusKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     #[repr(transparent)]

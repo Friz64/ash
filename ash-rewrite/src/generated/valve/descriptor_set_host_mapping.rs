@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_descriptor_set_host_mapping.html) · Extension `VK_VALVE_descriptor_set_host_mapping`
 #![doc(alias = "VK_VALVE_descriptor_set_host_mapping")]
-///Provided by [`valve::descriptor_set_host_mapping`](crate::valve::descriptor_set_host_mapping)
+///Provided by [VK_VALVE_descriptor_set_host_mapping](crate::valve::descriptor_set_host_mapping)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE: Self = Self(
         1000420000,

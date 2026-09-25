@@ -2,12 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_diagnostics_config.html) · Extension `VK_NV_device_diagnostics_config`
 #![doc(alias = "VK_NV_device_diagnostics_config")]
-///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
+///Provided by [VK_NV_device_diagnostics_config](crate::nv::device_diagnostics_config)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV: Self = Self(1000300000);
     pub const DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV: Self = Self(1000300001);
 }
-///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
+///Provided by [VK_NV_device_diagnostics_config](crate::nv::device_diagnostics_config)
 impl DeviceDiagnosticsConfigFlagsNV {
     pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(
         DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_DEBUG_INFO_NV.0,
@@ -22,7 +22,7 @@ impl DeviceDiagnosticsConfigFlagsNV {
         DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_ERROR_REPORTING_NV.0,
     );
 }
-///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
+///Provided by [VK_NV_device_diagnostics_config](crate::nv::device_diagnostics_config)
 impl DeviceDiagnosticsConfigFlagBitsNV {
     pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(1 << 0);
     pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(1 << 1);

@@ -2,37 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_legacy_dithering.html) · Extension `VK_EXT_legacy_dithering`
 #![doc(alias = "VK_EXT_legacy_dithering")]
-///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT: Self = Self(1000465000);
 }
-///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl crate::vk::SubpassDescriptionFlags {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(
         crate::vk::SubpassDescriptionFlagBits::ENABLE_LEGACY_DITHERING_EXT.0,
     );
 }
-///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl crate::vk::SubpassDescriptionFlagBits {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 7);
 }
-///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl crate::vk::RenderingFlags {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(
         crate::vk::RenderingFlagBits::ENABLE_LEGACY_DITHERING_EXT.0,
     );
 }
-///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl crate::vk::RenderingFlagBits {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 3);
 }
-///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl crate::vk::PipelineCreateFlags2 {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(
         crate::vk::PipelineCreateFlagBits2::ENABLE_LEGACY_DITHERING_EXT.0,
     );
 }
-///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl crate::vk::PipelineCreateFlagBits2 {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 34);
 }

@@ -2,28 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_image_processing.html) · Extension `VK_QCOM_image_processing`
 #![doc(alias = "VK_QCOM_image_processing")]
-///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
 impl crate::vk::DescriptorType {
     pub const SAMPLE_WEIGHT_IMAGE_QCOM: Self = Self(1000440000);
     pub const BLOCK_MATCH_IMAGE_QCOM: Self = Self(1000440001);
 }
-///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM: Self = Self(1000440000);
     pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM: Self = Self(1000440001);
     pub const IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM: Self = Self(1000440002);
 }
-///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
 impl crate::vk::SamplerCreateFlags {
     pub const IMAGE_PROCESSING_QCOM: Self = Self(
         crate::vk::SamplerCreateFlagBits::IMAGE_PROCESSING_QCOM.0,
     );
 }
-///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
 impl crate::vk::SamplerCreateFlagBits {
     pub const IMAGE_PROCESSING_QCOM: Self = Self(1 << 4);
 }
-///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
 impl crate::vk::ImageUsageFlags {
     pub const SAMPLE_WEIGHT_QCOM: Self = Self(
         crate::vk::ImageUsageFlagBits::SAMPLE_WEIGHT_QCOM.0,
@@ -32,12 +32,12 @@ impl crate::vk::ImageUsageFlags {
         crate::vk::ImageUsageFlagBits::SAMPLE_BLOCK_MATCH_QCOM.0,
     );
 }
-///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
 impl crate::vk::ImageUsageFlagBits {
     pub const SAMPLE_WEIGHT_QCOM: Self = Self(1 << 20);
     pub const SAMPLE_BLOCK_MATCH_QCOM: Self = Self(1 << 21);
 }
-///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
 impl crate::vk::FormatFeatureFlags2 {
     pub const WEIGHT_IMAGE_QCOM: Self = Self(
         crate::vk::FormatFeatureFlagBits2::WEIGHT_IMAGE_QCOM.0,
@@ -52,7 +52,7 @@ impl crate::vk::FormatFeatureFlags2 {
         crate::vk::FormatFeatureFlagBits2::BOX_FILTER_SAMPLED_QCOM.0,
     );
 }
-///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const WEIGHT_IMAGE_QCOM: Self = Self(1 << 34);
     pub const WEIGHT_SAMPLED_IMAGE_QCOM: Self = Self(1 << 35);

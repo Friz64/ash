@@ -2,16 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std_decode`
 #![doc(alias = "vulkan_video_codec_h264std_decode")]
-///Provided by [`video::codec_h264std_decode`](crate::video::codec_h264std_decode)
+///Provided by [vulkan_video_codec_h264std_decode](crate::video::codec_h264std_decode)
 impl DecodeH264FieldOrderCount {
-    #[inline]
-    pub const fn from_raw(x: i32) -> Self {
-        Self(x)
-    }
-    #[inline]
-    pub const fn as_raw(self) -> i32 {
-        self.0
-    }
     pub const TOP: Self = Self(0);
     pub const BOTTOM: Self = Self(1);
     pub const INVALID: Self = Self(0x7FFFFFF);
@@ -279,6 +271,16 @@ pub(crate) mod items {
             } else {
                 core::fmt::Debug::fmt(&self.0, f)
             }
+        }
+    }
+    impl DecodeH264FieldOrderCount {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
         }
     }
     pub const DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE: u32 = 2;

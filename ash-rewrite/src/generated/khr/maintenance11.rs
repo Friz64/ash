@@ -2,50 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance11.html) · Extension `VK_KHR_maintenance11`
 #![doc(alias = "VK_KHR_maintenance11")]
-///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR: Self = Self(1000657000);
     pub const QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR: Self = Self(
         1000657001,
     );
 }
-///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl crate::vk::PipelineLayoutCreateFlags {
     pub const NO_TASK_SHADER_KHR: Self = Self(
         crate::vk::PipelineLayoutCreateFlagBits::NO_TASK_SHADER_KHR.0,
     );
 }
-///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl crate::vk::PipelineLayoutCreateFlagBits {
     pub const NO_TASK_SHADER_KHR: Self = Self(1 << 2);
 }
-///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl crate::vk::ImageCreateFlags {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(
         crate::vk::ImageCreateFlagBits::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR.0,
     );
 }
-///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl crate::vk::ImageCreateFlagBits {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(1 << 22);
 }
-///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl crate::vk::ImageCreateFlags2KHR {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(
         crate::vk::ImageCreateFlagBits2KHR::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR.0,
     );
 }
-///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl crate::vk::ImageCreateFlagBits2KHR {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(1 << 22);
 }
-///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl crate::vk::ShaderCreateFlagsEXT {
     pub const INDEPENDENT_SETS_KHR: Self = Self(
         crate::vk::ShaderCreateFlagBitsEXT::INDEPENDENT_SETS_KHR.0,
     );
 }
-///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl crate::vk::ShaderCreateFlagBitsEXT {
     pub const INDEPENDENT_SETS_KHR: Self = Self(1 << 18);
 }

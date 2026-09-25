@@ -53,7 +53,7 @@ impl RequiredBy {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum RequireLocation {
     Core { major: u32, minor: u32 },
     Extension { name: ExtensionName },
