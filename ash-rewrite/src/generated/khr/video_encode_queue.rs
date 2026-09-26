@@ -306,6 +306,25 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_physical_device_video_encode_quality_level_properties_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_quality_level_info: *const crate::vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR<
+            '_,
+        >,
+        p_quality_level_properties: *mut crate::vk::VideoEncodeQualityLevelPropertiesKHR<
+            '_,
+        >,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_video_encode_quality_level_properties_khr)(
+            physical_device,
+            p_quality_level_info,
+            p_quality_level_properties,
+        )
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -378,6 +397,35 @@ impl Device {
     #[inline]
     pub fn device(&self) -> crate::vk::Device {
         self.handle
+    }
+    #[inline]
+    pub unsafe fn get_encoded_video_session_parameters_khr(
+        &self,
+        device: crate::vk::Device,
+        p_video_session_parameters_info: *const crate::vk::VideoEncodeSessionParametersGetInfoKHR<
+            '_,
+        >,
+        p_feedback_info: *mut crate::vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>,
+        p_data_size: *mut usize,
+        p_data: *mut core::ffi::c_void,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_encoded_video_session_parameters_khr)(
+            device,
+            p_video_session_parameters_info,
+            p_feedback_info,
+            p_data_size,
+            p_data,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_encode_video_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_encode_info: *const crate::vk::VideoEncodeInfoKHR<'_>,
+    ) {
+        (self.fp.cmd_encode_video_khr)(command_buffer, p_encode_info)
     }
 }
 pub const SPEC_VERSION: u32 = 12;

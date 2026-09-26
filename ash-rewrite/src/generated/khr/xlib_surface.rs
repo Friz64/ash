@@ -81,6 +81,35 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_xlib_surface_khr(
+        &self,
+        instance: crate::vk::Instance,
+        p_create_info: *const crate::vk::XlibSurfaceCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_surface: *mut crate::vk::SurfaceKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_xlib_surface_khr)(instance, p_create_info, p_allocator, p_surface)
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_xlib_presentation_support_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        queue_family_index: u32,
+        dpy: *mut crate::platform_types::Display,
+        visual_id: crate::platform_types::VisualID,
+    ) -> crate::vk::Bool32 {
+        (self
+            .fp
+            .get_physical_device_xlib_presentation_support_khr)(
+            physical_device,
+            queue_family_index,
+            dpy,
+            visual_id,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 6;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_xlib_surface";

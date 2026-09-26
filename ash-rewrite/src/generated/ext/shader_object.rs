@@ -938,6 +938,653 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_patch_control_points_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        patch_control_points: u32,
+    ) {
+        (self.fp.cmd_set_patch_control_points_ext)(command_buffer, patch_control_points)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_logic_op_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        logic_op: crate::vk::LogicOp,
+    ) {
+        (self.fp.cmd_set_logic_op_ext)(command_buffer, logic_op)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_tessellation_domain_origin_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        domain_origin: crate::vk::TessellationDomainOrigin,
+    ) {
+        (self.fp.cmd_set_tessellation_domain_origin_ext)(command_buffer, domain_origin)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_clamp_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_clamp_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_depth_clamp_enable_ext)(command_buffer, depth_clamp_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_polygon_mode_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        polygon_mode: crate::vk::PolygonMode,
+    ) {
+        (self.fp.cmd_set_polygon_mode_ext)(command_buffer, polygon_mode)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_rasterization_samples_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        rasterization_samples: crate::vk::SampleCountFlagBits,
+    ) {
+        (self
+            .fp
+            .cmd_set_rasterization_samples_ext)(command_buffer, rasterization_samples)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_sample_mask_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        samples: crate::vk::SampleCountFlagBits,
+        p_sample_mask: *const crate::vk::SampleMask,
+    ) {
+        (self.fp.cmd_set_sample_mask_ext)(command_buffer, samples, p_sample_mask)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_alpha_to_coverage_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        alpha_to_coverage_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_alpha_to_coverage_enable_ext)(
+            command_buffer,
+            alpha_to_coverage_enable,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_alpha_to_one_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        alpha_to_one_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_alpha_to_one_enable_ext)(command_buffer, alpha_to_one_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_logic_op_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        logic_op_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_logic_op_enable_ext)(command_buffer, logic_op_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_color_blend_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_attachment: u32,
+        attachment_count: u32,
+        p_color_blend_enables: *const crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_color_blend_enable_ext)(
+            command_buffer,
+            first_attachment,
+            attachment_count,
+            p_color_blend_enables,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_color_blend_equation_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_attachment: u32,
+        attachment_count: u32,
+        p_color_blend_equations: *const crate::vk::ColorBlendEquationEXT,
+    ) {
+        (self
+            .fp
+            .cmd_set_color_blend_equation_ext)(
+            command_buffer,
+            first_attachment,
+            attachment_count,
+            p_color_blend_equations,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_color_write_mask_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_attachment: u32,
+        attachment_count: u32,
+        p_color_write_masks: *const crate::vk::ColorComponentFlags,
+    ) {
+        (self
+            .fp
+            .cmd_set_color_write_mask_ext)(
+            command_buffer,
+            first_attachment,
+            attachment_count,
+            p_color_write_masks,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_rasterization_stream_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        rasterization_stream: u32,
+    ) {
+        (self.fp.cmd_set_rasterization_stream_ext)(command_buffer, rasterization_stream)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_conservative_rasterization_mode_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
+    ) {
+        (self
+            .fp
+            .cmd_set_conservative_rasterization_mode_ext)(
+            command_buffer,
+            conservative_rasterization_mode,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_extra_primitive_overestimation_size_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        extra_primitive_overestimation_size: core::ffi::c_float,
+    ) {
+        (self
+            .fp
+            .cmd_set_extra_primitive_overestimation_size_ext)(
+            command_buffer,
+            extra_primitive_overestimation_size,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_clip_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_clip_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_depth_clip_enable_ext)(command_buffer, depth_clip_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_sample_locations_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        sample_locations_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_sample_locations_enable_ext)(
+            command_buffer,
+            sample_locations_enable,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_color_blend_advanced_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_attachment: u32,
+        attachment_count: u32,
+        p_color_blend_advanced: *const crate::vk::ColorBlendAdvancedEXT,
+    ) {
+        (self
+            .fp
+            .cmd_set_color_blend_advanced_ext)(
+            command_buffer,
+            first_attachment,
+            attachment_count,
+            p_color_blend_advanced,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_provoking_vertex_mode_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
+    ) {
+        (self
+            .fp
+            .cmd_set_provoking_vertex_mode_ext)(command_buffer, provoking_vertex_mode)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_line_rasterization_mode_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        line_rasterization_mode: crate::vk::LineRasterizationModeEXT,
+    ) {
+        (self
+            .fp
+            .cmd_set_line_rasterization_mode_ext)(
+            command_buffer,
+            line_rasterization_mode,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_line_stipple_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        stippled_line_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_line_stipple_enable_ext)(command_buffer, stippled_line_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_clip_negative_one_to_one_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        negative_one_to_one: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_depth_clip_negative_one_to_one_ext)(
+            command_buffer,
+            negative_one_to_one,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_viewport_w_scaling_enable_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        viewport_w_scaling_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_viewport_w_scaling_enable_nv)(
+            command_buffer,
+            viewport_w_scaling_enable,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_viewport_swizzle_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_viewport: u32,
+        viewport_count: u32,
+        p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
+    ) {
+        (self
+            .fp
+            .cmd_set_viewport_swizzle_nv)(
+            command_buffer,
+            first_viewport,
+            viewport_count,
+            p_viewport_swizzles,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_coverage_to_color_enable_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        coverage_to_color_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_coverage_to_color_enable_nv)(
+            command_buffer,
+            coverage_to_color_enable,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_coverage_to_color_location_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        coverage_to_color_location: u32,
+    ) {
+        (self
+            .fp
+            .cmd_set_coverage_to_color_location_nv)(
+            command_buffer,
+            coverage_to_color_location,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_coverage_modulation_mode_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
+    ) {
+        (self
+            .fp
+            .cmd_set_coverage_modulation_mode_nv)(
+            command_buffer,
+            coverage_modulation_mode,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_coverage_modulation_table_enable_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        coverage_modulation_table_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_coverage_modulation_table_enable_nv)(
+            command_buffer,
+            coverage_modulation_table_enable,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_coverage_modulation_table_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        coverage_modulation_table_count: u32,
+        p_coverage_modulation_table: *const core::ffi::c_float,
+    ) {
+        (self
+            .fp
+            .cmd_set_coverage_modulation_table_nv)(
+            command_buffer,
+            coverage_modulation_table_count,
+            p_coverage_modulation_table,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_shading_rate_image_enable_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        shading_rate_image_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_shading_rate_image_enable_nv)(
+            command_buffer,
+            shading_rate_image_enable,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_coverage_reduction_mode_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
+    ) {
+        (self
+            .fp
+            .cmd_set_coverage_reduction_mode_nv)(command_buffer, coverage_reduction_mode)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_representative_fragment_test_enable_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        representative_fragment_test_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_representative_fragment_test_enable_nv)(
+            command_buffer,
+            representative_fragment_test_enable,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_vertex_input_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        vertex_binding_description_count: u32,
+        p_vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription2EXT<
+            '_,
+        >,
+        vertex_attribute_description_count: u32,
+        p_vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription2EXT<
+            '_,
+        >,
+    ) {
+        (self
+            .fp
+            .cmd_set_vertex_input_ext)(
+            command_buffer,
+            vertex_binding_description_count,
+            p_vertex_binding_descriptions,
+            vertex_attribute_description_count,
+            p_vertex_attribute_descriptions,
+        )
+    }
+    #[inline]
+    pub unsafe fn create_shaders_ext(
+        &self,
+        device: crate::vk::Device,
+        create_info_count: u32,
+        p_create_infos: *const crate::vk::ShaderCreateInfoEXT<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_shaders: *mut crate::vk::ShaderEXT,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_shaders_ext)(
+            device,
+            create_info_count,
+            p_create_infos,
+            p_allocator,
+            p_shaders,
+        )
+    }
+    #[inline]
+    pub unsafe fn destroy_shader_ext(
+        &self,
+        device: crate::vk::Device,
+        shader: crate::vk::ShaderEXT,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_shader_ext)(device, shader, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn get_shader_binary_data_ext(
+        &self,
+        device: crate::vk::Device,
+        shader: crate::vk::ShaderEXT,
+        p_data_size: *mut usize,
+        p_data: *mut core::ffi::c_void,
+    ) -> crate::vk::Result {
+        (self.fp.get_shader_binary_data_ext)(device, shader, p_data_size, p_data)
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_shaders_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        stage_count: u32,
+        p_stages: *const crate::vk::ShaderStageFlagBits,
+        p_shaders: *const crate::vk::ShaderEXT,
+    ) {
+        (self.fp.cmd_bind_shaders_ext)(command_buffer, stage_count, p_stages, p_shaders)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_clamp_range_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_clamp_mode: crate::vk::DepthClampModeEXT,
+        p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
+    ) {
+        (self
+            .fp
+            .cmd_set_depth_clamp_range_ext)(
+            command_buffer,
+            depth_clamp_mode,
+            p_depth_clamp_range,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_cull_mode_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        cull_mode: crate::vk::CullModeFlags,
+    ) {
+        (self.fp.cmd_set_cull_mode_ext)(command_buffer, cull_mode)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_front_face_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        front_face: crate::vk::FrontFace,
+    ) {
+        (self.fp.cmd_set_front_face_ext)(command_buffer, front_face)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_primitive_topology_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        primitive_topology: crate::vk::PrimitiveTopology,
+    ) {
+        (self.fp.cmd_set_primitive_topology_ext)(command_buffer, primitive_topology)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_viewport_with_count_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        viewport_count: u32,
+        p_viewports: *const crate::vk::Viewport,
+    ) {
+        (self
+            .fp
+            .cmd_set_viewport_with_count_ext)(
+            command_buffer,
+            viewport_count,
+            p_viewports,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_scissor_with_count_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        scissor_count: u32,
+        p_scissors: *const crate::vk::Rect2D,
+    ) {
+        (self
+            .fp
+            .cmd_set_scissor_with_count_ext)(command_buffer, scissor_count, p_scissors)
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_vertex_buffers2_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_binding: u32,
+        binding_count: u32,
+        p_buffers: *const crate::vk::Buffer,
+        p_offsets: *const crate::vk::DeviceSize,
+        p_sizes: *const crate::vk::DeviceSize,
+        p_strides: *const crate::vk::DeviceSize,
+    ) {
+        (self
+            .fp
+            .cmd_bind_vertex_buffers2_ext)(
+            command_buffer,
+            first_binding,
+            binding_count,
+            p_buffers,
+            p_offsets,
+            p_sizes,
+            p_strides,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_test_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_test_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_depth_test_enable_ext)(command_buffer, depth_test_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_write_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_write_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_depth_write_enable_ext)(command_buffer, depth_write_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_compare_op_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_compare_op: crate::vk::CompareOp,
+    ) {
+        (self.fp.cmd_set_depth_compare_op_ext)(command_buffer, depth_compare_op)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_bounds_test_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_bounds_test_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_depth_bounds_test_enable_ext)(
+            command_buffer,
+            depth_bounds_test_enable,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_stencil_test_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        stencil_test_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_stencil_test_enable_ext)(command_buffer, stencil_test_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_stencil_op_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        face_mask: crate::vk::StencilFaceFlags,
+        fail_op: crate::vk::StencilOp,
+        pass_op: crate::vk::StencilOp,
+        depth_fail_op: crate::vk::StencilOp,
+        compare_op: crate::vk::CompareOp,
+    ) {
+        (self
+            .fp
+            .cmd_set_stencil_op_ext)(
+            command_buffer,
+            face_mask,
+            fail_op,
+            pass_op,
+            depth_fail_op,
+            compare_op,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_rasterizer_discard_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        rasterizer_discard_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_rasterizer_discard_enable_ext)(
+            command_buffer,
+            rasterizer_discard_enable,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_bias_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_bias_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_depth_bias_enable_ext)(command_buffer, depth_bias_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_primitive_restart_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        primitive_restart_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_primitive_restart_enable_ext)(
+            command_buffer,
+            primitive_restart_enable,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_object";

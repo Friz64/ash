@@ -176,6 +176,18 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_image_subresource_layout2_ext(
+        &self,
+        device: crate::vk::Device,
+        image: crate::vk::Image,
+        p_subresource: *const crate::vk::ImageSubresource2<'_>,
+        p_layout: *mut crate::vk::SubresourceLayout2<'_>,
+    ) {
+        (self
+            .fp
+            .get_image_subresource_layout2_ext)(device, image, p_subresource, p_layout)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control";

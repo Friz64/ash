@@ -110,7 +110,7 @@ impl Destination {
         }
     }
 
-    pub fn doc_link(&self) -> String {
+    pub fn provided_by_doc_comment(&self) -> String {
         let friendly_name = match self.location {
             RequireLocation::Core { major, minor } => format!("Vulkan {major}.{minor}"),
             RequireLocation::Extension { name } => name.original().into(),

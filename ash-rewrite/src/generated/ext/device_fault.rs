@@ -73,6 +73,15 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_device_fault_info_ext(
+        &self,
+        device: crate::vk::Device,
+        p_fault_counts: *mut crate::vk::DeviceFaultCountsEXT<'_>,
+        p_fault_info: *mut crate::vk::DeviceFaultInfoEXT<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.get_device_fault_info_ext)(device, p_fault_counts, p_fault_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_device_fault";

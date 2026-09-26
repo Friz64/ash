@@ -93,6 +93,14 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_trace_rays_indirect2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        indirect_device_address: crate::vk::DeviceAddress,
+    ) {
+        (self.fp.cmd_trace_rays_indirect2_khr)(command_buffer, indirect_device_address)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_maintenance1";

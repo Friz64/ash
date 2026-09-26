@@ -72,6 +72,23 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn enumerate_physical_device_groups_khr(
+        &self,
+        instance: crate::vk::Instance,
+        p_physical_device_group_count: *mut u32,
+        p_physical_device_group_properties: *mut crate::vk::PhysicalDeviceGroupProperties<
+            '_,
+        >,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .enumerate_physical_device_groups_khr)(
+            instance,
+            p_physical_device_group_count,
+            p_physical_device_group_properties,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_device_group_creation";

@@ -78,6 +78,14 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_sample_locations_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_sample_locations_info: *const crate::vk::SampleLocationsInfoEXT<'_>,
+    ) {
+        (self.fp.cmd_set_sample_locations_ext)(command_buffer, p_sample_locations_info)
+    }
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -133,6 +141,21 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_multisample_properties_ext(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        samples: crate::vk::SampleCountFlagBits,
+        p_multisample_properties: *mut crate::vk::MultisamplePropertiesEXT<'_>,
+    ) {
+        (self
+            .fp
+            .get_physical_device_multisample_properties_ext)(
+            physical_device,
+            samples,
+            p_multisample_properties,
+        )
     }
 }
 pub const SPEC_VERSION: u32 = 1;

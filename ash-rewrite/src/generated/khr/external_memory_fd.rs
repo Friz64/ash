@@ -80,6 +80,32 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_memory_fd_khr(
+        &self,
+        device: crate::vk::Device,
+        p_get_fd_info: *const crate::vk::MemoryGetFdInfoKHR<'_>,
+        p_fd: *mut core::ffi::c_int,
+    ) -> crate::vk::Result {
+        (self.fp.get_memory_fd_khr)(device, p_get_fd_info, p_fd)
+    }
+    #[inline]
+    pub unsafe fn get_memory_fd_properties_khr(
+        &self,
+        device: crate::vk::Device,
+        handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        fd: core::ffi::c_int,
+        p_memory_fd_properties: *mut crate::vk::MemoryFdPropertiesKHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_memory_fd_properties_khr)(
+            device,
+            handle_type,
+            fd,
+            p_memory_fd_properties,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_external_memory_fd";

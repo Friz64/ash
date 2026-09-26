@@ -81,6 +81,31 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_rendering_attachment_locations_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_location_info: *const crate::vk::RenderingAttachmentLocationInfo<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_set_rendering_attachment_locations_khr)(command_buffer, p_location_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_rendering_input_attachment_indices_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_input_attachment_index_info: *const crate::vk::RenderingInputAttachmentIndexInfo<
+            '_,
+        >,
+    ) {
+        (self
+            .fp
+            .cmd_set_rendering_input_attachment_indices_khr)(
+            command_buffer,
+            p_input_attachment_index_info,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering_local_read";

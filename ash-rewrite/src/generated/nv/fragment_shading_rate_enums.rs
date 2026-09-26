@@ -89,6 +89,21 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_fragment_shading_rate_enum_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        shading_rate: crate::vk::FragmentShadingRateNV,
+        combiner_ops: *const [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
+    ) {
+        (self
+            .fp
+            .cmd_set_fragment_shading_rate_enum_nv)(
+            command_buffer,
+            shading_rate,
+            combiner_ops,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";

@@ -87,6 +87,40 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_exclusive_scissor_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_exclusive_scissor: u32,
+        exclusive_scissor_count: u32,
+        p_exclusive_scissors: *const crate::vk::Rect2D,
+    ) {
+        (self
+            .fp
+            .cmd_set_exclusive_scissor_nv)(
+            command_buffer,
+            first_exclusive_scissor,
+            exclusive_scissor_count,
+            p_exclusive_scissors,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_exclusive_scissor_enable_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_exclusive_scissor: u32,
+        exclusive_scissor_count: u32,
+        p_exclusive_scissor_enables: *const crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_exclusive_scissor_enable_nv)(
+            command_buffer,
+            first_exclusive_scissor,
+            exclusive_scissor_count,
+            p_exclusive_scissor_enables,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NV_scissor_exclusive";

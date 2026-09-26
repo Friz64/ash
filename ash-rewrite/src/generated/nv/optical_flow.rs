@@ -215,6 +215,25 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_physical_device_optical_flow_image_formats_nv(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_optical_flow_image_format_info: *const crate::vk::OpticalFlowImageFormatInfoNV<
+            '_,
+        >,
+        p_format_count: *mut u32,
+        p_image_format_properties: *mut crate::vk::OpticalFlowImageFormatPropertiesNV<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_optical_flow_image_formats_nv)(
+            physical_device,
+            p_optical_flow_image_format_info,
+            p_format_count,
+            p_image_format_properties,
+        )
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -321,6 +340,60 @@ impl Device {
     #[inline]
     pub fn device(&self) -> crate::vk::Device {
         self.handle
+    }
+    #[inline]
+    pub unsafe fn create_optical_flow_session_nv(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::OpticalFlowSessionCreateInfoNV<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_session: *mut crate::vk::OpticalFlowSessionNV,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_optical_flow_session_nv)(
+            device,
+            p_create_info,
+            p_allocator,
+            p_session,
+        )
+    }
+    #[inline]
+    pub unsafe fn destroy_optical_flow_session_nv(
+        &self,
+        device: crate::vk::Device,
+        session: crate::vk::OpticalFlowSessionNV,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_optical_flow_session_nv)(device, session, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn bind_optical_flow_session_image_nv(
+        &self,
+        device: crate::vk::Device,
+        session: crate::vk::OpticalFlowSessionNV,
+        binding_point: crate::vk::OpticalFlowSessionBindingPointNV,
+        view: crate::vk::ImageView,
+        layout: crate::vk::ImageLayout,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .bind_optical_flow_session_image_nv)(
+            device,
+            session,
+            binding_point,
+            view,
+            layout,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_optical_flow_execute_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        session: crate::vk::OpticalFlowSessionNV,
+        p_execute_info: *const crate::vk::OpticalFlowExecuteInfoNV<'_>,
+    ) {
+        (self.fp.cmd_optical_flow_execute_nv)(command_buffer, session, p_execute_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

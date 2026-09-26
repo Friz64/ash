@@ -79,6 +79,32 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_semaphore_win32_handle_khr(
+        &self,
+        device: crate::vk::Device,
+        p_get_win32_handle_info: *const crate::vk::SemaphoreGetWin32HandleInfoKHR<'_>,
+        p_handle: *mut crate::platform_types::HANDLE,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_semaphore_win32_handle_khr)(device, p_get_win32_handle_info, p_handle)
+    }
+    #[inline]
+    pub unsafe fn import_semaphore_win32_handle_khr(
+        &self,
+        device: crate::vk::Device,
+        p_import_semaphore_win32_handle_info: *const crate::vk::ImportSemaphoreWin32HandleInfoKHR<
+            '_,
+        >,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .import_semaphore_win32_handle_khr)(
+            device,
+            p_import_semaphore_win32_handle_info,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_win32";

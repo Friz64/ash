@@ -85,6 +85,15 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn trim_command_pool_khr(
+        &self,
+        device: crate::vk::Device,
+        command_pool: crate::vk::CommandPool,
+        flags: crate::vk::CommandPoolTrimFlags,
+    ) {
+        (self.fp.trim_command_pool_khr)(device, command_pool, flags)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance1";

@@ -112,6 +112,31 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_copy_memory_indirect_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_copy_memory_indirect_info: *const crate::vk::CopyMemoryIndirectInfoKHR<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_copy_memory_indirect_khr)(command_buffer, p_copy_memory_indirect_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_copy_memory_to_image_indirect_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_copy_memory_to_image_indirect_info: *const crate::vk::CopyMemoryToImageIndirectInfoKHR<
+            '_,
+        >,
+    ) {
+        (self
+            .fp
+            .cmd_copy_memory_to_image_indirect_khr)(
+            command_buffer,
+            p_copy_memory_to_image_indirect_info,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_copy_memory_indirect";

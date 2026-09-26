@@ -224,6 +224,104 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_swapchain_khr(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::SwapchainCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_swapchain: *mut crate::vk::SwapchainKHR,
+    ) -> crate::vk::Result {
+        (self.fp.create_swapchain_khr)(device, p_create_info, p_allocator, p_swapchain)
+    }
+    #[inline]
+    pub unsafe fn destroy_swapchain_khr(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_swapchain_khr)(device, swapchain, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn get_swapchain_images_khr(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        p_swapchain_image_count: *mut u32,
+        p_swapchain_images: *mut crate::vk::Image,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_swapchain_images_khr)(
+            device,
+            swapchain,
+            p_swapchain_image_count,
+            p_swapchain_images,
+        )
+    }
+    #[inline]
+    pub unsafe fn acquire_next_image_khr(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        timeout: u64,
+        semaphore: crate::vk::Semaphore,
+        fence: crate::vk::Fence,
+        p_image_index: *mut u32,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .acquire_next_image_khr)(
+            device,
+            swapchain,
+            timeout,
+            semaphore,
+            fence,
+            p_image_index,
+        )
+    }
+    #[inline]
+    pub unsafe fn queue_present_khr(
+        &self,
+        queue: crate::vk::Queue,
+        p_present_info: *const crate::vk::PresentInfoKHR<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.queue_present_khr)(queue, p_present_info)
+    }
+    #[inline]
+    pub unsafe fn get_device_group_present_capabilities_khr(
+        &self,
+        device: crate::vk::Device,
+        p_device_group_present_capabilities: *mut crate::vk::DeviceGroupPresentCapabilitiesKHR<
+            '_,
+        >,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_device_group_present_capabilities_khr)(
+            device,
+            p_device_group_present_capabilities,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_device_group_surface_present_modes_khr(
+        &self,
+        device: crate::vk::Device,
+        surface: crate::vk::SurfaceKHR,
+        p_modes: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
+    ) -> crate::vk::Result {
+        (self.fp.get_device_group_surface_present_modes_khr)(device, surface, p_modes)
+    }
+    #[inline]
+    pub unsafe fn acquire_next_image2_khr(
+        &self,
+        device: crate::vk::Device,
+        p_acquire_info: *const crate::vk::AcquireNextImageInfoKHR<'_>,
+        p_image_index: *mut u32,
+    ) -> crate::vk::Result {
+        (self.fp.acquire_next_image2_khr)(device, p_acquire_info, p_image_index)
+    }
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -280,6 +378,23 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_present_rectangles_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        surface: crate::vk::SurfaceKHR,
+        p_rect_count: *mut u32,
+        p_rects: *mut crate::vk::Rect2D,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_present_rectangles_khr)(
+            physical_device,
+            surface,
+            p_rect_count,
+            p_rects,
+        )
     }
 }
 pub const SPEC_VERSION: u32 = 70;

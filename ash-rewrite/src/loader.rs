@@ -1,31 +1,75 @@
-#![allow(clippy::missing_safety_doc, clippy::missing_transmute_annotations)]
-use super::Instance;
-#[cfg(doc)]
-use crate::khr;
-use crate::read_into_uninitialized_vector;
-use crate::vk;
-use crate::RawPtr;
-use crate::VkResult;
-use alloc::vec::Vec;
-use core::ffi;
-use core::fmt;
-use core::mem;
-use core::ptr;
+pub use crate::vk1_0::StaticFn;
+
+pub use crate::vk1_0::EntryFnV1_0;
+pub use crate::vk1_1::EntryFnV1_1;
+
+pub use crate::vk1_0::InstanceFnV1_0;
+pub use crate::vk1_1::InstanceFnV1_1;
+pub use crate::vk1_3::InstanceFnV1_3;
+
+pub use crate::vk1_0::DeviceFnV1_0;
+pub use crate::vk1_1::DeviceFnV1_1;
+pub use crate::vk1_2::DeviceFnV1_2;
+pub use crate::vk1_3::DeviceFnV1_3;
+pub use crate::vk1_4::DeviceFnV1_4;
 
 #[cfg(feature = "loaded")]
 use libloading::Library;
 
+#[cfg(feature = "loaded")]
+pub use self::loaded::*;
+
+#[cfg(feature = "loaded")]
+mod loaded {
+    use super::*;
+    use core::fmt;
+
+    #[derive(Debug)]
+    #[cfg_attr(docsrs, doc(cfg(feature = "loaded")))]
+    pub enum LoadingError {
+        LibraryLoadFailure(libloading::Error),
+        MissingEntryPoint(MissingEntryPoint),
+    }
+
+    impl fmt::Display for LoadingError {
+        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+            match self {
+                Self::LibraryLoadFailure(err) => fmt::Display::fmt(err, f),
+                Self::MissingEntryPoint(err) => fmt::Display::fmt(err, f),
+            }
+        }
+    }
+
+    #[cfg(feature = "std")]
+    impl std::error::Error for LoadingError {
+        fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+            Some(match self {
+                Self::LibraryLoadFailure(err) => err,
+                Self::MissingEntryPoint(err) => err,
+            })
+        }
+    }
+
+    impl From<MissingEntryPoint> for LoadingError {
+        fn from(err: MissingEntryPoint) -> Self {
+            Self::MissingEntryPoint(err)
+        }
+    }
+}
+
+use crate::{vk, RawPtr, VkResult};
+use core::{ffi, fmt, mem, ptr};
+
 /// Holds the Vulkan functions independent of a particular instance
 #[derive(Clone)]
 pub struct Entry {
-    static_fn: crate::StaticFn,
-    entry_fn_1_0: crate::EntryFnV1_0,
-    entry_fn_1_1: crate::EntryFnV1_1,
+    pub(crate) static_fn: crate::StaticFn,
+    pub(crate) entry_fn_1_0: crate::EntryFnV1_0,
+    pub(crate) entry_fn_1_1: crate::EntryFnV1_1,
     #[cfg(feature = "loaded")]
     _lib_guard: Option<alloc::sync::Arc<Library>>,
 }
 
-/// Vulkan core 1.0
 impl Entry {
     /// Load default Vulkan library for the current platform
     ///
@@ -82,7 +126,7 @@ impl Entry {
         #[cfg(any(target_os = "macos", target_os = "ios"))]
         const LIB_PATH: &str = "libvulkan.dylib";
 
-        Self::load_from(LIB_PATH)
+        unsafe { Self::load_from(LIB_PATH) }
     }
 
     /// Load entry points from a Vulkan loader linked at compile time
@@ -192,11 +236,6 @@ impl Entry {
     }
 
     #[inline]
-    pub fn fp_v1_0(&self) -> &crate::EntryFnV1_0 {
-        &self.entry_fn_1_0
-    }
-
-    #[inline]
     pub fn static_fn(&self) -> &crate::StaticFn {
         &self.static_fn
     }
@@ -248,7 +287,7 @@ impl Entry {
     /// # Safety
     ///
     /// The resulting [`Instance`] and any function-pointer objects (e.g. [`Device`][crate::Device]
-    /// and extensions like [`khr::swapchain::Device`]) loaded from it may not be used after
+    /// and extensions like [`crate::khr::swapchain::Device`]) loaded from it may not be used after
     /// this [`Entry`] object is dropped, unless it was crated using [`Entry::linked()`] or
     /// [`Entry::from_parts_1_1()`].
     ///
@@ -269,48 +308,9 @@ impl Entry {
         .assume_init_on_success(instance)?;
         Ok(Instance::load(&self.static_fn, instance))
     }
-
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkEnumerateInstanceLayerProperties.html>
-    #[inline]
-    pub unsafe fn enumerate_instance_layer_properties(&self) -> VkResult<Vec<vk::LayerProperties>> {
-        read_into_uninitialized_vector(|count, data| {
-            (self.entry_fn_1_0.enumerate_instance_layer_properties)(count, data)
-        })
-    }
-
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkEnumerateInstanceExtensionProperties.html>
-    #[inline]
-    pub unsafe fn enumerate_instance_extension_properties(
-        &self,
-        layer_name: Option<&ffi::CStr>,
-    ) -> VkResult<Vec<vk::ExtensionProperties>> {
-        read_into_uninitialized_vector(|count, data| {
-            (self.entry_fn_1_0.enumerate_instance_extension_properties)(
-                layer_name.map_or(ptr::null(), |str| str.as_ptr()),
-                count,
-                data,
-            )
-        })
-    }
-
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetInstanceProcAddr.html>
-    #[inline]
-    pub unsafe fn get_instance_proc_addr(
-        &self,
-        instance: vk::Instance,
-        p_name: *const ffi::c_char,
-    ) -> vk::PFN_vkVoidFunction {
-        (self.static_fn.get_instance_proc_addr)(instance, p_name)
-    }
 }
 
-/// Vulkan core 1.1
 impl Entry {
-    #[inline]
-    pub fn fp_v1_1(&self) -> &crate::EntryFnV1_1 {
-        &self.entry_fn_1_1
-    }
-
     #[deprecated = "This function is unavailable and therefore panics on Vulkan 1.0, please use `try_enumerate_instance_version()` instead"]
     /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkEnumerateInstanceVersion.html>
     ///
@@ -369,42 +369,146 @@ extern "system" {
     ) -> vk::PFN_vkVoidFunction;
 }
 
-#[cfg(feature = "loaded")]
-mod loaded {
+/// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkInstance.html>
+#[derive(Clone)]
+pub struct Instance {
+    pub(crate) handle: vk::Instance,
 
-    use super::*;
+    pub(crate) instance_fn_1_0: crate::InstanceFnV1_0,
+    pub(crate) instance_fn_1_1: crate::InstanceFnV1_1,
+    pub(crate) instance_fn_1_3: crate::InstanceFnV1_3,
+}
 
-    #[derive(Debug)]
-    #[cfg_attr(docsrs, doc(cfg(feature = "loaded")))]
-    pub enum LoadingError {
-        LibraryLoadFailure(libloading::Error),
-        MissingEntryPoint(MissingEntryPoint),
+impl Instance {
+    pub unsafe fn load(static_fn: &crate::StaticFn, instance: vk::Instance) -> Self {
+        Self::load_with(
+            |name| mem::transmute((static_fn.get_instance_proc_addr)(instance, name.as_ptr())),
+            instance,
+        )
     }
 
-    impl fmt::Display for LoadingError {
-        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-            match self {
-                Self::LibraryLoadFailure(err) => fmt::Display::fmt(err, f),
-                Self::MissingEntryPoint(err) => fmt::Display::fmt(err, f),
-            }
+    pub unsafe fn load_with(
+        mut load_fn: impl FnMut(&ffi::CStr) -> *const ffi::c_void,
+        instance: vk::Instance,
+    ) -> Self {
+        Self::from_parts(
+            instance,
+            crate::InstanceFnV1_0::load(&mut load_fn),
+            crate::InstanceFnV1_1::load(&mut load_fn),
+            crate::InstanceFnV1_3::load(&mut load_fn),
+        )
+    }
+
+    #[inline]
+    pub fn from_parts(
+        handle: vk::Instance,
+        instance_fn_1_0: crate::InstanceFnV1_0,
+        instance_fn_1_1: crate::InstanceFnV1_1,
+        instance_fn_1_3: crate::InstanceFnV1_3,
+    ) -> Self {
+        Self {
+            handle,
+
+            instance_fn_1_0,
+            instance_fn_1_1,
+            instance_fn_1_3,
         }
     }
 
-    #[cfg(feature = "std")]
-    impl std::error::Error for LoadingError {
-        fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
-            Some(match self {
-                Self::LibraryLoadFailure(err) => err,
-                Self::MissingEntryPoint(err) => err,
-            })
-        }
+    #[inline]
+    pub fn handle(&self) -> vk::Instance {
+        self.handle
     }
 
-    impl From<MissingEntryPoint> for LoadingError {
-        fn from(err: MissingEntryPoint) -> Self {
-            Self::MissingEntryPoint(err)
-        }
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDevice.html>
+    ///
+    /// # Safety
+    ///
+    /// There is a [parent/child relation] between [`Instance`] and the resulting [`Device`].  The
+    /// application must not [destroy][Instance::destroy_instance()] the parent [`Instance`] object
+    /// before first [destroying][Device::destroy_device()] the returned [`Device`] child object.
+    /// [`Device`] does _not_ implement [drop][drop()] semantics and can only be destroyed via
+    /// [`destroy_device()`][Device::destroy_device()].
+    ///
+    /// See the [`Entry::create_instance()`] documentation for more destruction ordering rules on
+    /// [`Instance`].
+    ///
+    /// [parent/child relation]: https://docs.vulkan.org/spec/latest/chapters/fundamentals.html#fundamentals-objectmodel-lifetime
+    #[inline]
+    pub unsafe fn create_device(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        create_info: &vk::DeviceCreateInfo<'_>,
+        allocation_callbacks: Option<&vk::AllocationCallbacks>,
+    ) -> VkResult<Device> {
+        let mut device = mem::MaybeUninit::uninit();
+        let device = (self.instance_fn_1_0.create_device)(
+            physical_device,
+            create_info,
+            allocation_callbacks.to_raw_ptr(),
+            device.as_mut_ptr(),
+        )
+        .assume_init_on_success(device)?;
+        Ok(Device::load(&self.instance_fn_1_0, device))
     }
 }
-#[cfg(feature = "loaded")]
-pub use self::loaded::*;
+
+/// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDevice.html>
+#[derive(Clone)]
+pub struct Device {
+    pub(crate) handle: vk::Device,
+
+    pub(crate) device_fn_1_0: crate::DeviceFnV1_0,
+    pub(crate) device_fn_1_1: crate::DeviceFnV1_1,
+    pub(crate) device_fn_1_2: crate::DeviceFnV1_2,
+    pub(crate) device_fn_1_3: crate::DeviceFnV1_3,
+    pub(crate) device_fn_1_4: crate::DeviceFnV1_4,
+}
+
+impl Device {
+    pub unsafe fn load(instance_fn: &crate::InstanceFnV1_0, device: vk::Device) -> Self {
+        Self::load_with(
+            |name| mem::transmute((instance_fn.get_device_proc_addr)(device, name.as_ptr())),
+            device,
+        )
+    }
+
+    pub unsafe fn load_with(
+        mut load_fn: impl FnMut(&ffi::CStr) -> *const ffi::c_void,
+        device: vk::Device,
+    ) -> Self {
+        Self::from_parts(
+            device,
+            crate::DeviceFnV1_0::load(&mut load_fn),
+            crate::DeviceFnV1_1::load(&mut load_fn),
+            crate::DeviceFnV1_2::load(&mut load_fn),
+            crate::DeviceFnV1_3::load(&mut load_fn),
+            crate::DeviceFnV1_4::load(&mut load_fn),
+        )
+    }
+
+    #[inline]
+    pub fn from_parts(
+        handle: vk::Device,
+        device_fn_1_0: crate::DeviceFnV1_0,
+        device_fn_1_1: crate::DeviceFnV1_1,
+        device_fn_1_2: crate::DeviceFnV1_2,
+        device_fn_1_3: crate::DeviceFnV1_3,
+        device_fn_1_4: crate::DeviceFnV1_4,
+    ) -> Self {
+        Self {
+            handle,
+
+            device_fn_1_0,
+            device_fn_1_1,
+            device_fn_1_2,
+            device_fn_1_3,
+            device_fn_1_4,
+        }
+    }
+
+    #[inline]
+    pub fn handle(&self) -> vk::Device {
+        self.handle
+    }
+}

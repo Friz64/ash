@@ -79,6 +79,38 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_framebuffer_tile_properties_qcom(
+        &self,
+        device: crate::vk::Device,
+        framebuffer: crate::vk::Framebuffer,
+        p_properties_count: *mut u32,
+        p_properties: *mut crate::vk::TilePropertiesQCOM<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_framebuffer_tile_properties_qcom)(
+            device,
+            framebuffer,
+            p_properties_count,
+            p_properties,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_dynamic_rendering_tile_properties_qcom(
+        &self,
+        device: crate::vk::Device,
+        p_rendering_info: *const crate::vk::RenderingInfo<'_>,
+        p_properties: *mut crate::vk::TilePropertiesQCOM<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_dynamic_rendering_tile_properties_qcom)(
+            device,
+            p_rendering_info,
+            p_properties,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_tile_properties";

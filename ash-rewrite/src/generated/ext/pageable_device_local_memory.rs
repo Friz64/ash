@@ -63,6 +63,15 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn set_device_memory_priority_ext(
+        &self,
+        device: crate::vk::Device,
+        memory: crate::vk::DeviceMemory,
+        priority: core::ffi::c_float,
+    ) {
+        (self.fp.set_device_memory_priority_ext)(device, memory, priority)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_pageable_device_local_memory";

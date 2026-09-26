@@ -152,6 +152,65 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_draw_mesh_tasks_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        group_count_x: u32,
+        group_count_y: u32,
+        group_count_z: u32,
+    ) {
+        (self
+            .fp
+            .cmd_draw_mesh_tasks_ext)(
+            command_buffer,
+            group_count_x,
+            group_count_y,
+            group_count_z,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_draw_mesh_tasks_indirect_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        buffer: crate::vk::Buffer,
+        offset: crate::vk::DeviceSize,
+        draw_count: u32,
+        stride: u32,
+    ) {
+        (self
+            .fp
+            .cmd_draw_mesh_tasks_indirect_ext)(
+            command_buffer,
+            buffer,
+            offset,
+            draw_count,
+            stride,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_draw_mesh_tasks_indirect_count_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        buffer: crate::vk::Buffer,
+        offset: crate::vk::DeviceSize,
+        count_buffer: crate::vk::Buffer,
+        count_buffer_offset: crate::vk::DeviceSize,
+        max_draw_count: u32,
+        stride: u32,
+    ) {
+        (self
+            .fp
+            .cmd_draw_mesh_tasks_indirect_count_ext)(
+            command_buffer,
+            buffer,
+            offset,
+            count_buffer,
+            count_buffer_offset,
+            max_draw_count,
+            stride,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_mesh_shader";

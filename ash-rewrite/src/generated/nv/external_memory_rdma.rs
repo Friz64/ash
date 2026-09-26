@@ -82,6 +82,23 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_memory_remote_address_nv(
+        &self,
+        device: crate::vk::Device,
+        p_memory_get_remote_address_info: *const crate::vk::MemoryGetRemoteAddressInfoNV<
+            '_,
+        >,
+        p_address: *mut crate::vk::RemoteAddressNV,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_memory_remote_address_nv)(
+            device,
+            p_memory_get_remote_address_info,
+            p_address,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_rdma";

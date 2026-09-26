@@ -189,6 +189,70 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn set_swapchain_present_timing_queue_size_ext(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        size: u32,
+    ) -> crate::vk::Result {
+        (self.fp.set_swapchain_present_timing_queue_size_ext)(device, swapchain, size)
+    }
+    #[inline]
+    pub unsafe fn get_swapchain_timing_properties_ext(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        p_swapchain_timing_properties: *mut crate::vk::SwapchainTimingPropertiesEXT<'_>,
+        p_swapchain_timing_properties_counter: *mut u64,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_swapchain_timing_properties_ext)(
+            device,
+            swapchain,
+            p_swapchain_timing_properties,
+            p_swapchain_timing_properties_counter,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_swapchain_time_domain_properties_ext(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        p_swapchain_time_domain_properties: *mut crate::vk::SwapchainTimeDomainPropertiesEXT<
+            '_,
+        >,
+        p_time_domains_counter: *mut u64,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_swapchain_time_domain_properties_ext)(
+            device,
+            swapchain,
+            p_swapchain_time_domain_properties,
+            p_time_domains_counter,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_past_presentation_timing_ext(
+        &self,
+        device: crate::vk::Device,
+        p_past_presentation_timing_info: *const crate::vk::PastPresentationTimingInfoEXT<
+            '_,
+        >,
+        p_past_presentation_timing_properties: *mut crate::vk::PastPresentationTimingPropertiesEXT<
+            '_,
+        >,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_past_presentation_timing_ext)(
+            device,
+            p_past_presentation_timing_info,
+            p_past_presentation_timing_properties,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_present_timing";

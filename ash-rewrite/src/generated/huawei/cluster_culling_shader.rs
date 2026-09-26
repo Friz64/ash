@@ -117,6 +117,32 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_draw_cluster_huawei(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        group_count_x: u32,
+        group_count_y: u32,
+        group_count_z: u32,
+    ) {
+        (self
+            .fp
+            .cmd_draw_cluster_huawei)(
+            command_buffer,
+            group_count_x,
+            group_count_y,
+            group_count_z,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_draw_cluster_indirect_huawei(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        buffer: crate::vk::Buffer,
+        offset: crate::vk::DeviceSize,
+    ) {
+        (self.fp.cmd_draw_cluster_indirect_huawei)(command_buffer, buffer, offset)
+    }
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";

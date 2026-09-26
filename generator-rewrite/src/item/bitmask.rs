@@ -203,7 +203,7 @@ impl Code for BitMask {
                 );
 
                 dest.reexport = false;
-                let doc = dest.doc_link();
+                let doc = dest.provided_by_doc_comment();
                 codemap.extend(CodeMap::new(
                     dest,
                     quote! {

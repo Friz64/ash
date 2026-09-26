@@ -118,6 +118,28 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_begin_conditional_rendering_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfoEXT<
+            '_,
+        >,
+    ) {
+        (self
+            .fp
+            .cmd_begin_conditional_rendering_ext)(
+            command_buffer,
+            p_conditional_rendering_begin,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_end_conditional_rendering_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+    ) {
+        (self.fp.cmd_end_conditional_rendering_ext)(command_buffer)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_conditional_rendering";

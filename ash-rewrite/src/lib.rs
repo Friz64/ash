@@ -3,10 +3,6 @@
 
 extern crate alloc;
 
-mod device;
-mod entry;
-mod instance;
-
 #[allow(
     unused_parens,
     clippy::double_parens,
@@ -16,12 +12,14 @@ mod instance;
     clippy::missing_safety_doc
 )]
 mod generated;
+mod loader;
 /// Type definitions for platform-specific external types
 pub mod platform_types;
 
 use alloc::vec::Vec;
 use core::{mem, ptr};
 pub use generated::*;
+pub use loader::*;
 
 #[allow(clippy::wrong_self_convention)]
 pub trait Handle: Sized {
@@ -230,7 +228,7 @@ pub(crate) unsafe fn ptr_chain_iter<'a, T: TaggedStructure<'a>>(
 /// [`vk::BaseOutStructure`]. Such structures have an `s_type` field indicating its type, which must
 /// always match the value of [`TaggedStructure::STRUCTURE_TYPE`].
 pub unsafe trait TaggedStructure<'a>: Sized {
-    const STRUCTURE_TYPE: StructureType;
+    const STRUCTURE_TYPE: vk::StructureType;
 
     /// Prepends the given extension struct between the root and the first pointer. This method is
     /// only available on structs that can be passed to a function directly. Only valid extension
@@ -301,20 +299,3 @@ pub unsafe trait TaggedStructure<'a>: Sized {
 ///
 /// [1]: https://registry.khronos.org/vulkan/specs/latest/styleguide.html#extensions-interactions
 pub unsafe trait Extends<B> {}
-
-pub use device::*;
-pub use entry::*;
-pub use instance::*;
-pub use vk1_0::DeviceFnV1_0;
-pub use vk1_0::EntryFnV1_0;
-pub use vk1_0::InstanceFnV1_0;
-pub use vk1_0::StaticFn;
-pub use vk1_1::DeviceFnV1_1;
-pub use vk1_1::EntryFnV1_1;
-pub use vk1_1::InstanceFnV1_1;
-pub use vk1_2::DeviceFnV1_2;
-pub use vk1_3::DeviceFnV1_3;
-pub use vk1_3::InstanceFnV1_3;
-pub use vk1_4::DeviceFnV1_4;
-
-use self::generated::vk::StructureType;

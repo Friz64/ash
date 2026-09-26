@@ -204,6 +204,127 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_execution_graph_pipeline_scratch_size_amdx(
+        &self,
+        device: crate::vk::Device,
+        execution_graph: crate::vk::Pipeline,
+        p_size_info: *mut crate::vk::ExecutionGraphPipelineScratchSizeAMDX<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_execution_graph_pipeline_scratch_size_amdx)(
+            device,
+            execution_graph,
+            p_size_info,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_execution_graph_pipeline_node_index_amdx(
+        &self,
+        device: crate::vk::Device,
+        execution_graph: crate::vk::Pipeline,
+        p_node_info: *const crate::vk::PipelineShaderStageNodeCreateInfoAMDX<'_>,
+        p_node_index: *mut u32,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_execution_graph_pipeline_node_index_amdx)(
+            device,
+            execution_graph,
+            p_node_info,
+            p_node_index,
+        )
+    }
+    #[inline]
+    pub unsafe fn create_execution_graph_pipelines_amdx(
+        &self,
+        device: crate::vk::Device,
+        pipeline_cache: crate::vk::PipelineCache,
+        create_info_count: u32,
+        p_create_infos: *const crate::vk::ExecutionGraphPipelineCreateInfoAMDX<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_pipelines: *mut crate::vk::Pipeline,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_execution_graph_pipelines_amdx)(
+            device,
+            pipeline_cache,
+            create_info_count,
+            p_create_infos,
+            p_allocator,
+            p_pipelines,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_initialize_graph_scratch_memory_amdx(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        execution_graph: crate::vk::Pipeline,
+        scratch: crate::vk::DeviceAddress,
+        scratch_size: crate::vk::DeviceSize,
+    ) {
+        (self
+            .fp
+            .cmd_initialize_graph_scratch_memory_amdx)(
+            command_buffer,
+            execution_graph,
+            scratch,
+            scratch_size,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_dispatch_graph_amdx(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        scratch: crate::vk::DeviceAddress,
+        scratch_size: crate::vk::DeviceSize,
+        p_count_info: *const crate::vk::DispatchGraphCountInfoAMDX,
+    ) {
+        (self
+            .fp
+            .cmd_dispatch_graph_amdx)(
+            command_buffer,
+            scratch,
+            scratch_size,
+            p_count_info,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_dispatch_graph_indirect_amdx(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        scratch: crate::vk::DeviceAddress,
+        scratch_size: crate::vk::DeviceSize,
+        p_count_info: *const crate::vk::DispatchGraphCountInfoAMDX,
+    ) {
+        (self
+            .fp
+            .cmd_dispatch_graph_indirect_amdx)(
+            command_buffer,
+            scratch,
+            scratch_size,
+            p_count_info,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_dispatch_graph_indirect_count_amdx(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        scratch: crate::vk::DeviceAddress,
+        scratch_size: crate::vk::DeviceSize,
+        count_info: crate::vk::DeviceAddress,
+    ) {
+        (self
+            .fp
+            .cmd_dispatch_graph_indirect_count_amdx)(
+            command_buffer,
+            scratch,
+            scratch_size,
+            count_info,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_AMDX_shader_enqueue";

@@ -75,6 +75,23 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_physical_device_surface_present_modes2_ext(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        p_present_mode_count: *mut u32,
+        p_present_modes: *mut crate::vk::PresentModeKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_surface_present_modes2_ext)(
+            physical_device,
+            p_surface_info,
+            p_present_mode_count,
+            p_present_modes,
+        )
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -160,6 +177,37 @@ impl Device {
     #[inline]
     pub fn device(&self) -> crate::vk::Device {
         self.handle
+    }
+    #[inline]
+    pub unsafe fn get_device_group_surface_present_modes2_ext(
+        &self,
+        device: crate::vk::Device,
+        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        p_modes: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_device_group_surface_present_modes2_ext)(
+            device,
+            p_surface_info,
+            p_modes,
+        )
+    }
+    #[inline]
+    pub unsafe fn acquire_full_screen_exclusive_mode_ext(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+    ) -> crate::vk::Result {
+        (self.fp.acquire_full_screen_exclusive_mode_ext)(device, swapchain)
+    }
+    #[inline]
+    pub unsafe fn release_full_screen_exclusive_mode_ext(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+    ) -> crate::vk::Result {
+        (self.fp.release_full_screen_exclusive_mode_ext)(device, swapchain)
     }
 }
 pub const SPEC_VERSION: u32 = 4;

@@ -66,6 +66,15 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn set_local_dimming_amd(
+        &self,
+        device: crate::vk::Device,
+        swap_chain: crate::vk::SwapchainKHR,
+        local_dimming_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.set_local_dimming_amd)(device, swap_chain, local_dimming_enable)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_display_native_hdr";

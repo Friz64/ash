@@ -493,6 +493,69 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_event2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        event: crate::vk::Event,
+        p_dependency_info: *const crate::vk::DependencyInfo<'_>,
+    ) {
+        (self.fp.cmd_set_event2_khr)(command_buffer, event, p_dependency_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_reset_event2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        event: crate::vk::Event,
+        stage_mask: crate::vk::PipelineStageFlags2,
+    ) {
+        (self.fp.cmd_reset_event2_khr)(command_buffer, event, stage_mask)
+    }
+    #[inline]
+    pub unsafe fn cmd_wait_events2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        event_count: u32,
+        p_events: *const crate::vk::Event,
+        p_dependency_infos: *const crate::vk::DependencyInfo<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_wait_events2_khr)(
+            command_buffer,
+            event_count,
+            p_events,
+            p_dependency_infos,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_pipeline_barrier2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_dependency_info: *const crate::vk::DependencyInfo<'_>,
+    ) {
+        (self.fp.cmd_pipeline_barrier2_khr)(command_buffer, p_dependency_info)
+    }
+    #[inline]
+    pub unsafe fn queue_submit2_khr(
+        &self,
+        queue: crate::vk::Queue,
+        submit_count: u32,
+        p_submits: *const crate::vk::SubmitInfo2<'_>,
+        fence: crate::vk::Fence,
+    ) -> crate::vk::Result {
+        (self.fp.queue_submit2_khr)(queue, submit_count, p_submits, fence)
+    }
+    #[inline]
+    pub unsafe fn cmd_write_timestamp2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        stage: crate::vk::PipelineStageFlags2,
+        query_pool: crate::vk::QueryPool,
+        query: u32,
+    ) {
+        (self.fp.cmd_write_timestamp2_khr)(command_buffer, stage, query_pool, query)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_synchronization2";

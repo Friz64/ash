@@ -96,6 +96,46 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_push_descriptor_set_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        pipeline_bind_point: crate::vk::PipelineBindPoint,
+        layout: crate::vk::PipelineLayout,
+        set: u32,
+        descriptor_write_count: u32,
+        p_descriptor_writes: *const crate::vk::WriteDescriptorSet<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_push_descriptor_set_khr)(
+            command_buffer,
+            pipeline_bind_point,
+            layout,
+            set,
+            descriptor_write_count,
+            p_descriptor_writes,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_push_descriptor_set_with_template_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
+        layout: crate::vk::PipelineLayout,
+        set: u32,
+        p_data: *const core::ffi::c_void,
+    ) {
+        (self
+            .fp
+            .cmd_push_descriptor_set_with_template_khr)(
+            command_buffer,
+            descriptor_update_template,
+            layout,
+            set,
+            p_data,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_push_descriptor";

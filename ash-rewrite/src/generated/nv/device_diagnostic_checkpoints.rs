@@ -95,6 +95,44 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_checkpoint_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_checkpoint_marker: *const core::ffi::c_void,
+    ) {
+        (self.fp.cmd_set_checkpoint_nv)(command_buffer, p_checkpoint_marker)
+    }
+    #[inline]
+    pub unsafe fn get_queue_checkpoint_data_nv(
+        &self,
+        queue: crate::vk::Queue,
+        p_checkpoint_data_count: *mut u32,
+        p_checkpoint_data: *mut crate::vk::CheckpointDataNV<'_>,
+    ) {
+        (self
+            .fp
+            .get_queue_checkpoint_data_nv)(
+            queue,
+            p_checkpoint_data_count,
+            p_checkpoint_data,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_queue_checkpoint_data2_nv(
+        &self,
+        queue: crate::vk::Queue,
+        p_checkpoint_data_count: *mut u32,
+        p_checkpoint_data: *mut crate::vk::CheckpointData2NV<'_>,
+    ) {
+        (self
+            .fp
+            .get_queue_checkpoint_data2_nv)(
+            queue,
+            p_checkpoint_data_count,
+            p_checkpoint_data,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NV_device_diagnostic_checkpoints";

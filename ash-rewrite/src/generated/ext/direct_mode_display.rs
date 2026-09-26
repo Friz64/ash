@@ -58,6 +58,14 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn release_display_ext(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        display: crate::vk::DisplayKHR,
+    ) -> crate::vk::Result {
+        (self.fp.release_display_ext)(physical_device, display)
+    }
 }
 pub(crate) mod items {
     pub type PFN_vkReleaseDisplayEXT = unsafe extern "system" fn(

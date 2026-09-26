@@ -93,6 +93,25 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_physical_device_queue_family_data_graph_engine_operation_properties_arm(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        queue_family_index: u32,
+        p_queue_family_data_graph_properties: *const crate::vk::QueueFamilyDataGraphPropertiesARM<
+            '_,
+        >,
+        p_properties: *mut crate::vk::BaseOutStructure<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_queue_family_data_graph_engine_operation_properties_arm)(
+            physical_device,
+            queue_family_index,
+            p_queue_family_data_graph_properties,
+            p_properties,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_instruction_set_tosa";

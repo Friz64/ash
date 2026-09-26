@@ -80,6 +80,38 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_physical_device_surface_capabilities2_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2KHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_surface_capabilities2_khr)(
+            physical_device,
+            p_surface_info,
+            p_surface_capabilities,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_surface_formats2_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        p_surface_format_count: *mut u32,
+        p_surface_formats: *mut crate::vk::SurfaceFormat2KHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_surface_formats2_khr)(
+            physical_device,
+            p_surface_info,
+            p_surface_format_count,
+            p_surface_formats,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_get_surface_capabilities2";

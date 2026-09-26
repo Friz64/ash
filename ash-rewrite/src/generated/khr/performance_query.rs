@@ -138,6 +138,42 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn enumerate_physical_device_queue_family_performance_query_counters_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        queue_family_index: u32,
+        p_counter_count: *mut u32,
+        p_counters: *mut crate::vk::PerformanceCounterKHR<'_>,
+        p_counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionKHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .enumerate_physical_device_queue_family_performance_query_counters_khr)(
+            physical_device,
+            queue_family_index,
+            p_counter_count,
+            p_counters,
+            p_counter_descriptions,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_queue_family_performance_query_passes_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_performance_query_create_info: *const crate::vk::QueryPoolPerformanceCreateInfoKHR<
+            '_,
+        >,
+        p_num_passes: *mut u32,
+    ) {
+        (self
+            .fp
+            .get_physical_device_queue_family_performance_query_passes_khr)(
+            physical_device,
+            p_performance_query_create_info,
+            p_num_passes,
+        )
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -206,6 +242,18 @@ impl Device {
     #[inline]
     pub fn device(&self) -> crate::vk::Device {
         self.handle
+    }
+    #[inline]
+    pub unsafe fn acquire_profiling_lock_khr(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::AcquireProfilingLockInfoKHR<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.acquire_profiling_lock_khr)(device, p_info)
+    }
+    #[inline]
+    pub unsafe fn release_profiling_lock_khr(&self, device: crate::vk::Device) {
+        (self.fp.release_profiling_lock_khr)(device)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

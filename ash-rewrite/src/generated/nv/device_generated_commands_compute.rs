@@ -111,6 +111,44 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_update_pipeline_indirect_buffer_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        pipeline_bind_point: crate::vk::PipelineBindPoint,
+        pipeline: crate::vk::Pipeline,
+    ) {
+        (self
+            .fp
+            .cmd_update_pipeline_indirect_buffer_nv)(
+            command_buffer,
+            pipeline_bind_point,
+            pipeline,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_pipeline_indirect_memory_requirements_nv(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::ComputePipelineCreateInfo<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .fp
+            .get_pipeline_indirect_memory_requirements_nv)(
+            device,
+            p_create_info,
+            p_memory_requirements,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_pipeline_indirect_device_address_nv(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::PipelineIndirectDeviceAddressInfoNV<'_>,
+    ) -> crate::vk::DeviceAddress {
+        (self.fp.get_pipeline_indirect_device_address_nv)(device, p_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands_compute";

@@ -121,6 +121,45 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn debug_marker_set_object_name_ext(
+        &self,
+        device: crate::vk::Device,
+        p_name_info: *const crate::vk::DebugMarkerObjectNameInfoEXT<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.debug_marker_set_object_name_ext)(device, p_name_info)
+    }
+    #[inline]
+    pub unsafe fn debug_marker_set_object_tag_ext(
+        &self,
+        device: crate::vk::Device,
+        p_tag_info: *const crate::vk::DebugMarkerObjectTagInfoEXT<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.debug_marker_set_object_tag_ext)(device, p_tag_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_debug_marker_begin_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_marker_info: *const crate::vk::DebugMarkerMarkerInfoEXT<'_>,
+    ) {
+        (self.fp.cmd_debug_marker_begin_ext)(command_buffer, p_marker_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_debug_marker_end_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+    ) {
+        (self.fp.cmd_debug_marker_end_ext)(command_buffer)
+    }
+    #[inline]
+    pub unsafe fn cmd_debug_marker_insert_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_marker_info: *const crate::vk::DebugMarkerMarkerInfoEXT<'_>,
+    ) {
+        (self.fp.cmd_debug_marker_insert_ext)(command_buffer, p_marker_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 4;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_marker";

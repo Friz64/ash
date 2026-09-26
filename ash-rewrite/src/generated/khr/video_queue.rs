@@ -200,6 +200,38 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_physical_device_video_capabilities_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_video_profile: *const crate::vk::VideoProfileInfoKHR<'_>,
+        p_capabilities: *mut crate::vk::VideoCapabilitiesKHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_video_capabilities_khr)(
+            physical_device,
+            p_video_profile,
+            p_capabilities,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_video_format_properties_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_video_format_info: *const crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
+        p_video_format_property_count: *mut u32,
+        p_video_format_properties: *mut crate::vk::VideoFormatPropertiesKHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_video_format_properties_khr)(
+            physical_device,
+            p_video_format_info,
+            p_video_format_property_count,
+            p_video_format_properties,
+        )
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -400,6 +432,137 @@ impl Device {
     #[inline]
     pub fn device(&self) -> crate::vk::Device {
         self.handle
+    }
+    #[inline]
+    pub unsafe fn create_video_session_khr(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::VideoSessionCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_video_session: *mut crate::vk::VideoSessionKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_video_session_khr)(
+            device,
+            p_create_info,
+            p_allocator,
+            p_video_session,
+        )
+    }
+    #[inline]
+    pub unsafe fn destroy_video_session_khr(
+        &self,
+        device: crate::vk::Device,
+        video_session: crate::vk::VideoSessionKHR,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_video_session_khr)(device, video_session, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn create_video_session_parameters_khr(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_video_session_parameters: *mut crate::vk::VideoSessionParametersKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_video_session_parameters_khr)(
+            device,
+            p_create_info,
+            p_allocator,
+            p_video_session_parameters,
+        )
+    }
+    #[inline]
+    pub unsafe fn update_video_session_parameters_khr(
+        &self,
+        device: crate::vk::Device,
+        video_session_parameters: crate::vk::VideoSessionParametersKHR,
+        p_update_info: *const crate::vk::VideoSessionParametersUpdateInfoKHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .update_video_session_parameters_khr)(
+            device,
+            video_session_parameters,
+            p_update_info,
+        )
+    }
+    #[inline]
+    pub unsafe fn destroy_video_session_parameters_khr(
+        &self,
+        device: crate::vk::Device,
+        video_session_parameters: crate::vk::VideoSessionParametersKHR,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self
+            .fp
+            .destroy_video_session_parameters_khr)(
+            device,
+            video_session_parameters,
+            p_allocator,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_video_session_memory_requirements_khr(
+        &self,
+        device: crate::vk::Device,
+        video_session: crate::vk::VideoSessionKHR,
+        p_memory_requirements_count: *mut u32,
+        p_memory_requirements: *mut crate::vk::VideoSessionMemoryRequirementsKHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_video_session_memory_requirements_khr)(
+            device,
+            video_session,
+            p_memory_requirements_count,
+            p_memory_requirements,
+        )
+    }
+    #[inline]
+    pub unsafe fn bind_video_session_memory_khr(
+        &self,
+        device: crate::vk::Device,
+        video_session: crate::vk::VideoSessionKHR,
+        bind_session_memory_info_count: u32,
+        p_bind_session_memory_infos: *const crate::vk::BindVideoSessionMemoryInfoKHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .bind_video_session_memory_khr)(
+            device,
+            video_session,
+            bind_session_memory_info_count,
+            p_bind_session_memory_infos,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_begin_video_coding_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_begin_info: *const crate::vk::VideoBeginCodingInfoKHR<'_>,
+    ) {
+        (self.fp.cmd_begin_video_coding_khr)(command_buffer, p_begin_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_control_video_coding_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_coding_control_info: *const crate::vk::VideoCodingControlInfoKHR<'_>,
+    ) {
+        (self.fp.cmd_control_video_coding_khr)(command_buffer, p_coding_control_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_end_video_coding_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_end_coding_info: *const crate::vk::VideoEndCodingInfoKHR<'_>,
+    ) {
+        (self.fp.cmd_end_video_coding_khr)(command_buffer, p_end_coding_info)
     }
 }
 pub const SPEC_VERSION: u32 = 8;

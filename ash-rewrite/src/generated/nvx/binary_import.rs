@@ -139,6 +139,52 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_cu_module_nvx(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::CuModuleCreateInfoNVX<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_module: *mut crate::vk::CuModuleNVX,
+    ) -> crate::vk::Result {
+        (self.fp.create_cu_module_nvx)(device, p_create_info, p_allocator, p_module)
+    }
+    #[inline]
+    pub unsafe fn create_cu_function_nvx(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::CuFunctionCreateInfoNVX<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_function: *mut crate::vk::CuFunctionNVX,
+    ) -> crate::vk::Result {
+        (self.fp.create_cu_function_nvx)(device, p_create_info, p_allocator, p_function)
+    }
+    #[inline]
+    pub unsafe fn destroy_cu_module_nvx(
+        &self,
+        device: crate::vk::Device,
+        module: crate::vk::CuModuleNVX,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_cu_module_nvx)(device, module, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn destroy_cu_function_nvx(
+        &self,
+        device: crate::vk::Device,
+        function: crate::vk::CuFunctionNVX,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_cu_function_nvx)(device, function, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn cmd_cu_launch_kernel_nvx(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_launch_info: *const crate::vk::CuLaunchInfoNVX<'_>,
+    ) {
+        (self.fp.cmd_cu_launch_kernel_nvx)(command_buffer, p_launch_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NVX_binary_import";

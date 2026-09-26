@@ -73,6 +73,23 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn map_memory2_khr(
+        &self,
+        device: crate::vk::Device,
+        p_memory_map_info: *const crate::vk::MemoryMapInfo<'_>,
+        pp_data: *mut *mut core::ffi::c_void,
+    ) -> crate::vk::Result {
+        (self.fp.map_memory2_khr)(device, p_memory_map_info, pp_data)
+    }
+    #[inline]
+    pub unsafe fn unmap_memory2_khr(
+        &self,
+        device: crate::vk::Device,
+        p_memory_unmap_info: *const crate::vk::MemoryUnmapInfo<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.unmap_memory2_khr)(device, p_memory_unmap_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_map_memory2";

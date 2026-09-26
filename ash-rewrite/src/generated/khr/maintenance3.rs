@@ -62,6 +62,15 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_descriptor_set_layout_support_khr(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::DescriptorSetLayoutCreateInfo<'_>,
+        p_support: *mut crate::vk::DescriptorSetLayoutSupport<'_>,
+    ) {
+        (self.fp.get_descriptor_set_layout_support_khr)(device, p_create_info, p_support)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance3";

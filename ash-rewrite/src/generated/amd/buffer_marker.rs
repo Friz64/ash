@@ -79,6 +79,44 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_write_buffer_marker_amd(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        pipeline_stage: crate::vk::PipelineStageFlagBits,
+        dst_buffer: crate::vk::Buffer,
+        dst_offset: crate::vk::DeviceSize,
+        marker: u32,
+    ) {
+        (self
+            .fp
+            .cmd_write_buffer_marker_amd)(
+            command_buffer,
+            pipeline_stage,
+            dst_buffer,
+            dst_offset,
+            marker,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_write_buffer_marker2_amd(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        stage: crate::vk::PipelineStageFlags2,
+        dst_buffer: crate::vk::Buffer,
+        dst_offset: crate::vk::DeviceSize,
+        marker: u32,
+    ) {
+        (self
+            .fp
+            .cmd_write_buffer_marker2_amd)(
+            command_buffer,
+            stage,
+            dst_buffer,
+            dst_offset,
+            marker,
+        )
+    }
 }
 pub(crate) mod items {
     pub type PFN_vkCmdWriteBufferMarkerAMD = unsafe extern "system" fn(

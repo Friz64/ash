@@ -66,6 +66,16 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_attachment_feedback_loop_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        aspect_mask: crate::vk::ImageAspectFlags,
+    ) {
+        (self
+            .fp
+            .cmd_set_attachment_feedback_loop_enable_ext)(command_buffer, aspect_mask)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_dynamic_state";

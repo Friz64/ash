@@ -98,6 +98,16 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_begin_custom_resolve_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_begin_custom_resolve_info: *const crate::vk::BeginCustomResolveInfoEXT<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_begin_custom_resolve_ext)(command_buffer, p_begin_custom_resolve_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_custom_resolve";

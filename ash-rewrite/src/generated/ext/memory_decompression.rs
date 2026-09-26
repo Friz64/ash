@@ -131,6 +131,35 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_decompress_memory_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_decompress_memory_info_ext: *const crate::vk::DecompressMemoryInfoEXT<'_>,
+    ) {
+        (self.fp.cmd_decompress_memory_ext)(command_buffer, p_decompress_memory_info_ext)
+    }
+    #[inline]
+    pub unsafe fn cmd_decompress_memory_indirect_count_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        decompression_method: crate::vk::MemoryDecompressionMethodFlagsEXT,
+        indirect_commands_address: crate::vk::DeviceAddress,
+        indirect_commands_count_address: crate::vk::DeviceAddress,
+        max_decompression_count: u32,
+        stride: u32,
+    ) {
+        (self
+            .fp
+            .cmd_decompress_memory_indirect_count_ext)(
+            command_buffer,
+            decompression_method,
+            indirect_commands_address,
+            indirect_commands_count_address,
+            max_decompression_count,
+            stride,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_memory_decompression";

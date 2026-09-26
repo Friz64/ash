@@ -120,6 +120,70 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_private_data_slot_ext(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::PrivateDataSlotCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_private_data_slot: *mut crate::vk::PrivateDataSlot,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_private_data_slot_ext)(
+            device,
+            p_create_info,
+            p_allocator,
+            p_private_data_slot,
+        )
+    }
+    #[inline]
+    pub unsafe fn destroy_private_data_slot_ext(
+        &self,
+        device: crate::vk::Device,
+        private_data_slot: crate::vk::PrivateDataSlot,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_private_data_slot_ext)(device, private_data_slot, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn set_private_data_ext(
+        &self,
+        device: crate::vk::Device,
+        object_type: crate::vk::ObjectType,
+        object_handle: u64,
+        private_data_slot: crate::vk::PrivateDataSlot,
+        data: u64,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .set_private_data_ext)(
+            device,
+            object_type,
+            object_handle,
+            private_data_slot,
+            data,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_private_data_ext(
+        &self,
+        device: crate::vk::Device,
+        object_type: crate::vk::ObjectType,
+        object_handle: u64,
+        private_data_slot: crate::vk::PrivateDataSlot,
+        p_data: *mut u64,
+    ) {
+        (self
+            .fp
+            .get_private_data_ext)(
+            device,
+            object_type,
+            object_handle,
+            private_data_slot,
+            p_data,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_private_data";

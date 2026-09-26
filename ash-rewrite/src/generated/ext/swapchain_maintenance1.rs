@@ -75,6 +75,14 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn release_swapchain_images_ext(
+        &self,
+        device: crate::vk::Device,
+        p_release_info: *const crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.release_swapchain_images_ext)(device, p_release_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_swapchain_maintenance1";

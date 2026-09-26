@@ -526,6 +526,13 @@ impl EntryFnV1_1 {
         }
     }
 }
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl crate::Entry {
+    #[inline]
+    pub fn fp_v1_1(&self) -> &crate::EntryFnV1_1 {
+        &self.entry_fn_1_1
+    }
+}
 #[derive(Clone)]
 pub struct InstanceFnV1_1 {
     pub get_physical_device_features2: crate::vk::PFN_vkGetPhysicalDeviceFeatures2,
@@ -722,26 +729,168 @@ impl InstanceFnV1_1 {
         }
     }
 }
-#[derive(Clone)]
-pub struct InstanceV1_1 {
-    pub(crate) fp: InstanceFnV1_1,
-    pub(crate) handle: crate::vk::Instance,
-}
-impl InstanceV1_1 {
-    pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
-        let handle = instance.handle;
-        let fp = InstanceFnV1_1::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
-        });
-        Self { handle, fp }
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl crate::Instance {
+    #[inline]
+    pub fn fp_v1_1(&self) -> &crate::InstanceFnV1_1 {
+        &self.instance_fn_1_1
     }
     #[inline]
-    pub fn fp(&self) -> &InstanceFnV1_1 {
-        &self.fp
+    pub unsafe fn get_physical_device_features2(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_features: *mut crate::vk::PhysicalDeviceFeatures2<'_>,
+    ) {
+        (self.instance_fn_1_1.get_physical_device_features2)(physical_device, p_features)
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
-        self.handle
+    pub unsafe fn get_physical_device_properties2(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_properties: *mut crate::vk::PhysicalDeviceProperties2<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_properties2)(physical_device, p_properties)
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_format_properties2(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        format: crate::vk::Format,
+        p_format_properties: *mut crate::vk::FormatProperties2<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_format_properties2)(
+            physical_device,
+            format,
+            p_format_properties,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_image_format_properties2(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_image_format_info: *const crate::vk::PhysicalDeviceImageFormatInfo2<'_>,
+        p_image_format_properties: *mut crate::vk::ImageFormatProperties2<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_image_format_properties2)(
+            physical_device,
+            p_image_format_info,
+            p_image_format_properties,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_queue_family_properties2(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_queue_family_property_count: *mut u32,
+        p_queue_family_properties: *mut crate::vk::QueueFamilyProperties2<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_queue_family_properties2)(
+            physical_device,
+            p_queue_family_property_count,
+            p_queue_family_properties,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_memory_properties2(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_memory_properties: *mut crate::vk::PhysicalDeviceMemoryProperties2<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_memory_properties2)(
+            physical_device,
+            p_memory_properties,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_sparse_image_format_properties2(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_format_info: *const crate::vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
+        p_property_count: *mut u32,
+        p_properties: *mut crate::vk::SparseImageFormatProperties2<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_sparse_image_format_properties2)(
+            physical_device,
+            p_format_info,
+            p_property_count,
+            p_properties,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_external_buffer_properties(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_external_buffer_info: *const crate::vk::PhysicalDeviceExternalBufferInfo<'_>,
+        p_external_buffer_properties: *mut crate::vk::ExternalBufferProperties<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_external_buffer_properties)(
+            physical_device,
+            p_external_buffer_info,
+            p_external_buffer_properties,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_external_semaphore_properties(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_external_semaphore_info: *const crate::vk::PhysicalDeviceExternalSemaphoreInfo<
+            '_,
+        >,
+        p_external_semaphore_properties: *mut crate::vk::ExternalSemaphoreProperties<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_external_semaphore_properties)(
+            physical_device,
+            p_external_semaphore_info,
+            p_external_semaphore_properties,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_external_fence_properties(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_external_fence_info: *const crate::vk::PhysicalDeviceExternalFenceInfo<'_>,
+        p_external_fence_properties: *mut crate::vk::ExternalFenceProperties<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_external_fence_properties)(
+            physical_device,
+            p_external_fence_info,
+            p_external_fence_properties,
+        )
+    }
+    #[inline]
+    pub unsafe fn enumerate_physical_device_groups(
+        &self,
+        instance: crate::vk::Instance,
+        p_physical_device_group_count: *mut u32,
+        p_physical_device_group_properties: *mut crate::vk::PhysicalDeviceGroupProperties<
+            '_,
+        >,
+    ) -> crate::vk::Result {
+        (self
+            .instance_fn_1_1
+            .enumerate_physical_device_groups)(
+            instance,
+            p_physical_device_group_count,
+            p_physical_device_group_properties,
+        )
     }
 }
 #[derive(Clone)]
@@ -1027,26 +1176,224 @@ impl DeviceFnV1_1 {
         }
     }
 }
-#[derive(Clone)]
-pub struct DeviceV1_1 {
-    pub(crate) fp: DeviceFnV1_1,
-    pub(crate) handle: crate::vk::Device,
-}
-impl DeviceV1_1 {
-    pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
-        let handle = device.handle;
-        let fp = DeviceFnV1_1::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
-        });
-        Self { handle, fp }
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl crate::Device {
+    #[inline]
+    pub fn fp_v1_1(&self) -> &crate::DeviceFnV1_1 {
+        &self.device_fn_1_1
     }
     #[inline]
-    pub fn fp(&self) -> &DeviceFnV1_1 {
-        &self.fp
+    pub unsafe fn trim_command_pool(
+        &self,
+        device: crate::vk::Device,
+        command_pool: crate::vk::CommandPool,
+        flags: crate::vk::CommandPoolTrimFlags,
+    ) {
+        (self.device_fn_1_1.trim_command_pool)(device, command_pool, flags)
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
-        self.handle
+    pub unsafe fn get_device_group_peer_memory_features(
+        &self,
+        device: crate::vk::Device,
+        heap_index: u32,
+        local_device_index: u32,
+        remote_device_index: u32,
+        p_peer_memory_features: *mut crate::vk::PeerMemoryFeatureFlags,
+    ) {
+        (self
+            .device_fn_1_1
+            .get_device_group_peer_memory_features)(
+            device,
+            heap_index,
+            local_device_index,
+            remote_device_index,
+            p_peer_memory_features,
+        )
+    }
+    #[inline]
+    pub unsafe fn bind_buffer_memory2(
+        &self,
+        device: crate::vk::Device,
+        bind_info_count: u32,
+        p_bind_infos: *const crate::vk::BindBufferMemoryInfo<'_>,
+    ) -> crate::vk::Result {
+        (self.device_fn_1_1.bind_buffer_memory2)(device, bind_info_count, p_bind_infos)
+    }
+    #[inline]
+    pub unsafe fn bind_image_memory2(
+        &self,
+        device: crate::vk::Device,
+        bind_info_count: u32,
+        p_bind_infos: *const crate::vk::BindImageMemoryInfo<'_>,
+    ) -> crate::vk::Result {
+        (self.device_fn_1_1.bind_image_memory2)(device, bind_info_count, p_bind_infos)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_device_mask(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        device_mask: u32,
+    ) {
+        (self.device_fn_1_1.cmd_set_device_mask)(command_buffer, device_mask)
+    }
+    #[inline]
+    pub unsafe fn cmd_dispatch_base(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        base_group_x: u32,
+        base_group_y: u32,
+        base_group_z: u32,
+        group_count_x: u32,
+        group_count_y: u32,
+        group_count_z: u32,
+    ) {
+        (self
+            .device_fn_1_1
+            .cmd_dispatch_base)(
+            command_buffer,
+            base_group_x,
+            base_group_y,
+            base_group_z,
+            group_count_x,
+            group_count_y,
+            group_count_z,
+        )
+    }
+    #[inline]
+    pub unsafe fn create_descriptor_update_template(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_descriptor_update_template: *mut crate::vk::DescriptorUpdateTemplate,
+    ) -> crate::vk::Result {
+        (self
+            .device_fn_1_1
+            .create_descriptor_update_template)(
+            device,
+            p_create_info,
+            p_allocator,
+            p_descriptor_update_template,
+        )
+    }
+    #[inline]
+    pub unsafe fn destroy_descriptor_update_template(
+        &self,
+        device: crate::vk::Device,
+        descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self
+            .device_fn_1_1
+            .destroy_descriptor_update_template)(
+            device,
+            descriptor_update_template,
+            p_allocator,
+        )
+    }
+    #[inline]
+    pub unsafe fn update_descriptor_set_with_template(
+        &self,
+        device: crate::vk::Device,
+        descriptor_set: crate::vk::DescriptorSet,
+        descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
+        p_data: *const core::ffi::c_void,
+    ) {
+        (self
+            .device_fn_1_1
+            .update_descriptor_set_with_template)(
+            device,
+            descriptor_set,
+            descriptor_update_template,
+            p_data,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_buffer_memory_requirements2(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::BufferMemoryRequirementsInfo2<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .device_fn_1_1
+            .get_buffer_memory_requirements2)(device, p_info, p_memory_requirements)
+    }
+    #[inline]
+    pub unsafe fn get_image_memory_requirements2(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::ImageMemoryRequirementsInfo2<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .device_fn_1_1
+            .get_image_memory_requirements2)(device, p_info, p_memory_requirements)
+    }
+    #[inline]
+    pub unsafe fn get_image_sparse_memory_requirements2(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
+        p_sparse_memory_requirement_count: *mut u32,
+        p_sparse_memory_requirements: *mut crate::vk::SparseImageMemoryRequirements2<'_>,
+    ) {
+        (self
+            .device_fn_1_1
+            .get_image_sparse_memory_requirements2)(
+            device,
+            p_info,
+            p_sparse_memory_requirement_count,
+            p_sparse_memory_requirements,
+        )
+    }
+    #[inline]
+    pub unsafe fn create_sampler_ycbcr_conversion(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_ycbcr_conversion: *mut crate::vk::SamplerYcbcrConversion,
+    ) -> crate::vk::Result {
+        (self
+            .device_fn_1_1
+            .create_sampler_ycbcr_conversion)(
+            device,
+            p_create_info,
+            p_allocator,
+            p_ycbcr_conversion,
+        )
+    }
+    #[inline]
+    pub unsafe fn destroy_sampler_ycbcr_conversion(
+        &self,
+        device: crate::vk::Device,
+        ycbcr_conversion: crate::vk::SamplerYcbcrConversion,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self
+            .device_fn_1_1
+            .destroy_sampler_ycbcr_conversion)(device, ycbcr_conversion, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn get_device_queue2(
+        &self,
+        device: crate::vk::Device,
+        p_queue_info: *const crate::vk::DeviceQueueInfo2<'_>,
+        p_queue: *mut crate::vk::Queue,
+    ) {
+        (self.device_fn_1_1.get_device_queue2)(device, p_queue_info, p_queue)
+    }
+    #[inline]
+    pub unsafe fn get_descriptor_set_layout_support(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::DescriptorSetLayoutCreateInfo<'_>,
+        p_support: *mut crate::vk::DescriptorSetLayoutSupport<'_>,
+    ) {
+        (self
+            .device_fn_1_1
+            .get_descriptor_set_layout_support)(device, p_create_info, p_support)
     }
 }
 pub(crate) mod items {

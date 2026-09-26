@@ -62,6 +62,18 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_metal_surface_ext(
+        &self,
+        instance: crate::vk::Instance,
+        p_create_info: *const crate::vk::MetalSurfaceCreateInfoEXT<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_surface: *mut crate::vk::SurfaceKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_metal_surface_ext)(instance, p_create_info, p_allocator, p_surface)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_metal_surface";

@@ -62,6 +62,16 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn wait_for_present_khr(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        present_id: u64,
+        timeout: u64,
+    ) -> crate::vk::Result {
+        (self.fp.wait_for_present_khr)(device, swapchain, present_id, timeout)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_present_wait";

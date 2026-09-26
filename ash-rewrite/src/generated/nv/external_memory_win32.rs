@@ -63,6 +63,16 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_memory_win32_handle_nv(
+        &self,
+        device: crate::vk::Device,
+        memory: crate::vk::DeviceMemory,
+        handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+        p_handle: *mut crate::platform_types::HANDLE,
+    ) -> crate::vk::Result {
+        (self.fp.get_memory_win32_handle_nv)(device, memory, handle_type, p_handle)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_win32";

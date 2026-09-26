@@ -71,6 +71,29 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_vertex_input_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        vertex_binding_description_count: u32,
+        p_vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription2EXT<
+            '_,
+        >,
+        vertex_attribute_description_count: u32,
+        p_vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription2EXT<
+            '_,
+        >,
+    ) {
+        (self
+            .fp
+            .cmd_set_vertex_input_ext)(
+            command_buffer,
+            vertex_binding_description_count,
+            p_vertex_binding_descriptions,
+            vertex_attribute_description_count,
+            p_vertex_attribute_descriptions,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_vertex_input_dynamic_state";

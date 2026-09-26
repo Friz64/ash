@@ -91,6 +91,17 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_bind_invocation_mask_huawei(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        image_view: crate::vk::ImageView,
+        image_layout: crate::vk::ImageLayout,
+    ) {
+        (self
+            .fp
+            .cmd_bind_invocation_mask_huawei)(command_buffer, image_view, image_layout)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_invocation_mask";

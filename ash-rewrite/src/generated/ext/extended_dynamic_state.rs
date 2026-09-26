@@ -253,6 +253,145 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_cull_mode_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        cull_mode: crate::vk::CullModeFlags,
+    ) {
+        (self.fp.cmd_set_cull_mode_ext)(command_buffer, cull_mode)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_front_face_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        front_face: crate::vk::FrontFace,
+    ) {
+        (self.fp.cmd_set_front_face_ext)(command_buffer, front_face)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_primitive_topology_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        primitive_topology: crate::vk::PrimitiveTopology,
+    ) {
+        (self.fp.cmd_set_primitive_topology_ext)(command_buffer, primitive_topology)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_viewport_with_count_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        viewport_count: u32,
+        p_viewports: *const crate::vk::Viewport,
+    ) {
+        (self
+            .fp
+            .cmd_set_viewport_with_count_ext)(
+            command_buffer,
+            viewport_count,
+            p_viewports,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_scissor_with_count_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        scissor_count: u32,
+        p_scissors: *const crate::vk::Rect2D,
+    ) {
+        (self
+            .fp
+            .cmd_set_scissor_with_count_ext)(command_buffer, scissor_count, p_scissors)
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_vertex_buffers2_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_binding: u32,
+        binding_count: u32,
+        p_buffers: *const crate::vk::Buffer,
+        p_offsets: *const crate::vk::DeviceSize,
+        p_sizes: *const crate::vk::DeviceSize,
+        p_strides: *const crate::vk::DeviceSize,
+    ) {
+        (self
+            .fp
+            .cmd_bind_vertex_buffers2_ext)(
+            command_buffer,
+            first_binding,
+            binding_count,
+            p_buffers,
+            p_offsets,
+            p_sizes,
+            p_strides,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_test_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_test_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_depth_test_enable_ext)(command_buffer, depth_test_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_write_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_write_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_depth_write_enable_ext)(command_buffer, depth_write_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_compare_op_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_compare_op: crate::vk::CompareOp,
+    ) {
+        (self.fp.cmd_set_depth_compare_op_ext)(command_buffer, depth_compare_op)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_bounds_test_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_bounds_test_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_depth_bounds_test_enable_ext)(
+            command_buffer,
+            depth_bounds_test_enable,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_stencil_test_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        stencil_test_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_stencil_test_enable_ext)(command_buffer, stencil_test_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_stencil_op_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        face_mask: crate::vk::StencilFaceFlags,
+        fail_op: crate::vk::StencilOp,
+        pass_op: crate::vk::StencilOp,
+        depth_fail_op: crate::vk::StencilOp,
+        compare_op: crate::vk::CompareOp,
+    ) {
+        (self
+            .fp
+            .cmd_set_stencil_op_ext)(
+            command_buffer,
+            face_mask,
+            fail_op,
+            pass_op,
+            depth_fail_op,
+            compare_op,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state";

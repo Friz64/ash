@@ -93,6 +93,21 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_physical_device_tool_properties_ext(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_tool_count: *mut u32,
+        p_tool_properties: *mut crate::vk::PhysicalDeviceToolProperties<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_tool_properties_ext)(
+            physical_device,
+            p_tool_count,
+            p_tool_properties,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_tooling_info";

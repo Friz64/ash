@@ -87,6 +87,38 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_semaphore_zircon_handle_fuchsia(
+        &self,
+        device: crate::vk::Device,
+        p_get_zircon_handle_info: *const crate::vk::SemaphoreGetZirconHandleInfoFUCHSIA<
+            '_,
+        >,
+        p_zircon_handle: *mut crate::platform_types::zx_handle_t,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_semaphore_zircon_handle_fuchsia)(
+            device,
+            p_get_zircon_handle_info,
+            p_zircon_handle,
+        )
+    }
+    #[inline]
+    pub unsafe fn import_semaphore_zircon_handle_fuchsia(
+        &self,
+        device: crate::vk::Device,
+        p_import_semaphore_zircon_handle_info: *const crate::vk::ImportSemaphoreZirconHandleInfoFUCHSIA<
+            '_,
+        >,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .import_semaphore_zircon_handle_fuchsia)(
+            device,
+            p_import_semaphore_zircon_handle_info,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_semaphore";

@@ -78,6 +78,38 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_refresh_cycle_duration_google(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        p_display_timing_properties: *mut crate::vk::RefreshCycleDurationGOOGLE,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_refresh_cycle_duration_google)(
+            device,
+            swapchain,
+            p_display_timing_properties,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_past_presentation_timing_google(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        p_presentation_timing_count: *mut u32,
+        p_presentation_timings: *mut crate::vk::PastPresentationTimingGOOGLE,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_past_presentation_timing_google)(
+            device,
+            swapchain,
+            p_presentation_timing_count,
+            p_presentation_timings,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_GOOGLE_display_timing";

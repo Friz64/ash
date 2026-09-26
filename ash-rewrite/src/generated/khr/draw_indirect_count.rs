@@ -83,6 +83,52 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_draw_indirect_count_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        buffer: crate::vk::Buffer,
+        offset: crate::vk::DeviceSize,
+        count_buffer: crate::vk::Buffer,
+        count_buffer_offset: crate::vk::DeviceSize,
+        max_draw_count: u32,
+        stride: u32,
+    ) {
+        (self
+            .fp
+            .cmd_draw_indirect_count_khr)(
+            command_buffer,
+            buffer,
+            offset,
+            count_buffer,
+            count_buffer_offset,
+            max_draw_count,
+            stride,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_draw_indexed_indirect_count_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        buffer: crate::vk::Buffer,
+        offset: crate::vk::DeviceSize,
+        count_buffer: crate::vk::Buffer,
+        count_buffer_offset: crate::vk::DeviceSize,
+        max_draw_count: u32,
+        stride: u32,
+    ) {
+        (self
+            .fp
+            .cmd_draw_indexed_indirect_count_khr)(
+            command_buffer,
+            buffer,
+            offset,
+            count_buffer,
+            count_buffer_offset,
+            max_draw_count,
+            stride,
+        )
+    }
 }
 pub(crate) mod items {
     pub type PFN_vkCmdDrawIndirectCountKHR = crate::vk::PFN_vkCmdDrawIndirectCount;

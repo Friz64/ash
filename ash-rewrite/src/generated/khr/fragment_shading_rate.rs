@@ -151,6 +151,21 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_fragment_shading_rate_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_fragment_size: *const crate::vk::Extent2D,
+        combiner_ops: *const [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
+    ) {
+        (self
+            .fp
+            .cmd_set_fragment_shading_rate_khr)(
+            command_buffer,
+            p_fragment_size,
+            combiner_ops,
+        )
+    }
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -206,6 +221,23 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_fragment_shading_rates_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_fragment_shading_rate_count: *mut u32,
+        p_fragment_shading_rates: *mut crate::vk::PhysicalDeviceFragmentShadingRateKHR<
+            '_,
+        >,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_fragment_shading_rates_khr)(
+            physical_device,
+            p_fragment_shading_rate_count,
+            p_fragment_shading_rates,
+        )
     }
 }
 pub const SPEC_VERSION: u32 = 2;

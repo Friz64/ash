@@ -1073,26 +1073,413 @@ impl DeviceFnV1_3 {
         }
     }
 }
-#[derive(Clone)]
-pub struct DeviceV1_3 {
-    pub(crate) fp: DeviceFnV1_3,
-    pub(crate) handle: crate::vk::Device,
-}
-impl DeviceV1_3 {
-    pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
-        let handle = device.handle;
-        let fp = DeviceFnV1_3::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
-        });
-        Self { handle, fp }
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl crate::Device {
+    #[inline]
+    pub fn fp_v1_3(&self) -> &crate::DeviceFnV1_3 {
+        &self.device_fn_1_3
     }
     #[inline]
-    pub fn fp(&self) -> &DeviceFnV1_3 {
-        &self.fp
+    pub unsafe fn get_device_buffer_memory_requirements(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::DeviceBufferMemoryRequirements<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .device_fn_1_3
+            .get_device_buffer_memory_requirements)(
+            device,
+            p_info,
+            p_memory_requirements,
+        )
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
-        self.handle
+    pub unsafe fn get_device_image_memory_requirements(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::DeviceImageMemoryRequirements<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .device_fn_1_3
+            .get_device_image_memory_requirements)(device, p_info, p_memory_requirements)
+    }
+    #[inline]
+    pub unsafe fn get_device_image_sparse_memory_requirements(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::DeviceImageMemoryRequirements<'_>,
+        p_sparse_memory_requirement_count: *mut u32,
+        p_sparse_memory_requirements: *mut crate::vk::SparseImageMemoryRequirements2<'_>,
+    ) {
+        (self
+            .device_fn_1_3
+            .get_device_image_sparse_memory_requirements)(
+            device,
+            p_info,
+            p_sparse_memory_requirement_count,
+            p_sparse_memory_requirements,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_cull_mode(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        cull_mode: crate::vk::CullModeFlags,
+    ) {
+        (self.device_fn_1_3.cmd_set_cull_mode)(command_buffer, cull_mode)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_front_face(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        front_face: crate::vk::FrontFace,
+    ) {
+        (self.device_fn_1_3.cmd_set_front_face)(command_buffer, front_face)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_primitive_topology(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        primitive_topology: crate::vk::PrimitiveTopology,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_set_primitive_topology)(command_buffer, primitive_topology)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_viewport_with_count(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        viewport_count: u32,
+        p_viewports: *const crate::vk::Viewport,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_set_viewport_with_count)(command_buffer, viewport_count, p_viewports)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_scissor_with_count(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        scissor_count: u32,
+        p_scissors: *const crate::vk::Rect2D,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_set_scissor_with_count)(command_buffer, scissor_count, p_scissors)
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_vertex_buffers2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_binding: u32,
+        binding_count: u32,
+        p_buffers: *const crate::vk::Buffer,
+        p_offsets: *const crate::vk::DeviceSize,
+        p_sizes: *const crate::vk::DeviceSize,
+        p_strides: *const crate::vk::DeviceSize,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_bind_vertex_buffers2)(
+            command_buffer,
+            first_binding,
+            binding_count,
+            p_buffers,
+            p_offsets,
+            p_sizes,
+            p_strides,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_test_enable(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_test_enable: crate::vk::Bool32,
+    ) {
+        (self.device_fn_1_3.cmd_set_depth_test_enable)(command_buffer, depth_test_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_write_enable(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_write_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_set_depth_write_enable)(command_buffer, depth_write_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_compare_op(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_compare_op: crate::vk::CompareOp,
+    ) {
+        (self.device_fn_1_3.cmd_set_depth_compare_op)(command_buffer, depth_compare_op)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_bounds_test_enable(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_bounds_test_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_set_depth_bounds_test_enable)(command_buffer, depth_bounds_test_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_stencil_test_enable(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        stencil_test_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_set_stencil_test_enable)(command_buffer, stencil_test_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_stencil_op(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        face_mask: crate::vk::StencilFaceFlags,
+        fail_op: crate::vk::StencilOp,
+        pass_op: crate::vk::StencilOp,
+        depth_fail_op: crate::vk::StencilOp,
+        compare_op: crate::vk::CompareOp,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_set_stencil_op)(
+            command_buffer,
+            face_mask,
+            fail_op,
+            pass_op,
+            depth_fail_op,
+            compare_op,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_rasterizer_discard_enable(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        rasterizer_discard_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_set_rasterizer_discard_enable)(
+            command_buffer,
+            rasterizer_discard_enable,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_bias_enable(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_bias_enable: crate::vk::Bool32,
+    ) {
+        (self.device_fn_1_3.cmd_set_depth_bias_enable)(command_buffer, depth_bias_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_primitive_restart_enable(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        primitive_restart_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_set_primitive_restart_enable)(command_buffer, primitive_restart_enable)
+    }
+    #[inline]
+    pub unsafe fn create_private_data_slot(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::PrivateDataSlotCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_private_data_slot: *mut crate::vk::PrivateDataSlot,
+    ) -> crate::vk::Result {
+        (self
+            .device_fn_1_3
+            .create_private_data_slot)(
+            device,
+            p_create_info,
+            p_allocator,
+            p_private_data_slot,
+        )
+    }
+    #[inline]
+    pub unsafe fn destroy_private_data_slot(
+        &self,
+        device: crate::vk::Device,
+        private_data_slot: crate::vk::PrivateDataSlot,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self
+            .device_fn_1_3
+            .destroy_private_data_slot)(device, private_data_slot, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn set_private_data(
+        &self,
+        device: crate::vk::Device,
+        object_type: crate::vk::ObjectType,
+        object_handle: u64,
+        private_data_slot: crate::vk::PrivateDataSlot,
+        data: u64,
+    ) -> crate::vk::Result {
+        (self
+            .device_fn_1_3
+            .set_private_data)(
+            device,
+            object_type,
+            object_handle,
+            private_data_slot,
+            data,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_private_data(
+        &self,
+        device: crate::vk::Device,
+        object_type: crate::vk::ObjectType,
+        object_handle: u64,
+        private_data_slot: crate::vk::PrivateDataSlot,
+        p_data: *mut u64,
+    ) {
+        (self
+            .device_fn_1_3
+            .get_private_data)(
+            device,
+            object_type,
+            object_handle,
+            private_data_slot,
+            p_data,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_copy_buffer2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_copy_buffer_info: *const crate::vk::CopyBufferInfo2<'_>,
+    ) {
+        (self.device_fn_1_3.cmd_copy_buffer2)(command_buffer, p_copy_buffer_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_copy_image2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_copy_image_info: *const crate::vk::CopyImageInfo2<'_>,
+    ) {
+        (self.device_fn_1_3.cmd_copy_image2)(command_buffer, p_copy_image_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_blit_image2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_blit_image_info: *const crate::vk::BlitImageInfo2<'_>,
+    ) {
+        (self.device_fn_1_3.cmd_blit_image2)(command_buffer, p_blit_image_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_copy_buffer_to_image2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_copy_buffer_to_image_info: *const crate::vk::CopyBufferToImageInfo2<'_>,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_copy_buffer_to_image2)(command_buffer, p_copy_buffer_to_image_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_copy_image_to_buffer2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_copy_image_to_buffer_info: *const crate::vk::CopyImageToBufferInfo2<'_>,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_copy_image_to_buffer2)(command_buffer, p_copy_image_to_buffer_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_resolve_image2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_resolve_image_info: *const crate::vk::ResolveImageInfo2<'_>,
+    ) {
+        (self.device_fn_1_3.cmd_resolve_image2)(command_buffer, p_resolve_image_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_event2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        event: crate::vk::Event,
+        p_dependency_info: *const crate::vk::DependencyInfo<'_>,
+    ) {
+        (self.device_fn_1_3.cmd_set_event2)(command_buffer, event, p_dependency_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_reset_event2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        event: crate::vk::Event,
+        stage_mask: crate::vk::PipelineStageFlags2,
+    ) {
+        (self.device_fn_1_3.cmd_reset_event2)(command_buffer, event, stage_mask)
+    }
+    #[inline]
+    pub unsafe fn cmd_wait_events2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        event_count: u32,
+        p_events: *const crate::vk::Event,
+        p_dependency_infos: *const crate::vk::DependencyInfo<'_>,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_wait_events2)(command_buffer, event_count, p_events, p_dependency_infos)
+    }
+    #[inline]
+    pub unsafe fn cmd_pipeline_barrier2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_dependency_info: *const crate::vk::DependencyInfo<'_>,
+    ) {
+        (self.device_fn_1_3.cmd_pipeline_barrier2)(command_buffer, p_dependency_info)
+    }
+    #[inline]
+    pub unsafe fn queue_submit2(
+        &self,
+        queue: crate::vk::Queue,
+        submit_count: u32,
+        p_submits: *const crate::vk::SubmitInfo2<'_>,
+        fence: crate::vk::Fence,
+    ) -> crate::vk::Result {
+        (self.device_fn_1_3.queue_submit2)(queue, submit_count, p_submits, fence)
+    }
+    #[inline]
+    pub unsafe fn cmd_write_timestamp2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        stage: crate::vk::PipelineStageFlags2,
+        query_pool: crate::vk::QueryPool,
+        query: u32,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_write_timestamp2)(command_buffer, stage, query_pool, query)
+    }
+    #[inline]
+    pub unsafe fn cmd_begin_rendering(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_rendering_info: *const crate::vk::RenderingInfo<'_>,
+    ) {
+        (self.device_fn_1_3.cmd_begin_rendering)(command_buffer, p_rendering_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_end_rendering(&self, command_buffer: crate::vk::CommandBuffer) {
+        (self.device_fn_1_3.cmd_end_rendering)(command_buffer)
     }
 }
 #[derive(Clone)]
@@ -1129,26 +1516,26 @@ impl InstanceFnV1_3 {
         }
     }
 }
-#[derive(Clone)]
-pub struct InstanceV1_3 {
-    pub(crate) fp: InstanceFnV1_3,
-    pub(crate) handle: crate::vk::Instance,
-}
-impl InstanceV1_3 {
-    pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
-        let handle = instance.handle;
-        let fp = InstanceFnV1_3::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
-        });
-        Self { handle, fp }
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl crate::Instance {
+    #[inline]
+    pub fn fp_v1_3(&self) -> &crate::InstanceFnV1_3 {
+        &self.instance_fn_1_3
     }
     #[inline]
-    pub fn fp(&self) -> &InstanceFnV1_3 {
-        &self.fp
-    }
-    #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
-        self.handle
+    pub unsafe fn get_physical_device_tool_properties(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_tool_count: *mut u32,
+        p_tool_properties: *mut crate::vk::PhysicalDeviceToolProperties<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .instance_fn_1_3
+            .get_physical_device_tool_properties)(
+            physical_device,
+            p_tool_count,
+            p_tool_properties,
+        )
     }
 }
 pub(crate) mod items {

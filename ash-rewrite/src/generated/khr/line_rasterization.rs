@@ -74,6 +74,21 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_line_stipple_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        line_stipple_factor: u32,
+        line_stipple_pattern: u16,
+    ) {
+        (self
+            .fp
+            .cmd_set_line_stipple_khr)(
+            command_buffer,
+            line_stipple_factor,
+            line_stipple_pattern,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_line_rasterization";

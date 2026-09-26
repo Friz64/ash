@@ -194,6 +194,81 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn destroy_surface_khr(
+        &self,
+        instance: crate::vk::Instance,
+        surface: crate::vk::SurfaceKHR,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_surface_khr)(instance, surface, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_surface_support_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        queue_family_index: u32,
+        surface: crate::vk::SurfaceKHR,
+        p_supported: *mut crate::vk::Bool32,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_surface_support_khr)(
+            physical_device,
+            queue_family_index,
+            surface,
+            p_supported,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_surface_capabilities_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        surface: crate::vk::SurfaceKHR,
+        p_surface_capabilities: *mut crate::vk::SurfaceCapabilitiesKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_surface_capabilities_khr)(
+            physical_device,
+            surface,
+            p_surface_capabilities,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_surface_formats_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        surface: crate::vk::SurfaceKHR,
+        p_surface_format_count: *mut u32,
+        p_surface_formats: *mut crate::vk::SurfaceFormatKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_surface_formats_khr)(
+            physical_device,
+            surface,
+            p_surface_format_count,
+            p_surface_formats,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_surface_present_modes_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        surface: crate::vk::SurfaceKHR,
+        p_present_mode_count: *mut u32,
+        p_present_modes: *mut crate::vk::PresentModeKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_surface_present_modes_khr)(
+            physical_device,
+            surface,
+            p_present_mode_count,
+            p_present_modes,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 25;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_surface";

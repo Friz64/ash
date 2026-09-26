@@ -131,6 +131,32 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_dispatch_tile_qcom(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_dispatch_tile_info: *const crate::vk::DispatchTileInfoQCOM<'_>,
+    ) {
+        (self.fp.cmd_dispatch_tile_qcom)(command_buffer, p_dispatch_tile_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_begin_per_tile_execution_qcom(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_per_tile_begin_info: *const crate::vk::PerTileBeginInfoQCOM<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_begin_per_tile_execution_qcom)(command_buffer, p_per_tile_begin_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_end_per_tile_execution_qcom(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_per_tile_end_info: *const crate::vk::PerTileEndInfoQCOM<'_>,
+    ) {
+        (self.fp.cmd_end_per_tile_execution_qcom)(command_buffer, p_per_tile_end_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_tile_shading";

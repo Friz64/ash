@@ -83,6 +83,46 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_copy_memory_indirect_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        copy_buffer_address: crate::vk::DeviceAddress,
+        copy_count: u32,
+        stride: u32,
+    ) {
+        (self
+            .fp
+            .cmd_copy_memory_indirect_nv)(
+            command_buffer,
+            copy_buffer_address,
+            copy_count,
+            stride,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_copy_memory_to_image_indirect_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        copy_buffer_address: crate::vk::DeviceAddress,
+        copy_count: u32,
+        stride: u32,
+        dst_image: crate::vk::Image,
+        dst_image_layout: crate::vk::ImageLayout,
+        p_image_subresources: *const crate::vk::ImageSubresourceLayers,
+    ) {
+        (self
+            .fp
+            .cmd_copy_memory_to_image_indirect_nv)(
+            command_buffer,
+            copy_buffer_address,
+            copy_count,
+            stride,
+            dst_image,
+            dst_image_layout,
+            p_image_subresources,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_copy_memory_indirect";

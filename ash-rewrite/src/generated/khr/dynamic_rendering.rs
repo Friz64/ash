@@ -98,6 +98,21 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_begin_rendering_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_rendering_info: *const crate::vk::RenderingInfo<'_>,
+    ) {
+        (self.fp.cmd_begin_rendering_khr)(command_buffer, p_rendering_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_end_rendering_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+    ) {
+        (self.fp.cmd_end_rendering_khr)(command_buffer)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering";

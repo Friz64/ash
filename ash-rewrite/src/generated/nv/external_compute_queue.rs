@@ -87,6 +87,32 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_external_compute_queue_nv(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_external_queue: *mut crate::vk::ExternalComputeQueueNV,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_external_compute_queue_nv)(
+            device,
+            p_create_info,
+            p_allocator,
+            p_external_queue,
+        )
+    }
+    #[inline]
+    pub unsafe fn destroy_external_compute_queue_nv(
+        &self,
+        device: crate::vk::Device,
+        external_queue: crate::vk::ExternalComputeQueueNV,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_external_compute_queue_nv)(device, external_queue, p_allocator)
+    }
 }
 #[derive(Clone)]
 pub struct EntryFn {

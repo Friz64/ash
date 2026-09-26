@@ -104,6 +104,14 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_bind_tile_memory_qcom(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_tile_memory_bind_info: *const crate::vk::TileMemoryBindInfoQCOM<'_>,
+    ) {
+        (self.fp.cmd_bind_tile_memory_qcom)(command_buffer, p_tile_memory_bind_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_tile_memory_heap";

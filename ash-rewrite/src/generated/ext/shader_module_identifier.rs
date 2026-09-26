@@ -86,6 +86,30 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_shader_module_identifier_ext(
+        &self,
+        device: crate::vk::Device,
+        shader_module: crate::vk::ShaderModule,
+        p_identifier: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
+    ) {
+        (self.fp.get_shader_module_identifier_ext)(device, shader_module, p_identifier)
+    }
+    #[inline]
+    pub unsafe fn get_shader_module_create_info_identifier_ext(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::ShaderModuleCreateInfo<'_>,
+        p_identifier: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
+    ) {
+        (self
+            .fp
+            .get_shader_module_create_info_identifier_ext)(
+            device,
+            p_create_info,
+            p_identifier,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_module_identifier";

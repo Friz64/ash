@@ -78,6 +78,31 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_ubm_surface_sec(
+        &self,
+        instance: crate::vk::Instance,
+        p_create_info: *const crate::vk::UbmSurfaceCreateInfoSEC<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_surface: *mut crate::vk::SurfaceKHR,
+    ) -> crate::vk::Result {
+        (self.fp.create_ubm_surface_sec)(instance, p_create_info, p_allocator, p_surface)
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_ubm_presentation_support_sec(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        queue_family_index: u32,
+        device: *mut crate::platform_types::ubm_device,
+    ) -> crate::vk::Bool32 {
+        (self
+            .fp
+            .get_physical_device_ubm_presentation_support_sec)(
+            physical_device,
+            queue_family_index,
+            device,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_SEC_ubm_surface";

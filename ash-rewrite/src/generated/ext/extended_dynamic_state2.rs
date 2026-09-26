@@ -130,6 +130,56 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_patch_control_points_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        patch_control_points: u32,
+    ) {
+        (self.fp.cmd_set_patch_control_points_ext)(command_buffer, patch_control_points)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_logic_op_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        logic_op: crate::vk::LogicOp,
+    ) {
+        (self.fp.cmd_set_logic_op_ext)(command_buffer, logic_op)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_rasterizer_discard_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        rasterizer_discard_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_rasterizer_discard_enable_ext)(
+            command_buffer,
+            rasterizer_discard_enable,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_depth_bias_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        depth_bias_enable: crate::vk::Bool32,
+    ) {
+        (self.fp.cmd_set_depth_bias_enable_ext)(command_buffer, depth_bias_enable)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_primitive_restart_enable_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        primitive_restart_enable: crate::vk::Bool32,
+    ) {
+        (self
+            .fp
+            .cmd_set_primitive_restart_enable_ext)(
+            command_buffer,
+            primitive_restart_enable,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state2";

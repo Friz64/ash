@@ -152,6 +152,50 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn set_latency_sleep_mode_nv(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        p_sleep_mode_info: *const crate::vk::LatencySleepModeInfoNV<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.set_latency_sleep_mode_nv)(device, swapchain, p_sleep_mode_info)
+    }
+    #[inline]
+    pub unsafe fn latency_sleep_nv(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        p_sleep_info: *const crate::vk::LatencySleepInfoNV<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.latency_sleep_nv)(device, swapchain, p_sleep_info)
+    }
+    #[inline]
+    pub unsafe fn set_latency_marker_nv(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        p_latency_marker_info: *const crate::vk::SetLatencyMarkerInfoNV<'_>,
+    ) {
+        (self.fp.set_latency_marker_nv)(device, swapchain, p_latency_marker_info)
+    }
+    #[inline]
+    pub unsafe fn get_latency_timings_nv(
+        &self,
+        device: crate::vk::Device,
+        swapchain: crate::vk::SwapchainKHR,
+        p_latency_marker_info: *mut crate::vk::GetLatencyMarkerInfoNV<'_>,
+    ) {
+        (self.fp.get_latency_timings_nv)(device, swapchain, p_latency_marker_info)
+    }
+    #[inline]
+    pub unsafe fn queue_notify_out_of_band_nv(
+        &self,
+        queue: crate::vk::Queue,
+        p_queue_type_info: *const crate::vk::OutOfBandQueueTypeInfoNV<'_>,
+    ) {
+        (self.fp.queue_notify_out_of_band_nv)(queue, p_queue_type_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_NV_low_latency2";

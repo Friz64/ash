@@ -145,6 +145,79 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_descriptor_buffer_offsets2_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_set_descriptor_buffer_offsets_info: *const crate::vk::SetDescriptorBufferOffsetsInfoEXT<
+            '_,
+        >,
+    ) {
+        (self
+            .fp
+            .cmd_set_descriptor_buffer_offsets2_ext)(
+            command_buffer,
+            p_set_descriptor_buffer_offsets_info,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_descriptor_buffer_embedded_samplers2_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_bind_descriptor_buffer_embedded_samplers_info: *const crate::vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<
+            '_,
+        >,
+    ) {
+        (self
+            .fp
+            .cmd_bind_descriptor_buffer_embedded_samplers2_ext)(
+            command_buffer,
+            p_bind_descriptor_buffer_embedded_samplers_info,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_descriptor_sets2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_bind_descriptor_sets_info: *const crate::vk::BindDescriptorSetsInfo<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_bind_descriptor_sets2_khr)(command_buffer, p_bind_descriptor_sets_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_push_constants2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_push_constants_info: *const crate::vk::PushConstantsInfo<'_>,
+    ) {
+        (self.fp.cmd_push_constants2_khr)(command_buffer, p_push_constants_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_push_descriptor_set2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_push_descriptor_set_info: *const crate::vk::PushDescriptorSetInfo<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_push_descriptor_set2_khr)(command_buffer, p_push_descriptor_set_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_push_descriptor_set_with_template2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_push_descriptor_set_with_template_info: *const crate::vk::PushDescriptorSetWithTemplateInfo<
+            '_,
+        >,
+    ) {
+        (self
+            .fp
+            .cmd_push_descriptor_set_with_template2_khr)(
+            command_buffer,
+            p_push_descriptor_set_with_template_info,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance6";

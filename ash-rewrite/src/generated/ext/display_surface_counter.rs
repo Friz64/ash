@@ -69,6 +69,21 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_physical_device_surface_capabilities2_ext(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        surface: crate::vk::SurfaceKHR,
+        p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2EXT<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_surface_capabilities2_ext)(
+            physical_device,
+            surface,
+            p_surface_capabilities,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_display_surface_counter";

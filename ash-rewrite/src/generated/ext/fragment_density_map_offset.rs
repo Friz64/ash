@@ -79,6 +79,14 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_end_rendering2_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_rendering_end_info: *const crate::vk::RenderingEndInfoKHR<'_>,
+    ) {
+        (self.fp.cmd_end_rendering2_ext)(command_buffer, p_rendering_end_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_fragment_density_map_offset";

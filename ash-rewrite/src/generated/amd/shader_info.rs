@@ -66,6 +66,27 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_shader_info_amd(
+        &self,
+        device: crate::vk::Device,
+        pipeline: crate::vk::Pipeline,
+        shader_stage: crate::vk::ShaderStageFlagBits,
+        info_type: crate::vk::ShaderInfoTypeAMD,
+        p_info_size: *mut usize,
+        p_info: *mut core::ffi::c_void,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_shader_info_amd)(
+            device,
+            pipeline,
+            shader_stage,
+            info_type,
+            p_info_size,
+            p_info,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_shader_info";

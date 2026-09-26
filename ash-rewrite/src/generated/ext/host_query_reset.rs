@@ -62,6 +62,16 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn reset_query_pool_ext(
+        &self,
+        device: crate::vk::Device,
+        query_pool: crate::vk::QueryPool,
+        first_query: u32,
+        query_count: u32,
+    ) {
+        (self.fp.reset_query_pool_ext)(device, query_pool, first_query, query_count)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_host_query_reset";

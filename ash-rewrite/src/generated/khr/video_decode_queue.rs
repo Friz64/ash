@@ -192,6 +192,14 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_decode_video_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_decode_info: *const crate::vk::VideoDecodeInfoKHR<'_>,
+    ) {
+        (self.fp.cmd_decode_video_khr)(command_buffer, p_decode_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 8;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_queue";

@@ -204,6 +204,34 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_sampler_ycbcr_conversion_khr(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_ycbcr_conversion: *mut crate::vk::SamplerYcbcrConversion,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_sampler_ycbcr_conversion_khr)(
+            device,
+            p_create_info,
+            p_allocator,
+            p_ycbcr_conversion,
+        )
+    }
+    #[inline]
+    pub unsafe fn destroy_sampler_ycbcr_conversion_khr(
+        &self,
+        device: crate::vk::Device,
+        ycbcr_conversion: crate::vk::SamplerYcbcrConversion,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self
+            .fp
+            .destroy_sampler_ycbcr_conversion_khr)(device, ycbcr_conversion, p_allocator)
+    }
 }
 pub const SPEC_VERSION: u32 = 14;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_sampler_ycbcr_conversion";

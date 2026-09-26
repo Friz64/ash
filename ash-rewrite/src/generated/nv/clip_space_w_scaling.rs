@@ -66,6 +66,23 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_viewport_w_scaling_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_viewport: u32,
+        viewport_count: u32,
+        p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
+    ) {
+        (self
+            .fp
+            .cmd_set_viewport_w_scaling_nv)(
+            command_buffer,
+            first_viewport,
+            viewport_count,
+            p_viewport_w_scalings,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_clip_space_w_scaling";

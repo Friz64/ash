@@ -562,26 +562,237 @@ impl DeviceFnV1_4 {
         }
     }
 }
-#[derive(Clone)]
-pub struct DeviceV1_4 {
-    pub(crate) fp: DeviceFnV1_4,
-    pub(crate) handle: crate::vk::Device,
-}
-impl DeviceV1_4 {
-    pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
-        let handle = device.handle;
-        let fp = DeviceFnV1_4::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
-        });
-        Self { handle, fp }
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl crate::Device {
+    #[inline]
+    pub fn fp_v1_4(&self) -> &crate::DeviceFnV1_4 {
+        &self.device_fn_1_4
     }
     #[inline]
-    pub fn fp(&self) -> &DeviceFnV1_4 {
-        &self.fp
+    pub unsafe fn get_rendering_area_granularity(
+        &self,
+        device: crate::vk::Device,
+        p_rendering_area_info: *const crate::vk::RenderingAreaInfo<'_>,
+        p_granularity: *mut crate::vk::Extent2D,
+    ) {
+        (self
+            .device_fn_1_4
+            .get_rendering_area_granularity)(
+            device,
+            p_rendering_area_info,
+            p_granularity,
+        )
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
-        self.handle
+    pub unsafe fn cmd_push_descriptor_set(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        pipeline_bind_point: crate::vk::PipelineBindPoint,
+        layout: crate::vk::PipelineLayout,
+        set: u32,
+        descriptor_write_count: u32,
+        p_descriptor_writes: *const crate::vk::WriteDescriptorSet<'_>,
+    ) {
+        (self
+            .device_fn_1_4
+            .cmd_push_descriptor_set)(
+            command_buffer,
+            pipeline_bind_point,
+            layout,
+            set,
+            descriptor_write_count,
+            p_descriptor_writes,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_push_descriptor_set_with_template(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
+        layout: crate::vk::PipelineLayout,
+        set: u32,
+        p_data: *const core::ffi::c_void,
+    ) {
+        (self
+            .device_fn_1_4
+            .cmd_push_descriptor_set_with_template)(
+            command_buffer,
+            descriptor_update_template,
+            layout,
+            set,
+            p_data,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_line_stipple(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        line_stipple_factor: u32,
+        line_stipple_pattern: u16,
+    ) {
+        (self
+            .device_fn_1_4
+            .cmd_set_line_stipple)(
+            command_buffer,
+            line_stipple_factor,
+            line_stipple_pattern,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_index_buffer2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        buffer: crate::vk::Buffer,
+        offset: crate::vk::DeviceSize,
+        size: crate::vk::DeviceSize,
+        index_type: crate::vk::IndexType,
+    ) {
+        (self
+            .device_fn_1_4
+            .cmd_bind_index_buffer2)(command_buffer, buffer, offset, size, index_type)
+    }
+    #[inline]
+    pub unsafe fn copy_memory_to_image(
+        &self,
+        device: crate::vk::Device,
+        p_copy_memory_to_image_info: *const crate::vk::CopyMemoryToImageInfo<'_>,
+    ) -> crate::vk::Result {
+        (self.device_fn_1_4.copy_memory_to_image)(device, p_copy_memory_to_image_info)
+    }
+    #[inline]
+    pub unsafe fn copy_image_to_memory(
+        &self,
+        device: crate::vk::Device,
+        p_copy_image_to_memory_info: *const crate::vk::CopyImageToMemoryInfo<'_>,
+    ) -> crate::vk::Result {
+        (self.device_fn_1_4.copy_image_to_memory)(device, p_copy_image_to_memory_info)
+    }
+    #[inline]
+    pub unsafe fn copy_image_to_image(
+        &self,
+        device: crate::vk::Device,
+        p_copy_image_to_image_info: *const crate::vk::CopyImageToImageInfo<'_>,
+    ) -> crate::vk::Result {
+        (self.device_fn_1_4.copy_image_to_image)(device, p_copy_image_to_image_info)
+    }
+    #[inline]
+    pub unsafe fn transition_image_layout(
+        &self,
+        device: crate::vk::Device,
+        transition_count: u32,
+        p_transitions: *const crate::vk::HostImageLayoutTransitionInfo<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .device_fn_1_4
+            .transition_image_layout)(device, transition_count, p_transitions)
+    }
+    #[inline]
+    pub unsafe fn get_image_subresource_layout2(
+        &self,
+        device: crate::vk::Device,
+        image: crate::vk::Image,
+        p_subresource: *const crate::vk::ImageSubresource2<'_>,
+        p_layout: *mut crate::vk::SubresourceLayout2<'_>,
+    ) {
+        (self
+            .device_fn_1_4
+            .get_image_subresource_layout2)(device, image, p_subresource, p_layout)
+    }
+    #[inline]
+    pub unsafe fn get_device_image_subresource_layout(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::DeviceImageSubresourceInfo<'_>,
+        p_layout: *mut crate::vk::SubresourceLayout2<'_>,
+    ) {
+        (self
+            .device_fn_1_4
+            .get_device_image_subresource_layout)(device, p_info, p_layout)
+    }
+    #[inline]
+    pub unsafe fn map_memory2(
+        &self,
+        device: crate::vk::Device,
+        p_memory_map_info: *const crate::vk::MemoryMapInfo<'_>,
+        pp_data: *mut *mut core::ffi::c_void,
+    ) -> crate::vk::Result {
+        (self.device_fn_1_4.map_memory2)(device, p_memory_map_info, pp_data)
+    }
+    #[inline]
+    pub unsafe fn unmap_memory2(
+        &self,
+        device: crate::vk::Device,
+        p_memory_unmap_info: *const crate::vk::MemoryUnmapInfo<'_>,
+    ) -> crate::vk::Result {
+        (self.device_fn_1_4.unmap_memory2)(device, p_memory_unmap_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_descriptor_sets2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_bind_descriptor_sets_info: *const crate::vk::BindDescriptorSetsInfo<'_>,
+    ) {
+        (self
+            .device_fn_1_4
+            .cmd_bind_descriptor_sets2)(command_buffer, p_bind_descriptor_sets_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_push_constants2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_push_constants_info: *const crate::vk::PushConstantsInfo<'_>,
+    ) {
+        (self.device_fn_1_4.cmd_push_constants2)(command_buffer, p_push_constants_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_push_descriptor_set2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_push_descriptor_set_info: *const crate::vk::PushDescriptorSetInfo<'_>,
+    ) {
+        (self
+            .device_fn_1_4
+            .cmd_push_descriptor_set2)(command_buffer, p_push_descriptor_set_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_push_descriptor_set_with_template2(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_push_descriptor_set_with_template_info: *const crate::vk::PushDescriptorSetWithTemplateInfo<
+            '_,
+        >,
+    ) {
+        (self
+            .device_fn_1_4
+            .cmd_push_descriptor_set_with_template2)(
+            command_buffer,
+            p_push_descriptor_set_with_template_info,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_set_rendering_attachment_locations(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_location_info: *const crate::vk::RenderingAttachmentLocationInfo<'_>,
+    ) {
+        (self
+            .device_fn_1_4
+            .cmd_set_rendering_attachment_locations)(command_buffer, p_location_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_set_rendering_input_attachment_indices(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_input_attachment_index_info: *const crate::vk::RenderingInputAttachmentIndexInfo<
+            '_,
+        >,
+    ) {
+        (self
+            .device_fn_1_4
+            .cmd_set_rendering_input_attachment_indices)(
+            command_buffer,
+            p_input_attachment_index_info,
+        )
     }
 }
 pub(crate) mod items {

@@ -98,6 +98,34 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_memory_metal_handle_ext(
+        &self,
+        device: crate::vk::Device,
+        p_get_metal_handle_info: *const crate::vk::MemoryGetMetalHandleInfoEXT<'_>,
+        p_handle: *mut *mut core::ffi::c_void,
+    ) -> crate::vk::Result {
+        (self.fp.get_memory_metal_handle_ext)(device, p_get_metal_handle_info, p_handle)
+    }
+    #[inline]
+    pub unsafe fn get_memory_metal_handle_properties_ext(
+        &self,
+        device: crate::vk::Device,
+        handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        p_handle: *const core::ffi::c_void,
+        p_memory_metal_handle_properties: *mut crate::vk::MemoryMetalHandlePropertiesEXT<
+            '_,
+        >,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_memory_metal_handle_properties_ext)(
+            device,
+            handle_type,
+            p_handle,
+            p_memory_metal_handle_properties,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_external_memory_metal";

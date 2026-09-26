@@ -82,6 +82,14 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_dispatch_parameters_arm(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_dispatch_parameters: *const crate::vk::DispatchParametersARM<'_>,
+    ) {
+        (self.fp.cmd_set_dispatch_parameters_arm)(command_buffer, p_dispatch_parameters)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_scheduling_controls";

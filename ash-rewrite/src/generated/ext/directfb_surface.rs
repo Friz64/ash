@@ -80,6 +80,38 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_direct_fb_surface_ext(
+        &self,
+        instance: crate::vk::Instance,
+        p_create_info: *const crate::vk::DirectFBSurfaceCreateInfoEXT<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_surface: *mut crate::vk::SurfaceKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_direct_fb_surface_ext)(
+            instance,
+            p_create_info,
+            p_allocator,
+            p_surface,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_direct_fb_presentation_support_ext(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        queue_family_index: u32,
+        dfb: *mut crate::platform_types::IDirectFB,
+    ) -> crate::vk::Bool32 {
+        (self
+            .fp
+            .get_physical_device_direct_fb_presentation_support_ext)(
+            physical_device,
+            queue_family_index,
+            dfb,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_directfb_surface";

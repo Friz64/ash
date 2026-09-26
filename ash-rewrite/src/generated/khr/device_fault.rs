@@ -124,6 +124,26 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_device_fault_reports_khr(
+        &self,
+        device: crate::vk::Device,
+        timeout: u64,
+        p_fault_counts: *mut u32,
+        p_fault_info: *mut crate::vk::DeviceFaultInfoKHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_device_fault_reports_khr)(device, timeout, p_fault_counts, p_fault_info)
+    }
+    #[inline]
+    pub unsafe fn get_device_fault_debug_info_khr(
+        &self,
+        device: crate::vk::Device,
+        p_debug_info: *mut crate::vk::DeviceFaultDebugInfoKHR<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.get_device_fault_debug_info_khr)(device, p_debug_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_device_fault";

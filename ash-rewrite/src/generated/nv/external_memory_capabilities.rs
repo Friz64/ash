@@ -104,6 +104,31 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_physical_device_external_image_format_properties_nv(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        format: crate::vk::Format,
+        _type: crate::vk::ImageType,
+        tiling: crate::vk::ImageTiling,
+        usage: crate::vk::ImageUsageFlags,
+        flags: crate::vk::ImageCreateFlags,
+        external_handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+        p_external_image_format_properties: *mut crate::vk::ExternalImageFormatPropertiesNV,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_external_image_format_properties_nv)(
+            physical_device,
+            format,
+            _type,
+            tiling,
+            usage,
+            flags,
+            external_handle_type,
+            p_external_image_format_properties,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_capabilities";

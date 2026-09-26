@@ -105,6 +105,53 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_device_buffer_memory_requirements_khr(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::DeviceBufferMemoryRequirements<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .fp
+            .get_device_buffer_memory_requirements_khr)(
+            device,
+            p_info,
+            p_memory_requirements,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_device_image_memory_requirements_khr(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::DeviceImageMemoryRequirements<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .fp
+            .get_device_image_memory_requirements_khr)(
+            device,
+            p_info,
+            p_memory_requirements,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_device_image_sparse_memory_requirements_khr(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::DeviceImageMemoryRequirements<'_>,
+        p_sparse_memory_requirement_count: *mut u32,
+        p_sparse_memory_requirements: *mut crate::vk::SparseImageMemoryRequirements2<'_>,
+    ) {
+        (self
+            .fp
+            .get_device_image_sparse_memory_requirements_khr)(
+            device,
+            p_info,
+            p_sparse_memory_requirement_count,
+            p_sparse_memory_requirements,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance4";

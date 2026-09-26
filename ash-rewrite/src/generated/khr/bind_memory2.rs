@@ -86,6 +86,24 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn bind_buffer_memory2_khr(
+        &self,
+        device: crate::vk::Device,
+        bind_info_count: u32,
+        p_bind_infos: *const crate::vk::BindBufferMemoryInfo<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.bind_buffer_memory2_khr)(device, bind_info_count, p_bind_infos)
+    }
+    #[inline]
+    pub unsafe fn bind_image_memory2_khr(
+        &self,
+        device: crate::vk::Device,
+        bind_info_count: u32,
+        p_bind_infos: *const crate::vk::BindImageMemoryInfo<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.bind_image_memory2_khr)(device, bind_info_count, p_bind_infos)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_bind_memory2";

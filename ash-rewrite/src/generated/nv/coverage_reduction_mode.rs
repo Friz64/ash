@@ -74,6 +74,21 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_combination_count: *mut u32,
+        p_combinations: *mut crate::vk::FramebufferMixedSamplesCombinationNV<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_supported_framebuffer_mixed_samples_combinations_nv)(
+            physical_device,
+            p_combination_count,
+            p_combinations,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_coverage_reduction_mode";

@@ -153,6 +153,69 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn set_latency_sleep_mode_legacy_nv(
+        &self,
+        device: crate::vk::Device,
+        low_latency_mode: crate::vk::Bool32,
+        low_latency_boost: crate::vk::Bool32,
+        minimum_interval_us: u32,
+    ) {
+        (self
+            .fp
+            .set_latency_sleep_mode_legacy_nv)(
+            device,
+            low_latency_mode,
+            low_latency_boost,
+            minimum_interval_us,
+        )
+    }
+    #[inline]
+    pub unsafe fn latency_sleep_legacy_nv(
+        &self,
+        device: crate::vk::Device,
+        signal_semaphore: crate::vk::Semaphore,
+        value: u64,
+    ) {
+        (self.fp.latency_sleep_legacy_nv)(device, signal_semaphore, value)
+    }
+    #[inline]
+    pub unsafe fn set_latency_marker_legacy_nv(
+        &self,
+        device: crate::vk::Device,
+        frame_id: u64,
+        marker: u32,
+    ) {
+        (self.fp.set_latency_marker_legacy_nv)(device, frame_id, marker)
+    }
+    #[inline]
+    pub unsafe fn get_latency_timings_legacy_nv(
+        &self,
+        device: crate::vk::Device,
+        p_timings: *mut core::ffi::c_void,
+    ) {
+        (self.fp.get_latency_timings_legacy_nv)(device, p_timings)
+    }
+    #[inline]
+    pub unsafe fn queue_notify_out_of_band_legacy_nv(
+        &self,
+        queue: crate::vk::Queue,
+        queue_type: u32,
+    ) {
+        (self.fp.queue_notify_out_of_band_legacy_nv)(queue, queue_type)
+    }
+    #[inline]
+    pub unsafe fn get_sleep_status_legacy_nv(
+        &self,
+        device: crate::vk::Device,
+        p_low_latency_mode: *mut crate::vk::Bool32,
+    ) {
+        (self.fp.get_sleep_status_legacy_nv)(device, p_low_latency_mode)
+    }
+    #[inline]
+    pub unsafe fn shutdown_latency_device_legacy_nv(&self, device: crate::vk::Device) {
+        (self.fp.shutdown_latency_device_legacy_nv)(device)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NV_low_latency";

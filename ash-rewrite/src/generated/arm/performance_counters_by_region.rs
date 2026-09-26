@@ -77,6 +77,25 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn enumerate_physical_device_queue_family_performance_counters_by_region_arm(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        queue_family_index: u32,
+        p_counter_count: *mut u32,
+        p_counters: *mut crate::vk::PerformanceCounterARM<'_>,
+        p_counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionARM<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .enumerate_physical_device_queue_family_performance_counters_by_region_arm)(
+            physical_device,
+            queue_family_index,
+            p_counter_count,
+            p_counters,
+            p_counter_descriptions,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_performance_counters_by_region";

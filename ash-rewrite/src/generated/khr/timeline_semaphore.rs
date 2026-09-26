@@ -110,6 +110,32 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_semaphore_counter_value_khr(
+        &self,
+        device: crate::vk::Device,
+        semaphore: crate::vk::Semaphore,
+        p_value: *mut u64,
+    ) -> crate::vk::Result {
+        (self.fp.get_semaphore_counter_value_khr)(device, semaphore, p_value)
+    }
+    #[inline]
+    pub unsafe fn wait_semaphores_khr(
+        &self,
+        device: crate::vk::Device,
+        p_wait_info: *const crate::vk::SemaphoreWaitInfo<'_>,
+        timeout: u64,
+    ) -> crate::vk::Result {
+        (self.fp.wait_semaphores_khr)(device, p_wait_info, timeout)
+    }
+    #[inline]
+    pub unsafe fn signal_semaphore_khr(
+        &self,
+        device: crate::vk::Device,
+        p_signal_info: *const crate::vk::SemaphoreSignalInfo<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.signal_semaphore_khr)(device, p_signal_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_timeline_semaphore";

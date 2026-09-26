@@ -156,6 +156,69 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_pipeline_binaries_khr(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::PipelineBinaryCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_binaries: *mut crate::vk::PipelineBinaryHandlesInfoKHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_pipeline_binaries_khr)(
+            device,
+            p_create_info,
+            p_allocator,
+            p_binaries,
+        )
+    }
+    #[inline]
+    pub unsafe fn destroy_pipeline_binary_khr(
+        &self,
+        device: crate::vk::Device,
+        pipeline_binary: crate::vk::PipelineBinaryKHR,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_pipeline_binary_khr)(device, pipeline_binary, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn get_pipeline_key_khr(
+        &self,
+        device: crate::vk::Device,
+        p_pipeline_create_info: *const crate::vk::PipelineCreateInfoKHR<'_>,
+        p_pipeline_key: *mut crate::vk::PipelineBinaryKeyKHR<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.get_pipeline_key_khr)(device, p_pipeline_create_info, p_pipeline_key)
+    }
+    #[inline]
+    pub unsafe fn get_pipeline_binary_data_khr(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::PipelineBinaryDataInfoKHR<'_>,
+        p_pipeline_binary_key: *mut crate::vk::PipelineBinaryKeyKHR<'_>,
+        p_pipeline_binary_data_size: *mut usize,
+        p_pipeline_binary_data: *mut core::ffi::c_void,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_pipeline_binary_data_khr)(
+            device,
+            p_info,
+            p_pipeline_binary_key,
+            p_pipeline_binary_data_size,
+            p_pipeline_binary_data,
+        )
+    }
+    #[inline]
+    pub unsafe fn release_captured_pipeline_data_khr(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.release_captured_pipeline_data_khr)(device, p_info, p_allocator)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_pipeline_binary";

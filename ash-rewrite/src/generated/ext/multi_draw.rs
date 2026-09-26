@@ -85,6 +85,50 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_draw_multi_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        draw_count: u32,
+        p_vertex_info: *const crate::vk::MultiDrawInfoEXT,
+        instance_count: u32,
+        first_instance: u32,
+        stride: u32,
+    ) {
+        (self
+            .fp
+            .cmd_draw_multi_ext)(
+            command_buffer,
+            draw_count,
+            p_vertex_info,
+            instance_count,
+            first_instance,
+            stride,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_draw_multi_indexed_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        draw_count: u32,
+        p_index_info: *const crate::vk::MultiDrawIndexedInfoEXT,
+        instance_count: u32,
+        first_instance: u32,
+        stride: u32,
+        p_vertex_offset: *const i32,
+    ) {
+        (self
+            .fp
+            .cmd_draw_multi_indexed_ext)(
+            command_buffer,
+            draw_count,
+            p_index_info,
+            instance_count,
+            first_instance,
+            stride,
+            p_vertex_offset,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_multi_draw";

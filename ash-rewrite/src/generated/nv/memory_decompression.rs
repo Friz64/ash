@@ -79,6 +79,38 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_decompress_memory_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        decompress_region_count: u32,
+        p_decompress_memory_regions: *const crate::vk::DecompressMemoryRegionNV,
+    ) {
+        (self
+            .fp
+            .cmd_decompress_memory_nv)(
+            command_buffer,
+            decompress_region_count,
+            p_decompress_memory_regions,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_decompress_memory_indirect_count_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        indirect_commands_address: crate::vk::DeviceAddress,
+        indirect_commands_count_address: crate::vk::DeviceAddress,
+        stride: u32,
+    ) {
+        (self
+            .fp
+            .cmd_decompress_memory_indirect_count_nv)(
+            command_buffer,
+            indirect_commands_address,
+            indirect_commands_count_address,
+            stride,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_memory_decompression";

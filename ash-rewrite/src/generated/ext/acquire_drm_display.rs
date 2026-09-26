@@ -76,6 +76,25 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn acquire_drm_display_ext(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        drm_fd: i32,
+        display: crate::vk::DisplayKHR,
+    ) -> crate::vk::Result {
+        (self.fp.acquire_drm_display_ext)(physical_device, drm_fd, display)
+    }
+    #[inline]
+    pub unsafe fn get_drm_display_ext(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        drm_fd: i32,
+        connector_id: u32,
+        display: *mut crate::vk::DisplayKHR,
+    ) -> crate::vk::Result {
+        (self.fp.get_drm_display_ext)(physical_device, drm_fd, connector_id, display)
+    }
 }
 pub(crate) mod items {
     pub type PFN_vkAcquireDrmDisplayEXT = unsafe extern "system" fn(

@@ -89,6 +89,14 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_buffer_device_address_ext(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::BufferDeviceAddressInfo<'_>,
+    ) -> crate::vk::DeviceAddress {
+        (self.fp.get_buffer_device_address_ext)(device, p_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_buffer_device_address";

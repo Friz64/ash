@@ -77,6 +77,15 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_screen_buffer_properties_qnx(
+        &self,
+        device: crate::vk::Device,
+        buffer: *const crate::platform_types::_screen_buffer,
+        p_properties: *mut crate::vk::ScreenBufferPropertiesQNX<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.get_screen_buffer_properties_qnx)(device, buffer, p_properties)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QNX_external_memory_screen_buffer";

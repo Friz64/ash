@@ -101,6 +101,14 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn export_metal_objects_ext(
+        &self,
+        device: crate::vk::Device,
+        p_metal_objects_info: *mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
+    ) {
+        (self.fp.export_metal_objects_ext)(device, p_metal_objects_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_metal_objects";

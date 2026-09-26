@@ -458,6 +458,166 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_micromap_ext(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::MicromapCreateInfoEXT<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_micromap: *mut crate::vk::MicromapEXT,
+    ) -> crate::vk::Result {
+        (self.fp.create_micromap_ext)(device, p_create_info, p_allocator, p_micromap)
+    }
+    #[inline]
+    pub unsafe fn cmd_build_micromaps_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        info_count: u32,
+        p_infos: *const crate::vk::MicromapBuildInfoEXT<'_>,
+    ) {
+        (self.fp.cmd_build_micromaps_ext)(command_buffer, info_count, p_infos)
+    }
+    #[inline]
+    pub unsafe fn build_micromaps_ext(
+        &self,
+        device: crate::vk::Device,
+        deferred_operation: crate::vk::DeferredOperationKHR,
+        info_count: u32,
+        p_infos: *const crate::vk::MicromapBuildInfoEXT<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.build_micromaps_ext)(device, deferred_operation, info_count, p_infos)
+    }
+    #[inline]
+    pub unsafe fn destroy_micromap_ext(
+        &self,
+        device: crate::vk::Device,
+        micromap: crate::vk::MicromapEXT,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_micromap_ext)(device, micromap, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn cmd_copy_micromap_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_info: *const crate::vk::CopyMicromapInfoEXT<'_>,
+    ) {
+        (self.fp.cmd_copy_micromap_ext)(command_buffer, p_info)
+    }
+    #[inline]
+    pub unsafe fn copy_micromap_ext(
+        &self,
+        device: crate::vk::Device,
+        deferred_operation: crate::vk::DeferredOperationKHR,
+        p_info: *const crate::vk::CopyMicromapInfoEXT<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.copy_micromap_ext)(device, deferred_operation, p_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_copy_micromap_to_memory_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_info: *const crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
+    ) {
+        (self.fp.cmd_copy_micromap_to_memory_ext)(command_buffer, p_info)
+    }
+    #[inline]
+    pub unsafe fn copy_micromap_to_memory_ext(
+        &self,
+        device: crate::vk::Device,
+        deferred_operation: crate::vk::DeferredOperationKHR,
+        p_info: *const crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.copy_micromap_to_memory_ext)(device, deferred_operation, p_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_copy_memory_to_micromap_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_info: *const crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
+    ) {
+        (self.fp.cmd_copy_memory_to_micromap_ext)(command_buffer, p_info)
+    }
+    #[inline]
+    pub unsafe fn copy_memory_to_micromap_ext(
+        &self,
+        device: crate::vk::Device,
+        deferred_operation: crate::vk::DeferredOperationKHR,
+        p_info: *const crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.copy_memory_to_micromap_ext)(device, deferred_operation, p_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_write_micromaps_properties_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        micromap_count: u32,
+        p_micromaps: *const crate::vk::MicromapEXT,
+        query_type: crate::vk::QueryType,
+        query_pool: crate::vk::QueryPool,
+        first_query: u32,
+    ) {
+        (self
+            .fp
+            .cmd_write_micromaps_properties_ext)(
+            command_buffer,
+            micromap_count,
+            p_micromaps,
+            query_type,
+            query_pool,
+            first_query,
+        )
+    }
+    #[inline]
+    pub unsafe fn write_micromaps_properties_ext(
+        &self,
+        device: crate::vk::Device,
+        micromap_count: u32,
+        p_micromaps: *const crate::vk::MicromapEXT,
+        query_type: crate::vk::QueryType,
+        data_size: usize,
+        p_data: *mut core::ffi::c_void,
+        stride: usize,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .write_micromaps_properties_ext)(
+            device,
+            micromap_count,
+            p_micromaps,
+            query_type,
+            data_size,
+            p_data,
+            stride,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_device_micromap_compatibility_ext(
+        &self,
+        device: crate::vk::Device,
+        p_version_info: *const crate::vk::MicromapVersionInfoEXT<'_>,
+        p_compatibility: *mut crate::vk::AccelerationStructureCompatibilityKHR,
+    ) {
+        (self
+            .fp
+            .get_device_micromap_compatibility_ext)(
+            device,
+            p_version_info,
+            p_compatibility,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_micromap_build_sizes_ext(
+        &self,
+        device: crate::vk::Device,
+        build_type: crate::vk::AccelerationStructureBuildTypeKHR,
+        p_build_info: *const crate::vk::MicromapBuildInfoEXT<'_>,
+        p_size_info: *mut crate::vk::MicromapBuildSizesInfoEXT<'_>,
+    ) {
+        (self
+            .fp
+            .get_micromap_build_sizes_ext)(device, build_type, p_build_info, p_size_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_opacity_micromap";

@@ -62,6 +62,19 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_set_primitive_restart_index_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        primitive_restart_index: u32,
+    ) {
+        (self
+            .fp
+            .cmd_set_primitive_restart_index_ext)(
+            command_buffer,
+            primitive_restart_index,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_primitive_restart_index";

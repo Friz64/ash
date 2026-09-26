@@ -14,7 +14,7 @@ use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};
 use std::ffi::CString;
 use syn::Ident;
-use tracing::debug;
+use tracing::{debug, instrument};
 
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub enum FunctionType {
@@ -65,21 +65,23 @@ impl FunctionType {
         }
     }
 
-    fn loader_name(self, dest: &Destination) -> Option<Ident> {
-        match (self, dest.location) {
-            (FunctionType::Static | FunctionType::Entry, _) => None,
-            (FunctionType::Instance, RequireLocation::Core { major, minor }) => {
-                Some(format_ident!("InstanceV{major}_{minor}"))
-            }
-            (FunctionType::Instance, RequireLocation::Extension { .. }) => {
-                Some(format_ident!("Instance"))
-            }
-            (FunctionType::Device, RequireLocation::Core { major, minor }) => {
-                Some(format_ident!("DeviceV{major}_{minor}"))
-            }
-            (FunctionType::Device, RequireLocation::Extension { .. }) => {
-                Some(format_ident!("Device"))
-            }
+    fn table_field(self, dest: &Destination) -> Ident {
+        match dest.location {
+            RequireLocation::Core { major, minor } => match self {
+                FunctionType::Static => format_ident!("static_fn"),
+                FunctionType::Entry => format_ident!("entry_fn_{major}_{minor}"),
+                FunctionType::Instance => format_ident!("instance_fn_{major}_{minor}"),
+                FunctionType::Device => format_ident!("device_fn_{major}_{minor}"),
+            },
+            RequireLocation::Extension { .. } => format_ident!("fp"),
+        }
+    }
+
+    fn loader_name(self) -> Ident {
+        match self {
+            FunctionType::Static | FunctionType::Entry => format_ident!("Entry"),
+            FunctionType::Instance => format_ident!("Instance"),
+            FunctionType::Device => format_ident!("Device"),
         }
     }
 }
@@ -91,6 +93,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
     struct Table {
         fields: TokenStream,
         loaders: TokenStream,
+        wrappers: TokenStream,
     }
 
     let mut tables: IndexMap<(FunctionType, Destination), Table> = Default::default();
@@ -105,6 +108,8 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
 
         let function_type = FunctionType::of_command(command);
         for mut dest in Destination::all_locations(required_by) {
+            let table_field = function_type.table_field(&dest);
+
             dest.reexport = false;
             let table = tables.entry((function_type, dest)).or_default();
 
@@ -113,6 +118,17 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             table.fields.extend(quote! {
                 pub #field_name: #command_ty,
             });
+
+            if ![
+                CommandName::VK_ENUMERATE_INSTANCE_VERSION,
+                CommandName::VK_CREATE_INSTANCE,
+                CommandName::VK_CREATE_DEVICE,
+            ]
+            .contains(&name)
+            {
+                let code = wrapper(ctx, command, &field_name, table_field);
+                table.wrappers.extend(code);
+            }
 
             let panic_msg = format!("unable to load {}", name.original());
             let cstr = Literal::c_string(&CString::new(name.original()).unwrap());
@@ -146,11 +162,62 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
         }
     }
 
-    for ((function_type, dest), Table { fields, loaders }) in tables.into_iter() {
+    for ((function_type, dest), table) in tables.into_iter() {
+        let Table {
+            fields,
+            loaders,
+            wrappers,
+        } = table;
+
         let table_name = function_type.table_name(&dest);
-        let loader_name = function_type.loader_name(&dest);
-        let loader_code = match function_type {
-            FunctionType::Instance => Some(quote! {
+        let table_code = quote! {
+            #[derive(Clone)]
+            pub struct #table_name {
+                #fields
+            }
+
+            unsafe impl Send for #table_name {}
+            unsafe impl Sync for #table_name {}
+
+            impl #table_name {
+                pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(mut f: F) -> Self {
+                    Self::load_erased(&mut f)
+                }
+
+                fn load_erased(_f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void) -> Self {
+                    Self { #loaders }
+                }
+            }
+        };
+
+        let loader_name = function_type.loader_name();
+        let loader_code = match (dest.location, function_type) {
+            (RequireLocation::Core { major, minor }, _) => {
+                let table_getter = matches!(
+                    function_type,
+                    FunctionType::Entry | FunctionType::Instance | FunctionType::Device
+                )
+                .then(|| {
+                    let name = format_ident!("fp_v{major}_{minor}");
+                    let table_field = function_type.table_field(&dest);
+                    quote! {
+                        #[inline]
+                        pub fn #name(&self) -> &crate::#table_name {
+                            &self.#table_field
+                        }
+                    }
+                });
+
+                let doc = dest.provided_by_doc_comment();
+                Some(quote! {
+                    #[doc = #doc]
+                    impl crate::#loader_name {
+                        #table_getter
+                        #wrappers
+                    }
+                })
+            }
+            (RequireLocation::Extension { .. }, FunctionType::Instance) => Some(quote! {
                 #[derive(Clone)]
                 pub struct #loader_name {
                     pub(crate) fp: #table_name,
@@ -175,9 +242,11 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                     pub fn instance(&self) -> crate::vk::Instance {
                         self.handle
                     }
+
+                    #wrappers
                 }
             }),
-            FunctionType::Device => Some(quote! {
+            (RequireLocation::Extension { .. }, FunctionType::Device) => Some(quote! {
                 #[derive(Clone)]
                 pub struct #loader_name {
                     pub(crate) fp: #table_name,
@@ -202,33 +271,33 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                     pub fn device(&self) -> crate::vk::Device {
                         self.handle
                     }
+
+                    #wrappers
                 }
             }),
             _ => None,
         };
 
-        let code = quote! {
-            #[derive(Clone)]
-            pub struct #table_name {
-                #fields
-            }
+        codemap.extend(CodeMap::new(dest, quote! { #table_code #loader_code }));
+    }
+}
 
-            unsafe impl Send for #table_name {}
-            unsafe impl Sync for #table_name {}
+#[instrument(skip(ctx))]
+fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -> TokenStream {
+    let param_names = (command.params.iter()).map(|param| ctx.variable_token(param.decl.name));
 
-            impl #table_name {
-                pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(mut f: F) -> Self {
-                    Self::load_erased(&mut f)
-                }
+    let param_decls = (command.params.iter())
+        .map(|param| param.decl.to_rust().tokens(ctx, &Lifetime::placeholder()));
 
-                fn load_erased(_f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void) -> Self {
-                    Self { #loaders }
-                }
-            }
+    let ret = command.return_type.as_ref().map(|ty| {
+        let rust_ty = ty.to_rust().tokens(ctx, &Lifetime::placeholder());
+        quote! { -> #rust_ty }
+    });
 
-            #loader_code
-        };
-
-        codemap.extend(CodeMap::new(dest, code));
+    quote! {
+        #[inline]
+        pub unsafe fn #name(&self #( , #param_decls )*) #ret {
+            (self.#table_field.#name)( #( #param_names ),* )
+        }
     }
 }

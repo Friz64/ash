@@ -77,6 +77,23 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_semaphore_fd_khr(
+        &self,
+        device: crate::vk::Device,
+        p_get_fd_info: *const crate::vk::SemaphoreGetFdInfoKHR<'_>,
+        p_fd: *mut core::ffi::c_int,
+    ) -> crate::vk::Result {
+        (self.fp.get_semaphore_fd_khr)(device, p_get_fd_info, p_fd)
+    }
+    #[inline]
+    pub unsafe fn import_semaphore_fd_khr(
+        &self,
+        device: crate::vk::Device,
+        p_import_semaphore_fd_info: *const crate::vk::ImportSemaphoreFdInfoKHR<'_>,
+    ) -> crate::vk::Result {
+        (self.fp.import_semaphore_fd_khr)(device, p_import_semaphore_fd_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_fd";

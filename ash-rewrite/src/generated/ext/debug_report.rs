@@ -162,6 +162,57 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_debug_report_callback_ext(
+        &self,
+        instance: crate::vk::Instance,
+        p_create_info: *const crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_callback: *mut crate::vk::DebugReportCallbackEXT,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_debug_report_callback_ext)(
+            instance,
+            p_create_info,
+            p_allocator,
+            p_callback,
+        )
+    }
+    #[inline]
+    pub unsafe fn destroy_debug_report_callback_ext(
+        &self,
+        instance: crate::vk::Instance,
+        callback: crate::vk::DebugReportCallbackEXT,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_debug_report_callback_ext)(instance, callback, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn debug_report_message_ext(
+        &self,
+        instance: crate::vk::Instance,
+        flags: crate::vk::DebugReportFlagsEXT,
+        object_type: crate::vk::DebugReportObjectTypeEXT,
+        object: u64,
+        location: usize,
+        message_code: i32,
+        p_layer_prefix: *const core::ffi::c_char,
+        p_message: *const core::ffi::c_char,
+    ) {
+        (self
+            .fp
+            .debug_report_message_ext)(
+            instance,
+            flags,
+            object_type,
+            object,
+            location,
+            message_code,
+            p_layer_prefix,
+            p_message,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 10;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_report";

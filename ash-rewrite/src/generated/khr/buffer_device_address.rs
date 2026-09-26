@@ -132,6 +132,30 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_buffer_opaque_capture_address_khr(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::BufferDeviceAddressInfo<'_>,
+    ) -> u64 {
+        (self.fp.get_buffer_opaque_capture_address_khr)(device, p_info)
+    }
+    #[inline]
+    pub unsafe fn get_buffer_device_address_khr(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::BufferDeviceAddressInfo<'_>,
+    ) -> crate::vk::DeviceAddress {
+        (self.fp.get_buffer_device_address_khr)(device, p_info)
+    }
+    #[inline]
+    pub unsafe fn get_device_memory_opaque_capture_address_khr(
+        &self,
+        device: crate::vk::Device,
+        p_info: *const crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
+    ) -> u64 {
+        (self.fp.get_device_memory_opaque_capture_address_khr)(device, p_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_buffer_device_address";

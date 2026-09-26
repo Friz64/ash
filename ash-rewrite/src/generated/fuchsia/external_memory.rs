@@ -90,6 +90,40 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_memory_zircon_handle_fuchsia(
+        &self,
+        device: crate::vk::Device,
+        p_get_zircon_handle_info: *const crate::vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
+        p_zircon_handle: *mut crate::platform_types::zx_handle_t,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_memory_zircon_handle_fuchsia)(
+            device,
+            p_get_zircon_handle_info,
+            p_zircon_handle,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_memory_zircon_handle_properties_fuchsia(
+        &self,
+        device: crate::vk::Device,
+        handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        zircon_handle: crate::platform_types::zx_handle_t,
+        p_memory_zircon_handle_properties: *mut crate::vk::MemoryZirconHandlePropertiesFUCHSIA<
+            '_,
+        >,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_memory_zircon_handle_properties_fuchsia)(
+            device,
+            handle_type,
+            zircon_handle,
+            p_memory_zircon_handle_properties,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_memory";

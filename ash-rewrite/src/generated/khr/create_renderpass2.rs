@@ -115,6 +115,56 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_render_pass2_khr(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::RenderPassCreateInfo2<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_render_pass: *mut crate::vk::RenderPass,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_render_pass2_khr)(device, p_create_info, p_allocator, p_render_pass)
+    }
+    #[inline]
+    pub unsafe fn cmd_begin_render_pass2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_render_pass_begin: *const crate::vk::RenderPassBeginInfo<'_>,
+        p_subpass_begin_info: *const crate::vk::SubpassBeginInfo<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_begin_render_pass2_khr)(
+            command_buffer,
+            p_render_pass_begin,
+            p_subpass_begin_info,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_next_subpass2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_subpass_begin_info: *const crate::vk::SubpassBeginInfo<'_>,
+        p_subpass_end_info: *const crate::vk::SubpassEndInfo<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_next_subpass2_khr)(
+            command_buffer,
+            p_subpass_begin_info,
+            p_subpass_end_info,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_end_render_pass2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_subpass_end_info: *const crate::vk::SubpassEndInfo<'_>,
+    ) {
+        (self.fp.cmd_end_render_pass2_khr)(command_buffer, p_subpass_end_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_create_renderpass2";

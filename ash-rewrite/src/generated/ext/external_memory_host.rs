@@ -80,6 +80,25 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_memory_host_pointer_properties_ext(
+        &self,
+        device: crate::vk::Device,
+        handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        p_host_pointer: *const core::ffi::c_void,
+        p_memory_host_pointer_properties: *mut crate::vk::MemoryHostPointerPropertiesEXT<
+            '_,
+        >,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_memory_host_pointer_properties_ext)(
+            device,
+            handle_type,
+            p_host_pointer,
+            p_memory_host_pointer_properties,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_external_memory_host";

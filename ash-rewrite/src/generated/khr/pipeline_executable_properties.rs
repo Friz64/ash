@@ -126,6 +126,59 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_pipeline_executable_properties_khr(
+        &self,
+        device: crate::vk::Device,
+        p_pipeline_info: *const crate::vk::PipelineInfoKHR<'_>,
+        p_executable_count: *mut u32,
+        p_properties: *mut crate::vk::PipelineExecutablePropertiesKHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_pipeline_executable_properties_khr)(
+            device,
+            p_pipeline_info,
+            p_executable_count,
+            p_properties,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_pipeline_executable_statistics_khr(
+        &self,
+        device: crate::vk::Device,
+        p_executable_info: *const crate::vk::PipelineExecutableInfoKHR<'_>,
+        p_statistic_count: *mut u32,
+        p_statistics: *mut crate::vk::PipelineExecutableStatisticKHR<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_pipeline_executable_statistics_khr)(
+            device,
+            p_executable_info,
+            p_statistic_count,
+            p_statistics,
+        )
+    }
+    #[inline]
+    pub unsafe fn get_pipeline_executable_internal_representations_khr(
+        &self,
+        device: crate::vk::Device,
+        p_executable_info: *const crate::vk::PipelineExecutableInfoKHR<'_>,
+        p_internal_representation_count: *mut u32,
+        p_internal_representations: *mut crate::vk::PipelineExecutableInternalRepresentationKHR<
+            '_,
+        >,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_pipeline_executable_internal_representations_khr)(
+            device,
+            p_executable_info,
+            p_internal_representation_count,
+            p_internal_representations,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_pipeline_executable_properties";

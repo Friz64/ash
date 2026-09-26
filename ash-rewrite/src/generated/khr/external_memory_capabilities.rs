@@ -119,6 +119,21 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_physical_device_external_buffer_properties_khr(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_external_buffer_info: *const crate::vk::PhysicalDeviceExternalBufferInfo<'_>,
+        p_external_buffer_properties: *mut crate::vk::ExternalBufferProperties<'_>,
+    ) {
+        (self
+            .fp
+            .get_physical_device_external_buffer_properties_khr)(
+            physical_device,
+            p_external_buffer_info,
+            p_external_buffer_properties,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_external_memory_capabilities";

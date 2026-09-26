@@ -62,6 +62,18 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_mac_os_surface_mvk(
+        &self,
+        instance: crate::vk::Instance,
+        p_create_info: *const crate::vk::MacOSSurfaceCreateInfoMVK<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_surface: *mut crate::vk::SurfaceKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_mac_os_surface_mvk)(instance, p_create_info, p_allocator, p_surface)
+    }
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_MVK_macos_surface";

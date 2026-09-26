@@ -158,6 +158,62 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn create_cuda_module_nv(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::CudaModuleCreateInfoNV<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_module: *mut crate::vk::CudaModuleNV,
+    ) -> crate::vk::Result {
+        (self.fp.create_cuda_module_nv)(device, p_create_info, p_allocator, p_module)
+    }
+    #[inline]
+    pub unsafe fn get_cuda_module_cache_nv(
+        &self,
+        device: crate::vk::Device,
+        module: crate::vk::CudaModuleNV,
+        p_cache_size: *mut usize,
+        p_cache_data: *mut core::ffi::c_void,
+    ) -> crate::vk::Result {
+        (self.fp.get_cuda_module_cache_nv)(device, module, p_cache_size, p_cache_data)
+    }
+    #[inline]
+    pub unsafe fn create_cuda_function_nv(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::CudaFunctionCreateInfoNV<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_function: *mut crate::vk::CudaFunctionNV,
+    ) -> crate::vk::Result {
+        (self.fp.create_cuda_function_nv)(device, p_create_info, p_allocator, p_function)
+    }
+    #[inline]
+    pub unsafe fn destroy_cuda_module_nv(
+        &self,
+        device: crate::vk::Device,
+        module: crate::vk::CudaModuleNV,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_cuda_module_nv)(device, module, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn destroy_cuda_function_nv(
+        &self,
+        device: crate::vk::Device,
+        function: crate::vk::CudaFunctionNV,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+    ) {
+        (self.fp.destroy_cuda_function_nv)(device, function, p_allocator)
+    }
+    #[inline]
+    pub unsafe fn cmd_cuda_launch_kernel_nv(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_launch_info: *const crate::vk::CudaLaunchInfoNV<'_>,
+    ) {
+        (self.fp.cmd_cuda_launch_kernel_nv)(command_buffer, p_launch_info)
+    }
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NV_cuda_kernel_launch";

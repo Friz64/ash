@@ -442,6 +442,275 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn cmd_copy_memory_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_copy_memory_info: *const crate::vk::CopyDeviceMemoryInfoKHR<'_>,
+    ) {
+        (self.fp.cmd_copy_memory_khr)(command_buffer, p_copy_memory_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_copy_memory_to_image_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_copy_memory_info: *const crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
+    ) {
+        (self.fp.cmd_copy_memory_to_image_khr)(command_buffer, p_copy_memory_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_copy_image_to_memory_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_copy_memory_info: *const crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
+    ) {
+        (self.fp.cmd_copy_image_to_memory_khr)(command_buffer, p_copy_memory_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_update_memory_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_dst_range: *const crate::vk::DeviceAddressRangeKHR,
+        dst_flags: crate::vk::AddressCommandFlagsKHR,
+        data_size: crate::vk::DeviceSize,
+        p_data: *const core::ffi::c_void,
+    ) {
+        (self
+            .fp
+            .cmd_update_memory_khr)(
+            command_buffer,
+            p_dst_range,
+            dst_flags,
+            data_size,
+            p_data,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_fill_memory_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_dst_range: *const crate::vk::DeviceAddressRangeKHR,
+        dst_flags: crate::vk::AddressCommandFlagsKHR,
+        data: u32,
+    ) {
+        (self.fp.cmd_fill_memory_khr)(command_buffer, p_dst_range, dst_flags, data)
+    }
+    #[inline]
+    pub unsafe fn cmd_copy_query_pool_results_to_memory_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        query_pool: crate::vk::QueryPool,
+        first_query: u32,
+        query_count: u32,
+        p_dst_range: *const crate::vk::StridedDeviceAddressRangeKHR,
+        dst_flags: crate::vk::AddressCommandFlagsKHR,
+        query_result_flags: crate::vk::QueryResultFlags,
+    ) {
+        (self
+            .fp
+            .cmd_copy_query_pool_results_to_memory_khr)(
+            command_buffer,
+            query_pool,
+            first_query,
+            query_count,
+            p_dst_range,
+            dst_flags,
+            query_result_flags,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_begin_conditional_rendering2_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfo2EXT<
+            '_,
+        >,
+    ) {
+        (self
+            .fp
+            .cmd_begin_conditional_rendering2_ext)(
+            command_buffer,
+            p_conditional_rendering_begin,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_transform_feedback_buffers2_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_binding: u32,
+        binding_count: u32,
+        p_binding_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_bind_transform_feedback_buffers2_ext)(
+            command_buffer,
+            first_binding,
+            binding_count,
+            p_binding_infos,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_begin_transform_feedback2_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_counter_range: u32,
+        counter_range_count: u32,
+        p_counter_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_begin_transform_feedback2_ext)(
+            command_buffer,
+            first_counter_range,
+            counter_range_count,
+            p_counter_infos,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_end_transform_feedback2_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_counter_range: u32,
+        counter_range_count: u32,
+        p_counter_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_end_transform_feedback2_ext)(
+            command_buffer,
+            first_counter_range,
+            counter_range_count,
+            p_counter_infos,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_draw_indirect_byte_count2_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        instance_count: u32,
+        first_instance: u32,
+        p_counter_info: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+        counter_offset: u32,
+        vertex_stride: u32,
+    ) {
+        (self
+            .fp
+            .cmd_draw_indirect_byte_count2_ext)(
+            command_buffer,
+            instance_count,
+            first_instance,
+            p_counter_info,
+            counter_offset,
+            vertex_stride,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_write_marker_to_memory_amd(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_info: *const crate::vk::MemoryMarkerInfoAMD<'_>,
+    ) {
+        (self.fp.cmd_write_marker_to_memory_amd)(command_buffer, p_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_index_buffer3_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_info: *const crate::vk::BindIndexBuffer3InfoKHR<'_>,
+    ) {
+        (self.fp.cmd_bind_index_buffer3_khr)(command_buffer, p_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_vertex_buffers3_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        first_binding: u32,
+        binding_count: u32,
+        p_binding_infos: *const crate::vk::BindVertexBuffer3InfoKHR<'_>,
+    ) {
+        (self
+            .fp
+            .cmd_bind_vertex_buffers3_khr)(
+            command_buffer,
+            first_binding,
+            binding_count,
+            p_binding_infos,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_draw_indirect2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_info: *const crate::vk::DrawIndirect2InfoKHR<'_>,
+    ) {
+        (self.fp.cmd_draw_indirect2_khr)(command_buffer, p_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_draw_indexed_indirect2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_info: *const crate::vk::DrawIndirect2InfoKHR<'_>,
+    ) {
+        (self.fp.cmd_draw_indexed_indirect2_khr)(command_buffer, p_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_draw_indirect_count2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_info: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
+    ) {
+        (self.fp.cmd_draw_indirect_count2_khr)(command_buffer, p_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_draw_indexed_indirect_count2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_info: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
+    ) {
+        (self.fp.cmd_draw_indexed_indirect_count2_khr)(command_buffer, p_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_draw_mesh_tasks_indirect2_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_info: *const crate::vk::DrawIndirect2InfoKHR<'_>,
+    ) {
+        (self.fp.cmd_draw_mesh_tasks_indirect2_ext)(command_buffer, p_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_draw_mesh_tasks_indirect_count2_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_info: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
+    ) {
+        (self.fp.cmd_draw_mesh_tasks_indirect_count2_ext)(command_buffer, p_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_dispatch_indirect2_khr(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_info: *const crate::vk::DispatchIndirect2InfoKHR<'_>,
+    ) {
+        (self.fp.cmd_dispatch_indirect2_khr)(command_buffer, p_info)
+    }
+    #[inline]
+    pub unsafe fn create_acceleration_structure2_khr(
+        &self,
+        device: crate::vk::Device,
+        p_create_info: *const crate::vk::AccelerationStructureCreateInfo2KHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        p_acceleration_structure: *mut crate::vk::AccelerationStructureKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .create_acceleration_structure2_khr)(
+            device,
+            p_create_info,
+            p_allocator,
+            p_acceleration_structure,
+        )
+    }
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_device_address_commands";

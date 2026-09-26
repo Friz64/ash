@@ -70,6 +70,21 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    #[inline]
+    pub unsafe fn get_physical_device_calibrateable_time_domains_ext(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        p_time_domain_count: *mut u32,
+        p_time_domains: *mut crate::vk::TimeDomainKHR,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_physical_device_calibrateable_time_domains_ext)(
+            physical_device,
+            p_time_domain_count,
+            p_time_domains,
+        )
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -127,6 +142,25 @@ impl Device {
     #[inline]
     pub fn device(&self) -> crate::vk::Device {
         self.handle
+    }
+    #[inline]
+    pub unsafe fn get_calibrated_timestamps_ext(
+        &self,
+        device: crate::vk::Device,
+        timestamp_count: u32,
+        p_timestamp_infos: *const crate::vk::CalibratedTimestampInfoKHR<'_>,
+        p_timestamps: *mut u64,
+        p_max_deviation: *mut u64,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_calibrated_timestamps_ext)(
+            device,
+            timestamp_count,
+            p_timestamp_infos,
+            p_timestamps,
+            p_max_deviation,
+        )
     }
 }
 pub const SPEC_VERSION: u32 = 2;

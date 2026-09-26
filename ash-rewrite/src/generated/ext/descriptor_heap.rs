@@ -351,6 +351,118 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    #[inline]
+    pub unsafe fn write_sampler_descriptors_ext(
+        &self,
+        device: crate::vk::Device,
+        sampler_count: u32,
+        p_samplers: *const crate::vk::SamplerCreateInfo<'_>,
+        p_descriptors: *const crate::vk::HostAddressRangeEXT<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .write_sampler_descriptors_ext)(
+            device,
+            sampler_count,
+            p_samplers,
+            p_descriptors,
+        )
+    }
+    #[inline]
+    pub unsafe fn write_resource_descriptors_ext(
+        &self,
+        device: crate::vk::Device,
+        resource_count: u32,
+        p_resources: *const crate::vk::ResourceDescriptorInfoEXT<'_>,
+        p_descriptors: *const crate::vk::HostAddressRangeEXT<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .write_resource_descriptors_ext)(
+            device,
+            resource_count,
+            p_resources,
+            p_descriptors,
+        )
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_sampler_heap_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_bind_info: *const crate::vk::BindHeapInfoEXT<'_>,
+    ) {
+        (self.fp.cmd_bind_sampler_heap_ext)(command_buffer, p_bind_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_bind_resource_heap_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_bind_info: *const crate::vk::BindHeapInfoEXT<'_>,
+    ) {
+        (self.fp.cmd_bind_resource_heap_ext)(command_buffer, p_bind_info)
+    }
+    #[inline]
+    pub unsafe fn cmd_push_data_ext(
+        &self,
+        command_buffer: crate::vk::CommandBuffer,
+        p_push_data_info: *const crate::vk::PushDataInfoEXT<'_>,
+    ) {
+        (self.fp.cmd_push_data_ext)(command_buffer, p_push_data_info)
+    }
+    #[inline]
+    pub unsafe fn register_custom_border_color_ext(
+        &self,
+        device: crate::vk::Device,
+        p_border_color: *const crate::vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
+        request_index: crate::vk::Bool32,
+        p_index: *mut u32,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .register_custom_border_color_ext)(
+            device,
+            p_border_color,
+            request_index,
+            p_index,
+        )
+    }
+    #[inline]
+    pub unsafe fn unregister_custom_border_color_ext(
+        &self,
+        device: crate::vk::Device,
+        index: u32,
+    ) {
+        (self.fp.unregister_custom_border_color_ext)(device, index)
+    }
+    #[inline]
+    pub unsafe fn get_image_opaque_capture_data_ext(
+        &self,
+        device: crate::vk::Device,
+        image_count: u32,
+        p_images: *const crate::vk::Image,
+        p_datas: *mut crate::vk::HostAddressRangeEXT<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_image_opaque_capture_data_ext)(device, image_count, p_images, p_datas)
+    }
+    #[inline]
+    pub unsafe fn get_tensor_opaque_capture_data_arm(
+        &self,
+        device: crate::vk::Device,
+        tensor_count: u32,
+        p_tensors: *const crate::vk::TensorARM,
+        p_datas: *mut crate::vk::HostAddressRangeEXT<'_>,
+    ) -> crate::vk::Result {
+        (self
+            .fp
+            .get_tensor_opaque_capture_data_arm)(
+            device,
+            tensor_count,
+            p_tensors,
+            p_datas,
+        )
+    }
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -405,6 +517,16 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
+    }
+    #[inline]
+    pub unsafe fn get_physical_device_descriptor_size_ext(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        descriptor_type: crate::vk::DescriptorType,
+    ) -> crate::vk::DeviceSize {
+        (self
+            .fp
+            .get_physical_device_descriptor_size_ext)(physical_device, descriptor_type)
     }
 }
 pub const SPEC_VERSION: u32 = 1;
