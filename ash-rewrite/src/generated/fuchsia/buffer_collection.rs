@@ -175,17 +175,17 @@ impl Device {
     pub unsafe fn create_buffer_collection_fuchsia(
         &self,
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::BufferCollectionCreateInfoFUCHSIA<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_collection: *mut crate::vk::BufferCollectionFUCHSIA,
+        create_info: *const crate::vk::BufferCollectionCreateInfoFUCHSIA<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        collection: *mut crate::vk::BufferCollectionFUCHSIA,
     ) -> crate::vk::Result {
         (self
             .fp
             .create_buffer_collection_fuchsia)(
             device,
-            p_create_info,
-            p_allocator,
-            p_collection,
+            create_info,
+            allocator,
+            collection,
         )
     }
     #[inline]
@@ -193,14 +193,14 @@ impl Device {
         &self,
         device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
-        p_buffer_constraints_info: *const crate::vk::BufferConstraintsInfoFUCHSIA<'_>,
+        buffer_constraints_info: *const crate::vk::BufferConstraintsInfoFUCHSIA<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .set_buffer_collection_buffer_constraints_fuchsia)(
             device,
             collection,
-            p_buffer_constraints_info,
+            buffer_constraints_info,
         )
     }
     #[inline]
@@ -208,14 +208,14 @@ impl Device {
         &self,
         device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
-        p_image_constraints_info: *const crate::vk::ImageConstraintsInfoFUCHSIA<'_>,
+        image_constraints_info: *const crate::vk::ImageConstraintsInfoFUCHSIA<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .set_buffer_collection_image_constraints_fuchsia)(
             device,
             collection,
-            p_image_constraints_info,
+            image_constraints_info,
         )
     }
     #[inline]
@@ -223,20 +223,20 @@ impl Device {
         &self,
         device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_buffer_collection_fuchsia)(device, collection, p_allocator)
+        (self.fp.destroy_buffer_collection_fuchsia)(device, collection, allocator)
     }
     #[inline]
     pub unsafe fn get_buffer_collection_properties_fuchsia(
         &self,
         device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
-        p_properties: *mut crate::vk::BufferCollectionPropertiesFUCHSIA<'_>,
+        properties: *mut crate::vk::BufferCollectionPropertiesFUCHSIA<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
-            .get_buffer_collection_properties_fuchsia)(device, collection, p_properties)
+            .get_buffer_collection_properties_fuchsia)(device, collection, properties)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

@@ -80,15 +80,15 @@ impl Instance {
     pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics_arm(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_description_count: *mut u32,
-        p_descriptions: *mut crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>,
+        description_count: *mut u32,
+        descriptions: *mut crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .enumerate_physical_device_shader_instrumentation_metrics_arm)(
             physical_device,
-            p_description_count,
-            p_descriptions,
+            description_count,
+            descriptions,
         )
     }
 }
@@ -230,17 +230,17 @@ impl Device {
     pub unsafe fn create_shader_instrumentation_arm(
         &self,
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_instrumentation: *mut crate::vk::ShaderInstrumentationARM,
+        create_info: *const crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        instrumentation: *mut crate::vk::ShaderInstrumentationARM,
     ) -> crate::vk::Result {
         (self
             .fp
             .create_shader_instrumentation_arm)(
             device,
-            p_create_info,
-            p_allocator,
-            p_instrumentation,
+            create_info,
+            allocator,
+            instrumentation,
         )
     }
     #[inline]
@@ -248,11 +248,9 @@ impl Device {
         &self,
         device: crate::vk::Device,
         instrumentation: crate::vk::ShaderInstrumentationARM,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_shader_instrumentation_arm)(device, instrumentation, p_allocator)
+        (self.fp.destroy_shader_instrumentation_arm)(device, instrumentation, allocator)
     }
     #[inline]
     pub unsafe fn cmd_begin_shader_instrumentation_arm(
@@ -274,8 +272,8 @@ impl Device {
         &self,
         device: crate::vk::Device,
         instrumentation: crate::vk::ShaderInstrumentationARM,
-        p_metric_block_count: *mut u32,
-        p_metric_values: *mut core::ffi::c_void,
+        metric_block_count: *mut u32,
+        metric_values: *mut core::ffi::c_void,
         flags: crate::vk::ShaderInstrumentationValuesFlagsARM,
     ) -> crate::vk::Result {
         (self
@@ -283,8 +281,8 @@ impl Device {
             .get_shader_instrumentation_values_arm)(
             device,
             instrumentation,
-            p_metric_block_count,
-            p_metric_values,
+            metric_block_count,
+            metric_values,
             flags,
         )
     }

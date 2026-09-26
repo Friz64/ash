@@ -66,11 +66,11 @@ impl Instance {
     pub unsafe fn create_ios_surface_mvk(
         &self,
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::IOSSurfaceCreateInfoMVK<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
+        create_info: *const crate::vk::IOSSurfaceCreateInfoMVK<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result {
-        (self.fp.create_ios_surface_mvk)(instance, p_create_info, p_allocator, p_surface)
+        (self.fp.create_ios_surface_mvk)(instance, create_info, allocator, surface)
     }
 }
 pub const SPEC_VERSION: u32 = 3;

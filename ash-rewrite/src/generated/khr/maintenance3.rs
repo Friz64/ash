@@ -66,10 +66,10 @@ impl Device {
     pub unsafe fn get_descriptor_set_layout_support_khr(
         &self,
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::DescriptorSetLayoutCreateInfo<'_>,
-        p_support: *mut crate::vk::DescriptorSetLayoutSupport<'_>,
+        create_info: *const crate::vk::DescriptorSetLayoutCreateInfo<'_>,
+        support: *mut crate::vk::DescriptorSetLayoutSupport<'_>,
     ) {
-        (self.fp.get_descriptor_set_layout_support_khr)(device, p_create_info, p_support)
+        (self.fp.get_descriptor_set_layout_support_khr)(device, create_info, support)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

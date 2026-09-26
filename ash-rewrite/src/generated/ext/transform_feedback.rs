@@ -211,9 +211,9 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
         binding_count: u32,
-        p_buffers: *const crate::vk::Buffer,
-        p_offsets: *const crate::vk::DeviceSize,
-        p_sizes: *const crate::vk::DeviceSize,
+        buffers: *const crate::vk::Buffer,
+        offsets: *const crate::vk::DeviceSize,
+        sizes: *const crate::vk::DeviceSize,
     ) {
         (self
             .fp
@@ -221,9 +221,9 @@ impl Device {
             command_buffer,
             first_binding,
             binding_count,
-            p_buffers,
-            p_offsets,
-            p_sizes,
+            buffers,
+            offsets,
+            sizes,
         )
     }
     #[inline]
@@ -232,8 +232,8 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_counter_buffer: u32,
         counter_buffer_count: u32,
-        p_counter_buffers: *const crate::vk::Buffer,
-        p_counter_buffer_offsets: *const crate::vk::DeviceSize,
+        counter_buffers: *const crate::vk::Buffer,
+        counter_buffer_offsets: *const crate::vk::DeviceSize,
     ) {
         (self
             .fp
@@ -241,8 +241,8 @@ impl Device {
             command_buffer,
             first_counter_buffer,
             counter_buffer_count,
-            p_counter_buffers,
-            p_counter_buffer_offsets,
+            counter_buffers,
+            counter_buffer_offsets,
         )
     }
     #[inline]
@@ -251,8 +251,8 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_counter_buffer: u32,
         counter_buffer_count: u32,
-        p_counter_buffers: *const crate::vk::Buffer,
-        p_counter_buffer_offsets: *const crate::vk::DeviceSize,
+        counter_buffers: *const crate::vk::Buffer,
+        counter_buffer_offsets: *const crate::vk::DeviceSize,
     ) {
         (self
             .fp
@@ -260,8 +260,8 @@ impl Device {
             command_buffer,
             first_counter_buffer,
             counter_buffer_count,
-            p_counter_buffers,
-            p_counter_buffer_offsets,
+            counter_buffers,
+            counter_buffer_offsets,
         )
     }
     #[inline]

@@ -100,24 +100,20 @@ impl Device {
         &self,
         device: crate::vk::Device,
         buffer: *const crate::platform_types::AHardwareBuffer,
-        p_properties: *mut crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>,
+        properties: *mut crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
-            .get_android_hardware_buffer_properties_android)(
-            device,
-            buffer,
-            p_properties,
-        )
+            .get_android_hardware_buffer_properties_android)(device, buffer, properties)
     }
     #[inline]
     pub unsafe fn get_memory_android_hardware_buffer_android(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
-        p_buffer: *mut *mut crate::platform_types::AHardwareBuffer,
+        info: *const crate::vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
+        buffer: *mut *mut crate::platform_types::AHardwareBuffer,
     ) -> crate::vk::Result {
-        (self.fp.get_memory_android_hardware_buffer_android)(device, p_info, p_buffer)
+        (self.fp.get_memory_android_hardware_buffer_android)(device, info, buffer)
     }
 }
 pub const SPEC_VERSION: u32 = 5;

@@ -91,11 +91,9 @@ impl Instance {
         physical_device: crate::vk::PhysicalDevice,
         dpy: *mut crate::platform_types::Display,
         rr_output: crate::platform_types::RROutput,
-        p_display: *mut crate::vk::DisplayKHR,
+        display: *mut crate::vk::DisplayKHR,
     ) -> crate::vk::Result {
-        (self
-            .fp
-            .get_rand_r_output_display_ext)(physical_device, dpy, rr_output, p_display)
+        (self.fp.get_rand_r_output_display_ext)(physical_device, dpy, rr_output, display)
     }
 }
 pub(crate) mod items {

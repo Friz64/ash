@@ -1,8 +1,11 @@
 use crate::{
     decl::{Decl, Ty},
     item::{RequireMap, RequiredBy},
-    name::{CommandName, FuncPointerName},
-    xml::{self},
+    name::{CommandName, FuncPointerName, VariableName},
+    xml::{
+        self,
+        cexpr::{self, CExprItems},
+    },
 };
 use tracing::{instrument, trace};
 
@@ -31,9 +34,24 @@ impl FuncPointer {
     }
 }
 
+#[derive(Debug, Clone)]
+pub enum Length {
+    DefinedByMember(VariableName),
+    NullTerminated,
+    Count(CExprItems),
+}
+
 #[derive(Debug)]
 pub struct CommandParam {
     pub decl: Decl,
+    pub length: Option<Length>,
+    pub optional: Vec<bool>,
+}
+
+impl CommandParam {
+    pub fn optional_at_depth(&self, depth: usize) -> Option<bool> {
+        self.optional.get(depth).copied()
+    }
 }
 
 #[derive(Debug)]
@@ -50,14 +68,42 @@ impl Command {
         let required_by = *require_map.command.get(&xml.name)?;
         trace!("constructing");
 
+        let params = (xml.params.iter())
+            .map(|param| {
+                let len_slice = if param.altlen.is_empty() {
+                    param.len.as_slice()
+                } else {
+                    param.altlen.as_slice()
+                };
+
+                let len_str = match len_slice {
+                    [] => None,
+                    [len] => Some(len),
+                    _ => unimplemented!("expected there to be at most one length specifier"),
+                };
+
+                let length = len_str.map(|&len| {
+                    if len == "null-terminated" {
+                        Length::NullTerminated
+                    } else if (xml.params.iter()).any(|xml_member| xml_member.c_decl.name == len) {
+                        Length::DefinedByMember(VariableName::new(len))
+                    } else {
+                        Length::Count(cexpr::parse(len))
+                    }
+                });
+
+                CommandParam {
+                    decl: Decl::from_c(require_map, &param.c_decl),
+                    length,
+                    optional: param.optional.clone(),
+                }
+            })
+            .collect();
+
         Some(Command {
             required_by,
             name: xml.name,
-            params: (xml.params.iter())
-                .map(|param| CommandParam {
-                    decl: Decl::from_c(require_map, &param.c_decl),
-                })
-                .collect(),
+            params,
             return_type: (xml.return_type.as_ref()).map(|c_type| Ty::from_c(require_map, c_type)),
         })
     }

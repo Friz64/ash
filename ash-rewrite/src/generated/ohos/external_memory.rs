@@ -97,18 +97,18 @@ impl Device {
         &self,
         device: crate::vk::Device,
         buffer: *const crate::platform_types::OH_NativeBuffer,
-        p_properties: *mut crate::vk::NativeBufferPropertiesOHOS<'_>,
+        properties: *mut crate::vk::NativeBufferPropertiesOHOS<'_>,
     ) -> crate::vk::Result {
-        (self.fp.get_native_buffer_properties_ohos)(device, buffer, p_properties)
+        (self.fp.get_native_buffer_properties_ohos)(device, buffer, properties)
     }
     #[inline]
     pub unsafe fn get_memory_native_buffer_ohos(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::MemoryGetNativeBufferInfoOHOS<'_>,
-        p_buffer: *mut *mut crate::platform_types::OH_NativeBuffer,
+        info: *const crate::vk::MemoryGetNativeBufferInfoOHOS<'_>,
+        buffer: *mut *mut crate::platform_types::OH_NativeBuffer,
     ) -> crate::vk::Result {
-        (self.fp.get_memory_native_buffer_ohos)(device, p_info, p_buffer)
+        (self.fp.get_memory_native_buffer_ohos)(device, info, buffer)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

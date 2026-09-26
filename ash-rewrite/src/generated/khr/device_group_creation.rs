@@ -76,8 +76,8 @@ impl Instance {
     pub unsafe fn enumerate_physical_device_groups_khr(
         &self,
         instance: crate::vk::Instance,
-        p_physical_device_group_count: *mut u32,
-        p_physical_device_group_properties: *mut crate::vk::PhysicalDeviceGroupProperties<
+        physical_device_group_count: *mut u32,
+        physical_device_group_properties: *mut crate::vk::PhysicalDeviceGroupProperties<
             '_,
         >,
     ) -> crate::vk::Result {
@@ -85,8 +85,8 @@ impl Instance {
             .fp
             .enumerate_physical_device_groups_khr)(
             instance,
-            p_physical_device_group_count,
-            p_physical_device_group_properties,
+            physical_device_group_count,
+            physical_device_group_properties,
         )
     }
 }

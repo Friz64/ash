@@ -82,9 +82,9 @@ impl Device {
         &self,
         device: crate::vk::Device,
         buffer: *const crate::platform_types::_screen_buffer,
-        p_properties: *mut crate::vk::ScreenBufferPropertiesQNX<'_>,
+        properties: *mut crate::vk::ScreenBufferPropertiesQNX<'_>,
     ) -> crate::vk::Result {
-        (self.fp.get_screen_buffer_properties_qnx)(device, buffer, p_properties)
+        (self.fp.get_screen_buffer_properties_qnx)(device, buffer, properties)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

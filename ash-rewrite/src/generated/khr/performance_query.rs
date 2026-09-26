@@ -143,35 +143,35 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-        p_counter_count: *mut u32,
-        p_counters: *mut crate::vk::PerformanceCounterKHR<'_>,
-        p_counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionKHR<'_>,
+        counter_count: *mut u32,
+        counters: *mut crate::vk::PerformanceCounterKHR<'_>,
+        counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionKHR<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .enumerate_physical_device_queue_family_performance_query_counters_khr)(
             physical_device,
             queue_family_index,
-            p_counter_count,
-            p_counters,
-            p_counter_descriptions,
+            counter_count,
+            counters,
+            counter_descriptions,
         )
     }
     #[inline]
     pub unsafe fn get_physical_device_queue_family_performance_query_passes_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_performance_query_create_info: *const crate::vk::QueryPoolPerformanceCreateInfoKHR<
+        performance_query_create_info: *const crate::vk::QueryPoolPerformanceCreateInfoKHR<
             '_,
         >,
-        p_num_passes: *mut u32,
+        num_passes: *mut u32,
     ) {
         (self
             .fp
             .get_physical_device_queue_family_performance_query_passes_khr)(
             physical_device,
-            p_performance_query_create_info,
-            p_num_passes,
+            performance_query_create_info,
+            num_passes,
         )
     }
 }
@@ -247,9 +247,9 @@ impl Device {
     pub unsafe fn acquire_profiling_lock_khr(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::AcquireProfilingLockInfoKHR<'_>,
+        info: *const crate::vk::AcquireProfilingLockInfoKHR<'_>,
     ) -> crate::vk::Result {
-        (self.fp.acquire_profiling_lock_khr)(device, p_info)
+        (self.fp.acquire_profiling_lock_khr)(device, info)
     }
     #[inline]
     pub unsafe fn release_profiling_lock_khr(&self, device: crate::vk::Device) {

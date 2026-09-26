@@ -76,15 +76,15 @@ impl Instance {
     pub unsafe fn get_physical_device_cooperative_matrix_properties_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_property_count: *mut u32,
-        p_properties: *mut crate::vk::CooperativeMatrixPropertiesKHR<'_>,
+        property_count: *mut u32,
+        properties: *mut crate::vk::CooperativeMatrixPropertiesKHR<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_cooperative_matrix_properties_khr)(
             physical_device,
-            p_property_count,
-            p_properties,
+            property_count,
+            properties,
         )
     }
 }

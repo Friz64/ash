@@ -105,9 +105,9 @@ impl Device {
     pub unsafe fn export_metal_objects_ext(
         &self,
         device: crate::vk::Device,
-        p_metal_objects_info: *mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
+        metal_objects_info: *mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
     ) {
-        (self.fp.export_metal_objects_ext)(device, p_metal_objects_info)
+        (self.fp.export_metal_objects_ext)(device, metal_objects_info)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

@@ -48,6 +48,7 @@ pub enum RustTy {
     Ref(Box<RustTy>, Mutability),
     Slice(Box<RustTy>, Mutability, Option<ArrayLen>),
     CStr,
+    Option(Box<RustTy>),
 }
 
 impl Ty {
@@ -59,7 +60,12 @@ impl Ty {
 pub trait RustTokens {
     fn variable_token(&self, name: VariableName) -> Ident;
 
-    fn type_tokens(&self, name: TypeName, qualified: bool, lifetime: &Lifetime) -> TokenStream;
+    fn type_tokens(
+        &self,
+        name: TypeName,
+        qualified: bool,
+        lifetime: Option<&Lifetime>,
+    ) -> TokenStream;
 
     fn func_pointer_tokens(&self, name: FuncPointerName, qualified: bool) -> TokenStream;
 
@@ -100,7 +106,7 @@ pub trait RustTokens {
 
 impl RustDecl {
     /// Gives you this declaration in the form of `#name: #ty`.
-    pub fn tokens(&self, ctx: &impl RustTokens, lifetime: &Lifetime) -> TokenStream {
+    pub fn tokens(&self, ctx: &impl RustTokens, lifetime: Option<&Lifetime>) -> TokenStream {
         let name = ctx.variable_token(self.name);
         let ty = self.ty.tokens(ctx, lifetime);
         quote! { #name: #ty }
@@ -120,7 +126,7 @@ impl ArrayLen {
 }
 
 impl RustTy {
-    pub fn tokens(&self, ctx: &impl RustTokens, lifetime: &Lifetime) -> TokenStream {
+    pub fn tokens(&self, ctx: &impl RustTokens, lifetime: Option<&Lifetime>) -> TokenStream {
         match self {
             RustTy::Registry(ty) => match ty {
                 Ty::ApiType(name) => ctx.type_tokens(*name, true, lifetime),
@@ -149,7 +155,11 @@ impl RustTy {
                 };
 
                 let ty = ty.tokens(ctx, lifetime);
-                quote! { & #lifetime #mutability #ty }
+                if let Some(lifetime) = lifetime {
+                    quote! { & #lifetime #mutability #ty }
+                } else {
+                    quote! { &#mutability #ty }
+                }
             }
             RustTy::Slice(ty, mutability, len) => {
                 let mutability = match mutability {
@@ -161,9 +171,17 @@ impl RustTy {
                     quote! { ; #len}
                 });
                 let ty = ty.tokens(ctx, lifetime);
-                quote! { & #lifetime #mutability [#ty #len] }
+                if let Some(lifetime) = lifetime {
+                    quote! { & #lifetime #mutability [#ty #len] }
+                } else {
+                    quote! { &#mutability [#ty #len] }
+                }
             }
             RustTy::CStr => quote! { core::ffi::CStr },
+            RustTy::Option(ty) => {
+                let ty = ty.tokens(ctx, lifetime);
+                quote! { Option<#ty> }
+            }
         }
     }
 }

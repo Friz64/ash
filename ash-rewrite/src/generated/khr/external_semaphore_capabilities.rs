@@ -108,17 +108,17 @@ impl Instance {
     pub unsafe fn get_physical_device_external_semaphore_properties_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_external_semaphore_info: *const crate::vk::PhysicalDeviceExternalSemaphoreInfo<
+        external_semaphore_info: *const crate::vk::PhysicalDeviceExternalSemaphoreInfo<
             '_,
         >,
-        p_external_semaphore_properties: *mut crate::vk::ExternalSemaphoreProperties<'_>,
+        external_semaphore_properties: *mut crate::vk::ExternalSemaphoreProperties<'_>,
     ) {
         (self
             .fp
             .get_physical_device_external_semaphore_properties_khr)(
             physical_device,
-            p_external_semaphore_info,
-            p_external_semaphore_properties,
+            external_semaphore_info,
+            external_semaphore_properties,
         )
     }
 }

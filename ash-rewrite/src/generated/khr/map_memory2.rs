@@ -77,18 +77,18 @@ impl Device {
     pub unsafe fn map_memory2_khr(
         &self,
         device: crate::vk::Device,
-        p_memory_map_info: *const crate::vk::MemoryMapInfo<'_>,
-        pp_data: *mut *mut core::ffi::c_void,
+        memory_map_info: *const crate::vk::MemoryMapInfo<'_>,
+        data: *mut *mut core::ffi::c_void,
     ) -> crate::vk::Result {
-        (self.fp.map_memory2_khr)(device, p_memory_map_info, pp_data)
+        (self.fp.map_memory2_khr)(device, memory_map_info, data)
     }
     #[inline]
     pub unsafe fn unmap_memory2_khr(
         &self,
         device: crate::vk::Device,
-        p_memory_unmap_info: *const crate::vk::MemoryUnmapInfo<'_>,
+        memory_unmap_info: *const crate::vk::MemoryUnmapInfo<'_>,
     ) -> crate::vk::Result {
-        (self.fp.unmap_memory2_khr)(device, p_memory_unmap_info)
+        (self.fp.unmap_memory2_khr)(device, memory_unmap_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

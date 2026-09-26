@@ -84,31 +84,31 @@ impl Device {
         &self,
         device: crate::vk::Device,
         framebuffer: crate::vk::Framebuffer,
-        p_properties_count: *mut u32,
-        p_properties: *mut crate::vk::TilePropertiesQCOM<'_>,
+        properties_count: *mut u32,
+        properties: *mut crate::vk::TilePropertiesQCOM<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_framebuffer_tile_properties_qcom)(
             device,
             framebuffer,
-            p_properties_count,
-            p_properties,
+            properties_count,
+            properties,
         )
     }
     #[inline]
     pub unsafe fn get_dynamic_rendering_tile_properties_qcom(
         &self,
         device: crate::vk::Device,
-        p_rendering_info: *const crate::vk::RenderingInfo<'_>,
-        p_properties: *mut crate::vk::TilePropertiesQCOM<'_>,
+        rendering_info: *const crate::vk::RenderingInfo<'_>,
+        properties: *mut crate::vk::TilePropertiesQCOM<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_dynamic_rendering_tile_properties_qcom)(
             device,
-            p_rendering_info,
-            p_properties,
+            rendering_info,
+            properties,
         )
     }
 }

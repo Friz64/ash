@@ -475,7 +475,7 @@ pub struct StructureMember {
     pub values: Option<&'static str>,
     pub len: Vec<&'static str>,
     pub altlen: Vec<&'static str>,
-    pub optional: Vec<&'static str>,
+    pub optional: Vec<bool>,
 }
 
 impl StructureMember {
@@ -485,7 +485,9 @@ impl StructureMember {
             values: attribute(node, "values"),
             len: attribute_comma_separated(node, "len"),
             altlen: attribute_comma_separated(node, "altlen"),
-            optional: attribute_comma_separated(node, "optional"),
+            optional: attribute(node, "optional")
+                .map(|value| value.split(',').map(|s| s.parse().unwrap()).collect())
+                .unwrap_or_default(),
         }
     }
 }
@@ -716,18 +718,20 @@ impl BitMaskBits {
 #[derive(Debug)]
 pub struct CommandParam {
     pub c_decl: CDecl<'static>,
-    pub len: Option<&'static str>,
-    pub altlen: Option<&'static str>,
-    pub optional: Vec<&'static str>,
+    pub len: Vec<&'static str>,
+    pub altlen: Vec<&'static str>,
+    pub optional: Vec<bool>,
 }
 
 impl CommandParam {
     fn from_node(node: Node) -> CommandParam {
         CommandParam {
             c_decl: CDecl::from_xml(CDeclMode::FuncParam, node.children()),
-            len: attribute(node, "len"),
-            altlen: attribute(node, "altlen"),
-            optional: attribute_comma_separated(node, "optional"),
+            len: attribute_comma_separated(node, "len"),
+            altlen: attribute_comma_separated(node, "altlen"),
+            optional: attribute(node, "optional")
+                .map(|value| value.split(',').map(|s| s.parse().unwrap()).collect())
+                .unwrap_or_default(),
         }
     }
 }

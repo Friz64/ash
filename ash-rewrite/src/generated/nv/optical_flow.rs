@@ -219,19 +219,19 @@ impl Instance {
     pub unsafe fn get_physical_device_optical_flow_image_formats_nv(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_optical_flow_image_format_info: *const crate::vk::OpticalFlowImageFormatInfoNV<
+        optical_flow_image_format_info: *const crate::vk::OpticalFlowImageFormatInfoNV<
             '_,
         >,
-        p_format_count: *mut u32,
-        p_image_format_properties: *mut crate::vk::OpticalFlowImageFormatPropertiesNV<'_>,
+        format_count: *mut u32,
+        image_format_properties: *mut crate::vk::OpticalFlowImageFormatPropertiesNV<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_optical_flow_image_formats_nv)(
             physical_device,
-            p_optical_flow_image_format_info,
-            p_format_count,
-            p_image_format_properties,
+            optical_flow_image_format_info,
+            format_count,
+            image_format_properties,
         )
     }
 }
@@ -345,27 +345,20 @@ impl Device {
     pub unsafe fn create_optical_flow_session_nv(
         &self,
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::OpticalFlowSessionCreateInfoNV<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_session: *mut crate::vk::OpticalFlowSessionNV,
+        create_info: *const crate::vk::OpticalFlowSessionCreateInfoNV<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        session: *mut crate::vk::OpticalFlowSessionNV,
     ) -> crate::vk::Result {
-        (self
-            .fp
-            .create_optical_flow_session_nv)(
-            device,
-            p_create_info,
-            p_allocator,
-            p_session,
-        )
+        (self.fp.create_optical_flow_session_nv)(device, create_info, allocator, session)
     }
     #[inline]
     pub unsafe fn destroy_optical_flow_session_nv(
         &self,
         device: crate::vk::Device,
         session: crate::vk::OpticalFlowSessionNV,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_optical_flow_session_nv)(device, session, p_allocator)
+        (self.fp.destroy_optical_flow_session_nv)(device, session, allocator)
     }
     #[inline]
     pub unsafe fn bind_optical_flow_session_image_nv(
@@ -391,9 +384,9 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         session: crate::vk::OpticalFlowSessionNV,
-        p_execute_info: *const crate::vk::OpticalFlowExecuteInfoNV<'_>,
+        execute_info: *const crate::vk::OpticalFlowExecuteInfoNV<'_>,
     ) {
-        (self.fp.cmd_optical_flow_execute_nv)(command_buffer, session, p_execute_info)
+        (self.fp.cmd_optical_flow_execute_nv)(command_buffer, session, execute_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

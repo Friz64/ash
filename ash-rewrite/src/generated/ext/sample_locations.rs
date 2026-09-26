@@ -82,9 +82,9 @@ impl Device {
     pub unsafe fn cmd_set_sample_locations_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_sample_locations_info: *const crate::vk::SampleLocationsInfoEXT<'_>,
+        sample_locations_info: *const crate::vk::SampleLocationsInfoEXT<'_>,
     ) {
-        (self.fp.cmd_set_sample_locations_ext)(command_buffer, p_sample_locations_info)
+        (self.fp.cmd_set_sample_locations_ext)(command_buffer, sample_locations_info)
     }
 }
 #[derive(Clone)]
@@ -147,14 +147,14 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         samples: crate::vk::SampleCountFlagBits,
-        p_multisample_properties: *mut crate::vk::MultisamplePropertiesEXT<'_>,
+        multisample_properties: *mut crate::vk::MultisamplePropertiesEXT<'_>,
     ) {
         (self
             .fp
             .get_physical_device_multisample_properties_ext)(
             physical_device,
             samples,
-            p_multisample_properties,
+            multisample_properties,
         )
     }
 }

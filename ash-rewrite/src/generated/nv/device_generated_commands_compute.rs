@@ -130,24 +130,24 @@ impl Device {
     pub unsafe fn get_pipeline_indirect_memory_requirements_nv(
         &self,
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::ComputePipelineCreateInfo<'_>,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        create_info: *const crate::vk::ComputePipelineCreateInfo<'_>,
+        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
             .get_pipeline_indirect_memory_requirements_nv)(
             device,
-            p_create_info,
-            p_memory_requirements,
+            create_info,
+            memory_requirements,
         )
     }
     #[inline]
     pub unsafe fn get_pipeline_indirect_device_address_nv(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::PipelineIndirectDeviceAddressInfoNV<'_>,
+        info: *const crate::vk::PipelineIndirectDeviceAddressInfoNV<'_>,
     ) -> crate::vk::DeviceAddress {
-        (self.fp.get_pipeline_indirect_device_address_nv)(device, p_info)
+        (self.fp.get_pipeline_indirect_device_address_nv)(device, info)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

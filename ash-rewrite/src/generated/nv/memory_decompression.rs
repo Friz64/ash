@@ -84,14 +84,14 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         decompress_region_count: u32,
-        p_decompress_memory_regions: *const crate::vk::DecompressMemoryRegionNV,
+        decompress_memory_regions: *const crate::vk::DecompressMemoryRegionNV,
     ) {
         (self
             .fp
             .cmd_decompress_memory_nv)(
             command_buffer,
             decompress_region_count,
-            p_decompress_memory_regions,
+            decompress_memory_regions,
         )
     }
     #[inline]

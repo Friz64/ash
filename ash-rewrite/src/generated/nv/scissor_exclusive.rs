@@ -93,7 +93,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_exclusive_scissor: u32,
         exclusive_scissor_count: u32,
-        p_exclusive_scissors: *const crate::vk::Rect2D,
+        exclusive_scissors: *const crate::vk::Rect2D,
     ) {
         (self
             .fp
@@ -101,7 +101,7 @@ impl Device {
             command_buffer,
             first_exclusive_scissor,
             exclusive_scissor_count,
-            p_exclusive_scissors,
+            exclusive_scissors,
         )
     }
     #[inline]
@@ -110,7 +110,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_exclusive_scissor: u32,
         exclusive_scissor_count: u32,
-        p_exclusive_scissor_enables: *const crate::vk::Bool32,
+        exclusive_scissor_enables: *const crate::vk::Bool32,
     ) {
         (self
             .fp
@@ -118,7 +118,7 @@ impl Device {
             command_buffer,
             first_exclusive_scissor,
             exclusive_scissor_count,
-            p_exclusive_scissor_enables,
+            exclusive_scissor_enables,
         )
     }
 }

@@ -104,7 +104,7 @@ impl Device {
         layout: crate::vk::PipelineLayout,
         set: u32,
         descriptor_write_count: u32,
-        p_descriptor_writes: *const crate::vk::WriteDescriptorSet<'_>,
+        descriptor_writes: *const crate::vk::WriteDescriptorSet<'_>,
     ) {
         (self
             .fp
@@ -114,7 +114,7 @@ impl Device {
             layout,
             set,
             descriptor_write_count,
-            p_descriptor_writes,
+            descriptor_writes,
         )
     }
     #[inline]
@@ -124,7 +124,7 @@ impl Device {
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
         layout: crate::vk::PipelineLayout,
         set: u32,
-        p_data: *const core::ffi::c_void,
+        data: *const core::ffi::c_void,
     ) {
         (self
             .fp
@@ -133,7 +133,7 @@ impl Device {
             descriptor_update_template,
             layout,
             set,
-            p_data,
+            data,
         )
     }
 }

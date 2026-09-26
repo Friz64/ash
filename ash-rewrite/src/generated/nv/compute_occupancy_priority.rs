@@ -67,9 +67,9 @@ impl Device {
     pub unsafe fn cmd_set_compute_occupancy_priority_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_parameters: *const crate::vk::ComputeOccupancyPriorityParametersNV<'_>,
+        parameters: *const crate::vk::ComputeOccupancyPriorityParametersNV<'_>,
     ) {
-        (self.fp.cmd_set_compute_occupancy_priority_nv)(command_buffer, p_parameters)
+        (self.fp.cmd_set_compute_occupancy_priority_nv)(command_buffer, parameters)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

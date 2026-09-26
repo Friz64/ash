@@ -196,9 +196,9 @@ impl Device {
     pub unsafe fn cmd_decode_video_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_decode_info: *const crate::vk::VideoDecodeInfoKHR<'_>,
+        decode_info: *const crate::vk::VideoDecodeInfoKHR<'_>,
     ) {
-        (self.fp.cmd_decode_video_khr)(command_buffer, p_decode_info)
+        (self.fp.cmd_decode_video_khr)(command_buffer, decode_info)
     }
 }
 pub const SPEC_VERSION: u32 = 8;

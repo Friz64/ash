@@ -84,32 +84,32 @@ impl Instance {
     pub unsafe fn get_physical_device_surface_capabilities2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-        p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2KHR<'_>,
+        surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        surface_capabilities: *mut crate::vk::SurfaceCapabilities2KHR<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_surface_capabilities2_khr)(
             physical_device,
-            p_surface_info,
-            p_surface_capabilities,
+            surface_info,
+            surface_capabilities,
         )
     }
     #[inline]
     pub unsafe fn get_physical_device_surface_formats2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-        p_surface_format_count: *mut u32,
-        p_surface_formats: *mut crate::vk::SurfaceFormat2KHR<'_>,
+        surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        surface_format_count: *mut u32,
+        surface_formats: *mut crate::vk::SurfaceFormat2KHR<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_surface_formats2_khr)(
             physical_device,
-            p_surface_info,
-            p_surface_format_count,
-            p_surface_formats,
+            surface_info,
+            surface_format_count,
+            surface_formats,
         )
     }
 }

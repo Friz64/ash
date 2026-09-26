@@ -107,11 +107,9 @@ impl Device {
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
-        p_properties: *mut crate::vk::ImageDrmFormatModifierPropertiesEXT<'_>,
+        properties: *mut crate::vk::ImageDrmFormatModifierPropertiesEXT<'_>,
     ) -> crate::vk::Result {
-        (self
-            .fp
-            .get_image_drm_format_modifier_properties_ext)(device, image, p_properties)
+        (self.fp.get_image_drm_format_modifier_properties_ext)(device, image, properties)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

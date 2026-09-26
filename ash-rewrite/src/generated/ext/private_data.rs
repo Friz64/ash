@@ -124,17 +124,17 @@ impl Device {
     pub unsafe fn create_private_data_slot_ext(
         &self,
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::PrivateDataSlotCreateInfo<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_private_data_slot: *mut crate::vk::PrivateDataSlot,
+        create_info: *const crate::vk::PrivateDataSlotCreateInfo<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        private_data_slot: *mut crate::vk::PrivateDataSlot,
     ) -> crate::vk::Result {
         (self
             .fp
             .create_private_data_slot_ext)(
             device,
-            p_create_info,
-            p_allocator,
-            p_private_data_slot,
+            create_info,
+            allocator,
+            private_data_slot,
         )
     }
     #[inline]
@@ -142,9 +142,9 @@ impl Device {
         &self,
         device: crate::vk::Device,
         private_data_slot: crate::vk::PrivateDataSlot,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_private_data_slot_ext)(device, private_data_slot, p_allocator)
+        (self.fp.destroy_private_data_slot_ext)(device, private_data_slot, allocator)
     }
     #[inline]
     pub unsafe fn set_private_data_ext(
@@ -172,7 +172,7 @@ impl Device {
         object_type: crate::vk::ObjectType,
         object_handle: u64,
         private_data_slot: crate::vk::PrivateDataSlot,
-        p_data: *mut u64,
+        data: *mut u64,
     ) {
         (self
             .fp
@@ -181,7 +181,7 @@ impl Device {
             object_type,
             object_handle,
             private_data_slot,
-            p_data,
+            data,
         )
     }
 }

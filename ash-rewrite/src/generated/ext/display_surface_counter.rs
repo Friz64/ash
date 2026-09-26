@@ -74,14 +74,14 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,
-        p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2EXT<'_>,
+        surface_capabilities: *mut crate::vk::SurfaceCapabilities2EXT<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_surface_capabilities2_ext)(
             physical_device,
             surface,
-            p_surface_capabilities,
+            surface_capabilities,
         )
     }
 }

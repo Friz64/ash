@@ -120,30 +120,30 @@ impl Instance {
     pub unsafe fn get_physical_device_display_properties2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_property_count: *mut u32,
-        p_properties: *mut crate::vk::DisplayProperties2KHR<'_>,
+        property_count: *mut u32,
+        properties: *mut crate::vk::DisplayProperties2KHR<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_display_properties2_khr)(
             physical_device,
-            p_property_count,
-            p_properties,
+            property_count,
+            properties,
         )
     }
     #[inline]
     pub unsafe fn get_physical_device_display_plane_properties2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_property_count: *mut u32,
-        p_properties: *mut crate::vk::DisplayPlaneProperties2KHR<'_>,
+        property_count: *mut u32,
+        properties: *mut crate::vk::DisplayPlaneProperties2KHR<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_display_plane_properties2_khr)(
             physical_device,
-            p_property_count,
-            p_properties,
+            property_count,
+            properties,
         )
     }
     #[inline]
@@ -151,31 +151,31 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
-        p_property_count: *mut u32,
-        p_properties: *mut crate::vk::DisplayModeProperties2KHR<'_>,
+        property_count: *mut u32,
+        properties: *mut crate::vk::DisplayModeProperties2KHR<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_display_mode_properties2_khr)(
             physical_device,
             display,
-            p_property_count,
-            p_properties,
+            property_count,
+            properties,
         )
     }
     #[inline]
     pub unsafe fn get_display_plane_capabilities2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_display_plane_info: *const crate::vk::DisplayPlaneInfo2KHR<'_>,
-        p_capabilities: *mut crate::vk::DisplayPlaneCapabilities2KHR<'_>,
+        display_plane_info: *const crate::vk::DisplayPlaneInfo2KHR<'_>,
+        capabilities: *mut crate::vk::DisplayPlaneCapabilities2KHR<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_display_plane_capabilities2_khr)(
             physical_device,
-            p_display_plane_info,
-            p_capabilities,
+            display_plane_info,
+            capabilities,
         )
     }
 }

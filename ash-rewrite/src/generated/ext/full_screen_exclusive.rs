@@ -79,17 +79,17 @@ impl Instance {
     pub unsafe fn get_physical_device_surface_present_modes2_ext(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-        p_present_mode_count: *mut u32,
-        p_present_modes: *mut crate::vk::PresentModeKHR,
+        surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        present_mode_count: *mut u32,
+        present_modes: *mut crate::vk::PresentModeKHR,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_surface_present_modes2_ext)(
             physical_device,
-            p_surface_info,
-            p_present_mode_count,
-            p_present_modes,
+            surface_info,
+            present_mode_count,
+            present_modes,
         )
     }
 }
@@ -182,16 +182,12 @@ impl Device {
     pub unsafe fn get_device_group_surface_present_modes2_ext(
         &self,
         device: crate::vk::Device,
-        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-        p_modes: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
+        surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        modes: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
     ) -> crate::vk::Result {
         (self
             .fp
-            .get_device_group_surface_present_modes2_ext)(
-            device,
-            p_surface_info,
-            p_modes,
-        )
+            .get_device_group_surface_present_modes2_ext)(device, surface_info, modes)
     }
     #[inline]
     pub unsafe fn acquire_full_screen_exclusive_mode_ext(

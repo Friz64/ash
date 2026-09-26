@@ -87,9 +87,9 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         device_relative_id: u32,
-        p_display: *mut crate::vk::DisplayKHR,
+        display: *mut crate::vk::DisplayKHR,
     ) -> crate::vk::Result {
-        (self.fp.get_winrt_display_nv)(physical_device, device_relative_id, p_display)
+        (self.fp.get_winrt_display_nv)(physical_device, device_relative_id, display)
     }
 }
 pub(crate) mod items {

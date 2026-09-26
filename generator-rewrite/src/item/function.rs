@@ -2,7 +2,7 @@ use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
     item::function::{Command, FuncPointer},
-    rust::{Lifetime, RustTokens},
+    rust::RustTokens,
 };
 use quote::quote;
 use tracing::{instrument, trace};
@@ -15,9 +15,9 @@ impl Code for FuncPointer {
         let params = self
             .params
             .iter()
-            .map(|decl| decl.to_rust().tokens(ctx, &Lifetime::placeholder()));
+            .map(|decl| decl.to_rust().tokens(ctx, None));
         let ret = self.return_type.as_ref().map(|ty| {
-            let rust_ty = ty.to_rust().tokens(ctx, &Lifetime::placeholder());
+            let rust_ty = ty.to_rust().tokens(ctx, None);
             quote! { -> #rust_ty }
         });
 
@@ -37,9 +37,9 @@ impl Code for Command {
         let params = self
             .params
             .iter()
-            .map(|param| param.decl.to_rust().tokens(ctx, &Lifetime::placeholder()));
+            .map(|param| param.decl.to_rust().tokens(ctx, None));
         let ret = self.return_type.as_ref().map(|ty| {
-            let rust_ty = ty.to_rust().tokens(ctx, &Lifetime::placeholder());
+            let rust_ty = ty.to_rust().tokens(ctx, None);
             quote! { -> #rust_ty }
         });
 

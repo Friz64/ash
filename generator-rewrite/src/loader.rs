@@ -3,10 +3,13 @@ use crate::{
     output::{CodeMap, Destination},
 };
 use analysis::{
-    decl::Ty,
-    item::{CommandItem, RequireLocation, function::Command},
-    name::{CommandName, TypeName},
-    rust::{Lifetime, RustTokens},
+    decl::{CPrimaryType, Mutability, Ty},
+    item::{
+        CommandItem, RequireLocation,
+        function::{Command, CommandParam, Length},
+    },
+    name::{CommandName, TypeName, VariableName},
+    rust::{RustTokens, RustTy},
 };
 use heck::ToSnekCase;
 use indexmap::IndexMap;
@@ -14,7 +17,7 @@ use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};
 use std::ffi::CString;
 use syn::Ident;
-use tracing::{debug, instrument};
+use tracing::{debug, instrument, trace};
 
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub enum FunctionType {
@@ -120,6 +123,8 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             });
 
             if ![
+                CommandName::VK_GET_INSTANCE_PROC_ADDR,
+                CommandName::VK_GET_DEVICE_PROC_ADDR,
                 CommandName::VK_ENUMERATE_INSTANCE_VERSION,
                 CommandName::VK_CREATE_INSTANCE,
                 CommandName::VK_CREATE_DEVICE,
@@ -134,14 +139,12 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             let cstr = Literal::c_string(&CString::new(name.original()).unwrap());
 
             let params = command.params.iter().map(|param| {
-                let ty = (param.decl.ty)
-                    .to_rust()
-                    .tokens(ctx, &Lifetime::placeholder());
+                let ty = (param.decl.ty).to_rust().tokens(ctx, None);
                 quote! { _: #ty }
             });
 
             let ret = command.return_type.as_ref().map(|ty| {
-                let rust_ty = ty.to_rust().tokens(ctx, &Lifetime::placeholder());
+                let rust_ty = ty.to_rust().tokens(ctx, None);
                 quote! { -> #rust_ty }
             });
 
@@ -284,20 +287,75 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
 
 #[instrument(skip(ctx))]
 fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -> TokenStream {
-    let param_names = (command.params.iter()).map(|param| ctx.variable_token(param.decl.name));
+    trace!("generating");
 
-    let param_decls = (command.params.iter())
-        .map(|param| param.decl.to_rust().tokens(ctx, &Lifetime::placeholder()));
+    // let mut a = HashSet::new();
+    // for p in &command.params {
+    //     if let Ty::Ptr(_, Mutability::Mut) = p.decl.ty
+    //         && let Some(Length::DefinedByMember(m)) = p.length
+    //     {
+    //         a.insert(m);
+    //     }
+    // }
+
+    // assert!(a.len() < 2, "{a:#?}");
+
+    struct WrapperParam<'a> {
+        param: &'a CommandParam,
+        name: Ident,
+        call_arg: TokenStream,
+        public_type: Option<TokenStream>,
+    }
+
+    let mut wrapper_params: IndexMap<VariableName, WrapperParam> = (command.params.iter())
+        .map(|param| {
+            let stripped = crate::strip_leading_p(param.decl.name.original()).to_snek_case();
+            let name = crate::escape_ident(&stripped);
+
+            let wrapper = WrapperParam {
+                param,
+                call_arg: quote! { #name },
+                name,
+                public_type: None,
+            };
+
+            (param.decl.name, wrapper)
+        })
+        .collect();
+
+    for wrapper in wrapper_params.values_mut() {
+        let name = &wrapper.name;
+        let public_type = match &wrapper.param.decl.ty {
+            Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), Mutability::Not)
+                if matches!(wrapper.param.length, Some(Length::NullTerminated)) =>
+            {
+                wrapper.call_arg = quote! { #name.map_or(core::ptr::null(), |s| s.as_ptr()) };
+                Some(RustTy::Option(Box::new(RustTy::Ref(
+                    Box::new(RustTy::CStr),
+                    Mutability::Not,
+                ))))
+            }
+            ty => Some(ty.to_rust()),
+        };
+
+        wrapper.public_type = public_type.map(|ty| ty.tokens(ctx, None));
+    }
+
+    let call_args = wrapper_params.values().map(|wrapper| &wrapper.call_arg);
+    let public_params = wrapper_params.values().filter_map(|wrapper| {
+        let name = &wrapper.name;
+        wrapper.public_type.as_ref().map(|ty| quote! { #name: #ty })
+    });
 
     let ret = command.return_type.as_ref().map(|ty| {
-        let rust_ty = ty.to_rust().tokens(ctx, &Lifetime::placeholder());
+        let rust_ty = ty.to_rust().tokens(ctx, None);
         quote! { -> #rust_ty }
     });
 
     quote! {
         #[inline]
-        pub unsafe fn #name(&self #( , #param_decls )*) #ret {
-            (self.#table_field.#name)( #( #param_names ),* )
+        pub unsafe fn #name(&self #( , #public_params )*) #ret {
+            (self.#table_field.#name)( #( #call_args ),* )
         }
     }
 }

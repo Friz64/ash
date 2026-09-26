@@ -67,10 +67,10 @@ impl Device {
         &self,
         device: crate::vk::Device,
         swapchain_count: u32,
-        p_swapchains: *const crate::vk::SwapchainKHR,
-        p_metadata: *const crate::vk::HdrMetadataEXT<'_>,
+        swapchains: *const crate::vk::SwapchainKHR,
+        metadata: *const crate::vk::HdrMetadataEXT<'_>,
     ) {
-        (self.fp.set_hdr_metadata_ext)(device, swapchain_count, p_swapchains, p_metadata)
+        (self.fp.set_hdr_metadata_ext)(device, swapchain_count, swapchains, metadata)
     }
 }
 pub const SPEC_VERSION: u32 = 3;

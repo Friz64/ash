@@ -2,7 +2,7 @@ use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
     item::bitmask::{BitMask, BitWidth, Item, Value},
-    rust::{Lifetime, RustTokens},
+    rust::RustTokens,
     xml::cexpr::CExprItem,
 };
 use proc_macro2::{Literal, TokenStream};
@@ -14,7 +14,7 @@ impl Code for BitMask {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name_tokens = ctx.type_tokens(self.bitmask_name, false, &Lifetime::placeholder());
+        let name_tokens = ctx.type_tokens(self.bitmask_name, false, None);
         let base_ty = match self.bitwidth {
             BitWidth::Bits32 => quote! { u32 },
             BitWidth::Bits64 => quote! { u64 },
@@ -25,7 +25,7 @@ impl Code for BitMask {
         let mut bits_impl_map = CodeMap::default();
         let mut debug_items = Vec::new();
         if let Some(bits_name) = self.bits_name {
-            let bits_name_tokens = ctx.type_tokens(bits_name, false, &Lifetime::placeholder());
+            let bits_name_tokens = ctx.type_tokens(bits_name, false, None);
             bits_definition = quote! {
                 #[repr(transparent)]
                 #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -72,7 +72,7 @@ impl Code for BitMask {
                 let bits_path = ctx.type_tokens(
                     bits_name,
                     dest != Destination::primary_location(self.required_by),
-                    &Lifetime::placeholder(),
+                    None,
                 );
 
                 bitmask_impl_map.extend(CodeMap::new(
@@ -199,7 +199,7 @@ impl Code for BitMask {
                 let bits_path = ctx.type_tokens(
                     type_name,
                     dest != Destination::primary_location(self.required_by),
-                    &Lifetime::placeholder(),
+                    None,
                 );
 
                 dest.reexport = false;

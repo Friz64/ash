@@ -109,7 +109,7 @@ impl Device {
         stride: u32,
         dst_image: crate::vk::Image,
         dst_image_layout: crate::vk::ImageLayout,
-        p_image_subresources: *const crate::vk::ImageSubresourceLayers,
+        image_subresources: *const crate::vk::ImageSubresourceLayers,
     ) {
         (self
             .fp
@@ -120,7 +120,7 @@ impl Device {
             stride,
             dst_image,
             dst_image_layout,
-            p_image_subresources,
+            image_subresources,
         )
     }
 }

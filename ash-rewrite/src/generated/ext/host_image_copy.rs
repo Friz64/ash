@@ -164,46 +164,44 @@ impl Device {
     pub unsafe fn copy_memory_to_image_ext(
         &self,
         device: crate::vk::Device,
-        p_copy_memory_to_image_info: *const crate::vk::CopyMemoryToImageInfo<'_>,
+        copy_memory_to_image_info: *const crate::vk::CopyMemoryToImageInfo<'_>,
     ) -> crate::vk::Result {
-        (self.fp.copy_memory_to_image_ext)(device, p_copy_memory_to_image_info)
+        (self.fp.copy_memory_to_image_ext)(device, copy_memory_to_image_info)
     }
     #[inline]
     pub unsafe fn copy_image_to_memory_ext(
         &self,
         device: crate::vk::Device,
-        p_copy_image_to_memory_info: *const crate::vk::CopyImageToMemoryInfo<'_>,
+        copy_image_to_memory_info: *const crate::vk::CopyImageToMemoryInfo<'_>,
     ) -> crate::vk::Result {
-        (self.fp.copy_image_to_memory_ext)(device, p_copy_image_to_memory_info)
+        (self.fp.copy_image_to_memory_ext)(device, copy_image_to_memory_info)
     }
     #[inline]
     pub unsafe fn copy_image_to_image_ext(
         &self,
         device: crate::vk::Device,
-        p_copy_image_to_image_info: *const crate::vk::CopyImageToImageInfo<'_>,
+        copy_image_to_image_info: *const crate::vk::CopyImageToImageInfo<'_>,
     ) -> crate::vk::Result {
-        (self.fp.copy_image_to_image_ext)(device, p_copy_image_to_image_info)
+        (self.fp.copy_image_to_image_ext)(device, copy_image_to_image_info)
     }
     #[inline]
     pub unsafe fn transition_image_layout_ext(
         &self,
         device: crate::vk::Device,
         transition_count: u32,
-        p_transitions: *const crate::vk::HostImageLayoutTransitionInfo<'_>,
+        transitions: *const crate::vk::HostImageLayoutTransitionInfo<'_>,
     ) -> crate::vk::Result {
-        (self.fp.transition_image_layout_ext)(device, transition_count, p_transitions)
+        (self.fp.transition_image_layout_ext)(device, transition_count, transitions)
     }
     #[inline]
     pub unsafe fn get_image_subresource_layout2_ext(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
-        p_subresource: *const crate::vk::ImageSubresource2<'_>,
-        p_layout: *mut crate::vk::SubresourceLayout2<'_>,
+        subresource: *const crate::vk::ImageSubresource2<'_>,
+        layout: *mut crate::vk::SubresourceLayout2<'_>,
     ) {
-        (self
-            .fp
-            .get_image_subresource_layout2_ext)(device, image, p_subresource, p_layout)
+        (self.fp.get_image_subresource_layout2_ext)(device, image, subresource, layout)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

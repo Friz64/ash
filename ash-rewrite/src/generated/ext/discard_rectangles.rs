@@ -110,7 +110,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_discard_rectangle: u32,
         discard_rectangle_count: u32,
-        p_discard_rectangles: *const crate::vk::Rect2D,
+        discard_rectangles: *const crate::vk::Rect2D,
     ) {
         (self
             .fp
@@ -118,7 +118,7 @@ impl Device {
             command_buffer,
             first_discard_rectangle,
             discard_rectangle_count,
-            p_discard_rectangles,
+            discard_rectangles,
         )
     }
     #[inline]

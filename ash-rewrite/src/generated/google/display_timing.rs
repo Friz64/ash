@@ -83,14 +83,14 @@ impl Device {
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        p_display_timing_properties: *mut crate::vk::RefreshCycleDurationGOOGLE,
+        display_timing_properties: *mut crate::vk::RefreshCycleDurationGOOGLE,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_refresh_cycle_duration_google)(
             device,
             swapchain,
-            p_display_timing_properties,
+            display_timing_properties,
         )
     }
     #[inline]
@@ -98,16 +98,16 @@ impl Device {
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        p_presentation_timing_count: *mut u32,
-        p_presentation_timings: *mut crate::vk::PastPresentationTimingGOOGLE,
+        presentation_timing_count: *mut u32,
+        presentation_timings: *mut crate::vk::PastPresentationTimingGOOGLE,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_past_presentation_timing_google)(
             device,
             swapchain,
-            p_presentation_timing_count,
-            p_presentation_timings,
+            presentation_timing_count,
+            presentation_timings,
         )
     }
 }

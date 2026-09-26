@@ -379,15 +379,15 @@ impl Device {
     pub unsafe fn get_rendering_area_granularity_khr(
         &self,
         device: crate::vk::Device,
-        p_rendering_area_info: *const crate::vk::RenderingAreaInfo<'_>,
-        p_granularity: *mut crate::vk::Extent2D,
+        rendering_area_info: *const crate::vk::RenderingAreaInfo<'_>,
+        granularity: *mut crate::vk::Extent2D,
     ) {
         (self
             .fp
             .get_rendering_area_granularity_khr)(
             device,
-            p_rendering_area_info,
-            p_granularity,
+            rendering_area_info,
+            granularity,
         )
     }
     #[inline]
@@ -414,21 +414,19 @@ impl Device {
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
-        p_subresource: *const crate::vk::ImageSubresource2<'_>,
-        p_layout: *mut crate::vk::SubresourceLayout2<'_>,
+        subresource: *const crate::vk::ImageSubresource2<'_>,
+        layout: *mut crate::vk::SubresourceLayout2<'_>,
     ) {
-        (self
-            .fp
-            .get_image_subresource_layout2_khr)(device, image, p_subresource, p_layout)
+        (self.fp.get_image_subresource_layout2_khr)(device, image, subresource, layout)
     }
     #[inline]
     pub unsafe fn get_device_image_subresource_layout_khr(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::DeviceImageSubresourceInfo<'_>,
-        p_layout: *mut crate::vk::SubresourceLayout2<'_>,
+        info: *const crate::vk::DeviceImageSubresourceInfo<'_>,
+        layout: *mut crate::vk::SubresourceLayout2<'_>,
     ) {
-        (self.fp.get_device_image_subresource_layout_khr)(device, p_info, p_layout)
+        (self.fp.get_device_image_subresource_layout_khr)(device, info, layout)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

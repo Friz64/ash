@@ -85,8 +85,8 @@ impl Device {
         &self,
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
-        p_host_pointer: *const core::ffi::c_void,
-        p_memory_host_pointer_properties: *mut crate::vk::MemoryHostPointerPropertiesEXT<
+        host_pointer: *const core::ffi::c_void,
+        memory_host_pointer_properties: *mut crate::vk::MemoryHostPointerPropertiesEXT<
             '_,
         >,
     ) -> crate::vk::Result {
@@ -95,8 +95,8 @@ impl Device {
             .get_memory_host_pointer_properties_ext)(
             device,
             handle_type,
-            p_host_pointer,
-            p_memory_host_pointer_properties,
+            host_pointer,
+            memory_host_pointer_properties,
         )
     }
 }

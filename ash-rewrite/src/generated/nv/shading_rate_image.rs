@@ -180,7 +180,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_viewport: u32,
         viewport_count: u32,
-        p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV<'_>,
+        shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV<'_>,
     ) {
         (self
             .fp
@@ -188,7 +188,7 @@ impl Device {
             command_buffer,
             first_viewport,
             viewport_count,
-            p_shading_rate_palettes,
+            shading_rate_palettes,
         )
     }
     #[inline]
@@ -197,7 +197,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
         custom_sample_order_count: u32,
-        p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'_>,
+        custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'_>,
     ) {
         (self
             .fp
@@ -205,7 +205,7 @@ impl Device {
             command_buffer,
             sample_order_type,
             custom_sample_order_count,
-            p_custom_sample_orders,
+            custom_sample_orders,
         )
     }
 }

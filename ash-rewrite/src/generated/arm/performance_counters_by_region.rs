@@ -82,18 +82,18 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-        p_counter_count: *mut u32,
-        p_counters: *mut crate::vk::PerformanceCounterARM<'_>,
-        p_counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionARM<'_>,
+        counter_count: *mut u32,
+        counters: *mut crate::vk::PerformanceCounterARM<'_>,
+        counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionARM<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .enumerate_physical_device_queue_family_performance_counters_by_region_arm)(
             physical_device,
             queue_family_index,
-            p_counter_count,
-            p_counters,
-            p_counter_descriptions,
+            counter_count,
+            counters,
+            counter_descriptions,
         )
     }
 }

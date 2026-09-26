@@ -3,7 +3,7 @@ use crate::output::{CodeMap, Destination};
 use analysis::{
     item::enumeration::{Enum, Value},
     name::TypeName,
-    rust::{Lifetime, RustTokens},
+    rust::RustTokens,
     xml::cexpr::CExprItem,
 };
 use proc_macro2::Literal;
@@ -14,7 +14,7 @@ impl Code for Enum {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.type_tokens(self.name, false, &Lifetime::placeholder());
+        let name = ctx.type_tokens(self.name, false, None);
 
         let debug = {
             let debug_items = (self.items.iter())
@@ -140,7 +140,7 @@ impl Code for Enum {
             let name = ctx.type_tokens(
                 self.name,
                 dest != Destination::primary_location(self.required_by),
-                &Lifetime::placeholder(),
+                None,
             );
 
             dest.reexport = false;

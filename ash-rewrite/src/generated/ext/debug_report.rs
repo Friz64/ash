@@ -166,17 +166,17 @@ impl Instance {
     pub unsafe fn create_debug_report_callback_ext(
         &self,
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_callback: *mut crate::vk::DebugReportCallbackEXT,
+        create_info: *const crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        callback: *mut crate::vk::DebugReportCallbackEXT,
     ) -> crate::vk::Result {
         (self
             .fp
             .create_debug_report_callback_ext)(
             instance,
-            p_create_info,
-            p_allocator,
-            p_callback,
+            create_info,
+            allocator,
+            callback,
         )
     }
     #[inline]
@@ -184,9 +184,9 @@ impl Instance {
         &self,
         instance: crate::vk::Instance,
         callback: crate::vk::DebugReportCallbackEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_debug_report_callback_ext)(instance, callback, p_allocator)
+        (self.fp.destroy_debug_report_callback_ext)(instance, callback, allocator)
     }
     #[inline]
     pub unsafe fn debug_report_message_ext(
@@ -197,8 +197,8 @@ impl Instance {
         object: u64,
         location: usize,
         message_code: i32,
-        p_layer_prefix: *const core::ffi::c_char,
-        p_message: *const core::ffi::c_char,
+        layer_prefix: Option<&core::ffi::CStr>,
+        message: Option<&core::ffi::CStr>,
     ) {
         (self
             .fp
@@ -209,8 +209,8 @@ impl Instance {
             object,
             location,
             message_code,
-            p_layer_prefix,
-            p_message,
+            layer_prefix.map_or(core::ptr::null(), |s| s.as_ptr()),
+            message.map_or(core::ptr::null(), |s| s.as_ptr()),
         )
     }
 }

@@ -189,30 +189,30 @@ impl Instance {
     pub unsafe fn get_physical_device_display_properties_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_property_count: *mut u32,
-        p_properties: *mut crate::vk::DisplayPropertiesKHR<'_>,
+        property_count: *mut u32,
+        properties: *mut crate::vk::DisplayPropertiesKHR<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_display_properties_khr)(
             physical_device,
-            p_property_count,
-            p_properties,
+            property_count,
+            properties,
         )
     }
     #[inline]
     pub unsafe fn get_physical_device_display_plane_properties_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_property_count: *mut u32,
-        p_properties: *mut crate::vk::DisplayPlanePropertiesKHR,
+        property_count: *mut u32,
+        properties: *mut crate::vk::DisplayPlanePropertiesKHR,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_display_plane_properties_khr)(
             physical_device,
-            p_property_count,
-            p_properties,
+            property_count,
+            properties,
         )
     }
     #[inline]
@@ -220,16 +220,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         plane_index: u32,
-        p_display_count: *mut u32,
-        p_displays: *mut crate::vk::DisplayKHR,
+        display_count: *mut u32,
+        displays: *mut crate::vk::DisplayKHR,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_display_plane_supported_displays_khr)(
             physical_device,
             plane_index,
-            p_display_count,
-            p_displays,
+            display_count,
+            displays,
         )
     }
     #[inline]
@@ -237,16 +237,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
-        p_property_count: *mut u32,
-        p_properties: *mut crate::vk::DisplayModePropertiesKHR,
+        property_count: *mut u32,
+        properties: *mut crate::vk::DisplayModePropertiesKHR,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_display_mode_properties_khr)(
             physical_device,
             display,
-            p_property_count,
-            p_properties,
+            property_count,
+            properties,
         )
     }
     #[inline]
@@ -254,18 +254,18 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
-        p_create_info: *const crate::vk::DisplayModeCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_mode: *mut crate::vk::DisplayModeKHR,
+        create_info: *const crate::vk::DisplayModeCreateInfoKHR<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        mode: *mut crate::vk::DisplayModeKHR,
     ) -> crate::vk::Result {
         (self
             .fp
             .create_display_mode_khr)(
             physical_device,
             display,
-            p_create_info,
-            p_allocator,
-            p_mode,
+            create_info,
+            allocator,
+            mode,
         )
     }
     #[inline]
@@ -274,7 +274,7 @@ impl Instance {
         physical_device: crate::vk::PhysicalDevice,
         mode: crate::vk::DisplayModeKHR,
         plane_index: u32,
-        p_capabilities: *mut crate::vk::DisplayPlaneCapabilitiesKHR,
+        capabilities: *mut crate::vk::DisplayPlaneCapabilitiesKHR,
     ) -> crate::vk::Result {
         (self
             .fp
@@ -282,25 +282,20 @@ impl Instance {
             physical_device,
             mode,
             plane_index,
-            p_capabilities,
+            capabilities,
         )
     }
     #[inline]
     pub unsafe fn create_display_plane_surface_khr(
         &self,
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::DisplaySurfaceCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
+        create_info: *const crate::vk::DisplaySurfaceCreateInfoKHR<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result {
         (self
             .fp
-            .create_display_plane_surface_khr)(
-            instance,
-            p_create_info,
-            p_allocator,
-            p_surface,
-        )
+            .create_display_plane_surface_khr)(instance, create_info, allocator, surface)
     }
 }
 pub const SPEC_VERSION: u32 = 23;

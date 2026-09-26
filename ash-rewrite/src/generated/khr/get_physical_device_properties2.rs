@@ -169,91 +169,91 @@ impl Instance {
     pub unsafe fn get_physical_device_features2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_features: *mut crate::vk::PhysicalDeviceFeatures2<'_>,
+        features: *mut crate::vk::PhysicalDeviceFeatures2<'_>,
     ) {
-        (self.fp.get_physical_device_features2_khr)(physical_device, p_features)
+        (self.fp.get_physical_device_features2_khr)(physical_device, features)
     }
     #[inline]
     pub unsafe fn get_physical_device_properties2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_properties: *mut crate::vk::PhysicalDeviceProperties2<'_>,
+        properties: *mut crate::vk::PhysicalDeviceProperties2<'_>,
     ) {
-        (self.fp.get_physical_device_properties2_khr)(physical_device, p_properties)
+        (self.fp.get_physical_device_properties2_khr)(physical_device, properties)
     }
     #[inline]
     pub unsafe fn get_physical_device_format_properties2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
-        p_format_properties: *mut crate::vk::FormatProperties2<'_>,
+        format_properties: *mut crate::vk::FormatProperties2<'_>,
     ) {
         (self
             .fp
             .get_physical_device_format_properties2_khr)(
             physical_device,
             format,
-            p_format_properties,
+            format_properties,
         )
     }
     #[inline]
     pub unsafe fn get_physical_device_image_format_properties2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_image_format_info: *const crate::vk::PhysicalDeviceImageFormatInfo2<'_>,
-        p_image_format_properties: *mut crate::vk::ImageFormatProperties2<'_>,
+        image_format_info: *const crate::vk::PhysicalDeviceImageFormatInfo2<'_>,
+        image_format_properties: *mut crate::vk::ImageFormatProperties2<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_image_format_properties2_khr)(
             physical_device,
-            p_image_format_info,
-            p_image_format_properties,
+            image_format_info,
+            image_format_properties,
         )
     }
     #[inline]
     pub unsafe fn get_physical_device_queue_family_properties2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_queue_family_property_count: *mut u32,
-        p_queue_family_properties: *mut crate::vk::QueueFamilyProperties2<'_>,
+        queue_family_property_count: *mut u32,
+        queue_family_properties: *mut crate::vk::QueueFamilyProperties2<'_>,
     ) {
         (self
             .fp
             .get_physical_device_queue_family_properties2_khr)(
             physical_device,
-            p_queue_family_property_count,
-            p_queue_family_properties,
+            queue_family_property_count,
+            queue_family_properties,
         )
     }
     #[inline]
     pub unsafe fn get_physical_device_memory_properties2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_memory_properties: *mut crate::vk::PhysicalDeviceMemoryProperties2<'_>,
+        memory_properties: *mut crate::vk::PhysicalDeviceMemoryProperties2<'_>,
     ) {
         (self
             .fp
             .get_physical_device_memory_properties2_khr)(
             physical_device,
-            p_memory_properties,
+            memory_properties,
         )
     }
     #[inline]
     pub unsafe fn get_physical_device_sparse_image_format_properties2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_format_info: *const crate::vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
-        p_property_count: *mut u32,
-        p_properties: *mut crate::vk::SparseImageFormatProperties2<'_>,
+        format_info: *const crate::vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
+        property_count: *mut u32,
+        properties: *mut crate::vk::SparseImageFormatProperties2<'_>,
     ) {
         (self
             .fp
             .get_physical_device_sparse_image_format_properties2_khr)(
             physical_device,
-            p_format_info,
-            p_property_count,
-            p_properties,
+            format_info,
+            property_count,
+            properties,
         )
     }
 }

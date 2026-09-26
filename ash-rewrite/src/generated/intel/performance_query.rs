@@ -224,9 +224,9 @@ impl Device {
     pub unsafe fn initialize_performance_api_intel(
         &self,
         device: crate::vk::Device,
-        p_initialize_info: *const crate::vk::InitializePerformanceApiInfoINTEL<'_>,
+        initialize_info: *const crate::vk::InitializePerformanceApiInfoINTEL<'_>,
     ) -> crate::vk::Result {
-        (self.fp.initialize_performance_api_intel)(device, p_initialize_info)
+        (self.fp.initialize_performance_api_intel)(device, initialize_info)
     }
     #[inline]
     pub unsafe fn uninitialize_performance_api_intel(&self, device: crate::vk::Device) {
@@ -236,39 +236,39 @@ impl Device {
     pub unsafe fn cmd_set_performance_marker_intel(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_marker_info: *const crate::vk::PerformanceMarkerInfoINTEL<'_>,
+        marker_info: *const crate::vk::PerformanceMarkerInfoINTEL<'_>,
     ) -> crate::vk::Result {
-        (self.fp.cmd_set_performance_marker_intel)(command_buffer, p_marker_info)
+        (self.fp.cmd_set_performance_marker_intel)(command_buffer, marker_info)
     }
     #[inline]
     pub unsafe fn cmd_set_performance_stream_marker_intel(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_marker_info: *const crate::vk::PerformanceStreamMarkerInfoINTEL<'_>,
+        marker_info: *const crate::vk::PerformanceStreamMarkerInfoINTEL<'_>,
     ) -> crate::vk::Result {
-        (self.fp.cmd_set_performance_stream_marker_intel)(command_buffer, p_marker_info)
+        (self.fp.cmd_set_performance_stream_marker_intel)(command_buffer, marker_info)
     }
     #[inline]
     pub unsafe fn cmd_set_performance_override_intel(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_override_info: *const crate::vk::PerformanceOverrideInfoINTEL<'_>,
+        override_info: *const crate::vk::PerformanceOverrideInfoINTEL<'_>,
     ) -> crate::vk::Result {
-        (self.fp.cmd_set_performance_override_intel)(command_buffer, p_override_info)
+        (self.fp.cmd_set_performance_override_intel)(command_buffer, override_info)
     }
     #[inline]
     pub unsafe fn acquire_performance_configuration_intel(
         &self,
         device: crate::vk::Device,
-        p_acquire_info: *const crate::vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
-        p_configuration: *mut crate::vk::PerformanceConfigurationINTEL,
+        acquire_info: *const crate::vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
+        configuration: *mut crate::vk::PerformanceConfigurationINTEL,
     ) -> crate::vk::Result {
         (self
             .fp
             .acquire_performance_configuration_intel)(
             device,
-            p_acquire_info,
-            p_configuration,
+            acquire_info,
+            configuration,
         )
     }
     #[inline]
@@ -292,9 +292,9 @@ impl Device {
         &self,
         device: crate::vk::Device,
         parameter: crate::vk::PerformanceParameterTypeINTEL,
-        p_value: *mut crate::vk::PerformanceValueINTEL,
+        value: *mut crate::vk::PerformanceValueINTEL,
     ) -> crate::vk::Result {
-        (self.fp.get_performance_parameter_intel)(device, parameter, p_value)
+        (self.fp.get_performance_parameter_intel)(device, parameter, value)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

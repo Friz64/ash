@@ -295,10 +295,10 @@ impl Device {
     pub unsafe fn cmd_trace_rays_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_raygen_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        p_miss_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        p_hit_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        p_callable_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
+        raygen_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
+        miss_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
+        hit_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
+        callable_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
         width: u32,
         height: u32,
         depth: u32,
@@ -307,10 +307,10 @@ impl Device {
             .fp
             .cmd_trace_rays_khr)(
             command_buffer,
-            p_raygen_shader_binding_table,
-            p_miss_shader_binding_table,
-            p_hit_shader_binding_table,
-            p_callable_shader_binding_table,
+            raygen_shader_binding_table,
+            miss_shader_binding_table,
+            hit_shader_binding_table,
+            callable_shader_binding_table,
             width,
             height,
             depth,
@@ -324,7 +324,7 @@ impl Device {
         first_group: u32,
         group_count: u32,
         data_size: usize,
-        p_data: *mut core::ffi::c_void,
+        data: *mut core::ffi::c_void,
     ) -> crate::vk::Result {
         (self
             .fp
@@ -334,7 +334,7 @@ impl Device {
             first_group,
             group_count,
             data_size,
-            p_data,
+            data,
         )
     }
     #[inline]
@@ -345,7 +345,7 @@ impl Device {
         first_group: u32,
         group_count: u32,
         data_size: usize,
-        p_data: *mut core::ffi::c_void,
+        data: *mut core::ffi::c_void,
     ) -> crate::vk::Result {
         (self
             .fp
@@ -355,7 +355,7 @@ impl Device {
             first_group,
             group_count,
             data_size,
-            p_data,
+            data,
         )
     }
     #[inline]
@@ -365,9 +365,9 @@ impl Device {
         deferred_operation: crate::vk::DeferredOperationKHR,
         pipeline_cache: crate::vk::PipelineCache,
         create_info_count: u32,
-        p_create_infos: *const crate::vk::RayTracingPipelineCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_pipelines: *mut crate::vk::Pipeline,
+        create_infos: *const crate::vk::RayTracingPipelineCreateInfoKHR<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        pipelines: *mut crate::vk::Pipeline,
     ) -> crate::vk::Result {
         (self
             .fp
@@ -376,29 +376,29 @@ impl Device {
             deferred_operation,
             pipeline_cache,
             create_info_count,
-            p_create_infos,
-            p_allocator,
-            p_pipelines,
+            create_infos,
+            allocator,
+            pipelines,
         )
     }
     #[inline]
     pub unsafe fn cmd_trace_rays_indirect_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_raygen_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        p_miss_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        p_hit_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        p_callable_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
+        raygen_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
+        miss_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
+        hit_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
+        callable_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
         indirect_device_address: crate::vk::DeviceAddress,
     ) {
         (self
             .fp
             .cmd_trace_rays_indirect_khr)(
             command_buffer,
-            p_raygen_shader_binding_table,
-            p_miss_shader_binding_table,
-            p_hit_shader_binding_table,
-            p_callable_shader_binding_table,
+            raygen_shader_binding_table,
+            miss_shader_binding_table,
+            hit_shader_binding_table,
+            callable_shader_binding_table,
             indirect_device_address,
         )
     }

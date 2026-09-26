@@ -360,11 +360,11 @@ impl Device {
         &self,
         device: crate::vk::Device,
         layout: crate::vk::DescriptorSetLayout,
-        p_layout_size_in_bytes: *mut crate::vk::DeviceSize,
+        layout_size_in_bytes: *mut crate::vk::DeviceSize,
     ) {
         (self
             .fp
-            .get_descriptor_set_layout_size_ext)(device, layout, p_layout_size_in_bytes)
+            .get_descriptor_set_layout_size_ext)(device, layout, layout_size_in_bytes)
     }
     #[inline]
     pub unsafe fn get_descriptor_set_layout_binding_offset_ext(
@@ -372,7 +372,7 @@ impl Device {
         device: crate::vk::Device,
         layout: crate::vk::DescriptorSetLayout,
         binding: u32,
-        p_offset: *mut crate::vk::DeviceSize,
+        offset: *mut crate::vk::DeviceSize,
     ) {
         (self
             .fp
@@ -380,32 +380,32 @@ impl Device {
             device,
             layout,
             binding,
-            p_offset,
+            offset,
         )
     }
     #[inline]
     pub unsafe fn get_descriptor_ext(
         &self,
         device: crate::vk::Device,
-        p_descriptor_info: *const crate::vk::DescriptorGetInfoEXT<'_>,
+        descriptor_info: *const crate::vk::DescriptorGetInfoEXT<'_>,
         data_size: usize,
-        p_descriptor: *mut core::ffi::c_void,
+        descriptor: *mut core::ffi::c_void,
     ) {
-        (self.fp.get_descriptor_ext)(device, p_descriptor_info, data_size, p_descriptor)
+        (self.fp.get_descriptor_ext)(device, descriptor_info, data_size, descriptor)
     }
     #[inline]
     pub unsafe fn cmd_bind_descriptor_buffers_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         buffer_count: u32,
-        p_binding_infos: *const crate::vk::DescriptorBufferBindingInfoEXT<'_>,
+        binding_infos: *const crate::vk::DescriptorBufferBindingInfoEXT<'_>,
     ) {
         (self
             .fp
             .cmd_bind_descriptor_buffers_ext)(
             command_buffer,
             buffer_count,
-            p_binding_infos,
+            binding_infos,
         )
     }
     #[inline]
@@ -416,8 +416,8 @@ impl Device {
         layout: crate::vk::PipelineLayout,
         first_set: u32,
         set_count: u32,
-        p_buffer_indices: *const u32,
-        p_offsets: *const crate::vk::DeviceSize,
+        buffer_indices: *const u32,
+        offsets: *const crate::vk::DeviceSize,
     ) {
         (self
             .fp
@@ -427,8 +427,8 @@ impl Device {
             layout,
             first_set,
             set_count,
-            p_buffer_indices,
-            p_offsets,
+            buffer_indices,
+            offsets,
         )
     }
     #[inline]
@@ -452,53 +452,51 @@ impl Device {
     pub unsafe fn get_buffer_opaque_capture_descriptor_data_ext(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::BufferCaptureDescriptorDataInfoEXT<'_>,
-        p_data: *mut core::ffi::c_void,
+        info: *const crate::vk::BufferCaptureDescriptorDataInfoEXT<'_>,
+        data: *mut core::ffi::c_void,
     ) -> crate::vk::Result {
-        (self.fp.get_buffer_opaque_capture_descriptor_data_ext)(device, p_info, p_data)
+        (self.fp.get_buffer_opaque_capture_descriptor_data_ext)(device, info, data)
     }
     #[inline]
     pub unsafe fn get_image_opaque_capture_descriptor_data_ext(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::ImageCaptureDescriptorDataInfoEXT<'_>,
-        p_data: *mut core::ffi::c_void,
+        info: *const crate::vk::ImageCaptureDescriptorDataInfoEXT<'_>,
+        data: *mut core::ffi::c_void,
     ) -> crate::vk::Result {
-        (self.fp.get_image_opaque_capture_descriptor_data_ext)(device, p_info, p_data)
+        (self.fp.get_image_opaque_capture_descriptor_data_ext)(device, info, data)
     }
     #[inline]
     pub unsafe fn get_image_view_opaque_capture_descriptor_data_ext(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::ImageViewCaptureDescriptorDataInfoEXT<'_>,
-        p_data: *mut core::ffi::c_void,
+        info: *const crate::vk::ImageViewCaptureDescriptorDataInfoEXT<'_>,
+        data: *mut core::ffi::c_void,
     ) -> crate::vk::Result {
-        (self
-            .fp
-            .get_image_view_opaque_capture_descriptor_data_ext)(device, p_info, p_data)
+        (self.fp.get_image_view_opaque_capture_descriptor_data_ext)(device, info, data)
     }
     #[inline]
     pub unsafe fn get_sampler_opaque_capture_descriptor_data_ext(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::SamplerCaptureDescriptorDataInfoEXT<'_>,
-        p_data: *mut core::ffi::c_void,
+        info: *const crate::vk::SamplerCaptureDescriptorDataInfoEXT<'_>,
+        data: *mut core::ffi::c_void,
     ) -> crate::vk::Result {
-        (self.fp.get_sampler_opaque_capture_descriptor_data_ext)(device, p_info, p_data)
+        (self.fp.get_sampler_opaque_capture_descriptor_data_ext)(device, info, data)
     }
     #[inline]
     pub unsafe fn get_acceleration_structure_opaque_capture_descriptor_data_ext(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::AccelerationStructureCaptureDescriptorDataInfoEXT<'_>,
-        p_data: *mut core::ffi::c_void,
+        info: *const crate::vk::AccelerationStructureCaptureDescriptorDataInfoEXT<'_>,
+        data: *mut core::ffi::c_void,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_acceleration_structure_opaque_capture_descriptor_data_ext)(
             device,
-            p_info,
-            p_data,
+            info,
+            data,
         )
     }
 }

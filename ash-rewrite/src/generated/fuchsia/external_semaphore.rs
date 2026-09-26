@@ -91,24 +91,24 @@ impl Device {
     pub unsafe fn get_semaphore_zircon_handle_fuchsia(
         &self,
         device: crate::vk::Device,
-        p_get_zircon_handle_info: *const crate::vk::SemaphoreGetZirconHandleInfoFUCHSIA<
+        get_zircon_handle_info: *const crate::vk::SemaphoreGetZirconHandleInfoFUCHSIA<
             '_,
         >,
-        p_zircon_handle: *mut crate::platform_types::zx_handle_t,
+        zircon_handle: *mut crate::platform_types::zx_handle_t,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_semaphore_zircon_handle_fuchsia)(
             device,
-            p_get_zircon_handle_info,
-            p_zircon_handle,
+            get_zircon_handle_info,
+            zircon_handle,
         )
     }
     #[inline]
     pub unsafe fn import_semaphore_zircon_handle_fuchsia(
         &self,
         device: crate::vk::Device,
-        p_import_semaphore_zircon_handle_info: *const crate::vk::ImportSemaphoreZirconHandleInfoFUCHSIA<
+        import_semaphore_zircon_handle_info: *const crate::vk::ImportSemaphoreZirconHandleInfoFUCHSIA<
             '_,
         >,
     ) -> crate::vk::Result {
@@ -116,7 +116,7 @@ impl Device {
             .fp
             .import_semaphore_zircon_handle_fuchsia)(
             device,
-            p_import_semaphore_zircon_handle_info,
+            import_semaphore_zircon_handle_info,
         )
     }
 }

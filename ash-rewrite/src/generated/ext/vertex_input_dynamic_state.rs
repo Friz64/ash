@@ -76,11 +76,11 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         vertex_binding_description_count: u32,
-        p_vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription2EXT<
+        vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription2EXT<
             '_,
         >,
         vertex_attribute_description_count: u32,
-        p_vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription2EXT<
+        vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription2EXT<
             '_,
         >,
     ) {
@@ -89,9 +89,9 @@ impl Device {
             .cmd_set_vertex_input_ext)(
             command_buffer,
             vertex_binding_description_count,
-            p_vertex_binding_descriptions,
+            vertex_binding_descriptions,
             vertex_attribute_description_count,
-            p_vertex_attribute_descriptions,
+            vertex_attribute_descriptions,
         )
     }
 }

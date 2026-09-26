@@ -77,9 +77,9 @@ impl Device {
     pub unsafe fn anti_lag_update_amd(
         &self,
         device: crate::vk::Device,
-        p_data: *const crate::vk::AntiLagDataAMD<'_>,
+        data: *const crate::vk::AntiLagDataAMD<'_>,
     ) {
-        (self.fp.anti_lag_update_amd)(device, p_data)
+        (self.fp.anti_lag_update_amd)(device, data)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

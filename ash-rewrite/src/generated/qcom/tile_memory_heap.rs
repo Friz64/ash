@@ -108,9 +108,9 @@ impl Device {
     pub unsafe fn cmd_bind_tile_memory_qcom(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_tile_memory_bind_info: *const crate::vk::TileMemoryBindInfoQCOM<'_>,
+        tile_memory_bind_info: *const crate::vk::TileMemoryBindInfoQCOM<'_>,
     ) {
-        (self.fp.cmd_bind_tile_memory_qcom)(command_buffer, p_tile_memory_bind_info)
+        (self.fp.cmd_bind_tile_memory_qcom)(command_buffer, tile_memory_bind_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

@@ -102,9 +102,9 @@ impl Device {
     pub unsafe fn cmd_begin_rendering_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_rendering_info: *const crate::vk::RenderingInfo<'_>,
+        rendering_info: *const crate::vk::RenderingInfo<'_>,
     ) {
-        (self.fp.cmd_begin_rendering_khr)(command_buffer, p_rendering_info)
+        (self.fp.cmd_begin_rendering_khr)(command_buffer, rendering_info)
     }
     #[inline]
     pub unsafe fn cmd_end_rendering_khr(

@@ -8,34 +8,20 @@ use analysis::{
     name::TypeName,
     rust::{Lifetime, RustTokens, RustTy},
 };
+use heck::ToSnekCase;
 use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};
 use std::iter;
 use syn::Ident;
 use tracing::{instrument, trace};
 
-fn method_name_token(ctx: &Context, member: &RegularMember) -> Ident {
-    let mut leading_p_count = 0;
-    for c in member.decl.name.original().chars() {
-        if c == 'p' {
-            leading_p_count += 1;
-        } else if c.is_ascii_uppercase() {
-            break;
-        } else {
-            leading_p_count = 0;
-            break;
-        }
-    }
-
-    let mut method_name = (member.decl.name.original())
-        .strip_prefix(&"p".repeat(leading_p_count))
-        .unwrap()
-        .to_owned();
+fn method_name_token(member: &RegularMember) -> Ident {
+    let mut method_name = crate::strip_leading_p(member.decl.name.original()).to_owned();
     if member.length_at_depth(1) == Some(Length::Count(1)) {
         method_name += "_ptrs";
     }
 
-    ctx.variable_token_from_original(&method_name)
+    crate::escape_ident(&method_name.to_snek_case())
 }
 
 fn as_c_str_method_token(method_name: &Ident) -> Ident {
@@ -51,7 +37,7 @@ impl Code for Struct {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
         let lifetime = Lifetime(format_ident!("a"));
-        let name = ctx.type_tokens(self.name, false, &lifetime);
+        let name = ctx.type_tokens(self.name, false, Some(&lifetime));
 
         let lifetime_brackets = ctx
             .type_has_lifetime(self.name)
@@ -64,7 +50,7 @@ impl Code for Struct {
             Member::Regular(RegularMember { decl, .. }) => {
                 contains_static_array |= matches!(decl.ty, Ty::Array(..));
 
-                let decl = decl.to_rust().tokens(ctx, &lifetime);
+                let decl = decl.to_rust().tokens(ctx, Some(&lifetime));
                 quote! { pub #decl }
             }
             Member::Bitfield(ranges) => {
@@ -94,9 +80,8 @@ impl Code for Struct {
         });
 
         let tagged_structure = self.structure_type.as_ref().map(|ty| {
-            let structure_ty = ctx.type_tokens(TypeName::VK_STRUCTURE_TYPE, true, &lifetime);
+            let structure_ty = ctx.type_tokens(TypeName::VK_STRUCTURE_TYPE, true, Some(&lifetime));
             let ty = ctx.enumerator_tokens(*ty, TypeName::VK_STRUCTURE_TYPE, true);
-            let anon = Lifetime::placeholder();
             let extends = self.extends.iter().map(|ty| {
                 let is_provisional = ctx
                     .type_required_by(*ty)
@@ -105,7 +90,7 @@ impl Code for Struct {
                 let provisional_guard =
                     is_provisional.then_some(quote! { #[cfg(feature = "provisional")] });
 
-                let extends = ctx.type_tokens(*ty, true, &anon);
+                let extends = ctx.type_tokens(*ty, true, None);
                 quote! {
                     #provisional_guard
                     unsafe impl #lifetime_brackets crate::Extends<#extends> for #name {}
@@ -184,8 +169,7 @@ impl Code for Struct {
                             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
                         {
                             custom_debug = true;
-                            let field_as_c_str =
-                                as_c_str_method_token(&method_name_token(ctx, member));
+                            let field_as_c_str = as_c_str_method_token(&method_name_token(member));
                             quote! { &self.#field_as_c_str() }
                         }
                         _ => quote! { &self.#field_name },
@@ -268,8 +252,7 @@ fn regular_builder(
     }
 
     let field_name = ctx.variable_token(member.decl.name);
-
-    let method_name = method_name_token(ctx, member);
+    let method_name = method_name_token(member);
 
     let mut skip_override = None;
     let mut ignore_custom_length = false;
@@ -350,7 +333,7 @@ fn regular_builder(
         Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), mutability)
             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
-            let ty = RustTy::Ref(Box::new(RustTy::CStr), mutability).tokens(ctx, lifetime);
+            let ty = RustTy::Ref(Box::new(RustTy::CStr), mutability).tokens(ctx, Some(lifetime));
             let method_name_as_cstr = as_c_str_method_token(&method_name);
             quote! {
                 pub fn #method_name(mut self, #method_name: #ty) -> Self {
@@ -387,8 +370,7 @@ fn regular_builder(
             let length_name = ctx.variable_token(length_member);
             let method_name_as_slice = format_ident!("{method_name}_as_slice");
             let slice_ty = array_element_ty(element_ty);
-            let slice = RustTy::Slice(Box::new(slice_ty), Mutability::Not, None)
-                .tokens(ctx, &Lifetime::placeholder());
+            let slice = RustTy::Slice(Box::new(slice_ty), Mutability::Not, None).tokens(ctx, None);
 
             quote! {
                 pub fn #field_name(mut self, #method_name: #slice) -> Self {
@@ -422,7 +404,8 @@ fn regular_builder(
             };
 
             let len_name = ctx.variable_token(length_member);
-            let slice = RustTy::Slice(Box::new(slice_ty), mutability, None).tokens(ctx, lifetime);
+            let slice =
+                RustTy::Slice(Box::new(slice_ty), mutability, None).tokens(ctx, Some(lifetime));
             quote! {
                 pub fn #method_name(mut self, #method_name: #slice) -> Self {
                     self.#len_name = #method_name.len() as _;
@@ -436,7 +419,7 @@ fn regular_builder(
                 .length_at_depth(0)
                 .is_none_or(|l| l == Length::Count(1)) =>
         {
-            let ty = RustTy::Ref(Box::new(base.to_rust()), mutability).tokens(ctx, lifetime);
+            let ty = RustTy::Ref(Box::new(base.to_rust()), mutability).tokens(ctx, Some(lifetime));
             quote! {
                 pub fn #method_name(mut self, #method_name: #ty) -> Self {
                     self.#field_name = #method_name;
@@ -444,13 +427,16 @@ fn regular_builder(
                 }
             }
         }
-        _ if let Some(Length::Custom(custom)) = member.length_at_depth(0)
+        _ if member
+            .lengths
+            .iter()
+            .any(|length| matches!(length, Length::Custom(..)))
             && !ignore_custom_length =>
         {
-            panic!("unhandled custom length {custom:?}");
+            panic!("unhandled custom length {:?}", member.lengths);
         }
         _ => {
-            let ty = member.decl.ty.to_rust().tokens(ctx, lifetime);
+            let ty = member.decl.ty.to_rust().tokens(ctx, Some(lifetime));
             quote! {
                 pub fn #method_name(mut self, #method_name: #ty) -> Self {
                     self.#field_name = #method_name;
@@ -511,8 +497,8 @@ impl Code for Union {
         let lifetime_brackets = ctx
             .type_has_lifetime(self.name)
             .then(|| quote! { <#lifetime> });
-        let name = ctx.type_tokens(self.name, false, &lifetime);
-        let members = (self.members.iter()).map(|decl| decl.to_rust().tokens(ctx, &lifetime));
+        let name = ctx.type_tokens(self.name, false, Some(&lifetime));
+        let members = (self.members.iter()).map(|decl| decl.to_rust().tokens(ctx, Some(&lifetime)));
 
         let name_string = name.to_string();
         let code = quote! {

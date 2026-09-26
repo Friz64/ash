@@ -97,15 +97,15 @@ impl Instance {
     pub unsafe fn get_physical_device_tool_properties_ext(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_tool_count: *mut u32,
-        p_tool_properties: *mut crate::vk::PhysicalDeviceToolProperties<'_>,
+        tool_count: *mut u32,
+        tool_properties: *mut crate::vk::PhysicalDeviceToolProperties<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_tool_properties_ext)(
             physical_device,
-            p_tool_count,
-            p_tool_properties,
+            tool_count,
+            tool_properties,
         )
     }
 }

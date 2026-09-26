@@ -81,18 +81,18 @@ impl Device {
     pub unsafe fn get_semaphore_fd_khr(
         &self,
         device: crate::vk::Device,
-        p_get_fd_info: *const crate::vk::SemaphoreGetFdInfoKHR<'_>,
-        p_fd: *mut core::ffi::c_int,
+        get_fd_info: *const crate::vk::SemaphoreGetFdInfoKHR<'_>,
+        fd: *mut core::ffi::c_int,
     ) -> crate::vk::Result {
-        (self.fp.get_semaphore_fd_khr)(device, p_get_fd_info, p_fd)
+        (self.fp.get_semaphore_fd_khr)(device, get_fd_info, fd)
     }
     #[inline]
     pub unsafe fn import_semaphore_fd_khr(
         &self,
         device: crate::vk::Device,
-        p_import_semaphore_fd_info: *const crate::vk::ImportSemaphoreFdInfoKHR<'_>,
+        import_semaphore_fd_info: *const crate::vk::ImportSemaphoreFdInfoKHR<'_>,
     ) -> crate::vk::Result {
-        (self.fp.import_semaphore_fd_khr)(device, p_import_semaphore_fd_info)
+        (self.fp.import_semaphore_fd_khr)(device, import_semaphore_fd_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

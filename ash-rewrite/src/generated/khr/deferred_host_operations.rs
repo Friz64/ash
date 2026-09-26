@@ -133,21 +133,19 @@ impl Device {
     pub unsafe fn create_deferred_operation_khr(
         &self,
         device: crate::vk::Device,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_deferred_operation: *mut crate::vk::DeferredOperationKHR,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        deferred_operation: *mut crate::vk::DeferredOperationKHR,
     ) -> crate::vk::Result {
-        (self
-            .fp
-            .create_deferred_operation_khr)(device, p_allocator, p_deferred_operation)
+        (self.fp.create_deferred_operation_khr)(device, allocator, deferred_operation)
     }
     #[inline]
     pub unsafe fn destroy_deferred_operation_khr(
         &self,
         device: crate::vk::Device,
         operation: crate::vk::DeferredOperationKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_deferred_operation_khr)(device, operation, p_allocator)
+        (self.fp.destroy_deferred_operation_khr)(device, operation, allocator)
     }
     #[inline]
     pub unsafe fn get_deferred_operation_max_concurrency_khr(

@@ -112,26 +112,26 @@ impl Device {
     pub unsafe fn get_image_view_handle_nvx(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::ImageViewHandleInfoNVX<'_>,
+        info: *const crate::vk::ImageViewHandleInfoNVX<'_>,
     ) -> u32 {
-        (self.fp.get_image_view_handle_nvx)(device, p_info)
+        (self.fp.get_image_view_handle_nvx)(device, info)
     }
     #[inline]
     pub unsafe fn get_image_view_handle64_nvx(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::ImageViewHandleInfoNVX<'_>,
+        info: *const crate::vk::ImageViewHandleInfoNVX<'_>,
     ) -> u64 {
-        (self.fp.get_image_view_handle64_nvx)(device, p_info)
+        (self.fp.get_image_view_handle64_nvx)(device, info)
     }
     #[inline]
     pub unsafe fn get_image_view_address_nvx(
         &self,
         device: crate::vk::Device,
         image_view: crate::vk::ImageView,
-        p_properties: *mut crate::vk::ImageViewAddressPropertiesNVX<'_>,
+        properties: *mut crate::vk::ImageViewAddressPropertiesNVX<'_>,
     ) -> crate::vk::Result {
-        (self.fp.get_image_view_address_nvx)(device, image_view, p_properties)
+        (self.fp.get_image_view_address_nvx)(device, image_view, properties)
     }
     #[inline]
     pub unsafe fn get_device_combined_image_sampler_index_nvx(

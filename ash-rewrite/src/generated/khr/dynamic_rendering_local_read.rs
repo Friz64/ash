@@ -85,17 +85,17 @@ impl Device {
     pub unsafe fn cmd_set_rendering_attachment_locations_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_location_info: *const crate::vk::RenderingAttachmentLocationInfo<'_>,
+        location_info: *const crate::vk::RenderingAttachmentLocationInfo<'_>,
     ) {
         (self
             .fp
-            .cmd_set_rendering_attachment_locations_khr)(command_buffer, p_location_info)
+            .cmd_set_rendering_attachment_locations_khr)(command_buffer, location_info)
     }
     #[inline]
     pub unsafe fn cmd_set_rendering_input_attachment_indices_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_input_attachment_index_info: *const crate::vk::RenderingInputAttachmentIndexInfo<
+        input_attachment_index_info: *const crate::vk::RenderingInputAttachmentIndexInfo<
             '_,
         >,
     ) {
@@ -103,7 +103,7 @@ impl Device {
             .fp
             .cmd_set_rendering_input_attachment_indices_khr)(
             command_buffer,
-            p_input_attachment_index_info,
+            input_attachment_index_info,
         )
     }
 }

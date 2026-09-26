@@ -91,23 +91,23 @@ impl Device {
         &self,
         device: crate::vk::Device,
         shader_module: crate::vk::ShaderModule,
-        p_identifier: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
+        identifier: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
     ) {
-        (self.fp.get_shader_module_identifier_ext)(device, shader_module, p_identifier)
+        (self.fp.get_shader_module_identifier_ext)(device, shader_module, identifier)
     }
     #[inline]
     pub unsafe fn get_shader_module_create_info_identifier_ext(
         &self,
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::ShaderModuleCreateInfo<'_>,
-        p_identifier: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
+        create_info: *const crate::vk::ShaderModuleCreateInfo<'_>,
+        identifier: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
     ) {
         (self
             .fp
             .get_shader_module_create_info_identifier_ext)(
             device,
-            p_create_info,
-            p_identifier,
+            create_info,
+            identifier,
         )
     }
 }
@@ -243,12 +243,12 @@ pub(crate) mod items {
         }
     }
     impl<'a> ShaderModuleIdentifierEXT<'a> {
-        pub fn identifier(mut self, identifier: &'_ [u8]) -> Self {
+        pub fn identifier(mut self, identifier: &[u8]) -> Self {
             self.identifier_size = identifier.len() as _;
             self.identifier[..identifier.len()].copy_from_slice(identifier);
             self
         }
-        pub fn identifier_as_slice(&self) -> &'_ [u8] {
+        pub fn identifier_as_slice(&self) -> &[u8] {
             &self.identifier[..self.identifier_size as _]
         }
     }

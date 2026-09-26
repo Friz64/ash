@@ -83,11 +83,11 @@ impl Instance {
     pub unsafe fn create_xcb_surface_khr(
         &self,
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::XcbSurfaceCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
+        create_info: *const crate::vk::XcbSurfaceCreateInfoKHR<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result {
-        (self.fp.create_xcb_surface_khr)(instance, p_create_info, p_allocator, p_surface)
+        (self.fp.create_xcb_surface_khr)(instance, create_info, allocator, surface)
     }
     #[inline]
     pub unsafe fn get_physical_device_xcb_presentation_support_khr(

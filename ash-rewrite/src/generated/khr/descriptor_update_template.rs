@@ -129,17 +129,17 @@ impl Device {
     pub unsafe fn create_descriptor_update_template_khr(
         &self,
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_descriptor_update_template: *mut crate::vk::DescriptorUpdateTemplate,
+        create_info: *const crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        descriptor_update_template: *mut crate::vk::DescriptorUpdateTemplate,
     ) -> crate::vk::Result {
         (self
             .fp
             .create_descriptor_update_template_khr)(
             device,
-            p_create_info,
-            p_allocator,
-            p_descriptor_update_template,
+            create_info,
+            allocator,
+            descriptor_update_template,
         )
     }
     #[inline]
@@ -147,14 +147,14 @@ impl Device {
         &self,
         device: crate::vk::Device,
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
             .destroy_descriptor_update_template_khr)(
             device,
             descriptor_update_template,
-            p_allocator,
+            allocator,
         )
     }
     #[inline]
@@ -163,7 +163,7 @@ impl Device {
         device: crate::vk::Device,
         descriptor_set: crate::vk::DescriptorSet,
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
-        p_data: *const core::ffi::c_void,
+        data: *const core::ffi::c_void,
     ) {
         (self
             .fp
@@ -171,7 +171,7 @@ impl Device {
             device,
             descriptor_set,
             descriptor_update_template,
-            p_data,
+            data,
         )
     }
     #[inline]
@@ -181,7 +181,7 @@ impl Device {
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
         layout: crate::vk::PipelineLayout,
         set: u32,
-        p_data: *const core::ffi::c_void,
+        data: *const core::ffi::c_void,
     ) {
         (self
             .fp
@@ -190,7 +190,7 @@ impl Device {
             descriptor_update_template,
             layout,
             set,
-            p_data,
+            data,
         )
     }
 }

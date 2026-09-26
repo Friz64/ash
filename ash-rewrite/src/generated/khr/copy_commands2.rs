@@ -149,53 +149,53 @@ impl Device {
     pub unsafe fn cmd_copy_buffer2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_copy_buffer_info: *const crate::vk::CopyBufferInfo2<'_>,
+        copy_buffer_info: *const crate::vk::CopyBufferInfo2<'_>,
     ) {
-        (self.fp.cmd_copy_buffer2_khr)(command_buffer, p_copy_buffer_info)
+        (self.fp.cmd_copy_buffer2_khr)(command_buffer, copy_buffer_info)
     }
     #[inline]
     pub unsafe fn cmd_copy_image2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_copy_image_info: *const crate::vk::CopyImageInfo2<'_>,
+        copy_image_info: *const crate::vk::CopyImageInfo2<'_>,
     ) {
-        (self.fp.cmd_copy_image2_khr)(command_buffer, p_copy_image_info)
+        (self.fp.cmd_copy_image2_khr)(command_buffer, copy_image_info)
     }
     #[inline]
     pub unsafe fn cmd_blit_image2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_blit_image_info: *const crate::vk::BlitImageInfo2<'_>,
+        blit_image_info: *const crate::vk::BlitImageInfo2<'_>,
     ) {
-        (self.fp.cmd_blit_image2_khr)(command_buffer, p_blit_image_info)
+        (self.fp.cmd_blit_image2_khr)(command_buffer, blit_image_info)
     }
     #[inline]
     pub unsafe fn cmd_copy_buffer_to_image2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_copy_buffer_to_image_info: *const crate::vk::CopyBufferToImageInfo2<'_>,
+        copy_buffer_to_image_info: *const crate::vk::CopyBufferToImageInfo2<'_>,
     ) {
         (self
             .fp
-            .cmd_copy_buffer_to_image2_khr)(command_buffer, p_copy_buffer_to_image_info)
+            .cmd_copy_buffer_to_image2_khr)(command_buffer, copy_buffer_to_image_info)
     }
     #[inline]
     pub unsafe fn cmd_copy_image_to_buffer2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_copy_image_to_buffer_info: *const crate::vk::CopyImageToBufferInfo2<'_>,
+        copy_image_to_buffer_info: *const crate::vk::CopyImageToBufferInfo2<'_>,
     ) {
         (self
             .fp
-            .cmd_copy_image_to_buffer2_khr)(command_buffer, p_copy_image_to_buffer_info)
+            .cmd_copy_image_to_buffer2_khr)(command_buffer, copy_image_to_buffer_info)
     }
     #[inline]
     pub unsafe fn cmd_resolve_image2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_resolve_image_info: *const crate::vk::ResolveImageInfo2<'_>,
+        resolve_image_info: *const crate::vk::ResolveImageInfo2<'_>,
     ) {
-        (self.fp.cmd_resolve_image2_khr)(command_buffer, p_resolve_image_info)
+        (self.fp.cmd_resolve_image2_khr)(command_buffer, resolve_image_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

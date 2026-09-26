@@ -60,6 +60,22 @@ fn expand_doc_comment(doc: &str) -> Cow<'_, str> {
     )
 }
 
+fn strip_leading_p(s: &'static str) -> &'static str {
+    let mut leading_p_count = 0;
+    for c in s.chars() {
+        if c == 'p' {
+            leading_p_count += 1;
+        } else if c.is_ascii_uppercase() {
+            break;
+        } else {
+            leading_p_count = 0;
+            break;
+        }
+    }
+
+    s.strip_prefix(&"p".repeat(leading_p_count)).unwrap()
+}
+
 /// Tries to prepend an underscore in case the name is not a valid identifier
 fn escape_ident(name: &str) -> Ident {
     syn::parse_str(name).unwrap_or_else(|_| format_ident!("_{name}"))
@@ -77,10 +93,6 @@ impl<'a> Deref for Context<'a> {
 }
 
 impl Context<'_> {
-    fn variable_token_from_original(&self, original: &str) -> Ident {
-        crate::escape_ident(&original.to_snek_case())
-    }
-
     fn type_required_by(&self, name: TypeName) -> RequiredBy {
         let type_item = &self.items.types[&name];
         type_item.required_by(self.items)
@@ -104,15 +116,26 @@ impl Context<'_> {
 
 impl RustTokens for Context<'_> {
     fn variable_token(&self, name: VariableName) -> Ident {
-        self.variable_token_from_original(name.original())
+        let snek = name.original().to_snek_case();
+        crate::escape_ident(&snek)
     }
 
-    fn type_tokens(&self, name: TypeName, qualified: bool, lifetime: &Lifetime) -> TokenStream {
+    fn type_tokens(
+        &self,
+        name: TypeName,
+        qualified: bool,
+        lifetime: Option<&Lifetime>,
+    ) -> TokenStream {
         let required_by = self.type_required_by(name);
         let ident: Ident = syn::parse_str(name.prefix_stripped(required_by.library)).unwrap();
         let path = qualified.then(|| quote! { crate::vk:: });
-        let lifetime = self.type_has_lifetime(name).then(|| quote! { <#lifetime> });
-        quote! { #path #ident #lifetime }
+        let lifetime_tokens = self.type_has_lifetime(name).then(|| {
+            let placeholder_lifetime = Lifetime::placeholder();
+            let lifetime = lifetime.unwrap_or(&placeholder_lifetime);
+            quote! { <#lifetime> }
+        });
+
+        quote! { #path #ident #lifetime_tokens }
     }
 
     fn func_pointer_tokens(&self, name: FuncPointerName, qualified: bool) -> TokenStream {
@@ -160,7 +183,7 @@ impl RustTokens for Context<'_> {
 
         let ident = crate::escape_ident(&stripped_name.TO_SHOUTY_SNEK_CASE());
         let path = qualified.then(|| {
-            let bits_name = self.type_tokens(type_name, true, &Lifetime::placeholder());
+            let bits_name = self.type_tokens(type_name, true, None);
             quote! { #bits_name:: }
         });
 

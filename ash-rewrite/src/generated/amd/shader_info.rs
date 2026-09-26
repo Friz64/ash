@@ -73,8 +73,8 @@ impl Device {
         pipeline: crate::vk::Pipeline,
         shader_stage: crate::vk::ShaderStageFlagBits,
         info_type: crate::vk::ShaderInfoTypeAMD,
-        p_info_size: *mut usize,
-        p_info: *mut core::ffi::c_void,
+        info_size: *mut usize,
+        info: *mut core::ffi::c_void,
     ) -> crate::vk::Result {
         (self
             .fp
@@ -83,8 +83,8 @@ impl Device {
             pipeline,
             shader_stage,
             info_type,
-            p_info_size,
-            p_info,
+            info_size,
+            info,
         )
     }
 }

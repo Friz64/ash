@@ -203,16 +203,16 @@ impl Device {
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        p_swapchain_timing_properties: *mut crate::vk::SwapchainTimingPropertiesEXT<'_>,
-        p_swapchain_timing_properties_counter: *mut u64,
+        swapchain_timing_properties: *mut crate::vk::SwapchainTimingPropertiesEXT<'_>,
+        swapchain_timing_properties_counter: *mut u64,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_swapchain_timing_properties_ext)(
             device,
             swapchain,
-            p_swapchain_timing_properties,
-            p_swapchain_timing_properties_counter,
+            swapchain_timing_properties,
+            swapchain_timing_properties_counter,
         )
     }
     #[inline]
@@ -220,28 +220,28 @@ impl Device {
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        p_swapchain_time_domain_properties: *mut crate::vk::SwapchainTimeDomainPropertiesEXT<
+        swapchain_time_domain_properties: *mut crate::vk::SwapchainTimeDomainPropertiesEXT<
             '_,
         >,
-        p_time_domains_counter: *mut u64,
+        time_domains_counter: *mut u64,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_swapchain_time_domain_properties_ext)(
             device,
             swapchain,
-            p_swapchain_time_domain_properties,
-            p_time_domains_counter,
+            swapchain_time_domain_properties,
+            time_domains_counter,
         )
     }
     #[inline]
     pub unsafe fn get_past_presentation_timing_ext(
         &self,
         device: crate::vk::Device,
-        p_past_presentation_timing_info: *const crate::vk::PastPresentationTimingInfoEXT<
+        past_presentation_timing_info: *const crate::vk::PastPresentationTimingInfoEXT<
             '_,
         >,
-        p_past_presentation_timing_properties: *mut crate::vk::PastPresentationTimingPropertiesEXT<
+        past_presentation_timing_properties: *mut crate::vk::PastPresentationTimingPropertiesEXT<
             '_,
         >,
     ) -> crate::vk::Result {
@@ -249,8 +249,8 @@ impl Device {
             .fp
             .get_past_presentation_timing_ext)(
             device,
-            p_past_presentation_timing_info,
-            p_past_presentation_timing_properties,
+            past_presentation_timing_info,
+            past_presentation_timing_properties,
         )
     }
 }

@@ -78,14 +78,14 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_clamp_mode: crate::vk::DepthClampModeEXT,
-        p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
+        depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
     ) {
         (self
             .fp
             .cmd_set_depth_clamp_range_ext)(
             command_buffer,
             depth_clamp_mode,
-            p_depth_clamp_range,
+            depth_clamp_range,
         )
     }
 }

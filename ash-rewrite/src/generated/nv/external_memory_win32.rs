@@ -69,9 +69,9 @@ impl Device {
         device: crate::vk::Device,
         memory: crate::vk::DeviceMemory,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-        p_handle: *mut crate::platform_types::HANDLE,
+        handle: *mut crate::platform_types::HANDLE,
     ) -> crate::vk::Result {
-        (self.fp.get_memory_win32_handle_nv)(device, memory, handle_type, p_handle)
+        (self.fp.get_memory_win32_handle_nv)(device, memory, handle_type, handle)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

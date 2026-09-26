@@ -102,11 +102,9 @@ impl Device {
     pub unsafe fn cmd_begin_custom_resolve_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_begin_custom_resolve_info: *const crate::vk::BeginCustomResolveInfoEXT<'_>,
+        begin_custom_resolve_info: *const crate::vk::BeginCustomResolveInfoEXT<'_>,
     ) {
-        (self
-            .fp
-            .cmd_begin_custom_resolve_ext)(command_buffer, p_begin_custom_resolve_info)
+        (self.fp.cmd_begin_custom_resolve_ext)(command_buffer, begin_custom_resolve_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

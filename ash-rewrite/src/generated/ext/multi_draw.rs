@@ -90,7 +90,7 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         draw_count: u32,
-        p_vertex_info: *const crate::vk::MultiDrawInfoEXT,
+        vertex_info: *const crate::vk::MultiDrawInfoEXT,
         instance_count: u32,
         first_instance: u32,
         stride: u32,
@@ -100,7 +100,7 @@ impl Device {
             .cmd_draw_multi_ext)(
             command_buffer,
             draw_count,
-            p_vertex_info,
+            vertex_info,
             instance_count,
             first_instance,
             stride,
@@ -111,22 +111,22 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         draw_count: u32,
-        p_index_info: *const crate::vk::MultiDrawIndexedInfoEXT,
+        index_info: *const crate::vk::MultiDrawIndexedInfoEXT,
         instance_count: u32,
         first_instance: u32,
         stride: u32,
-        p_vertex_offset: *const i32,
+        vertex_offset: *const i32,
     ) {
         (self
             .fp
             .cmd_draw_multi_indexed_ext)(
             command_buffer,
             draw_count,
-            p_index_info,
+            index_info,
             instance_count,
             first_instance,
             stride,
-            p_vertex_offset,
+            vertex_offset,
         )
     }
 }

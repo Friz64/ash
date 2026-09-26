@@ -93,9 +93,9 @@ impl Device {
     pub unsafe fn get_buffer_device_address_ext(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::BufferDeviceAddressInfo<'_>,
+        info: *const crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> crate::vk::DeviceAddress {
-        (self.fp.get_buffer_device_address_ext)(device, p_info)
+        (self.fp.get_buffer_device_address_ext)(device, info)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

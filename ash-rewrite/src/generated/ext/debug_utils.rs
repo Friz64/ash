@@ -209,25 +209,25 @@ impl Device {
     pub unsafe fn set_debug_utils_object_name_ext(
         &self,
         device: crate::vk::Device,
-        p_name_info: *const crate::vk::DebugUtilsObjectNameInfoEXT<'_>,
+        name_info: *const crate::vk::DebugUtilsObjectNameInfoEXT<'_>,
     ) -> crate::vk::Result {
-        (self.fp.set_debug_utils_object_name_ext)(device, p_name_info)
+        (self.fp.set_debug_utils_object_name_ext)(device, name_info)
     }
     #[inline]
     pub unsafe fn set_debug_utils_object_tag_ext(
         &self,
         device: crate::vk::Device,
-        p_tag_info: *const crate::vk::DebugUtilsObjectTagInfoEXT<'_>,
+        tag_info: *const crate::vk::DebugUtilsObjectTagInfoEXT<'_>,
     ) -> crate::vk::Result {
-        (self.fp.set_debug_utils_object_tag_ext)(device, p_tag_info)
+        (self.fp.set_debug_utils_object_tag_ext)(device, tag_info)
     }
     #[inline]
     pub unsafe fn queue_begin_debug_utils_label_ext(
         &self,
         queue: crate::vk::Queue,
-        p_label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
+        label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
     ) {
-        (self.fp.queue_begin_debug_utils_label_ext)(queue, p_label_info)
+        (self.fp.queue_begin_debug_utils_label_ext)(queue, label_info)
     }
     #[inline]
     pub unsafe fn queue_end_debug_utils_label_ext(&self, queue: crate::vk::Queue) {
@@ -237,17 +237,17 @@ impl Device {
     pub unsafe fn queue_insert_debug_utils_label_ext(
         &self,
         queue: crate::vk::Queue,
-        p_label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
+        label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
     ) {
-        (self.fp.queue_insert_debug_utils_label_ext)(queue, p_label_info)
+        (self.fp.queue_insert_debug_utils_label_ext)(queue, label_info)
     }
     #[inline]
     pub unsafe fn cmd_begin_debug_utils_label_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
+        label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
     ) {
-        (self.fp.cmd_begin_debug_utils_label_ext)(command_buffer, p_label_info)
+        (self.fp.cmd_begin_debug_utils_label_ext)(command_buffer, label_info)
     }
     #[inline]
     pub unsafe fn cmd_end_debug_utils_label_ext(
@@ -260,9 +260,9 @@ impl Device {
     pub unsafe fn cmd_insert_debug_utils_label_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
+        label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
     ) {
-        (self.fp.cmd_insert_debug_utils_label_ext)(command_buffer, p_label_info)
+        (self.fp.cmd_insert_debug_utils_label_ext)(command_buffer, label_info)
     }
 }
 #[derive(Clone)]
@@ -358,17 +358,17 @@ impl Instance {
     pub unsafe fn create_debug_utils_messenger_ext(
         &self,
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::DebugUtilsMessengerCreateInfoEXT<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_messenger: *mut crate::vk::DebugUtilsMessengerEXT,
+        create_info: *const crate::vk::DebugUtilsMessengerCreateInfoEXT<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        messenger: *mut crate::vk::DebugUtilsMessengerEXT,
     ) -> crate::vk::Result {
         (self
             .fp
             .create_debug_utils_messenger_ext)(
             instance,
-            p_create_info,
-            p_allocator,
-            p_messenger,
+            create_info,
+            allocator,
+            messenger,
         )
     }
     #[inline]
@@ -376,9 +376,9 @@ impl Instance {
         &self,
         instance: crate::vk::Instance,
         messenger: crate::vk::DebugUtilsMessengerEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_debug_utils_messenger_ext)(instance, messenger, p_allocator)
+        (self.fp.destroy_debug_utils_messenger_ext)(instance, messenger, allocator)
     }
     #[inline]
     pub unsafe fn submit_debug_utils_message_ext(
@@ -386,7 +386,7 @@ impl Instance {
         instance: crate::vk::Instance,
         message_severity: crate::vk::DebugUtilsMessageSeverityFlagBitsEXT,
         message_types: crate::vk::DebugUtilsMessageTypeFlagsEXT,
-        p_callback_data: *const crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>,
+        callback_data: *const crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>,
     ) {
         (self
             .fp
@@ -394,7 +394,7 @@ impl Instance {
             instance,
             message_severity,
             message_types,
-            p_callback_data,
+            callback_data,
         )
     }
 }

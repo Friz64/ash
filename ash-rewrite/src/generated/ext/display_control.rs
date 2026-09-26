@@ -135,44 +135,37 @@ impl Device {
         &self,
         device: crate::vk::Device,
         display: crate::vk::DisplayKHR,
-        p_display_power_info: *const crate::vk::DisplayPowerInfoEXT<'_>,
+        display_power_info: *const crate::vk::DisplayPowerInfoEXT<'_>,
     ) -> crate::vk::Result {
-        (self.fp.display_power_control_ext)(device, display, p_display_power_info)
+        (self.fp.display_power_control_ext)(device, display, display_power_info)
     }
     #[inline]
     pub unsafe fn register_device_event_ext(
         &self,
         device: crate::vk::Device,
-        p_device_event_info: *const crate::vk::DeviceEventInfoEXT<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_fence: *mut crate::vk::Fence,
+        device_event_info: *const crate::vk::DeviceEventInfoEXT<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        fence: *mut crate::vk::Fence,
     ) -> crate::vk::Result {
-        (self
-            .fp
-            .register_device_event_ext)(
-            device,
-            p_device_event_info,
-            p_allocator,
-            p_fence,
-        )
+        (self.fp.register_device_event_ext)(device, device_event_info, allocator, fence)
     }
     #[inline]
     pub unsafe fn register_display_event_ext(
         &self,
         device: crate::vk::Device,
         display: crate::vk::DisplayKHR,
-        p_display_event_info: *const crate::vk::DisplayEventInfoEXT<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_fence: *mut crate::vk::Fence,
+        display_event_info: *const crate::vk::DisplayEventInfoEXT<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        fence: *mut crate::vk::Fence,
     ) -> crate::vk::Result {
         (self
             .fp
             .register_display_event_ext)(
             device,
             display,
-            p_display_event_info,
-            p_allocator,
-            p_fence,
+            display_event_info,
+            allocator,
+            fence,
         )
     }
     #[inline]
@@ -181,9 +174,9 @@ impl Device {
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         counter: crate::vk::SurfaceCounterFlagBitsEXT,
-        p_counter_value: *mut u64,
+        counter_value: *mut u64,
     ) -> crate::vk::Result {
-        (self.fp.get_swapchain_counter_ext)(device, swapchain, counter, p_counter_value)
+        (self.fp.get_swapchain_counter_ext)(device, swapchain, counter, counter_value)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

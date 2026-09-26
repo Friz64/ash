@@ -308,6 +308,16 @@ impl Entry {
         .assume_init_on_success(instance)?;
         Ok(Instance::load(&self.static_fn, instance))
     }
+
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkGetInstanceProcAddr.html>
+    #[inline]
+    pub unsafe fn get_instance_proc_addr(
+        &self,
+        instance: vk::Instance,
+        p_name: *const ffi::c_char,
+    ) -> vk::PFN_vkVoidFunction {
+        (self.static_fn.get_instance_proc_addr)(instance, p_name)
+    }
 }
 
 impl Entry {
@@ -450,6 +460,16 @@ impl Instance {
         )
         .assume_init_on_success(device)?;
         Ok(Device::load(&self.instance_fn_1_0, device))
+    }
+
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceProcAddr.html>
+    #[inline]
+    pub unsafe fn get_device_proc_addr(
+        &self,
+        device: vk::Device,
+        p_name: *const ffi::c_char,
+    ) -> vk::PFN_vkVoidFunction {
+        (self.instance_fn_1_0.get_device_proc_addr)(device, p_name)
     }
 }
 

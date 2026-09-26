@@ -600,9 +600,9 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         samples: crate::vk::SampleCountFlagBits,
-        p_sample_mask: *const crate::vk::SampleMask,
+        sample_mask: *const crate::vk::SampleMask,
     ) {
-        (self.fp.cmd_set_sample_mask_ext)(command_buffer, samples, p_sample_mask)
+        (self.fp.cmd_set_sample_mask_ext)(command_buffer, samples, sample_mask)
     }
     #[inline]
     pub unsafe fn cmd_set_alpha_to_coverage_enable_ext(
@@ -639,7 +639,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
         attachment_count: u32,
-        p_color_blend_enables: *const crate::vk::Bool32,
+        color_blend_enables: *const crate::vk::Bool32,
     ) {
         (self
             .fp
@@ -647,7 +647,7 @@ impl Device {
             command_buffer,
             first_attachment,
             attachment_count,
-            p_color_blend_enables,
+            color_blend_enables,
         )
     }
     #[inline]
@@ -656,7 +656,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
         attachment_count: u32,
-        p_color_blend_equations: *const crate::vk::ColorBlendEquationEXT,
+        color_blend_equations: *const crate::vk::ColorBlendEquationEXT,
     ) {
         (self
             .fp
@@ -664,7 +664,7 @@ impl Device {
             command_buffer,
             first_attachment,
             attachment_count,
-            p_color_blend_equations,
+            color_blend_equations,
         )
     }
     #[inline]
@@ -673,7 +673,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
         attachment_count: u32,
-        p_color_write_masks: *const crate::vk::ColorComponentFlags,
+        color_write_masks: *const crate::vk::ColorComponentFlags,
     ) {
         (self
             .fp
@@ -681,7 +681,7 @@ impl Device {
             command_buffer,
             first_attachment,
             attachment_count,
-            p_color_write_masks,
+            color_write_masks,
         )
     }
     #[inline]
@@ -745,7 +745,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
         attachment_count: u32,
-        p_color_blend_advanced: *const crate::vk::ColorBlendAdvancedEXT,
+        color_blend_advanced: *const crate::vk::ColorBlendAdvancedEXT,
     ) {
         (self
             .fp
@@ -753,7 +753,7 @@ impl Device {
             command_buffer,
             first_attachment,
             attachment_count,
-            p_color_blend_advanced,
+            color_blend_advanced,
         )
     }
     #[inline]
@@ -819,7 +819,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_viewport: u32,
         viewport_count: u32,
-        p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
+        viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
     ) {
         (self
             .fp
@@ -827,7 +827,7 @@ impl Device {
             command_buffer,
             first_viewport,
             viewport_count,
-            p_viewport_swizzles,
+            viewport_swizzles,
         )
     }
     #[inline]
@@ -887,14 +887,14 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         coverage_modulation_table_count: u32,
-        p_coverage_modulation_table: *const core::ffi::c_float,
+        coverage_modulation_table: *const core::ffi::c_float,
     ) {
         (self
             .fp
             .cmd_set_coverage_modulation_table_nv)(
             command_buffer,
             coverage_modulation_table_count,
-            p_coverage_modulation_table,
+            coverage_modulation_table,
         )
     }
     #[inline]

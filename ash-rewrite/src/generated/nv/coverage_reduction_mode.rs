@@ -78,15 +78,15 @@ impl Instance {
     pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_combination_count: *mut u32,
-        p_combinations: *mut crate::vk::FramebufferMixedSamplesCombinationNV<'_>,
+        combination_count: *mut u32,
+        combinations: *mut crate::vk::FramebufferMixedSamplesCombinationNV<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_supported_framebuffer_mixed_samples_combinations_nv)(
             physical_device,
-            p_combination_count,
-            p_combinations,
+            combination_count,
+            combinations,
         )
     }
 }

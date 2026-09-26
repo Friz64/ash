@@ -72,18 +72,18 @@ impl Device {
         &self,
         device: crate::vk::Device,
         swapchain_count: u32,
-        p_create_infos: *const crate::vk::SwapchainCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_swapchains: *mut crate::vk::SwapchainKHR,
+        create_infos: *const crate::vk::SwapchainCreateInfoKHR<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        swapchains: *mut crate::vk::SwapchainKHR,
     ) -> crate::vk::Result {
         (self
             .fp
             .create_shared_swapchains_khr)(
             device,
             swapchain_count,
-            p_create_infos,
-            p_allocator,
-            p_swapchains,
+            create_infos,
+            allocator,
+            swapchains,
         )
     }
 }

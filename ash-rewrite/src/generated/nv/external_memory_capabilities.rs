@@ -114,7 +114,7 @@ impl Instance {
         usage: crate::vk::ImageUsageFlags,
         flags: crate::vk::ImageCreateFlags,
         external_handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-        p_external_image_format_properties: *mut crate::vk::ExternalImageFormatPropertiesNV,
+        external_image_format_properties: *mut crate::vk::ExternalImageFormatPropertiesNV,
     ) -> crate::vk::Result {
         (self
             .fp
@@ -126,7 +126,7 @@ impl Instance {
             usage,
             flags,
             external_handle_type,
-            p_external_image_format_properties,
+            external_image_format_properties,
         )
     }
 }

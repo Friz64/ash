@@ -12,8 +12,8 @@ impl Code for TypeAlias {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
         let lifetime = Lifetime(format_ident!("a"));
-        let name = ctx.type_tokens(self.name, false, &lifetime);
-        let alias = ctx.type_tokens(self.alias, true, &lifetime);
+        let name = ctx.type_tokens(self.name, false, Some(&lifetime));
+        let alias = ctx.type_tokens(self.alias, true, Some(&lifetime));
 
         let code = quote! {
             pub type #name = #alias;

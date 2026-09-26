@@ -255,18 +255,18 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-        p_queue_family_data_graph_properties: *const crate::vk::QueueFamilyDataGraphPropertiesARM<
+        queue_family_data_graph_properties: *const crate::vk::QueueFamilyDataGraphPropertiesARM<
             '_,
         >,
-        p_properties: *mut crate::vk::BaseOutStructure<'_>,
+        properties: *mut crate::vk::BaseOutStructure<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_queue_family_data_graph_engine_operation_properties_arm)(
             physical_device,
             queue_family_index,
-            p_queue_family_data_graph_properties,
-            p_properties,
+            queue_family_data_graph_properties,
+            properties,
         )
     }
     #[inline]
@@ -274,14 +274,14 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-        p_queue_family_data_graph_properties: *const crate::vk::QueueFamilyDataGraphPropertiesARM<
+        queue_family_data_graph_properties: *const crate::vk::QueueFamilyDataGraphPropertiesARM<
             '_,
         >,
-        p_optical_flow_image_format_info: *const crate::vk::DataGraphOpticalFlowImageFormatInfoARM<
+        optical_flow_image_format_info: *const crate::vk::DataGraphOpticalFlowImageFormatInfoARM<
             '_,
         >,
-        p_format_count: *mut u32,
-        p_image_format_properties: *mut crate::vk::DataGraphOpticalFlowImageFormatPropertiesARM<
+        format_count: *mut u32,
+        image_format_properties: *mut crate::vk::DataGraphOpticalFlowImageFormatPropertiesARM<
             '_,
         >,
     ) -> crate::vk::Result {
@@ -290,10 +290,10 @@ impl Instance {
             .get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm)(
             physical_device,
             queue_family_index,
-            p_queue_family_data_graph_properties,
-            p_optical_flow_image_format_info,
-            p_format_count,
-            p_image_format_properties,
+            queue_family_data_graph_properties,
+            optical_flow_image_format_info,
+            format_count,
+            image_format_properties,
         )
     }
 }

@@ -98,18 +98,18 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-        p_queue_family_data_graph_properties: *const crate::vk::QueueFamilyDataGraphPropertiesARM<
+        queue_family_data_graph_properties: *const crate::vk::QueueFamilyDataGraphPropertiesARM<
             '_,
         >,
-        p_properties: *mut crate::vk::BaseOutStructure<'_>,
+        properties: *mut crate::vk::BaseOutStructure<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_queue_family_data_graph_engine_operation_properties_arm)(
             physical_device,
             queue_family_index,
-            p_queue_family_data_graph_properties,
-            p_properties,
+            queue_family_data_graph_properties,
+            properties,
         )
     }
 }

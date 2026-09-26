@@ -498,9 +498,9 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         event: crate::vk::Event,
-        p_dependency_info: *const crate::vk::DependencyInfo<'_>,
+        dependency_info: *const crate::vk::DependencyInfo<'_>,
     ) {
-        (self.fp.cmd_set_event2_khr)(command_buffer, event, p_dependency_info)
+        (self.fp.cmd_set_event2_khr)(command_buffer, event, dependency_info)
     }
     #[inline]
     pub unsafe fn cmd_reset_event2_khr(
@@ -516,35 +516,30 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         event_count: u32,
-        p_events: *const crate::vk::Event,
-        p_dependency_infos: *const crate::vk::DependencyInfo<'_>,
+        events: *const crate::vk::Event,
+        dependency_infos: *const crate::vk::DependencyInfo<'_>,
     ) {
         (self
             .fp
-            .cmd_wait_events2_khr)(
-            command_buffer,
-            event_count,
-            p_events,
-            p_dependency_infos,
-        )
+            .cmd_wait_events2_khr)(command_buffer, event_count, events, dependency_infos)
     }
     #[inline]
     pub unsafe fn cmd_pipeline_barrier2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_dependency_info: *const crate::vk::DependencyInfo<'_>,
+        dependency_info: *const crate::vk::DependencyInfo<'_>,
     ) {
-        (self.fp.cmd_pipeline_barrier2_khr)(command_buffer, p_dependency_info)
+        (self.fp.cmd_pipeline_barrier2_khr)(command_buffer, dependency_info)
     }
     #[inline]
     pub unsafe fn queue_submit2_khr(
         &self,
         queue: crate::vk::Queue,
         submit_count: u32,
-        p_submits: *const crate::vk::SubmitInfo2<'_>,
+        submits: *const crate::vk::SubmitInfo2<'_>,
         fence: crate::vk::Fence,
     ) -> crate::vk::Result {
-        (self.fp.queue_submit2_khr)(queue, submit_count, p_submits, fence)
+        (self.fp.queue_submit2_khr)(queue, submit_count, submits, fence)
     }
     #[inline]
     pub unsafe fn cmd_write_timestamp2_khr(

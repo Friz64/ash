@@ -84,18 +84,11 @@ impl Instance {
     pub unsafe fn create_direct_fb_surface_ext(
         &self,
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::DirectFBSurfaceCreateInfoEXT<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
+        create_info: *const crate::vk::DirectFBSurfaceCreateInfoEXT<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result {
-        (self
-            .fp
-            .create_direct_fb_surface_ext)(
-            instance,
-            p_create_info,
-            p_allocator,
-            p_surface,
-        )
+        (self.fp.create_direct_fb_surface_ext)(instance, create_info, allocator, surface)
     }
     #[inline]
     pub unsafe fn get_physical_device_direct_fb_presentation_support_ext(

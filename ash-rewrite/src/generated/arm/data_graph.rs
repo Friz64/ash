@@ -348,9 +348,9 @@ impl Device {
         deferred_operation: crate::vk::DeferredOperationKHR,
         pipeline_cache: crate::vk::PipelineCache,
         create_info_count: u32,
-        p_create_infos: *const crate::vk::DataGraphPipelineCreateInfoARM<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_pipelines: *mut crate::vk::Pipeline,
+        create_infos: *const crate::vk::DataGraphPipelineCreateInfoARM<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        pipelines: *mut crate::vk::Pipeline,
     ) -> crate::vk::Result {
         (self
             .fp
@@ -359,37 +359,35 @@ impl Device {
             deferred_operation,
             pipeline_cache,
             create_info_count,
-            p_create_infos,
-            p_allocator,
-            p_pipelines,
+            create_infos,
+            allocator,
+            pipelines,
         )
     }
     #[inline]
     pub unsafe fn create_data_graph_pipeline_session_arm(
         &self,
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::DataGraphPipelineSessionCreateInfoARM<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_session: *mut crate::vk::DataGraphPipelineSessionARM,
+        create_info: *const crate::vk::DataGraphPipelineSessionCreateInfoARM<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        session: *mut crate::vk::DataGraphPipelineSessionARM,
     ) -> crate::vk::Result {
         (self
             .fp
             .create_data_graph_pipeline_session_arm)(
             device,
-            p_create_info,
-            p_allocator,
-            p_session,
+            create_info,
+            allocator,
+            session,
         )
     }
     #[inline]
     pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements_arm(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<
-            '_,
-        >,
-        p_bind_point_requirement_count: *mut u32,
-        p_bind_point_requirements: *mut crate::vk::DataGraphPipelineSessionBindPointRequirementARM<
+        info: *const crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
+        bind_point_requirement_count: *mut u32,
+        bind_point_requirements: *mut crate::vk::DataGraphPipelineSessionBindPointRequirementARM<
             '_,
         >,
     ) -> crate::vk::Result {
@@ -397,24 +395,24 @@ impl Device {
             .fp
             .get_data_graph_pipeline_session_bind_point_requirements_arm)(
             device,
-            p_info,
-            p_bind_point_requirement_count,
-            p_bind_point_requirements,
+            info,
+            bind_point_requirement_count,
+            bind_point_requirements,
         )
     }
     #[inline]
     pub unsafe fn get_data_graph_pipeline_session_memory_requirements_arm(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        info: *const crate::vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
+        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
             .get_data_graph_pipeline_session_memory_requirements_arm)(
             device,
-            p_info,
-            p_memory_requirements,
+            info,
+            memory_requirements,
         )
     }
     #[inline]
@@ -422,14 +420,14 @@ impl Device {
         &self,
         device: crate::vk::Device,
         bind_info_count: u32,
-        p_bind_infos: *const crate::vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>,
+        bind_infos: *const crate::vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .bind_data_graph_pipeline_session_memory_arm)(
             device,
             bind_info_count,
-            p_bind_infos,
+            bind_infos,
         )
     }
     #[inline]
@@ -437,51 +435,51 @@ impl Device {
         &self,
         device: crate::vk::Device,
         session: crate::vk::DataGraphPipelineSessionARM,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_data_graph_pipeline_session_arm)(device, session, p_allocator)
+        (self.fp.destroy_data_graph_pipeline_session_arm)(device, session, allocator)
     }
     #[inline]
     pub unsafe fn cmd_dispatch_data_graph_arm(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         session: crate::vk::DataGraphPipelineSessionARM,
-        p_info: *const crate::vk::DataGraphPipelineDispatchInfoARM<'_>,
+        info: *const crate::vk::DataGraphPipelineDispatchInfoARM<'_>,
     ) {
-        (self.fp.cmd_dispatch_data_graph_arm)(command_buffer, session, p_info)
+        (self.fp.cmd_dispatch_data_graph_arm)(command_buffer, session, info)
     }
     #[inline]
     pub unsafe fn get_data_graph_pipeline_available_properties_arm(
         &self,
         device: crate::vk::Device,
-        p_pipeline_info: *const crate::vk::DataGraphPipelineInfoARM<'_>,
-        p_properties_count: *mut u32,
-        p_properties: *mut crate::vk::DataGraphPipelinePropertyARM,
+        pipeline_info: *const crate::vk::DataGraphPipelineInfoARM<'_>,
+        properties_count: *mut u32,
+        properties: *mut crate::vk::DataGraphPipelinePropertyARM,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_data_graph_pipeline_available_properties_arm)(
             device,
-            p_pipeline_info,
-            p_properties_count,
-            p_properties,
+            pipeline_info,
+            properties_count,
+            properties,
         )
     }
     #[inline]
     pub unsafe fn get_data_graph_pipeline_properties_arm(
         &self,
         device: crate::vk::Device,
-        p_pipeline_info: *const crate::vk::DataGraphPipelineInfoARM<'_>,
+        pipeline_info: *const crate::vk::DataGraphPipelineInfoARM<'_>,
         properties_count: u32,
-        p_properties: *mut crate::vk::DataGraphPipelinePropertyQueryResultARM<'_>,
+        properties: *mut crate::vk::DataGraphPipelinePropertyQueryResultARM<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_data_graph_pipeline_properties_arm)(
             device,
-            p_pipeline_info,
+            pipeline_info,
             properties_count,
-            p_properties,
+            properties,
         )
     }
 }
@@ -572,8 +570,8 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-        p_queue_family_data_graph_property_count: *mut u32,
-        p_queue_family_data_graph_properties: *mut crate::vk::QueueFamilyDataGraphPropertiesARM<
+        queue_family_data_graph_property_count: *mut u32,
+        queue_family_data_graph_properties: *mut crate::vk::QueueFamilyDataGraphPropertiesARM<
             '_,
         >,
     ) -> crate::vk::Result {
@@ -582,18 +580,18 @@ impl Instance {
             .get_physical_device_queue_family_data_graph_properties_arm)(
             physical_device,
             queue_family_index,
-            p_queue_family_data_graph_property_count,
-            p_queue_family_data_graph_properties,
+            queue_family_data_graph_property_count,
+            queue_family_data_graph_properties,
         )
     }
     #[inline]
     pub unsafe fn get_physical_device_queue_family_data_graph_processing_engine_properties_arm(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_queue_family_data_graph_processing_engine_info: *const crate::vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<
+        queue_family_data_graph_processing_engine_info: *const crate::vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<
             '_,
         >,
-        p_queue_family_data_graph_processing_engine_properties: *mut crate::vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<
+        queue_family_data_graph_processing_engine_properties: *mut crate::vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<
             '_,
         >,
     ) {
@@ -601,8 +599,8 @@ impl Instance {
             .fp
             .get_physical_device_queue_family_data_graph_processing_engine_properties_arm)(
             physical_device,
-            p_queue_family_data_graph_processing_engine_info,
-            p_queue_family_data_graph_processing_engine_properties,
+            queue_family_data_graph_processing_engine_info,
+            queue_family_data_graph_processing_engine_properties,
         )
     }
 }

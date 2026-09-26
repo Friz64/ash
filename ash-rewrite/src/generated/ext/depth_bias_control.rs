@@ -72,9 +72,9 @@ impl Device {
     pub unsafe fn cmd_set_depth_bias2_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_depth_bias_info: *const crate::vk::DepthBiasInfoEXT<'_>,
+        depth_bias_info: *const crate::vk::DepthBiasInfoEXT<'_>,
     ) {
-        (self.fp.cmd_set_depth_bias2_ext)(command_buffer, p_depth_bias_info)
+        (self.fp.cmd_set_depth_bias2_ext)(command_buffer, depth_bias_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

@@ -78,9 +78,9 @@ impl Device {
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        p_present_wait2_info: *const crate::vk::PresentWait2InfoKHR<'_>,
+        present_wait2_info: *const crate::vk::PresentWait2InfoKHR<'_>,
     ) -> crate::vk::Result {
-        (self.fp.wait_for_present2_khr)(device, swapchain, p_present_wait2_info)
+        (self.fp.wait_for_present2_khr)(device, swapchain, present_wait2_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

@@ -108,14 +108,14 @@ impl Device {
         &self,
         device: crate::vk::Device,
         renderpass: crate::vk::RenderPass,
-        p_max_workgroup_size: *mut crate::vk::Extent2D,
+        max_workgroup_size: *mut crate::vk::Extent2D,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_device_subpass_shading_max_workgroup_size_huawei)(
             device,
             renderpass,
-            p_max_workgroup_size,
+            max_workgroup_size,
         )
     }
     #[inline]

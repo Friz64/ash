@@ -192,9 +192,9 @@ impl Device {
     pub unsafe fn get_latency_timings_legacy_nv(
         &self,
         device: crate::vk::Device,
-        p_timings: *mut core::ffi::c_void,
+        timings: *mut core::ffi::c_void,
     ) {
-        (self.fp.get_latency_timings_legacy_nv)(device, p_timings)
+        (self.fp.get_latency_timings_legacy_nv)(device, timings)
     }
     #[inline]
     pub unsafe fn queue_notify_out_of_band_legacy_nv(
@@ -208,9 +208,9 @@ impl Device {
     pub unsafe fn get_sleep_status_legacy_nv(
         &self,
         device: crate::vk::Device,
-        p_low_latency_mode: *mut crate::vk::Bool32,
+        low_latency_mode: *mut crate::vk::Bool32,
     ) {
-        (self.fp.get_sleep_status_legacy_nv)(device, p_low_latency_mode)
+        (self.fp.get_sleep_status_legacy_nv)(device, low_latency_mode)
     }
     #[inline]
     pub unsafe fn shutdown_latency_device_legacy_nv(&self, device: crate::vk::Device) {

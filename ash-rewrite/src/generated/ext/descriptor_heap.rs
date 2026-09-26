@@ -356,74 +356,69 @@ impl Device {
         &self,
         device: crate::vk::Device,
         sampler_count: u32,
-        p_samplers: *const crate::vk::SamplerCreateInfo<'_>,
-        p_descriptors: *const crate::vk::HostAddressRangeEXT<'_>,
+        samplers: *const crate::vk::SamplerCreateInfo<'_>,
+        descriptors: *const crate::vk::HostAddressRangeEXT<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
-            .write_sampler_descriptors_ext)(
-            device,
-            sampler_count,
-            p_samplers,
-            p_descriptors,
-        )
+            .write_sampler_descriptors_ext)(device, sampler_count, samplers, descriptors)
     }
     #[inline]
     pub unsafe fn write_resource_descriptors_ext(
         &self,
         device: crate::vk::Device,
         resource_count: u32,
-        p_resources: *const crate::vk::ResourceDescriptorInfoEXT<'_>,
-        p_descriptors: *const crate::vk::HostAddressRangeEXT<'_>,
+        resources: *const crate::vk::ResourceDescriptorInfoEXT<'_>,
+        descriptors: *const crate::vk::HostAddressRangeEXT<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .write_resource_descriptors_ext)(
             device,
             resource_count,
-            p_resources,
-            p_descriptors,
+            resources,
+            descriptors,
         )
     }
     #[inline]
     pub unsafe fn cmd_bind_sampler_heap_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_bind_info: *const crate::vk::BindHeapInfoEXT<'_>,
+        bind_info: *const crate::vk::BindHeapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_bind_sampler_heap_ext)(command_buffer, p_bind_info)
+        (self.fp.cmd_bind_sampler_heap_ext)(command_buffer, bind_info)
     }
     #[inline]
     pub unsafe fn cmd_bind_resource_heap_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_bind_info: *const crate::vk::BindHeapInfoEXT<'_>,
+        bind_info: *const crate::vk::BindHeapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_bind_resource_heap_ext)(command_buffer, p_bind_info)
+        (self.fp.cmd_bind_resource_heap_ext)(command_buffer, bind_info)
     }
     #[inline]
     pub unsafe fn cmd_push_data_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        p_push_data_info: *const crate::vk::PushDataInfoEXT<'_>,
+        push_data_info: *const crate::vk::PushDataInfoEXT<'_>,
     ) {
-        (self.fp.cmd_push_data_ext)(command_buffer, p_push_data_info)
+        (self.fp.cmd_push_data_ext)(command_buffer, push_data_info)
     }
     #[inline]
     pub unsafe fn register_custom_border_color_ext(
         &self,
         device: crate::vk::Device,
-        p_border_color: *const crate::vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
+        border_color: *const crate::vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
         request_index: crate::vk::Bool32,
-        p_index: *mut u32,
+        index: *mut u32,
     ) -> crate::vk::Result {
         (self
             .fp
             .register_custom_border_color_ext)(
             device,
-            p_border_color,
+            border_color,
             request_index,
-            p_index,
+            index,
         )
     }
     #[inline]
@@ -439,29 +434,22 @@ impl Device {
         &self,
         device: crate::vk::Device,
         image_count: u32,
-        p_images: *const crate::vk::Image,
-        p_datas: *mut crate::vk::HostAddressRangeEXT<'_>,
+        images: *const crate::vk::Image,
+        datas: *mut crate::vk::HostAddressRangeEXT<'_>,
     ) -> crate::vk::Result {
-        (self
-            .fp
-            .get_image_opaque_capture_data_ext)(device, image_count, p_images, p_datas)
+        (self.fp.get_image_opaque_capture_data_ext)(device, image_count, images, datas)
     }
     #[inline]
     pub unsafe fn get_tensor_opaque_capture_data_arm(
         &self,
         device: crate::vk::Device,
         tensor_count: u32,
-        p_tensors: *const crate::vk::TensorARM,
-        p_datas: *mut crate::vk::HostAddressRangeEXT<'_>,
+        tensors: *const crate::vk::TensorARM,
+        datas: *mut crate::vk::HostAddressRangeEXT<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
-            .get_tensor_opaque_capture_data_arm)(
-            device,
-            tensor_count,
-            p_tensors,
-            p_datas,
-        )
+            .get_tensor_opaque_capture_data_arm)(device, tensor_count, tensors, datas)
     }
 }
 #[derive(Clone)]

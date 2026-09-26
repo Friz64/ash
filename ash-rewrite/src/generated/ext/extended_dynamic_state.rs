@@ -282,26 +282,20 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         viewport_count: u32,
-        p_viewports: *const crate::vk::Viewport,
+        viewports: *const crate::vk::Viewport,
     ) {
         (self
             .fp
-            .cmd_set_viewport_with_count_ext)(
-            command_buffer,
-            viewport_count,
-            p_viewports,
-        )
+            .cmd_set_viewport_with_count_ext)(command_buffer, viewport_count, viewports)
     }
     #[inline]
     pub unsafe fn cmd_set_scissor_with_count_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         scissor_count: u32,
-        p_scissors: *const crate::vk::Rect2D,
+        scissors: *const crate::vk::Rect2D,
     ) {
-        (self
-            .fp
-            .cmd_set_scissor_with_count_ext)(command_buffer, scissor_count, p_scissors)
+        (self.fp.cmd_set_scissor_with_count_ext)(command_buffer, scissor_count, scissors)
     }
     #[inline]
     pub unsafe fn cmd_bind_vertex_buffers2_ext(
@@ -309,10 +303,10 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
         binding_count: u32,
-        p_buffers: *const crate::vk::Buffer,
-        p_offsets: *const crate::vk::DeviceSize,
-        p_sizes: *const crate::vk::DeviceSize,
-        p_strides: *const crate::vk::DeviceSize,
+        buffers: *const crate::vk::Buffer,
+        offsets: *const crate::vk::DeviceSize,
+        sizes: *const crate::vk::DeviceSize,
+        strides: *const crate::vk::DeviceSize,
     ) {
         (self
             .fp
@@ -320,10 +314,10 @@ impl Device {
             command_buffer,
             first_binding,
             binding_count,
-            p_buffers,
-            p_offsets,
-            p_sizes,
-            p_strides,
+            buffers,
+            offsets,
+            sizes,
+            strides,
         )
     }
     #[inline]

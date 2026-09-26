@@ -72,7 +72,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_viewport: u32,
         viewport_count: u32,
-        p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
+        viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
     ) {
         (self
             .fp
@@ -80,7 +80,7 @@ impl Device {
             command_buffer,
             first_viewport,
             viewport_count,
-            p_viewport_w_scalings,
+            viewport_w_scalings,
         )
     }
 }

@@ -993,9 +993,9 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         samples: crate::vk::SampleCountFlagBits,
-        p_sample_mask: *const crate::vk::SampleMask,
+        sample_mask: *const crate::vk::SampleMask,
     ) {
-        (self.fp.cmd_set_sample_mask_ext)(command_buffer, samples, p_sample_mask)
+        (self.fp.cmd_set_sample_mask_ext)(command_buffer, samples, sample_mask)
     }
     #[inline]
     pub unsafe fn cmd_set_alpha_to_coverage_enable_ext(
@@ -1032,7 +1032,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
         attachment_count: u32,
-        p_color_blend_enables: *const crate::vk::Bool32,
+        color_blend_enables: *const crate::vk::Bool32,
     ) {
         (self
             .fp
@@ -1040,7 +1040,7 @@ impl Device {
             command_buffer,
             first_attachment,
             attachment_count,
-            p_color_blend_enables,
+            color_blend_enables,
         )
     }
     #[inline]
@@ -1049,7 +1049,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
         attachment_count: u32,
-        p_color_blend_equations: *const crate::vk::ColorBlendEquationEXT,
+        color_blend_equations: *const crate::vk::ColorBlendEquationEXT,
     ) {
         (self
             .fp
@@ -1057,7 +1057,7 @@ impl Device {
             command_buffer,
             first_attachment,
             attachment_count,
-            p_color_blend_equations,
+            color_blend_equations,
         )
     }
     #[inline]
@@ -1066,7 +1066,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
         attachment_count: u32,
-        p_color_write_masks: *const crate::vk::ColorComponentFlags,
+        color_write_masks: *const crate::vk::ColorComponentFlags,
     ) {
         (self
             .fp
@@ -1074,7 +1074,7 @@ impl Device {
             command_buffer,
             first_attachment,
             attachment_count,
-            p_color_write_masks,
+            color_write_masks,
         )
     }
     #[inline]
@@ -1138,7 +1138,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
         attachment_count: u32,
-        p_color_blend_advanced: *const crate::vk::ColorBlendAdvancedEXT,
+        color_blend_advanced: *const crate::vk::ColorBlendAdvancedEXT,
     ) {
         (self
             .fp
@@ -1146,7 +1146,7 @@ impl Device {
             command_buffer,
             first_attachment,
             attachment_count,
-            p_color_blend_advanced,
+            color_blend_advanced,
         )
     }
     #[inline]
@@ -1212,7 +1212,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_viewport: u32,
         viewport_count: u32,
-        p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
+        viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
     ) {
         (self
             .fp
@@ -1220,7 +1220,7 @@ impl Device {
             command_buffer,
             first_viewport,
             viewport_count,
-            p_viewport_swizzles,
+            viewport_swizzles,
         )
     }
     #[inline]
@@ -1280,14 +1280,14 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         coverage_modulation_table_count: u32,
-        p_coverage_modulation_table: *const core::ffi::c_float,
+        coverage_modulation_table: *const core::ffi::c_float,
     ) {
         (self
             .fp
             .cmd_set_coverage_modulation_table_nv)(
             command_buffer,
             coverage_modulation_table_count,
-            p_coverage_modulation_table,
+            coverage_modulation_table,
         )
     }
     #[inline]
@@ -1331,11 +1331,11 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         vertex_binding_description_count: u32,
-        p_vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription2EXT<
+        vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription2EXT<
             '_,
         >,
         vertex_attribute_description_count: u32,
-        p_vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription2EXT<
+        vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription2EXT<
             '_,
         >,
     ) {
@@ -1344,9 +1344,9 @@ impl Device {
             .cmd_set_vertex_input_ext)(
             command_buffer,
             vertex_binding_description_count,
-            p_vertex_binding_descriptions,
+            vertex_binding_descriptions,
             vertex_attribute_description_count,
-            p_vertex_attribute_descriptions,
+            vertex_attribute_descriptions,
         )
     }
     #[inline]
@@ -1354,18 +1354,18 @@ impl Device {
         &self,
         device: crate::vk::Device,
         create_info_count: u32,
-        p_create_infos: *const crate::vk::ShaderCreateInfoEXT<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_shaders: *mut crate::vk::ShaderEXT,
+        create_infos: *const crate::vk::ShaderCreateInfoEXT<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        shaders: *mut crate::vk::ShaderEXT,
     ) -> crate::vk::Result {
         (self
             .fp
             .create_shaders_ext)(
             device,
             create_info_count,
-            p_create_infos,
-            p_allocator,
-            p_shaders,
+            create_infos,
+            allocator,
+            shaders,
         )
     }
     #[inline]
@@ -1373,43 +1373,43 @@ impl Device {
         &self,
         device: crate::vk::Device,
         shader: crate::vk::ShaderEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_shader_ext)(device, shader, p_allocator)
+        (self.fp.destroy_shader_ext)(device, shader, allocator)
     }
     #[inline]
     pub unsafe fn get_shader_binary_data_ext(
         &self,
         device: crate::vk::Device,
         shader: crate::vk::ShaderEXT,
-        p_data_size: *mut usize,
-        p_data: *mut core::ffi::c_void,
+        data_size: *mut usize,
+        data: *mut core::ffi::c_void,
     ) -> crate::vk::Result {
-        (self.fp.get_shader_binary_data_ext)(device, shader, p_data_size, p_data)
+        (self.fp.get_shader_binary_data_ext)(device, shader, data_size, data)
     }
     #[inline]
     pub unsafe fn cmd_bind_shaders_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         stage_count: u32,
-        p_stages: *const crate::vk::ShaderStageFlagBits,
-        p_shaders: *const crate::vk::ShaderEXT,
+        stages: *const crate::vk::ShaderStageFlagBits,
+        shaders: *const crate::vk::ShaderEXT,
     ) {
-        (self.fp.cmd_bind_shaders_ext)(command_buffer, stage_count, p_stages, p_shaders)
+        (self.fp.cmd_bind_shaders_ext)(command_buffer, stage_count, stages, shaders)
     }
     #[inline]
     pub unsafe fn cmd_set_depth_clamp_range_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_clamp_mode: crate::vk::DepthClampModeEXT,
-        p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
+        depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
     ) {
         (self
             .fp
             .cmd_set_depth_clamp_range_ext)(
             command_buffer,
             depth_clamp_mode,
-            p_depth_clamp_range,
+            depth_clamp_range,
         )
     }
     #[inline]
@@ -1441,26 +1441,20 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         viewport_count: u32,
-        p_viewports: *const crate::vk::Viewport,
+        viewports: *const crate::vk::Viewport,
     ) {
         (self
             .fp
-            .cmd_set_viewport_with_count_ext)(
-            command_buffer,
-            viewport_count,
-            p_viewports,
-        )
+            .cmd_set_viewport_with_count_ext)(command_buffer, viewport_count, viewports)
     }
     #[inline]
     pub unsafe fn cmd_set_scissor_with_count_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         scissor_count: u32,
-        p_scissors: *const crate::vk::Rect2D,
+        scissors: *const crate::vk::Rect2D,
     ) {
-        (self
-            .fp
-            .cmd_set_scissor_with_count_ext)(command_buffer, scissor_count, p_scissors)
+        (self.fp.cmd_set_scissor_with_count_ext)(command_buffer, scissor_count, scissors)
     }
     #[inline]
     pub unsafe fn cmd_bind_vertex_buffers2_ext(
@@ -1468,10 +1462,10 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
         binding_count: u32,
-        p_buffers: *const crate::vk::Buffer,
-        p_offsets: *const crate::vk::DeviceSize,
-        p_sizes: *const crate::vk::DeviceSize,
-        p_strides: *const crate::vk::DeviceSize,
+        buffers: *const crate::vk::Buffer,
+        offsets: *const crate::vk::DeviceSize,
+        sizes: *const crate::vk::DeviceSize,
+        strides: *const crate::vk::DeviceSize,
     ) {
         (self
             .fp
@@ -1479,10 +1473,10 @@ impl Device {
             command_buffer,
             first_binding,
             binding_count,
-            p_buffers,
-            p_offsets,
-            p_sizes,
-            p_strides,
+            buffers,
+            offsets,
+            sizes,
+            strides,
         )
     }
     #[inline]

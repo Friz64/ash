@@ -91,17 +91,17 @@ impl Device {
     pub unsafe fn create_external_compute_queue_nv(
         &self,
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_external_queue: *mut crate::vk::ExternalComputeQueueNV,
+        create_info: *const crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        external_queue: *mut crate::vk::ExternalComputeQueueNV,
     ) -> crate::vk::Result {
         (self
             .fp
             .create_external_compute_queue_nv)(
             device,
-            p_create_info,
-            p_allocator,
-            p_external_queue,
+            create_info,
+            allocator,
+            external_queue,
         )
     }
     #[inline]
@@ -109,9 +109,9 @@ impl Device {
         &self,
         device: crate::vk::Device,
         external_queue: crate::vk::ExternalComputeQueueNV,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_external_compute_queue_nv)(device, external_queue, p_allocator)
+        (self.fp.destroy_external_compute_queue_nv)(device, external_queue, allocator)
     }
 }
 #[derive(Clone)]

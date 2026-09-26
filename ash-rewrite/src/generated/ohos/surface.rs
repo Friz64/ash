@@ -66,11 +66,11 @@ impl Instance {
     pub unsafe fn create_surface_ohos(
         &self,
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::SurfaceCreateInfoOHOS<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
+        create_info: *const crate::vk::SurfaceCreateInfoOHOS<'_>,
+        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result {
-        (self.fp.create_surface_ohos)(instance, p_create_info, p_allocator, p_surface)
+        (self.fp.create_surface_ohos)(instance, create_info, allocator, surface)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

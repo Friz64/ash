@@ -104,15 +104,15 @@ impl Instance {
     pub unsafe fn get_physical_device_external_fence_properties_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_external_fence_info: *const crate::vk::PhysicalDeviceExternalFenceInfo<'_>,
-        p_external_fence_properties: *mut crate::vk::ExternalFenceProperties<'_>,
+        external_fence_info: *const crate::vk::PhysicalDeviceExternalFenceInfo<'_>,
+        external_fence_properties: *mut crate::vk::ExternalFenceProperties<'_>,
     ) {
         (self
             .fp
             .get_physical_device_external_fence_properties_khr)(
             physical_device,
-            p_external_fence_info,
-            p_external_fence_properties,
+            external_fence_info,
+            external_fence_properties,
         )
     }
 }

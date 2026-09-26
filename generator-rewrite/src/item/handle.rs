@@ -1,10 +1,6 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
-use analysis::{
-    item::handle::Handle,
-    name::TypeName,
-    rust::{Lifetime, RustTokens},
-};
+use analysis::{item::handle::Handle, name::TypeName, rust::RustTokens};
 use quote::quote;
 use tracing::{instrument, trace};
 
@@ -12,7 +8,7 @@ impl Code for Handle {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.type_tokens(self.name, false, &Lifetime::placeholder());
+        let name = ctx.type_tokens(self.name, false, None);
         let ty = ctx.enumerator_tokens(self.object_type, TypeName::VK_OBJECT_TYPE, true);
 
         let code = if self.dispatchable {

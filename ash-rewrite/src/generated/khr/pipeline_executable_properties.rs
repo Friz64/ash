@@ -130,43 +130,43 @@ impl Device {
     pub unsafe fn get_pipeline_executable_properties_khr(
         &self,
         device: crate::vk::Device,
-        p_pipeline_info: *const crate::vk::PipelineInfoKHR<'_>,
-        p_executable_count: *mut u32,
-        p_properties: *mut crate::vk::PipelineExecutablePropertiesKHR<'_>,
+        pipeline_info: *const crate::vk::PipelineInfoKHR<'_>,
+        executable_count: *mut u32,
+        properties: *mut crate::vk::PipelineExecutablePropertiesKHR<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_pipeline_executable_properties_khr)(
             device,
-            p_pipeline_info,
-            p_executable_count,
-            p_properties,
+            pipeline_info,
+            executable_count,
+            properties,
         )
     }
     #[inline]
     pub unsafe fn get_pipeline_executable_statistics_khr(
         &self,
         device: crate::vk::Device,
-        p_executable_info: *const crate::vk::PipelineExecutableInfoKHR<'_>,
-        p_statistic_count: *mut u32,
-        p_statistics: *mut crate::vk::PipelineExecutableStatisticKHR<'_>,
+        executable_info: *const crate::vk::PipelineExecutableInfoKHR<'_>,
+        statistic_count: *mut u32,
+        statistics: *mut crate::vk::PipelineExecutableStatisticKHR<'_>,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_pipeline_executable_statistics_khr)(
             device,
-            p_executable_info,
-            p_statistic_count,
-            p_statistics,
+            executable_info,
+            statistic_count,
+            statistics,
         )
     }
     #[inline]
     pub unsafe fn get_pipeline_executable_internal_representations_khr(
         &self,
         device: crate::vk::Device,
-        p_executable_info: *const crate::vk::PipelineExecutableInfoKHR<'_>,
-        p_internal_representation_count: *mut u32,
-        p_internal_representations: *mut crate::vk::PipelineExecutableInternalRepresentationKHR<
+        executable_info: *const crate::vk::PipelineExecutableInfoKHR<'_>,
+        internal_representation_count: *mut u32,
+        internal_representations: *mut crate::vk::PipelineExecutableInternalRepresentationKHR<
             '_,
         >,
     ) -> crate::vk::Result {
@@ -174,9 +174,9 @@ impl Device {
             .fp
             .get_pipeline_executable_internal_representations_khr)(
             device,
-            p_executable_info,
-            p_internal_representation_count,
-            p_internal_representations,
+            executable_info,
+            internal_representation_count,
+            internal_representations,
         )
     }
 }

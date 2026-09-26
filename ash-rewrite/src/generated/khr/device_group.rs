@@ -221,7 +221,7 @@ impl Device {
     pub unsafe fn get_device_group_present_capabilities_khr(
         &self,
         device: crate::vk::Device,
-        p_device_group_present_capabilities: *mut crate::vk::DeviceGroupPresentCapabilitiesKHR<
+        device_group_present_capabilities: *mut crate::vk::DeviceGroupPresentCapabilitiesKHR<
             '_,
         >,
     ) -> crate::vk::Result {
@@ -229,7 +229,7 @@ impl Device {
             .fp
             .get_device_group_present_capabilities_khr)(
             device,
-            p_device_group_present_capabilities,
+            device_group_present_capabilities,
         )
     }
     #[inline]
@@ -237,18 +237,18 @@ impl Device {
         &self,
         device: crate::vk::Device,
         surface: crate::vk::SurfaceKHR,
-        p_modes: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
+        modes: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
     ) -> crate::vk::Result {
-        (self.fp.get_device_group_surface_present_modes_khr)(device, surface, p_modes)
+        (self.fp.get_device_group_surface_present_modes_khr)(device, surface, modes)
     }
     #[inline]
     pub unsafe fn acquire_next_image2_khr(
         &self,
         device: crate::vk::Device,
-        p_acquire_info: *const crate::vk::AcquireNextImageInfoKHR<'_>,
-        p_image_index: *mut u32,
+        acquire_info: *const crate::vk::AcquireNextImageInfoKHR<'_>,
+        image_index: *mut u32,
     ) -> crate::vk::Result {
-        (self.fp.acquire_next_image2_khr)(device, p_acquire_info, p_image_index)
+        (self.fp.acquire_next_image2_khr)(device, acquire_info, image_index)
     }
     #[inline]
     pub unsafe fn get_device_group_peer_memory_features_khr(
@@ -257,7 +257,7 @@ impl Device {
         heap_index: u32,
         local_device_index: u32,
         remote_device_index: u32,
-        p_peer_memory_features: *mut crate::vk::PeerMemoryFeatureFlags,
+        peer_memory_features: *mut crate::vk::PeerMemoryFeatureFlags,
     ) {
         (self
             .fp
@@ -266,7 +266,7 @@ impl Device {
             heap_index,
             local_device_index,
             remote_device_index,
-            p_peer_memory_features,
+            peer_memory_features,
         )
     }
     #[inline]
@@ -362,16 +362,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,
-        p_rect_count: *mut u32,
-        p_rects: *mut crate::vk::Rect2D,
+        rect_count: *mut u32,
+        rects: *mut crate::vk::Rect2D,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_present_rectangles_khr)(
             physical_device,
             surface,
-            p_rect_count,
-            p_rects,
+            rect_count,
+            rects,
         )
     }
 }

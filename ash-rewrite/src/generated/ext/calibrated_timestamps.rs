@@ -74,15 +74,15 @@ impl Instance {
     pub unsafe fn get_physical_device_calibrateable_time_domains_ext(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        p_time_domain_count: *mut u32,
-        p_time_domains: *mut crate::vk::TimeDomainKHR,
+        time_domain_count: *mut u32,
+        time_domains: *mut crate::vk::TimeDomainKHR,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_physical_device_calibrateable_time_domains_ext)(
             physical_device,
-            p_time_domain_count,
-            p_time_domains,
+            time_domain_count,
+            time_domains,
         )
     }
 }
@@ -148,18 +148,18 @@ impl Device {
         &self,
         device: crate::vk::Device,
         timestamp_count: u32,
-        p_timestamp_infos: *const crate::vk::CalibratedTimestampInfoKHR<'_>,
-        p_timestamps: *mut u64,
-        p_max_deviation: *mut u64,
+        timestamp_infos: *const crate::vk::CalibratedTimestampInfoKHR<'_>,
+        timestamps: *mut u64,
+        max_deviation: *mut u64,
     ) -> crate::vk::Result {
         (self
             .fp
             .get_calibrated_timestamps_ext)(
             device,
             timestamp_count,
-            p_timestamp_infos,
-            p_timestamps,
-            p_max_deviation,
+            timestamp_infos,
+            timestamps,
+            max_deviation,
         )
     }
 }

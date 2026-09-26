@@ -102,39 +102,35 @@ impl Device {
     pub unsafe fn get_buffer_memory_requirements2_khr(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::BufferMemoryRequirementsInfo2<'_>,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        info: *const crate::vk::BufferMemoryRequirementsInfo2<'_>,
+        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
     ) {
-        (self
-            .fp
-            .get_buffer_memory_requirements2_khr)(device, p_info, p_memory_requirements)
+        (self.fp.get_buffer_memory_requirements2_khr)(device, info, memory_requirements)
     }
     #[inline]
     pub unsafe fn get_image_memory_requirements2_khr(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::ImageMemoryRequirementsInfo2<'_>,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        info: *const crate::vk::ImageMemoryRequirementsInfo2<'_>,
+        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
     ) {
-        (self
-            .fp
-            .get_image_memory_requirements2_khr)(device, p_info, p_memory_requirements)
+        (self.fp.get_image_memory_requirements2_khr)(device, info, memory_requirements)
     }
     #[inline]
     pub unsafe fn get_image_sparse_memory_requirements2_khr(
         &self,
         device: crate::vk::Device,
-        p_info: *const crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
-        p_sparse_memory_requirement_count: *mut u32,
-        p_sparse_memory_requirements: *mut crate::vk::SparseImageMemoryRequirements2<'_>,
+        info: *const crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
+        sparse_memory_requirement_count: *mut u32,
+        sparse_memory_requirements: *mut crate::vk::SparseImageMemoryRequirements2<'_>,
     ) {
         (self
             .fp
             .get_image_sparse_memory_requirements2_khr)(
             device,
-            p_info,
-            p_sparse_memory_requirement_count,
-            p_sparse_memory_requirements,
+            info,
+            sparse_memory_requirement_count,
+            sparse_memory_requirements,
         )
     }
 }
