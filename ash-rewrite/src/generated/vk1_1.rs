@@ -777,16 +777,16 @@ impl crate::Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         image_format_info: &crate::vk::PhysicalDeviceImageFormatInfo2<'_>,
-        image_format_properties: &mut crate::vk::ImageFormatProperties2<'_>,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::ImageFormatProperties2<'_>> {
+        let mut image_format_properties = core::mem::MaybeUninit::uninit();
         (self
             .instance_fn_1_1
             .get_physical_device_image_format_properties2)(
                 physical_device,
                 image_format_info,
-                image_format_properties,
+                image_format_properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(image_format_properties)
     }
     ///vkGetPhysicalDeviceQueueFamilyProperties2
     #[inline]
@@ -1337,17 +1337,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        descriptor_update_template: &mut crate::vk::DescriptorUpdateTemplate,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DescriptorUpdateTemplate> {
+        let mut descriptor_update_template = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_1
             .create_descriptor_update_template)(
                 self.handle,
                 create_info,
                 allocator,
-                descriptor_update_template,
+                descriptor_update_template.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(descriptor_update_template)
     }
     ///vkDestroyDescriptorUpdateTemplate
     #[inline]
@@ -1446,17 +1446,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        ycbcr_conversion: &mut crate::vk::SamplerYcbcrConversion,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::SamplerYcbcrConversion> {
+        let mut ycbcr_conversion = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_1
             .create_sampler_ycbcr_conversion)(
                 self.handle,
                 create_info,
                 allocator,
-                ycbcr_conversion,
+                ycbcr_conversion.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(ycbcr_conversion)
     }
     ///vkDestroySamplerYcbcrConversion
     #[inline]

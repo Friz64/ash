@@ -82,9 +82,10 @@ impl Device {
     pub unsafe fn get_semaphore_fd(
         &self,
         get_fd_info: &crate::vk::SemaphoreGetFdInfoKHR<'_>,
-        fd: &mut core::ffi::c_int,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_semaphore_fd)(self.handle, get_fd_info, fd).result()
+    ) -> crate::VkResult<core::ffi::c_int> {
+        let mut fd = core::mem::MaybeUninit::uninit();
+        (self.fp.get_semaphore_fd)(self.handle, get_fd_info, fd.as_mut_ptr())
+            .assume_init_on_success(fd)
     }
     ///vkImportSemaphoreFdKHR
     #[inline]

@@ -259,17 +259,17 @@ impl Instance {
         queue_family_data_graph_properties: &crate::vk::QueueFamilyDataGraphPropertiesARM<
             '_,
         >,
-        properties: &mut crate::vk::BaseOutStructure<'_>,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::BaseOutStructure<'_>> {
+        let mut properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_queue_family_data_graph_engine_operation_properties)(
                 physical_device,
                 queue_family_index,
                 queue_family_data_graph_properties,
-                properties,
+                properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(properties)
     }
     ///vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM
     #[inline]

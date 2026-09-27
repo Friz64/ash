@@ -368,17 +368,17 @@ impl Device {
         &self,
         create_info: &crate::vk::IndirectCommandsLayoutCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        indirect_commands_layout: &mut crate::vk::IndirectCommandsLayoutEXT,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::IndirectCommandsLayoutEXT> {
+        let mut indirect_commands_layout = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_indirect_commands_layout)(
                 self.handle,
                 create_info,
                 allocator,
-                indirect_commands_layout,
+                indirect_commands_layout.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(indirect_commands_layout)
     }
     ///vkDestroyIndirectCommandsLayoutEXT
     #[inline]
@@ -401,17 +401,17 @@ impl Device {
         &self,
         create_info: &crate::vk::IndirectExecutionSetCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        indirect_execution_set: &mut crate::vk::IndirectExecutionSetEXT,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::IndirectExecutionSetEXT> {
+        let mut indirect_execution_set = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_indirect_execution_set)(
                 self.handle,
                 create_info,
                 allocator,
-                indirect_execution_set,
+                indirect_execution_set.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(indirect_execution_set)
     }
     ///vkDestroyIndirectExecutionSetEXT
     #[inline]

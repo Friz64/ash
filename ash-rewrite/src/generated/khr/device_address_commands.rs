@@ -706,17 +706,17 @@ impl Device {
         &self,
         create_info: &crate::vk::AccelerationStructureCreateInfo2KHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        acceleration_structure: &mut crate::vk::AccelerationStructureKHR,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::AccelerationStructureKHR> {
+        let mut acceleration_structure = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_acceleration_structure2)(
                 self.handle,
                 create_info,
                 allocator,
-                acceleration_structure,
+                acceleration_structure.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(acceleration_structure)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

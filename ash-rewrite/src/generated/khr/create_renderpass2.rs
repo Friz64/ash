@@ -121,10 +121,17 @@ impl Device {
         &self,
         create_info: &crate::vk::RenderPassCreateInfo2<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        render_pass: &mut crate::vk::RenderPass,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_render_pass2)(self.handle, create_info, allocator, render_pass)
-            .result()
+    ) -> crate::VkResult<crate::vk::RenderPass> {
+        let mut render_pass = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .create_render_pass2)(
+                self.handle,
+                create_info,
+                allocator,
+                render_pass.as_mut_ptr(),
+            )
+            .assume_init_on_success(render_pass)
     }
     ///vkCmdBeginRenderPass2
     #[inline]

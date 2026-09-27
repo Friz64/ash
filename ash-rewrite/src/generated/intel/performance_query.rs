@@ -265,12 +265,16 @@ impl Device {
     pub unsafe fn acquire_performance_configuration(
         &self,
         acquire_info: &crate::vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
-        configuration: &mut crate::vk::PerformanceConfigurationINTEL,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::PerformanceConfigurationINTEL> {
+        let mut configuration = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .acquire_performance_configuration)(self.handle, acquire_info, configuration)
-            .result()
+            .acquire_performance_configuration)(
+                self.handle,
+                acquire_info,
+                configuration.as_mut_ptr(),
+            )
+            .assume_init_on_success(configuration)
     }
     ///vkReleasePerformanceConfigurationINTEL
     #[inline]
@@ -294,9 +298,10 @@ impl Device {
     pub unsafe fn get_performance_parameter(
         &self,
         parameter: crate::vk::PerformanceParameterTypeINTEL,
-        value: &mut crate::vk::PerformanceValueINTEL,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_performance_parameter)(self.handle, parameter, value).result()
+    ) -> crate::VkResult<crate::vk::PerformanceValueINTEL> {
+        let mut value = core::mem::MaybeUninit::uninit();
+        (self.fp.get_performance_parameter)(self.handle, parameter, value.as_mut_ptr())
+            .assume_init_on_success(value)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

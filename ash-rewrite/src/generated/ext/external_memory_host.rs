@@ -86,19 +86,17 @@ impl Device {
         &self,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         host_pointer: &core::ffi::c_void,
-        memory_host_pointer_properties: &mut crate::vk::MemoryHostPointerPropertiesEXT<
-            '_,
-        >,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::MemoryHostPointerPropertiesEXT<'_>> {
+        let mut memory_host_pointer_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_memory_host_pointer_properties)(
                 self.handle,
                 handle_type,
                 host_pointer,
-                memory_host_pointer_properties,
+                memory_host_pointer_properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(memory_host_pointer_properties)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

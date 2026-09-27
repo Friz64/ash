@@ -86,16 +86,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface_info: &crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-        surface_capabilities: &mut crate::vk::SurfaceCapabilities2KHR<'_>,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::SurfaceCapabilities2KHR<'_>> {
+        let mut surface_capabilities = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_surface_capabilities2)(
                 physical_device,
                 surface_info,
-                surface_capabilities,
+                surface_capabilities.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(surface_capabilities)
     }
     ///vkGetPhysicalDeviceSurfaceFormats2KHR
     #[inline]

@@ -164,10 +164,17 @@ impl Device {
         &self,
         create_info: &crate::vk::CudaModuleCreateInfoNV<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        module: &mut crate::vk::CudaModuleNV,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_cuda_module)(self.handle, create_info, allocator, module)
-            .result()
+    ) -> crate::VkResult<crate::vk::CudaModuleNV> {
+        let mut module = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .create_cuda_module)(
+                self.handle,
+                create_info,
+                allocator,
+                module.as_mut_ptr(),
+            )
+            .assume_init_on_success(module)
     }
     ///vkGetCudaModuleCacheNV
     #[inline]
@@ -185,10 +192,17 @@ impl Device {
         &self,
         create_info: &crate::vk::CudaFunctionCreateInfoNV<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        function: &mut crate::vk::CudaFunctionNV,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_cuda_function)(self.handle, create_info, allocator, function)
-            .result()
+    ) -> crate::VkResult<crate::vk::CudaFunctionNV> {
+        let mut function = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .create_cuda_function)(
+                self.handle,
+                create_info,
+                allocator,
+                function.as_mut_ptr(),
+            )
+            .assume_init_on_success(function)
     }
     ///vkDestroyCudaModuleNV
     #[inline]

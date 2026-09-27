@@ -84,10 +84,16 @@ impl Device {
     pub unsafe fn get_semaphore_win32_handle(
         &self,
         get_win32_handle_info: &crate::vk::SemaphoreGetWin32HandleInfoKHR<'_>,
-        handle: &mut crate::platform_types::HANDLE,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_semaphore_win32_handle)(self.handle, get_win32_handle_info, handle)
-            .result()
+    ) -> crate::VkResult<crate::platform_types::HANDLE> {
+        let mut handle = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_semaphore_win32_handle)(
+                self.handle,
+                get_win32_handle_info,
+                handle.as_mut_ptr(),
+            )
+            .assume_init_on_success(handle)
     }
     ///vkImportSemaphoreWin32HandleKHR
     #[inline]

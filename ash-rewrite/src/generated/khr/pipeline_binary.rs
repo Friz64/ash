@@ -162,10 +162,17 @@ impl Device {
         &self,
         create_info: &crate::vk::PipelineBinaryCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        binaries: &mut crate::vk::PipelineBinaryHandlesInfoKHR<'_>,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_pipeline_binaries)(self.handle, create_info, allocator, binaries)
-            .result()
+    ) -> crate::VkResult<crate::vk::PipelineBinaryHandlesInfoKHR<'_>> {
+        let mut binaries = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .create_pipeline_binaries)(
+                self.handle,
+                create_info,
+                allocator,
+                binaries.as_mut_ptr(),
+            )
+            .assume_init_on_success(binaries)
     }
     ///vkDestroyPipelineBinaryKHR
     #[inline]
@@ -181,10 +188,16 @@ impl Device {
     pub unsafe fn get_pipeline_key(
         &self,
         pipeline_create_info: &crate::vk::PipelineCreateInfoKHR<'_>,
-        pipeline_key: &mut crate::vk::PipelineBinaryKeyKHR<'_>,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_pipeline_key)(self.handle, pipeline_create_info, pipeline_key)
-            .result()
+    ) -> crate::VkResult<crate::vk::PipelineBinaryKeyKHR<'_>> {
+        let mut pipeline_key = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_pipeline_key)(
+                self.handle,
+                pipeline_create_info,
+                pipeline_key.as_mut_ptr(),
+            )
+            .assume_init_on_success(pipeline_key)
     }
     ///vkReleaseCapturedPipelineDataKHR
     #[inline]

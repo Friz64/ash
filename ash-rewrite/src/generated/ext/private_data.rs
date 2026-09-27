@@ -126,17 +126,17 @@ impl Device {
         &self,
         create_info: &crate::vk::PrivateDataSlotCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        private_data_slot: &mut crate::vk::PrivateDataSlot,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::PrivateDataSlot> {
+        let mut private_data_slot = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_private_data_slot)(
                 self.handle,
                 create_info,
                 allocator,
-                private_data_slot,
+                private_data_slot.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(private_data_slot)
     }
     ///vkDestroyPrivateDataSlot
     #[inline]

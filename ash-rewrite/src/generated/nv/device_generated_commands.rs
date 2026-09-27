@@ -296,17 +296,17 @@ impl Device {
         &self,
         create_info: &crate::vk::IndirectCommandsLayoutCreateInfoNV<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        indirect_commands_layout: &mut crate::vk::IndirectCommandsLayoutNV,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::IndirectCommandsLayoutNV> {
+        let mut indirect_commands_layout = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_indirect_commands_layout)(
                 self.handle,
                 create_info,
                 allocator,
-                indirect_commands_layout,
+                indirect_commands_layout.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(indirect_commands_layout)
     }
     ///vkDestroyIndirectCommandsLayoutNV
     #[inline]

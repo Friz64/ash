@@ -64,9 +64,12 @@ impl Instance {
         &self,
         create_info: &crate::vk::SurfaceCreateInfoOHOS<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        surface: &mut crate::vk::SurfaceKHR,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_surface)(self.handle, create_info, allocator, surface).result()
+    ) -> crate::VkResult<crate::vk::SurfaceKHR> {
+        let mut surface = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .create_surface)(self.handle, create_info, allocator, surface.as_mut_ptr())
+            .assume_init_on_success(surface)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

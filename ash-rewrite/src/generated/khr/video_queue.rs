@@ -206,16 +206,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         video_profile: &crate::vk::VideoProfileInfoKHR<'_>,
-        capabilities: &mut crate::vk::VideoCapabilitiesKHR<'_>,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::VideoCapabilitiesKHR<'_>> {
+        let mut capabilities = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_video_capabilities)(
                 physical_device,
                 video_profile,
-                capabilities,
+                capabilities.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(capabilities)
     }
     ///vkGetPhysicalDeviceVideoFormatPropertiesKHR
     #[inline]
@@ -464,12 +464,17 @@ impl Device {
         &self,
         create_info: &crate::vk::VideoSessionCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        video_session: &mut crate::vk::VideoSessionKHR,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::VideoSessionKHR> {
+        let mut video_session = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .create_video_session)(self.handle, create_info, allocator, video_session)
-            .result()
+            .create_video_session)(
+                self.handle,
+                create_info,
+                allocator,
+                video_session.as_mut_ptr(),
+            )
+            .assume_init_on_success(video_session)
     }
     ///vkDestroyVideoSessionKHR
     #[inline]
@@ -486,17 +491,17 @@ impl Device {
         &self,
         create_info: &crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        video_session_parameters: &mut crate::vk::VideoSessionParametersKHR,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::VideoSessionParametersKHR> {
+        let mut video_session_parameters = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_video_session_parameters)(
                 self.handle,
                 create_info,
                 allocator,
-                video_session_parameters,
+                video_session_parameters.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(video_session_parameters)
     }
     ///vkUpdateVideoSessionParametersKHR
     #[inline]

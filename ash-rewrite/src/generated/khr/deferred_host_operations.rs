@@ -134,10 +134,16 @@ impl Device {
     pub unsafe fn create_deferred_operation(
         &self,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        deferred_operation: &mut crate::vk::DeferredOperationKHR,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_deferred_operation)(self.handle, allocator, deferred_operation)
-            .result()
+    ) -> crate::VkResult<crate::vk::DeferredOperationKHR> {
+        let mut deferred_operation = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .create_deferred_operation)(
+                self.handle,
+                allocator,
+                deferred_operation.as_mut_ptr(),
+            )
+            .assume_init_on_success(deferred_operation)
     }
     ///vkDestroyDeferredOperationKHR
     #[inline]

@@ -92,16 +92,16 @@ impl Device {
     pub unsafe fn get_semaphore_zircon_handle(
         &self,
         get_zircon_handle_info: &crate::vk::SemaphoreGetZirconHandleInfoFUCHSIA<'_>,
-        zircon_handle: &mut crate::platform_types::zx_handle_t,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::platform_types::zx_handle_t> {
+        let mut zircon_handle = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_semaphore_zircon_handle)(
                 self.handle,
                 get_zircon_handle_info,
-                zircon_handle,
+                zircon_handle.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(zircon_handle)
     }
     ///vkImportSemaphoreZirconHandleFUCHSIA
     #[inline]

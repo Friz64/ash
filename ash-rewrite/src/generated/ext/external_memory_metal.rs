@@ -103,10 +103,16 @@ impl Device {
     pub unsafe fn get_memory_metal_handle(
         &self,
         get_metal_handle_info: &crate::vk::MemoryGetMetalHandleInfoEXT<'_>,
-        handle: &mut *mut core::ffi::c_void,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_memory_metal_handle)(self.handle, get_metal_handle_info, handle)
-            .result()
+    ) -> crate::VkResult<*mut core::ffi::c_void> {
+        let mut handle = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_memory_metal_handle)(
+                self.handle,
+                get_metal_handle_info,
+                handle.as_mut_ptr(),
+            )
+            .assume_init_on_success(handle)
     }
     ///vkGetMemoryMetalHandlePropertiesEXT
     #[inline]
@@ -114,19 +120,17 @@ impl Device {
         &self,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         handle: &core::ffi::c_void,
-        memory_metal_handle_properties: &mut crate::vk::MemoryMetalHandlePropertiesEXT<
-            '_,
-        >,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::MemoryMetalHandlePropertiesEXT<'_>> {
+        let mut memory_metal_handle_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_memory_metal_handle_properties)(
                 self.handle,
                 handle_type,
                 handle,
-                memory_metal_handle_properties,
+                memory_metal_handle_properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(memory_metal_handle_properties)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

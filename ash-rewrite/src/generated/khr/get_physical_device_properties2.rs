@@ -205,16 +205,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         image_format_info: &crate::vk::PhysicalDeviceImageFormatInfo2<'_>,
-        image_format_properties: &mut crate::vk::ImageFormatProperties2<'_>,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::ImageFormatProperties2<'_>> {
+        let mut image_format_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_image_format_properties2)(
                 physical_device,
                 image_format_info,
-                image_format_properties,
+                image_format_properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(image_format_properties)
     }
     ///vkGetPhysicalDeviceQueueFamilyProperties2
     #[inline]

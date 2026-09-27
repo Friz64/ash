@@ -111,9 +111,10 @@ impl Device {
     pub unsafe fn get_semaphore_counter_value(
         &self,
         semaphore: crate::vk::Semaphore,
-        value: &mut u64,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_semaphore_counter_value)(self.handle, semaphore, value).result()
+    ) -> crate::VkResult<u64> {
+        let mut value = core::mem::MaybeUninit::uninit();
+        (self.fp.get_semaphore_counter_value)(self.handle, semaphore, value.as_mut_ptr())
+            .assume_init_on_success(value)
     }
     ///vkWaitSemaphores
     #[inline]

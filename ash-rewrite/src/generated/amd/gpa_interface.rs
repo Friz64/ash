@@ -347,10 +347,17 @@ impl Device {
         &self,
         create_info: &crate::vk::GpaSessionCreateInfoAMD<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        gpa_session: &mut crate::vk::GpaSessionAMD,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_gpa_session)(self.handle, create_info, allocator, gpa_session)
-            .result()
+    ) -> crate::VkResult<crate::vk::GpaSessionAMD> {
+        let mut gpa_session = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .create_gpa_session)(
+                self.handle,
+                create_info,
+                allocator,
+                gpa_session.as_mut_ptr(),
+            )
+            .assume_init_on_success(gpa_session)
     }
     ///vkDestroyGpaSessionAMD
     #[inline]
@@ -365,17 +372,19 @@ impl Device {
     #[inline]
     pub unsafe fn set_gpa_device_clock_mode(
         &self,
-        info: &mut crate::vk::GpaDeviceClockModeInfoAMD<'_>,
-    ) -> crate::VkResult<()> {
-        (self.fp.set_gpa_device_clock_mode)(self.handle, info).result()
+    ) -> crate::VkResult<crate::vk::GpaDeviceClockModeInfoAMD<'_>> {
+        let mut info = core::mem::MaybeUninit::uninit();
+        (self.fp.set_gpa_device_clock_mode)(self.handle, info.as_mut_ptr())
+            .assume_init_on_success(info)
     }
     ///vkGetGpaDeviceClockInfoAMD
     #[inline]
     pub unsafe fn get_gpa_device_clock_info(
         &self,
-        info: &mut crate::vk::GpaDeviceGetClockInfoAMD<'_>,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_gpa_device_clock_info)(self.handle, info).result()
+    ) -> crate::VkResult<crate::vk::GpaDeviceGetClockInfoAMD<'_>> {
+        let mut info = core::mem::MaybeUninit::uninit();
+        (self.fp.get_gpa_device_clock_info)(self.handle, info.as_mut_ptr())
+            .assume_init_on_success(info)
     }
     ///vkCmdBeginGpaSessionAMD
     #[inline]
@@ -402,17 +411,17 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         gpa_session: crate::vk::GpaSessionAMD,
         gpa_sample_begin_info: &crate::vk::GpaSampleBeginInfoAMD<'_>,
-        sample_id: &mut u32,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<u32> {
+        let mut sample_id = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .cmd_begin_gpa_sample)(
                 command_buffer,
                 gpa_session,
                 gpa_sample_begin_info,
-                sample_id,
+                sample_id.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(sample_id)
     }
     ///vkCmdEndGpaSampleAMD
     #[inline]

@@ -253,17 +253,17 @@ impl Device {
         &self,
         create_info: &crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        instrumentation: &mut crate::vk::ShaderInstrumentationARM,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::ShaderInstrumentationARM> {
+        let mut instrumentation = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_shader_instrumentation)(
                 self.handle,
                 create_info,
                 allocator,
-                instrumentation,
+                instrumentation.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(instrumentation)
     }
     ///vkDestroyShaderInstrumentationARM
     #[inline]

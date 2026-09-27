@@ -168,12 +168,17 @@ impl Instance {
         &self,
         create_info: &crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        callback: &mut crate::vk::DebugReportCallbackEXT,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DebugReportCallbackEXT> {
+        let mut callback = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .create_debug_report_callback)(self.handle, create_info, allocator, callback)
-            .result()
+            .create_debug_report_callback)(
+                self.handle,
+                create_info,
+                allocator,
+                callback.as_mut_ptr(),
+            )
+            .assume_init_on_success(callback)
     }
     ///vkDestroyDebugReportCallbackEXT
     #[inline]

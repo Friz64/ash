@@ -242,18 +242,16 @@ impl Device {
     pub unsafe fn get_past_presentation_timing(
         &self,
         past_presentation_timing_info: &crate::vk::PastPresentationTimingInfoEXT<'_>,
-        past_presentation_timing_properties: &mut crate::vk::PastPresentationTimingPropertiesEXT<
-            '_,
-        >,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::PastPresentationTimingPropertiesEXT<'_>> {
+        let mut past_presentation_timing_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_past_presentation_timing)(
                 self.handle,
                 past_presentation_timing_info,
-                past_presentation_timing_properties,
+                past_presentation_timing_properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(past_presentation_timing_properties)
     }
 }
 pub const SPEC_VERSION: u32 = 3;

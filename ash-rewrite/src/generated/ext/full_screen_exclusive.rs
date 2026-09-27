@@ -182,12 +182,16 @@ impl Device {
     pub unsafe fn get_device_group_surface_present_modes2(
         &self,
         surface_info: &crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-        modes: &mut crate::vk::DeviceGroupPresentModeFlagsKHR,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DeviceGroupPresentModeFlagsKHR> {
+        let mut modes = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .get_device_group_surface_present_modes2)(self.handle, surface_info, modes)
-            .result()
+            .get_device_group_surface_present_modes2)(
+                self.handle,
+                surface_info,
+                modes.as_mut_ptr(),
+            )
+            .assume_init_on_success(modes)
     }
     ///vkAcquireFullScreenExclusiveModeEXT
     #[inline]

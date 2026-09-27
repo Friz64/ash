@@ -177,12 +177,17 @@ impl Device {
         &self,
         create_info: &crate::vk::BufferCollectionCreateInfoFUCHSIA<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        collection: &mut crate::vk::BufferCollectionFUCHSIA,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::BufferCollectionFUCHSIA> {
+        let mut collection = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .create_buffer_collection)(self.handle, create_info, allocator, collection)
-            .result()
+            .create_buffer_collection)(
+                self.handle,
+                create_info,
+                allocator,
+                collection.as_mut_ptr(),
+            )
+            .assume_init_on_success(collection)
     }
     ///vkSetBufferCollectionBufferConstraintsFUCHSIA
     #[inline]
@@ -230,10 +235,16 @@ impl Device {
     pub unsafe fn get_buffer_collection_properties(
         &self,
         collection: crate::vk::BufferCollectionFUCHSIA,
-        properties: &mut crate::vk::BufferCollectionPropertiesFUCHSIA<'_>,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_buffer_collection_properties)(self.handle, collection, properties)
-            .result()
+    ) -> crate::VkResult<crate::vk::BufferCollectionPropertiesFUCHSIA<'_>> {
+        let mut properties = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_buffer_collection_properties)(
+                self.handle,
+                collection,
+                properties.as_mut_ptr(),
+            )
+            .assume_init_on_success(properties)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

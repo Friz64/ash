@@ -68,12 +68,16 @@ impl Device {
     pub unsafe fn get_pipeline_properties(
         &self,
         pipeline_info: &crate::vk::PipelineInfoKHR<'_>,
-        pipeline_properties: &mut crate::vk::BaseOutStructure<'_>,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::BaseOutStructure<'_>> {
+        let mut pipeline_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .get_pipeline_properties)(self.handle, pipeline_info, pipeline_properties)
-            .result()
+            .get_pipeline_properties)(
+                self.handle,
+                pipeline_info,
+                pipeline_properties.as_mut_ptr(),
+            )
+            .assume_init_on_success(pipeline_properties)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

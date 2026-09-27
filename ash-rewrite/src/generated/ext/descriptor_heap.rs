@@ -416,17 +416,17 @@ impl Device {
         &self,
         border_color: &crate::vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
         request_index: crate::vk::Bool32,
-        index: &mut u32,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<u32> {
+        let mut index = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .register_custom_border_color)(
                 self.handle,
                 border_color,
                 request_index,
-                index,
+                index.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(index)
     }
     ///vkUnregisterCustomBorderColorEXT
     #[inline]

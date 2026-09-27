@@ -330,6 +330,8 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
     }
 
     let mut multi_call_length = None;
+    let mut maybe_single_return = true;
+    let mut single_return = None;
     for (i, param) in command.params.iter().enumerate() {
         let name = param_ident(param.decl.name);
 
@@ -436,6 +438,18 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                 call_arg = quote! { self.handle };
                 public_type = None;
             }
+            Ty::Ptr(to, Mutability::Mut) => {
+                if single_return.is_some() {
+                    single_return = None;
+                    maybe_single_return = false;
+                }
+
+                if maybe_single_return {
+                    single_return = Some((param.decl.name, to));
+                }
+
+                continue;
+            }
             _ => continue,
         };
 
@@ -445,7 +459,7 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
         })
     }
 
-    let call_args_map: IndexMap<VariableName, TokenStream> = wrapper_params
+    let mut call_args_map: IndexMap<VariableName, TokenStream> = wrapper_params
         .iter()
         .map(|(&name, wrapper)| {
             let value = match wrapper {
@@ -460,7 +474,7 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
         })
         .collect();
 
-    let public_params_map: IndexMap<VariableName, TokenStream> = command
+    let mut public_params_map: IndexMap<VariableName, TokenStream> = command
         .params
         .iter()
         .enumerate()
@@ -481,6 +495,16 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
         })
         .collect();
 
+    let returns_result = matches!(command.return_type, Some(Ty::ApiType(TypeName::VK_RESULT)));
+    if multi_call_length.is_none()
+        && returns_result
+        && let Some((single_return, ..)) = single_return
+    {
+        let name = param_ident(single_return);
+        call_args_map[&single_return] = quote! { #name.as_mut_ptr() };
+        public_params_map.shift_remove(&single_return);
+    }
+
     let call_args = call_args_map.values();
     let mut content = quote! { (self.#table_field.#name)( #( #call_args ),* ) };
     for calculation in length_calculations.values() {
@@ -495,7 +519,6 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
     let doc = command.name.original(); // TODO: improve
 
     let mut len_method = None;
-    let returns_result = matches!(command.return_type, Some(Ty::ApiType(TypeName::VK_RESULT)));
     let ret_ty;
     if let Some(multi_call_length) = multi_call_length {
         let count = param_ident(multi_call_length.count);
@@ -584,10 +607,27 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
             }
         }
     } else if returns_result {
-        content = quote! { #content.result() };
+        if let Some((single_return, ..)) = single_return {
+            let name = param_ident(single_return);
+            content = quote! {
+                let mut #name = core::mem::MaybeUninit::uninit();
+                #content
+            };
+        }
+
+        if let Some((single_return, ..)) = single_return {
+            let name = param_ident(single_return);
+            content = quote! { #content.assume_init_on_success(#name) };
+        } else {
+            content = quote! { #content.result() };
+        }
+
         ret_ty = Some(RustTy::Custom {
             custom_type: quote! { crate::VkResult },
-            generic_args: vec![RustTy::Unit],
+            generic_args: vec![match single_return {
+                Some((_name, ty)) => ty.to_rust(),
+                _ => RustTy::Unit,
+            }],
         });
     } else {
         ret_ty = command.return_type.as_ref().map(|ty| ty.to_rust());

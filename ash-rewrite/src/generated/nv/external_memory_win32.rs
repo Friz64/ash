@@ -69,10 +69,17 @@ impl Device {
         &self,
         memory: crate::vk::DeviceMemory,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-        handle: &mut crate::platform_types::HANDLE,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_memory_win32_handle)(self.handle, memory, handle_type, handle)
-            .result()
+    ) -> crate::VkResult<crate::platform_types::HANDLE> {
+        let mut handle = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_memory_win32_handle)(
+                self.handle,
+                memory,
+                handle_type,
+                handle.as_mut_ptr(),
+            )
+            .assume_init_on_success(handle)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

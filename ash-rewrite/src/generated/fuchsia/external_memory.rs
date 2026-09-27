@@ -95,16 +95,16 @@ impl Device {
     pub unsafe fn get_memory_zircon_handle(
         &self,
         get_zircon_handle_info: &crate::vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
-        zircon_handle: &mut crate::platform_types::zx_handle_t,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::platform_types::zx_handle_t> {
+        let mut zircon_handle = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_memory_zircon_handle)(
                 self.handle,
                 get_zircon_handle_info,
-                zircon_handle,
+                zircon_handle.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(zircon_handle)
     }
     ///vkGetMemoryZirconHandlePropertiesFUCHSIA
     #[inline]
@@ -112,19 +112,17 @@ impl Device {
         &self,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         zircon_handle: crate::platform_types::zx_handle_t,
-        memory_zircon_handle_properties: &mut crate::vk::MemoryZirconHandlePropertiesFUCHSIA<
-            '_,
-        >,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::MemoryZirconHandlePropertiesFUCHSIA<'_>> {
+        let mut memory_zircon_handle_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_memory_zircon_handle_properties)(
                 self.handle,
                 handle_type,
                 zircon_handle,
-                memory_zircon_handle_properties,
+                memory_zircon_handle_properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(memory_zircon_handle_properties)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

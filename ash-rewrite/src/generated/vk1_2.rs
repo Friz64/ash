@@ -530,12 +530,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::RenderPassCreateInfo2<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        render_pass: &mut crate::vk::RenderPass,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::RenderPass> {
+        let mut render_pass = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_2
-            .create_render_pass2)(self.handle, create_info, allocator, render_pass)
-            .result()
+            .create_render_pass2)(
+                self.handle,
+                create_info,
+                allocator,
+                render_pass.as_mut_ptr(),
+            )
+            .assume_init_on_success(render_pass)
     }
     ///vkCmdBeginRenderPass2
     #[inline]
@@ -579,10 +584,12 @@ impl crate::Device {
     pub unsafe fn get_semaphore_counter_value(
         &self,
         semaphore: crate::vk::Semaphore,
-        value: &mut u64,
-    ) -> crate::VkResult<()> {
-        (self.device_fn_1_2.get_semaphore_counter_value)(self.handle, semaphore, value)
-            .result()
+    ) -> crate::VkResult<u64> {
+        let mut value = core::mem::MaybeUninit::uninit();
+        (self
+            .device_fn_1_2
+            .get_semaphore_counter_value)(self.handle, semaphore, value.as_mut_ptr())
+            .assume_init_on_success(value)
     }
     ///vkWaitSemaphores
     #[inline]

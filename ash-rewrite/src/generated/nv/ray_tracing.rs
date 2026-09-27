@@ -475,17 +475,17 @@ impl Device {
         &self,
         create_info: &crate::vk::AccelerationStructureCreateInfoNV<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        acceleration_structure: &mut crate::vk::AccelerationStructureNV,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::AccelerationStructureNV> {
+        let mut acceleration_structure = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_acceleration_structure)(
                 self.handle,
                 create_info,
                 allocator,
-                acceleration_structure,
+                acceleration_structure.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(acceleration_structure)
     }
     ///vkDestroyAccelerationStructureNV
     #[inline]

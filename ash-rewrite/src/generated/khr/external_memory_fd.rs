@@ -81,9 +81,10 @@ impl Device {
     pub unsafe fn get_memory_fd(
         &self,
         get_fd_info: &crate::vk::MemoryGetFdInfoKHR<'_>,
-        fd: &mut core::ffi::c_int,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_memory_fd)(self.handle, get_fd_info, fd).result()
+    ) -> crate::VkResult<core::ffi::c_int> {
+        let mut fd = core::mem::MaybeUninit::uninit();
+        (self.fp.get_memory_fd)(self.handle, get_fd_info, fd.as_mut_ptr())
+            .assume_init_on_success(fd)
     }
     ///vkGetMemoryFdPropertiesKHR
     #[inline]
@@ -91,17 +92,17 @@ impl Device {
         &self,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         fd: core::ffi::c_int,
-        memory_fd_properties: &mut crate::vk::MemoryFdPropertiesKHR<'_>,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::MemoryFdPropertiesKHR<'_>> {
+        let mut memory_fd_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_memory_fd_properties)(
                 self.handle,
                 handle_type,
                 fd,
-                memory_fd_properties,
+                memory_fd_properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(memory_fd_properties)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

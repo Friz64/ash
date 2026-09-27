@@ -368,12 +368,17 @@ impl Device {
         &self,
         create_info: &crate::vk::OpticalFlowSessionCreateInfoNV<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        session: &mut crate::vk::OpticalFlowSessionNV,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::OpticalFlowSessionNV> {
+        let mut session = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .create_optical_flow_session)(self.handle, create_info, allocator, session)
-            .result()
+            .create_optical_flow_session)(
+                self.handle,
+                create_info,
+                allocator,
+                session.as_mut_ptr(),
+            )
+            .assume_init_on_success(session)
     }
     ///vkDestroyOpticalFlowSessionNV
     #[inline]

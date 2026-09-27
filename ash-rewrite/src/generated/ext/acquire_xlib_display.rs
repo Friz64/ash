@@ -81,10 +81,11 @@ impl Instance {
     pub unsafe fn acquire_xlib_display(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        dpy: &mut crate::platform_types::Display,
         display: crate::vk::DisplayKHR,
-    ) -> crate::VkResult<()> {
-        (self.fp.acquire_xlib_display)(physical_device, dpy, display).result()
+    ) -> crate::VkResult<crate::platform_types::Display> {
+        let mut dpy = core::mem::MaybeUninit::uninit();
+        (self.fp.acquire_xlib_display)(physical_device, dpy.as_mut_ptr(), display)
+            .assume_init_on_success(dpy)
     }
     ///vkGetRandROutputDisplayEXT
     #[inline]

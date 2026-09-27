@@ -93,17 +93,17 @@ impl Device {
         &self,
         create_info: &crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        external_queue: &mut crate::vk::ExternalComputeQueueNV,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::ExternalComputeQueueNV> {
+        let mut external_queue = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_external_compute_queue)(
                 self.handle,
                 create_info,
                 allocator,
-                external_queue,
+                external_queue.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(external_queue)
     }
     ///vkDestroyExternalComputeQueueNV
     #[inline]

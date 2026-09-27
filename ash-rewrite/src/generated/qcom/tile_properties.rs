@@ -122,16 +122,16 @@ impl Device {
     pub unsafe fn get_dynamic_rendering_tile_properties(
         &self,
         rendering_info: &crate::vk::RenderingInfo<'_>,
-        properties: &mut crate::vk::TilePropertiesQCOM<'_>,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::TilePropertiesQCOM<'_>> {
+        let mut properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_dynamic_rendering_tile_properties)(
                 self.handle,
                 rendering_info,
-                properties,
+                properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(properties)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

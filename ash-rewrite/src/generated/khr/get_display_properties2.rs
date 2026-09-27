@@ -234,16 +234,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         display_plane_info: &crate::vk::DisplayPlaneInfo2KHR<'_>,
-        capabilities: &mut crate::vk::DisplayPlaneCapabilities2KHR<'_>,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DisplayPlaneCapabilities2KHR<'_>> {
+        let mut capabilities = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_display_plane_capabilities2)(
                 physical_device,
                 display_plane_info,
-                capabilities,
+                capabilities.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(capabilities)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

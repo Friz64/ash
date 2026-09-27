@@ -127,17 +127,17 @@ impl Device {
         &self,
         create_info: &crate::vk::ValidationCacheCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        validation_cache: &mut crate::vk::ValidationCacheEXT,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::ValidationCacheEXT> {
+        let mut validation_cache = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_validation_cache)(
                 self.handle,
                 create_info,
                 allocator,
-                validation_cache,
+                validation_cache.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(validation_cache)
     }
     ///vkDestroyValidationCacheEXT
     #[inline]

@@ -115,8 +115,8 @@ impl Instance {
         usage: crate::vk::ImageUsageFlags,
         flags: crate::vk::ImageCreateFlags,
         external_handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-        external_image_format_properties: &mut crate::vk::ExternalImageFormatPropertiesNV,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::ExternalImageFormatPropertiesNV> {
+        let mut external_image_format_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_external_image_format_properties)(
@@ -127,9 +127,9 @@ impl Instance {
                 usage,
                 flags,
                 external_handle_type,
-                external_image_format_properties,
+                external_image_format_properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(external_image_format_properties)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

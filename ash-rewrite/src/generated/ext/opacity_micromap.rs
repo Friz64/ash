@@ -452,9 +452,12 @@ impl Device {
         &self,
         create_info: &crate::vk::MicromapCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        micromap: &mut crate::vk::MicromapEXT,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_micromap)(self.handle, create_info, allocator, micromap).result()
+    ) -> crate::VkResult<crate::vk::MicromapEXT> {
+        let mut micromap = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .create_micromap)(self.handle, create_info, allocator, micromap.as_mut_ptr())
+            .assume_init_on_success(micromap)
     }
     ///vkCmdBuildMicromapsEXT
     #[inline]

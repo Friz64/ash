@@ -129,9 +129,12 @@ impl Device {
     pub unsafe fn get_image_view_address(
         &self,
         image_view: crate::vk::ImageView,
-        properties: &mut crate::vk::ImageViewAddressPropertiesNVX<'_>,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_image_view_address)(self.handle, image_view, properties).result()
+    ) -> crate::VkResult<crate::vk::ImageViewAddressPropertiesNVX<'_>> {
+        let mut properties = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_image_view_address)(self.handle, image_view, properties.as_mut_ptr())
+            .assume_init_on_success(properties)
     }
     ///vkGetDeviceCombinedImageSamplerIndexNVX
     #[inline]

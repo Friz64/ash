@@ -87,16 +87,16 @@ impl Device {
     pub unsafe fn get_memory_remote_address(
         &self,
         memory_get_remote_address_info: &crate::vk::MemoryGetRemoteAddressInfoNV<'_>,
-        address: &mut crate::vk::RemoteAddressNV,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::RemoteAddressNV> {
+        let mut address = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_memory_remote_address)(
                 self.handle,
                 memory_get_remote_address_info,
-                address,
+                address.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(address)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

@@ -100,19 +100,28 @@ impl Device {
     pub unsafe fn get_android_hardware_buffer_properties(
         &self,
         buffer: &crate::platform_types::AHardwareBuffer,
-        properties: &mut crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_android_hardware_buffer_properties)(self.handle, buffer, properties)
-            .result()
+    ) -> crate::VkResult<crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>> {
+        let mut properties = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_android_hardware_buffer_properties)(
+                self.handle,
+                buffer,
+                properties.as_mut_ptr(),
+            )
+            .assume_init_on_success(properties)
     }
     ///vkGetMemoryAndroidHardwareBufferANDROID
     #[inline]
     pub unsafe fn get_memory_android_hardware_buffer(
         &self,
         info: &crate::vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
-        buffer: &mut *mut crate::platform_types::AHardwareBuffer,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_memory_android_hardware_buffer)(self.handle, info, buffer).result()
+    ) -> crate::VkResult<*mut crate::platform_types::AHardwareBuffer> {
+        let mut buffer = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_memory_android_hardware_buffer)(self.handle, info, buffer.as_mut_ptr())
+            .assume_init_on_success(buffer)
     }
 }
 pub const SPEC_VERSION: u32 = 5;

@@ -145,9 +145,12 @@ impl Device {
         &self,
         create_info: &crate::vk::CuModuleCreateInfoNVX<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        module: &mut crate::vk::CuModuleNVX,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_cu_module)(self.handle, create_info, allocator, module).result()
+    ) -> crate::VkResult<crate::vk::CuModuleNVX> {
+        let mut module = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .create_cu_module)(self.handle, create_info, allocator, module.as_mut_ptr())
+            .assume_init_on_success(module)
     }
     ///vkCreateCuFunctionNVX
     #[inline]
@@ -155,10 +158,17 @@ impl Device {
         &self,
         create_info: &crate::vk::CuFunctionCreateInfoNVX<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        function: &mut crate::vk::CuFunctionNVX,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_cu_function)(self.handle, create_info, allocator, function)
-            .result()
+    ) -> crate::VkResult<crate::vk::CuFunctionNVX> {
+        let mut function = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .create_cu_function)(
+                self.handle,
+                create_info,
+                allocator,
+                function.as_mut_ptr(),
+            )
+            .assume_init_on_success(function)
     }
     ///vkDestroyCuModuleNVX
     #[inline]

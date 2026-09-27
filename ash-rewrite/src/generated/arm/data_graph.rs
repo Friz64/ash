@@ -371,17 +371,17 @@ impl Device {
         &self,
         create_info: &crate::vk::DataGraphPipelineSessionCreateInfoARM<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        session: &mut crate::vk::DataGraphPipelineSessionARM,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DataGraphPipelineSessionARM> {
+        let mut session = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_data_graph_pipeline_session)(
                 self.handle,
                 create_info,
                 allocator,
-                session,
+                session.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(session)
     }
     ///vkGetDataGraphPipelineSessionBindPointRequirementsARM
     #[inline]

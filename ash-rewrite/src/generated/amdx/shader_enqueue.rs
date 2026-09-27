@@ -209,16 +209,16 @@ impl Device {
     pub unsafe fn get_execution_graph_pipeline_scratch_size(
         &self,
         execution_graph: crate::vk::Pipeline,
-        size_info: &mut crate::vk::ExecutionGraphPipelineScratchSizeAMDX<'_>,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::ExecutionGraphPipelineScratchSizeAMDX<'_>> {
+        let mut size_info = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_execution_graph_pipeline_scratch_size)(
                 self.handle,
                 execution_graph,
-                size_info,
+                size_info.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(size_info)
     }
     ///vkGetExecutionGraphPipelineNodeIndexAMDX
     #[inline]
@@ -226,17 +226,17 @@ impl Device {
         &self,
         execution_graph: crate::vk::Pipeline,
         node_info: &crate::vk::PipelineShaderStageNodeCreateInfoAMDX<'_>,
-        node_index: &mut u32,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<u32> {
+        let mut node_index = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_execution_graph_pipeline_node_index)(
                 self.handle,
                 execution_graph,
                 node_info,
-                node_index,
+                node_index.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(node_index)
     }
     ///vkCreateExecutionGraphPipelinesAMDX
     #[inline]

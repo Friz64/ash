@@ -253,12 +253,18 @@ impl Instance {
         display: crate::vk::DisplayKHR,
         create_info: &crate::vk::DisplayModeCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        mode: &mut crate::vk::DisplayModeKHR,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DisplayModeKHR> {
+        let mut mode = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .create_display_mode)(physical_device, display, create_info, allocator, mode)
-            .result()
+            .create_display_mode)(
+                physical_device,
+                display,
+                create_info,
+                allocator,
+                mode.as_mut_ptr(),
+            )
+            .assume_init_on_success(mode)
     }
     ///vkGetDisplayPlaneCapabilitiesKHR
     #[inline]
@@ -267,17 +273,17 @@ impl Instance {
         physical_device: crate::vk::PhysicalDevice,
         mode: crate::vk::DisplayModeKHR,
         plane_index: u32,
-        capabilities: &mut crate::vk::DisplayPlaneCapabilitiesKHR,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DisplayPlaneCapabilitiesKHR> {
+        let mut capabilities = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_display_plane_capabilities)(
                 physical_device,
                 mode,
                 plane_index,
-                capabilities,
+                capabilities.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(capabilities)
     }
     ///vkCreateDisplayPlaneSurfaceKHR
     #[inline]
@@ -285,12 +291,17 @@ impl Instance {
         &self,
         create_info: &crate::vk::DisplaySurfaceCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        surface: &mut crate::vk::SurfaceKHR,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::SurfaceKHR> {
+        let mut surface = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .create_display_plane_surface)(self.handle, create_info, allocator, surface)
-            .result()
+            .create_display_plane_surface)(
+                self.handle,
+                create_info,
+                allocator,
+                surface.as_mut_ptr(),
+            )
+            .assume_init_on_success(surface)
     }
 }
 pub const SPEC_VERSION: u32 = 23;

@@ -166,9 +166,10 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_fault_debug_info(
         &self,
-        debug_info: &mut crate::vk::DeviceFaultDebugInfoKHR<'_>,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_device_fault_debug_info)(self.handle, debug_info).result()
+    ) -> crate::VkResult<crate::vk::DeviceFaultDebugInfoKHR<'_>> {
+        let mut debug_info = core::mem::MaybeUninit::uninit();
+        (self.fp.get_device_fault_debug_info)(self.handle, debug_info.as_mut_ptr())
+            .assume_init_on_success(debug_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

@@ -82,9 +82,12 @@ impl Device {
     pub unsafe fn get_screen_buffer_properties(
         &self,
         buffer: &crate::platform_types::_screen_buffer,
-        properties: &mut crate::vk::ScreenBufferPropertiesQNX<'_>,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_screen_buffer_properties)(self.handle, buffer, properties).result()
+    ) -> crate::VkResult<crate::vk::ScreenBufferPropertiesQNX<'_>> {
+        let mut properties = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_screen_buffer_properties)(self.handle, buffer, properties.as_mut_ptr())
+            .assume_init_on_success(properties)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

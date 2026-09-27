@@ -2,6 +2,7 @@ pub mod decl;
 pub mod item;
 pub mod lifetime_propagation;
 pub mod name;
+#[cfg(feature = "rust")]
 pub mod rust;
 pub mod xml;
 

@@ -312,18 +312,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         quality_level_info: &crate::vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'_>,
-        quality_level_properties: &mut crate::vk::VideoEncodeQualityLevelPropertiesKHR<
-            '_,
-        >,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::VideoEncodeQualityLevelPropertiesKHR<'_>> {
+        let mut quality_level_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_video_encode_quality_level_properties)(
                 physical_device,
                 quality_level_info,
-                quality_level_properties,
+                quality_level_properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(quality_level_properties)
     }
 }
 #[derive(Clone)]

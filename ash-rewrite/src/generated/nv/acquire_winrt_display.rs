@@ -89,10 +89,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         device_relative_id: u32,
-        display: &mut crate::vk::DisplayKHR,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_winrt_display)(physical_device, device_relative_id, display)
-            .result()
+    ) -> crate::VkResult<crate::vk::DisplayKHR> {
+        let mut display = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_winrt_display)(
+                physical_device,
+                device_relative_id,
+                display.as_mut_ptr(),
+            )
+            .assume_init_on_success(display)
     }
 }
 pub(crate) mod items {

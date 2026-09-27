@@ -226,10 +226,17 @@ impl Device {
         &self,
         create_info: &crate::vk::SwapchainCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        swapchain: &mut crate::vk::SwapchainKHR,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_swapchain)(self.handle, create_info, allocator, swapchain)
-            .result()
+    ) -> crate::VkResult<crate::vk::SwapchainKHR> {
+        let mut swapchain = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .create_swapchain)(
+                self.handle,
+                create_info,
+                allocator,
+                swapchain.as_mut_ptr(),
+            )
+            .assume_init_on_success(swapchain)
     }
     ///vkDestroySwapchainKHR
     #[inline]
@@ -263,8 +270,8 @@ impl Device {
         timeout: u64,
         semaphore: crate::vk::Semaphore,
         fence: crate::vk::Fence,
-        image_index: &mut u32,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<u32> {
+        let mut image_index = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .acquire_next_image)(
@@ -273,9 +280,9 @@ impl Device {
                 timeout,
                 semaphore,
                 fence,
-                image_index,
+                image_index.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(image_index)
     }
     ///vkQueuePresentKHR
     #[inline]
@@ -290,36 +297,43 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_group_present_capabilities(
         &self,
-        device_group_present_capabilities: &mut crate::vk::DeviceGroupPresentCapabilitiesKHR<
-            '_,
-        >,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DeviceGroupPresentCapabilitiesKHR<'_>> {
+        let mut device_group_present_capabilities = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_device_group_present_capabilities)(
                 self.handle,
-                device_group_present_capabilities,
+                device_group_present_capabilities.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(device_group_present_capabilities)
     }
     ///vkGetDeviceGroupSurfacePresentModesKHR
     #[inline]
     pub unsafe fn get_device_group_surface_present_modes(
         &self,
         surface: crate::vk::SurfaceKHR,
-        modes: &mut crate::vk::DeviceGroupPresentModeFlagsKHR,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_device_group_surface_present_modes)(self.handle, surface, modes)
-            .result()
+    ) -> crate::VkResult<crate::vk::DeviceGroupPresentModeFlagsKHR> {
+        let mut modes = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_device_group_surface_present_modes)(
+                self.handle,
+                surface,
+                modes.as_mut_ptr(),
+            )
+            .assume_init_on_success(modes)
     }
     ///vkAcquireNextImage2KHR
     #[inline]
     pub unsafe fn acquire_next_image2(
         &self,
         acquire_info: &crate::vk::AcquireNextImageInfoKHR<'_>,
-        image_index: &mut u32,
-    ) -> crate::VkResult<()> {
-        (self.fp.acquire_next_image2)(self.handle, acquire_info, image_index).result()
+    ) -> crate::VkResult<u32> {
+        let mut image_index = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .acquire_next_image2)(self.handle, acquire_info, image_index.as_mut_ptr())
+            .assume_init_on_success(image_index)
     }
 }
 #[derive(Clone)]

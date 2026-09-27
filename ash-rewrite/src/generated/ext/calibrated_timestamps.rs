@@ -148,8 +148,8 @@ impl Device {
         &self,
         timestamp_infos: &[crate::vk::CalibratedTimestampInfoKHR<'_>],
         timestamps: &mut [u64],
-        max_deviation: &mut u64,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<u64> {
+        let mut max_deviation = core::mem::MaybeUninit::uninit();
         assert_eq!(timestamp_infos.len(), timestamps.len());
         (self
             .fp
@@ -158,9 +158,9 @@ impl Device {
                 timestamps.len() as _,
                 timestamp_infos.as_ptr(),
                 timestamps.as_mut_ptr(),
-                max_deviation,
+                max_deviation.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(max_deviation)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

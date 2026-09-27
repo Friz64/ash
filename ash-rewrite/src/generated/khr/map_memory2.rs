@@ -74,9 +74,10 @@ impl Device {
     pub unsafe fn map_memory2(
         &self,
         memory_map_info: &crate::vk::MemoryMapInfo<'_>,
-        data: &mut *mut core::ffi::c_void,
-    ) -> crate::VkResult<()> {
-        (self.fp.map_memory2)(self.handle, memory_map_info, data).result()
+    ) -> crate::VkResult<*mut core::ffi::c_void> {
+        let mut data = core::mem::MaybeUninit::uninit();
+        (self.fp.map_memory2)(self.handle, memory_map_info, data.as_mut_ptr())
+            .assume_init_on_success(data)
     }
     ///vkUnmapMemory2
     #[inline]

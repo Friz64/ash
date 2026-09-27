@@ -146,10 +146,17 @@ impl Device {
         &self,
         device_event_info: &crate::vk::DeviceEventInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        fence: &mut crate::vk::Fence,
-    ) -> crate::VkResult<()> {
-        (self.fp.register_device_event)(self.handle, device_event_info, allocator, fence)
-            .result()
+    ) -> crate::VkResult<crate::vk::Fence> {
+        let mut fence = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .register_device_event)(
+                self.handle,
+                device_event_info,
+                allocator,
+                fence.as_mut_ptr(),
+            )
+            .assume_init_on_success(fence)
     }
     ///vkRegisterDisplayEventEXT
     #[inline]
@@ -158,8 +165,8 @@ impl Device {
         display: crate::vk::DisplayKHR,
         display_event_info: &crate::vk::DisplayEventInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        fence: &mut crate::vk::Fence,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::Fence> {
+        let mut fence = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .register_display_event)(
@@ -167,9 +174,9 @@ impl Device {
                 display,
                 display_event_info,
                 allocator,
-                fence,
+                fence.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(fence)
     }
     ///vkGetSwapchainCounterEXT
     #[inline]
@@ -177,10 +184,17 @@ impl Device {
         &self,
         swapchain: crate::vk::SwapchainKHR,
         counter: crate::vk::SurfaceCounterFlagBitsEXT,
-        counter_value: &mut u64,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_swapchain_counter)(self.handle, swapchain, counter, counter_value)
-            .result()
+    ) -> crate::VkResult<u64> {
+        let mut counter_value = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_swapchain_counter)(
+                self.handle,
+                swapchain,
+                counter,
+                counter_value.as_mut_ptr(),
+            )
+            .assume_init_on_success(counter_value)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

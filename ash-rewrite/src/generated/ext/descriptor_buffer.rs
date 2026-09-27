@@ -457,56 +457,80 @@ impl Device {
     pub unsafe fn get_buffer_opaque_capture_descriptor_data(
         &self,
         info: &crate::vk::BufferCaptureDescriptorDataInfoEXT<'_>,
-        data: &mut core::ffi::c_void,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_buffer_opaque_capture_descriptor_data)(self.handle, info, data)
-            .result()
+    ) -> crate::VkResult<core::ffi::c_void> {
+        let mut data = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_buffer_opaque_capture_descriptor_data)(
+                self.handle,
+                info,
+                data.as_mut_ptr(),
+            )
+            .assume_init_on_success(data)
     }
     ///vkGetImageOpaqueCaptureDescriptorDataEXT
     #[inline]
     pub unsafe fn get_image_opaque_capture_descriptor_data(
         &self,
         info: &crate::vk::ImageCaptureDescriptorDataInfoEXT<'_>,
-        data: &mut core::ffi::c_void,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_image_opaque_capture_descriptor_data)(self.handle, info, data)
-            .result()
+    ) -> crate::VkResult<core::ffi::c_void> {
+        let mut data = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_image_opaque_capture_descriptor_data)(
+                self.handle,
+                info,
+                data.as_mut_ptr(),
+            )
+            .assume_init_on_success(data)
     }
     ///vkGetImageViewOpaqueCaptureDescriptorDataEXT
     #[inline]
     pub unsafe fn get_image_view_opaque_capture_descriptor_data(
         &self,
         info: &crate::vk::ImageViewCaptureDescriptorDataInfoEXT<'_>,
-        data: &mut core::ffi::c_void,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_image_view_opaque_capture_descriptor_data)(self.handle, info, data)
-            .result()
+    ) -> crate::VkResult<core::ffi::c_void> {
+        let mut data = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_image_view_opaque_capture_descriptor_data)(
+                self.handle,
+                info,
+                data.as_mut_ptr(),
+            )
+            .assume_init_on_success(data)
     }
     ///vkGetSamplerOpaqueCaptureDescriptorDataEXT
     #[inline]
     pub unsafe fn get_sampler_opaque_capture_descriptor_data(
         &self,
         info: &crate::vk::SamplerCaptureDescriptorDataInfoEXT<'_>,
-        data: &mut core::ffi::c_void,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_sampler_opaque_capture_descriptor_data)(self.handle, info, data)
-            .result()
+    ) -> crate::VkResult<core::ffi::c_void> {
+        let mut data = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_sampler_opaque_capture_descriptor_data)(
+                self.handle,
+                info,
+                data.as_mut_ptr(),
+            )
+            .assume_init_on_success(data)
     }
     ///vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT
     #[inline]
     pub unsafe fn get_acceleration_structure_opaque_capture_descriptor_data(
         &self,
         info: &crate::vk::AccelerationStructureCaptureDescriptorDataInfoEXT<'_>,
-        data: &mut core::ffi::c_void,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<core::ffi::c_void> {
+        let mut data = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_acceleration_structure_opaque_capture_descriptor_data)(
                 self.handle,
                 info,
-                data,
+                data.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(data)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

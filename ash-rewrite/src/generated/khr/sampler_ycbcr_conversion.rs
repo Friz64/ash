@@ -210,17 +210,17 @@ impl Device {
         &self,
         create_info: &crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        ycbcr_conversion: &mut crate::vk::SamplerYcbcrConversion,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::SamplerYcbcrConversion> {
+        let mut ycbcr_conversion = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_sampler_ycbcr_conversion)(
                 self.handle,
                 create_info,
                 allocator,
-                ycbcr_conversion,
+                ycbcr_conversion.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(ycbcr_conversion)
     }
     ///vkDestroySamplerYcbcrConversion
     #[inline]

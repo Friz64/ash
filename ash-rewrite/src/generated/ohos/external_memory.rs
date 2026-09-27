@@ -97,18 +97,22 @@ impl Device {
     pub unsafe fn get_native_buffer_properties(
         &self,
         buffer: &crate::platform_types::OH_NativeBuffer,
-        properties: &mut crate::vk::NativeBufferPropertiesOHOS<'_>,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_native_buffer_properties)(self.handle, buffer, properties).result()
+    ) -> crate::VkResult<crate::vk::NativeBufferPropertiesOHOS<'_>> {
+        let mut properties = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_native_buffer_properties)(self.handle, buffer, properties.as_mut_ptr())
+            .assume_init_on_success(properties)
     }
     ///vkGetMemoryNativeBufferOHOS
     #[inline]
     pub unsafe fn get_memory_native_buffer(
         &self,
         info: &crate::vk::MemoryGetNativeBufferInfoOHOS<'_>,
-        buffer: &mut *mut crate::platform_types::OH_NativeBuffer,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_memory_native_buffer)(self.handle, info, buffer).result()
+    ) -> crate::VkResult<*mut crate::platform_types::OH_NativeBuffer> {
+        let mut buffer = core::mem::MaybeUninit::uninit();
+        (self.fp.get_memory_native_buffer)(self.handle, info, buffer.as_mut_ptr())
+            .assume_init_on_success(buffer)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

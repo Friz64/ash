@@ -320,9 +320,10 @@ impl Device {
         &self,
         create_info: &crate::vk::TensorCreateInfoARM<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        tensor: &mut crate::vk::TensorARM,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_tensor)(self.handle, create_info, allocator, tensor).result()
+    ) -> crate::VkResult<crate::vk::TensorARM> {
+        let mut tensor = core::mem::MaybeUninit::uninit();
+        (self.fp.create_tensor)(self.handle, create_info, allocator, tensor.as_mut_ptr())
+            .assume_init_on_success(tensor)
     }
     ///vkDestroyTensorARM
     #[inline]
@@ -339,9 +340,12 @@ impl Device {
         &self,
         create_info: &crate::vk::TensorViewCreateInfoARM<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        view: &mut crate::vk::TensorViewARM,
-    ) -> crate::VkResult<()> {
-        (self.fp.create_tensor_view)(self.handle, create_info, allocator, view).result()
+    ) -> crate::VkResult<crate::vk::TensorViewARM> {
+        let mut view = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .create_tensor_view)(self.handle, create_info, allocator, view.as_mut_ptr())
+            .assume_init_on_success(view)
     }
     ///vkDestroyTensorViewARM
     #[inline]
@@ -401,20 +405,32 @@ impl Device {
     pub unsafe fn get_tensor_opaque_capture_descriptor_data(
         &self,
         info: &crate::vk::TensorCaptureDescriptorDataInfoARM<'_>,
-        data: &mut core::ffi::c_void,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_tensor_opaque_capture_descriptor_data)(self.handle, info, data)
-            .result()
+    ) -> crate::VkResult<core::ffi::c_void> {
+        let mut data = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_tensor_opaque_capture_descriptor_data)(
+                self.handle,
+                info,
+                data.as_mut_ptr(),
+            )
+            .assume_init_on_success(data)
     }
     ///vkGetTensorViewOpaqueCaptureDescriptorDataARM
     #[inline]
     pub unsafe fn get_tensor_view_opaque_capture_descriptor_data(
         &self,
         info: &crate::vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
-        data: &mut core::ffi::c_void,
-    ) -> crate::VkResult<()> {
-        (self.fp.get_tensor_view_opaque_capture_descriptor_data)(self.handle, info, data)
-            .result()
+    ) -> crate::VkResult<core::ffi::c_void> {
+        let mut data = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_tensor_view_opaque_capture_descriptor_data)(
+                self.handle,
+                info,
+                data.as_mut_ptr(),
+            )
+            .assume_init_on_success(data)
     }
 }
 #[derive(Clone)]

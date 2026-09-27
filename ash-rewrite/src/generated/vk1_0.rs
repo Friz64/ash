@@ -1602,8 +1602,8 @@ impl crate::Instance {
         tiling: crate::vk::ImageTiling,
         usage: crate::vk::ImageUsageFlags,
         flags: crate::vk::ImageCreateFlags,
-        image_format_properties: &mut crate::vk::ImageFormatProperties,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::ImageFormatProperties> {
+        let mut image_format_properties = core::mem::MaybeUninit::uninit();
         (self
             .instance_fn_1_0
             .get_physical_device_image_format_properties)(
@@ -1613,9 +1613,9 @@ impl crate::Instance {
                 tiling,
                 usage,
                 flags,
-                image_format_properties,
+                image_format_properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(image_format_properties)
     }
     ///vkEnumerateDeviceLayerProperties
     #[inline]
@@ -3680,12 +3680,12 @@ impl crate::Device {
         &self,
         allocate_info: &crate::vk::MemoryAllocateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        memory: &mut crate::vk::DeviceMemory,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DeviceMemory> {
+        let mut memory = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .allocate_memory)(self.handle, allocate_info, allocator, memory)
-            .result()
+            .allocate_memory)(self.handle, allocate_info, allocator, memory.as_mut_ptr())
+            .assume_init_on_success(memory)
     }
     ///vkFreeMemory
     #[inline]
@@ -3704,10 +3704,12 @@ impl crate::Device {
         offset: crate::vk::DeviceSize,
         size: crate::vk::DeviceSize,
         flags: crate::vk::MemoryMapFlags,
-        data: &mut *mut core::ffi::c_void,
-    ) -> crate::VkResult<()> {
-        (self.device_fn_1_0.map_memory)(self.handle, memory, offset, size, flags, data)
-            .result()
+    ) -> crate::VkResult<*mut core::ffi::c_void> {
+        let mut data = core::mem::MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .map_memory)(self.handle, memory, offset, size, flags, data.as_mut_ptr())
+            .assume_init_on_success(data)
     }
     ///vkUnmapMemory
     #[inline]
@@ -3846,10 +3848,12 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::FenceCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        fence: &mut crate::vk::Fence,
-    ) -> crate::VkResult<()> {
-        (self.device_fn_1_0.create_fence)(self.handle, create_info, allocator, fence)
-            .result()
+    ) -> crate::VkResult<crate::vk::Fence> {
+        let mut fence = core::mem::MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_fence)(self.handle, create_info, allocator, fence.as_mut_ptr())
+            .assume_init_on_success(fence)
     }
     ///vkDestroyFence
     #[inline]
@@ -3904,12 +3908,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::SemaphoreCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        semaphore: &mut crate::vk::Semaphore,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::Semaphore> {
+        let mut semaphore = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_semaphore)(self.handle, create_info, allocator, semaphore)
-            .result()
+            .create_semaphore)(
+                self.handle,
+                create_info,
+                allocator,
+                semaphore.as_mut_ptr(),
+            )
+            .assume_init_on_success(semaphore)
     }
     ///vkDestroySemaphore
     #[inline]
@@ -3926,10 +3935,12 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::EventCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        event: &mut crate::vk::Event,
-    ) -> crate::VkResult<()> {
-        (self.device_fn_1_0.create_event)(self.handle, create_info, allocator, event)
-            .result()
+    ) -> crate::VkResult<crate::vk::Event> {
+        let mut event = core::mem::MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_event)(self.handle, create_info, allocator, event.as_mut_ptr())
+            .assume_init_on_success(event)
     }
     ///vkDestroyEvent
     #[inline]
@@ -3964,12 +3975,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::QueryPoolCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        query_pool: &mut crate::vk::QueryPool,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::QueryPool> {
+        let mut query_pool = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_query_pool)(self.handle, create_info, allocator, query_pool)
-            .result()
+            .create_query_pool)(
+                self.handle,
+                create_info,
+                allocator,
+                query_pool.as_mut_ptr(),
+            )
+            .assume_init_on_success(query_pool)
     }
     ///vkDestroyQueryPool
     #[inline]
@@ -4011,10 +4027,12 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::BufferCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        buffer: &mut crate::vk::Buffer,
-    ) -> crate::VkResult<()> {
-        (self.device_fn_1_0.create_buffer)(self.handle, create_info, allocator, buffer)
-            .result()
+    ) -> crate::VkResult<crate::vk::Buffer> {
+        let mut buffer = core::mem::MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_buffer)(self.handle, create_info, allocator, buffer.as_mut_ptr())
+            .assume_init_on_success(buffer)
     }
     ///vkDestroyBuffer
     #[inline]
@@ -4031,12 +4049,12 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::BufferViewCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        view: &mut crate::vk::BufferView,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::BufferView> {
+        let mut view = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_buffer_view)(self.handle, create_info, allocator, view)
-            .result()
+            .create_buffer_view)(self.handle, create_info, allocator, view.as_mut_ptr())
+            .assume_init_on_success(view)
     }
     ///vkDestroyBufferView
     #[inline]
@@ -4053,10 +4071,12 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::ImageCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        image: &mut crate::vk::Image,
-    ) -> crate::VkResult<()> {
-        (self.device_fn_1_0.create_image)(self.handle, create_info, allocator, image)
-            .result()
+    ) -> crate::VkResult<crate::vk::Image> {
+        let mut image = core::mem::MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_image)(self.handle, create_info, allocator, image.as_mut_ptr())
+            .assume_init_on_success(image)
     }
     ///vkDestroyImage
     #[inline]
@@ -4085,10 +4105,12 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::ImageViewCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        view: &mut crate::vk::ImageView,
-    ) -> crate::VkResult<()> {
-        (self.device_fn_1_0.create_image_view)(self.handle, create_info, allocator, view)
-            .result()
+    ) -> crate::VkResult<crate::vk::ImageView> {
+        let mut view = core::mem::MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_image_view)(self.handle, create_info, allocator, view.as_mut_ptr())
+            .assume_init_on_success(view)
     }
     ///vkDestroyImageView
     #[inline]
@@ -4105,12 +4127,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::ShaderModuleCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        shader_module: &mut crate::vk::ShaderModule,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::ShaderModule> {
+        let mut shader_module = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_shader_module)(self.handle, create_info, allocator, shader_module)
-            .result()
+            .create_shader_module)(
+                self.handle,
+                create_info,
+                allocator,
+                shader_module.as_mut_ptr(),
+            )
+            .assume_init_on_success(shader_module)
     }
     ///vkDestroyShaderModule
     #[inline]
@@ -4127,12 +4154,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::PipelineCacheCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        pipeline_cache: &mut crate::vk::PipelineCache,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::PipelineCache> {
+        let mut pipeline_cache = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_pipeline_cache)(self.handle, create_info, allocator, pipeline_cache)
-            .result()
+            .create_pipeline_cache)(
+                self.handle,
+                create_info,
+                allocator,
+                pipeline_cache.as_mut_ptr(),
+            )
+            .assume_init_on_success(pipeline_cache)
     }
     ///vkDestroyPipelineCache
     #[inline]
@@ -4231,17 +4263,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::PipelineLayoutCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        pipeline_layout: &mut crate::vk::PipelineLayout,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::PipelineLayout> {
+        let mut pipeline_layout = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_pipeline_layout)(
                 self.handle,
                 create_info,
                 allocator,
-                pipeline_layout,
+                pipeline_layout.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(pipeline_layout)
     }
     ///vkDestroyPipelineLayout
     #[inline]
@@ -4260,10 +4292,12 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::SamplerCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        sampler: &mut crate::vk::Sampler,
-    ) -> crate::VkResult<()> {
-        (self.device_fn_1_0.create_sampler)(self.handle, create_info, allocator, sampler)
-            .result()
+    ) -> crate::VkResult<crate::vk::Sampler> {
+        let mut sampler = core::mem::MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_sampler)(self.handle, create_info, allocator, sampler.as_mut_ptr())
+            .assume_init_on_success(sampler)
     }
     ///vkDestroySampler
     #[inline]
@@ -4280,17 +4314,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::DescriptorSetLayoutCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        set_layout: &mut crate::vk::DescriptorSetLayout,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DescriptorSetLayout> {
+        let mut set_layout = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_descriptor_set_layout)(
                 self.handle,
                 create_info,
                 allocator,
-                set_layout,
+                set_layout.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(set_layout)
     }
     ///vkDestroyDescriptorSetLayout
     #[inline]
@@ -4313,17 +4347,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::DescriptorPoolCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        descriptor_pool: &mut crate::vk::DescriptorPool,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DescriptorPool> {
+        let mut descriptor_pool = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_descriptor_pool)(
                 self.handle,
                 create_info,
                 allocator,
-                descriptor_pool,
+                descriptor_pool.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(descriptor_pool)
     }
     ///vkDestroyDescriptorPool
     #[inline]
@@ -4351,12 +4385,16 @@ impl crate::Device {
     pub unsafe fn allocate_descriptor_sets(
         &self,
         allocate_info: &crate::vk::DescriptorSetAllocateInfo<'_>,
-        descriptor_sets: &mut crate::vk::DescriptorSet,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DescriptorSet> {
+        let mut descriptor_sets = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .allocate_descriptor_sets)(self.handle, allocate_info, descriptor_sets)
-            .result()
+            .allocate_descriptor_sets)(
+                self.handle,
+                allocate_info,
+                descriptor_sets.as_mut_ptr(),
+            )
+            .assume_init_on_success(descriptor_sets)
     }
     ///vkFreeDescriptorSets
     #[inline]
@@ -4398,12 +4436,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::FramebufferCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        framebuffer: &mut crate::vk::Framebuffer,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::Framebuffer> {
+        let mut framebuffer = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_framebuffer)(self.handle, create_info, allocator, framebuffer)
-            .result()
+            .create_framebuffer)(
+                self.handle,
+                create_info,
+                allocator,
+                framebuffer.as_mut_ptr(),
+            )
+            .assume_init_on_success(framebuffer)
     }
     ///vkDestroyFramebuffer
     #[inline]
@@ -4420,12 +4463,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::RenderPassCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        render_pass: &mut crate::vk::RenderPass,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::RenderPass> {
+        let mut render_pass = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_render_pass)(self.handle, create_info, allocator, render_pass)
-            .result()
+            .create_render_pass)(
+                self.handle,
+                create_info,
+                allocator,
+                render_pass.as_mut_ptr(),
+            )
+            .assume_init_on_success(render_pass)
     }
     ///vkDestroyRenderPass
     #[inline]
@@ -4453,12 +4501,17 @@ impl crate::Device {
         &self,
         create_info: &crate::vk::CommandPoolCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        command_pool: &mut crate::vk::CommandPool,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::CommandPool> {
+        let mut command_pool = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_command_pool)(self.handle, create_info, allocator, command_pool)
-            .result()
+            .create_command_pool)(
+                self.handle,
+                create_info,
+                allocator,
+                command_pool.as_mut_ptr(),
+            )
+            .assume_init_on_success(command_pool)
     }
     ///vkDestroyCommandPool
     #[inline]
@@ -4484,12 +4537,16 @@ impl crate::Device {
     pub unsafe fn allocate_command_buffers(
         &self,
         allocate_info: &crate::vk::CommandBufferAllocateInfo<'_>,
-        command_buffers: &mut crate::vk::CommandBuffer,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::CommandBuffer> {
+        let mut command_buffers = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .allocate_command_buffers)(self.handle, allocate_info, command_buffers)
-            .result()
+            .allocate_command_buffers)(
+                self.handle,
+                allocate_info,
+                command_buffers.as_mut_ptr(),
+            )
+            .assume_init_on_success(command_buffers)
     }
     ///vkFreeCommandBuffers
     #[inline]

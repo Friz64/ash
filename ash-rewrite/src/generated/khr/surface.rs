@@ -206,17 +206,17 @@ impl Instance {
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
         surface: crate::vk::SurfaceKHR,
-        supported: &mut crate::vk::Bool32,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::Bool32> {
+        let mut supported = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_surface_support)(
                 physical_device,
                 queue_family_index,
                 surface,
-                supported,
+                supported.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(supported)
     }
     ///vkGetPhysicalDeviceSurfaceCapabilitiesKHR
     #[inline]
@@ -224,16 +224,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,
-        surface_capabilities: &mut crate::vk::SurfaceCapabilitiesKHR,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::SurfaceCapabilitiesKHR> {
+        let mut surface_capabilities = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_surface_capabilities)(
                 physical_device,
                 surface,
-                surface_capabilities,
+                surface_capabilities.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(surface_capabilities)
     }
     ///vkGetPhysicalDeviceSurfaceFormatsKHR
     #[inline]

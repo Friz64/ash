@@ -83,16 +83,16 @@ impl Device {
     pub unsafe fn get_refresh_cycle_duration(
         &self,
         swapchain: crate::vk::SwapchainKHR,
-        display_timing_properties: &mut crate::vk::RefreshCycleDurationGOOGLE,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::RefreshCycleDurationGOOGLE> {
+        let mut display_timing_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_refresh_cycle_duration)(
                 self.handle,
                 swapchain,
-                display_timing_properties,
+                display_timing_properties.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(display_timing_properties)
     }
     ///vkGetPastPresentationTimingGOOGLE
     #[inline]

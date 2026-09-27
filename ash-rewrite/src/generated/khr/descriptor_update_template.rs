@@ -131,17 +131,17 @@ impl Device {
         &self,
         create_info: &crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        descriptor_update_template: &mut crate::vk::DescriptorUpdateTemplate,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DescriptorUpdateTemplate> {
+        let mut descriptor_update_template = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_descriptor_update_template)(
                 self.handle,
                 create_info,
                 allocator,
-                descriptor_update_template,
+                descriptor_update_template.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(descriptor_update_template)
     }
     ///vkDestroyDescriptorUpdateTemplate
     #[inline]

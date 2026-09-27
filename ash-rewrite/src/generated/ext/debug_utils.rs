@@ -366,17 +366,17 @@ impl Instance {
         &self,
         create_info: &crate::vk::DebugUtilsMessengerCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
-        messenger: &mut crate::vk::DebugUtilsMessengerEXT,
-    ) -> crate::VkResult<()> {
+    ) -> crate::VkResult<crate::vk::DebugUtilsMessengerEXT> {
+        let mut messenger = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .create_debug_utils_messenger)(
                 self.handle,
                 create_info,
                 allocator,
-                messenger,
+                messenger.as_mut_ptr(),
             )
-            .result()
+            .assume_init_on_success(messenger)
     }
     ///vkDestroyDebugUtilsMessengerEXT
     #[inline]
