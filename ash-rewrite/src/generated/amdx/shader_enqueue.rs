@@ -255,7 +255,7 @@ impl Device {
             .create_execution_graph_pipelines)(
                 device,
                 pipeline_cache,
-                create_infos.len() as _,
+                pipelines.len() as _,
                 create_infos.as_ptr(),
                 allocator,
                 pipelines.as_mut_ptr(),

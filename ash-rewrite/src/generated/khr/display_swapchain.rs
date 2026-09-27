@@ -80,7 +80,7 @@ impl Device {
             .fp
             .create_shared_swapchains)(
                 device,
-                create_infos.len() as _,
+                swapchains.len() as _,
                 create_infos.as_ptr(),
                 allocator,
                 swapchains.as_mut_ptr(),

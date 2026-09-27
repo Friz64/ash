@@ -359,7 +359,7 @@ impl Device {
             .fp
             .write_sampler_descriptors)(
                 device,
-                samplers.len() as _,
+                descriptors.len() as _,
                 samplers.as_ptr(),
                 descriptors.as_ptr(),
             )
@@ -377,7 +377,7 @@ impl Device {
             .fp
             .write_resource_descriptors)(
                 device,
-                resources.len() as _,
+                descriptors.len() as _,
                 resources.as_ptr(),
                 descriptors.as_ptr(),
             )
@@ -445,7 +445,7 @@ impl Device {
             .fp
             .get_image_opaque_capture_data)(
                 device,
-                images.len() as _,
+                datas.len() as _,
                 images.as_ptr(),
                 datas.as_mut_ptr(),
             )
@@ -463,7 +463,7 @@ impl Device {
             .fp
             .get_tensor_opaque_capture_data)(
                 device,
-                tensors.len() as _,
+                datas.len() as _,
                 tensors.as_ptr(),
                 datas.as_mut_ptr(),
             )

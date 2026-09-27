@@ -155,7 +155,7 @@ impl Device {
             .fp
             .get_calibrated_timestamps)(
                 device,
-                timestamp_infos.len() as _,
+                timestamps.len() as _,
                 timestamp_infos.as_ptr(),
                 timestamps.as_mut_ptr(),
                 max_deviation,

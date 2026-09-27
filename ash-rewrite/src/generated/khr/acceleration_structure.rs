@@ -690,7 +690,7 @@ impl Device {
             .fp
             .cmd_build_acceleration_structures)(
             command_buffer,
-            infos.len() as _,
+            build_range_infos.len() as _,
             infos.as_ptr(),
             build_range_infos.as_ptr(),
         )
@@ -709,7 +709,7 @@ impl Device {
             .fp
             .cmd_build_acceleration_structures_indirect)(
             command_buffer,
-            infos.len() as _,
+            max_primitive_counts.len() as _,
             infos.as_ptr(),
             indirect_device_addresses.as_ptr(),
             indirect_strides.as_ptr(),
@@ -730,7 +730,7 @@ impl Device {
             .build_acceleration_structures)(
                 device,
                 deferred_operation,
-                infos.len() as _,
+                build_range_infos.len() as _,
                 infos.as_ptr(),
                 build_range_infos.as_ptr(),
             )

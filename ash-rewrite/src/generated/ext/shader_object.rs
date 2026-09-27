@@ -1356,7 +1356,7 @@ impl Device {
             .fp
             .create_shaders)(
                 device,
-                create_infos.len() as _,
+                shaders.len() as _,
                 create_infos.as_ptr(),
                 allocator,
                 shaders.as_mut_ptr(),
@@ -1396,7 +1396,7 @@ impl Device {
             .fp
             .cmd_bind_shaders)(
             command_buffer,
-            stages.len() as _,
+            shaders.len() as _,
             stages.as_ptr(),
             shaders.as_ptr(),
         )
@@ -1490,7 +1490,7 @@ impl Device {
             .cmd_bind_vertex_buffers2)(
             command_buffer,
             first_binding,
-            buffers.len() as _,
+            strides.len() as _,
             buffers.as_ptr(),
             offsets.as_ptr(),
             sizes.as_ptr(),

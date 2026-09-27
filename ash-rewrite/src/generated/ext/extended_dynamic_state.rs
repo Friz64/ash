@@ -326,7 +326,7 @@ impl Device {
             .cmd_bind_vertex_buffers2)(
             command_buffer,
             first_binding,
-            buffers.len() as _,
+            strides.len() as _,
             buffers.as_ptr(),
             offsets.as_ptr(),
             sizes.as_ptr(),

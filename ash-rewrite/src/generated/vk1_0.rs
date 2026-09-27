@@ -4217,7 +4217,7 @@ impl crate::Device {
             .create_graphics_pipelines)(
                 device,
                 pipeline_cache,
-                create_infos.len() as _,
+                pipelines.len() as _,
                 create_infos.as_ptr(),
                 allocator,
                 pipelines.as_mut_ptr(),
@@ -4239,7 +4239,7 @@ impl crate::Device {
             .create_compute_pipelines)(
                 device,
                 pipeline_cache,
-                create_infos.len() as _,
+                pipelines.len() as _,
                 create_infos.as_ptr(),
                 allocator,
                 pipelines.as_mut_ptr(),
@@ -4743,7 +4743,7 @@ impl crate::Device {
             .cmd_bind_vertex_buffers)(
             command_buffer,
             first_binding,
-            buffers.len() as _,
+            offsets.len() as _,
             buffers.as_ptr(),
             offsets.as_ptr(),
         )

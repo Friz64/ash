@@ -220,7 +220,7 @@ impl Device {
             .cmd_bind_transform_feedback_buffers)(
             command_buffer,
             first_binding,
-            buffers.len() as _,
+            sizes.len() as _,
             buffers.as_ptr(),
             offsets.as_ptr(),
             sizes.as_ptr(),
@@ -240,7 +240,7 @@ impl Device {
             .cmd_begin_transform_feedback)(
             command_buffer,
             first_counter_buffer,
-            counter_buffers.len() as _,
+            counter_buffer_offsets.len() as _,
             counter_buffers.as_ptr(),
             counter_buffer_offsets.as_ptr(),
         )
@@ -259,7 +259,7 @@ impl Device {
             .cmd_end_transform_feedback)(
             command_buffer,
             first_counter_buffer,
-            counter_buffers.len() as _,
+            counter_buffer_offsets.len() as _,
             counter_buffers.as_ptr(),
             counter_buffer_offsets.as_ptr(),
         )

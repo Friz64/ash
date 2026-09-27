@@ -74,7 +74,7 @@ impl Device {
             .fp
             .set_hdr_metadata)(
             device,
-            swapchains.len() as _,
+            metadata.len() as _,
             swapchains.as_ptr(),
             metadata.as_ptr(),
         )

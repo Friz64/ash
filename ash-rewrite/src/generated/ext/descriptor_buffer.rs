@@ -424,7 +424,7 @@ impl Device {
             pipeline_bind_point,
             layout,
             first_set,
-            buffer_indices.len() as _,
+            offsets.len() as _,
             buffer_indices.as_ptr(),
             offsets.as_ptr(),
         )

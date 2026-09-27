@@ -517,7 +517,7 @@ impl Device {
             .fp
             .cmd_wait_events2)(
             command_buffer,
-            events.len() as _,
+            dependency_infos.len() as _,
             events.as_ptr(),
             dependency_infos.as_ptr(),
         )

@@ -1197,7 +1197,7 @@ impl crate::Device {
             .cmd_bind_vertex_buffers2)(
             command_buffer,
             first_binding,
-            buffers.len() as _,
+            strides.len() as _,
             buffers.as_ptr(),
             offsets.as_ptr(),
             sizes.as_ptr(),
@@ -1468,7 +1468,7 @@ impl crate::Device {
             .device_fn_1_3
             .cmd_wait_events2)(
             command_buffer,
-            events.len() as _,
+            dependency_infos.len() as _,
             events.as_ptr(),
             dependency_infos.as_ptr(),
         )
