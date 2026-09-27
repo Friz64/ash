@@ -351,76 +351,89 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkWriteSamplerDescriptorsEXT
     #[inline]
     pub unsafe fn write_sampler_descriptors_ext(
         &self,
         device: crate::vk::Device,
-        sampler_count: u32,
-        samplers: *const crate::vk::SamplerCreateInfo<'_>,
-        descriptors: *const crate::vk::HostAddressRangeEXT<'_>,
-    ) -> crate::vk::Result {
+        samplers: &[crate::vk::SamplerCreateInfo<'_>],
+        descriptors: &[crate::vk::HostAddressRangeEXT<'_>],
+    ) -> crate::VkResult<()> {
         (self
             .fp
-            .write_sampler_descriptors_ext)(device, sampler_count, samplers, descriptors)
+            .write_sampler_descriptors_ext)(
+                device,
+                samplers.len() as _,
+                samplers.as_ptr(),
+                descriptors.as_ptr(),
+            )
+            .result()
     }
+    ///vkWriteResourceDescriptorsEXT
     #[inline]
     pub unsafe fn write_resource_descriptors_ext(
         &self,
         device: crate::vk::Device,
-        resource_count: u32,
-        resources: *const crate::vk::ResourceDescriptorInfoEXT<'_>,
-        descriptors: *const crate::vk::HostAddressRangeEXT<'_>,
-    ) -> crate::vk::Result {
+        resources: &[crate::vk::ResourceDescriptorInfoEXT<'_>],
+        descriptors: &[crate::vk::HostAddressRangeEXT<'_>],
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .write_resource_descriptors_ext)(
-            device,
-            resource_count,
-            resources,
-            descriptors,
-        )
+                device,
+                resources.len() as _,
+                resources.as_ptr(),
+                descriptors.as_ptr(),
+            )
+            .result()
     }
+    ///vkCmdBindSamplerHeapEXT
     #[inline]
     pub unsafe fn cmd_bind_sampler_heap_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        bind_info: *const crate::vk::BindHeapInfoEXT<'_>,
+        bind_info: &crate::vk::BindHeapInfoEXT<'_>,
     ) {
         (self.fp.cmd_bind_sampler_heap_ext)(command_buffer, bind_info)
     }
+    ///vkCmdBindResourceHeapEXT
     #[inline]
     pub unsafe fn cmd_bind_resource_heap_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        bind_info: *const crate::vk::BindHeapInfoEXT<'_>,
+        bind_info: &crate::vk::BindHeapInfoEXT<'_>,
     ) {
         (self.fp.cmd_bind_resource_heap_ext)(command_buffer, bind_info)
     }
+    ///vkCmdPushDataEXT
     #[inline]
     pub unsafe fn cmd_push_data_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        push_data_info: *const crate::vk::PushDataInfoEXT<'_>,
+        push_data_info: &crate::vk::PushDataInfoEXT<'_>,
     ) {
         (self.fp.cmd_push_data_ext)(command_buffer, push_data_info)
     }
+    ///vkRegisterCustomBorderColorEXT
     #[inline]
     pub unsafe fn register_custom_border_color_ext(
         &self,
         device: crate::vk::Device,
-        border_color: *const crate::vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
+        border_color: &crate::vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
         request_index: crate::vk::Bool32,
-        index: *mut u32,
-    ) -> crate::vk::Result {
+        index: &mut u32,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .register_custom_border_color_ext)(
-            device,
-            border_color,
-            request_index,
-            index,
-        )
+                device,
+                border_color,
+                request_index,
+                index,
+            )
+            .result()
     }
+    ///vkUnregisterCustomBorderColorEXT
     #[inline]
     pub unsafe fn unregister_custom_border_color_ext(
         &self,
@@ -429,27 +442,41 @@ impl Device {
     ) {
         (self.fp.unregister_custom_border_color_ext)(device, index)
     }
+    ///vkGetImageOpaqueCaptureDataEXT
     #[inline]
     pub unsafe fn get_image_opaque_capture_data_ext(
         &self,
         device: crate::vk::Device,
-        image_count: u32,
-        images: *const crate::vk::Image,
-        datas: *mut crate::vk::HostAddressRangeEXT<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.get_image_opaque_capture_data_ext)(device, image_count, images, datas)
+        images: &[crate::vk::Image],
+        datas: &mut [crate::vk::HostAddressRangeEXT<'_>],
+    ) -> crate::VkResult<()> {
+        (self
+            .fp
+            .get_image_opaque_capture_data_ext)(
+                device,
+                images.len() as _,
+                images.as_ptr(),
+                datas.as_mut_ptr(),
+            )
+            .result()
     }
+    ///vkGetTensorOpaqueCaptureDataARM
     #[inline]
     pub unsafe fn get_tensor_opaque_capture_data_arm(
         &self,
         device: crate::vk::Device,
-        tensor_count: u32,
-        tensors: *const crate::vk::TensorARM,
-        datas: *mut crate::vk::HostAddressRangeEXT<'_>,
-    ) -> crate::vk::Result {
+        tensors: &[crate::vk::TensorARM],
+        datas: &mut [crate::vk::HostAddressRangeEXT<'_>],
+    ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_tensor_opaque_capture_data_arm)(device, tensor_count, tensors, datas)
+            .get_tensor_opaque_capture_data_arm)(
+                device,
+                tensors.len() as _,
+                tensors.as_ptr(),
+                datas.as_mut_ptr(),
+            )
+            .result()
     }
 }
 #[derive(Clone)]
@@ -506,6 +533,7 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceDescriptorSizeEXT
     #[inline]
     pub unsafe fn get_physical_device_descriptor_size_ext(
         &self,

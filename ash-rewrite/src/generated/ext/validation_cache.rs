@@ -121,55 +121,63 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateValidationCacheEXT
     #[inline]
     pub unsafe fn create_validation_cache_ext(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::ValidationCacheCreateInfoEXT<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        validation_cache: *mut crate::vk::ValidationCacheEXT,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::ValidationCacheCreateInfoEXT<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        validation_cache: &mut crate::vk::ValidationCacheEXT,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_validation_cache_ext)(
-            device,
-            create_info,
-            allocator,
-            validation_cache,
-        )
+                device,
+                create_info,
+                allocator,
+                validation_cache,
+            )
+            .result()
     }
+    ///vkDestroyValidationCacheEXT
     #[inline]
     pub unsafe fn destroy_validation_cache_ext(
         &self,
         device: crate::vk::Device,
         validation_cache: crate::vk::ValidationCacheEXT,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_validation_cache_ext)(device, validation_cache, allocator)
     }
+    ///vkGetValidationCacheDataEXT
     #[inline]
     pub unsafe fn get_validation_cache_data_ext(
         &self,
         device: crate::vk::Device,
         validation_cache: crate::vk::ValidationCacheEXT,
-        data_size: *mut usize,
-        data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<core::ffi::c_void>> {
+        crate::read_into_uninitialized_vector(|data_size, data| (self
             .fp
-            .get_validation_cache_data_ext)(device, validation_cache, data_size, data)
+            .get_validation_cache_data_ext)(device, validation_cache, data_size, data))
     }
+    ///vkMergeValidationCachesEXT
     #[inline]
     pub unsafe fn merge_validation_caches_ext(
         &self,
         device: crate::vk::Device,
         dst_cache: crate::vk::ValidationCacheEXT,
-        src_cache_count: u32,
-        src_caches: *const crate::vk::ValidationCacheEXT,
-    ) -> crate::vk::Result {
+        src_caches: &[crate::vk::ValidationCacheEXT],
+    ) -> crate::VkResult<()> {
         (self
             .fp
-            .merge_validation_caches_ext)(device, dst_cache, src_cache_count, src_caches)
+            .merge_validation_caches_ext)(
+                device,
+                dst_cache,
+                src_caches.len() as _,
+                src_caches.as_ptr(),
+            )
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

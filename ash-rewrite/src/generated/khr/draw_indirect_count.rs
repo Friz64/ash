@@ -83,6 +83,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdDrawIndirectCount
     #[inline]
     pub unsafe fn cmd_draw_indirect_count_khr(
         &self,
@@ -106,6 +107,7 @@ impl Device {
             stride,
         )
     }
+    ///vkCmdDrawIndexedIndirectCount
     #[inline]
     pub unsafe fn cmd_draw_indexed_indirect_count_khr(
         &self,

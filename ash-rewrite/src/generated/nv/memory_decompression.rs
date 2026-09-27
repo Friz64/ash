@@ -79,21 +79,22 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdDecompressMemoryNV
     #[inline]
     pub unsafe fn cmd_decompress_memory_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        decompress_region_count: u32,
-        decompress_memory_regions: *const crate::vk::DecompressMemoryRegionNV,
+        decompress_memory_regions: &[crate::vk::DecompressMemoryRegionNV],
     ) {
         (self
             .fp
             .cmd_decompress_memory_nv)(
             command_buffer,
-            decompress_region_count,
-            decompress_memory_regions,
+            decompress_memory_regions.len() as _,
+            decompress_memory_regions.as_ptr(),
         )
     }
+    ///vkCmdDecompressMemoryIndirectCountNV
     #[inline]
     pub unsafe fn cmd_decompress_memory_indirect_count_nv(
         &self,

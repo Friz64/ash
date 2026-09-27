@@ -139,49 +139,55 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateCuModuleNVX
     #[inline]
     pub unsafe fn create_cu_module_nvx(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::CuModuleCreateInfoNVX<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        module: *mut crate::vk::CuModuleNVX,
-    ) -> crate::vk::Result {
-        (self.fp.create_cu_module_nvx)(device, create_info, allocator, module)
+        create_info: &crate::vk::CuModuleCreateInfoNVX<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        module: &mut crate::vk::CuModuleNVX,
+    ) -> crate::VkResult<()> {
+        (self.fp.create_cu_module_nvx)(device, create_info, allocator, module).result()
     }
+    ///vkCreateCuFunctionNVX
     #[inline]
     pub unsafe fn create_cu_function_nvx(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::CuFunctionCreateInfoNVX<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        function: *mut crate::vk::CuFunctionNVX,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::CuFunctionCreateInfoNVX<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        function: &mut crate::vk::CuFunctionNVX,
+    ) -> crate::VkResult<()> {
         (self.fp.create_cu_function_nvx)(device, create_info, allocator, function)
+            .result()
     }
+    ///vkDestroyCuModuleNVX
     #[inline]
     pub unsafe fn destroy_cu_module_nvx(
         &self,
         device: crate::vk::Device,
         module: crate::vk::CuModuleNVX,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_cu_module_nvx)(device, module, allocator)
     }
+    ///vkDestroyCuFunctionNVX
     #[inline]
     pub unsafe fn destroy_cu_function_nvx(
         &self,
         device: crate::vk::Device,
         function: crate::vk::CuFunctionNVX,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_cu_function_nvx)(device, function, allocator)
     }
+    ///vkCmdCuLaunchKernelNVX
     #[inline]
     pub unsafe fn cmd_cu_launch_kernel_nvx(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        launch_info: *const crate::vk::CuLaunchInfoNVX<'_>,
+        launch_info: &crate::vk::CuLaunchInfoNVX<'_>,
     ) {
         (self.fp.cmd_cu_launch_kernel_nvx)(command_buffer, launch_info)
     }

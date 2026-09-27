@@ -1079,36 +1079,40 @@ impl crate::Device {
     pub fn fp_v1_3(&self) -> &crate::DeviceFnV1_3 {
         &self.device_fn_1_3
     }
+    ///vkGetDeviceBufferMemoryRequirements
     #[inline]
     pub unsafe fn get_device_buffer_memory_requirements(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::DeviceBufferMemoryRequirements<'_>,
-        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        info: &crate::vk::DeviceBufferMemoryRequirements<'_>,
+        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .device_fn_1_3
             .get_device_buffer_memory_requirements)(device, info, memory_requirements)
     }
+    ///vkGetDeviceImageMemoryRequirements
     #[inline]
     pub unsafe fn get_device_image_memory_requirements(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::DeviceImageMemoryRequirements<'_>,
-        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        info: &crate::vk::DeviceImageMemoryRequirements<'_>,
+        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .device_fn_1_3
             .get_device_image_memory_requirements)(device, info, memory_requirements)
     }
+    ///vkGetDeviceImageSparseMemoryRequirements
     #[inline]
     pub unsafe fn get_device_image_sparse_memory_requirements(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::DeviceImageMemoryRequirements<'_>,
-        sparse_memory_requirement_count: *mut u32,
-        sparse_memory_requirements: *mut crate::vk::SparseImageMemoryRequirements2<'_>,
-    ) {
+        info: &crate::vk::DeviceImageMemoryRequirements<'_>,
+    ) -> crate::VkResult<Vec<crate::vk::SparseImageMemoryRequirements2<'_>>> {
+        crate::read_into_uninitialized_vector(|
+            sparse_memory_requirement_count,
+            sparse_memory_requirements|
         (self
             .device_fn_1_3
             .get_device_image_sparse_memory_requirements)(
@@ -1116,8 +1120,9 @@ impl crate::Device {
             info,
             sparse_memory_requirement_count,
             sparse_memory_requirements,
-        )
+        ))
     }
+    ///vkCmdSetCullMode
     #[inline]
     pub unsafe fn cmd_set_cull_mode(
         &self,
@@ -1126,6 +1131,7 @@ impl crate::Device {
     ) {
         (self.device_fn_1_3.cmd_set_cull_mode)(command_buffer, cull_mode)
     }
+    ///vkCmdSetFrontFace
     #[inline]
     pub unsafe fn cmd_set_front_face(
         &self,
@@ -1134,6 +1140,7 @@ impl crate::Device {
     ) {
         (self.device_fn_1_3.cmd_set_front_face)(command_buffer, front_face)
     }
+    ///vkCmdSetPrimitiveTopology
     #[inline]
     pub unsafe fn cmd_set_primitive_topology(
         &self,
@@ -1144,51 +1151,60 @@ impl crate::Device {
             .device_fn_1_3
             .cmd_set_primitive_topology)(command_buffer, primitive_topology)
     }
+    ///vkCmdSetViewportWithCount
     #[inline]
     pub unsafe fn cmd_set_viewport_with_count(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        viewport_count: u32,
-        viewports: *const crate::vk::Viewport,
+        viewports: &[crate::vk::Viewport],
     ) {
         (self
             .device_fn_1_3
-            .cmd_set_viewport_with_count)(command_buffer, viewport_count, viewports)
+            .cmd_set_viewport_with_count)(
+            command_buffer,
+            viewports.len() as _,
+            viewports.as_ptr(),
+        )
     }
+    ///vkCmdSetScissorWithCount
     #[inline]
     pub unsafe fn cmd_set_scissor_with_count(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        scissor_count: u32,
-        scissors: *const crate::vk::Rect2D,
+        scissors: &[crate::vk::Rect2D],
     ) {
         (self
             .device_fn_1_3
-            .cmd_set_scissor_with_count)(command_buffer, scissor_count, scissors)
+            .cmd_set_scissor_with_count)(
+            command_buffer,
+            scissors.len() as _,
+            scissors.as_ptr(),
+        )
     }
+    ///vkCmdBindVertexBuffers2
     #[inline]
     pub unsafe fn cmd_bind_vertex_buffers2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
-        binding_count: u32,
-        buffers: *const crate::vk::Buffer,
-        offsets: *const crate::vk::DeviceSize,
-        sizes: *const crate::vk::DeviceSize,
-        strides: *const crate::vk::DeviceSize,
+        buffers: &[crate::vk::Buffer],
+        offsets: &[crate::vk::DeviceSize],
+        sizes: &[crate::vk::DeviceSize],
+        strides: &[crate::vk::DeviceSize],
     ) {
         (self
             .device_fn_1_3
             .cmd_bind_vertex_buffers2)(
             command_buffer,
             first_binding,
-            binding_count,
-            buffers,
-            offsets,
-            sizes,
-            strides,
+            buffers.len() as _,
+            buffers.as_ptr(),
+            offsets.as_ptr(),
+            sizes.as_ptr(),
+            strides.as_ptr(),
         )
     }
+    ///vkCmdSetDepthTestEnable
     #[inline]
     pub unsafe fn cmd_set_depth_test_enable(
         &self,
@@ -1197,6 +1213,7 @@ impl crate::Device {
     ) {
         (self.device_fn_1_3.cmd_set_depth_test_enable)(command_buffer, depth_test_enable)
     }
+    ///vkCmdSetDepthWriteEnable
     #[inline]
     pub unsafe fn cmd_set_depth_write_enable(
         &self,
@@ -1207,6 +1224,7 @@ impl crate::Device {
             .device_fn_1_3
             .cmd_set_depth_write_enable)(command_buffer, depth_write_enable)
     }
+    ///vkCmdSetDepthCompareOp
     #[inline]
     pub unsafe fn cmd_set_depth_compare_op(
         &self,
@@ -1215,6 +1233,7 @@ impl crate::Device {
     ) {
         (self.device_fn_1_3.cmd_set_depth_compare_op)(command_buffer, depth_compare_op)
     }
+    ///vkCmdSetDepthBoundsTestEnable
     #[inline]
     pub unsafe fn cmd_set_depth_bounds_test_enable(
         &self,
@@ -1225,6 +1244,7 @@ impl crate::Device {
             .device_fn_1_3
             .cmd_set_depth_bounds_test_enable)(command_buffer, depth_bounds_test_enable)
     }
+    ///vkCmdSetStencilTestEnable
     #[inline]
     pub unsafe fn cmd_set_stencil_test_enable(
         &self,
@@ -1235,6 +1255,7 @@ impl crate::Device {
             .device_fn_1_3
             .cmd_set_stencil_test_enable)(command_buffer, stencil_test_enable)
     }
+    ///vkCmdSetStencilOp
     #[inline]
     pub unsafe fn cmd_set_stencil_op(
         &self,
@@ -1256,6 +1277,7 @@ impl crate::Device {
             compare_op,
         )
     }
+    ///vkCmdSetRasterizerDiscardEnable
     #[inline]
     pub unsafe fn cmd_set_rasterizer_discard_enable(
         &self,
@@ -1269,6 +1291,7 @@ impl crate::Device {
             rasterizer_discard_enable,
         )
     }
+    ///vkCmdSetDepthBiasEnable
     #[inline]
     pub unsafe fn cmd_set_depth_bias_enable(
         &self,
@@ -1277,6 +1300,7 @@ impl crate::Device {
     ) {
         (self.device_fn_1_3.cmd_set_depth_bias_enable)(command_buffer, depth_bias_enable)
     }
+    ///vkCmdSetPrimitiveRestartEnable
     #[inline]
     pub unsafe fn cmd_set_primitive_restart_enable(
         &self,
@@ -1287,29 +1311,33 @@ impl crate::Device {
             .device_fn_1_3
             .cmd_set_primitive_restart_enable)(command_buffer, primitive_restart_enable)
     }
+    ///vkCreatePrivateDataSlot
     #[inline]
     pub unsafe fn create_private_data_slot(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::PrivateDataSlotCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        private_data_slot: *mut crate::vk::PrivateDataSlot,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::PrivateDataSlotCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        private_data_slot: &mut crate::vk::PrivateDataSlot,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_3
             .create_private_data_slot)(device, create_info, allocator, private_data_slot)
+            .result()
     }
+    ///vkDestroyPrivateDataSlot
     #[inline]
     pub unsafe fn destroy_private_data_slot(
         &self,
         device: crate::vk::Device,
         private_data_slot: crate::vk::PrivateDataSlot,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .device_fn_1_3
             .destroy_private_data_slot)(device, private_data_slot, allocator)
     }
+    ///vkSetPrivateData
     #[inline]
     pub unsafe fn set_private_data(
         &self,
@@ -1318,17 +1346,19 @@ impl crate::Device {
         object_handle: u64,
         private_data_slot: crate::vk::PrivateDataSlot,
         data: u64,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_3
             .set_private_data)(
-            device,
-            object_type,
-            object_handle,
-            private_data_slot,
-            data,
-        )
+                device,
+                object_type,
+                object_handle,
+                private_data_slot,
+                data,
+            )
+            .result()
     }
+    ///vkGetPrivateData
     #[inline]
     pub unsafe fn get_private_data(
         &self,
@@ -1336,7 +1366,7 @@ impl crate::Device {
         object_type: crate::vk::ObjectType,
         object_handle: u64,
         private_data_slot: crate::vk::PrivateDataSlot,
-        data: *mut u64,
+        data: &mut u64,
     ) {
         (self
             .device_fn_1_3
@@ -1348,67 +1378,75 @@ impl crate::Device {
             data,
         )
     }
+    ///vkCmdCopyBuffer2
     #[inline]
     pub unsafe fn cmd_copy_buffer2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        copy_buffer_info: *const crate::vk::CopyBufferInfo2<'_>,
+        copy_buffer_info: &crate::vk::CopyBufferInfo2<'_>,
     ) {
         (self.device_fn_1_3.cmd_copy_buffer2)(command_buffer, copy_buffer_info)
     }
+    ///vkCmdCopyImage2
     #[inline]
     pub unsafe fn cmd_copy_image2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        copy_image_info: *const crate::vk::CopyImageInfo2<'_>,
+        copy_image_info: &crate::vk::CopyImageInfo2<'_>,
     ) {
         (self.device_fn_1_3.cmd_copy_image2)(command_buffer, copy_image_info)
     }
+    ///vkCmdBlitImage2
     #[inline]
     pub unsafe fn cmd_blit_image2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        blit_image_info: *const crate::vk::BlitImageInfo2<'_>,
+        blit_image_info: &crate::vk::BlitImageInfo2<'_>,
     ) {
         (self.device_fn_1_3.cmd_blit_image2)(command_buffer, blit_image_info)
     }
+    ///vkCmdCopyBufferToImage2
     #[inline]
     pub unsafe fn cmd_copy_buffer_to_image2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        copy_buffer_to_image_info: *const crate::vk::CopyBufferToImageInfo2<'_>,
+        copy_buffer_to_image_info: &crate::vk::CopyBufferToImageInfo2<'_>,
     ) {
         (self
             .device_fn_1_3
             .cmd_copy_buffer_to_image2)(command_buffer, copy_buffer_to_image_info)
     }
+    ///vkCmdCopyImageToBuffer2
     #[inline]
     pub unsafe fn cmd_copy_image_to_buffer2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        copy_image_to_buffer_info: *const crate::vk::CopyImageToBufferInfo2<'_>,
+        copy_image_to_buffer_info: &crate::vk::CopyImageToBufferInfo2<'_>,
     ) {
         (self
             .device_fn_1_3
             .cmd_copy_image_to_buffer2)(command_buffer, copy_image_to_buffer_info)
     }
+    ///vkCmdResolveImage2
     #[inline]
     pub unsafe fn cmd_resolve_image2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        resolve_image_info: *const crate::vk::ResolveImageInfo2<'_>,
+        resolve_image_info: &crate::vk::ResolveImageInfo2<'_>,
     ) {
         (self.device_fn_1_3.cmd_resolve_image2)(command_buffer, resolve_image_info)
     }
+    ///vkCmdSetEvent2
     #[inline]
     pub unsafe fn cmd_set_event2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         event: crate::vk::Event,
-        dependency_info: *const crate::vk::DependencyInfo<'_>,
+        dependency_info: &crate::vk::DependencyInfo<'_>,
     ) {
         (self.device_fn_1_3.cmd_set_event2)(command_buffer, event, dependency_info)
     }
+    ///vkCmdResetEvent2
     #[inline]
     pub unsafe fn cmd_reset_event2(
         &self,
@@ -1418,36 +1456,46 @@ impl crate::Device {
     ) {
         (self.device_fn_1_3.cmd_reset_event2)(command_buffer, event, stage_mask)
     }
+    ///vkCmdWaitEvents2
     #[inline]
     pub unsafe fn cmd_wait_events2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        event_count: u32,
-        events: *const crate::vk::Event,
-        dependency_infos: *const crate::vk::DependencyInfo<'_>,
+        events: &[crate::vk::Event],
+        dependency_infos: &[crate::vk::DependencyInfo<'_>],
     ) {
         (self
             .device_fn_1_3
-            .cmd_wait_events2)(command_buffer, event_count, events, dependency_infos)
+            .cmd_wait_events2)(
+            command_buffer,
+            events.len() as _,
+            events.as_ptr(),
+            dependency_infos.as_ptr(),
+        )
     }
+    ///vkCmdPipelineBarrier2
     #[inline]
     pub unsafe fn cmd_pipeline_barrier2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        dependency_info: *const crate::vk::DependencyInfo<'_>,
+        dependency_info: &crate::vk::DependencyInfo<'_>,
     ) {
         (self.device_fn_1_3.cmd_pipeline_barrier2)(command_buffer, dependency_info)
     }
+    ///vkQueueSubmit2
     #[inline]
     pub unsafe fn queue_submit2(
         &self,
         queue: crate::vk::Queue,
-        submit_count: u32,
-        submits: *const crate::vk::SubmitInfo2<'_>,
+        submits: &[crate::vk::SubmitInfo2<'_>],
         fence: crate::vk::Fence,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_3.queue_submit2)(queue, submit_count, submits, fence)
+    ) -> crate::VkResult<()> {
+        (self
+            .device_fn_1_3
+            .queue_submit2)(queue, submits.len() as _, submits.as_ptr(), fence)
+            .result()
     }
+    ///vkCmdWriteTimestamp2
     #[inline]
     pub unsafe fn cmd_write_timestamp2(
         &self,
@@ -1460,14 +1508,16 @@ impl crate::Device {
             .device_fn_1_3
             .cmd_write_timestamp2)(command_buffer, stage, query_pool, query)
     }
+    ///vkCmdBeginRendering
     #[inline]
     pub unsafe fn cmd_begin_rendering(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        rendering_info: *const crate::vk::RenderingInfo<'_>,
+        rendering_info: &crate::vk::RenderingInfo<'_>,
     ) {
         (self.device_fn_1_3.cmd_begin_rendering)(command_buffer, rendering_info)
     }
+    ///vkCmdEndRendering
     #[inline]
     pub unsafe fn cmd_end_rendering(&self, command_buffer: crate::vk::CommandBuffer) {
         (self.device_fn_1_3.cmd_end_rendering)(command_buffer)
@@ -1513,20 +1563,19 @@ impl crate::Instance {
     pub fn fp_v1_3(&self) -> &crate::InstanceFnV1_3 {
         &self.instance_fn_1_3
     }
+    ///vkGetPhysicalDeviceToolProperties
     #[inline]
     pub unsafe fn get_physical_device_tool_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        tool_count: *mut u32,
-        tool_properties: *mut crate::vk::PhysicalDeviceToolProperties<'_>,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::PhysicalDeviceToolProperties<'_>>> {
+        crate::read_into_uninitialized_vector(|tool_count, tool_properties| (self
             .instance_fn_1_3
             .get_physical_device_tool_properties)(
             physical_device,
             tool_count,
             tool_properties,
-        )
+        ))
     }
 }
 pub(crate) mod items {

@@ -131,27 +131,30 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdDispatchTileQCOM
     #[inline]
     pub unsafe fn cmd_dispatch_tile_qcom(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        dispatch_tile_info: *const crate::vk::DispatchTileInfoQCOM<'_>,
+        dispatch_tile_info: &crate::vk::DispatchTileInfoQCOM<'_>,
     ) {
         (self.fp.cmd_dispatch_tile_qcom)(command_buffer, dispatch_tile_info)
     }
+    ///vkCmdBeginPerTileExecutionQCOM
     #[inline]
     pub unsafe fn cmd_begin_per_tile_execution_qcom(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        per_tile_begin_info: *const crate::vk::PerTileBeginInfoQCOM<'_>,
+        per_tile_begin_info: &crate::vk::PerTileBeginInfoQCOM<'_>,
     ) {
         (self.fp.cmd_begin_per_tile_execution_qcom)(command_buffer, per_tile_begin_info)
     }
+    ///vkCmdEndPerTileExecutionQCOM
     #[inline]
     pub unsafe fn cmd_end_per_tile_execution_qcom(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        per_tile_end_info: *const crate::vk::PerTileEndInfoQCOM<'_>,
+        per_tile_end_info: &crate::vk::PerTileEndInfoQCOM<'_>,
     ) {
         (self.fp.cmd_end_per_tile_execution_qcom)(command_buffer, per_tile_end_info)
     }

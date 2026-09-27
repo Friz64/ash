@@ -72,22 +72,22 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkEnumeratePhysicalDeviceGroups
     #[inline]
     pub unsafe fn enumerate_physical_device_groups_khr(
         &self,
         instance: crate::vk::Instance,
-        physical_device_group_count: *mut u32,
-        physical_device_group_properties: *mut crate::vk::PhysicalDeviceGroupProperties<
-            '_,
-        >,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<Vec<crate::vk::PhysicalDeviceGroupProperties<'_>>> {
+        crate::read_into_uninitialized_vector(|
+            physical_device_group_count,
+            physical_device_group_properties|
         (self
             .fp
             .enumerate_physical_device_groups_khr)(
             instance,
             physical_device_group_count,
             physical_device_group_properties,
-        )
+        ))
     }
 }
 pub const SPEC_VERSION: u32 = 1;

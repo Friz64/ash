@@ -77,22 +77,24 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetSemaphoreFdKHR
     #[inline]
     pub unsafe fn get_semaphore_fd_khr(
         &self,
         device: crate::vk::Device,
-        get_fd_info: *const crate::vk::SemaphoreGetFdInfoKHR<'_>,
-        fd: *mut core::ffi::c_int,
-    ) -> crate::vk::Result {
-        (self.fp.get_semaphore_fd_khr)(device, get_fd_info, fd)
+        get_fd_info: &crate::vk::SemaphoreGetFdInfoKHR<'_>,
+        fd: &mut core::ffi::c_int,
+    ) -> crate::VkResult<()> {
+        (self.fp.get_semaphore_fd_khr)(device, get_fd_info, fd).result()
     }
+    ///vkImportSemaphoreFdKHR
     #[inline]
     pub unsafe fn import_semaphore_fd_khr(
         &self,
         device: crate::vk::Device,
-        import_semaphore_fd_info: *const crate::vk::ImportSemaphoreFdInfoKHR<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.import_semaphore_fd_khr)(device, import_semaphore_fd_info)
+        import_semaphore_fd_info: &crate::vk::ImportSemaphoreFdInfoKHR<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.import_semaphore_fd_khr)(device, import_semaphore_fd_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

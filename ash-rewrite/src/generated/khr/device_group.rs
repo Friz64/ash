@@ -217,39 +217,45 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetDeviceGroupPresentCapabilitiesKHR
     #[inline]
     pub unsafe fn get_device_group_present_capabilities_khr(
         &self,
         device: crate::vk::Device,
-        device_group_present_capabilities: *mut crate::vk::DeviceGroupPresentCapabilitiesKHR<
+        device_group_present_capabilities: &mut crate::vk::DeviceGroupPresentCapabilitiesKHR<
             '_,
         >,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_device_group_present_capabilities_khr)(
-            device,
-            device_group_present_capabilities,
-        )
+                device,
+                device_group_present_capabilities,
+            )
+            .result()
     }
+    ///vkGetDeviceGroupSurfacePresentModesKHR
     #[inline]
     pub unsafe fn get_device_group_surface_present_modes_khr(
         &self,
         device: crate::vk::Device,
         surface: crate::vk::SurfaceKHR,
-        modes: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
-    ) -> crate::vk::Result {
+        modes: &mut crate::vk::DeviceGroupPresentModeFlagsKHR,
+    ) -> crate::VkResult<()> {
         (self.fp.get_device_group_surface_present_modes_khr)(device, surface, modes)
+            .result()
     }
+    ///vkAcquireNextImage2KHR
     #[inline]
     pub unsafe fn acquire_next_image2_khr(
         &self,
         device: crate::vk::Device,
-        acquire_info: *const crate::vk::AcquireNextImageInfoKHR<'_>,
-        image_index: *mut u32,
-    ) -> crate::vk::Result {
-        (self.fp.acquire_next_image2_khr)(device, acquire_info, image_index)
+        acquire_info: &crate::vk::AcquireNextImageInfoKHR<'_>,
+        image_index: &mut u32,
+    ) -> crate::VkResult<()> {
+        (self.fp.acquire_next_image2_khr)(device, acquire_info, image_index).result()
     }
+    ///vkGetDeviceGroupPeerMemoryFeatures
     #[inline]
     pub unsafe fn get_device_group_peer_memory_features_khr(
         &self,
@@ -257,7 +263,7 @@ impl Device {
         heap_index: u32,
         local_device_index: u32,
         remote_device_index: u32,
-        peer_memory_features: *mut crate::vk::PeerMemoryFeatureFlags,
+        peer_memory_features: &mut crate::vk::PeerMemoryFeatureFlags,
     ) {
         (self
             .fp
@@ -269,6 +275,7 @@ impl Device {
             peer_memory_features,
         )
     }
+    ///vkCmdSetDeviceMask
     #[inline]
     pub unsafe fn cmd_set_device_mask_khr(
         &self,
@@ -277,6 +284,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_device_mask_khr)(command_buffer, device_mask)
     }
+    ///vkCmdDispatchBase
     #[inline]
     pub unsafe fn cmd_dispatch_base_khr(
         &self,
@@ -357,22 +365,21 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDevicePresentRectanglesKHR
     #[inline]
     pub unsafe fn get_physical_device_present_rectangles_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,
-        rect_count: *mut u32,
-        rects: *mut crate::vk::Rect2D,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::Rect2D>> {
+        crate::read_into_uninitialized_vector(|rect_count, rects| (self
             .fp
             .get_physical_device_present_rectangles_khr)(
             physical_device,
             surface,
             rect_count,
             rects,
-        )
+        ))
     }
 }
 pub const SPEC_VERSION: u32 = 4;

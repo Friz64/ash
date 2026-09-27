@@ -223,22 +223,24 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetClusterAccelerationStructureBuildSizesNV
     #[inline]
     pub unsafe fn get_cluster_acceleration_structure_build_sizes_nv(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::ClusterAccelerationStructureInputInfoNV<'_>,
-        size_info: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
+        info: &crate::vk::ClusterAccelerationStructureInputInfoNV<'_>,
+        size_info: &mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
     ) {
         (self
             .fp
             .get_cluster_acceleration_structure_build_sizes_nv)(device, info, size_info)
     }
+    ///vkCmdBuildClusterAccelerationStructureIndirectNV
     #[inline]
     pub unsafe fn cmd_build_cluster_acceleration_structure_indirect_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        command_infos: *const crate::vk::ClusterAccelerationStructureCommandsInfoNV<'_>,
+        command_infos: &crate::vk::ClusterAccelerationStructureCommandsInfoNV<'_>,
     ) {
         (self
             .fp

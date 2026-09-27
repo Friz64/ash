@@ -81,12 +81,13 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetDescriptorSetLayoutHostMappingInfoVALVE
     #[inline]
     pub unsafe fn get_descriptor_set_layout_host_mapping_info_valve(
         &self,
         device: crate::vk::Device,
-        binding_reference: *const crate::vk::DescriptorSetBindingReferenceVALVE<'_>,
-        host_mapping: *mut crate::vk::DescriptorSetLayoutHostMappingInfoVALVE<'_>,
+        binding_reference: &crate::vk::DescriptorSetBindingReferenceVALVE<'_>,
+        host_mapping: &mut crate::vk::DescriptorSetLayoutHostMappingInfoVALVE<'_>,
     ) {
         (self
             .fp
@@ -96,12 +97,13 @@ impl Device {
             host_mapping,
         )
     }
+    ///vkGetDescriptorSetHostMappingVALVE
     #[inline]
     pub unsafe fn get_descriptor_set_host_mapping_valve(
         &self,
         device: crate::vk::Device,
         descriptor_set: crate::vk::DescriptorSet,
-        data: *mut *mut core::ffi::c_void,
+        data: &mut *mut core::ffi::c_void,
     ) {
         (self.fp.get_descriptor_set_host_mapping_valve)(device, descriptor_set, data)
     }

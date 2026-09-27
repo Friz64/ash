@@ -162,32 +162,36 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkCreateDebugReportCallbackEXT
     #[inline]
     pub unsafe fn create_debug_report_callback_ext(
         &self,
         instance: crate::vk::Instance,
-        create_info: *const crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        callback: *mut crate::vk::DebugReportCallbackEXT,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        callback: &mut crate::vk::DebugReportCallbackEXT,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_debug_report_callback_ext)(
-            instance,
-            create_info,
-            allocator,
-            callback,
-        )
+                instance,
+                create_info,
+                allocator,
+                callback,
+            )
+            .result()
     }
+    ///vkDestroyDebugReportCallbackEXT
     #[inline]
     pub unsafe fn destroy_debug_report_callback_ext(
         &self,
         instance: crate::vk::Instance,
         callback: crate::vk::DebugReportCallbackEXT,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_debug_report_callback_ext)(instance, callback, allocator)
     }
+    ///vkDebugReportMessageEXT
     #[inline]
     pub unsafe fn debug_report_message_ext(
         &self,

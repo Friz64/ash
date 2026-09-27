@@ -62,6 +62,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetPrimitiveRestartIndexEXT
     #[inline]
     pub unsafe fn cmd_set_primitive_restart_index_ext(
         &self,

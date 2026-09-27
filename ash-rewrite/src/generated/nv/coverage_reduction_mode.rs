@@ -74,20 +74,19 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV
     #[inline]
     pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        combination_count: *mut u32,
-        combinations: *mut crate::vk::FramebufferMixedSamplesCombinationNV<'_>,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::FramebufferMixedSamplesCombinationNV<'_>>> {
+        crate::read_into_uninitialized_vector(|combination_count, combinations| (self
             .fp
             .get_physical_device_supported_framebuffer_mixed_samples_combinations_nv)(
             physical_device,
             combination_count,
             combinations,
-        )
+        ))
     }
 }
 pub const SPEC_VERSION: u32 = 1;

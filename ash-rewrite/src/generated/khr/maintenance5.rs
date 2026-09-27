@@ -375,12 +375,13 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetRenderingAreaGranularity
     #[inline]
     pub unsafe fn get_rendering_area_granularity_khr(
         &self,
         device: crate::vk::Device,
-        rendering_area_info: *const crate::vk::RenderingAreaInfo<'_>,
-        granularity: *mut crate::vk::Extent2D,
+        rendering_area_info: &crate::vk::RenderingAreaInfo<'_>,
+        granularity: &mut crate::vk::Extent2D,
     ) {
         (self
             .fp
@@ -390,6 +391,7 @@ impl Device {
             granularity,
         )
     }
+    ///vkCmdBindIndexBuffer2
     #[inline]
     pub unsafe fn cmd_bind_index_buffer2_khr(
         &self,
@@ -409,22 +411,24 @@ impl Device {
             index_type,
         )
     }
+    ///vkGetImageSubresourceLayout2
     #[inline]
     pub unsafe fn get_image_subresource_layout2_khr(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
-        subresource: *const crate::vk::ImageSubresource2<'_>,
-        layout: *mut crate::vk::SubresourceLayout2<'_>,
+        subresource: &crate::vk::ImageSubresource2<'_>,
+        layout: &mut crate::vk::SubresourceLayout2<'_>,
     ) {
         (self.fp.get_image_subresource_layout2_khr)(device, image, subresource, layout)
     }
+    ///vkGetDeviceImageSubresourceLayout
     #[inline]
     pub unsafe fn get_device_image_subresource_layout_khr(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::DeviceImageSubresourceInfo<'_>,
-        layout: *mut crate::vk::SubresourceLayout2<'_>,
+        info: &crate::vk::DeviceImageSubresourceInfo<'_>,
+        layout: &mut crate::vk::SubresourceLayout2<'_>,
     ) {
         (self.fp.get_device_image_subresource_layout_khr)(device, info, layout)
     }

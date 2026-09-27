@@ -152,6 +152,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdDrawMeshTasksEXT
     #[inline]
     pub unsafe fn cmd_draw_mesh_tasks_ext(
         &self,
@@ -169,6 +170,7 @@ impl Device {
             group_count_z,
         )
     }
+    ///vkCmdDrawMeshTasksIndirectEXT
     #[inline]
     pub unsafe fn cmd_draw_mesh_tasks_indirect_ext(
         &self,
@@ -188,6 +190,7 @@ impl Device {
             stride,
         )
     }
+    ///vkCmdDrawMeshTasksIndirectCountEXT
     #[inline]
     pub unsafe fn cmd_draw_mesh_tasks_indirect_count_ext(
         &self,

@@ -80,22 +80,25 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkCreateScreenSurfaceQNX
     #[inline]
     pub unsafe fn create_screen_surface_qnx(
         &self,
         instance: crate::vk::Instance,
-        create_info: *const crate::vk::ScreenSurfaceCreateInfoQNX<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::ScreenSurfaceCreateInfoQNX<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        surface: &mut crate::vk::SurfaceKHR,
+    ) -> crate::VkResult<()> {
         (self.fp.create_screen_surface_qnx)(instance, create_info, allocator, surface)
+            .result()
     }
+    ///vkGetPhysicalDeviceScreenPresentationSupportQNX
     #[inline]
     pub unsafe fn get_physical_device_screen_presentation_support_qnx(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-        window: *mut crate::platform_types::_screen_window,
+        window: &mut crate::platform_types::_screen_window,
     ) -> crate::vk::Bool32 {
         (self
             .fp

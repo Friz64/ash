@@ -205,65 +205,66 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdBindTransformFeedbackBuffersEXT
     #[inline]
     pub unsafe fn cmd_bind_transform_feedback_buffers_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
-        binding_count: u32,
-        buffers: *const crate::vk::Buffer,
-        offsets: *const crate::vk::DeviceSize,
-        sizes: *const crate::vk::DeviceSize,
+        buffers: &[crate::vk::Buffer],
+        offsets: &[crate::vk::DeviceSize],
+        sizes: &[crate::vk::DeviceSize],
     ) {
         (self
             .fp
             .cmd_bind_transform_feedback_buffers_ext)(
             command_buffer,
             first_binding,
-            binding_count,
-            buffers,
-            offsets,
-            sizes,
+            buffers.len() as _,
+            buffers.as_ptr(),
+            offsets.as_ptr(),
+            sizes.as_ptr(),
         )
     }
+    ///vkCmdBeginTransformFeedbackEXT
     #[inline]
     pub unsafe fn cmd_begin_transform_feedback_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_counter_buffer: u32,
-        counter_buffer_count: u32,
-        counter_buffers: *const crate::vk::Buffer,
-        counter_buffer_offsets: *const crate::vk::DeviceSize,
+        counter_buffers: &[crate::vk::Buffer],
+        counter_buffer_offsets: &[crate::vk::DeviceSize],
     ) {
         (self
             .fp
             .cmd_begin_transform_feedback_ext)(
             command_buffer,
             first_counter_buffer,
-            counter_buffer_count,
-            counter_buffers,
-            counter_buffer_offsets,
+            counter_buffers.len() as _,
+            counter_buffers.as_ptr(),
+            counter_buffer_offsets.as_ptr(),
         )
     }
+    ///vkCmdEndTransformFeedbackEXT
     #[inline]
     pub unsafe fn cmd_end_transform_feedback_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_counter_buffer: u32,
-        counter_buffer_count: u32,
-        counter_buffers: *const crate::vk::Buffer,
-        counter_buffer_offsets: *const crate::vk::DeviceSize,
+        counter_buffers: &[crate::vk::Buffer],
+        counter_buffer_offsets: &[crate::vk::DeviceSize],
     ) {
         (self
             .fp
             .cmd_end_transform_feedback_ext)(
             command_buffer,
             first_counter_buffer,
-            counter_buffer_count,
-            counter_buffers,
-            counter_buffer_offsets,
+            counter_buffers.len() as _,
+            counter_buffers.as_ptr(),
+            counter_buffer_offsets.as_ptr(),
         )
     }
+    ///vkCmdBeginQueryIndexedEXT
     #[inline]
     pub unsafe fn cmd_begin_query_indexed_ext(
         &self,
@@ -283,6 +284,7 @@ impl Device {
             index,
         )
     }
+    ///vkCmdEndQueryIndexedEXT
     #[inline]
     pub unsafe fn cmd_end_query_indexed_ext(
         &self,
@@ -293,6 +295,7 @@ impl Device {
     ) {
         (self.fp.cmd_end_query_indexed_ext)(command_buffer, query_pool, query, index)
     }
+    ///vkCmdDrawIndirectByteCountEXT
     #[inline]
     pub unsafe fn cmd_draw_indirect_byte_count_ext(
         &self,

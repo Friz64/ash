@@ -67,24 +67,25 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateSharedSwapchainsKHR
     #[inline]
     pub unsafe fn create_shared_swapchains_khr(
         &self,
         device: crate::vk::Device,
-        swapchain_count: u32,
-        create_infos: *const crate::vk::SwapchainCreateInfoKHR<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        swapchains: *mut crate::vk::SwapchainKHR,
-    ) -> crate::vk::Result {
+        create_infos: &[crate::vk::SwapchainCreateInfoKHR<'_>],
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        swapchains: &mut [crate::vk::SwapchainKHR],
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_shared_swapchains_khr)(
-            device,
-            swapchain_count,
-            create_infos,
-            allocator,
-            swapchains,
-        )
+                device,
+                create_infos.len() as _,
+                create_infos.as_ptr(),
+                allocator,
+                swapchains.as_mut_ptr(),
+            )
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 10;

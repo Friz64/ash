@@ -220,81 +220,94 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkInitializePerformanceApiINTEL
     #[inline]
     pub unsafe fn initialize_performance_api_intel(
         &self,
         device: crate::vk::Device,
-        initialize_info: *const crate::vk::InitializePerformanceApiInfoINTEL<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.initialize_performance_api_intel)(device, initialize_info)
+        initialize_info: &crate::vk::InitializePerformanceApiInfoINTEL<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.initialize_performance_api_intel)(device, initialize_info).result()
     }
+    ///vkUninitializePerformanceApiINTEL
     #[inline]
     pub unsafe fn uninitialize_performance_api_intel(&self, device: crate::vk::Device) {
         (self.fp.uninitialize_performance_api_intel)(device)
     }
+    ///vkCmdSetPerformanceMarkerINTEL
     #[inline]
     pub unsafe fn cmd_set_performance_marker_intel(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        marker_info: *const crate::vk::PerformanceMarkerInfoINTEL<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.cmd_set_performance_marker_intel)(command_buffer, marker_info)
+        marker_info: &crate::vk::PerformanceMarkerInfoINTEL<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.cmd_set_performance_marker_intel)(command_buffer, marker_info).result()
     }
+    ///vkCmdSetPerformanceStreamMarkerINTEL
     #[inline]
     pub unsafe fn cmd_set_performance_stream_marker_intel(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        marker_info: *const crate::vk::PerformanceStreamMarkerInfoINTEL<'_>,
-    ) -> crate::vk::Result {
+        marker_info: &crate::vk::PerformanceStreamMarkerInfoINTEL<'_>,
+    ) -> crate::VkResult<()> {
         (self.fp.cmd_set_performance_stream_marker_intel)(command_buffer, marker_info)
+            .result()
     }
+    ///vkCmdSetPerformanceOverrideINTEL
     #[inline]
     pub unsafe fn cmd_set_performance_override_intel(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        override_info: *const crate::vk::PerformanceOverrideInfoINTEL<'_>,
-    ) -> crate::vk::Result {
+        override_info: &crate::vk::PerformanceOverrideInfoINTEL<'_>,
+    ) -> crate::VkResult<()> {
         (self.fp.cmd_set_performance_override_intel)(command_buffer, override_info)
+            .result()
     }
+    ///vkAcquirePerformanceConfigurationINTEL
     #[inline]
     pub unsafe fn acquire_performance_configuration_intel(
         &self,
         device: crate::vk::Device,
-        acquire_info: *const crate::vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
-        configuration: *mut crate::vk::PerformanceConfigurationINTEL,
-    ) -> crate::vk::Result {
+        acquire_info: &crate::vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
+        configuration: &mut crate::vk::PerformanceConfigurationINTEL,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .acquire_performance_configuration_intel)(
-            device,
-            acquire_info,
-            configuration,
-        )
+                device,
+                acquire_info,
+                configuration,
+            )
+            .result()
     }
+    ///vkReleasePerformanceConfigurationINTEL
     #[inline]
     pub unsafe fn release_performance_configuration_intel(
         &self,
         device: crate::vk::Device,
         configuration: crate::vk::PerformanceConfigurationINTEL,
-    ) -> crate::vk::Result {
-        (self.fp.release_performance_configuration_intel)(device, configuration)
+    ) -> crate::VkResult<()> {
+        (self.fp.release_performance_configuration_intel)(device, configuration).result()
     }
+    ///vkQueueSetPerformanceConfigurationINTEL
     #[inline]
     pub unsafe fn queue_set_performance_configuration_intel(
         &self,
         queue: crate::vk::Queue,
         configuration: crate::vk::PerformanceConfigurationINTEL,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self.fp.queue_set_performance_configuration_intel)(queue, configuration)
+            .result()
     }
+    ///vkGetPerformanceParameterINTEL
     #[inline]
     pub unsafe fn get_performance_parameter_intel(
         &self,
         device: crate::vk::Device,
         parameter: crate::vk::PerformanceParameterTypeINTEL,
-        value: *mut crate::vk::PerformanceValueINTEL,
-    ) -> crate::vk::Result {
-        (self.fp.get_performance_parameter_intel)(device, parameter, value)
+        value: &mut crate::vk::PerformanceValueINTEL,
+    ) -> crate::VkResult<()> {
+        (self.fp.get_performance_parameter_intel)(device, parameter, value).result()
     }
 }
 pub const SPEC_VERSION: u32 = 2;

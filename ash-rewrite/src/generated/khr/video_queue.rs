@@ -200,29 +200,33 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceVideoCapabilitiesKHR
     #[inline]
     pub unsafe fn get_physical_device_video_capabilities_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        video_profile: *const crate::vk::VideoProfileInfoKHR<'_>,
-        capabilities: *mut crate::vk::VideoCapabilitiesKHR<'_>,
-    ) -> crate::vk::Result {
+        video_profile: &crate::vk::VideoProfileInfoKHR<'_>,
+        capabilities: &mut crate::vk::VideoCapabilitiesKHR<'_>,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_physical_device_video_capabilities_khr)(
-            physical_device,
-            video_profile,
-            capabilities,
-        )
+                physical_device,
+                video_profile,
+                capabilities,
+            )
+            .result()
     }
+    ///vkGetPhysicalDeviceVideoFormatPropertiesKHR
     #[inline]
     pub unsafe fn get_physical_device_video_format_properties_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        video_format_info: *const crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
-        video_format_property_count: *mut u32,
-        video_format_properties: *mut crate::vk::VideoFormatPropertiesKHR<'_>,
-    ) -> crate::vk::Result {
+        video_format_info: &crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
+    ) -> crate::VkResult<Vec<crate::vk::VideoFormatPropertiesKHR<'_>>> {
+        crate::read_into_uninitialized_vector(|
+            video_format_property_count,
+            video_format_properties|
         (self
             .fp
             .get_physical_device_video_format_properties_khr)(
@@ -230,7 +234,7 @@ impl Instance {
             video_format_info,
             video_format_property_count,
             video_format_properties,
-        )
+        ))
     }
 }
 #[derive(Clone)]
@@ -433,63 +437,71 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateVideoSessionKHR
     #[inline]
     pub unsafe fn create_video_session_khr(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::VideoSessionCreateInfoKHR<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        video_session: *mut crate::vk::VideoSessionKHR,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::VideoSessionCreateInfoKHR<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        video_session: &mut crate::vk::VideoSessionKHR,
+    ) -> crate::VkResult<()> {
         (self.fp.create_video_session_khr)(device, create_info, allocator, video_session)
+            .result()
     }
+    ///vkDestroyVideoSessionKHR
     #[inline]
     pub unsafe fn destroy_video_session_khr(
         &self,
         device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_video_session_khr)(device, video_session, allocator)
     }
+    ///vkCreateVideoSessionParametersKHR
     #[inline]
     pub unsafe fn create_video_session_parameters_khr(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        video_session_parameters: *mut crate::vk::VideoSessionParametersKHR,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        video_session_parameters: &mut crate::vk::VideoSessionParametersKHR,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_video_session_parameters_khr)(
-            device,
-            create_info,
-            allocator,
-            video_session_parameters,
-        )
+                device,
+                create_info,
+                allocator,
+                video_session_parameters,
+            )
+            .result()
     }
+    ///vkUpdateVideoSessionParametersKHR
     #[inline]
     pub unsafe fn update_video_session_parameters_khr(
         &self,
         device: crate::vk::Device,
         video_session_parameters: crate::vk::VideoSessionParametersKHR,
-        update_info: *const crate::vk::VideoSessionParametersUpdateInfoKHR<'_>,
-    ) -> crate::vk::Result {
+        update_info: &crate::vk::VideoSessionParametersUpdateInfoKHR<'_>,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .update_video_session_parameters_khr)(
-            device,
-            video_session_parameters,
-            update_info,
-        )
+                device,
+                video_session_parameters,
+                update_info,
+            )
+            .result()
     }
+    ///vkDestroyVideoSessionParametersKHR
     #[inline]
     pub unsafe fn destroy_video_session_parameters_khr(
         &self,
         device: crate::vk::Device,
         video_session_parameters: crate::vk::VideoSessionParametersKHR,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
@@ -499,14 +511,16 @@ impl Device {
             allocator,
         )
     }
+    ///vkGetVideoSessionMemoryRequirementsKHR
     #[inline]
     pub unsafe fn get_video_session_memory_requirements_khr(
         &self,
         device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
-        memory_requirements_count: *mut u32,
-        memory_requirements: *mut crate::vk::VideoSessionMemoryRequirementsKHR<'_>,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<Vec<crate::vk::VideoSessionMemoryRequirementsKHR<'_>>> {
+        crate::read_into_uninitialized_vector(|
+            memory_requirements_count,
+            memory_requirements|
         (self
             .fp
             .get_video_session_memory_requirements_khr)(
@@ -514,46 +528,50 @@ impl Device {
             video_session,
             memory_requirements_count,
             memory_requirements,
-        )
+        ))
     }
+    ///vkBindVideoSessionMemoryKHR
     #[inline]
     pub unsafe fn bind_video_session_memory_khr(
         &self,
         device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
-        bind_session_memory_info_count: u32,
-        bind_session_memory_infos: *const crate::vk::BindVideoSessionMemoryInfoKHR<'_>,
-    ) -> crate::vk::Result {
+        bind_session_memory_infos: &[crate::vk::BindVideoSessionMemoryInfoKHR<'_>],
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .bind_video_session_memory_khr)(
-            device,
-            video_session,
-            bind_session_memory_info_count,
-            bind_session_memory_infos,
-        )
+                device,
+                video_session,
+                bind_session_memory_infos.len() as _,
+                bind_session_memory_infos.as_ptr(),
+            )
+            .result()
     }
+    ///vkCmdBeginVideoCodingKHR
     #[inline]
     pub unsafe fn cmd_begin_video_coding_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        begin_info: *const crate::vk::VideoBeginCodingInfoKHR<'_>,
+        begin_info: &crate::vk::VideoBeginCodingInfoKHR<'_>,
     ) {
         (self.fp.cmd_begin_video_coding_khr)(command_buffer, begin_info)
     }
+    ///vkCmdControlVideoCodingKHR
     #[inline]
     pub unsafe fn cmd_control_video_coding_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        coding_control_info: *const crate::vk::VideoCodingControlInfoKHR<'_>,
+        coding_control_info: &crate::vk::VideoCodingControlInfoKHR<'_>,
     ) {
         (self.fp.cmd_control_video_coding_khr)(command_buffer, coding_control_info)
     }
+    ///vkCmdEndVideoCodingKHR
     #[inline]
     pub unsafe fn cmd_end_video_coding_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        end_coding_info: *const crate::vk::VideoEndCodingInfoKHR<'_>,
+        end_coding_info: &crate::vk::VideoEndCodingInfoKHR<'_>,
     ) {
         (self.fp.cmd_end_video_coding_khr)(command_buffer, end_coding_info)
     }

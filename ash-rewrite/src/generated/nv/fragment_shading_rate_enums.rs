@@ -89,12 +89,13 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetFragmentShadingRateEnumNV
     #[inline]
     pub unsafe fn cmd_set_fragment_shading_rate_enum_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         shading_rate: crate::vk::FragmentShadingRateNV,
-        combiner_ops: *const [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
+        combiner_ops: &[crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
     ) {
         (self
             .fp

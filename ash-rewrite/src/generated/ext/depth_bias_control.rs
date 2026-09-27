@@ -68,11 +68,12 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetDepthBias2EXT
     #[inline]
     pub unsafe fn cmd_set_depth_bias2_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        depth_bias_info: *const crate::vk::DepthBiasInfoEXT<'_>,
+        depth_bias_info: &crate::vk::DepthBiasInfoEXT<'_>,
     ) {
         (self.fp.cmd_set_depth_bias2_ext)(command_buffer, depth_bias_info)
     }

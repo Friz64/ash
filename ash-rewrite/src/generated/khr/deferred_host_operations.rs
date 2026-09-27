@@ -129,24 +129,28 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateDeferredOperationKHR
     #[inline]
     pub unsafe fn create_deferred_operation_khr(
         &self,
         device: crate::vk::Device,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        deferred_operation: *mut crate::vk::DeferredOperationKHR,
-    ) -> crate::vk::Result {
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        deferred_operation: &mut crate::vk::DeferredOperationKHR,
+    ) -> crate::VkResult<()> {
         (self.fp.create_deferred_operation_khr)(device, allocator, deferred_operation)
+            .result()
     }
+    ///vkDestroyDeferredOperationKHR
     #[inline]
     pub unsafe fn destroy_deferred_operation_khr(
         &self,
         device: crate::vk::Device,
         operation: crate::vk::DeferredOperationKHR,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_deferred_operation_khr)(device, operation, allocator)
     }
+    ///vkGetDeferredOperationMaxConcurrencyKHR
     #[inline]
     pub unsafe fn get_deferred_operation_max_concurrency_khr(
         &self,
@@ -155,21 +159,23 @@ impl Device {
     ) -> u32 {
         (self.fp.get_deferred_operation_max_concurrency_khr)(device, operation)
     }
+    ///vkGetDeferredOperationResultKHR
     #[inline]
     pub unsafe fn get_deferred_operation_result_khr(
         &self,
         device: crate::vk::Device,
         operation: crate::vk::DeferredOperationKHR,
-    ) -> crate::vk::Result {
-        (self.fp.get_deferred_operation_result_khr)(device, operation)
+    ) -> crate::VkResult<()> {
+        (self.fp.get_deferred_operation_result_khr)(device, operation).result()
     }
+    ///vkDeferredOperationJoinKHR
     #[inline]
     pub unsafe fn deferred_operation_join_khr(
         &self,
         device: crate::vk::Device,
         operation: crate::vk::DeferredOperationKHR,
-    ) -> crate::vk::Result {
-        (self.fp.deferred_operation_join_khr)(device, operation)
+    ) -> crate::VkResult<()> {
+        (self.fp.deferred_operation_join_khr)(device, operation).result()
     }
 }
 pub const SPEC_VERSION: u32 = 4;

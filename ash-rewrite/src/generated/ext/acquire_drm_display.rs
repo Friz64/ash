@@ -76,24 +76,27 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkAcquireDrmDisplayEXT
     #[inline]
     pub unsafe fn acquire_drm_display_ext(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         drm_fd: i32,
         display: crate::vk::DisplayKHR,
-    ) -> crate::vk::Result {
-        (self.fp.acquire_drm_display_ext)(physical_device, drm_fd, display)
+    ) -> crate::VkResult<()> {
+        (self.fp.acquire_drm_display_ext)(physical_device, drm_fd, display).result()
     }
+    ///vkGetDrmDisplayEXT
     #[inline]
     pub unsafe fn get_drm_display_ext(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         drm_fd: i32,
         connector_id: u32,
-        display: *mut crate::vk::DisplayKHR,
-    ) -> crate::vk::Result {
+        display: &mut crate::vk::DisplayKHR,
+    ) -> crate::VkResult<()> {
         (self.fp.get_drm_display_ext)(physical_device, drm_fd, connector_id, display)
+            .result()
     }
 }
 pub(crate) mod items {

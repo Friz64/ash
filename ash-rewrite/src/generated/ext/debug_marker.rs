@@ -121,30 +121,34 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkDebugMarkerSetObjectNameEXT
     #[inline]
     pub unsafe fn debug_marker_set_object_name_ext(
         &self,
         device: crate::vk::Device,
-        name_info: *const crate::vk::DebugMarkerObjectNameInfoEXT<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.debug_marker_set_object_name_ext)(device, name_info)
+        name_info: &crate::vk::DebugMarkerObjectNameInfoEXT<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.debug_marker_set_object_name_ext)(device, name_info).result()
     }
+    ///vkDebugMarkerSetObjectTagEXT
     #[inline]
     pub unsafe fn debug_marker_set_object_tag_ext(
         &self,
         device: crate::vk::Device,
-        tag_info: *const crate::vk::DebugMarkerObjectTagInfoEXT<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.debug_marker_set_object_tag_ext)(device, tag_info)
+        tag_info: &crate::vk::DebugMarkerObjectTagInfoEXT<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.debug_marker_set_object_tag_ext)(device, tag_info).result()
     }
+    ///vkCmdDebugMarkerBeginEXT
     #[inline]
     pub unsafe fn cmd_debug_marker_begin_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        marker_info: *const crate::vk::DebugMarkerMarkerInfoEXT<'_>,
+        marker_info: &crate::vk::DebugMarkerMarkerInfoEXT<'_>,
     ) {
         (self.fp.cmd_debug_marker_begin_ext)(command_buffer, marker_info)
     }
+    ///vkCmdDebugMarkerEndEXT
     #[inline]
     pub unsafe fn cmd_debug_marker_end_ext(
         &self,
@@ -152,11 +156,12 @@ impl Device {
     ) {
         (self.fp.cmd_debug_marker_end_ext)(command_buffer)
     }
+    ///vkCmdDebugMarkerInsertEXT
     #[inline]
     pub unsafe fn cmd_debug_marker_insert_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        marker_info: *const crate::vk::DebugMarkerMarkerInfoEXT<'_>,
+        marker_info: &crate::vk::DebugMarkerMarkerInfoEXT<'_>,
     ) {
         (self.fp.cmd_debug_marker_insert_ext)(command_buffer, marker_info)
     }

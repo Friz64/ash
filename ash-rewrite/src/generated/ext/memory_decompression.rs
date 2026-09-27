@@ -131,14 +131,16 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdDecompressMemoryEXT
     #[inline]
     pub unsafe fn cmd_decompress_memory_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        decompress_memory_info_ext: *const crate::vk::DecompressMemoryInfoEXT<'_>,
+        decompress_memory_info_ext: &crate::vk::DecompressMemoryInfoEXT<'_>,
     ) {
         (self.fp.cmd_decompress_memory_ext)(command_buffer, decompress_memory_info_ext)
     }
+    ///vkCmdDecompressMemoryIndirectCountEXT
     #[inline]
     pub unsafe fn cmd_decompress_memory_indirect_count_ext(
         &self,

@@ -116,67 +116,66 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceDisplayProperties2KHR
     #[inline]
     pub unsafe fn get_physical_device_display_properties2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        property_count: *mut u32,
-        properties: *mut crate::vk::DisplayProperties2KHR<'_>,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::DisplayProperties2KHR<'_>>> {
+        crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
             .get_physical_device_display_properties2_khr)(
             physical_device,
             property_count,
             properties,
-        )
+        ))
     }
+    ///vkGetPhysicalDeviceDisplayPlaneProperties2KHR
     #[inline]
     pub unsafe fn get_physical_device_display_plane_properties2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        property_count: *mut u32,
-        properties: *mut crate::vk::DisplayPlaneProperties2KHR<'_>,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::DisplayPlaneProperties2KHR<'_>>> {
+        crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
             .get_physical_device_display_plane_properties2_khr)(
             physical_device,
             property_count,
             properties,
-        )
+        ))
     }
+    ///vkGetDisplayModeProperties2KHR
     #[inline]
     pub unsafe fn get_display_mode_properties2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
-        property_count: *mut u32,
-        properties: *mut crate::vk::DisplayModeProperties2KHR<'_>,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::DisplayModeProperties2KHR<'_>>> {
+        crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
             .get_display_mode_properties2_khr)(
             physical_device,
             display,
             property_count,
             properties,
-        )
+        ))
     }
+    ///vkGetDisplayPlaneCapabilities2KHR
     #[inline]
     pub unsafe fn get_display_plane_capabilities2_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        display_plane_info: *const crate::vk::DisplayPlaneInfo2KHR<'_>,
-        capabilities: *mut crate::vk::DisplayPlaneCapabilities2KHR<'_>,
-    ) -> crate::vk::Result {
+        display_plane_info: &crate::vk::DisplayPlaneInfo2KHR<'_>,
+        capabilities: &mut crate::vk::DisplayPlaneCapabilities2KHR<'_>,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_display_plane_capabilities2_khr)(
-            physical_device,
-            display_plane_info,
-            capabilities,
-        )
+                physical_device,
+                display_plane_info,
+                capabilities,
+            )
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

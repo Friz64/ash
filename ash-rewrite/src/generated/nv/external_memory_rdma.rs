@@ -82,22 +82,22 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetMemoryRemoteAddressNV
     #[inline]
     pub unsafe fn get_memory_remote_address_nv(
         &self,
         device: crate::vk::Device,
-        memory_get_remote_address_info: *const crate::vk::MemoryGetRemoteAddressInfoNV<
-            '_,
-        >,
-        address: *mut crate::vk::RemoteAddressNV,
-    ) -> crate::vk::Result {
+        memory_get_remote_address_info: &crate::vk::MemoryGetRemoteAddressInfoNV<'_>,
+        address: &mut crate::vk::RemoteAddressNV,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_memory_remote_address_nv)(
-            device,
-            memory_get_remote_address_info,
-            address,
-        )
+                device,
+                memory_get_remote_address_info,
+                address,
+            )
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

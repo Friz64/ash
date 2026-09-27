@@ -142,11 +142,12 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdEndRendering2KHR
     #[inline]
     pub unsafe fn cmd_end_rendering2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        rendering_end_info: *const crate::vk::RenderingEndInfoKHR<'_>,
+        rendering_end_info: &crate::vk::RenderingEndInfoKHR<'_>,
     ) {
         (self.fp.cmd_end_rendering2_khr)(command_buffer, rendering_end_info)
     }

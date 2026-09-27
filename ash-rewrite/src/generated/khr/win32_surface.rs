@@ -79,16 +79,19 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkCreateWin32SurfaceKHR
     #[inline]
     pub unsafe fn create_win32_surface_khr(
         &self,
         instance: crate::vk::Instance,
-        create_info: *const crate::vk::Win32SurfaceCreateInfoKHR<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::Win32SurfaceCreateInfoKHR<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        surface: &mut crate::vk::SurfaceKHR,
+    ) -> crate::VkResult<()> {
         (self.fp.create_win32_surface_khr)(instance, create_info, allocator, surface)
+            .result()
     }
+    ///vkGetPhysicalDeviceWin32PresentationSupportKHR
     #[inline]
     pub unsafe fn get_physical_device_win32_presentation_support_khr(
         &self,

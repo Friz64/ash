@@ -79,37 +79,38 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetFramebufferTilePropertiesQCOM
     #[inline]
     pub unsafe fn get_framebuffer_tile_properties_qcom(
         &self,
         device: crate::vk::Device,
         framebuffer: crate::vk::Framebuffer,
-        properties_count: *mut u32,
-        properties: *mut crate::vk::TilePropertiesQCOM<'_>,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::TilePropertiesQCOM<'_>>> {
+        crate::read_into_uninitialized_vector(|properties_count, properties| (self
             .fp
             .get_framebuffer_tile_properties_qcom)(
             device,
             framebuffer,
             properties_count,
             properties,
-        )
+        ))
     }
+    ///vkGetDynamicRenderingTilePropertiesQCOM
     #[inline]
     pub unsafe fn get_dynamic_rendering_tile_properties_qcom(
         &self,
         device: crate::vk::Device,
-        rendering_info: *const crate::vk::RenderingInfo<'_>,
-        properties: *mut crate::vk::TilePropertiesQCOM<'_>,
-    ) -> crate::vk::Result {
+        rendering_info: &crate::vk::RenderingInfo<'_>,
+        properties: &mut crate::vk::TilePropertiesQCOM<'_>,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_dynamic_rendering_tile_properties_qcom)(
-            device,
-            rendering_info,
-            properties,
-        )
+                device,
+                rendering_info,
+                properties,
+            )
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

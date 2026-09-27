@@ -104,6 +104,7 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceExternalImageFormatPropertiesNV
     #[inline]
     pub unsafe fn get_physical_device_external_image_format_properties_nv(
         &self,
@@ -114,20 +115,21 @@ impl Instance {
         usage: crate::vk::ImageUsageFlags,
         flags: crate::vk::ImageCreateFlags,
         external_handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-        external_image_format_properties: *mut crate::vk::ExternalImageFormatPropertiesNV,
-    ) -> crate::vk::Result {
+        external_image_format_properties: &mut crate::vk::ExternalImageFormatPropertiesNV,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_physical_device_external_image_format_properties_nv)(
-            physical_device,
-            format,
-            _type,
-            tiling,
-            usage,
-            flags,
-            external_handle_type,
-            external_image_format_properties,
-        )
+                physical_device,
+                format,
+                _type,
+                tiling,
+                usage,
+                flags,
+                external_handle_type,
+                external_image_format_properties,
+            )
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

@@ -66,19 +66,19 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetColorWriteEnableEXT
     #[inline]
     pub unsafe fn cmd_set_color_write_enable_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        attachment_count: u32,
-        color_write_enables: *const crate::vk::Bool32,
+        color_write_enables: &[crate::vk::Bool32],
     ) {
         (self
             .fp
             .cmd_set_color_write_enable_ext)(
             command_buffer,
-            attachment_count,
-            color_write_enables,
+            color_write_enables.len() as _,
+            color_write_enables.as_ptr(),
         )
     }
 }

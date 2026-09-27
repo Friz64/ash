@@ -176,13 +176,14 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetImageSubresourceLayout2
     #[inline]
     pub unsafe fn get_image_subresource_layout2_ext(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
-        subresource: *const crate::vk::ImageSubresource2<'_>,
-        layout: *mut crate::vk::SubresourceLayout2<'_>,
+        subresource: &crate::vk::ImageSubresource2<'_>,
+        layout: &mut crate::vk::SubresourceLayout2<'_>,
     ) {
         (self.fp.get_image_subresource_layout2_ext)(device, image, subresource, layout)
     }

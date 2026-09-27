@@ -163,6 +163,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdBindShadingRateImageNV
     #[inline]
     pub unsafe fn cmd_bind_shading_rate_image_nv(
         &self,
@@ -174,38 +175,38 @@ impl Device {
             .fp
             .cmd_bind_shading_rate_image_nv)(command_buffer, image_view, image_layout)
     }
+    ///vkCmdSetViewportShadingRatePaletteNV
     #[inline]
     pub unsafe fn cmd_set_viewport_shading_rate_palette_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_viewport: u32,
-        viewport_count: u32,
-        shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV<'_>,
+        shading_rate_palettes: &[crate::vk::ShadingRatePaletteNV<'_>],
     ) {
         (self
             .fp
             .cmd_set_viewport_shading_rate_palette_nv)(
             command_buffer,
             first_viewport,
-            viewport_count,
-            shading_rate_palettes,
+            shading_rate_palettes.len() as _,
+            shading_rate_palettes.as_ptr(),
         )
     }
+    ///vkCmdSetCoarseSampleOrderNV
     #[inline]
     pub unsafe fn cmd_set_coarse_sample_order_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
-        custom_sample_order_count: u32,
-        custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'_>,
+        custom_sample_orders: &[crate::vk::CoarseSampleOrderCustomNV<'_>],
     ) {
         (self
             .fp
             .cmd_set_coarse_sample_order_nv)(
             command_buffer,
             sample_order_type,
-            custom_sample_order_count,
-            custom_sample_orders,
+            custom_sample_orders.len() as _,
+            custom_sample_orders.as_ptr(),
         )
     }
 }

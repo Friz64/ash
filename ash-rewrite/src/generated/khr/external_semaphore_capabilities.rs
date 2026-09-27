@@ -104,14 +104,13 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceExternalSemaphoreProperties
     #[inline]
     pub unsafe fn get_physical_device_external_semaphore_properties_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        external_semaphore_info: *const crate::vk::PhysicalDeviceExternalSemaphoreInfo<
-            '_,
-        >,
-        external_semaphore_properties: *mut crate::vk::ExternalSemaphoreProperties<'_>,
+        external_semaphore_info: &crate::vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
+        external_semaphore_properties: &mut crate::vk::ExternalSemaphoreProperties<'_>,
     ) {
         (self
             .fp

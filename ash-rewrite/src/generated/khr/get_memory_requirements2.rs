@@ -98,32 +98,36 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetBufferMemoryRequirements2
     #[inline]
     pub unsafe fn get_buffer_memory_requirements2_khr(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::BufferMemoryRequirementsInfo2<'_>,
-        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        info: &crate::vk::BufferMemoryRequirementsInfo2<'_>,
+        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self.fp.get_buffer_memory_requirements2_khr)(device, info, memory_requirements)
     }
+    ///vkGetImageMemoryRequirements2
     #[inline]
     pub unsafe fn get_image_memory_requirements2_khr(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::ImageMemoryRequirementsInfo2<'_>,
-        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        info: &crate::vk::ImageMemoryRequirementsInfo2<'_>,
+        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self.fp.get_image_memory_requirements2_khr)(device, info, memory_requirements)
     }
+    ///vkGetImageSparseMemoryRequirements2
     #[inline]
     pub unsafe fn get_image_sparse_memory_requirements2_khr(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
-        sparse_memory_requirement_count: *mut u32,
-        sparse_memory_requirements: *mut crate::vk::SparseImageMemoryRequirements2<'_>,
-    ) {
+        info: &crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
+    ) -> crate::VkResult<Vec<crate::vk::SparseImageMemoryRequirements2<'_>>> {
+        crate::read_into_uninitialized_vector(|
+            sparse_memory_requirement_count,
+            sparse_memory_requirements|
         (self
             .fp
             .get_image_sparse_memory_requirements2_khr)(
@@ -131,7 +135,7 @@ impl Device {
             info,
             sparse_memory_requirement_count,
             sparse_memory_requirements,
-        )
+        ))
     }
 }
 pub const SPEC_VERSION: u32 = 1;

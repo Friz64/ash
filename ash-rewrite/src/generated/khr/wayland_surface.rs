@@ -80,22 +80,25 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkCreateWaylandSurfaceKHR
     #[inline]
     pub unsafe fn create_wayland_surface_khr(
         &self,
         instance: crate::vk::Instance,
-        create_info: *const crate::vk::WaylandSurfaceCreateInfoKHR<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::WaylandSurfaceCreateInfoKHR<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        surface: &mut crate::vk::SurfaceKHR,
+    ) -> crate::VkResult<()> {
         (self.fp.create_wayland_surface_khr)(instance, create_info, allocator, surface)
+            .result()
     }
+    ///vkGetPhysicalDeviceWaylandPresentationSupportKHR
     #[inline]
     pub unsafe fn get_physical_device_wayland_presentation_support_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-        display: *mut crate::platform_types::wl_display,
+        display: &mut crate::platform_types::wl_display,
     ) -> crate::vk::Bool32 {
         (self
             .fp

@@ -1243,30 +1243,28 @@ impl crate::Entry {
     pub fn fp_v1_0(&self) -> &crate::EntryFnV1_0 {
         &self.entry_fn_1_0
     }
+    ///vkEnumerateInstanceLayerProperties
     #[inline]
     pub unsafe fn enumerate_instance_layer_properties(
         &self,
-        property_count: *mut u32,
-        properties: *mut crate::vk::LayerProperties,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::LayerProperties>> {
+        crate::read_into_uninitialized_vector(|property_count, properties| (self
             .entry_fn_1_0
-            .enumerate_instance_layer_properties)(property_count, properties)
+            .enumerate_instance_layer_properties)(property_count, properties))
     }
+    ///vkEnumerateInstanceExtensionProperties
     #[inline]
     pub unsafe fn enumerate_instance_extension_properties(
         &self,
         layer_name: Option<&core::ffi::CStr>,
-        property_count: *mut u32,
-        properties: *mut crate::vk::ExtensionProperties,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::ExtensionProperties>> {
+        crate::read_into_uninitialized_vector(|property_count, properties| (self
             .entry_fn_1_0
             .enumerate_instance_extension_properties)(
             layer_name.map_or(core::ptr::null(), |s| s.as_ptr()),
             property_count,
             properties,
-        )
+        ))
     }
 }
 #[derive(Clone)]
@@ -1505,78 +1503,84 @@ impl crate::Instance {
     pub fn fp_v1_0(&self) -> &crate::InstanceFnV1_0 {
         &self.instance_fn_1_0
     }
+    ///vkDestroyInstance
     #[inline]
     pub unsafe fn destroy_instance(
         &self,
         instance: crate::vk::Instance,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.instance_fn_1_0.destroy_instance)(instance, allocator)
     }
+    ///vkEnumeratePhysicalDevices
     #[inline]
     pub unsafe fn enumerate_physical_devices(
         &self,
         instance: crate::vk::Instance,
-        physical_device_count: *mut u32,
-        physical_devices: *mut crate::vk::PhysicalDevice,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::PhysicalDevice>> {
+        crate::read_into_uninitialized_vector(|physical_device_count, physical_devices| (self
             .instance_fn_1_0
             .enumerate_physical_devices)(
             instance,
             physical_device_count,
             physical_devices,
-        )
+        ))
     }
+    ///vkGetPhysicalDeviceProperties
     #[inline]
     pub unsafe fn get_physical_device_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        properties: *mut crate::vk::PhysicalDeviceProperties,
+        properties: &mut crate::vk::PhysicalDeviceProperties,
     ) {
         (self
             .instance_fn_1_0
             .get_physical_device_properties)(physical_device, properties)
     }
+    ///vkGetPhysicalDeviceQueueFamilyProperties
     #[inline]
     pub unsafe fn get_physical_device_queue_family_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        queue_family_property_count: *mut u32,
-        queue_family_properties: *mut crate::vk::QueueFamilyProperties,
-    ) {
+    ) -> crate::VkResult<Vec<crate::vk::QueueFamilyProperties>> {
+        crate::read_into_uninitialized_vector(|
+            queue_family_property_count,
+            queue_family_properties|
         (self
             .instance_fn_1_0
             .get_physical_device_queue_family_properties)(
             physical_device,
             queue_family_property_count,
             queue_family_properties,
-        )
+        ))
     }
+    ///vkGetPhysicalDeviceMemoryProperties
     #[inline]
     pub unsafe fn get_physical_device_memory_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        memory_properties: *mut crate::vk::PhysicalDeviceMemoryProperties,
+        memory_properties: &mut crate::vk::PhysicalDeviceMemoryProperties,
     ) {
         (self
             .instance_fn_1_0
             .get_physical_device_memory_properties)(physical_device, memory_properties)
     }
+    ///vkGetPhysicalDeviceFeatures
     #[inline]
     pub unsafe fn get_physical_device_features(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        features: *mut crate::vk::PhysicalDeviceFeatures,
+        features: &mut crate::vk::PhysicalDeviceFeatures,
     ) {
         (self.instance_fn_1_0.get_physical_device_features)(physical_device, features)
     }
+    ///vkGetPhysicalDeviceFormatProperties
     #[inline]
     pub unsafe fn get_physical_device_format_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
-        format_properties: *mut crate::vk::FormatProperties,
+        format_properties: &mut crate::vk::FormatProperties,
     ) {
         (self
             .instance_fn_1_0
@@ -1586,6 +1590,7 @@ impl crate::Instance {
             format_properties,
         )
     }
+    ///vkGetPhysicalDeviceImageFormatProperties
     #[inline]
     pub unsafe fn get_physical_device_image_format_properties(
         &self,
@@ -1595,52 +1600,52 @@ impl crate::Instance {
         tiling: crate::vk::ImageTiling,
         usage: crate::vk::ImageUsageFlags,
         flags: crate::vk::ImageCreateFlags,
-        image_format_properties: *mut crate::vk::ImageFormatProperties,
-    ) -> crate::vk::Result {
+        image_format_properties: &mut crate::vk::ImageFormatProperties,
+    ) -> crate::VkResult<()> {
         (self
             .instance_fn_1_0
             .get_physical_device_image_format_properties)(
-            physical_device,
-            format,
-            _type,
-            tiling,
-            usage,
-            flags,
-            image_format_properties,
-        )
+                physical_device,
+                format,
+                _type,
+                tiling,
+                usage,
+                flags,
+                image_format_properties,
+            )
+            .result()
     }
+    ///vkEnumerateDeviceLayerProperties
     #[inline]
     pub unsafe fn enumerate_device_layer_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        property_count: *mut u32,
-        properties: *mut crate::vk::LayerProperties,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::LayerProperties>> {
+        crate::read_into_uninitialized_vector(|property_count, properties| (self
             .instance_fn_1_0
             .enumerate_device_layer_properties)(
             physical_device,
             property_count,
             properties,
-        )
+        ))
     }
+    ///vkEnumerateDeviceExtensionProperties
     #[inline]
     pub unsafe fn enumerate_device_extension_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         layer_name: Option<&core::ffi::CStr>,
-        property_count: *mut u32,
-        properties: *mut crate::vk::ExtensionProperties,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::ExtensionProperties>> {
+        crate::read_into_uninitialized_vector(|property_count, properties| (self
             .instance_fn_1_0
             .enumerate_device_extension_properties)(
             physical_device,
             layer_name.map_or(core::ptr::null(), |s| s.as_ptr()),
             property_count,
             properties,
-        )
+        ))
     }
+    ///vkGetPhysicalDeviceSparseImageFormatProperties
     #[inline]
     pub unsafe fn get_physical_device_sparse_image_format_properties(
         &self,
@@ -1650,10 +1655,8 @@ impl crate::Instance {
         samples: crate::vk::SampleCountFlagBits,
         usage: crate::vk::ImageUsageFlags,
         tiling: crate::vk::ImageTiling,
-        property_count: *mut u32,
-        properties: *mut crate::vk::SparseImageFormatProperties,
-    ) {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::SparseImageFormatProperties>> {
+        crate::read_into_uninitialized_vector(|property_count, properties| (self
             .instance_fn_1_0
             .get_physical_device_sparse_image_format_properties)(
             physical_device,
@@ -1664,7 +1667,7 @@ impl crate::Instance {
             tiling,
             property_count,
             properties,
-        )
+        ))
     }
 }
 #[derive(Clone)]
@@ -3622,66 +3625,80 @@ impl crate::Device {
     pub fn fp_v1_0(&self) -> &crate::DeviceFnV1_0 {
         &self.device_fn_1_0
     }
+    ///vkDestroyDevice
     #[inline]
     pub unsafe fn destroy_device(
         &self,
         device: crate::vk::Device,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_device)(device, allocator)
     }
+    ///vkGetDeviceQueue
     #[inline]
     pub unsafe fn get_device_queue(
         &self,
         device: crate::vk::Device,
         queue_family_index: u32,
         queue_index: u32,
-        queue: *mut crate::vk::Queue,
+        queue: &mut crate::vk::Queue,
     ) {
         (self
             .device_fn_1_0
             .get_device_queue)(device, queue_family_index, queue_index, queue)
     }
+    ///vkQueueSubmit
     #[inline]
     pub unsafe fn queue_submit(
         &self,
         queue: crate::vk::Queue,
-        submit_count: u32,
-        submits: *const crate::vk::SubmitInfo<'_>,
+        submits: &[crate::vk::SubmitInfo<'_>],
         fence: crate::vk::Fence,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.queue_submit)(queue, submit_count, submits, fence)
+    ) -> crate::VkResult<()> {
+        (self
+            .device_fn_1_0
+            .queue_submit)(queue, submits.len() as _, submits.as_ptr(), fence)
+            .result()
     }
+    ///vkQueueWaitIdle
     #[inline]
-    pub unsafe fn queue_wait_idle(&self, queue: crate::vk::Queue) -> crate::vk::Result {
-        (self.device_fn_1_0.queue_wait_idle)(queue)
+    pub unsafe fn queue_wait_idle(
+        &self,
+        queue: crate::vk::Queue,
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.queue_wait_idle)(queue).result()
     }
+    ///vkDeviceWaitIdle
     #[inline]
     pub unsafe fn device_wait_idle(
         &self,
         device: crate::vk::Device,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.device_wait_idle)(device)
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.device_wait_idle)(device).result()
     }
+    ///vkAllocateMemory
     #[inline]
     pub unsafe fn allocate_memory(
         &self,
         device: crate::vk::Device,
-        allocate_info: *const crate::vk::MemoryAllocateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        memory: *mut crate::vk::DeviceMemory,
-    ) -> crate::vk::Result {
+        allocate_info: &crate::vk::MemoryAllocateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        memory: &mut crate::vk::DeviceMemory,
+    ) -> crate::VkResult<()> {
         (self.device_fn_1_0.allocate_memory)(device, allocate_info, allocator, memory)
+            .result()
     }
+    ///vkFreeMemory
     #[inline]
     pub unsafe fn free_memory(
         &self,
         device: crate::vk::Device,
         memory: crate::vk::DeviceMemory,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.free_memory)(device, memory, allocator)
     }
+    ///vkMapMemory
     #[inline]
     pub unsafe fn map_memory(
         &self,
@@ -3690,10 +3707,12 @@ impl crate::Device {
         offset: crate::vk::DeviceSize,
         size: crate::vk::DeviceSize,
         flags: crate::vk::MemoryMapFlags,
-        data: *mut *mut core::ffi::c_void,
-    ) -> crate::vk::Result {
+        data: &mut *mut core::ffi::c_void,
+    ) -> crate::VkResult<()> {
         (self.device_fn_1_0.map_memory)(device, memory, offset, size, flags, data)
+            .result()
     }
+    ///vkUnmapMemory
     #[inline]
     pub unsafe fn unmap_memory(
         &self,
@@ -3702,50 +3721,63 @@ impl crate::Device {
     ) {
         (self.device_fn_1_0.unmap_memory)(device, memory)
     }
+    ///vkFlushMappedMemoryRanges
     #[inline]
     pub unsafe fn flush_mapped_memory_ranges(
         &self,
         device: crate::vk::Device,
-        memory_range_count: u32,
-        memory_ranges: *const crate::vk::MappedMemoryRange<'_>,
-    ) -> crate::vk::Result {
+        memory_ranges: &[crate::vk::MappedMemoryRange<'_>],
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
-            .flush_mapped_memory_ranges)(device, memory_range_count, memory_ranges)
+            .flush_mapped_memory_ranges)(
+                device,
+                memory_ranges.len() as _,
+                memory_ranges.as_ptr(),
+            )
+            .result()
     }
+    ///vkInvalidateMappedMemoryRanges
     #[inline]
     pub unsafe fn invalidate_mapped_memory_ranges(
         &self,
         device: crate::vk::Device,
-        memory_range_count: u32,
-        memory_ranges: *const crate::vk::MappedMemoryRange<'_>,
-    ) -> crate::vk::Result {
+        memory_ranges: &[crate::vk::MappedMemoryRange<'_>],
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
-            .invalidate_mapped_memory_ranges)(device, memory_range_count, memory_ranges)
+            .invalidate_mapped_memory_ranges)(
+                device,
+                memory_ranges.len() as _,
+                memory_ranges.as_ptr(),
+            )
+            .result()
     }
+    ///vkGetDeviceMemoryCommitment
     #[inline]
     pub unsafe fn get_device_memory_commitment(
         &self,
         device: crate::vk::Device,
         memory: crate::vk::DeviceMemory,
-        committed_memory_in_bytes: *mut crate::vk::DeviceSize,
+        committed_memory_in_bytes: &mut crate::vk::DeviceSize,
     ) {
         (self
             .device_fn_1_0
             .get_device_memory_commitment)(device, memory, committed_memory_in_bytes)
     }
+    ///vkGetBufferMemoryRequirements
     #[inline]
     pub unsafe fn get_buffer_memory_requirements(
         &self,
         device: crate::vk::Device,
         buffer: crate::vk::Buffer,
-        memory_requirements: *mut crate::vk::MemoryRequirements,
+        memory_requirements: &mut crate::vk::MemoryRequirements,
     ) {
         (self
             .device_fn_1_0
             .get_buffer_memory_requirements)(device, buffer, memory_requirements)
     }
+    ///vkBindBufferMemory
     #[inline]
     pub unsafe fn bind_buffer_memory(
         &self,
@@ -3753,20 +3785,23 @@ impl crate::Device {
         buffer: crate::vk::Buffer,
         memory: crate::vk::DeviceMemory,
         memory_offset: crate::vk::DeviceSize,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self.device_fn_1_0.bind_buffer_memory)(device, buffer, memory, memory_offset)
+            .result()
     }
+    ///vkGetImageMemoryRequirements
     #[inline]
     pub unsafe fn get_image_memory_requirements(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
-        memory_requirements: *mut crate::vk::MemoryRequirements,
+        memory_requirements: &mut crate::vk::MemoryRequirements,
     ) {
         (self
             .device_fn_1_0
             .get_image_memory_requirements)(device, image, memory_requirements)
     }
+    ///vkBindImageMemory
     #[inline]
     pub unsafe fn bind_image_memory(
         &self,
@@ -3774,17 +3809,20 @@ impl crate::Device {
         image: crate::vk::Image,
         memory: crate::vk::DeviceMemory,
         memory_offset: crate::vk::DeviceSize,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self.device_fn_1_0.bind_image_memory)(device, image, memory, memory_offset)
+            .result()
     }
+    ///vkGetImageSparseMemoryRequirements
     #[inline]
     pub unsafe fn get_image_sparse_memory_requirements(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
-        sparse_memory_requirement_count: *mut u32,
-        sparse_memory_requirements: *mut crate::vk::SparseImageMemoryRequirements,
-    ) {
+    ) -> crate::VkResult<Vec<crate::vk::SparseImageMemoryRequirements>> {
+        crate::read_into_uninitialized_vector(|
+            sparse_memory_requirement_count,
+            sparse_memory_requirements|
         (self
             .device_fn_1_0
             .get_image_sparse_memory_requirements)(
@@ -3792,150 +3830,176 @@ impl crate::Device {
             image,
             sparse_memory_requirement_count,
             sparse_memory_requirements,
-        )
+        ))
     }
+    ///vkQueueBindSparse
     #[inline]
     pub unsafe fn queue_bind_sparse(
         &self,
         queue: crate::vk::Queue,
-        bind_info_count: u32,
-        bind_info: *const crate::vk::BindSparseInfo<'_>,
+        bind_info: &[crate::vk::BindSparseInfo<'_>],
         fence: crate::vk::Fence,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.queue_bind_sparse)(queue, bind_info_count, bind_info, fence)
+    ) -> crate::VkResult<()> {
+        (self
+            .device_fn_1_0
+            .queue_bind_sparse)(queue, bind_info.len() as _, bind_info.as_ptr(), fence)
+            .result()
     }
+    ///vkCreateFence
     #[inline]
     pub unsafe fn create_fence(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::FenceCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        fence: *mut crate::vk::Fence,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.create_fence)(device, create_info, allocator, fence)
+        create_info: &crate::vk::FenceCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        fence: &mut crate::vk::Fence,
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.create_fence)(device, create_info, allocator, fence).result()
     }
+    ///vkDestroyFence
     #[inline]
     pub unsafe fn destroy_fence(
         &self,
         device: crate::vk::Device,
         fence: crate::vk::Fence,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_fence)(device, fence, allocator)
     }
+    ///vkResetFences
     #[inline]
     pub unsafe fn reset_fences(
         &self,
         device: crate::vk::Device,
-        fence_count: u32,
-        fences: *const crate::vk::Fence,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.reset_fences)(device, fence_count, fences)
+        fences: &[crate::vk::Fence],
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.reset_fences)(device, fences.len() as _, fences.as_ptr())
+            .result()
     }
+    ///vkGetFenceStatus
     #[inline]
     pub unsafe fn get_fence_status(
         &self,
         device: crate::vk::Device,
         fence: crate::vk::Fence,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.get_fence_status)(device, fence)
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.get_fence_status)(device, fence).result()
     }
+    ///vkWaitForFences
     #[inline]
     pub unsafe fn wait_for_fences(
         &self,
         device: crate::vk::Device,
-        fence_count: u32,
-        fences: *const crate::vk::Fence,
+        fences: &[crate::vk::Fence],
         wait_all: crate::vk::Bool32,
         timeout: u64,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
-            .wait_for_fences)(device, fence_count, fences, wait_all, timeout)
+            .wait_for_fences)(
+                device,
+                fences.len() as _,
+                fences.as_ptr(),
+                wait_all,
+                timeout,
+            )
+            .result()
     }
+    ///vkCreateSemaphore
     #[inline]
     pub unsafe fn create_semaphore(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::SemaphoreCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        semaphore: *mut crate::vk::Semaphore,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::SemaphoreCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        semaphore: &mut crate::vk::Semaphore,
+    ) -> crate::VkResult<()> {
         (self.device_fn_1_0.create_semaphore)(device, create_info, allocator, semaphore)
+            .result()
     }
+    ///vkDestroySemaphore
     #[inline]
     pub unsafe fn destroy_semaphore(
         &self,
         device: crate::vk::Device,
         semaphore: crate::vk::Semaphore,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_semaphore)(device, semaphore, allocator)
     }
+    ///vkCreateEvent
     #[inline]
     pub unsafe fn create_event(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::EventCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        event: *mut crate::vk::Event,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.create_event)(device, create_info, allocator, event)
+        create_info: &crate::vk::EventCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        event: &mut crate::vk::Event,
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.create_event)(device, create_info, allocator, event).result()
     }
+    ///vkDestroyEvent
     #[inline]
     pub unsafe fn destroy_event(
         &self,
         device: crate::vk::Device,
         event: crate::vk::Event,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_event)(device, event, allocator)
     }
+    ///vkGetEventStatus
     #[inline]
     pub unsafe fn get_event_status(
         &self,
         device: crate::vk::Device,
         event: crate::vk::Event,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.get_event_status)(device, event)
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.get_event_status)(device, event).result()
     }
+    ///vkSetEvent
     #[inline]
     pub unsafe fn set_event(
         &self,
         device: crate::vk::Device,
         event: crate::vk::Event,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.set_event)(device, event)
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.set_event)(device, event).result()
     }
+    ///vkResetEvent
     #[inline]
     pub unsafe fn reset_event(
         &self,
         device: crate::vk::Device,
         event: crate::vk::Event,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.reset_event)(device, event)
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.reset_event)(device, event).result()
     }
+    ///vkCreateQueryPool
     #[inline]
     pub unsafe fn create_query_pool(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::QueryPoolCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        query_pool: *mut crate::vk::QueryPool,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::QueryPoolCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        query_pool: &mut crate::vk::QueryPool,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .create_query_pool)(device, create_info, allocator, query_pool)
+            .result()
     }
+    ///vkDestroyQueryPool
     #[inline]
     pub unsafe fn destroy_query_pool(
         &self,
         device: crate::vk::Device,
         query_pool: crate::vk::QueryPool,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_query_pool)(device, query_pool, allocator)
     }
+    ///vkGetQueryPoolResults
     #[inline]
     pub unsafe fn get_query_pool_results(
         &self,
@@ -3943,503 +4007,562 @@ impl crate::Device {
         query_pool: crate::vk::QueryPool,
         first_query: u32,
         query_count: u32,
-        data_size: usize,
-        data: *mut core::ffi::c_void,
+        data: &mut [core::ffi::c_void],
         stride: crate::vk::DeviceSize,
         flags: crate::vk::QueryResultFlags,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .get_query_pool_results)(
-            device,
-            query_pool,
-            first_query,
-            query_count,
-            data_size,
-            data,
-            stride,
-            flags,
-        )
+                device,
+                query_pool,
+                first_query,
+                query_count,
+                data_size,
+                data.as_mut_ptr(),
+                stride,
+                flags,
+            )
+            .result()
     }
+    ///vkCreateBuffer
     #[inline]
     pub unsafe fn create_buffer(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::BufferCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        buffer: *mut crate::vk::Buffer,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::BufferCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        buffer: &mut crate::vk::Buffer,
+    ) -> crate::VkResult<()> {
         (self.device_fn_1_0.create_buffer)(device, create_info, allocator, buffer)
+            .result()
     }
+    ///vkDestroyBuffer
     #[inline]
     pub unsafe fn destroy_buffer(
         &self,
         device: crate::vk::Device,
         buffer: crate::vk::Buffer,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_buffer)(device, buffer, allocator)
     }
+    ///vkCreateBufferView
     #[inline]
     pub unsafe fn create_buffer_view(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::BufferViewCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        view: *mut crate::vk::BufferView,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::BufferViewCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        view: &mut crate::vk::BufferView,
+    ) -> crate::VkResult<()> {
         (self.device_fn_1_0.create_buffer_view)(device, create_info, allocator, view)
+            .result()
     }
+    ///vkDestroyBufferView
     #[inline]
     pub unsafe fn destroy_buffer_view(
         &self,
         device: crate::vk::Device,
         buffer_view: crate::vk::BufferView,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_buffer_view)(device, buffer_view, allocator)
     }
+    ///vkCreateImage
     #[inline]
     pub unsafe fn create_image(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::ImageCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        image: *mut crate::vk::Image,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.create_image)(device, create_info, allocator, image)
+        create_info: &crate::vk::ImageCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        image: &mut crate::vk::Image,
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.create_image)(device, create_info, allocator, image).result()
     }
+    ///vkDestroyImage
     #[inline]
     pub unsafe fn destroy_image(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_image)(device, image, allocator)
     }
+    ///vkGetImageSubresourceLayout
     #[inline]
     pub unsafe fn get_image_subresource_layout(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
-        subresource: *const crate::vk::ImageSubresource,
-        layout: *mut crate::vk::SubresourceLayout,
+        subresource: &crate::vk::ImageSubresource,
+        layout: &mut crate::vk::SubresourceLayout,
     ) {
         (self
             .device_fn_1_0
             .get_image_subresource_layout)(device, image, subresource, layout)
     }
+    ///vkCreateImageView
     #[inline]
     pub unsafe fn create_image_view(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::ImageViewCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        view: *mut crate::vk::ImageView,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::ImageViewCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        view: &mut crate::vk::ImageView,
+    ) -> crate::VkResult<()> {
         (self.device_fn_1_0.create_image_view)(device, create_info, allocator, view)
+            .result()
     }
+    ///vkDestroyImageView
     #[inline]
     pub unsafe fn destroy_image_view(
         &self,
         device: crate::vk::Device,
         image_view: crate::vk::ImageView,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_image_view)(device, image_view, allocator)
     }
+    ///vkCreateShaderModule
     #[inline]
     pub unsafe fn create_shader_module(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::ShaderModuleCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        shader_module: *mut crate::vk::ShaderModule,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::ShaderModuleCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        shader_module: &mut crate::vk::ShaderModule,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .create_shader_module)(device, create_info, allocator, shader_module)
+            .result()
     }
+    ///vkDestroyShaderModule
     #[inline]
     pub unsafe fn destroy_shader_module(
         &self,
         device: crate::vk::Device,
         shader_module: crate::vk::ShaderModule,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_shader_module)(device, shader_module, allocator)
     }
+    ///vkCreatePipelineCache
     #[inline]
     pub unsafe fn create_pipeline_cache(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::PipelineCacheCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        pipeline_cache: *mut crate::vk::PipelineCache,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::PipelineCacheCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        pipeline_cache: &mut crate::vk::PipelineCache,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .create_pipeline_cache)(device, create_info, allocator, pipeline_cache)
+            .result()
     }
+    ///vkDestroyPipelineCache
     #[inline]
     pub unsafe fn destroy_pipeline_cache(
         &self,
         device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_pipeline_cache)(device, pipeline_cache, allocator)
     }
+    ///vkGetPipelineCacheData
     #[inline]
     pub unsafe fn get_pipeline_cache_data(
         &self,
         device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
-        data_size: *mut usize,
-        data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<core::ffi::c_void>> {
+        crate::read_into_uninitialized_vector(|data_size, data| (self
             .device_fn_1_0
-            .get_pipeline_cache_data)(device, pipeline_cache, data_size, data)
+            .get_pipeline_cache_data)(device, pipeline_cache, data_size, data))
     }
+    ///vkMergePipelineCaches
     #[inline]
     pub unsafe fn merge_pipeline_caches(
         &self,
         device: crate::vk::Device,
         dst_cache: crate::vk::PipelineCache,
-        src_cache_count: u32,
-        src_caches: *const crate::vk::PipelineCache,
-    ) -> crate::vk::Result {
+        src_caches: &[crate::vk::PipelineCache],
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
-            .merge_pipeline_caches)(device, dst_cache, src_cache_count, src_caches)
+            .merge_pipeline_caches)(
+                device,
+                dst_cache,
+                src_caches.len() as _,
+                src_caches.as_ptr(),
+            )
+            .result()
     }
+    ///vkCreateGraphicsPipelines
     #[inline]
     pub unsafe fn create_graphics_pipelines(
         &self,
         device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
-        create_info_count: u32,
-        create_infos: *const crate::vk::GraphicsPipelineCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        pipelines: *mut crate::vk::Pipeline,
-    ) -> crate::vk::Result {
+        create_infos: &[crate::vk::GraphicsPipelineCreateInfo<'_>],
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        pipelines: &mut [crate::vk::Pipeline],
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .create_graphics_pipelines)(
-            device,
-            pipeline_cache,
-            create_info_count,
-            create_infos,
-            allocator,
-            pipelines,
-        )
+                device,
+                pipeline_cache,
+                create_infos.len() as _,
+                create_infos.as_ptr(),
+                allocator,
+                pipelines.as_mut_ptr(),
+            )
+            .result()
     }
+    ///vkCreateComputePipelines
     #[inline]
     pub unsafe fn create_compute_pipelines(
         &self,
         device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
-        create_info_count: u32,
-        create_infos: *const crate::vk::ComputePipelineCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        pipelines: *mut crate::vk::Pipeline,
-    ) -> crate::vk::Result {
+        create_infos: &[crate::vk::ComputePipelineCreateInfo<'_>],
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        pipelines: &mut [crate::vk::Pipeline],
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .create_compute_pipelines)(
-            device,
-            pipeline_cache,
-            create_info_count,
-            create_infos,
-            allocator,
-            pipelines,
-        )
+                device,
+                pipeline_cache,
+                create_infos.len() as _,
+                create_infos.as_ptr(),
+                allocator,
+                pipelines.as_mut_ptr(),
+            )
+            .result()
     }
+    ///vkDestroyPipeline
     #[inline]
     pub unsafe fn destroy_pipeline(
         &self,
         device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_pipeline)(device, pipeline, allocator)
     }
+    ///vkCreatePipelineLayout
     #[inline]
     pub unsafe fn create_pipeline_layout(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::PipelineLayoutCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        pipeline_layout: *mut crate::vk::PipelineLayout,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::PipelineLayoutCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        pipeline_layout: &mut crate::vk::PipelineLayout,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .create_pipeline_layout)(device, create_info, allocator, pipeline_layout)
+            .result()
     }
+    ///vkDestroyPipelineLayout
     #[inline]
     pub unsafe fn destroy_pipeline_layout(
         &self,
         device: crate::vk::Device,
         pipeline_layout: crate::vk::PipelineLayout,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_pipeline_layout)(device, pipeline_layout, allocator)
     }
+    ///vkCreateSampler
     #[inline]
     pub unsafe fn create_sampler(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::SamplerCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        sampler: *mut crate::vk::Sampler,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::SamplerCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        sampler: &mut crate::vk::Sampler,
+    ) -> crate::VkResult<()> {
         (self.device_fn_1_0.create_sampler)(device, create_info, allocator, sampler)
+            .result()
     }
+    ///vkDestroySampler
     #[inline]
     pub unsafe fn destroy_sampler(
         &self,
         device: crate::vk::Device,
         sampler: crate::vk::Sampler,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_sampler)(device, sampler, allocator)
     }
+    ///vkCreateDescriptorSetLayout
     #[inline]
     pub unsafe fn create_descriptor_set_layout(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::DescriptorSetLayoutCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        set_layout: *mut crate::vk::DescriptorSetLayout,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::DescriptorSetLayoutCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        set_layout: &mut crate::vk::DescriptorSetLayout,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .create_descriptor_set_layout)(device, create_info, allocator, set_layout)
+            .result()
     }
+    ///vkDestroyDescriptorSetLayout
     #[inline]
     pub unsafe fn destroy_descriptor_set_layout(
         &self,
         device: crate::vk::Device,
         descriptor_set_layout: crate::vk::DescriptorSetLayout,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .device_fn_1_0
             .destroy_descriptor_set_layout)(device, descriptor_set_layout, allocator)
     }
+    ///vkCreateDescriptorPool
     #[inline]
     pub unsafe fn create_descriptor_pool(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::DescriptorPoolCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        descriptor_pool: *mut crate::vk::DescriptorPool,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::DescriptorPoolCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        descriptor_pool: &mut crate::vk::DescriptorPool,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .create_descriptor_pool)(device, create_info, allocator, descriptor_pool)
+            .result()
     }
+    ///vkDestroyDescriptorPool
     #[inline]
     pub unsafe fn destroy_descriptor_pool(
         &self,
         device: crate::vk::Device,
         descriptor_pool: crate::vk::DescriptorPool,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_descriptor_pool)(device, descriptor_pool, allocator)
     }
+    ///vkResetDescriptorPool
     #[inline]
     pub unsafe fn reset_descriptor_pool(
         &self,
         device: crate::vk::Device,
         descriptor_pool: crate::vk::DescriptorPool,
         flags: crate::vk::DescriptorPoolResetFlags,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self.device_fn_1_0.reset_descriptor_pool)(device, descriptor_pool, flags)
+            .result()
     }
+    ///vkAllocateDescriptorSets
     #[inline]
     pub unsafe fn allocate_descriptor_sets(
         &self,
         device: crate::vk::Device,
-        allocate_info: *const crate::vk::DescriptorSetAllocateInfo<'_>,
-        descriptor_sets: *mut crate::vk::DescriptorSet,
-    ) -> crate::vk::Result {
+        allocate_info: &crate::vk::DescriptorSetAllocateInfo<'_>,
+        descriptor_sets: &mut crate::vk::DescriptorSet,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .allocate_descriptor_sets)(device, allocate_info, descriptor_sets)
+            .result()
     }
+    ///vkFreeDescriptorSets
     #[inline]
     pub unsafe fn free_descriptor_sets(
         &self,
         device: crate::vk::Device,
         descriptor_pool: crate::vk::DescriptorPool,
-        descriptor_set_count: u32,
-        descriptor_sets: *const crate::vk::DescriptorSet,
-    ) -> crate::vk::Result {
+        descriptor_sets: &[crate::vk::DescriptorSet],
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .free_descriptor_sets)(
-            device,
-            descriptor_pool,
-            descriptor_set_count,
-            descriptor_sets,
-        )
+                device,
+                descriptor_pool,
+                descriptor_sets.len() as _,
+                descriptor_sets.as_ptr(),
+            )
+            .result()
     }
+    ///vkUpdateDescriptorSets
     #[inline]
     pub unsafe fn update_descriptor_sets(
         &self,
         device: crate::vk::Device,
-        descriptor_write_count: u32,
-        descriptor_writes: *const crate::vk::WriteDescriptorSet<'_>,
-        descriptor_copy_count: u32,
-        descriptor_copies: *const crate::vk::CopyDescriptorSet<'_>,
+        descriptor_writes: &[crate::vk::WriteDescriptorSet<'_>],
+        descriptor_copies: &[crate::vk::CopyDescriptorSet<'_>],
     ) {
         (self
             .device_fn_1_0
             .update_descriptor_sets)(
             device,
-            descriptor_write_count,
-            descriptor_writes,
-            descriptor_copy_count,
-            descriptor_copies,
+            descriptor_writes.len() as _,
+            descriptor_writes.as_ptr(),
+            descriptor_copies.len() as _,
+            descriptor_copies.as_ptr(),
         )
     }
+    ///vkCreateFramebuffer
     #[inline]
     pub unsafe fn create_framebuffer(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::FramebufferCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        framebuffer: *mut crate::vk::Framebuffer,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::FramebufferCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        framebuffer: &mut crate::vk::Framebuffer,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .create_framebuffer)(device, create_info, allocator, framebuffer)
+            .result()
     }
+    ///vkDestroyFramebuffer
     #[inline]
     pub unsafe fn destroy_framebuffer(
         &self,
         device: crate::vk::Device,
         framebuffer: crate::vk::Framebuffer,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_framebuffer)(device, framebuffer, allocator)
     }
+    ///vkCreateRenderPass
     #[inline]
     pub unsafe fn create_render_pass(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::RenderPassCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        render_pass: *mut crate::vk::RenderPass,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::RenderPassCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        render_pass: &mut crate::vk::RenderPass,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .create_render_pass)(device, create_info, allocator, render_pass)
+            .result()
     }
+    ///vkDestroyRenderPass
     #[inline]
     pub unsafe fn destroy_render_pass(
         &self,
         device: crate::vk::Device,
         render_pass: crate::vk::RenderPass,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_render_pass)(device, render_pass, allocator)
     }
+    ///vkGetRenderAreaGranularity
     #[inline]
     pub unsafe fn get_render_area_granularity(
         &self,
         device: crate::vk::Device,
         render_pass: crate::vk::RenderPass,
-        granularity: *mut crate::vk::Extent2D,
+        granularity: &mut crate::vk::Extent2D,
     ) {
         (self
             .device_fn_1_0
             .get_render_area_granularity)(device, render_pass, granularity)
     }
+    ///vkCreateCommandPool
     #[inline]
     pub unsafe fn create_command_pool(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::CommandPoolCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        command_pool: *mut crate::vk::CommandPool,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::CommandPoolCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        command_pool: &mut crate::vk::CommandPool,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .create_command_pool)(device, create_info, allocator, command_pool)
+            .result()
     }
+    ///vkDestroyCommandPool
     #[inline]
     pub unsafe fn destroy_command_pool(
         &self,
         device: crate::vk::Device,
         command_pool: crate::vk::CommandPool,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.device_fn_1_0.destroy_command_pool)(device, command_pool, allocator)
     }
+    ///vkResetCommandPool
     #[inline]
     pub unsafe fn reset_command_pool(
         &self,
         device: crate::vk::Device,
         command_pool: crate::vk::CommandPool,
         flags: crate::vk::CommandPoolResetFlags,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.reset_command_pool)(device, command_pool, flags)
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.reset_command_pool)(device, command_pool, flags).result()
     }
+    ///vkAllocateCommandBuffers
     #[inline]
     pub unsafe fn allocate_command_buffers(
         &self,
         device: crate::vk::Device,
-        allocate_info: *const crate::vk::CommandBufferAllocateInfo<'_>,
-        command_buffers: *mut crate::vk::CommandBuffer,
-    ) -> crate::vk::Result {
+        allocate_info: &crate::vk::CommandBufferAllocateInfo<'_>,
+        command_buffers: &mut crate::vk::CommandBuffer,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_0
             .allocate_command_buffers)(device, allocate_info, command_buffers)
+            .result()
     }
+    ///vkFreeCommandBuffers
     #[inline]
     pub unsafe fn free_command_buffers(
         &self,
         device: crate::vk::Device,
         command_pool: crate::vk::CommandPool,
-        command_buffer_count: u32,
-        command_buffers: *const crate::vk::CommandBuffer,
+        command_buffers: &[crate::vk::CommandBuffer],
     ) {
         (self
             .device_fn_1_0
             .free_command_buffers)(
             device,
             command_pool,
-            command_buffer_count,
-            command_buffers,
+            command_buffers.len() as _,
+            command_buffers.as_ptr(),
         )
     }
+    ///vkBeginCommandBuffer
     #[inline]
     pub unsafe fn begin_command_buffer(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        begin_info: *const crate::vk::CommandBufferBeginInfo<'_>,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.begin_command_buffer)(command_buffer, begin_info)
+        begin_info: &crate::vk::CommandBufferBeginInfo<'_>,
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.begin_command_buffer)(command_buffer, begin_info).result()
     }
+    ///vkEndCommandBuffer
     #[inline]
     pub unsafe fn end_command_buffer(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.end_command_buffer)(command_buffer)
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.end_command_buffer)(command_buffer).result()
     }
+    ///vkResetCommandBuffer
     #[inline]
     pub unsafe fn reset_command_buffer(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         flags: crate::vk::CommandBufferResetFlags,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_0.reset_command_buffer)(command_buffer, flags)
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_0.reset_command_buffer)(command_buffer, flags).result()
     }
+    ///vkCmdBindPipeline
     #[inline]
     pub unsafe fn cmd_bind_pipeline(
         &self,
@@ -4451,30 +4574,41 @@ impl crate::Device {
             .device_fn_1_0
             .cmd_bind_pipeline)(command_buffer, pipeline_bind_point, pipeline)
     }
+    ///vkCmdSetViewport
     #[inline]
     pub unsafe fn cmd_set_viewport(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_viewport: u32,
-        viewport_count: u32,
-        viewports: *const crate::vk::Viewport,
+        viewports: &[crate::vk::Viewport],
     ) {
         (self
             .device_fn_1_0
-            .cmd_set_viewport)(command_buffer, first_viewport, viewport_count, viewports)
+            .cmd_set_viewport)(
+            command_buffer,
+            first_viewport,
+            viewports.len() as _,
+            viewports.as_ptr(),
+        )
     }
+    ///vkCmdSetScissor
     #[inline]
     pub unsafe fn cmd_set_scissor(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_scissor: u32,
-        scissor_count: u32,
-        scissors: *const crate::vk::Rect2D,
+        scissors: &[crate::vk::Rect2D],
     ) {
         (self
             .device_fn_1_0
-            .cmd_set_scissor)(command_buffer, first_scissor, scissor_count, scissors)
+            .cmd_set_scissor)(
+            command_buffer,
+            first_scissor,
+            scissors.len() as _,
+            scissors.as_ptr(),
+        )
     }
+    ///vkCmdSetLineWidth
     #[inline]
     pub unsafe fn cmd_set_line_width(
         &self,
@@ -4483,6 +4617,7 @@ impl crate::Device {
     ) {
         (self.device_fn_1_0.cmd_set_line_width)(command_buffer, line_width)
     }
+    ///vkCmdSetDepthBias
     #[inline]
     pub unsafe fn cmd_set_depth_bias(
         &self,
@@ -4500,14 +4635,16 @@ impl crate::Device {
             depth_bias_slope_factor,
         )
     }
+    ///vkCmdSetBlendConstants
     #[inline]
     pub unsafe fn cmd_set_blend_constants(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        blend_constants: *const [core::ffi::c_float; 4 as _],
+        blend_constants: &[core::ffi::c_float; 4 as _],
     ) {
         (self.device_fn_1_0.cmd_set_blend_constants)(command_buffer, blend_constants)
     }
+    ///vkCmdSetDepthBounds
     #[inline]
     pub unsafe fn cmd_set_depth_bounds(
         &self,
@@ -4519,6 +4656,7 @@ impl crate::Device {
             .device_fn_1_0
             .cmd_set_depth_bounds)(command_buffer, min_depth_bounds, max_depth_bounds)
     }
+    ///vkCmdSetStencilCompareMask
     #[inline]
     pub unsafe fn cmd_set_stencil_compare_mask(
         &self,
@@ -4530,6 +4668,7 @@ impl crate::Device {
             .device_fn_1_0
             .cmd_set_stencil_compare_mask)(command_buffer, face_mask, compare_mask)
     }
+    ///vkCmdSetStencilWriteMask
     #[inline]
     pub unsafe fn cmd_set_stencil_write_mask(
         &self,
@@ -4541,6 +4680,7 @@ impl crate::Device {
             .device_fn_1_0
             .cmd_set_stencil_write_mask)(command_buffer, face_mask, write_mask)
     }
+    ///vkCmdSetStencilReference
     #[inline]
     pub unsafe fn cmd_set_stencil_reference(
         &self,
@@ -4552,6 +4692,7 @@ impl crate::Device {
             .device_fn_1_0
             .cmd_set_stencil_reference)(command_buffer, face_mask, reference)
     }
+    ///vkCmdBindDescriptorSets
     #[inline]
     pub unsafe fn cmd_bind_descriptor_sets(
         &self,
@@ -4559,10 +4700,8 @@ impl crate::Device {
         pipeline_bind_point: crate::vk::PipelineBindPoint,
         layout: crate::vk::PipelineLayout,
         first_set: u32,
-        descriptor_set_count: u32,
-        descriptor_sets: *const crate::vk::DescriptorSet,
-        dynamic_offset_count: u32,
-        dynamic_offsets: *const u32,
+        descriptor_sets: &[crate::vk::DescriptorSet],
+        dynamic_offsets: &[u32],
     ) {
         (self
             .device_fn_1_0
@@ -4571,12 +4710,13 @@ impl crate::Device {
             pipeline_bind_point,
             layout,
             first_set,
-            descriptor_set_count,
-            descriptor_sets,
-            dynamic_offset_count,
-            dynamic_offsets,
+            descriptor_sets.len() as _,
+            descriptor_sets.as_ptr(),
+            dynamic_offsets.len() as _,
+            dynamic_offsets.as_ptr(),
         )
     }
+    ///vkCmdBindIndexBuffer
     #[inline]
     pub unsafe fn cmd_bind_index_buffer(
         &self,
@@ -4589,25 +4729,26 @@ impl crate::Device {
             .device_fn_1_0
             .cmd_bind_index_buffer)(command_buffer, buffer, offset, index_type)
     }
+    ///vkCmdBindVertexBuffers
     #[inline]
     pub unsafe fn cmd_bind_vertex_buffers(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
-        binding_count: u32,
-        buffers: *const crate::vk::Buffer,
-        offsets: *const crate::vk::DeviceSize,
+        buffers: &[crate::vk::Buffer],
+        offsets: &[crate::vk::DeviceSize],
     ) {
         (self
             .device_fn_1_0
             .cmd_bind_vertex_buffers)(
             command_buffer,
             first_binding,
-            binding_count,
-            buffers,
-            offsets,
+            buffers.len() as _,
+            buffers.as_ptr(),
+            offsets.as_ptr(),
         )
     }
+    ///vkCmdDraw
     #[inline]
     pub unsafe fn cmd_draw(
         &self,
@@ -4627,6 +4768,7 @@ impl crate::Device {
             first_instance,
         )
     }
+    ///vkCmdDrawIndexed
     #[inline]
     pub unsafe fn cmd_draw_indexed(
         &self,
@@ -4648,6 +4790,7 @@ impl crate::Device {
             first_instance,
         )
     }
+    ///vkCmdDrawIndirect
     #[inline]
     pub unsafe fn cmd_draw_indirect(
         &self,
@@ -4661,6 +4804,7 @@ impl crate::Device {
             .device_fn_1_0
             .cmd_draw_indirect)(command_buffer, buffer, offset, draw_count, stride)
     }
+    ///vkCmdDrawIndexedIndirect
     #[inline]
     pub unsafe fn cmd_draw_indexed_indirect(
         &self,
@@ -4680,6 +4824,7 @@ impl crate::Device {
             stride,
         )
     }
+    ///vkCmdDispatch
     #[inline]
     pub unsafe fn cmd_dispatch(
         &self,
@@ -4692,6 +4837,7 @@ impl crate::Device {
             .device_fn_1_0
             .cmd_dispatch)(command_buffer, group_count_x, group_count_y, group_count_z)
     }
+    ///vkCmdDispatchIndirect
     #[inline]
     pub unsafe fn cmd_dispatch_indirect(
         &self,
@@ -4701,14 +4847,14 @@ impl crate::Device {
     ) {
         (self.device_fn_1_0.cmd_dispatch_indirect)(command_buffer, buffer, offset)
     }
+    ///vkCmdCopyBuffer
     #[inline]
     pub unsafe fn cmd_copy_buffer(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         src_buffer: crate::vk::Buffer,
         dst_buffer: crate::vk::Buffer,
-        region_count: u32,
-        regions: *const crate::vk::BufferCopy,
+        regions: &[crate::vk::BufferCopy],
     ) {
         (self
             .device_fn_1_0
@@ -4716,10 +4862,11 @@ impl crate::Device {
             command_buffer,
             src_buffer,
             dst_buffer,
-            region_count,
-            regions,
+            regions.len() as _,
+            regions.as_ptr(),
         )
     }
+    ///vkCmdCopyImage
     #[inline]
     pub unsafe fn cmd_copy_image(
         &self,
@@ -4728,8 +4875,7 @@ impl crate::Device {
         src_image_layout: crate::vk::ImageLayout,
         dst_image: crate::vk::Image,
         dst_image_layout: crate::vk::ImageLayout,
-        region_count: u32,
-        regions: *const crate::vk::ImageCopy,
+        regions: &[crate::vk::ImageCopy],
     ) {
         (self
             .device_fn_1_0
@@ -4739,10 +4885,11 @@ impl crate::Device {
             src_image_layout,
             dst_image,
             dst_image_layout,
-            region_count,
-            regions,
+            regions.len() as _,
+            regions.as_ptr(),
         )
     }
+    ///vkCmdBlitImage
     #[inline]
     pub unsafe fn cmd_blit_image(
         &self,
@@ -4751,8 +4898,7 @@ impl crate::Device {
         src_image_layout: crate::vk::ImageLayout,
         dst_image: crate::vk::Image,
         dst_image_layout: crate::vk::ImageLayout,
-        region_count: u32,
-        regions: *const crate::vk::ImageBlit,
+        regions: &[crate::vk::ImageBlit],
         filter: crate::vk::Filter,
     ) {
         (self
@@ -4763,11 +4909,12 @@ impl crate::Device {
             src_image_layout,
             dst_image,
             dst_image_layout,
-            region_count,
-            regions,
+            regions.len() as _,
+            regions.as_ptr(),
             filter,
         )
     }
+    ///vkCmdCopyBufferToImage
     #[inline]
     pub unsafe fn cmd_copy_buffer_to_image(
         &self,
@@ -4775,8 +4922,7 @@ impl crate::Device {
         src_buffer: crate::vk::Buffer,
         dst_image: crate::vk::Image,
         dst_image_layout: crate::vk::ImageLayout,
-        region_count: u32,
-        regions: *const crate::vk::BufferImageCopy,
+        regions: &[crate::vk::BufferImageCopy],
     ) {
         (self
             .device_fn_1_0
@@ -4785,10 +4931,11 @@ impl crate::Device {
             src_buffer,
             dst_image,
             dst_image_layout,
-            region_count,
-            regions,
+            regions.len() as _,
+            regions.as_ptr(),
         )
     }
+    ///vkCmdCopyImageToBuffer
     #[inline]
     pub unsafe fn cmd_copy_image_to_buffer(
         &self,
@@ -4796,8 +4943,7 @@ impl crate::Device {
         src_image: crate::vk::Image,
         src_image_layout: crate::vk::ImageLayout,
         dst_buffer: crate::vk::Buffer,
-        region_count: u32,
-        regions: *const crate::vk::BufferImageCopy,
+        regions: &[crate::vk::BufferImageCopy],
     ) {
         (self
             .device_fn_1_0
@@ -4806,23 +4952,30 @@ impl crate::Device {
             src_image,
             src_image_layout,
             dst_buffer,
-            region_count,
-            regions,
+            regions.len() as _,
+            regions.as_ptr(),
         )
     }
+    ///vkCmdUpdateBuffer
     #[inline]
     pub unsafe fn cmd_update_buffer(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         dst_buffer: crate::vk::Buffer,
         dst_offset: crate::vk::DeviceSize,
-        data_size: crate::vk::DeviceSize,
-        data: *const core::ffi::c_void,
+        data: &[core::ffi::c_void],
     ) {
         (self
             .device_fn_1_0
-            .cmd_update_buffer)(command_buffer, dst_buffer, dst_offset, data_size, data)
+            .cmd_update_buffer)(
+            command_buffer,
+            dst_buffer,
+            dst_offset,
+            data.len() as _,
+            data.as_ptr(),
+        )
     }
+    ///vkCmdFillBuffer
     #[inline]
     pub unsafe fn cmd_fill_buffer(
         &self,
@@ -4836,15 +4989,15 @@ impl crate::Device {
             .device_fn_1_0
             .cmd_fill_buffer)(command_buffer, dst_buffer, dst_offset, size, data)
     }
+    ///vkCmdClearColorImage
     #[inline]
     pub unsafe fn cmd_clear_color_image(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         image: crate::vk::Image,
         image_layout: crate::vk::ImageLayout,
-        color: *const crate::vk::ClearColorValue,
-        range_count: u32,
-        ranges: *const crate::vk::ImageSubresourceRange,
+        color: &crate::vk::ClearColorValue,
+        ranges: &[crate::vk::ImageSubresourceRange],
     ) {
         (self
             .device_fn_1_0
@@ -4853,19 +5006,19 @@ impl crate::Device {
             image,
             image_layout,
             color,
-            range_count,
-            ranges,
+            ranges.len() as _,
+            ranges.as_ptr(),
         )
     }
+    ///vkCmdClearDepthStencilImage
     #[inline]
     pub unsafe fn cmd_clear_depth_stencil_image(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         image: crate::vk::Image,
         image_layout: crate::vk::ImageLayout,
-        depth_stencil: *const crate::vk::ClearDepthStencilValue,
-        range_count: u32,
-        ranges: *const crate::vk::ImageSubresourceRange,
+        depth_stencil: &crate::vk::ClearDepthStencilValue,
+        ranges: &[crate::vk::ImageSubresourceRange],
     ) {
         (self
             .device_fn_1_0
@@ -4874,29 +5027,29 @@ impl crate::Device {
             image,
             image_layout,
             depth_stencil,
-            range_count,
-            ranges,
+            ranges.len() as _,
+            ranges.as_ptr(),
         )
     }
+    ///vkCmdClearAttachments
     #[inline]
     pub unsafe fn cmd_clear_attachments(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        attachment_count: u32,
-        attachments: *const crate::vk::ClearAttachment,
-        rect_count: u32,
-        rects: *const crate::vk::ClearRect,
+        attachments: &[crate::vk::ClearAttachment],
+        rects: &[crate::vk::ClearRect],
     ) {
         (self
             .device_fn_1_0
             .cmd_clear_attachments)(
             command_buffer,
-            attachment_count,
-            attachments,
-            rect_count,
-            rects,
+            attachments.len() as _,
+            attachments.as_ptr(),
+            rects.len() as _,
+            rects.as_ptr(),
         )
     }
+    ///vkCmdResolveImage
     #[inline]
     pub unsafe fn cmd_resolve_image(
         &self,
@@ -4905,8 +5058,7 @@ impl crate::Device {
         src_image_layout: crate::vk::ImageLayout,
         dst_image: crate::vk::Image,
         dst_image_layout: crate::vk::ImageLayout,
-        region_count: u32,
-        regions: *const crate::vk::ImageResolve,
+        regions: &[crate::vk::ImageResolve],
     ) {
         (self
             .device_fn_1_0
@@ -4916,10 +5068,11 @@ impl crate::Device {
             src_image_layout,
             dst_image,
             dst_image_layout,
-            region_count,
-            regions,
+            regions.len() as _,
+            regions.as_ptr(),
         )
     }
+    ///vkCmdSetEvent
     #[inline]
     pub unsafe fn cmd_set_event(
         &self,
@@ -4929,6 +5082,7 @@ impl crate::Device {
     ) {
         (self.device_fn_1_0.cmd_set_event)(command_buffer, event, stage_mask)
     }
+    ///vkCmdResetEvent
     #[inline]
     pub unsafe fn cmd_reset_event(
         &self,
@@ -4938,37 +5092,35 @@ impl crate::Device {
     ) {
         (self.device_fn_1_0.cmd_reset_event)(command_buffer, event, stage_mask)
     }
+    ///vkCmdWaitEvents
     #[inline]
     pub unsafe fn cmd_wait_events(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        event_count: u32,
-        events: *const crate::vk::Event,
+        events: &[crate::vk::Event],
         src_stage_mask: crate::vk::PipelineStageFlags,
         dst_stage_mask: crate::vk::PipelineStageFlags,
-        memory_barrier_count: u32,
-        memory_barriers: *const crate::vk::MemoryBarrier<'_>,
-        buffer_memory_barrier_count: u32,
-        buffer_memory_barriers: *const crate::vk::BufferMemoryBarrier<'_>,
-        image_memory_barrier_count: u32,
-        image_memory_barriers: *const crate::vk::ImageMemoryBarrier<'_>,
+        memory_barriers: &[crate::vk::MemoryBarrier<'_>],
+        buffer_memory_barriers: &[crate::vk::BufferMemoryBarrier<'_>],
+        image_memory_barriers: &[crate::vk::ImageMemoryBarrier<'_>],
     ) {
         (self
             .device_fn_1_0
             .cmd_wait_events)(
             command_buffer,
-            event_count,
-            events,
+            events.len() as _,
+            events.as_ptr(),
             src_stage_mask,
             dst_stage_mask,
-            memory_barrier_count,
-            memory_barriers,
-            buffer_memory_barrier_count,
-            buffer_memory_barriers,
-            image_memory_barrier_count,
-            image_memory_barriers,
+            memory_barriers.len() as _,
+            memory_barriers.as_ptr(),
+            buffer_memory_barriers.len() as _,
+            buffer_memory_barriers.as_ptr(),
+            image_memory_barriers.len() as _,
+            image_memory_barriers.as_ptr(),
         )
     }
+    ///vkCmdPipelineBarrier
     #[inline]
     pub unsafe fn cmd_pipeline_barrier(
         &self,
@@ -4976,12 +5128,9 @@ impl crate::Device {
         src_stage_mask: crate::vk::PipelineStageFlags,
         dst_stage_mask: crate::vk::PipelineStageFlags,
         dependency_flags: crate::vk::DependencyFlags,
-        memory_barrier_count: u32,
-        memory_barriers: *const crate::vk::MemoryBarrier<'_>,
-        buffer_memory_barrier_count: u32,
-        buffer_memory_barriers: *const crate::vk::BufferMemoryBarrier<'_>,
-        image_memory_barrier_count: u32,
-        image_memory_barriers: *const crate::vk::ImageMemoryBarrier<'_>,
+        memory_barriers: &[crate::vk::MemoryBarrier<'_>],
+        buffer_memory_barriers: &[crate::vk::BufferMemoryBarrier<'_>],
+        image_memory_barriers: &[crate::vk::ImageMemoryBarrier<'_>],
     ) {
         (self
             .device_fn_1_0
@@ -4990,14 +5139,15 @@ impl crate::Device {
             src_stage_mask,
             dst_stage_mask,
             dependency_flags,
-            memory_barrier_count,
-            memory_barriers,
-            buffer_memory_barrier_count,
-            buffer_memory_barriers,
-            image_memory_barrier_count,
-            image_memory_barriers,
+            memory_barriers.len() as _,
+            memory_barriers.as_ptr(),
+            buffer_memory_barriers.len() as _,
+            buffer_memory_barriers.as_ptr(),
+            image_memory_barriers.len() as _,
+            image_memory_barriers.as_ptr(),
         )
     }
+    ///vkCmdBeginQuery
     #[inline]
     pub unsafe fn cmd_begin_query(
         &self,
@@ -5008,6 +5158,7 @@ impl crate::Device {
     ) {
         (self.device_fn_1_0.cmd_begin_query)(command_buffer, query_pool, query, flags)
     }
+    ///vkCmdEndQuery
     #[inline]
     pub unsafe fn cmd_end_query(
         &self,
@@ -5017,6 +5168,7 @@ impl crate::Device {
     ) {
         (self.device_fn_1_0.cmd_end_query)(command_buffer, query_pool, query)
     }
+    ///vkCmdResetQueryPool
     #[inline]
     pub unsafe fn cmd_reset_query_pool(
         &self,
@@ -5029,6 +5181,7 @@ impl crate::Device {
             .device_fn_1_0
             .cmd_reset_query_pool)(command_buffer, query_pool, first_query, query_count)
     }
+    ///vkCmdWriteTimestamp
     #[inline]
     pub unsafe fn cmd_write_timestamp(
         &self,
@@ -5041,6 +5194,7 @@ impl crate::Device {
             .device_fn_1_0
             .cmd_write_timestamp)(command_buffer, pipeline_stage, query_pool, query)
     }
+    ///vkCmdCopyQueryPoolResults
     #[inline]
     pub unsafe fn cmd_copy_query_pool_results(
         &self,
@@ -5066,6 +5220,7 @@ impl crate::Device {
             flags,
         )
     }
+    ///vkCmdPushConstants
     #[inline]
     pub unsafe fn cmd_push_constants(
         &self,
@@ -5073,8 +5228,7 @@ impl crate::Device {
         layout: crate::vk::PipelineLayout,
         stage_flags: crate::vk::ShaderStageFlags,
         offset: u32,
-        size: u32,
-        values: *const core::ffi::c_void,
+        values: &[core::ffi::c_void],
     ) {
         (self
             .device_fn_1_0
@@ -5083,21 +5237,23 @@ impl crate::Device {
             layout,
             stage_flags,
             offset,
-            size,
-            values,
+            values.len() as _,
+            values.as_ptr(),
         )
     }
+    ///vkCmdBeginRenderPass
     #[inline]
     pub unsafe fn cmd_begin_render_pass(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        render_pass_begin: *const crate::vk::RenderPassBeginInfo<'_>,
+        render_pass_begin: &crate::vk::RenderPassBeginInfo<'_>,
         contents: crate::vk::SubpassContents,
     ) {
         (self
             .device_fn_1_0
             .cmd_begin_render_pass)(command_buffer, render_pass_begin, contents)
     }
+    ///vkCmdNextSubpass
     #[inline]
     pub unsafe fn cmd_next_subpass(
         &self,
@@ -5106,20 +5262,25 @@ impl crate::Device {
     ) {
         (self.device_fn_1_0.cmd_next_subpass)(command_buffer, contents)
     }
+    ///vkCmdEndRenderPass
     #[inline]
     pub unsafe fn cmd_end_render_pass(&self, command_buffer: crate::vk::CommandBuffer) {
         (self.device_fn_1_0.cmd_end_render_pass)(command_buffer)
     }
+    ///vkCmdExecuteCommands
     #[inline]
     pub unsafe fn cmd_execute_commands(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        command_buffer_count: u32,
-        command_buffers: *const crate::vk::CommandBuffer,
+        command_buffers: &[crate::vk::CommandBuffer],
     ) {
         (self
             .device_fn_1_0
-            .cmd_execute_commands)(command_buffer, command_buffer_count, command_buffers)
+            .cmd_execute_commands)(
+            command_buffer,
+            command_buffers.len() as _,
+            command_buffers.as_ptr(),
+        )
     }
 }
 pub(crate) mod items {

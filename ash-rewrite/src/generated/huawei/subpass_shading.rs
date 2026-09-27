@@ -103,21 +103,24 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI
     #[inline]
     pub unsafe fn get_device_subpass_shading_max_workgroup_size_huawei(
         &self,
         device: crate::vk::Device,
         renderpass: crate::vk::RenderPass,
-        max_workgroup_size: *mut crate::vk::Extent2D,
-    ) -> crate::vk::Result {
+        max_workgroup_size: &mut crate::vk::Extent2D,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_device_subpass_shading_max_workgroup_size_huawei)(
-            device,
-            renderpass,
-            max_workgroup_size,
-        )
+                device,
+                renderpass,
+                max_workgroup_size,
+            )
+            .result()
     }
+    ///vkCmdSubpassShadingHUAWEI
     #[inline]
     pub unsafe fn cmd_subpass_shading_huawei(
         &self,

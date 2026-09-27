@@ -458,101 +458,119 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateMicromapEXT
     #[inline]
     pub unsafe fn create_micromap_ext(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::MicromapCreateInfoEXT<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        micromap: *mut crate::vk::MicromapEXT,
-    ) -> crate::vk::Result {
-        (self.fp.create_micromap_ext)(device, create_info, allocator, micromap)
+        create_info: &crate::vk::MicromapCreateInfoEXT<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        micromap: &mut crate::vk::MicromapEXT,
+    ) -> crate::VkResult<()> {
+        (self.fp.create_micromap_ext)(device, create_info, allocator, micromap).result()
     }
+    ///vkCmdBuildMicromapsEXT
     #[inline]
     pub unsafe fn cmd_build_micromaps_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        info_count: u32,
-        infos: *const crate::vk::MicromapBuildInfoEXT<'_>,
+        infos: &[crate::vk::MicromapBuildInfoEXT<'_>],
     ) {
-        (self.fp.cmd_build_micromaps_ext)(command_buffer, info_count, infos)
+        (self
+            .fp
+            .cmd_build_micromaps_ext)(command_buffer, infos.len() as _, infos.as_ptr())
     }
+    ///vkBuildMicromapsEXT
     #[inline]
     pub unsafe fn build_micromaps_ext(
         &self,
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
-        info_count: u32,
-        infos: *const crate::vk::MicromapBuildInfoEXT<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.build_micromaps_ext)(device, deferred_operation, info_count, infos)
+        infos: &[crate::vk::MicromapBuildInfoEXT<'_>],
+    ) -> crate::VkResult<()> {
+        (self
+            .fp
+            .build_micromaps_ext)(
+                device,
+                deferred_operation,
+                infos.len() as _,
+                infos.as_ptr(),
+            )
+            .result()
     }
+    ///vkDestroyMicromapEXT
     #[inline]
     pub unsafe fn destroy_micromap_ext(
         &self,
         device: crate::vk::Device,
         micromap: crate::vk::MicromapEXT,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_micromap_ext)(device, micromap, allocator)
     }
+    ///vkCmdCopyMicromapEXT
     #[inline]
     pub unsafe fn cmd_copy_micromap_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        info: *const crate::vk::CopyMicromapInfoEXT<'_>,
+        info: &crate::vk::CopyMicromapInfoEXT<'_>,
     ) {
         (self.fp.cmd_copy_micromap_ext)(command_buffer, info)
     }
+    ///vkCopyMicromapEXT
     #[inline]
     pub unsafe fn copy_micromap_ext(
         &self,
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
-        info: *const crate::vk::CopyMicromapInfoEXT<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.copy_micromap_ext)(device, deferred_operation, info)
+        info: &crate::vk::CopyMicromapInfoEXT<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.copy_micromap_ext)(device, deferred_operation, info).result()
     }
+    ///vkCmdCopyMicromapToMemoryEXT
     #[inline]
     pub unsafe fn cmd_copy_micromap_to_memory_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        info: *const crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
+        info: &crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
     ) {
         (self.fp.cmd_copy_micromap_to_memory_ext)(command_buffer, info)
     }
+    ///vkCopyMicromapToMemoryEXT
     #[inline]
     pub unsafe fn copy_micromap_to_memory_ext(
         &self,
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
-        info: *const crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.copy_micromap_to_memory_ext)(device, deferred_operation, info)
+        info: &crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.copy_micromap_to_memory_ext)(device, deferred_operation, info).result()
     }
+    ///vkCmdCopyMemoryToMicromapEXT
     #[inline]
     pub unsafe fn cmd_copy_memory_to_micromap_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        info: *const crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
+        info: &crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
     ) {
         (self.fp.cmd_copy_memory_to_micromap_ext)(command_buffer, info)
     }
+    ///vkCopyMemoryToMicromapEXT
     #[inline]
     pub unsafe fn copy_memory_to_micromap_ext(
         &self,
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
-        info: *const crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.copy_memory_to_micromap_ext)(device, deferred_operation, info)
+        info: &crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.copy_memory_to_micromap_ext)(device, deferred_operation, info).result()
     }
+    ///vkCmdWriteMicromapsPropertiesEXT
     #[inline]
     pub unsafe fn cmd_write_micromaps_properties_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        micromap_count: u32,
-        micromaps: *const crate::vk::MicromapEXT,
+        micromaps: &[crate::vk::MicromapEXT],
         query_type: crate::vk::QueryType,
         query_pool: crate::vk::QueryPool,
         first_query: u32,
@@ -561,54 +579,56 @@ impl Device {
             .fp
             .cmd_write_micromaps_properties_ext)(
             command_buffer,
-            micromap_count,
-            micromaps,
+            micromaps.len() as _,
+            micromaps.as_ptr(),
             query_type,
             query_pool,
             first_query,
         )
     }
+    ///vkWriteMicromapsPropertiesEXT
     #[inline]
     pub unsafe fn write_micromaps_properties_ext(
         &self,
         device: crate::vk::Device,
-        micromap_count: u32,
-        micromaps: *const crate::vk::MicromapEXT,
+        micromaps: &[crate::vk::MicromapEXT],
         query_type: crate::vk::QueryType,
-        data_size: usize,
-        data: *mut core::ffi::c_void,
+        data: &mut [core::ffi::c_void],
         stride: usize,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .write_micromaps_properties_ext)(
-            device,
-            micromap_count,
-            micromaps,
-            query_type,
-            data_size,
-            data,
-            stride,
-        )
+                device,
+                micromaps.len() as _,
+                micromaps.as_ptr(),
+                query_type,
+                data_size,
+                data.as_mut_ptr(),
+                stride,
+            )
+            .result()
     }
+    ///vkGetDeviceMicromapCompatibilityEXT
     #[inline]
     pub unsafe fn get_device_micromap_compatibility_ext(
         &self,
         device: crate::vk::Device,
-        version_info: *const crate::vk::MicromapVersionInfoEXT<'_>,
-        compatibility: *mut crate::vk::AccelerationStructureCompatibilityKHR,
+        version_info: &crate::vk::MicromapVersionInfoEXT<'_>,
+        compatibility: &mut crate::vk::AccelerationStructureCompatibilityKHR,
     ) {
         (self
             .fp
             .get_device_micromap_compatibility_ext)(device, version_info, compatibility)
     }
+    ///vkGetMicromapBuildSizesEXT
     #[inline]
     pub unsafe fn get_micromap_build_sizes_ext(
         &self,
         device: crate::vk::Device,
         build_type: crate::vk::AccelerationStructureBuildTypeKHR,
-        build_info: *const crate::vk::MicromapBuildInfoEXT<'_>,
-        size_info: *mut crate::vk::MicromapBuildSizesInfoEXT<'_>,
+        build_info: &crate::vk::MicromapBuildInfoEXT<'_>,
+        size_info: &mut crate::vk::MicromapBuildSizesInfoEXT<'_>,
     ) {
         (self.fp.get_micromap_build_sizes_ext)(device, build_type, build_info, size_info)
     }

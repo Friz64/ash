@@ -105,12 +105,13 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetDeviceBufferMemoryRequirements
     #[inline]
     pub unsafe fn get_device_buffer_memory_requirements_khr(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::DeviceBufferMemoryRequirements<'_>,
-        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        info: &crate::vk::DeviceBufferMemoryRequirements<'_>,
+        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
@@ -120,25 +121,28 @@ impl Device {
             memory_requirements,
         )
     }
+    ///vkGetDeviceImageMemoryRequirements
     #[inline]
     pub unsafe fn get_device_image_memory_requirements_khr(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::DeviceImageMemoryRequirements<'_>,
-        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        info: &crate::vk::DeviceImageMemoryRequirements<'_>,
+        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
             .get_device_image_memory_requirements_khr)(device, info, memory_requirements)
     }
+    ///vkGetDeviceImageSparseMemoryRequirements
     #[inline]
     pub unsafe fn get_device_image_sparse_memory_requirements_khr(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::DeviceImageMemoryRequirements<'_>,
-        sparse_memory_requirement_count: *mut u32,
-        sparse_memory_requirements: *mut crate::vk::SparseImageMemoryRequirements2<'_>,
-    ) {
+        info: &crate::vk::DeviceImageMemoryRequirements<'_>,
+    ) -> crate::VkResult<Vec<crate::vk::SparseImageMemoryRequirements2<'_>>> {
+        crate::read_into_uninitialized_vector(|
+            sparse_memory_requirement_count,
+            sparse_memory_requirements|
         (self
             .fp
             .get_device_image_sparse_memory_requirements_khr)(
@@ -146,7 +150,7 @@ impl Device {
             info,
             sparse_memory_requirement_count,
             sparse_memory_requirements,
-        )
+        ))
     }
 }
 pub const SPEC_VERSION: u32 = 2;

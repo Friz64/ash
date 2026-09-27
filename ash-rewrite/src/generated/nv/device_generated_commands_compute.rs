@@ -111,6 +111,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdUpdatePipelineIndirectBufferNV
     #[inline]
     pub unsafe fn cmd_update_pipeline_indirect_buffer_nv(
         &self,
@@ -126,12 +127,13 @@ impl Device {
             pipeline,
         )
     }
+    ///vkGetPipelineIndirectMemoryRequirementsNV
     #[inline]
     pub unsafe fn get_pipeline_indirect_memory_requirements_nv(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::ComputePipelineCreateInfo<'_>,
-        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        create_info: &crate::vk::ComputePipelineCreateInfo<'_>,
+        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
@@ -141,11 +143,12 @@ impl Device {
             memory_requirements,
         )
     }
+    ///vkGetPipelineIndirectDeviceAddressNV
     #[inline]
     pub unsafe fn get_pipeline_indirect_device_address_nv(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::PipelineIndirectDeviceAddressInfoNV<'_>,
+        info: &crate::vk::PipelineIndirectDeviceAddressInfoNV<'_>,
     ) -> crate::vk::DeviceAddress {
         (self.fp.get_pipeline_indirect_device_address_nv)(device, info)
     }

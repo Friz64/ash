@@ -464,38 +464,42 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCompileDeferredNV
     #[inline]
     pub unsafe fn compile_deferred_nv(
         &self,
         device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
         shader: u32,
-    ) -> crate::vk::Result {
-        (self.fp.compile_deferred_nv)(device, pipeline, shader)
+    ) -> crate::VkResult<()> {
+        (self.fp.compile_deferred_nv)(device, pipeline, shader).result()
     }
+    ///vkCreateAccelerationStructureNV
     #[inline]
     pub unsafe fn create_acceleration_structure_nv(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::AccelerationStructureCreateInfoNV<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        acceleration_structure: *mut crate::vk::AccelerationStructureNV,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::AccelerationStructureCreateInfoNV<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        acceleration_structure: &mut crate::vk::AccelerationStructureNV,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_acceleration_structure_nv)(
-            device,
-            create_info,
-            allocator,
-            acceleration_structure,
-        )
+                device,
+                create_info,
+                allocator,
+                acceleration_structure,
+            )
+            .result()
     }
+    ///vkDestroyAccelerationStructureNV
     #[inline]
     pub unsafe fn destroy_acceleration_structure_nv(
         &self,
         device: crate::vk::Device,
         acceleration_structure: crate::vk::AccelerationStructureNV,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
@@ -505,12 +509,13 @@ impl Device {
             allocator,
         )
     }
+    ///vkGetAccelerationStructureMemoryRequirementsNV
     #[inline]
     pub unsafe fn get_acceleration_structure_memory_requirements_nv(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
-        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        info: &crate::vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
+        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
@@ -520,17 +525,23 @@ impl Device {
             memory_requirements,
         )
     }
+    ///vkBindAccelerationStructureMemoryNV
     #[inline]
     pub unsafe fn bind_acceleration_structure_memory_nv(
         &self,
         device: crate::vk::Device,
-        bind_info_count: u32,
-        bind_infos: *const crate::vk::BindAccelerationStructureMemoryInfoNV<'_>,
-    ) -> crate::vk::Result {
+        bind_infos: &[crate::vk::BindAccelerationStructureMemoryInfoNV<'_>],
+    ) -> crate::VkResult<()> {
         (self
             .fp
-            .bind_acceleration_structure_memory_nv)(device, bind_info_count, bind_infos)
+            .bind_acceleration_structure_memory_nv)(
+                device,
+                bind_infos.len() as _,
+                bind_infos.as_ptr(),
+            )
+            .result()
     }
+    ///vkCmdCopyAccelerationStructureNV
     #[inline]
     pub unsafe fn cmd_copy_acceleration_structure_nv(
         &self,
@@ -541,12 +552,12 @@ impl Device {
     ) {
         (self.fp.cmd_copy_acceleration_structure_nv)(command_buffer, dst, src, mode)
     }
+    ///vkCmdWriteAccelerationStructuresPropertiesNV
     #[inline]
     pub unsafe fn cmd_write_acceleration_structures_properties_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        acceleration_structure_count: u32,
-        acceleration_structures: *const crate::vk::AccelerationStructureNV,
+        acceleration_structures: &[crate::vk::AccelerationStructureNV],
         query_type: crate::vk::QueryType,
         query_pool: crate::vk::QueryPool,
         first_query: u32,
@@ -555,18 +566,19 @@ impl Device {
             .fp
             .cmd_write_acceleration_structures_properties_nv)(
             command_buffer,
-            acceleration_structure_count,
-            acceleration_structures,
+            acceleration_structures.len() as _,
+            acceleration_structures.as_ptr(),
             query_type,
             query_pool,
             first_query,
         )
     }
+    ///vkCmdBuildAccelerationStructureNV
     #[inline]
     pub unsafe fn cmd_build_acceleration_structure_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        info: *const crate::vk::AccelerationStructureInfoNV<'_>,
+        info: &crate::vk::AccelerationStructureInfoNV<'_>,
         instance_data: crate::vk::Buffer,
         instance_offset: crate::vk::DeviceSize,
         update: crate::vk::Bool32,
@@ -589,6 +601,7 @@ impl Device {
             scratch_offset,
         )
     }
+    ///vkCmdTraceRaysNV
     #[inline]
     pub unsafe fn cmd_trace_rays_nv(
         &self,
@@ -628,44 +641,47 @@ impl Device {
             depth,
         )
     }
+    ///vkGetAccelerationStructureHandleNV
     #[inline]
     pub unsafe fn get_acceleration_structure_handle_nv(
         &self,
         device: crate::vk::Device,
         acceleration_structure: crate::vk::AccelerationStructureNV,
-        data_size: usize,
-        data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result {
+        data: &mut [core::ffi::c_void],
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_acceleration_structure_handle_nv)(
-            device,
-            acceleration_structure,
-            data_size,
-            data,
-        )
+                device,
+                acceleration_structure,
+                data_size,
+                data.as_mut_ptr(),
+            )
+            .result()
     }
+    ///vkCreateRayTracingPipelinesNV
     #[inline]
     pub unsafe fn create_ray_tracing_pipelines_nv(
         &self,
         device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
-        create_info_count: u32,
-        create_infos: *const crate::vk::RayTracingPipelineCreateInfoNV<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        pipelines: *mut crate::vk::Pipeline,
-    ) -> crate::vk::Result {
+        create_infos: &[crate::vk::RayTracingPipelineCreateInfoNV<'_>],
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        pipelines: &mut [crate::vk::Pipeline],
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_ray_tracing_pipelines_nv)(
-            device,
-            pipeline_cache,
-            create_info_count,
-            create_infos,
-            allocator,
-            pipelines,
-        )
+                device,
+                pipeline_cache,
+                create_infos.len() as _,
+                create_infos.as_ptr(),
+                allocator,
+                pipelines.as_mut_ptr(),
+            )
+            .result()
     }
+    ///vkGetRayTracingShaderGroupHandlesKHR
     #[inline]
     pub unsafe fn get_ray_tracing_shader_group_handles_nv(
         &self,
@@ -673,19 +689,19 @@ impl Device {
         pipeline: crate::vk::Pipeline,
         first_group: u32,
         group_count: u32,
-        data_size: usize,
-        data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result {
+        data: &mut [core::ffi::c_void],
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_ray_tracing_shader_group_handles_nv)(
-            device,
-            pipeline,
-            first_group,
-            group_count,
-            data_size,
-            data,
-        )
+                device,
+                pipeline,
+                first_group,
+                group_count,
+                data_size,
+                data.as_mut_ptr(),
+            )
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 3;

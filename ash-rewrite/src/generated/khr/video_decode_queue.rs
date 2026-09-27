@@ -192,11 +192,12 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdDecodeVideoKHR
     #[inline]
     pub unsafe fn cmd_decode_video_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        decode_info: *const crate::vk::VideoDecodeInfoKHR<'_>,
+        decode_info: &crate::vk::VideoDecodeInfoKHR<'_>,
     ) {
         (self.fp.cmd_decode_video_khr)(command_buffer, decode_info)
     }

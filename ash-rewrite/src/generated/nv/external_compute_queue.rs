@@ -87,29 +87,32 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateExternalComputeQueueNV
     #[inline]
     pub unsafe fn create_external_compute_queue_nv(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        external_queue: *mut crate::vk::ExternalComputeQueueNV,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        external_queue: &mut crate::vk::ExternalComputeQueueNV,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_external_compute_queue_nv)(
-            device,
-            create_info,
-            allocator,
-            external_queue,
-        )
+                device,
+                create_info,
+                allocator,
+                external_queue,
+            )
+            .result()
     }
+    ///vkDestroyExternalComputeQueueNV
     #[inline]
     pub unsafe fn destroy_external_compute_queue_nv(
         &self,
         device: crate::vk::Device,
         external_queue: crate::vk::ExternalComputeQueueNV,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_external_compute_queue_nv)(device, external_queue, allocator)
     }

@@ -86,23 +86,29 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkBindBufferMemory2
     #[inline]
     pub unsafe fn bind_buffer_memory2_khr(
         &self,
         device: crate::vk::Device,
-        bind_info_count: u32,
-        bind_infos: *const crate::vk::BindBufferMemoryInfo<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.bind_buffer_memory2_khr)(device, bind_info_count, bind_infos)
+        bind_infos: &[crate::vk::BindBufferMemoryInfo<'_>],
+    ) -> crate::VkResult<()> {
+        (self
+            .fp
+            .bind_buffer_memory2_khr)(device, bind_infos.len() as _, bind_infos.as_ptr())
+            .result()
     }
+    ///vkBindImageMemory2
     #[inline]
     pub unsafe fn bind_image_memory2_khr(
         &self,
         device: crate::vk::Device,
-        bind_info_count: u32,
-        bind_infos: *const crate::vk::BindImageMemoryInfo<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.bind_image_memory2_khr)(device, bind_info_count, bind_infos)
+        bind_infos: &[crate::vk::BindImageMemoryInfo<'_>],
+    ) -> crate::VkResult<()> {
+        (self
+            .fp
+            .bind_image_memory2_khr)(device, bind_infos.len() as _, bind_infos.as_ptr())
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

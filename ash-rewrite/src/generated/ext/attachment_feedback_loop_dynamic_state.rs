@@ -66,6 +66,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetAttachmentFeedbackLoopEnableEXT
     #[inline]
     pub unsafe fn cmd_set_attachment_feedback_loop_enable_ext(
         &self,

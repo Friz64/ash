@@ -62,15 +62,17 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkCreateMacOSSurfaceMVK
     #[inline]
     pub unsafe fn create_mac_os_surface_mvk(
         &self,
         instance: crate::vk::Instance,
-        create_info: *const crate::vk::MacOSSurfaceCreateInfoMVK<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::MacOSSurfaceCreateInfoMVK<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        surface: &mut crate::vk::SurfaceKHR,
+    ) -> crate::VkResult<()> {
         (self.fp.create_mac_os_surface_mvk)(instance, create_info, allocator, surface)
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 3;

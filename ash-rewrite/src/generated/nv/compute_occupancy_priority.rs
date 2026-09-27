@@ -63,11 +63,12 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetComputeOccupancyPriorityNV
     #[inline]
     pub unsafe fn cmd_set_compute_occupancy_priority_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        parameters: *const crate::vk::ComputeOccupancyPriorityParametersNV<'_>,
+        parameters: &crate::vk::ComputeOccupancyPriorityParametersNV<'_>,
     ) {
         (self.fp.cmd_set_compute_occupancy_priority_nv)(command_buffer, parameters)
     }

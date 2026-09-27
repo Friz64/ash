@@ -63,14 +63,16 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetPipelinePropertiesEXT
     #[inline]
     pub unsafe fn get_pipeline_properties_ext(
         &self,
         device: crate::vk::Device,
-        pipeline_info: *const crate::vk::PipelineInfoKHR<'_>,
-        pipeline_properties: *mut crate::vk::BaseOutStructure<'_>,
-    ) -> crate::vk::Result {
+        pipeline_info: &crate::vk::PipelineInfoKHR<'_>,
+        pipeline_properties: &mut crate::vk::BaseOutStructure<'_>,
+    ) -> crate::VkResult<()> {
         (self.fp.get_pipeline_properties_ext)(device, pipeline_info, pipeline_properties)
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

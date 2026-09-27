@@ -315,12 +315,13 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdExecuteGeneratedCommandsEXT
     #[inline]
     pub unsafe fn cmd_execute_generated_commands_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         is_preprocessed: crate::vk::Bool32,
-        generated_commands_info: *const crate::vk::GeneratedCommandsInfoEXT<'_>,
+        generated_commands_info: &crate::vk::GeneratedCommandsInfoEXT<'_>,
     ) {
         (self
             .fp
@@ -330,11 +331,12 @@ impl Device {
             generated_commands_info,
         )
     }
+    ///vkCmdPreprocessGeneratedCommandsEXT
     #[inline]
     pub unsafe fn cmd_preprocess_generated_commands_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        generated_commands_info: *const crate::vk::GeneratedCommandsInfoEXT<'_>,
+        generated_commands_info: &crate::vk::GeneratedCommandsInfoEXT<'_>,
         state_command_buffer: crate::vk::CommandBuffer,
     ) {
         (self
@@ -345,12 +347,13 @@ impl Device {
             state_command_buffer,
         )
     }
+    ///vkGetGeneratedCommandsMemoryRequirementsEXT
     #[inline]
     pub unsafe fn get_generated_commands_memory_requirements_ext(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>,
-        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        info: &crate::vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>,
+        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
@@ -360,29 +363,32 @@ impl Device {
             memory_requirements,
         )
     }
+    ///vkCreateIndirectCommandsLayoutEXT
     #[inline]
     pub unsafe fn create_indirect_commands_layout_ext(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::IndirectCommandsLayoutCreateInfoEXT<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        indirect_commands_layout: *mut crate::vk::IndirectCommandsLayoutEXT,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::IndirectCommandsLayoutCreateInfoEXT<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        indirect_commands_layout: &mut crate::vk::IndirectCommandsLayoutEXT,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_indirect_commands_layout_ext)(
-            device,
-            create_info,
-            allocator,
-            indirect_commands_layout,
-        )
+                device,
+                create_info,
+                allocator,
+                indirect_commands_layout,
+            )
+            .result()
     }
+    ///vkDestroyIndirectCommandsLayoutEXT
     #[inline]
     pub unsafe fn destroy_indirect_commands_layout_ext(
         &self,
         device: crate::vk::Device,
         indirect_commands_layout: crate::vk::IndirectCommandsLayoutEXT,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
@@ -392,29 +398,32 @@ impl Device {
             allocator,
         )
     }
+    ///vkCreateIndirectExecutionSetEXT
     #[inline]
     pub unsafe fn create_indirect_execution_set_ext(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::IndirectExecutionSetCreateInfoEXT<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        indirect_execution_set: *mut crate::vk::IndirectExecutionSetEXT,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::IndirectExecutionSetCreateInfoEXT<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        indirect_execution_set: &mut crate::vk::IndirectExecutionSetEXT,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_indirect_execution_set_ext)(
-            device,
-            create_info,
-            allocator,
-            indirect_execution_set,
-        )
+                device,
+                create_info,
+                allocator,
+                indirect_execution_set,
+            )
+            .result()
     }
+    ///vkDestroyIndirectExecutionSetEXT
     #[inline]
     pub unsafe fn destroy_indirect_execution_set_ext(
         &self,
         device: crate::vk::Device,
         indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
@@ -424,38 +433,38 @@ impl Device {
             allocator,
         )
     }
+    ///vkUpdateIndirectExecutionSetPipelineEXT
     #[inline]
     pub unsafe fn update_indirect_execution_set_pipeline_ext(
         &self,
         device: crate::vk::Device,
         indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
-        execution_set_write_count: u32,
-        execution_set_writes: *const crate::vk::WriteIndirectExecutionSetPipelineEXT<'_>,
+        execution_set_writes: &[crate::vk::WriteIndirectExecutionSetPipelineEXT<'_>],
     ) {
         (self
             .fp
             .update_indirect_execution_set_pipeline_ext)(
             device,
             indirect_execution_set,
-            execution_set_write_count,
-            execution_set_writes,
+            execution_set_writes.len() as _,
+            execution_set_writes.as_ptr(),
         )
     }
+    ///vkUpdateIndirectExecutionSetShaderEXT
     #[inline]
     pub unsafe fn update_indirect_execution_set_shader_ext(
         &self,
         device: crate::vk::Device,
         indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
-        execution_set_write_count: u32,
-        execution_set_writes: *const crate::vk::WriteIndirectExecutionSetShaderEXT<'_>,
+        execution_set_writes: &[crate::vk::WriteIndirectExecutionSetShaderEXT<'_>],
     ) {
         (self
             .fp
             .update_indirect_execution_set_shader_ext)(
             device,
             indirect_execution_set,
-            execution_set_write_count,
-            execution_set_writes,
+            execution_set_writes.len() as _,
+            execution_set_writes.as_ptr(),
         )
     }
 }

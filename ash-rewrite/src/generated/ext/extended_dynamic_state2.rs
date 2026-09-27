@@ -130,6 +130,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetPatchControlPointsEXT
     #[inline]
     pub unsafe fn cmd_set_patch_control_points_ext(
         &self,
@@ -138,6 +139,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_patch_control_points_ext)(command_buffer, patch_control_points)
     }
+    ///vkCmdSetLogicOpEXT
     #[inline]
     pub unsafe fn cmd_set_logic_op_ext(
         &self,
@@ -146,6 +148,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_logic_op_ext)(command_buffer, logic_op)
     }
+    ///vkCmdSetRasterizerDiscardEnable
     #[inline]
     pub unsafe fn cmd_set_rasterizer_discard_enable_ext(
         &self,
@@ -159,6 +162,7 @@ impl Device {
             rasterizer_discard_enable,
         )
     }
+    ///vkCmdSetDepthBiasEnable
     #[inline]
     pub unsafe fn cmd_set_depth_bias_enable_ext(
         &self,
@@ -167,6 +171,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_depth_bias_enable_ext)(command_buffer, depth_bias_enable)
     }
+    ///vkCmdSetPrimitiveRestartEnable
     #[inline]
     pub unsafe fn cmd_set_primitive_restart_enable_ext(
         &self,

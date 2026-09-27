@@ -74,22 +74,25 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkAcquireWinrtDisplayNV
     #[inline]
     pub unsafe fn acquire_winrt_display_nv(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
-    ) -> crate::vk::Result {
-        (self.fp.acquire_winrt_display_nv)(physical_device, display)
+    ) -> crate::VkResult<()> {
+        (self.fp.acquire_winrt_display_nv)(physical_device, display).result()
     }
+    ///vkGetWinrtDisplayNV
     #[inline]
     pub unsafe fn get_winrt_display_nv(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         device_relative_id: u32,
-        display: *mut crate::vk::DisplayKHR,
-    ) -> crate::vk::Result {
+        display: &mut crate::vk::DisplayKHR,
+    ) -> crate::VkResult<()> {
         (self.fp.get_winrt_display_nv)(physical_device, device_relative_id, display)
+            .result()
     }
 }
 pub(crate) mod items {

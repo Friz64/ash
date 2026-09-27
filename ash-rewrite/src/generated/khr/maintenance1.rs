@@ -85,6 +85,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkTrimCommandPool
     #[inline]
     pub unsafe fn trim_command_pool_khr(
         &self,

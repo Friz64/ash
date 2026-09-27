@@ -92,23 +92,25 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetNativeBufferPropertiesOHOS
     #[inline]
     pub unsafe fn get_native_buffer_properties_ohos(
         &self,
         device: crate::vk::Device,
-        buffer: *const crate::platform_types::OH_NativeBuffer,
-        properties: *mut crate::vk::NativeBufferPropertiesOHOS<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.get_native_buffer_properties_ohos)(device, buffer, properties)
+        buffer: &crate::platform_types::OH_NativeBuffer,
+        properties: &mut crate::vk::NativeBufferPropertiesOHOS<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.get_native_buffer_properties_ohos)(device, buffer, properties).result()
     }
+    ///vkGetMemoryNativeBufferOHOS
     #[inline]
     pub unsafe fn get_memory_native_buffer_ohos(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::MemoryGetNativeBufferInfoOHOS<'_>,
-        buffer: *mut *mut crate::platform_types::OH_NativeBuffer,
-    ) -> crate::vk::Result {
-        (self.fp.get_memory_native_buffer_ohos)(device, info, buffer)
+        info: &crate::vk::MemoryGetNativeBufferInfoOHOS<'_>,
+        buffer: &mut *mut crate::platform_types::OH_NativeBuffer,
+    ) -> crate::VkResult<()> {
+        (self.fp.get_memory_native_buffer_ohos)(device, info, buffer).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

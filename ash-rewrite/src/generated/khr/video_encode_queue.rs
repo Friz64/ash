@@ -306,24 +306,24 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR
     #[inline]
     pub unsafe fn get_physical_device_video_encode_quality_level_properties_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        quality_level_info: *const crate::vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR<
+        quality_level_info: &crate::vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'_>,
+        quality_level_properties: &mut crate::vk::VideoEncodeQualityLevelPropertiesKHR<
             '_,
         >,
-        quality_level_properties: *mut crate::vk::VideoEncodeQualityLevelPropertiesKHR<
-            '_,
-        >,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_physical_device_video_encode_quality_level_properties_khr)(
-            physical_device,
-            quality_level_info,
-            quality_level_properties,
-        )
+                physical_device,
+                quality_level_info,
+                quality_level_properties,
+            )
+            .result()
     }
 }
 #[derive(Clone)]
@@ -398,18 +398,17 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetEncodedVideoSessionParametersKHR
     #[inline]
     pub unsafe fn get_encoded_video_session_parameters_khr(
         &self,
         device: crate::vk::Device,
-        video_session_parameters_info: *const crate::vk::VideoEncodeSessionParametersGetInfoKHR<
+        video_session_parameters_info: &crate::vk::VideoEncodeSessionParametersGetInfoKHR<
             '_,
         >,
-        feedback_info: *mut crate::vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>,
-        data_size: *mut usize,
-        data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result {
-        (self
+        feedback_info: &mut crate::vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>,
+    ) -> crate::VkResult<Vec<core::ffi::c_void>> {
+        crate::read_into_uninitialized_vector(|data_size, data| (self
             .fp
             .get_encoded_video_session_parameters_khr)(
             device,
@@ -417,13 +416,14 @@ impl Device {
             feedback_info,
             data_size,
             data,
-        )
+        ))
     }
+    ///vkCmdEncodeVideoKHR
     #[inline]
     pub unsafe fn cmd_encode_video_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        encode_info: *const crate::vk::VideoEncodeInfoKHR<'_>,
+        encode_info: &crate::vk::VideoEncodeInfoKHR<'_>,
     ) {
         (self.fp.cmd_encode_video_khr)(command_buffer, encode_info)
     }

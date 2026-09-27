@@ -78,24 +78,26 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetFenceWin32HandleKHR
     #[inline]
     pub unsafe fn get_fence_win32_handle_khr(
         &self,
         device: crate::vk::Device,
-        get_win32_handle_info: *const crate::vk::FenceGetWin32HandleInfoKHR<'_>,
-        handle: *mut crate::platform_types::HANDLE,
-    ) -> crate::vk::Result {
+        get_win32_handle_info: &crate::vk::FenceGetWin32HandleInfoKHR<'_>,
+        handle: &mut crate::platform_types::HANDLE,
+    ) -> crate::VkResult<()> {
         (self.fp.get_fence_win32_handle_khr)(device, get_win32_handle_info, handle)
+            .result()
     }
+    ///vkImportFenceWin32HandleKHR
     #[inline]
     pub unsafe fn import_fence_win32_handle_khr(
         &self,
         device: crate::vk::Device,
-        import_fence_win32_handle_info: *const crate::vk::ImportFenceWin32HandleInfoKHR<
-            '_,
-        >,
-    ) -> crate::vk::Result {
+        import_fence_win32_handle_info: &crate::vk::ImportFenceWin32HandleInfoKHR<'_>,
+    ) -> crate::VkResult<()> {
         (self.fp.import_fence_win32_handle_khr)(device, import_fence_win32_handle_info)
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

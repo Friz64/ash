@@ -204,29 +204,32 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateSamplerYcbcrConversion
     #[inline]
     pub unsafe fn create_sampler_ycbcr_conversion_khr(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        ycbcr_conversion: *mut crate::vk::SamplerYcbcrConversion,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        ycbcr_conversion: &mut crate::vk::SamplerYcbcrConversion,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_sampler_ycbcr_conversion_khr)(
-            device,
-            create_info,
-            allocator,
-            ycbcr_conversion,
-        )
+                device,
+                create_info,
+                allocator,
+                ycbcr_conversion,
+            )
+            .result()
     }
+    ///vkDestroySamplerYcbcrConversion
     #[inline]
     pub unsafe fn destroy_sampler_ycbcr_conversion_khr(
         &self,
         device: crate::vk::Device,
         ycbcr_conversion: crate::vk::SamplerYcbcrConversion,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp

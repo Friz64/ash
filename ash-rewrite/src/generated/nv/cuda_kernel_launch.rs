@@ -158,59 +158,66 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateCudaModuleNV
     #[inline]
     pub unsafe fn create_cuda_module_nv(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::CudaModuleCreateInfoNV<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        module: *mut crate::vk::CudaModuleNV,
-    ) -> crate::vk::Result {
-        (self.fp.create_cuda_module_nv)(device, create_info, allocator, module)
+        create_info: &crate::vk::CudaModuleCreateInfoNV<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        module: &mut crate::vk::CudaModuleNV,
+    ) -> crate::VkResult<()> {
+        (self.fp.create_cuda_module_nv)(device, create_info, allocator, module).result()
     }
+    ///vkGetCudaModuleCacheNV
     #[inline]
     pub unsafe fn get_cuda_module_cache_nv(
         &self,
         device: crate::vk::Device,
         module: crate::vk::CudaModuleNV,
-        cache_size: *mut usize,
-        cache_data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result {
-        (self.fp.get_cuda_module_cache_nv)(device, module, cache_size, cache_data)
+    ) -> crate::VkResult<Vec<core::ffi::c_void>> {
+        crate::read_into_uninitialized_vector(|cache_size, cache_data| (self
+            .fp
+            .get_cuda_module_cache_nv)(device, module, cache_size, cache_data))
     }
+    ///vkCreateCudaFunctionNV
     #[inline]
     pub unsafe fn create_cuda_function_nv(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::CudaFunctionCreateInfoNV<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        function: *mut crate::vk::CudaFunctionNV,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::CudaFunctionCreateInfoNV<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        function: &mut crate::vk::CudaFunctionNV,
+    ) -> crate::VkResult<()> {
         (self.fp.create_cuda_function_nv)(device, create_info, allocator, function)
+            .result()
     }
+    ///vkDestroyCudaModuleNV
     #[inline]
     pub unsafe fn destroy_cuda_module_nv(
         &self,
         device: crate::vk::Device,
         module: crate::vk::CudaModuleNV,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_cuda_module_nv)(device, module, allocator)
     }
+    ///vkDestroyCudaFunctionNV
     #[inline]
     pub unsafe fn destroy_cuda_function_nv(
         &self,
         device: crate::vk::Device,
         function: crate::vk::CudaFunctionNV,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_cuda_function_nv)(device, function, allocator)
     }
+    ///vkCmdCudaLaunchKernelNV
     #[inline]
     pub unsafe fn cmd_cuda_launch_kernel_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        launch_info: *const crate::vk::CudaLaunchInfoNV<'_>,
+        launch_info: &crate::vk::CudaLaunchInfoNV<'_>,
     ) {
         (self.fp.cmd_cuda_launch_kernel_nv)(command_buffer, launch_info)
     }

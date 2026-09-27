@@ -62,6 +62,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkResetQueryPool
     #[inline]
     pub unsafe fn reset_query_pool_ext(
         &self,

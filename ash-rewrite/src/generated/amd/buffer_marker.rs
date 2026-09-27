@@ -79,6 +79,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdWriteBufferMarkerAMD
     #[inline]
     pub unsafe fn cmd_write_buffer_marker_amd(
         &self,
@@ -98,6 +99,7 @@ impl Device {
             marker,
         )
     }
+    ///vkCmdWriteBufferMarker2AMD
     #[inline]
     pub unsafe fn cmd_write_buffer_marker2_amd(
         &self,

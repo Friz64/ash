@@ -102,14 +102,16 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetImageDrmFormatModifierPropertiesEXT
     #[inline]
     pub unsafe fn get_image_drm_format_modifier_properties_ext(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
-        properties: *mut crate::vk::ImageDrmFormatModifierPropertiesEXT<'_>,
-    ) -> crate::vk::Result {
+        properties: &mut crate::vk::ImageDrmFormatModifierPropertiesEXT<'_>,
+    ) -> crate::VkResult<()> {
         (self.fp.get_image_drm_format_modifier_properties_ext)(device, image, properties)
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 2;

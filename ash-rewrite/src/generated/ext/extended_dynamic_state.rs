@@ -253,6 +253,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetCullMode
     #[inline]
     pub unsafe fn cmd_set_cull_mode_ext(
         &self,
@@ -261,6 +262,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_cull_mode_ext)(command_buffer, cull_mode)
     }
+    ///vkCmdSetFrontFace
     #[inline]
     pub unsafe fn cmd_set_front_face_ext(
         &self,
@@ -269,6 +271,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_front_face_ext)(command_buffer, front_face)
     }
+    ///vkCmdSetPrimitiveTopology
     #[inline]
     pub unsafe fn cmd_set_primitive_topology_ext(
         &self,
@@ -277,49 +280,60 @@ impl Device {
     ) {
         (self.fp.cmd_set_primitive_topology_ext)(command_buffer, primitive_topology)
     }
+    ///vkCmdSetViewportWithCount
     #[inline]
     pub unsafe fn cmd_set_viewport_with_count_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        viewport_count: u32,
-        viewports: *const crate::vk::Viewport,
+        viewports: &[crate::vk::Viewport],
     ) {
         (self
             .fp
-            .cmd_set_viewport_with_count_ext)(command_buffer, viewport_count, viewports)
+            .cmd_set_viewport_with_count_ext)(
+            command_buffer,
+            viewports.len() as _,
+            viewports.as_ptr(),
+        )
     }
+    ///vkCmdSetScissorWithCount
     #[inline]
     pub unsafe fn cmd_set_scissor_with_count_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        scissor_count: u32,
-        scissors: *const crate::vk::Rect2D,
+        scissors: &[crate::vk::Rect2D],
     ) {
-        (self.fp.cmd_set_scissor_with_count_ext)(command_buffer, scissor_count, scissors)
+        (self
+            .fp
+            .cmd_set_scissor_with_count_ext)(
+            command_buffer,
+            scissors.len() as _,
+            scissors.as_ptr(),
+        )
     }
+    ///vkCmdBindVertexBuffers2
     #[inline]
     pub unsafe fn cmd_bind_vertex_buffers2_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
-        binding_count: u32,
-        buffers: *const crate::vk::Buffer,
-        offsets: *const crate::vk::DeviceSize,
-        sizes: *const crate::vk::DeviceSize,
-        strides: *const crate::vk::DeviceSize,
+        buffers: &[crate::vk::Buffer],
+        offsets: &[crate::vk::DeviceSize],
+        sizes: &[crate::vk::DeviceSize],
+        strides: &[crate::vk::DeviceSize],
     ) {
         (self
             .fp
             .cmd_bind_vertex_buffers2_ext)(
             command_buffer,
             first_binding,
-            binding_count,
-            buffers,
-            offsets,
-            sizes,
-            strides,
+            buffers.len() as _,
+            buffers.as_ptr(),
+            offsets.as_ptr(),
+            sizes.as_ptr(),
+            strides.as_ptr(),
         )
     }
+    ///vkCmdSetDepthTestEnable
     #[inline]
     pub unsafe fn cmd_set_depth_test_enable_ext(
         &self,
@@ -328,6 +342,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_depth_test_enable_ext)(command_buffer, depth_test_enable)
     }
+    ///vkCmdSetDepthWriteEnable
     #[inline]
     pub unsafe fn cmd_set_depth_write_enable_ext(
         &self,
@@ -336,6 +351,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_depth_write_enable_ext)(command_buffer, depth_write_enable)
     }
+    ///vkCmdSetDepthCompareOp
     #[inline]
     pub unsafe fn cmd_set_depth_compare_op_ext(
         &self,
@@ -344,6 +360,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_depth_compare_op_ext)(command_buffer, depth_compare_op)
     }
+    ///vkCmdSetDepthBoundsTestEnable
     #[inline]
     pub unsafe fn cmd_set_depth_bounds_test_enable_ext(
         &self,
@@ -357,6 +374,7 @@ impl Device {
             depth_bounds_test_enable,
         )
     }
+    ///vkCmdSetStencilTestEnable
     #[inline]
     pub unsafe fn cmd_set_stencil_test_enable_ext(
         &self,
@@ -365,6 +383,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_stencil_test_enable_ext)(command_buffer, stencil_test_enable)
     }
+    ///vkCmdSetStencilOp
     #[inline]
     pub unsafe fn cmd_set_stencil_op_ext(
         &self,

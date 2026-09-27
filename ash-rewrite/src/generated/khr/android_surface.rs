@@ -62,15 +62,17 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkCreateAndroidSurfaceKHR
     #[inline]
     pub unsafe fn create_android_surface_khr(
         &self,
         instance: crate::vk::Instance,
-        create_info: *const crate::vk::AndroidSurfaceCreateInfoKHR<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::AndroidSurfaceCreateInfoKHR<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        surface: &mut crate::vk::SurfaceKHR,
+    ) -> crate::VkResult<()> {
         (self.fp.create_android_surface_khr)(instance, create_info, allocator, surface)
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 6;

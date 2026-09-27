@@ -73,11 +73,12 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkAntiLagUpdateAMD
     #[inline]
     pub unsafe fn anti_lag_update_amd(
         &self,
         device: crate::vk::Device,
-        data: *const crate::vk::AntiLagDataAMD<'_>,
+        data: &crate::vk::AntiLagDataAMD<'_>,
     ) {
         (self.fp.anti_lag_update_amd)(device, data)
     }

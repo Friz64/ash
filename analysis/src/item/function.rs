@@ -36,7 +36,7 @@ impl FuncPointer {
 
 #[derive(Debug, Clone)]
 pub enum Length {
-    DefinedByMember(VariableName),
+    DefinedByParam(VariableName),
     NullTerminated,
     Count(CExprItems),
 }
@@ -86,7 +86,7 @@ impl Command {
                     if len == "null-terminated" {
                         Length::NullTerminated
                     } else if (xml.params.iter()).any(|xml_member| xml_member.c_decl.name == len) {
-                        Length::DefinedByMember(VariableName::new(len))
+                        Length::DefinedByParam(VariableName::new(len))
                     } else {
                         Length::Count(cexpr::parse(len))
                     }

@@ -69,13 +69,14 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkQueueSetPerfHintQCOM
     #[inline]
     pub unsafe fn queue_set_perf_hint_qcom(
         &self,
         queue: crate::vk::Queue,
-        perf_hint_info: *const crate::vk::PerfHintInfoQCOM<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.queue_set_perf_hint_qcom)(queue, perf_hint_info)
+        perf_hint_info: &crate::vk::PerfHintInfoQCOM<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.queue_set_perf_hint_qcom)(queue, perf_hint_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

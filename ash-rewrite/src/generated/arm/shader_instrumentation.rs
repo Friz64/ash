@@ -76,20 +76,19 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM
     #[inline]
     pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics_arm(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        description_count: *mut u32,
-        descriptions: *mut crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>>> {
+        crate::read_into_uninitialized_vector(|description_count, descriptions| (self
             .fp
             .enumerate_physical_device_shader_instrumentation_metrics_arm)(
             physical_device,
             description_count,
             descriptions,
-        )
+        ))
     }
 }
 #[derive(Clone)]
@@ -226,32 +225,36 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateShaderInstrumentationARM
     #[inline]
     pub unsafe fn create_shader_instrumentation_arm(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        instrumentation: *mut crate::vk::ShaderInstrumentationARM,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        instrumentation: &mut crate::vk::ShaderInstrumentationARM,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_shader_instrumentation_arm)(
-            device,
-            create_info,
-            allocator,
-            instrumentation,
-        )
+                device,
+                create_info,
+                allocator,
+                instrumentation,
+            )
+            .result()
     }
+    ///vkDestroyShaderInstrumentationARM
     #[inline]
     pub unsafe fn destroy_shader_instrumentation_arm(
         &self,
         device: crate::vk::Device,
         instrumentation: crate::vk::ShaderInstrumentationARM,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_shader_instrumentation_arm)(device, instrumentation, allocator)
     }
+    ///vkCmdBeginShaderInstrumentationARM
     #[inline]
     pub unsafe fn cmd_begin_shader_instrumentation_arm(
         &self,
@@ -260,6 +263,7 @@ impl Device {
     ) {
         (self.fp.cmd_begin_shader_instrumentation_arm)(command_buffer, instrumentation)
     }
+    ///vkCmdEndShaderInstrumentationARM
     #[inline]
     pub unsafe fn cmd_end_shader_instrumentation_arm(
         &self,
@@ -267,25 +271,28 @@ impl Device {
     ) {
         (self.fp.cmd_end_shader_instrumentation_arm)(command_buffer)
     }
+    ///vkGetShaderInstrumentationValuesARM
     #[inline]
     pub unsafe fn get_shader_instrumentation_values_arm(
         &self,
         device: crate::vk::Device,
         instrumentation: crate::vk::ShaderInstrumentationARM,
-        metric_block_count: *mut u32,
-        metric_values: *mut core::ffi::c_void,
+        metric_block_count: &mut u32,
+        metric_values: &mut core::ffi::c_void,
         flags: crate::vk::ShaderInstrumentationValuesFlagsARM,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_shader_instrumentation_values_arm)(
-            device,
-            instrumentation,
-            metric_block_count,
-            metric_values,
-            flags,
-        )
+                device,
+                instrumentation,
+                metric_block_count,
+                metric_values,
+                flags,
+            )
+            .result()
     }
+    ///vkClearShaderInstrumentationMetricsARM
     #[inline]
     pub unsafe fn clear_shader_instrumentation_metrics_arm(
         &self,

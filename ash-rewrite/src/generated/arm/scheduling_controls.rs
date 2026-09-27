@@ -82,11 +82,12 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetDispatchParametersARM
     #[inline]
     pub unsafe fn cmd_set_dispatch_parameters_arm(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        dispatch_parameters: *const crate::vk::DispatchParametersARM<'_>,
+        dispatch_parameters: &crate::vk::DispatchParametersARM<'_>,
     ) {
         (self.fp.cmd_set_dispatch_parameters_arm)(command_buffer, dispatch_parameters)
     }

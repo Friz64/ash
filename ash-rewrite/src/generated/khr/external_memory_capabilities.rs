@@ -119,12 +119,13 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceExternalBufferProperties
     #[inline]
     pub unsafe fn get_physical_device_external_buffer_properties_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        external_buffer_info: *const crate::vk::PhysicalDeviceExternalBufferInfo<'_>,
-        external_buffer_properties: *mut crate::vk::ExternalBufferProperties<'_>,
+        external_buffer_info: &crate::vk::PhysicalDeviceExternalBufferInfo<'_>,
+        external_buffer_properties: &mut crate::vk::ExternalBufferProperties<'_>,
     ) {
         (self
             .fp

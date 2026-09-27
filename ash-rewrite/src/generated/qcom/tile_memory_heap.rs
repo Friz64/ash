@@ -104,11 +104,12 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdBindTileMemoryQCOM
     #[inline]
     pub unsafe fn cmd_bind_tile_memory_qcom(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        tile_memory_bind_info: *const crate::vk::TileMemoryBindInfoQCOM<'_>,
+        tile_memory_bind_info: &crate::vk::TileMemoryBindInfoQCOM<'_>,
     ) {
         (self.fp.cmd_bind_tile_memory_qcom)(command_buffer, tile_memory_bind_info)
     }

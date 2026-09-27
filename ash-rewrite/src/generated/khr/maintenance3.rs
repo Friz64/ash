@@ -62,12 +62,13 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetDescriptorSetLayoutSupport
     #[inline]
     pub unsafe fn get_descriptor_set_layout_support_khr(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::DescriptorSetLayoutCreateInfo<'_>,
-        support: *mut crate::vk::DescriptorSetLayoutSupport<'_>,
+        create_info: &crate::vk::DescriptorSetLayoutCreateInfo<'_>,
+        support: &mut crate::vk::DescriptorSetLayoutSupport<'_>,
     ) {
         (self.fp.get_descriptor_set_layout_support_khr)(device, create_info, support)
     }

@@ -125,29 +125,32 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateDescriptorUpdateTemplate
     #[inline]
     pub unsafe fn create_descriptor_update_template_khr(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        descriptor_update_template: *mut crate::vk::DescriptorUpdateTemplate,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        descriptor_update_template: &mut crate::vk::DescriptorUpdateTemplate,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_descriptor_update_template_khr)(
-            device,
-            create_info,
-            allocator,
-            descriptor_update_template,
-        )
+                device,
+                create_info,
+                allocator,
+                descriptor_update_template,
+            )
+            .result()
     }
+    ///vkDestroyDescriptorUpdateTemplate
     #[inline]
     pub unsafe fn destroy_descriptor_update_template_khr(
         &self,
         device: crate::vk::Device,
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
@@ -157,13 +160,14 @@ impl Device {
             allocator,
         )
     }
+    ///vkUpdateDescriptorSetWithTemplate
     #[inline]
     pub unsafe fn update_descriptor_set_with_template_khr(
         &self,
         device: crate::vk::Device,
         descriptor_set: crate::vk::DescriptorSet,
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
-        data: *const core::ffi::c_void,
+        data: &core::ffi::c_void,
     ) {
         (self
             .fp
@@ -174,6 +178,7 @@ impl Device {
             data,
         )
     }
+    ///vkCmdPushDescriptorSetWithTemplate
     #[inline]
     pub unsafe fn cmd_push_descriptor_set_with_template_khr(
         &self,
@@ -181,7 +186,7 @@ impl Device {
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
         layout: crate::vk::PipelineLayout,
         set: u32,
-        data: *const core::ffi::c_void,
+        data: &core::ffi::c_void,
     ) {
         (self
             .fp

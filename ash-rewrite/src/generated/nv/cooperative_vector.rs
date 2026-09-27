@@ -101,20 +101,19 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceCooperativeVectorPropertiesNV
     #[inline]
     pub unsafe fn get_physical_device_cooperative_vector_properties_nv(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        property_count: *mut u32,
-        properties: *mut crate::vk::CooperativeVectorPropertiesNV<'_>,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::CooperativeVectorPropertiesNV<'_>>> {
+        crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
             .get_physical_device_cooperative_vector_properties_nv)(
             physical_device,
             property_count,
             properties,
-        )
+        ))
     }
 }
 #[derive(Clone)]
@@ -187,24 +186,29 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkConvertCooperativeVectorMatrixNV
     #[inline]
     pub unsafe fn convert_cooperative_vector_matrix_nv(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.convert_cooperative_vector_matrix_nv)(device, info)
+        info: &crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.convert_cooperative_vector_matrix_nv)(device, info).result()
     }
+    ///vkCmdConvertCooperativeVectorMatrixNV
     #[inline]
     pub unsafe fn cmd_convert_cooperative_vector_matrix_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        info_count: u32,
-        infos: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
+        infos: &[crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>],
     ) {
         (self
             .fp
-            .cmd_convert_cooperative_vector_matrix_nv)(command_buffer, info_count, infos)
+            .cmd_convert_cooperative_vector_matrix_nv)(
+            command_buffer,
+            infos.len() as _,
+            infos.as_ptr(),
+        )
     }
 }
 pub const SPEC_VERSION: u32 = 4;

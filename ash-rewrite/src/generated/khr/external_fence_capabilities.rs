@@ -100,12 +100,13 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceExternalFenceProperties
     #[inline]
     pub unsafe fn get_physical_device_external_fence_properties_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        external_fence_info: *const crate::vk::PhysicalDeviceExternalFenceInfo<'_>,
-        external_fence_properties: *mut crate::vk::ExternalFenceProperties<'_>,
+        external_fence_info: &crate::vk::PhysicalDeviceExternalFenceInfo<'_>,
+        external_fence_properties: &mut crate::vk::ExternalFenceProperties<'_>,
     ) {
         (self
             .fp

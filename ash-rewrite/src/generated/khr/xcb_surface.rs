@@ -79,22 +79,25 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkCreateXcbSurfaceKHR
     #[inline]
     pub unsafe fn create_xcb_surface_khr(
         &self,
         instance: crate::vk::Instance,
-        create_info: *const crate::vk::XcbSurfaceCreateInfoKHR<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::XcbSurfaceCreateInfoKHR<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        surface: &mut crate::vk::SurfaceKHR,
+    ) -> crate::VkResult<()> {
         (self.fp.create_xcb_surface_khr)(instance, create_info, allocator, surface)
+            .result()
     }
+    ///vkGetPhysicalDeviceXcbPresentationSupportKHR
     #[inline]
     pub unsafe fn get_physical_device_xcb_presentation_support_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-        connection: *mut crate::platform_types::xcb_connection_t,
+        connection: &mut crate::platform_types::xcb_connection_t,
         visual_id: crate::platform_types::xcb_visualid_t,
     ) -> crate::vk::Bool32 {
         (self

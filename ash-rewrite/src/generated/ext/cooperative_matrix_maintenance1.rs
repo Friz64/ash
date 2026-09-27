@@ -78,24 +78,21 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceCooperativeMatrixProperties2EXT
     #[inline]
     pub unsafe fn get_physical_device_cooperative_matrix_properties2_ext(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        cooperative_matrix_info: *const crate::vk::PhysicalDeviceCooperativeMatrixInfo2EXT<
-            '_,
-        >,
-        property_count: *mut u32,
-        properties: *mut crate::vk::CooperativeMatrixProperties2EXT<'_>,
-    ) -> crate::vk::Result {
-        (self
+        cooperative_matrix_info: &crate::vk::PhysicalDeviceCooperativeMatrixInfo2EXT<'_>,
+    ) -> crate::VkResult<Vec<crate::vk::CooperativeMatrixProperties2EXT<'_>>> {
+        crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
             .get_physical_device_cooperative_matrix_properties2_ext)(
             physical_device,
             cooperative_matrix_info,
             property_count,
             properties,
-        )
+        ))
     }
 }
 pub const SPEC_VERSION: u32 = 1;

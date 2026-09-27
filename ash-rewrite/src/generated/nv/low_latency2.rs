@@ -152,47 +152,52 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkSetLatencySleepModeNV
     #[inline]
     pub unsafe fn set_latency_sleep_mode_nv(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        sleep_mode_info: *const crate::vk::LatencySleepModeInfoNV<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.set_latency_sleep_mode_nv)(device, swapchain, sleep_mode_info)
+        sleep_mode_info: &crate::vk::LatencySleepModeInfoNV<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.set_latency_sleep_mode_nv)(device, swapchain, sleep_mode_info).result()
     }
+    ///vkLatencySleepNV
     #[inline]
     pub unsafe fn latency_sleep_nv(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        sleep_info: *const crate::vk::LatencySleepInfoNV<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.latency_sleep_nv)(device, swapchain, sleep_info)
+        sleep_info: &crate::vk::LatencySleepInfoNV<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.latency_sleep_nv)(device, swapchain, sleep_info).result()
     }
+    ///vkSetLatencyMarkerNV
     #[inline]
     pub unsafe fn set_latency_marker_nv(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        latency_marker_info: *const crate::vk::SetLatencyMarkerInfoNV<'_>,
+        latency_marker_info: &crate::vk::SetLatencyMarkerInfoNV<'_>,
     ) {
         (self.fp.set_latency_marker_nv)(device, swapchain, latency_marker_info)
     }
+    ///vkGetLatencyTimingsNV
     #[inline]
     pub unsafe fn get_latency_timings_nv(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        latency_marker_info: *mut crate::vk::GetLatencyMarkerInfoNV<'_>,
+        latency_marker_info: &mut crate::vk::GetLatencyMarkerInfoNV<'_>,
     ) {
         (self.fp.get_latency_timings_nv)(device, swapchain, latency_marker_info)
     }
+    ///vkQueueNotifyOutOfBandNV
     #[inline]
     pub unsafe fn queue_notify_out_of_band_nv(
         &self,
         queue: crate::vk::Queue,
-        queue_type_info: *const crate::vk::OutOfBandQueueTypeInfoNV<'_>,
+        queue_type_info: &crate::vk::OutOfBandQueueTypeInfoNV<'_>,
     ) {
         (self.fp.queue_notify_out_of_band_nv)(queue, queue_type_info)
     }

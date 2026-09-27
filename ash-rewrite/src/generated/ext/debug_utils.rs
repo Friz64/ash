@@ -205,50 +205,57 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkSetDebugUtilsObjectNameEXT
     #[inline]
     pub unsafe fn set_debug_utils_object_name_ext(
         &self,
         device: crate::vk::Device,
-        name_info: *const crate::vk::DebugUtilsObjectNameInfoEXT<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.set_debug_utils_object_name_ext)(device, name_info)
+        name_info: &crate::vk::DebugUtilsObjectNameInfoEXT<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.set_debug_utils_object_name_ext)(device, name_info).result()
     }
+    ///vkSetDebugUtilsObjectTagEXT
     #[inline]
     pub unsafe fn set_debug_utils_object_tag_ext(
         &self,
         device: crate::vk::Device,
-        tag_info: *const crate::vk::DebugUtilsObjectTagInfoEXT<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.set_debug_utils_object_tag_ext)(device, tag_info)
+        tag_info: &crate::vk::DebugUtilsObjectTagInfoEXT<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.set_debug_utils_object_tag_ext)(device, tag_info).result()
     }
+    ///vkQueueBeginDebugUtilsLabelEXT
     #[inline]
     pub unsafe fn queue_begin_debug_utils_label_ext(
         &self,
         queue: crate::vk::Queue,
-        label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
+        label_info: &crate::vk::DebugUtilsLabelEXT<'_>,
     ) {
         (self.fp.queue_begin_debug_utils_label_ext)(queue, label_info)
     }
+    ///vkQueueEndDebugUtilsLabelEXT
     #[inline]
     pub unsafe fn queue_end_debug_utils_label_ext(&self, queue: crate::vk::Queue) {
         (self.fp.queue_end_debug_utils_label_ext)(queue)
     }
+    ///vkQueueInsertDebugUtilsLabelEXT
     #[inline]
     pub unsafe fn queue_insert_debug_utils_label_ext(
         &self,
         queue: crate::vk::Queue,
-        label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
+        label_info: &crate::vk::DebugUtilsLabelEXT<'_>,
     ) {
         (self.fp.queue_insert_debug_utils_label_ext)(queue, label_info)
     }
+    ///vkCmdBeginDebugUtilsLabelEXT
     #[inline]
     pub unsafe fn cmd_begin_debug_utils_label_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
+        label_info: &crate::vk::DebugUtilsLabelEXT<'_>,
     ) {
         (self.fp.cmd_begin_debug_utils_label_ext)(command_buffer, label_info)
     }
+    ///vkCmdEndDebugUtilsLabelEXT
     #[inline]
     pub unsafe fn cmd_end_debug_utils_label_ext(
         &self,
@@ -256,11 +263,12 @@ impl Device {
     ) {
         (self.fp.cmd_end_debug_utils_label_ext)(command_buffer)
     }
+    ///vkCmdInsertDebugUtilsLabelEXT
     #[inline]
     pub unsafe fn cmd_insert_debug_utils_label_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
+        label_info: &crate::vk::DebugUtilsLabelEXT<'_>,
     ) {
         (self.fp.cmd_insert_debug_utils_label_ext)(command_buffer, label_info)
     }
@@ -354,39 +362,43 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkCreateDebugUtilsMessengerEXT
     #[inline]
     pub unsafe fn create_debug_utils_messenger_ext(
         &self,
         instance: crate::vk::Instance,
-        create_info: *const crate::vk::DebugUtilsMessengerCreateInfoEXT<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        messenger: *mut crate::vk::DebugUtilsMessengerEXT,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::DebugUtilsMessengerCreateInfoEXT<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        messenger: &mut crate::vk::DebugUtilsMessengerEXT,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_debug_utils_messenger_ext)(
-            instance,
-            create_info,
-            allocator,
-            messenger,
-        )
+                instance,
+                create_info,
+                allocator,
+                messenger,
+            )
+            .result()
     }
+    ///vkDestroyDebugUtilsMessengerEXT
     #[inline]
     pub unsafe fn destroy_debug_utils_messenger_ext(
         &self,
         instance: crate::vk::Instance,
         messenger: crate::vk::DebugUtilsMessengerEXT,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_debug_utils_messenger_ext)(instance, messenger, allocator)
     }
+    ///vkSubmitDebugUtilsMessageEXT
     #[inline]
     pub unsafe fn submit_debug_utils_message_ext(
         &self,
         instance: crate::vk::Instance,
         message_severity: crate::vk::DebugUtilsMessageSeverityFlagBitsEXT,
         message_types: crate::vk::DebugUtilsMessageTypeFlagsEXT,
-        callback_data: *const crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>,
+        callback_data: &crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>,
     ) {
         (self
             .fp

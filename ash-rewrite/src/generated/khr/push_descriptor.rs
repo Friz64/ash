@@ -96,6 +96,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdPushDescriptorSet
     #[inline]
     pub unsafe fn cmd_push_descriptor_set_khr(
         &self,
@@ -103,8 +104,7 @@ impl Device {
         pipeline_bind_point: crate::vk::PipelineBindPoint,
         layout: crate::vk::PipelineLayout,
         set: u32,
-        descriptor_write_count: u32,
-        descriptor_writes: *const crate::vk::WriteDescriptorSet<'_>,
+        descriptor_writes: &[crate::vk::WriteDescriptorSet<'_>],
     ) {
         (self
             .fp
@@ -113,10 +113,11 @@ impl Device {
             pipeline_bind_point,
             layout,
             set,
-            descriptor_write_count,
-            descriptor_writes,
+            descriptor_writes.len() as _,
+            descriptor_writes.as_ptr(),
         )
     }
+    ///vkCmdPushDescriptorSetWithTemplate
     #[inline]
     pub unsafe fn cmd_push_descriptor_set_with_template_khr(
         &self,
@@ -124,7 +125,7 @@ impl Device {
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
         layout: crate::vk::PipelineLayout,
         set: u32,
-        data: *const core::ffi::c_void,
+        data: &core::ffi::c_void,
     ) {
         (self
             .fp

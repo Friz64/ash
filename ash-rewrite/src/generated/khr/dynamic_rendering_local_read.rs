@@ -81,23 +81,23 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetRenderingAttachmentLocations
     #[inline]
     pub unsafe fn cmd_set_rendering_attachment_locations_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        location_info: *const crate::vk::RenderingAttachmentLocationInfo<'_>,
+        location_info: &crate::vk::RenderingAttachmentLocationInfo<'_>,
     ) {
         (self
             .fp
             .cmd_set_rendering_attachment_locations_khr)(command_buffer, location_info)
     }
+    ///vkCmdSetRenderingInputAttachmentIndices
     #[inline]
     pub unsafe fn cmd_set_rendering_input_attachment_indices_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        input_attachment_index_info: *const crate::vk::RenderingInputAttachmentIndexInfo<
-            '_,
-        >,
+        input_attachment_index_info: &crate::vk::RenderingInputAttachmentIndexInfo<'_>,
     ) {
         (self
             .fp

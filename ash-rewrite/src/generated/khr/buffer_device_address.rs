@@ -132,27 +132,30 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetBufferOpaqueCaptureAddress
     #[inline]
     pub unsafe fn get_buffer_opaque_capture_address_khr(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::BufferDeviceAddressInfo<'_>,
+        info: &crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> u64 {
         (self.fp.get_buffer_opaque_capture_address_khr)(device, info)
     }
+    ///vkGetBufferDeviceAddress
     #[inline]
     pub unsafe fn get_buffer_device_address_khr(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::BufferDeviceAddressInfo<'_>,
+        info: &crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> crate::vk::DeviceAddress {
         (self.fp.get_buffer_device_address_khr)(device, info)
     }
+    ///vkGetDeviceMemoryOpaqueCaptureAddress
     #[inline]
     pub unsafe fn get_device_memory_opaque_capture_address_khr(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
+        info: &crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
     ) -> u64 {
         (self.fp.get_device_memory_opaque_capture_address_khr)(device, info)
     }

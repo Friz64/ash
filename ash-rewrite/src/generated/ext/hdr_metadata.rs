@@ -62,15 +62,22 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkSetHdrMetadataEXT
     #[inline]
     pub unsafe fn set_hdr_metadata_ext(
         &self,
         device: crate::vk::Device,
-        swapchain_count: u32,
-        swapchains: *const crate::vk::SwapchainKHR,
-        metadata: *const crate::vk::HdrMetadataEXT<'_>,
+        swapchains: &[crate::vk::SwapchainKHR],
+        metadata: &[crate::vk::HdrMetadataEXT<'_>],
     ) {
-        (self.fp.set_hdr_metadata_ext)(device, swapchain_count, swapchains, metadata)
+        (self
+            .fp
+            .set_hdr_metadata_ext)(
+            device,
+            swapchains.len() as _,
+            swapchains.as_ptr(),
+            metadata.as_ptr(),
+        )
     }
 }
 pub const SPEC_VERSION: u32 = 3;

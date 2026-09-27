@@ -66,6 +66,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkSetLocalDimmingAMD
     #[inline]
     pub unsafe fn set_local_dimming_amd(
         &self,

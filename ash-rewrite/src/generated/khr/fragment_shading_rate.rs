@@ -151,12 +151,13 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetFragmentShadingRateKHR
     #[inline]
     pub unsafe fn cmd_set_fragment_shading_rate_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        fragment_size: *const crate::vk::Extent2D,
-        combiner_ops: *const [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
+        fragment_size: &crate::vk::Extent2D,
+        combiner_ops: &[crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
     ) {
         (self
             .fp
@@ -222,20 +223,22 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceFragmentShadingRatesKHR
     #[inline]
     pub unsafe fn get_physical_device_fragment_shading_rates_khr(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        fragment_shading_rate_count: *mut u32,
-        fragment_shading_rates: *mut crate::vk::PhysicalDeviceFragmentShadingRateKHR<'_>,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<Vec<crate::vk::PhysicalDeviceFragmentShadingRateKHR<'_>>> {
+        crate::read_into_uninitialized_vector(|
+            fragment_shading_rate_count,
+            fragment_shading_rates|
         (self
             .fp
             .get_physical_device_fragment_shading_rates_khr)(
             physical_device,
             fragment_shading_rate_count,
             fragment_shading_rates,
-        )
+        ))
     }
 }
 pub const SPEC_VERSION: u32 = 2;

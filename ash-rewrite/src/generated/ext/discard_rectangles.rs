@@ -104,23 +104,24 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetDiscardRectangleEXT
     #[inline]
     pub unsafe fn cmd_set_discard_rectangle_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_discard_rectangle: u32,
-        discard_rectangle_count: u32,
-        discard_rectangles: *const crate::vk::Rect2D,
+        discard_rectangles: &[crate::vk::Rect2D],
     ) {
         (self
             .fp
             .cmd_set_discard_rectangle_ext)(
             command_buffer,
             first_discard_rectangle,
-            discard_rectangle_count,
-            discard_rectangles,
+            discard_rectangles.len() as _,
+            discard_rectangles.as_ptr(),
         )
     }
+    ///vkCmdSetDiscardRectangleEnableEXT
     #[inline]
     pub unsafe fn cmd_set_discard_rectangle_enable_ext(
         &self,
@@ -134,6 +135,7 @@ impl Device {
             discard_rectangle_enable,
         )
     }
+    ///vkCmdSetDiscardRectangleModeEXT
     #[inline]
     pub unsafe fn cmd_set_discard_rectangle_mode_ext(
         &self,

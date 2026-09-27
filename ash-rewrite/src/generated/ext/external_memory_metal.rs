@@ -98,33 +98,37 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetMemoryMetalHandleEXT
     #[inline]
     pub unsafe fn get_memory_metal_handle_ext(
         &self,
         device: crate::vk::Device,
-        get_metal_handle_info: *const crate::vk::MemoryGetMetalHandleInfoEXT<'_>,
-        handle: *mut *mut core::ffi::c_void,
-    ) -> crate::vk::Result {
+        get_metal_handle_info: &crate::vk::MemoryGetMetalHandleInfoEXT<'_>,
+        handle: &mut *mut core::ffi::c_void,
+    ) -> crate::VkResult<()> {
         (self.fp.get_memory_metal_handle_ext)(device, get_metal_handle_info, handle)
+            .result()
     }
+    ///vkGetMemoryMetalHandlePropertiesEXT
     #[inline]
     pub unsafe fn get_memory_metal_handle_properties_ext(
         &self,
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
-        handle: *const core::ffi::c_void,
-        memory_metal_handle_properties: *mut crate::vk::MemoryMetalHandlePropertiesEXT<
+        handle: &core::ffi::c_void,
+        memory_metal_handle_properties: &mut crate::vk::MemoryMetalHandlePropertiesEXT<
             '_,
         >,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_memory_metal_handle_properties_ext)(
-            device,
-            handle_type,
-            handle,
-            memory_metal_handle_properties,
-        )
+                device,
+                handle_type,
+                handle,
+                memory_metal_handle_properties,
+            )
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

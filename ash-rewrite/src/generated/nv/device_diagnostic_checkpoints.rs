@@ -95,39 +95,42 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetCheckpointNV
     #[inline]
     pub unsafe fn cmd_set_checkpoint_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        checkpoint_marker: *const core::ffi::c_void,
+        checkpoint_marker: &core::ffi::c_void,
     ) {
         (self.fp.cmd_set_checkpoint_nv)(command_buffer, checkpoint_marker)
     }
+    ///vkGetQueueCheckpointDataNV
     #[inline]
     pub unsafe fn get_queue_checkpoint_data_nv(
         &self,
         queue: crate::vk::Queue,
-        checkpoint_data_count: *mut u32,
-        checkpoint_data: *mut crate::vk::CheckpointDataNV<'_>,
-    ) {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::CheckpointDataNV<'_>>> {
+        crate::read_into_uninitialized_vector(|checkpoint_data_count, checkpoint_data| (self
             .fp
-            .get_queue_checkpoint_data_nv)(queue, checkpoint_data_count, checkpoint_data)
+            .get_queue_checkpoint_data_nv)(
+            queue,
+            checkpoint_data_count,
+            checkpoint_data,
+        ))
     }
+    ///vkGetQueueCheckpointData2NV
     #[inline]
     pub unsafe fn get_queue_checkpoint_data2_nv(
         &self,
         queue: crate::vk::Queue,
-        checkpoint_data_count: *mut u32,
-        checkpoint_data: *mut crate::vk::CheckpointData2NV<'_>,
-    ) {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::CheckpointData2NV<'_>>> {
+        crate::read_into_uninitialized_vector(|checkpoint_data_count, checkpoint_data| (self
             .fp
             .get_queue_checkpoint_data2_nv)(
             queue,
             checkpoint_data_count,
             checkpoint_data,
-        )
+        ))
     }
 }
 pub const SPEC_VERSION: u32 = 2;

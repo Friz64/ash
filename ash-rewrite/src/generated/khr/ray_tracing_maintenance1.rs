@@ -93,6 +93,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdTraceRaysIndirect2KHR
     #[inline]
     pub unsafe fn cmd_trace_rays_indirect2_khr(
         &self,

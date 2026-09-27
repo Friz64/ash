@@ -81,33 +81,37 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetMemoryWin32HandleKHR
     #[inline]
     pub unsafe fn get_memory_win32_handle_khr(
         &self,
         device: crate::vk::Device,
-        get_win32_handle_info: *const crate::vk::MemoryGetWin32HandleInfoKHR<'_>,
-        handle: *mut crate::platform_types::HANDLE,
-    ) -> crate::vk::Result {
+        get_win32_handle_info: &crate::vk::MemoryGetWin32HandleInfoKHR<'_>,
+        handle: &mut crate::platform_types::HANDLE,
+    ) -> crate::VkResult<()> {
         (self.fp.get_memory_win32_handle_khr)(device, get_win32_handle_info, handle)
+            .result()
     }
+    ///vkGetMemoryWin32HandlePropertiesKHR
     #[inline]
     pub unsafe fn get_memory_win32_handle_properties_khr(
         &self,
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         handle: crate::platform_types::HANDLE,
-        memory_win32_handle_properties: *mut crate::vk::MemoryWin32HandlePropertiesKHR<
+        memory_win32_handle_properties: &mut crate::vk::MemoryWin32HandlePropertiesKHR<
             '_,
         >,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_memory_win32_handle_properties_khr)(
-            device,
-            handle_type,
-            handle,
-            memory_win32_handle_properties,
-        )
+                device,
+                handle_type,
+                handle,
+                memory_win32_handle_properties,
+            )
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

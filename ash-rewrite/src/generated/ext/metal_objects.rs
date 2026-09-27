@@ -101,11 +101,12 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkExportMetalObjectsEXT
     #[inline]
     pub unsafe fn export_metal_objects_ext(
         &self,
         device: crate::vk::Device,
-        metal_objects_info: *mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
+        metal_objects_info: &mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
     ) {
         (self.fp.export_metal_objects_ext)(device, metal_objects_info)
     }

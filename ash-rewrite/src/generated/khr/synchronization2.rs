@@ -493,15 +493,17 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetEvent2
     #[inline]
     pub unsafe fn cmd_set_event2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         event: crate::vk::Event,
-        dependency_info: *const crate::vk::DependencyInfo<'_>,
+        dependency_info: &crate::vk::DependencyInfo<'_>,
     ) {
         (self.fp.cmd_set_event2_khr)(command_buffer, event, dependency_info)
     }
+    ///vkCmdResetEvent2
     #[inline]
     pub unsafe fn cmd_reset_event2_khr(
         &self,
@@ -511,36 +513,44 @@ impl Device {
     ) {
         (self.fp.cmd_reset_event2_khr)(command_buffer, event, stage_mask)
     }
+    ///vkCmdWaitEvents2
     #[inline]
     pub unsafe fn cmd_wait_events2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        event_count: u32,
-        events: *const crate::vk::Event,
-        dependency_infos: *const crate::vk::DependencyInfo<'_>,
+        events: &[crate::vk::Event],
+        dependency_infos: &[crate::vk::DependencyInfo<'_>],
     ) {
         (self
             .fp
-            .cmd_wait_events2_khr)(command_buffer, event_count, events, dependency_infos)
+            .cmd_wait_events2_khr)(
+            command_buffer,
+            events.len() as _,
+            events.as_ptr(),
+            dependency_infos.as_ptr(),
+        )
     }
+    ///vkCmdPipelineBarrier2
     #[inline]
     pub unsafe fn cmd_pipeline_barrier2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        dependency_info: *const crate::vk::DependencyInfo<'_>,
+        dependency_info: &crate::vk::DependencyInfo<'_>,
     ) {
         (self.fp.cmd_pipeline_barrier2_khr)(command_buffer, dependency_info)
     }
+    ///vkQueueSubmit2
     #[inline]
     pub unsafe fn queue_submit2_khr(
         &self,
         queue: crate::vk::Queue,
-        submit_count: u32,
-        submits: *const crate::vk::SubmitInfo2<'_>,
+        submits: &[crate::vk::SubmitInfo2<'_>],
         fence: crate::vk::Fence,
-    ) -> crate::vk::Result {
-        (self.fp.queue_submit2_khr)(queue, submit_count, submits, fence)
+    ) -> crate::VkResult<()> {
+        (self.fp.queue_submit2_khr)(queue, submits.len() as _, submits.as_ptr(), fence)
+            .result()
     }
+    ///vkCmdWriteTimestamp2
     #[inline]
     pub unsafe fn cmd_write_timestamp2_khr(
         &self,

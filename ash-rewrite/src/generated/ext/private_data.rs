@@ -120,32 +120,36 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreatePrivateDataSlot
     #[inline]
     pub unsafe fn create_private_data_slot_ext(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::PrivateDataSlotCreateInfo<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        private_data_slot: *mut crate::vk::PrivateDataSlot,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::PrivateDataSlotCreateInfo<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        private_data_slot: &mut crate::vk::PrivateDataSlot,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_private_data_slot_ext)(
-            device,
-            create_info,
-            allocator,
-            private_data_slot,
-        )
+                device,
+                create_info,
+                allocator,
+                private_data_slot,
+            )
+            .result()
     }
+    ///vkDestroyPrivateDataSlot
     #[inline]
     pub unsafe fn destroy_private_data_slot_ext(
         &self,
         device: crate::vk::Device,
         private_data_slot: crate::vk::PrivateDataSlot,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_private_data_slot_ext)(device, private_data_slot, allocator)
     }
+    ///vkSetPrivateData
     #[inline]
     pub unsafe fn set_private_data_ext(
         &self,
@@ -154,17 +158,19 @@ impl Device {
         object_handle: u64,
         private_data_slot: crate::vk::PrivateDataSlot,
         data: u64,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .set_private_data_ext)(
-            device,
-            object_type,
-            object_handle,
-            private_data_slot,
-            data,
-        )
+                device,
+                object_type,
+                object_handle,
+                private_data_slot,
+                data,
+            )
+            .result()
     }
+    ///vkGetPrivateData
     #[inline]
     pub unsafe fn get_private_data_ext(
         &self,
@@ -172,7 +178,7 @@ impl Device {
         object_type: crate::vk::ObjectType,
         object_handle: u64,
         private_data_slot: crate::vk::PrivateDataSlot,
-        data: *mut u64,
+        data: &mut u64,
     ) {
         (self
             .fp

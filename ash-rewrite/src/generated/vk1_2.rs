@@ -512,6 +512,7 @@ impl crate::Device {
     pub fn fp_v1_2(&self) -> &crate::DeviceFnV1_2 {
         &self.device_fn_1_2
     }
+    ///vkResetQueryPool
     #[inline]
     pub unsafe fn reset_query_pool(
         &self,
@@ -524,24 +525,27 @@ impl crate::Device {
             .device_fn_1_2
             .reset_query_pool)(device, query_pool, first_query, query_count)
     }
+    ///vkCreateRenderPass2
     #[inline]
     pub unsafe fn create_render_pass2(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::RenderPassCreateInfo2<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        render_pass: *mut crate::vk::RenderPass,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::RenderPassCreateInfo2<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        render_pass: &mut crate::vk::RenderPass,
+    ) -> crate::VkResult<()> {
         (self
             .device_fn_1_2
             .create_render_pass2)(device, create_info, allocator, render_pass)
+            .result()
     }
+    ///vkCmdBeginRenderPass2
     #[inline]
     pub unsafe fn cmd_begin_render_pass2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        render_pass_begin: *const crate::vk::RenderPassBeginInfo<'_>,
-        subpass_begin_info: *const crate::vk::SubpassBeginInfo<'_>,
+        render_pass_begin: &crate::vk::RenderPassBeginInfo<'_>,
+        subpass_begin_info: &crate::vk::SubpassBeginInfo<'_>,
     ) {
         (self
             .device_fn_1_2
@@ -551,51 +555,58 @@ impl crate::Device {
             subpass_begin_info,
         )
     }
+    ///vkCmdNextSubpass2
     #[inline]
     pub unsafe fn cmd_next_subpass2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        subpass_begin_info: *const crate::vk::SubpassBeginInfo<'_>,
-        subpass_end_info: *const crate::vk::SubpassEndInfo<'_>,
+        subpass_begin_info: &crate::vk::SubpassBeginInfo<'_>,
+        subpass_end_info: &crate::vk::SubpassEndInfo<'_>,
     ) {
         (self
             .device_fn_1_2
             .cmd_next_subpass2)(command_buffer, subpass_begin_info, subpass_end_info)
     }
+    ///vkCmdEndRenderPass2
     #[inline]
     pub unsafe fn cmd_end_render_pass2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        subpass_end_info: *const crate::vk::SubpassEndInfo<'_>,
+        subpass_end_info: &crate::vk::SubpassEndInfo<'_>,
     ) {
         (self.device_fn_1_2.cmd_end_render_pass2)(command_buffer, subpass_end_info)
     }
+    ///vkGetSemaphoreCounterValue
     #[inline]
     pub unsafe fn get_semaphore_counter_value(
         &self,
         device: crate::vk::Device,
         semaphore: crate::vk::Semaphore,
-        value: *mut u64,
-    ) -> crate::vk::Result {
+        value: &mut u64,
+    ) -> crate::VkResult<()> {
         (self.device_fn_1_2.get_semaphore_counter_value)(device, semaphore, value)
+            .result()
     }
+    ///vkWaitSemaphores
     #[inline]
     pub unsafe fn wait_semaphores(
         &self,
         device: crate::vk::Device,
-        wait_info: *const crate::vk::SemaphoreWaitInfo<'_>,
+        wait_info: &crate::vk::SemaphoreWaitInfo<'_>,
         timeout: u64,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_2.wait_semaphores)(device, wait_info, timeout)
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_2.wait_semaphores)(device, wait_info, timeout).result()
     }
+    ///vkSignalSemaphore
     #[inline]
     pub unsafe fn signal_semaphore(
         &self,
         device: crate::vk::Device,
-        signal_info: *const crate::vk::SemaphoreSignalInfo<'_>,
-    ) -> crate::vk::Result {
-        (self.device_fn_1_2.signal_semaphore)(device, signal_info)
+        signal_info: &crate::vk::SemaphoreSignalInfo<'_>,
+    ) -> crate::VkResult<()> {
+        (self.device_fn_1_2.signal_semaphore)(device, signal_info).result()
     }
+    ///vkCmdDrawIndirectCount
     #[inline]
     pub unsafe fn cmd_draw_indirect_count(
         &self,
@@ -619,6 +630,7 @@ impl crate::Device {
             stride,
         )
     }
+    ///vkCmdDrawIndexedIndirectCount
     #[inline]
     pub unsafe fn cmd_draw_indexed_indirect_count(
         &self,
@@ -642,27 +654,30 @@ impl crate::Device {
             stride,
         )
     }
+    ///vkGetBufferOpaqueCaptureAddress
     #[inline]
     pub unsafe fn get_buffer_opaque_capture_address(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::BufferDeviceAddressInfo<'_>,
+        info: &crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> u64 {
         (self.device_fn_1_2.get_buffer_opaque_capture_address)(device, info)
     }
+    ///vkGetBufferDeviceAddress
     #[inline]
     pub unsafe fn get_buffer_device_address(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::BufferDeviceAddressInfo<'_>,
+        info: &crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> crate::vk::DeviceAddress {
         (self.device_fn_1_2.get_buffer_device_address)(device, info)
     }
+    ///vkGetDeviceMemoryOpaqueCaptureAddress
     #[inline]
     pub unsafe fn get_device_memory_opaque_capture_address(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
+        info: &crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
     ) -> u64 {
         (self.device_fn_1_2.get_device_memory_opaque_capture_address)(device, info)
     }

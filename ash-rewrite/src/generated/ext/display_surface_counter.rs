@@ -69,20 +69,22 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceSurfaceCapabilities2EXT
     #[inline]
     pub unsafe fn get_physical_device_surface_capabilities2_ext(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,
-        surface_capabilities: *mut crate::vk::SurfaceCapabilities2EXT<'_>,
-    ) -> crate::vk::Result {
+        surface_capabilities: &mut crate::vk::SurfaceCapabilities2EXT<'_>,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_physical_device_surface_capabilities2_ext)(
-            physical_device,
-            surface,
-            surface_capabilities,
-        )
+                physical_device,
+                surface,
+                surface_capabilities,
+            )
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

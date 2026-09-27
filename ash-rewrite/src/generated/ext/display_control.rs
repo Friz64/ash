@@ -130,53 +130,60 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkDisplayPowerControlEXT
     #[inline]
     pub unsafe fn display_power_control_ext(
         &self,
         device: crate::vk::Device,
         display: crate::vk::DisplayKHR,
-        display_power_info: *const crate::vk::DisplayPowerInfoEXT<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.display_power_control_ext)(device, display, display_power_info)
+        display_power_info: &crate::vk::DisplayPowerInfoEXT<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.display_power_control_ext)(device, display, display_power_info).result()
     }
+    ///vkRegisterDeviceEventEXT
     #[inline]
     pub unsafe fn register_device_event_ext(
         &self,
         device: crate::vk::Device,
-        device_event_info: *const crate::vk::DeviceEventInfoEXT<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        fence: *mut crate::vk::Fence,
-    ) -> crate::vk::Result {
+        device_event_info: &crate::vk::DeviceEventInfoEXT<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        fence: &mut crate::vk::Fence,
+    ) -> crate::VkResult<()> {
         (self.fp.register_device_event_ext)(device, device_event_info, allocator, fence)
+            .result()
     }
+    ///vkRegisterDisplayEventEXT
     #[inline]
     pub unsafe fn register_display_event_ext(
         &self,
         device: crate::vk::Device,
         display: crate::vk::DisplayKHR,
-        display_event_info: *const crate::vk::DisplayEventInfoEXT<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        fence: *mut crate::vk::Fence,
-    ) -> crate::vk::Result {
+        display_event_info: &crate::vk::DisplayEventInfoEXT<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        fence: &mut crate::vk::Fence,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .register_display_event_ext)(
-            device,
-            display,
-            display_event_info,
-            allocator,
-            fence,
-        )
+                device,
+                display,
+                display_event_info,
+                allocator,
+                fence,
+            )
+            .result()
     }
+    ///vkGetSwapchainCounterEXT
     #[inline]
     pub unsafe fn get_swapchain_counter_ext(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         counter: crate::vk::SurfaceCounterFlagBitsEXT,
-        counter_value: *mut u64,
-    ) -> crate::vk::Result {
+        counter_value: &mut u64,
+    ) -> crate::VkResult<()> {
         (self.fp.get_swapchain_counter_ext)(device, swapchain, counter, counter_value)
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

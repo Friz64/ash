@@ -86,21 +86,23 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetShaderModuleIdentifierEXT
     #[inline]
     pub unsafe fn get_shader_module_identifier_ext(
         &self,
         device: crate::vk::Device,
         shader_module: crate::vk::ShaderModule,
-        identifier: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
+        identifier: &mut crate::vk::ShaderModuleIdentifierEXT<'_>,
     ) {
         (self.fp.get_shader_module_identifier_ext)(device, shader_module, identifier)
     }
+    ///vkGetShaderModuleCreateInfoIdentifierEXT
     #[inline]
     pub unsafe fn get_shader_module_create_info_identifier_ext(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::ShaderModuleCreateInfo<'_>,
-        identifier: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
+        create_info: &crate::vk::ShaderModuleCreateInfo<'_>,
+        identifier: &mut crate::vk::ShaderModuleIdentifierEXT<'_>,
     ) {
         (self
             .fp

@@ -63,6 +63,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkSetDeviceMemoryPriorityEXT
     #[inline]
     pub unsafe fn set_device_memory_priority_ext(
         &self,

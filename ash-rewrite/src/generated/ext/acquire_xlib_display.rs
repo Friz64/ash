@@ -76,24 +76,27 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkAcquireXlibDisplayEXT
     #[inline]
     pub unsafe fn acquire_xlib_display_ext(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        dpy: *mut crate::platform_types::Display,
+        dpy: &mut crate::platform_types::Display,
         display: crate::vk::DisplayKHR,
-    ) -> crate::vk::Result {
-        (self.fp.acquire_xlib_display_ext)(physical_device, dpy, display)
+    ) -> crate::VkResult<()> {
+        (self.fp.acquire_xlib_display_ext)(physical_device, dpy, display).result()
     }
+    ///vkGetRandROutputDisplayEXT
     #[inline]
     pub unsafe fn get_rand_r_output_display_ext(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        dpy: *mut crate::platform_types::Display,
+        dpy: &mut crate::platform_types::Display,
         rr_output: crate::platform_types::RROutput,
-        display: *mut crate::vk::DisplayKHR,
-    ) -> crate::vk::Result {
+        display: &mut crate::vk::DisplayKHR,
+    ) -> crate::VkResult<()> {
         (self.fp.get_rand_r_output_display_ext)(physical_device, dpy, rr_output, display)
+            .result()
     }
 }
 pub(crate) mod items {

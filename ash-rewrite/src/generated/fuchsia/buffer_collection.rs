@@ -171,72 +171,81 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateBufferCollectionFUCHSIA
     #[inline]
     pub unsafe fn create_buffer_collection_fuchsia(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::BufferCollectionCreateInfoFUCHSIA<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        collection: *mut crate::vk::BufferCollectionFUCHSIA,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::BufferCollectionCreateInfoFUCHSIA<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        collection: &mut crate::vk::BufferCollectionFUCHSIA,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_buffer_collection_fuchsia)(
-            device,
-            create_info,
-            allocator,
-            collection,
-        )
+                device,
+                create_info,
+                allocator,
+                collection,
+            )
+            .result()
     }
+    ///vkSetBufferCollectionBufferConstraintsFUCHSIA
     #[inline]
     pub unsafe fn set_buffer_collection_buffer_constraints_fuchsia(
         &self,
         device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
-        buffer_constraints_info: *const crate::vk::BufferConstraintsInfoFUCHSIA<'_>,
-    ) -> crate::vk::Result {
+        buffer_constraints_info: &crate::vk::BufferConstraintsInfoFUCHSIA<'_>,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .set_buffer_collection_buffer_constraints_fuchsia)(
-            device,
-            collection,
-            buffer_constraints_info,
-        )
+                device,
+                collection,
+                buffer_constraints_info,
+            )
+            .result()
     }
+    ///vkSetBufferCollectionImageConstraintsFUCHSIA
     #[inline]
     pub unsafe fn set_buffer_collection_image_constraints_fuchsia(
         &self,
         device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
-        image_constraints_info: *const crate::vk::ImageConstraintsInfoFUCHSIA<'_>,
-    ) -> crate::vk::Result {
+        image_constraints_info: &crate::vk::ImageConstraintsInfoFUCHSIA<'_>,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .set_buffer_collection_image_constraints_fuchsia)(
-            device,
-            collection,
-            image_constraints_info,
-        )
+                device,
+                collection,
+                image_constraints_info,
+            )
+            .result()
     }
+    ///vkDestroyBufferCollectionFUCHSIA
     #[inline]
     pub unsafe fn destroy_buffer_collection_fuchsia(
         &self,
         device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_buffer_collection_fuchsia)(device, collection, allocator)
     }
+    ///vkGetBufferCollectionPropertiesFUCHSIA
     #[inline]
     pub unsafe fn get_buffer_collection_properties_fuchsia(
         &self,
         device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
-        properties: *mut crate::vk::BufferCollectionPropertiesFUCHSIA<'_>,
-    ) -> crate::vk::Result {
+        properties: &mut crate::vk::BufferCollectionPropertiesFUCHSIA<'_>,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_buffer_collection_properties_fuchsia)(device, collection, properties)
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 2;

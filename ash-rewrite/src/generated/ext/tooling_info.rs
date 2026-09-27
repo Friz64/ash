@@ -93,20 +93,19 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkGetPhysicalDeviceToolProperties
     #[inline]
     pub unsafe fn get_physical_device_tool_properties_ext(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        tool_count: *mut u32,
-        tool_properties: *mut crate::vk::PhysicalDeviceToolProperties<'_>,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::PhysicalDeviceToolProperties<'_>>> {
+        crate::read_into_uninitialized_vector(|tool_count, tool_properties| (self
             .fp
             .get_physical_device_tool_properties_ext)(
             physical_device,
             tool_count,
             tool_properties,
-        )
+        ))
     }
 }
 pub const SPEC_VERSION: u32 = 1;

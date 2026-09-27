@@ -124,23 +124,25 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetDeviceFaultReportsKHR
     #[inline]
     pub unsafe fn get_device_fault_reports_khr(
         &self,
         device: crate::vk::Device,
         timeout: u64,
-        fault_counts: *mut u32,
-        fault_info: *mut crate::vk::DeviceFaultInfoKHR<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.get_device_fault_reports_khr)(device, timeout, fault_counts, fault_info)
+    ) -> crate::VkResult<Vec<crate::vk::DeviceFaultInfoKHR<'_>>> {
+        crate::read_into_uninitialized_vector(|fault_counts, fault_info| (self
+            .fp
+            .get_device_fault_reports_khr)(device, timeout, fault_counts, fault_info))
     }
+    ///vkGetDeviceFaultDebugInfoKHR
     #[inline]
     pub unsafe fn get_device_fault_debug_info_khr(
         &self,
         device: crate::vk::Device,
-        debug_info: *mut crate::vk::DeviceFaultDebugInfoKHR<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.get_device_fault_debug_info_khr)(device, debug_info)
+        debug_info: &mut crate::vk::DeviceFaultDebugInfoKHR<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.get_device_fault_debug_info_khr)(device, debug_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

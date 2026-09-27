@@ -78,29 +78,33 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetRefreshCycleDurationGOOGLE
     #[inline]
     pub unsafe fn get_refresh_cycle_duration_google(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        display_timing_properties: *mut crate::vk::RefreshCycleDurationGOOGLE,
-    ) -> crate::vk::Result {
+        display_timing_properties: &mut crate::vk::RefreshCycleDurationGOOGLE,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_refresh_cycle_duration_google)(
-            device,
-            swapchain,
-            display_timing_properties,
-        )
+                device,
+                swapchain,
+                display_timing_properties,
+            )
+            .result()
     }
+    ///vkGetPastPresentationTimingGOOGLE
     #[inline]
     pub unsafe fn get_past_presentation_timing_google(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        presentation_timing_count: *mut u32,
-        presentation_timings: *mut crate::vk::PastPresentationTimingGOOGLE,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<Vec<crate::vk::PastPresentationTimingGOOGLE>> {
+        crate::read_into_uninitialized_vector(|
+            presentation_timing_count,
+            presentation_timings|
         (self
             .fp
             .get_past_presentation_timing_google)(
@@ -108,7 +112,7 @@ impl Device {
             swapchain,
             presentation_timing_count,
             presentation_timings,
-        )
+        ))
     }
 }
 pub const SPEC_VERSION: u32 = 1;

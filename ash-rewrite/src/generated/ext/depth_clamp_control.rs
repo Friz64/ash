@@ -73,12 +73,13 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetDepthClampRangeEXT
     #[inline]
     pub unsafe fn cmd_set_depth_clamp_range_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_clamp_mode: crate::vk::DepthClampModeEXT,
-        depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
+        depth_clamp_range: &crate::vk::DepthClampRangeEXT,
     ) {
         (self
             .fp

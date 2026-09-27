@@ -74,6 +74,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetLineStipple
     #[inline]
     pub unsafe fn cmd_set_line_stipple_khr(
         &self,

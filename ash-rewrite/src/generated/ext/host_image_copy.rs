@@ -160,46 +160,57 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCopyMemoryToImage
     #[inline]
     pub unsafe fn copy_memory_to_image_ext(
         &self,
         device: crate::vk::Device,
-        copy_memory_to_image_info: *const crate::vk::CopyMemoryToImageInfo<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.copy_memory_to_image_ext)(device, copy_memory_to_image_info)
+        copy_memory_to_image_info: &crate::vk::CopyMemoryToImageInfo<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.copy_memory_to_image_ext)(device, copy_memory_to_image_info).result()
     }
+    ///vkCopyImageToMemory
     #[inline]
     pub unsafe fn copy_image_to_memory_ext(
         &self,
         device: crate::vk::Device,
-        copy_image_to_memory_info: *const crate::vk::CopyImageToMemoryInfo<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.copy_image_to_memory_ext)(device, copy_image_to_memory_info)
+        copy_image_to_memory_info: &crate::vk::CopyImageToMemoryInfo<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.copy_image_to_memory_ext)(device, copy_image_to_memory_info).result()
     }
+    ///vkCopyImageToImage
     #[inline]
     pub unsafe fn copy_image_to_image_ext(
         &self,
         device: crate::vk::Device,
-        copy_image_to_image_info: *const crate::vk::CopyImageToImageInfo<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.copy_image_to_image_ext)(device, copy_image_to_image_info)
+        copy_image_to_image_info: &crate::vk::CopyImageToImageInfo<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.copy_image_to_image_ext)(device, copy_image_to_image_info).result()
     }
+    ///vkTransitionImageLayout
     #[inline]
     pub unsafe fn transition_image_layout_ext(
         &self,
         device: crate::vk::Device,
-        transition_count: u32,
-        transitions: *const crate::vk::HostImageLayoutTransitionInfo<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.transition_image_layout_ext)(device, transition_count, transitions)
+        transitions: &[crate::vk::HostImageLayoutTransitionInfo<'_>],
+    ) -> crate::VkResult<()> {
+        (self
+            .fp
+            .transition_image_layout_ext)(
+                device,
+                transitions.len() as _,
+                transitions.as_ptr(),
+            )
+            .result()
     }
+    ///vkGetImageSubresourceLayout2
     #[inline]
     pub unsafe fn get_image_subresource_layout2_ext(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
-        subresource: *const crate::vk::ImageSubresource2<'_>,
-        layout: *mut crate::vk::SubresourceLayout2<'_>,
+        subresource: &crate::vk::ImageSubresource2<'_>,
+        layout: &mut crate::vk::SubresourceLayout2<'_>,
     ) {
         (self.fp.get_image_subresource_layout2_ext)(device, image, subresource, layout)
     }

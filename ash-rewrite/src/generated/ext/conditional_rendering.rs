@@ -118,13 +118,12 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdBeginConditionalRenderingEXT
     #[inline]
     pub unsafe fn cmd_begin_conditional_rendering_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfoEXT<
-            '_,
-        >,
+        conditional_rendering_begin: &crate::vk::ConditionalRenderingBeginInfoEXT<'_>,
     ) {
         (self
             .fp
@@ -133,6 +132,7 @@ impl Device {
             conditional_rendering_begin,
         )
     }
+    ///vkCmdEndConditionalRenderingEXT
     #[inline]
     pub unsafe fn cmd_end_conditional_rendering_ext(
         &self,

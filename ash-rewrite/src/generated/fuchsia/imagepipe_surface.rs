@@ -62,22 +62,24 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkCreateImagePipeSurfaceFUCHSIA
     #[inline]
     pub unsafe fn create_image_pipe_surface_fuchsia(
         &self,
         instance: crate::vk::Instance,
-        create_info: *const crate::vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        surface: &mut crate::vk::SurfaceKHR,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_image_pipe_surface_fuchsia)(
-            instance,
-            create_info,
-            allocator,
-            surface,
-        )
+                instance,
+                create_info,
+                allocator,
+                surface,
+            )
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

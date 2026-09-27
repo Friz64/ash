@@ -47,8 +47,11 @@ pub enum RustTy {
     Registry(Ty),
     Ref(Box<RustTy>, Mutability),
     Slice(Box<RustTy>, Mutability, Option<ArrayLen>),
-    CStr,
-    Option(Box<RustTy>),
+    Unit,
+    Custom {
+        custom_type: TokenStream,
+        generic_args: Vec<RustTy>,
+    },
 }
 
 impl Ty {
@@ -177,10 +180,17 @@ impl RustTy {
                     quote! { &#mutability [#ty #len] }
                 }
             }
-            RustTy::CStr => quote! { core::ffi::CStr },
-            RustTy::Option(ty) => {
-                let ty = ty.tokens(ctx, lifetime);
-                quote! { Option<#ty> }
+            RustTy::Unit => quote! { () },
+            RustTy::Custom {
+                custom_type,
+                generic_args,
+            } => {
+                let generic_args = (!generic_args.is_empty()).then(|| {
+                    let arg_tokens = generic_args.iter().map(|arg| arg.tokens(ctx, lifetime));
+                    quote! { <#(#arg_tokens),*> }
+                });
+
+                quote! { #custom_type #generic_args }
             }
         }
     }

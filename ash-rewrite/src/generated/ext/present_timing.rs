@@ -189,69 +189,75 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkSetSwapchainPresentTimingQueueSizeEXT
     #[inline]
     pub unsafe fn set_swapchain_present_timing_queue_size_ext(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         size: u32,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self.fp.set_swapchain_present_timing_queue_size_ext)(device, swapchain, size)
+            .result()
     }
+    ///vkGetSwapchainTimingPropertiesEXT
     #[inline]
     pub unsafe fn get_swapchain_timing_properties_ext(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        swapchain_timing_properties: *mut crate::vk::SwapchainTimingPropertiesEXT<'_>,
-        swapchain_timing_properties_counter: *mut u64,
-    ) -> crate::vk::Result {
+        swapchain_timing_properties: &mut crate::vk::SwapchainTimingPropertiesEXT<'_>,
+        swapchain_timing_properties_counter: &mut u64,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_swapchain_timing_properties_ext)(
-            device,
-            swapchain,
-            swapchain_timing_properties,
-            swapchain_timing_properties_counter,
-        )
+                device,
+                swapchain,
+                swapchain_timing_properties,
+                swapchain_timing_properties_counter,
+            )
+            .result()
     }
+    ///vkGetSwapchainTimeDomainPropertiesEXT
     #[inline]
     pub unsafe fn get_swapchain_time_domain_properties_ext(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        swapchain_time_domain_properties: *mut crate::vk::SwapchainTimeDomainPropertiesEXT<
+        swapchain_time_domain_properties: &mut crate::vk::SwapchainTimeDomainPropertiesEXT<
             '_,
         >,
-        time_domains_counter: *mut u64,
-    ) -> crate::vk::Result {
+        time_domains_counter: &mut u64,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_swapchain_time_domain_properties_ext)(
-            device,
-            swapchain,
-            swapchain_time_domain_properties,
-            time_domains_counter,
-        )
+                device,
+                swapchain,
+                swapchain_time_domain_properties,
+                time_domains_counter,
+            )
+            .result()
     }
+    ///vkGetPastPresentationTimingEXT
     #[inline]
     pub unsafe fn get_past_presentation_timing_ext(
         &self,
         device: crate::vk::Device,
-        past_presentation_timing_info: *const crate::vk::PastPresentationTimingInfoEXT<
+        past_presentation_timing_info: &crate::vk::PastPresentationTimingInfoEXT<'_>,
+        past_presentation_timing_properties: &mut crate::vk::PastPresentationTimingPropertiesEXT<
             '_,
         >,
-        past_presentation_timing_properties: *mut crate::vk::PastPresentationTimingPropertiesEXT<
-            '_,
-        >,
-    ) -> crate::vk::Result {
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .get_past_presentation_timing_ext)(
-            device,
-            past_presentation_timing_info,
-            past_presentation_timing_properties,
-        )
+                device,
+                past_presentation_timing_info,
+                past_presentation_timing_properties,
+            )
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 3;

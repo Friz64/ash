@@ -230,12 +230,13 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdExecuteGeneratedCommandsNV
     #[inline]
     pub unsafe fn cmd_execute_generated_commands_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         is_preprocessed: crate::vk::Bool32,
-        generated_commands_info: *const crate::vk::GeneratedCommandsInfoNV<'_>,
+        generated_commands_info: &crate::vk::GeneratedCommandsInfoNV<'_>,
     ) {
         (self
             .fp
@@ -245,11 +246,12 @@ impl Device {
             generated_commands_info,
         )
     }
+    ///vkCmdPreprocessGeneratedCommandsNV
     #[inline]
     pub unsafe fn cmd_preprocess_generated_commands_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        generated_commands_info: *const crate::vk::GeneratedCommandsInfoNV<'_>,
+        generated_commands_info: &crate::vk::GeneratedCommandsInfoNV<'_>,
     ) {
         (self
             .fp
@@ -258,6 +260,7 @@ impl Device {
             generated_commands_info,
         )
     }
+    ///vkCmdBindPipelineShaderGroupNV
     #[inline]
     pub unsafe fn cmd_bind_pipeline_shader_group_nv(
         &self,
@@ -275,12 +278,13 @@ impl Device {
             group_index,
         )
     }
+    ///vkGetGeneratedCommandsMemoryRequirementsNV
     #[inline]
     pub unsafe fn get_generated_commands_memory_requirements_nv(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::GeneratedCommandsMemoryRequirementsInfoNV<'_>,
-        memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        info: &crate::vk::GeneratedCommandsMemoryRequirementsInfoNV<'_>,
+        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
@@ -290,29 +294,32 @@ impl Device {
             memory_requirements,
         )
     }
+    ///vkCreateIndirectCommandsLayoutNV
     #[inline]
     pub unsafe fn create_indirect_commands_layout_nv(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::IndirectCommandsLayoutCreateInfoNV<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        indirect_commands_layout: *mut crate::vk::IndirectCommandsLayoutNV,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::IndirectCommandsLayoutCreateInfoNV<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        indirect_commands_layout: &mut crate::vk::IndirectCommandsLayoutNV,
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_indirect_commands_layout_nv)(
-            device,
-            create_info,
-            allocator,
-            indirect_commands_layout,
-        )
+                device,
+                create_info,
+                allocator,
+                indirect_commands_layout,
+            )
+            .result()
     }
+    ///vkDestroyIndirectCommandsLayoutNV
     #[inline]
     pub unsafe fn destroy_indirect_commands_layout_nv(
         &self,
         device: crate::vk::Device,
         indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp

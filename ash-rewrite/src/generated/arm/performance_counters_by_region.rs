@@ -77,16 +77,14 @@ impl Instance {
     pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
+    ///vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM
     #[inline]
     pub unsafe fn enumerate_physical_device_queue_family_performance_counters_by_region_arm(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-        counter_count: *mut u32,
-        counters: *mut crate::vk::PerformanceCounterARM<'_>,
-        counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionARM<'_>,
-    ) -> crate::vk::Result {
-        (self
+    ) -> crate::VkResult<Vec<crate::vk::PerformanceCounterDescriptionARM<'_>>> {
+        crate::read_into_uninitialized_vector(|counter_count, counter_descriptions| (self
             .fp
             .enumerate_physical_device_queue_family_performance_counters_by_region_arm)(
             physical_device,
@@ -94,7 +92,7 @@ impl Instance {
             counter_count,
             counters,
             counter_descriptions,
-        )
+        ))
     }
 }
 pub const SPEC_VERSION: u32 = 1;

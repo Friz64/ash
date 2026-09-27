@@ -75,13 +75,14 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkReleaseSwapchainImagesKHR
     #[inline]
     pub unsafe fn release_swapchain_images_ext(
         &self,
         device: crate::vk::Device,
-        release_info: *const crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
-    ) -> crate::vk::Result {
-        (self.fp.release_swapchain_images_ext)(device, release_info)
+        release_info: &crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
+    ) -> crate::VkResult<()> {
+        (self.fp.release_swapchain_images_ext)(device, release_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

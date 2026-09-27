@@ -91,6 +91,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdBindInvocationMaskHUAWEI
     #[inline]
     pub unsafe fn cmd_bind_invocation_mask_huawei(
         &self,

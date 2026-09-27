@@ -66,21 +66,21 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetViewportWScalingNV
     #[inline]
     pub unsafe fn cmd_set_viewport_w_scaling_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_viewport: u32,
-        viewport_count: u32,
-        viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
+        viewport_w_scalings: &[crate::vk::ViewportWScalingNV],
     ) {
         (self
             .fp
             .cmd_set_viewport_w_scaling_nv)(
             command_buffer,
             first_viewport,
-            viewport_count,
-            viewport_w_scalings,
+            viewport_w_scalings.len() as _,
+            viewport_w_scalings.as_ptr(),
         )
     }
 }

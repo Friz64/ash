@@ -134,12 +134,13 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkGetPartitionedAccelerationStructuresBuildSizesNV
     #[inline]
     pub unsafe fn get_partitioned_acceleration_structures_build_sizes_nv(
         &self,
         device: crate::vk::Device,
-        info: *const crate::vk::PartitionedAccelerationStructureInstancesInputNV<'_>,
-        size_info: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
+        info: &crate::vk::PartitionedAccelerationStructureInstancesInputNV<'_>,
+        size_info: &mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
     ) {
         (self
             .fp
@@ -149,11 +150,12 @@ impl Device {
             size_info,
         )
     }
+    ///vkCmdBuildPartitionedAccelerationStructuresNV
     #[inline]
     pub unsafe fn cmd_build_partitioned_acceleration_structures_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        build_info: *const crate::vk::BuildPartitionedAccelerationStructureInfoNV<'_>,
+        build_info: &crate::vk::BuildPartitionedAccelerationStructureInfoNV<'_>,
     ) {
         (self
             .fp

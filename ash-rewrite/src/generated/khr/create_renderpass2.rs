@@ -115,22 +115,25 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCreateRenderPass2
     #[inline]
     pub unsafe fn create_render_pass2_khr(
         &self,
         device: crate::vk::Device,
-        create_info: *const crate::vk::RenderPassCreateInfo2<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        render_pass: *mut crate::vk::RenderPass,
-    ) -> crate::vk::Result {
+        create_info: &crate::vk::RenderPassCreateInfo2<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        render_pass: &mut crate::vk::RenderPass,
+    ) -> crate::VkResult<()> {
         (self.fp.create_render_pass2_khr)(device, create_info, allocator, render_pass)
+            .result()
     }
+    ///vkCmdBeginRenderPass2
     #[inline]
     pub unsafe fn cmd_begin_render_pass2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        render_pass_begin: *const crate::vk::RenderPassBeginInfo<'_>,
-        subpass_begin_info: *const crate::vk::SubpassBeginInfo<'_>,
+        render_pass_begin: &crate::vk::RenderPassBeginInfo<'_>,
+        subpass_begin_info: &crate::vk::SubpassBeginInfo<'_>,
     ) {
         (self
             .fp
@@ -140,22 +143,24 @@ impl Device {
             subpass_begin_info,
         )
     }
+    ///vkCmdNextSubpass2
     #[inline]
     pub unsafe fn cmd_next_subpass2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        subpass_begin_info: *const crate::vk::SubpassBeginInfo<'_>,
-        subpass_end_info: *const crate::vk::SubpassEndInfo<'_>,
+        subpass_begin_info: &crate::vk::SubpassBeginInfo<'_>,
+        subpass_end_info: &crate::vk::SubpassEndInfo<'_>,
     ) {
         (self
             .fp
             .cmd_next_subpass2_khr)(command_buffer, subpass_begin_info, subpass_end_info)
     }
+    ///vkCmdEndRenderPass2
     #[inline]
     pub unsafe fn cmd_end_render_pass2_khr(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        subpass_end_info: *const crate::vk::SubpassEndInfo<'_>,
+        subpass_end_info: &crate::vk::SubpassEndInfo<'_>,
     ) {
         (self.fp.cmd_end_render_pass2_khr)(command_buffer, subpass_end_info)
     }

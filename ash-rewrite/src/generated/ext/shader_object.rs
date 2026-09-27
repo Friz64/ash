@@ -938,6 +938,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdSetPatchControlPointsEXT
     #[inline]
     pub unsafe fn cmd_set_patch_control_points_ext(
         &self,
@@ -946,6 +947,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_patch_control_points_ext)(command_buffer, patch_control_points)
     }
+    ///vkCmdSetLogicOpEXT
     #[inline]
     pub unsafe fn cmd_set_logic_op_ext(
         &self,
@@ -954,6 +956,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_logic_op_ext)(command_buffer, logic_op)
     }
+    ///vkCmdSetTessellationDomainOriginEXT
     #[inline]
     pub unsafe fn cmd_set_tessellation_domain_origin_ext(
         &self,
@@ -962,6 +965,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_tessellation_domain_origin_ext)(command_buffer, domain_origin)
     }
+    ///vkCmdSetDepthClampEnableEXT
     #[inline]
     pub unsafe fn cmd_set_depth_clamp_enable_ext(
         &self,
@@ -970,6 +974,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_depth_clamp_enable_ext)(command_buffer, depth_clamp_enable)
     }
+    ///vkCmdSetPolygonModeEXT
     #[inline]
     pub unsafe fn cmd_set_polygon_mode_ext(
         &self,
@@ -978,6 +983,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_polygon_mode_ext)(command_buffer, polygon_mode)
     }
+    ///vkCmdSetRasterizationSamplesEXT
     #[inline]
     pub unsafe fn cmd_set_rasterization_samples_ext(
         &self,
@@ -988,15 +994,17 @@ impl Device {
             .fp
             .cmd_set_rasterization_samples_ext)(command_buffer, rasterization_samples)
     }
+    ///vkCmdSetSampleMaskEXT
     #[inline]
     pub unsafe fn cmd_set_sample_mask_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         samples: crate::vk::SampleCountFlagBits,
-        sample_mask: *const crate::vk::SampleMask,
+        sample_mask: &crate::vk::SampleMask,
     ) {
         (self.fp.cmd_set_sample_mask_ext)(command_buffer, samples, sample_mask)
     }
+    ///vkCmdSetAlphaToCoverageEnableEXT
     #[inline]
     pub unsafe fn cmd_set_alpha_to_coverage_enable_ext(
         &self,
@@ -1010,6 +1018,7 @@ impl Device {
             alpha_to_coverage_enable,
         )
     }
+    ///vkCmdSetAlphaToOneEnableEXT
     #[inline]
     pub unsafe fn cmd_set_alpha_to_one_enable_ext(
         &self,
@@ -1018,6 +1027,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_alpha_to_one_enable_ext)(command_buffer, alpha_to_one_enable)
     }
+    ///vkCmdSetLogicOpEnableEXT
     #[inline]
     pub unsafe fn cmd_set_logic_op_enable_ext(
         &self,
@@ -1026,57 +1036,58 @@ impl Device {
     ) {
         (self.fp.cmd_set_logic_op_enable_ext)(command_buffer, logic_op_enable)
     }
+    ///vkCmdSetColorBlendEnableEXT
     #[inline]
     pub unsafe fn cmd_set_color_blend_enable_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
-        attachment_count: u32,
-        color_blend_enables: *const crate::vk::Bool32,
+        color_blend_enables: &[crate::vk::Bool32],
     ) {
         (self
             .fp
             .cmd_set_color_blend_enable_ext)(
             command_buffer,
             first_attachment,
-            attachment_count,
-            color_blend_enables,
+            color_blend_enables.len() as _,
+            color_blend_enables.as_ptr(),
         )
     }
+    ///vkCmdSetColorBlendEquationEXT
     #[inline]
     pub unsafe fn cmd_set_color_blend_equation_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
-        attachment_count: u32,
-        color_blend_equations: *const crate::vk::ColorBlendEquationEXT,
+        color_blend_equations: &[crate::vk::ColorBlendEquationEXT],
     ) {
         (self
             .fp
             .cmd_set_color_blend_equation_ext)(
             command_buffer,
             first_attachment,
-            attachment_count,
-            color_blend_equations,
+            color_blend_equations.len() as _,
+            color_blend_equations.as_ptr(),
         )
     }
+    ///vkCmdSetColorWriteMaskEXT
     #[inline]
     pub unsafe fn cmd_set_color_write_mask_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
-        attachment_count: u32,
-        color_write_masks: *const crate::vk::ColorComponentFlags,
+        color_write_masks: &[crate::vk::ColorComponentFlags],
     ) {
         (self
             .fp
             .cmd_set_color_write_mask_ext)(
             command_buffer,
             first_attachment,
-            attachment_count,
-            color_write_masks,
+            color_write_masks.len() as _,
+            color_write_masks.as_ptr(),
         )
     }
+    ///vkCmdSetRasterizationStreamEXT
     #[inline]
     pub unsafe fn cmd_set_rasterization_stream_ext(
         &self,
@@ -1085,6 +1096,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_rasterization_stream_ext)(command_buffer, rasterization_stream)
     }
+    ///vkCmdSetConservativeRasterizationModeEXT
     #[inline]
     pub unsafe fn cmd_set_conservative_rasterization_mode_ext(
         &self,
@@ -1098,6 +1110,7 @@ impl Device {
             conservative_rasterization_mode,
         )
     }
+    ///vkCmdSetExtraPrimitiveOverestimationSizeEXT
     #[inline]
     pub unsafe fn cmd_set_extra_primitive_overestimation_size_ext(
         &self,
@@ -1111,6 +1124,7 @@ impl Device {
             extra_primitive_overestimation_size,
         )
     }
+    ///vkCmdSetDepthClipEnableEXT
     #[inline]
     pub unsafe fn cmd_set_depth_clip_enable_ext(
         &self,
@@ -1119,6 +1133,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_depth_clip_enable_ext)(command_buffer, depth_clip_enable)
     }
+    ///vkCmdSetSampleLocationsEnableEXT
     #[inline]
     pub unsafe fn cmd_set_sample_locations_enable_ext(
         &self,
@@ -1132,23 +1147,24 @@ impl Device {
             sample_locations_enable,
         )
     }
+    ///vkCmdSetColorBlendAdvancedEXT
     #[inline]
     pub unsafe fn cmd_set_color_blend_advanced_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
-        attachment_count: u32,
-        color_blend_advanced: *const crate::vk::ColorBlendAdvancedEXT,
+        color_blend_advanced: &[crate::vk::ColorBlendAdvancedEXT],
     ) {
         (self
             .fp
             .cmd_set_color_blend_advanced_ext)(
             command_buffer,
             first_attachment,
-            attachment_count,
-            color_blend_advanced,
+            color_blend_advanced.len() as _,
+            color_blend_advanced.as_ptr(),
         )
     }
+    ///vkCmdSetProvokingVertexModeEXT
     #[inline]
     pub unsafe fn cmd_set_provoking_vertex_mode_ext(
         &self,
@@ -1159,6 +1175,7 @@ impl Device {
             .fp
             .cmd_set_provoking_vertex_mode_ext)(command_buffer, provoking_vertex_mode)
     }
+    ///vkCmdSetLineRasterizationModeEXT
     #[inline]
     pub unsafe fn cmd_set_line_rasterization_mode_ext(
         &self,
@@ -1172,6 +1189,7 @@ impl Device {
             line_rasterization_mode,
         )
     }
+    ///vkCmdSetLineStippleEnableEXT
     #[inline]
     pub unsafe fn cmd_set_line_stipple_enable_ext(
         &self,
@@ -1180,6 +1198,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_line_stipple_enable_ext)(command_buffer, stippled_line_enable)
     }
+    ///vkCmdSetDepthClipNegativeOneToOneEXT
     #[inline]
     pub unsafe fn cmd_set_depth_clip_negative_one_to_one_ext(
         &self,
@@ -1193,6 +1212,7 @@ impl Device {
             negative_one_to_one,
         )
     }
+    ///vkCmdSetViewportWScalingEnableNV
     #[inline]
     pub unsafe fn cmd_set_viewport_w_scaling_enable_nv(
         &self,
@@ -1206,23 +1226,24 @@ impl Device {
             viewport_w_scaling_enable,
         )
     }
+    ///vkCmdSetViewportSwizzleNV
     #[inline]
     pub unsafe fn cmd_set_viewport_swizzle_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_viewport: u32,
-        viewport_count: u32,
-        viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
+        viewport_swizzles: &[crate::vk::ViewportSwizzleNV],
     ) {
         (self
             .fp
             .cmd_set_viewport_swizzle_nv)(
             command_buffer,
             first_viewport,
-            viewport_count,
-            viewport_swizzles,
+            viewport_swizzles.len() as _,
+            viewport_swizzles.as_ptr(),
         )
     }
+    ///vkCmdSetCoverageToColorEnableNV
     #[inline]
     pub unsafe fn cmd_set_coverage_to_color_enable_nv(
         &self,
@@ -1236,6 +1257,7 @@ impl Device {
             coverage_to_color_enable,
         )
     }
+    ///vkCmdSetCoverageToColorLocationNV
     #[inline]
     pub unsafe fn cmd_set_coverage_to_color_location_nv(
         &self,
@@ -1249,6 +1271,7 @@ impl Device {
             coverage_to_color_location,
         )
     }
+    ///vkCmdSetCoverageModulationModeNV
     #[inline]
     pub unsafe fn cmd_set_coverage_modulation_mode_nv(
         &self,
@@ -1262,6 +1285,7 @@ impl Device {
             coverage_modulation_mode,
         )
     }
+    ///vkCmdSetCoverageModulationTableEnableNV
     #[inline]
     pub unsafe fn cmd_set_coverage_modulation_table_enable_nv(
         &self,
@@ -1275,21 +1299,22 @@ impl Device {
             coverage_modulation_table_enable,
         )
     }
+    ///vkCmdSetCoverageModulationTableNV
     #[inline]
     pub unsafe fn cmd_set_coverage_modulation_table_nv(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        coverage_modulation_table_count: u32,
-        coverage_modulation_table: *const core::ffi::c_float,
+        coverage_modulation_table: &[core::ffi::c_float],
     ) {
         (self
             .fp
             .cmd_set_coverage_modulation_table_nv)(
             command_buffer,
-            coverage_modulation_table_count,
-            coverage_modulation_table,
+            coverage_modulation_table.len() as _,
+            coverage_modulation_table.as_ptr(),
         )
     }
+    ///vkCmdSetShadingRateImageEnableNV
     #[inline]
     pub unsafe fn cmd_set_shading_rate_image_enable_nv(
         &self,
@@ -1303,6 +1328,7 @@ impl Device {
             shading_rate_image_enable,
         )
     }
+    ///vkCmdSetCoverageReductionModeNV
     #[inline]
     pub unsafe fn cmd_set_coverage_reduction_mode_nv(
         &self,
@@ -1313,6 +1339,7 @@ impl Device {
             .fp
             .cmd_set_coverage_reduction_mode_nv)(command_buffer, coverage_reduction_mode)
     }
+    ///vkCmdSetRepresentativeFragmentTestEnableNV
     #[inline]
     pub unsafe fn cmd_set_representative_fragment_test_enable_nv(
         &self,
@@ -1326,83 +1353,91 @@ impl Device {
             representative_fragment_test_enable,
         )
     }
+    ///vkCmdSetVertexInputEXT
     #[inline]
     pub unsafe fn cmd_set_vertex_input_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        vertex_binding_description_count: u32,
-        vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription2EXT<
+        vertex_binding_descriptions: &[crate::vk::VertexInputBindingDescription2EXT<'_>],
+        vertex_attribute_descriptions: &[crate::vk::VertexInputAttributeDescription2EXT<
             '_,
-        >,
-        vertex_attribute_description_count: u32,
-        vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription2EXT<
-            '_,
-        >,
+        >],
     ) {
         (self
             .fp
             .cmd_set_vertex_input_ext)(
             command_buffer,
-            vertex_binding_description_count,
-            vertex_binding_descriptions,
-            vertex_attribute_description_count,
-            vertex_attribute_descriptions,
+            vertex_binding_descriptions.len() as _,
+            vertex_binding_descriptions.as_ptr(),
+            vertex_attribute_descriptions.len() as _,
+            vertex_attribute_descriptions.as_ptr(),
         )
     }
+    ///vkCreateShadersEXT
     #[inline]
     pub unsafe fn create_shaders_ext(
         &self,
         device: crate::vk::Device,
-        create_info_count: u32,
-        create_infos: *const crate::vk::ShaderCreateInfoEXT<'_>,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
-        shaders: *mut crate::vk::ShaderEXT,
-    ) -> crate::vk::Result {
+        create_infos: &[crate::vk::ShaderCreateInfoEXT<'_>],
+        allocator: &crate::vk::AllocationCallbacks<'_>,
+        shaders: &mut [crate::vk::ShaderEXT],
+    ) -> crate::VkResult<()> {
         (self
             .fp
             .create_shaders_ext)(
-            device,
-            create_info_count,
-            create_infos,
-            allocator,
-            shaders,
-        )
+                device,
+                create_infos.len() as _,
+                create_infos.as_ptr(),
+                allocator,
+                shaders.as_mut_ptr(),
+            )
+            .result()
     }
+    ///vkDestroyShaderEXT
     #[inline]
     pub unsafe fn destroy_shader_ext(
         &self,
         device: crate::vk::Device,
         shader: crate::vk::ShaderEXT,
-        allocator: *const crate::vk::AllocationCallbacks<'_>,
+        allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self.fp.destroy_shader_ext)(device, shader, allocator)
     }
+    ///vkGetShaderBinaryDataEXT
     #[inline]
     pub unsafe fn get_shader_binary_data_ext(
         &self,
         device: crate::vk::Device,
         shader: crate::vk::ShaderEXT,
-        data_size: *mut usize,
-        data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result {
-        (self.fp.get_shader_binary_data_ext)(device, shader, data_size, data)
+    ) -> crate::VkResult<Vec<core::ffi::c_void>> {
+        crate::read_into_uninitialized_vector(|data_size, data| (self
+            .fp
+            .get_shader_binary_data_ext)(device, shader, data_size, data))
     }
+    ///vkCmdBindShadersEXT
     #[inline]
     pub unsafe fn cmd_bind_shaders_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        stage_count: u32,
-        stages: *const crate::vk::ShaderStageFlagBits,
-        shaders: *const crate::vk::ShaderEXT,
+        stages: &[crate::vk::ShaderStageFlagBits],
+        shaders: &[crate::vk::ShaderEXT],
     ) {
-        (self.fp.cmd_bind_shaders_ext)(command_buffer, stage_count, stages, shaders)
+        (self
+            .fp
+            .cmd_bind_shaders_ext)(
+            command_buffer,
+            stages.len() as _,
+            stages.as_ptr(),
+            shaders.as_ptr(),
+        )
     }
+    ///vkCmdSetDepthClampRangeEXT
     #[inline]
     pub unsafe fn cmd_set_depth_clamp_range_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_clamp_mode: crate::vk::DepthClampModeEXT,
-        depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
+        depth_clamp_range: &crate::vk::DepthClampRangeEXT,
     ) {
         (self
             .fp
@@ -1412,6 +1447,7 @@ impl Device {
             depth_clamp_range,
         )
     }
+    ///vkCmdSetCullMode
     #[inline]
     pub unsafe fn cmd_set_cull_mode_ext(
         &self,
@@ -1420,6 +1456,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_cull_mode_ext)(command_buffer, cull_mode)
     }
+    ///vkCmdSetFrontFace
     #[inline]
     pub unsafe fn cmd_set_front_face_ext(
         &self,
@@ -1428,6 +1465,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_front_face_ext)(command_buffer, front_face)
     }
+    ///vkCmdSetPrimitiveTopology
     #[inline]
     pub unsafe fn cmd_set_primitive_topology_ext(
         &self,
@@ -1436,49 +1474,60 @@ impl Device {
     ) {
         (self.fp.cmd_set_primitive_topology_ext)(command_buffer, primitive_topology)
     }
+    ///vkCmdSetViewportWithCount
     #[inline]
     pub unsafe fn cmd_set_viewport_with_count_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        viewport_count: u32,
-        viewports: *const crate::vk::Viewport,
+        viewports: &[crate::vk::Viewport],
     ) {
         (self
             .fp
-            .cmd_set_viewport_with_count_ext)(command_buffer, viewport_count, viewports)
+            .cmd_set_viewport_with_count_ext)(
+            command_buffer,
+            viewports.len() as _,
+            viewports.as_ptr(),
+        )
     }
+    ///vkCmdSetScissorWithCount
     #[inline]
     pub unsafe fn cmd_set_scissor_with_count_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        scissor_count: u32,
-        scissors: *const crate::vk::Rect2D,
+        scissors: &[crate::vk::Rect2D],
     ) {
-        (self.fp.cmd_set_scissor_with_count_ext)(command_buffer, scissor_count, scissors)
+        (self
+            .fp
+            .cmd_set_scissor_with_count_ext)(
+            command_buffer,
+            scissors.len() as _,
+            scissors.as_ptr(),
+        )
     }
+    ///vkCmdBindVertexBuffers2
     #[inline]
     pub unsafe fn cmd_bind_vertex_buffers2_ext(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
-        binding_count: u32,
-        buffers: *const crate::vk::Buffer,
-        offsets: *const crate::vk::DeviceSize,
-        sizes: *const crate::vk::DeviceSize,
-        strides: *const crate::vk::DeviceSize,
+        buffers: &[crate::vk::Buffer],
+        offsets: &[crate::vk::DeviceSize],
+        sizes: &[crate::vk::DeviceSize],
+        strides: &[crate::vk::DeviceSize],
     ) {
         (self
             .fp
             .cmd_bind_vertex_buffers2_ext)(
             command_buffer,
             first_binding,
-            binding_count,
-            buffers,
-            offsets,
-            sizes,
-            strides,
+            buffers.len() as _,
+            buffers.as_ptr(),
+            offsets.as_ptr(),
+            sizes.as_ptr(),
+            strides.as_ptr(),
         )
     }
+    ///vkCmdSetDepthTestEnable
     #[inline]
     pub unsafe fn cmd_set_depth_test_enable_ext(
         &self,
@@ -1487,6 +1536,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_depth_test_enable_ext)(command_buffer, depth_test_enable)
     }
+    ///vkCmdSetDepthWriteEnable
     #[inline]
     pub unsafe fn cmd_set_depth_write_enable_ext(
         &self,
@@ -1495,6 +1545,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_depth_write_enable_ext)(command_buffer, depth_write_enable)
     }
+    ///vkCmdSetDepthCompareOp
     #[inline]
     pub unsafe fn cmd_set_depth_compare_op_ext(
         &self,
@@ -1503,6 +1554,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_depth_compare_op_ext)(command_buffer, depth_compare_op)
     }
+    ///vkCmdSetDepthBoundsTestEnable
     #[inline]
     pub unsafe fn cmd_set_depth_bounds_test_enable_ext(
         &self,
@@ -1516,6 +1568,7 @@ impl Device {
             depth_bounds_test_enable,
         )
     }
+    ///vkCmdSetStencilTestEnable
     #[inline]
     pub unsafe fn cmd_set_stencil_test_enable_ext(
         &self,
@@ -1524,6 +1577,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_stencil_test_enable_ext)(command_buffer, stencil_test_enable)
     }
+    ///vkCmdSetStencilOp
     #[inline]
     pub unsafe fn cmd_set_stencil_op_ext(
         &self,
@@ -1545,6 +1599,7 @@ impl Device {
             compare_op,
         )
     }
+    ///vkCmdSetRasterizerDiscardEnable
     #[inline]
     pub unsafe fn cmd_set_rasterizer_discard_enable_ext(
         &self,
@@ -1558,6 +1613,7 @@ impl Device {
             rasterizer_discard_enable,
         )
     }
+    ///vkCmdSetDepthBiasEnable
     #[inline]
     pub unsafe fn cmd_set_depth_bias_enable_ext(
         &self,
@@ -1566,6 +1622,7 @@ impl Device {
     ) {
         (self.fp.cmd_set_depth_bias_enable_ext)(command_buffer, depth_bias_enable)
     }
+    ///vkCmdSetPrimitiveRestartEnable
     #[inline]
     pub unsafe fn cmd_set_primitive_restart_enable_ext(
         &self,

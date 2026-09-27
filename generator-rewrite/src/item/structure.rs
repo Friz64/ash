@@ -333,7 +333,15 @@ fn regular_builder(
         Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), mutability)
             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
-            let ty = RustTy::Ref(Box::new(RustTy::CStr), mutability).tokens(ctx, Some(lifetime));
+            let ty = RustTy::Ref(
+                Box::new(RustTy::Custom {
+                    custom_type: quote! { core::ffi::CStr },
+                    generic_args: vec![],
+                }),
+                mutability,
+            )
+            .tokens(ctx, Some(lifetime));
+
             let method_name_as_cstr = as_c_str_method_token(&method_name);
             quote! {
                 pub fn #method_name(mut self, #method_name: #ty) -> Self {

@@ -117,6 +117,7 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
+    ///vkCmdDrawClusterHUAWEI
     #[inline]
     pub unsafe fn cmd_draw_cluster_huawei(
         &self,
@@ -134,6 +135,7 @@ impl Device {
             group_count_z,
         )
     }
+    ///vkCmdDrawClusterIndirectHUAWEI
     #[inline]
     pub unsafe fn cmd_draw_cluster_indirect_huawei(
         &self,
