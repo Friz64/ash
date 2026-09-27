@@ -19,6 +19,8 @@ pub(crate) mod items {
         pub p_regions: *const crate::vk::PresentRegionKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PresentRegionsKHR<'_> {}
+    unsafe impl Sync for PresentRegionsKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentRegionsKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_REGIONS_KHR;
     }
@@ -53,6 +55,8 @@ pub(crate) mod items {
         pub p_rectangles: *const crate::vk::RectLayerKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PresentRegionKHR<'_> {}
+    unsafe impl Sync for PresentRegionKHR<'_> {}
     impl<'a> PresentRegionKHR<'a> {
         pub fn rectangles(mut self, rectangles: &'a [crate::vk::RectLayerKHR]) -> Self {
             self.rectangle_count = rectangles.len() as _;
@@ -68,6 +72,8 @@ pub(crate) mod items {
         pub extent: crate::vk::Extent2D,
         pub layer: u32,
     }
+    unsafe impl Send for RectLayerKHR {}
+    unsafe impl Sync for RectLayerKHR {}
     impl RectLayerKHR {
         pub fn offset(mut self, offset: crate::vk::Offset2D) -> Self {
             self.offset = offset;

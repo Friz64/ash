@@ -91,24 +91,32 @@ impl Device {
     pub unsafe fn get_shader_module_identifier(
         &self,
         shader_module: crate::vk::ShaderModule,
-        identifier: &mut crate::vk::ShaderModuleIdentifierEXT<'_>,
-    ) {
-        (self.fp.get_shader_module_identifier)(self.handle, shader_module, identifier)
+    ) -> crate::vk::ShaderModuleIdentifierEXT<'_> {
+        let mut identifier = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_shader_module_identifier)(
+            self.handle,
+            shader_module,
+            identifier.as_mut_ptr(),
+        );
+        identifier.assume_init()
     }
     ///vkGetShaderModuleCreateInfoIdentifierEXT
     #[inline]
     pub unsafe fn get_shader_module_create_info_identifier(
         &self,
         create_info: &crate::vk::ShaderModuleCreateInfo<'_>,
-        identifier: &mut crate::vk::ShaderModuleIdentifierEXT<'_>,
-    ) {
+    ) -> crate::vk::ShaderModuleIdentifierEXT<'_> {
+        let mut identifier = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_shader_module_create_info_identifier)(
             self.handle,
             create_info,
-            identifier,
-        )
+            identifier.as_mut_ptr(),
+        );
+        identifier.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;
@@ -123,6 +131,8 @@ pub(crate) mod items {
         pub shader_module_identifier: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT;
@@ -159,6 +169,8 @@ pub(crate) mod items {
         pub shader_module_identifier_algorithm_uuid: [u8; crate::vk::UUID_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT;
@@ -194,6 +206,8 @@ pub(crate) mod items {
         pub p_identifier: *const u8,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineShaderStageModuleIdentifierCreateInfoEXT<'_> {}
+    unsafe impl Sync for PipelineShaderStageModuleIdentifierCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT;
@@ -228,6 +242,8 @@ pub(crate) mod items {
         pub identifier: [u8; crate::vk::MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ShaderModuleIdentifierEXT<'_> {}
+    unsafe impl Sync for ShaderModuleIdentifierEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ShaderModuleIdentifierEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_MODULE_IDENTIFIER_EXT;
     }

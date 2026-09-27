@@ -125,15 +125,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         external_buffer_info: &crate::vk::PhysicalDeviceExternalBufferInfo<'_>,
-        external_buffer_properties: &mut crate::vk::ExternalBufferProperties<'_>,
-    ) {
+    ) -> crate::vk::ExternalBufferProperties<'_> {
+        let mut external_buffer_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_external_buffer_properties)(
             physical_device,
             external_buffer_info,
-            external_buffer_properties,
-        )
+            external_buffer_properties.as_mut_ptr(),
+        );
+        external_buffer_properties.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

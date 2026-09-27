@@ -103,6 +103,8 @@ pub(crate) mod items {
         pub fd: core::ffi::c_int,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportFenceFdInfoKHR<'_> {}
+    unsafe impl Sync for ImportFenceFdInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportFenceFdInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_FENCE_FD_INFO_KHR;
     }
@@ -150,6 +152,8 @@ pub(crate) mod items {
         pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for FenceGetFdInfoKHR<'_> {}
+    unsafe impl Sync for FenceGetFdInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for FenceGetFdInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FENCE_GET_FD_INFO_KHR;
     }

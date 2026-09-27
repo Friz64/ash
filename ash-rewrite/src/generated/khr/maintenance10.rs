@@ -147,9 +147,17 @@ impl Device {
     pub unsafe fn cmd_end_rendering2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        rendering_end_info: &crate::vk::RenderingEndInfoKHR<'_>,
+        rendering_end_info: Option<&crate::vk::RenderingEndInfoKHR<'_>>,
     ) {
-        (self.fp.cmd_end_rendering2)(command_buffer, rendering_end_info)
+        (self
+            .fp
+            .cmd_end_rendering2)(
+            command_buffer,
+            match rendering_end_info {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
 }
 pub const SPEC_VERSION: u32 = 1;
@@ -166,6 +174,8 @@ pub(crate) mod items {
         pub resolve_srgb_format_supports_transfer_function_control: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMaintenance10PropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceMaintenance10PropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMaintenance10PropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR;
@@ -218,6 +228,8 @@ pub(crate) mod items {
         pub maintenance10: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMaintenance10FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceMaintenance10FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMaintenance10FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR;
@@ -250,6 +262,8 @@ pub(crate) mod items {
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderingEndInfoKHR<'_> {}
+    unsafe impl Sync for RenderingEndInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderingEndInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_END_INFO_KHR;
     }
@@ -272,6 +286,8 @@ pub(crate) mod items {
         pub flags: crate::vk::RenderingAttachmentFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderingAttachmentFlagsInfoKHR<'_> {}
+    unsafe impl Sync for RenderingAttachmentFlagsInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderingAttachmentFlagsInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_ATTACHMENT_FLAGS_INFO_KHR;
     }
@@ -304,6 +320,8 @@ pub(crate) mod items {
         pub stencil_resolve_mode: crate::vk::ResolveModeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ResolveImageModeInfoKHR<'_> {}
+    unsafe impl Sync for ResolveImageModeInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ResolveImageModeInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RESOLVE_IMAGE_MODE_INFO_KHR;
     }

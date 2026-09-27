@@ -124,6 +124,8 @@ pub(crate) mod items {
         pub name: [core::ffi::c_char; crate::vk::MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM as _],
         pub quality_flags: crate::vk::DataGraphTOSAQualityFlagsARM,
     }
+    unsafe impl Send for DataGraphTOSANameQualityARM {}
+    unsafe impl Sync for DataGraphTOSANameQualityARM {}
     impl Default for DataGraphTOSANameQualityARM {
         fn default() -> Self {
             Self {
@@ -174,6 +176,8 @@ pub(crate) mod items {
         pub level: crate::vk::DataGraphTOSALevelARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueueFamilyDataGraphTOSAPropertiesARM<'_> {}
+    unsafe impl Sync for QueueFamilyDataGraphTOSAPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyDataGraphTOSAPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM;

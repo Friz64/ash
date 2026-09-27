@@ -19,6 +19,8 @@ pub(crate) mod items {
         pub amigo_profiling: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceAmigoProfilingFeaturesSEC<'_> {}
+    unsafe impl Sync for PhysicalDeviceAmigoProfilingFeaturesSEC<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC;
@@ -53,6 +55,8 @@ pub(crate) mod items {
         pub swap_buffer_timestamp: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AmigoProfilingSubmitInfoSEC<'_> {}
+    unsafe impl Sync for AmigoProfilingSubmitInfoSEC<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AmigoProfilingSubmitInfoSEC<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC;
     }

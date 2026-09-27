@@ -19,6 +19,8 @@ pub(crate) mod items {
         pub decode_mode: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageViewASTCDecodeModeEXT<'_> {}
+    unsafe impl Sync for ImageViewASTCDecodeModeEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewASTCDecodeModeEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_ASTC_DECODE_MODE_EXT;
     }
@@ -49,6 +51,8 @@ pub(crate) mod items {
         pub decode_mode_shared_exponent: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceASTCDecodeFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceASTCDecodeFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT;

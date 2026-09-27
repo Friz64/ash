@@ -114,6 +114,8 @@ pub(crate) mod items {
         pub invocation_mask: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'_> {}
+    unsafe impl Sync for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI;

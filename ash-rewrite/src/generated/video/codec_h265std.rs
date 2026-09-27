@@ -84,6 +84,8 @@ pub(crate) mod items {
 - `general_frame_only_constraint_flag` @ `4..5`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for H265ProfileTierLevelFlags {}
+    unsafe impl Sync for H265ProfileTierLevelFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265ProfileTierLevelFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -174,6 +176,8 @@ pub(crate) mod items {
         pub general_profile_idc: crate::vk::H265ProfileIdc,
         pub general_level_idc: crate::vk::H265LevelIdc,
     }
+    unsafe impl Send for H265ProfileTierLevel {}
+    unsafe impl Sync for H265ProfileTierLevel {}
     impl H265ProfileTierLevel {
         pub fn flags(mut self, flags: crate::vk::H265ProfileTierLevelFlags) -> Self {
             self.flags = flags;
@@ -202,6 +206,8 @@ pub(crate) mod items {
         pub max_dec_pic_buffering_minus1: [u8; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
         pub max_num_reorder_pics: [u8; crate::vk::H265_SUBLAYERS_LIST_SIZE as _],
     }
+    unsafe impl Send for H265DecPicBufMgr {}
+    unsafe impl Sync for H265DecPicBufMgr {}
     impl Default for H265DecPicBufMgr {
         fn default() -> Self {
             Self {
@@ -244,6 +250,8 @@ pub(crate) mod items {
         pub bit_rate_du_value_minus1: [u32; crate::vk::H265_CPB_CNT_LIST_SIZE as _],
         pub cbr_flag: u32,
     }
+    unsafe impl Send for H265SubLayerHrdParameters {}
+    unsafe impl Sync for H265SubLayerHrdParameters {}
     impl Default for H265SubLayerHrdParameters {
         fn default() -> Self {
             Self {
@@ -301,6 +309,8 @@ pub(crate) mod items {
 - `low_delay_hrd_flag` @ `20..28`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for H265HrdFlags {}
+    unsafe impl Sync for H265HrdFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265HrdFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -435,6 +445,8 @@ pub(crate) mod items {
         pub p_sub_layer_hrd_parameters_vcl: *const crate::vk::H265SubLayerHrdParameters,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for H265HrdParameters<'_> {}
+    unsafe impl Sync for H265HrdParameters<'_> {}
     impl<'a> Default for H265HrdParameters<'a> {
         fn default() -> Self {
             Self {
@@ -556,6 +568,8 @@ pub(crate) mod items {
 - `vps_poc_proportional_to_timing_flag` @ `3..4`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for H265VpsFlags {}
+    unsafe impl Sync for H265VpsFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265VpsFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -646,6 +660,8 @@ pub(crate) mod items {
         pub p_profile_tier_level: *const crate::vk::H265ProfileTierLevel,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for H265VideoParameterSet<'_> {}
+    unsafe impl Sync for H265VideoParameterSet<'_> {}
     impl<'a> H265VideoParameterSet<'a> {
         pub fn flags(mut self, flags: crate::vk::H265VpsFlags) -> Self {
             self.flags = flags;
@@ -731,6 +747,8 @@ pub(crate) mod items {
         pub scaling_list_dc_coef32x32: [u8; crate::vk::H265_SCALING_LIST_32X32_NUM_LISTS
             as _],
     }
+    unsafe impl Send for H265ScalingLists {}
+    unsafe impl Sync for H265ScalingLists {}
     impl Default for H265ScalingLists {
         fn default() -> Self {
             Self {
@@ -800,6 +818,8 @@ pub(crate) mod items {
 - `delta_rps_sign` @ `1..2`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for H265ShortTermRefPicSetFlags {}
+    unsafe impl Sync for H265ShortTermRefPicSetFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265ShortTermRefPicSetFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -852,6 +872,8 @@ pub(crate) mod items {
         pub delta_poc_s0_minus1: [u16; crate::vk::H265_MAX_DPB_SIZE as _],
         pub delta_poc_s1_minus1: [u16; crate::vk::H265_MAX_DPB_SIZE as _],
     }
+    unsafe impl Send for H265ShortTermRefPicSet {}
+    unsafe impl Sync for H265ShortTermRefPicSet {}
     impl Default for H265ShortTermRefPicSet {
         fn default() -> Self {
             Self {
@@ -950,6 +972,8 @@ pub(crate) mod items {
         pub lt_ref_pic_poc_lsb_sps: [u32; crate::vk::H265_MAX_LONG_TERM_REF_PICS_SPS
             as _],
     }
+    unsafe impl Send for H265LongTermRefPicsSps {}
+    unsafe impl Sync for H265LongTermRefPicsSps {}
     impl Default for H265LongTermRefPicsSps {
         fn default() -> Self {
             Self {
@@ -998,6 +1022,8 @@ pub(crate) mod items {
 - `restricted_ref_pic_lists_flag` @ `17..18`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for H265SpsVuiFlags {}
+    unsafe impl Sync for H265SpsVuiFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265SpsVuiFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1308,6 +1334,8 @@ pub(crate) mod items {
         pub p_hrd_parameters: *const crate::vk::H265HrdParameters<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for H265SequenceParameterSetVui<'_> {}
+    unsafe impl Sync for H265SequenceParameterSetVui<'_> {}
     impl<'a> H265SequenceParameterSetVui<'a> {
         pub fn flags(mut self, flags: crate::vk::H265SpsVuiFlags) -> Self {
             self.flags = flags;
@@ -1457,6 +1485,8 @@ pub(crate) mod items {
         pub predictor_palette_entries: [[u16; crate::vk::H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE
             as _]; crate::vk::H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE as _],
     }
+    unsafe impl Send for H265PredictorPaletteEntries {}
+    unsafe impl Sync for H265PredictorPaletteEntries {}
     impl Default for H265PredictorPaletteEntries {
         fn default() -> Self {
             Self {
@@ -1509,6 +1539,8 @@ pub(crate) mod items {
 - `intra_boundary_filtering_disabled_flag` @ `29..30`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for H265SpsFlags {}
+    unsafe impl Sync for H265SpsFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265SpsFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -2008,6 +2040,8 @@ pub(crate) mod items {
         pub p_predictor_palette_entries: *const crate::vk::H265PredictorPaletteEntries,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for H265SequenceParameterSet<'_> {}
+    unsafe impl Sync for H265SequenceParameterSet<'_> {}
     impl<'a> H265SequenceParameterSet<'a> {
         pub fn flags(mut self, flags: crate::vk::H265SpsFlags) -> Self {
             self.flags = flags;
@@ -2280,6 +2314,8 @@ pub(crate) mod items {
 - `pps_range_extension_flag` @ `30..31`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for H265PpsFlags {}
+    unsafe impl Sync for H265PpsFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H265PpsFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -2771,6 +2807,8 @@ pub(crate) mod items {
         pub p_predictor_palette_entries: *const crate::vk::H265PredictorPaletteEntries,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for H265PictureParameterSet<'_> {}
+    unsafe impl Sync for H265PictureParameterSet<'_> {}
     impl<'a> Default for H265PictureParameterSet<'a> {
         fn default() -> Self {
             Self {

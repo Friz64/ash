@@ -22,6 +22,8 @@ pub(crate) mod items {
         pub max_vertex_attrib_divisor: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT;

@@ -175,6 +175,8 @@ pub(crate) mod items {
         pub p_object_name: *const core::ffi::c_char,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DebugMarkerObjectNameInfoEXT<'_> {}
+    unsafe impl Sync for DebugMarkerObjectNameInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerObjectNameInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_MARKER_OBJECT_NAME_INFO_EXT;
     }
@@ -227,6 +229,8 @@ pub(crate) mod items {
         pub p_tag: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DebugMarkerObjectTagInfoEXT<'_> {}
+    unsafe impl Sync for DebugMarkerObjectTagInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerObjectTagInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_MARKER_OBJECT_TAG_INFO_EXT;
     }
@@ -276,6 +280,8 @@ pub(crate) mod items {
         pub color: [core::ffi::c_float; 4 as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DebugMarkerMarkerInfoEXT<'_> {}
+    unsafe impl Sync for DebugMarkerMarkerInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerMarkerInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_MARKER_MARKER_INFO_EXT;
     }

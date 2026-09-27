@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub coverage_to_color_location: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineCoverageToColorStateCreateInfoNV<'_> {}
+    unsafe impl Sync for PipelineCoverageToColorStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineCoverageToColorStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV;

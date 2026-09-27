@@ -58,6 +58,8 @@ pub(crate) mod items {
         pub attachment_feedback_loop_layout: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT;

@@ -14,6 +14,8 @@ pub(crate) mod items {
         pub luma_weight_l1_flag: u16,
         pub chroma_weight_l1_flag: u16,
     }
+    unsafe impl Send for EncodeH265WeightTableFlags {}
+    unsafe impl Sync for EncodeH265WeightTableFlags {}
     impl EncodeH265WeightTableFlags {
         pub fn luma_weight_l0_flag(mut self, luma_weight_l0_flag: u16) -> Self {
             self.luma_weight_l0_flag = luma_weight_l0_flag;
@@ -52,6 +54,8 @@ pub(crate) mod items {
         pub delta_chroma_offset_l1: [[i8; crate::vk::H265_MAX_CHROMA_PLANES
             as _]; crate::vk::H265_MAX_NUM_LIST_REF as _],
     }
+    unsafe impl Send for EncodeH265WeightTable {}
+    unsafe impl Sync for EncodeH265WeightTable {}
     impl Default for EncodeH265WeightTable {
         fn default() -> Self {
             Self {
@@ -158,6 +162,8 @@ pub(crate) mod items {
         pub delta_poc_msb_present_flag: [u8; crate::vk::H265_MAX_DELTA_POC as _],
         pub delta_poc_msb_cycle_lt: [u8; crate::vk::H265_MAX_DELTA_POC as _],
     }
+    unsafe impl Send for EncodeH265LongTermRefPics {}
+    unsafe impl Sync for EncodeH265LongTermRefPics {}
     impl Default for EncodeH265LongTermRefPics {
         fn default() -> Self {
             Self {
@@ -233,6 +239,8 @@ pub(crate) mod items {
 - `slice_loop_filter_across_slices_enabled_flag` @ `11..12`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for EncodeH265SliceSegmentHeaderFlags {}
+    unsafe impl Sync for EncodeH265SliceSegmentHeaderFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH265SliceSegmentHeaderFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -419,6 +427,8 @@ pub(crate) mod items {
         pub p_weight_table: *const crate::vk::EncodeH265WeightTable,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for EncodeH265SliceSegmentHeader<'_> {}
+    unsafe impl Sync for EncodeH265SliceSegmentHeader<'_> {}
     impl<'a> EncodeH265SliceSegmentHeader<'a> {
         pub fn flags(
             mut self,
@@ -494,6 +504,8 @@ pub(crate) mod items {
 - `ref_pic_list_modification_flag_l1` @ `1..2`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for EncodeH265ReferenceListsInfoFlags {}
+    unsafe impl Sync for EncodeH265ReferenceListsInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH265ReferenceListsInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -546,6 +558,8 @@ pub(crate) mod items {
         pub list_entry_l0: [u8; crate::vk::H265_MAX_NUM_LIST_REF as _],
         pub list_entry_l1: [u8; crate::vk::H265_MAX_NUM_LIST_REF as _],
     }
+    unsafe impl Send for EncodeH265ReferenceListsInfo {}
+    unsafe impl Sync for EncodeH265ReferenceListsInfo {}
     impl Default for EncodeH265ReferenceListsInfo {
         fn default() -> Self {
             Self {
@@ -624,6 +638,8 @@ pub(crate) mod items {
 - `slice_temporal_mvp_enabled_flag` @ `8..9`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for EncodeH265PictureInfoFlags {}
+    unsafe impl Sync for EncodeH265PictureInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH265PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -760,6 +776,8 @@ pub(crate) mod items {
         pub p_long_term_ref_pics: *const crate::vk::EncodeH265LongTermRefPics,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for EncodeH265PictureInfo<'_> {}
+    unsafe impl Sync for EncodeH265PictureInfo<'_> {}
     impl<'a> Default for EncodeH265PictureInfo<'a> {
         fn default() -> Self {
             Self {
@@ -851,6 +869,8 @@ pub(crate) mod items {
 - `unused_for_reference` @ `1..2`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for EncodeH265ReferenceInfoFlags {}
+    unsafe impl Sync for EncodeH265ReferenceInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH265ReferenceInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -893,6 +913,8 @@ pub(crate) mod items {
         pub pic_order_cnt_val: i32,
         pub temporal_id: u8,
     }
+    unsafe impl Send for EncodeH265ReferenceInfo {}
+    unsafe impl Sync for EncodeH265ReferenceInfo {}
     impl EncodeH265ReferenceInfo {
         pub fn flags(mut self, flags: crate::vk::EncodeH265ReferenceInfoFlags) -> Self {
             self.flags = flags;

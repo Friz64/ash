@@ -18,6 +18,8 @@ pub(crate) mod items {
         pub shader_constant_data: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderConstantDataFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderConstantDataFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CONSTANT_DATA_FEATURES_KHR;

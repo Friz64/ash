@@ -41,6 +41,8 @@ pub(crate) mod items {
         pub diagnostics_config: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDiagnosticsConfigFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceDiagnosticsConfigFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV;
@@ -74,6 +76,8 @@ pub(crate) mod items {
         pub flags: crate::vk::DeviceDiagnosticsConfigFlagsNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceDiagnosticsConfigCreateInfoNV<'_> {}
+    unsafe impl Sync for DeviceDiagnosticsConfigCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceDiagnosticsConfigCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV;

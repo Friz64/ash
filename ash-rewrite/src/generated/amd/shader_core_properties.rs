@@ -31,6 +31,8 @@ pub(crate) mod items {
         pub vgpr_allocation_granularity: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderCorePropertiesAMD<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderCorePropertiesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderCorePropertiesAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD;

@@ -23,6 +23,8 @@ pub(crate) mod items {
         pub representative_fragment_test: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV;
@@ -59,6 +61,8 @@ pub(crate) mod items {
         pub representative_fragment_test_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineRepresentativeFragmentTestStateCreateInfoNV<'_> {}
+    unsafe impl Sync for PipelineRepresentativeFragmentTestStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV;

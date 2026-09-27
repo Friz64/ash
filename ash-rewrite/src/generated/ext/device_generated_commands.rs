@@ -352,22 +352,23 @@ impl Device {
     pub unsafe fn get_generated_commands_memory_requirements(
         &self,
         info: &crate::vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>,
-        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
-    ) {
+    ) -> crate::vk::MemoryRequirements2<'_> {
+        let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_generated_commands_memory_requirements)(
             self.handle,
             info,
-            memory_requirements,
-        )
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///vkCreateIndirectCommandsLayoutEXT
     #[inline]
     pub unsafe fn create_indirect_commands_layout(
         &self,
         create_info: &crate::vk::IndirectCommandsLayoutCreateInfoEXT<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::IndirectCommandsLayoutEXT> {
         let mut indirect_commands_layout = core::mem::MaybeUninit::uninit();
         (self
@@ -375,7 +376,10 @@ impl Device {
             .create_indirect_commands_layout)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 indirect_commands_layout.as_mut_ptr(),
             )
             .assume_init_on_success(indirect_commands_layout)
@@ -385,14 +389,17 @@ impl Device {
     pub unsafe fn destroy_indirect_commands_layout(
         &self,
         indirect_commands_layout: crate::vk::IndirectCommandsLayoutEXT,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
             .destroy_indirect_commands_layout)(
             self.handle,
             indirect_commands_layout,
-            allocator,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
         )
     }
     ///vkCreateIndirectExecutionSetEXT
@@ -400,7 +407,7 @@ impl Device {
     pub unsafe fn create_indirect_execution_set(
         &self,
         create_info: &crate::vk::IndirectExecutionSetCreateInfoEXT<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::IndirectExecutionSetEXT> {
         let mut indirect_execution_set = core::mem::MaybeUninit::uninit();
         (self
@@ -408,7 +415,10 @@ impl Device {
             .create_indirect_execution_set)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 indirect_execution_set.as_mut_ptr(),
             )
             .assume_init_on_success(indirect_execution_set)
@@ -418,14 +428,17 @@ impl Device {
     pub unsafe fn destroy_indirect_execution_set(
         &self,
         indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
             .destroy_indirect_execution_set)(
             self.handle,
             indirect_execution_set,
-            allocator,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
         )
     }
     ///vkUpdateIndirectExecutionSetPipelineEXT
@@ -474,6 +487,8 @@ pub(crate) mod items {
         pub dynamic_generated_pipeline_layout: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_EXT;
@@ -530,6 +545,8 @@ pub(crate) mod items {
         pub device_generated_commands_multi_draw_indirect_count: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_EXT;
@@ -654,6 +671,8 @@ pub(crate) mod items {
         pub pipeline: crate::vk::Pipeline,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GeneratedCommandsPipelineInfoEXT<'_> {}
+    unsafe impl Sync for GeneratedCommandsPipelineInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsPipelineInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_PIPELINE_INFO_EXT;
     }
@@ -689,6 +708,8 @@ pub(crate) mod items {
         pub p_shaders: *const crate::vk::ShaderEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GeneratedCommandsShaderInfoEXT<'_> {}
+    unsafe impl Sync for GeneratedCommandsShaderInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsShaderInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_SHADER_INFO_EXT;
     }
@@ -728,6 +749,8 @@ pub(crate) mod items {
         pub max_draw_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GeneratedCommandsMemoryRequirementsInfoEXT<'_> {}
+    unsafe impl Sync for GeneratedCommandsMemoryRequirementsInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for GeneratedCommandsMemoryRequirementsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_EXT;
@@ -779,6 +802,8 @@ pub(crate) mod items {
         pub max_pipeline_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for IndirectExecutionSetPipelineInfoEXT<'_> {}
+    unsafe impl Sync for IndirectExecutionSetPipelineInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for IndirectExecutionSetPipelineInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_EXECUTION_SET_PIPELINE_INFO_EXT;
@@ -817,6 +842,8 @@ pub(crate) mod items {
         pub p_set_layouts: *const crate::vk::DescriptorSetLayout,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for IndirectExecutionSetShaderLayoutInfoEXT<'_> {}
+    unsafe impl Sync for IndirectExecutionSetShaderLayoutInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for IndirectExecutionSetShaderLayoutInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_EXECUTION_SET_SHADER_LAYOUT_INFO_EXT;
@@ -858,6 +885,8 @@ pub(crate) mod items {
         pub p_push_constant_ranges: *const crate::vk::PushConstantRange,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for IndirectExecutionSetShaderInfoEXT<'_> {}
+    unsafe impl Sync for IndirectExecutionSetShaderInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for IndirectExecutionSetShaderInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_EXECUTION_SET_SHADER_INFO_EXT;
@@ -919,6 +948,8 @@ pub(crate) mod items {
         pub info: crate::vk::IndirectExecutionSetInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for IndirectExecutionSetCreateInfoEXT<'_> {}
+    unsafe impl Sync for IndirectExecutionSetCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for IndirectExecutionSetCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_EXECUTION_SET_CREATE_INFO_EXT;
@@ -965,6 +996,8 @@ pub(crate) mod items {
         pub max_draw_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GeneratedCommandsInfoEXT<'_> {}
+    unsafe impl Sync for GeneratedCommandsInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_INFO_EXT;
     }
@@ -1063,6 +1096,8 @@ pub(crate) mod items {
         pub pipeline: crate::vk::Pipeline,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for WriteIndirectExecutionSetPipelineEXT<'_> {}
+    unsafe impl Sync for WriteIndirectExecutionSetPipelineEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for WriteIndirectExecutionSetPipelineEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_INDIRECT_EXECUTION_SET_PIPELINE_EXT;
@@ -1098,6 +1133,8 @@ pub(crate) mod items {
         pub shader: crate::vk::ShaderEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for WriteIndirectExecutionSetShaderEXT<'_> {}
+    unsafe impl Sync for WriteIndirectExecutionSetShaderEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for WriteIndirectExecutionSetShaderEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_INDIRECT_EXECUTION_SET_SHADER_EXT;
@@ -1137,6 +1174,8 @@ pub(crate) mod items {
         pub p_tokens: *const crate::vk::IndirectCommandsLayoutTokenEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for IndirectCommandsLayoutCreateInfoEXT<'_> {}
+    unsafe impl Sync for IndirectCommandsLayoutCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for IndirectCommandsLayoutCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_EXT;
@@ -1202,6 +1241,8 @@ pub(crate) mod items {
         pub offset: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for IndirectCommandsLayoutTokenEXT<'_> {}
+    unsafe impl Sync for IndirectCommandsLayoutTokenEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for IndirectCommandsLayoutTokenEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_EXT;
     }
@@ -1239,6 +1280,8 @@ pub(crate) mod items {
         pub stride: u32,
         pub command_count: u32,
     }
+    unsafe impl Send for DrawIndirectCountIndirectCommandEXT {}
+    unsafe impl Sync for DrawIndirectCountIndirectCommandEXT {}
     impl DrawIndirectCountIndirectCommandEXT {
         pub fn buffer_address(
             mut self,
@@ -1262,6 +1305,8 @@ pub(crate) mod items {
     pub struct IndirectCommandsVertexBufferTokenEXT {
         pub vertex_binding_unit: u32,
     }
+    unsafe impl Send for IndirectCommandsVertexBufferTokenEXT {}
+    unsafe impl Sync for IndirectCommandsVertexBufferTokenEXT {}
     impl IndirectCommandsVertexBufferTokenEXT {
         pub fn vertex_binding_unit(mut self, vertex_binding_unit: u32) -> Self {
             self.vertex_binding_unit = vertex_binding_unit;
@@ -1276,6 +1321,8 @@ pub(crate) mod items {
         pub size: u32,
         pub stride: u32,
     }
+    unsafe impl Send for BindVertexBufferIndirectCommandEXT {}
+    unsafe impl Sync for BindVertexBufferIndirectCommandEXT {}
     impl BindVertexBufferIndirectCommandEXT {
         pub fn buffer_address(
             mut self,
@@ -1299,6 +1346,8 @@ pub(crate) mod items {
     pub struct IndirectCommandsIndexBufferTokenEXT {
         pub mode: crate::vk::IndirectCommandsInputModeFlagBitsEXT,
     }
+    unsafe impl Send for IndirectCommandsIndexBufferTokenEXT {}
+    unsafe impl Sync for IndirectCommandsIndexBufferTokenEXT {}
     impl IndirectCommandsIndexBufferTokenEXT {
         pub fn mode(
             mut self,
@@ -1316,6 +1365,8 @@ pub(crate) mod items {
         pub size: u32,
         pub index_type: crate::vk::IndexType,
     }
+    unsafe impl Send for BindIndexBufferIndirectCommandEXT {}
+    unsafe impl Sync for BindIndexBufferIndirectCommandEXT {}
     impl BindIndexBufferIndirectCommandEXT {
         pub fn buffer_address(
             mut self,
@@ -1339,6 +1390,8 @@ pub(crate) mod items {
     pub struct IndirectCommandsPushConstantTokenEXT {
         pub update_range: crate::vk::PushConstantRange,
     }
+    unsafe impl Send for IndirectCommandsPushConstantTokenEXT {}
+    unsafe impl Sync for IndirectCommandsPushConstantTokenEXT {}
     impl IndirectCommandsPushConstantTokenEXT {
         pub fn update_range(
             mut self,
@@ -1355,6 +1408,8 @@ pub(crate) mod items {
         pub _type: crate::vk::IndirectExecutionSetInfoTypeEXT,
         pub shader_stages: crate::vk::ShaderStageFlags,
     }
+    unsafe impl Send for IndirectCommandsExecutionSetTokenEXT {}
+    unsafe impl Sync for IndirectCommandsExecutionSetTokenEXT {}
     impl IndirectCommandsExecutionSetTokenEXT {
         pub fn _type(
             mut self,

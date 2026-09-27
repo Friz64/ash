@@ -175,6 +175,8 @@ pub(crate) mod items {
         pub time_domain: crate::vk::TimeDomainKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CalibratedTimestampInfoKHR<'_> {}
+    unsafe impl Sync for CalibratedTimestampInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CalibratedTimestampInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CALIBRATED_TIMESTAMP_INFO_KHR;
     }

@@ -28,6 +28,8 @@ pub(crate) mod items {
         pub corner_sampled_image: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCornerSampledImageFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceCornerSampledImageFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV;

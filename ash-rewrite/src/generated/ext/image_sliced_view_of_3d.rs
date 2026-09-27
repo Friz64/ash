@@ -22,6 +22,8 @@ pub(crate) mod items {
         pub slice_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageViewSlicedCreateInfoEXT<'_> {}
+    unsafe impl Sync for ImageViewSlicedCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewSlicedCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_SLICED_CREATE_INFO_EXT;
     }
@@ -57,6 +59,8 @@ pub(crate) mod items {
         pub image_sliced_view_of3_d: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT;

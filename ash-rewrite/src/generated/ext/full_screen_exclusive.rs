@@ -222,6 +222,8 @@ pub(crate) mod items {
         pub full_screen_exclusive: crate::vk::FullScreenExclusiveEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SurfaceFullScreenExclusiveInfoEXT<'_> {}
+    unsafe impl Sync for SurfaceFullScreenExclusiveInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SurfaceFullScreenExclusiveInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT;
@@ -258,6 +260,8 @@ pub(crate) mod items {
         pub hmonitor: crate::platform_types::HMONITOR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SurfaceFullScreenExclusiveWin32InfoEXT<'_> {}
+    unsafe impl Sync for SurfaceFullScreenExclusiveWin32InfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT;
@@ -291,6 +295,8 @@ pub(crate) mod items {
         pub full_screen_exclusive_supported: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SurfaceCapabilitiesFullScreenExclusiveEXT<'_> {}
+    unsafe impl Sync for SurfaceCapabilitiesFullScreenExclusiveEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT;

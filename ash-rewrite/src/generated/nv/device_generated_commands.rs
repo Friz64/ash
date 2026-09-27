@@ -280,22 +280,23 @@ impl Device {
     pub unsafe fn get_generated_commands_memory_requirements(
         &self,
         info: &crate::vk::GeneratedCommandsMemoryRequirementsInfoNV<'_>,
-        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
-    ) {
+    ) -> crate::vk::MemoryRequirements2<'_> {
+        let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_generated_commands_memory_requirements)(
             self.handle,
             info,
-            memory_requirements,
-        )
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///vkCreateIndirectCommandsLayoutNV
     #[inline]
     pub unsafe fn create_indirect_commands_layout(
         &self,
         create_info: &crate::vk::IndirectCommandsLayoutCreateInfoNV<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::IndirectCommandsLayoutNV> {
         let mut indirect_commands_layout = core::mem::MaybeUninit::uninit();
         (self
@@ -303,7 +304,10 @@ impl Device {
             .create_indirect_commands_layout)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 indirect_commands_layout.as_mut_ptr(),
             )
             .assume_init_on_success(indirect_commands_layout)
@@ -313,14 +317,17 @@ impl Device {
     pub unsafe fn destroy_indirect_commands_layout(
         &self,
         indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
             .destroy_indirect_commands_layout)(
             self.handle,
             indirect_commands_layout,
-            allocator,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
         )
     }
 }
@@ -336,6 +343,8 @@ pub(crate) mod items {
         pub device_generated_commands: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV;
@@ -380,6 +389,8 @@ pub(crate) mod items {
         pub min_indirect_commands_buffer_offset_alignment: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV;
@@ -485,6 +496,8 @@ pub(crate) mod items {
         >,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GraphicsShaderGroupCreateInfoNV<'_> {}
+    unsafe impl Sync for GraphicsShaderGroupCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GraphicsShaderGroupCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_SHADER_GROUP_CREATE_INFO_NV;
     }
@@ -537,6 +550,8 @@ pub(crate) mod items {
         pub p_pipelines: *const crate::vk::Pipeline,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GraphicsPipelineShaderGroupsCreateInfoNV<'_> {}
+    unsafe impl Sync for GraphicsPipelineShaderGroupsCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV;
@@ -577,6 +592,8 @@ pub(crate) mod items {
     pub struct BindShaderGroupIndirectCommandNV {
         pub group_index: u32,
     }
+    unsafe impl Send for BindShaderGroupIndirectCommandNV {}
+    unsafe impl Sync for BindShaderGroupIndirectCommandNV {}
     impl BindShaderGroupIndirectCommandNV {
         pub fn group_index(mut self, group_index: u32) -> Self {
             self.group_index = group_index;
@@ -591,6 +608,8 @@ pub(crate) mod items {
         pub size: u32,
         pub index_type: crate::vk::IndexType,
     }
+    unsafe impl Send for BindIndexBufferIndirectCommandNV {}
+    unsafe impl Sync for BindIndexBufferIndirectCommandNV {}
     impl BindIndexBufferIndirectCommandNV {
         pub fn buffer_address(
             mut self,
@@ -616,6 +635,8 @@ pub(crate) mod items {
         pub size: u32,
         pub stride: u32,
     }
+    unsafe impl Send for BindVertexBufferIndirectCommandNV {}
+    unsafe impl Sync for BindVertexBufferIndirectCommandNV {}
     impl BindVertexBufferIndirectCommandNV {
         pub fn buffer_address(
             mut self,
@@ -639,6 +660,8 @@ pub(crate) mod items {
     pub struct SetStateFlagsIndirectCommandNV {
         pub data: u32,
     }
+    unsafe impl Send for SetStateFlagsIndirectCommandNV {}
+    unsafe impl Sync for SetStateFlagsIndirectCommandNV {}
     impl SetStateFlagsIndirectCommandNV {
         pub fn data(mut self, data: u32) -> Self {
             self.data = data;
@@ -652,6 +675,8 @@ pub(crate) mod items {
         pub buffer: crate::vk::Buffer,
         pub offset: crate::vk::DeviceSize,
     }
+    unsafe impl Send for IndirectCommandsStreamNV {}
+    unsafe impl Sync for IndirectCommandsStreamNV {}
     impl IndirectCommandsStreamNV {
         pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
             self.buffer = buffer;
@@ -683,6 +708,8 @@ pub(crate) mod items {
         pub p_index_type_values: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for IndirectCommandsLayoutTokenNV<'_> {}
+    unsafe impl Sync for IndirectCommandsLayoutTokenNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for IndirectCommandsLayoutTokenNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_NV;
     }
@@ -786,6 +813,8 @@ pub(crate) mod items {
         pub p_stream_strides: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for IndirectCommandsLayoutCreateInfoNV<'_> {}
+    unsafe impl Sync for IndirectCommandsLayoutCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for IndirectCommandsLayoutCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV;
@@ -855,6 +884,8 @@ pub(crate) mod items {
         pub sequences_index_offset: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GeneratedCommandsInfoNV<'_> {}
+    unsafe impl Sync for GeneratedCommandsInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_INFO_NV;
     }
@@ -973,6 +1004,8 @@ pub(crate) mod items {
         pub max_sequences_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GeneratedCommandsMemoryRequirementsInfoNV<'_> {}
+    unsafe impl Sync for GeneratedCommandsMemoryRequirementsInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for GeneratedCommandsMemoryRequirementsInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV;

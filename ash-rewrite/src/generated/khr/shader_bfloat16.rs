@@ -24,6 +24,8 @@ pub(crate) mod items {
         pub shader_b_float16_cooperative_matrix: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderBfloat16FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderBfloat16FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR;

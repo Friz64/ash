@@ -118,6 +118,8 @@ pub(crate) mod items {
         pub fd: core::ffi::c_int,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportMemoryFdInfoKHR<'_> {}
+    unsafe impl Sync for ImportMemoryFdInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryFdInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_FD_INFO_KHR;
     }
@@ -156,6 +158,8 @@ pub(crate) mod items {
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryFdPropertiesKHR<'_> {}
+    unsafe impl Sync for MemoryFdPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryFdPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_FD_PROPERTIES_KHR;
     }
@@ -185,6 +189,8 @@ pub(crate) mod items {
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryGetFdInfoKHR<'_> {}
+    unsafe impl Sync for MemoryGetFdInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetFdInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_FD_INFO_KHR;
     }

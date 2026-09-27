@@ -145,7 +145,7 @@ impl Device {
     pub unsafe fn register_device_event(
         &self,
         device_event_info: &crate::vk::DeviceEventInfoEXT<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::Fence> {
         let mut fence = core::mem::MaybeUninit::uninit();
         (self
@@ -153,7 +153,10 @@ impl Device {
             .register_device_event)(
                 self.handle,
                 device_event_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 fence.as_mut_ptr(),
             )
             .assume_init_on_success(fence)
@@ -164,7 +167,7 @@ impl Device {
         &self,
         display: crate::vk::DisplayKHR,
         display_event_info: &crate::vk::DisplayEventInfoEXT<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::Fence> {
         let mut fence = core::mem::MaybeUninit::uninit();
         (self
@@ -173,7 +176,10 @@ impl Device {
                 self.handle,
                 display,
                 display_event_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 fence.as_mut_ptr(),
             )
             .assume_init_on_success(fence)
@@ -209,6 +215,8 @@ pub(crate) mod items {
         pub power_state: crate::vk::DisplayPowerStateEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplayPowerInfoEXT<'_> {}
+    unsafe impl Sync for DisplayPowerInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPowerInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_POWER_INFO_EXT;
     }
@@ -240,6 +248,8 @@ pub(crate) mod items {
         pub device_event: crate::vk::DeviceEventTypeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceEventInfoEXT<'_> {}
+    unsafe impl Sync for DeviceEventInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceEventInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_EVENT_INFO_EXT;
     }
@@ -271,6 +281,8 @@ pub(crate) mod items {
         pub display_event: crate::vk::DisplayEventTypeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplayEventInfoEXT<'_> {}
+    unsafe impl Sync for DisplayEventInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayEventInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_EVENT_INFO_EXT;
     }
@@ -302,6 +314,8 @@ pub(crate) mod items {
         pub surface_counters: crate::vk::SurfaceCounterFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SwapchainCounterCreateInfoEXT<'_> {}
+    unsafe impl Sync for SwapchainCounterCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainCounterCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_COUNTER_CREATE_INFO_EXT;
     }

@@ -125,6 +125,8 @@ pub(crate) mod items {
         pub height: u32,
         pub depth: u32,
     }
+    unsafe impl Send for TraceRaysIndirectCommand2KHR {}
+    unsafe impl Sync for TraceRaysIndirectCommand2KHR {}
     impl TraceRaysIndirectCommand2KHR {
         pub fn raygen_shader_record_address(
             mut self,
@@ -226,6 +228,8 @@ pub(crate) mod items {
         pub ray_tracing_pipeline_trace_rays_indirect2: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR;

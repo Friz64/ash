@@ -67,9 +67,16 @@ impl Device {
     pub unsafe fn get_descriptor_set_layout_support(
         &self,
         create_info: &crate::vk::DescriptorSetLayoutCreateInfo<'_>,
-        support: &mut crate::vk::DescriptorSetLayoutSupport<'_>,
-    ) {
-        (self.fp.get_descriptor_set_layout_support)(self.handle, create_info, support)
+    ) -> crate::vk::DescriptorSetLayoutSupport<'_> {
+        let mut support = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_descriptor_set_layout_support)(
+            self.handle,
+            create_info,
+            support.as_mut_ptr(),
+        );
+        support.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

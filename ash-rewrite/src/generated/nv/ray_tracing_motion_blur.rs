@@ -61,6 +61,8 @@ pub(crate) mod items {
         pub ray_tracing_motion_blur_pipeline_trace_rays_indirect: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV;
@@ -103,6 +105,8 @@ pub(crate) mod items {
         pub vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureGeometryMotionTrianglesDataNV<'_> {}
+    unsafe impl Sync for AccelerationStructureGeometryMotionTrianglesDataNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV;
@@ -140,6 +144,8 @@ pub(crate) mod items {
         pub flags: crate::vk::AccelerationStructureMotionInfoFlagsNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureMotionInfoNV<'_> {}
+    unsafe impl Sync for AccelerationStructureMotionInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureMotionInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_MOTION_INFO_NV;
@@ -191,6 +197,8 @@ pub(crate) mod items {
         pub ty: core::ffi::c_float,
         pub tz: core::ffi::c_float,
     }
+    unsafe impl Send for SRTDataNV {}
+    unsafe impl Sync for SRTDataNV {}
     impl SRTDataNV {
         pub fn sx(mut self, sx: core::ffi::c_float) -> Self {
             self.sx = sx;
@@ -270,6 +278,8 @@ pub(crate) mod items {
         pub bitfield1: u32,
         pub acceleration_structure_reference: u64,
     }
+    unsafe impl Send for AccelerationStructureSRTMotionInstanceNV {}
+    unsafe impl Sync for AccelerationStructureSRTMotionInstanceNV {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureSRTMotionInstanceNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -356,6 +366,8 @@ pub(crate) mod items {
         pub bitfield1: u32,
         pub acceleration_structure_reference: u64,
     }
+    unsafe impl Send for AccelerationStructureMatrixMotionInstanceNV {}
+    unsafe impl Sync for AccelerationStructureMatrixMotionInstanceNV {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureMatrixMotionInstanceNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -443,6 +455,8 @@ pub(crate) mod items {
         pub flags: crate::vk::AccelerationStructureMotionInstanceFlagsNV,
         pub data: crate::vk::AccelerationStructureMotionInstanceDataNV,
     }
+    unsafe impl Send for AccelerationStructureMotionInstanceNV {}
+    unsafe impl Sync for AccelerationStructureMotionInstanceNV {}
     impl AccelerationStructureMotionInstanceNV {
         pub fn _type(
             mut self,

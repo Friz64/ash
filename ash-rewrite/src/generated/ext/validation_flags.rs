@@ -24,6 +24,8 @@ pub(crate) mod items {
         pub p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ValidationFlagsEXT<'_> {}
+    unsafe impl Sync for ValidationFlagsEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFlagsEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FLAGS_EXT;
     }

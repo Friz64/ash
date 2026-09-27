@@ -19,6 +19,8 @@ pub(crate) mod items {
         pub memory_priority: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMemoryPriorityFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceMemoryPriorityFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT;
@@ -52,6 +54,8 @@ pub(crate) mod items {
         pub priority: core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryPriorityAllocateInfoEXT<'_> {}
+    unsafe impl Sync for MemoryPriorityAllocateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryPriorityAllocateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_PRIORITY_ALLOCATE_INFO_EXT;
     }

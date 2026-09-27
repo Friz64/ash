@@ -63,12 +63,20 @@ impl Instance {
     pub unsafe fn create_surface(
         &self,
         create_info: &crate::vk::SurfaceCreateInfoOHOS<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .create_surface)(self.handle, create_info, allocator, surface.as_mut_ptr())
+            .create_surface)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
+                surface.as_mut_ptr(),
+            )
             .assume_init_on_success(surface)
     }
 }
@@ -85,6 +93,8 @@ pub(crate) mod items {
         pub window: *mut crate::platform_types::OHNativeWindow,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SurfaceCreateInfoOHOS<'_> {}
+    unsafe impl Sync for SurfaceCreateInfoOHOS<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCreateInfoOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CREATE_INFO_OHOS;
     }

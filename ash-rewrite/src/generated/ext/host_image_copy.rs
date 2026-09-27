@@ -205,9 +205,17 @@ impl Device {
         &self,
         image: crate::vk::Image,
         subresource: &crate::vk::ImageSubresource2<'_>,
-        layout: &mut crate::vk::SubresourceLayout2<'_>,
-    ) {
-        (self.fp.get_image_subresource_layout2)(self.handle, image, subresource, layout)
+    ) -> crate::vk::SubresourceLayout2<'_> {
+        let mut layout = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_image_subresource_layout2)(
+            self.handle,
+            image,
+            subresource,
+            layout.as_mut_ptr(),
+        );
+        layout.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

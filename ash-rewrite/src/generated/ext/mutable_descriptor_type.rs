@@ -45,6 +45,8 @@ pub(crate) mod items {
         pub mutable_descriptor_type: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT;
@@ -77,6 +79,8 @@ pub(crate) mod items {
         pub p_descriptor_types: *const crate::vk::DescriptorType,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MutableDescriptorTypeListEXT<'_> {}
+    unsafe impl Sync for MutableDescriptorTypeListEXT<'_> {}
     impl<'a> MutableDescriptorTypeListEXT<'a> {
         pub fn descriptor_types(
             mut self,
@@ -99,6 +103,8 @@ pub(crate) mod items {
         >,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MutableDescriptorTypeCreateInfoEXT<'_> {}
+    unsafe impl Sync for MutableDescriptorTypeCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for MutableDescriptorTypeCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;

@@ -219,6 +219,8 @@ pub(crate) mod items {
         pub p_shading_rate_palette_entries: *const crate::vk::ShadingRatePaletteEntryNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ShadingRatePaletteNV<'_> {}
+    unsafe impl Sync for ShadingRatePaletteNV<'_> {}
     impl<'a> ShadingRatePaletteNV<'a> {
         pub fn shading_rate_palette_entries(
             mut self,
@@ -241,6 +243,8 @@ pub(crate) mod items {
         pub p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineViewportShadingRateImageStateCreateInfoNV<'_> {}
+    unsafe impl Sync for PipelineViewportShadingRateImageStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV;
@@ -286,6 +290,8 @@ pub(crate) mod items {
         pub shading_rate_coarse_sample_order: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShadingRateImageFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceShadingRateImageFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShadingRateImageFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV;
@@ -330,6 +336,8 @@ pub(crate) mod items {
         pub shading_rate_max_coarse_samples: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShadingRateImagePropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceShadingRateImagePropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShadingRateImagePropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV;
@@ -379,6 +387,8 @@ pub(crate) mod items {
         pub pixel_y: u32,
         pub sample: u32,
     }
+    unsafe impl Send for CoarseSampleLocationNV {}
+    unsafe impl Sync for CoarseSampleLocationNV {}
     impl CoarseSampleLocationNV {
         pub fn pixel_x(mut self, pixel_x: u32) -> Self {
             self.pixel_x = pixel_x;
@@ -403,6 +413,8 @@ pub(crate) mod items {
         pub p_sample_locations: *const crate::vk::CoarseSampleLocationNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CoarseSampleOrderCustomNV<'_> {}
+    unsafe impl Sync for CoarseSampleOrderCustomNV<'_> {}
     impl<'a> CoarseSampleOrderCustomNV<'a> {
         pub fn shading_rate(
             mut self,
@@ -435,6 +447,8 @@ pub(crate) mod items {
         pub p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'_> {}
+    unsafe impl Sync for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV;

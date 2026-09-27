@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub image_footprint: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderImageFootprintFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderImageFootprintFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV;

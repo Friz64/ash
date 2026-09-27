@@ -184,6 +184,8 @@ pub(crate) mod items {
         pub tile_shading_image_processing: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTileShadingFeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceTileShadingFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTileShadingFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM;
@@ -320,6 +322,8 @@ pub(crate) mod items {
         pub max_tile_shading_rate: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTileShadingPropertiesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceTileShadingPropertiesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTileShadingPropertiesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM;
@@ -373,6 +377,8 @@ pub(crate) mod items {
         pub tile_apron_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassTileShadingCreateInfoQCOM<'_> {}
+    unsafe impl Sync for RenderPassTileShadingCreateInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderPassTileShadingCreateInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM;
@@ -417,6 +423,8 @@ pub(crate) mod items {
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PerTileBeginInfoQCOM<'_> {}
+    unsafe impl Sync for PerTileBeginInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerTileBeginInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PER_TILE_BEGIN_INFO_QCOM;
     }
@@ -438,6 +446,8 @@ pub(crate) mod items {
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PerTileEndInfoQCOM<'_> {}
+    unsafe impl Sync for PerTileEndInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerTileEndInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PER_TILE_END_INFO_QCOM;
     }
@@ -459,6 +469,8 @@ pub(crate) mod items {
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DispatchTileInfoQCOM<'_> {}
+    unsafe impl Sync for DispatchTileInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DispatchTileInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPATCH_TILE_INFO_QCOM;
     }

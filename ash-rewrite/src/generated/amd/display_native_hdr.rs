@@ -88,6 +88,8 @@ pub(crate) mod items {
         pub local_dimming_support: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplayNativeHdrSurfaceCapabilitiesAMD<'_> {}
+    unsafe impl Sync for DisplayNativeHdrSurfaceCapabilitiesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD;
@@ -119,6 +121,8 @@ pub(crate) mod items {
         pub local_dimming_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SwapchainDisplayNativeHdrCreateInfoAMD<'_> {}
+    unsafe impl Sync for SwapchainDisplayNativeHdrCreateInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD;

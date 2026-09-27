@@ -238,6 +238,8 @@ pub(crate) mod items {
         pub p_offsets: *const crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SetDescriptorBufferOffsetsInfoEXT<'_> {}
+    unsafe impl Sync for SetDescriptorBufferOffsetsInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SetDescriptorBufferOffsetsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT;
@@ -292,6 +294,8 @@ pub(crate) mod items {
         pub set: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BindDescriptorBufferEmbeddedSamplersInfoEXT<'_> {}
+    unsafe impl Sync for BindDescriptorBufferEmbeddedSamplersInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT;

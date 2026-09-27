@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub depth_stencil_attachment_samples: crate::vk::SampleCountFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AttachmentSampleCountInfoAMD<'_> {}
+    unsafe impl Sync for AttachmentSampleCountInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentSampleCountInfoAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
     }

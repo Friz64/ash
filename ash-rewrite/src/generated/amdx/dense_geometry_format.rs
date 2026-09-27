@@ -42,6 +42,8 @@ pub(crate) mod items {
         pub dense_geometry_format: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'_> {}
+    unsafe impl Sync for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX;
@@ -81,6 +83,8 @@ pub(crate) mod items {
         pub format: crate::vk::CompressedTriangleFormatAMDX,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'_> {}
+    unsafe impl Sync for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX;

@@ -197,6 +197,8 @@ pub(crate) mod items {
         pub extended_dynamic_state2_patch_control_points: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT;

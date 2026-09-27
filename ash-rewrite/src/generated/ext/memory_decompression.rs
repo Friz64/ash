@@ -175,6 +175,8 @@ pub(crate) mod items {
         pub memory_decompression: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMemoryDecompressionFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceMemoryDecompressionFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT;
@@ -209,6 +211,8 @@ pub(crate) mod items {
         pub max_decompression_indirect_count: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMemoryDecompressionPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceMemoryDecompressionPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_EXT;
@@ -251,6 +255,8 @@ pub(crate) mod items {
         pub compressed_size: crate::vk::DeviceSize,
         pub decompressed_size: crate::vk::DeviceSize,
     }
+    unsafe impl Send for DecompressMemoryRegionEXT {}
+    unsafe impl Sync for DecompressMemoryRegionEXT {}
     impl DecompressMemoryRegionEXT {
         pub fn src_address(mut self, src_address: crate::vk::DeviceAddress) -> Self {
             self.src_address = src_address;
@@ -286,6 +292,8 @@ pub(crate) mod items {
         pub p_regions: *const crate::vk::DecompressMemoryRegionEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DecompressMemoryInfoEXT<'_> {}
+    unsafe impl Sync for DecompressMemoryInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DecompressMemoryInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DECOMPRESS_MEMORY_INFO_EXT;
     }

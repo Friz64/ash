@@ -21,6 +21,8 @@ pub(crate) mod items {
         pub shader_split_barrier: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderSplitBarrierFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderSplitBarrierFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderSplitBarrierFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SPLIT_BARRIER_FEATURES_EXT;
@@ -54,6 +56,8 @@ pub(crate) mod items {
         pub split_barrier_reserved_shared_memory: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderSplitBarrierPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderSplitBarrierPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderSplitBarrierPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SPLIT_BARRIER_PROPERTIES_EXT;

@@ -30,6 +30,8 @@ pub(crate) mod items {
         pub internally_synchronized_queues: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR;

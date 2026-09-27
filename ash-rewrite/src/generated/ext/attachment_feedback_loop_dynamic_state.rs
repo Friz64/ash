@@ -88,6 +88,10 @@ pub(crate) mod items {
         pub attachment_feedback_loop_dynamic_state: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send
+    for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'_> {}
+    unsafe impl Sync
+    for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT;

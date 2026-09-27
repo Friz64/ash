@@ -139,15 +139,16 @@ impl Device {
     pub unsafe fn get_partitioned_acceleration_structures_build_sizes(
         &self,
         info: &crate::vk::PartitionedAccelerationStructureInstancesInputNV<'_>,
-        size_info: &mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
-    ) {
+    ) -> crate::vk::AccelerationStructureBuildSizesInfoKHR<'_> {
+        let mut size_info = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_partitioned_acceleration_structures_build_sizes)(
             self.handle,
             info,
-            size_info,
-        )
+            size_info.as_mut_ptr(),
+        );
+        size_info.assume_init()
     }
     ///vkCmdBuildPartitionedAccelerationStructuresNV
     #[inline]
@@ -173,6 +174,8 @@ pub(crate) mod items {
         pub partitioned_acceleration_structure: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_FEATURES_NV;
@@ -210,6 +213,8 @@ pub(crate) mod items {
         pub max_partition_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_PROPERTIES_NV;
@@ -240,6 +245,8 @@ pub(crate) mod items {
         pub arg_count: u32,
         pub arg_data: crate::vk::StridedDeviceAddressNV,
     }
+    unsafe impl Send for BuildPartitionedAccelerationStructureIndirectCommandNV {}
+    unsafe impl Sync for BuildPartitionedAccelerationStructureIndirectCommandNV {}
     impl BuildPartitionedAccelerationStructureIndirectCommandNV {
         pub fn op_type(
             mut self,
@@ -266,6 +273,8 @@ pub(crate) mod items {
         pub enable_partition_translation: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PartitionedAccelerationStructureFlagsNV<'_> {}
+    unsafe impl Sync for PartitionedAccelerationStructureFlagsNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PartitionedAccelerationStructureFlagsNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_FLAGS_NV;
@@ -307,6 +316,8 @@ pub(crate) mod items {
         pub partition_index: u32,
         pub acceleration_structure: crate::vk::DeviceAddress,
     }
+    unsafe impl Send for PartitionedAccelerationStructureWriteInstanceDataNV {}
+    unsafe impl Sync for PartitionedAccelerationStructureWriteInstanceDataNV {}
     impl Default for PartitionedAccelerationStructureWriteInstanceDataNV {
         fn default() -> Self {
             Self {
@@ -380,6 +391,8 @@ pub(crate) mod items {
         pub instance_contribution_to_hit_group_index: u32,
         pub acceleration_structure: crate::vk::DeviceAddress,
     }
+    unsafe impl Send for PartitionedAccelerationStructureUpdateInstanceDataNV {}
+    unsafe impl Sync for PartitionedAccelerationStructureUpdateInstanceDataNV {}
     impl PartitionedAccelerationStructureUpdateInstanceDataNV {
         pub fn instance_index(mut self, instance_index: u32) -> Self {
             self.instance_index = instance_index;
@@ -407,6 +420,10 @@ pub(crate) mod items {
         pub partition_index: u32,
         pub partition_translation: [core::ffi::c_float; 3 as _],
     }
+    unsafe impl Send
+    for PartitionedAccelerationStructureWritePartitionTranslationDataNV {}
+    unsafe impl Sync
+    for PartitionedAccelerationStructureWritePartitionTranslationDataNV {}
     impl Default for PartitionedAccelerationStructureWritePartitionTranslationDataNV {
         fn default() -> Self {
             Self {
@@ -438,6 +455,8 @@ pub(crate) mod items {
         pub p_acceleration_structures: *const crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for WriteDescriptorSetPartitionedAccelerationStructureNV<'_> {}
+    unsafe impl Sync for WriteDescriptorSetPartitionedAccelerationStructureNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_PARTITIONED_ACCELERATION_STRUCTURE_NV;
@@ -478,6 +497,8 @@ pub(crate) mod items {
         pub max_instance_in_global_partition_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PartitionedAccelerationStructureInstancesInputNV<'_> {}
+    unsafe impl Sync for PartitionedAccelerationStructureInstancesInputNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PartitionedAccelerationStructureInstancesInputNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_INSTANCES_INPUT_NV;
@@ -541,6 +562,8 @@ pub(crate) mod items {
         pub src_infos_count: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BuildPartitionedAccelerationStructureInfoNV<'_> {}
+    unsafe impl Sync for BuildPartitionedAccelerationStructureInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BuildPartitionedAccelerationStructureInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUILD_PARTITIONED_ACCELERATION_STRUCTURE_INFO_NV;

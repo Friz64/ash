@@ -161,6 +161,8 @@ pub(crate) mod items {
         pub indirect_buffer_offset_alignment: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'_> {}
+    unsafe impl Sync for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI;
@@ -220,6 +222,8 @@ pub(crate) mod items {
         pub multiview_cluster_culling_shader: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'_> {}
+    unsafe impl Sync for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI;
@@ -262,6 +266,8 @@ pub(crate) mod items {
         pub cluster_shading_rate: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'_> {}
+    unsafe impl Sync for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI;

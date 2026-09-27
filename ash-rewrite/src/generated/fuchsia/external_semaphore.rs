@@ -135,6 +135,8 @@ pub(crate) mod items {
         pub zircon_handle: crate::platform_types::zx_handle_t,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportSemaphoreZirconHandleInfoFUCHSIA<'_> {}
+    unsafe impl Sync for ImportSemaphoreZirconHandleInfoFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA;
@@ -186,6 +188,8 @@ pub(crate) mod items {
         pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SemaphoreGetZirconHandleInfoFUCHSIA<'_> {}
+    unsafe impl Sync for SemaphoreGetZirconHandleInfoFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA;

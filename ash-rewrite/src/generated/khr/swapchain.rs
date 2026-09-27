@@ -225,7 +225,7 @@ impl Device {
     pub unsafe fn create_swapchain(
         &self,
         create_info: &crate::vk::SwapchainCreateInfoKHR<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::SwapchainKHR> {
         let mut swapchain = core::mem::MaybeUninit::uninit();
         (self
@@ -233,7 +233,10 @@ impl Device {
             .create_swapchain)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 swapchain.as_mut_ptr(),
             )
             .assume_init_on_success(swapchain)
@@ -243,9 +246,18 @@ impl Device {
     pub unsafe fn destroy_swapchain(
         &self,
         swapchain: crate::vk::SwapchainKHR,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_swapchain)(self.handle, swapchain, allocator)
+        (self
+            .fp
+            .destroy_swapchain)(
+            self.handle,
+            swapchain,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkGetSwapchainImagesKHR
     #[inline]
@@ -436,6 +448,8 @@ pub(crate) mod items {
         pub old_swapchain: crate::vk::SwapchainKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SwapchainCreateInfoKHR<'_> {}
+    unsafe impl Sync for SwapchainCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_CREATE_INFO_KHR;
     }
@@ -553,6 +567,8 @@ pub(crate) mod items {
         pub p_results: *mut crate::vk::Result,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PresentInfoKHR<'_> {}
+    unsafe impl Sync for PresentInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_INFO_KHR;
     }
@@ -606,6 +622,8 @@ pub(crate) mod items {
         pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceGroupPresentCapabilitiesKHR<'_> {}
+    unsafe impl Sync for DeviceGroupPresentCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceGroupPresentCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_GROUP_PRESENT_CAPABILITIES_KHR;
@@ -646,6 +664,8 @@ pub(crate) mod items {
         pub swapchain: crate::vk::SwapchainKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageSwapchainCreateInfoKHR<'_> {}
+    unsafe impl Sync for ImageSwapchainCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageSwapchainCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_SWAPCHAIN_CREATE_INFO_KHR;
     }
@@ -677,6 +697,8 @@ pub(crate) mod items {
         pub image_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BindImageMemorySwapchainInfoKHR<'_> {}
+    unsafe impl Sync for BindImageMemorySwapchainInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BindImageMemorySwapchainInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR;
     }
@@ -716,6 +738,8 @@ pub(crate) mod items {
         pub device_mask: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AcquireNextImageInfoKHR<'_> {}
+    unsafe impl Sync for AcquireNextImageInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AcquireNextImageInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACQUIRE_NEXT_IMAGE_INFO_KHR;
     }
@@ -766,6 +790,8 @@ pub(crate) mod items {
         pub mode: crate::vk::DeviceGroupPresentModeFlagBitsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceGroupPresentInfoKHR<'_> {}
+    unsafe impl Sync for DeviceGroupPresentInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceGroupPresentInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_GROUP_PRESENT_INFO_KHR;
     }
@@ -806,6 +832,8 @@ pub(crate) mod items {
         pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceGroupSwapchainCreateInfoKHR<'_> {}
+    unsafe impl Sync for DeviceGroupSwapchainCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceGroupSwapchainCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR;

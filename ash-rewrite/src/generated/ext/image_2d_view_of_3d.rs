@@ -29,6 +29,8 @@ pub(crate) mod items {
         pub sampler2_d_view_of3_d: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT;

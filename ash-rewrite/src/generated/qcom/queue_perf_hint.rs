@@ -92,6 +92,8 @@ pub(crate) mod items {
         pub scale: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PerfHintInfoQCOM<'_> {}
+    unsafe impl Sync for PerfHintInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerfHintInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERF_HINT_INFO_QCOM;
     }
@@ -125,6 +127,8 @@ pub(crate) mod items {
         pub queue_perf_hint: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceQueuePerfHintFeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceQueuePerfHintFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_FEATURES_QCOM;
@@ -158,6 +162,8 @@ pub(crate) mod items {
         pub supported_queues: crate::vk::QueueFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceQueuePerfHintPropertiesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceQueuePerfHintPropertiesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_PROPERTIES_QCOM;

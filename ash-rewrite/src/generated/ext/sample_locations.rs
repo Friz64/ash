@@ -149,15 +149,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         samples: crate::vk::SampleCountFlagBits,
-        multisample_properties: &mut crate::vk::MultisamplePropertiesEXT<'_>,
-    ) {
+    ) -> crate::vk::MultisamplePropertiesEXT<'_> {
+        let mut multisample_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_multisample_properties)(
             physical_device,
             samples,
-            multisample_properties,
-        )
+            multisample_properties.as_mut_ptr(),
+        );
+        multisample_properties.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;
@@ -170,6 +171,8 @@ pub(crate) mod items {
         pub x: core::ffi::c_float,
         pub y: core::ffi::c_float,
     }
+    unsafe impl Send for SampleLocationEXT {}
+    unsafe impl Sync for SampleLocationEXT {}
     impl SampleLocationEXT {
         pub fn x(mut self, x: core::ffi::c_float) -> Self {
             self.x = x;
@@ -192,6 +195,8 @@ pub(crate) mod items {
         pub p_sample_locations: *const crate::vk::SampleLocationEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SampleLocationsInfoEXT<'_> {}
+    unsafe impl Sync for SampleLocationsInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SampleLocationsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLE_LOCATIONS_INFO_EXT;
     }
@@ -244,6 +249,8 @@ pub(crate) mod items {
         pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AttachmentSampleLocationsEXT<'_> {}
+    unsafe impl Sync for AttachmentSampleLocationsEXT<'_> {}
     impl<'a> AttachmentSampleLocationsEXT<'a> {
         pub fn attachment_index(mut self, attachment_index: u32) -> Self {
             self.attachment_index = attachment_index;
@@ -265,6 +272,8 @@ pub(crate) mod items {
         pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SubpassSampleLocationsEXT<'_> {}
+    unsafe impl Sync for SubpassSampleLocationsEXT<'_> {}
     impl<'a> SubpassSampleLocationsEXT<'a> {
         pub fn subpass_index(mut self, subpass_index: u32) -> Self {
             self.subpass_index = subpass_index;
@@ -294,6 +303,8 @@ pub(crate) mod items {
         >,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassSampleLocationsBeginInfoEXT<'_> {}
+    unsafe impl Sync for RenderPassSampleLocationsBeginInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderPassSampleLocationsBeginInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT;
@@ -347,6 +358,8 @@ pub(crate) mod items {
         pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineSampleLocationsStateCreateInfoEXT<'_> {}
+    unsafe impl Sync for PipelineSampleLocationsStateCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineSampleLocationsStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT;
@@ -390,6 +403,8 @@ pub(crate) mod items {
         pub variable_sample_locations: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceSampleLocationsPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceSampleLocationsPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT;
@@ -456,6 +471,8 @@ pub(crate) mod items {
         pub max_sample_location_grid_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MultisamplePropertiesEXT<'_> {}
+    unsafe impl Sync for MultisamplePropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MultisamplePropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTISAMPLE_PROPERTIES_EXT;
     }

@@ -24,6 +24,8 @@ pub(crate) mod items {
         pub present_mode_fifo_latest_ready: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR;

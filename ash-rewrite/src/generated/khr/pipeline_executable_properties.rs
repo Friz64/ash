@@ -257,6 +257,8 @@ pub(crate) mod items {
         pub pipeline_executable_info: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR;
@@ -293,6 +295,8 @@ pub(crate) mod items {
         pub pipeline: crate::vk::Pipeline,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineInfoKHR<'_> {}
+    unsafe impl Sync for PipelineInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_INFO_KHR;
     }
@@ -323,6 +327,8 @@ pub(crate) mod items {
         pub subgroup_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineExecutablePropertiesKHR<'_> {}
+    unsafe impl Sync for PipelineExecutablePropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutablePropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_PROPERTIES_KHR;
     }
@@ -395,6 +401,8 @@ pub(crate) mod items {
         pub executable_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineExecutableInfoKHR<'_> {}
+    unsafe impl Sync for PipelineExecutableInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutableInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_INFO_KHR;
     }
@@ -430,6 +438,8 @@ pub(crate) mod items {
         pub value: crate::vk::PipelineExecutableStatisticValueKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineExecutableStatisticKHR<'_> {}
+    unsafe impl Sync for PipelineExecutableStatisticKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutableStatisticKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_STATISTIC_KHR;
     }
@@ -510,6 +520,8 @@ pub(crate) mod items {
         pub p_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineExecutableInternalRepresentationKHR<'_> {}
+    unsafe impl Sync for PipelineExecutableInternalRepresentationKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineExecutableInternalRepresentationKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR;

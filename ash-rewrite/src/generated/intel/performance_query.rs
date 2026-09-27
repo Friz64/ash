@@ -314,6 +314,8 @@ pub(crate) mod items {
         pub _type: crate::vk::PerformanceValueTypeINTEL,
         pub data: crate::vk::PerformanceValueDataINTEL,
     }
+    unsafe impl Send for PerformanceValueINTEL {}
+    unsafe impl Sync for PerformanceValueINTEL {}
     impl PerformanceValueINTEL {
         pub fn _type(mut self, _type: crate::vk::PerformanceValueTypeINTEL) -> Self {
             self._type = _type;
@@ -333,6 +335,8 @@ pub(crate) mod items {
         pub p_user_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for InitializePerformanceApiInfoINTEL<'_> {}
+    unsafe impl Sync for InitializePerformanceApiInfoINTEL<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for InitializePerformanceApiInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INITIALIZE_PERFORMANCE_API_INFO_INTEL;
@@ -362,6 +366,8 @@ pub(crate) mod items {
         pub performance_counters_sampling: crate::vk::QueryPoolSamplingModeINTEL,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueryPoolPerformanceQueryCreateInfoINTEL<'_> {}
+    unsafe impl Sync for QueryPoolPerformanceQueryCreateInfoINTEL<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL;
@@ -396,6 +402,8 @@ pub(crate) mod items {
         pub marker: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PerformanceMarkerInfoINTEL<'_> {}
+    unsafe impl Sync for PerformanceMarkerInfoINTEL<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceMarkerInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_MARKER_INFO_INTEL;
     }
@@ -424,6 +432,8 @@ pub(crate) mod items {
         pub marker: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PerformanceStreamMarkerInfoINTEL<'_> {}
+    unsafe impl Sync for PerformanceStreamMarkerInfoINTEL<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceStreamMarkerInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_STREAM_MARKER_INFO_INTEL;
     }
@@ -454,6 +464,8 @@ pub(crate) mod items {
         pub parameter: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PerformanceOverrideInfoINTEL<'_> {}
+    unsafe impl Sync for PerformanceOverrideInfoINTEL<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceOverrideInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_OVERRIDE_INFO_INTEL;
     }
@@ -492,6 +504,8 @@ pub(crate) mod items {
         pub _type: crate::vk::PerformanceConfigurationTypeINTEL,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PerformanceConfigurationAcquireInfoINTEL<'_> {}
+    unsafe impl Sync for PerformanceConfigurationAcquireInfoINTEL<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PerformanceConfigurationAcquireInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL;

@@ -19,6 +19,8 @@ pub(crate) mod items {
         pub heap_usage: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMemoryBudgetPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceMemoryBudgetPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT;

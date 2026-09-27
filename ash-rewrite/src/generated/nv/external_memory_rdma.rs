@@ -111,6 +111,8 @@ pub(crate) mod items {
         pub external_memory_rdma: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV;
@@ -145,6 +147,8 @@ pub(crate) mod items {
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryGetRemoteAddressInfoNV<'_> {}
+    unsafe impl Sync for MemoryGetRemoteAddressInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetRemoteAddressInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_REMOTE_ADDRESS_INFO_NV;
     }

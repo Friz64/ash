@@ -84,9 +84,17 @@ impl Device {
     pub unsafe fn cmd_end_rendering2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        rendering_end_info: &crate::vk::RenderingEndInfoKHR<'_>,
+        rendering_end_info: Option<&crate::vk::RenderingEndInfoKHR<'_>>,
     ) {
-        (self.fp.cmd_end_rendering2)(command_buffer, rendering_end_info)
+        (self
+            .fp
+            .cmd_end_rendering2)(
+            command_buffer,
+            match rendering_end_info {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
 }
 pub const SPEC_VERSION: u32 = 1;
@@ -101,6 +109,8 @@ pub(crate) mod items {
         pub fragment_density_map_offset: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT;
@@ -137,6 +147,8 @@ pub(crate) mod items {
         pub fragment_density_offset_granularity: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT;
@@ -172,6 +184,8 @@ pub(crate) mod items {
         pub p_fragment_density_offsets: *const crate::vk::Offset2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassFragmentDensityMapOffsetEndInfoEXT<'_> {}
+    unsafe impl Sync for RenderPassFragmentDensityMapOffsetEndInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT;

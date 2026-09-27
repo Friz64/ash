@@ -30,6 +30,8 @@ pub(crate) mod items {
         pub p_settings: *const crate::vk::LayerSettingEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for LayerSettingsCreateInfoEXT<'_> {}
+    unsafe impl Sync for LayerSettingsCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for LayerSettingsCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LAYER_SETTINGS_CREATE_INFO_EXT;
     }
@@ -67,6 +69,8 @@ pub(crate) mod items {
         pub p_values: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for LayerSettingEXT<'_> {}
+    unsafe impl Sync for LayerSettingEXT<'_> {}
     impl<'a> LayerSettingEXT<'a> {
         pub fn layer_name(mut self, layer_name: &'a core::ffi::CStr) -> Self {
             self.p_layer_name = layer_name.as_ptr();

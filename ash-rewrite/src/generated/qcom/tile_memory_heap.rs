@@ -109,9 +109,17 @@ impl Device {
     pub unsafe fn cmd_bind_tile_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        tile_memory_bind_info: &crate::vk::TileMemoryBindInfoQCOM<'_>,
+        tile_memory_bind_info: Option<&crate::vk::TileMemoryBindInfoQCOM<'_>>,
     ) {
-        (self.fp.cmd_bind_tile_memory)(command_buffer, tile_memory_bind_info)
+        (self
+            .fp
+            .cmd_bind_tile_memory)(
+            command_buffer,
+            match tile_memory_bind_info {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
 }
 pub const SPEC_VERSION: u32 = 1;
@@ -126,6 +134,8 @@ pub(crate) mod items {
         pub memory: crate::vk::DeviceMemory,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TileMemoryBindInfoQCOM<'_> {}
+    unsafe impl Sync for TileMemoryBindInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TileMemoryBindInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_BIND_INFO_QCOM;
     }
@@ -156,6 +166,8 @@ pub(crate) mod items {
         pub tile_memory_heap: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_FEATURES_QCOM;
@@ -190,6 +202,8 @@ pub(crate) mod items {
         pub tile_buffer_transfers: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_PROPERTIES_QCOM;
@@ -226,6 +240,8 @@ pub(crate) mod items {
         pub size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TileMemorySizeInfoQCOM<'_> {}
+    unsafe impl Sync for TileMemorySizeInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TileMemorySizeInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_SIZE_INFO_QCOM;
     }
@@ -261,6 +277,8 @@ pub(crate) mod items {
         pub alignment: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TileMemoryRequirementsQCOM<'_> {}
+    unsafe impl Sync for TileMemoryRequirementsQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TileMemoryRequirementsQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_REQUIREMENTS_QCOM;
     }

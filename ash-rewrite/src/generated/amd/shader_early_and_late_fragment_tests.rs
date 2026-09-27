@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub shader_early_and_late_fragment_tests: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_FEATURES_AMD;

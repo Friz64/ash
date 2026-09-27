@@ -103,9 +103,17 @@ impl Device {
     pub unsafe fn cmd_begin_custom_resolve(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        begin_custom_resolve_info: &crate::vk::BeginCustomResolveInfoEXT<'_>,
+        begin_custom_resolve_info: Option<&crate::vk::BeginCustomResolveInfoEXT<'_>>,
     ) {
-        (self.fp.cmd_begin_custom_resolve)(command_buffer, begin_custom_resolve_info)
+        (self
+            .fp
+            .cmd_begin_custom_resolve)(
+            command_buffer,
+            match begin_custom_resolve_info {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
 }
 pub const SPEC_VERSION: u32 = 1;
@@ -119,6 +127,8 @@ pub(crate) mod items {
         pub p_next: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BeginCustomResolveInfoEXT<'_> {}
+    unsafe impl Sync for BeginCustomResolveInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BeginCustomResolveInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BEGIN_CUSTOM_RESOLVE_INFO_EXT;
     }
@@ -141,6 +151,8 @@ pub(crate) mod items {
         pub custom_resolve: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCustomResolveFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceCustomResolveFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCustomResolveFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT;
@@ -178,6 +190,8 @@ pub(crate) mod items {
         pub stencil_attachment_format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CustomResolveCreateInfoEXT<'_> {}
+    unsafe impl Sync for CustomResolveCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CustomResolveCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CUSTOM_RESOLVE_CREATE_INFO_EXT;
     }

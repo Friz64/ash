@@ -103,18 +103,32 @@ impl Device {
     pub unsafe fn get_buffer_memory_requirements2(
         &self,
         info: &crate::vk::BufferMemoryRequirementsInfo2<'_>,
-        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
-    ) {
-        (self.fp.get_buffer_memory_requirements2)(self.handle, info, memory_requirements)
+    ) -> crate::vk::MemoryRequirements2<'_> {
+        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_buffer_memory_requirements2)(
+            self.handle,
+            info,
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///vkGetImageMemoryRequirements2
     #[inline]
     pub unsafe fn get_image_memory_requirements2(
         &self,
         info: &crate::vk::ImageMemoryRequirementsInfo2<'_>,
-        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
-    ) {
-        (self.fp.get_image_memory_requirements2)(self.handle, info, memory_requirements)
+    ) -> crate::vk::MemoryRequirements2<'_> {
+        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_image_memory_requirements2)(
+            self.handle,
+            info,
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///vkGetImageSparseMemoryRequirements2
     #[inline]

@@ -90,6 +90,8 @@ pub(crate) mod items {
         pub x: core::ffi::c_float,
         pub y: core::ffi::c_float,
     }
+    unsafe impl Send for XYColorEXT {}
+    unsafe impl Sync for XYColorEXT {}
     impl XYColorEXT {
         pub fn x(mut self, x: core::ffi::c_float) -> Self {
             self.x = x;
@@ -116,6 +118,8 @@ pub(crate) mod items {
         pub max_frame_average_light_level: core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for HdrMetadataEXT<'_> {}
+    unsafe impl Sync for HdrMetadataEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for HdrMetadataEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::HDR_METADATA_EXT;
     }

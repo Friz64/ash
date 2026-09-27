@@ -95,6 +95,8 @@ pub(crate) mod items {
         pub lds_usage_size_in_bytes: usize,
         pub scratch_mem_usage_in_bytes: usize,
     }
+    unsafe impl Send for ShaderResourceUsageAMD {}
+    unsafe impl Sync for ShaderResourceUsageAMD {}
     impl ShaderResourceUsageAMD {
         pub fn num_used_vgprs(mut self, num_used_vgprs: u32) -> Self {
             self.num_used_vgprs = num_used_vgprs;
@@ -138,6 +140,8 @@ pub(crate) mod items {
         pub num_available_sgprs: u32,
         pub compute_work_group_size: [u32; 3 as _],
     }
+    unsafe impl Send for ShaderStatisticsInfoAMD {}
+    unsafe impl Sync for ShaderStatisticsInfoAMD {}
     impl Default for ShaderStatisticsInfoAMD {
         fn default() -> Self {
             Self {

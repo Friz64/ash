@@ -96,6 +96,8 @@ pub(crate) mod items {
         pub timeout: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PresentWait2InfoKHR<'_> {}
+    unsafe impl Sync for PresentWait2InfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentWait2InfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_WAIT_2_INFO_KHR;
     }
@@ -129,6 +131,8 @@ pub(crate) mod items {
         pub present_wait2: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePresentWait2FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDevicePresentWait2FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePresentWait2FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR;
@@ -162,6 +166,8 @@ pub(crate) mod items {
         pub present_wait2_supported: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SurfaceCapabilitiesPresentWait2KHR<'_> {}
+    unsafe impl Sync for SurfaceCapabilitiesPresentWait2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SurfaceCapabilitiesPresentWait2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR;

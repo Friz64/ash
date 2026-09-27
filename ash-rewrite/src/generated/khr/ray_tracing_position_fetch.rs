@@ -30,6 +30,8 @@ pub(crate) mod items {
         pub ray_tracing_position_fetch: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_POSITION_FETCH_FEATURES_KHR;

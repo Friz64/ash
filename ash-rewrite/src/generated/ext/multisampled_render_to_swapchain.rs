@@ -32,6 +32,8 @@ pub(crate) mod items {
         pub swapchain_supported_flags: crate::vk::SwapchainCreateFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SwapchainFlagsSurfaceCapabilitiesEXT<'_> {}
+    unsafe impl Sync for SwapchainFlagsSurfaceCapabilitiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SwapchainFlagsSurfaceCapabilitiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_FLAGS_SURFACE_CAPABILITIES_EXT;
@@ -66,6 +68,8 @@ pub(crate) mod items {
         pub multisampled_render_to_swapchain: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SWAPCHAIN_FEATURES_EXT;

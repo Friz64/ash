@@ -30,6 +30,8 @@ pub(crate) mod items {
         pub non_seamless_cube_map: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT;

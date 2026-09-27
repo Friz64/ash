@@ -21,6 +21,8 @@ pub(crate) mod items {
         pub ycbcr_degamma: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceYcbcrDegammaFeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceYcbcrDegammaFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceYcbcrDegammaFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_YCBCR_DEGAMMA_FEATURES_QCOM;
@@ -55,6 +57,8 @@ pub(crate) mod items {
         pub enable_cb_cr_degamma: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'_> {}
+    unsafe impl Sync for SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_YCBCR_CONVERSION_YCBCR_DEGAMMA_CREATE_INFO_QCOM;

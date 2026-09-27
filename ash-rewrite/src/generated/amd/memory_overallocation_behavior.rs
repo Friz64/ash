@@ -24,6 +24,8 @@ pub(crate) mod items {
         pub overallocation_behavior: crate::vk::MemoryOverallocationBehaviorAMD,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceMemoryOverallocationCreateInfoAMD<'_> {}
+    unsafe impl Sync for DeviceMemoryOverallocationCreateInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceMemoryOverallocationCreateInfoAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD;

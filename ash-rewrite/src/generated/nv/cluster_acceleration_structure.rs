@@ -228,15 +228,16 @@ impl Device {
     pub unsafe fn get_cluster_acceleration_structure_build_sizes(
         &self,
         info: &crate::vk::ClusterAccelerationStructureInputInfoNV<'_>,
-        size_info: &mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
-    ) {
+    ) -> crate::vk::AccelerationStructureBuildSizesInfoKHR<'_> {
+        let mut size_info = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_cluster_acceleration_structure_build_sizes)(
             self.handle,
             info,
-            size_info,
-        )
+            size_info.as_mut_ptr(),
+        );
+        size_info.assume_init()
     }
     ///vkCmdBuildClusterAccelerationStructureIndirectNV
     #[inline]
@@ -265,6 +266,8 @@ pub(crate) mod items {
         pub cluster_acceleration_structure: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV;
@@ -308,6 +311,8 @@ pub(crate) mod items {
         pub max_cluster_geometry_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_PROPERTIES_NV;
@@ -393,6 +398,8 @@ pub(crate) mod items {
         pub start_address: crate::vk::DeviceAddress,
         pub stride_in_bytes: crate::vk::DeviceSize,
     }
+    unsafe impl Send for StridedDeviceAddressNV {}
+    unsafe impl Sync for StridedDeviceAddressNV {}
     impl StridedDeviceAddressNV {
         pub fn start_address(mut self, start_address: crate::vk::DeviceAddress) -> Self {
             self.start_address = start_address;
@@ -415,6 +422,8 @@ pub(crate) mod items {
         pub allow_cluster_acceleration_structure: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'_> {}
+    unsafe impl Sync for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_CLUSTER_ACCELERATION_STRUCTURE_CREATE_INFO_NV;
@@ -448,6 +457,8 @@ pub(crate) mod items {
 - `geometryFlags` @ `29..32`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {}
+    unsafe impl Sync for ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug
     for ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
@@ -482,6 +493,8 @@ pub(crate) mod items {
     pub struct ClusterAccelerationStructureMoveObjectsInfoNV {
         pub src_acceleration_structure: crate::vk::DeviceAddress,
     }
+    unsafe impl Send for ClusterAccelerationStructureMoveObjectsInfoNV {}
+    unsafe impl Sync for ClusterAccelerationStructureMoveObjectsInfoNV {}
     impl ClusterAccelerationStructureMoveObjectsInfoNV {
         pub fn src_acceleration_structure(
             mut self,
@@ -499,6 +512,8 @@ pub(crate) mod items {
         pub cluster_references_stride: u32,
         pub cluster_references: crate::vk::DeviceAddress,
     }
+    unsafe impl Send for ClusterAccelerationStructureBuildClustersBottomLevelInfoNV {}
+    unsafe impl Sync for ClusterAccelerationStructureBuildClustersBottomLevelInfoNV {}
     impl ClusterAccelerationStructureBuildClustersBottomLevelInfoNV {
         pub fn cluster_references_count(
             mut self,
@@ -528,6 +543,8 @@ pub(crate) mod items {
     pub struct ClusterAccelerationStructureGetTemplateIndicesInfoNV {
         pub cluster_template_address: crate::vk::DeviceAddress,
     }
+    unsafe impl Send for ClusterAccelerationStructureGetTemplateIndicesInfoNV {}
+    unsafe impl Sync for ClusterAccelerationStructureGetTemplateIndicesInfoNV {}
     impl ClusterAccelerationStructureGetTemplateIndicesInfoNV {
         pub fn cluster_template_address(
             mut self,
@@ -559,6 +576,8 @@ pub(crate) mod items {
         pub opacity_micromap_array: crate::vk::DeviceAddress,
         pub opacity_micromap_index_buffer: crate::vk::DeviceAddress,
     }
+    unsafe impl Send for ClusterAccelerationStructureBuildTriangleClusterInfoNV {}
+    unsafe impl Sync for ClusterAccelerationStructureBuildTriangleClusterInfoNV {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureBuildTriangleClusterInfoNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -746,6 +765,8 @@ pub(crate) mod items {
         pub opacity_micromap_index_buffer: crate::vk::DeviceAddress,
         pub instantiation_bounding_box_limit: crate::vk::DeviceAddress,
     }
+    unsafe impl Send for ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {}
+    unsafe impl Sync for ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug
     for ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
@@ -933,6 +954,8 @@ pub(crate) mod items {
         pub cluster_template_address: crate::vk::DeviceAddress,
         pub vertex_buffer: crate::vk::StridedDeviceAddressNV,
     }
+    unsafe impl Send for ClusterAccelerationStructureInstantiateClusterInfoNV {}
+    unsafe impl Sync for ClusterAccelerationStructureInstantiateClusterInfoNV {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ClusterAccelerationStructureInstantiateClusterInfoNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -982,6 +1005,8 @@ pub(crate) mod items {
         pub max_cluster_count_per_acceleration_structure: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ClusterAccelerationStructureClustersBottomLevelInputNV<'_> {}
+    unsafe impl Sync for ClusterAccelerationStructureClustersBottomLevelInputNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ClusterAccelerationStructureClustersBottomLevelInputNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_CLUSTERS_BOTTOM_LEVEL_INPUT_NV;
@@ -1026,6 +1051,8 @@ pub(crate) mod items {
         pub min_position_truncate_bit_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ClusterAccelerationStructureTriangleClusterInputNV<'_> {}
+    unsafe impl Sync for ClusterAccelerationStructureTriangleClusterInputNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ClusterAccelerationStructureTriangleClusterInputNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_TRIANGLE_CLUSTER_INPUT_NV;
@@ -1110,6 +1137,8 @@ pub(crate) mod items {
         pub max_moved_bytes: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ClusterAccelerationStructureMoveObjectsInputNV<'_> {}
+    unsafe impl Sync for ClusterAccelerationStructureMoveObjectsInputNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ClusterAccelerationStructureMoveObjectsInputNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_MOVE_OBJECTS_INPUT_NV;
@@ -1159,6 +1188,8 @@ pub(crate) mod items {
         pub op_input: crate::vk::ClusterAccelerationStructureOpInputNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ClusterAccelerationStructureInputInfoNV<'_> {}
+    unsafe impl Sync for ClusterAccelerationStructureInputInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ClusterAccelerationStructureInputInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_INPUT_INFO_NV;
@@ -1230,6 +1261,8 @@ pub(crate) mod items {
         pub address_resolution_flags: crate::vk::ClusterAccelerationStructureAddressResolutionFlagsNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ClusterAccelerationStructureCommandsInfoNV<'_> {}
+    unsafe impl Sync for ClusterAccelerationStructureCommandsInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ClusterAccelerationStructureCommandsInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV;

@@ -23,6 +23,8 @@ pub(crate) mod items {
         pub render_minor: i64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDrmPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceDrmPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceDrmPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DRM_PROPERTIES_EXT;
     }

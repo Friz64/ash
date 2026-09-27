@@ -110,30 +110,32 @@ impl Device {
     pub unsafe fn get_device_buffer_memory_requirements(
         &self,
         info: &crate::vk::DeviceBufferMemoryRequirements<'_>,
-        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
-    ) {
+    ) -> crate::vk::MemoryRequirements2<'_> {
+        let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_device_buffer_memory_requirements)(
             self.handle,
             info,
-            memory_requirements,
-        )
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///vkGetDeviceImageMemoryRequirements
     #[inline]
     pub unsafe fn get_device_image_memory_requirements(
         &self,
         info: &crate::vk::DeviceImageMemoryRequirements<'_>,
-        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
-    ) {
+    ) -> crate::vk::MemoryRequirements2<'_> {
+        let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_device_image_memory_requirements)(
             self.handle,
             info,
-            memory_requirements,
-        )
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///vkGetDeviceImageSparseMemoryRequirements
     #[inline]

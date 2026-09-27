@@ -23,6 +23,8 @@ pub(crate) mod items {
         pub inherited_viewport_scissor2_d: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceInheritedViewportScissorFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceInheritedViewportScissorFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV;
@@ -61,6 +63,8 @@ pub(crate) mod items {
         pub p_viewport_depths: *const crate::vk::Viewport,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CommandBufferInheritanceViewportScissorInfoNV<'_> {}
+    unsafe impl Sync for CommandBufferInheritanceViewportScissorInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CommandBufferInheritanceViewportScissorInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV;

@@ -105,9 +105,10 @@ impl Device {
     #[inline]
     pub unsafe fn export_metal_objects(
         &self,
-        metal_objects_info: &mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
-    ) {
-        (self.fp.export_metal_objects)(self.handle, metal_objects_info)
+    ) -> crate::vk::ExportMetalObjectsInfoEXT<'_> {
+        let mut metal_objects_info = core::mem::MaybeUninit::uninit();
+        (self.fp.export_metal_objects)(self.handle, metal_objects_info.as_mut_ptr());
+        metal_objects_info.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 2;
@@ -122,6 +123,8 @@ pub(crate) mod items {
         pub export_object_type: crate::vk::ExportMetalObjectTypeFlagBitsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExportMetalObjectCreateInfoEXT<'_> {}
+    unsafe impl Sync for ExportMetalObjectCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalObjectCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_OBJECT_CREATE_INFO_EXT;
     }
@@ -166,6 +169,8 @@ pub(crate) mod items {
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExportMetalObjectsInfoEXT<'_> {}
+    unsafe impl Sync for ExportMetalObjectsInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalObjectsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_OBJECTS_INFO_EXT;
     }
@@ -188,6 +193,8 @@ pub(crate) mod items {
         pub mtl_device: crate::platform_types::MTLDevice_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExportMetalDeviceInfoEXT<'_> {}
+    unsafe impl Sync for ExportMetalDeviceInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalDeviceInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_DEVICE_INFO_EXT;
     }
@@ -222,6 +229,8 @@ pub(crate) mod items {
         pub mtl_command_queue: crate::platform_types::MTLCommandQueue_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExportMetalCommandQueueInfoEXT<'_> {}
+    unsafe impl Sync for ExportMetalCommandQueueInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalCommandQueueInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_COMMAND_QUEUE_INFO_EXT;
     }
@@ -261,6 +270,8 @@ pub(crate) mod items {
         pub mtl_buffer: crate::platform_types::MTLBuffer_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExportMetalBufferInfoEXT<'_> {}
+    unsafe impl Sync for ExportMetalBufferInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalBufferInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_BUFFER_INFO_EXT;
     }
@@ -299,6 +310,8 @@ pub(crate) mod items {
         pub mtl_buffer: crate::platform_types::MTLBuffer_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportMetalBufferInfoEXT<'_> {}
+    unsafe impl Sync for ImportMetalBufferInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalBufferInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_METAL_BUFFER_INFO_EXT;
     }
@@ -336,6 +349,8 @@ pub(crate) mod items {
         pub mtl_texture: crate::platform_types::MTLTexture_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExportMetalTextureInfoEXT<'_> {}
+    unsafe impl Sync for ExportMetalTextureInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalTextureInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_TEXTURE_INFO_EXT;
     }
@@ -390,6 +405,8 @@ pub(crate) mod items {
         pub mtl_texture: crate::platform_types::MTLTexture_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportMetalTextureInfoEXT<'_> {}
+    unsafe impl Sync for ImportMetalTextureInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalTextureInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_METAL_TEXTURE_INFO_EXT;
     }
@@ -429,6 +446,8 @@ pub(crate) mod items {
         pub io_surface: crate::platform_types::IOSurfaceRef,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExportMetalIOSurfaceInfoEXT<'_> {}
+    unsafe impl Sync for ExportMetalIOSurfaceInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalIOSurfaceInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_IO_SURFACE_INFO_EXT;
     }
@@ -467,6 +486,8 @@ pub(crate) mod items {
         pub io_surface: crate::platform_types::IOSurfaceRef,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportMetalIOSurfaceInfoEXT<'_> {}
+    unsafe impl Sync for ImportMetalIOSurfaceInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalIOSurfaceInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_METAL_IO_SURFACE_INFO_EXT;
     }
@@ -502,6 +523,8 @@ pub(crate) mod items {
         pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExportMetalSharedEventInfoEXT<'_> {}
+    unsafe impl Sync for ExportMetalSharedEventInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalSharedEventInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_SHARED_EVENT_INFO_EXT;
     }
@@ -545,6 +568,8 @@ pub(crate) mod items {
         pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportMetalSharedEventInfoEXT<'_> {}
+    unsafe impl Sync for ImportMetalSharedEventInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalSharedEventInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_METAL_SHARED_EVENT_INFO_EXT;
     }

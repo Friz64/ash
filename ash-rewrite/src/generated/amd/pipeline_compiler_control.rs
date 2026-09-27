@@ -18,6 +18,8 @@ pub(crate) mod items {
         pub compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineCompilerControlCreateInfoAMD<'_> {}
+    unsafe impl Sync for PipelineCompilerControlCreateInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineCompilerControlCreateInfoAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD;

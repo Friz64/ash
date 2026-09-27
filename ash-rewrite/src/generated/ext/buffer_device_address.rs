@@ -112,6 +112,8 @@ pub(crate) mod items {
         pub buffer_device_address_multi_device: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT;
@@ -163,6 +165,8 @@ pub(crate) mod items {
         pub device_address: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferDeviceAddressCreateInfoEXT<'_> {}
+    unsafe impl Sync for BufferDeviceAddressCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BufferDeviceAddressCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT;
     }

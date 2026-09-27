@@ -25,6 +25,8 @@ pub(crate) mod items {
         pub image_tiling_control: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceImageTilingControlFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceImageTilingControlFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageTilingControlFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_TILING_CONTROL_FEATURES_EXT;
@@ -58,6 +60,8 @@ pub(crate) mod items {
         pub tiling_control: crate::vk::ImageTilingControlEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageTilingControlCreateInfoEXT<'_> {}
+    unsafe impl Sync for ImageTilingControlCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageTilingControlCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_TILING_CONTROL_CREATE_INFO_EXT;
     }

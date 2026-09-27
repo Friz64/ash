@@ -25,6 +25,8 @@ pub(crate) mod items {
         pub throttle_hint: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceThrottleHintFeaturesSEC<'_> {}
+    unsafe impl Sync for PhysicalDeviceThrottleHintFeaturesSEC<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_THROTTLE_HINT_FEATURES_SEC;
@@ -58,6 +60,8 @@ pub(crate) mod items {
         pub throttle_hint: crate::vk::ThrottleHintTypeSEC,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ThrottleHintSubmitInfoSEC<'_> {}
+    unsafe impl Sync for ThrottleHintSubmitInfoSEC<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ThrottleHintSubmitInfoSEC<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::THROTTLE_HINT_SUBMIT_INFO_SEC;
     }

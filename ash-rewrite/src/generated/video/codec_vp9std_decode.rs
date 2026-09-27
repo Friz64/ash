@@ -18,6 +18,8 @@ pub(crate) mod items {
 - `UsePrevFrameMvs` @ `7..8`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for DecodeVP9PictureInfoFlags {}
+    unsafe impl Sync for DecodeVP9PictureInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeVP9PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -130,6 +132,8 @@ pub(crate) mod items {
         pub p_segmentation: *const crate::vk::VP9Segmentation,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DecodeVP9PictureInfo<'_> {}
+    unsafe impl Sync for DecodeVP9PictureInfo<'_> {}
     impl<'a> Default for DecodeVP9PictureInfo<'a> {
         fn default() -> Self {
             Self {

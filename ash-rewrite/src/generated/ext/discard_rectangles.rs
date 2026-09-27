@@ -154,6 +154,8 @@ pub(crate) mod items {
         pub max_discard_rectangles: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDiscardRectanglePropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceDiscardRectanglePropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT;
@@ -188,6 +190,8 @@ pub(crate) mod items {
         pub p_discard_rectangles: *const crate::vk::Rect2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineDiscardRectangleStateCreateInfoEXT<'_> {}
+    unsafe impl Sync for PipelineDiscardRectangleStateCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT;

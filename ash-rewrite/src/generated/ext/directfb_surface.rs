@@ -85,7 +85,7 @@ impl Instance {
     pub unsafe fn create_direct_fb_surface(
         &self,
         create_info: &crate::vk::DirectFBSurfaceCreateInfoEXT<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
@@ -93,7 +93,10 @@ impl Instance {
             .create_direct_fb_surface)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 surface.as_mut_ptr(),
             )
             .assume_init_on_success(surface)
@@ -104,15 +107,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-        dfb: &mut crate::platform_types::IDirectFB,
-    ) -> crate::vk::Bool32 {
+    ) -> crate::platform_types::IDirectFB {
+        let mut dfb = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_direct_fb_presentation_support)(
             physical_device,
             queue_family_index,
-            dfb,
-        )
+            dfb.as_mut_ptr(),
+        );
+        dfb.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;
@@ -129,6 +133,8 @@ pub(crate) mod items {
         pub surface: *mut crate::platform_types::IDirectFBSurface,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DirectFBSurfaceCreateInfoEXT<'_> {}
+    unsafe impl Sync for DirectFBSurfaceCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DirectFBSurfaceCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECTFB_SURFACE_CREATE_INFO_EXT;
     }

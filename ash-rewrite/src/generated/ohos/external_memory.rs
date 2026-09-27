@@ -127,6 +127,8 @@ pub(crate) mod items {
         pub ohos_native_buffer_usage: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for NativeBufferUsageOHOS<'_> {}
+    unsafe impl Sync for NativeBufferUsageOHOS<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferUsageOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::NATIVE_BUFFER_USAGE_OHOS;
     }
@@ -161,6 +163,8 @@ pub(crate) mod items {
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for NativeBufferPropertiesOHOS<'_> {}
+    unsafe impl Sync for NativeBufferPropertiesOHOS<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferPropertiesOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::NATIVE_BUFFER_PROPERTIES_OHOS;
     }
@@ -204,6 +208,8 @@ pub(crate) mod items {
         pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for NativeBufferFormatPropertiesOHOS<'_> {}
+    unsafe impl Sync for NativeBufferFormatPropertiesOHOS<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferFormatPropertiesOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::NATIVE_BUFFER_FORMAT_PROPERTIES_OHOS;
     }
@@ -287,6 +293,8 @@ pub(crate) mod items {
         pub buffer: *mut crate::platform_types::OH_NativeBuffer,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportNativeBufferInfoOHOS<'_> {}
+    unsafe impl Sync for ImportNativeBufferInfoOHOS<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportNativeBufferInfoOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_NATIVE_BUFFER_INFO_OHOS;
     }
@@ -320,6 +328,8 @@ pub(crate) mod items {
         pub memory: crate::vk::DeviceMemory,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryGetNativeBufferInfoOHOS<'_> {}
+    unsafe impl Sync for MemoryGetNativeBufferInfoOHOS<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetNativeBufferInfoOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_NATIVE_BUFFER_INFO_OHOS;
     }
@@ -348,6 +358,8 @@ pub(crate) mod items {
         pub external_format: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExternalFormatOHOS<'_> {}
+    unsafe impl Sync for ExternalFormatOHOS<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_OHOS;
     }

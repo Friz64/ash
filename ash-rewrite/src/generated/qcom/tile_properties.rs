@@ -146,6 +146,8 @@ pub(crate) mod items {
         pub tile_properties: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTilePropertiesFeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceTilePropertiesFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM;
@@ -181,6 +183,8 @@ pub(crate) mod items {
         pub origin: crate::vk::Offset2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TilePropertiesQCOM<'_> {}
+    unsafe impl Sync for TilePropertiesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TilePropertiesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_PROPERTIES_QCOM;
     }

@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub pipeline_cache_incremental_mode: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'_> {}
+    unsafe impl Sync for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC;

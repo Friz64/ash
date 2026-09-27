@@ -31,6 +31,8 @@ pub(crate) mod items {
         pub block_u64k_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TensorExplicitTilingFormatPropertiesARM<'_> {}
+    unsafe impl Sync for TensorExplicitTilingFormatPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for TensorExplicitTilingFormatPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_EXPLICIT_TILING_FORMAT_PROPERTIES_ARM;
@@ -98,6 +100,8 @@ pub(crate) mod items {
             as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TensorRollingBackingCreateInfoARM<'_> {}
+    unsafe impl Sync for TensorRollingBackingCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for TensorRollingBackingCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_ROLLING_BACKING_CREATE_INFO_ARM;

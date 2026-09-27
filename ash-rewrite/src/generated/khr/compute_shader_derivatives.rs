@@ -24,6 +24,8 @@ pub(crate) mod items {
         pub compute_derivative_group_linear: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_KHR;
@@ -69,6 +71,8 @@ pub(crate) mod items {
         pub mesh_and_task_shader_derivatives: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_PROPERTIES_KHR;

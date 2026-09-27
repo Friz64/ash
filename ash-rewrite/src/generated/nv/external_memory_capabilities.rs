@@ -144,6 +144,8 @@ pub(crate) mod items {
         pub export_from_imported_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
         pub compatible_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
     }
+    unsafe impl Send for ExternalImageFormatPropertiesNV {}
+    unsafe impl Sync for ExternalImageFormatPropertiesNV {}
     impl ExternalImageFormatPropertiesNV {
         pub fn image_format_properties(
             mut self,

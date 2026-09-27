@@ -134,6 +134,8 @@ pub(crate) mod items {
         pub exclusive_scissor: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExclusiveScissorFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceExclusiveScissorFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV;
@@ -168,6 +170,8 @@ pub(crate) mod items {
         pub p_exclusive_scissors: *const crate::vk::Rect2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineViewportExclusiveScissorStateCreateInfoNV<'_> {}
+    unsafe impl Sync for PipelineViewportExclusiveScissorStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV;

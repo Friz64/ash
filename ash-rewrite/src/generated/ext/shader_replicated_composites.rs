@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub shader_replicated_composites: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT;

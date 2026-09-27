@@ -367,7 +367,7 @@ impl Device {
     pub unsafe fn create_optical_flow_session(
         &self,
         create_info: &crate::vk::OpticalFlowSessionCreateInfoNV<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::OpticalFlowSessionNV> {
         let mut session = core::mem::MaybeUninit::uninit();
         (self
@@ -375,7 +375,10 @@ impl Device {
             .create_optical_flow_session)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 session.as_mut_ptr(),
             )
             .assume_init_on_success(session)
@@ -385,9 +388,18 @@ impl Device {
     pub unsafe fn destroy_optical_flow_session(
         &self,
         session: crate::vk::OpticalFlowSessionNV,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_optical_flow_session)(self.handle, session, allocator)
+        (self
+            .fp
+            .destroy_optical_flow_session)(
+            self.handle,
+            session,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkBindOpticalFlowSessionImageNV
     #[inline]
@@ -432,6 +444,8 @@ pub(crate) mod items {
         pub optical_flow: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceOpticalFlowFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceOpticalFlowFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceOpticalFlowFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV;
@@ -475,6 +489,8 @@ pub(crate) mod items {
         pub max_num_regions_of_interest: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceOpticalFlowPropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceOpticalFlowPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceOpticalFlowPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV;
@@ -568,6 +584,8 @@ pub(crate) mod items {
         pub usage: crate::vk::OpticalFlowUsageFlagsNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for OpticalFlowImageFormatInfoNV<'_> {}
+    unsafe impl Sync for OpticalFlowImageFormatInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowImageFormatInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV;
     }
@@ -600,6 +618,8 @@ pub(crate) mod items {
         pub format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for OpticalFlowImageFormatPropertiesNV<'_> {}
+    unsafe impl Sync for OpticalFlowImageFormatPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for OpticalFlowImageFormatPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_NV;
@@ -637,6 +657,8 @@ pub(crate) mod items {
         pub flags: crate::vk::OpticalFlowSessionCreateFlagsNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for OpticalFlowSessionCreateInfoNV<'_> {}
+    unsafe impl Sync for OpticalFlowSessionCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowSessionCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_INFO_NV;
     }
@@ -722,6 +744,8 @@ pub(crate) mod items {
         pub p_private_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for OpticalFlowSessionCreatePrivateDataInfoNV<'_> {}
+    unsafe impl Sync for OpticalFlowSessionCreatePrivateDataInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV;
@@ -765,6 +789,8 @@ pub(crate) mod items {
         pub p_regions: *const crate::vk::Rect2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for OpticalFlowExecuteInfoNV<'_> {}
+    unsafe impl Sync for OpticalFlowExecuteInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowExecuteInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_EXECUTE_INFO_NV;
     }

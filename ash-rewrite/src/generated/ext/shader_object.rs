@@ -990,9 +990,18 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         samples: crate::vk::SampleCountFlagBits,
-        sample_mask: &crate::vk::SampleMask,
+        sample_mask: Option<&crate::vk::SampleMask>,
     ) {
-        (self.fp.cmd_set_sample_mask)(command_buffer, samples, sample_mask)
+        (self
+            .fp
+            .cmd_set_sample_mask)(
+            command_buffer,
+            samples,
+            match sample_mask {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCmdSetAlphaToCoverageEnableEXT
     #[inline]
@@ -1348,7 +1357,7 @@ impl Device {
     pub unsafe fn create_shaders(
         &self,
         create_infos: &[crate::vk::ShaderCreateInfoEXT<'_>],
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
         shaders: &mut [crate::vk::ShaderEXT],
     ) -> crate::VkResult<()> {
         assert_eq!(create_infos.len(), shaders.len());
@@ -1358,7 +1367,10 @@ impl Device {
                 self.handle,
                 shaders.len() as _,
                 create_infos.as_ptr(),
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 shaders.as_mut_ptr(),
             )
             .result()
@@ -1368,9 +1380,18 @@ impl Device {
     pub unsafe fn destroy_shader(
         &self,
         shader: crate::vk::ShaderEXT,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_shader)(self.handle, shader, allocator)
+        (self
+            .fp
+            .destroy_shader)(
+            self.handle,
+            shader,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkGetShaderBinaryDataEXT
     #[inline]
@@ -1406,14 +1427,17 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_clamp_mode: crate::vk::DepthClampModeEXT,
-        depth_clamp_range: &crate::vk::DepthClampRangeEXT,
+        depth_clamp_range: Option<&crate::vk::DepthClampRangeEXT>,
     ) {
         (self
             .fp
             .cmd_set_depth_clamp_range)(
             command_buffer,
             depth_clamp_mode,
-            depth_clamp_range,
+            match depth_clamp_range {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
         )
     }
     ///vkCmdSetCullMode
@@ -1615,6 +1639,8 @@ pub(crate) mod items {
         pub shader_object: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderObjectFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderObjectFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderObjectFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT;
@@ -1649,6 +1675,8 @@ pub(crate) mod items {
         pub shader_binary_version: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderObjectPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderObjectPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderObjectPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_OBJECT_PROPERTIES_EXT;
@@ -1699,6 +1727,8 @@ pub(crate) mod items {
         pub p_specialization_info: *const crate::vk::SpecializationInfo<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ShaderCreateInfoEXT<'_> {}
+    unsafe impl Sync for ShaderCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ShaderCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_CREATE_INFO_EXT;
     }

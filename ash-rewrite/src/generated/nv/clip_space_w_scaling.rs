@@ -94,6 +94,8 @@ pub(crate) mod items {
         pub xcoeff: core::ffi::c_float,
         pub ycoeff: core::ffi::c_float,
     }
+    unsafe impl Send for ViewportWScalingNV {}
+    unsafe impl Sync for ViewportWScalingNV {}
     impl ViewportWScalingNV {
         pub fn xcoeff(mut self, xcoeff: core::ffi::c_float) -> Self {
             self.xcoeff = xcoeff;
@@ -115,6 +117,8 @@ pub(crate) mod items {
         pub p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineViewportWScalingStateCreateInfoNV<'_> {}
+    unsafe impl Sync for PipelineViewportWScalingStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportWScalingStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV;

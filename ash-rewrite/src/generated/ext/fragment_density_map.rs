@@ -126,6 +126,8 @@ pub(crate) mod items {
         pub fragment_density_map_non_subsampled_images: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentDensityMapFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentDensityMapFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT;
@@ -178,6 +180,8 @@ pub(crate) mod items {
         pub fragment_density_invocations: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentDensityMapPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentDensityMapPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT;
@@ -228,6 +232,8 @@ pub(crate) mod items {
         pub fragment_density_map_attachment: crate::vk::AttachmentReference,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassFragmentDensityMapCreateInfoEXT<'_> {}
+    unsafe impl Sync for RenderPassFragmentDensityMapCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderPassFragmentDensityMapCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT;
@@ -265,6 +271,8 @@ pub(crate) mod items {
         pub image_layout: crate::vk::ImageLayout,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderingFragmentDensityMapAttachmentInfoEXT<'_> {}
+    unsafe impl Sync for RenderingFragmentDensityMapAttachmentInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT;

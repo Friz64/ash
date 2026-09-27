@@ -159,6 +159,8 @@ pub(crate) mod items {
 - `vcl_hrd_parameters_present_flag` @ `11..12`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for H264SpsVuiFlags {}
+    unsafe impl Sync for H264SpsVuiFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H264SpsVuiFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -354,6 +356,8 @@ pub(crate) mod items {
         pub dpb_output_delay_length_minus1: u32,
         pub time_offset_length: u32,
     }
+    unsafe impl Send for H264HrdParameters {}
+    unsafe impl Sync for H264HrdParameters {}
     impl Default for H264HrdParameters {
         fn default() -> Self {
             Self {
@@ -457,6 +461,8 @@ pub(crate) mod items {
         pub p_hrd_parameters: *const crate::vk::H264HrdParameters,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for H264SequenceParameterSetVui<'_> {}
+    unsafe impl Sync for H264SequenceParameterSetVui<'_> {}
     impl<'a> H264SequenceParameterSetVui<'a> {
         pub fn flags(mut self, flags: crate::vk::H264SpsVuiFlags) -> Self {
             self.flags = flags;
@@ -556,6 +562,8 @@ pub(crate) mod items {
 - `vui_parameters_present_flag` @ `15..16`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for H264SpsFlags {}
+    unsafe impl Sync for H264SpsFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H264SpsFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -774,6 +782,8 @@ pub(crate) mod items {
         pub scaling_list8x8: [[u8; crate::vk::H264_SCALING_LIST_8X8_NUM_ELEMENTS
             as _]; crate::vk::H264_SCALING_LIST_8X8_NUM_LISTS as _],
     }
+    unsafe impl Send for H264ScalingLists {}
+    unsafe impl Sync for H264ScalingLists {}
     impl Default for H264ScalingLists {
         fn default() -> Self {
             Self {
@@ -849,6 +859,8 @@ pub(crate) mod items {
         >,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for H264SequenceParameterSet<'_> {}
+    unsafe impl Sync for H264SequenceParameterSet<'_> {}
     impl<'a> H264SequenceParameterSet<'a> {
         pub fn flags(mut self, flags: crate::vk::H264SpsFlags) -> Self {
             self.flags = flags;
@@ -988,6 +1000,8 @@ pub(crate) mod items {
 - `pic_scaling_matrix_present_flag` @ `7..8`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for H264PpsFlags {}
+    unsafe impl Sync for H264PpsFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for H264PpsFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1123,6 +1137,8 @@ pub(crate) mod items {
         pub p_scaling_lists: *const crate::vk::H264ScalingLists,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for H264PictureParameterSet<'_> {}
+    unsafe impl Sync for H264PictureParameterSet<'_> {}
     impl<'a> H264PictureParameterSet<'a> {
         pub fn flags(mut self, flags: crate::vk::H264PpsFlags) -> Self {
             self.flags = flags;

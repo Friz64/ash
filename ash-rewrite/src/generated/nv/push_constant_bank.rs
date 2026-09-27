@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub bank: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PushConstantBankInfoNV<'_> {}
+    unsafe impl Sync for PushConstantBankInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PushConstantBankInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_CONSTANT_BANK_INFO_NV;
     }
@@ -56,6 +58,8 @@ pub(crate) mod items {
         pub push_constant_bank: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePushConstantBankFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDevicePushConstantBankFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePushConstantBankFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV;
@@ -92,6 +96,8 @@ pub(crate) mod items {
         pub max_compute_push_data_banks: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePushConstantBankPropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDevicePushConstantBankPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePushConstantBankPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV;

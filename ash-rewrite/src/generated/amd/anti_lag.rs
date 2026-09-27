@@ -87,6 +87,8 @@ pub(crate) mod items {
         pub anti_lag: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceAntiLagFeaturesAMD<'_> {}
+    unsafe impl Sync for PhysicalDeviceAntiLagFeaturesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceAntiLagFeaturesAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD;
     }
@@ -121,6 +123,8 @@ pub(crate) mod items {
         pub p_presentation_info: *const crate::vk::AntiLagPresentationInfoAMD<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AntiLagDataAMD<'_> {}
+    unsafe impl Sync for AntiLagDataAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AntiLagDataAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANTI_LAG_DATA_AMD;
     }
@@ -163,6 +167,8 @@ pub(crate) mod items {
         pub frame_index: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AntiLagPresentationInfoAMD<'_> {}
+    unsafe impl Sync for AntiLagPresentationInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AntiLagPresentationInfoAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANTI_LAG_PRESENTATION_INFO_AMD;
     }

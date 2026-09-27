@@ -86,6 +86,8 @@ pub(crate) mod items {
         pub primitive_restart_index: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT;

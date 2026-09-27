@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub shader_uniform_buffer_unsized_array: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT;

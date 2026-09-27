@@ -35,6 +35,8 @@ pub(crate) mod items {
         pub film_grain_support: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeAV1ProfileInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeAV1ProfileInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeAV1ProfileInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_PROFILE_INFO_KHR;
     }
@@ -72,6 +74,8 @@ pub(crate) mod items {
         pub max_level: crate::vk::AV1Level,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeAV1CapabilitiesKHR<'_> {}
+    unsafe impl Sync for VideoDecodeAV1CapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeAV1CapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_CAPABILITIES_KHR;
     }
@@ -102,6 +106,8 @@ pub(crate) mod items {
         pub p_std_sequence_header: *const crate::vk::AV1SequenceHeader<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeAV1SessionParametersCreateInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeAV1SessionParametersCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR;
@@ -142,6 +148,8 @@ pub(crate) mod items {
         pub p_tile_sizes: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeAV1PictureInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeAV1PictureInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeAV1PictureInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_PICTURE_INFO_KHR;
     }
@@ -202,6 +210,8 @@ pub(crate) mod items {
         pub p_std_reference_info: *const crate::vk::DecodeAV1ReferenceInfo,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeAV1DpbSlotInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeAV1DpbSlotInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeAV1DpbSlotInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR;
     }

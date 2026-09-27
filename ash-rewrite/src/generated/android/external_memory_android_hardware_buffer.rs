@@ -136,6 +136,8 @@ pub(crate) mod items {
         pub buffer: *mut crate::platform_types::AHardwareBuffer,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportAndroidHardwareBufferInfoANDROID<'_> {}
+    unsafe impl Sync for ImportAndroidHardwareBufferInfoANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImportAndroidHardwareBufferInfoANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID;
@@ -170,6 +172,8 @@ pub(crate) mod items {
         pub android_hardware_buffer_usage: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AndroidHardwareBufferUsageANDROID<'_> {}
+    unsafe impl Sync for AndroidHardwareBufferUsageANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AndroidHardwareBufferUsageANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_USAGE_ANDROID;
@@ -205,6 +209,8 @@ pub(crate) mod items {
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AndroidHardwareBufferPropertiesANDROID<'_> {}
+    unsafe impl Sync for AndroidHardwareBufferPropertiesANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AndroidHardwareBufferPropertiesANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID;
@@ -242,6 +248,8 @@ pub(crate) mod items {
         pub memory: crate::vk::DeviceMemory,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryGetAndroidHardwareBufferInfoANDROID<'_> {}
+    unsafe impl Sync for MemoryGetAndroidHardwareBufferInfoANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for MemoryGetAndroidHardwareBufferInfoANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID;
@@ -278,6 +286,8 @@ pub(crate) mod items {
         pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AndroidHardwareBufferFormatPropertiesANDROID<'_> {}
+    unsafe impl Sync for AndroidHardwareBufferFormatPropertiesANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AndroidHardwareBufferFormatPropertiesANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID;
@@ -362,6 +372,8 @@ pub(crate) mod items {
         pub external_format: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExternalFormatANDROID<'_> {}
+    unsafe impl Sync for ExternalFormatANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_ANDROID;
     }
@@ -407,6 +419,8 @@ pub(crate) mod items {
         pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AndroidHardwareBufferFormatProperties2ANDROID<'_> {}
+    unsafe impl Sync for AndroidHardwareBufferFormatProperties2ANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AndroidHardwareBufferFormatProperties2ANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID;

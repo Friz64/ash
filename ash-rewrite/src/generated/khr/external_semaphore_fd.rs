@@ -111,6 +111,8 @@ pub(crate) mod items {
         pub fd: core::ffi::c_int,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportSemaphoreFdInfoKHR<'_> {}
+    unsafe impl Sync for ImportSemaphoreFdInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportSemaphoreFdInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_SEMAPHORE_FD_INFO_KHR;
     }
@@ -158,6 +160,8 @@ pub(crate) mod items {
         pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SemaphoreGetFdInfoKHR<'_> {}
+    unsafe impl Sync for SemaphoreGetFdInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreGetFdInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_GET_FD_INFO_KHR;
     }

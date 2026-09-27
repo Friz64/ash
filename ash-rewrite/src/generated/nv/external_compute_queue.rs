@@ -92,7 +92,7 @@ impl Device {
     pub unsafe fn create_external_compute_queue(
         &self,
         create_info: &crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::ExternalComputeQueueNV> {
         let mut external_queue = core::mem::MaybeUninit::uninit();
         (self
@@ -100,7 +100,10 @@ impl Device {
             .create_external_compute_queue)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 external_queue.as_mut_ptr(),
             )
             .assume_init_on_success(external_queue)
@@ -110,9 +113,18 @@ impl Device {
     pub unsafe fn destroy_external_compute_queue(
         &self,
         external_queue: crate::vk::ExternalComputeQueueNV,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_external_compute_queue)(self.handle, external_queue, allocator)
+        (self
+            .fp
+            .destroy_external_compute_queue)(
+            self.handle,
+            external_queue,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
 }
 #[derive(Clone)]
@@ -161,6 +173,8 @@ pub(crate) mod items {
         pub reserved_external_queues: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExternalComputeQueueDeviceCreateInfoNV<'_> {}
+    unsafe impl Sync for ExternalComputeQueueDeviceCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ExternalComputeQueueDeviceCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV;
@@ -195,6 +209,8 @@ pub(crate) mod items {
         pub preferred_queue: crate::vk::Queue,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExternalComputeQueueCreateInfoNV<'_> {}
+    unsafe impl Sync for ExternalComputeQueueCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalComputeQueueCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV;
     }
@@ -223,6 +239,8 @@ pub(crate) mod items {
         pub device_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExternalComputeQueueDataParamsNV<'_> {}
+    unsafe impl Sync for ExternalComputeQueueDataParamsNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalComputeQueueDataParamsNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DATA_PARAMS_NV;
     }
@@ -252,6 +270,8 @@ pub(crate) mod items {
         pub max_external_queues: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExternalComputeQueuePropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceExternalComputeQueuePropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_COMPUTE_QUEUE_PROPERTIES_NV;

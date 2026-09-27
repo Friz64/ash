@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub pipeline_library_group_handles: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePipelineLibraryGroupHandlesFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDevicePipelineLibraryGroupHandlesFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePipelineLibraryGroupHandlesFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_KHR;

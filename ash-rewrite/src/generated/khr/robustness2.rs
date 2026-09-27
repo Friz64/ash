@@ -21,6 +21,8 @@ pub(crate) mod items {
         pub null_descriptor: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRobustness2FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceRobustness2FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRobustness2FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR;
@@ -65,6 +67,8 @@ pub(crate) mod items {
         pub robust_uniform_buffer_access_size_alignment: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRobustness2PropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceRobustness2PropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRobustness2PropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR;

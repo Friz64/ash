@@ -125,7 +125,7 @@ impl Device {
     pub unsafe fn create_private_data_slot(
         &self,
         create_info: &crate::vk::PrivateDataSlotCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::PrivateDataSlot> {
         let mut private_data_slot = core::mem::MaybeUninit::uninit();
         (self
@@ -133,7 +133,10 @@ impl Device {
             .create_private_data_slot)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 private_data_slot.as_mut_ptr(),
             )
             .assume_init_on_success(private_data_slot)
@@ -143,9 +146,18 @@ impl Device {
     pub unsafe fn destroy_private_data_slot(
         &self,
         private_data_slot: crate::vk::PrivateDataSlot,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_private_data_slot)(self.handle, private_data_slot, allocator)
+        (self
+            .fp
+            .destroy_private_data_slot)(
+            self.handle,
+            private_data_slot,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkSetPrivateData
     #[inline]
@@ -174,8 +186,8 @@ impl Device {
         object_type: crate::vk::ObjectType,
         object_handle: u64,
         private_data_slot: crate::vk::PrivateDataSlot,
-        data: &mut u64,
-    ) {
+    ) -> u64 {
+        let mut data = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_private_data)(
@@ -183,8 +195,9 @@ impl Device {
             object_type,
             object_handle,
             private_data_slot,
-            data,
-        )
+            data.as_mut_ptr(),
+        );
+        data.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

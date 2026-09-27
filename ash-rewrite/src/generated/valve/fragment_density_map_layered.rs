@@ -56,6 +56,8 @@ pub(crate) mod items {
         pub max_fragment_density_map_layers: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_PROPERTIES_VALVE;
@@ -90,6 +92,8 @@ pub(crate) mod items {
         pub fragment_density_map_layered: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_FEATURES_VALVE;
@@ -126,6 +130,8 @@ pub(crate) mod items {
         pub max_fragment_density_map_layers: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'_> {}
+    unsafe impl Sync for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_FRAGMENT_DENSITY_MAP_LAYERED_CREATE_INFO_VALVE;

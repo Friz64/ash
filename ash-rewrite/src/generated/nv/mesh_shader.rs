@@ -197,6 +197,8 @@ pub(crate) mod items {
         pub mesh_shader: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMeshShaderFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceMeshShaderFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMeshShaderFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV;
@@ -247,6 +249,8 @@ pub(crate) mod items {
         pub mesh_output_per_primitive_granularity: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMeshShaderPropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceMeshShaderPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMeshShaderPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV;
@@ -372,6 +376,8 @@ pub(crate) mod items {
         pub task_count: u32,
         pub first_task: u32,
     }
+    unsafe impl Send for DrawMeshTasksIndirectCommandNV {}
+    unsafe impl Sync for DrawMeshTasksIndirectCommandNV {}
     impl DrawMeshTasksIndirectCommandNV {
         pub fn task_count(mut self, task_count: u32) -> Self {
             self.task_count = task_count;

@@ -23,6 +23,8 @@ pub(crate) mod items {
         pub extended_sparse_address_space: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_FEATURES_NV;
@@ -61,6 +63,8 @@ pub(crate) mod items {
         pub extended_sparse_buffer_usage_flags: crate::vk::BufferUsageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_PROPERTIES_NV;

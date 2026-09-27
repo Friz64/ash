@@ -182,9 +182,17 @@ impl Device {
         &self,
         image: crate::vk::Image,
         subresource: &crate::vk::ImageSubresource2<'_>,
-        layout: &mut crate::vk::SubresourceLayout2<'_>,
-    ) {
-        (self.fp.get_image_subresource_layout2)(self.handle, image, subresource, layout)
+    ) -> crate::vk::SubresourceLayout2<'_> {
+        let mut layout = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_image_subresource_layout2)(
+            self.handle,
+            image,
+            subresource,
+            layout.as_mut_ptr(),
+        );
+        layout.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;
@@ -201,6 +209,8 @@ pub(crate) mod items {
         pub p_fixed_rate_flags: *mut crate::vk::ImageCompressionFixedRateFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageCompressionControlEXT<'_> {}
+    unsafe impl Sync for ImageCompressionControlEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageCompressionControlEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_COMPRESSION_CONTROL_EXT;
     }
@@ -245,6 +255,8 @@ pub(crate) mod items {
         pub image_compression_control: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceImageCompressionControlFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceImageCompressionControlFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT;
@@ -282,6 +294,8 @@ pub(crate) mod items {
         pub image_compression_fixed_rate_flags: crate::vk::ImageCompressionFixedRateFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageCompressionPropertiesEXT<'_> {}
+    unsafe impl Sync for ImageCompressionPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageCompressionPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_COMPRESSION_PROPERTIES_EXT;
     }

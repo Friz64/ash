@@ -30,6 +30,8 @@ pub(crate) mod items {
         pub p_coverage_modulation_table: *const core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineCoverageModulationStateCreateInfoNV<'_> {}
+    unsafe impl Sync for PipelineCoverageModulationStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineCoverageModulationStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV;

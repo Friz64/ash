@@ -24,6 +24,8 @@ pub(crate) mod items {
         pub p_release_keys: *const u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for Win32KeyedMutexAcquireReleaseInfoKHR<'_> {}
+    unsafe impl Sync for Win32KeyedMutexAcquireReleaseInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR;

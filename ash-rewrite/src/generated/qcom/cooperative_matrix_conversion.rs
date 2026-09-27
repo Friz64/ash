@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub cooperative_matrix_conversion: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM;

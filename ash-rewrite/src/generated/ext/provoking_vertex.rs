@@ -28,6 +28,8 @@ pub(crate) mod items {
         pub transform_feedback_preserves_provoking_vertex: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceProvokingVertexFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceProvokingVertexFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT;
@@ -71,6 +73,8 @@ pub(crate) mod items {
         pub transform_feedback_preserves_triangle_fan_provoking_vertex: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceProvokingVertexPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceProvokingVertexPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT;
@@ -115,6 +119,8 @@ pub(crate) mod items {
         pub provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'_> {}
+    unsafe impl Sync for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT;

@@ -35,6 +35,8 @@ pub(crate) mod items {
         pub p_tag: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for FrameBoundaryEXT<'_> {}
+    unsafe impl Sync for FrameBoundaryEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for FrameBoundaryEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAME_BOUNDARY_EXT;
     }
@@ -100,6 +102,8 @@ pub(crate) mod items {
         pub frame_boundary: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFrameBoundaryFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceFrameBoundaryFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT;

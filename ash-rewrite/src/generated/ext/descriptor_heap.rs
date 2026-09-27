@@ -548,6 +548,8 @@ pub(crate) mod items {
         pub format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TensorViewCreateInfoARM<'_> {}
+    unsafe impl Sync for TensorViewCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorViewCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_VIEW_CREATE_INFO_ARM;
     }
@@ -585,6 +587,8 @@ pub(crate) mod items {
         pub size: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for HostAddressRangeEXT<'_> {}
+    unsafe impl Sync for HostAddressRangeEXT<'_> {}
     impl<'a> HostAddressRangeEXT<'a> {
         pub fn address(mut self, address: &'a mut [u8]) -> Self {
             self.size = address.len() as _;
@@ -600,6 +604,8 @@ pub(crate) mod items {
         pub size: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for HostAddressRangeConstEXT<'_> {}
+    unsafe impl Sync for HostAddressRangeConstEXT<'_> {}
     impl<'a> HostAddressRangeConstEXT<'a> {
         pub fn address(mut self, address: &'a [u8]) -> Self {
             self.size = address.len() as _;
@@ -617,6 +623,8 @@ pub(crate) mod items {
         pub address_range: crate::vk::DeviceAddressRangeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TexelBufferDescriptorInfoEXT<'_> {}
+    unsafe impl Sync for TexelBufferDescriptorInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TexelBufferDescriptorInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TEXEL_BUFFER_DESCRIPTOR_INFO_EXT;
     }
@@ -654,6 +662,8 @@ pub(crate) mod items {
         pub layout: crate::vk::ImageLayout,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageDescriptorInfoEXT<'_> {}
+    unsafe impl Sync for ImageDescriptorInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageDescriptorInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_DESCRIPTOR_INFO_EXT;
     }
@@ -688,6 +698,8 @@ pub(crate) mod items {
         pub data: crate::vk::ResourceDescriptorDataEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ResourceDescriptorInfoEXT<'_> {}
+    unsafe impl Sync for ResourceDescriptorInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ResourceDescriptorInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RESOURCE_DESCRIPTOR_INFO_EXT;
     }
@@ -723,6 +735,8 @@ pub(crate) mod items {
         pub reserved_range_size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BindHeapInfoEXT<'_> {}
+    unsafe impl Sync for BindHeapInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BindHeapInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_HEAP_INFO_EXT;
     }
@@ -771,6 +785,8 @@ pub(crate) mod items {
         pub data: crate::vk::HostAddressRangeConstEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PushDataInfoEXT<'_> {}
+    unsafe impl Sync for PushDataInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PushDataInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_DATA_INFO_EXT;
     }
@@ -806,6 +822,8 @@ pub(crate) mod items {
         pub sampler_heap_array_stride: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorMappingSourceConstantOffsetEXT<'_> {}
+    unsafe impl Sync for DescriptorMappingSourceConstantOffsetEXT<'_> {}
     impl<'a> DescriptorMappingSourceConstantOffsetEXT<'a> {
         pub fn heap_offset(mut self, heap_offset: u32) -> Self {
             self.heap_offset = heap_offset;
@@ -850,6 +868,8 @@ pub(crate) mod items {
         pub sampler_heap_array_stride: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorMappingSourcePushIndexEXT<'_> {}
+    unsafe impl Sync for DescriptorMappingSourcePushIndexEXT<'_> {}
     impl<'a> DescriptorMappingSourcePushIndexEXT<'a> {
         pub fn heap_offset(mut self, heap_offset: u32) -> Self {
             self.heap_offset = heap_offset;
@@ -923,6 +943,8 @@ pub(crate) mod items {
         pub sampler_heap_array_stride: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorMappingSourceIndirectIndexEXT<'_> {}
+    unsafe impl Sync for DescriptorMappingSourceIndirectIndexEXT<'_> {}
     impl<'a> DescriptorMappingSourceIndirectIndexEXT<'a> {
         pub fn heap_offset(mut self, heap_offset: u32) -> Self {
             self.heap_offset = heap_offset;
@@ -1002,6 +1024,8 @@ pub(crate) mod items {
         pub sampler_heap_index_stride: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorMappingSourceIndirectIndexArrayEXT<'_> {}
+    unsafe impl Sync for DescriptorMappingSourceIndirectIndexArrayEXT<'_> {}
     impl<'a> DescriptorMappingSourceIndirectIndexArrayEXT<'a> {
         pub fn heap_offset(mut self, heap_offset: u32) -> Self {
             self.heap_offset = heap_offset;
@@ -1061,6 +1085,8 @@ pub(crate) mod items {
         pub heap_offset: u32,
         pub push_offset: u32,
     }
+    unsafe impl Send for DescriptorMappingSourceHeapDataEXT {}
+    unsafe impl Sync for DescriptorMappingSourceHeapDataEXT {}
     impl DescriptorMappingSourceHeapDataEXT {
         pub fn heap_offset(mut self, heap_offset: u32) -> Self {
             self.heap_offset = heap_offset;
@@ -1087,6 +1113,8 @@ pub(crate) mod items {
         pub sampler_heap_array_stride: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorMappingSourceShaderRecordIndexEXT<'_> {}
+    unsafe impl Sync for DescriptorMappingSourceShaderRecordIndexEXT<'_> {}
     impl<'a> DescriptorMappingSourceShaderRecordIndexEXT<'a> {
         pub fn heap_offset(mut self, heap_offset: u32) -> Self {
             self.heap_offset = heap_offset;
@@ -1152,6 +1180,8 @@ pub(crate) mod items {
         pub push_offset: u32,
         pub address_offset: u32,
     }
+    unsafe impl Send for DescriptorMappingSourceIndirectAddressEXT {}
+    unsafe impl Sync for DescriptorMappingSourceIndirectAddressEXT {}
     impl DescriptorMappingSourceIndirectAddressEXT {
         pub fn push_offset(mut self, push_offset: u32) -> Self {
             self.push_offset = push_offset;
@@ -1176,6 +1206,8 @@ pub(crate) mod items {
         pub source_data: crate::vk::DescriptorMappingSourceDataEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorSetAndBindingMappingEXT<'_> {}
+    unsafe impl Sync for DescriptorSetAndBindingMappingEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DescriptorSetAndBindingMappingEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_AND_BINDING_MAPPING_EXT;
@@ -1237,6 +1269,8 @@ pub(crate) mod items {
         pub p_mappings: *const crate::vk::DescriptorSetAndBindingMappingEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ShaderDescriptorSetAndBindingMappingInfoEXT<'_> {}
+    unsafe impl Sync for ShaderDescriptorSetAndBindingMappingInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT;
@@ -1275,6 +1309,8 @@ pub(crate) mod items {
         pub index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SamplerCustomBorderColorIndexCreateInfoEXT<'_> {}
+    unsafe impl Sync for SamplerCustomBorderColorIndexCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_INDEX_CREATE_INFO_EXT;
@@ -1306,6 +1342,8 @@ pub(crate) mod items {
         pub p_data: *const crate::vk::HostAddressRangeConstEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for OpaqueCaptureDataCreateInfoEXT<'_> {}
+    unsafe impl Sync for OpaqueCaptureDataCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for OpaqueCaptureDataCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT;
     }
@@ -1342,6 +1380,8 @@ pub(crate) mod items {
         pub push_data_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for IndirectCommandsLayoutPushDataTokenNV<'_> {}
+    unsafe impl Sync for IndirectCommandsLayoutPushDataTokenNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for IndirectCommandsLayoutPushDataTokenNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_PUSH_DATA_TOKEN_NV;
@@ -1378,6 +1418,8 @@ pub(crate) mod items {
         pub subsampled_image_descriptor_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SubsampledImageFormatPropertiesEXT<'_> {}
+    unsafe impl Sync for SubsampledImageFormatPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SubsampledImageFormatPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBSAMPLED_IMAGE_FORMAT_PROPERTIES_EXT;
@@ -1413,6 +1455,8 @@ pub(crate) mod items {
         pub descriptor_heap_capture_replay: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDescriptorHeapFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceDescriptorHeapFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_FEATURES_EXT;
@@ -1472,6 +1516,8 @@ pub(crate) mod items {
         pub protected_descriptor_heaps: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDescriptorHeapPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceDescriptorHeapPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_PROPERTIES_EXT;
@@ -1648,6 +1694,8 @@ pub(crate) mod items {
         pub p_resource_heap_bind_info: *const crate::vk::BindHeapInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CommandBufferInheritanceDescriptorHeapInfoEXT<'_> {}
+    unsafe impl Sync for CommandBufferInheritanceDescriptorHeapInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_DESCRIPTOR_HEAP_INFO_EXT;
@@ -1692,6 +1740,8 @@ pub(crate) mod items {
         pub tensor_capture_replay_opaque_data_size: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'_> {}
+    unsafe impl Sync for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_TENSOR_PROPERTIES_ARM;

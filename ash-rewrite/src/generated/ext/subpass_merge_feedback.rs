@@ -40,6 +40,8 @@ pub(crate) mod items {
         pub disallow_merging: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassCreationControlEXT<'_> {}
+    unsafe impl Sync for RenderPassCreationControlEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassCreationControlEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_CREATION_CONTROL_EXT;
     }
@@ -69,6 +71,8 @@ pub(crate) mod items {
     pub struct RenderPassCreationFeedbackInfoEXT {
         pub post_merge_subpass_count: u32,
     }
+    unsafe impl Send for RenderPassCreationFeedbackInfoEXT {}
+    unsafe impl Sync for RenderPassCreationFeedbackInfoEXT {}
     impl RenderPassCreationFeedbackInfoEXT {
         pub fn post_merge_subpass_count(
             mut self,
@@ -87,6 +91,8 @@ pub(crate) mod items {
         pub p_render_pass_feedback: *mut crate::vk::RenderPassCreationFeedbackInfoEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassCreationFeedbackCreateInfoEXT<'_> {}
+    unsafe impl Sync for RenderPassCreationFeedbackCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderPassCreationFeedbackCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT;
@@ -119,6 +125,8 @@ pub(crate) mod items {
         pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub post_merge_index: u32,
     }
+    unsafe impl Send for RenderPassSubpassFeedbackInfoEXT {}
+    unsafe impl Sync for RenderPassSubpassFeedbackInfoEXT {}
     impl Default for RenderPassSubpassFeedbackInfoEXT {
         fn default() -> Self {
             Self {
@@ -172,6 +180,8 @@ pub(crate) mod items {
         pub p_subpass_feedback: *mut crate::vk::RenderPassSubpassFeedbackInfoEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassSubpassFeedbackCreateInfoEXT<'_> {}
+    unsafe impl Sync for RenderPassSubpassFeedbackCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT;
@@ -206,6 +216,8 @@ pub(crate) mod items {
         pub subpass_merge_feedback: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT;

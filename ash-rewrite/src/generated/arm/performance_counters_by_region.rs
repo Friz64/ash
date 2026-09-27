@@ -90,6 +90,8 @@ pub(crate) mod items {
         pub performance_counters_by_region: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'_> {}
+    unsafe impl Sync for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_FEATURES_ARM;
@@ -130,6 +132,8 @@ pub(crate) mod items {
         pub identity_transform_order: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePerformanceCountersByRegionPropertiesARM<'_> {}
+    unsafe impl Sync for PhysicalDevicePerformanceCountersByRegionPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_PROPERTIES_ARM;
@@ -190,6 +194,8 @@ pub(crate) mod items {
         pub counter_id: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PerformanceCounterARM<'_> {}
+    unsafe impl Sync for PerformanceCounterARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceCounterARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_COUNTER_ARM;
     }
@@ -218,6 +224,8 @@ pub(crate) mod items {
         pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PerformanceCounterDescriptionARM<'_> {}
+    unsafe impl Sync for PerformanceCounterDescriptionARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceCounterDescriptionARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_COUNTER_DESCRIPTION_ARM;
     }
@@ -276,6 +284,8 @@ pub(crate) mod items {
         pub p_counter_indices: *mut u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassPerformanceCountersByRegionBeginInfoARM<'_> {}
+    unsafe impl Sync for RenderPassPerformanceCountersByRegionBeginInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_PERFORMANCE_COUNTERS_BY_REGION_BEGIN_INFO_ARM;

@@ -22,6 +22,8 @@ pub(crate) mod items {
         pub srgb: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SamplerBorderColorComponentMappingCreateInfoEXT<'_> {}
+    unsafe impl Sync for SamplerBorderColorComponentMappingCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SamplerBorderColorComponentMappingCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_BORDER_COLOR_COMPONENT_MAPPING_CREATE_INFO_EXT;
@@ -59,6 +61,8 @@ pub(crate) mod items {
         pub border_color_swizzle_from_image: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT;

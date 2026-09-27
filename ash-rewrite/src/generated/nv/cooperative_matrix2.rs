@@ -128,6 +128,8 @@ pub(crate) mod items {
         pub cooperative_matrix_block_loads: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCooperativeMatrix2FeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceCooperativeMatrix2FeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCooperativeMatrix2FeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_FEATURES_NV;
@@ -218,6 +220,8 @@ pub(crate) mod items {
         pub cooperative_matrix_workgroup_scope_reserved_shared_memory: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCooperativeMatrix2PropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceCooperativeMatrix2PropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCooperativeMatrix2PropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_PROPERTIES_NV;
@@ -277,6 +281,8 @@ pub(crate) mod items {
         pub workgroup_invocations: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CooperativeMatrixFlexibleDimensionsPropertiesNV<'_> {}
+    unsafe impl Sync for CooperativeMatrixFlexibleDimensionsPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CooperativeMatrixFlexibleDimensionsPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COOPERATIVE_MATRIX_FLEXIBLE_DIMENSIONS_PROPERTIES_NV;

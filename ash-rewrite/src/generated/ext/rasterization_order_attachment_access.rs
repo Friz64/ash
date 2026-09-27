@@ -70,6 +70,10 @@ pub(crate) mod items {
         pub rasterization_order_stencil_attachment_access: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send
+    for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'_> {}
+    unsafe impl Sync
+    for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT;

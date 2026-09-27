@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub dedicated_allocation: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DedicatedAllocationImageCreateInfoNV<'_> {}
+    unsafe impl Sync for DedicatedAllocationImageCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DedicatedAllocationImageCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV;
@@ -51,6 +53,8 @@ pub(crate) mod items {
         pub dedicated_allocation: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DedicatedAllocationBufferCreateInfoNV<'_> {}
+    unsafe impl Sync for DedicatedAllocationBufferCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DedicatedAllocationBufferCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV;
@@ -83,6 +87,8 @@ pub(crate) mod items {
         pub buffer: crate::vk::Buffer,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DedicatedAllocationMemoryAllocateInfoNV<'_> {}
+    unsafe impl Sync for DedicatedAllocationMemoryAllocateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DedicatedAllocationMemoryAllocateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV;

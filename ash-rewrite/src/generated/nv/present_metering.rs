@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub present_config_feedback: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SetPresentConfigNV<'_> {}
+    unsafe impl Sync for SetPresentConfigNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SetPresentConfigNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_PRESENT_CONFIG_NV;
     }
@@ -55,6 +57,8 @@ pub(crate) mod items {
         pub present_metering: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePresentMeteringFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDevicePresentMeteringFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePresentMeteringFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV;

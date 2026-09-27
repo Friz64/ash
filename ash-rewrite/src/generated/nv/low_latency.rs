@@ -186,8 +186,10 @@ impl Device {
     }
     ///vkGetLatencyTimingsLegacyNV
     #[inline]
-    pub unsafe fn get_latency_timings_legacy(&self, timings: &mut core::ffi::c_void) {
-        (self.fp.get_latency_timings_legacy)(self.handle, timings)
+    pub unsafe fn get_latency_timings_legacy(&self) -> core::ffi::c_void {
+        let mut timings = core::mem::MaybeUninit::uninit();
+        (self.fp.get_latency_timings_legacy)(self.handle, timings.as_mut_ptr());
+        timings.assume_init()
     }
     ///vkQueueNotifyOutOfBandLegacyNV
     #[inline]
@@ -200,11 +202,10 @@ impl Device {
     }
     ///vkGetSleepStatusLegacyNV
     #[inline]
-    pub unsafe fn get_sleep_status_legacy(
-        &self,
-        low_latency_mode: &mut crate::vk::Bool32,
-    ) {
-        (self.fp.get_sleep_status_legacy)(self.handle, low_latency_mode)
+    pub unsafe fn get_sleep_status_legacy(&self) -> crate::vk::Bool32 {
+        let mut low_latency_mode = core::mem::MaybeUninit::uninit();
+        (self.fp.get_sleep_status_legacy)(self.handle, low_latency_mode.as_mut_ptr());
+        low_latency_mode.assume_init()
     }
     ///vkShutdownLatencyDeviceLegacyNV
     #[inline]
@@ -224,6 +225,8 @@ pub(crate) mod items {
         pub p_queried_low_latency_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueryLowLatencySupportNV<'_> {}
+    unsafe impl Sync for QueryLowLatencySupportNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for QueryLowLatencySupportNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_LOW_LATENCY_SUPPORT_NV;
     }

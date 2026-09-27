@@ -96,6 +96,8 @@ pub(crate) mod items {
         pub device_fault_vendor_binary: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFaultFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceFaultFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFaultFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_EXT;
     }
@@ -138,6 +140,8 @@ pub(crate) mod items {
         pub vendor_binary_size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceFaultCountsEXT<'_> {}
+    unsafe impl Sync for DeviceFaultCountsEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultCountsEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_COUNTS_EXT;
     }
@@ -181,6 +185,8 @@ pub(crate) mod items {
         pub p_vendor_binary_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceFaultInfoEXT<'_> {}
+    unsafe impl Sync for DeviceFaultInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_INFO_EXT;
     }

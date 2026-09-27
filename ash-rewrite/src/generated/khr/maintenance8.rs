@@ -48,6 +48,8 @@ pub(crate) mod items {
         pub maintenance8: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMaintenance8FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceMaintenance8FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR;
@@ -82,6 +84,8 @@ pub(crate) mod items {
         pub dst_access_mask3: crate::vk::AccessFlags3KHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryBarrierAccessFlags3KHR<'_> {}
+    unsafe impl Sync for MemoryBarrierAccessFlags3KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryBarrierAccessFlags3KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_BARRIER_ACCESS_FLAGS_3_KHR;
     }

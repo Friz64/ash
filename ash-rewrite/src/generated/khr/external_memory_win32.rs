@@ -130,6 +130,8 @@ pub(crate) mod items {
         pub name: crate::platform_types::LPCWSTR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportMemoryWin32HandleInfoKHR<'_> {}
+    unsafe impl Sync for ImportMemoryWin32HandleInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryWin32HandleInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR;
     }
@@ -175,6 +177,8 @@ pub(crate) mod items {
         pub name: crate::platform_types::LPCWSTR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExportMemoryWin32HandleInfoKHR<'_> {}
+    unsafe impl Sync for ExportMemoryWin32HandleInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryWin32HandleInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR;
     }
@@ -218,6 +222,8 @@ pub(crate) mod items {
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryWin32HandlePropertiesKHR<'_> {}
+    unsafe impl Sync for MemoryWin32HandlePropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryWin32HandlePropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_WIN32_HANDLE_PROPERTIES_KHR;
     }
@@ -247,6 +253,8 @@ pub(crate) mod items {
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryGetWin32HandleInfoKHR<'_> {}
+    unsafe impl Sync for MemoryGetWin32HandleInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetWin32HandleInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_WIN32_HANDLE_INFO_KHR;
     }

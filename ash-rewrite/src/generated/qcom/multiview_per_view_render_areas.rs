@@ -23,6 +23,8 @@ pub(crate) mod items {
         pub multiview_per_view_render_areas: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM;
@@ -61,6 +63,8 @@ pub(crate) mod items {
         pub p_per_view_render_areas: *const crate::vk::Rect2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'_> {}
+    unsafe impl Sync for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTIVIEW_PER_VIEW_RENDER_AREAS_RENDER_PASS_BEGIN_INFO_QCOM;

@@ -120,7 +120,7 @@ impl Device {
     pub unsafe fn create_render_pass2(
         &self,
         create_info: &crate::vk::RenderPassCreateInfo2<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::RenderPass> {
         let mut render_pass = core::mem::MaybeUninit::uninit();
         (self
@@ -128,7 +128,10 @@ impl Device {
             .create_render_pass2)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 render_pass.as_mut_ptr(),
             )
             .assume_init_on_success(render_pass)

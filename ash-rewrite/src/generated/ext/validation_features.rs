@@ -40,6 +40,8 @@ pub(crate) mod items {
         pub p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ValidationFeaturesEXT<'_> {}
+    unsafe impl Sync for ValidationFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FEATURES_EXT;
     }

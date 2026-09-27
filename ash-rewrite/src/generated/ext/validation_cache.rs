@@ -126,7 +126,7 @@ impl Device {
     pub unsafe fn create_validation_cache(
         &self,
         create_info: &crate::vk::ValidationCacheCreateInfoEXT<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::ValidationCacheEXT> {
         let mut validation_cache = core::mem::MaybeUninit::uninit();
         (self
@@ -134,7 +134,10 @@ impl Device {
             .create_validation_cache)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 validation_cache.as_mut_ptr(),
             )
             .assume_init_on_success(validation_cache)
@@ -144,9 +147,18 @@ impl Device {
     pub unsafe fn destroy_validation_cache(
         &self,
         validation_cache: crate::vk::ValidationCacheEXT,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_validation_cache)(self.handle, validation_cache, allocator)
+        (self
+            .fp
+            .destroy_validation_cache)(
+            self.handle,
+            validation_cache,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkGetValidationCacheDataEXT
     #[inline]
@@ -190,6 +202,8 @@ pub(crate) mod items {
         pub p_initial_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ValidationCacheCreateInfoEXT<'_> {}
+    unsafe impl Sync for ValidationCacheCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ValidationCacheCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_CACHE_CREATE_INFO_EXT;
     }
@@ -225,6 +239,8 @@ pub(crate) mod items {
         pub validation_cache: crate::vk::ValidationCacheEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ShaderModuleValidationCacheCreateInfoEXT<'_> {}
+    unsafe impl Sync for ShaderModuleValidationCacheCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ShaderModuleValidationCacheCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT;

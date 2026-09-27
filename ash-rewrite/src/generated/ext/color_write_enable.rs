@@ -94,6 +94,8 @@ pub(crate) mod items {
         pub color_write_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceColorWriteEnableFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceColorWriteEnableFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT;
@@ -128,6 +130,8 @@ pub(crate) mod items {
         pub p_color_write_enables: *const crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineColorWriteCreateInfoEXT<'_> {}
+    unsafe impl Sync for PipelineColorWriteCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineColorWriteCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_WRITE_CREATE_INFO_EXT;
     }

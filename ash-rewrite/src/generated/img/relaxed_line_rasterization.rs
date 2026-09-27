@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub relaxed_line_rasterization: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'_> {}
+    unsafe impl Sync for PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RELAXED_LINE_RASTERIZATION_FEATURES_IMG;

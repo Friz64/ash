@@ -266,8 +266,8 @@ impl Device {
         heap_index: u32,
         local_device_index: u32,
         remote_device_index: u32,
-        peer_memory_features: &mut crate::vk::PeerMemoryFeatureFlags,
-    ) {
+    ) -> crate::vk::PeerMemoryFeatureFlags {
+        let mut peer_memory_features = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_device_group_peer_memory_features)(
@@ -275,8 +275,9 @@ impl Device {
             heap_index,
             local_device_index,
             remote_device_index,
-            peer_memory_features,
-        )
+            peer_memory_features.as_mut_ptr(),
+        );
+        peer_memory_features.assume_init()
     }
     ///vkCmdSetDeviceMask
     #[inline]

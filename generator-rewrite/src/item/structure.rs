@@ -38,6 +38,7 @@ impl Code for Struct {
         trace!("generating");
         let lifetime = Lifetime(format_ident!("a"));
         let name = ctx.type_tokens(self.name, false, Some(&lifetime));
+        let anon_name = ctx.type_tokens(self.name, false, None);
 
         let lifetime_brackets = ctx
             .type_has_lifetime(self.name)
@@ -115,6 +116,9 @@ impl Code for Struct {
                 #( #members, )*
                 #lifetime_marker
             }
+
+            unsafe impl Send for #anon_name {}
+            unsafe impl Sync for #anon_name {}
 
             #tagged_structure
         };

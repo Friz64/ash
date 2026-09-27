@@ -76,6 +76,8 @@ pub(crate) mod items {
         pub video_encode_feedback2: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_FEEDBACK_2_FEATURES_KHR;
@@ -110,6 +112,8 @@ pub(crate) mod items {
         pub supported_per_partition_encode_feedback_flags: crate::vk::VideoEncodePerPartitionFeedbackFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoEncodeFeedback2CapabilitiesKHR<'_> {}
+    unsafe impl Sync for VideoEncodeFeedback2CapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoEncodeFeedback2CapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_FEEDBACK_2_CAPABILITIES_KHR;
@@ -153,6 +157,8 @@ pub(crate) mod items {
         pub per_partition_encode_feedback_flags: crate::vk::VideoEncodePerPartitionFeedbackFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR<'_> {}
+    unsafe impl Sync for QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_POOL_VIDEO_ENCODE_PER_PARTITION_FEEDBACK_CREATE_INFO_KHR;

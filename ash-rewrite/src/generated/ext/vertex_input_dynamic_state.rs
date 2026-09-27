@@ -104,6 +104,8 @@ pub(crate) mod items {
         pub vertex_input_dynamic_state: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT;
@@ -143,6 +145,8 @@ pub(crate) mod items {
         pub divisor: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VertexInputBindingDescription2EXT<'_> {}
+    unsafe impl Sync for VertexInputBindingDescription2EXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VertexInputBindingDescription2EXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT;
@@ -190,6 +194,8 @@ pub(crate) mod items {
         pub offset: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VertexInputAttributeDescription2EXT<'_> {}
+    unsafe impl Sync for VertexInputAttributeDescription2EXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VertexInputAttributeDescription2EXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT;

@@ -72,7 +72,7 @@ impl Device {
     pub unsafe fn create_shared_swapchains(
         &self,
         create_infos: &[crate::vk::SwapchainCreateInfoKHR<'_>],
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
         swapchains: &mut [crate::vk::SwapchainKHR],
     ) -> crate::VkResult<()> {
         assert_eq!(create_infos.len(), swapchains.len());
@@ -82,7 +82,10 @@ impl Device {
                 self.handle,
                 swapchains.len() as _,
                 create_infos.as_ptr(),
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 swapchains.as_mut_ptr(),
             )
             .result()
@@ -102,6 +105,8 @@ pub(crate) mod items {
         pub persistent: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplayPresentInfoKHR<'_> {}
+    unsafe impl Sync for DisplayPresentInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPresentInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PRESENT_INFO_KHR;
     }

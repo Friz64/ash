@@ -27,6 +27,8 @@ pub(crate) mod items {
         pub selectable_cubic_weights: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCubicWeightsFeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceCubicWeightsFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM;
@@ -63,6 +65,8 @@ pub(crate) mod items {
         pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SamplerCubicWeightsCreateInfoQCOM<'_> {}
+    unsafe impl Sync for SamplerCubicWeightsCreateInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SamplerCubicWeightsCreateInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM;
@@ -97,6 +101,8 @@ pub(crate) mod items {
         pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BlitImageCubicWeightsInfoQCOM<'_> {}
+    unsafe impl Sync for BlitImageCubicWeightsInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BlitImageCubicWeightsInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM;
     }

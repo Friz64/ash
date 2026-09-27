@@ -84,7 +84,7 @@ impl Instance {
     pub unsafe fn create_win32_surface(
         &self,
         create_info: &crate::vk::Win32SurfaceCreateInfoKHR<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
@@ -92,7 +92,10 @@ impl Instance {
             .create_win32_surface)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 surface.as_mut_ptr(),
             )
             .assume_init_on_success(surface)
@@ -126,6 +129,8 @@ pub(crate) mod items {
         pub hwnd: crate::platform_types::HWND,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for Win32SurfaceCreateInfoKHR<'_> {}
+    unsafe impl Sync for Win32SurfaceCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for Win32SurfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WIN32_SURFACE_CREATE_INFO_KHR;
     }

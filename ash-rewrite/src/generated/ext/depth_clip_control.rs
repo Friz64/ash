@@ -21,6 +21,8 @@ pub(crate) mod items {
         pub depth_clip_control: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDepthClipControlFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceDepthClipControlFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT;
@@ -54,6 +56,8 @@ pub(crate) mod items {
         pub negative_one_to_one: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineViewportDepthClipControlCreateInfoEXT<'_> {}
+    unsafe impl Sync for PipelineViewportDepthClipControlCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportDepthClipControlCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT;

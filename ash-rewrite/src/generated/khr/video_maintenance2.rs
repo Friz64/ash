@@ -37,6 +37,8 @@ pub(crate) mod items {
         pub video_maintenance2: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVideoMaintenance2FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceVideoMaintenance2FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVideoMaintenance2FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_2_FEATURES_KHR;
@@ -71,6 +73,8 @@ pub(crate) mod items {
         pub p_std_pps: *const crate::vk::H264PictureParameterSet<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeH264InlineSessionParametersInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeH264InlineSessionParametersInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_INLINE_SESSION_PARAMETERS_INFO_KHR;
@@ -115,6 +119,8 @@ pub(crate) mod items {
         pub p_std_pps: *const crate::vk::H265PictureParameterSet<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeH265InlineSessionParametersInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeH265InlineSessionParametersInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoDecodeH265InlineSessionParametersInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H265_INLINE_SESSION_PARAMETERS_INFO_KHR;
@@ -165,6 +171,8 @@ pub(crate) mod items {
         pub p_std_sequence_header: *const crate::vk::AV1SequenceHeader<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeAV1InlineSessionParametersInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeAV1InlineSessionParametersInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_INLINE_SESSION_PARAMETERS_INFO_KHR;

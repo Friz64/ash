@@ -268,6 +268,8 @@ pub(crate) mod items {
         pub present_at_relative_time: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePresentTimingFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDevicePresentTimingFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePresentTimingFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT;
@@ -320,6 +322,8 @@ pub(crate) mod items {
         pub present_stage_queries: crate::vk::PresentStageFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PresentTimingSurfaceCapabilitiesEXT<'_> {}
+    unsafe impl Sync for PresentTimingSurfaceCapabilitiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PresentTimingSurfaceCapabilitiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMING_SURFACE_CAPABILITIES_EXT;
@@ -381,6 +385,8 @@ pub(crate) mod items {
         pub refresh_interval: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SwapchainTimingPropertiesEXT<'_> {}
+    unsafe impl Sync for SwapchainTimingPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainTimingPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_TIMING_PROPERTIES_EXT;
     }
@@ -416,6 +422,8 @@ pub(crate) mod items {
         pub p_time_domain_ids: *mut u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SwapchainTimeDomainPropertiesEXT<'_> {}
+    unsafe impl Sync for SwapchainTimeDomainPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainTimeDomainPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT;
     }
@@ -453,6 +461,8 @@ pub(crate) mod items {
         pub stage: crate::vk::PresentStageFlagsEXT,
         pub time: u64,
     }
+    unsafe impl Send for PresentStageTimeEXT {}
+    unsafe impl Sync for PresentStageTimeEXT {}
     impl PresentStageTimeEXT {
         pub fn stage(mut self, stage: crate::vk::PresentStageFlagsEXT) -> Self {
             self.stage = stage;
@@ -473,6 +483,8 @@ pub(crate) mod items {
         pub swapchain: crate::vk::SwapchainKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PastPresentationTimingInfoEXT<'_> {}
+    unsafe impl Sync for PastPresentationTimingInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PastPresentationTimingInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PAST_PRESENTATION_TIMING_INFO_EXT;
     }
@@ -512,6 +524,8 @@ pub(crate) mod items {
         pub p_presentation_timings: *mut crate::vk::PastPresentationTimingEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PastPresentationTimingPropertiesEXT<'_> {}
+    unsafe impl Sync for PastPresentationTimingPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PastPresentationTimingPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PAST_PRESENTATION_TIMING_PROPERTIES_EXT;
@@ -565,6 +579,8 @@ pub(crate) mod items {
         pub report_complete: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PastPresentationTimingEXT<'_> {}
+    unsafe impl Sync for PastPresentationTimingEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PastPresentationTimingEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PAST_PRESENTATION_TIMING_EXT;
     }
@@ -624,6 +640,8 @@ pub(crate) mod items {
         pub p_timing_infos: *const crate::vk::PresentTimingInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PresentTimingsInfoEXT<'_> {}
+    unsafe impl Sync for PresentTimingsInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimingsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMINGS_INFO_EXT;
     }
@@ -663,6 +681,8 @@ pub(crate) mod items {
         pub target_time_domain_present_stage: crate::vk::PresentStageFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PresentTimingInfoEXT<'_> {}
+    unsafe impl Sync for PresentTimingInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimingInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMING_INFO_EXT;
     }
@@ -719,6 +739,8 @@ pub(crate) mod items {
         pub time_domain_id: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SwapchainCalibratedTimestampInfoEXT<'_> {}
+    unsafe impl Sync for SwapchainCalibratedTimestampInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SwapchainCalibratedTimestampInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT;

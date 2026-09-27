@@ -111,7 +111,7 @@ impl Device {
         instance_count: u32,
         first_instance: u32,
         stride: u32,
-        vertex_offset: &i32,
+        vertex_offset: Option<&i32>,
     ) {
         (self
             .fp
@@ -122,7 +122,10 @@ impl Device {
             instance_count,
             first_instance,
             stride,
-            vertex_offset,
+            match vertex_offset {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
         )
     }
 }
@@ -136,6 +139,8 @@ pub(crate) mod items {
         pub first_vertex: u32,
         pub vertex_count: u32,
     }
+    unsafe impl Send for MultiDrawInfoEXT {}
+    unsafe impl Sync for MultiDrawInfoEXT {}
     impl MultiDrawInfoEXT {
         pub fn first_vertex(mut self, first_vertex: u32) -> Self {
             self.first_vertex = first_vertex;
@@ -154,6 +159,8 @@ pub(crate) mod items {
         pub index_count: u32,
         pub vertex_offset: i32,
     }
+    unsafe impl Send for MultiDrawIndexedInfoEXT {}
+    unsafe impl Sync for MultiDrawIndexedInfoEXT {}
     impl MultiDrawIndexedInfoEXT {
         pub fn first_index(mut self, first_index: u32) -> Self {
             self.first_index = first_index;
@@ -177,6 +184,8 @@ pub(crate) mod items {
         pub max_multi_draw_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMultiDrawPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceMultiDrawPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMultiDrawPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT;
@@ -208,6 +217,8 @@ pub(crate) mod items {
         pub multi_draw: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMultiDrawFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceMultiDrawFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMultiDrawFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT;

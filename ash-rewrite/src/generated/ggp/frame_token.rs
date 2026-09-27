@@ -18,6 +18,8 @@ pub(crate) mod items {
         pub frame_token: crate::platform_types::GgpFrameToken,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PresentFrameTokenGGP<'_> {}
+    unsafe impl Sync for PresentFrameTokenGGP<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentFrameTokenGGP<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_FRAME_TOKEN_GGP;
     }

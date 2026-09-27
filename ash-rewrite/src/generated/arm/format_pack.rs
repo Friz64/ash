@@ -35,6 +35,8 @@ pub(crate) mod items {
         pub format_pack: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFormatPackFeaturesARM<'_> {}
+    unsafe impl Sync for PhysicalDeviceFormatPackFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFormatPackFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM;

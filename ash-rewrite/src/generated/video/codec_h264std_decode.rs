@@ -22,6 +22,8 @@ pub(crate) mod items {
 - `complementary_field_pair` @ `5..6`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for DecodeH264PictureInfoFlags {}
+    unsafe impl Sync for DecodeH264PictureInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeH264PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -102,6 +104,8 @@ pub(crate) mod items {
         pub pic_order_cnt: [i32; crate::vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
             as _],
     }
+    unsafe impl Send for DecodeH264PictureInfo {}
+    unsafe impl Sync for DecodeH264PictureInfo {}
     impl Default for DecodeH264PictureInfo {
         fn default() -> Self {
             Self {
@@ -162,6 +166,8 @@ pub(crate) mod items {
 - `is_non_existing` @ `3..4`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for DecodeH264ReferenceInfoFlags {}
+    unsafe impl Sync for DecodeH264ReferenceInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeH264ReferenceInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -224,6 +230,8 @@ pub(crate) mod items {
         pub pic_order_cnt: [i32; crate::vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
             as _],
     }
+    unsafe impl Send for DecodeH264ReferenceInfo {}
+    unsafe impl Sync for DecodeH264ReferenceInfo {}
     impl Default for DecodeH264ReferenceInfo {
         fn default() -> Self {
             Self {

@@ -43,6 +43,8 @@ pub(crate) mod items {
         pub maintenance9: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMaintenance9FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceMaintenance9FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMaintenance9FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_FEATURES_KHR;
@@ -77,6 +79,8 @@ pub(crate) mod items {
         pub default_vertex_attribute_value: crate::vk::DefaultVertexAttributeValueKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMaintenance9PropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceMaintenance9PropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMaintenance9PropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_PROPERTIES_KHR;
@@ -119,6 +123,8 @@ pub(crate) mod items {
         pub optimal_image_transfer_to_queue_families: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueueFamilyOwnershipTransferPropertiesKHR<'_> {}
+    unsafe impl Sync for QueueFamilyOwnershipTransferPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyOwnershipTransferPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR;

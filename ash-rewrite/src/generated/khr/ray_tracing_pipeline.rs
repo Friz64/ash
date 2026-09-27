@@ -362,7 +362,7 @@ impl Device {
         deferred_operation: crate::vk::DeferredOperationKHR,
         pipeline_cache: crate::vk::PipelineCache,
         create_infos: &[crate::vk::RayTracingPipelineCreateInfoKHR<'_>],
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
         pipelines: &mut [crate::vk::Pipeline],
     ) -> crate::VkResult<()> {
         assert_eq!(create_infos.len(), pipelines.len());
@@ -374,7 +374,10 @@ impl Device {
                 pipeline_cache,
                 pipelines.len() as _,
                 create_infos.as_ptr(),
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 pipelines.as_mut_ptr(),
             )
             .result()
@@ -450,6 +453,8 @@ pub(crate) mod items {
         pub p_shader_group_capture_replay_handle: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RayTracingShaderGroupCreateInfoKHR<'_> {}
+    unsafe impl Sync for RayTracingShaderGroupCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RayTracingShaderGroupCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR;
@@ -520,6 +525,8 @@ pub(crate) mod items {
         pub base_pipeline_index: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RayTracingPipelineCreateInfoKHR<'_> {}
+    unsafe impl Sync for RayTracingPipelineCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RayTracingPipelineCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_KHR;
     }
@@ -624,6 +631,8 @@ pub(crate) mod items {
         pub ray_traversal_primitive_culling: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRayTracingPipelineFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceRayTracingPipelineFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR;
@@ -700,6 +709,8 @@ pub(crate) mod items {
         pub max_ray_hit_attribute_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRayTracingPipelinePropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceRayTracingPipelinePropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR;
@@ -783,6 +794,8 @@ pub(crate) mod items {
         pub stride: crate::vk::DeviceSize,
         pub size: crate::vk::DeviceSize,
     }
+    unsafe impl Send for StridedDeviceAddressRegionKHR {}
+    unsafe impl Sync for StridedDeviceAddressRegionKHR {}
     impl StridedDeviceAddressRegionKHR {
         pub fn device_address(
             mut self,
@@ -808,6 +821,8 @@ pub(crate) mod items {
         pub height: u32,
         pub depth: u32,
     }
+    unsafe impl Send for TraceRaysIndirectCommandKHR {}
+    unsafe impl Sync for TraceRaysIndirectCommandKHR {}
     impl TraceRaysIndirectCommandKHR {
         pub fn width(mut self, width: u32) -> Self {
             self.width = width;
@@ -832,6 +847,8 @@ pub(crate) mod items {
         pub max_pipeline_ray_hit_attribute_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RayTracingPipelineInterfaceCreateInfoKHR<'_> {}
+    unsafe impl Sync for RayTracingPipelineInterfaceCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RayTracingPipelineInterfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR;

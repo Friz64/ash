@@ -138,6 +138,8 @@ pub(crate) mod items {
         pub subpass: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SubpassShadingPipelineCreateInfoHUAWEI<'_> {}
+    unsafe impl Sync for SubpassShadingPipelineCreateInfoHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI;
@@ -174,6 +176,8 @@ pub(crate) mod items {
         pub max_subpass_shading_workgroup_size_aspect_ratio: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'_> {}
+    unsafe impl Sync for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI;
@@ -208,6 +212,8 @@ pub(crate) mod items {
         pub subpass_shading: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'_> {}
+    unsafe impl Sync for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI;

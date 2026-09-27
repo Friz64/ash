@@ -79,14 +79,17 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_clamp_mode: crate::vk::DepthClampModeEXT,
-        depth_clamp_range: &crate::vk::DepthClampRangeEXT,
+        depth_clamp_range: Option<&crate::vk::DepthClampRangeEXT>,
     ) {
         (self
             .fp
             .cmd_set_depth_clamp_range)(
             command_buffer,
             depth_clamp_mode,
-            depth_clamp_range,
+            match depth_clamp_range {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
         )
     }
 }
@@ -102,6 +105,8 @@ pub(crate) mod items {
         pub depth_clamp_control: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDepthClampControlFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceDepthClampControlFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT;
@@ -136,6 +141,8 @@ pub(crate) mod items {
         pub p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineViewportDepthClampControlCreateInfoEXT<'_> {}
+    unsafe impl Sync for PipelineViewportDepthClampControlCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportDepthClampControlCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT;
@@ -176,6 +183,8 @@ pub(crate) mod items {
         pub min_depth_clamp: core::ffi::c_float,
         pub max_depth_clamp: core::ffi::c_float,
     }
+    unsafe impl Send for DepthClampRangeEXT {}
+    unsafe impl Sync for DepthClampRangeEXT {}
     impl DepthClampRangeEXT {
         pub fn min_depth_clamp(mut self, min_depth_clamp: core::ffi::c_float) -> Self {
             self.min_depth_clamp = min_depth_clamp;

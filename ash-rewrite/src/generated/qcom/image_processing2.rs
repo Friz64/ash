@@ -27,6 +27,8 @@ pub(crate) mod items {
         pub texture_block_match2: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceImageProcessing2FeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceImageProcessing2FeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_FEATURES_QCOM;
@@ -60,6 +62,8 @@ pub(crate) mod items {
         pub max_block_match_window: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceImageProcessing2PropertiesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceImageProcessing2PropertiesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_PROPERTIES_QCOM;
@@ -95,6 +99,8 @@ pub(crate) mod items {
         pub window_compare_mode: crate::vk::BlockMatchWindowCompareModeQCOM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SamplerBlockMatchWindowCreateInfoQCOM<'_> {}
+    unsafe impl Sync for SamplerBlockMatchWindowCreateInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM;

@@ -380,15 +380,16 @@ impl Device {
     pub unsafe fn get_rendering_area_granularity(
         &self,
         rendering_area_info: &crate::vk::RenderingAreaInfo<'_>,
-        granularity: &mut crate::vk::Extent2D,
-    ) {
+    ) -> crate::vk::Extent2D {
+        let mut granularity = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_rendering_area_granularity)(
             self.handle,
             rendering_area_info,
-            granularity,
-        )
+            granularity.as_mut_ptr(),
+        );
+        granularity.assume_init()
     }
     ///vkCmdBindIndexBuffer2
     #[inline]
@@ -410,18 +411,33 @@ impl Device {
         &self,
         image: crate::vk::Image,
         subresource: &crate::vk::ImageSubresource2<'_>,
-        layout: &mut crate::vk::SubresourceLayout2<'_>,
-    ) {
-        (self.fp.get_image_subresource_layout2)(self.handle, image, subresource, layout)
+    ) -> crate::vk::SubresourceLayout2<'_> {
+        let mut layout = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_image_subresource_layout2)(
+            self.handle,
+            image,
+            subresource,
+            layout.as_mut_ptr(),
+        );
+        layout.assume_init()
     }
     ///vkGetDeviceImageSubresourceLayout
     #[inline]
     pub unsafe fn get_device_image_subresource_layout(
         &self,
         info: &crate::vk::DeviceImageSubresourceInfo<'_>,
-        layout: &mut crate::vk::SubresourceLayout2<'_>,
-    ) {
-        (self.fp.get_device_image_subresource_layout)(self.handle, info, layout)
+    ) -> crate::vk::SubresourceLayout2<'_> {
+        let mut layout = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_device_image_subresource_layout)(
+            self.handle,
+            info,
+            layout.as_mut_ptr(),
+        );
+        layout.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

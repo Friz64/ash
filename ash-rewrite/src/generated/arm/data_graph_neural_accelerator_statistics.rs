@@ -41,6 +41,10 @@ pub(crate) mod items {
         pub data_graph_neural_accelerator_statistics: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send
+    for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'_> {}
+    unsafe impl Sync
+    for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_NEURAL_ACCELERATOR_STATISTICS_FEATURES_ARM;
@@ -79,6 +83,8 @@ pub(crate) mod items {
         pub allow_neural_statistics: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DataGraphPipelineNeuralStatisticsCreateInfoARM<'_> {}
+    unsafe impl Sync for DataGraphPipelineNeuralStatisticsCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_NEURAL_STATISTICS_CREATE_INFO_ARM;
@@ -110,6 +116,8 @@ pub(crate) mod items {
         pub mode: crate::vk::NeuralAcceleratorStatisticsModeARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'_> {}
+    unsafe impl Sync for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_NEURAL_STATISTICS_CREATE_INFO_ARM;

@@ -22,6 +22,8 @@ pub(crate) mod items {
         pub unified_image_layouts_video: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR;
@@ -63,6 +65,8 @@ pub(crate) mod items {
         pub feedback_loop_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AttachmentFeedbackLoopInfoEXT<'_> {}
+    unsafe impl Sync for AttachmentFeedbackLoopInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentFeedbackLoopInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_FEEDBACK_LOOP_INFO_EXT;
     }

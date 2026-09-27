@@ -67,7 +67,7 @@ impl Instance {
     pub unsafe fn create_vi_surface(
         &self,
         create_info: &crate::vk::ViSurfaceCreateInfoNN<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
@@ -75,7 +75,10 @@ impl Instance {
             .create_vi_surface)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 surface.as_mut_ptr(),
             )
             .assume_init_on_success(surface)
@@ -94,6 +97,8 @@ pub(crate) mod items {
         pub window: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ViSurfaceCreateInfoNN<'_> {}
+    unsafe impl Sync for ViSurfaceCreateInfoNN<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ViSurfaceCreateInfoNN<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VI_SURFACE_CREATE_INFO_NN;
     }

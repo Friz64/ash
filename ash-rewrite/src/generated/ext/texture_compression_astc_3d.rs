@@ -53,6 +53,8 @@ pub(crate) mod items {
         pub texture_compression_astc_3d: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT;

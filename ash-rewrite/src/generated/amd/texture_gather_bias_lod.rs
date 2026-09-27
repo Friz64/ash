@@ -18,6 +18,8 @@ pub(crate) mod items {
         pub supports_texture_gather_lod_bias_amd: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TextureLODGatherFormatPropertiesAMD<'_> {}
+    unsafe impl Sync for TextureLODGatherFormatPropertiesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for TextureLODGatherFormatPropertiesAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD;

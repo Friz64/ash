@@ -603,9 +603,18 @@ impl Device {
         &self,
         command_buffer: crate::vk::CommandBuffer,
         samples: crate::vk::SampleCountFlagBits,
-        sample_mask: &crate::vk::SampleMask,
+        sample_mask: Option<&crate::vk::SampleMask>,
     ) {
-        (self.fp.cmd_set_sample_mask)(command_buffer, samples, sample_mask)
+        (self
+            .fp
+            .cmd_set_sample_mask)(
+            command_buffer,
+            samples,
+            match sample_mask {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCmdSetAlphaToCoverageEnableEXT
     #[inline]
@@ -979,6 +988,8 @@ pub(crate) mod items {
         pub extended_dynamic_state3_shading_rate_image_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT;
@@ -1286,6 +1297,8 @@ pub(crate) mod items {
         pub dynamic_primitive_topology_unrestricted: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_PROPERTIES_EXT;
@@ -1323,6 +1336,8 @@ pub(crate) mod items {
         pub dst_alpha_blend_factor: crate::vk::BlendFactor,
         pub alpha_blend_op: crate::vk::BlendOp,
     }
+    unsafe impl Send for ColorBlendEquationEXT {}
+    unsafe impl Sync for ColorBlendEquationEXT {}
     impl ColorBlendEquationEXT {
         pub fn src_color_blend_factor(
             mut self,
@@ -1371,6 +1386,8 @@ pub(crate) mod items {
         pub blend_overlap: crate::vk::BlendOverlapEXT,
         pub clamp_results: crate::vk::Bool32,
     }
+    unsafe impl Send for ColorBlendAdvancedEXT {}
+    unsafe impl Sync for ColorBlendAdvancedEXT {}
     impl ColorBlendAdvancedEXT {
         pub fn advanced_blend_op(
             mut self,

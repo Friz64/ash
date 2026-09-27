@@ -37,6 +37,8 @@ pub(crate) mod items {
         pub conservative_rasterization_post_depth_coverage: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceConservativeRasterizationPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceConservativeRasterizationPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT;
@@ -141,6 +143,8 @@ pub(crate) mod items {
         pub extra_primitive_overestimation_size: core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineRasterizationConservativeStateCreateInfoEXT<'_> {}
+    unsafe impl Sync for PipelineRasterizationConservativeStateCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT;

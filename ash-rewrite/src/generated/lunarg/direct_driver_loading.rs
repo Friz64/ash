@@ -25,6 +25,8 @@ pub(crate) mod items {
         pub pfn_get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddrLUNARG,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DirectDriverLoadingInfoLUNARG<'_> {}
+    unsafe impl Sync for DirectDriverLoadingInfoLUNARG<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DirectDriverLoadingInfoLUNARG<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECT_DRIVER_LOADING_INFO_LUNARG;
     }
@@ -66,6 +68,8 @@ pub(crate) mod items {
         pub p_drivers: *const crate::vk::DirectDriverLoadingInfoLUNARG<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DirectDriverLoadingListLUNARG<'_> {}
+    unsafe impl Sync for DirectDriverLoadingListLUNARG<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DirectDriverLoadingListLUNARG<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECT_DRIVER_LOADING_LIST_LUNARG;
     }

@@ -198,6 +198,8 @@ pub(crate) mod items {
         pub flags: crate::vk::ImageCreateFlags2KHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageCreateFlags2CreateInfoKHR<'_> {}
+    unsafe impl Sync for ImageCreateFlags2CreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageCreateFlags2CreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR;
     }
@@ -234,6 +236,8 @@ pub(crate) mod items {
         pub usage: crate::vk::ImageUsageFlags2KHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageUsageFlags2CreateInfoKHR<'_> {}
+    unsafe impl Sync for ImageUsageFlags2CreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageUsageFlags2CreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR;
     }
@@ -278,6 +282,8 @@ pub(crate) mod items {
         pub shared_present_supported_usage_flags: crate::vk::ImageUsageFlags2KHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SharedPresentSurfaceCapabilities2KHR<'_> {}
+    unsafe impl Sync for SharedPresentSurfaceCapabilities2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SharedPresentSurfaceCapabilities2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR;
@@ -312,6 +318,8 @@ pub(crate) mod items {
         pub usage: crate::vk::ImageUsageFlags2KHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageViewUsage2CreateInfoKHR<'_> {}
+    unsafe impl Sync for ImageViewUsage2CreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewUsage2CreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_USAGE_2_CREATE_INFO_KHR;
     }
@@ -342,6 +350,8 @@ pub(crate) mod items {
         pub stencil_usage: crate::vk::ImageUsageFlags2KHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageStencilUsage2CreateInfoKHR<'_> {}
+    unsafe impl Sync for ImageStencilUsage2CreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageStencilUsage2CreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_STENCIL_USAGE_2_CREATE_INFO_KHR;
     }
@@ -377,6 +387,8 @@ pub(crate) mod items {
         pub extended_flags: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExtendedFlagsFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceExtendedFlagsFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_FLAGS_FEATURES_KHR;
@@ -412,6 +424,8 @@ pub(crate) mod items {
         pub buffer_features: crate::vk::FormatFeatureFlags4KHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for FormatProperties4KHR<'_> {}
+    unsafe impl Sync for FormatProperties4KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for FormatProperties4KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FORMAT_PROPERTIES_4_KHR;
     }

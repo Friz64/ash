@@ -28,6 +28,8 @@ pub(crate) mod items {
         pub device_memory_report: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT;
@@ -63,6 +65,8 @@ pub(crate) mod items {
         pub p_user_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceDeviceMemoryReportCreateInfoEXT<'_> {}
+    unsafe impl Sync for DeviceDeviceMemoryReportCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT;
@@ -113,6 +117,8 @@ pub(crate) mod items {
         pub heap_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceMemoryReportCallbackDataEXT<'_> {}
+    unsafe impl Sync for DeviceMemoryReportCallbackDataEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceMemoryReportCallbackDataEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT;

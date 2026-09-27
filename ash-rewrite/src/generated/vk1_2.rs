@@ -529,7 +529,7 @@ impl crate::Device {
     pub unsafe fn create_render_pass2(
         &self,
         create_info: &crate::vk::RenderPassCreateInfo2<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::RenderPass> {
         let mut render_pass = core::mem::MaybeUninit::uninit();
         (self
@@ -537,7 +537,10 @@ impl crate::Device {
             .create_render_pass2)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 render_pass.as_mut_ptr(),
             )
             .assume_init_on_success(render_pass)
@@ -691,6 +694,8 @@ pub(crate) mod items {
         pub subminor: u8,
         pub patch: u8,
     }
+    unsafe impl Send for ConformanceVersion {}
+    unsafe impl Sync for ConformanceVersion {}
     impl ConformanceVersion {
         pub fn major(mut self, major: u8) -> Self {
             self.major = major;
@@ -720,6 +725,8 @@ pub(crate) mod items {
         pub conformance_version: crate::vk::ConformanceVersion,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDriverProperties<'_> {}
+    unsafe impl Sync for PhysicalDeviceDriverProperties<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceDriverProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DRIVER_PROPERTIES;
     }
@@ -797,6 +804,8 @@ pub(crate) mod items {
         pub shader_subgroup_extended_types: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES;
@@ -834,6 +843,8 @@ pub(crate) mod items {
         pub filter_minmax_image_component_mapping: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceSamplerFilterMinmaxProperties<'_> {}
+    unsafe impl Sync for PhysicalDeviceSamplerFilterMinmaxProperties<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSamplerFilterMinmaxProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES;
@@ -878,6 +889,8 @@ pub(crate) mod items {
         pub reduction_mode: crate::vk::SamplerReductionMode,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SamplerReductionModeCreateInfo<'_> {}
+    unsafe impl Sync for SamplerReductionModeCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SamplerReductionModeCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_REDUCTION_MODE_CREATE_INFO;
     }
@@ -912,6 +925,8 @@ pub(crate) mod items {
         pub p_view_formats: *const crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageFormatListCreateInfo<'_> {}
+    unsafe impl Sync for ImageFormatListCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageFormatListCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_FORMAT_LIST_CREATE_INFO;
     }
@@ -949,6 +964,8 @@ pub(crate) mod items {
         pub shader_int8: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderFloat16Int8Features<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderFloat16Int8Features<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderFloat16Int8Features<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES;
@@ -1003,6 +1020,8 @@ pub(crate) mod items {
         pub shader_rounding_mode_rtz_float64: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFloatControlsProperties<'_> {}
+    unsafe impl Sync for PhysicalDeviceFloatControlsProperties<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFloatControlsProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES;
@@ -1177,6 +1196,8 @@ pub(crate) mod items {
         pub host_query_reset: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceHostQueryResetFeatures<'_> {}
+    unsafe impl Sync for PhysicalDeviceHostQueryResetFeatures<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceHostQueryResetFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES;
@@ -1229,6 +1250,8 @@ pub(crate) mod items {
         pub runtime_descriptor_array: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDescriptorIndexingFeatures<'_> {}
+    unsafe impl Sync for PhysicalDeviceDescriptorIndexingFeatures<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorIndexingFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES;
@@ -1458,6 +1481,8 @@ pub(crate) mod items {
         pub max_descriptor_set_update_after_bind_input_attachments: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDescriptorIndexingProperties<'_> {}
+    unsafe impl Sync for PhysicalDeviceDescriptorIndexingProperties<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorIndexingProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES;
@@ -1675,6 +1700,8 @@ pub(crate) mod items {
         pub p_binding_flags: *const crate::vk::DescriptorBindingFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorSetLayoutBindingFlagsCreateInfo<'_> {}
+    unsafe impl Sync for DescriptorSetLayoutBindingFlagsCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DescriptorSetLayoutBindingFlagsCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO;
@@ -1712,6 +1739,8 @@ pub(crate) mod items {
         pub p_descriptor_counts: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorSetVariableDescriptorCountAllocateInfo<'_> {}
+    unsafe impl Sync for DescriptorSetVariableDescriptorCountAllocateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DescriptorSetVariableDescriptorCountAllocateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO;
@@ -1745,6 +1774,8 @@ pub(crate) mod items {
         pub max_variable_descriptor_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorSetVariableDescriptorCountLayoutSupport<'_> {}
+    unsafe impl Sync for DescriptorSetVariableDescriptorCountLayoutSupport<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DescriptorSetVariableDescriptorCountLayoutSupport<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT;
@@ -1787,6 +1818,8 @@ pub(crate) mod items {
         pub final_layout: crate::vk::ImageLayout,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AttachmentDescription2<'_> {}
+    unsafe impl Sync for AttachmentDescription2<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentDescription2<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_DESCRIPTION_2;
     }
@@ -1863,6 +1896,8 @@ pub(crate) mod items {
         pub aspect_mask: crate::vk::ImageAspectFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AttachmentReference2<'_> {}
+    unsafe impl Sync for AttachmentReference2<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentReference2<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_REFERENCE_2;
     }
@@ -1911,6 +1946,8 @@ pub(crate) mod items {
         pub p_preserve_attachments: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SubpassDescription2<'_> {}
+    unsafe impl Sync for SubpassDescription2<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SubpassDescription2<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_DESCRIPTION_2;
     }
@@ -2003,6 +2040,8 @@ pub(crate) mod items {
         pub view_offset: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SubpassDependency2<'_> {}
+    unsafe impl Sync for SubpassDependency2<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SubpassDependency2<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_DEPENDENCY_2;
     }
@@ -2089,6 +2128,8 @@ pub(crate) mod items {
         pub p_correlated_view_masks: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassCreateInfo2<'_> {}
+    unsafe impl Sync for RenderPassCreateInfo2<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassCreateInfo2<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_CREATE_INFO_2;
     }
@@ -2157,6 +2198,8 @@ pub(crate) mod items {
         pub contents: crate::vk::SubpassContents,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SubpassBeginInfo<'_> {}
+    unsafe impl Sync for SubpassBeginInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SubpassBeginInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_BEGIN_INFO;
     }
@@ -2184,6 +2227,8 @@ pub(crate) mod items {
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SubpassEndInfo<'_> {}
+    unsafe impl Sync for SubpassEndInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SubpassEndInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_END_INFO;
     }
@@ -2206,6 +2251,8 @@ pub(crate) mod items {
         pub timeline_semaphore: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTimelineSemaphoreFeatures<'_> {}
+    unsafe impl Sync for PhysicalDeviceTimelineSemaphoreFeatures<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTimelineSemaphoreFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES;
@@ -2239,6 +2286,8 @@ pub(crate) mod items {
         pub max_timeline_semaphore_value_difference: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTimelineSemaphoreProperties<'_> {}
+    unsafe impl Sync for PhysicalDeviceTimelineSemaphoreProperties<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTimelineSemaphoreProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES;
@@ -2274,6 +2323,8 @@ pub(crate) mod items {
         pub initial_value: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SemaphoreTypeCreateInfo<'_> {}
+    unsafe impl Sync for SemaphoreTypeCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreTypeCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_TYPE_CREATE_INFO;
     }
@@ -2317,6 +2368,8 @@ pub(crate) mod items {
         pub p_signal_semaphore_values: *const u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TimelineSemaphoreSubmitInfo<'_> {}
+    unsafe impl Sync for TimelineSemaphoreSubmitInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TimelineSemaphoreSubmitInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TIMELINE_SEMAPHORE_SUBMIT_INFO;
     }
@@ -2367,6 +2420,8 @@ pub(crate) mod items {
         pub p_values: *const u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SemaphoreWaitInfo<'_> {}
+    unsafe impl Sync for SemaphoreWaitInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreWaitInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_WAIT_INFO;
     }
@@ -2409,6 +2464,8 @@ pub(crate) mod items {
         pub value: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SemaphoreSignalInfo<'_> {}
+    unsafe impl Sync for SemaphoreSignalInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreSignalInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_SIGNAL_INFO;
     }
@@ -2444,6 +2501,8 @@ pub(crate) mod items {
         pub storage_push_constant8: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevice8BitStorageFeatures<'_> {}
+    unsafe impl Sync for PhysicalDevice8BitStorageFeatures<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevice8BitStorageFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES;
@@ -2496,6 +2555,8 @@ pub(crate) mod items {
         pub vulkan_memory_model_availability_visibility_chains: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVulkanMemoryModelFeatures<'_> {}
+    unsafe impl Sync for PhysicalDeviceVulkanMemoryModelFeatures<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVulkanMemoryModelFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES;
@@ -2548,6 +2609,8 @@ pub(crate) mod items {
         pub shader_shared_int64_atomics: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderAtomicInt64Features<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderAtomicInt64Features<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderAtomicInt64Features<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES;
@@ -2595,6 +2658,8 @@ pub(crate) mod items {
         pub independent_resolve: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDepthStencilResolveProperties<'_> {}
+    unsafe impl Sync for PhysicalDeviceDepthStencilResolveProperties<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDepthStencilResolveProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES;
@@ -2654,6 +2719,8 @@ pub(crate) mod items {
         >,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SubpassDescriptionDepthStencilResolve<'_> {}
+    unsafe impl Sync for SubpassDescriptionDepthStencilResolve<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SubpassDescriptionDepthStencilResolve<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE;
@@ -2704,6 +2771,8 @@ pub(crate) mod items {
         pub stencil_usage: crate::vk::ImageUsageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageStencilUsageCreateInfo<'_> {}
+    unsafe impl Sync for ImageStencilUsageCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageStencilUsageCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_STENCIL_USAGE_CREATE_INFO;
     }
@@ -2739,6 +2808,8 @@ pub(crate) mod items {
         pub scalar_block_layout: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceScalarBlockLayoutFeatures<'_> {}
+    unsafe impl Sync for PhysicalDeviceScalarBlockLayoutFeatures<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceScalarBlockLayoutFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES;
@@ -2772,6 +2843,8 @@ pub(crate) mod items {
         pub uniform_buffer_standard_layout: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceUniformBufferStandardLayoutFeatures<'_> {}
+    unsafe impl Sync for PhysicalDeviceUniformBufferStandardLayoutFeatures<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceUniformBufferStandardLayoutFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES;
@@ -2810,6 +2883,8 @@ pub(crate) mod items {
         pub buffer_device_address_multi_device: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceBufferDeviceAddressFeatures<'_> {}
+    unsafe impl Sync for PhysicalDeviceBufferDeviceAddressFeatures<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceBufferDeviceAddressFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES;
@@ -2861,6 +2936,8 @@ pub(crate) mod items {
         pub buffer: crate::vk::Buffer,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferDeviceAddressInfo<'_> {}
+    unsafe impl Sync for BufferDeviceAddressInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BufferDeviceAddressInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_DEVICE_ADDRESS_INFO;
     }
@@ -2889,6 +2966,8 @@ pub(crate) mod items {
         pub opaque_capture_address: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferOpaqueCaptureAddressCreateInfo<'_> {}
+    unsafe impl Sync for BufferOpaqueCaptureAddressCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BufferOpaqueCaptureAddressCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO;
@@ -2920,6 +2999,8 @@ pub(crate) mod items {
         pub imageless_framebuffer: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceImagelessFramebufferFeatures<'_> {}
+    unsafe impl Sync for PhysicalDeviceImagelessFramebufferFeatures<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImagelessFramebufferFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES;
@@ -2956,6 +3037,8 @@ pub(crate) mod items {
         >,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for FramebufferAttachmentsCreateInfo<'_> {}
+    unsafe impl Sync for FramebufferAttachmentsCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for FramebufferAttachmentsCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAMEBUFFER_ATTACHMENTS_CREATE_INFO;
     }
@@ -2997,6 +3080,8 @@ pub(crate) mod items {
         pub p_view_formats: *const crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for FramebufferAttachmentImageInfo<'_> {}
+    unsafe impl Sync for FramebufferAttachmentImageInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for FramebufferAttachmentImageInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAMEBUFFER_ATTACHMENT_IMAGE_INFO;
     }
@@ -3053,6 +3138,8 @@ pub(crate) mod items {
         pub p_attachments: *const crate::vk::ImageView,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassAttachmentBeginInfo<'_> {}
+    unsafe impl Sync for RenderPassAttachmentBeginInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassAttachmentBeginInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_ATTACHMENT_BEGIN_INFO;
     }
@@ -3085,6 +3172,8 @@ pub(crate) mod items {
         pub separate_depth_stencil_layouts: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'_> {}
+    unsafe impl Sync for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES;
@@ -3121,6 +3210,8 @@ pub(crate) mod items {
         pub stencil_layout: crate::vk::ImageLayout,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AttachmentReferenceStencilLayout<'_> {}
+    unsafe impl Sync for AttachmentReferenceStencilLayout<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentReferenceStencilLayout<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_REFERENCE_STENCIL_LAYOUT;
     }
@@ -3152,6 +3243,8 @@ pub(crate) mod items {
         pub stencil_final_layout: crate::vk::ImageLayout,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AttachmentDescriptionStencilLayout<'_> {}
+    unsafe impl Sync for AttachmentDescriptionStencilLayout<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AttachmentDescriptionStencilLayout<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT;
@@ -3194,6 +3287,8 @@ pub(crate) mod items {
         pub opaque_capture_address: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryOpaqueCaptureAddressAllocateInfo<'_> {}
+    unsafe impl Sync for MemoryOpaqueCaptureAddressAllocateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for MemoryOpaqueCaptureAddressAllocateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO;
@@ -3225,6 +3320,8 @@ pub(crate) mod items {
         pub memory: crate::vk::DeviceMemory,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceMemoryOpaqueCaptureAddressInfo<'_> {}
+    unsafe impl Sync for DeviceMemoryOpaqueCaptureAddressInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceMemoryOpaqueCaptureAddressInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO;
@@ -3265,6 +3362,8 @@ pub(crate) mod items {
         pub shader_draw_parameters: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVulkan11Features<'_> {}
+    unsafe impl Sync for PhysicalDeviceVulkan11Features<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan11Features<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_1_FEATURES;
     }
@@ -3386,6 +3485,8 @@ pub(crate) mod items {
         pub max_memory_allocation_size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVulkan11Properties<'_> {}
+    unsafe impl Sync for PhysicalDeviceVulkan11Properties<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan11Properties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES;
     }
@@ -3563,6 +3664,8 @@ pub(crate) mod items {
         pub subgroup_broadcast_dynamic_id: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVulkan12Features<'_> {}
+    unsafe impl Sync for PhysicalDeviceVulkan12Features<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan12Features<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_2_FEATURES;
     }
@@ -4001,6 +4104,8 @@ pub(crate) mod items {
         pub framebuffer_integer_color_sample_counts: crate::vk::SampleCountFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVulkan12Properties<'_> {}
+    unsafe impl Sync for PhysicalDeviceVulkan12Properties<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan12Properties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES;
     }

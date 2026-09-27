@@ -34,6 +34,8 @@ pub(crate) mod items {
         pub vertex_attribute_access_beyond_stride: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePortabilitySubsetFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDevicePortabilitySubsetFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR;
@@ -165,6 +167,8 @@ pub(crate) mod items {
         pub min_vertex_input_binding_stride_alignment: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePortabilitySubsetPropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDevicePortabilitySubsetPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR;

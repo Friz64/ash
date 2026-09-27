@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub shader_untyped_pointers: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR;

@@ -29,6 +29,8 @@ pub(crate) mod items {
         pub z: crate::vk::ViewportCoordinateSwizzleNV,
         pub w: crate::vk::ViewportCoordinateSwizzleNV,
     }
+    unsafe impl Send for ViewportSwizzleNV {}
+    unsafe impl Sync for ViewportSwizzleNV {}
     impl ViewportSwizzleNV {
         pub fn x(mut self, x: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
             self.x = x;
@@ -58,6 +60,8 @@ pub(crate) mod items {
         pub p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineViewportSwizzleStateCreateInfoNV<'_> {}
+    unsafe impl Sync for PipelineViewportSwizzleStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportSwizzleStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV;

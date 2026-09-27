@@ -31,6 +31,8 @@ pub(crate) mod items {
         pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassTransformBeginInfoQCOM<'_> {}
+    unsafe impl Sync for RenderPassTransformBeginInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassTransformBeginInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM;
     }
@@ -65,6 +67,8 @@ pub(crate) mod items {
         pub render_area: crate::vk::Rect2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CommandBufferInheritanceRenderPassTransformInfoQCOM<'_> {}
+    unsafe impl Sync for CommandBufferInheritanceRenderPassTransformInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM;

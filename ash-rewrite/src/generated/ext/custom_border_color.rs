@@ -28,6 +28,8 @@ pub(crate) mod items {
         pub format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SamplerCustomBorderColorCreateInfoEXT<'_> {}
+    unsafe impl Sync for SamplerCustomBorderColorCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SamplerCustomBorderColorCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT;
@@ -67,6 +69,8 @@ pub(crate) mod items {
         pub max_custom_border_color_samplers: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCustomBorderColorPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceCustomBorderColorPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT;
@@ -102,6 +106,8 @@ pub(crate) mod items {
         pub custom_border_color_without_format: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCustomBorderColorFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceCustomBorderColorFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT;

@@ -19,6 +19,8 @@ pub(crate) mod items {
         pub active_compute_unit_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderCoreProperties2AMD<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderCoreProperties2AMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderCoreProperties2AMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD;

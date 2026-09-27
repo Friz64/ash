@@ -86,6 +86,8 @@ pub(crate) mod items {
         pub occupancy_throttling: core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ComputeOccupancyPriorityParametersNV<'_> {}
+    unsafe impl Sync for ComputeOccupancyPriorityParametersNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ComputeOccupancyPriorityParametersNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMPUTE_OCCUPANCY_PRIORITY_PARAMETERS_NV;
@@ -126,6 +128,8 @@ pub(crate) mod items {
         pub compute_occupancy_priority: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_OCCUPANCY_PRIORITY_FEATURES_NV;

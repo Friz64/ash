@@ -27,6 +27,8 @@ pub(crate) mod items {
         pub ycbcr2plane444_formats: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT;

@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub p_dynamic_metadata: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for HdrVividDynamicMetadataHUAWEI<'_> {}
+    unsafe impl Sync for HdrVividDynamicMetadataHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for HdrVividDynamicMetadataHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::HDR_VIVID_DYNAMIC_METADATA_HUAWEI;
     }
@@ -52,6 +54,8 @@ pub(crate) mod items {
         pub hdr_vivid: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceHdrVividFeaturesHUAWEI<'_> {}
+    unsafe impl Sync for PhysicalDeviceHdrVividFeaturesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI;

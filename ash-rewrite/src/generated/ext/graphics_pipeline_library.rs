@@ -70,6 +70,8 @@ pub(crate) mod items {
         pub graphics_pipeline_library: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT;
@@ -107,6 +109,8 @@ pub(crate) mod items {
         pub graphics_pipeline_library_independent_interpolation_decoration: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_PROPERTIES_EXT;
@@ -151,6 +155,8 @@ pub(crate) mod items {
         pub flags: crate::vk::GraphicsPipelineLibraryFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GraphicsPipelineLibraryCreateInfoEXT<'_> {}
+    unsafe impl Sync for GraphicsPipelineLibraryCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for GraphicsPipelineLibraryCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT;

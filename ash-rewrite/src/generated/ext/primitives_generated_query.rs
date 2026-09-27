@@ -26,6 +26,8 @@ pub(crate) mod items {
         pub primitives_generated_query_with_non_zero_streams: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIMITIVES_GENERATED_QUERY_FEATURES_EXT;

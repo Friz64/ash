@@ -122,6 +122,8 @@ pub(crate) mod items {
     pub struct RefreshCycleDurationGOOGLE {
         pub refresh_duration: u64,
     }
+    unsafe impl Send for RefreshCycleDurationGOOGLE {}
+    unsafe impl Sync for RefreshCycleDurationGOOGLE {}
     impl RefreshCycleDurationGOOGLE {
         pub fn refresh_duration(mut self, refresh_duration: u64) -> Self {
             self.refresh_duration = refresh_duration;
@@ -138,6 +140,8 @@ pub(crate) mod items {
         pub earliest_present_time: u64,
         pub present_margin: u64,
     }
+    unsafe impl Send for PastPresentationTimingGOOGLE {}
+    unsafe impl Sync for PastPresentationTimingGOOGLE {}
     impl PastPresentationTimingGOOGLE {
         pub fn present_id(mut self, present_id: u32) -> Self {
             self.present_id = present_id;
@@ -170,6 +174,8 @@ pub(crate) mod items {
         pub p_times: *const crate::vk::PresentTimeGOOGLE,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PresentTimesInfoGOOGLE<'_> {}
+    unsafe impl Sync for PresentTimesInfoGOOGLE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimesInfoGOOGLE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMES_INFO_GOOGLE;
     }
@@ -200,6 +206,8 @@ pub(crate) mod items {
         pub present_id: u32,
         pub desired_present_time: u64,
     }
+    unsafe impl Send for PresentTimeGOOGLE {}
+    unsafe impl Sync for PresentTimeGOOGLE {}
     impl PresentTimeGOOGLE {
         pub fn present_id(mut self, present_id: u32) -> Self {
             self.present_id = present_id;

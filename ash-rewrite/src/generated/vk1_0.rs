@@ -1507,9 +1507,17 @@ impl crate::Instance {
     #[inline]
     pub unsafe fn destroy_instance(
         &self,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.instance_fn_1_0.destroy_instance)(self.handle, allocator)
+        (self
+            .instance_fn_1_0
+            .destroy_instance)(
+            self.handle,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkEnumeratePhysicalDevices
     #[inline]
@@ -1529,11 +1537,12 @@ impl crate::Instance {
     pub unsafe fn get_physical_device_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        properties: &mut crate::vk::PhysicalDeviceProperties,
-    ) {
+    ) -> crate::vk::PhysicalDeviceProperties {
+        let mut properties = core::mem::MaybeUninit::uninit();
         (self
             .instance_fn_1_0
-            .get_physical_device_properties)(physical_device, properties)
+            .get_physical_device_properties)(physical_device, properties.as_mut_ptr());
+        properties.assume_init()
     }
     ///vkGetPhysicalDeviceQueueFamilyProperties
     #[inline]
@@ -1561,20 +1570,27 @@ impl crate::Instance {
     pub unsafe fn get_physical_device_memory_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        memory_properties: &mut crate::vk::PhysicalDeviceMemoryProperties,
-    ) {
+    ) -> crate::vk::PhysicalDeviceMemoryProperties {
+        let mut memory_properties = core::mem::MaybeUninit::uninit();
         (self
             .instance_fn_1_0
-            .get_physical_device_memory_properties)(physical_device, memory_properties)
+            .get_physical_device_memory_properties)(
+            physical_device,
+            memory_properties.as_mut_ptr(),
+        );
+        memory_properties.assume_init()
     }
     ///vkGetPhysicalDeviceFeatures
     #[inline]
     pub unsafe fn get_physical_device_features(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        features: &mut crate::vk::PhysicalDeviceFeatures,
-    ) {
-        (self.instance_fn_1_0.get_physical_device_features)(physical_device, features)
+    ) -> crate::vk::PhysicalDeviceFeatures {
+        let mut features = core::mem::MaybeUninit::uninit();
+        (self
+            .instance_fn_1_0
+            .get_physical_device_features)(physical_device, features.as_mut_ptr());
+        features.assume_init()
     }
     ///vkGetPhysicalDeviceFormatProperties
     #[inline]
@@ -1582,15 +1598,16 @@ impl crate::Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
-        format_properties: &mut crate::vk::FormatProperties,
-    ) {
+    ) -> crate::vk::FormatProperties {
+        let mut format_properties = core::mem::MaybeUninit::uninit();
         (self
             .instance_fn_1_0
             .get_physical_device_format_properties)(
             physical_device,
             format,
-            format_properties,
-        )
+            format_properties.as_mut_ptr(),
+        );
+        format_properties.assume_init()
     }
     ///vkGetPhysicalDeviceImageFormatProperties
     #[inline]
@@ -3633,8 +3650,19 @@ impl crate::Device {
     }
     ///vkDestroyDevice
     #[inline]
-    pub unsafe fn destroy_device(&self, allocator: &crate::vk::AllocationCallbacks<'_>) {
-        (self.device_fn_1_0.destroy_device)(self.handle, allocator)
+    pub unsafe fn destroy_device(
+        &self,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+    ) {
+        (self
+            .device_fn_1_0
+            .destroy_device)(
+            self.handle,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkGetDeviceQueue
     #[inline]
@@ -3642,11 +3670,17 @@ impl crate::Device {
         &self,
         queue_family_index: u32,
         queue_index: u32,
-        queue: &mut crate::vk::Queue,
-    ) {
+    ) -> crate::vk::Queue {
+        let mut queue = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .get_device_queue)(self.handle, queue_family_index, queue_index, queue)
+            .get_device_queue)(
+            self.handle,
+            queue_family_index,
+            queue_index,
+            queue.as_mut_ptr(),
+        );
+        queue.assume_init()
     }
     ///vkQueueSubmit
     #[inline]
@@ -3679,12 +3713,20 @@ impl crate::Device {
     pub unsafe fn allocate_memory(
         &self,
         allocate_info: &crate::vk::MemoryAllocateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::DeviceMemory> {
         let mut memory = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .allocate_memory)(self.handle, allocate_info, allocator, memory.as_mut_ptr())
+            .allocate_memory)(
+                self.handle,
+                allocate_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
+                memory.as_mut_ptr(),
+            )
             .assume_init_on_success(memory)
     }
     ///vkFreeMemory
@@ -3692,9 +3734,18 @@ impl crate::Device {
     pub unsafe fn free_memory(
         &self,
         memory: crate::vk::DeviceMemory,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.free_memory)(self.handle, memory, allocator)
+        (self
+            .device_fn_1_0
+            .free_memory)(
+            self.handle,
+            memory,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkMapMemory
     #[inline]
@@ -3751,26 +3802,32 @@ impl crate::Device {
     pub unsafe fn get_device_memory_commitment(
         &self,
         memory: crate::vk::DeviceMemory,
-        committed_memory_in_bytes: &mut crate::vk::DeviceSize,
-    ) {
+    ) -> crate::vk::DeviceSize {
+        let mut committed_memory_in_bytes = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .get_device_memory_commitment)(
             self.handle,
             memory,
-            committed_memory_in_bytes,
-        )
+            committed_memory_in_bytes.as_mut_ptr(),
+        );
+        committed_memory_in_bytes.assume_init()
     }
     ///vkGetBufferMemoryRequirements
     #[inline]
     pub unsafe fn get_buffer_memory_requirements(
         &self,
         buffer: crate::vk::Buffer,
-        memory_requirements: &mut crate::vk::MemoryRequirements,
-    ) {
+    ) -> crate::vk::MemoryRequirements {
+        let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .get_buffer_memory_requirements)(self.handle, buffer, memory_requirements)
+            .get_buffer_memory_requirements)(
+            self.handle,
+            buffer,
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///vkBindBufferMemory
     #[inline]
@@ -3790,11 +3847,16 @@ impl crate::Device {
     pub unsafe fn get_image_memory_requirements(
         &self,
         image: crate::vk::Image,
-        memory_requirements: &mut crate::vk::MemoryRequirements,
-    ) {
+    ) -> crate::vk::MemoryRequirements {
+        let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .get_image_memory_requirements)(self.handle, image, memory_requirements)
+            .get_image_memory_requirements)(
+            self.handle,
+            image,
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///vkBindImageMemory
     #[inline]
@@ -3847,12 +3909,20 @@ impl crate::Device {
     pub unsafe fn create_fence(
         &self,
         create_info: &crate::vk::FenceCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::Fence> {
         let mut fence = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_fence)(self.handle, create_info, allocator, fence.as_mut_ptr())
+            .create_fence)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
+                fence.as_mut_ptr(),
+            )
             .assume_init_on_success(fence)
     }
     ///vkDestroyFence
@@ -3860,9 +3930,18 @@ impl crate::Device {
     pub unsafe fn destroy_fence(
         &self,
         fence: crate::vk::Fence,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_fence)(self.handle, fence, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_fence)(
+            self.handle,
+            fence,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkResetFences
     #[inline]
@@ -3875,13 +3954,18 @@ impl crate::Device {
             .reset_fences)(self.handle, fences.len() as _, fences.as_ptr())
             .result()
     }
-    ///vkGetFenceStatus
+    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetFenceStatus.html>
     #[inline]
     pub unsafe fn get_fence_status(
         &self,
         fence: crate::vk::Fence,
-    ) -> crate::VkResult<()> {
-        (self.device_fn_1_0.get_fence_status)(self.handle, fence).result()
+    ) -> crate::VkResult<bool> {
+        let err_code = (self.device_fn_1_0.get_fence_status)(self.handle(), fence);
+        match err_code {
+            crate::vk::Result::SUCCESS => Ok(true),
+            crate::vk::Result::NOT_READY => Ok(false),
+            _ => Err(err_code),
+        }
     }
     ///vkWaitForFences
     #[inline]
@@ -3907,7 +3991,7 @@ impl crate::Device {
     pub unsafe fn create_semaphore(
         &self,
         create_info: &crate::vk::SemaphoreCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::Semaphore> {
         let mut semaphore = core::mem::MaybeUninit::uninit();
         (self
@@ -3915,7 +3999,10 @@ impl crate::Device {
             .create_semaphore)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 semaphore.as_mut_ptr(),
             )
             .assume_init_on_success(semaphore)
@@ -3925,21 +4012,38 @@ impl crate::Device {
     pub unsafe fn destroy_semaphore(
         &self,
         semaphore: crate::vk::Semaphore,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_semaphore)(self.handle, semaphore, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_semaphore)(
+            self.handle,
+            semaphore,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCreateEvent
     #[inline]
     pub unsafe fn create_event(
         &self,
         create_info: &crate::vk::EventCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::Event> {
         let mut event = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_event)(self.handle, create_info, allocator, event.as_mut_ptr())
+            .create_event)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
+                event.as_mut_ptr(),
+            )
             .assume_init_on_success(event)
     }
     ///vkDestroyEvent
@@ -3947,9 +4051,18 @@ impl crate::Device {
     pub unsafe fn destroy_event(
         &self,
         event: crate::vk::Event,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_event)(self.handle, event, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_event)(
+            self.handle,
+            event,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkGetEventStatus
     #[inline]
@@ -3974,7 +4087,7 @@ impl crate::Device {
     pub unsafe fn create_query_pool(
         &self,
         create_info: &crate::vk::QueryPoolCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::QueryPool> {
         let mut query_pool = core::mem::MaybeUninit::uninit();
         (self
@@ -3982,7 +4095,10 @@ impl crate::Device {
             .create_query_pool)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 query_pool.as_mut_ptr(),
             )
             .assume_init_on_success(query_pool)
@@ -3992,9 +4108,18 @@ impl crate::Device {
     pub unsafe fn destroy_query_pool(
         &self,
         query_pool: crate::vk::QueryPool,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_query_pool)(self.handle, query_pool, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_query_pool)(
+            self.handle,
+            query_pool,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkGetQueryPoolResults
     #[inline]
@@ -4026,12 +4151,20 @@ impl crate::Device {
     pub unsafe fn create_buffer(
         &self,
         create_info: &crate::vk::BufferCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::Buffer> {
         let mut buffer = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_buffer)(self.handle, create_info, allocator, buffer.as_mut_ptr())
+            .create_buffer)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
+                buffer.as_mut_ptr(),
+            )
             .assume_init_on_success(buffer)
     }
     ///vkDestroyBuffer
@@ -4039,21 +4172,38 @@ impl crate::Device {
     pub unsafe fn destroy_buffer(
         &self,
         buffer: crate::vk::Buffer,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_buffer)(self.handle, buffer, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_buffer)(
+            self.handle,
+            buffer,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCreateBufferView
     #[inline]
     pub unsafe fn create_buffer_view(
         &self,
         create_info: &crate::vk::BufferViewCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::BufferView> {
         let mut view = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_buffer_view)(self.handle, create_info, allocator, view.as_mut_ptr())
+            .create_buffer_view)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
+                view.as_mut_ptr(),
+            )
             .assume_init_on_success(view)
     }
     ///vkDestroyBufferView
@@ -4061,21 +4211,38 @@ impl crate::Device {
     pub unsafe fn destroy_buffer_view(
         &self,
         buffer_view: crate::vk::BufferView,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_buffer_view)(self.handle, buffer_view, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_buffer_view)(
+            self.handle,
+            buffer_view,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCreateImage
     #[inline]
     pub unsafe fn create_image(
         &self,
         create_info: &crate::vk::ImageCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::Image> {
         let mut image = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_image)(self.handle, create_info, allocator, image.as_mut_ptr())
+            .create_image)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
+                image.as_mut_ptr(),
+            )
             .assume_init_on_success(image)
     }
     ///vkDestroyImage
@@ -4083,9 +4250,18 @@ impl crate::Device {
     pub unsafe fn destroy_image(
         &self,
         image: crate::vk::Image,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_image)(self.handle, image, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_image)(
+            self.handle,
+            image,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkGetImageSubresourceLayout
     #[inline]
@@ -4093,23 +4269,37 @@ impl crate::Device {
         &self,
         image: crate::vk::Image,
         subresource: &crate::vk::ImageSubresource,
-        layout: &mut crate::vk::SubresourceLayout,
-    ) {
+    ) -> crate::vk::SubresourceLayout {
+        let mut layout = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .get_image_subresource_layout)(self.handle, image, subresource, layout)
+            .get_image_subresource_layout)(
+            self.handle,
+            image,
+            subresource,
+            layout.as_mut_ptr(),
+        );
+        layout.assume_init()
     }
     ///vkCreateImageView
     #[inline]
     pub unsafe fn create_image_view(
         &self,
         create_info: &crate::vk::ImageViewCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::ImageView> {
         let mut view = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_image_view)(self.handle, create_info, allocator, view.as_mut_ptr())
+            .create_image_view)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
+                view.as_mut_ptr(),
+            )
             .assume_init_on_success(view)
     }
     ///vkDestroyImageView
@@ -4117,16 +4307,25 @@ impl crate::Device {
     pub unsafe fn destroy_image_view(
         &self,
         image_view: crate::vk::ImageView,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_image_view)(self.handle, image_view, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_image_view)(
+            self.handle,
+            image_view,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCreateShaderModule
     #[inline]
     pub unsafe fn create_shader_module(
         &self,
         create_info: &crate::vk::ShaderModuleCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::ShaderModule> {
         let mut shader_module = core::mem::MaybeUninit::uninit();
         (self
@@ -4134,7 +4333,10 @@ impl crate::Device {
             .create_shader_module)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 shader_module.as_mut_ptr(),
             )
             .assume_init_on_success(shader_module)
@@ -4144,16 +4346,25 @@ impl crate::Device {
     pub unsafe fn destroy_shader_module(
         &self,
         shader_module: crate::vk::ShaderModule,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_shader_module)(self.handle, shader_module, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_shader_module)(
+            self.handle,
+            shader_module,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCreatePipelineCache
     #[inline]
     pub unsafe fn create_pipeline_cache(
         &self,
         create_info: &crate::vk::PipelineCacheCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::PipelineCache> {
         let mut pipeline_cache = core::mem::MaybeUninit::uninit();
         (self
@@ -4161,7 +4372,10 @@ impl crate::Device {
             .create_pipeline_cache)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 pipeline_cache.as_mut_ptr(),
             )
             .assume_init_on_success(pipeline_cache)
@@ -4171,11 +4385,18 @@ impl crate::Device {
     pub unsafe fn destroy_pipeline_cache(
         &self,
         pipeline_cache: crate::vk::PipelineCache,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .device_fn_1_0
-            .destroy_pipeline_cache)(self.handle, pipeline_cache, allocator)
+            .destroy_pipeline_cache)(
+            self.handle,
+            pipeline_cache,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkGetPipelineCacheData
     #[inline]
@@ -4210,7 +4431,7 @@ impl crate::Device {
         &self,
         pipeline_cache: crate::vk::PipelineCache,
         create_infos: &[crate::vk::GraphicsPipelineCreateInfo<'_>],
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
         pipelines: &mut [crate::vk::Pipeline],
     ) -> crate::VkResult<()> {
         assert_eq!(create_infos.len(), pipelines.len());
@@ -4221,7 +4442,10 @@ impl crate::Device {
                 pipeline_cache,
                 pipelines.len() as _,
                 create_infos.as_ptr(),
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 pipelines.as_mut_ptr(),
             )
             .result()
@@ -4232,7 +4456,7 @@ impl crate::Device {
         &self,
         pipeline_cache: crate::vk::PipelineCache,
         create_infos: &[crate::vk::ComputePipelineCreateInfo<'_>],
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
         pipelines: &mut [crate::vk::Pipeline],
     ) -> crate::VkResult<()> {
         assert_eq!(create_infos.len(), pipelines.len());
@@ -4243,7 +4467,10 @@ impl crate::Device {
                 pipeline_cache,
                 pipelines.len() as _,
                 create_infos.as_ptr(),
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 pipelines.as_mut_ptr(),
             )
             .result()
@@ -4253,16 +4480,25 @@ impl crate::Device {
     pub unsafe fn destroy_pipeline(
         &self,
         pipeline: crate::vk::Pipeline,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_pipeline)(self.handle, pipeline, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_pipeline)(
+            self.handle,
+            pipeline,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCreatePipelineLayout
     #[inline]
     pub unsafe fn create_pipeline_layout(
         &self,
         create_info: &crate::vk::PipelineLayoutCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::PipelineLayout> {
         let mut pipeline_layout = core::mem::MaybeUninit::uninit();
         (self
@@ -4270,7 +4506,10 @@ impl crate::Device {
             .create_pipeline_layout)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 pipeline_layout.as_mut_ptr(),
             )
             .assume_init_on_success(pipeline_layout)
@@ -4280,23 +4519,38 @@ impl crate::Device {
     pub unsafe fn destroy_pipeline_layout(
         &self,
         pipeline_layout: crate::vk::PipelineLayout,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .device_fn_1_0
-            .destroy_pipeline_layout)(self.handle, pipeline_layout, allocator)
+            .destroy_pipeline_layout)(
+            self.handle,
+            pipeline_layout,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCreateSampler
     #[inline]
     pub unsafe fn create_sampler(
         &self,
         create_info: &crate::vk::SamplerCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::Sampler> {
         let mut sampler = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .create_sampler)(self.handle, create_info, allocator, sampler.as_mut_ptr())
+            .create_sampler)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
+                sampler.as_mut_ptr(),
+            )
             .assume_init_on_success(sampler)
     }
     ///vkDestroySampler
@@ -4304,16 +4558,25 @@ impl crate::Device {
     pub unsafe fn destroy_sampler(
         &self,
         sampler: crate::vk::Sampler,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_sampler)(self.handle, sampler, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_sampler)(
+            self.handle,
+            sampler,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCreateDescriptorSetLayout
     #[inline]
     pub unsafe fn create_descriptor_set_layout(
         &self,
         create_info: &crate::vk::DescriptorSetLayoutCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::DescriptorSetLayout> {
         let mut set_layout = core::mem::MaybeUninit::uninit();
         (self
@@ -4321,7 +4584,10 @@ impl crate::Device {
             .create_descriptor_set_layout)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 set_layout.as_mut_ptr(),
             )
             .assume_init_on_success(set_layout)
@@ -4331,14 +4597,17 @@ impl crate::Device {
     pub unsafe fn destroy_descriptor_set_layout(
         &self,
         descriptor_set_layout: crate::vk::DescriptorSetLayout,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .device_fn_1_0
             .destroy_descriptor_set_layout)(
             self.handle,
             descriptor_set_layout,
-            allocator,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
         )
     }
     ///vkCreateDescriptorPool
@@ -4346,7 +4615,7 @@ impl crate::Device {
     pub unsafe fn create_descriptor_pool(
         &self,
         create_info: &crate::vk::DescriptorPoolCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::DescriptorPool> {
         let mut descriptor_pool = core::mem::MaybeUninit::uninit();
         (self
@@ -4354,7 +4623,10 @@ impl crate::Device {
             .create_descriptor_pool)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 descriptor_pool.as_mut_ptr(),
             )
             .assume_init_on_success(descriptor_pool)
@@ -4364,11 +4636,18 @@ impl crate::Device {
     pub unsafe fn destroy_descriptor_pool(
         &self,
         descriptor_pool: crate::vk::DescriptorPool,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .device_fn_1_0
-            .destroy_descriptor_pool)(self.handle, descriptor_pool, allocator)
+            .destroy_descriptor_pool)(
+            self.handle,
+            descriptor_pool,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkResetDescriptorPool
     #[inline]
@@ -4435,7 +4714,7 @@ impl crate::Device {
     pub unsafe fn create_framebuffer(
         &self,
         create_info: &crate::vk::FramebufferCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::Framebuffer> {
         let mut framebuffer = core::mem::MaybeUninit::uninit();
         (self
@@ -4443,7 +4722,10 @@ impl crate::Device {
             .create_framebuffer)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 framebuffer.as_mut_ptr(),
             )
             .assume_init_on_success(framebuffer)
@@ -4453,16 +4735,25 @@ impl crate::Device {
     pub unsafe fn destroy_framebuffer(
         &self,
         framebuffer: crate::vk::Framebuffer,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_framebuffer)(self.handle, framebuffer, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_framebuffer)(
+            self.handle,
+            framebuffer,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCreateRenderPass
     #[inline]
     pub unsafe fn create_render_pass(
         &self,
         create_info: &crate::vk::RenderPassCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::RenderPass> {
         let mut render_pass = core::mem::MaybeUninit::uninit();
         (self
@@ -4470,7 +4761,10 @@ impl crate::Device {
             .create_render_pass)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 render_pass.as_mut_ptr(),
             )
             .assume_init_on_success(render_pass)
@@ -4480,27 +4774,41 @@ impl crate::Device {
     pub unsafe fn destroy_render_pass(
         &self,
         render_pass: crate::vk::RenderPass,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_render_pass)(self.handle, render_pass, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_render_pass)(
+            self.handle,
+            render_pass,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkGetRenderAreaGranularity
     #[inline]
     pub unsafe fn get_render_area_granularity(
         &self,
         render_pass: crate::vk::RenderPass,
-        granularity: &mut crate::vk::Extent2D,
-    ) {
+    ) -> crate::vk::Extent2D {
+        let mut granularity = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_0
-            .get_render_area_granularity)(self.handle, render_pass, granularity)
+            .get_render_area_granularity)(
+            self.handle,
+            render_pass,
+            granularity.as_mut_ptr(),
+        );
+        granularity.assume_init()
     }
     ///vkCreateCommandPool
     #[inline]
     pub unsafe fn create_command_pool(
         &self,
         create_info: &crate::vk::CommandPoolCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::CommandPool> {
         let mut command_pool = core::mem::MaybeUninit::uninit();
         (self
@@ -4508,7 +4816,10 @@ impl crate::Device {
             .create_command_pool)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 command_pool.as_mut_ptr(),
             )
             .assume_init_on_success(command_pool)
@@ -4518,9 +4829,18 @@ impl crate::Device {
     pub unsafe fn destroy_command_pool(
         &self,
         command_pool: crate::vk::CommandPool,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_command_pool)(self.handle, command_pool, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_command_pool)(
+            self.handle,
+            command_pool,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkResetCommandPool
     #[inline]
@@ -5321,6 +5641,8 @@ pub(crate) mod items {
         pub p_next: *mut crate::vk::BaseOutStructure<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BaseOutStructure<'_> {}
+    unsafe impl Sync for BaseOutStructure<'_> {}
     impl<'a> BaseOutStructure<'a> {}
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
@@ -5330,6 +5652,8 @@ pub(crate) mod items {
         pub p_next: *const crate::vk::BaseInStructure<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BaseInStructure<'_> {}
+    unsafe impl Sync for BaseInStructure<'_> {}
     impl<'a> BaseInStructure<'a> {}
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
@@ -5338,6 +5662,8 @@ pub(crate) mod items {
         pub x: i32,
         pub y: i32,
     }
+    unsafe impl Send for Offset2D {}
+    unsafe impl Sync for Offset2D {}
     impl Offset2D {
         pub fn x(mut self, x: i32) -> Self {
             self.x = x;
@@ -5356,6 +5682,8 @@ pub(crate) mod items {
         pub y: i32,
         pub z: i32,
     }
+    unsafe impl Send for Offset3D {}
+    unsafe impl Sync for Offset3D {}
     impl Offset3D {
         pub fn x(mut self, x: i32) -> Self {
             self.x = x;
@@ -5377,6 +5705,8 @@ pub(crate) mod items {
         pub width: u32,
         pub height: u32,
     }
+    unsafe impl Send for Extent2D {}
+    unsafe impl Sync for Extent2D {}
     impl Extent2D {
         pub fn width(mut self, width: u32) -> Self {
             self.width = width;
@@ -5395,6 +5725,8 @@ pub(crate) mod items {
         pub height: u32,
         pub depth: u32,
     }
+    unsafe impl Send for Extent3D {}
+    unsafe impl Sync for Extent3D {}
     impl Extent3D {
         pub fn width(mut self, width: u32) -> Self {
             self.width = width;
@@ -5420,6 +5752,8 @@ pub(crate) mod items {
         pub min_depth: core::ffi::c_float,
         pub max_depth: core::ffi::c_float,
     }
+    unsafe impl Send for Viewport {}
+    unsafe impl Sync for Viewport {}
     impl Viewport {
         pub fn x(mut self, x: core::ffi::c_float) -> Self {
             self.x = x;
@@ -5453,6 +5787,8 @@ pub(crate) mod items {
         pub offset: crate::vk::Offset2D,
         pub extent: crate::vk::Extent2D,
     }
+    unsafe impl Send for Rect2D {}
+    unsafe impl Sync for Rect2D {}
     impl Rect2D {
         pub fn offset(mut self, offset: crate::vk::Offset2D) -> Self {
             self.offset = offset;
@@ -5471,6 +5807,8 @@ pub(crate) mod items {
         pub base_array_layer: u32,
         pub layer_count: u32,
     }
+    unsafe impl Send for ClearRect {}
+    unsafe impl Sync for ClearRect {}
     impl ClearRect {
         pub fn rect(mut self, rect: crate::vk::Rect2D) -> Self {
             self.rect = rect;
@@ -5494,6 +5832,8 @@ pub(crate) mod items {
         pub b: crate::vk::ComponentSwizzle,
         pub a: crate::vk::ComponentSwizzle,
     }
+    unsafe impl Send for ComponentMapping {}
+    unsafe impl Sync for ComponentMapping {}
     impl ComponentMapping {
         pub fn r(mut self, r: crate::vk::ComponentSwizzle) -> Self {
             self.r = r;
@@ -5526,6 +5866,8 @@ pub(crate) mod items {
         pub limits: crate::vk::PhysicalDeviceLimits,
         pub sparse_properties: crate::vk::PhysicalDeviceSparseProperties,
     }
+    unsafe impl Send for PhysicalDeviceProperties {}
+    unsafe impl Sync for PhysicalDeviceProperties {}
     impl Default for PhysicalDeviceProperties {
         fn default() -> Self {
             Self {
@@ -5618,6 +5960,8 @@ pub(crate) mod items {
         pub extension_name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
         pub spec_version: u32,
     }
+    unsafe impl Send for ExtensionProperties {}
+    unsafe impl Sync for ExtensionProperties {}
     impl Default for ExtensionProperties {
         fn default() -> Self {
             Self {
@@ -5661,6 +6005,8 @@ pub(crate) mod items {
         pub implementation_version: u32,
         pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
     }
+    unsafe impl Send for LayerProperties {}
+    unsafe impl Sync for LayerProperties {}
     impl Default for LayerProperties {
         fn default() -> Self {
             Self {
@@ -5729,6 +6075,8 @@ pub(crate) mod items {
         pub api_version: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ApplicationInfo<'_> {}
+    unsafe impl Sync for ApplicationInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ApplicationInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::APPLICATION_INFO;
     }
@@ -5797,6 +6145,8 @@ pub(crate) mod items {
         pub pfn_internal_free: crate::vk::PFN_vkInternalFreeNotification,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AllocationCallbacks<'_> {}
+    unsafe impl Sync for AllocationCallbacks<'_> {}
     impl<'a> AllocationCallbacks<'a> {
         pub fn user_data(mut self, user_data: &'a mut core::ffi::c_void) -> Self {
             self.p_user_data = user_data;
@@ -5847,6 +6197,8 @@ pub(crate) mod items {
         pub p_queue_priorities: *const core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceQueueCreateInfo<'_> {}
+    unsafe impl Sync for DeviceQueueCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceQueueCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_QUEUE_CREATE_INFO;
     }
@@ -5897,6 +6249,8 @@ pub(crate) mod items {
         pub p_enabled_features: *const crate::vk::PhysicalDeviceFeatures,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceCreateInfo<'_> {}
+    unsafe impl Sync for DeviceCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_CREATE_INFO;
     }
@@ -5968,6 +6322,8 @@ pub(crate) mod items {
         pub pp_enabled_extension_names: *const *const core::ffi::c_char,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for InstanceCreateInfo<'_> {}
+    unsafe impl Sync for InstanceCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for InstanceCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INSTANCE_CREATE_INFO;
     }
@@ -6024,6 +6380,8 @@ pub(crate) mod items {
         pub timestamp_valid_bits: u32,
         pub min_image_transfer_granularity: crate::vk::Extent3D,
     }
+    unsafe impl Send for QueueFamilyProperties {}
+    unsafe impl Sync for QueueFamilyProperties {}
     impl QueueFamilyProperties {
         pub fn queue_flags(mut self, queue_flags: crate::vk::QueueFlags) -> Self {
             self.queue_flags = queue_flags;
@@ -6054,6 +6412,8 @@ pub(crate) mod items {
         pub memory_heap_count: u32,
         pub memory_heaps: [crate::vk::MemoryHeap; crate::vk::MAX_MEMORY_HEAPS as _],
     }
+    unsafe impl Send for PhysicalDeviceMemoryProperties {}
+    unsafe impl Sync for PhysicalDeviceMemoryProperties {}
     impl Default for PhysicalDeviceMemoryProperties {
         fn default() -> Self {
             Self {
@@ -6092,6 +6452,8 @@ pub(crate) mod items {
         pub memory_type_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryAllocateInfo<'_> {}
+    unsafe impl Sync for MemoryAllocateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryAllocateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_ALLOCATE_INFO;
     }
@@ -6127,6 +6489,8 @@ pub(crate) mod items {
         pub alignment: crate::vk::DeviceSize,
         pub memory_type_bits: u32,
     }
+    unsafe impl Send for MemoryRequirements {}
+    unsafe impl Sync for MemoryRequirements {}
     impl MemoryRequirements {
         pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
             self.size = size;
@@ -6149,6 +6513,8 @@ pub(crate) mod items {
         pub image_granularity: crate::vk::Extent3D,
         pub flags: crate::vk::SparseImageFormatFlags,
     }
+    unsafe impl Send for SparseImageFormatProperties {}
+    unsafe impl Sync for SparseImageFormatProperties {}
     impl SparseImageFormatProperties {
         pub fn aspect_mask(mut self, aspect_mask: crate::vk::ImageAspectFlags) -> Self {
             self.aspect_mask = aspect_mask;
@@ -6176,6 +6542,8 @@ pub(crate) mod items {
         pub image_mip_tail_offset: crate::vk::DeviceSize,
         pub image_mip_tail_stride: crate::vk::DeviceSize,
     }
+    unsafe impl Send for SparseImageMemoryRequirements {}
+    unsafe impl Sync for SparseImageMemoryRequirements {}
     impl SparseImageMemoryRequirements {
         pub fn format_properties(
             mut self,
@@ -6220,6 +6588,8 @@ pub(crate) mod items {
         pub property_flags: crate::vk::MemoryPropertyFlags,
         pub heap_index: u32,
     }
+    unsafe impl Send for MemoryType {}
+    unsafe impl Sync for MemoryType {}
     impl MemoryType {
         pub fn property_flags(
             mut self,
@@ -6240,6 +6610,8 @@ pub(crate) mod items {
         pub size: crate::vk::DeviceSize,
         pub flags: crate::vk::MemoryHeapFlags,
     }
+    unsafe impl Send for MemoryHeap {}
+    unsafe impl Sync for MemoryHeap {}
     impl MemoryHeap {
         pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
             self.size = size;
@@ -6261,6 +6633,8 @@ pub(crate) mod items {
         pub size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MappedMemoryRange<'_> {}
+    unsafe impl Sync for MappedMemoryRange<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MappedMemoryRange<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MAPPED_MEMORY_RANGE;
     }
@@ -6298,6 +6672,8 @@ pub(crate) mod items {
         pub optimal_tiling_features: crate::vk::FormatFeatureFlags,
         pub buffer_features: crate::vk::FormatFeatureFlags,
     }
+    unsafe impl Send for FormatProperties {}
+    unsafe impl Sync for FormatProperties {}
     impl FormatProperties {
         pub fn linear_tiling_features(
             mut self,
@@ -6331,6 +6707,8 @@ pub(crate) mod items {
         pub sample_counts: crate::vk::SampleCountFlags,
         pub max_resource_size: crate::vk::DeviceSize,
     }
+    unsafe impl Send for ImageFormatProperties {}
+    unsafe impl Sync for ImageFormatProperties {}
     impl ImageFormatProperties {
         pub fn max_extent(mut self, max_extent: crate::vk::Extent3D) -> Self {
             self.max_extent = max_extent;
@@ -6367,6 +6745,8 @@ pub(crate) mod items {
         pub offset: crate::vk::DeviceSize,
         pub range: crate::vk::DeviceSize,
     }
+    unsafe impl Send for DescriptorBufferInfo {}
+    unsafe impl Sync for DescriptorBufferInfo {}
     impl DescriptorBufferInfo {
         pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
             self.buffer = buffer;
@@ -6389,6 +6769,8 @@ pub(crate) mod items {
         pub image_view: crate::vk::ImageView,
         pub image_layout: crate::vk::ImageLayout,
     }
+    unsafe impl Send for DescriptorImageInfo {}
+    unsafe impl Sync for DescriptorImageInfo {}
     impl DescriptorImageInfo {
         pub fn sampler(mut self, sampler: crate::vk::Sampler) -> Self {
             self.sampler = sampler;
@@ -6419,6 +6801,8 @@ pub(crate) mod items {
         pub p_texel_buffer_view: *const crate::vk::BufferView,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for WriteDescriptorSet<'_> {}
+    unsafe impl Sync for WriteDescriptorSet<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for WriteDescriptorSet<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET;
     }
@@ -6503,6 +6887,8 @@ pub(crate) mod items {
         pub descriptor_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CopyDescriptorSet<'_> {}
+    unsafe impl Sync for CopyDescriptorSet<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyDescriptorSet<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_DESCRIPTOR_SET;
     }
@@ -6566,6 +6952,8 @@ pub(crate) mod items {
         pub p_queue_family_indices: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferCreateInfo<'_> {}
+    unsafe impl Sync for BufferCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BufferCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_CREATE_INFO;
     }
@@ -6620,6 +7008,8 @@ pub(crate) mod items {
         pub range: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferViewCreateInfo<'_> {}
+    unsafe impl Sync for BufferViewCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BufferViewCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_VIEW_CREATE_INFO;
     }
@@ -6667,6 +7057,8 @@ pub(crate) mod items {
         pub mip_level: u32,
         pub array_layer: u32,
     }
+    unsafe impl Send for ImageSubresource {}
+    unsafe impl Sync for ImageSubresource {}
     impl ImageSubresource {
         pub fn aspect_mask(mut self, aspect_mask: crate::vk::ImageAspectFlags) -> Self {
             self.aspect_mask = aspect_mask;
@@ -6690,6 +7082,8 @@ pub(crate) mod items {
         pub base_array_layer: u32,
         pub layer_count: u32,
     }
+    unsafe impl Send for ImageSubresourceLayers {}
+    unsafe impl Sync for ImageSubresourceLayers {}
     impl ImageSubresourceLayers {
         pub fn aspect_mask(mut self, aspect_mask: crate::vk::ImageAspectFlags) -> Self {
             self.aspect_mask = aspect_mask;
@@ -6718,6 +7112,8 @@ pub(crate) mod items {
         pub base_array_layer: u32,
         pub layer_count: u32,
     }
+    unsafe impl Send for ImageSubresourceRange {}
+    unsafe impl Sync for ImageSubresourceRange {}
     impl ImageSubresourceRange {
         pub fn aspect_mask(mut self, aspect_mask: crate::vk::ImageAspectFlags) -> Self {
             self.aspect_mask = aspect_mask;
@@ -6750,6 +7146,8 @@ pub(crate) mod items {
         pub dst_access_mask: crate::vk::AccessFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryBarrier<'_> {}
+    unsafe impl Sync for MemoryBarrier<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryBarrier<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_BARRIER;
     }
@@ -6795,6 +7193,8 @@ pub(crate) mod items {
         pub size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferMemoryBarrier<'_> {}
+    unsafe impl Sync for BufferMemoryBarrier<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BufferMemoryBarrier<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_MEMORY_BARRIER;
     }
@@ -6866,6 +7266,8 @@ pub(crate) mod items {
         pub subresource_range: crate::vk::ImageSubresourceRange,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageMemoryBarrier<'_> {}
+    unsafe impl Sync for ImageMemoryBarrier<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageMemoryBarrier<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_MEMORY_BARRIER;
     }
@@ -6950,6 +7352,8 @@ pub(crate) mod items {
         pub initial_layout: crate::vk::ImageLayout,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageCreateInfo<'_> {}
+    unsafe impl Sync for ImageCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_CREATE_INFO;
     }
@@ -7036,6 +7440,8 @@ pub(crate) mod items {
         pub array_pitch: crate::vk::DeviceSize,
         pub depth_pitch: crate::vk::DeviceSize,
     }
+    unsafe impl Send for SubresourceLayout {}
+    unsafe impl Sync for SubresourceLayout {}
     impl SubresourceLayout {
         pub fn offset(mut self, offset: crate::vk::DeviceSize) -> Self {
             self.offset = offset;
@@ -7072,6 +7478,8 @@ pub(crate) mod items {
         pub subresource_range: crate::vk::ImageSubresourceRange,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageViewCreateInfo<'_> {}
+    unsafe impl Sync for ImageViewCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_CREATE_INFO;
     }
@@ -7127,6 +7535,8 @@ pub(crate) mod items {
         pub dst_offset: crate::vk::DeviceSize,
         pub size: crate::vk::DeviceSize,
     }
+    unsafe impl Send for BufferCopy {}
+    unsafe impl Sync for BufferCopy {}
     impl BufferCopy {
         pub fn src_offset(mut self, src_offset: crate::vk::DeviceSize) -> Self {
             self.src_offset = src_offset;
@@ -7151,6 +7561,8 @@ pub(crate) mod items {
         pub memory_offset: crate::vk::DeviceSize,
         pub flags: crate::vk::SparseMemoryBindFlags,
     }
+    unsafe impl Send for SparseMemoryBind {}
+    unsafe impl Sync for SparseMemoryBind {}
     impl SparseMemoryBind {
         pub fn resource_offset(
             mut self,
@@ -7187,6 +7599,8 @@ pub(crate) mod items {
         pub memory_offset: crate::vk::DeviceSize,
         pub flags: crate::vk::SparseMemoryBindFlags,
     }
+    unsafe impl Send for SparseImageMemoryBind {}
+    unsafe impl Sync for SparseImageMemoryBind {}
     impl SparseImageMemoryBind {
         pub fn subresource(mut self, subresource: crate::vk::ImageSubresource) -> Self {
             self.subresource = subresource;
@@ -7222,6 +7636,8 @@ pub(crate) mod items {
         pub p_binds: *const crate::vk::SparseMemoryBind,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SparseBufferMemoryBindInfo<'_> {}
+    unsafe impl Sync for SparseBufferMemoryBindInfo<'_> {}
     impl<'a> SparseBufferMemoryBindInfo<'a> {
         pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
             self.buffer = buffer;
@@ -7242,6 +7658,8 @@ pub(crate) mod items {
         pub p_binds: *const crate::vk::SparseMemoryBind,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SparseImageOpaqueMemoryBindInfo<'_> {}
+    unsafe impl Sync for SparseImageOpaqueMemoryBindInfo<'_> {}
     impl<'a> SparseImageOpaqueMemoryBindInfo<'a> {
         pub fn image(mut self, image: crate::vk::Image) -> Self {
             self.image = image;
@@ -7262,6 +7680,8 @@ pub(crate) mod items {
         pub p_binds: *const crate::vk::SparseImageMemoryBind,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SparseImageMemoryBindInfo<'_> {}
+    unsafe impl Sync for SparseImageMemoryBindInfo<'_> {}
     impl<'a> SparseImageMemoryBindInfo<'a> {
         pub fn image(mut self, image: crate::vk::Image) -> Self {
             self.image = image;
@@ -7291,6 +7711,8 @@ pub(crate) mod items {
         pub p_signal_semaphores: *const crate::vk::Semaphore,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BindSparseInfo<'_> {}
+    unsafe impl Sync for BindSparseInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BindSparseInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_SPARSE_INFO;
     }
@@ -7365,6 +7787,8 @@ pub(crate) mod items {
         pub dst_offset: crate::vk::Offset3D,
         pub extent: crate::vk::Extent3D,
     }
+    unsafe impl Send for ImageCopy {}
+    unsafe impl Sync for ImageCopy {}
     impl ImageCopy {
         pub fn src_subresource(
             mut self,
@@ -7402,6 +7826,8 @@ pub(crate) mod items {
         pub dst_subresource: crate::vk::ImageSubresourceLayers,
         pub dst_offsets: [crate::vk::Offset3D; 2 as _],
     }
+    unsafe impl Send for ImageBlit {}
+    unsafe impl Sync for ImageBlit {}
     impl Default for ImageBlit {
         fn default() -> Self {
             Self {
@@ -7453,6 +7879,8 @@ pub(crate) mod items {
         pub image_offset: crate::vk::Offset3D,
         pub image_extent: crate::vk::Extent3D,
     }
+    unsafe impl Send for BufferImageCopy {}
+    unsafe impl Sync for BufferImageCopy {}
     impl BufferImageCopy {
         pub fn buffer_offset(mut self, buffer_offset: crate::vk::DeviceSize) -> Self {
             self.buffer_offset = buffer_offset;
@@ -7492,6 +7920,8 @@ pub(crate) mod items {
         pub dst_offset: crate::vk::Offset3D,
         pub extent: crate::vk::Extent3D,
     }
+    unsafe impl Send for ImageResolve {}
+    unsafe impl Sync for ImageResolve {}
     impl ImageResolve {
         pub fn src_subresource(
             mut self,
@@ -7531,6 +7961,8 @@ pub(crate) mod items {
         pub p_code: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ShaderModuleCreateInfo<'_> {}
+    unsafe impl Sync for ShaderModuleCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ShaderModuleCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_MODULE_CREATE_INFO;
     }
@@ -7572,6 +8004,8 @@ pub(crate) mod items {
         pub p_immutable_samplers: *const crate::vk::Sampler,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorSetLayoutBinding<'_> {}
+    unsafe impl Sync for DescriptorSetLayoutBinding<'_> {}
     impl<'a> DescriptorSetLayoutBinding<'a> {
         pub fn binding(mut self, binding: u32) -> Self {
             self.binding = binding;
@@ -7612,6 +8046,8 @@ pub(crate) mod items {
         pub p_bindings: *const crate::vk::DescriptorSetLayoutBinding<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorSetLayoutCreateInfo<'_> {}
+    unsafe impl Sync for DescriptorSetLayoutCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorSetLayoutCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
     }
@@ -7651,6 +8087,8 @@ pub(crate) mod items {
         pub _type: crate::vk::DescriptorType,
         pub descriptor_count: u32,
     }
+    unsafe impl Send for DescriptorPoolSize {}
+    unsafe impl Sync for DescriptorPoolSize {}
     impl DescriptorPoolSize {
         pub fn _type(mut self, _type: crate::vk::DescriptorType) -> Self {
             self._type = _type;
@@ -7673,6 +8111,8 @@ pub(crate) mod items {
         pub p_pool_sizes: *const crate::vk::DescriptorPoolSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorPoolCreateInfo<'_> {}
+    unsafe impl Sync for DescriptorPoolCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorPoolCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_POOL_CREATE_INFO;
     }
@@ -7718,6 +8158,8 @@ pub(crate) mod items {
         pub p_set_layouts: *const crate::vk::DescriptorSetLayout,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorSetAllocateInfo<'_> {}
+    unsafe impl Sync for DescriptorSetAllocateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorSetAllocateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_ALLOCATE_INFO;
     }
@@ -7758,6 +8200,8 @@ pub(crate) mod items {
         pub offset: u32,
         pub size: usize,
     }
+    unsafe impl Send for SpecializationMapEntry {}
+    unsafe impl Sync for SpecializationMapEntry {}
     impl SpecializationMapEntry {
         pub fn constant_id(mut self, constant_id: u32) -> Self {
             self.constant_id = constant_id;
@@ -7782,6 +8226,8 @@ pub(crate) mod items {
         pub p_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SpecializationInfo<'_> {}
+    unsafe impl Sync for SpecializationInfo<'_> {}
     impl<'a> SpecializationInfo<'a> {
         pub fn map_entries(
             mut self,
@@ -7810,6 +8256,8 @@ pub(crate) mod items {
         pub p_specialization_info: *const crate::vk::SpecializationInfo<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineShaderStageCreateInfo<'_> {}
+    unsafe impl Sync for PipelineShaderStageCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineShaderStageCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SHADER_STAGE_CREATE_INFO;
     }
@@ -7875,6 +8323,8 @@ pub(crate) mod items {
         pub base_pipeline_index: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ComputePipelineCreateInfo<'_> {}
+    unsafe impl Sync for ComputePipelineCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ComputePipelineCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMPUTE_PIPELINE_CREATE_INFO;
     }
@@ -7928,6 +8378,8 @@ pub(crate) mod items {
         pub stride: u32,
         pub input_rate: crate::vk::VertexInputRate,
     }
+    unsafe impl Send for VertexInputBindingDescription {}
+    unsafe impl Sync for VertexInputBindingDescription {}
     impl VertexInputBindingDescription {
         pub fn binding(mut self, binding: u32) -> Self {
             self.binding = binding;
@@ -7951,6 +8403,8 @@ pub(crate) mod items {
         pub format: crate::vk::Format,
         pub offset: u32,
     }
+    unsafe impl Send for VertexInputAttributeDescription {}
+    unsafe impl Sync for VertexInputAttributeDescription {}
     impl VertexInputAttributeDescription {
         pub fn location(mut self, location: u32) -> Self {
             self.location = location;
@@ -7982,6 +8436,8 @@ pub(crate) mod items {
         pub p_vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineVertexInputStateCreateInfo<'_> {}
+    unsafe impl Sync for PipelineVertexInputStateCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineVertexInputStateCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
@@ -8039,6 +8495,8 @@ pub(crate) mod items {
         pub primitive_restart_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineInputAssemblyStateCreateInfo<'_> {}
+    unsafe impl Sync for PipelineInputAssemblyStateCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineInputAssemblyStateCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
@@ -8085,6 +8543,8 @@ pub(crate) mod items {
         pub patch_control_points: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineTessellationStateCreateInfo<'_> {}
+    unsafe impl Sync for PipelineTessellationStateCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineTessellationStateCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_TESSELLATION_STATE_CREATE_INFO;
@@ -8126,6 +8586,8 @@ pub(crate) mod items {
         pub p_scissors: *const crate::vk::Rect2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineViewportStateCreateInfo<'_> {}
+    unsafe impl Sync for PipelineViewportStateCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineViewportStateCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_STATE_CREATE_INFO;
     }
@@ -8189,6 +8651,8 @@ pub(crate) mod items {
         pub line_width: core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineRasterizationStateCreateInfo<'_> {}
+    unsafe impl Sync for PipelineRasterizationStateCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineRasterizationStateCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
@@ -8286,6 +8750,8 @@ pub(crate) mod items {
         pub alpha_to_one_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineMultisampleStateCreateInfo<'_> {}
+    unsafe impl Sync for PipelineMultisampleStateCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineMultisampleStateCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
@@ -8361,6 +8827,8 @@ pub(crate) mod items {
         pub alpha_blend_op: crate::vk::BlendOp,
         pub color_write_mask: crate::vk::ColorComponentFlags,
     }
+    unsafe impl Send for PipelineColorBlendAttachmentState {}
+    unsafe impl Sync for PipelineColorBlendAttachmentState {}
     impl PipelineColorBlendAttachmentState {
         pub fn blend_enable(mut self, blend_enable: bool) -> Self {
             self.blend_enable = blend_enable.into();
@@ -8424,6 +8892,8 @@ pub(crate) mod items {
         pub blend_constants: [core::ffi::c_float; 4 as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineColorBlendStateCreateInfo<'_> {}
+    unsafe impl Sync for PipelineColorBlendStateCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineColorBlendStateCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
@@ -8486,6 +8956,8 @@ pub(crate) mod items {
         pub p_dynamic_states: *const crate::vk::DynamicState,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineDynamicStateCreateInfo<'_> {}
+    unsafe impl Sync for PipelineDynamicStateCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineDynamicStateCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_DYNAMIC_STATE_CREATE_INFO;
     }
@@ -8530,6 +9002,8 @@ pub(crate) mod items {
         pub write_mask: u32,
         pub reference: u32,
     }
+    unsafe impl Send for StencilOpState {}
+    unsafe impl Sync for StencilOpState {}
     impl StencilOpState {
         pub fn fail_op(mut self, fail_op: crate::vk::StencilOp) -> Self {
             self.fail_op = fail_op;
@@ -8578,6 +9052,8 @@ pub(crate) mod items {
         pub max_depth_bounds: core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineDepthStencilStateCreateInfo<'_> {}
+    unsafe impl Sync for PipelineDepthStencilStateCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineDepthStencilStateCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
@@ -8689,6 +9165,8 @@ pub(crate) mod items {
         pub base_pipeline_index: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GraphicsPipelineCreateInfo<'_> {}
+    unsafe impl Sync for GraphicsPipelineCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GraphicsPipelineCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_PIPELINE_CREATE_INFO;
     }
@@ -8829,6 +9307,8 @@ pub(crate) mod items {
         pub p_initial_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineCacheCreateInfo<'_> {}
+    unsafe impl Sync for PipelineCacheCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineCacheCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_CACHE_CREATE_INFO;
     }
@@ -8865,6 +9345,8 @@ pub(crate) mod items {
         pub device_id: u32,
         pub pipeline_cache_uuid: [u8; crate::vk::UUID_SIZE as _],
     }
+    unsafe impl Send for PipelineCacheHeaderVersionOne {}
+    unsafe impl Sync for PipelineCacheHeaderVersionOne {}
     impl Default for PipelineCacheHeaderVersionOne {
         fn default() -> Self {
             Self {
@@ -8912,6 +9394,8 @@ pub(crate) mod items {
         pub offset: u32,
         pub size: u32,
     }
+    unsafe impl Send for PushConstantRange {}
+    unsafe impl Sync for PushConstantRange {}
     impl PushConstantRange {
         pub fn stage_flags(mut self, stage_flags: crate::vk::ShaderStageFlags) -> Self {
             self.stage_flags = stage_flags;
@@ -8939,6 +9423,8 @@ pub(crate) mod items {
         pub p_push_constant_ranges: *const crate::vk::PushConstantRange,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineLayoutCreateInfo<'_> {}
+    unsafe impl Sync for PipelineLayoutCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineLayoutCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_LAYOUT_CREATE_INFO;
     }
@@ -9018,6 +9504,8 @@ pub(crate) mod items {
         pub unnormalized_coordinates: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SamplerCreateInfo<'_> {}
+    unsafe impl Sync for SamplerCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SamplerCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CREATE_INFO;
     }
@@ -9134,6 +9622,8 @@ pub(crate) mod items {
         pub queue_family_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CommandPoolCreateInfo<'_> {}
+    unsafe impl Sync for CommandPoolCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CommandPoolCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_POOL_CREATE_INFO;
     }
@@ -9169,6 +9659,8 @@ pub(crate) mod items {
         pub command_buffer_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CommandBufferAllocateInfo<'_> {}
+    unsafe impl Sync for CommandBufferAllocateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CommandBufferAllocateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_ALLOCATE_INFO;
     }
@@ -9212,6 +9704,8 @@ pub(crate) mod items {
         pub pipeline_statistics: crate::vk::QueryPipelineStatisticFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CommandBufferInheritanceInfo<'_> {}
+    unsafe impl Sync for CommandBufferInheritanceInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CommandBufferInheritanceInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_INFO;
     }
@@ -9269,6 +9763,8 @@ pub(crate) mod items {
         pub p_inheritance_info: *const crate::vk::CommandBufferInheritanceInfo<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CommandBufferBeginInfo<'_> {}
+    unsafe impl Sync for CommandBufferBeginInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CommandBufferBeginInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_BEGIN_INFO;
     }
@@ -9309,6 +9805,8 @@ pub(crate) mod items {
         pub p_clear_values: *const crate::vk::ClearValue,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassBeginInfo<'_> {}
+    unsafe impl Sync for RenderPassBeginInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassBeginInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_BEGIN_INFO;
     }
@@ -9355,6 +9853,8 @@ pub(crate) mod items {
         pub depth: core::ffi::c_float,
         pub stencil: u32,
     }
+    unsafe impl Send for ClearDepthStencilValue {}
+    unsafe impl Sync for ClearDepthStencilValue {}
     impl ClearDepthStencilValue {
         pub fn depth(mut self, depth: core::ffi::c_float) -> Self {
             self.depth = depth;
@@ -9373,6 +9873,8 @@ pub(crate) mod items {
         pub color_attachment: u32,
         pub clear_value: crate::vk::ClearValue,
     }
+    unsafe impl Send for ClearAttachment {}
+    unsafe impl Sync for ClearAttachment {}
     impl ClearAttachment {
         pub fn aspect_mask(mut self, aspect_mask: crate::vk::ImageAspectFlags) -> Self {
             self.aspect_mask = aspect_mask;
@@ -9401,6 +9903,8 @@ pub(crate) mod items {
         pub initial_layout: crate::vk::ImageLayout,
         pub final_layout: crate::vk::ImageLayout,
     }
+    unsafe impl Send for AttachmentDescription {}
+    unsafe impl Sync for AttachmentDescription {}
     impl AttachmentDescription {
         pub fn flags(mut self, flags: crate::vk::AttachmentDescriptionFlags) -> Self {
             self.flags = flags;
@@ -9452,6 +9956,8 @@ pub(crate) mod items {
         pub attachment: u32,
         pub layout: crate::vk::ImageLayout,
     }
+    unsafe impl Send for AttachmentReference {}
+    unsafe impl Sync for AttachmentReference {}
     impl AttachmentReference {
         pub fn attachment(mut self, attachment: u32) -> Self {
             self.attachment = attachment;
@@ -9478,6 +9984,8 @@ pub(crate) mod items {
         pub p_preserve_attachments: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SubpassDescription<'_> {}
+    unsafe impl Sync for SubpassDescription<'_> {}
     impl<'a> SubpassDescription<'a> {
         pub fn flags(mut self, flags: crate::vk::SubpassDescriptionFlags) -> Self {
             self.flags = flags;
@@ -9539,6 +10047,8 @@ pub(crate) mod items {
         pub dst_access_mask: crate::vk::AccessFlags,
         pub dependency_flags: crate::vk::DependencyFlags,
     }
+    unsafe impl Send for SubpassDependency {}
+    unsafe impl Sync for SubpassDependency {}
     impl SubpassDependency {
         pub fn src_subpass(mut self, src_subpass: u32) -> Self {
             self.src_subpass = src_subpass;
@@ -9599,6 +10109,8 @@ pub(crate) mod items {
         pub p_dependencies: *const crate::vk::SubpassDependency,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderPassCreateInfo<'_> {}
+    unsafe impl Sync for RenderPassCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_CREATE_INFO;
     }
@@ -9657,6 +10169,8 @@ pub(crate) mod items {
         pub flags: crate::vk::EventCreateFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for EventCreateInfo<'_> {}
+    unsafe impl Sync for EventCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for EventCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EVENT_CREATE_INFO;
     }
@@ -9685,6 +10199,8 @@ pub(crate) mod items {
         pub flags: crate::vk::FenceCreateFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for FenceCreateInfo<'_> {}
+    unsafe impl Sync for FenceCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for FenceCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FENCE_CREATE_INFO;
     }
@@ -9764,6 +10280,8 @@ pub(crate) mod items {
         pub variable_multisample_rate: crate::vk::Bool32,
         pub inherited_queries: crate::vk::Bool32,
     }
+    unsafe impl Send for PhysicalDeviceFeatures {}
+    unsafe impl Sync for PhysicalDeviceFeatures {}
     impl PhysicalDeviceFeatures {
         pub fn robust_buffer_access(mut self, robust_buffer_access: bool) -> Self {
             self.robust_buffer_access = robust_buffer_access.into();
@@ -10081,6 +10599,8 @@ pub(crate) mod items {
         pub residency_aligned_mip_size: crate::vk::Bool32,
         pub residency_non_resident_strict: crate::vk::Bool32,
     }
+    unsafe impl Send for PhysicalDeviceSparseProperties {}
+    unsafe impl Sync for PhysicalDeviceSparseProperties {}
     impl PhysicalDeviceSparseProperties {
         pub fn residency_standard2_d_block_shape(
             mut self,
@@ -10232,6 +10752,8 @@ pub(crate) mod items {
         pub optimal_buffer_copy_row_pitch_alignment: crate::vk::DeviceSize,
         pub non_coherent_atom_size: crate::vk::DeviceSize,
     }
+    unsafe impl Send for PhysicalDeviceLimits {}
+    unsafe impl Sync for PhysicalDeviceLimits {}
     impl Default for PhysicalDeviceLimits {
         fn default() -> Self {
             Self {
@@ -11028,6 +11550,8 @@ pub(crate) mod items {
         pub flags: crate::vk::SemaphoreCreateFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SemaphoreCreateInfo<'_> {}
+    unsafe impl Sync for SemaphoreCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_CREATE_INFO;
     }
@@ -11059,6 +11583,8 @@ pub(crate) mod items {
         pub pipeline_statistics: crate::vk::QueryPipelineStatisticFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueryPoolCreateInfo<'_> {}
+    unsafe impl Sync for QueryPoolCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for QueryPoolCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_POOL_CREATE_INFO;
     }
@@ -11111,6 +11637,8 @@ pub(crate) mod items {
         pub layers: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for FramebufferCreateInfo<'_> {}
+    unsafe impl Sync for FramebufferCreateInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for FramebufferCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAMEBUFFER_CREATE_INFO;
     }
@@ -11170,6 +11698,8 @@ pub(crate) mod items {
         pub first_vertex: u32,
         pub first_instance: u32,
     }
+    unsafe impl Send for DrawIndirectCommand {}
+    unsafe impl Sync for DrawIndirectCommand {}
     impl DrawIndirectCommand {
         pub fn vertex_count(mut self, vertex_count: u32) -> Self {
             self.vertex_count = vertex_count;
@@ -11198,6 +11728,8 @@ pub(crate) mod items {
         pub vertex_offset: i32,
         pub first_instance: u32,
     }
+    unsafe impl Send for DrawIndexedIndirectCommand {}
+    unsafe impl Sync for DrawIndexedIndirectCommand {}
     impl DrawIndexedIndirectCommand {
         pub fn index_count(mut self, index_count: u32) -> Self {
             self.index_count = index_count;
@@ -11228,6 +11760,8 @@ pub(crate) mod items {
         pub y: u32,
         pub z: u32,
     }
+    unsafe impl Send for DispatchIndirectCommand {}
+    unsafe impl Sync for DispatchIndirectCommand {}
     impl DispatchIndirectCommand {
         pub fn x(mut self, x: u32) -> Self {
             self.x = x;
@@ -11257,6 +11791,8 @@ pub(crate) mod items {
         pub p_signal_semaphores: *const crate::vk::Semaphore,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SubmitInfo<'_> {}
+    unsafe impl Sync for SubmitInfo<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SubmitInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBMIT_INFO;
     }

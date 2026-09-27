@@ -26,6 +26,8 @@ pub(crate) mod items {
         pub stereo_type: crate::vk::DisplaySurfaceStereoTypeNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplaySurfaceStereoCreateInfoNV<'_> {}
+    unsafe impl Sync for DisplaySurfaceStereoCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplaySurfaceStereoCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_SURFACE_STEREO_CREATE_INFO_NV;
     }
@@ -59,6 +61,8 @@ pub(crate) mod items {
         pub hdmi3_d_supported: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplayModeStereoPropertiesNV<'_> {}
+    unsafe impl Sync for DisplayModeStereoPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeStereoPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_MODE_STEREO_PROPERTIES_NV;
     }

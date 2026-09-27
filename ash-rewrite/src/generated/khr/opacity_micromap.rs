@@ -122,6 +122,8 @@ pub(crate) mod items {
         pub triangle_array_stride: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureGeometryMicromapDataKHR<'_> {}
+    unsafe impl Sync for AccelerationStructureGeometryMicromapDataKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometryMicromapDataKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MICROMAP_DATA_KHR;
@@ -187,6 +189,8 @@ pub(crate) mod items {
         pub subdivision_level: u32,
         pub format: crate::vk::OpacityMicromapFormatKHR,
     }
+    unsafe impl Send for MicromapUsageKHR {}
+    unsafe impl Sync for MicromapUsageKHR {}
     impl MicromapUsageKHR {
         pub fn count(mut self, count: u32) -> Self {
             self.count = count;
@@ -209,6 +213,8 @@ pub(crate) mod items {
         pub subdivision_level: u16,
         pub format: u16,
     }
+    unsafe impl Send for MicromapTriangleKHR {}
+    unsafe impl Sync for MicromapTriangleKHR {}
     impl MicromapTriangleKHR {
         pub fn data_offset(mut self, data_offset: u32) -> Self {
             self.data_offset = data_offset;
@@ -232,6 +238,8 @@ pub(crate) mod items {
         pub micromap: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceOpacityMicromapFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceOpacityMicromapFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_KHR;
@@ -268,6 +276,8 @@ pub(crate) mod items {
         pub max_micromap_triangles: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceOpacityMicromapPropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceOpacityMicromapPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceOpacityMicromapPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_KHR;
@@ -327,6 +337,8 @@ pub(crate) mod items {
         pub micromap: crate::vk::AccelerationStructureKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureTrianglesOpacityMicromapKHR<'_> {}
+    unsafe impl Sync for AccelerationStructureTrianglesOpacityMicromapKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureTrianglesOpacityMicromapKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_KHR;

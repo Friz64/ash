@@ -23,6 +23,8 @@ pub(crate) mod items {
         pub fragment_shader_barycentric: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_KHR;
@@ -59,6 +61,8 @@ pub(crate) mod items {
         pub tri_strip_vertex_order_independent_of_provoking_vertex: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_PROPERTIES_KHR;

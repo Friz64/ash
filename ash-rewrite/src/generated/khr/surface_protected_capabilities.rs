@@ -18,6 +18,8 @@ pub(crate) mod items {
         pub supports_protected: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SurfaceProtectedCapabilitiesKHR<'_> {}
+    unsafe impl Sync for SurfaceProtectedCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceProtectedCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR;
     }

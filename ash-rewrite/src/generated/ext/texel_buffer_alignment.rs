@@ -21,6 +21,8 @@ pub(crate) mod items {
         pub texel_buffer_alignment: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT;

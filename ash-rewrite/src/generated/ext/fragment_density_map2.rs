@@ -33,6 +33,8 @@ pub(crate) mod items {
         pub fragment_density_map_deferred: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT;
@@ -72,6 +74,8 @@ pub(crate) mod items {
         pub max_descriptor_set_subsampled_samplers: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT;

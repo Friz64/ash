@@ -23,6 +23,8 @@ pub(crate) mod items {
         pub workgroup_memory_explicit_layout16_bit_access: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR;

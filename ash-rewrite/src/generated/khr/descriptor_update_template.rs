@@ -130,7 +130,7 @@ impl Device {
     pub unsafe fn create_descriptor_update_template(
         &self,
         create_info: &crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::DescriptorUpdateTemplate> {
         let mut descriptor_update_template = core::mem::MaybeUninit::uninit();
         (self
@@ -138,7 +138,10 @@ impl Device {
             .create_descriptor_update_template)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 descriptor_update_template.as_mut_ptr(),
             )
             .assume_init_on_success(descriptor_update_template)
@@ -148,14 +151,17 @@ impl Device {
     pub unsafe fn destroy_descriptor_update_template(
         &self,
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
             .destroy_descriptor_update_template)(
             self.handle,
             descriptor_update_template,
-            allocator,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
         )
     }
     ///vkUpdateDescriptorSetWithTemplate

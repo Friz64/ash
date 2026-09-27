@@ -132,15 +132,16 @@ impl Device {
     pub unsafe fn get_pipeline_indirect_memory_requirements(
         &self,
         create_info: &crate::vk::ComputePipelineCreateInfo<'_>,
-        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
-    ) {
+    ) -> crate::vk::MemoryRequirements2<'_> {
+        let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_pipeline_indirect_memory_requirements)(
             self.handle,
             create_info,
-            memory_requirements,
-        )
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///vkGetPipelineIndirectDeviceAddressNV
     #[inline]
@@ -165,6 +166,8 @@ pub(crate) mod items {
         pub pipeline_device_address_capture_replay: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ComputePipelineIndirectBufferInfoNV<'_> {}
+    unsafe impl Sync for ComputePipelineIndirectBufferInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ComputePipelineIndirectBufferInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMPUTE_PIPELINE_INDIRECT_BUFFER_INFO_NV;
@@ -214,6 +217,8 @@ pub(crate) mod items {
         pub device_generated_compute_capture_replay: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_COMPUTE_FEATURES_NV;
@@ -269,6 +274,8 @@ pub(crate) mod items {
         pub pipeline: crate::vk::Pipeline,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineIndirectDeviceAddressInfoNV<'_> {}
+    unsafe impl Sync for PipelineIndirectDeviceAddressInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineIndirectDeviceAddressInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_INDIRECT_DEVICE_ADDRESS_INFO_NV;
@@ -303,6 +310,8 @@ pub(crate) mod items {
     pub struct BindPipelineIndirectCommandNV {
         pub pipeline_address: crate::vk::DeviceAddress,
     }
+    unsafe impl Send for BindPipelineIndirectCommandNV {}
+    unsafe impl Sync for BindPipelineIndirectCommandNV {}
     impl BindPipelineIndirectCommandNV {
         pub fn pipeline_address(
             mut self,

@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub pipeline_opacity_micromap: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'_> {}
+    unsafe impl Sync for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM;

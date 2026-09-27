@@ -166,6 +166,8 @@ pub(crate) mod items {
         pub sampler: crate::vk::Sampler,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageViewHandleInfoNVX<'_> {}
+    unsafe impl Sync for ImageViewHandleInfoNVX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewHandleInfoNVX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_HANDLE_INFO_NVX;
     }
@@ -208,6 +210,8 @@ pub(crate) mod items {
         pub size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageViewAddressPropertiesNVX<'_> {}
+    unsafe impl Sync for ImageViewAddressPropertiesNVX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewAddressPropertiesNVX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_ADDRESS_PROPERTIES_NVX;
     }

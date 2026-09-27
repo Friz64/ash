@@ -70,6 +70,8 @@ pub(crate) mod items {
         ///- `color_range` @ `0..1`
         pub bitfield0: u32,
     }
+    unsafe impl Send for VP9ColorConfigFlags {}
+    unsafe impl Sync for VP9ColorConfigFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VP9ColorConfigFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -99,6 +101,8 @@ pub(crate) mod items {
         pub reserved1: u8,
         pub color_space: crate::vk::VP9ColorSpace,
     }
+    unsafe impl Send for VP9ColorConfig {}
+    unsafe impl Sync for VP9ColorConfig {}
     impl VP9ColorConfig {
         pub fn flags(mut self, flags: crate::vk::VP9ColorConfigFlags) -> Self {
             self.flags = flags;
@@ -132,6 +136,8 @@ pub(crate) mod items {
 - `loop_filter_delta_update` @ `1..2`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for VP9LoopFilterFlags {}
+    unsafe impl Sync for VP9LoopFilterFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VP9LoopFilterFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -180,6 +186,8 @@ pub(crate) mod items {
         pub update_mode_delta: u8,
         pub loop_filter_mode_deltas: [i8; crate::vk::VP9_LOOP_FILTER_ADJUSTMENTS as _],
     }
+    unsafe impl Send for VP9LoopFilter {}
+    unsafe impl Sync for VP9LoopFilter {}
     impl Default for VP9LoopFilter {
         fn default() -> Self {
             Self {
@@ -238,6 +246,8 @@ pub(crate) mod items {
 - `segmentation_abs_or_delta_update` @ `3..4`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for VP9SegmentationFlags {}
+    unsafe impl Sync for VP9SegmentationFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for VP9SegmentationFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -312,6 +322,8 @@ pub(crate) mod items {
         pub feature_data: [[i16; crate::vk::VP9_SEG_LVL_MAX
             as _]; crate::vk::VP9_MAX_SEGMENTS as _],
     }
+    unsafe impl Send for VP9Segmentation {}
+    unsafe impl Sync for VP9Segmentation {}
     impl Default for VP9Segmentation {
         fn default() -> Self {
             Self {

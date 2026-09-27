@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub dedicated_allocation_image_aliasing: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV;

@@ -30,6 +30,8 @@ pub(crate) mod items {
         pub linear_color_attachment: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceLinearColorAttachmentFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceLinearColorAttachmentFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV;

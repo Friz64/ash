@@ -30,6 +30,8 @@ pub(crate) mod items {
         pub shader_subgroup_partitioned: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_PARTITIONED_FEATURES_EXT;

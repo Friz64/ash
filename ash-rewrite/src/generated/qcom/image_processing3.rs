@@ -30,6 +30,8 @@ pub(crate) mod items {
         pub block_match_extended_clamp_to_edge: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceImageProcessing3FeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceImageProcessing3FeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_3_FEATURES_QCOM;

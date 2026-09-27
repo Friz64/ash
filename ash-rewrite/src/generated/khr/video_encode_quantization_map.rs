@@ -143,6 +143,8 @@ pub(crate) mod items {
         pub max_quantization_map_extent: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoEncodeQuantizationMapCapabilitiesKHR<'_> {}
+    unsafe impl Sync for VideoEncodeQuantizationMapCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoEncodeQuantizationMapCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_CAPABILITIES_KHR;
@@ -178,6 +180,8 @@ pub(crate) mod items {
         pub max_qp_delta: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoEncodeH264QuantizationMapCapabilitiesKHR<'_> {}
+    unsafe impl Sync for VideoEncodeH264QuantizationMapCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoEncodeH264QuantizationMapCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_QUANTIZATION_MAP_CAPABILITIES_KHR;
@@ -215,6 +219,8 @@ pub(crate) mod items {
         pub max_qp_delta: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoEncodeH265QuantizationMapCapabilitiesKHR<'_> {}
+    unsafe impl Sync for VideoEncodeH265QuantizationMapCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoEncodeH265QuantizationMapCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_QUANTIZATION_MAP_CAPABILITIES_KHR;
@@ -252,6 +258,8 @@ pub(crate) mod items {
         pub max_q_index_delta: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoEncodeAV1QuantizationMapCapabilitiesKHR<'_> {}
+    unsafe impl Sync for VideoEncodeAV1QuantizationMapCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoEncodeAV1QuantizationMapCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_QUANTIZATION_MAP_CAPABILITIES_KHR;
@@ -288,6 +296,8 @@ pub(crate) mod items {
         pub quantization_map_texel_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoFormatQuantizationMapPropertiesKHR<'_> {}
+    unsafe impl Sync for VideoFormatQuantizationMapPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoFormatQuantizationMapPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_FORMAT_QUANTIZATION_MAP_PROPERTIES_KHR;
@@ -322,6 +332,8 @@ pub(crate) mod items {
         pub compatible_ctb_sizes: crate::vk::VideoEncodeH265CtbSizeFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoFormatH265QuantizationMapPropertiesKHR<'_> {}
+    unsafe impl Sync for VideoFormatH265QuantizationMapPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoFormatH265QuantizationMapPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_FORMAT_H265_QUANTIZATION_MAP_PROPERTIES_KHR;
@@ -356,6 +368,8 @@ pub(crate) mod items {
         pub compatible_superblock_sizes: crate::vk::VideoEncodeAV1SuperblockSizeFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoFormatAV1QuantizationMapPropertiesKHR<'_> {}
+    unsafe impl Sync for VideoFormatAV1QuantizationMapPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoFormatAV1QuantizationMapPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_FORMAT_AV1_QUANTIZATION_MAP_PROPERTIES_KHR;
@@ -391,6 +405,8 @@ pub(crate) mod items {
         pub quantization_map_extent: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoEncodeQuantizationMapInfoKHR<'_> {}
+    unsafe impl Sync for VideoEncodeQuantizationMapInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoEncodeQuantizationMapInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_INFO_KHR;
@@ -433,6 +449,8 @@ pub(crate) mod items {
         pub quantization_map_texel_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'_> {}
+    unsafe impl Sync for VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_SESSION_PARAMETERS_CREATE_INFO_KHR;
@@ -467,6 +485,8 @@ pub(crate) mod items {
         pub video_encode_quantization_map: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_QUANTIZATION_MAP_FEATURES_KHR;

@@ -95,6 +95,8 @@ pub(crate) mod items {
         pub handle: crate::platform_types::HANDLE,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportMemoryWin32HandleInfoNV<'_> {}
+    unsafe impl Sync for ImportMemoryWin32HandleInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryWin32HandleInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_NV;
     }
@@ -134,6 +136,8 @@ pub(crate) mod items {
         pub dw_access: crate::platform_types::DWORD,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExportMemoryWin32HandleInfoNV<'_> {}
+    unsafe impl Sync for ExportMemoryWin32HandleInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryWin32HandleInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_NV;
     }

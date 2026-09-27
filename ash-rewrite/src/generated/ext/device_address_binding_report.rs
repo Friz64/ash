@@ -46,6 +46,8 @@ pub(crate) mod items {
         pub report_address_binding: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceAddressBindingReportFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceAddressBindingReportFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT;
@@ -82,6 +84,8 @@ pub(crate) mod items {
         pub binding_type: crate::vk::DeviceAddressBindingTypeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceAddressBindingCallbackDataEXT<'_> {}
+    unsafe impl Sync for DeviceAddressBindingCallbackDataEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceAddressBindingCallbackDataEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT;

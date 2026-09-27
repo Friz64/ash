@@ -126,6 +126,8 @@ pub(crate) mod items {
         pub decompressed_size: crate::vk::DeviceSize,
         pub decompression_method: crate::vk::MemoryDecompressionMethodFlagsEXT,
     }
+    unsafe impl Send for DecompressMemoryRegionNV {}
+    unsafe impl Sync for DecompressMemoryRegionNV {}
     impl DecompressMemoryRegionNV {
         pub fn src_address(mut self, src_address: crate::vk::DeviceAddress) -> Self {
             self.src_address = src_address;

@@ -14,6 +14,8 @@ pub(crate) mod items {
         pub luma_weight_l1_flag: u32,
         pub chroma_weight_l1_flag: u32,
     }
+    unsafe impl Send for EncodeH264WeightTableFlags {}
+    unsafe impl Sync for EncodeH264WeightTableFlags {}
     impl EncodeH264WeightTableFlags {
         pub fn luma_weight_l0_flag(mut self, luma_weight_l0_flag: u32) -> Self {
             self.luma_weight_l0_flag = luma_weight_l0_flag;
@@ -52,6 +54,8 @@ pub(crate) mod items {
         pub chroma_offset_l1: [[i8; crate::vk::H264_MAX_CHROMA_PLANES
             as _]; crate::vk::H264_MAX_NUM_LIST_REF as _],
     }
+    unsafe impl Send for EncodeH264WeightTable {}
+    unsafe impl Sync for EncodeH264WeightTable {}
     impl Default for EncodeH264WeightTable {
         fn default() -> Self {
             Self {
@@ -150,6 +154,8 @@ pub(crate) mod items {
 - `num_ref_idx_active_override_flag` @ `1..2`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for EncodeH264SliceHeaderFlags {}
+    unsafe impl Sync for EncodeH264SliceHeaderFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH264SliceHeaderFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -200,6 +206,8 @@ pub(crate) mod items {
 - `adaptive_ref_pic_marking_mode_flag` @ `4..5`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for EncodeH264PictureInfoFlags {}
+    unsafe impl Sync for EncodeH264PictureInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH264PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -277,6 +285,8 @@ pub(crate) mod items {
         ///- `used_for_long_term_reference` @ `0..1`
         pub bitfield0: u32,
     }
+    unsafe impl Send for EncodeH264ReferenceInfoFlags {}
+    unsafe impl Sync for EncodeH264ReferenceInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH264ReferenceInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -308,6 +318,8 @@ pub(crate) mod items {
 - `ref_pic_list_modification_flag_l1` @ `1..2`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for EncodeH264ReferenceListsInfoFlags {}
+    unsafe impl Sync for EncodeH264ReferenceListsInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeH264ReferenceListsInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -356,6 +368,8 @@ pub(crate) mod items {
         pub abs_diff_pic_num_minus1: u16,
         pub long_term_pic_num: u16,
     }
+    unsafe impl Send for EncodeH264RefListModEntry {}
+    unsafe impl Sync for EncodeH264RefListModEntry {}
     impl EncodeH264RefListModEntry {
         pub fn modification_of_pic_nums_idc(
             mut self,
@@ -383,6 +397,8 @@ pub(crate) mod items {
         pub long_term_frame_idx: u16,
         pub max_long_term_frame_idx_plus1: u16,
     }
+    unsafe impl Send for EncodeH264RefPicMarkingEntry {}
+    unsafe impl Sync for EncodeH264RefPicMarkingEntry {}
     impl EncodeH264RefPicMarkingEntry {
         pub fn memory_management_control_operation(
             mut self,
@@ -432,6 +448,8 @@ pub(crate) mod items {
         pub p_ref_pic_marking_operations: *const crate::vk::EncodeH264RefPicMarkingEntry,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for EncodeH264ReferenceListsInfo<'_> {}
+    unsafe impl Sync for EncodeH264ReferenceListsInfo<'_> {}
     impl<'a> Default for EncodeH264ReferenceListsInfo<'a> {
         fn default() -> Self {
             Self {
@@ -532,6 +550,8 @@ pub(crate) mod items {
         pub p_ref_lists: *const crate::vk::EncodeH264ReferenceListsInfo<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for EncodeH264PictureInfo<'_> {}
+    unsafe impl Sync for EncodeH264PictureInfo<'_> {}
     impl<'a> Default for EncodeH264PictureInfo<'a> {
         fn default() -> Self {
             Self {
@@ -609,6 +629,8 @@ pub(crate) mod items {
         pub long_term_frame_idx: u16,
         pub temporal_id: u8,
     }
+    unsafe impl Send for EncodeH264ReferenceInfo {}
+    unsafe impl Sync for EncodeH264ReferenceInfo {}
     impl EncodeH264ReferenceInfo {
         pub fn flags(mut self, flags: crate::vk::EncodeH264ReferenceInfoFlags) -> Self {
             self.flags = flags;
@@ -658,6 +680,8 @@ pub(crate) mod items {
         pub p_weight_table: *const crate::vk::EncodeH264WeightTable,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for EncodeH264SliceHeader<'_> {}
+    unsafe impl Sync for EncodeH264SliceHeader<'_> {}
     impl<'a> EncodeH264SliceHeader<'a> {
         pub fn flags(mut self, flags: crate::vk::EncodeH264SliceHeaderFlags) -> Self {
             self.flags = flags;

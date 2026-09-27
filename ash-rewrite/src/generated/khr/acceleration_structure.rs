@@ -533,14 +533,17 @@ impl Device {
     pub unsafe fn destroy_acceleration_structure(
         &self,
         acceleration_structure: crate::vk::AccelerationStructureKHR,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
             .destroy_acceleration_structure)(
             self.handle,
             acceleration_structure,
-            allocator,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
         )
     }
     ///vkCmdCopyAccelerationStructureKHR
@@ -660,22 +663,23 @@ impl Device {
     pub unsafe fn get_device_acceleration_structure_compatibility(
         &self,
         version_info: &crate::vk::AccelerationStructureVersionInfoKHR<'_>,
-        compatibility: &mut crate::vk::AccelerationStructureCompatibilityKHR,
-    ) {
+    ) -> crate::vk::AccelerationStructureCompatibilityKHR {
+        let mut compatibility = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_device_acceleration_structure_compatibility)(
             self.handle,
             version_info,
-            compatibility,
-        )
+            compatibility.as_mut_ptr(),
+        );
+        compatibility.assume_init()
     }
     ///vkCreateAccelerationStructureKHR
     #[inline]
     pub unsafe fn create_acceleration_structure(
         &self,
         create_info: &crate::vk::AccelerationStructureCreateInfoKHR<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::AccelerationStructureKHR> {
         let mut acceleration_structure = core::mem::MaybeUninit::uninit();
         (self
@@ -683,7 +687,10 @@ impl Device {
             .create_acceleration_structure)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 acceleration_structure.as_mut_ptr(),
             )
             .assume_init_on_success(acceleration_structure)
@@ -764,18 +771,22 @@ impl Device {
         &self,
         build_type: crate::vk::AccelerationStructureBuildTypeKHR,
         build_info: &crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
-        max_primitive_counts: &u32,
-        size_info: &mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
-    ) {
+        max_primitive_counts: Option<&u32>,
+    ) -> crate::vk::AccelerationStructureBuildSizesInfoKHR<'_> {
+        let mut size_info = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_acceleration_structure_build_sizes)(
             self.handle,
             build_type,
             build_info,
-            max_primitive_counts,
-            size_info,
-        )
+            match max_primitive_counts {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+            size_info.as_mut_ptr(),
+        );
+        size_info.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 13;
@@ -791,6 +802,8 @@ pub(crate) mod items {
         pub p_acceleration_structures: *const crate::vk::AccelerationStructureKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for WriteDescriptorSetAccelerationStructureKHR<'_> {}
+    unsafe impl Sync for WriteDescriptorSetAccelerationStructureKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for WriteDescriptorSetAccelerationStructureKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR;
@@ -831,6 +844,8 @@ pub(crate) mod items {
         pub descriptor_binding_acceleration_structure_update_after_bind: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceAccelerationStructureFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceAccelerationStructureFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR;
@@ -907,6 +922,8 @@ pub(crate) mod items {
         pub min_acceleration_structure_scratch_offset_alignment: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceAccelerationStructurePropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceAccelerationStructurePropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR;
@@ -994,6 +1011,8 @@ pub(crate) mod items {
         pub transform_data: crate::vk::DeviceOrHostAddressConstKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureGeometryTrianglesDataKHR<'_> {}
+    unsafe impl Sync for AccelerationStructureGeometryTrianglesDataKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometryTrianglesDataKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR;
@@ -1063,6 +1082,8 @@ pub(crate) mod items {
         pub stride: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureGeometryAabbsDataKHR<'_> {}
+    unsafe impl Sync for AccelerationStructureGeometryAabbsDataKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometryAabbsDataKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR;
@@ -1098,6 +1119,8 @@ pub(crate) mod items {
         pub data: crate::vk::DeviceOrHostAddressConstKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureGeometryInstancesDataKHR<'_> {}
+    unsafe impl Sync for AccelerationStructureGeometryInstancesDataKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometryInstancesDataKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR;
@@ -1134,6 +1157,8 @@ pub(crate) mod items {
         pub flags: crate::vk::GeometryFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureGeometryKHR<'_> {}
+    unsafe impl Sync for AccelerationStructureGeometryKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureGeometryKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_KHR;
     }
@@ -1186,6 +1211,8 @@ pub(crate) mod items {
         pub scratch_data: crate::vk::DeviceOrHostAddressKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureBuildGeometryInfoKHR<'_> {}
+    unsafe impl Sync for AccelerationStructureBuildGeometryInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureBuildGeometryInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR;
@@ -1274,6 +1301,8 @@ pub(crate) mod items {
         pub first_vertex: u32,
         pub transform_offset: u32,
     }
+    unsafe impl Send for AccelerationStructureBuildRangeInfoKHR {}
+    unsafe impl Sync for AccelerationStructureBuildRangeInfoKHR {}
     impl AccelerationStructureBuildRangeInfoKHR {
         pub fn primitive_count(mut self, primitive_count: u32) -> Self {
             self.primitive_count = primitive_count;
@@ -1306,6 +1335,8 @@ pub(crate) mod items {
         pub device_address: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureCreateInfoKHR<'_> {}
+    unsafe impl Sync for AccelerationStructureCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_KHR;
@@ -1368,6 +1399,8 @@ pub(crate) mod items {
         pub max_y: core::ffi::c_float,
         pub max_z: core::ffi::c_float,
     }
+    unsafe impl Send for AabbPositionsKHR {}
+    unsafe impl Sync for AabbPositionsKHR {}
     impl AabbPositionsKHR {
         pub fn min_x(mut self, min_x: core::ffi::c_float) -> Self {
             self.min_x = min_x;
@@ -1400,6 +1433,8 @@ pub(crate) mod items {
     pub struct TransformMatrixKHR {
         pub matrix: [[core::ffi::c_float; 4 as _]; 3 as _],
     }
+    unsafe impl Send for TransformMatrixKHR {}
+    unsafe impl Sync for TransformMatrixKHR {}
     impl Default for TransformMatrixKHR {
         fn default() -> Self {
             Self {
@@ -1425,6 +1460,8 @@ pub(crate) mod items {
         pub bitfield1: u32,
         pub acceleration_structure_reference: u64,
     }
+    unsafe impl Send for AccelerationStructureInstanceKHR {}
+    unsafe impl Sync for AccelerationStructureInstanceKHR {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccelerationStructureInstanceKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1502,6 +1539,8 @@ pub(crate) mod items {
         pub acceleration_structure: crate::vk::AccelerationStructureKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureDeviceAddressInfoKHR<'_> {}
+    unsafe impl Sync for AccelerationStructureDeviceAddressInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureDeviceAddressInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR;
@@ -1534,6 +1573,8 @@ pub(crate) mod items {
         pub p_version_data: *const u8,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureVersionInfoKHR<'_> {}
+    unsafe impl Sync for AccelerationStructureVersionInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureVersionInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_VERSION_INFO_KHR;
@@ -1568,6 +1609,8 @@ pub(crate) mod items {
         pub mode: crate::vk::CopyAccelerationStructureModeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CopyAccelerationStructureInfoKHR<'_> {}
+    unsafe impl Sync for CopyAccelerationStructureInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyAccelerationStructureInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_ACCELERATION_STRUCTURE_INFO_KHR;
     }
@@ -1611,6 +1654,8 @@ pub(crate) mod items {
         pub mode: crate::vk::CopyAccelerationStructureModeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CopyAccelerationStructureToMemoryInfoKHR<'_> {}
+    unsafe impl Sync for CopyAccelerationStructureToMemoryInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CopyAccelerationStructureToMemoryInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR;
@@ -1655,6 +1700,8 @@ pub(crate) mod items {
         pub mode: crate::vk::CopyAccelerationStructureModeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CopyMemoryToAccelerationStructureInfoKHR<'_> {}
+    unsafe impl Sync for CopyMemoryToAccelerationStructureInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CopyMemoryToAccelerationStructureInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR;
@@ -1699,6 +1746,8 @@ pub(crate) mod items {
         pub build_scratch_size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureBuildSizesInfoKHR<'_> {}
+    unsafe impl Sync for AccelerationStructureBuildSizesInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureBuildSizesInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR;

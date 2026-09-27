@@ -54,6 +54,8 @@ pub(crate) mod items {
         pub picture_layout: crate::vk::VideoDecodeH264PictureLayoutFlagBitsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeH264ProfileInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeH264ProfileInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeH264ProfileInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_PROFILE_INFO_KHR;
     }
@@ -98,6 +100,8 @@ pub(crate) mod items {
         pub field_offset_granularity: crate::vk::Offset2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeH264CapabilitiesKHR<'_> {}
+    unsafe impl Sync for VideoDecodeH264CapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeH264CapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_CAPABILITIES_KHR;
     }
@@ -139,6 +143,8 @@ pub(crate) mod items {
         pub p_std_pp_ss: *const crate::vk::H264PictureParameterSet<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeH264SessionParametersAddInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeH264SessionParametersAddInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoDecodeH264SessionParametersAddInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR;
@@ -189,6 +195,8 @@ pub(crate) mod items {
         >,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeH264SessionParametersCreateInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeH264SessionParametersCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoDecodeH264SessionParametersCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR;
@@ -237,6 +245,8 @@ pub(crate) mod items {
         pub p_slice_offsets: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeH264PictureInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeH264PictureInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeH264PictureInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_PICTURE_INFO_KHR;
     }
@@ -277,6 +287,8 @@ pub(crate) mod items {
         pub p_std_reference_info: *const crate::vk::DecodeH264ReferenceInfo,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeH264DpbSlotInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeH264DpbSlotInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeH264DpbSlotInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_DPB_SLOT_INFO_KHR;
     }

@@ -122,6 +122,8 @@ pub(crate) mod items {
         pub cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCooperativeMatrixFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceCooperativeMatrixFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_KHR;
@@ -172,6 +174,8 @@ pub(crate) mod items {
         pub scope: crate::vk::ScopeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CooperativeMatrixPropertiesKHR<'_> {}
+    unsafe impl Sync for CooperativeMatrixPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CooperativeMatrixPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COOPERATIVE_MATRIX_PROPERTIES_KHR;
     }
@@ -240,6 +244,8 @@ pub(crate) mod items {
         pub cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCooperativeMatrixPropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceCooperativeMatrixPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_KHR;

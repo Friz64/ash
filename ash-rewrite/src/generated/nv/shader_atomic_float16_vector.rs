@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub shader_float16_vector_atomics: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV;

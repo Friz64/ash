@@ -365,7 +365,7 @@ impl Instance {
     pub unsafe fn create_debug_utils_messenger(
         &self,
         create_info: &crate::vk::DebugUtilsMessengerCreateInfoEXT<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::DebugUtilsMessengerEXT> {
         let mut messenger = core::mem::MaybeUninit::uninit();
         (self
@@ -373,7 +373,10 @@ impl Instance {
             .create_debug_utils_messenger)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 messenger.as_mut_ptr(),
             )
             .assume_init_on_success(messenger)
@@ -383,9 +386,18 @@ impl Instance {
     pub unsafe fn destroy_debug_utils_messenger(
         &self,
         messenger: crate::vk::DebugUtilsMessengerEXT,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_debug_utils_messenger)(self.handle, messenger, allocator)
+        (self
+            .fp
+            .destroy_debug_utils_messenger)(
+            self.handle,
+            messenger,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkSubmitDebugUtilsMessageEXT
     #[inline]
@@ -419,6 +431,8 @@ pub(crate) mod items {
         pub p_object_name: *const core::ffi::c_char,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DebugUtilsObjectNameInfoEXT<'_> {}
+    unsafe impl Sync for DebugUtilsObjectNameInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsObjectNameInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_OBJECT_NAME_INFO_EXT;
     }
@@ -474,6 +488,8 @@ pub(crate) mod items {
         pub p_tag: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DebugUtilsObjectTagInfoEXT<'_> {}
+    unsafe impl Sync for DebugUtilsObjectTagInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsObjectTagInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_OBJECT_TAG_INFO_EXT;
     }
@@ -520,6 +536,8 @@ pub(crate) mod items {
         pub color: [core::ffi::c_float; 4 as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DebugUtilsLabelEXT<'_> {}
+    unsafe impl Sync for DebugUtilsLabelEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsLabelEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_LABEL_EXT;
     }
@@ -564,6 +582,8 @@ pub(crate) mod items {
         pub p_user_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DebugUtilsMessengerCreateInfoEXT<'_> {}
+    unsafe impl Sync for DebugUtilsMessengerCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsMessengerCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
     }
@@ -635,6 +655,8 @@ pub(crate) mod items {
         pub p_objects: *const crate::vk::DebugUtilsObjectNameInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DebugUtilsMessengerCallbackDataEXT<'_> {}
+    unsafe impl Sync for DebugUtilsMessengerCallbackDataEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DebugUtilsMessengerCallbackDataEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT;

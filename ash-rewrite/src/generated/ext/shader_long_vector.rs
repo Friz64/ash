@@ -19,6 +19,8 @@ pub(crate) mod items {
         pub long_vector: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderLongVectorFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderLongVectorFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_LONG_VECTOR_FEATURES_EXT;
@@ -52,6 +54,8 @@ pub(crate) mod items {
         pub max_vector_components: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderLongVectorPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderLongVectorPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_LONG_VECTOR_PROPERTIES_EXT;

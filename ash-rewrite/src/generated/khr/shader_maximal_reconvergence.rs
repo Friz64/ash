@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub shader_maximal_reconvergence: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MAXIMAL_RECONVERGENCE_FEATURES_KHR;

@@ -22,6 +22,8 @@ pub(crate) mod items {
         pub elapsed_timer_query: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceElapsedTimerQueryFeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceElapsedTimerQueryFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceElapsedTimerQueryFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ELAPSED_TIMER_QUERY_FEATURES_QCOM;

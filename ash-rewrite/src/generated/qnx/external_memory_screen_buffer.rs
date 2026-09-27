@@ -102,6 +102,8 @@ pub(crate) mod items {
         pub buffer: *mut crate::platform_types::_screen_buffer,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportScreenBufferInfoQNX<'_> {}
+    unsafe impl Sync for ImportScreenBufferInfoQNX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportScreenBufferInfoQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_SCREEN_BUFFER_INFO_QNX;
     }
@@ -136,6 +138,8 @@ pub(crate) mod items {
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ScreenBufferPropertiesQNX<'_> {}
+    unsafe impl Sync for ScreenBufferPropertiesQNX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ScreenBufferPropertiesQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SCREEN_BUFFER_PROPERTIES_QNX;
     }
@@ -180,6 +184,8 @@ pub(crate) mod items {
         pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ScreenBufferFormatPropertiesQNX<'_> {}
+    unsafe impl Sync for ScreenBufferFormatPropertiesQNX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ScreenBufferFormatPropertiesQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SCREEN_BUFFER_FORMAT_PROPERTIES_QNX;
     }
@@ -268,6 +274,8 @@ pub(crate) mod items {
         pub external_format: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExternalFormatQNX<'_> {}
+    unsafe impl Sync for ExternalFormatQNX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_QNX;
     }
@@ -300,6 +308,8 @@ pub(crate) mod items {
         pub screen_buffer_import: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'_> {}
+    unsafe impl Sync for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_SCREEN_BUFFER_FEATURES_QNX;

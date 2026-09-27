@@ -91,6 +91,8 @@ pub(crate) mod items {
         pub advanced_blend_coherent_operations: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT;
@@ -133,6 +135,8 @@ pub(crate) mod items {
         pub advanced_blend_all_operations: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT;
@@ -213,6 +217,8 @@ pub(crate) mod items {
         pub blend_overlap: crate::vk::BlendOverlapEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineColorBlendAdvancedStateCreateInfoEXT<'_> {}
+    unsafe impl Sync for PipelineColorBlendAdvancedStateCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT;

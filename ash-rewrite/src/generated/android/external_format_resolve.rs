@@ -36,6 +36,8 @@ pub(crate) mod items {
         pub external_format_resolve: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'_> {}
+    unsafe impl Sync for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID;
@@ -71,6 +73,8 @@ pub(crate) mod items {
         pub external_format_resolve_chroma_offset_y: crate::vk::ChromaLocation,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'_> {}
+    unsafe impl Sync for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID;
@@ -122,6 +126,8 @@ pub(crate) mod items {
         pub color_attachment_format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AndroidHardwareBufferFormatResolvePropertiesANDROID<'_> {}
+    unsafe impl Sync for AndroidHardwareBufferFormatResolvePropertiesANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID;

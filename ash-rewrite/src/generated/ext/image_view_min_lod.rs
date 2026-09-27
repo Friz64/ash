@@ -19,6 +19,8 @@ pub(crate) mod items {
         pub min_lod: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceImageViewMinLodFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceImageViewMinLodFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT;
@@ -52,6 +54,8 @@ pub(crate) mod items {
         pub min_lod: core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageViewMinLodCreateInfoEXT<'_> {}
+    unsafe impl Sync for ImageViewMinLodCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewMinLodCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT;
     }

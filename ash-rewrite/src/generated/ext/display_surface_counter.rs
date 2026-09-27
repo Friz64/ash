@@ -109,6 +109,8 @@ pub(crate) mod items {
         pub supported_surface_counters: crate::vk::SurfaceCounterFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SurfaceCapabilities2EXT<'_> {}
+    unsafe impl Sync for SurfaceCapabilities2EXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilities2EXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_2_EXT;
     }

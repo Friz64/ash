@@ -298,6 +298,21 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
             return quote! {};
         }
 
+        "vkGetFenceStatus" => {
+            return quote! {
+                /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetFenceStatus.html>
+                #[inline]
+                pub unsafe fn get_fence_status(&self, fence: crate::vk::Fence) -> crate::VkResult<bool> {
+                    let err_code = (self.device_fn_1_0.get_fence_status)(self.handle(), fence);
+                    match err_code {
+                        crate::vk::Result::SUCCESS => Ok(true),
+                        crate::vk::Result::NOT_READY => Ok(false),
+                        _ => Err(err_code),
+                    }
+                }
+            };
+        }
+
         _ => (),
     }
 
@@ -450,6 +465,23 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
 
                 continue;
             }
+            &Ty::Ptr(to, mutability) if param.optional_at_depth(0) == Some(true) => {
+                call_arg = match mutability {
+                    Mutability::Mut => quote! { match #name {
+                        Some(inner) => inner,
+                        None => core::ptr::null(),
+                    } },
+                    Mutability::Not => quote! { match #name {
+                        Some(inner) => inner,
+                        None => core::ptr::null_mut(),
+                    } },
+                };
+
+                public_type = Some(RustTy::Custom {
+                    custom_type: quote! { Option },
+                    generic_args: vec![RustTy::Ref(Box::new(to.to_rust()), mutability)],
+                });
+            }
             _ => continue,
         };
 
@@ -497,7 +529,6 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
 
     let returns_result = matches!(command.return_type, Some(Ty::ApiType(TypeName::VK_RESULT)));
     if multi_call_length.is_none()
-        && returns_result
         && let Some((single_return, ..)) = single_return
     {
         let name = param_ident(single_return);
@@ -613,9 +644,7 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                 let mut #name = core::mem::MaybeUninit::uninit();
                 #content
             };
-        }
 
-        if let Some((single_return, ..)) = single_return {
             let name = param_ident(single_return);
             content = quote! { #content.assume_init_on_success(#name) };
         } else {
@@ -630,7 +659,18 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
             }],
         });
     } else {
-        ret_ty = command.return_type.as_ref().map(|ty| ty.to_rust());
+        if let Some((single_return, ty)) = single_return {
+            let name = param_ident(single_return);
+            content = quote! {
+                let mut #name = core::mem::MaybeUninit::uninit();
+                #content;
+                #name.assume_init()
+            };
+
+            ret_ty = Some(ty.to_rust());
+        } else {
+            ret_ty = command.return_type.as_ref().map(|ty| ty.to_rust());
+        }
     };
 
     let ret = ret_ty.map(|ty| {

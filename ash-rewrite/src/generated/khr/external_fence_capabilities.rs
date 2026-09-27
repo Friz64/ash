@@ -106,15 +106,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         external_fence_info: &crate::vk::PhysicalDeviceExternalFenceInfo<'_>,
-        external_fence_properties: &mut crate::vk::ExternalFenceProperties<'_>,
-    ) {
+    ) -> crate::vk::ExternalFenceProperties<'_> {
+        let mut external_fence_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_external_fence_properties)(
             physical_device,
             external_fence_info,
-            external_fence_properties,
-        )
+            external_fence_properties.as_mut_ptr(),
+        );
+        external_fence_properties.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

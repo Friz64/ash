@@ -138,6 +138,8 @@ pub(crate) mod items {
         pub handle: crate::platform_types::zx_handle_t,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportMemoryZirconHandleInfoFUCHSIA<'_> {}
+    unsafe impl Sync for ImportMemoryZirconHandleInfoFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImportMemoryZirconHandleInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA;
@@ -177,6 +179,8 @@ pub(crate) mod items {
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryZirconHandlePropertiesFUCHSIA<'_> {}
+    unsafe impl Sync for MemoryZirconHandlePropertiesFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for MemoryZirconHandlePropertiesFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA;
@@ -207,6 +211,8 @@ pub(crate) mod items {
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryGetZirconHandleInfoFUCHSIA<'_> {}
+    unsafe impl Sync for MemoryGetZirconHandleInfoFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetZirconHandleInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA;
     }

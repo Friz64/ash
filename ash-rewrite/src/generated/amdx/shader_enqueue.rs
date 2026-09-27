@@ -244,7 +244,7 @@ impl Device {
         &self,
         pipeline_cache: crate::vk::PipelineCache,
         create_infos: &[crate::vk::ExecutionGraphPipelineCreateInfoAMDX<'_>],
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
         pipelines: &mut [crate::vk::Pipeline],
     ) -> crate::VkResult<()> {
         assert_eq!(create_infos.len(), pipelines.len());
@@ -255,7 +255,10 @@ impl Device {
                 pipeline_cache,
                 pipelines.len() as _,
                 create_infos.as_ptr(),
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 pipelines.as_mut_ptr(),
             )
             .result()
@@ -344,6 +347,8 @@ pub(crate) mod items {
         pub max_execution_graph_workgroups: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderEnqueuePropertiesAMDX<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderEnqueuePropertiesAMDX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX;
@@ -427,6 +432,8 @@ pub(crate) mod items {
         pub shader_mesh_enqueue: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderEnqueueFeaturesAMDX<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderEnqueueFeaturesAMDX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX;
@@ -471,6 +478,8 @@ pub(crate) mod items {
         pub base_pipeline_index: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExecutionGraphPipelineCreateInfoAMDX<'_> {}
+    unsafe impl Sync for ExecutionGraphPipelineCreateInfoAMDX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ExecutionGraphPipelineCreateInfoAMDX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX;
@@ -537,6 +546,8 @@ pub(crate) mod items {
         pub index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineShaderStageNodeCreateInfoAMDX<'_> {}
+    unsafe impl Sync for PipelineShaderStageNodeCreateInfoAMDX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineShaderStageNodeCreateInfoAMDX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX;
@@ -582,6 +593,8 @@ pub(crate) mod items {
         pub size_granularity: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExecutionGraphPipelineScratchSizeAMDX<'_> {}
+    unsafe impl Sync for ExecutionGraphPipelineScratchSizeAMDX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ExecutionGraphPipelineScratchSizeAMDX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXECUTION_GRAPH_PIPELINE_SCRATCH_SIZE_AMDX;
@@ -624,6 +637,8 @@ pub(crate) mod items {
         pub payloads: crate::vk::DeviceOrHostAddressConstAMDX,
         pub payload_stride: u64,
     }
+    unsafe impl Send for DispatchGraphInfoAMDX {}
+    unsafe impl Sync for DispatchGraphInfoAMDX {}
     impl DispatchGraphInfoAMDX {
         pub fn node_index(mut self, node_index: u32) -> Self {
             self.node_index = node_index;
@@ -653,6 +668,8 @@ pub(crate) mod items {
         pub infos: crate::vk::DeviceOrHostAddressConstAMDX,
         pub stride: u64,
     }
+    unsafe impl Send for DispatchGraphCountInfoAMDX {}
+    unsafe impl Sync for DispatchGraphCountInfoAMDX {}
     impl DispatchGraphCountInfoAMDX {
         pub fn count(mut self, count: u32) -> Self {
             self.count = count;

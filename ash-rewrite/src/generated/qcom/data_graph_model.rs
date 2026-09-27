@@ -41,6 +41,8 @@ pub(crate) mod items {
         pub toolchain_version: [u32; crate::vk::DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM
             as _],
     }
+    unsafe impl Send for PipelineCacheHeaderVersionDataGraphQCOM {}
+    unsafe impl Sync for PipelineCacheHeaderVersionDataGraphQCOM {}
     impl Default for PipelineCacheHeaderVersionDataGraphQCOM {
         fn default() -> Self {
             Self {
@@ -93,6 +95,8 @@ pub(crate) mod items {
         pub p_operation: *const crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DataGraphPipelineBuiltinModelCreateInfoQCOM<'_> {}
+    unsafe impl Sync for DataGraphPipelineBuiltinModelCreateInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM;
@@ -127,6 +131,8 @@ pub(crate) mod items {
         pub data_graph_model: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDataGraphModelFeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceDataGraphModelFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM;

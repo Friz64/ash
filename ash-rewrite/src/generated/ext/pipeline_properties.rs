@@ -92,6 +92,8 @@ pub(crate) mod items {
         pub pipeline_identifier: [u8; crate::vk::UUID_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelinePropertiesIdentifierEXT<'_> {}
+    unsafe impl Sync for PipelinePropertiesIdentifierEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelinePropertiesIdentifierEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_PROPERTIES_IDENTIFIER_EXT;
     }
@@ -123,6 +125,8 @@ pub(crate) mod items {
         pub pipeline_properties_identifier: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePipelinePropertiesFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDevicePipelinePropertiesFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT;

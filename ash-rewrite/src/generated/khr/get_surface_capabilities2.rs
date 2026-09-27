@@ -150,6 +150,8 @@ pub(crate) mod items {
         pub surface: crate::vk::SurfaceKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceSurfaceInfo2KHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceSurfaceInfo2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceSurfaceInfo2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SURFACE_INFO_2_KHR;
     }
@@ -178,6 +180,8 @@ pub(crate) mod items {
         pub surface_capabilities: crate::vk::SurfaceCapabilitiesKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SurfaceCapabilities2KHR<'_> {}
+    unsafe impl Sync for SurfaceCapabilities2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilities2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_2_KHR;
     }
@@ -209,6 +213,8 @@ pub(crate) mod items {
         pub surface_format: crate::vk::SurfaceFormatKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SurfaceFormat2KHR<'_> {}
+    unsafe impl Sync for SurfaceFormat2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceFormat2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FORMAT_2_KHR;
     }

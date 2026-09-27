@@ -120,6 +120,8 @@ pub(crate) mod items {
         pub no_invocation_fragment_shading_rates: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV;
@@ -174,6 +176,8 @@ pub(crate) mod items {
         pub max_fragment_shading_rate_invocation_count: crate::vk::SampleCountFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV;
@@ -210,6 +214,8 @@ pub(crate) mod items {
         pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineFragmentShadingRateEnumStateCreateInfoNV<'_> {}
+    unsafe impl Sync for PipelineFragmentShadingRateEnumStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV;

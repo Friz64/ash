@@ -31,6 +31,8 @@ pub(crate) mod items {
         pub video_decode_vp9: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_DECODE_VP9_FEATURES_KHR;
@@ -64,6 +66,8 @@ pub(crate) mod items {
         pub std_profile: crate::vk::VP9Profile,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeVP9ProfileInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeVP9ProfileInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeVP9ProfileInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_VP9_PROFILE_INFO_KHR;
     }
@@ -96,6 +100,8 @@ pub(crate) mod items {
         pub max_level: crate::vk::VP9Level,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeVP9CapabilitiesKHR<'_> {}
+    unsafe impl Sync for VideoDecodeVP9CapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeVP9CapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_VP9_CAPABILITIES_KHR;
     }
@@ -131,6 +137,8 @@ pub(crate) mod items {
         pub tiles_offset: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeVP9PictureInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeVP9PictureInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeVP9PictureInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_VP9_PICTURE_INFO_KHR;
     }

@@ -21,6 +21,8 @@ pub(crate) mod items {
         pub primitive_topology_patch_list_restart: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT;

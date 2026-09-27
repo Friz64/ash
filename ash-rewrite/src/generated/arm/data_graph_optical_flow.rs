@@ -342,6 +342,8 @@ pub(crate) mod items {
         pub layout: crate::vk::ImageLayout,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DataGraphPipelineResourceInfoImageLayoutARM<'_> {}
+    unsafe impl Sync for DataGraphPipelineResourceInfoImageLayoutARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineResourceInfoImageLayoutARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_IMAGE_LAYOUT_ARM;
@@ -375,6 +377,8 @@ pub(crate) mod items {
         pub connection: crate::vk::DataGraphPipelineNodeConnectionTypeARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DataGraphPipelineSingleNodeConnectionARM<'_> {}
+    unsafe impl Sync for DataGraphPipelineSingleNodeConnectionARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineSingleNodeConnectionARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CONNECTION_ARM;
@@ -417,6 +421,8 @@ pub(crate) mod items {
         pub data_graph_optical_flow: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'_> {}
+    unsafe impl Sync for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM;
@@ -457,6 +463,8 @@ pub(crate) mod items {
         pub max_height: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueueFamilyDataGraphOpticalFlowPropertiesARM<'_> {}
+    unsafe impl Sync for QueueFamilyDataGraphOpticalFlowPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_OPTICAL_FLOW_PROPERTIES_ARM;
@@ -527,6 +535,8 @@ pub(crate) mod items {
         pub usage: crate::vk::DataGraphOpticalFlowImageUsageFlagsARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DataGraphOpticalFlowImageFormatInfoARM<'_> {}
+    unsafe impl Sync for DataGraphOpticalFlowImageFormatInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphOpticalFlowImageFormatInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_INFO_ARM;
@@ -563,6 +573,8 @@ pub(crate) mod items {
         pub format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DataGraphOpticalFlowImageFormatPropertiesARM<'_> {}
+    unsafe impl Sync for DataGraphOpticalFlowImageFormatPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_ARM;
@@ -596,6 +608,8 @@ pub(crate) mod items {
         >,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DataGraphPipelineSingleNodeCreateInfoARM<'_> {}
+    unsafe impl Sync for DataGraphPipelineSingleNodeCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineSingleNodeCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CREATE_INFO_ARM;
@@ -648,6 +662,8 @@ pub(crate) mod items {
         pub flags: crate::vk::DataGraphOpticalFlowCreateFlagsARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DataGraphPipelineOpticalFlowCreateInfoARM<'_> {}
+    unsafe impl Sync for DataGraphPipelineOpticalFlowCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_CREATE_INFO_ARM;
@@ -735,6 +751,8 @@ pub(crate) mod items {
         pub mean_flow_l1_norm_hint: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DataGraphPipelineOpticalFlowDispatchInfoARM<'_> {}
+    unsafe impl Sync for DataGraphPipelineOpticalFlowDispatchInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_DISPATCH_INFO_ARM;

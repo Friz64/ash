@@ -14,6 +14,8 @@ pub(crate) mod items {
 - `short_term_ref_pic_set_sps_flag` @ `3..4`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for DecodeH265PictureInfoFlags {}
+    unsafe impl Sync for DecodeH265PictureInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeH265PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -84,6 +86,8 @@ pub(crate) mod items {
             as _],
         pub ref_pic_set_lt_curr: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE as _],
     }
+    unsafe impl Send for DecodeH265PictureInfo {}
+    unsafe impl Sync for DecodeH265PictureInfo {}
     impl Default for DecodeH265PictureInfo {
         fn default() -> Self {
             Self {
@@ -174,6 +178,8 @@ pub(crate) mod items {
 - `unused_for_reference` @ `1..2`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for DecodeH265ReferenceInfoFlags {}
+    unsafe impl Sync for DecodeH265ReferenceInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeH265ReferenceInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -214,6 +220,8 @@ pub(crate) mod items {
         pub flags: crate::vk::DecodeH265ReferenceInfoFlags,
         pub pic_order_cnt_val: i32,
     }
+    unsafe impl Send for DecodeH265ReferenceInfo {}
+    unsafe impl Sync for DecodeH265ReferenceInfo {}
     impl DecodeH265ReferenceInfo {
         pub fn flags(mut self, flags: crate::vk::DecodeH265ReferenceInfoFlags) -> Self {
             self.flags = flags;

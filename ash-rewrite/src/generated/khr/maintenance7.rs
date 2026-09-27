@@ -44,6 +44,8 @@ pub(crate) mod items {
         pub maintenance7: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMaintenance7FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceMaintenance7FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMaintenance7FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_FEATURES_KHR;
@@ -84,6 +86,8 @@ pub(crate) mod items {
         pub max_descriptor_set_update_after_bind_total_buffers_dynamic: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMaintenance7PropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceMaintenance7PropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMaintenance7PropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_PROPERTIES_KHR;
@@ -177,6 +181,8 @@ pub(crate) mod items {
         pub p_layered_apis: *mut crate::vk::PhysicalDeviceLayeredApiPropertiesKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceLayeredApiPropertiesListKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceLayeredApiPropertiesListKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR;
@@ -217,6 +223,8 @@ pub(crate) mod items {
             as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceLayeredApiPropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceLayeredApiPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceLayeredApiPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_KHR;
@@ -268,6 +276,8 @@ pub(crate) mod items {
         pub properties: crate::vk::PhysicalDeviceProperties2<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR;

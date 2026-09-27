@@ -48,6 +48,8 @@ pub(crate) mod items {
         pub legacy_dithering: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceLegacyDitheringFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceLegacyDitheringFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT;

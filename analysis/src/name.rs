@@ -53,6 +53,7 @@ impl ConstantName {
     }
 
     pub fn prefix_stripped(&self, library: LibraryName) -> &'static str {
+        // TODO: make this be strip_prefix
         self.original().trim_start_matches(match library {
             LibraryName::Vk => "VK_",
             LibraryName::Video => "STD_VIDEO_",

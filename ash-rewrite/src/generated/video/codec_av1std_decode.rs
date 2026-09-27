@@ -39,6 +39,8 @@ pub(crate) mod items {
 - `apply_grain` @ `28..29`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for DecodeAV1PictureInfoFlags {}
+    unsafe impl Sync for DecodeAV1PictureInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeAV1PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -391,6 +393,8 @@ pub(crate) mod items {
         pub p_film_grain: *const crate::vk::AV1FilmGrain,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DecodeAV1PictureInfo<'_> {}
+    unsafe impl Sync for DecodeAV1PictureInfo<'_> {}
     impl<'a> Default for DecodeAV1PictureInfo<'a> {
         fn default() -> Self {
             Self {
@@ -551,6 +555,8 @@ pub(crate) mod items {
 - `segmentation_enabled` @ `1..2`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for DecodeAV1ReferenceInfoFlags {}
+    unsafe impl Sync for DecodeAV1ReferenceInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for DecodeAV1ReferenceInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -594,6 +600,8 @@ pub(crate) mod items {
         pub order_hint: u8,
         pub saved_order_hints: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
     }
+    unsafe impl Send for DecodeAV1ReferenceInfo {}
+    unsafe impl Sync for DecodeAV1ReferenceInfo {}
     impl Default for DecodeAV1ReferenceInfo {
         fn default() -> Self {
             Self {

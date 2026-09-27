@@ -167,7 +167,7 @@ impl Instance {
     pub unsafe fn create_debug_report_callback(
         &self,
         create_info: &crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::DebugReportCallbackEXT> {
         let mut callback = core::mem::MaybeUninit::uninit();
         (self
@@ -175,7 +175,10 @@ impl Instance {
             .create_debug_report_callback)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 callback.as_mut_ptr(),
             )
             .assume_init_on_success(callback)
@@ -185,9 +188,18 @@ impl Instance {
     pub unsafe fn destroy_debug_report_callback(
         &self,
         callback: crate::vk::DebugReportCallbackEXT,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_debug_report_callback)(self.handle, callback, allocator)
+        (self
+            .fp
+            .destroy_debug_report_callback)(
+            self.handle,
+            callback,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkDebugReportMessageEXT
     #[inline]
@@ -229,6 +241,8 @@ pub(crate) mod items {
         pub p_user_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DebugReportCallbackCreateInfoEXT<'_> {}
+    unsafe impl Sync for DebugReportCallbackCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugReportCallbackCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT;
     }

@@ -12,6 +12,8 @@ pub(crate) mod items {
         pub temporal_id: u8,
         pub spatial_id: u8,
     }
+    unsafe impl Send for EncodeAV1ExtensionHeader {}
+    unsafe impl Sync for EncodeAV1ExtensionHeader {}
     impl EncodeAV1ExtensionHeader {
         pub fn temporal_id(mut self, temporal_id: u8) -> Self {
             self.temporal_id = temporal_id;
@@ -32,6 +34,8 @@ pub(crate) mod items {
         pub reserved1: u8,
         pub num_units_in_decoding_tick: u32,
     }
+    unsafe impl Send for EncodeAV1DecoderModelInfo {}
+    unsafe impl Sync for EncodeAV1DecoderModelInfo {}
     impl EncodeAV1DecoderModelInfo {
         pub fn buffer_delay_length_minus_1(
             mut self,
@@ -74,6 +78,8 @@ pub(crate) mod items {
 - `initial_display_delay_present_for_this_op` @ `2..3`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for EncodeAV1OperatingPointInfoFlags {}
+    unsafe impl Sync for EncodeAV1OperatingPointInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeAV1OperatingPointInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -135,6 +141,8 @@ pub(crate) mod items {
         pub encoder_buffer_delay: u32,
         pub initial_display_delay_minus_1: u8,
     }
+    unsafe impl Send for EncodeAV1OperatingPointInfo {}
+    unsafe impl Sync for EncodeAV1OperatingPointInfo {}
     impl EncodeAV1OperatingPointInfo {
         pub fn flags(
             mut self,
@@ -205,6 +213,8 @@ pub(crate) mod items {
 - `showable_frame` @ `28..29`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for EncodeAV1PictureInfoFlags {}
+    unsafe impl Sync for EncodeAV1PictureInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeAV1PictureInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -560,6 +570,8 @@ pub(crate) mod items {
         pub p_buffer_removal_times: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for EncodeAV1PictureInfo<'_> {}
+    unsafe impl Sync for EncodeAV1PictureInfo<'_> {}
     impl<'a> Default for EncodeAV1PictureInfo<'a> {
         fn default() -> Self {
             Self {
@@ -738,6 +750,8 @@ pub(crate) mod items {
 - `segmentation_enabled` @ `1..2`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for EncodeAV1ReferenceInfoFlags {}
+    unsafe impl Sync for EncodeAV1ReferenceInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for EncodeAV1ReferenceInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -783,6 +797,8 @@ pub(crate) mod items {
         pub p_extension_header: *const crate::vk::EncodeAV1ExtensionHeader,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for EncodeAV1ReferenceInfo<'_> {}
+    unsafe impl Sync for EncodeAV1ReferenceInfo<'_> {}
     impl<'a> Default for EncodeAV1ReferenceInfo<'a> {
         fn default() -> Self {
             Self {

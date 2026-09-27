@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub shader_subgroup_uniform_control_flow: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR;

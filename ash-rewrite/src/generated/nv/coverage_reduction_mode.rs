@@ -123,6 +123,8 @@ pub(crate) mod items {
         pub coverage_reduction_mode: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCoverageReductionModeFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceCoverageReductionModeFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV;
@@ -157,6 +159,8 @@ pub(crate) mod items {
         pub coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineCoverageReductionStateCreateInfoNV<'_> {}
+    unsafe impl Sync for PipelineCoverageReductionStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineCoverageReductionStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV;
@@ -202,6 +206,8 @@ pub(crate) mod items {
         pub color_samples: crate::vk::SampleCountFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for FramebufferMixedSamplesCombinationNV<'_> {}
+    unsafe impl Sync for FramebufferMixedSamplesCombinationNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for FramebufferMixedSamplesCombinationNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV;

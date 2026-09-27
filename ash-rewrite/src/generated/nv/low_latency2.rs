@@ -181,9 +181,16 @@ impl Device {
     pub unsafe fn get_latency_timings(
         &self,
         swapchain: crate::vk::SwapchainKHR,
-        latency_marker_info: &mut crate::vk::GetLatencyMarkerInfoNV<'_>,
-    ) {
-        (self.fp.get_latency_timings)(self.handle, swapchain, latency_marker_info)
+    ) -> crate::vk::GetLatencyMarkerInfoNV<'_> {
+        let mut latency_marker_info = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_latency_timings)(
+            self.handle,
+            swapchain,
+            latency_marker_info.as_mut_ptr(),
+        );
+        latency_marker_info.assume_init()
     }
     ///vkQueueNotifyOutOfBandNV
     #[inline]
@@ -209,6 +216,8 @@ pub(crate) mod items {
         pub minimum_interval_us: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for LatencySleepModeInfoNV<'_> {}
+    unsafe impl Sync for LatencySleepModeInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for LatencySleepModeInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SLEEP_MODE_INFO_NV;
     }
@@ -248,6 +257,8 @@ pub(crate) mod items {
         pub value: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for LatencySleepInfoNV<'_> {}
+    unsafe impl Sync for LatencySleepInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for LatencySleepInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SLEEP_INFO_NV;
     }
@@ -285,6 +296,8 @@ pub(crate) mod items {
         pub marker: crate::vk::LatencyMarkerNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SetLatencyMarkerInfoNV<'_> {}
+    unsafe impl Sync for SetLatencyMarkerInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SetLatencyMarkerInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_LATENCY_MARKER_INFO_NV;
     }
@@ -319,6 +332,8 @@ pub(crate) mod items {
         pub p_timings: *mut crate::vk::LatencyTimingsFrameReportNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GetLatencyMarkerInfoNV<'_> {}
+    unsafe impl Sync for GetLatencyMarkerInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GetLatencyMarkerInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GET_LATENCY_MARKER_INFO_NV;
     }
@@ -365,6 +380,8 @@ pub(crate) mod items {
         pub gpu_render_end_time_us: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for LatencyTimingsFrameReportNV<'_> {}
+    unsafe impl Sync for LatencyTimingsFrameReportNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for LatencyTimingsFrameReportNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_TIMINGS_FRAME_REPORT_NV;
     }
@@ -473,6 +490,8 @@ pub(crate) mod items {
         pub queue_type: crate::vk::OutOfBandQueueTypeNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for OutOfBandQueueTypeInfoNV<'_> {}
+    unsafe impl Sync for OutOfBandQueueTypeInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for OutOfBandQueueTypeInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OUT_OF_BAND_QUEUE_TYPE_INFO_NV;
     }
@@ -504,6 +523,8 @@ pub(crate) mod items {
         pub present_id: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for LatencySubmissionPresentIdNV<'_> {}
+    unsafe impl Sync for LatencySubmissionPresentIdNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for LatencySubmissionPresentIdNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SUBMISSION_PRESENT_ID_NV;
     }
@@ -536,6 +557,8 @@ pub(crate) mod items {
         pub latency_mode_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SwapchainLatencyCreateInfoNV<'_> {}
+    unsafe impl Sync for SwapchainLatencyCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainLatencyCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_LATENCY_CREATE_INFO_NV;
     }
@@ -567,6 +590,8 @@ pub(crate) mod items {
         pub p_present_modes: *mut crate::vk::PresentModeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for LatencySurfaceCapabilitiesNV<'_> {}
+    unsafe impl Sync for LatencySurfaceCapabilitiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for LatencySurfaceCapabilitiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SURFACE_CAPABILITIES_NV;
     }

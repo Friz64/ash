@@ -23,6 +23,8 @@ pub(crate) mod items {
         pub shader_multiple_wait_queues: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderMultipleWaitQueuesFeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderMultipleWaitQueuesFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderMultipleWaitQueuesFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MULTIPLE_WAIT_QUEUES_FEATURES_QCOM;
@@ -59,6 +61,8 @@ pub(crate) mod items {
         pub max_shader_wait_queues: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderMultipleWaitQueuesPropertiesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderMultipleWaitQueuesPropertiesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderMultipleWaitQueuesPropertiesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MULTIPLE_WAIT_QUEUES_PROPERTIES_QCOM;

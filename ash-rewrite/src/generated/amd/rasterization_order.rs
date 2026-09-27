@@ -25,6 +25,8 @@ pub(crate) mod items {
         pub rasterization_order: crate::vk::RasterizationOrderAMD,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineRasterizationStateRasterizationOrderAMD<'_> {}
+    unsafe impl Sync for PipelineRasterizationStateRasterizationOrderAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineRasterizationStateRasterizationOrderAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD;

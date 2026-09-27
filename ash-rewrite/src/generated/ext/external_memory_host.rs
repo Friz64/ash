@@ -112,6 +112,8 @@ pub(crate) mod items {
         pub p_host_pointer: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportMemoryHostPointerInfoEXT<'_> {}
+    unsafe impl Sync for ImportMemoryHostPointerInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryHostPointerInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_HOST_POINTER_INFO_EXT;
     }
@@ -150,6 +152,8 @@ pub(crate) mod items {
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryHostPointerPropertiesEXT<'_> {}
+    unsafe impl Sync for MemoryHostPointerPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryHostPointerPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_HOST_POINTER_PROPERTIES_EXT;
     }
@@ -178,6 +182,8 @@ pub(crate) mod items {
         pub min_imported_host_pointer_alignment: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExternalMemoryHostPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceExternalMemoryHostPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT;

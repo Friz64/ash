@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub shader_warps_per_sm: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderSMBuiltinsPropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderSMBuiltinsPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV;
@@ -56,6 +58,8 @@ pub(crate) mod items {
         pub shader_sm_builtins: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV;

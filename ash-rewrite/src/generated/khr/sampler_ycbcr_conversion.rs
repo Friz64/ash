@@ -209,7 +209,7 @@ impl Device {
     pub unsafe fn create_sampler_ycbcr_conversion(
         &self,
         create_info: &crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::SamplerYcbcrConversion> {
         let mut ycbcr_conversion = core::mem::MaybeUninit::uninit();
         (self
@@ -217,7 +217,10 @@ impl Device {
             .create_sampler_ycbcr_conversion)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 ycbcr_conversion.as_mut_ptr(),
             )
             .assume_init_on_success(ycbcr_conversion)
@@ -227,11 +230,18 @@ impl Device {
     pub unsafe fn destroy_sampler_ycbcr_conversion(
         &self,
         ycbcr_conversion: crate::vk::SamplerYcbcrConversion,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
-            .destroy_sampler_ycbcr_conversion)(self.handle, ycbcr_conversion, allocator)
+            .destroy_sampler_ycbcr_conversion)(
+            self.handle,
+            ycbcr_conversion,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
 }
 pub const SPEC_VERSION: u32 = 14;

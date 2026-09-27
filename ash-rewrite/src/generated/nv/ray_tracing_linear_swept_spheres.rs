@@ -72,6 +72,8 @@ pub(crate) mod items {
         pub end_caps_mode: crate::vk::RayTracingLssPrimitiveEndCapsModeNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureGeometryLinearSweptSpheresDataNV<'_> {}
+    unsafe impl Sync for AccelerationStructureGeometryLinearSweptSpheresDataNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_LINEAR_SWEPT_SPHERES_DATA_NV;
@@ -176,6 +178,8 @@ pub(crate) mod items {
         pub index_stride: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureGeometrySpheresDataNV<'_> {}
+    unsafe impl Sync for AccelerationStructureGeometrySpheresDataNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometrySpheresDataNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV;
@@ -257,6 +261,8 @@ pub(crate) mod items {
         pub linear_swept_spheres: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_LINEAR_SWEPT_SPHERES_FEATURES_NV;

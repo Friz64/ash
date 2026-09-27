@@ -463,7 +463,7 @@ impl Device {
     pub unsafe fn create_video_session(
         &self,
         create_info: &crate::vk::VideoSessionCreateInfoKHR<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::VideoSessionKHR> {
         let mut video_session = core::mem::MaybeUninit::uninit();
         (self
@@ -471,7 +471,10 @@ impl Device {
             .create_video_session)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 video_session.as_mut_ptr(),
             )
             .assume_init_on_success(video_session)
@@ -481,16 +484,25 @@ impl Device {
     pub unsafe fn destroy_video_session(
         &self,
         video_session: crate::vk::VideoSessionKHR,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_video_session)(self.handle, video_session, allocator)
+        (self
+            .fp
+            .destroy_video_session)(
+            self.handle,
+            video_session,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCreateVideoSessionParametersKHR
     #[inline]
     pub unsafe fn create_video_session_parameters(
         &self,
         create_info: &crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::VideoSessionParametersKHR> {
         let mut video_session_parameters = core::mem::MaybeUninit::uninit();
         (self
@@ -498,7 +510,10 @@ impl Device {
             .create_video_session_parameters)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 video_session_parameters.as_mut_ptr(),
             )
             .assume_init_on_success(video_session_parameters)
@@ -524,14 +539,17 @@ impl Device {
     pub unsafe fn destroy_video_session_parameters(
         &self,
         video_session_parameters: crate::vk::VideoSessionParametersKHR,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
             .destroy_video_session_parameters)(
             self.handle,
             video_session_parameters,
-            allocator,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
         )
     }
     ///vkGetVideoSessionMemoryRequirementsKHR
@@ -629,6 +647,8 @@ pub(crate) mod items {
         pub video_codec_operations: crate::vk::VideoCodecOperationFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueueFamilyVideoPropertiesKHR<'_> {}
+    unsafe impl Sync for QueueFamilyVideoPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for QueueFamilyVideoPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_VIDEO_PROPERTIES_KHR;
     }
@@ -662,6 +682,8 @@ pub(crate) mod items {
         pub query_result_status_support: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueueFamilyQueryResultStatusPropertiesKHR<'_> {}
+    unsafe impl Sync for QueueFamilyQueryResultStatusPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyQueryResultStatusPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_KHR;
@@ -697,6 +719,8 @@ pub(crate) mod items {
         pub p_profiles: *const crate::vk::VideoProfileInfoKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoProfileListInfoKHR<'_> {}
+    unsafe impl Sync for VideoProfileListInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoProfileListInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_PROFILE_LIST_INFO_KHR;
     }
@@ -738,6 +762,8 @@ pub(crate) mod items {
         pub image_usage: crate::vk::ImageUsageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVideoFormatInfoKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceVideoFormatInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVideoFormatInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR;
     }
@@ -771,6 +797,8 @@ pub(crate) mod items {
         pub image_usage_flags: crate::vk::ImageUsageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoFormatPropertiesKHR<'_> {}
+    unsafe impl Sync for VideoFormatPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoFormatPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_FORMAT_PROPERTIES_KHR;
     }
@@ -836,6 +864,8 @@ pub(crate) mod items {
         pub chroma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoProfileInfoKHR<'_> {}
+    unsafe impl Sync for VideoProfileInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoProfileInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_PROFILE_INFO_KHR;
     }
@@ -901,6 +931,8 @@ pub(crate) mod items {
         pub std_header_version: crate::vk::ExtensionProperties,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoCapabilitiesKHR<'_> {}
+    unsafe impl Sync for VideoCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_CAPABILITIES_KHR;
     }
@@ -991,6 +1023,8 @@ pub(crate) mod items {
         pub memory_requirements: crate::vk::MemoryRequirements,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoSessionMemoryRequirementsKHR<'_> {}
+    unsafe impl Sync for VideoSessionMemoryRequirementsKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoSessionMemoryRequirementsKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_SESSION_MEMORY_REQUIREMENTS_KHR;
@@ -1031,6 +1065,8 @@ pub(crate) mod items {
         pub memory_size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BindVideoSessionMemoryInfoKHR<'_> {}
+    unsafe impl Sync for BindVideoSessionMemoryInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BindVideoSessionMemoryInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_VIDEO_SESSION_MEMORY_INFO_KHR;
     }
@@ -1077,6 +1113,8 @@ pub(crate) mod items {
         pub image_view_binding: crate::vk::ImageView,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoPictureResourceInfoKHR<'_> {}
+    unsafe impl Sync for VideoPictureResourceInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoPictureResourceInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_PICTURE_RESOURCE_INFO_KHR;
     }
@@ -1124,6 +1162,8 @@ pub(crate) mod items {
         pub p_picture_resource: *const crate::vk::VideoPictureResourceInfoKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoReferenceSlotInfoKHR<'_> {}
+    unsafe impl Sync for VideoReferenceSlotInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoReferenceSlotInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_REFERENCE_SLOT_INFO_KHR;
     }
@@ -1168,6 +1208,8 @@ pub(crate) mod items {
         pub p_std_header_version: *const crate::vk::ExtensionProperties,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoSessionCreateInfoKHR<'_> {}
+    unsafe impl Sync for VideoSessionCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoSessionCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_SESSION_CREATE_INFO_KHR;
     }
@@ -1253,6 +1295,8 @@ pub(crate) mod items {
         pub video_session: crate::vk::VideoSessionKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoSessionParametersCreateInfoKHR<'_> {}
+    unsafe impl Sync for VideoSessionParametersCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoSessionParametersCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR;
@@ -1301,6 +1345,8 @@ pub(crate) mod items {
         pub update_sequence_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoSessionParametersUpdateInfoKHR<'_> {}
+    unsafe impl Sync for VideoSessionParametersUpdateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoSessionParametersUpdateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR;
@@ -1334,6 +1380,8 @@ pub(crate) mod items {
         pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoBeginCodingInfoKHR<'_> {}
+    unsafe impl Sync for VideoBeginCodingInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoBeginCodingInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_BEGIN_CODING_INFO_KHR;
     }
@@ -1388,6 +1436,8 @@ pub(crate) mod items {
         pub flags: crate::vk::VideoEndCodingFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoEndCodingInfoKHR<'_> {}
+    unsafe impl Sync for VideoEndCodingInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoEndCodingInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_END_CODING_INFO_KHR;
     }
@@ -1416,6 +1466,8 @@ pub(crate) mod items {
         pub flags: crate::vk::VideoCodingControlFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoCodingControlInfoKHR<'_> {}
+    unsafe impl Sync for VideoCodingControlInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoCodingControlInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_CODING_CONTROL_INFO_KHR;
     }

@@ -104,6 +104,8 @@ pub(crate) mod items {
         pub shader_core_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceQueueShaderCoreControlCreateInfoARM<'_> {}
+    unsafe impl Sync for DeviceQueueShaderCoreControlCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceQueueShaderCoreControlCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM;
@@ -137,6 +139,8 @@ pub(crate) mod items {
         pub scheduling_controls: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceSchedulingControlsFeaturesARM<'_> {}
+    unsafe impl Sync for PhysicalDeviceSchedulingControlsFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM;
@@ -170,6 +174,8 @@ pub(crate) mod items {
         pub scheduling_controls_flags: crate::vk::PhysicalDeviceSchedulingControlsFlagsARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceSchedulingControlsPropertiesARM<'_> {}
+    unsafe impl Sync for PhysicalDeviceSchedulingControlsPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM;
@@ -206,6 +212,10 @@ pub(crate) mod items {
         pub scheduling_controls_max_work_group_batch_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send
+    for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'_> {}
+    unsafe impl Sync
+    for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_DISPATCH_PARAMETERS_PROPERTIES_ARM;
@@ -259,6 +269,8 @@ pub(crate) mod items {
         pub max_warps_per_shader_core: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DispatchParametersARM<'_> {}
+    unsafe impl Sync for DispatchParametersARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DispatchParametersARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPATCH_PARAMETERS_ARM;
     }

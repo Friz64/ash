@@ -231,6 +231,8 @@ pub(crate) mod items {
         pub mesh_shader_queries: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMeshShaderFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceMeshShaderFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMeshShaderFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_EXT;
@@ -315,6 +317,8 @@ pub(crate) mod items {
         pub prefers_compact_primitive_output: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMeshShaderPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceMeshShaderPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMeshShaderPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_EXT;
@@ -561,6 +565,8 @@ pub(crate) mod items {
         pub group_count_y: u32,
         pub group_count_z: u32,
     }
+    unsafe impl Send for DrawMeshTasksIndirectCommandEXT {}
+    unsafe impl Sync for DrawMeshTasksIndirectCommandEXT {}
     impl DrawMeshTasksIndirectCommandEXT {
         pub fn group_count_x(mut self, group_count_x: u32) -> Self {
             self.group_count_x = group_count_x;

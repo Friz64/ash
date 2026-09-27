@@ -23,6 +23,8 @@ pub(crate) mod items {
         pub legacy_vertex_attributes: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_FEATURES_EXT;
@@ -59,6 +61,8 @@ pub(crate) mod items {
         pub native_unaligned_performance: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_PROPERTIES_EXT;

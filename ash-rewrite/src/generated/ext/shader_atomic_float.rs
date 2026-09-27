@@ -29,6 +29,8 @@ pub(crate) mod items {
         pub sparse_image_float32_atomic_add: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT;

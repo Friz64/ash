@@ -39,6 +39,8 @@ pub(crate) mod items {
         pub nested_command_buffer_simultaneous_use: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceNestedCommandBufferFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceNestedCommandBufferFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT;
@@ -90,6 +92,8 @@ pub(crate) mod items {
         pub max_command_buffer_nesting_level: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceNestedCommandBufferPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceNestedCommandBufferPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT;

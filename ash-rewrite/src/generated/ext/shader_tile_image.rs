@@ -21,6 +21,8 @@ pub(crate) mod items {
         pub shader_tile_image_stencil_read_access: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderTileImageFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderTileImageFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT;
@@ -78,6 +80,8 @@ pub(crate) mod items {
         pub shader_tile_image_read_from_helper_invocation: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderTileImagePropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderTileImagePropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT;

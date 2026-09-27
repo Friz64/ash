@@ -90,6 +90,8 @@ pub(crate) mod items {
         pub shared_present_supported_usage_flags: crate::vk::ImageUsageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SharedPresentSurfaceCapabilitiesKHR<'_> {}
+    unsafe impl Sync for SharedPresentSurfaceCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SharedPresentSurfaceCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_KHR;

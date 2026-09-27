@@ -110,15 +110,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         external_semaphore_info: &crate::vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
-        external_semaphore_properties: &mut crate::vk::ExternalSemaphoreProperties<'_>,
-    ) {
+    ) -> crate::vk::ExternalSemaphoreProperties<'_> {
+        let mut external_semaphore_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_external_semaphore_properties)(
             physical_device,
             external_semaphore_info,
-            external_semaphore_properties,
-        )
+            external_semaphore_properties.as_mut_ptr(),
+        );
+        external_semaphore_properties.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

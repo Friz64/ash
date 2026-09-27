@@ -474,7 +474,7 @@ impl Device {
     pub unsafe fn create_acceleration_structure(
         &self,
         create_info: &crate::vk::AccelerationStructureCreateInfoNV<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::AccelerationStructureNV> {
         let mut acceleration_structure = core::mem::MaybeUninit::uninit();
         (self
@@ -482,7 +482,10 @@ impl Device {
             .create_acceleration_structure)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 acceleration_structure.as_mut_ptr(),
             )
             .assume_init_on_success(acceleration_structure)
@@ -492,14 +495,17 @@ impl Device {
     pub unsafe fn destroy_acceleration_structure(
         &self,
         acceleration_structure: crate::vk::AccelerationStructureNV,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
             .destroy_acceleration_structure)(
             self.handle,
             acceleration_structure,
-            allocator,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
         )
     }
     ///vkGetAccelerationStructureMemoryRequirementsNV
@@ -507,15 +513,16 @@ impl Device {
     pub unsafe fn get_acceleration_structure_memory_requirements(
         &self,
         info: &crate::vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
-        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
-    ) {
+    ) -> crate::vk::MemoryRequirements2<'_> {
+        let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_acceleration_structure_memory_requirements)(
             self.handle,
             info,
-            memory_requirements,
-        )
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///vkBindAccelerationStructureMemoryNV
     #[inline]
@@ -655,7 +662,7 @@ impl Device {
         &self,
         pipeline_cache: crate::vk::PipelineCache,
         create_infos: &[crate::vk::RayTracingPipelineCreateInfoNV<'_>],
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
         pipelines: &mut [crate::vk::Pipeline],
     ) -> crate::VkResult<()> {
         assert_eq!(create_infos.len(), pipelines.len());
@@ -666,7 +673,10 @@ impl Device {
                 pipeline_cache,
                 pipelines.len() as _,
                 create_infos.as_ptr(),
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 pipelines.as_mut_ptr(),
             )
             .result()
@@ -709,6 +719,8 @@ pub(crate) mod items {
         pub intersection_shader: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RayTracingShaderGroupCreateInfoNV<'_> {}
+    unsafe impl Sync for RayTracingShaderGroupCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RayTracingShaderGroupCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV;
@@ -766,6 +778,8 @@ pub(crate) mod items {
         pub base_pipeline_index: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RayTracingPipelineCreateInfoNV<'_> {}
+    unsafe impl Sync for RayTracingPipelineCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RayTracingPipelineCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_NV;
     }
@@ -847,6 +861,8 @@ pub(crate) mod items {
         pub transform_offset: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GeometryTrianglesNV<'_> {}
+    unsafe impl Sync for GeometryTrianglesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GeometryTrianglesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_TRIANGLES_NV;
     }
@@ -931,6 +947,8 @@ pub(crate) mod items {
         pub offset: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GeometryAABBNV<'_> {}
+    unsafe impl Sync for GeometryAABBNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GeometryAABBNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_AABB_NV;
     }
@@ -973,6 +991,8 @@ pub(crate) mod items {
         pub aabbs: crate::vk::GeometryAABBNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GeometryDataNV<'_> {}
+    unsafe impl Sync for GeometryDataNV<'_> {}
     impl<'a> GeometryDataNV<'a> {
         pub fn triangles(
             mut self,
@@ -997,6 +1017,8 @@ pub(crate) mod items {
         pub flags: crate::vk::GeometryFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GeometryNV<'_> {}
+    unsafe impl Sync for GeometryNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GeometryNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_NV;
     }
@@ -1042,6 +1064,8 @@ pub(crate) mod items {
         pub p_geometries: *const crate::vk::GeometryNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureInfoNV<'_> {}
+    unsafe impl Sync for AccelerationStructureInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_INFO_NV;
     }
@@ -1094,6 +1118,8 @@ pub(crate) mod items {
         pub info: crate::vk::AccelerationStructureInfoNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureCreateInfoNV<'_> {}
+    unsafe impl Sync for AccelerationStructureCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_NV;
@@ -1132,6 +1158,8 @@ pub(crate) mod items {
         pub p_device_indices: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BindAccelerationStructureMemoryInfoNV<'_> {}
+    unsafe impl Sync for BindAccelerationStructureMemoryInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BindAccelerationStructureMemoryInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV;
@@ -1182,6 +1210,8 @@ pub(crate) mod items {
         pub p_acceleration_structures: *const crate::vk::AccelerationStructureNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for WriteDescriptorSetAccelerationStructureNV<'_> {}
+    unsafe impl Sync for WriteDescriptorSetAccelerationStructureNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for WriteDescriptorSetAccelerationStructureNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV;
@@ -1219,6 +1249,8 @@ pub(crate) mod items {
         pub acceleration_structure: crate::vk::AccelerationStructureNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureMemoryRequirementsInfoNV<'_> {}
+    unsafe impl Sync for AccelerationStructureMemoryRequirementsInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureMemoryRequirementsInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV;
@@ -1266,6 +1298,8 @@ pub(crate) mod items {
         pub max_descriptor_set_acceleration_structures: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRayTracingPropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceRayTracingPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV;

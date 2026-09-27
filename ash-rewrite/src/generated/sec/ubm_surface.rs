@@ -83,7 +83,7 @@ impl Instance {
     pub unsafe fn create_ubm_surface(
         &self,
         create_info: &crate::vk::UbmSurfaceCreateInfoSEC<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
@@ -91,7 +91,10 @@ impl Instance {
             .create_ubm_surface)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 surface.as_mut_ptr(),
             )
             .assume_init_on_success(surface)
@@ -102,15 +105,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-        device: &mut crate::platform_types::ubm_device,
-    ) -> crate::vk::Bool32 {
+    ) -> crate::platform_types::ubm_device {
+        let mut device = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_ubm_presentation_support)(
             physical_device,
             queue_family_index,
-            device,
-        )
+            device.as_mut_ptr(),
+        );
+        device.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;
@@ -127,6 +131,8 @@ pub(crate) mod items {
         pub surface: *mut crate::platform_types::ubm_surface,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for UbmSurfaceCreateInfoSEC<'_> {}
+    unsafe impl Sync for UbmSurfaceCreateInfoSEC<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for UbmSurfaceCreateInfoSEC<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::UBM_SURFACE_CREATE_INFO_SEC;
     }

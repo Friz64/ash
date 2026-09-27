@@ -42,6 +42,7 @@ pub trait Handle: Sized {
     }
 }
 
+#[deprecated]
 pub trait RawPtr<T> {
     fn to_raw_ptr(self) -> *const T;
 }
@@ -55,6 +56,7 @@ impl<T> RawPtr<T> for Option<&T> {
     }
 }
 
+#[deprecated]
 pub trait RawMutPtr<T> {
     fn to_raw_mut_ptr(self) -> *mut T;
 }

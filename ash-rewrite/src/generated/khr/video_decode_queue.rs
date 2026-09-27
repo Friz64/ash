@@ -214,6 +214,8 @@ pub(crate) mod items {
         pub flags: crate::vk::VideoDecodeCapabilityFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeCapabilitiesKHR<'_> {}
+    unsafe impl Sync for VideoDecodeCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_CAPABILITIES_KHR;
     }
@@ -244,6 +246,8 @@ pub(crate) mod items {
         pub video_usage_hints: crate::vk::VideoDecodeUsageFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeUsageInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeUsageInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeUsageInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_USAGE_INFO_KHR;
     }
@@ -286,6 +290,8 @@ pub(crate) mod items {
         pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoDecodeInfoKHR<'_> {}
+    unsafe impl Sync for VideoDecodeInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_INFO_KHR;
     }

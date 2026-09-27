@@ -61,6 +61,8 @@ pub(crate) mod items {
         pub maintenance11: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMaintenance11FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceMaintenance11FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR;
@@ -94,6 +96,8 @@ pub(crate) mod items {
         pub optimal_image_transfer_granularity: crate::vk::Extent3D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'_> {}
+    unsafe impl Sync for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR;

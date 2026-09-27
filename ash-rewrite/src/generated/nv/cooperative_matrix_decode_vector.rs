@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub cooperative_matrix_decode_vector: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCooperativeMatrixDecodeVectorFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceCooperativeMatrixDecodeVectorFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCooperativeMatrixDecodeVectorFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_DECODE_VECTOR_FEATURES_NV;

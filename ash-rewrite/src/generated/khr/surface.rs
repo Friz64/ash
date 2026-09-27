@@ -195,9 +195,18 @@ impl Instance {
     pub unsafe fn destroy_surface(
         &self,
         surface: crate::vk::SurfaceKHR,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_surface)(self.handle, surface, allocator)
+        (self
+            .fp
+            .destroy_surface)(
+            self.handle,
+            surface,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkGetPhysicalDeviceSurfaceSupportKHR
     #[inline]
@@ -286,6 +295,8 @@ pub(crate) mod items {
         pub supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
         pub supported_usage_flags: crate::vk::ImageUsageFlags,
     }
+    unsafe impl Send for SurfaceCapabilitiesKHR {}
+    unsafe impl Sync for SurfaceCapabilitiesKHR {}
     impl SurfaceCapabilitiesKHR {
         pub fn min_image_count(mut self, min_image_count: u32) -> Self {
             self.min_image_count = min_image_count;
@@ -353,6 +364,8 @@ pub(crate) mod items {
         pub format: crate::vk::Format,
         pub color_space: crate::vk::ColorSpaceKHR,
     }
+    unsafe impl Send for SurfaceFormatKHR {}
+    unsafe impl Sync for SurfaceFormatKHR {}
     impl SurfaceFormatKHR {
         pub fn format(mut self, format: crate::vk::Format) -> Self {
             self.format = format;

@@ -19,6 +19,8 @@ pub(crate) mod items {
         pub shader_device_clock: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderClockFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderClockFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderClockFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR;

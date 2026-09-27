@@ -451,12 +451,20 @@ impl Device {
     pub unsafe fn create_micromap(
         &self,
         create_info: &crate::vk::MicromapCreateInfoEXT<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::MicromapEXT> {
         let mut micromap = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .create_micromap)(self.handle, create_info, allocator, micromap.as_mut_ptr())
+            .create_micromap)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
+                micromap.as_mut_ptr(),
+            )
             .assume_init_on_success(micromap)
     }
     ///vkCmdBuildMicromapsEXT
@@ -490,9 +498,18 @@ impl Device {
     pub unsafe fn destroy_micromap(
         &self,
         micromap: crate::vk::MicromapEXT,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_micromap)(self.handle, micromap, allocator)
+        (self
+            .fp
+            .destroy_micromap)(
+            self.handle,
+            micromap,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCmdCopyMicromapEXT
     #[inline]
@@ -596,11 +613,16 @@ impl Device {
     pub unsafe fn get_device_micromap_compatibility(
         &self,
         version_info: &crate::vk::MicromapVersionInfoEXT<'_>,
-        compatibility: &mut crate::vk::AccelerationStructureCompatibilityKHR,
-    ) {
+    ) -> crate::vk::AccelerationStructureCompatibilityKHR {
+        let mut compatibility = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .get_device_micromap_compatibility)(self.handle, version_info, compatibility)
+            .get_device_micromap_compatibility)(
+            self.handle,
+            version_info,
+            compatibility.as_mut_ptr(),
+        );
+        compatibility.assume_init()
     }
     ///vkGetMicromapBuildSizesEXT
     #[inline]
@@ -608,11 +630,17 @@ impl Device {
         &self,
         build_type: crate::vk::AccelerationStructureBuildTypeKHR,
         build_info: &crate::vk::MicromapBuildInfoEXT<'_>,
-        size_info: &mut crate::vk::MicromapBuildSizesInfoEXT<'_>,
-    ) {
+    ) -> crate::vk::MicromapBuildSizesInfoEXT<'_> {
+        let mut size_info = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .get_micromap_build_sizes)(self.handle, build_type, build_info, size_info)
+            .get_micromap_build_sizes)(
+            self.handle,
+            build_type,
+            build_info,
+            size_info.as_mut_ptr(),
+        );
+        size_info.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 2;
@@ -637,6 +665,8 @@ pub(crate) mod items {
         pub triangle_array_stride: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MicromapBuildInfoEXT<'_> {}
+    unsafe impl Sync for MicromapBuildInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MicromapBuildInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MICROMAP_BUILD_INFO_EXT;
     }
@@ -733,6 +763,8 @@ pub(crate) mod items {
         pub device_address: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MicromapCreateInfoEXT<'_> {}
+    unsafe impl Sync for MicromapCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MicromapCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MICROMAP_CREATE_INFO_EXT;
     }
@@ -792,6 +824,8 @@ pub(crate) mod items {
         pub p_version_data: *const u8,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MicromapVersionInfoEXT<'_> {}
+    unsafe impl Sync for MicromapVersionInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MicromapVersionInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MICROMAP_VERSION_INFO_EXT;
     }
@@ -825,6 +859,8 @@ pub(crate) mod items {
         pub mode: crate::vk::CopyMicromapModeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CopyMicromapInfoEXT<'_> {}
+    unsafe impl Sync for CopyMicromapInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyMicromapInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MICROMAP_INFO_EXT;
     }
@@ -865,6 +901,8 @@ pub(crate) mod items {
         pub mode: crate::vk::CopyMicromapModeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CopyMicromapToMemoryInfoEXT<'_> {}
+    unsafe impl Sync for CopyMicromapToMemoryInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyMicromapToMemoryInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MICROMAP_TO_MEMORY_INFO_EXT;
     }
@@ -905,6 +943,8 @@ pub(crate) mod items {
         pub mode: crate::vk::CopyMicromapModeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CopyMemoryToMicromapInfoEXT<'_> {}
+    unsafe impl Sync for CopyMemoryToMicromapInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyMemoryToMicromapInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_TO_MICROMAP_INFO_EXT;
     }
@@ -945,6 +985,8 @@ pub(crate) mod items {
         pub discardable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MicromapBuildSizesInfoEXT<'_> {}
+    unsafe impl Sync for MicromapBuildSizesInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MicromapBuildSizesInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MICROMAP_BUILD_SIZES_INFO_EXT;
     }
@@ -985,6 +1027,8 @@ pub(crate) mod items {
         pub subdivision_level: u32,
         pub format: u32,
     }
+    unsafe impl Send for MicromapUsageEXT {}
+    unsafe impl Sync for MicromapUsageEXT {}
     impl MicromapUsageEXT {
         pub fn count(mut self, count: u32) -> Self {
             self.count = count;
@@ -1010,6 +1054,8 @@ pub(crate) mod items {
         pub micromap_host_commands: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceOpacityMicromapFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceOpacityMicromapFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_EXT;
@@ -1054,6 +1100,8 @@ pub(crate) mod items {
         pub max_opacity4_state_subdivision_level: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceOpacityMicromapPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceOpacityMicromapPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceOpacityMicromapPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_EXT;
@@ -1103,6 +1151,8 @@ pub(crate) mod items {
         pub micromap: crate::vk::MicromapEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureTrianglesOpacityMicromapEXT<'_> {}
+    unsafe impl Sync for AccelerationStructureTrianglesOpacityMicromapEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureTrianglesOpacityMicromapEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_EXT;

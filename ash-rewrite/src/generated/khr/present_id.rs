@@ -19,6 +19,8 @@ pub(crate) mod items {
         pub present_id: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePresentIdFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDevicePresentIdFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePresentIdFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR;
@@ -53,6 +55,8 @@ pub(crate) mod items {
         pub p_present_ids: *const u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PresentIdKHR<'_> {}
+    unsafe impl Sync for PresentIdKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentIdKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_KHR;
     }

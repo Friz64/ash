@@ -18,6 +18,8 @@ pub(crate) mod items {
         pub shader_raw_access_chains: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRawAccessChainsFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceRawAccessChainsFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV;

@@ -144,15 +144,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         performance_query_create_info: &crate::vk::QueryPoolPerformanceCreateInfoKHR<'_>,
-        num_passes: &mut u32,
-    ) {
+    ) -> u32 {
+        let mut num_passes = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_queue_family_performance_query_passes)(
             physical_device,
             performance_query_create_info,
-            num_passes,
-        )
+            num_passes.as_mut_ptr(),
+        );
+        num_passes.assume_init()
     }
 }
 #[derive(Clone)]
@@ -248,6 +249,8 @@ pub(crate) mod items {
         pub performance_counter_multiple_query_pools: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePerformanceQueryFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDevicePerformanceQueryFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR;
@@ -294,6 +297,8 @@ pub(crate) mod items {
         pub allow_command_buffer_query_copies: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePerformanceQueryPropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDevicePerformanceQueryPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR;
@@ -332,6 +337,8 @@ pub(crate) mod items {
         pub uuid: [u8; crate::vk::UUID_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PerformanceCounterKHR<'_> {}
+    unsafe impl Sync for PerformanceCounterKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceCounterKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_COUNTER_KHR;
     }
@@ -380,6 +387,8 @@ pub(crate) mod items {
         pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PerformanceCounterDescriptionKHR<'_> {}
+    unsafe impl Sync for PerformanceCounterDescriptionKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceCounterDescriptionKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_COUNTER_DESCRIPTION_KHR;
     }
@@ -463,6 +472,8 @@ pub(crate) mod items {
         pub p_counter_indices: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueryPoolPerformanceCreateInfoKHR<'_> {}
+    unsafe impl Sync for QueryPoolPerformanceCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueryPoolPerformanceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR;
@@ -502,6 +513,8 @@ pub(crate) mod items {
         pub timeout: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AcquireProfilingLockInfoKHR<'_> {}
+    unsafe impl Sync for AcquireProfilingLockInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AcquireProfilingLockInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACQUIRE_PROFILING_LOCK_INFO_KHR;
     }
@@ -535,6 +548,8 @@ pub(crate) mod items {
         pub counter_pass_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PerformanceQuerySubmitInfoKHR<'_> {}
+    unsafe impl Sync for PerformanceQuerySubmitInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceQuerySubmitInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_QUERY_SUBMIT_INFO_KHR;
     }

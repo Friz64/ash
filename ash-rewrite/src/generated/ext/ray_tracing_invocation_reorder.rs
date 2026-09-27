@@ -28,6 +28,8 @@ pub(crate) mod items {
         pub ray_tracing_invocation_reorder: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRayTracingInvocationReorderFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceRayTracingInvocationReorderFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingInvocationReorderFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_EXT;
@@ -65,6 +67,8 @@ pub(crate) mod items {
         pub max_shader_binding_table_record_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRayTracingInvocationReorderPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceRayTracingInvocationReorderPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingInvocationReorderPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_EXT;

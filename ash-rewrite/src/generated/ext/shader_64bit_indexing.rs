@@ -38,6 +38,8 @@ pub(crate) mod items {
         pub shader64_bit_indexing: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShader64BitIndexingFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShader64BitIndexingFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT;

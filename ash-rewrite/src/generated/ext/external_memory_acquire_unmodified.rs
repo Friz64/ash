@@ -18,6 +18,8 @@ pub(crate) mod items {
         pub acquire_unmodified_memory: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExternalMemoryAcquireUnmodifiedEXT<'_> {}
+    unsafe impl Sync for ExternalMemoryAcquireUnmodifiedEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ExternalMemoryAcquireUnmodifiedEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT;

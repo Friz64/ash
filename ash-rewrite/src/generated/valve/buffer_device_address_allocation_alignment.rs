@@ -26,6 +26,10 @@ pub(crate) mod items {
         pub buffer_device_address_allocation_alignment: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send
+    for PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE<'_> {}
+    unsafe impl Sync
+    for PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_FEATURES_VALVE;
@@ -64,6 +68,10 @@ pub(crate) mod items {
         pub max_buffer_device_address_allocation_alignment: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send
+    for PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE<'_> {}
+    unsafe impl Sync
+    for PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_PROPERTIES_VALVE;
@@ -99,6 +107,8 @@ pub(crate) mod items {
         pub alignment: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferDeviceAddressAlignmentAllocateInfoVALVE<'_> {}
+    unsafe impl Sync for BufferDeviceAddressAlignmentAllocateInfoVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BufferDeviceAddressAlignmentAllocateInfoVALVE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_DEVICE_ADDRESS_ALIGNMENT_ALLOCATE_INFO_VALVE;

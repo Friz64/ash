@@ -32,6 +32,8 @@ pub(crate) mod items {
         pub device_coherent_memory: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCoherentMemoryFeaturesAMD<'_> {}
+    unsafe impl Sync for PhysicalDeviceCoherentMemoryFeaturesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD;

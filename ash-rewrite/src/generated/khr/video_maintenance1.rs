@@ -49,6 +49,8 @@ pub(crate) mod items {
         pub video_maintenance1: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceVideoMaintenance1FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceVideoMaintenance1FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR;
@@ -84,6 +86,8 @@ pub(crate) mod items {
         pub query_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for VideoInlineQueryInfoKHR<'_> {}
+    unsafe impl Sync for VideoInlineQueryInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoInlineQueryInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_INLINE_QUERY_INFO_KHR;
     }

@@ -86,24 +86,32 @@ impl Device {
     pub unsafe fn get_descriptor_set_layout_host_mapping_info(
         &self,
         binding_reference: &crate::vk::DescriptorSetBindingReferenceVALVE<'_>,
-        host_mapping: &mut crate::vk::DescriptorSetLayoutHostMappingInfoVALVE<'_>,
-    ) {
+    ) -> crate::vk::DescriptorSetLayoutHostMappingInfoVALVE<'_> {
+        let mut host_mapping = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_descriptor_set_layout_host_mapping_info)(
             self.handle,
             binding_reference,
-            host_mapping,
-        )
+            host_mapping.as_mut_ptr(),
+        );
+        host_mapping.assume_init()
     }
     ///vkGetDescriptorSetHostMappingVALVE
     #[inline]
     pub unsafe fn get_descriptor_set_host_mapping(
         &self,
         descriptor_set: crate::vk::DescriptorSet,
-        data: &mut *mut core::ffi::c_void,
-    ) {
-        (self.fp.get_descriptor_set_host_mapping)(self.handle, descriptor_set, data)
+    ) -> *mut core::ffi::c_void {
+        let mut data = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_descriptor_set_host_mapping)(
+            self.handle,
+            descriptor_set,
+            data.as_mut_ptr(),
+        );
+        data.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 1;
@@ -118,6 +126,8 @@ pub(crate) mod items {
         pub descriptor_set_host_mapping: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'_> {}
+    unsafe impl Sync for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE;
@@ -155,6 +165,8 @@ pub(crate) mod items {
         pub binding: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorSetBindingReferenceVALVE<'_> {}
+    unsafe impl Sync for DescriptorSetBindingReferenceVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DescriptorSetBindingReferenceVALVE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_BINDING_REFERENCE_VALVE;
@@ -193,6 +205,8 @@ pub(crate) mod items {
         pub descriptor_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorSetLayoutHostMappingInfoVALVE<'_> {}
+    unsafe impl Sync for DescriptorSetLayoutHostMappingInfoVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DescriptorSetLayoutHostMappingInfoVALVE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE;

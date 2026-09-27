@@ -35,6 +35,8 @@ pub(crate) mod items {
         pub image_view_type: crate::vk::ImageViewType,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceImageViewImageFormatInfoEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceImageViewImageFormatInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT;
@@ -70,6 +72,8 @@ pub(crate) mod items {
         pub filter_cubic_minmax: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for FilterCubicImageViewImageFormatPropertiesEXT<'_> {}
+    unsafe impl Sync for FilterCubicImageViewImageFormatPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for FilterCubicImageViewImageFormatPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT;

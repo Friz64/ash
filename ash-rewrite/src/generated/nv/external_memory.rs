@@ -19,6 +19,8 @@ pub(crate) mod items {
         pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExternalMemoryImageCreateInfoNV<'_> {}
+    unsafe impl Sync for ExternalMemoryImageCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalMemoryImageCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV;
     }
@@ -52,6 +54,8 @@ pub(crate) mod items {
         pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExportMemoryAllocateInfoNV<'_> {}
+    unsafe impl Sync for ExportMemoryAllocateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryAllocateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV;
     }

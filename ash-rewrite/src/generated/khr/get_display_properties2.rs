@@ -258,6 +258,8 @@ pub(crate) mod items {
         pub display_properties: crate::vk::DisplayPropertiesKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplayProperties2KHR<'_> {}
+    unsafe impl Sync for DisplayProperties2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayProperties2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PROPERTIES_2_KHR;
     }
@@ -289,6 +291,8 @@ pub(crate) mod items {
         pub display_plane_properties: crate::vk::DisplayPlanePropertiesKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplayPlaneProperties2KHR<'_> {}
+    unsafe impl Sync for DisplayPlaneProperties2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPlaneProperties2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PLANE_PROPERTIES_2_KHR;
     }
@@ -320,6 +324,8 @@ pub(crate) mod items {
         pub display_mode_properties: crate::vk::DisplayModePropertiesKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplayModeProperties2KHR<'_> {}
+    unsafe impl Sync for DisplayModeProperties2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeProperties2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_MODE_PROPERTIES_2_KHR;
     }
@@ -352,6 +358,8 @@ pub(crate) mod items {
         pub plane_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplayPlaneInfo2KHR<'_> {}
+    unsafe impl Sync for DisplayPlaneInfo2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPlaneInfo2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PLANE_INFO_2_KHR;
     }
@@ -385,6 +393,8 @@ pub(crate) mod items {
         pub capabilities: crate::vk::DisplayPlaneCapabilitiesKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplayPlaneCapabilities2KHR<'_> {}
+    unsafe impl Sync for DisplayPlaneCapabilities2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPlaneCapabilities2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PLANE_CAPABILITIES_2_KHR;
     }

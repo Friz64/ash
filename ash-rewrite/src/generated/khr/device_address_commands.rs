@@ -439,27 +439,51 @@ impl Device {
     pub unsafe fn cmd_copy_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        copy_memory_info: &crate::vk::CopyDeviceMemoryInfoKHR<'_>,
+        copy_memory_info: Option<&crate::vk::CopyDeviceMemoryInfoKHR<'_>>,
     ) {
-        (self.fp.cmd_copy_memory)(command_buffer, copy_memory_info)
+        (self
+            .fp
+            .cmd_copy_memory)(
+            command_buffer,
+            match copy_memory_info {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCmdCopyMemoryToImageKHR
     #[inline]
     pub unsafe fn cmd_copy_memory_to_image(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        copy_memory_info: &crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
+        copy_memory_info: Option<&crate::vk::CopyDeviceMemoryImageInfoKHR<'_>>,
     ) {
-        (self.fp.cmd_copy_memory_to_image)(command_buffer, copy_memory_info)
+        (self
+            .fp
+            .cmd_copy_memory_to_image)(
+            command_buffer,
+            match copy_memory_info {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCmdCopyImageToMemoryKHR
     #[inline]
     pub unsafe fn cmd_copy_image_to_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
-        copy_memory_info: &crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
+        copy_memory_info: Option<&crate::vk::CopyDeviceMemoryImageInfoKHR<'_>>,
     ) {
-        (self.fp.cmd_copy_image_to_memory)(command_buffer, copy_memory_info)
+        (self
+            .fp
+            .cmd_copy_image_to_memory)(
+            command_buffer,
+            match copy_memory_info {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCmdUpdateMemoryKHR
     #[inline]
@@ -705,7 +729,7 @@ impl Device {
     pub unsafe fn create_acceleration_structure2(
         &self,
         create_info: &crate::vk::AccelerationStructureCreateInfo2KHR<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::AccelerationStructureKHR> {
         let mut acceleration_structure = core::mem::MaybeUninit::uninit();
         (self
@@ -713,7 +737,10 @@ impl Device {
             .create_acceleration_structure2)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 acceleration_structure.as_mut_ptr(),
             )
             .assume_init_on_success(acceleration_structure)
@@ -730,6 +757,8 @@ pub(crate) mod items {
         pub size: crate::vk::DeviceSize,
         pub stride: crate::vk::DeviceSize,
     }
+    unsafe impl Send for StridedDeviceAddressRangeKHR {}
+    unsafe impl Sync for StridedDeviceAddressRangeKHR {}
     impl StridedDeviceAddressRangeKHR {
         pub fn address(mut self, address: crate::vk::DeviceAddress) -> Self {
             self.address = address;
@@ -751,6 +780,8 @@ pub(crate) mod items {
         pub address: crate::vk::DeviceAddress,
         pub size: crate::vk::DeviceSize,
     }
+    unsafe impl Send for DeviceAddressRangeKHR {}
+    unsafe impl Sync for DeviceAddressRangeKHR {}
     impl DeviceAddressRangeKHR {
         pub fn address(mut self, address: crate::vk::DeviceAddress) -> Self {
             self.address = address;
@@ -773,6 +804,8 @@ pub(crate) mod items {
         pub dst_flags: crate::vk::AddressCommandFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceMemoryCopyKHR<'_> {}
+    unsafe impl Sync for DeviceMemoryCopyKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceMemoryCopyKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_COPY_KHR;
     }
@@ -823,6 +856,8 @@ pub(crate) mod items {
         pub p_regions: *const crate::vk::DeviceMemoryCopyKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CopyDeviceMemoryInfoKHR<'_> {}
+    unsafe impl Sync for CopyDeviceMemoryInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyDeviceMemoryInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_DEVICE_MEMORY_INFO_KHR;
     }
@@ -863,6 +898,8 @@ pub(crate) mod items {
         pub image_extent: crate::vk::Extent3D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceMemoryImageCopyKHR<'_> {}
+    unsafe impl Sync for DeviceMemoryImageCopyKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceMemoryImageCopyKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_IMAGE_COPY_KHR;
     }
@@ -937,6 +974,8 @@ pub(crate) mod items {
         pub p_regions: *const crate::vk::DeviceMemoryImageCopyKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CopyDeviceMemoryImageInfoKHR<'_> {}
+    unsafe impl Sync for CopyDeviceMemoryImageInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyDeviceMemoryImageInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_DEVICE_MEMORY_IMAGE_INFO_KHR;
     }
@@ -976,6 +1015,8 @@ pub(crate) mod items {
         pub p_memory_range_barriers: *const crate::vk::MemoryRangeBarrierKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryRangeBarriersInfoKHR<'_> {}
+    unsafe impl Sync for MemoryRangeBarriersInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryRangeBarriersInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_RANGE_BARRIERS_INFO_KHR;
     }
@@ -1018,6 +1059,8 @@ pub(crate) mod items {
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryRangeBarrierKHR<'_> {}
+    unsafe impl Sync for MemoryRangeBarrierKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryRangeBarrierKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_RANGE_BARRIER_KHR;
     }
@@ -1099,6 +1142,8 @@ pub(crate) mod items {
         pub device_address_commands: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_ADDRESS_COMMANDS_FEATURES_KHR;
@@ -1134,6 +1179,8 @@ pub(crate) mod items {
         pub flags: crate::vk::ConditionalRenderingFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ConditionalRenderingBeginInfo2EXT<'_> {}
+    unsafe impl Sync for ConditionalRenderingBeginInfo2EXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ConditionalRenderingBeginInfo2EXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CONDITIONAL_RENDERING_BEGIN_INFO_2_EXT;
@@ -1182,6 +1229,8 @@ pub(crate) mod items {
         pub _type: crate::vk::AccelerationStructureTypeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureCreateInfo2KHR<'_> {}
+    unsafe impl Sync for AccelerationStructureCreateInfo2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureCreateInfo2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_2_KHR;
@@ -1237,6 +1286,8 @@ pub(crate) mod items {
         pub index_type: crate::vk::IndexType,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BindIndexBuffer3InfoKHR<'_> {}
+    unsafe impl Sync for BindIndexBuffer3InfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BindIndexBuffer3InfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_INDEX_BUFFER_3_INFO_KHR;
     }
@@ -1283,6 +1334,8 @@ pub(crate) mod items {
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BindVertexBuffer3InfoKHR<'_> {}
+    unsafe impl Sync for BindVertexBuffer3InfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BindVertexBuffer3InfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_VERTEX_BUFFER_3_INFO_KHR;
     }
@@ -1329,6 +1382,8 @@ pub(crate) mod items {
         pub draw_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DrawIndirect2InfoKHR<'_> {}
+    unsafe impl Sync for DrawIndirect2InfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DrawIndirect2InfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DRAW_INDIRECT_2_INFO_KHR;
     }
@@ -1377,6 +1432,8 @@ pub(crate) mod items {
         pub max_draw_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DrawIndirectCount2InfoKHR<'_> {}
+    unsafe impl Sync for DrawIndirectCount2InfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DrawIndirectCount2InfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DRAW_INDIRECT_COUNT_2_INFO_KHR;
     }
@@ -1438,6 +1495,8 @@ pub(crate) mod items {
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DispatchIndirect2InfoKHR<'_> {}
+    unsafe impl Sync for DispatchIndirect2InfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DispatchIndirect2InfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPATCH_INDIRECT_2_INFO_KHR;
     }
@@ -1478,6 +1537,8 @@ pub(crate) mod items {
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BindTransformFeedbackBuffer2InfoEXT<'_> {}
+    unsafe impl Sync for BindTransformFeedbackBuffer2InfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BindTransformFeedbackBuffer2InfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_TRANSFORM_FEEDBACK_BUFFER_2_INFO_EXT;
@@ -1521,6 +1582,8 @@ pub(crate) mod items {
         pub marker: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryMarkerInfoAMD<'_> {}
+    unsafe impl Sync for MemoryMarkerInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryMarkerInfoAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_MARKER_INFO_AMD;
     }

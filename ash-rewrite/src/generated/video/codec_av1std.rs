@@ -157,6 +157,8 @@ pub(crate) mod items {
 - `color_description_present_flag` @ `3..4`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for AV1ColorConfigFlags {}
+    unsafe impl Sync for AV1ColorConfigFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1ColorConfigFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -223,6 +225,8 @@ pub(crate) mod items {
         pub matrix_coefficients: crate::vk::AV1MatrixCoefficients,
         pub chroma_sample_position: crate::vk::AV1ChromaSamplePosition,
     }
+    unsafe impl Send for AV1ColorConfig {}
+    unsafe impl Sync for AV1ColorConfig {}
     impl AV1ColorConfig {
         pub fn flags(mut self, flags: crate::vk::AV1ColorConfigFlags) -> Self {
             self.flags = flags;
@@ -279,6 +283,8 @@ pub(crate) mod items {
         ///- `equal_picture_interval` @ `0..1`
         pub bitfield0: u32,
     }
+    unsafe impl Send for AV1TimingInfoFlags {}
+    unsafe impl Sync for AV1TimingInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1TimingInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -306,6 +312,8 @@ pub(crate) mod items {
         pub time_scale: u32,
         pub num_ticks_per_picture_minus_1: u32,
     }
+    unsafe impl Send for AV1TimingInfo {}
+    unsafe impl Sync for AV1TimingInfo {}
     impl AV1TimingInfo {
         pub fn flags(mut self, flags: crate::vk::AV1TimingInfoFlags) -> Self {
             self.flags = flags;
@@ -354,6 +362,8 @@ pub(crate) mod items {
 - `initial_display_delay_present_flag` @ `18..19`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for AV1SequenceHeaderFlags {}
+    unsafe impl Sync for AV1SequenceHeaderFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1SequenceHeaderFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -593,6 +603,8 @@ pub(crate) mod items {
         pub p_timing_info: *const crate::vk::AV1TimingInfo,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AV1SequenceHeader<'_> {}
+    unsafe impl Sync for AV1SequenceHeader<'_> {}
     impl<'a> Default for AV1SequenceHeader<'a> {
         fn default() -> Self {
             Self {
@@ -697,6 +709,8 @@ pub(crate) mod items {
 - `loop_filter_delta_update` @ `1..2`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for AV1LoopFilterFlags {}
+    unsafe impl Sync for AV1LoopFilterFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1LoopFilterFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -745,6 +759,8 @@ pub(crate) mod items {
         pub update_mode_delta: u8,
         pub loop_filter_mode_deltas: [i8; crate::vk::AV1_LOOP_FILTER_ADJUSTMENTS as _],
     }
+    unsafe impl Send for AV1LoopFilter {}
+    unsafe impl Sync for AV1LoopFilter {}
     impl Default for AV1LoopFilter {
         fn default() -> Self {
             Self {
@@ -804,6 +820,8 @@ pub(crate) mod items {
 - `diff_uv_delta` @ `1..2`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for AV1QuantizationFlags {}
+    unsafe impl Sync for AV1QuantizationFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1QuantizationFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -846,6 +864,8 @@ pub(crate) mod items {
         pub qm_u: u8,
         pub qm_v: u8,
     }
+    unsafe impl Send for AV1Quantization {}
+    unsafe impl Sync for AV1Quantization {}
     impl AV1Quantization {
         pub fn flags(mut self, flags: crate::vk::AV1QuantizationFlags) -> Self {
             self.flags = flags;
@@ -896,6 +916,8 @@ pub(crate) mod items {
         pub feature_data: [[i16; crate::vk::AV1_SEG_LVL_MAX
             as _]; crate::vk::AV1_MAX_SEGMENTS as _],
     }
+    unsafe impl Send for AV1Segmentation {}
+    unsafe impl Sync for AV1Segmentation {}
     impl Default for AV1Segmentation {
         fn default() -> Self {
             Self {
@@ -927,6 +949,8 @@ pub(crate) mod items {
         ///- `uniform_tile_spacing_flag` @ `0..1`
         pub bitfield0: u32,
     }
+    unsafe impl Send for AV1TileInfoFlags {}
+    unsafe impl Sync for AV1TileInfoFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1TileInfoFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -967,6 +991,8 @@ pub(crate) mod items {
         pub p_height_in_sbs_minus1: *const u16,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AV1TileInfo<'_> {}
+    unsafe impl Sync for AV1TileInfo<'_> {}
     impl<'a> Default for AV1TileInfo<'a> {
         fn default() -> Self {
             Self {
@@ -1033,6 +1059,8 @@ pub(crate) mod items {
         pub cdef_uv_pri_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
         pub cdef_uv_sec_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
     }
+    unsafe impl Send for AV1CDEF {}
+    unsafe impl Sync for AV1CDEF {}
     impl Default for AV1CDEF {
         fn default() -> Self {
             Self {
@@ -1091,6 +1119,8 @@ pub(crate) mod items {
             as _],
         pub loop_restoration_size: [u16; crate::vk::AV1_MAX_NUM_PLANES as _],
     }
+    unsafe impl Send for AV1LoopRestoration {}
+    unsafe impl Sync for AV1LoopRestoration {}
     impl Default for AV1LoopRestoration {
         fn default() -> Self {
             Self {
@@ -1124,6 +1154,8 @@ pub(crate) mod items {
         pub gm_params: [[i32; crate::vk::AV1_GLOBAL_MOTION_PARAMS
             as _]; crate::vk::AV1_NUM_REF_FRAMES as _],
     }
+    unsafe impl Send for AV1GlobalMotion {}
+    unsafe impl Sync for AV1GlobalMotion {}
     impl Default for AV1GlobalMotion {
         fn default() -> Self {
             Self {
@@ -1158,6 +1190,8 @@ pub(crate) mod items {
 - `update_grain` @ `3..4`*/
         pub bitfield0: u32,
     }
+    unsafe impl Send for AV1FilmGrainFlags {}
+    unsafe impl Sync for AV1FilmGrainFlags {}
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AV1FilmGrainFlags {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1239,6 +1273,8 @@ pub(crate) mod items {
         pub cr_luma_mult: u8,
         pub cr_offset: u16,
     }
+    unsafe impl Send for AV1FilmGrain {}
+    unsafe impl Sync for AV1FilmGrain {}
     impl Default for AV1FilmGrain {
         fn default() -> Self {
             Self {

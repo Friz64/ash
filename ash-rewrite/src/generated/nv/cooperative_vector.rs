@@ -245,6 +245,8 @@ pub(crate) mod items {
         pub cooperative_vector_training: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCooperativeVectorFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceCooperativeVectorFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV;
@@ -291,6 +293,8 @@ pub(crate) mod items {
         pub transpose: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CooperativeVectorPropertiesNV<'_> {}
+    unsafe impl Sync for CooperativeVectorPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CooperativeVectorPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COOPERATIVE_VECTOR_PROPERTIES_NV;
     }
@@ -356,6 +360,8 @@ pub(crate) mod items {
         pub max_cooperative_vector_components: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCooperativeVectorPropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceCooperativeVectorPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_PROPERTIES_NV;
@@ -427,6 +433,8 @@ pub(crate) mod items {
         pub dst_stride: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ConvertCooperativeVectorMatrixInfoNV<'_> {}
+    unsafe impl Sync for ConvertCooperativeVectorMatrixInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ConvertCooperativeVectorMatrixInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CONVERT_COOPERATIVE_VECTOR_MATRIX_INFO_NV;

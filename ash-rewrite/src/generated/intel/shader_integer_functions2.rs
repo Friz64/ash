@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub shader_integer_functions2: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL;

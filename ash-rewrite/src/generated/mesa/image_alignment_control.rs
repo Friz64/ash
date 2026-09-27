@@ -24,6 +24,8 @@ pub(crate) mod items {
         pub image_alignment_control: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceImageAlignmentControlFeaturesMESA<'_> {}
+    unsafe impl Sync for PhysicalDeviceImageAlignmentControlFeaturesMESA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA;
@@ -57,6 +59,8 @@ pub(crate) mod items {
         pub supported_image_alignment_mask: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceImageAlignmentControlPropertiesMESA<'_> {}
+    unsafe impl Sync for PhysicalDeviceImageAlignmentControlPropertiesMESA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA;
@@ -91,6 +95,8 @@ pub(crate) mod items {
         pub maximum_requested_alignment: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageAlignmentControlCreateInfoMESA<'_> {}
+    unsafe impl Sync for ImageAlignmentControlCreateInfoMESA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageAlignmentControlCreateInfoMESA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA;

@@ -56,6 +56,8 @@ pub(crate) mod items {
         pub displacement_micromap: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDisplacementMicromapFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceDisplacementMicromapFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_FEATURES_NV;
@@ -89,6 +91,8 @@ pub(crate) mod items {
         pub max_displacement_micromap_subdivision_level: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDisplacementMicromapPropertiesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceDisplacementMicromapPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_PROPERTIES_NV;
@@ -138,6 +142,8 @@ pub(crate) mod items {
         pub micromap: crate::vk::MicromapEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureTrianglesDisplacementMicromapNV<'_> {}
+    unsafe impl Sync for AccelerationStructureTrianglesDisplacementMicromapNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_DISPLACEMENT_MICROMAP_NV;

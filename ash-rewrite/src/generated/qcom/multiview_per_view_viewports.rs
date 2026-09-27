@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub multiview_per_view_viewports: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'_> {}
+    unsafe impl Sync for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM;

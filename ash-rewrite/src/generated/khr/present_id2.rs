@@ -30,6 +30,8 @@ pub(crate) mod items {
         pub present_id2: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePresentId2FeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDevicePresentId2FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePresentId2FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR;
@@ -64,6 +66,8 @@ pub(crate) mod items {
         pub p_present_ids: *const u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PresentId2KHR<'_> {}
+    unsafe impl Sync for PresentId2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentId2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_2_KHR;
     }
@@ -95,6 +99,8 @@ pub(crate) mod items {
         pub present_id2_supported: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SurfaceCapabilitiesPresentId2KHR<'_> {}
+    unsafe impl Sync for SurfaceCapabilitiesPresentId2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilitiesPresentId2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_ID_2_KHR;
     }

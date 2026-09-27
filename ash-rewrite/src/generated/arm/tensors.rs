@@ -319,10 +319,20 @@ impl Device {
     pub unsafe fn create_tensor(
         &self,
         create_info: &crate::vk::TensorCreateInfoARM<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::TensorARM> {
         let mut tensor = core::mem::MaybeUninit::uninit();
-        (self.fp.create_tensor)(self.handle, create_info, allocator, tensor.as_mut_ptr())
+        (self
+            .fp
+            .create_tensor)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
+                tensor.as_mut_ptr(),
+            )
             .assume_init_on_success(tensor)
     }
     ///vkDestroyTensorARM
@@ -330,21 +340,38 @@ impl Device {
     pub unsafe fn destroy_tensor(
         &self,
         tensor: crate::vk::TensorARM,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_tensor)(self.handle, tensor, allocator)
+        (self
+            .fp
+            .destroy_tensor)(
+            self.handle,
+            tensor,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCreateTensorViewARM
     #[inline]
     pub unsafe fn create_tensor_view(
         &self,
         create_info: &crate::vk::TensorViewCreateInfoARM<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::TensorViewARM> {
         let mut view = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .create_tensor_view)(self.handle, create_info, allocator, view.as_mut_ptr())
+            .create_tensor_view)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
+                view.as_mut_ptr(),
+            )
             .assume_init_on_success(view)
     }
     ///vkDestroyTensorViewARM
@@ -352,18 +379,34 @@ impl Device {
     pub unsafe fn destroy_tensor_view(
         &self,
         tensor_view: crate::vk::TensorViewARM,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_tensor_view)(self.handle, tensor_view, allocator)
+        (self
+            .fp
+            .destroy_tensor_view)(
+            self.handle,
+            tensor_view,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkGetTensorMemoryRequirementsARM
     #[inline]
     pub unsafe fn get_tensor_memory_requirements(
         &self,
         info: &crate::vk::TensorMemoryRequirementsInfoARM<'_>,
-        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
-    ) {
-        (self.fp.get_tensor_memory_requirements)(self.handle, info, memory_requirements)
+    ) -> crate::vk::MemoryRequirements2<'_> {
+        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_tensor_memory_requirements)(
+            self.handle,
+            info,
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///vkBindTensorMemoryARM
     #[inline]
@@ -381,15 +424,16 @@ impl Device {
     pub unsafe fn get_device_tensor_memory_requirements(
         &self,
         info: &crate::vk::DeviceTensorMemoryRequirementsARM<'_>,
-        memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
-    ) {
+    ) -> crate::vk::MemoryRequirements2<'_> {
+        let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_device_tensor_memory_requirements)(
             self.handle,
             info,
-            memory_requirements,
-        )
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///vkCmdCopyTensorARM
     #[inline]
@@ -496,15 +540,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         external_tensor_info: &crate::vk::PhysicalDeviceExternalTensorInfoARM<'_>,
-        external_tensor_properties: &mut crate::vk::ExternalTensorPropertiesARM<'_>,
-    ) {
+    ) -> crate::vk::ExternalTensorPropertiesARM<'_> {
+        let mut external_tensor_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_external_tensor_properties)(
             physical_device,
             external_tensor_info,
-            external_tensor_properties,
-        )
+            external_tensor_properties.as_mut_ptr(),
+        );
+        external_tensor_properties.assume_init()
     }
 }
 pub const SPEC_VERSION: u32 = 2;
@@ -524,6 +569,8 @@ pub(crate) mod items {
         pub usage: crate::vk::TensorUsageFlagsARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TensorDescriptionARM<'_> {}
+    unsafe impl Sync for TensorDescriptionARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorDescriptionARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_DESCRIPTION_ARM;
     }
@@ -583,6 +630,8 @@ pub(crate) mod items {
         pub p_queue_family_indices: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TensorCreateInfoARM<'_> {}
+    unsafe impl Sync for TensorCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_CREATE_INFO_ARM;
     }
@@ -631,6 +680,8 @@ pub(crate) mod items {
         pub tensor: crate::vk::TensorARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TensorMemoryRequirementsInfoARM<'_> {}
+    unsafe impl Sync for TensorMemoryRequirementsInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorMemoryRequirementsInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_MEMORY_REQUIREMENTS_INFO_ARM;
     }
@@ -661,6 +712,8 @@ pub(crate) mod items {
         pub memory_offset: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BindTensorMemoryInfoARM<'_> {}
+    unsafe impl Sync for BindTensorMemoryInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BindTensorMemoryInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_TENSOR_MEMORY_INFO_ARM;
     }
@@ -700,6 +753,8 @@ pub(crate) mod items {
         pub p_tensor_views: *const crate::vk::TensorViewARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for WriteDescriptorSetTensorARM<'_> {}
+    unsafe impl Sync for WriteDescriptorSetTensorARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for WriteDescriptorSetTensorARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_TENSOR_ARM;
     }
@@ -736,6 +791,8 @@ pub(crate) mod items {
         pub linear_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TensorFormatPropertiesARM<'_> {}
+    unsafe impl Sync for TensorFormatPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorFormatPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_FORMAT_PROPERTIES_ARM;
     }
@@ -789,6 +846,8 @@ pub(crate) mod items {
         pub shader_tensor_supported_stages: crate::vk::ShaderStageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTensorPropertiesARM<'_> {}
+    unsafe impl Sync for PhysicalDeviceTensorPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTensorPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TENSOR_PROPERTIES_ARM;
@@ -917,6 +976,8 @@ pub(crate) mod items {
         pub tensor: crate::vk::TensorARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TensorMemoryBarrierARM<'_> {}
+    unsafe impl Sync for TensorMemoryBarrierARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorMemoryBarrierARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_MEMORY_BARRIER_ARM;
     }
@@ -990,6 +1051,8 @@ pub(crate) mod items {
         pub p_tensor_memory_barriers: *const crate::vk::TensorMemoryBarrierARM<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TensorDependencyInfoARM<'_> {}
+    unsafe impl Sync for TensorDependencyInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorDependencyInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_DEPENDENCY_INFO_ARM;
     }
@@ -1030,6 +1093,8 @@ pub(crate) mod items {
         pub tensors: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTensorFeaturesARM<'_> {}
+    unsafe impl Sync for PhysicalDeviceTensorFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceTensorFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TENSOR_FEATURES_ARM;
     }
@@ -1099,6 +1164,8 @@ pub(crate) mod items {
         pub p_create_info: *const crate::vk::TensorCreateInfoARM<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DeviceTensorMemoryRequirementsARM<'_> {}
+    unsafe impl Sync for DeviceTensorMemoryRequirementsARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceTensorMemoryRequirementsARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_TENSOR_MEMORY_REQUIREMENTS_ARM;
@@ -1134,6 +1201,8 @@ pub(crate) mod items {
         pub p_regions: *const crate::vk::TensorCopyARM<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CopyTensorInfoARM<'_> {}
+    unsafe impl Sync for CopyTensorInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyTensorInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_TENSOR_INFO_ARM;
     }
@@ -1177,6 +1246,8 @@ pub(crate) mod items {
         pub p_extent: *const u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TensorCopyARM<'_> {}
+    unsafe impl Sync for TensorCopyARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorCopyARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_COPY_ARM;
     }
@@ -1219,6 +1290,8 @@ pub(crate) mod items {
         pub tensor: crate::vk::TensorARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryDedicatedAllocateInfoTensorARM<'_> {}
+    unsafe impl Sync for MemoryDedicatedAllocateInfoTensorARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for MemoryDedicatedAllocateInfoTensorARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_DEDICATED_ALLOCATE_INFO_TENSOR_ARM;
@@ -1252,6 +1325,8 @@ pub(crate) mod items {
         pub tensor_descriptor_size: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'_> {}
+    unsafe impl Sync for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_PROPERTIES_ARM;
@@ -1299,6 +1374,8 @@ pub(crate) mod items {
         pub descriptor_buffer_tensor_descriptors: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'_> {}
+    unsafe impl Sync for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_FEATURES_ARM;
@@ -1336,6 +1413,8 @@ pub(crate) mod items {
         pub tensor: crate::vk::TensorARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TensorCaptureDescriptorDataInfoARM<'_> {}
+    unsafe impl Sync for TensorCaptureDescriptorDataInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for TensorCaptureDescriptorDataInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_CAPTURE_DESCRIPTOR_DATA_INFO_ARM;
@@ -1365,6 +1444,8 @@ pub(crate) mod items {
         pub tensor_view: crate::vk::TensorViewARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for TensorViewCaptureDescriptorDataInfoARM<'_> {}
+    unsafe impl Sync for TensorViewCaptureDescriptorDataInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for TensorViewCaptureDescriptorDataInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_ARM;
@@ -1394,6 +1475,8 @@ pub(crate) mod items {
         pub tensor_view: crate::vk::TensorViewARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorGetTensorInfoARM<'_> {}
+    unsafe impl Sync for DescriptorGetTensorInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorGetTensorInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_GET_TENSOR_INFO_ARM;
     }
@@ -1425,6 +1508,8 @@ pub(crate) mod items {
         pub p_tensors: *const crate::vk::TensorARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for FrameBoundaryTensorsARM<'_> {}
+    unsafe impl Sync for FrameBoundaryTensorsARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for FrameBoundaryTensorsARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAME_BOUNDARY_TENSORS_ARM;
     }
@@ -1465,6 +1550,8 @@ pub(crate) mod items {
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceExternalTensorInfoARM<'_> {}
+    unsafe impl Sync for PhysicalDeviceExternalTensorInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExternalTensorInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_TENSOR_INFO_ARM;
@@ -1510,6 +1597,8 @@ pub(crate) mod items {
         pub external_memory_properties: crate::vk::ExternalMemoryProperties,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExternalTensorPropertiesARM<'_> {}
+    unsafe impl Sync for ExternalTensorPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalTensorPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_TENSOR_PROPERTIES_ARM;
     }
@@ -1541,6 +1630,8 @@ pub(crate) mod items {
         pub handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ExternalMemoryTensorCreateInfoARM<'_> {}
+    unsafe impl Sync for ExternalMemoryTensorCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ExternalMemoryTensorCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_TENSOR_CREATE_INFO_ARM;

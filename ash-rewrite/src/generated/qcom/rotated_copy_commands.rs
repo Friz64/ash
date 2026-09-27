@@ -18,6 +18,8 @@ pub(crate) mod items {
         pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CopyCommandTransformInfoQCOM<'_> {}
+    unsafe impl Sync for CopyCommandTransformInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyCommandTransformInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_COMMAND_TRANSFORM_INFO_QCOM;
     }

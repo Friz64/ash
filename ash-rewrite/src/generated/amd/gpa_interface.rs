@@ -346,7 +346,7 @@ impl Device {
     pub unsafe fn create_gpa_session(
         &self,
         create_info: &crate::vk::GpaSessionCreateInfoAMD<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::GpaSessionAMD> {
         let mut gpa_session = core::mem::MaybeUninit::uninit();
         (self
@@ -354,7 +354,10 @@ impl Device {
             .create_gpa_session)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 gpa_session.as_mut_ptr(),
             )
             .assume_init_on_success(gpa_session)
@@ -364,9 +367,18 @@ impl Device {
     pub unsafe fn destroy_gpa_session(
         &self,
         gpa_session: crate::vk::GpaSessionAMD,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_gpa_session)(self.handle, gpa_session, allocator)
+        (self
+            .fp
+            .destroy_gpa_session)(
+            self.handle,
+            gpa_session,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkSetGpaDeviceClockModeAMD
     #[inline]
@@ -491,6 +503,8 @@ pub(crate) mod items {
         pub max_global_shared_counters: u32,
         pub max_streaming_counters: u32,
     }
+    unsafe impl Send for GpaPerfBlockPropertiesAMD {}
+    unsafe impl Sync for GpaPerfBlockPropertiesAMD {}
     impl GpaPerfBlockPropertiesAMD {
         pub fn block_type(mut self, block_type: crate::vk::GpaPerfBlockAMD) -> Self {
             self.block_type = block_type;
@@ -542,6 +556,8 @@ pub(crate) mod items {
         pub clock_modes: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceGpaFeaturesAMD<'_> {}
+    unsafe impl Sync for PhysicalDeviceGpaFeaturesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceGpaFeaturesAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GPA_FEATURES_AMD;
     }
@@ -593,6 +609,8 @@ pub(crate) mod items {
         pub p_perf_blocks: *mut crate::vk::GpaPerfBlockPropertiesAMD,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceGpaPropertiesAMD<'_> {}
+    unsafe impl Sync for PhysicalDeviceGpaPropertiesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceGpaPropertiesAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_AMD;
     }
@@ -649,6 +667,8 @@ pub(crate) mod items {
         pub revision_id: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceGpaProperties2AMD<'_> {}
+    unsafe impl Sync for PhysicalDeviceGpaProperties2AMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceGpaProperties2AMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_2_AMD;
     }
@@ -678,6 +698,8 @@ pub(crate) mod items {
         pub block_instance: u32,
         pub event_id: u32,
     }
+    unsafe impl Send for GpaPerfCounterAMD {}
+    unsafe impl Sync for GpaPerfCounterAMD {}
     impl GpaPerfCounterAMD {
         pub fn block_type(mut self, block_type: crate::vk::GpaPerfBlockAMD) -> Self {
             self.block_type = block_type;
@@ -714,6 +736,8 @@ pub(crate) mod items {
         pub timing_post_sample: crate::vk::PipelineStageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GpaSampleBeginInfoAMD<'_> {}
+    unsafe impl Sync for GpaSampleBeginInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GpaSampleBeginInfoAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GPA_SAMPLE_BEGIN_INFO_AMD;
     }
@@ -838,6 +862,8 @@ pub(crate) mod items {
         pub engine_clock_ratio_to_peak: core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GpaDeviceClockModeInfoAMD<'_> {}
+    unsafe impl Sync for GpaDeviceClockModeInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GpaDeviceClockModeInfoAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GPA_DEVICE_CLOCK_MODE_INFO_AMD;
     }
@@ -888,6 +914,8 @@ pub(crate) mod items {
         pub engine_clock_frequency: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GpaDeviceGetClockInfoAMD<'_> {}
+    unsafe impl Sync for GpaDeviceGetClockInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GpaDeviceGetClockInfoAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GPA_DEVICE_GET_CLOCK_INFO_AMD;
     }
@@ -937,6 +965,8 @@ pub(crate) mod items {
         pub secondary_copy_source: crate::vk::GpaSessionAMD,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for GpaSessionCreateInfoAMD<'_> {}
+    unsafe impl Sync for GpaSessionCreateInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GpaSessionCreateInfoAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GPA_SESSION_CREATE_INFO_AMD;
     }

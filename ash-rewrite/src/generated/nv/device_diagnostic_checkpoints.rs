@@ -183,6 +183,8 @@ pub(crate) mod items {
         pub checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueueFamilyCheckpointPropertiesNV<'_> {}
+    unsafe impl Sync for QueueFamilyCheckpointPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyCheckpointPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV;
@@ -218,6 +220,8 @@ pub(crate) mod items {
         pub p_checkpoint_marker: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CheckpointDataNV<'_> {}
+    unsafe impl Sync for CheckpointDataNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CheckpointDataNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CHECKPOINT_DATA_NV;
     }
@@ -254,6 +258,8 @@ pub(crate) mod items {
         pub checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags2,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for QueueFamilyCheckpointProperties2NV<'_> {}
+    unsafe impl Sync for QueueFamilyCheckpointProperties2NV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyCheckpointProperties2NV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV;
@@ -289,6 +295,8 @@ pub(crate) mod items {
         pub p_checkpoint_marker: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for CheckpointData2NV<'_> {}
+    unsafe impl Sync for CheckpointData2NV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CheckpointData2NV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CHECKPOINT_DATA_2_NV;
     }

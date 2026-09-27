@@ -252,7 +252,7 @@ impl Device {
     pub unsafe fn create_shader_instrumentation(
         &self,
         create_info: &crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::ShaderInstrumentationARM> {
         let mut instrumentation = core::mem::MaybeUninit::uninit();
         (self
@@ -260,7 +260,10 @@ impl Device {
             .create_shader_instrumentation)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 instrumentation.as_mut_ptr(),
             )
             .assume_init_on_success(instrumentation)
@@ -270,9 +273,18 @@ impl Device {
     pub unsafe fn destroy_shader_instrumentation(
         &self,
         instrumentation: crate::vk::ShaderInstrumentationARM,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_shader_instrumentation)(self.handle, instrumentation, allocator)
+        (self
+            .fp
+            .destroy_shader_instrumentation)(
+            self.handle,
+            instrumentation,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkCmdBeginShaderInstrumentationARM
     #[inline]
@@ -332,6 +344,8 @@ pub(crate) mod items {
         pub shader_instrumentation: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderInstrumentationFeaturesARM<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderInstrumentationFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM;
@@ -366,6 +380,8 @@ pub(crate) mod items {
         pub per_basic_block_granularity: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderInstrumentationPropertiesARM<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderInstrumentationPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_PROPERTIES_ARM;
@@ -404,6 +420,8 @@ pub(crate) mod items {
         pub p_next: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ShaderInstrumentationCreateInfoARM<'_> {}
+    unsafe impl Sync for ShaderInstrumentationCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ShaderInstrumentationCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_INSTRUMENTATION_CREATE_INFO_ARM;
@@ -427,6 +445,8 @@ pub(crate) mod items {
         pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ShaderInstrumentationMetricDescriptionARM<'_> {}
+    unsafe impl Sync for ShaderInstrumentationMetricDescriptionARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ShaderInstrumentationMetricDescriptionARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_INSTRUMENTATION_METRIC_DESCRIPTION_ARM;
@@ -487,6 +507,8 @@ pub(crate) mod items {
         pub stages: crate::vk::ShaderStageFlags,
         pub basic_block_index: u32,
     }
+    unsafe impl Send for ShaderInstrumentationMetricDataHeaderARM {}
+    unsafe impl Sync for ShaderInstrumentationMetricDataHeaderARM {}
     impl ShaderInstrumentationMetricDataHeaderARM {
         pub fn result_index(mut self, result_index: u32) -> Self {
             self.result_index = result_index;

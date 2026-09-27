@@ -252,7 +252,7 @@ impl Instance {
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
         create_info: &crate::vk::DisplayModeCreateInfoKHR<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::DisplayModeKHR> {
         let mut mode = core::mem::MaybeUninit::uninit();
         (self
@@ -261,7 +261,10 @@ impl Instance {
                 physical_device,
                 display,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 mode.as_mut_ptr(),
             )
             .assume_init_on_success(mode)
@@ -290,7 +293,7 @@ impl Instance {
     pub unsafe fn create_display_plane_surface(
         &self,
         create_info: &crate::vk::DisplaySurfaceCreateInfoKHR<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
@@ -298,7 +301,10 @@ impl Instance {
             .create_display_plane_surface)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 surface.as_mut_ptr(),
             )
             .assume_init_on_success(surface)
@@ -320,6 +326,8 @@ pub(crate) mod items {
         pub persistent_content: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplayPropertiesKHR<'_> {}
+    unsafe impl Sync for DisplayPropertiesKHR<'_> {}
     impl<'a> DisplayPropertiesKHR<'a> {
         pub fn display(mut self, display: crate::vk::DisplayKHR) -> Self {
             self.display = display;
@@ -373,6 +381,8 @@ pub(crate) mod items {
         pub current_display: crate::vk::DisplayKHR,
         pub current_stack_index: u32,
     }
+    unsafe impl Send for DisplayPlanePropertiesKHR {}
+    unsafe impl Sync for DisplayPlanePropertiesKHR {}
     impl DisplayPlanePropertiesKHR {
         pub fn current_display(
             mut self,
@@ -393,6 +403,8 @@ pub(crate) mod items {
         pub visible_region: crate::vk::Extent2D,
         pub refresh_rate: u32,
     }
+    unsafe impl Send for DisplayModeParametersKHR {}
+    unsafe impl Sync for DisplayModeParametersKHR {}
     impl DisplayModeParametersKHR {
         pub fn visible_region(mut self, visible_region: crate::vk::Extent2D) -> Self {
             self.visible_region = visible_region;
@@ -410,6 +422,8 @@ pub(crate) mod items {
         pub display_mode: crate::vk::DisplayModeKHR,
         pub parameters: crate::vk::DisplayModeParametersKHR,
     }
+    unsafe impl Send for DisplayModePropertiesKHR {}
+    unsafe impl Sync for DisplayModePropertiesKHR {}
     impl DisplayModePropertiesKHR {
         pub fn display_mode(mut self, display_mode: crate::vk::DisplayModeKHR) -> Self {
             self.display_mode = display_mode;
@@ -433,6 +447,8 @@ pub(crate) mod items {
         pub parameters: crate::vk::DisplayModeParametersKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplayModeCreateInfoKHR<'_> {}
+    unsafe impl Sync for DisplayModeCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_MODE_CREATE_INFO_KHR;
     }
@@ -474,6 +490,8 @@ pub(crate) mod items {
         pub min_dst_extent: crate::vk::Extent2D,
         pub max_dst_extent: crate::vk::Extent2D,
     }
+    unsafe impl Send for DisplayPlaneCapabilitiesKHR {}
+    unsafe impl Sync for DisplayPlaneCapabilitiesKHR {}
     impl DisplayPlaneCapabilitiesKHR {
         pub fn supported_alpha(
             mut self,
@@ -543,6 +561,8 @@ pub(crate) mod items {
         pub image_extent: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DisplaySurfaceCreateInfoKHR<'_> {}
+    unsafe impl Sync for DisplaySurfaceCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplaySurfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_SURFACE_CREATE_INFO_KHR;
     }

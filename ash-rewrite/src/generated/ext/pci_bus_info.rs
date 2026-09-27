@@ -21,6 +21,8 @@ pub(crate) mod items {
         pub pci_function: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePCIBusInfoPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDevicePCIBusInfoPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT;

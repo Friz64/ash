@@ -170,18 +170,22 @@ impl Instance {
     pub unsafe fn get_physical_device_features2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        features: &mut crate::vk::PhysicalDeviceFeatures2<'_>,
-    ) {
-        (self.fp.get_physical_device_features2)(physical_device, features)
+    ) -> crate::vk::PhysicalDeviceFeatures2<'_> {
+        let mut features = core::mem::MaybeUninit::uninit();
+        (self.fp.get_physical_device_features2)(physical_device, features.as_mut_ptr());
+        features.assume_init()
     }
     ///vkGetPhysicalDeviceProperties2
     #[inline]
     pub unsafe fn get_physical_device_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        properties: &mut crate::vk::PhysicalDeviceProperties2<'_>,
-    ) {
-        (self.fp.get_physical_device_properties2)(physical_device, properties)
+    ) -> crate::vk::PhysicalDeviceProperties2<'_> {
+        let mut properties = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_properties2)(physical_device, properties.as_mut_ptr());
+        properties.assume_init()
     }
     ///vkGetPhysicalDeviceFormatProperties2
     #[inline]
@@ -189,15 +193,16 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
-        format_properties: &mut crate::vk::FormatProperties2<'_>,
-    ) {
+    ) -> crate::vk::FormatProperties2<'_> {
+        let mut format_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_format_properties2)(
             physical_device,
             format,
-            format_properties,
-        )
+            format_properties.as_mut_ptr(),
+        );
+        format_properties.assume_init()
     }
     ///vkGetPhysicalDeviceImageFormatProperties2
     #[inline]
@@ -254,11 +259,15 @@ impl Instance {
     pub unsafe fn get_physical_device_memory_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-        memory_properties: &mut crate::vk::PhysicalDeviceMemoryProperties2<'_>,
-    ) {
+    ) -> crate::vk::PhysicalDeviceMemoryProperties2<'_> {
+        let mut memory_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .get_physical_device_memory_properties2)(physical_device, memory_properties)
+            .get_physical_device_memory_properties2)(
+            physical_device,
+            memory_properties.as_mut_ptr(),
+        );
+        memory_properties.assume_init()
     }
     ///vkGetPhysicalDeviceSparseImageFormatProperties2
     #[inline]

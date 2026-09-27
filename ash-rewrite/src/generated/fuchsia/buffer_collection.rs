@@ -176,7 +176,7 @@ impl Device {
     pub unsafe fn create_buffer_collection(
         &self,
         create_info: &crate::vk::BufferCollectionCreateInfoFUCHSIA<'_>,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) -> crate::VkResult<crate::vk::BufferCollectionFUCHSIA> {
         let mut collection = core::mem::MaybeUninit::uninit();
         (self
@@ -184,7 +184,10 @@ impl Device {
             .create_buffer_collection)(
                 self.handle,
                 create_info,
-                allocator,
+                match allocator {
+                    Some(inner) => inner,
+                    None => core::ptr::null_mut(),
+                },
                 collection.as_mut_ptr(),
             )
             .assume_init_on_success(collection)
@@ -226,9 +229,18 @@ impl Device {
     pub unsafe fn destroy_buffer_collection(
         &self,
         collection: crate::vk::BufferCollectionFUCHSIA,
-        allocator: &crate::vk::AllocationCallbacks<'_>,
+        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_buffer_collection)(self.handle, collection, allocator)
+        (self
+            .fp
+            .destroy_buffer_collection)(
+            self.handle,
+            collection,
+            match allocator {
+                Some(inner) => inner,
+                None => core::ptr::null_mut(),
+            },
+        )
     }
     ///vkGetBufferCollectionPropertiesFUCHSIA
     #[inline]
@@ -260,6 +272,8 @@ pub(crate) mod items {
         pub index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportMemoryBufferCollectionFUCHSIA<'_> {}
+    unsafe impl Sync for ImportMemoryBufferCollectionFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImportMemoryBufferCollectionFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA;
@@ -300,6 +314,8 @@ pub(crate) mod items {
         pub index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferCollectionImageCreateInfoFUCHSIA<'_> {}
+    unsafe impl Sync for BufferCollectionImageCreateInfoFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BufferCollectionImageCreateInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA;
@@ -340,6 +356,8 @@ pub(crate) mod items {
         pub index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferCollectionBufferCreateInfoFUCHSIA<'_> {}
+    unsafe impl Sync for BufferCollectionBufferCreateInfoFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BufferCollectionBufferCreateInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA;
@@ -379,6 +397,8 @@ pub(crate) mod items {
         pub collection_token: crate::platform_types::zx_handle_t,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferCollectionCreateInfoFUCHSIA<'_> {}
+    unsafe impl Sync for BufferCollectionCreateInfoFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BufferCollectionCreateInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_COLLECTION_CREATE_INFO_FUCHSIA;
@@ -421,6 +441,8 @@ pub(crate) mod items {
         pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferCollectionPropertiesFUCHSIA<'_> {}
+    unsafe impl Sync for BufferCollectionPropertiesFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BufferCollectionPropertiesFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_COLLECTION_PROPERTIES_FUCHSIA;
@@ -525,6 +547,8 @@ pub(crate) mod items {
         >,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferConstraintsInfoFUCHSIA<'_> {}
+    unsafe impl Sync for BufferConstraintsInfoFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BufferConstraintsInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_CONSTRAINTS_INFO_FUCHSIA;
     }
@@ -574,6 +598,8 @@ pub(crate) mod items {
         pub color_space: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SysmemColorSpaceFUCHSIA<'_> {}
+    unsafe impl Sync for SysmemColorSpaceFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SysmemColorSpaceFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SYSMEM_COLOR_SPACE_FUCHSIA;
     }
@@ -607,6 +633,8 @@ pub(crate) mod items {
         pub p_color_spaces: *const crate::vk::SysmemColorSpaceFUCHSIA<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageFormatConstraintsInfoFUCHSIA<'_> {}
+    unsafe impl Sync for ImageFormatConstraintsInfoFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageFormatConstraintsInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA;
@@ -677,6 +705,8 @@ pub(crate) mod items {
         pub flags: crate::vk::ImageConstraintsInfoFlagsFUCHSIA,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageConstraintsInfoFUCHSIA<'_> {}
+    unsafe impl Sync for ImageConstraintsInfoFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageConstraintsInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_CONSTRAINTS_INFO_FUCHSIA;
     }
@@ -732,6 +762,8 @@ pub(crate) mod items {
         pub min_buffer_count_for_shared_slack: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferCollectionConstraintsInfoFUCHSIA<'_> {}
+    unsafe impl Sync for BufferCollectionConstraintsInfoFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BufferCollectionConstraintsInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA;

@@ -331,6 +331,8 @@ pub(crate) mod items {
         pub geometry_streams: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTransformFeedbackFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceTransformFeedbackFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT;
@@ -378,6 +380,8 @@ pub(crate) mod items {
         pub transform_feedback_draw: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceTransformFeedbackPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceTransformFeedbackPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT;
@@ -484,6 +488,8 @@ pub(crate) mod items {
         pub rasterization_stream: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineRasterizationStateStreamCreateInfoEXT<'_> {}
+    unsafe impl Sync for PipelineRasterizationStateStreamCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT;

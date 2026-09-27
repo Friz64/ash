@@ -31,6 +31,8 @@ pub(crate) mod items {
         pub shader_mx_int8: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_OCP_MICROSCALING_TYPES_FEATURES_EXT;

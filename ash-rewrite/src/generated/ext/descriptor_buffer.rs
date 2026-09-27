@@ -356,11 +356,16 @@ impl Device {
     pub unsafe fn get_descriptor_set_layout_size(
         &self,
         layout: crate::vk::DescriptorSetLayout,
-        layout_size_in_bytes: &mut crate::vk::DeviceSize,
-    ) {
+    ) -> crate::vk::DeviceSize {
+        let mut layout_size_in_bytes = core::mem::MaybeUninit::uninit();
         (self
             .fp
-            .get_descriptor_set_layout_size)(self.handle, layout, layout_size_in_bytes)
+            .get_descriptor_set_layout_size)(
+            self.handle,
+            layout,
+            layout_size_in_bytes.as_mut_ptr(),
+        );
+        layout_size_in_bytes.assume_init()
     }
     ///vkGetDescriptorSetLayoutBindingOffsetEXT
     #[inline]
@@ -368,16 +373,17 @@ impl Device {
         &self,
         layout: crate::vk::DescriptorSetLayout,
         binding: u32,
-        offset: &mut crate::vk::DeviceSize,
-    ) {
+    ) -> crate::vk::DeviceSize {
+        let mut offset = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_descriptor_set_layout_binding_offset)(
             self.handle,
             layout,
             binding,
-            offset,
-        )
+            offset.as_mut_ptr(),
+        );
+        offset.assume_init()
     }
     ///vkGetDescriptorEXT
     #[inline]
@@ -548,6 +554,8 @@ pub(crate) mod items {
         pub descriptor_buffer_push_descriptors: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDescriptorBufferFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceDescriptorBufferFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorBufferFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_FEATURES_EXT;
@@ -640,6 +648,8 @@ pub(crate) mod items {
         pub descriptor_buffer_address_space_size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDescriptorBufferPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceDescriptorBufferPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorBufferPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_PROPERTIES_EXT;
@@ -932,6 +942,8 @@ pub(crate) mod items {
         pub combined_image_sampler_density_map_descriptor_size: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_DENSITY_MAP_PROPERTIES_EXT;
@@ -968,6 +980,8 @@ pub(crate) mod items {
         pub format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorAddressInfoEXT<'_> {}
+    unsafe impl Sync for DescriptorAddressInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorAddressInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_ADDRESS_INFO_EXT;
     }
@@ -1007,6 +1021,8 @@ pub(crate) mod items {
         pub usage: crate::vk::BufferUsageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorBufferBindingInfoEXT<'_> {}
+    unsafe impl Sync for DescriptorBufferBindingInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorBufferBindingInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_BUFFER_BINDING_INFO_EXT;
     }
@@ -1040,6 +1056,8 @@ pub(crate) mod items {
         pub buffer: crate::vk::Buffer,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorBufferBindingPushDescriptorBufferHandleEXT<'_> {}
+    unsafe impl Sync for DescriptorBufferBindingPushDescriptorBufferHandleEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DescriptorBufferBindingPushDescriptorBufferHandleEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_BUFFER_BINDING_PUSH_DESCRIPTOR_BUFFER_HANDLE_EXT;
@@ -1072,6 +1090,8 @@ pub(crate) mod items {
         pub data: crate::vk::DescriptorDataEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for DescriptorGetInfoEXT<'_> {}
+    unsafe impl Sync for DescriptorGetInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorGetInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_GET_INFO_EXT;
     }
@@ -1105,6 +1125,8 @@ pub(crate) mod items {
         pub buffer: crate::vk::Buffer,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for BufferCaptureDescriptorDataInfoEXT<'_> {}
+    unsafe impl Sync for BufferCaptureDescriptorDataInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BufferCaptureDescriptorDataInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT;
@@ -1134,6 +1156,8 @@ pub(crate) mod items {
         pub image: crate::vk::Image,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageCaptureDescriptorDataInfoEXT<'_> {}
+    unsafe impl Sync for ImageCaptureDescriptorDataInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageCaptureDescriptorDataInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT;
@@ -1163,6 +1187,8 @@ pub(crate) mod items {
         pub image_view: crate::vk::ImageView,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImageViewCaptureDescriptorDataInfoEXT<'_> {}
+    unsafe impl Sync for ImageViewCaptureDescriptorDataInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageViewCaptureDescriptorDataInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_EXT;
@@ -1192,6 +1218,8 @@ pub(crate) mod items {
         pub sampler: crate::vk::Sampler,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for SamplerCaptureDescriptorDataInfoEXT<'_> {}
+    unsafe impl Sync for SamplerCaptureDescriptorDataInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SamplerCaptureDescriptorDataInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT;
@@ -1222,6 +1250,8 @@ pub(crate) mod items {
         pub acceleration_structure_nv: crate::vk::AccelerationStructureNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for AccelerationStructureCaptureDescriptorDataInfoEXT<'_> {}
+    unsafe impl Sync for AccelerationStructureCaptureDescriptorDataInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureCaptureDescriptorDataInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT;
@@ -1262,6 +1292,8 @@ pub(crate) mod items {
         pub opaque_capture_descriptor_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for OpaqueCaptureDescriptorDataCreateInfoEXT<'_> {}
+    unsafe impl Sync for OpaqueCaptureDescriptorDataCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPAQUE_CAPTURE_DESCRIPTOR_DATA_CREATE_INFO_EXT;

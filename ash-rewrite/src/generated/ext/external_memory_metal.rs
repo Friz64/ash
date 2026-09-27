@@ -146,6 +146,8 @@ pub(crate) mod items {
         pub handle: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for ImportMemoryMetalHandleInfoEXT<'_> {}
+    unsafe impl Sync for ImportMemoryMetalHandleInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryMetalHandleInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_METAL_HANDLE_INFO_EXT;
     }
@@ -184,6 +186,8 @@ pub(crate) mod items {
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryMetalHandlePropertiesEXT<'_> {}
+    unsafe impl Sync for MemoryMetalHandlePropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryMetalHandlePropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_METAL_HANDLE_PROPERTIES_EXT;
     }
@@ -213,6 +217,8 @@ pub(crate) mod items {
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryGetMetalHandleInfoEXT<'_> {}
+    unsafe impl Sync for MemoryGetMetalHandleInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetMetalHandleInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_METAL_HANDLE_INFO_EXT;
     }

@@ -273,6 +273,8 @@ pub(crate) mod items {
         pub shading_rate_attachment_texel_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for FragmentShadingRateAttachmentInfoKHR<'_> {}
+    unsafe impl Sync for FragmentShadingRateAttachmentInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for FragmentShadingRateAttachmentInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR;
@@ -316,6 +318,8 @@ pub(crate) mod items {
         pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PipelineFragmentShadingRateStateCreateInfoKHR<'_> {}
+    unsafe impl Sync for PipelineFragmentShadingRateStateCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR;
@@ -357,6 +361,8 @@ pub(crate) mod items {
         pub attachment_fragment_shading_rate: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentShadingRateFeaturesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentShadingRateFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR;
@@ -427,6 +433,8 @@ pub(crate) mod items {
         pub fragment_shading_rate_strict_multiply_combiner: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentShadingRatePropertiesKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentShadingRatePropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR;
@@ -600,6 +608,8 @@ pub(crate) mod items {
         pub fragment_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceFragmentShadingRateKHR<'_> {}
+    unsafe impl Sync for PhysicalDeviceFragmentShadingRateKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentShadingRateKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR;
@@ -639,6 +649,8 @@ pub(crate) mod items {
         pub shading_rate_attachment_texel_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for RenderingFragmentShadingRateAttachmentInfoKHR<'_> {}
+    unsafe impl Sync for RenderingFragmentShadingRateAttachmentInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderingFragmentShadingRateAttachmentInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR;

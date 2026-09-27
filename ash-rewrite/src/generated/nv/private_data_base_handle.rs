@@ -30,6 +30,8 @@ pub(crate) mod items {
         pub private_data_base_handle: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDevicePrivateDataBaseHandleFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDevicePrivateDataBaseHandleFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePrivateDataBaseHandleFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIVATE_DATA_BASE_HANDLE_FEATURES_NV;

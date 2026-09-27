@@ -20,6 +20,8 @@ pub(crate) mod items {
         pub command_buffer_inheritance: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'_> {}
+    unsafe impl Sync for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV;

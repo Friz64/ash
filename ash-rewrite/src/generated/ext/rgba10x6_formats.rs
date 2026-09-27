@@ -18,6 +18,8 @@ pub(crate) mod items {
         pub format_rgba10x6_without_y_cb_cr_sampler: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT;

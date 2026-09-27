@@ -38,6 +38,8 @@ pub(crate) mod items {
         pub memory_unmap_reserve: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT;
@@ -81,6 +83,8 @@ pub(crate) mod items {
         pub min_placed_memory_map_alignment: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'_> {}
+    unsafe impl Sync for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT;
@@ -115,6 +119,8 @@ pub(crate) mod items {
         pub p_placed_address: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl Send for MemoryMapPlacedInfoEXT<'_> {}
+    unsafe impl Sync for MemoryMapPlacedInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryMapPlacedInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_MAP_PLACED_INFO_EXT;
     }
