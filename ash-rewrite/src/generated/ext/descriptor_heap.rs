@@ -145,7 +145,7 @@ impl SpirvResourceTypeFlagsEXT {
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl SpirvResourceTypeFlagBitsEXT {
-    pub const ALL_EXT: Self = Self(0x7FFFFFF);
+    pub const ALL_EXT: Self = Self(0x7FFFFFFF);
     pub const SAMPLER_EXT: Self = Self(1 << 0);
     pub const SAMPLED_IMAGE_EXT: Self = Self(1 << 1);
     pub const READ_ONLY_IMAGE_EXT: Self = Self(1 << 2);

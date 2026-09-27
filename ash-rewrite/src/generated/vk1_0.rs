@@ -765,8 +765,8 @@ impl ShaderStageFlagBits {
     pub const GEOMETRY: Self = Self(1 << 3);
     pub const FRAGMENT: Self = Self(1 << 4);
     pub const COMPUTE: Self = Self(1 << 5);
-    pub const ALL_GRAPHICS: Self = Self(0x0000001);
-    pub const ALL: Self = Self(0x7FFFFFF);
+    pub const ALL_GRAPHICS: Self = Self(0x0000001F);
+    pub const ALL: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageUsageFlags {

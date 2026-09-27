@@ -305,13 +305,16 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
         .collect();
     let mut length_calculations: IndexMap<VariableName, Vec<TokenStream>> = IndexMap::new();
 
-    struct ReadIntoUninitializedVector {
-        count: Ident,
-        data: Ident,
-        element: &'static Ty,
+    enum MultiCallLength {
+        ReadIntoUninitializedVector {
+            count: Ident,
+            data: Ident,
+            element: &'static Ty,
+        },
+        SeperateLenMethod {},
     }
 
-    let mut read_into_uninitialized_vector = None;
+    let mut multi_call_length = None;
     for (i, param) in command.params.iter().enumerate() {
         let name = param_ident(param.decl.name);
 
@@ -345,7 +348,7 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                 // TODO
                 // assert!(
                 //     wrapper_params[&length_param].is_none(),
-                //     "read_into_uninitialized_vector only supports one data vector"
+                //     "only one multi call length parameter is supported"
                 // );
 
                 call_arg = quote! { #name };
@@ -357,7 +360,7 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                     public_type: None,
                 });
 
-                read_into_uninitialized_vector = Some(ReadIntoUninitializedVector {
+                multi_call_length = Some(MultiCallLength::ReadIntoUninitializedVector {
                     count: length_param_name,
                     data: name.clone(),
                     element,
@@ -432,33 +435,38 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
     }
 
     let returns_result = matches!(command.return_type, Some(Ty::ApiType(TypeName::VK_RESULT)));
-    let ret_ty = if let Some(ReadIntoUninitializedVector {
-        count,
-        data,
-        element,
-    }) = read_into_uninitialized_vector
-    {
-        let mut ret_ty = RustTy::Custom {
-            custom_type: quote! { Vec },
-            generic_args: vec![element.to_rust()],
-        };
+    let ret_ty = if let Some(multi_call_length) = multi_call_length {
+        match multi_call_length {
+            MultiCallLength::ReadIntoUninitializedVector {
+                count,
+                data,
+                element,
+            } => {
+                let mut ret_ty = RustTy::Custom {
+                    custom_type: quote! { Vec },
+                    generic_args: vec![element.to_rust()],
+                };
 
-        if returns_result {
-            content = quote! { crate::read_into_uninitialized_vector(|#count, #data| #content) };
-            ret_ty = RustTy::Custom {
-                custom_type: quote! { crate::VkResult },
-                generic_args: vec![ret_ty],
-            };
-        } else {
-            content = quote! {
-                crate::read_into_uninitialized_vector(|#count, #data| {
-                    #content;
-                    crate::vk::Result::SUCCESS
-                }).unwrap()
-            };
+                if returns_result {
+                    content =
+                        quote! { crate::read_into_uninitialized_vector(|#count, #data| #content) };
+                    ret_ty = RustTy::Custom {
+                        custom_type: quote! { crate::VkResult },
+                        generic_args: vec![ret_ty],
+                    };
+                } else {
+                    content = quote! {
+                        crate::read_into_uninitialized_vector(|#count, #data| {
+                            #content;
+                            crate::vk::Result::SUCCESS
+                        }).unwrap()
+                    };
+                }
+
+                Some(ret_ty)
+            }
+            MultiCallLength::SeperateLenMethod {} => None, // TODO WIP
         }
-
-        Some(ret_ty)
     } else if returns_result {
         content = quote! { #content.result() };
         Some(RustTy::Custom {

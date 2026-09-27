@@ -7,7 +7,7 @@ impl AV1Profile {
     pub const MAIN: Self = Self(0);
     pub const HIGH: Self = Self(1);
     pub const PROFESSIONAL: Self = Self(2);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_av1std](crate::video::codec_av1std)
 impl AV1Level {
@@ -35,7 +35,7 @@ impl AV1Level {
     pub const _7_1: Self = Self(21);
     pub const _7_2: Self = Self(22);
     pub const _7_3: Self = Self(23);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_av1std](crate::video::codec_av1std)
 impl AV1FrameType {
@@ -43,7 +43,7 @@ impl AV1FrameType {
     pub const INTER: Self = Self(1);
     pub const INTRA_ONLY: Self = Self(2);
     pub const SWITCH: Self = Self(3);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_av1std](crate::video::codec_av1std)
 impl AV1ReferenceName {
@@ -55,7 +55,7 @@ impl AV1ReferenceName {
     pub const BWDREF_FRAME: Self = Self(5);
     pub const ALTREF2_FRAME: Self = Self(6);
     pub const ALTREF_FRAME: Self = Self(7);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_av1std](crate::video::codec_av1std)
 impl AV1InterpolationFilter {
@@ -64,14 +64,14 @@ impl AV1InterpolationFilter {
     pub const EIGHTTAP_SHARP: Self = Self(2);
     pub const BILINEAR: Self = Self(3);
     pub const SWITCHABLE: Self = Self(4);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_av1std](crate::video::codec_av1std)
 impl AV1TxMode {
     pub const ONLY_4X4: Self = Self(0);
     pub const LARGEST: Self = Self(1);
     pub const SELECT: Self = Self(2);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_av1std](crate::video::codec_av1std)
 impl AV1FrameRestorationType {
@@ -79,7 +79,7 @@ impl AV1FrameRestorationType {
     pub const WIENER: Self = Self(1);
     pub const SGRPROJ: Self = Self(2);
     pub const SWITCHABLE: Self = Self(3);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_av1std](crate::video::codec_av1std)
 impl AV1ColorPrimaries {
@@ -95,7 +95,7 @@ impl AV1ColorPrimaries {
     pub const SMPTE_431: Self = Self(11);
     pub const SMPTE_432: Self = Self(12);
     pub const EBU_3213: Self = Self(22);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_av1std](crate::video::codec_av1std)
 impl AV1TransferCharacteristics {
@@ -118,7 +118,7 @@ impl AV1TransferCharacteristics {
     pub const SMPTE_2084: Self = Self(16);
     pub const SMPTE_428: Self = Self(17);
     pub const HLG: Self = Self(18);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_av1std](crate::video::codec_av1std)
 impl AV1MatrixCoefficients {
@@ -137,7 +137,7 @@ impl AV1MatrixCoefficients {
     pub const CHROMAT_NCL: Self = Self(12);
     pub const CHROMAT_CL: Self = Self(13);
     pub const ICTCP: Self = Self(14);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_av1std](crate::video::codec_av1std)
 impl AV1ChromaSamplePosition {
@@ -145,7 +145,7 @@ impl AV1ChromaSamplePosition {
     pub const VERTICAL: Self = Self(1);
     pub const COLOCATED: Self = Self(2);
     pub const RESERVED: Self = Self(3);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub(crate) mod items {
     #[repr(C)]

@@ -8,7 +8,7 @@ impl H265ChromaFormatIdc {
     pub const _420: Self = Self(1);
     pub const _422: Self = Self(2);
     pub const _444: Self = Self(3);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h265std](crate::video::codec_h265std)
 impl H265ProfileIdc {
@@ -17,7 +17,7 @@ impl H265ProfileIdc {
     pub const MAIN_STILL_PICTURE: Self = Self(3);
     pub const FORMAT_RANGE_EXTENSIONS: Self = Self(4);
     pub const SCC_EXTENSIONS: Self = Self(9);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h265std](crate::video::codec_h265std)
 impl H265LevelIdc {
@@ -34,14 +34,14 @@ impl H265LevelIdc {
     pub const _6_0: Self = Self(10);
     pub const _6_1: Self = Self(11);
     pub const _6_2: Self = Self(12);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h265std](crate::video::codec_h265std)
 impl H265SliceType {
     pub const B: Self = Self(0);
     pub const P: Self = Self(1);
     pub const I: Self = Self(2);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h265std](crate::video::codec_h265std)
 impl H265PictureType {
@@ -49,7 +49,7 @@ impl H265PictureType {
     pub const B: Self = Self(1);
     pub const I: Self = Self(2);
     pub const IDR: Self = Self(3);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h265std](crate::video::codec_h265std)
 impl H265AspectRatioIdc {
@@ -71,7 +71,7 @@ impl H265AspectRatioIdc {
     pub const _3_2: Self = Self(15);
     pub const _2_1: Self = Self(16);
     pub const EXTENDED_SAR: Self = Self(255);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub(crate) mod items {
     #[repr(C)]
@@ -3253,6 +3253,6 @@ pub(crate) mod items {
     pub const H265_MAX_LONG_TERM_REF_PICS_SPS: u32 = 32;
     pub const H265_MAX_LONG_TERM_PICS: u32 = 16;
     pub const H265_MAX_DELTA_POC: u32 = 48;
-    pub const H265_NO_REFERENCE_PICTURE: u32 = 0xF;
+    pub const H265_NO_REFERENCE_PICTURE: u32 = 0xFF;
 }
 pub use items::*;

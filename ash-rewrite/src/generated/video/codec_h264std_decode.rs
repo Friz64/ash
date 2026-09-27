@@ -6,7 +6,7 @@
 impl DecodeH264FieldOrderCount {
     pub const TOP: Self = Self(0);
     pub const BOTTOM: Self = Self(1);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0;
 pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_decode";

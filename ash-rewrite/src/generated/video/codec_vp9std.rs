@@ -8,7 +8,7 @@ impl VP9Profile {
     pub const _1: Self = Self(1);
     pub const _2: Self = Self(2);
     pub const _3: Self = Self(3);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9Level {
@@ -26,13 +26,13 @@ impl VP9Level {
     pub const _6_0: Self = Self(11);
     pub const _6_1: Self = Self(12);
     pub const _6_2: Self = Self(13);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9FrameType {
     pub const KEY: Self = Self(0);
     pub const NON_KEY: Self = Self(1);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9ReferenceName {
@@ -40,7 +40,7 @@ impl VP9ReferenceName {
     pub const LAST_FRAME: Self = Self(1);
     pub const GOLDEN_FRAME: Self = Self(2);
     pub const ALTREF_FRAME: Self = Self(3);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9InterpolationFilter {
@@ -49,7 +49,7 @@ impl VP9InterpolationFilter {
     pub const EIGHTTAP_SHARP: Self = Self(2);
     pub const BILINEAR: Self = Self(3);
     pub const SWITCHABLE: Self = Self(4);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9ColorSpace {
@@ -61,7 +61,7 @@ impl VP9ColorSpace {
     pub const BT_2020: Self = Self(5);
     pub const RESERVED: Self = Self(6);
     pub const RGB: Self = Self(7);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub(crate) mod items {
     #[repr(C)]

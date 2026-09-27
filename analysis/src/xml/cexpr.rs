@@ -50,7 +50,10 @@ pub(crate) fn parse(input: &'static str) -> CExprItems {
                 let lowercase = value.to_ascii_lowercase();
                 if let Some(stripped) = (lowercase.strip_suffix("ull"))
                     .or_else(|| lowercase.strip_suffix("u"))
-                    .or_else(|| lowercase.strip_suffix("f"))
+                    .or_else(|| {
+                        let float_stripped = lowercase.strip_suffix("f");
+                        float_stripped.filter(|stripped| !stripped.starts_with("0x"))
+                    })
                 {
                     value = &value[..stripped.len()];
                 }

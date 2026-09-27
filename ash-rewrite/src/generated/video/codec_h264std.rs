@@ -8,7 +8,7 @@ impl H264ChromaFormatIdc {
     pub const _420: Self = Self(1);
     pub const _422: Self = Self(2);
     pub const _444: Self = Self(3);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264ProfileIdc {
@@ -21,7 +21,7 @@ impl H264ProfileIdc {
     ///Annex A.2.6 High 4:2:2 profile (profile_idc 100, 110, or 122)
     pub const HIGH_422: Self = Self(122);
     pub const HIGH_444_PREDICTIVE: Self = Self(244);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264LevelIdc {
@@ -44,14 +44,14 @@ impl H264LevelIdc {
     pub const _6_0: Self = Self(16);
     pub const _6_1: Self = Self(17);
     pub const _6_2: Self = Self(18);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264PocType {
     pub const _0: Self = Self(0);
     pub const _1: Self = Self(1);
     pub const _2: Self = Self(2);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264AspectRatioIdc {
@@ -73,14 +73,14 @@ impl H264AspectRatioIdc {
     pub const _3_2: Self = Self(15);
     pub const _2_1: Self = Self(16);
     pub const EXTENDED_SAR: Self = Self(255);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264WeightedBipredIdc {
     pub const DEFAULT: Self = Self(0);
     pub const EXPLICIT: Self = Self(1);
     pub const IMPLICIT: Self = Self(2);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264ModificationOfPicNumsIdc {
@@ -88,7 +88,7 @@ impl H264ModificationOfPicNumsIdc {
     pub const SHORT_TERM_ADD: Self = Self(1);
     pub const LONG_TERM: Self = Self(2);
     pub const END: Self = Self(3);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264MemMgmtControlOp {
@@ -99,28 +99,28 @@ impl H264MemMgmtControlOp {
     pub const SET_MAX_LONG_TERM_INDEX: Self = Self(4);
     pub const UNMARK_ALL: Self = Self(5);
     pub const MARK_CURRENT_AS_LONG_TERM: Self = Self(6);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264CabacInitIdc {
     pub const _0: Self = Self(0);
     pub const _1: Self = Self(1);
     pub const _2: Self = Self(2);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264DisableDeblockingFilterIdc {
     pub const DISABLED: Self = Self(0);
     pub const ENABLED: Self = Self(1);
     pub const PARTIAL: Self = Self(2);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264SliceType {
     pub const P: Self = Self(0);
     pub const B: Self = Self(1);
     pub const I: Self = Self(2);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264PictureType {
@@ -128,7 +128,7 @@ impl H264PictureType {
     pub const B: Self = Self(1);
     pub const I: Self = Self(2);
     pub const IDR: Self = Self(5);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264NonVclNaluType {
@@ -139,7 +139,7 @@ impl H264NonVclNaluType {
     pub const END_OF_SEQUENCE: Self = Self(4);
     pub const END_OF_STREAM: Self = Self(5);
     pub const PRECODED: Self = Self(6);
-    pub const INVALID: Self = Self(0x7FFFFFF);
+    pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub(crate) mod items {
     #[repr(C)]
@@ -1613,6 +1613,6 @@ pub(crate) mod items {
     pub const H264_SCALING_LIST_8X8_NUM_ELEMENTS: u32 = 64;
     pub const H264_MAX_NUM_LIST_REF: u32 = 32;
     pub const H264_MAX_CHROMA_PLANES: u32 = 2;
-    pub const H264_NO_REFERENCE_PICTURE: u32 = 0xF;
+    pub const H264_NO_REFERENCE_PICTURE: u32 = 0xFF;
 }
 pub use items::*;
