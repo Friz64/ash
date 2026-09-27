@@ -637,7 +637,7 @@ impl Device {
                 acceleration_structures.len() as _,
                 acceleration_structures.as_ptr(),
                 query_type,
-                data_size,
+                data.len() as _,
                 data.as_mut_ptr().cast(),
                 stride,
             )

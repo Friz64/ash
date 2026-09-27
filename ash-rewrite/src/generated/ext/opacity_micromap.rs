@@ -589,7 +589,7 @@ impl Device {
                 micromaps.len() as _,
                 micromaps.as_ptr(),
                 query_type,
-                data_size,
+                data.len() as _,
                 data.as_mut_ptr().cast(),
                 stride,
             )

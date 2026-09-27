@@ -323,7 +323,9 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                     && defined_by_param == result.param.decl.name
                 {
                     let other_name = ident(other_param.decl.name);
-                    if let Ty::Ptr(_, Mutability::Not) = other_param.decl.ty {
+                    if !matches!(param.decl.ty, Ty::Ptr(.., Mutability::Mut))
+                        || !matches!(other_param.decl.ty, Ty::Ptr(_, Mutability::Mut))
+                    {
                         result.call_arg = quote! { #other_name.len() as _ };
                     }
 

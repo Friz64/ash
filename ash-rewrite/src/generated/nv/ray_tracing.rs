@@ -646,7 +646,7 @@ impl Device {
             .get_acceleration_structure_handle)(
                 device,
                 acceleration_structure,
-                data_size,
+                data.len() as _,
                 data.as_mut_ptr().cast(),
             )
             .result()
@@ -690,7 +690,7 @@ impl Device {
                 pipeline,
                 first_group,
                 group_count,
-                data_size,
+                data.len() as _,
                 data.as_mut_ptr().cast(),
             )
             .result()

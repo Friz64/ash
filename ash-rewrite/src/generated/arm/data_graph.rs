@@ -481,7 +481,7 @@ impl Device {
             .get_data_graph_pipeline_properties)(
                 device,
                 pipeline_info,
-                properties_count,
+                properties.len() as _,
                 properties.as_mut_ptr(),
             )
             .result()

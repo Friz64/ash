@@ -387,7 +387,7 @@ impl Device {
             .get_descriptor)(
             device,
             descriptor_info,
-            data_size,
+            descriptor.len() as _,
             descriptor.as_mut_ptr().cast(),
         )
     }

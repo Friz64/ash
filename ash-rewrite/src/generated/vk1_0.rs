@@ -4018,7 +4018,7 @@ impl crate::Device {
                 query_pool,
                 first_query,
                 query_count,
-                data_size,
+                data.len() as _,
                 data.as_mut_ptr().cast(),
                 stride,
                 flags,
