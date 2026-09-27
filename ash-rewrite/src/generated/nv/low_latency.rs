@@ -157,7 +157,6 @@ impl Device {
     #[inline]
     pub unsafe fn set_latency_sleep_mode_legacy(
         &self,
-        device: crate::vk::Device,
         low_latency_mode: crate::vk::Bool32,
         low_latency_boost: crate::vk::Bool32,
         minimum_interval_us: u32,
@@ -165,7 +164,7 @@ impl Device {
         (self
             .fp
             .set_latency_sleep_mode_legacy)(
-            device,
+            self.handle,
             low_latency_mode,
             low_latency_boost,
             minimum_interval_us,
@@ -175,30 +174,20 @@ impl Device {
     #[inline]
     pub unsafe fn latency_sleep_legacy(
         &self,
-        device: crate::vk::Device,
         signal_semaphore: crate::vk::Semaphore,
         value: u64,
     ) {
-        (self.fp.latency_sleep_legacy)(device, signal_semaphore, value)
+        (self.fp.latency_sleep_legacy)(self.handle, signal_semaphore, value)
     }
     ///vkSetLatencyMarkerLegacyNV
     #[inline]
-    pub unsafe fn set_latency_marker_legacy(
-        &self,
-        device: crate::vk::Device,
-        frame_id: u64,
-        marker: u32,
-    ) {
-        (self.fp.set_latency_marker_legacy)(device, frame_id, marker)
+    pub unsafe fn set_latency_marker_legacy(&self, frame_id: u64, marker: u32) {
+        (self.fp.set_latency_marker_legacy)(self.handle, frame_id, marker)
     }
     ///vkGetLatencyTimingsLegacyNV
     #[inline]
-    pub unsafe fn get_latency_timings_legacy(
-        &self,
-        device: crate::vk::Device,
-        timings: &mut core::ffi::c_void,
-    ) {
-        (self.fp.get_latency_timings_legacy)(device, timings)
+    pub unsafe fn get_latency_timings_legacy(&self, timings: &mut core::ffi::c_void) {
+        (self.fp.get_latency_timings_legacy)(self.handle, timings)
     }
     ///vkQueueNotifyOutOfBandLegacyNV
     #[inline]
@@ -213,15 +202,14 @@ impl Device {
     #[inline]
     pub unsafe fn get_sleep_status_legacy(
         &self,
-        device: crate::vk::Device,
         low_latency_mode: &mut crate::vk::Bool32,
     ) {
-        (self.fp.get_sleep_status_legacy)(device, low_latency_mode)
+        (self.fp.get_sleep_status_legacy)(self.handle, low_latency_mode)
     }
     ///vkShutdownLatencyDeviceLegacyNV
     #[inline]
-    pub unsafe fn shutdown_latency_device_legacy(&self, device: crate::vk::Device) {
-        (self.fp.shutdown_latency_device_legacy)(device)
+    pub unsafe fn shutdown_latency_device_legacy(&self) {
+        (self.fp.shutdown_latency_device_legacy)(self.handle)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

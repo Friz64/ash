@@ -90,20 +90,26 @@ impl Device {
     #[inline]
     pub unsafe fn bind_buffer_memory2(
         &self,
-        device: crate::vk::Device,
         bind_infos: &[crate::vk::BindBufferMemoryInfo<'_>],
     ) -> crate::VkResult<()> {
-        (self.fp.bind_buffer_memory2)(device, bind_infos.len() as _, bind_infos.as_ptr())
+        (self
+            .fp
+            .bind_buffer_memory2)(
+                self.handle,
+                bind_infos.len() as _,
+                bind_infos.as_ptr(),
+            )
             .result()
     }
     ///vkBindImageMemory2
     #[inline]
     pub unsafe fn bind_image_memory2(
         &self,
-        device: crate::vk::Device,
         bind_infos: &[crate::vk::BindImageMemoryInfo<'_>],
     ) -> crate::VkResult<()> {
-        (self.fp.bind_image_memory2)(device, bind_infos.len() as _, bind_infos.as_ptr())
+        (self
+            .fp
+            .bind_image_memory2)(self.handle, bind_infos.len() as _, bind_infos.as_ptr())
             .result()
     }
 }

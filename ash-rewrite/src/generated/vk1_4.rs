@@ -572,13 +572,16 @@ impl crate::Device {
     #[inline]
     pub unsafe fn get_rendering_area_granularity(
         &self,
-        device: crate::vk::Device,
         rendering_area_info: &crate::vk::RenderingAreaInfo<'_>,
         granularity: &mut crate::vk::Extent2D,
     ) {
         (self
             .device_fn_1_4
-            .get_rendering_area_granularity)(device, rendering_area_info, granularity)
+            .get_rendering_area_granularity)(
+            self.handle,
+            rendering_area_info,
+            granularity,
+        )
     }
     ///vkCmdPushDescriptorSet
     #[inline]
@@ -655,43 +658,39 @@ impl crate::Device {
     #[inline]
     pub unsafe fn copy_memory_to_image(
         &self,
-        device: crate::vk::Device,
         copy_memory_to_image_info: &crate::vk::CopyMemoryToImageInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.device_fn_1_4.copy_memory_to_image)(device, copy_memory_to_image_info)
+        (self.device_fn_1_4.copy_memory_to_image)(self.handle, copy_memory_to_image_info)
             .result()
     }
     ///vkCopyImageToMemory
     #[inline]
     pub unsafe fn copy_image_to_memory(
         &self,
-        device: crate::vk::Device,
         copy_image_to_memory_info: &crate::vk::CopyImageToMemoryInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.device_fn_1_4.copy_image_to_memory)(device, copy_image_to_memory_info)
+        (self.device_fn_1_4.copy_image_to_memory)(self.handle, copy_image_to_memory_info)
             .result()
     }
     ///vkCopyImageToImage
     #[inline]
     pub unsafe fn copy_image_to_image(
         &self,
-        device: crate::vk::Device,
         copy_image_to_image_info: &crate::vk::CopyImageToImageInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.device_fn_1_4.copy_image_to_image)(device, copy_image_to_image_info)
+        (self.device_fn_1_4.copy_image_to_image)(self.handle, copy_image_to_image_info)
             .result()
     }
     ///vkTransitionImageLayout
     #[inline]
     pub unsafe fn transition_image_layout(
         &self,
-        device: crate::vk::Device,
         transitions: &[crate::vk::HostImageLayoutTransitionInfo<'_>],
     ) -> crate::VkResult<()> {
         (self
             .device_fn_1_4
             .transition_image_layout)(
-                device,
+                self.handle,
                 transitions.len() as _,
                 transitions.as_ptr(),
             )
@@ -701,43 +700,41 @@ impl crate::Device {
     #[inline]
     pub unsafe fn get_image_subresource_layout2(
         &self,
-        device: crate::vk::Device,
         image: crate::vk::Image,
         subresource: &crate::vk::ImageSubresource2<'_>,
         layout: &mut crate::vk::SubresourceLayout2<'_>,
     ) {
         (self
             .device_fn_1_4
-            .get_image_subresource_layout2)(device, image, subresource, layout)
+            .get_image_subresource_layout2)(self.handle, image, subresource, layout)
     }
     ///vkGetDeviceImageSubresourceLayout
     #[inline]
     pub unsafe fn get_device_image_subresource_layout(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::DeviceImageSubresourceInfo<'_>,
         layout: &mut crate::vk::SubresourceLayout2<'_>,
     ) {
-        (self.device_fn_1_4.get_device_image_subresource_layout)(device, info, layout)
+        (self
+            .device_fn_1_4
+            .get_device_image_subresource_layout)(self.handle, info, layout)
     }
     ///vkMapMemory2
     #[inline]
     pub unsafe fn map_memory2(
         &self,
-        device: crate::vk::Device,
         memory_map_info: &crate::vk::MemoryMapInfo<'_>,
         data: &mut *mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.device_fn_1_4.map_memory2)(device, memory_map_info, data).result()
+        (self.device_fn_1_4.map_memory2)(self.handle, memory_map_info, data).result()
     }
     ///vkUnmapMemory2
     #[inline]
     pub unsafe fn unmap_memory2(
         &self,
-        device: crate::vk::Device,
         memory_unmap_info: &crate::vk::MemoryUnmapInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.device_fn_1_4.unmap_memory2)(device, memory_unmap_info).result()
+        (self.device_fn_1_4.unmap_memory2)(self.handle, memory_unmap_info).result()
     }
     ///vkCmdBindDescriptorSets2
     #[inline]

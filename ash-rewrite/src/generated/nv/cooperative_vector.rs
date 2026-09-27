@@ -212,10 +212,9 @@ impl Device {
     #[inline]
     pub unsafe fn convert_cooperative_vector_matrix(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.convert_cooperative_vector_matrix)(device, info).result()
+        (self.fp.convert_cooperative_vector_matrix)(self.handle, info).result()
     }
     ///vkCmdConvertCooperativeVectorMatrixNV
     #[inline]

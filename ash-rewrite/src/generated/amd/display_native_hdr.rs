@@ -70,11 +70,10 @@ impl Device {
     #[inline]
     pub unsafe fn set_local_dimming(
         &self,
-        device: crate::vk::Device,
         swap_chain: crate::vk::SwapchainKHR,
         local_dimming_enable: crate::vk::Bool32,
     ) {
-        (self.fp.set_local_dimming)(device, swap_chain, local_dimming_enable)
+        (self.fp.set_local_dimming)(self.handle, swap_chain, local_dimming_enable)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

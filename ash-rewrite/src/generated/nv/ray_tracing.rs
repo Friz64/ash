@@ -464,17 +464,15 @@ impl Device {
     #[inline]
     pub unsafe fn compile_deferred(
         &self,
-        device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
         shader: u32,
     ) -> crate::VkResult<()> {
-        (self.fp.compile_deferred)(device, pipeline, shader).result()
+        (self.fp.compile_deferred)(self.handle, pipeline, shader).result()
     }
     ///vkCreateAccelerationStructureNV
     #[inline]
     pub unsafe fn create_acceleration_structure(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::AccelerationStructureCreateInfoNV<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         acceleration_structure: &mut crate::vk::AccelerationStructureNV,
@@ -482,7 +480,7 @@ impl Device {
         (self
             .fp
             .create_acceleration_structure)(
-                device,
+                self.handle,
                 create_info,
                 allocator,
                 acceleration_structure,
@@ -493,26 +491,28 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_acceleration_structure(
         &self,
-        device: crate::vk::Device,
         acceleration_structure: crate::vk::AccelerationStructureNV,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
-            .destroy_acceleration_structure)(device, acceleration_structure, allocator)
+            .destroy_acceleration_structure)(
+            self.handle,
+            acceleration_structure,
+            allocator,
+        )
     }
     ///vkGetAccelerationStructureMemoryRequirementsNV
     #[inline]
     pub unsafe fn get_acceleration_structure_memory_requirements(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
             .get_acceleration_structure_memory_requirements)(
-            device,
+            self.handle,
             info,
             memory_requirements,
         )
@@ -521,13 +521,12 @@ impl Device {
     #[inline]
     pub unsafe fn bind_acceleration_structure_memory(
         &self,
-        device: crate::vk::Device,
         bind_infos: &[crate::vk::BindAccelerationStructureMemoryInfoNV<'_>],
     ) -> crate::VkResult<()> {
         (self
             .fp
             .bind_acceleration_structure_memory)(
-                device,
+                self.handle,
                 bind_infos.len() as _,
                 bind_infos.as_ptr(),
             )
@@ -637,14 +636,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_acceleration_structure_handle(
         &self,
-        device: crate::vk::Device,
         acceleration_structure: crate::vk::AccelerationStructureNV,
         data: &mut [u8],
     ) -> crate::VkResult<()> {
         (self
             .fp
             .get_acceleration_structure_handle)(
-                device,
+                self.handle,
                 acceleration_structure,
                 data.len() as _,
                 data.as_mut_ptr().cast(),
@@ -655,7 +653,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_ray_tracing_pipelines(
         &self,
-        device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
         create_infos: &[crate::vk::RayTracingPipelineCreateInfoNV<'_>],
         allocator: &crate::vk::AllocationCallbacks<'_>,
@@ -665,7 +662,7 @@ impl Device {
         (self
             .fp
             .create_ray_tracing_pipelines)(
-                device,
+                self.handle,
                 pipeline_cache,
                 pipelines.len() as _,
                 create_infos.as_ptr(),
@@ -678,7 +675,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_ray_tracing_shader_group_handles(
         &self,
-        device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
         first_group: u32,
         group_count: u32,
@@ -687,7 +683,7 @@ impl Device {
         (self
             .fp
             .get_ray_tracing_shader_group_handles)(
-                device,
+                self.handle,
                 pipeline,
                 first_group,
                 group_count,

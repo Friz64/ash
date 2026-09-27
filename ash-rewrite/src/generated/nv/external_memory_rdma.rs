@@ -86,13 +86,16 @@ impl Device {
     #[inline]
     pub unsafe fn get_memory_remote_address(
         &self,
-        device: crate::vk::Device,
         memory_get_remote_address_info: &crate::vk::MemoryGetRemoteAddressInfoNV<'_>,
         address: &mut crate::vk::RemoteAddressNV,
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_memory_remote_address)(device, memory_get_remote_address_info, address)
+            .get_memory_remote_address)(
+                self.handle,
+                memory_get_remote_address_info,
+                address,
+            )
             .result()
     }
 }

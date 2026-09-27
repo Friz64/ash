@@ -166,31 +166,28 @@ impl Instance {
     #[inline]
     pub unsafe fn create_debug_report_callback(
         &self,
-        instance: crate::vk::Instance,
         create_info: &crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         callback: &mut crate::vk::DebugReportCallbackEXT,
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_debug_report_callback)(instance, create_info, allocator, callback)
+            .create_debug_report_callback)(self.handle, create_info, allocator, callback)
             .result()
     }
     ///vkDestroyDebugReportCallbackEXT
     #[inline]
     pub unsafe fn destroy_debug_report_callback(
         &self,
-        instance: crate::vk::Instance,
         callback: crate::vk::DebugReportCallbackEXT,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_debug_report_callback)(instance, callback, allocator)
+        (self.fp.destroy_debug_report_callback)(self.handle, callback, allocator)
     }
     ///vkDebugReportMessageEXT
     #[inline]
     pub unsafe fn debug_report_message(
         &self,
-        instance: crate::vk::Instance,
         flags: crate::vk::DebugReportFlagsEXT,
         object_type: crate::vk::DebugReportObjectTypeEXT,
         object: u64,
@@ -202,7 +199,7 @@ impl Instance {
         (self
             .fp
             .debug_report_message)(
-            instance,
+            self.handle,
             flags,
             object_type,
             object,

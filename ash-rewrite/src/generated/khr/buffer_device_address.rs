@@ -136,28 +136,25 @@ impl Device {
     #[inline]
     pub unsafe fn get_buffer_opaque_capture_address(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> u64 {
-        (self.fp.get_buffer_opaque_capture_address)(device, info)
+        (self.fp.get_buffer_opaque_capture_address)(self.handle, info)
     }
     ///vkGetBufferDeviceAddress
     #[inline]
     pub unsafe fn get_buffer_device_address(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> crate::vk::DeviceAddress {
-        (self.fp.get_buffer_device_address)(device, info)
+        (self.fp.get_buffer_device_address)(self.handle, info)
     }
     ///vkGetDeviceMemoryOpaqueCaptureAddress
     #[inline]
     pub unsafe fn get_device_memory_opaque_capture_address(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
     ) -> u64 {
-        (self.fp.get_device_memory_opaque_capture_address)(device, info)
+        (self.fp.get_device_memory_opaque_capture_address)(self.handle, info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

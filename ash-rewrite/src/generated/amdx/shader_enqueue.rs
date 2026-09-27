@@ -208,14 +208,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_execution_graph_pipeline_scratch_size(
         &self,
-        device: crate::vk::Device,
         execution_graph: crate::vk::Pipeline,
         size_info: &mut crate::vk::ExecutionGraphPipelineScratchSizeAMDX<'_>,
     ) -> crate::VkResult<()> {
         (self
             .fp
             .get_execution_graph_pipeline_scratch_size)(
-                device,
+                self.handle,
                 execution_graph,
                 size_info,
             )
@@ -225,7 +224,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_execution_graph_pipeline_node_index(
         &self,
-        device: crate::vk::Device,
         execution_graph: crate::vk::Pipeline,
         node_info: &crate::vk::PipelineShaderStageNodeCreateInfoAMDX<'_>,
         node_index: &mut u32,
@@ -233,7 +231,7 @@ impl Device {
         (self
             .fp
             .get_execution_graph_pipeline_node_index)(
-                device,
+                self.handle,
                 execution_graph,
                 node_info,
                 node_index,
@@ -244,7 +242,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_execution_graph_pipelines(
         &self,
-        device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
         create_infos: &[crate::vk::ExecutionGraphPipelineCreateInfoAMDX<'_>],
         allocator: &crate::vk::AllocationCallbacks<'_>,
@@ -254,7 +251,7 @@ impl Device {
         (self
             .fp
             .create_execution_graph_pipelines)(
-                device,
+                self.handle,
                 pipeline_cache,
                 pipelines.len() as _,
                 create_infos.as_ptr(),

@@ -128,14 +128,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_fault_reports_len(
         &self,
-        device: crate::vk::Device,
         timeout: u64,
     ) -> crate::VkResult<usize> {
         let mut fault_counts = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_device_fault_reports)(
-                device,
+                self.handle,
                 timeout,
                 fault_counts.as_mut_ptr(),
                 core::ptr::null_mut(),
@@ -147,7 +146,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_fault_reports(
         &self,
-        device: crate::vk::Device,
         timeout: u64,
         fault_info: &mut [crate::vk::DeviceFaultInfoKHR<'_>],
     ) -> crate::VkResult<()> {
@@ -155,7 +153,7 @@ impl Device {
         (self
             .fp
             .get_device_fault_reports)(
-                device,
+                self.handle,
                 timeout,
                 &mut fault_counts,
                 fault_info.as_mut_ptr(),
@@ -168,10 +166,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_fault_debug_info(
         &self,
-        device: crate::vk::Device,
         debug_info: &mut crate::vk::DeviceFaultDebugInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_device_fault_debug_info)(device, debug_info).result()
+        (self.fp.get_device_fault_debug_info)(self.handle, debug_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

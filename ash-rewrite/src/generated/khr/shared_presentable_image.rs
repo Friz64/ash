@@ -73,10 +73,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_swapchain_status(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.get_swapchain_status)(device, swapchain).result()
+        (self.fp.get_swapchain_status)(self.handle, swapchain).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

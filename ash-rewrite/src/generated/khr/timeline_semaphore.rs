@@ -110,30 +110,27 @@ impl Device {
     #[inline]
     pub unsafe fn get_semaphore_counter_value(
         &self,
-        device: crate::vk::Device,
         semaphore: crate::vk::Semaphore,
         value: &mut u64,
     ) -> crate::VkResult<()> {
-        (self.fp.get_semaphore_counter_value)(device, semaphore, value).result()
+        (self.fp.get_semaphore_counter_value)(self.handle, semaphore, value).result()
     }
     ///vkWaitSemaphores
     #[inline]
     pub unsafe fn wait_semaphores(
         &self,
-        device: crate::vk::Device,
         wait_info: &crate::vk::SemaphoreWaitInfo<'_>,
         timeout: u64,
     ) -> crate::VkResult<()> {
-        (self.fp.wait_semaphores)(device, wait_info, timeout).result()
+        (self.fp.wait_semaphores)(self.handle, wait_info, timeout).result()
     }
     ///vkSignalSemaphore
     #[inline]
     pub unsafe fn signal_semaphore(
         &self,
-        device: crate::vk::Device,
         signal_info: &crate::vk::SemaphoreSignalInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.signal_semaphore)(device, signal_info).result()
+        (self.fp.signal_semaphore)(self.handle, signal_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 2;

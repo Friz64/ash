@@ -146,7 +146,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_calibrated_timestamps(
         &self,
-        device: crate::vk::Device,
         timestamp_infos: &[crate::vk::CalibratedTimestampInfoKHR<'_>],
         timestamps: &mut [u64],
         max_deviation: &mut u64,
@@ -155,7 +154,7 @@ impl Device {
         (self
             .fp
             .get_calibrated_timestamps)(
-                device,
+                self.handle,
                 timestamps.len() as _,
                 timestamp_infos.as_ptr(),
                 timestamps.as_mut_ptr(),

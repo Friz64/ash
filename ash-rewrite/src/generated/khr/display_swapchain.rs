@@ -71,7 +71,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_shared_swapchains(
         &self,
-        device: crate::vk::Device,
         create_infos: &[crate::vk::SwapchainCreateInfoKHR<'_>],
         allocator: &crate::vk::AllocationCallbacks<'_>,
         swapchains: &mut [crate::vk::SwapchainKHR],
@@ -80,7 +79,7 @@ impl Device {
         (self
             .fp
             .create_shared_swapchains)(
-                device,
+                self.handle,
                 swapchains.len() as _,
                 create_infos.as_ptr(),
                 allocator,

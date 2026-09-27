@@ -283,12 +283,13 @@ impl Instance {
     #[inline]
     pub unsafe fn create_display_plane_surface(
         &self,
-        instance: crate::vk::Instance,
         create_info: &crate::vk::DisplaySurfaceCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_display_plane_surface)(instance, create_info, allocator, surface)
+        (self
+            .fp
+            .create_display_plane_surface)(self.handle, create_info, allocator, surface)
             .result()
     }
 }

@@ -317,7 +317,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_ray_tracing_shader_group_handles(
         &self,
-        device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
         first_group: u32,
         group_count: u32,
@@ -326,7 +325,7 @@ impl Device {
         (self
             .fp
             .get_ray_tracing_shader_group_handles)(
-                device,
+                self.handle,
                 pipeline,
                 first_group,
                 group_count,
@@ -339,7 +338,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_ray_tracing_capture_replay_shader_group_handles(
         &self,
-        device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
         first_group: u32,
         group_count: u32,
@@ -348,7 +346,7 @@ impl Device {
         (self
             .fp
             .get_ray_tracing_capture_replay_shader_group_handles)(
-                device,
+                self.handle,
                 pipeline,
                 first_group,
                 group_count,
@@ -361,7 +359,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_ray_tracing_pipelines(
         &self,
-        device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         pipeline_cache: crate::vk::PipelineCache,
         create_infos: &[crate::vk::RayTracingPipelineCreateInfoKHR<'_>],
@@ -372,7 +369,7 @@ impl Device {
         (self
             .fp
             .create_ray_tracing_pipelines)(
-                device,
+                self.handle,
                 deferred_operation,
                 pipeline_cache,
                 pipelines.len() as _,
@@ -408,7 +405,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_ray_tracing_shader_group_stack_size(
         &self,
-        device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
         group: u32,
         group_shader: crate::vk::ShaderGroupShaderKHR,
@@ -416,7 +412,7 @@ impl Device {
         (self
             .fp
             .get_ray_tracing_shader_group_stack_size)(
-            device,
+            self.handle,
             pipeline,
             group,
             group_shader,

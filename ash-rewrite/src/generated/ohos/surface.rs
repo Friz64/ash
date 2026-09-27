@@ -62,12 +62,11 @@ impl Instance {
     #[inline]
     pub unsafe fn create_surface(
         &self,
-        instance: crate::vk::Instance,
         create_info: &crate::vk::SurfaceCreateInfoOHOS<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_surface)(instance, create_info, allocator, surface).result()
+        (self.fp.create_surface)(self.handle, create_info, allocator, surface).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

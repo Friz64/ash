@@ -125,49 +125,50 @@ impl Device {
     #[inline]
     pub unsafe fn create_validation_cache(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::ValidationCacheCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         validation_cache: &mut crate::vk::ValidationCacheEXT,
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_validation_cache)(device, create_info, allocator, validation_cache)
+            .create_validation_cache)(
+                self.handle,
+                create_info,
+                allocator,
+                validation_cache,
+            )
             .result()
     }
     ///vkDestroyValidationCacheEXT
     #[inline]
     pub unsafe fn destroy_validation_cache(
         &self,
-        device: crate::vk::Device,
         validation_cache: crate::vk::ValidationCacheEXT,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_validation_cache)(device, validation_cache, allocator)
+        (self.fp.destroy_validation_cache)(self.handle, validation_cache, allocator)
     }
     ///vkGetValidationCacheDataEXT
     #[inline]
     pub unsafe fn get_validation_cache_data(
         &self,
-        device: crate::vk::Device,
         validation_cache: crate::vk::ValidationCacheEXT,
     ) -> crate::VkResult<Vec<core::ffi::c_void>> {
         crate::read_into_uninitialized_vector(|data_size, data| (self
             .fp
-            .get_validation_cache_data)(device, validation_cache, data_size, data))
+            .get_validation_cache_data)(self.handle, validation_cache, data_size, data))
     }
     ///vkMergeValidationCachesEXT
     #[inline]
     pub unsafe fn merge_validation_caches(
         &self,
-        device: crate::vk::Device,
         dst_cache: crate::vk::ValidationCacheEXT,
         src_caches: &[crate::vk::ValidationCacheEXT],
     ) -> crate::VkResult<()> {
         (self
             .fp
             .merge_validation_caches)(
-                device,
+                self.handle,
                 dst_cache,
                 src_caches.len() as _,
                 src_caches.as_ptr(),

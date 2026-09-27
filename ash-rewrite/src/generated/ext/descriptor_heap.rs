@@ -351,7 +351,6 @@ impl Device {
     #[inline]
     pub unsafe fn write_sampler_descriptors(
         &self,
-        device: crate::vk::Device,
         samplers: &[crate::vk::SamplerCreateInfo<'_>],
         descriptors: &[crate::vk::HostAddressRangeEXT<'_>],
     ) -> crate::VkResult<()> {
@@ -359,7 +358,7 @@ impl Device {
         (self
             .fp
             .write_sampler_descriptors)(
-                device,
+                self.handle,
                 descriptors.len() as _,
                 samplers.as_ptr(),
                 descriptors.as_ptr(),
@@ -370,7 +369,6 @@ impl Device {
     #[inline]
     pub unsafe fn write_resource_descriptors(
         &self,
-        device: crate::vk::Device,
         resources: &[crate::vk::ResourceDescriptorInfoEXT<'_>],
         descriptors: &[crate::vk::HostAddressRangeEXT<'_>],
     ) -> crate::VkResult<()> {
@@ -378,7 +376,7 @@ impl Device {
         (self
             .fp
             .write_resource_descriptors)(
-                device,
+                self.handle,
                 descriptors.len() as _,
                 resources.as_ptr(),
                 descriptors.as_ptr(),
@@ -416,30 +414,29 @@ impl Device {
     #[inline]
     pub unsafe fn register_custom_border_color(
         &self,
-        device: crate::vk::Device,
         border_color: &crate::vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
         request_index: crate::vk::Bool32,
         index: &mut u32,
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .register_custom_border_color)(device, border_color, request_index, index)
+            .register_custom_border_color)(
+                self.handle,
+                border_color,
+                request_index,
+                index,
+            )
             .result()
     }
     ///vkUnregisterCustomBorderColorEXT
     #[inline]
-    pub unsafe fn unregister_custom_border_color(
-        &self,
-        device: crate::vk::Device,
-        index: u32,
-    ) {
-        (self.fp.unregister_custom_border_color)(device, index)
+    pub unsafe fn unregister_custom_border_color(&self, index: u32) {
+        (self.fp.unregister_custom_border_color)(self.handle, index)
     }
     ///vkGetImageOpaqueCaptureDataEXT
     #[inline]
     pub unsafe fn get_image_opaque_capture_data(
         &self,
-        device: crate::vk::Device,
         images: &[crate::vk::Image],
         datas: &mut [crate::vk::HostAddressRangeEXT<'_>],
     ) -> crate::VkResult<()> {
@@ -447,7 +444,7 @@ impl Device {
         (self
             .fp
             .get_image_opaque_capture_data)(
-                device,
+                self.handle,
                 datas.len() as _,
                 images.as_ptr(),
                 datas.as_mut_ptr(),
@@ -458,7 +455,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_tensor_opaque_capture_data(
         &self,
-        device: crate::vk::Device,
         tensors: &[crate::vk::TensorARM],
         datas: &mut [crate::vk::HostAddressRangeEXT<'_>],
     ) -> crate::VkResult<()> {
@@ -466,7 +462,7 @@ impl Device {
         (self
             .fp
             .get_tensor_opaque_capture_data)(
-                device,
+                self.handle,
                 datas.len() as _,
                 tensors.as_ptr(),
                 datas.as_mut_ptr(),

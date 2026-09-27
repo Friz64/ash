@@ -462,29 +462,28 @@ impl Device {
     #[inline]
     pub unsafe fn create_video_session(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::VideoSessionCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         video_session: &mut crate::vk::VideoSessionKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_video_session)(device, create_info, allocator, video_session)
+        (self
+            .fp
+            .create_video_session)(self.handle, create_info, allocator, video_session)
             .result()
     }
     ///vkDestroyVideoSessionKHR
     #[inline]
     pub unsafe fn destroy_video_session(
         &self,
-        device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_video_session)(device, video_session, allocator)
+        (self.fp.destroy_video_session)(self.handle, video_session, allocator)
     }
     ///vkCreateVideoSessionParametersKHR
     #[inline]
     pub unsafe fn create_video_session_parameters(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         video_session_parameters: &mut crate::vk::VideoSessionParametersKHR,
@@ -492,7 +491,7 @@ impl Device {
         (self
             .fp
             .create_video_session_parameters)(
-                device,
+                self.handle,
                 create_info,
                 allocator,
                 video_session_parameters,
@@ -503,14 +502,13 @@ impl Device {
     #[inline]
     pub unsafe fn update_video_session_parameters(
         &self,
-        device: crate::vk::Device,
         video_session_parameters: crate::vk::VideoSessionParametersKHR,
         update_info: &crate::vk::VideoSessionParametersUpdateInfoKHR<'_>,
     ) -> crate::VkResult<()> {
         (self
             .fp
             .update_video_session_parameters)(
-                device,
+                self.handle,
                 video_session_parameters,
                 update_info,
             )
@@ -520,14 +518,13 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_video_session_parameters(
         &self,
-        device: crate::vk::Device,
         video_session_parameters: crate::vk::VideoSessionParametersKHR,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
             .destroy_video_session_parameters)(
-            device,
+            self.handle,
             video_session_parameters,
             allocator,
         )
@@ -536,14 +533,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_video_session_memory_requirements_len(
         &self,
-        device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
     ) -> crate::VkResult<usize> {
         let mut memory_requirements_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_video_session_memory_requirements)(
-                device,
+                self.handle,
                 video_session,
                 memory_requirements_count.as_mut_ptr(),
                 core::ptr::null_mut(),
@@ -555,7 +551,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_video_session_memory_requirements(
         &self,
-        device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
         memory_requirements: &mut [crate::vk::VideoSessionMemoryRequirementsKHR<'_>],
     ) -> crate::VkResult<()> {
@@ -563,7 +558,7 @@ impl Device {
         (self
             .fp
             .get_video_session_memory_requirements)(
-                device,
+                self.handle,
                 video_session,
                 &mut memory_requirements_count,
                 memory_requirements.as_mut_ptr(),
@@ -576,14 +571,13 @@ impl Device {
     #[inline]
     pub unsafe fn bind_video_session_memory(
         &self,
-        device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
         bind_session_memory_infos: &[crate::vk::BindVideoSessionMemoryInfoKHR<'_>],
     ) -> crate::VkResult<()> {
         (self
             .fp
             .bind_video_session_memory)(
-                device,
+                self.handle,
                 video_session,
                 bind_session_memory_infos.len() as _,
                 bind_session_memory_infos.as_ptr(),

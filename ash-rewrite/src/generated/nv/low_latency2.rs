@@ -152,41 +152,38 @@ impl Device {
     #[inline]
     pub unsafe fn set_latency_sleep_mode(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         sleep_mode_info: &crate::vk::LatencySleepModeInfoNV<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.set_latency_sleep_mode)(device, swapchain, sleep_mode_info).result()
+        (self.fp.set_latency_sleep_mode)(self.handle, swapchain, sleep_mode_info)
+            .result()
     }
     ///vkLatencySleepNV
     #[inline]
     pub unsafe fn latency_sleep(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         sleep_info: &crate::vk::LatencySleepInfoNV<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.latency_sleep)(device, swapchain, sleep_info).result()
+        (self.fp.latency_sleep)(self.handle, swapchain, sleep_info).result()
     }
     ///vkSetLatencyMarkerNV
     #[inline]
     pub unsafe fn set_latency_marker(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         latency_marker_info: &crate::vk::SetLatencyMarkerInfoNV<'_>,
     ) {
-        (self.fp.set_latency_marker)(device, swapchain, latency_marker_info)
+        (self.fp.set_latency_marker)(self.handle, swapchain, latency_marker_info)
     }
     ///vkGetLatencyTimingsNV
     #[inline]
     pub unsafe fn get_latency_timings(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         latency_marker_info: &mut crate::vk::GetLatencyMarkerInfoNV<'_>,
     ) {
-        (self.fp.get_latency_timings)(device, swapchain, latency_marker_info)
+        (self.fp.get_latency_timings)(self.handle, swapchain, latency_marker_info)
     }
     ///vkQueueNotifyOutOfBandNV
     #[inline]

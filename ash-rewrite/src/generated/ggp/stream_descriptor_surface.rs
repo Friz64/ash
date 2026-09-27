@@ -66,14 +66,18 @@ impl Instance {
     #[inline]
     pub unsafe fn create_stream_descriptor_surface(
         &self,
-        instance: crate::vk::Instance,
         create_info: &crate::vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_stream_descriptor_surface)(instance, create_info, allocator, surface)
+            .create_stream_descriptor_surface)(
+                self.handle,
+                create_info,
+                allocator,
+                surface,
+            )
             .result()
     }
 }

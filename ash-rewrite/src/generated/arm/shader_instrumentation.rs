@@ -251,7 +251,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_shader_instrumentation(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         instrumentation: &mut crate::vk::ShaderInstrumentationARM,
@@ -259,7 +258,7 @@ impl Device {
         (self
             .fp
             .create_shader_instrumentation)(
-                device,
+                self.handle,
                 create_info,
                 allocator,
                 instrumentation,
@@ -270,11 +269,10 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_shader_instrumentation(
         &self,
-        device: crate::vk::Device,
         instrumentation: crate::vk::ShaderInstrumentationARM,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_shader_instrumentation)(device, instrumentation, allocator)
+        (self.fp.destroy_shader_instrumentation)(self.handle, instrumentation, allocator)
     }
     ///vkCmdBeginShaderInstrumentationARM
     #[inline]
@@ -297,7 +295,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_shader_instrumentation_values(
         &self,
-        device: crate::vk::Device,
         instrumentation: crate::vk::ShaderInstrumentationARM,
         metric_block_count: &mut u32,
         metric_values: &mut core::ffi::c_void,
@@ -306,7 +303,7 @@ impl Device {
         (self
             .fp
             .get_shader_instrumentation_values)(
-                device,
+                self.handle,
                 instrumentation,
                 metric_block_count,
                 metric_values,
@@ -318,10 +315,9 @@ impl Device {
     #[inline]
     pub unsafe fn clear_shader_instrumentation_metrics(
         &self,
-        device: crate::vk::Device,
         instrumentation: crate::vk::ShaderInstrumentationARM,
     ) {
-        (self.fp.clear_shader_instrumentation_metrics)(device, instrumentation)
+        (self.fp.clear_shader_instrumentation_metrics)(self.handle, instrumentation)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

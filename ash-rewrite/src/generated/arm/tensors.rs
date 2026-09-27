@@ -318,75 +318,74 @@ impl Device {
     #[inline]
     pub unsafe fn create_tensor(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::TensorCreateInfoARM<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         tensor: &mut crate::vk::TensorARM,
     ) -> crate::VkResult<()> {
-        (self.fp.create_tensor)(device, create_info, allocator, tensor).result()
+        (self.fp.create_tensor)(self.handle, create_info, allocator, tensor).result()
     }
     ///vkDestroyTensorARM
     #[inline]
     pub unsafe fn destroy_tensor(
         &self,
-        device: crate::vk::Device,
         tensor: crate::vk::TensorARM,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_tensor)(device, tensor, allocator)
+        (self.fp.destroy_tensor)(self.handle, tensor, allocator)
     }
     ///vkCreateTensorViewARM
     #[inline]
     pub unsafe fn create_tensor_view(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::TensorViewCreateInfoARM<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         view: &mut crate::vk::TensorViewARM,
     ) -> crate::VkResult<()> {
-        (self.fp.create_tensor_view)(device, create_info, allocator, view).result()
+        (self.fp.create_tensor_view)(self.handle, create_info, allocator, view).result()
     }
     ///vkDestroyTensorViewARM
     #[inline]
     pub unsafe fn destroy_tensor_view(
         &self,
-        device: crate::vk::Device,
         tensor_view: crate::vk::TensorViewARM,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_tensor_view)(device, tensor_view, allocator)
+        (self.fp.destroy_tensor_view)(self.handle, tensor_view, allocator)
     }
     ///vkGetTensorMemoryRequirementsARM
     #[inline]
     pub unsafe fn get_tensor_memory_requirements(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::TensorMemoryRequirementsInfoARM<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
-        (self.fp.get_tensor_memory_requirements)(device, info, memory_requirements)
+        (self.fp.get_tensor_memory_requirements)(self.handle, info, memory_requirements)
     }
     ///vkBindTensorMemoryARM
     #[inline]
     pub unsafe fn bind_tensor_memory(
         &self,
-        device: crate::vk::Device,
         bind_infos: &[crate::vk::BindTensorMemoryInfoARM<'_>],
     ) -> crate::VkResult<()> {
-        (self.fp.bind_tensor_memory)(device, bind_infos.len() as _, bind_infos.as_ptr())
+        (self
+            .fp
+            .bind_tensor_memory)(self.handle, bind_infos.len() as _, bind_infos.as_ptr())
             .result()
     }
     ///vkGetDeviceTensorMemoryRequirementsARM
     #[inline]
     pub unsafe fn get_device_tensor_memory_requirements(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::DeviceTensorMemoryRequirementsARM<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
-            .get_device_tensor_memory_requirements)(device, info, memory_requirements)
+            .get_device_tensor_memory_requirements)(
+            self.handle,
+            info,
+            memory_requirements,
+        )
     }
     ///vkCmdCopyTensorARM
     #[inline]
@@ -401,21 +400,20 @@ impl Device {
     #[inline]
     pub unsafe fn get_tensor_opaque_capture_descriptor_data(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::TensorCaptureDescriptorDataInfoARM<'_>,
         data: &mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.fp.get_tensor_opaque_capture_descriptor_data)(device, info, data).result()
+        (self.fp.get_tensor_opaque_capture_descriptor_data)(self.handle, info, data)
+            .result()
     }
     ///vkGetTensorViewOpaqueCaptureDescriptorDataARM
     #[inline]
     pub unsafe fn get_tensor_view_opaque_capture_descriptor_data(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
         data: &mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.fp.get_tensor_view_opaque_capture_descriptor_data)(device, info, data)
+        (self.fp.get_tensor_view_opaque_capture_descriptor_data)(self.handle, info, data)
             .result()
     }
 }

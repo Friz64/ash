@@ -138,14 +138,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_partitioned_acceleration_structures_build_sizes(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::PartitionedAccelerationStructureInstancesInputNV<'_>,
         size_info: &mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
     ) {
         (self
             .fp
             .get_partitioned_acceleration_structures_build_sizes)(
-            device,
+            self.handle,
             info,
             size_info,
         )

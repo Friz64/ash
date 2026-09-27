@@ -74,15 +74,12 @@ impl Instance {
     }
     ///vkEnumeratePhysicalDeviceGroups
     #[inline]
-    pub unsafe fn enumerate_physical_device_groups_len(
-        &self,
-        instance: crate::vk::Instance,
-    ) -> crate::VkResult<usize> {
+    pub unsafe fn enumerate_physical_device_groups_len(&self) -> crate::VkResult<usize> {
         let mut physical_device_group_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .enumerate_physical_device_groups)(
-                instance,
+                self.handle,
                 physical_device_group_count.as_mut_ptr(),
                 core::ptr::null_mut(),
             )
@@ -93,7 +90,6 @@ impl Instance {
     #[inline]
     pub unsafe fn enumerate_physical_device_groups(
         &self,
-        instance: crate::vk::Instance,
         physical_device_group_properties: &mut [crate::vk::PhysicalDeviceGroupProperties<
             '_,
         >],
@@ -103,7 +99,7 @@ impl Instance {
         (self
             .fp
             .enumerate_physical_device_groups)(
-                instance,
+                self.handle,
                 &mut physical_device_group_count,
                 physical_device_group_properties.as_mut_ptr(),
             )

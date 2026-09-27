@@ -130,14 +130,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_pipeline_executable_properties_len(
         &self,
-        device: crate::vk::Device,
         pipeline_info: &crate::vk::PipelineInfoKHR<'_>,
     ) -> crate::VkResult<usize> {
         let mut executable_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_pipeline_executable_properties)(
-                device,
+                self.handle,
                 pipeline_info,
                 executable_count.as_mut_ptr(),
                 core::ptr::null_mut(),
@@ -149,7 +148,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_pipeline_executable_properties(
         &self,
-        device: crate::vk::Device,
         pipeline_info: &crate::vk::PipelineInfoKHR<'_>,
         properties: &mut [crate::vk::PipelineExecutablePropertiesKHR<'_>],
     ) -> crate::VkResult<()> {
@@ -157,7 +155,7 @@ impl Device {
         (self
             .fp
             .get_pipeline_executable_properties)(
-                device,
+                self.handle,
                 pipeline_info,
                 &mut executable_count,
                 properties.as_mut_ptr(),
@@ -170,14 +168,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_pipeline_executable_statistics_len(
         &self,
-        device: crate::vk::Device,
         executable_info: &crate::vk::PipelineExecutableInfoKHR<'_>,
     ) -> crate::VkResult<usize> {
         let mut statistic_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_pipeline_executable_statistics)(
-                device,
+                self.handle,
                 executable_info,
                 statistic_count.as_mut_ptr(),
                 core::ptr::null_mut(),
@@ -189,7 +186,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_pipeline_executable_statistics(
         &self,
-        device: crate::vk::Device,
         executable_info: &crate::vk::PipelineExecutableInfoKHR<'_>,
         statistics: &mut [crate::vk::PipelineExecutableStatisticKHR<'_>],
     ) -> crate::VkResult<()> {
@@ -197,7 +193,7 @@ impl Device {
         (self
             .fp
             .get_pipeline_executable_statistics)(
-                device,
+                self.handle,
                 executable_info,
                 &mut statistic_count,
                 statistics.as_mut_ptr(),
@@ -210,14 +206,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_pipeline_executable_internal_representations_len(
         &self,
-        device: crate::vk::Device,
         executable_info: &crate::vk::PipelineExecutableInfoKHR<'_>,
     ) -> crate::VkResult<usize> {
         let mut internal_representation_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_pipeline_executable_internal_representations)(
-                device,
+                self.handle,
                 executable_info,
                 internal_representation_count.as_mut_ptr(),
                 core::ptr::null_mut(),
@@ -229,7 +224,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_pipeline_executable_internal_representations(
         &self,
-        device: crate::vk::Device,
         executable_info: &crate::vk::PipelineExecutableInfoKHR<'_>,
         internal_representations: &mut [crate::vk::PipelineExecutableInternalRepresentationKHR<
             '_,
@@ -239,7 +233,7 @@ impl Device {
         (self
             .fp
             .get_pipeline_executable_internal_representations)(
-                device,
+                self.handle,
                 executable_info,
                 &mut internal_representation_count,
                 internal_representations.as_mut_ptr(),

@@ -366,29 +366,28 @@ impl Device {
     #[inline]
     pub unsafe fn create_optical_flow_session(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::OpticalFlowSessionCreateInfoNV<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         session: &mut crate::vk::OpticalFlowSessionNV,
     ) -> crate::VkResult<()> {
-        (self.fp.create_optical_flow_session)(device, create_info, allocator, session)
+        (self
+            .fp
+            .create_optical_flow_session)(self.handle, create_info, allocator, session)
             .result()
     }
     ///vkDestroyOpticalFlowSessionNV
     #[inline]
     pub unsafe fn destroy_optical_flow_session(
         &self,
-        device: crate::vk::Device,
         session: crate::vk::OpticalFlowSessionNV,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_optical_flow_session)(device, session, allocator)
+        (self.fp.destroy_optical_flow_session)(self.handle, session, allocator)
     }
     ///vkBindOpticalFlowSessionImageNV
     #[inline]
     pub unsafe fn bind_optical_flow_session_image(
         &self,
-        device: crate::vk::Device,
         session: crate::vk::OpticalFlowSessionNV,
         binding_point: crate::vk::OpticalFlowSessionBindingPointNV,
         view: crate::vk::ImageView,
@@ -397,7 +396,7 @@ impl Device {
         (self
             .fp
             .bind_optical_flow_session_image)(
-                device,
+                self.handle,
                 session,
                 binding_point,
                 view,

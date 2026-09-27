@@ -66,12 +66,11 @@ impl Device {
     #[inline]
     pub unsafe fn wait_for_present(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         present_id: u64,
         timeout: u64,
     ) -> crate::VkResult<()> {
-        (self.fp.wait_for_present)(device, swapchain, present_id, timeout).result()
+        (self.fp.wait_for_present)(self.handle, swapchain, present_id, timeout).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

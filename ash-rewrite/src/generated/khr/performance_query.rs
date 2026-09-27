@@ -225,15 +225,14 @@ impl Device {
     #[inline]
     pub unsafe fn acquire_profiling_lock(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::AcquireProfilingLockInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.acquire_profiling_lock)(device, info).result()
+        (self.fp.acquire_profiling_lock)(self.handle, info).result()
     }
     ///vkReleaseProfilingLockKHR
     #[inline]
-    pub unsafe fn release_profiling_lock(&self, device: crate::vk::Device) {
-        (self.fp.release_profiling_lock)(device)
+    pub unsafe fn release_profiling_lock(&self) {
+        (self.fp.release_profiling_lock)(self.handle)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

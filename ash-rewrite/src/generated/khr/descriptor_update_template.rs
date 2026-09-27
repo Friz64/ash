@@ -129,7 +129,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_descriptor_update_template(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         descriptor_update_template: &mut crate::vk::DescriptorUpdateTemplate,
@@ -137,7 +136,7 @@ impl Device {
         (self
             .fp
             .create_descriptor_update_template)(
-                device,
+                self.handle,
                 create_info,
                 allocator,
                 descriptor_update_template,
@@ -148,14 +147,13 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_descriptor_update_template(
         &self,
-        device: crate::vk::Device,
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
             .destroy_descriptor_update_template)(
-            device,
+            self.handle,
             descriptor_update_template,
             allocator,
         )
@@ -164,7 +162,6 @@ impl Device {
     #[inline]
     pub unsafe fn update_descriptor_set_with_template(
         &self,
-        device: crate::vk::Device,
         descriptor_set: crate::vk::DescriptorSet,
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
         data: &core::ffi::c_void,
@@ -172,7 +169,7 @@ impl Device {
         (self
             .fp
             .update_descriptor_set_with_template)(
-            device,
+            self.handle,
             descriptor_set,
             descriptor_update_template,
             data,

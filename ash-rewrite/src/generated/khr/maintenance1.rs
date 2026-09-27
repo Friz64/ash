@@ -89,11 +89,10 @@ impl Device {
     #[inline]
     pub unsafe fn trim_command_pool(
         &self,
-        device: crate::vk::Device,
         command_pool: crate::vk::CommandPool,
         flags: crate::vk::CommandPoolTrimFlags,
     ) {
-        (self.fp.trim_command_pool)(device, command_pool, flags)
+        (self.fp.trim_command_pool)(self.handle, command_pool, flags)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

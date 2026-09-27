@@ -84,7 +84,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_memory_host_pointer_properties(
         &self,
-        device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         host_pointer: &core::ffi::c_void,
         memory_host_pointer_properties: &mut crate::vk::MemoryHostPointerPropertiesEXT<
@@ -94,7 +93,7 @@ impl Device {
         (self
             .fp
             .get_memory_host_pointer_properties)(
-                device,
+                self.handle,
                 handle_type,
                 host_pointer,
                 memory_host_pointer_properties,

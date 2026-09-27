@@ -66,12 +66,11 @@ impl Instance {
     #[inline]
     pub unsafe fn create_image_pipe_surface(
         &self,
-        instance: crate::vk::Instance,
         create_info: &crate::vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_image_pipe_surface)(instance, create_info, allocator, surface)
+        (self.fp.create_image_pipe_surface)(self.handle, create_info, allocator, surface)
             .result()
     }
 }

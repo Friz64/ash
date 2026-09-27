@@ -160,43 +160,40 @@ impl Device {
     #[inline]
     pub unsafe fn create_pipeline_binaries(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::PipelineBinaryCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         binaries: &mut crate::vk::PipelineBinaryHandlesInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.create_pipeline_binaries)(device, create_info, allocator, binaries)
+        (self.fp.create_pipeline_binaries)(self.handle, create_info, allocator, binaries)
             .result()
     }
     ///vkDestroyPipelineBinaryKHR
     #[inline]
     pub unsafe fn destroy_pipeline_binary(
         &self,
-        device: crate::vk::Device,
         pipeline_binary: crate::vk::PipelineBinaryKHR,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_pipeline_binary)(device, pipeline_binary, allocator)
+        (self.fp.destroy_pipeline_binary)(self.handle, pipeline_binary, allocator)
     }
     ///vkGetPipelineKeyKHR
     #[inline]
     pub unsafe fn get_pipeline_key(
         &self,
-        device: crate::vk::Device,
         pipeline_create_info: &crate::vk::PipelineCreateInfoKHR<'_>,
         pipeline_key: &mut crate::vk::PipelineBinaryKeyKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_pipeline_key)(device, pipeline_create_info, pipeline_key).result()
+        (self.fp.get_pipeline_key)(self.handle, pipeline_create_info, pipeline_key)
+            .result()
     }
     ///vkReleaseCapturedPipelineDataKHR
     #[inline]
     pub unsafe fn release_captured_pipeline_data(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.release_captured_pipeline_data)(device, info, allocator).result()
+        (self.fp.release_captured_pipeline_data)(self.handle, info, allocator).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

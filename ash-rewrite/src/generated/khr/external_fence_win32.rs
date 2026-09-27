@@ -82,20 +82,19 @@ impl Device {
     #[inline]
     pub unsafe fn get_fence_win32_handle(
         &self,
-        device: crate::vk::Device,
         get_win32_handle_info: &crate::vk::FenceGetWin32HandleInfoKHR<'_>,
         handle: &mut crate::platform_types::HANDLE,
     ) -> crate::VkResult<()> {
-        (self.fp.get_fence_win32_handle)(device, get_win32_handle_info, handle).result()
+        (self.fp.get_fence_win32_handle)(self.handle, get_win32_handle_info, handle)
+            .result()
     }
     ///vkImportFenceWin32HandleKHR
     #[inline]
     pub unsafe fn import_fence_win32_handle(
         &self,
-        device: crate::vk::Device,
         import_fence_win32_handle_info: &crate::vk::ImportFenceWin32HandleInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.import_fence_win32_handle)(device, import_fence_win32_handle_info)
+        (self.fp.import_fence_win32_handle)(self.handle, import_fence_win32_handle_info)
             .result()
     }
 }

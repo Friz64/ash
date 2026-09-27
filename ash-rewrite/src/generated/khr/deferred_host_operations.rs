@@ -133,49 +133,44 @@ impl Device {
     #[inline]
     pub unsafe fn create_deferred_operation(
         &self,
-        device: crate::vk::Device,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         deferred_operation: &mut crate::vk::DeferredOperationKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_deferred_operation)(device, allocator, deferred_operation)
+        (self.fp.create_deferred_operation)(self.handle, allocator, deferred_operation)
             .result()
     }
     ///vkDestroyDeferredOperationKHR
     #[inline]
     pub unsafe fn destroy_deferred_operation(
         &self,
-        device: crate::vk::Device,
         operation: crate::vk::DeferredOperationKHR,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_deferred_operation)(device, operation, allocator)
+        (self.fp.destroy_deferred_operation)(self.handle, operation, allocator)
     }
     ///vkGetDeferredOperationMaxConcurrencyKHR
     #[inline]
     pub unsafe fn get_deferred_operation_max_concurrency(
         &self,
-        device: crate::vk::Device,
         operation: crate::vk::DeferredOperationKHR,
     ) -> u32 {
-        (self.fp.get_deferred_operation_max_concurrency)(device, operation)
+        (self.fp.get_deferred_operation_max_concurrency)(self.handle, operation)
     }
     ///vkGetDeferredOperationResultKHR
     #[inline]
     pub unsafe fn get_deferred_operation_result(
         &self,
-        device: crate::vk::Device,
         operation: crate::vk::DeferredOperationKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.get_deferred_operation_result)(device, operation).result()
+        (self.fp.get_deferred_operation_result)(self.handle, operation).result()
     }
     ///vkDeferredOperationJoinKHR
     #[inline]
     pub unsafe fn deferred_operation_join(
         &self,
-        device: crate::vk::Device,
         operation: crate::vk::DeferredOperationKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.deferred_operation_join)(device, operation).result()
+        (self.fp.deferred_operation_join)(self.handle, operation).result()
     }
 }
 pub const SPEC_VERSION: u32 = 4;

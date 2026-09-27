@@ -83,25 +83,26 @@ impl Device {
     #[inline]
     pub unsafe fn get_semaphore_win32_handle(
         &self,
-        device: crate::vk::Device,
         get_win32_handle_info: &crate::vk::SemaphoreGetWin32HandleInfoKHR<'_>,
         handle: &mut crate::platform_types::HANDLE,
     ) -> crate::VkResult<()> {
-        (self.fp.get_semaphore_win32_handle)(device, get_win32_handle_info, handle)
+        (self.fp.get_semaphore_win32_handle)(self.handle, get_win32_handle_info, handle)
             .result()
     }
     ///vkImportSemaphoreWin32HandleKHR
     #[inline]
     pub unsafe fn import_semaphore_win32_handle(
         &self,
-        device: crate::vk::Device,
         import_semaphore_win32_handle_info: &crate::vk::ImportSemaphoreWin32HandleInfoKHR<
             '_,
         >,
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .import_semaphore_win32_handle)(device, import_semaphore_win32_handle_info)
+            .import_semaphore_win32_handle)(
+                self.handle,
+                import_semaphore_win32_handle_info,
+            )
             .result()
     }
 }

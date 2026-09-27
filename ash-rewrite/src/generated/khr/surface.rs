@@ -194,11 +194,10 @@ impl Instance {
     #[inline]
     pub unsafe fn destroy_surface(
         &self,
-        instance: crate::vk::Instance,
         surface: crate::vk::SurfaceKHR,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_surface)(instance, surface, allocator)
+        (self.fp.destroy_surface)(self.handle, surface, allocator)
     }
     ///vkGetPhysicalDeviceSurfaceSupportKHR
     #[inline]

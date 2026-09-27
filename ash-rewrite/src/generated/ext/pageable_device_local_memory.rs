@@ -67,11 +67,10 @@ impl Device {
     #[inline]
     pub unsafe fn set_device_memory_priority(
         &self,
-        device: crate::vk::Device,
         memory: crate::vk::DeviceMemory,
         priority: core::ffi::c_float,
     ) {
-        (self.fp.set_device_memory_priority)(device, memory, priority)
+        (self.fp.set_device_memory_priority)(self.handle, memory, priority)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

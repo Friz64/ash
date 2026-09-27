@@ -73,20 +73,18 @@ impl Device {
     #[inline]
     pub unsafe fn get_fence_fd(
         &self,
-        device: crate::vk::Device,
         get_fd_info: &crate::vk::FenceGetFdInfoKHR<'_>,
         fd: &mut core::ffi::c_int,
     ) -> crate::VkResult<()> {
-        (self.fp.get_fence_fd)(device, get_fd_info, fd).result()
+        (self.fp.get_fence_fd)(self.handle, get_fd_info, fd).result()
     }
     ///vkImportFenceFdKHR
     #[inline]
     pub unsafe fn import_fence_fd(
         &self,
-        device: crate::vk::Device,
         import_fence_fd_info: &crate::vk::ImportFenceFdInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.import_fence_fd)(device, import_fence_fd_info).result()
+        (self.fp.import_fence_fd)(self.handle, import_fence_fd_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

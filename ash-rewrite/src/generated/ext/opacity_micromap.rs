@@ -450,12 +450,11 @@ impl Device {
     #[inline]
     pub unsafe fn create_micromap(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::MicromapCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         micromap: &mut crate::vk::MicromapEXT,
     ) -> crate::VkResult<()> {
-        (self.fp.create_micromap)(device, create_info, allocator, micromap).result()
+        (self.fp.create_micromap)(self.handle, create_info, allocator, micromap).result()
     }
     ///vkCmdBuildMicromapsEXT
     #[inline]
@@ -470,14 +469,13 @@ impl Device {
     #[inline]
     pub unsafe fn build_micromaps(
         &self,
-        device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         infos: &[crate::vk::MicromapBuildInfoEXT<'_>],
     ) -> crate::VkResult<()> {
         (self
             .fp
             .build_micromaps)(
-                device,
+                self.handle,
                 deferred_operation,
                 infos.len() as _,
                 infos.as_ptr(),
@@ -488,11 +486,10 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_micromap(
         &self,
-        device: crate::vk::Device,
         micromap: crate::vk::MicromapEXT,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_micromap)(device, micromap, allocator)
+        (self.fp.destroy_micromap)(self.handle, micromap, allocator)
     }
     ///vkCmdCopyMicromapEXT
     #[inline]
@@ -507,11 +504,10 @@ impl Device {
     #[inline]
     pub unsafe fn copy_micromap(
         &self,
-        device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         info: &crate::vk::CopyMicromapInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_micromap)(device, deferred_operation, info).result()
+        (self.fp.copy_micromap)(self.handle, deferred_operation, info).result()
     }
     ///vkCmdCopyMicromapToMemoryEXT
     #[inline]
@@ -526,11 +522,10 @@ impl Device {
     #[inline]
     pub unsafe fn copy_micromap_to_memory(
         &self,
-        device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         info: &crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_micromap_to_memory)(device, deferred_operation, info).result()
+        (self.fp.copy_micromap_to_memory)(self.handle, deferred_operation, info).result()
     }
     ///vkCmdCopyMemoryToMicromapEXT
     #[inline]
@@ -545,11 +540,10 @@ impl Device {
     #[inline]
     pub unsafe fn copy_memory_to_micromap(
         &self,
-        device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         info: &crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_memory_to_micromap)(device, deferred_operation, info).result()
+        (self.fp.copy_memory_to_micromap)(self.handle, deferred_operation, info).result()
     }
     ///vkCmdWriteMicromapsPropertiesEXT
     #[inline]
@@ -576,7 +570,6 @@ impl Device {
     #[inline]
     pub unsafe fn write_micromaps_properties(
         &self,
-        device: crate::vk::Device,
         micromaps: &[crate::vk::MicromapEXT],
         query_type: crate::vk::QueryType,
         data: &mut [u8],
@@ -585,7 +578,7 @@ impl Device {
         (self
             .fp
             .write_micromaps_properties)(
-                device,
+                self.handle,
                 micromaps.len() as _,
                 micromaps.as_ptr(),
                 query_type,
@@ -599,22 +592,24 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_micromap_compatibility(
         &self,
-        device: crate::vk::Device,
         version_info: &crate::vk::MicromapVersionInfoEXT<'_>,
         compatibility: &mut crate::vk::AccelerationStructureCompatibilityKHR,
     ) {
-        (self.fp.get_device_micromap_compatibility)(device, version_info, compatibility)
+        (self
+            .fp
+            .get_device_micromap_compatibility)(self.handle, version_info, compatibility)
     }
     ///vkGetMicromapBuildSizesEXT
     #[inline]
     pub unsafe fn get_micromap_build_sizes(
         &self,
-        device: crate::vk::Device,
         build_type: crate::vk::AccelerationStructureBuildTypeKHR,
         build_info: &crate::vk::MicromapBuildInfoEXT<'_>,
         size_info: &mut crate::vk::MicromapBuildSizesInfoEXT<'_>,
     ) {
-        (self.fp.get_micromap_build_sizes)(device, build_type, build_info, size_info)
+        (self
+            .fp
+            .get_micromap_build_sizes)(self.handle, build_type, build_info, size_info)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

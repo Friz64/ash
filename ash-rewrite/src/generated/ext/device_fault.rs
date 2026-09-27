@@ -77,11 +77,10 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_fault_info(
         &self,
-        device: crate::vk::Device,
         fault_counts: &mut crate::vk::DeviceFaultCountsEXT<'_>,
         fault_info: &mut crate::vk::DeviceFaultInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_device_fault_info)(device, fault_counts, fault_info).result()
+        (self.fp.get_device_fault_info)(self.handle, fault_counts, fault_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 2;

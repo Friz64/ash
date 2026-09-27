@@ -279,14 +279,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_generated_commands_memory_requirements(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::GeneratedCommandsMemoryRequirementsInfoNV<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
             .get_generated_commands_memory_requirements)(
-            device,
+            self.handle,
             info,
             memory_requirements,
         )
@@ -295,7 +294,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_indirect_commands_layout(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::IndirectCommandsLayoutCreateInfoNV<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         indirect_commands_layout: &mut crate::vk::IndirectCommandsLayoutNV,
@@ -303,7 +301,7 @@ impl Device {
         (self
             .fp
             .create_indirect_commands_layout)(
-                device,
+                self.handle,
                 create_info,
                 allocator,
                 indirect_commands_layout,
@@ -314,14 +312,13 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_indirect_commands_layout(
         &self,
-        device: crate::vk::Device,
         indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
             .destroy_indirect_commands_layout)(
-            device,
+            self.handle,
             indirect_commands_layout,
             allocator,
         )

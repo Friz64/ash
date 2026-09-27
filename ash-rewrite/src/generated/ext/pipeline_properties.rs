@@ -67,11 +67,12 @@ impl Device {
     #[inline]
     pub unsafe fn get_pipeline_properties(
         &self,
-        device: crate::vk::Device,
         pipeline_info: &crate::vk::PipelineInfoKHR<'_>,
         pipeline_properties: &mut crate::vk::BaseOutStructure<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_pipeline_properties)(device, pipeline_info, pipeline_properties)
+        (self
+            .fp
+            .get_pipeline_properties)(self.handle, pipeline_info, pipeline_properties)
             .result()
     }
 }

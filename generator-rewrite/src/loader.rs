@@ -430,6 +430,12 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                     .or_default()
                     .push(quote! { #name.len() });
             }
+            &Ty::ApiType(type_name)
+                if type_name == TypeName::VK_INSTANCE || type_name == TypeName::VK_DEVICE =>
+            {
+                call_arg = quote! { self.handle };
+                public_type = None;
+            }
             _ => continue,
         };
 

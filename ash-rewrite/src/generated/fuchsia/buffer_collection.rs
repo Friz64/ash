@@ -175,26 +175,26 @@ impl Device {
     #[inline]
     pub unsafe fn create_buffer_collection(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::BufferCollectionCreateInfoFUCHSIA<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         collection: &mut crate::vk::BufferCollectionFUCHSIA,
     ) -> crate::VkResult<()> {
-        (self.fp.create_buffer_collection)(device, create_info, allocator, collection)
+        (self
+            .fp
+            .create_buffer_collection)(self.handle, create_info, allocator, collection)
             .result()
     }
     ///vkSetBufferCollectionBufferConstraintsFUCHSIA
     #[inline]
     pub unsafe fn set_buffer_collection_buffer_constraints(
         &self,
-        device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
         buffer_constraints_info: &crate::vk::BufferConstraintsInfoFUCHSIA<'_>,
     ) -> crate::VkResult<()> {
         (self
             .fp
             .set_buffer_collection_buffer_constraints)(
-                device,
+                self.handle,
                 collection,
                 buffer_constraints_info,
             )
@@ -204,14 +204,13 @@ impl Device {
     #[inline]
     pub unsafe fn set_buffer_collection_image_constraints(
         &self,
-        device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
         image_constraints_info: &crate::vk::ImageConstraintsInfoFUCHSIA<'_>,
     ) -> crate::VkResult<()> {
         (self
             .fp
             .set_buffer_collection_image_constraints)(
-                device,
+                self.handle,
                 collection,
                 image_constraints_info,
             )
@@ -221,21 +220,19 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_buffer_collection(
         &self,
-        device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_buffer_collection)(device, collection, allocator)
+        (self.fp.destroy_buffer_collection)(self.handle, collection, allocator)
     }
     ///vkGetBufferCollectionPropertiesFUCHSIA
     #[inline]
     pub unsafe fn get_buffer_collection_properties(
         &self,
-        device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
         properties: &mut crate::vk::BufferCollectionPropertiesFUCHSIA<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_buffer_collection_properties)(device, collection, properties)
+        (self.fp.get_buffer_collection_properties)(self.handle, collection, properties)
             .result()
     }
 }

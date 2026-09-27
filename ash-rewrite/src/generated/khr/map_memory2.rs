@@ -73,20 +73,18 @@ impl Device {
     #[inline]
     pub unsafe fn map_memory2(
         &self,
-        device: crate::vk::Device,
         memory_map_info: &crate::vk::MemoryMapInfo<'_>,
         data: &mut *mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.fp.map_memory2)(device, memory_map_info, data).result()
+        (self.fp.map_memory2)(self.handle, memory_map_info, data).result()
     }
     ///vkUnmapMemory2
     #[inline]
     pub unsafe fn unmap_memory2(
         &self,
-        device: crate::vk::Device,
         memory_unmap_info: &crate::vk::MemoryUnmapInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.unmap_memory2)(device, memory_unmap_info).result()
+        (self.fp.unmap_memory2)(self.handle, memory_unmap_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

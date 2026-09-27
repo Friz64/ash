@@ -224,15 +224,14 @@ impl Device {
     #[inline]
     pub unsafe fn initialize_performance_api(
         &self,
-        device: crate::vk::Device,
         initialize_info: &crate::vk::InitializePerformanceApiInfoINTEL<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.initialize_performance_api)(device, initialize_info).result()
+        (self.fp.initialize_performance_api)(self.handle, initialize_info).result()
     }
     ///vkUninitializePerformanceApiINTEL
     #[inline]
-    pub unsafe fn uninitialize_performance_api(&self, device: crate::vk::Device) {
-        (self.fp.uninitialize_performance_api)(device)
+    pub unsafe fn uninitialize_performance_api(&self) {
+        (self.fp.uninitialize_performance_api)(self.handle)
     }
     ///vkCmdSetPerformanceMarkerINTEL
     #[inline]
@@ -265,21 +264,21 @@ impl Device {
     #[inline]
     pub unsafe fn acquire_performance_configuration(
         &self,
-        device: crate::vk::Device,
         acquire_info: &crate::vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
         configuration: &mut crate::vk::PerformanceConfigurationINTEL,
     ) -> crate::VkResult<()> {
-        (self.fp.acquire_performance_configuration)(device, acquire_info, configuration)
+        (self
+            .fp
+            .acquire_performance_configuration)(self.handle, acquire_info, configuration)
             .result()
     }
     ///vkReleasePerformanceConfigurationINTEL
     #[inline]
     pub unsafe fn release_performance_configuration(
         &self,
-        device: crate::vk::Device,
         configuration: crate::vk::PerformanceConfigurationINTEL,
     ) -> crate::VkResult<()> {
-        (self.fp.release_performance_configuration)(device, configuration).result()
+        (self.fp.release_performance_configuration)(self.handle, configuration).result()
     }
     ///vkQueueSetPerformanceConfigurationINTEL
     #[inline]
@@ -294,11 +293,10 @@ impl Device {
     #[inline]
     pub unsafe fn get_performance_parameter(
         &self,
-        device: crate::vk::Device,
         parameter: crate::vk::PerformanceParameterTypeINTEL,
         value: &mut crate::vk::PerformanceValueINTEL,
     ) -> crate::VkResult<()> {
-        (self.fp.get_performance_parameter)(device, parameter, value).result()
+        (self.fp.get_performance_parameter)(self.handle, parameter, value).result()
     }
 }
 pub const SPEC_VERSION: u32 = 2;

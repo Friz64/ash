@@ -180,12 +180,11 @@ impl Device {
     #[inline]
     pub unsafe fn get_image_subresource_layout2(
         &self,
-        device: crate::vk::Device,
         image: crate::vk::Image,
         subresource: &crate::vk::ImageSubresource2<'_>,
         layout: &mut crate::vk::SubresourceLayout2<'_>,
     ) {
-        (self.fp.get_image_subresource_layout2)(device, image, subresource, layout)
+        (self.fp.get_image_subresource_layout2)(self.handle, image, subresource, layout)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

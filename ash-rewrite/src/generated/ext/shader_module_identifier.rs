@@ -90,23 +90,25 @@ impl Device {
     #[inline]
     pub unsafe fn get_shader_module_identifier(
         &self,
-        device: crate::vk::Device,
         shader_module: crate::vk::ShaderModule,
         identifier: &mut crate::vk::ShaderModuleIdentifierEXT<'_>,
     ) {
-        (self.fp.get_shader_module_identifier)(device, shader_module, identifier)
+        (self.fp.get_shader_module_identifier)(self.handle, shader_module, identifier)
     }
     ///vkGetShaderModuleCreateInfoIdentifierEXT
     #[inline]
     pub unsafe fn get_shader_module_create_info_identifier(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::ShaderModuleCreateInfo<'_>,
         identifier: &mut crate::vk::ShaderModuleIdentifierEXT<'_>,
     ) {
         (self
             .fp
-            .get_shader_module_create_info_identifier)(device, create_info, identifier)
+            .get_shader_module_create_info_identifier)(
+            self.handle,
+            create_info,
+            identifier,
+        )
     }
 }
 pub const SPEC_VERSION: u32 = 1;

@@ -66,12 +66,12 @@ impl Instance {
     #[inline]
     pub unsafe fn create_vi_surface(
         &self,
-        instance: crate::vk::Instance,
         create_info: &crate::vk::ViSurfaceCreateInfoNN<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_vi_surface)(instance, create_info, allocator, surface).result()
+        (self.fp.create_vi_surface)(self.handle, create_info, allocator, surface)
+            .result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

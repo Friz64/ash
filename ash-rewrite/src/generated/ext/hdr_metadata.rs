@@ -66,7 +66,6 @@ impl Device {
     #[inline]
     pub unsafe fn set_hdr_metadata(
         &self,
-        device: crate::vk::Device,
         swapchains: &[crate::vk::SwapchainKHR],
         metadata: &[crate::vk::HdrMetadataEXT<'_>],
     ) {
@@ -74,7 +73,7 @@ impl Device {
         (self
             .fp
             .set_hdr_metadata)(
-            device,
+            self.handle,
             metadata.len() as _,
             swapchains.as_ptr(),
             metadata.as_ptr(),

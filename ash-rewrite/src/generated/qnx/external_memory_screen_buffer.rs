@@ -81,11 +81,10 @@ impl Device {
     #[inline]
     pub unsafe fn get_screen_buffer_properties(
         &self,
-        device: crate::vk::Device,
         buffer: &crate::platform_types::_screen_buffer,
         properties: &mut crate::vk::ScreenBufferPropertiesQNX<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_screen_buffer_properties)(device, buffer, properties).result()
+        (self.fp.get_screen_buffer_properties)(self.handle, buffer, properties).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

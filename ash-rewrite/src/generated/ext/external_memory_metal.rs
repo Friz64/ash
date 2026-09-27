@@ -102,17 +102,16 @@ impl Device {
     #[inline]
     pub unsafe fn get_memory_metal_handle(
         &self,
-        device: crate::vk::Device,
         get_metal_handle_info: &crate::vk::MemoryGetMetalHandleInfoEXT<'_>,
         handle: &mut *mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_metal_handle)(device, get_metal_handle_info, handle).result()
+        (self.fp.get_memory_metal_handle)(self.handle, get_metal_handle_info, handle)
+            .result()
     }
     ///vkGetMemoryMetalHandlePropertiesEXT
     #[inline]
     pub unsafe fn get_memory_metal_handle_properties(
         &self,
-        device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         handle: &core::ffi::c_void,
         memory_metal_handle_properties: &mut crate::vk::MemoryMetalHandlePropertiesEXT<
@@ -122,7 +121,7 @@ impl Device {
         (self
             .fp
             .get_memory_metal_handle_properties)(
-                device,
+                self.handle,
                 handle_type,
                 handle,
                 memory_metal_handle_properties,

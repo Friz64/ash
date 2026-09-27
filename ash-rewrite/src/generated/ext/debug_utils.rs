@@ -209,19 +209,17 @@ impl Device {
     #[inline]
     pub unsafe fn set_debug_utils_object_name(
         &self,
-        device: crate::vk::Device,
         name_info: &crate::vk::DebugUtilsObjectNameInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.set_debug_utils_object_name)(device, name_info).result()
+        (self.fp.set_debug_utils_object_name)(self.handle, name_info).result()
     }
     ///vkSetDebugUtilsObjectTagEXT
     #[inline]
     pub unsafe fn set_debug_utils_object_tag(
         &self,
-        device: crate::vk::Device,
         tag_info: &crate::vk::DebugUtilsObjectTagInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.set_debug_utils_object_tag)(device, tag_info).result()
+        (self.fp.set_debug_utils_object_tag)(self.handle, tag_info).result()
     }
     ///vkQueueBeginDebugUtilsLabelEXT
     #[inline]
@@ -366,31 +364,33 @@ impl Instance {
     #[inline]
     pub unsafe fn create_debug_utils_messenger(
         &self,
-        instance: crate::vk::Instance,
         create_info: &crate::vk::DebugUtilsMessengerCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         messenger: &mut crate::vk::DebugUtilsMessengerEXT,
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_debug_utils_messenger)(instance, create_info, allocator, messenger)
+            .create_debug_utils_messenger)(
+                self.handle,
+                create_info,
+                allocator,
+                messenger,
+            )
             .result()
     }
     ///vkDestroyDebugUtilsMessengerEXT
     #[inline]
     pub unsafe fn destroy_debug_utils_messenger(
         &self,
-        instance: crate::vk::Instance,
         messenger: crate::vk::DebugUtilsMessengerEXT,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_debug_utils_messenger)(instance, messenger, allocator)
+        (self.fp.destroy_debug_utils_messenger)(self.handle, messenger, allocator)
     }
     ///vkSubmitDebugUtilsMessageEXT
     #[inline]
     pub unsafe fn submit_debug_utils_message(
         &self,
-        instance: crate::vk::Instance,
         message_severity: crate::vk::DebugUtilsMessageSeverityFlagBitsEXT,
         message_types: crate::vk::DebugUtilsMessageTypeFlagsEXT,
         callback_data: &crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>,
@@ -398,7 +398,7 @@ impl Instance {
         (self
             .fp
             .submit_debug_utils_message)(
-            instance,
+            self.handle,
             message_severity,
             message_types,
             callback_data,

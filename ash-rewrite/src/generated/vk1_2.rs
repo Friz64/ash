@@ -516,27 +516,25 @@ impl crate::Device {
     #[inline]
     pub unsafe fn reset_query_pool(
         &self,
-        device: crate::vk::Device,
         query_pool: crate::vk::QueryPool,
         first_query: u32,
         query_count: u32,
     ) {
         (self
             .device_fn_1_2
-            .reset_query_pool)(device, query_pool, first_query, query_count)
+            .reset_query_pool)(self.handle, query_pool, first_query, query_count)
     }
     ///vkCreateRenderPass2
     #[inline]
     pub unsafe fn create_render_pass2(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::RenderPassCreateInfo2<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         render_pass: &mut crate::vk::RenderPass,
     ) -> crate::VkResult<()> {
         (self
             .device_fn_1_2
-            .create_render_pass2)(device, create_info, allocator, render_pass)
+            .create_render_pass2)(self.handle, create_info, allocator, render_pass)
             .result()
     }
     ///vkCmdBeginRenderPass2
@@ -580,31 +578,28 @@ impl crate::Device {
     #[inline]
     pub unsafe fn get_semaphore_counter_value(
         &self,
-        device: crate::vk::Device,
         semaphore: crate::vk::Semaphore,
         value: &mut u64,
     ) -> crate::VkResult<()> {
-        (self.device_fn_1_2.get_semaphore_counter_value)(device, semaphore, value)
+        (self.device_fn_1_2.get_semaphore_counter_value)(self.handle, semaphore, value)
             .result()
     }
     ///vkWaitSemaphores
     #[inline]
     pub unsafe fn wait_semaphores(
         &self,
-        device: crate::vk::Device,
         wait_info: &crate::vk::SemaphoreWaitInfo<'_>,
         timeout: u64,
     ) -> crate::VkResult<()> {
-        (self.device_fn_1_2.wait_semaphores)(device, wait_info, timeout).result()
+        (self.device_fn_1_2.wait_semaphores)(self.handle, wait_info, timeout).result()
     }
     ///vkSignalSemaphore
     #[inline]
     pub unsafe fn signal_semaphore(
         &self,
-        device: crate::vk::Device,
         signal_info: &crate::vk::SemaphoreSignalInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.device_fn_1_2.signal_semaphore)(device, signal_info).result()
+        (self.device_fn_1_2.signal_semaphore)(self.handle, signal_info).result()
     }
     ///vkCmdDrawIndirectCount
     #[inline]
@@ -658,28 +653,25 @@ impl crate::Device {
     #[inline]
     pub unsafe fn get_buffer_opaque_capture_address(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> u64 {
-        (self.device_fn_1_2.get_buffer_opaque_capture_address)(device, info)
+        (self.device_fn_1_2.get_buffer_opaque_capture_address)(self.handle, info)
     }
     ///vkGetBufferDeviceAddress
     #[inline]
     pub unsafe fn get_buffer_device_address(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> crate::vk::DeviceAddress {
-        (self.device_fn_1_2.get_buffer_device_address)(device, info)
+        (self.device_fn_1_2.get_buffer_device_address)(self.handle, info)
     }
     ///vkGetDeviceMemoryOpaqueCaptureAddress
     #[inline]
     pub unsafe fn get_device_memory_opaque_capture_address(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
     ) -> u64 {
-        (self.device_fn_1_2.get_device_memory_opaque_capture_address)(device, info)
+        (self.device_fn_1_2.get_device_memory_opaque_capture_address)(self.handle, info)
     }
 }
 pub(crate) mod items {

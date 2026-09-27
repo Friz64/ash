@@ -919,15 +919,12 @@ impl crate::Instance {
     }
     ///vkEnumeratePhysicalDeviceGroups
     #[inline]
-    pub unsafe fn enumerate_physical_device_groups_len(
-        &self,
-        instance: crate::vk::Instance,
-    ) -> crate::VkResult<usize> {
+    pub unsafe fn enumerate_physical_device_groups_len(&self) -> crate::VkResult<usize> {
         let mut physical_device_group_count = core::mem::MaybeUninit::uninit();
         (self
             .instance_fn_1_1
             .enumerate_physical_device_groups)(
-                instance,
+                self.handle,
                 physical_device_group_count.as_mut_ptr(),
                 core::ptr::null_mut(),
             )
@@ -938,7 +935,6 @@ impl crate::Instance {
     #[inline]
     pub unsafe fn enumerate_physical_device_groups(
         &self,
-        instance: crate::vk::Instance,
         physical_device_group_properties: &mut [crate::vk::PhysicalDeviceGroupProperties<
             '_,
         >],
@@ -948,7 +944,7 @@ impl crate::Instance {
         (self
             .instance_fn_1_1
             .enumerate_physical_device_groups)(
-                instance,
+                self.handle,
                 &mut physical_device_group_count,
                 physical_device_group_properties.as_mut_ptr(),
             )
@@ -1252,17 +1248,15 @@ impl crate::Device {
     #[inline]
     pub unsafe fn trim_command_pool(
         &self,
-        device: crate::vk::Device,
         command_pool: crate::vk::CommandPool,
         flags: crate::vk::CommandPoolTrimFlags,
     ) {
-        (self.device_fn_1_1.trim_command_pool)(device, command_pool, flags)
+        (self.device_fn_1_1.trim_command_pool)(self.handle, command_pool, flags)
     }
     ///vkGetDeviceGroupPeerMemoryFeatures
     #[inline]
     pub unsafe fn get_device_group_peer_memory_features(
         &self,
-        device: crate::vk::Device,
         heap_index: u32,
         local_device_index: u32,
         remote_device_index: u32,
@@ -1271,7 +1265,7 @@ impl crate::Device {
         (self
             .device_fn_1_1
             .get_device_group_peer_memory_features)(
-            device,
+            self.handle,
             heap_index,
             local_device_index,
             remote_device_index,
@@ -1282,24 +1276,26 @@ impl crate::Device {
     #[inline]
     pub unsafe fn bind_buffer_memory2(
         &self,
-        device: crate::vk::Device,
         bind_infos: &[crate::vk::BindBufferMemoryInfo<'_>],
     ) -> crate::VkResult<()> {
         (self
             .device_fn_1_1
-            .bind_buffer_memory2)(device, bind_infos.len() as _, bind_infos.as_ptr())
+            .bind_buffer_memory2)(
+                self.handle,
+                bind_infos.len() as _,
+                bind_infos.as_ptr(),
+            )
             .result()
     }
     ///vkBindImageMemory2
     #[inline]
     pub unsafe fn bind_image_memory2(
         &self,
-        device: crate::vk::Device,
         bind_infos: &[crate::vk::BindImageMemoryInfo<'_>],
     ) -> crate::VkResult<()> {
         (self
             .device_fn_1_1
-            .bind_image_memory2)(device, bind_infos.len() as _, bind_infos.as_ptr())
+            .bind_image_memory2)(self.handle, bind_infos.len() as _, bind_infos.as_ptr())
             .result()
     }
     ///vkCmdSetDeviceMask
@@ -1339,7 +1335,6 @@ impl crate::Device {
     #[inline]
     pub unsafe fn create_descriptor_update_template(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         descriptor_update_template: &mut crate::vk::DescriptorUpdateTemplate,
@@ -1347,7 +1342,7 @@ impl crate::Device {
         (self
             .device_fn_1_1
             .create_descriptor_update_template)(
-                device,
+                self.handle,
                 create_info,
                 allocator,
                 descriptor_update_template,
@@ -1358,14 +1353,13 @@ impl crate::Device {
     #[inline]
     pub unsafe fn destroy_descriptor_update_template(
         &self,
-        device: crate::vk::Device,
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .device_fn_1_1
             .destroy_descriptor_update_template)(
-            device,
+            self.handle,
             descriptor_update_template,
             allocator,
         )
@@ -1374,7 +1368,6 @@ impl crate::Device {
     #[inline]
     pub unsafe fn update_descriptor_set_with_template(
         &self,
-        device: crate::vk::Device,
         descriptor_set: crate::vk::DescriptorSet,
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
         data: &core::ffi::c_void,
@@ -1382,7 +1375,7 @@ impl crate::Device {
         (self
             .device_fn_1_1
             .update_descriptor_set_with_template)(
-            device,
+            self.handle,
             descriptor_set,
             descriptor_update_template,
             data,
@@ -1392,38 +1385,35 @@ impl crate::Device {
     #[inline]
     pub unsafe fn get_buffer_memory_requirements2(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::BufferMemoryRequirementsInfo2<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .device_fn_1_1
-            .get_buffer_memory_requirements2)(device, info, memory_requirements)
+            .get_buffer_memory_requirements2)(self.handle, info, memory_requirements)
     }
     ///vkGetImageMemoryRequirements2
     #[inline]
     pub unsafe fn get_image_memory_requirements2(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::ImageMemoryRequirementsInfo2<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .device_fn_1_1
-            .get_image_memory_requirements2)(device, info, memory_requirements)
+            .get_image_memory_requirements2)(self.handle, info, memory_requirements)
     }
     ///vkGetImageSparseMemoryRequirements2
     #[inline]
     pub unsafe fn get_image_sparse_memory_requirements2_len(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
     ) -> usize {
         let mut sparse_memory_requirement_count = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_1
             .get_image_sparse_memory_requirements2)(
-            device,
+            self.handle,
             info,
             sparse_memory_requirement_count.as_mut_ptr(),
             core::ptr::null_mut(),
@@ -1434,7 +1424,6 @@ impl crate::Device {
     #[inline]
     pub unsafe fn get_image_sparse_memory_requirements2(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
         sparse_memory_requirements: &mut [crate::vk::SparseImageMemoryRequirements2<'_>],
     ) {
@@ -1442,7 +1431,7 @@ impl crate::Device {
         (self
             .device_fn_1_1
             .get_image_sparse_memory_requirements2)(
-            device,
+            self.handle,
             info,
             &mut sparse_memory_requirement_count,
             sparse_memory_requirements.as_mut_ptr(),
@@ -1455,7 +1444,6 @@ impl crate::Device {
     #[inline]
     pub unsafe fn create_sampler_ycbcr_conversion(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         ycbcr_conversion: &mut crate::vk::SamplerYcbcrConversion,
@@ -1463,7 +1451,7 @@ impl crate::Device {
         (self
             .device_fn_1_1
             .create_sampler_ycbcr_conversion)(
-                device,
+                self.handle,
                 create_info,
                 allocator,
                 ycbcr_conversion,
@@ -1474,35 +1462,32 @@ impl crate::Device {
     #[inline]
     pub unsafe fn destroy_sampler_ycbcr_conversion(
         &self,
-        device: crate::vk::Device,
         ycbcr_conversion: crate::vk::SamplerYcbcrConversion,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .device_fn_1_1
-            .destroy_sampler_ycbcr_conversion)(device, ycbcr_conversion, allocator)
+            .destroy_sampler_ycbcr_conversion)(self.handle, ycbcr_conversion, allocator)
     }
     ///vkGetDeviceQueue2
     #[inline]
     pub unsafe fn get_device_queue2(
         &self,
-        device: crate::vk::Device,
         queue_info: &crate::vk::DeviceQueueInfo2<'_>,
         queue: &mut crate::vk::Queue,
     ) {
-        (self.device_fn_1_1.get_device_queue2)(device, queue_info, queue)
+        (self.device_fn_1_1.get_device_queue2)(self.handle, queue_info, queue)
     }
     ///vkGetDescriptorSetLayoutSupport
     #[inline]
     pub unsafe fn get_descriptor_set_layout_support(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::DescriptorSetLayoutCreateInfo<'_>,
         support: &mut crate::vk::DescriptorSetLayoutSupport<'_>,
     ) {
         (self
             .device_fn_1_1
-            .get_descriptor_set_layout_support)(device, create_info, support)
+            .get_descriptor_set_layout_support)(self.handle, create_info, support)
     }
 }
 pub(crate) mod items {

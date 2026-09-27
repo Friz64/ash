@@ -221,7 +221,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_group_present_capabilities(
         &self,
-        device: crate::vk::Device,
         device_group_present_capabilities: &mut crate::vk::DeviceGroupPresentCapabilitiesKHR<
             '_,
         >,
@@ -229,7 +228,7 @@ impl Device {
         (self
             .fp
             .get_device_group_present_capabilities)(
-                device,
+                self.handle,
                 device_group_present_capabilities,
             )
             .result()
@@ -238,27 +237,25 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_group_surface_present_modes(
         &self,
-        device: crate::vk::Device,
         surface: crate::vk::SurfaceKHR,
         modes: &mut crate::vk::DeviceGroupPresentModeFlagsKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.get_device_group_surface_present_modes)(device, surface, modes).result()
+        (self.fp.get_device_group_surface_present_modes)(self.handle, surface, modes)
+            .result()
     }
     ///vkAcquireNextImage2KHR
     #[inline]
     pub unsafe fn acquire_next_image2(
         &self,
-        device: crate::vk::Device,
         acquire_info: &crate::vk::AcquireNextImageInfoKHR<'_>,
         image_index: &mut u32,
     ) -> crate::VkResult<()> {
-        (self.fp.acquire_next_image2)(device, acquire_info, image_index).result()
+        (self.fp.acquire_next_image2)(self.handle, acquire_info, image_index).result()
     }
     ///vkGetDeviceGroupPeerMemoryFeatures
     #[inline]
     pub unsafe fn get_device_group_peer_memory_features(
         &self,
-        device: crate::vk::Device,
         heap_index: u32,
         local_device_index: u32,
         remote_device_index: u32,
@@ -267,7 +264,7 @@ impl Device {
         (self
             .fp
             .get_device_group_peer_memory_features)(
-            device,
+            self.handle,
             heap_index,
             local_device_index,
             remote_device_index,

@@ -704,7 +704,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_acceleration_structure2(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::AccelerationStructureCreateInfo2KHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         acceleration_structure: &mut crate::vk::AccelerationStructureKHR,
@@ -712,7 +711,7 @@ impl Device {
         (self
             .fp
             .create_acceleration_structure2)(
-                device,
+                self.handle,
                 create_info,
                 allocator,
                 acceleration_structure,

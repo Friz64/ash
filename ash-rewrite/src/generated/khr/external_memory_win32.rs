@@ -85,17 +85,16 @@ impl Device {
     #[inline]
     pub unsafe fn get_memory_win32_handle(
         &self,
-        device: crate::vk::Device,
         get_win32_handle_info: &crate::vk::MemoryGetWin32HandleInfoKHR<'_>,
         handle: &mut crate::platform_types::HANDLE,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_win32_handle)(device, get_win32_handle_info, handle).result()
+        (self.fp.get_memory_win32_handle)(self.handle, get_win32_handle_info, handle)
+            .result()
     }
     ///vkGetMemoryWin32HandlePropertiesKHR
     #[inline]
     pub unsafe fn get_memory_win32_handle_properties(
         &self,
-        device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         handle: crate::platform_types::HANDLE,
         memory_win32_handle_properties: &mut crate::vk::MemoryWin32HandlePropertiesKHR<
@@ -105,7 +104,7 @@ impl Device {
         (self
             .fp
             .get_memory_win32_handle_properties)(
-                device,
+                self.handle,
                 handle_type,
                 handle,
                 memory_win32_handle_properties,

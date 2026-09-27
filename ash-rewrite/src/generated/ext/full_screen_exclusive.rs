@@ -181,30 +181,29 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_group_surface_present_modes2(
         &self,
-        device: crate::vk::Device,
         surface_info: &crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
         modes: &mut crate::vk::DeviceGroupPresentModeFlagsKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.get_device_group_surface_present_modes2)(device, surface_info, modes)
+        (self
+            .fp
+            .get_device_group_surface_present_modes2)(self.handle, surface_info, modes)
             .result()
     }
     ///vkAcquireFullScreenExclusiveModeEXT
     #[inline]
     pub unsafe fn acquire_full_screen_exclusive_mode(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.acquire_full_screen_exclusive_mode)(device, swapchain).result()
+        (self.fp.acquire_full_screen_exclusive_mode)(self.handle, swapchain).result()
     }
     ///vkReleaseFullScreenExclusiveModeEXT
     #[inline]
     pub unsafe fn release_full_screen_exclusive_mode(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.release_full_screen_exclusive_mode)(device, swapchain).result()
+        (self.fp.release_full_screen_exclusive_mode)(self.handle, swapchain).result()
     }
 }
 pub const SPEC_VERSION: u32 = 4;

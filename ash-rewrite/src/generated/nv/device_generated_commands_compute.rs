@@ -131,14 +131,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_pipeline_indirect_memory_requirements(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::ComputePipelineCreateInfo<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
             .get_pipeline_indirect_memory_requirements)(
-            device,
+            self.handle,
             create_info,
             memory_requirements,
         )
@@ -147,10 +146,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_pipeline_indirect_device_address(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::PipelineIndirectDeviceAddressInfoNV<'_>,
     ) -> crate::vk::DeviceAddress {
-        (self.fp.get_pipeline_indirect_device_address)(device, info)
+        (self.fp.get_pipeline_indirect_device_address)(self.handle, info)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

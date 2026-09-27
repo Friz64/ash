@@ -1347,7 +1347,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_shaders(
         &self,
-        device: crate::vk::Device,
         create_infos: &[crate::vk::ShaderCreateInfoEXT<'_>],
         allocator: &crate::vk::AllocationCallbacks<'_>,
         shaders: &mut [crate::vk::ShaderEXT],
@@ -1356,7 +1355,7 @@ impl Device {
         (self
             .fp
             .create_shaders)(
-                device,
+                self.handle,
                 shaders.len() as _,
                 create_infos.as_ptr(),
                 allocator,
@@ -1368,22 +1367,20 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_shader(
         &self,
-        device: crate::vk::Device,
         shader: crate::vk::ShaderEXT,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_shader)(device, shader, allocator)
+        (self.fp.destroy_shader)(self.handle, shader, allocator)
     }
     ///vkGetShaderBinaryDataEXT
     #[inline]
     pub unsafe fn get_shader_binary_data(
         &self,
-        device: crate::vk::Device,
         shader: crate::vk::ShaderEXT,
     ) -> crate::VkResult<Vec<core::ffi::c_void>> {
         crate::read_into_uninitialized_vector(|data_size, data| (self
             .fp
-            .get_shader_binary_data)(device, shader, data_size, data))
+            .get_shader_binary_data)(self.handle, shader, data_size, data))
     }
     ///vkCmdBindShadersEXT
     #[inline]

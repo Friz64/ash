@@ -227,11 +227,16 @@ impl Device {
     #[inline]
     pub unsafe fn get_cluster_acceleration_structure_build_sizes(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::ClusterAccelerationStructureInputInfoNV<'_>,
         size_info: &mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
     ) {
-        (self.fp.get_cluster_acceleration_structure_build_sizes)(device, info, size_info)
+        (self
+            .fp
+            .get_cluster_acceleration_structure_build_sizes)(
+            self.handle,
+            info,
+            size_info,
+        )
     }
     ///vkCmdBuildClusterAccelerationStructureIndirectNV
     #[inline]

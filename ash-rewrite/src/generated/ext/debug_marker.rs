@@ -125,19 +125,17 @@ impl Device {
     #[inline]
     pub unsafe fn debug_marker_set_object_name(
         &self,
-        device: crate::vk::Device,
         name_info: &crate::vk::DebugMarkerObjectNameInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.debug_marker_set_object_name)(device, name_info).result()
+        (self.fp.debug_marker_set_object_name)(self.handle, name_info).result()
     }
     ///vkDebugMarkerSetObjectTagEXT
     #[inline]
     pub unsafe fn debug_marker_set_object_tag(
         &self,
-        device: crate::vk::Device,
         tag_info: &crate::vk::DebugMarkerObjectTagInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.debug_marker_set_object_tag)(device, tag_info).result()
+        (self.fp.debug_marker_set_object_tag)(self.handle, tag_info).result()
     }
     ///vkCmdDebugMarkerBeginEXT
     #[inline]

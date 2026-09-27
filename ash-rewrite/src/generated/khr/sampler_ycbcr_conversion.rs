@@ -208,7 +208,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_sampler_ycbcr_conversion(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         ycbcr_conversion: &mut crate::vk::SamplerYcbcrConversion,
@@ -216,7 +215,7 @@ impl Device {
         (self
             .fp
             .create_sampler_ycbcr_conversion)(
-                device,
+                self.handle,
                 create_info,
                 allocator,
                 ycbcr_conversion,
@@ -227,11 +226,12 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_sampler_ycbcr_conversion(
         &self,
-        device: crate::vk::Device,
         ycbcr_conversion: crate::vk::SamplerYcbcrConversion,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_sampler_ycbcr_conversion)(device, ycbcr_conversion, allocator)
+        (self
+            .fp
+            .destroy_sampler_ycbcr_conversion)(self.handle, ycbcr_conversion, allocator)
     }
 }
 pub const SPEC_VERSION: u32 = 14;

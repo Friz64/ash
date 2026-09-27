@@ -119,12 +119,11 @@ impl Device {
     #[inline]
     pub unsafe fn create_render_pass2(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::RenderPassCreateInfo2<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         render_pass: &mut crate::vk::RenderPass,
     ) -> crate::VkResult<()> {
-        (self.fp.create_render_pass2)(device, create_info, allocator, render_pass)
+        (self.fp.create_render_pass2)(self.handle, create_info, allocator, render_pass)
             .result()
     }
     ///vkCmdBeginRenderPass2

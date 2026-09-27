@@ -107,14 +107,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_subpass_shading_max_workgroup_size(
         &self,
-        device: crate::vk::Device,
         renderpass: crate::vk::RenderPass,
         max_workgroup_size: &mut crate::vk::Extent2D,
     ) -> crate::VkResult<()> {
         (self
             .fp
             .get_device_subpass_shading_max_workgroup_size)(
-                device,
+                self.handle,
                 renderpass,
                 max_workgroup_size,
             )

@@ -82,20 +82,22 @@ impl Device {
     #[inline]
     pub unsafe fn get_refresh_cycle_duration(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         display_timing_properties: &mut crate::vk::RefreshCycleDurationGOOGLE,
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_refresh_cycle_duration)(device, swapchain, display_timing_properties)
+            .get_refresh_cycle_duration)(
+                self.handle,
+                swapchain,
+                display_timing_properties,
+            )
             .result()
     }
     ///vkGetPastPresentationTimingGOOGLE
     #[inline]
     pub unsafe fn get_past_presentation_timing(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
     ) -> crate::VkResult<Vec<crate::vk::PastPresentationTimingGOOGLE>> {
         crate::read_into_uninitialized_vector(|
@@ -104,7 +106,7 @@ impl Device {
         (self
             .fp
             .get_past_presentation_timing)(
-            device,
+            self.handle,
             swapchain,
             presentation_timing_count,
             presentation_timings,

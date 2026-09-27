@@ -105,10 +105,9 @@ impl Device {
     #[inline]
     pub unsafe fn export_metal_objects(
         &self,
-        device: crate::vk::Device,
         metal_objects_info: &mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
     ) {
-        (self.fp.export_metal_objects)(device, metal_objects_info)
+        (self.fp.export_metal_objects)(self.handle, metal_objects_info)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

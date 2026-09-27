@@ -162,54 +162,51 @@ impl Device {
     #[inline]
     pub unsafe fn create_cuda_module(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::CudaModuleCreateInfoNV<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         module: &mut crate::vk::CudaModuleNV,
     ) -> crate::VkResult<()> {
-        (self.fp.create_cuda_module)(device, create_info, allocator, module).result()
+        (self.fp.create_cuda_module)(self.handle, create_info, allocator, module)
+            .result()
     }
     ///vkGetCudaModuleCacheNV
     #[inline]
     pub unsafe fn get_cuda_module_cache(
         &self,
-        device: crate::vk::Device,
         module: crate::vk::CudaModuleNV,
     ) -> crate::VkResult<Vec<core::ffi::c_void>> {
         crate::read_into_uninitialized_vector(|cache_size, cache_data| (self
             .fp
-            .get_cuda_module_cache)(device, module, cache_size, cache_data))
+            .get_cuda_module_cache)(self.handle, module, cache_size, cache_data))
     }
     ///vkCreateCudaFunctionNV
     #[inline]
     pub unsafe fn create_cuda_function(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::CudaFunctionCreateInfoNV<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         function: &mut crate::vk::CudaFunctionNV,
     ) -> crate::VkResult<()> {
-        (self.fp.create_cuda_function)(device, create_info, allocator, function).result()
+        (self.fp.create_cuda_function)(self.handle, create_info, allocator, function)
+            .result()
     }
     ///vkDestroyCudaModuleNV
     #[inline]
     pub unsafe fn destroy_cuda_module(
         &self,
-        device: crate::vk::Device,
         module: crate::vk::CudaModuleNV,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_cuda_module)(device, module, allocator)
+        (self.fp.destroy_cuda_module)(self.handle, module, allocator)
     }
     ///vkDestroyCudaFunctionNV
     #[inline]
     pub unsafe fn destroy_cuda_function(
         &self,
-        device: crate::vk::Device,
         function: crate::vk::CudaFunctionNV,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_cuda_function)(device, function, allocator)
+        (self.fp.destroy_cuda_function)(self.handle, function, allocator)
     }
     ///vkCmdCudaLaunchKernelNV
     #[inline]

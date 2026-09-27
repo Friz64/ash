@@ -134,29 +134,27 @@ impl Device {
     #[inline]
     pub unsafe fn display_power_control(
         &self,
-        device: crate::vk::Device,
         display: crate::vk::DisplayKHR,
         display_power_info: &crate::vk::DisplayPowerInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.display_power_control)(device, display, display_power_info).result()
+        (self.fp.display_power_control)(self.handle, display, display_power_info)
+            .result()
     }
     ///vkRegisterDeviceEventEXT
     #[inline]
     pub unsafe fn register_device_event(
         &self,
-        device: crate::vk::Device,
         device_event_info: &crate::vk::DeviceEventInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         fence: &mut crate::vk::Fence,
     ) -> crate::VkResult<()> {
-        (self.fp.register_device_event)(device, device_event_info, allocator, fence)
+        (self.fp.register_device_event)(self.handle, device_event_info, allocator, fence)
             .result()
     }
     ///vkRegisterDisplayEventEXT
     #[inline]
     pub unsafe fn register_display_event(
         &self,
-        device: crate::vk::Device,
         display: crate::vk::DisplayKHR,
         display_event_info: &crate::vk::DisplayEventInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
@@ -165,7 +163,7 @@ impl Device {
         (self
             .fp
             .register_display_event)(
-                device,
+                self.handle,
                 display,
                 display_event_info,
                 allocator,
@@ -177,12 +175,11 @@ impl Device {
     #[inline]
     pub unsafe fn get_swapchain_counter(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         counter: crate::vk::SurfaceCounterFlagBitsEXT,
         counter_value: &mut u64,
     ) -> crate::VkResult<()> {
-        (self.fp.get_swapchain_counter)(device, swapchain, counter, counter_value)
+        (self.fp.get_swapchain_counter)(self.handle, swapchain, counter, counter_value)
             .result()
     }
 }

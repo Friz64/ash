@@ -193,18 +193,16 @@ impl Device {
     #[inline]
     pub unsafe fn set_swapchain_present_timing_queue_size(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         size: u32,
     ) -> crate::VkResult<()> {
-        (self.fp.set_swapchain_present_timing_queue_size)(device, swapchain, size)
+        (self.fp.set_swapchain_present_timing_queue_size)(self.handle, swapchain, size)
             .result()
     }
     ///vkGetSwapchainTimingPropertiesEXT
     #[inline]
     pub unsafe fn get_swapchain_timing_properties(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         swapchain_timing_properties: &mut crate::vk::SwapchainTimingPropertiesEXT<'_>,
         swapchain_timing_properties_counter: &mut u64,
@@ -212,7 +210,7 @@ impl Device {
         (self
             .fp
             .get_swapchain_timing_properties)(
-                device,
+                self.handle,
                 swapchain,
                 swapchain_timing_properties,
                 swapchain_timing_properties_counter,
@@ -223,7 +221,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_swapchain_time_domain_properties(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         swapchain_time_domain_properties: &mut crate::vk::SwapchainTimeDomainPropertiesEXT<
             '_,
@@ -233,7 +230,7 @@ impl Device {
         (self
             .fp
             .get_swapchain_time_domain_properties)(
-                device,
+                self.handle,
                 swapchain,
                 swapchain_time_domain_properties,
                 time_domains_counter,
@@ -244,7 +241,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_past_presentation_timing(
         &self,
-        device: crate::vk::Device,
         past_presentation_timing_info: &crate::vk::PastPresentationTimingInfoEXT<'_>,
         past_presentation_timing_properties: &mut crate::vk::PastPresentationTimingPropertiesEXT<
             '_,
@@ -253,7 +249,7 @@ impl Device {
         (self
             .fp
             .get_past_presentation_timing)(
-                device,
+                self.handle,
                 past_presentation_timing_info,
                 past_presentation_timing_properties,
             )

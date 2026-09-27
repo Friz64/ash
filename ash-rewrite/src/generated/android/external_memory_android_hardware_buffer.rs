@@ -99,22 +99,20 @@ impl Device {
     #[inline]
     pub unsafe fn get_android_hardware_buffer_properties(
         &self,
-        device: crate::vk::Device,
         buffer: &crate::platform_types::AHardwareBuffer,
         properties: &mut crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_android_hardware_buffer_properties)(device, buffer, properties)
+        (self.fp.get_android_hardware_buffer_properties)(self.handle, buffer, properties)
             .result()
     }
     ///vkGetMemoryAndroidHardwareBufferANDROID
     #[inline]
     pub unsafe fn get_memory_android_hardware_buffer(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
         buffer: &mut *mut crate::platform_types::AHardwareBuffer,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_android_hardware_buffer)(device, info, buffer).result()
+        (self.fp.get_memory_android_hardware_buffer)(self.handle, info, buffer).result()
     }
 }
 pub const SPEC_VERSION: u32 = 5;

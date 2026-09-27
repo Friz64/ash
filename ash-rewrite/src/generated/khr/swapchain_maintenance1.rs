@@ -81,10 +81,9 @@ impl Device {
     #[inline]
     pub unsafe fn release_swapchain_images(
         &self,
-        device: crate::vk::Device,
         release_info: &crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.release_swapchain_images)(device, release_info).result()
+        (self.fp.release_swapchain_images)(self.handle, release_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

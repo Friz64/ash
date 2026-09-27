@@ -80,22 +80,27 @@ impl Device {
     #[inline]
     pub unsafe fn get_memory_fd(
         &self,
-        device: crate::vk::Device,
         get_fd_info: &crate::vk::MemoryGetFdInfoKHR<'_>,
         fd: &mut core::ffi::c_int,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_fd)(device, get_fd_info, fd).result()
+        (self.fp.get_memory_fd)(self.handle, get_fd_info, fd).result()
     }
     ///vkGetMemoryFdPropertiesKHR
     #[inline]
     pub unsafe fn get_memory_fd_properties(
         &self,
-        device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         fd: core::ffi::c_int,
         memory_fd_properties: &mut crate::vk::MemoryFdPropertiesKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_fd_properties)(device, handle_type, fd, memory_fd_properties)
+        (self
+            .fp
+            .get_memory_fd_properties)(
+                self.handle,
+                handle_type,
+                fd,
+                memory_fd_properties,
+            )
             .result()
     }
 }

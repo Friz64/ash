@@ -124,31 +124,33 @@ impl Device {
     #[inline]
     pub unsafe fn create_private_data_slot(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::PrivateDataSlotCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         private_data_slot: &mut crate::vk::PrivateDataSlot,
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_private_data_slot)(device, create_info, allocator, private_data_slot)
+            .create_private_data_slot)(
+                self.handle,
+                create_info,
+                allocator,
+                private_data_slot,
+            )
             .result()
     }
     ///vkDestroyPrivateDataSlot
     #[inline]
     pub unsafe fn destroy_private_data_slot(
         &self,
-        device: crate::vk::Device,
         private_data_slot: crate::vk::PrivateDataSlot,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_private_data_slot)(device, private_data_slot, allocator)
+        (self.fp.destroy_private_data_slot)(self.handle, private_data_slot, allocator)
     }
     ///vkSetPrivateData
     #[inline]
     pub unsafe fn set_private_data(
         &self,
-        device: crate::vk::Device,
         object_type: crate::vk::ObjectType,
         object_handle: u64,
         private_data_slot: crate::vk::PrivateDataSlot,
@@ -157,7 +159,7 @@ impl Device {
         (self
             .fp
             .set_private_data)(
-                device,
+                self.handle,
                 object_type,
                 object_handle,
                 private_data_slot,
@@ -169,7 +171,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_private_data(
         &self,
-        device: crate::vk::Device,
         object_type: crate::vk::ObjectType,
         object_handle: u64,
         private_data_slot: crate::vk::PrivateDataSlot,
@@ -178,7 +179,7 @@ impl Device {
         (self
             .fp
             .get_private_data)(
-            device,
+            self.handle,
             object_type,
             object_handle,
             private_data_slot,

@@ -345,7 +345,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_data_graph_pipelines(
         &self,
-        device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         pipeline_cache: crate::vk::PipelineCache,
         create_infos: &[crate::vk::DataGraphPipelineCreateInfoARM<'_>],
@@ -356,7 +355,7 @@ impl Device {
         (self
             .fp
             .create_data_graph_pipelines)(
-                device,
+                self.handle,
                 deferred_operation,
                 pipeline_cache,
                 pipelines.len() as _,
@@ -370,28 +369,31 @@ impl Device {
     #[inline]
     pub unsafe fn create_data_graph_pipeline_session(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::DataGraphPipelineSessionCreateInfoARM<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         session: &mut crate::vk::DataGraphPipelineSessionARM,
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_data_graph_pipeline_session)(device, create_info, allocator, session)
+            .create_data_graph_pipeline_session)(
+                self.handle,
+                create_info,
+                allocator,
+                session,
+            )
             .result()
     }
     ///vkGetDataGraphPipelineSessionBindPointRequirementsARM
     #[inline]
     pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements_len(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
     ) -> crate::VkResult<usize> {
         let mut bind_point_requirement_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_data_graph_pipeline_session_bind_point_requirements)(
-                device,
+                self.handle,
                 info,
                 bind_point_requirement_count.as_mut_ptr(),
                 core::ptr::null_mut(),
@@ -403,7 +405,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
         bind_point_requirements: &mut [crate::vk::DataGraphPipelineSessionBindPointRequirementARM<
             '_,
@@ -413,7 +414,7 @@ impl Device {
         (self
             .fp
             .get_data_graph_pipeline_session_bind_point_requirements)(
-                device,
+                self.handle,
                 info,
                 &mut bind_point_requirement_count,
                 bind_point_requirements.as_mut_ptr(),
@@ -426,14 +427,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_data_graph_pipeline_session_memory_requirements(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .fp
             .get_data_graph_pipeline_session_memory_requirements)(
-            device,
+            self.handle,
             info,
             memory_requirements,
         )
@@ -442,13 +442,12 @@ impl Device {
     #[inline]
     pub unsafe fn bind_data_graph_pipeline_session_memory(
         &self,
-        device: crate::vk::Device,
         bind_infos: &[crate::vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>],
     ) -> crate::VkResult<()> {
         (self
             .fp
             .bind_data_graph_pipeline_session_memory)(
-                device,
+                self.handle,
                 bind_infos.len() as _,
                 bind_infos.as_ptr(),
             )
@@ -458,11 +457,10 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_data_graph_pipeline_session(
         &self,
-        device: crate::vk::Device,
         session: crate::vk::DataGraphPipelineSessionARM,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_data_graph_pipeline_session)(device, session, allocator)
+        (self.fp.destroy_data_graph_pipeline_session)(self.handle, session, allocator)
     }
     ///vkCmdDispatchDataGraphARM
     #[inline]
@@ -478,13 +476,12 @@ impl Device {
     #[inline]
     pub unsafe fn get_data_graph_pipeline_available_properties(
         &self,
-        device: crate::vk::Device,
         pipeline_info: &crate::vk::DataGraphPipelineInfoARM<'_>,
     ) -> crate::VkResult<Vec<crate::vk::DataGraphPipelinePropertyARM>> {
         crate::read_into_uninitialized_vector(|properties_count, properties| (self
             .fp
             .get_data_graph_pipeline_available_properties)(
-            device,
+            self.handle,
             pipeline_info,
             properties_count,
             properties,
@@ -494,14 +491,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_data_graph_pipeline_properties(
         &self,
-        device: crate::vk::Device,
         pipeline_info: &crate::vk::DataGraphPipelineInfoARM<'_>,
         properties: &mut [crate::vk::DataGraphPipelinePropertyQueryResultARM<'_>],
     ) -> crate::VkResult<()> {
         (self
             .fp
             .get_data_graph_pipeline_properties)(
-                device,
+                self.handle,
                 pipeline_info,
                 properties.len() as _,
                 properties.as_mut_ptr(),

@@ -91,7 +91,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_external_compute_queue(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         external_queue: &mut crate::vk::ExternalComputeQueueNV,
@@ -99,7 +98,7 @@ impl Device {
         (self
             .fp
             .create_external_compute_queue)(
-                device,
+                self.handle,
                 create_info,
                 allocator,
                 external_queue,
@@ -110,11 +109,10 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_external_compute_queue(
         &self,
-        device: crate::vk::Device,
         external_queue: crate::vk::ExternalComputeQueueNV,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_external_compute_queue)(device, external_queue, allocator)
+        (self.fp.destroy_external_compute_queue)(self.handle, external_queue, allocator)
     }
 }
 #[derive(Clone)]

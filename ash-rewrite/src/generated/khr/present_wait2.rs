@@ -77,11 +77,10 @@ impl Device {
     #[inline]
     pub unsafe fn wait_for_present2(
         &self,
-        device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         present_wait2_info: &crate::vk::PresentWait2InfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.wait_for_present2)(device, swapchain, present_wait2_info).result()
+        (self.fp.wait_for_present2)(self.handle, swapchain, present_wait2_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

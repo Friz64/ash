@@ -94,18 +94,22 @@ impl Device {
     #[inline]
     pub unsafe fn get_memory_zircon_handle(
         &self,
-        device: crate::vk::Device,
         get_zircon_handle_info: &crate::vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
         zircon_handle: &mut crate::platform_types::zx_handle_t,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_zircon_handle)(device, get_zircon_handle_info, zircon_handle)
+        (self
+            .fp
+            .get_memory_zircon_handle)(
+                self.handle,
+                get_zircon_handle_info,
+                zircon_handle,
+            )
             .result()
     }
     ///vkGetMemoryZirconHandlePropertiesFUCHSIA
     #[inline]
     pub unsafe fn get_memory_zircon_handle_properties(
         &self,
-        device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         zircon_handle: crate::platform_types::zx_handle_t,
         memory_zircon_handle_properties: &mut crate::vk::MemoryZirconHandlePropertiesFUCHSIA<
@@ -115,7 +119,7 @@ impl Device {
         (self
             .fp
             .get_memory_zircon_handle_properties)(
-                device,
+                self.handle,
                 handle_type,
                 zircon_handle,
                 memory_zircon_handle_properties,

@@ -355,37 +355,41 @@ impl Device {
     #[inline]
     pub unsafe fn get_descriptor_set_layout_size(
         &self,
-        device: crate::vk::Device,
         layout: crate::vk::DescriptorSetLayout,
         layout_size_in_bytes: &mut crate::vk::DeviceSize,
     ) {
-        (self.fp.get_descriptor_set_layout_size)(device, layout, layout_size_in_bytes)
+        (self
+            .fp
+            .get_descriptor_set_layout_size)(self.handle, layout, layout_size_in_bytes)
     }
     ///vkGetDescriptorSetLayoutBindingOffsetEXT
     #[inline]
     pub unsafe fn get_descriptor_set_layout_binding_offset(
         &self,
-        device: crate::vk::Device,
         layout: crate::vk::DescriptorSetLayout,
         binding: u32,
         offset: &mut crate::vk::DeviceSize,
     ) {
         (self
             .fp
-            .get_descriptor_set_layout_binding_offset)(device, layout, binding, offset)
+            .get_descriptor_set_layout_binding_offset)(
+            self.handle,
+            layout,
+            binding,
+            offset,
+        )
     }
     ///vkGetDescriptorEXT
     #[inline]
     pub unsafe fn get_descriptor(
         &self,
-        device: crate::vk::Device,
         descriptor_info: &crate::vk::DescriptorGetInfoEXT<'_>,
         descriptor: &mut [u8],
     ) {
         (self
             .fp
             .get_descriptor)(
-            device,
+            self.handle,
             descriptor_info,
             descriptor.len() as _,
             descriptor.as_mut_ptr().cast(),
@@ -452,55 +456,53 @@ impl Device {
     #[inline]
     pub unsafe fn get_buffer_opaque_capture_descriptor_data(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::BufferCaptureDescriptorDataInfoEXT<'_>,
         data: &mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.fp.get_buffer_opaque_capture_descriptor_data)(device, info, data).result()
+        (self.fp.get_buffer_opaque_capture_descriptor_data)(self.handle, info, data)
+            .result()
     }
     ///vkGetImageOpaqueCaptureDescriptorDataEXT
     #[inline]
     pub unsafe fn get_image_opaque_capture_descriptor_data(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::ImageCaptureDescriptorDataInfoEXT<'_>,
         data: &mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.fp.get_image_opaque_capture_descriptor_data)(device, info, data).result()
+        (self.fp.get_image_opaque_capture_descriptor_data)(self.handle, info, data)
+            .result()
     }
     ///vkGetImageViewOpaqueCaptureDescriptorDataEXT
     #[inline]
     pub unsafe fn get_image_view_opaque_capture_descriptor_data(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::ImageViewCaptureDescriptorDataInfoEXT<'_>,
         data: &mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.fp.get_image_view_opaque_capture_descriptor_data)(device, info, data)
+        (self.fp.get_image_view_opaque_capture_descriptor_data)(self.handle, info, data)
             .result()
     }
     ///vkGetSamplerOpaqueCaptureDescriptorDataEXT
     #[inline]
     pub unsafe fn get_sampler_opaque_capture_descriptor_data(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::SamplerCaptureDescriptorDataInfoEXT<'_>,
         data: &mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.fp.get_sampler_opaque_capture_descriptor_data)(device, info, data).result()
+        (self.fp.get_sampler_opaque_capture_descriptor_data)(self.handle, info, data)
+            .result()
     }
     ///vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT
     #[inline]
     pub unsafe fn get_acceleration_structure_opaque_capture_descriptor_data(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::AccelerationStructureCaptureDescriptorDataInfoEXT<'_>,
         data: &mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
         (self
             .fp
             .get_acceleration_structure_opaque_capture_descriptor_data)(
-                device,
+                self.handle,
                 info,
                 data,
             )

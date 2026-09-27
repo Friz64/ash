@@ -83,14 +83,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_framebuffer_tile_properties_len(
         &self,
-        device: crate::vk::Device,
         framebuffer: crate::vk::Framebuffer,
     ) -> crate::VkResult<usize> {
         let mut properties_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_framebuffer_tile_properties)(
-                device,
+                self.handle,
                 framebuffer,
                 properties_count.as_mut_ptr(),
                 core::ptr::null_mut(),
@@ -102,7 +101,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_framebuffer_tile_properties(
         &self,
-        device: crate::vk::Device,
         framebuffer: crate::vk::Framebuffer,
         properties: &mut [crate::vk::TilePropertiesQCOM<'_>],
     ) -> crate::VkResult<()> {
@@ -110,7 +108,7 @@ impl Device {
         (self
             .fp
             .get_framebuffer_tile_properties)(
-                device,
+                self.handle,
                 framebuffer,
                 &mut properties_count,
                 properties.as_mut_ptr(),
@@ -123,13 +121,16 @@ impl Device {
     #[inline]
     pub unsafe fn get_dynamic_rendering_tile_properties(
         &self,
-        device: crate::vk::Device,
         rendering_info: &crate::vk::RenderingInfo<'_>,
         properties: &mut crate::vk::TilePropertiesQCOM<'_>,
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_dynamic_rendering_tile_properties)(device, rendering_info, properties)
+            .get_dynamic_rendering_tile_properties)(
+                self.handle,
+                rendering_info,
+                properties,
+            )
             .result()
     }
 }

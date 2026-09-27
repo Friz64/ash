@@ -1083,38 +1083,43 @@ impl crate::Device {
     #[inline]
     pub unsafe fn get_device_buffer_memory_requirements(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::DeviceBufferMemoryRequirements<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .device_fn_1_3
-            .get_device_buffer_memory_requirements)(device, info, memory_requirements)
+            .get_device_buffer_memory_requirements)(
+            self.handle,
+            info,
+            memory_requirements,
+        )
     }
     ///vkGetDeviceImageMemoryRequirements
     #[inline]
     pub unsafe fn get_device_image_memory_requirements(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::DeviceImageMemoryRequirements<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
         (self
             .device_fn_1_3
-            .get_device_image_memory_requirements)(device, info, memory_requirements)
+            .get_device_image_memory_requirements)(
+            self.handle,
+            info,
+            memory_requirements,
+        )
     }
     ///vkGetDeviceImageSparseMemoryRequirements
     #[inline]
     pub unsafe fn get_device_image_sparse_memory_requirements_len(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::DeviceImageMemoryRequirements<'_>,
     ) -> usize {
         let mut sparse_memory_requirement_count = core::mem::MaybeUninit::uninit();
         (self
             .device_fn_1_3
             .get_device_image_sparse_memory_requirements)(
-            device,
+            self.handle,
             info,
             sparse_memory_requirement_count.as_mut_ptr(),
             core::ptr::null_mut(),
@@ -1125,7 +1130,6 @@ impl crate::Device {
     #[inline]
     pub unsafe fn get_device_image_sparse_memory_requirements(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::DeviceImageMemoryRequirements<'_>,
         sparse_memory_requirements: &mut [crate::vk::SparseImageMemoryRequirements2<'_>],
     ) {
@@ -1133,7 +1137,7 @@ impl crate::Device {
         (self
             .device_fn_1_3
             .get_device_image_sparse_memory_requirements)(
-            device,
+            self.handle,
             info,
             &mut sparse_memory_requirement_count,
             sparse_memory_requirements.as_mut_ptr(),
@@ -1338,33 +1342,35 @@ impl crate::Device {
     #[inline]
     pub unsafe fn create_private_data_slot(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::PrivateDataSlotCreateInfo<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         private_data_slot: &mut crate::vk::PrivateDataSlot,
     ) -> crate::VkResult<()> {
         (self
             .device_fn_1_3
-            .create_private_data_slot)(device, create_info, allocator, private_data_slot)
+            .create_private_data_slot)(
+                self.handle,
+                create_info,
+                allocator,
+                private_data_slot,
+            )
             .result()
     }
     ///vkDestroyPrivateDataSlot
     #[inline]
     pub unsafe fn destroy_private_data_slot(
         &self,
-        device: crate::vk::Device,
         private_data_slot: crate::vk::PrivateDataSlot,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .device_fn_1_3
-            .destroy_private_data_slot)(device, private_data_slot, allocator)
+            .destroy_private_data_slot)(self.handle, private_data_slot, allocator)
     }
     ///vkSetPrivateData
     #[inline]
     pub unsafe fn set_private_data(
         &self,
-        device: crate::vk::Device,
         object_type: crate::vk::ObjectType,
         object_handle: u64,
         private_data_slot: crate::vk::PrivateDataSlot,
@@ -1373,7 +1379,7 @@ impl crate::Device {
         (self
             .device_fn_1_3
             .set_private_data)(
-                device,
+                self.handle,
                 object_type,
                 object_handle,
                 private_data_slot,
@@ -1385,7 +1391,6 @@ impl crate::Device {
     #[inline]
     pub unsafe fn get_private_data(
         &self,
-        device: crate::vk::Device,
         object_type: crate::vk::ObjectType,
         object_handle: u64,
         private_data_slot: crate::vk::PrivateDataSlot,
@@ -1394,7 +1399,7 @@ impl crate::Device {
         (self
             .device_fn_1_3
             .get_private_data)(
-            device,
+            self.handle,
             object_type,
             object_handle,
             private_data_slot,

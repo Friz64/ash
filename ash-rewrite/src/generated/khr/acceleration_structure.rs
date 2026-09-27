@@ -532,13 +532,16 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_acceleration_structure(
         &self,
-        device: crate::vk::Device,
         acceleration_structure: crate::vk::AccelerationStructureKHR,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
-            .destroy_acceleration_structure)(device, acceleration_structure, allocator)
+            .destroy_acceleration_structure)(
+            self.handle,
+            acceleration_structure,
+            allocator,
+        )
     }
     ///vkCmdCopyAccelerationStructureKHR
     #[inline]
@@ -553,11 +556,11 @@ impl Device {
     #[inline]
     pub unsafe fn copy_acceleration_structure(
         &self,
-        device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         info: &crate::vk::CopyAccelerationStructureInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_acceleration_structure)(device, deferred_operation, info).result()
+        (self.fp.copy_acceleration_structure)(self.handle, deferred_operation, info)
+            .result()
     }
     ///vkCmdCopyAccelerationStructureToMemoryKHR
     #[inline]
@@ -572,11 +575,16 @@ impl Device {
     #[inline]
     pub unsafe fn copy_acceleration_structure_to_memory(
         &self,
-        device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         info: &crate::vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_acceleration_structure_to_memory)(device, deferred_operation, info)
+        (self
+            .fp
+            .copy_acceleration_structure_to_memory)(
+                self.handle,
+                deferred_operation,
+                info,
+            )
             .result()
     }
     ///vkCmdCopyMemoryToAccelerationStructureKHR
@@ -592,11 +600,16 @@ impl Device {
     #[inline]
     pub unsafe fn copy_memory_to_acceleration_structure(
         &self,
-        device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         info: &crate::vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_memory_to_acceleration_structure)(device, deferred_operation, info)
+        (self
+            .fp
+            .copy_memory_to_acceleration_structure)(
+                self.handle,
+                deferred_operation,
+                info,
+            )
             .result()
     }
     ///vkCmdWriteAccelerationStructuresPropertiesKHR
@@ -624,7 +637,6 @@ impl Device {
     #[inline]
     pub unsafe fn write_acceleration_structures_properties(
         &self,
-        device: crate::vk::Device,
         acceleration_structures: &[crate::vk::AccelerationStructureKHR],
         query_type: crate::vk::QueryType,
         data: &mut [u8],
@@ -633,7 +645,7 @@ impl Device {
         (self
             .fp
             .write_acceleration_structures_properties)(
-                device,
+                self.handle,
                 acceleration_structures.len() as _,
                 acceleration_structures.as_ptr(),
                 query_type,
@@ -647,14 +659,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_acceleration_structure_compatibility(
         &self,
-        device: crate::vk::Device,
         version_info: &crate::vk::AccelerationStructureVersionInfoKHR<'_>,
         compatibility: &mut crate::vk::AccelerationStructureCompatibilityKHR,
     ) {
         (self
             .fp
             .get_device_acceleration_structure_compatibility)(
-            device,
+            self.handle,
             version_info,
             compatibility,
         )
@@ -663,7 +674,6 @@ impl Device {
     #[inline]
     pub unsafe fn create_acceleration_structure(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::AccelerationStructureCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         acceleration_structure: &mut crate::vk::AccelerationStructureKHR,
@@ -671,7 +681,7 @@ impl Device {
         (self
             .fp
             .create_acceleration_structure)(
-                device,
+                self.handle,
                 create_info,
                 allocator,
                 acceleration_structure,
@@ -724,7 +734,6 @@ impl Device {
     #[inline]
     pub unsafe fn build_acceleration_structures(
         &self,
-        device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         infos: &[crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
         build_range_infos: &[*const crate::vk::AccelerationStructureBuildRangeInfoKHR],
@@ -733,7 +742,7 @@ impl Device {
         (self
             .fp
             .build_acceleration_structures)(
-                device,
+                self.handle,
                 deferred_operation,
                 build_range_infos.len() as _,
                 infos.as_ptr(),
@@ -745,16 +754,14 @@ impl Device {
     #[inline]
     pub unsafe fn get_acceleration_structure_device_address(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::AccelerationStructureDeviceAddressInfoKHR<'_>,
     ) -> crate::vk::DeviceAddress {
-        (self.fp.get_acceleration_structure_device_address)(device, info)
+        (self.fp.get_acceleration_structure_device_address)(self.handle, info)
     }
     ///vkGetAccelerationStructureBuildSizesKHR
     #[inline]
     pub unsafe fn get_acceleration_structure_build_sizes(
         &self,
-        device: crate::vk::Device,
         build_type: crate::vk::AccelerationStructureBuildTypeKHR,
         build_info: &crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
         max_primitive_counts: &u32,
@@ -763,7 +770,7 @@ impl Device {
         (self
             .fp
             .get_acceleration_structure_build_sizes)(
-            device,
+            self.handle,
             build_type,
             build_info,
             max_primitive_counts,

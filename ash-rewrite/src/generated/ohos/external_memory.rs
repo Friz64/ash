@@ -96,21 +96,19 @@ impl Device {
     #[inline]
     pub unsafe fn get_native_buffer_properties(
         &self,
-        device: crate::vk::Device,
         buffer: &crate::platform_types::OH_NativeBuffer,
         properties: &mut crate::vk::NativeBufferPropertiesOHOS<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_native_buffer_properties)(device, buffer, properties).result()
+        (self.fp.get_native_buffer_properties)(self.handle, buffer, properties).result()
     }
     ///vkGetMemoryNativeBufferOHOS
     #[inline]
     pub unsafe fn get_memory_native_buffer(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::MemoryGetNativeBufferInfoOHOS<'_>,
         buffer: &mut *mut crate::platform_types::OH_NativeBuffer,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_native_buffer)(device, info, buffer).result()
+        (self.fp.get_memory_native_buffer)(self.handle, info, buffer).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

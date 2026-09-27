@@ -102,34 +102,31 @@ impl Device {
     #[inline]
     pub unsafe fn get_buffer_memory_requirements2(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::BufferMemoryRequirementsInfo2<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
-        (self.fp.get_buffer_memory_requirements2)(device, info, memory_requirements)
+        (self.fp.get_buffer_memory_requirements2)(self.handle, info, memory_requirements)
     }
     ///vkGetImageMemoryRequirements2
     #[inline]
     pub unsafe fn get_image_memory_requirements2(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::ImageMemoryRequirementsInfo2<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
-        (self.fp.get_image_memory_requirements2)(device, info, memory_requirements)
+        (self.fp.get_image_memory_requirements2)(self.handle, info, memory_requirements)
     }
     ///vkGetImageSparseMemoryRequirements2
     #[inline]
     pub unsafe fn get_image_sparse_memory_requirements2_len(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
     ) -> usize {
         let mut sparse_memory_requirement_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_image_sparse_memory_requirements2)(
-            device,
+            self.handle,
             info,
             sparse_memory_requirement_count.as_mut_ptr(),
             core::ptr::null_mut(),
@@ -140,7 +137,6 @@ impl Device {
     #[inline]
     pub unsafe fn get_image_sparse_memory_requirements2(
         &self,
-        device: crate::vk::Device,
         info: &crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
         sparse_memory_requirements: &mut [crate::vk::SparseImageMemoryRequirements2<'_>],
     ) {
@@ -148,7 +144,7 @@ impl Device {
         (self
             .fp
             .get_image_sparse_memory_requirements2)(
-            device,
+            self.handle,
             info,
             &mut sparse_memory_requirement_count,
             sparse_memory_requirements.as_mut_ptr(),

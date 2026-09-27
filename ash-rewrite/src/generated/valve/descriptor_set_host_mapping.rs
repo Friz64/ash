@@ -85,14 +85,13 @@ impl Device {
     #[inline]
     pub unsafe fn get_descriptor_set_layout_host_mapping_info(
         &self,
-        device: crate::vk::Device,
         binding_reference: &crate::vk::DescriptorSetBindingReferenceVALVE<'_>,
         host_mapping: &mut crate::vk::DescriptorSetLayoutHostMappingInfoVALVE<'_>,
     ) {
         (self
             .fp
             .get_descriptor_set_layout_host_mapping_info)(
-            device,
+            self.handle,
             binding_reference,
             host_mapping,
         )
@@ -101,11 +100,10 @@ impl Device {
     #[inline]
     pub unsafe fn get_descriptor_set_host_mapping(
         &self,
-        device: crate::vk::Device,
         descriptor_set: crate::vk::DescriptorSet,
         data: &mut *mut core::ffi::c_void,
     ) {
-        (self.fp.get_descriptor_set_host_mapping)(device, descriptor_set, data)
+        (self.fp.get_descriptor_set_host_mapping)(self.handle, descriptor_set, data)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

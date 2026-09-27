@@ -164,40 +164,36 @@ impl Device {
     #[inline]
     pub unsafe fn copy_memory_to_image(
         &self,
-        device: crate::vk::Device,
         copy_memory_to_image_info: &crate::vk::CopyMemoryToImageInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_memory_to_image)(device, copy_memory_to_image_info).result()
+        (self.fp.copy_memory_to_image)(self.handle, copy_memory_to_image_info).result()
     }
     ///vkCopyImageToMemory
     #[inline]
     pub unsafe fn copy_image_to_memory(
         &self,
-        device: crate::vk::Device,
         copy_image_to_memory_info: &crate::vk::CopyImageToMemoryInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_image_to_memory)(device, copy_image_to_memory_info).result()
+        (self.fp.copy_image_to_memory)(self.handle, copy_image_to_memory_info).result()
     }
     ///vkCopyImageToImage
     #[inline]
     pub unsafe fn copy_image_to_image(
         &self,
-        device: crate::vk::Device,
         copy_image_to_image_info: &crate::vk::CopyImageToImageInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_image_to_image)(device, copy_image_to_image_info).result()
+        (self.fp.copy_image_to_image)(self.handle, copy_image_to_image_info).result()
     }
     ///vkTransitionImageLayout
     #[inline]
     pub unsafe fn transition_image_layout(
         &self,
-        device: crate::vk::Device,
         transitions: &[crate::vk::HostImageLayoutTransitionInfo<'_>],
     ) -> crate::VkResult<()> {
         (self
             .fp
             .transition_image_layout)(
-                device,
+                self.handle,
                 transitions.len() as _,
                 transitions.as_ptr(),
             )
@@ -207,12 +203,11 @@ impl Device {
     #[inline]
     pub unsafe fn get_image_subresource_layout2(
         &self,
-        device: crate::vk::Device,
         image: crate::vk::Image,
         subresource: &crate::vk::ImageSubresource2<'_>,
         layout: &mut crate::vk::SubresourceLayout2<'_>,
     ) {
-        (self.fp.get_image_subresource_layout2)(device, image, subresource, layout)
+        (self.fp.get_image_subresource_layout2)(self.handle, image, subresource, layout)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

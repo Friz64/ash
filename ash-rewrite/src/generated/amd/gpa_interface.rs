@@ -345,41 +345,37 @@ impl Device {
     #[inline]
     pub unsafe fn create_gpa_session(
         &self,
-        device: crate::vk::Device,
         create_info: &crate::vk::GpaSessionCreateInfoAMD<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         gpa_session: &mut crate::vk::GpaSessionAMD,
     ) -> crate::VkResult<()> {
-        (self.fp.create_gpa_session)(device, create_info, allocator, gpa_session)
+        (self.fp.create_gpa_session)(self.handle, create_info, allocator, gpa_session)
             .result()
     }
     ///vkDestroyGpaSessionAMD
     #[inline]
     pub unsafe fn destroy_gpa_session(
         &self,
-        device: crate::vk::Device,
         gpa_session: crate::vk::GpaSessionAMD,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_gpa_session)(device, gpa_session, allocator)
+        (self.fp.destroy_gpa_session)(self.handle, gpa_session, allocator)
     }
     ///vkSetGpaDeviceClockModeAMD
     #[inline]
     pub unsafe fn set_gpa_device_clock_mode(
         &self,
-        device: crate::vk::Device,
         info: &mut crate::vk::GpaDeviceClockModeInfoAMD<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.set_gpa_device_clock_mode)(device, info).result()
+        (self.fp.set_gpa_device_clock_mode)(self.handle, info).result()
     }
     ///vkGetGpaDeviceClockInfoAMD
     #[inline]
     pub unsafe fn get_gpa_device_clock_info(
         &self,
-        device: crate::vk::Device,
         info: &mut crate::vk::GpaDeviceGetClockInfoAMD<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_gpa_device_clock_info)(device, info).result()
+        (self.fp.get_gpa_device_clock_info)(self.handle, info).result()
     }
     ///vkCmdBeginGpaSessionAMD
     #[inline]
@@ -432,23 +428,21 @@ impl Device {
     #[inline]
     pub unsafe fn get_gpa_session_status(
         &self,
-        device: crate::vk::Device,
         gpa_session: crate::vk::GpaSessionAMD,
     ) -> crate::VkResult<()> {
-        (self.fp.get_gpa_session_status)(device, gpa_session).result()
+        (self.fp.get_gpa_session_status)(self.handle, gpa_session).result()
     }
     ///vkGetGpaSessionResultsAMD
     #[inline]
     pub unsafe fn get_gpa_session_results(
         &self,
-        device: crate::vk::Device,
         gpa_session: crate::vk::GpaSessionAMD,
         sample_id: u32,
     ) -> crate::VkResult<Vec<core::ffi::c_void>> {
         crate::read_into_uninitialized_vector(|size_in_bytes, data| (self
             .fp
             .get_gpa_session_results)(
-            device,
+            self.handle,
             gpa_session,
             sample_id,
             size_in_bytes,
@@ -459,10 +453,9 @@ impl Device {
     #[inline]
     pub unsafe fn reset_gpa_session(
         &self,
-        device: crate::vk::Device,
         gpa_session: crate::vk::GpaSessionAMD,
     ) -> crate::VkResult<()> {
-        (self.fp.reset_gpa_session)(device, gpa_session).result()
+        (self.fp.reset_gpa_session)(self.handle, gpa_session).result()
     }
     ///vkCmdCopyGpaSessionResultsAMD
     #[inline]
