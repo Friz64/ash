@@ -17,8 +17,8 @@ impl crate::vk::ObjectType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_external_compute_queue_nv: crate::vk::PFN_vkCreateExternalComputeQueueNV,
-    pub destroy_external_compute_queue_nv: crate::vk::PFN_vkDestroyExternalComputeQueueNV,
+    pub create_external_compute_queue: crate::vk::PFN_vkCreateExternalComputeQueueNV,
+    pub destroy_external_compute_queue: crate::vk::PFN_vkDestroyExternalComputeQueueNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -32,8 +32,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_external_compute_queue_nv: unsafe {
-                unsafe extern "system" fn create_external_compute_queue_nv(
+            create_external_compute_queue: unsafe {
+                unsafe extern "system" fn create_external_compute_queue(
                     _: crate::vk::Device,
                     _: *const crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -43,13 +43,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateExternalComputeQueueNV");
                 if val.is_null() {
-                    create_external_compute_queue_nv
+                    create_external_compute_queue
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_external_compute_queue_nv: unsafe {
-                unsafe extern "system" fn destroy_external_compute_queue_nv(
+            destroy_external_compute_queue: unsafe {
+                unsafe extern "system" fn destroy_external_compute_queue(
                     _: crate::vk::Device,
                     _: crate::vk::ExternalComputeQueueNV,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -58,7 +58,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyExternalComputeQueueNV");
                 if val.is_null() {
-                    destroy_external_compute_queue_nv
+                    destroy_external_compute_queue
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -89,7 +89,7 @@ impl Device {
     }
     ///vkCreateExternalComputeQueueNV
     #[inline]
-    pub unsafe fn create_external_compute_queue_nv(
+    pub unsafe fn create_external_compute_queue(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
@@ -98,7 +98,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_external_compute_queue_nv)(
+            .create_external_compute_queue)(
                 device,
                 create_info,
                 allocator,
@@ -108,18 +108,18 @@ impl Device {
     }
     ///vkDestroyExternalComputeQueueNV
     #[inline]
-    pub unsafe fn destroy_external_compute_queue_nv(
+    pub unsafe fn destroy_external_compute_queue(
         &self,
         device: crate::vk::Device,
         external_queue: crate::vk::ExternalComputeQueueNV,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_external_compute_queue_nv)(device, external_queue, allocator)
+        (self.fp.destroy_external_compute_queue)(device, external_queue, allocator)
     }
 }
 #[derive(Clone)]
 pub struct EntryFn {
-    pub get_external_compute_queue_data_nv: crate::vk::PFN_vkGetExternalComputeQueueDataNV,
+    pub get_external_compute_queue_data: crate::vk::PFN_vkGetExternalComputeQueueDataNV,
 }
 unsafe impl Send for EntryFn {}
 unsafe impl Sync for EntryFn {}
@@ -133,8 +133,8 @@ impl EntryFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_external_compute_queue_data_nv: unsafe {
-                unsafe extern "system" fn get_external_compute_queue_data_nv(
+            get_external_compute_queue_data: unsafe {
+                unsafe extern "system" fn get_external_compute_queue_data(
                     _: crate::vk::ExternalComputeQueueNV,
                     _: *mut crate::vk::ExternalComputeQueueDataParamsNV<'_>,
                     _: *mut core::ffi::c_void,
@@ -143,7 +143,7 @@ impl EntryFn {
                 }
                 let val = _f(c"vkGetExternalComputeQueueDataNV");
                 if val.is_null() {
-                    get_external_compute_queue_data_nv
+                    get_external_compute_queue_data
                 } else {
                     ::core::mem::transmute(val)
                 }

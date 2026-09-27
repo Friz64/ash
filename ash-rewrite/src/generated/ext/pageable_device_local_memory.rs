@@ -10,7 +10,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_device_memory_priority_ext: crate::vk::PFN_vkSetDeviceMemoryPriorityEXT,
+    pub set_device_memory_priority: crate::vk::PFN_vkSetDeviceMemoryPriorityEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -24,8 +24,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            set_device_memory_priority_ext: unsafe {
-                unsafe extern "system" fn set_device_memory_priority_ext(
+            set_device_memory_priority: unsafe {
+                unsafe extern "system" fn set_device_memory_priority(
                     _: crate::vk::Device,
                     _: crate::vk::DeviceMemory,
                     _: core::ffi::c_float,
@@ -34,7 +34,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkSetDeviceMemoryPriorityEXT");
                 if val.is_null() {
-                    set_device_memory_priority_ext
+                    set_device_memory_priority
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -65,13 +65,13 @@ impl Device {
     }
     ///vkSetDeviceMemoryPriorityEXT
     #[inline]
-    pub unsafe fn set_device_memory_priority_ext(
+    pub unsafe fn set_device_memory_priority(
         &self,
         device: crate::vk::Device,
         memory: crate::vk::DeviceMemory,
         priority: core::ffi::c_float,
     ) {
-        (self.fp.set_device_memory_priority_ext)(device, memory, priority)
+        (self.fp.set_device_memory_priority)(device, memory, priority)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

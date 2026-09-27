@@ -20,9 +20,9 @@ impl DiscardRectangleModeEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_discard_rectangle_ext: crate::vk::PFN_vkCmdSetDiscardRectangleEXT,
-    pub cmd_set_discard_rectangle_enable_ext: crate::vk::PFN_vkCmdSetDiscardRectangleEnableEXT,
-    pub cmd_set_discard_rectangle_mode_ext: crate::vk::PFN_vkCmdSetDiscardRectangleModeEXT,
+    pub cmd_set_discard_rectangle: crate::vk::PFN_vkCmdSetDiscardRectangleEXT,
+    pub cmd_set_discard_rectangle_enable: crate::vk::PFN_vkCmdSetDiscardRectangleEnableEXT,
+    pub cmd_set_discard_rectangle_mode: crate::vk::PFN_vkCmdSetDiscardRectangleModeEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -36,8 +36,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_discard_rectangle_ext: unsafe {
-                unsafe extern "system" fn cmd_set_discard_rectangle_ext(
+            cmd_set_discard_rectangle: unsafe {
+                unsafe extern "system" fn cmd_set_discard_rectangle(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -47,13 +47,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDiscardRectangleEXT");
                 if val.is_null() {
-                    cmd_set_discard_rectangle_ext
+                    cmd_set_discard_rectangle
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_discard_rectangle_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_discard_rectangle_enable_ext(
+            cmd_set_discard_rectangle_enable: unsafe {
+                unsafe extern "system" fn cmd_set_discard_rectangle_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -61,13 +61,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDiscardRectangleEnableEXT");
                 if val.is_null() {
-                    cmd_set_discard_rectangle_enable_ext
+                    cmd_set_discard_rectangle_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_discard_rectangle_mode_ext: unsafe {
-                unsafe extern "system" fn cmd_set_discard_rectangle_mode_ext(
+            cmd_set_discard_rectangle_mode: unsafe {
+                unsafe extern "system" fn cmd_set_discard_rectangle_mode(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DiscardRectangleModeEXT,
                 ) {
@@ -75,7 +75,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDiscardRectangleModeEXT");
                 if val.is_null() {
-                    cmd_set_discard_rectangle_mode_ext
+                    cmd_set_discard_rectangle_mode
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -106,7 +106,7 @@ impl Device {
     }
     ///vkCmdSetDiscardRectangleEXT
     #[inline]
-    pub unsafe fn cmd_set_discard_rectangle_ext(
+    pub unsafe fn cmd_set_discard_rectangle(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_discard_rectangle: u32,
@@ -114,7 +114,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_discard_rectangle_ext)(
+            .cmd_set_discard_rectangle)(
             command_buffer,
             first_discard_rectangle,
             discard_rectangles.len() as _,
@@ -123,28 +123,23 @@ impl Device {
     }
     ///vkCmdSetDiscardRectangleEnableEXT
     #[inline]
-    pub unsafe fn cmd_set_discard_rectangle_enable_ext(
+    pub unsafe fn cmd_set_discard_rectangle_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         discard_rectangle_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_discard_rectangle_enable_ext)(
-            command_buffer,
-            discard_rectangle_enable,
-        )
+            .cmd_set_discard_rectangle_enable)(command_buffer, discard_rectangle_enable)
     }
     ///vkCmdSetDiscardRectangleModeEXT
     #[inline]
-    pub unsafe fn cmd_set_discard_rectangle_mode_ext(
+    pub unsafe fn cmd_set_discard_rectangle_mode(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
     ) {
-        (self
-            .fp
-            .cmd_set_discard_rectangle_mode_ext)(command_buffer, discard_rectangle_mode)
+        (self.fp.cmd_set_discard_rectangle_mode)(command_buffer, discard_rectangle_mode)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

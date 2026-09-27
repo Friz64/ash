@@ -76,9 +76,9 @@ impl crate::vk::PipelineStageFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_bind_shading_rate_image_nv: crate::vk::PFN_vkCmdBindShadingRateImageNV,
-    pub cmd_set_viewport_shading_rate_palette_nv: crate::vk::PFN_vkCmdSetViewportShadingRatePaletteNV,
-    pub cmd_set_coarse_sample_order_nv: crate::vk::PFN_vkCmdSetCoarseSampleOrderNV,
+    pub cmd_bind_shading_rate_image: crate::vk::PFN_vkCmdBindShadingRateImageNV,
+    pub cmd_set_viewport_shading_rate_palette: crate::vk::PFN_vkCmdSetViewportShadingRatePaletteNV,
+    pub cmd_set_coarse_sample_order: crate::vk::PFN_vkCmdSetCoarseSampleOrderNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -92,8 +92,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_bind_shading_rate_image_nv: unsafe {
-                unsafe extern "system" fn cmd_bind_shading_rate_image_nv(
+            cmd_bind_shading_rate_image: unsafe {
+                unsafe extern "system" fn cmd_bind_shading_rate_image(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::ImageView,
                     _: crate::vk::ImageLayout,
@@ -102,13 +102,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindShadingRateImageNV");
                 if val.is_null() {
-                    cmd_bind_shading_rate_image_nv
+                    cmd_bind_shading_rate_image
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_viewport_shading_rate_palette_nv: unsafe {
-                unsafe extern "system" fn cmd_set_viewport_shading_rate_palette_nv(
+            cmd_set_viewport_shading_rate_palette: unsafe {
+                unsafe extern "system" fn cmd_set_viewport_shading_rate_palette(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -118,13 +118,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetViewportShadingRatePaletteNV");
                 if val.is_null() {
-                    cmd_set_viewport_shading_rate_palette_nv
+                    cmd_set_viewport_shading_rate_palette
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_coarse_sample_order_nv: unsafe {
-                unsafe extern "system" fn cmd_set_coarse_sample_order_nv(
+            cmd_set_coarse_sample_order: unsafe {
+                unsafe extern "system" fn cmd_set_coarse_sample_order(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::CoarseSampleOrderTypeNV,
                     _: u32,
@@ -134,7 +134,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetCoarseSampleOrderNV");
                 if val.is_null() {
-                    cmd_set_coarse_sample_order_nv
+                    cmd_set_coarse_sample_order
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -165,19 +165,17 @@ impl Device {
     }
     ///vkCmdBindShadingRateImageNV
     #[inline]
-    pub unsafe fn cmd_bind_shading_rate_image_nv(
+    pub unsafe fn cmd_bind_shading_rate_image(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         image_view: crate::vk::ImageView,
         image_layout: crate::vk::ImageLayout,
     ) {
-        (self
-            .fp
-            .cmd_bind_shading_rate_image_nv)(command_buffer, image_view, image_layout)
+        (self.fp.cmd_bind_shading_rate_image)(command_buffer, image_view, image_layout)
     }
     ///vkCmdSetViewportShadingRatePaletteNV
     #[inline]
-    pub unsafe fn cmd_set_viewport_shading_rate_palette_nv(
+    pub unsafe fn cmd_set_viewport_shading_rate_palette(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_viewport: u32,
@@ -185,7 +183,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_viewport_shading_rate_palette_nv)(
+            .cmd_set_viewport_shading_rate_palette)(
             command_buffer,
             first_viewport,
             shading_rate_palettes.len() as _,
@@ -194,7 +192,7 @@ impl Device {
     }
     ///vkCmdSetCoarseSampleOrderNV
     #[inline]
-    pub unsafe fn cmd_set_coarse_sample_order_nv(
+    pub unsafe fn cmd_set_coarse_sample_order(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
@@ -202,7 +200,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_coarse_sample_order_nv)(
+            .cmd_set_coarse_sample_order)(
             command_buffer,
             sample_order_type,
             custom_sample_orders.len() as _,

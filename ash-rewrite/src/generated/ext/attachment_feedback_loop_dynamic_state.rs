@@ -14,7 +14,7 @@ impl crate::vk::DynamicState {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_attachment_feedback_loop_enable_ext: crate::vk::PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT,
+    pub cmd_set_attachment_feedback_loop_enable: crate::vk::PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -28,8 +28,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_attachment_feedback_loop_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_attachment_feedback_loop_enable_ext(
+            cmd_set_attachment_feedback_loop_enable: unsafe {
+                unsafe extern "system" fn cmd_set_attachment_feedback_loop_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::ImageAspectFlags,
                 ) {
@@ -37,7 +37,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetAttachmentFeedbackLoopEnableEXT");
                 if val.is_null() {
-                    cmd_set_attachment_feedback_loop_enable_ext
+                    cmd_set_attachment_feedback_loop_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -68,14 +68,12 @@ impl Device {
     }
     ///vkCmdSetAttachmentFeedbackLoopEnableEXT
     #[inline]
-    pub unsafe fn cmd_set_attachment_feedback_loop_enable_ext(
+    pub unsafe fn cmd_set_attachment_feedback_loop_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         aspect_mask: crate::vk::ImageAspectFlags,
     ) {
-        (self
-            .fp
-            .cmd_set_attachment_feedback_loop_enable_ext)(command_buffer, aspect_mask)
+        (self.fp.cmd_set_attachment_feedback_loop_enable)(command_buffer, aspect_mask)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

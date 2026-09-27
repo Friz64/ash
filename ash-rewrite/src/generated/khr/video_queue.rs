@@ -130,8 +130,8 @@ impl VideoComponentBitDepthFlagBitsKHR {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_video_capabilities_khr: crate::vk::PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR,
-    pub get_physical_device_video_format_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR,
+    pub get_physical_device_video_capabilities: crate::vk::PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR,
+    pub get_physical_device_video_format_properties: crate::vk::PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -145,8 +145,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_video_capabilities_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_video_capabilities_khr(
+            get_physical_device_video_capabilities: unsafe {
+                unsafe extern "system" fn get_physical_device_video_capabilities(
                     _: crate::vk::PhysicalDevice,
                     _: *const crate::vk::VideoProfileInfoKHR<'_>,
                     _: *mut crate::vk::VideoCapabilitiesKHR<'_>,
@@ -155,13 +155,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceVideoCapabilitiesKHR");
                 if val.is_null() {
-                    get_physical_device_video_capabilities_khr
+                    get_physical_device_video_capabilities
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_video_format_properties_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_video_format_properties_khr(
+            get_physical_device_video_format_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_video_format_properties(
                     _: crate::vk::PhysicalDevice,
                     _: *const crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
                     _: *mut u32,
@@ -171,7 +171,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceVideoFormatPropertiesKHR");
                 if val.is_null() {
-                    get_physical_device_video_format_properties_khr
+                    get_physical_device_video_format_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -202,7 +202,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceVideoCapabilitiesKHR
     #[inline]
-    pub unsafe fn get_physical_device_video_capabilities_khr(
+    pub unsafe fn get_physical_device_video_capabilities(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         video_profile: &crate::vk::VideoProfileInfoKHR<'_>,
@@ -210,7 +210,7 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_physical_device_video_capabilities_khr)(
+            .get_physical_device_video_capabilities)(
                 physical_device,
                 video_profile,
                 capabilities,
@@ -219,7 +219,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceVideoFormatPropertiesKHR
     #[inline]
-    pub unsafe fn get_physical_device_video_format_properties_khr(
+    pub unsafe fn get_physical_device_video_format_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         video_format_info: &crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
@@ -229,7 +229,7 @@ impl Instance {
             video_format_properties|
         (self
             .fp
-            .get_physical_device_video_format_properties_khr)(
+            .get_physical_device_video_format_properties)(
             physical_device,
             video_format_info,
             video_format_property_count,
@@ -239,16 +239,16 @@ impl Instance {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_video_session_khr: crate::vk::PFN_vkCreateVideoSessionKHR,
-    pub destroy_video_session_khr: crate::vk::PFN_vkDestroyVideoSessionKHR,
-    pub create_video_session_parameters_khr: crate::vk::PFN_vkCreateVideoSessionParametersKHR,
-    pub update_video_session_parameters_khr: crate::vk::PFN_vkUpdateVideoSessionParametersKHR,
-    pub destroy_video_session_parameters_khr: crate::vk::PFN_vkDestroyVideoSessionParametersKHR,
-    pub get_video_session_memory_requirements_khr: crate::vk::PFN_vkGetVideoSessionMemoryRequirementsKHR,
-    pub bind_video_session_memory_khr: crate::vk::PFN_vkBindVideoSessionMemoryKHR,
-    pub cmd_begin_video_coding_khr: crate::vk::PFN_vkCmdBeginVideoCodingKHR,
-    pub cmd_control_video_coding_khr: crate::vk::PFN_vkCmdControlVideoCodingKHR,
-    pub cmd_end_video_coding_khr: crate::vk::PFN_vkCmdEndVideoCodingKHR,
+    pub create_video_session: crate::vk::PFN_vkCreateVideoSessionKHR,
+    pub destroy_video_session: crate::vk::PFN_vkDestroyVideoSessionKHR,
+    pub create_video_session_parameters: crate::vk::PFN_vkCreateVideoSessionParametersKHR,
+    pub update_video_session_parameters: crate::vk::PFN_vkUpdateVideoSessionParametersKHR,
+    pub destroy_video_session_parameters: crate::vk::PFN_vkDestroyVideoSessionParametersKHR,
+    pub get_video_session_memory_requirements: crate::vk::PFN_vkGetVideoSessionMemoryRequirementsKHR,
+    pub bind_video_session_memory: crate::vk::PFN_vkBindVideoSessionMemoryKHR,
+    pub cmd_begin_video_coding: crate::vk::PFN_vkCmdBeginVideoCodingKHR,
+    pub cmd_control_video_coding: crate::vk::PFN_vkCmdControlVideoCodingKHR,
+    pub cmd_end_video_coding: crate::vk::PFN_vkCmdEndVideoCodingKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -262,8 +262,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_video_session_khr: unsafe {
-                unsafe extern "system" fn create_video_session_khr(
+            create_video_session: unsafe {
+                unsafe extern "system" fn create_video_session(
                     _: crate::vk::Device,
                     _: *const crate::vk::VideoSessionCreateInfoKHR<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -273,13 +273,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateVideoSessionKHR");
                 if val.is_null() {
-                    create_video_session_khr
+                    create_video_session
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_video_session_khr: unsafe {
-                unsafe extern "system" fn destroy_video_session_khr(
+            destroy_video_session: unsafe {
+                unsafe extern "system" fn destroy_video_session(
                     _: crate::vk::Device,
                     _: crate::vk::VideoSessionKHR,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -288,13 +288,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyVideoSessionKHR");
                 if val.is_null() {
-                    destroy_video_session_khr
+                    destroy_video_session
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            create_video_session_parameters_khr: unsafe {
-                unsafe extern "system" fn create_video_session_parameters_khr(
+            create_video_session_parameters: unsafe {
+                unsafe extern "system" fn create_video_session_parameters(
                     _: crate::vk::Device,
                     _: *const crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -304,13 +304,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateVideoSessionParametersKHR");
                 if val.is_null() {
-                    create_video_session_parameters_khr
+                    create_video_session_parameters
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            update_video_session_parameters_khr: unsafe {
-                unsafe extern "system" fn update_video_session_parameters_khr(
+            update_video_session_parameters: unsafe {
+                unsafe extern "system" fn update_video_session_parameters(
                     _: crate::vk::Device,
                     _: crate::vk::VideoSessionParametersKHR,
                     _: *const crate::vk::VideoSessionParametersUpdateInfoKHR<'_>,
@@ -319,13 +319,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkUpdateVideoSessionParametersKHR");
                 if val.is_null() {
-                    update_video_session_parameters_khr
+                    update_video_session_parameters
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_video_session_parameters_khr: unsafe {
-                unsafe extern "system" fn destroy_video_session_parameters_khr(
+            destroy_video_session_parameters: unsafe {
+                unsafe extern "system" fn destroy_video_session_parameters(
                     _: crate::vk::Device,
                     _: crate::vk::VideoSessionParametersKHR,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -334,13 +334,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyVideoSessionParametersKHR");
                 if val.is_null() {
-                    destroy_video_session_parameters_khr
+                    destroy_video_session_parameters
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_video_session_memory_requirements_khr: unsafe {
-                unsafe extern "system" fn get_video_session_memory_requirements_khr(
+            get_video_session_memory_requirements: unsafe {
+                unsafe extern "system" fn get_video_session_memory_requirements(
                     _: crate::vk::Device,
                     _: crate::vk::VideoSessionKHR,
                     _: *mut u32,
@@ -350,13 +350,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetVideoSessionMemoryRequirementsKHR");
                 if val.is_null() {
-                    get_video_session_memory_requirements_khr
+                    get_video_session_memory_requirements
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            bind_video_session_memory_khr: unsafe {
-                unsafe extern "system" fn bind_video_session_memory_khr(
+            bind_video_session_memory: unsafe {
+                unsafe extern "system" fn bind_video_session_memory(
                     _: crate::vk::Device,
                     _: crate::vk::VideoSessionKHR,
                     _: u32,
@@ -366,13 +366,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkBindVideoSessionMemoryKHR");
                 if val.is_null() {
-                    bind_video_session_memory_khr
+                    bind_video_session_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_begin_video_coding_khr: unsafe {
-                unsafe extern "system" fn cmd_begin_video_coding_khr(
+            cmd_begin_video_coding: unsafe {
+                unsafe extern "system" fn cmd_begin_video_coding(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::VideoBeginCodingInfoKHR<'_>,
                 ) {
@@ -380,13 +380,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginVideoCodingKHR");
                 if val.is_null() {
-                    cmd_begin_video_coding_khr
+                    cmd_begin_video_coding
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_control_video_coding_khr: unsafe {
-                unsafe extern "system" fn cmd_control_video_coding_khr(
+            cmd_control_video_coding: unsafe {
+                unsafe extern "system" fn cmd_control_video_coding(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::VideoCodingControlInfoKHR<'_>,
                 ) {
@@ -394,13 +394,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdControlVideoCodingKHR");
                 if val.is_null() {
-                    cmd_control_video_coding_khr
+                    cmd_control_video_coding
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_end_video_coding_khr: unsafe {
-                unsafe extern "system" fn cmd_end_video_coding_khr(
+            cmd_end_video_coding: unsafe {
+                unsafe extern "system" fn cmd_end_video_coding(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::VideoEndCodingInfoKHR<'_>,
                 ) {
@@ -408,7 +408,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdEndVideoCodingKHR");
                 if val.is_null() {
-                    cmd_end_video_coding_khr
+                    cmd_end_video_coding
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -439,29 +439,29 @@ impl Device {
     }
     ///vkCreateVideoSessionKHR
     #[inline]
-    pub unsafe fn create_video_session_khr(
+    pub unsafe fn create_video_session(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::VideoSessionCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         video_session: &mut crate::vk::VideoSessionKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_video_session_khr)(device, create_info, allocator, video_session)
+        (self.fp.create_video_session)(device, create_info, allocator, video_session)
             .result()
     }
     ///vkDestroyVideoSessionKHR
     #[inline]
-    pub unsafe fn destroy_video_session_khr(
+    pub unsafe fn destroy_video_session(
         &self,
         device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_video_session_khr)(device, video_session, allocator)
+        (self.fp.destroy_video_session)(device, video_session, allocator)
     }
     ///vkCreateVideoSessionParametersKHR
     #[inline]
-    pub unsafe fn create_video_session_parameters_khr(
+    pub unsafe fn create_video_session_parameters(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
@@ -470,7 +470,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_video_session_parameters_khr)(
+            .create_video_session_parameters)(
                 device,
                 create_info,
                 allocator,
@@ -480,7 +480,7 @@ impl Device {
     }
     ///vkUpdateVideoSessionParametersKHR
     #[inline]
-    pub unsafe fn update_video_session_parameters_khr(
+    pub unsafe fn update_video_session_parameters(
         &self,
         device: crate::vk::Device,
         video_session_parameters: crate::vk::VideoSessionParametersKHR,
@@ -488,7 +488,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .update_video_session_parameters_khr)(
+            .update_video_session_parameters)(
                 device,
                 video_session_parameters,
                 update_info,
@@ -497,7 +497,7 @@ impl Device {
     }
     ///vkDestroyVideoSessionParametersKHR
     #[inline]
-    pub unsafe fn destroy_video_session_parameters_khr(
+    pub unsafe fn destroy_video_session_parameters(
         &self,
         device: crate::vk::Device,
         video_session_parameters: crate::vk::VideoSessionParametersKHR,
@@ -505,7 +505,7 @@ impl Device {
     ) {
         (self
             .fp
-            .destroy_video_session_parameters_khr)(
+            .destroy_video_session_parameters)(
             device,
             video_session_parameters,
             allocator,
@@ -513,7 +513,7 @@ impl Device {
     }
     ///vkGetVideoSessionMemoryRequirementsKHR
     #[inline]
-    pub unsafe fn get_video_session_memory_requirements_khr(
+    pub unsafe fn get_video_session_memory_requirements(
         &self,
         device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
@@ -523,7 +523,7 @@ impl Device {
             memory_requirements|
         (self
             .fp
-            .get_video_session_memory_requirements_khr)(
+            .get_video_session_memory_requirements)(
             device,
             video_session,
             memory_requirements_count,
@@ -532,7 +532,7 @@ impl Device {
     }
     ///vkBindVideoSessionMemoryKHR
     #[inline]
-    pub unsafe fn bind_video_session_memory_khr(
+    pub unsafe fn bind_video_session_memory(
         &self,
         device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
@@ -540,7 +540,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .bind_video_session_memory_khr)(
+            .bind_video_session_memory)(
                 device,
                 video_session,
                 bind_session_memory_infos.len() as _,
@@ -550,30 +550,30 @@ impl Device {
     }
     ///vkCmdBeginVideoCodingKHR
     #[inline]
-    pub unsafe fn cmd_begin_video_coding_khr(
+    pub unsafe fn cmd_begin_video_coding(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         begin_info: &crate::vk::VideoBeginCodingInfoKHR<'_>,
     ) {
-        (self.fp.cmd_begin_video_coding_khr)(command_buffer, begin_info)
+        (self.fp.cmd_begin_video_coding)(command_buffer, begin_info)
     }
     ///vkCmdControlVideoCodingKHR
     #[inline]
-    pub unsafe fn cmd_control_video_coding_khr(
+    pub unsafe fn cmd_control_video_coding(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         coding_control_info: &crate::vk::VideoCodingControlInfoKHR<'_>,
     ) {
-        (self.fp.cmd_control_video_coding_khr)(command_buffer, coding_control_info)
+        (self.fp.cmd_control_video_coding)(command_buffer, coding_control_info)
     }
     ///vkCmdEndVideoCodingKHR
     #[inline]
-    pub unsafe fn cmd_end_video_coding_khr(
+    pub unsafe fn cmd_end_video_coding(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         end_coding_info: &crate::vk::VideoEndCodingInfoKHR<'_>,
     ) {
-        (self.fp.cmd_end_video_coding_khr)(command_buffer, end_coding_info)
+        (self.fp.cmd_end_video_coding)(command_buffer, end_coding_info)
     }
 }
 pub const SPEC_VERSION: u32 = 8;

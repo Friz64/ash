@@ -8,7 +8,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub wait_for_present_khr: crate::vk::PFN_vkWaitForPresentKHR,
+    pub wait_for_present: crate::vk::PFN_vkWaitForPresentKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -22,8 +22,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            wait_for_present_khr: unsafe {
-                unsafe extern "system" fn wait_for_present_khr(
+            wait_for_present: unsafe {
+                unsafe extern "system" fn wait_for_present(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: u64,
@@ -33,7 +33,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkWaitForPresentKHR");
                 if val.is_null() {
-                    wait_for_present_khr
+                    wait_for_present
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,14 +64,14 @@ impl Device {
     }
     ///vkWaitForPresentKHR
     #[inline]
-    pub unsafe fn wait_for_present_khr(
+    pub unsafe fn wait_for_present(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         present_id: u64,
         timeout: u64,
     ) -> crate::VkResult<()> {
-        (self.fp.wait_for_present_khr)(device, swapchain, present_id, timeout).result()
+        (self.fp.wait_for_present)(device, swapchain, present_id, timeout).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

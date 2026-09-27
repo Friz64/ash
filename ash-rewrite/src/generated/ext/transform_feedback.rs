@@ -58,12 +58,12 @@ impl crate::vk::PipelineStageFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_bind_transform_feedback_buffers_ext: crate::vk::PFN_vkCmdBindTransformFeedbackBuffersEXT,
-    pub cmd_begin_transform_feedback_ext: crate::vk::PFN_vkCmdBeginTransformFeedbackEXT,
-    pub cmd_end_transform_feedback_ext: crate::vk::PFN_vkCmdEndTransformFeedbackEXT,
-    pub cmd_begin_query_indexed_ext: crate::vk::PFN_vkCmdBeginQueryIndexedEXT,
-    pub cmd_end_query_indexed_ext: crate::vk::PFN_vkCmdEndQueryIndexedEXT,
-    pub cmd_draw_indirect_byte_count_ext: crate::vk::PFN_vkCmdDrawIndirectByteCountEXT,
+    pub cmd_bind_transform_feedback_buffers: crate::vk::PFN_vkCmdBindTransformFeedbackBuffersEXT,
+    pub cmd_begin_transform_feedback: crate::vk::PFN_vkCmdBeginTransformFeedbackEXT,
+    pub cmd_end_transform_feedback: crate::vk::PFN_vkCmdEndTransformFeedbackEXT,
+    pub cmd_begin_query_indexed: crate::vk::PFN_vkCmdBeginQueryIndexedEXT,
+    pub cmd_end_query_indexed: crate::vk::PFN_vkCmdEndQueryIndexedEXT,
+    pub cmd_draw_indirect_byte_count: crate::vk::PFN_vkCmdDrawIndirectByteCountEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -77,8 +77,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_bind_transform_feedback_buffers_ext: unsafe {
-                unsafe extern "system" fn cmd_bind_transform_feedback_buffers_ext(
+            cmd_bind_transform_feedback_buffers: unsafe {
+                unsafe extern "system" fn cmd_bind_transform_feedback_buffers(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -90,13 +90,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindTransformFeedbackBuffersEXT");
                 if val.is_null() {
-                    cmd_bind_transform_feedback_buffers_ext
+                    cmd_bind_transform_feedback_buffers
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_begin_transform_feedback_ext: unsafe {
-                unsafe extern "system" fn cmd_begin_transform_feedback_ext(
+            cmd_begin_transform_feedback: unsafe {
+                unsafe extern "system" fn cmd_begin_transform_feedback(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -107,13 +107,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginTransformFeedbackEXT");
                 if val.is_null() {
-                    cmd_begin_transform_feedback_ext
+                    cmd_begin_transform_feedback
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_end_transform_feedback_ext: unsafe {
-                unsafe extern "system" fn cmd_end_transform_feedback_ext(
+            cmd_end_transform_feedback: unsafe {
+                unsafe extern "system" fn cmd_end_transform_feedback(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -124,13 +124,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdEndTransformFeedbackEXT");
                 if val.is_null() {
-                    cmd_end_transform_feedback_ext
+                    cmd_end_transform_feedback
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_begin_query_indexed_ext: unsafe {
-                unsafe extern "system" fn cmd_begin_query_indexed_ext(
+            cmd_begin_query_indexed: unsafe {
+                unsafe extern "system" fn cmd_begin_query_indexed(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::QueryPool,
                     _: u32,
@@ -141,13 +141,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginQueryIndexedEXT");
                 if val.is_null() {
-                    cmd_begin_query_indexed_ext
+                    cmd_begin_query_indexed
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_end_query_indexed_ext: unsafe {
-                unsafe extern "system" fn cmd_end_query_indexed_ext(
+            cmd_end_query_indexed: unsafe {
+                unsafe extern "system" fn cmd_end_query_indexed(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::QueryPool,
                     _: u32,
@@ -157,13 +157,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdEndQueryIndexedEXT");
                 if val.is_null() {
-                    cmd_end_query_indexed_ext
+                    cmd_end_query_indexed
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_draw_indirect_byte_count_ext: unsafe {
-                unsafe extern "system" fn cmd_draw_indirect_byte_count_ext(
+            cmd_draw_indirect_byte_count: unsafe {
+                unsafe extern "system" fn cmd_draw_indirect_byte_count(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -176,7 +176,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawIndirectByteCountEXT");
                 if val.is_null() {
-                    cmd_draw_indirect_byte_count_ext
+                    cmd_draw_indirect_byte_count
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -207,7 +207,7 @@ impl Device {
     }
     ///vkCmdBindTransformFeedbackBuffersEXT
     #[inline]
-    pub unsafe fn cmd_bind_transform_feedback_buffers_ext(
+    pub unsafe fn cmd_bind_transform_feedback_buffers(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
@@ -217,7 +217,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_bind_transform_feedback_buffers_ext)(
+            .cmd_bind_transform_feedback_buffers)(
             command_buffer,
             first_binding,
             buffers.len() as _,
@@ -228,7 +228,7 @@ impl Device {
     }
     ///vkCmdBeginTransformFeedbackEXT
     #[inline]
-    pub unsafe fn cmd_begin_transform_feedback_ext(
+    pub unsafe fn cmd_begin_transform_feedback(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_counter_buffer: u32,
@@ -237,7 +237,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_begin_transform_feedback_ext)(
+            .cmd_begin_transform_feedback)(
             command_buffer,
             first_counter_buffer,
             counter_buffers.len() as _,
@@ -247,7 +247,7 @@ impl Device {
     }
     ///vkCmdEndTransformFeedbackEXT
     #[inline]
-    pub unsafe fn cmd_end_transform_feedback_ext(
+    pub unsafe fn cmd_end_transform_feedback(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_counter_buffer: u32,
@@ -256,7 +256,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_end_transform_feedback_ext)(
+            .cmd_end_transform_feedback)(
             command_buffer,
             first_counter_buffer,
             counter_buffers.len() as _,
@@ -266,7 +266,7 @@ impl Device {
     }
     ///vkCmdBeginQueryIndexedEXT
     #[inline]
-    pub unsafe fn cmd_begin_query_indexed_ext(
+    pub unsafe fn cmd_begin_query_indexed(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         query_pool: crate::vk::QueryPool,
@@ -276,28 +276,22 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_begin_query_indexed_ext)(
-            command_buffer,
-            query_pool,
-            query,
-            flags,
-            index,
-        )
+            .cmd_begin_query_indexed)(command_buffer, query_pool, query, flags, index)
     }
     ///vkCmdEndQueryIndexedEXT
     #[inline]
-    pub unsafe fn cmd_end_query_indexed_ext(
+    pub unsafe fn cmd_end_query_indexed(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         query_pool: crate::vk::QueryPool,
         query: u32,
         index: u32,
     ) {
-        (self.fp.cmd_end_query_indexed_ext)(command_buffer, query_pool, query, index)
+        (self.fp.cmd_end_query_indexed)(command_buffer, query_pool, query, index)
     }
     ///vkCmdDrawIndirectByteCountEXT
     #[inline]
-    pub unsafe fn cmd_draw_indirect_byte_count_ext(
+    pub unsafe fn cmd_draw_indirect_byte_count(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         instance_count: u32,
@@ -309,7 +303,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_draw_indirect_byte_count_ext)(
+            .cmd_draw_indirect_byte_count)(
             command_buffer,
             instance_count,
             first_instance,

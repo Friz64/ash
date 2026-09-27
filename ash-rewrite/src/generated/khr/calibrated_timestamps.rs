@@ -15,7 +15,7 @@ impl TimeDomainKHR {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_calibrateable_time_domains_khr: crate::vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR,
+    pub get_physical_device_calibrateable_time_domains: crate::vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -29,8 +29,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_calibrateable_time_domains_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_calibrateable_time_domains_khr(
+            get_physical_device_calibrateable_time_domains: unsafe {
+                unsafe extern "system" fn get_physical_device_calibrateable_time_domains(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
                     _: *mut crate::vk::TimeDomainKHR,
@@ -41,7 +41,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceCalibrateableTimeDomainsKHR");
                 if val.is_null() {
-                    get_physical_device_calibrateable_time_domains_khr
+                    get_physical_device_calibrateable_time_domains
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -72,13 +72,13 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceCalibrateableTimeDomainsKHR
     #[inline]
-    pub unsafe fn get_physical_device_calibrateable_time_domains_khr(
+    pub unsafe fn get_physical_device_calibrateable_time_domains(
         &self,
         physical_device: crate::vk::PhysicalDevice,
     ) -> crate::VkResult<Vec<crate::vk::TimeDomainKHR>> {
         crate::read_into_uninitialized_vector(|time_domain_count, time_domains| (self
             .fp
-            .get_physical_device_calibrateable_time_domains_khr)(
+            .get_physical_device_calibrateable_time_domains)(
             physical_device,
             time_domain_count,
             time_domains,
@@ -87,7 +87,7 @@ impl Instance {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_calibrated_timestamps_khr: crate::vk::PFN_vkGetCalibratedTimestampsKHR,
+    pub get_calibrated_timestamps: crate::vk::PFN_vkGetCalibratedTimestampsKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -101,8 +101,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_calibrated_timestamps_khr: unsafe {
-                unsafe extern "system" fn get_calibrated_timestamps_khr(
+            get_calibrated_timestamps: unsafe {
+                unsafe extern "system" fn get_calibrated_timestamps(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::CalibratedTimestampInfoKHR<'_>,
@@ -113,7 +113,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetCalibratedTimestampsKHR");
                 if val.is_null() {
-                    get_calibrated_timestamps_khr
+                    get_calibrated_timestamps
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -144,7 +144,7 @@ impl Device {
     }
     ///vkGetCalibratedTimestampsKHR
     #[inline]
-    pub unsafe fn get_calibrated_timestamps_khr(
+    pub unsafe fn get_calibrated_timestamps(
         &self,
         device: crate::vk::Device,
         timestamp_infos: &[crate::vk::CalibratedTimestampInfoKHR<'_>],
@@ -153,7 +153,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_calibrated_timestamps_khr)(
+            .get_calibrated_timestamps)(
                 device,
                 timestamp_infos.len() as _,
                 timestamp_infos.as_ptr(),

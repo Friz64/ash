@@ -130,15 +130,15 @@ impl crate::vk::ShaderCreateFlagBitsEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_execute_generated_commands_ext: crate::vk::PFN_vkCmdExecuteGeneratedCommandsEXT,
-    pub cmd_preprocess_generated_commands_ext: crate::vk::PFN_vkCmdPreprocessGeneratedCommandsEXT,
-    pub get_generated_commands_memory_requirements_ext: crate::vk::PFN_vkGetGeneratedCommandsMemoryRequirementsEXT,
-    pub create_indirect_commands_layout_ext: crate::vk::PFN_vkCreateIndirectCommandsLayoutEXT,
-    pub destroy_indirect_commands_layout_ext: crate::vk::PFN_vkDestroyIndirectCommandsLayoutEXT,
-    pub create_indirect_execution_set_ext: crate::vk::PFN_vkCreateIndirectExecutionSetEXT,
-    pub destroy_indirect_execution_set_ext: crate::vk::PFN_vkDestroyIndirectExecutionSetEXT,
-    pub update_indirect_execution_set_pipeline_ext: crate::vk::PFN_vkUpdateIndirectExecutionSetPipelineEXT,
-    pub update_indirect_execution_set_shader_ext: crate::vk::PFN_vkUpdateIndirectExecutionSetShaderEXT,
+    pub cmd_execute_generated_commands: crate::vk::PFN_vkCmdExecuteGeneratedCommandsEXT,
+    pub cmd_preprocess_generated_commands: crate::vk::PFN_vkCmdPreprocessGeneratedCommandsEXT,
+    pub get_generated_commands_memory_requirements: crate::vk::PFN_vkGetGeneratedCommandsMemoryRequirementsEXT,
+    pub create_indirect_commands_layout: crate::vk::PFN_vkCreateIndirectCommandsLayoutEXT,
+    pub destroy_indirect_commands_layout: crate::vk::PFN_vkDestroyIndirectCommandsLayoutEXT,
+    pub create_indirect_execution_set: crate::vk::PFN_vkCreateIndirectExecutionSetEXT,
+    pub destroy_indirect_execution_set: crate::vk::PFN_vkDestroyIndirectExecutionSetEXT,
+    pub update_indirect_execution_set_pipeline: crate::vk::PFN_vkUpdateIndirectExecutionSetPipelineEXT,
+    pub update_indirect_execution_set_shader: crate::vk::PFN_vkUpdateIndirectExecutionSetShaderEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -152,8 +152,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_execute_generated_commands_ext: unsafe {
-                unsafe extern "system" fn cmd_execute_generated_commands_ext(
+            cmd_execute_generated_commands: unsafe {
+                unsafe extern "system" fn cmd_execute_generated_commands(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                     _: *const crate::vk::GeneratedCommandsInfoEXT<'_>,
@@ -162,13 +162,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdExecuteGeneratedCommandsEXT");
                 if val.is_null() {
-                    cmd_execute_generated_commands_ext
+                    cmd_execute_generated_commands
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_preprocess_generated_commands_ext: unsafe {
-                unsafe extern "system" fn cmd_preprocess_generated_commands_ext(
+            cmd_preprocess_generated_commands: unsafe {
+                unsafe extern "system" fn cmd_preprocess_generated_commands(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::GeneratedCommandsInfoEXT<'_>,
                     _: crate::vk::CommandBuffer,
@@ -177,13 +177,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdPreprocessGeneratedCommandsEXT");
                 if val.is_null() {
-                    cmd_preprocess_generated_commands_ext
+                    cmd_preprocess_generated_commands
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_generated_commands_memory_requirements_ext: unsafe {
-                unsafe extern "system" fn get_generated_commands_memory_requirements_ext(
+            get_generated_commands_memory_requirements: unsafe {
+                unsafe extern "system" fn get_generated_commands_memory_requirements(
                     _: crate::vk::Device,
                     _: *const crate::vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>,
                     _: *mut crate::vk::MemoryRequirements2<'_>,
@@ -192,13 +192,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetGeneratedCommandsMemoryRequirementsEXT");
                 if val.is_null() {
-                    get_generated_commands_memory_requirements_ext
+                    get_generated_commands_memory_requirements
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            create_indirect_commands_layout_ext: unsafe {
-                unsafe extern "system" fn create_indirect_commands_layout_ext(
+            create_indirect_commands_layout: unsafe {
+                unsafe extern "system" fn create_indirect_commands_layout(
                     _: crate::vk::Device,
                     _: *const crate::vk::IndirectCommandsLayoutCreateInfoEXT<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -208,13 +208,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateIndirectCommandsLayoutEXT");
                 if val.is_null() {
-                    create_indirect_commands_layout_ext
+                    create_indirect_commands_layout
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_indirect_commands_layout_ext: unsafe {
-                unsafe extern "system" fn destroy_indirect_commands_layout_ext(
+            destroy_indirect_commands_layout: unsafe {
+                unsafe extern "system" fn destroy_indirect_commands_layout(
                     _: crate::vk::Device,
                     _: crate::vk::IndirectCommandsLayoutEXT,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -223,13 +223,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyIndirectCommandsLayoutEXT");
                 if val.is_null() {
-                    destroy_indirect_commands_layout_ext
+                    destroy_indirect_commands_layout
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            create_indirect_execution_set_ext: unsafe {
-                unsafe extern "system" fn create_indirect_execution_set_ext(
+            create_indirect_execution_set: unsafe {
+                unsafe extern "system" fn create_indirect_execution_set(
                     _: crate::vk::Device,
                     _: *const crate::vk::IndirectExecutionSetCreateInfoEXT<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -239,13 +239,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateIndirectExecutionSetEXT");
                 if val.is_null() {
-                    create_indirect_execution_set_ext
+                    create_indirect_execution_set
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_indirect_execution_set_ext: unsafe {
-                unsafe extern "system" fn destroy_indirect_execution_set_ext(
+            destroy_indirect_execution_set: unsafe {
+                unsafe extern "system" fn destroy_indirect_execution_set(
                     _: crate::vk::Device,
                     _: crate::vk::IndirectExecutionSetEXT,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -254,13 +254,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyIndirectExecutionSetEXT");
                 if val.is_null() {
-                    destroy_indirect_execution_set_ext
+                    destroy_indirect_execution_set
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            update_indirect_execution_set_pipeline_ext: unsafe {
-                unsafe extern "system" fn update_indirect_execution_set_pipeline_ext(
+            update_indirect_execution_set_pipeline: unsafe {
+                unsafe extern "system" fn update_indirect_execution_set_pipeline(
                     _: crate::vk::Device,
                     _: crate::vk::IndirectExecutionSetEXT,
                     _: u32,
@@ -270,13 +270,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkUpdateIndirectExecutionSetPipelineEXT");
                 if val.is_null() {
-                    update_indirect_execution_set_pipeline_ext
+                    update_indirect_execution_set_pipeline
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            update_indirect_execution_set_shader_ext: unsafe {
-                unsafe extern "system" fn update_indirect_execution_set_shader_ext(
+            update_indirect_execution_set_shader: unsafe {
+                unsafe extern "system" fn update_indirect_execution_set_shader(
                     _: crate::vk::Device,
                     _: crate::vk::IndirectExecutionSetEXT,
                     _: u32,
@@ -286,7 +286,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkUpdateIndirectExecutionSetShaderEXT");
                 if val.is_null() {
-                    update_indirect_execution_set_shader_ext
+                    update_indirect_execution_set_shader
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -317,7 +317,7 @@ impl Device {
     }
     ///vkCmdExecuteGeneratedCommandsEXT
     #[inline]
-    pub unsafe fn cmd_execute_generated_commands_ext(
+    pub unsafe fn cmd_execute_generated_commands(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         is_preprocessed: crate::vk::Bool32,
@@ -325,7 +325,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_execute_generated_commands_ext)(
+            .cmd_execute_generated_commands)(
             command_buffer,
             is_preprocessed,
             generated_commands_info,
@@ -333,7 +333,7 @@ impl Device {
     }
     ///vkCmdPreprocessGeneratedCommandsEXT
     #[inline]
-    pub unsafe fn cmd_preprocess_generated_commands_ext(
+    pub unsafe fn cmd_preprocess_generated_commands(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         generated_commands_info: &crate::vk::GeneratedCommandsInfoEXT<'_>,
@@ -341,7 +341,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_preprocess_generated_commands_ext)(
+            .cmd_preprocess_generated_commands)(
             command_buffer,
             generated_commands_info,
             state_command_buffer,
@@ -349,7 +349,7 @@ impl Device {
     }
     ///vkGetGeneratedCommandsMemoryRequirementsEXT
     #[inline]
-    pub unsafe fn get_generated_commands_memory_requirements_ext(
+    pub unsafe fn get_generated_commands_memory_requirements(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>,
@@ -357,7 +357,7 @@ impl Device {
     ) {
         (self
             .fp
-            .get_generated_commands_memory_requirements_ext)(
+            .get_generated_commands_memory_requirements)(
             device,
             info,
             memory_requirements,
@@ -365,7 +365,7 @@ impl Device {
     }
     ///vkCreateIndirectCommandsLayoutEXT
     #[inline]
-    pub unsafe fn create_indirect_commands_layout_ext(
+    pub unsafe fn create_indirect_commands_layout(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::IndirectCommandsLayoutCreateInfoEXT<'_>,
@@ -374,7 +374,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_indirect_commands_layout_ext)(
+            .create_indirect_commands_layout)(
                 device,
                 create_info,
                 allocator,
@@ -384,7 +384,7 @@ impl Device {
     }
     ///vkDestroyIndirectCommandsLayoutEXT
     #[inline]
-    pub unsafe fn destroy_indirect_commands_layout_ext(
+    pub unsafe fn destroy_indirect_commands_layout(
         &self,
         device: crate::vk::Device,
         indirect_commands_layout: crate::vk::IndirectCommandsLayoutEXT,
@@ -392,7 +392,7 @@ impl Device {
     ) {
         (self
             .fp
-            .destroy_indirect_commands_layout_ext)(
+            .destroy_indirect_commands_layout)(
             device,
             indirect_commands_layout,
             allocator,
@@ -400,7 +400,7 @@ impl Device {
     }
     ///vkCreateIndirectExecutionSetEXT
     #[inline]
-    pub unsafe fn create_indirect_execution_set_ext(
+    pub unsafe fn create_indirect_execution_set(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::IndirectExecutionSetCreateInfoEXT<'_>,
@@ -409,7 +409,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_indirect_execution_set_ext)(
+            .create_indirect_execution_set)(
                 device,
                 create_info,
                 allocator,
@@ -419,7 +419,7 @@ impl Device {
     }
     ///vkDestroyIndirectExecutionSetEXT
     #[inline]
-    pub unsafe fn destroy_indirect_execution_set_ext(
+    pub unsafe fn destroy_indirect_execution_set(
         &self,
         device: crate::vk::Device,
         indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
@@ -427,15 +427,11 @@ impl Device {
     ) {
         (self
             .fp
-            .destroy_indirect_execution_set_ext)(
-            device,
-            indirect_execution_set,
-            allocator,
-        )
+            .destroy_indirect_execution_set)(device, indirect_execution_set, allocator)
     }
     ///vkUpdateIndirectExecutionSetPipelineEXT
     #[inline]
-    pub unsafe fn update_indirect_execution_set_pipeline_ext(
+    pub unsafe fn update_indirect_execution_set_pipeline(
         &self,
         device: crate::vk::Device,
         indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
@@ -443,7 +439,7 @@ impl Device {
     ) {
         (self
             .fp
-            .update_indirect_execution_set_pipeline_ext)(
+            .update_indirect_execution_set_pipeline)(
             device,
             indirect_execution_set,
             execution_set_writes.len() as _,
@@ -452,7 +448,7 @@ impl Device {
     }
     ///vkUpdateIndirectExecutionSetShaderEXT
     #[inline]
-    pub unsafe fn update_indirect_execution_set_shader_ext(
+    pub unsafe fn update_indirect_execution_set_shader(
         &self,
         device: crate::vk::Device,
         indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
@@ -460,7 +456,7 @@ impl Device {
     ) {
         (self
             .fp
-            .update_indirect_execution_set_shader_ext)(
+            .update_indirect_execution_set_shader)(
             device,
             indirect_execution_set,
             execution_set_writes.len() as _,

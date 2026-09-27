@@ -10,7 +10,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_pipeline_properties_ext: crate::vk::PFN_vkGetPipelinePropertiesEXT,
+    pub get_pipeline_properties: crate::vk::PFN_vkGetPipelinePropertiesEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -24,8 +24,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_pipeline_properties_ext: unsafe {
-                unsafe extern "system" fn get_pipeline_properties_ext(
+            get_pipeline_properties: unsafe {
+                unsafe extern "system" fn get_pipeline_properties(
                     _: crate::vk::Device,
                     _: *const crate::vk::PipelineInfoKHR<'_>,
                     _: *mut crate::vk::BaseOutStructure<'_>,
@@ -34,7 +34,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetPipelinePropertiesEXT");
                 if val.is_null() {
-                    get_pipeline_properties_ext
+                    get_pipeline_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -65,13 +65,13 @@ impl Device {
     }
     ///vkGetPipelinePropertiesEXT
     #[inline]
-    pub unsafe fn get_pipeline_properties_ext(
+    pub unsafe fn get_pipeline_properties(
         &self,
         device: crate::vk::Device,
         pipeline_info: &crate::vk::PipelineInfoKHR<'_>,
         pipeline_properties: &mut crate::vk::BaseOutStructure<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_pipeline_properties_ext)(device, pipeline_info, pipeline_properties)
+        (self.fp.get_pipeline_properties)(device, pipeline_info, pipeline_properties)
             .result()
     }
 }

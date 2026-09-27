@@ -26,7 +26,7 @@ impl crate::vk::ImageCreateFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_sample_locations_ext: crate::vk::PFN_vkCmdSetSampleLocationsEXT,
+    pub cmd_set_sample_locations: crate::vk::PFN_vkCmdSetSampleLocationsEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -40,8 +40,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_sample_locations_ext: unsafe {
-                unsafe extern "system" fn cmd_set_sample_locations_ext(
+            cmd_set_sample_locations: unsafe {
+                unsafe extern "system" fn cmd_set_sample_locations(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::SampleLocationsInfoEXT<'_>,
                 ) {
@@ -49,7 +49,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetSampleLocationsEXT");
                 if val.is_null() {
-                    cmd_set_sample_locations_ext
+                    cmd_set_sample_locations
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -80,17 +80,17 @@ impl Device {
     }
     ///vkCmdSetSampleLocationsEXT
     #[inline]
-    pub unsafe fn cmd_set_sample_locations_ext(
+    pub unsafe fn cmd_set_sample_locations(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         sample_locations_info: &crate::vk::SampleLocationsInfoEXT<'_>,
     ) {
-        (self.fp.cmd_set_sample_locations_ext)(command_buffer, sample_locations_info)
+        (self.fp.cmd_set_sample_locations)(command_buffer, sample_locations_info)
     }
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_multisample_properties_ext: crate::vk::PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT,
+    pub get_physical_device_multisample_properties: crate::vk::PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -104,8 +104,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_multisample_properties_ext: unsafe {
-                unsafe extern "system" fn get_physical_device_multisample_properties_ext(
+            get_physical_device_multisample_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_multisample_properties(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::SampleCountFlagBits,
                     _: *mut crate::vk::MultisamplePropertiesEXT<'_>,
@@ -114,7 +114,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceMultisamplePropertiesEXT");
                 if val.is_null() {
-                    get_physical_device_multisample_properties_ext
+                    get_physical_device_multisample_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -145,7 +145,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceMultisamplePropertiesEXT
     #[inline]
-    pub unsafe fn get_physical_device_multisample_properties_ext(
+    pub unsafe fn get_physical_device_multisample_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         samples: crate::vk::SampleCountFlagBits,
@@ -153,7 +153,7 @@ impl Instance {
     ) {
         (self
             .fp
-            .get_physical_device_multisample_properties_ext)(
+            .get_physical_device_multisample_properties)(
             physical_device,
             samples,
             multisample_properties,

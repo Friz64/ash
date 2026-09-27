@@ -11,8 +11,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_semaphore_win32_handle_khr: crate::vk::PFN_vkGetSemaphoreWin32HandleKHR,
-    pub import_semaphore_win32_handle_khr: crate::vk::PFN_vkImportSemaphoreWin32HandleKHR,
+    pub get_semaphore_win32_handle: crate::vk::PFN_vkGetSemaphoreWin32HandleKHR,
+    pub import_semaphore_win32_handle: crate::vk::PFN_vkImportSemaphoreWin32HandleKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -26,8 +26,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_semaphore_win32_handle_khr: unsafe {
-                unsafe extern "system" fn get_semaphore_win32_handle_khr(
+            get_semaphore_win32_handle: unsafe {
+                unsafe extern "system" fn get_semaphore_win32_handle(
                     _: crate::vk::Device,
                     _: *const crate::vk::SemaphoreGetWin32HandleInfoKHR<'_>,
                     _: *mut crate::platform_types::HANDLE,
@@ -36,13 +36,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetSemaphoreWin32HandleKHR");
                 if val.is_null() {
-                    get_semaphore_win32_handle_khr
+                    get_semaphore_win32_handle
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            import_semaphore_win32_handle_khr: unsafe {
-                unsafe extern "system" fn import_semaphore_win32_handle_khr(
+            import_semaphore_win32_handle: unsafe {
+                unsafe extern "system" fn import_semaphore_win32_handle(
                     _: crate::vk::Device,
                     _: *const crate::vk::ImportSemaphoreWin32HandleInfoKHR<'_>,
                 ) -> crate::vk::Result {
@@ -50,7 +50,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkImportSemaphoreWin32HandleKHR");
                 if val.is_null() {
-                    import_semaphore_win32_handle_khr
+                    import_semaphore_win32_handle
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -81,18 +81,18 @@ impl Device {
     }
     ///vkGetSemaphoreWin32HandleKHR
     #[inline]
-    pub unsafe fn get_semaphore_win32_handle_khr(
+    pub unsafe fn get_semaphore_win32_handle(
         &self,
         device: crate::vk::Device,
         get_win32_handle_info: &crate::vk::SemaphoreGetWin32HandleInfoKHR<'_>,
         handle: &mut crate::platform_types::HANDLE,
     ) -> crate::VkResult<()> {
-        (self.fp.get_semaphore_win32_handle_khr)(device, get_win32_handle_info, handle)
+        (self.fp.get_semaphore_win32_handle)(device, get_win32_handle_info, handle)
             .result()
     }
     ///vkImportSemaphoreWin32HandleKHR
     #[inline]
-    pub unsafe fn import_semaphore_win32_handle_khr(
+    pub unsafe fn import_semaphore_win32_handle(
         &self,
         device: crate::vk::Device,
         import_semaphore_win32_handle_info: &crate::vk::ImportSemaphoreWin32HandleInfoKHR<
@@ -101,10 +101,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .import_semaphore_win32_handle_khr)(
-                device,
-                import_semaphore_win32_handle_info,
-            )
+            .import_semaphore_win32_handle)(device, import_semaphore_win32_handle_info)
             .result()
     }
 }

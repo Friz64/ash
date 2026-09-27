@@ -201,18 +201,18 @@ impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub compile_deferred_nv: crate::vk::PFN_vkCompileDeferredNV,
-    pub create_acceleration_structure_nv: crate::vk::PFN_vkCreateAccelerationStructureNV,
-    pub destroy_acceleration_structure_nv: crate::vk::PFN_vkDestroyAccelerationStructureNV,
-    pub get_acceleration_structure_memory_requirements_nv: crate::vk::PFN_vkGetAccelerationStructureMemoryRequirementsNV,
-    pub bind_acceleration_structure_memory_nv: crate::vk::PFN_vkBindAccelerationStructureMemoryNV,
-    pub cmd_copy_acceleration_structure_nv: crate::vk::PFN_vkCmdCopyAccelerationStructureNV,
-    pub cmd_write_acceleration_structures_properties_nv: crate::vk::PFN_vkCmdWriteAccelerationStructuresPropertiesNV,
-    pub cmd_build_acceleration_structure_nv: crate::vk::PFN_vkCmdBuildAccelerationStructureNV,
-    pub cmd_trace_rays_nv: crate::vk::PFN_vkCmdTraceRaysNV,
-    pub get_acceleration_structure_handle_nv: crate::vk::PFN_vkGetAccelerationStructureHandleNV,
-    pub create_ray_tracing_pipelines_nv: crate::vk::PFN_vkCreateRayTracingPipelinesNV,
-    pub get_ray_tracing_shader_group_handles_nv: crate::vk::PFN_vkGetRayTracingShaderGroupHandlesNV,
+    pub compile_deferred: crate::vk::PFN_vkCompileDeferredNV,
+    pub create_acceleration_structure: crate::vk::PFN_vkCreateAccelerationStructureNV,
+    pub destroy_acceleration_structure: crate::vk::PFN_vkDestroyAccelerationStructureNV,
+    pub get_acceleration_structure_memory_requirements: crate::vk::PFN_vkGetAccelerationStructureMemoryRequirementsNV,
+    pub bind_acceleration_structure_memory: crate::vk::PFN_vkBindAccelerationStructureMemoryNV,
+    pub cmd_copy_acceleration_structure: crate::vk::PFN_vkCmdCopyAccelerationStructureNV,
+    pub cmd_write_acceleration_structures_properties: crate::vk::PFN_vkCmdWriteAccelerationStructuresPropertiesNV,
+    pub cmd_build_acceleration_structure: crate::vk::PFN_vkCmdBuildAccelerationStructureNV,
+    pub cmd_trace_rays: crate::vk::PFN_vkCmdTraceRaysNV,
+    pub get_acceleration_structure_handle: crate::vk::PFN_vkGetAccelerationStructureHandleNV,
+    pub create_ray_tracing_pipelines: crate::vk::PFN_vkCreateRayTracingPipelinesNV,
+    pub get_ray_tracing_shader_group_handles: crate::vk::PFN_vkGetRayTracingShaderGroupHandlesNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -226,8 +226,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            compile_deferred_nv: unsafe {
-                unsafe extern "system" fn compile_deferred_nv(
+            compile_deferred: unsafe {
+                unsafe extern "system" fn compile_deferred(
                     _: crate::vk::Device,
                     _: crate::vk::Pipeline,
                     _: u32,
@@ -236,13 +236,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCompileDeferredNV");
                 if val.is_null() {
-                    compile_deferred_nv
+                    compile_deferred
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            create_acceleration_structure_nv: unsafe {
-                unsafe extern "system" fn create_acceleration_structure_nv(
+            create_acceleration_structure: unsafe {
+                unsafe extern "system" fn create_acceleration_structure(
                     _: crate::vk::Device,
                     _: *const crate::vk::AccelerationStructureCreateInfoNV<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -252,13 +252,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateAccelerationStructureNV");
                 if val.is_null() {
-                    create_acceleration_structure_nv
+                    create_acceleration_structure
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_acceleration_structure_nv: unsafe {
-                unsafe extern "system" fn destroy_acceleration_structure_nv(
+            destroy_acceleration_structure: unsafe {
+                unsafe extern "system" fn destroy_acceleration_structure(
                     _: crate::vk::Device,
                     _: crate::vk::AccelerationStructureNV,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -267,13 +267,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyAccelerationStructureNV");
                 if val.is_null() {
-                    destroy_acceleration_structure_nv
+                    destroy_acceleration_structure
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_acceleration_structure_memory_requirements_nv: unsafe {
-                unsafe extern "system" fn get_acceleration_structure_memory_requirements_nv(
+            get_acceleration_structure_memory_requirements: unsafe {
+                unsafe extern "system" fn get_acceleration_structure_memory_requirements(
                     _: crate::vk::Device,
                     _: *const crate::vk::AccelerationStructureMemoryRequirementsInfoNV<
                         '_,
@@ -286,13 +286,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetAccelerationStructureMemoryRequirementsNV");
                 if val.is_null() {
-                    get_acceleration_structure_memory_requirements_nv
+                    get_acceleration_structure_memory_requirements
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            bind_acceleration_structure_memory_nv: unsafe {
-                unsafe extern "system" fn bind_acceleration_structure_memory_nv(
+            bind_acceleration_structure_memory: unsafe {
+                unsafe extern "system" fn bind_acceleration_structure_memory(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::BindAccelerationStructureMemoryInfoNV<'_>,
@@ -301,13 +301,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkBindAccelerationStructureMemoryNV");
                 if val.is_null() {
-                    bind_acceleration_structure_memory_nv
+                    bind_acceleration_structure_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_copy_acceleration_structure_nv: unsafe {
-                unsafe extern "system" fn cmd_copy_acceleration_structure_nv(
+            cmd_copy_acceleration_structure: unsafe {
+                unsafe extern "system" fn cmd_copy_acceleration_structure(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::AccelerationStructureNV,
                     _: crate::vk::AccelerationStructureNV,
@@ -317,13 +317,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyAccelerationStructureNV");
                 if val.is_null() {
-                    cmd_copy_acceleration_structure_nv
+                    cmd_copy_acceleration_structure
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_write_acceleration_structures_properties_nv: unsafe {
-                unsafe extern "system" fn cmd_write_acceleration_structures_properties_nv(
+            cmd_write_acceleration_structures_properties: unsafe {
+                unsafe extern "system" fn cmd_write_acceleration_structures_properties(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::AccelerationStructureNV,
@@ -335,13 +335,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdWriteAccelerationStructuresPropertiesNV");
                 if val.is_null() {
-                    cmd_write_acceleration_structures_properties_nv
+                    cmd_write_acceleration_structures_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_build_acceleration_structure_nv: unsafe {
-                unsafe extern "system" fn cmd_build_acceleration_structure_nv(
+            cmd_build_acceleration_structure: unsafe {
+                unsafe extern "system" fn cmd_build_acceleration_structure(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::AccelerationStructureInfoNV<'_>,
                     _: crate::vk::Buffer,
@@ -356,13 +356,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBuildAccelerationStructureNV");
                 if val.is_null() {
-                    cmd_build_acceleration_structure_nv
+                    cmd_build_acceleration_structure
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_trace_rays_nv: unsafe {
-                unsafe extern "system" fn cmd_trace_rays_nv(
+            cmd_trace_rays: unsafe {
+                unsafe extern "system" fn cmd_trace_rays(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Buffer,
                     _: crate::vk::DeviceSize,
@@ -382,14 +382,10 @@ impl DeviceFn {
                     panic!("unable to load vkCmdTraceRaysNV")
                 }
                 let val = _f(c"vkCmdTraceRaysNV");
-                if val.is_null() {
-                    cmd_trace_rays_nv
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_trace_rays } else { ::core::mem::transmute(val) }
             },
-            get_acceleration_structure_handle_nv: unsafe {
-                unsafe extern "system" fn get_acceleration_structure_handle_nv(
+            get_acceleration_structure_handle: unsafe {
+                unsafe extern "system" fn get_acceleration_structure_handle(
                     _: crate::vk::Device,
                     _: crate::vk::AccelerationStructureNV,
                     _: usize,
@@ -399,13 +395,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetAccelerationStructureHandleNV");
                 if val.is_null() {
-                    get_acceleration_structure_handle_nv
+                    get_acceleration_structure_handle
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            create_ray_tracing_pipelines_nv: unsafe {
-                unsafe extern "system" fn create_ray_tracing_pipelines_nv(
+            create_ray_tracing_pipelines: unsafe {
+                unsafe extern "system" fn create_ray_tracing_pipelines(
                     _: crate::vk::Device,
                     _: crate::vk::PipelineCache,
                     _: u32,
@@ -417,13 +413,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateRayTracingPipelinesNV");
                 if val.is_null() {
-                    create_ray_tracing_pipelines_nv
+                    create_ray_tracing_pipelines
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_ray_tracing_shader_group_handles_nv: unsafe {
-                unsafe extern "system" fn get_ray_tracing_shader_group_handles_nv(
+            get_ray_tracing_shader_group_handles: unsafe {
+                unsafe extern "system" fn get_ray_tracing_shader_group_handles(
                     _: crate::vk::Device,
                     _: crate::vk::Pipeline,
                     _: u32,
@@ -435,7 +431,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetRayTracingShaderGroupHandlesNV");
                 if val.is_null() {
-                    get_ray_tracing_shader_group_handles_nv
+                    get_ray_tracing_shader_group_handles
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -466,17 +462,17 @@ impl Device {
     }
     ///vkCompileDeferredNV
     #[inline]
-    pub unsafe fn compile_deferred_nv(
+    pub unsafe fn compile_deferred(
         &self,
         device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
         shader: u32,
     ) -> crate::VkResult<()> {
-        (self.fp.compile_deferred_nv)(device, pipeline, shader).result()
+        (self.fp.compile_deferred)(device, pipeline, shader).result()
     }
     ///vkCreateAccelerationStructureNV
     #[inline]
-    pub unsafe fn create_acceleration_structure_nv(
+    pub unsafe fn create_acceleration_structure(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::AccelerationStructureCreateInfoNV<'_>,
@@ -485,7 +481,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_acceleration_structure_nv)(
+            .create_acceleration_structure)(
                 device,
                 create_info,
                 allocator,
@@ -495,7 +491,7 @@ impl Device {
     }
     ///vkDestroyAccelerationStructureNV
     #[inline]
-    pub unsafe fn destroy_acceleration_structure_nv(
+    pub unsafe fn destroy_acceleration_structure(
         &self,
         device: crate::vk::Device,
         acceleration_structure: crate::vk::AccelerationStructureNV,
@@ -503,15 +499,11 @@ impl Device {
     ) {
         (self
             .fp
-            .destroy_acceleration_structure_nv)(
-            device,
-            acceleration_structure,
-            allocator,
-        )
+            .destroy_acceleration_structure)(device, acceleration_structure, allocator)
     }
     ///vkGetAccelerationStructureMemoryRequirementsNV
     #[inline]
-    pub unsafe fn get_acceleration_structure_memory_requirements_nv(
+    pub unsafe fn get_acceleration_structure_memory_requirements(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
@@ -519,7 +511,7 @@ impl Device {
     ) {
         (self
             .fp
-            .get_acceleration_structure_memory_requirements_nv)(
+            .get_acceleration_structure_memory_requirements)(
             device,
             info,
             memory_requirements,
@@ -527,14 +519,14 @@ impl Device {
     }
     ///vkBindAccelerationStructureMemoryNV
     #[inline]
-    pub unsafe fn bind_acceleration_structure_memory_nv(
+    pub unsafe fn bind_acceleration_structure_memory(
         &self,
         device: crate::vk::Device,
         bind_infos: &[crate::vk::BindAccelerationStructureMemoryInfoNV<'_>],
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .bind_acceleration_structure_memory_nv)(
+            .bind_acceleration_structure_memory)(
                 device,
                 bind_infos.len() as _,
                 bind_infos.as_ptr(),
@@ -543,18 +535,18 @@ impl Device {
     }
     ///vkCmdCopyAccelerationStructureNV
     #[inline]
-    pub unsafe fn cmd_copy_acceleration_structure_nv(
+    pub unsafe fn cmd_copy_acceleration_structure(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         dst: crate::vk::AccelerationStructureNV,
         src: crate::vk::AccelerationStructureNV,
         mode: crate::vk::CopyAccelerationStructureModeKHR,
     ) {
-        (self.fp.cmd_copy_acceleration_structure_nv)(command_buffer, dst, src, mode)
+        (self.fp.cmd_copy_acceleration_structure)(command_buffer, dst, src, mode)
     }
     ///vkCmdWriteAccelerationStructuresPropertiesNV
     #[inline]
-    pub unsafe fn cmd_write_acceleration_structures_properties_nv(
+    pub unsafe fn cmd_write_acceleration_structures_properties(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         acceleration_structures: &[crate::vk::AccelerationStructureNV],
@@ -564,7 +556,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_write_acceleration_structures_properties_nv)(
+            .cmd_write_acceleration_structures_properties)(
             command_buffer,
             acceleration_structures.len() as _,
             acceleration_structures.as_ptr(),
@@ -575,7 +567,7 @@ impl Device {
     }
     ///vkCmdBuildAccelerationStructureNV
     #[inline]
-    pub unsafe fn cmd_build_acceleration_structure_nv(
+    pub unsafe fn cmd_build_acceleration_structure(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::AccelerationStructureInfoNV<'_>,
@@ -589,7 +581,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_build_acceleration_structure_nv)(
+            .cmd_build_acceleration_structure)(
             command_buffer,
             info,
             instance_data,
@@ -603,7 +595,7 @@ impl Device {
     }
     ///vkCmdTraceRaysNV
     #[inline]
-    pub unsafe fn cmd_trace_rays_nv(
+    pub unsafe fn cmd_trace_rays(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         raygen_shader_binding_table_buffer: crate::vk::Buffer,
@@ -623,7 +615,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_trace_rays_nv)(
+            .cmd_trace_rays)(
             command_buffer,
             raygen_shader_binding_table_buffer,
             raygen_shader_binding_offset,
@@ -643,7 +635,7 @@ impl Device {
     }
     ///vkGetAccelerationStructureHandleNV
     #[inline]
-    pub unsafe fn get_acceleration_structure_handle_nv(
+    pub unsafe fn get_acceleration_structure_handle(
         &self,
         device: crate::vk::Device,
         acceleration_structure: crate::vk::AccelerationStructureNV,
@@ -651,7 +643,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_acceleration_structure_handle_nv)(
+            .get_acceleration_structure_handle)(
                 device,
                 acceleration_structure,
                 data_size,
@@ -661,7 +653,7 @@ impl Device {
     }
     ///vkCreateRayTracingPipelinesNV
     #[inline]
-    pub unsafe fn create_ray_tracing_pipelines_nv(
+    pub unsafe fn create_ray_tracing_pipelines(
         &self,
         device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
@@ -671,7 +663,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_ray_tracing_pipelines_nv)(
+            .create_ray_tracing_pipelines)(
                 device,
                 pipeline_cache,
                 create_infos.len() as _,
@@ -683,7 +675,7 @@ impl Device {
     }
     ///vkGetRayTracingShaderGroupHandlesKHR
     #[inline]
-    pub unsafe fn get_ray_tracing_shader_group_handles_nv(
+    pub unsafe fn get_ray_tracing_shader_group_handles(
         &self,
         device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
@@ -693,7 +685,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_ray_tracing_shader_group_handles_nv)(
+            .get_ray_tracing_shader_group_handles)(
                 device,
                 pipeline,
                 first_group,

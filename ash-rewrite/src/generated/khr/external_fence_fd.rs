@@ -9,8 +9,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_fence_fd_khr: crate::vk::PFN_vkGetFenceFdKHR,
-    pub import_fence_fd_khr: crate::vk::PFN_vkImportFenceFdKHR,
+    pub get_fence_fd: crate::vk::PFN_vkGetFenceFdKHR,
+    pub import_fence_fd: crate::vk::PFN_vkImportFenceFdKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -24,8 +24,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_fence_fd_khr: unsafe {
-                unsafe extern "system" fn get_fence_fd_khr(
+            get_fence_fd: unsafe {
+                unsafe extern "system" fn get_fence_fd(
                     _: crate::vk::Device,
                     _: *const crate::vk::FenceGetFdInfoKHR<'_>,
                     _: *mut core::ffi::c_int,
@@ -33,25 +33,17 @@ impl DeviceFn {
                     panic!("unable to load vkGetFenceFdKHR")
                 }
                 let val = _f(c"vkGetFenceFdKHR");
-                if val.is_null() {
-                    get_fence_fd_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_fence_fd } else { ::core::mem::transmute(val) }
             },
-            import_fence_fd_khr: unsafe {
-                unsafe extern "system" fn import_fence_fd_khr(
+            import_fence_fd: unsafe {
+                unsafe extern "system" fn import_fence_fd(
                     _: crate::vk::Device,
                     _: *const crate::vk::ImportFenceFdInfoKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkImportFenceFdKHR")
                 }
                 let val = _f(c"vkImportFenceFdKHR");
-                if val.is_null() {
-                    import_fence_fd_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { import_fence_fd } else { ::core::mem::transmute(val) }
             },
         }
     }
@@ -79,22 +71,22 @@ impl Device {
     }
     ///vkGetFenceFdKHR
     #[inline]
-    pub unsafe fn get_fence_fd_khr(
+    pub unsafe fn get_fence_fd(
         &self,
         device: crate::vk::Device,
         get_fd_info: &crate::vk::FenceGetFdInfoKHR<'_>,
         fd: &mut core::ffi::c_int,
     ) -> crate::VkResult<()> {
-        (self.fp.get_fence_fd_khr)(device, get_fd_info, fd).result()
+        (self.fp.get_fence_fd)(device, get_fd_info, fd).result()
     }
     ///vkImportFenceFdKHR
     #[inline]
-    pub unsafe fn import_fence_fd_khr(
+    pub unsafe fn import_fence_fd(
         &self,
         device: crate::vk::Device,
         import_fence_fd_info: &crate::vk::ImportFenceFdInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.import_fence_fd_khr)(device, import_fence_fd_info).result()
+        (self.fp.import_fence_fd)(device, import_fence_fd_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

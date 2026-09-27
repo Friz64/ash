@@ -32,7 +32,7 @@ impl crate::vk::FormatFeatureFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub trim_command_pool_khr: crate::vk::PFN_vkTrimCommandPoolKHR,
+    pub trim_command_pool: crate::vk::PFN_vkTrimCommandPoolKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -46,8 +46,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            trim_command_pool_khr: unsafe {
-                unsafe extern "system" fn trim_command_pool_khr(
+            trim_command_pool: unsafe {
+                unsafe extern "system" fn trim_command_pool(
                     _: crate::vk::Device,
                     _: crate::vk::CommandPool,
                     _: crate::vk::CommandPoolTrimFlags,
@@ -56,7 +56,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkTrimCommandPoolKHR");
                 if val.is_null() {
-                    trim_command_pool_khr
+                    trim_command_pool
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -87,13 +87,13 @@ impl Device {
     }
     ///vkTrimCommandPool
     #[inline]
-    pub unsafe fn trim_command_pool_khr(
+    pub unsafe fn trim_command_pool(
         &self,
         device: crate::vk::Device,
         command_pool: crate::vk::CommandPool,
         flags: crate::vk::CommandPoolTrimFlags,
     ) {
-        (self.fp.trim_command_pool_khr)(device, command_pool, flags)
+        (self.fp.trim_command_pool)(device, command_pool, flags)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

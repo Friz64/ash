@@ -8,7 +8,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_hdr_metadata_ext: crate::vk::PFN_vkSetHdrMetadataEXT,
+    pub set_hdr_metadata: crate::vk::PFN_vkSetHdrMetadataEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -22,8 +22,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            set_hdr_metadata_ext: unsafe {
-                unsafe extern "system" fn set_hdr_metadata_ext(
+            set_hdr_metadata: unsafe {
+                unsafe extern "system" fn set_hdr_metadata(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::SwapchainKHR,
@@ -33,7 +33,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkSetHdrMetadataEXT");
                 if val.is_null() {
-                    set_hdr_metadata_ext
+                    set_hdr_metadata
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,7 +64,7 @@ impl Device {
     }
     ///vkSetHdrMetadataEXT
     #[inline]
-    pub unsafe fn set_hdr_metadata_ext(
+    pub unsafe fn set_hdr_metadata(
         &self,
         device: crate::vk::Device,
         swapchains: &[crate::vk::SwapchainKHR],
@@ -72,7 +72,7 @@ impl Device {
     ) {
         (self
             .fp
-            .set_hdr_metadata_ext)(
+            .set_hdr_metadata)(
             device,
             swapchains.len() as _,
             swapchains.as_ptr(),

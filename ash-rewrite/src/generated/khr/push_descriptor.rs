@@ -22,8 +22,8 @@ impl crate::vk::DescriptorSetLayoutCreateFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_push_descriptor_set_khr: crate::vk::PFN_vkCmdPushDescriptorSetKHR,
-    pub cmd_push_descriptor_set_with_template_khr: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplateKHR,
+    pub cmd_push_descriptor_set: crate::vk::PFN_vkCmdPushDescriptorSetKHR,
+    pub cmd_push_descriptor_set_with_template: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplateKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -37,8 +37,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_push_descriptor_set_khr: unsafe {
-                unsafe extern "system" fn cmd_push_descriptor_set_khr(
+            cmd_push_descriptor_set: unsafe {
+                unsafe extern "system" fn cmd_push_descriptor_set(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::PipelineBindPoint,
                     _: crate::vk::PipelineLayout,
@@ -50,13 +50,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdPushDescriptorSetKHR");
                 if val.is_null() {
-                    cmd_push_descriptor_set_khr
+                    cmd_push_descriptor_set
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_push_descriptor_set_with_template_khr: unsafe {
-                unsafe extern "system" fn cmd_push_descriptor_set_with_template_khr(
+            cmd_push_descriptor_set_with_template: unsafe {
+                unsafe extern "system" fn cmd_push_descriptor_set_with_template(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DescriptorUpdateTemplate,
                     _: crate::vk::PipelineLayout,
@@ -67,7 +67,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdPushDescriptorSetWithTemplateKHR");
                 if val.is_null() {
-                    cmd_push_descriptor_set_with_template_khr
+                    cmd_push_descriptor_set_with_template
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -98,7 +98,7 @@ impl Device {
     }
     ///vkCmdPushDescriptorSet
     #[inline]
-    pub unsafe fn cmd_push_descriptor_set_khr(
+    pub unsafe fn cmd_push_descriptor_set(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         pipeline_bind_point: crate::vk::PipelineBindPoint,
@@ -108,7 +108,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_push_descriptor_set_khr)(
+            .cmd_push_descriptor_set)(
             command_buffer,
             pipeline_bind_point,
             layout,
@@ -119,7 +119,7 @@ impl Device {
     }
     ///vkCmdPushDescriptorSetWithTemplate
     #[inline]
-    pub unsafe fn cmd_push_descriptor_set_with_template_khr(
+    pub unsafe fn cmd_push_descriptor_set_with_template(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
@@ -129,7 +129,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_push_descriptor_set_with_template_khr)(
+            .cmd_push_descriptor_set_with_template)(
             command_buffer,
             descriptor_update_template,
             layout,

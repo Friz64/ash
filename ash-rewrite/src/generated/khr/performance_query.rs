@@ -61,8 +61,8 @@ impl PerformanceCounterDescriptionFlagBitsKHR {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub enumerate_physical_device_queue_family_performance_query_counters_khr: crate::vk::PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR,
-    pub get_physical_device_queue_family_performance_query_passes_khr: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR,
+    pub enumerate_physical_device_queue_family_performance_query_counters: crate::vk::PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR,
+    pub get_physical_device_queue_family_performance_query_passes: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -76,8 +76,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            enumerate_physical_device_queue_family_performance_query_counters_khr: unsafe {
-                unsafe extern "system" fn enumerate_physical_device_queue_family_performance_query_counters_khr(
+            enumerate_physical_device_queue_family_performance_query_counters: unsafe {
+                unsafe extern "system" fn enumerate_physical_device_queue_family_performance_query_counters(
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: *mut u32,
@@ -92,13 +92,13 @@ impl InstanceFn {
                     c"vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR",
                 );
                 if val.is_null() {
-                    enumerate_physical_device_queue_family_performance_query_counters_khr
+                    enumerate_physical_device_queue_family_performance_query_counters
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_queue_family_performance_query_passes_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_queue_family_performance_query_passes_khr(
+            get_physical_device_queue_family_performance_query_passes: unsafe {
+                unsafe extern "system" fn get_physical_device_queue_family_performance_query_passes(
                     _: crate::vk::PhysicalDevice,
                     _: *const crate::vk::QueryPoolPerformanceCreateInfoKHR<'_>,
                     _: *mut u32,
@@ -109,7 +109,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR");
                 if val.is_null() {
-                    get_physical_device_queue_family_performance_query_passes_khr
+                    get_physical_device_queue_family_performance_query_passes
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -140,14 +140,14 @@ impl Instance {
     }
     ///vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR
     #[inline]
-    pub unsafe fn enumerate_physical_device_queue_family_performance_query_counters_khr(
+    pub unsafe fn enumerate_physical_device_queue_family_performance_query_counters(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
     ) -> crate::VkResult<Vec<crate::vk::PerformanceCounterDescriptionKHR<'_>>> {
         crate::read_into_uninitialized_vector(|counter_count, counter_descriptions| (self
             .fp
-            .enumerate_physical_device_queue_family_performance_query_counters_khr)(
+            .enumerate_physical_device_queue_family_performance_query_counters)(
             physical_device,
             queue_family_index,
             counter_count,
@@ -157,7 +157,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR
     #[inline]
-    pub unsafe fn get_physical_device_queue_family_performance_query_passes_khr(
+    pub unsafe fn get_physical_device_queue_family_performance_query_passes(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         performance_query_create_info: &crate::vk::QueryPoolPerformanceCreateInfoKHR<'_>,
@@ -165,7 +165,7 @@ impl Instance {
     ) {
         (self
             .fp
-            .get_physical_device_queue_family_performance_query_passes_khr)(
+            .get_physical_device_queue_family_performance_query_passes)(
             physical_device,
             performance_query_create_info,
             num_passes,
@@ -174,8 +174,8 @@ impl Instance {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub acquire_profiling_lock_khr: crate::vk::PFN_vkAcquireProfilingLockKHR,
-    pub release_profiling_lock_khr: crate::vk::PFN_vkReleaseProfilingLockKHR,
+    pub acquire_profiling_lock: crate::vk::PFN_vkAcquireProfilingLockKHR,
+    pub release_profiling_lock: crate::vk::PFN_vkReleaseProfilingLockKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -189,8 +189,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            acquire_profiling_lock_khr: unsafe {
-                unsafe extern "system" fn acquire_profiling_lock_khr(
+            acquire_profiling_lock: unsafe {
+                unsafe extern "system" fn acquire_profiling_lock(
                     _: crate::vk::Device,
                     _: *const crate::vk::AcquireProfilingLockInfoKHR<'_>,
                 ) -> crate::vk::Result {
@@ -198,20 +198,18 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkAcquireProfilingLockKHR");
                 if val.is_null() {
-                    acquire_profiling_lock_khr
+                    acquire_profiling_lock
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            release_profiling_lock_khr: unsafe {
-                unsafe extern "system" fn release_profiling_lock_khr(
-                    _: crate::vk::Device,
-                ) {
+            release_profiling_lock: unsafe {
+                unsafe extern "system" fn release_profiling_lock(_: crate::vk::Device) {
                     panic!("unable to load vkReleaseProfilingLockKHR")
                 }
                 let val = _f(c"vkReleaseProfilingLockKHR");
                 if val.is_null() {
-                    release_profiling_lock_khr
+                    release_profiling_lock
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -242,17 +240,17 @@ impl Device {
     }
     ///vkAcquireProfilingLockKHR
     #[inline]
-    pub unsafe fn acquire_profiling_lock_khr(
+    pub unsafe fn acquire_profiling_lock(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::AcquireProfilingLockInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.acquire_profiling_lock_khr)(device, info).result()
+        (self.fp.acquire_profiling_lock)(device, info).result()
     }
     ///vkReleaseProfilingLockKHR
     #[inline]
-    pub unsafe fn release_profiling_lock_khr(&self, device: crate::vk::Device) {
-        (self.fp.release_profiling_lock_khr)(device)
+    pub unsafe fn release_profiling_lock(&self, device: crate::vk::Device) {
+        (self.fp.release_profiling_lock)(device)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

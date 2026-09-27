@@ -122,7 +122,7 @@ impl ImageCompressionFixedRateFlagBitsEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_image_subresource_layout2_ext: crate::vk::PFN_vkGetImageSubresourceLayout2EXT,
+    pub get_image_subresource_layout2: crate::vk::PFN_vkGetImageSubresourceLayout2EXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -136,8 +136,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_image_subresource_layout2_ext: unsafe {
-                unsafe extern "system" fn get_image_subresource_layout2_ext(
+            get_image_subresource_layout2: unsafe {
+                unsafe extern "system" fn get_image_subresource_layout2(
                     _: crate::vk::Device,
                     _: crate::vk::Image,
                     _: *const crate::vk::ImageSubresource2<'_>,
@@ -147,7 +147,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetImageSubresourceLayout2EXT");
                 if val.is_null() {
-                    get_image_subresource_layout2_ext
+                    get_image_subresource_layout2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -178,14 +178,14 @@ impl Device {
     }
     ///vkGetImageSubresourceLayout2
     #[inline]
-    pub unsafe fn get_image_subresource_layout2_ext(
+    pub unsafe fn get_image_subresource_layout2(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
         subresource: &crate::vk::ImageSubresource2<'_>,
         layout: &mut crate::vk::SubresourceLayout2<'_>,
     ) {
-        (self.fp.get_image_subresource_layout2_ext)(device, image, subresource, layout)
+        (self.fp.get_image_subresource_layout2)(device, image, subresource, layout)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

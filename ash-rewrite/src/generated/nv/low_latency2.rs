@@ -36,11 +36,11 @@ impl OutOfBandQueueTypeNV {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_latency_sleep_mode_nv: crate::vk::PFN_vkSetLatencySleepModeNV,
-    pub latency_sleep_nv: crate::vk::PFN_vkLatencySleepNV,
-    pub set_latency_marker_nv: crate::vk::PFN_vkSetLatencyMarkerNV,
-    pub get_latency_timings_nv: crate::vk::PFN_vkGetLatencyTimingsNV,
-    pub queue_notify_out_of_band_nv: crate::vk::PFN_vkQueueNotifyOutOfBandNV,
+    pub set_latency_sleep_mode: crate::vk::PFN_vkSetLatencySleepModeNV,
+    pub latency_sleep: crate::vk::PFN_vkLatencySleepNV,
+    pub set_latency_marker: crate::vk::PFN_vkSetLatencyMarkerNV,
+    pub get_latency_timings: crate::vk::PFN_vkGetLatencyTimingsNV,
+    pub queue_notify_out_of_band: crate::vk::PFN_vkQueueNotifyOutOfBandNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -54,8 +54,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            set_latency_sleep_mode_nv: unsafe {
-                unsafe extern "system" fn set_latency_sleep_mode_nv(
+            set_latency_sleep_mode: unsafe {
+                unsafe extern "system" fn set_latency_sleep_mode(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: *const crate::vk::LatencySleepModeInfoNV<'_>,
@@ -64,13 +64,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkSetLatencySleepModeNV");
                 if val.is_null() {
-                    set_latency_sleep_mode_nv
+                    set_latency_sleep_mode
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            latency_sleep_nv: unsafe {
-                unsafe extern "system" fn latency_sleep_nv(
+            latency_sleep: unsafe {
+                unsafe extern "system" fn latency_sleep(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: *const crate::vk::LatencySleepInfoNV<'_>,
@@ -78,14 +78,10 @@ impl DeviceFn {
                     panic!("unable to load vkLatencySleepNV")
                 }
                 let val = _f(c"vkLatencySleepNV");
-                if val.is_null() {
-                    latency_sleep_nv
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { latency_sleep } else { ::core::mem::transmute(val) }
             },
-            set_latency_marker_nv: unsafe {
-                unsafe extern "system" fn set_latency_marker_nv(
+            set_latency_marker: unsafe {
+                unsafe extern "system" fn set_latency_marker(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: *const crate::vk::SetLatencyMarkerInfoNV<'_>,
@@ -94,13 +90,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkSetLatencyMarkerNV");
                 if val.is_null() {
-                    set_latency_marker_nv
+                    set_latency_marker
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_latency_timings_nv: unsafe {
-                unsafe extern "system" fn get_latency_timings_nv(
+            get_latency_timings: unsafe {
+                unsafe extern "system" fn get_latency_timings(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: *mut crate::vk::GetLatencyMarkerInfoNV<'_>,
@@ -109,13 +105,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetLatencyTimingsNV");
                 if val.is_null() {
-                    get_latency_timings_nv
+                    get_latency_timings
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            queue_notify_out_of_band_nv: unsafe {
-                unsafe extern "system" fn queue_notify_out_of_band_nv(
+            queue_notify_out_of_band: unsafe {
+                unsafe extern "system" fn queue_notify_out_of_band(
                     _: crate::vk::Queue,
                     _: *const crate::vk::OutOfBandQueueTypeInfoNV<'_>,
                 ) {
@@ -123,7 +119,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkQueueNotifyOutOfBandNV");
                 if val.is_null() {
-                    queue_notify_out_of_band_nv
+                    queue_notify_out_of_band
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -154,52 +150,52 @@ impl Device {
     }
     ///vkSetLatencySleepModeNV
     #[inline]
-    pub unsafe fn set_latency_sleep_mode_nv(
+    pub unsafe fn set_latency_sleep_mode(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         sleep_mode_info: &crate::vk::LatencySleepModeInfoNV<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.set_latency_sleep_mode_nv)(device, swapchain, sleep_mode_info).result()
+        (self.fp.set_latency_sleep_mode)(device, swapchain, sleep_mode_info).result()
     }
     ///vkLatencySleepNV
     #[inline]
-    pub unsafe fn latency_sleep_nv(
+    pub unsafe fn latency_sleep(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         sleep_info: &crate::vk::LatencySleepInfoNV<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.latency_sleep_nv)(device, swapchain, sleep_info).result()
+        (self.fp.latency_sleep)(device, swapchain, sleep_info).result()
     }
     ///vkSetLatencyMarkerNV
     #[inline]
-    pub unsafe fn set_latency_marker_nv(
+    pub unsafe fn set_latency_marker(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         latency_marker_info: &crate::vk::SetLatencyMarkerInfoNV<'_>,
     ) {
-        (self.fp.set_latency_marker_nv)(device, swapchain, latency_marker_info)
+        (self.fp.set_latency_marker)(device, swapchain, latency_marker_info)
     }
     ///vkGetLatencyTimingsNV
     #[inline]
-    pub unsafe fn get_latency_timings_nv(
+    pub unsafe fn get_latency_timings(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         latency_marker_info: &mut crate::vk::GetLatencyMarkerInfoNV<'_>,
     ) {
-        (self.fp.get_latency_timings_nv)(device, swapchain, latency_marker_info)
+        (self.fp.get_latency_timings)(device, swapchain, latency_marker_info)
     }
     ///vkQueueNotifyOutOfBandNV
     #[inline]
-    pub unsafe fn queue_notify_out_of_band_nv(
+    pub unsafe fn queue_notify_out_of_band(
         &self,
         queue: crate::vk::Queue,
         queue_type_info: &crate::vk::OutOfBandQueueTypeInfoNV<'_>,
     ) {
-        (self.fp.queue_notify_out_of_band_nv)(queue, queue_type_info)
+        (self.fp.queue_notify_out_of_band)(queue, queue_type_info)
     }
 }
 pub const SPEC_VERSION: u32 = 3;

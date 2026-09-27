@@ -122,13 +122,13 @@ impl crate::vk::PipelineCreateFlagBits2 {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_trace_rays_khr: crate::vk::PFN_vkCmdTraceRaysKHR,
-    pub get_ray_tracing_shader_group_handles_khr: crate::vk::PFN_vkGetRayTracingShaderGroupHandlesKHR,
-    pub get_ray_tracing_capture_replay_shader_group_handles_khr: crate::vk::PFN_vkGetRayTracingCaptureReplayShaderGroupHandlesKHR,
-    pub create_ray_tracing_pipelines_khr: crate::vk::PFN_vkCreateRayTracingPipelinesKHR,
-    pub cmd_trace_rays_indirect_khr: crate::vk::PFN_vkCmdTraceRaysIndirectKHR,
-    pub get_ray_tracing_shader_group_stack_size_khr: crate::vk::PFN_vkGetRayTracingShaderGroupStackSizeKHR,
-    pub cmd_set_ray_tracing_pipeline_stack_size_khr: crate::vk::PFN_vkCmdSetRayTracingPipelineStackSizeKHR,
+    pub cmd_trace_rays: crate::vk::PFN_vkCmdTraceRaysKHR,
+    pub get_ray_tracing_shader_group_handles: crate::vk::PFN_vkGetRayTracingShaderGroupHandlesKHR,
+    pub get_ray_tracing_capture_replay_shader_group_handles: crate::vk::PFN_vkGetRayTracingCaptureReplayShaderGroupHandlesKHR,
+    pub create_ray_tracing_pipelines: crate::vk::PFN_vkCreateRayTracingPipelinesKHR,
+    pub cmd_trace_rays_indirect: crate::vk::PFN_vkCmdTraceRaysIndirectKHR,
+    pub get_ray_tracing_shader_group_stack_size: crate::vk::PFN_vkGetRayTracingShaderGroupStackSizeKHR,
+    pub cmd_set_ray_tracing_pipeline_stack_size: crate::vk::PFN_vkCmdSetRayTracingPipelineStackSizeKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -142,8 +142,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_trace_rays_khr: unsafe {
-                unsafe extern "system" fn cmd_trace_rays_khr(
+            cmd_trace_rays: unsafe {
+                unsafe extern "system" fn cmd_trace_rays(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::StridedDeviceAddressRegionKHR,
                     _: *const crate::vk::StridedDeviceAddressRegionKHR,
@@ -156,14 +156,10 @@ impl DeviceFn {
                     panic!("unable to load vkCmdTraceRaysKHR")
                 }
                 let val = _f(c"vkCmdTraceRaysKHR");
-                if val.is_null() {
-                    cmd_trace_rays_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_trace_rays } else { ::core::mem::transmute(val) }
             },
-            get_ray_tracing_shader_group_handles_khr: unsafe {
-                unsafe extern "system" fn get_ray_tracing_shader_group_handles_khr(
+            get_ray_tracing_shader_group_handles: unsafe {
+                unsafe extern "system" fn get_ray_tracing_shader_group_handles(
                     _: crate::vk::Device,
                     _: crate::vk::Pipeline,
                     _: u32,
@@ -175,13 +171,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetRayTracingShaderGroupHandlesKHR");
                 if val.is_null() {
-                    get_ray_tracing_shader_group_handles_khr
+                    get_ray_tracing_shader_group_handles
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_ray_tracing_capture_replay_shader_group_handles_khr: unsafe {
-                unsafe extern "system" fn get_ray_tracing_capture_replay_shader_group_handles_khr(
+            get_ray_tracing_capture_replay_shader_group_handles: unsafe {
+                unsafe extern "system" fn get_ray_tracing_capture_replay_shader_group_handles(
                     _: crate::vk::Device,
                     _: crate::vk::Pipeline,
                     _: u32,
@@ -195,13 +191,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetRayTracingCaptureReplayShaderGroupHandlesKHR");
                 if val.is_null() {
-                    get_ray_tracing_capture_replay_shader_group_handles_khr
+                    get_ray_tracing_capture_replay_shader_group_handles
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            create_ray_tracing_pipelines_khr: unsafe {
-                unsafe extern "system" fn create_ray_tracing_pipelines_khr(
+            create_ray_tracing_pipelines: unsafe {
+                unsafe extern "system" fn create_ray_tracing_pipelines(
                     _: crate::vk::Device,
                     _: crate::vk::DeferredOperationKHR,
                     _: crate::vk::PipelineCache,
@@ -214,13 +210,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateRayTracingPipelinesKHR");
                 if val.is_null() {
-                    create_ray_tracing_pipelines_khr
+                    create_ray_tracing_pipelines
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_trace_rays_indirect_khr: unsafe {
-                unsafe extern "system" fn cmd_trace_rays_indirect_khr(
+            cmd_trace_rays_indirect: unsafe {
+                unsafe extern "system" fn cmd_trace_rays_indirect(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::StridedDeviceAddressRegionKHR,
                     _: *const crate::vk::StridedDeviceAddressRegionKHR,
@@ -232,13 +228,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdTraceRaysIndirectKHR");
                 if val.is_null() {
-                    cmd_trace_rays_indirect_khr
+                    cmd_trace_rays_indirect
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_ray_tracing_shader_group_stack_size_khr: unsafe {
-                unsafe extern "system" fn get_ray_tracing_shader_group_stack_size_khr(
+            get_ray_tracing_shader_group_stack_size: unsafe {
+                unsafe extern "system" fn get_ray_tracing_shader_group_stack_size(
                     _: crate::vk::Device,
                     _: crate::vk::Pipeline,
                     _: u32,
@@ -248,13 +244,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetRayTracingShaderGroupStackSizeKHR");
                 if val.is_null() {
-                    get_ray_tracing_shader_group_stack_size_khr
+                    get_ray_tracing_shader_group_stack_size
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_ray_tracing_pipeline_stack_size_khr: unsafe {
-                unsafe extern "system" fn cmd_set_ray_tracing_pipeline_stack_size_khr(
+            cmd_set_ray_tracing_pipeline_stack_size: unsafe {
+                unsafe extern "system" fn cmd_set_ray_tracing_pipeline_stack_size(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                 ) {
@@ -262,7 +258,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetRayTracingPipelineStackSizeKHR");
                 if val.is_null() {
-                    cmd_set_ray_tracing_pipeline_stack_size_khr
+                    cmd_set_ray_tracing_pipeline_stack_size
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -293,7 +289,7 @@ impl Device {
     }
     ///vkCmdTraceRaysKHR
     #[inline]
-    pub unsafe fn cmd_trace_rays_khr(
+    pub unsafe fn cmd_trace_rays(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         raygen_shader_binding_table: &crate::vk::StridedDeviceAddressRegionKHR,
@@ -306,7 +302,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_trace_rays_khr)(
+            .cmd_trace_rays)(
             command_buffer,
             raygen_shader_binding_table,
             miss_shader_binding_table,
@@ -319,7 +315,7 @@ impl Device {
     }
     ///vkGetRayTracingShaderGroupHandlesKHR
     #[inline]
-    pub unsafe fn get_ray_tracing_shader_group_handles_khr(
+    pub unsafe fn get_ray_tracing_shader_group_handles(
         &self,
         device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
@@ -329,7 +325,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_ray_tracing_shader_group_handles_khr)(
+            .get_ray_tracing_shader_group_handles)(
                 device,
                 pipeline,
                 first_group,
@@ -341,7 +337,7 @@ impl Device {
     }
     ///vkGetRayTracingCaptureReplayShaderGroupHandlesKHR
     #[inline]
-    pub unsafe fn get_ray_tracing_capture_replay_shader_group_handles_khr(
+    pub unsafe fn get_ray_tracing_capture_replay_shader_group_handles(
         &self,
         device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
@@ -351,7 +347,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_ray_tracing_capture_replay_shader_group_handles_khr)(
+            .get_ray_tracing_capture_replay_shader_group_handles)(
                 device,
                 pipeline,
                 first_group,
@@ -363,7 +359,7 @@ impl Device {
     }
     ///vkCreateRayTracingPipelinesKHR
     #[inline]
-    pub unsafe fn create_ray_tracing_pipelines_khr(
+    pub unsafe fn create_ray_tracing_pipelines(
         &self,
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
@@ -374,7 +370,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_ray_tracing_pipelines_khr)(
+            .create_ray_tracing_pipelines)(
                 device,
                 deferred_operation,
                 pipeline_cache,
@@ -387,7 +383,7 @@ impl Device {
     }
     ///vkCmdTraceRaysIndirectKHR
     #[inline]
-    pub unsafe fn cmd_trace_rays_indirect_khr(
+    pub unsafe fn cmd_trace_rays_indirect(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         raygen_shader_binding_table: &crate::vk::StridedDeviceAddressRegionKHR,
@@ -398,7 +394,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_trace_rays_indirect_khr)(
+            .cmd_trace_rays_indirect)(
             command_buffer,
             raygen_shader_binding_table,
             miss_shader_binding_table,
@@ -409,7 +405,7 @@ impl Device {
     }
     ///vkGetRayTracingShaderGroupStackSizeKHR
     #[inline]
-    pub unsafe fn get_ray_tracing_shader_group_stack_size_khr(
+    pub unsafe fn get_ray_tracing_shader_group_stack_size(
         &self,
         device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
@@ -418,7 +414,7 @@ impl Device {
     ) -> crate::vk::DeviceSize {
         (self
             .fp
-            .get_ray_tracing_shader_group_stack_size_khr)(
+            .get_ray_tracing_shader_group_stack_size)(
             device,
             pipeline,
             group,
@@ -427,14 +423,14 @@ impl Device {
     }
     ///vkCmdSetRayTracingPipelineStackSizeKHR
     #[inline]
-    pub unsafe fn cmd_set_ray_tracing_pipeline_stack_size_khr(
+    pub unsafe fn cmd_set_ray_tracing_pipeline_stack_size(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         pipeline_stack_size: u32,
     ) {
         (self
             .fp
-            .cmd_set_ray_tracing_pipeline_stack_size_khr)(
+            .cmd_set_ray_tracing_pipeline_stack_size)(
             command_buffer,
             pipeline_stack_size,
         )

@@ -49,7 +49,7 @@ impl ExportMetalObjectTypeFlagBitsEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub export_metal_objects_ext: crate::vk::PFN_vkExportMetalObjectsEXT,
+    pub export_metal_objects: crate::vk::PFN_vkExportMetalObjectsEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -63,8 +63,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            export_metal_objects_ext: unsafe {
-                unsafe extern "system" fn export_metal_objects_ext(
+            export_metal_objects: unsafe {
+                unsafe extern "system" fn export_metal_objects(
                     _: crate::vk::Device,
                     _: *mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
                 ) {
@@ -72,7 +72,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkExportMetalObjectsEXT");
                 if val.is_null() {
-                    export_metal_objects_ext
+                    export_metal_objects
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -103,12 +103,12 @@ impl Device {
     }
     ///vkExportMetalObjectsEXT
     #[inline]
-    pub unsafe fn export_metal_objects_ext(
+    pub unsafe fn export_metal_objects(
         &self,
         device: crate::vk::Device,
         metal_objects_info: &mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
     ) {
-        (self.fp.export_metal_objects_ext)(device, metal_objects_info)
+        (self.fp.export_metal_objects)(device, metal_objects_info)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

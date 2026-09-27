@@ -17,8 +17,8 @@ impl crate::vk::ImageCreateFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub bind_buffer_memory2_khr: crate::vk::PFN_vkBindBufferMemory2KHR,
-    pub bind_image_memory2_khr: crate::vk::PFN_vkBindImageMemory2KHR,
+    pub bind_buffer_memory2: crate::vk::PFN_vkBindBufferMemory2KHR,
+    pub bind_image_memory2: crate::vk::PFN_vkBindImageMemory2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -32,8 +32,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            bind_buffer_memory2_khr: unsafe {
-                unsafe extern "system" fn bind_buffer_memory2_khr(
+            bind_buffer_memory2: unsafe {
+                unsafe extern "system" fn bind_buffer_memory2(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::BindBufferMemoryInfo<'_>,
@@ -42,13 +42,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkBindBufferMemory2KHR");
                 if val.is_null() {
-                    bind_buffer_memory2_khr
+                    bind_buffer_memory2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            bind_image_memory2_khr: unsafe {
-                unsafe extern "system" fn bind_image_memory2_khr(
+            bind_image_memory2: unsafe {
+                unsafe extern "system" fn bind_image_memory2(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::BindImageMemoryInfo<'_>,
@@ -57,7 +57,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkBindImageMemory2KHR");
                 if val.is_null() {
-                    bind_image_memory2_khr
+                    bind_image_memory2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -88,26 +88,22 @@ impl Device {
     }
     ///vkBindBufferMemory2
     #[inline]
-    pub unsafe fn bind_buffer_memory2_khr(
+    pub unsafe fn bind_buffer_memory2(
         &self,
         device: crate::vk::Device,
         bind_infos: &[crate::vk::BindBufferMemoryInfo<'_>],
     ) -> crate::VkResult<()> {
-        (self
-            .fp
-            .bind_buffer_memory2_khr)(device, bind_infos.len() as _, bind_infos.as_ptr())
+        (self.fp.bind_buffer_memory2)(device, bind_infos.len() as _, bind_infos.as_ptr())
             .result()
     }
     ///vkBindImageMemory2
     #[inline]
-    pub unsafe fn bind_image_memory2_khr(
+    pub unsafe fn bind_image_memory2(
         &self,
         device: crate::vk::Device,
         bind_infos: &[crate::vk::BindImageMemoryInfo<'_>],
     ) -> crate::VkResult<()> {
-        (self
-            .fp
-            .bind_image_memory2_khr)(device, bind_infos.len() as _, bind_infos.as_ptr())
+        (self.fp.bind_image_memory2)(device, bind_infos.len() as _, bind_infos.as_ptr())
             .result()
     }
 }

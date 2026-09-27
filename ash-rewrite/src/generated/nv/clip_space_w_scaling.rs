@@ -12,7 +12,7 @@ impl crate::vk::DynamicState {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_viewport_w_scaling_nv: crate::vk::PFN_vkCmdSetViewportWScalingNV,
+    pub cmd_set_viewport_w_scaling: crate::vk::PFN_vkCmdSetViewportWScalingNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -26,8 +26,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_viewport_w_scaling_nv: unsafe {
-                unsafe extern "system" fn cmd_set_viewport_w_scaling_nv(
+            cmd_set_viewport_w_scaling: unsafe {
+                unsafe extern "system" fn cmd_set_viewport_w_scaling(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -37,7 +37,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetViewportWScalingNV");
                 if val.is_null() {
-                    cmd_set_viewport_w_scaling_nv
+                    cmd_set_viewport_w_scaling
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -68,7 +68,7 @@ impl Device {
     }
     ///vkCmdSetViewportWScalingNV
     #[inline]
-    pub unsafe fn cmd_set_viewport_w_scaling_nv(
+    pub unsafe fn cmd_set_viewport_w_scaling(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_viewport: u32,
@@ -76,7 +76,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_viewport_w_scaling_nv)(
+            .cmd_set_viewport_w_scaling)(
             command_buffer,
             first_viewport,
             viewport_w_scalings.len() as _,

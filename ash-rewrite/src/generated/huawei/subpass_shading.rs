@@ -34,8 +34,8 @@ impl crate::vk::PipelineStageFlagBits2 {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_device_subpass_shading_max_workgroup_size_huawei: crate::vk::PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI,
-    pub cmd_subpass_shading_huawei: crate::vk::PFN_vkCmdSubpassShadingHUAWEI,
+    pub get_device_subpass_shading_max_workgroup_size: crate::vk::PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI,
+    pub cmd_subpass_shading: crate::vk::PFN_vkCmdSubpassShadingHUAWEI,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -49,8 +49,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_device_subpass_shading_max_workgroup_size_huawei: unsafe {
-                unsafe extern "system" fn get_device_subpass_shading_max_workgroup_size_huawei(
+            get_device_subpass_shading_max_workgroup_size: unsafe {
+                unsafe extern "system" fn get_device_subpass_shading_max_workgroup_size(
                     _: crate::vk::Device,
                     _: crate::vk::RenderPass,
                     _: *mut crate::vk::Extent2D,
@@ -61,20 +61,20 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI");
                 if val.is_null() {
-                    get_device_subpass_shading_max_workgroup_size_huawei
+                    get_device_subpass_shading_max_workgroup_size
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_subpass_shading_huawei: unsafe {
-                unsafe extern "system" fn cmd_subpass_shading_huawei(
+            cmd_subpass_shading: unsafe {
+                unsafe extern "system" fn cmd_subpass_shading(
                     _: crate::vk::CommandBuffer,
                 ) {
                     panic!("unable to load vkCmdSubpassShadingHUAWEI")
                 }
                 let val = _f(c"vkCmdSubpassShadingHUAWEI");
                 if val.is_null() {
-                    cmd_subpass_shading_huawei
+                    cmd_subpass_shading
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -105,7 +105,7 @@ impl Device {
     }
     ///vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI
     #[inline]
-    pub unsafe fn get_device_subpass_shading_max_workgroup_size_huawei(
+    pub unsafe fn get_device_subpass_shading_max_workgroup_size(
         &self,
         device: crate::vk::Device,
         renderpass: crate::vk::RenderPass,
@@ -113,7 +113,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_device_subpass_shading_max_workgroup_size_huawei)(
+            .get_device_subpass_shading_max_workgroup_size)(
                 device,
                 renderpass,
                 max_workgroup_size,
@@ -122,11 +122,8 @@ impl Device {
     }
     ///vkCmdSubpassShadingHUAWEI
     #[inline]
-    pub unsafe fn cmd_subpass_shading_huawei(
-        &self,
-        command_buffer: crate::vk::CommandBuffer,
-    ) {
-        (self.fp.cmd_subpass_shading_huawei)(command_buffer)
+    pub unsafe fn cmd_subpass_shading(&self, command_buffer: crate::vk::CommandBuffer) {
+        (self.fp.cmd_subpass_shading)(command_buffer)
     }
 }
 pub const SPEC_VERSION: u32 = 3;

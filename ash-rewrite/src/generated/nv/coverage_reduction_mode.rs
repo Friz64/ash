@@ -17,7 +17,7 @@ impl CoverageReductionModeNV {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_supported_framebuffer_mixed_samples_combinations_nv: crate::vk::PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV,
+    pub get_physical_device_supported_framebuffer_mixed_samples_combinations: crate::vk::PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -31,8 +31,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_supported_framebuffer_mixed_samples_combinations_nv: unsafe {
-                unsafe extern "system" fn get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(
+            get_physical_device_supported_framebuffer_mixed_samples_combinations: unsafe {
+                unsafe extern "system" fn get_physical_device_supported_framebuffer_mixed_samples_combinations(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
                     _: *mut crate::vk::FramebufferMixedSamplesCombinationNV<'_>,
@@ -45,7 +45,7 @@ impl InstanceFn {
                     c"vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV",
                 );
                 if val.is_null() {
-                    get_physical_device_supported_framebuffer_mixed_samples_combinations_nv
+                    get_physical_device_supported_framebuffer_mixed_samples_combinations
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -76,13 +76,13 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV
     #[inline]
-    pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(
+    pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations(
         &self,
         physical_device: crate::vk::PhysicalDevice,
     ) -> crate::VkResult<Vec<crate::vk::FramebufferMixedSamplesCombinationNV<'_>>> {
         crate::read_into_uninitialized_vector(|combination_count, combinations| (self
             .fp
-            .get_physical_device_supported_framebuffer_mixed_samples_combinations_nv)(
+            .get_physical_device_supported_framebuffer_mixed_samples_combinations)(
             physical_device,
             combination_count,
             combinations,

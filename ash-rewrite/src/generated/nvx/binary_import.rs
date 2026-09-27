@@ -21,11 +21,11 @@ impl crate::vk::DebugReportObjectTypeEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_cu_module_nvx: crate::vk::PFN_vkCreateCuModuleNVX,
-    pub create_cu_function_nvx: crate::vk::PFN_vkCreateCuFunctionNVX,
-    pub destroy_cu_module_nvx: crate::vk::PFN_vkDestroyCuModuleNVX,
-    pub destroy_cu_function_nvx: crate::vk::PFN_vkDestroyCuFunctionNVX,
-    pub cmd_cu_launch_kernel_nvx: crate::vk::PFN_vkCmdCuLaunchKernelNVX,
+    pub create_cu_module: crate::vk::PFN_vkCreateCuModuleNVX,
+    pub create_cu_function: crate::vk::PFN_vkCreateCuFunctionNVX,
+    pub destroy_cu_module: crate::vk::PFN_vkDestroyCuModuleNVX,
+    pub destroy_cu_function: crate::vk::PFN_vkDestroyCuFunctionNVX,
+    pub cmd_cu_launch_kernel: crate::vk::PFN_vkCmdCuLaunchKernelNVX,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -39,8 +39,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_cu_module_nvx: unsafe {
-                unsafe extern "system" fn create_cu_module_nvx(
+            create_cu_module: unsafe {
+                unsafe extern "system" fn create_cu_module(
                     _: crate::vk::Device,
                     _: *const crate::vk::CuModuleCreateInfoNVX<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -50,13 +50,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateCuModuleNVX");
                 if val.is_null() {
-                    create_cu_module_nvx
+                    create_cu_module
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            create_cu_function_nvx: unsafe {
-                unsafe extern "system" fn create_cu_function_nvx(
+            create_cu_function: unsafe {
+                unsafe extern "system" fn create_cu_function(
                     _: crate::vk::Device,
                     _: *const crate::vk::CuFunctionCreateInfoNVX<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -66,13 +66,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateCuFunctionNVX");
                 if val.is_null() {
-                    create_cu_function_nvx
+                    create_cu_function
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_cu_module_nvx: unsafe {
-                unsafe extern "system" fn destroy_cu_module_nvx(
+            destroy_cu_module: unsafe {
+                unsafe extern "system" fn destroy_cu_module(
                     _: crate::vk::Device,
                     _: crate::vk::CuModuleNVX,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -81,13 +81,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyCuModuleNVX");
                 if val.is_null() {
-                    destroy_cu_module_nvx
+                    destroy_cu_module
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_cu_function_nvx: unsafe {
-                unsafe extern "system" fn destroy_cu_function_nvx(
+            destroy_cu_function: unsafe {
+                unsafe extern "system" fn destroy_cu_function(
                     _: crate::vk::Device,
                     _: crate::vk::CuFunctionNVX,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -96,13 +96,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyCuFunctionNVX");
                 if val.is_null() {
-                    destroy_cu_function_nvx
+                    destroy_cu_function
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_cu_launch_kernel_nvx: unsafe {
-                unsafe extern "system" fn cmd_cu_launch_kernel_nvx(
+            cmd_cu_launch_kernel: unsafe {
+                unsafe extern "system" fn cmd_cu_launch_kernel(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::CuLaunchInfoNVX<'_>,
                 ) {
@@ -110,7 +110,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCuLaunchKernelNVX");
                 if val.is_null() {
-                    cmd_cu_launch_kernel_nvx
+                    cmd_cu_launch_kernel
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -141,55 +141,54 @@ impl Device {
     }
     ///vkCreateCuModuleNVX
     #[inline]
-    pub unsafe fn create_cu_module_nvx(
+    pub unsafe fn create_cu_module(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::CuModuleCreateInfoNVX<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         module: &mut crate::vk::CuModuleNVX,
     ) -> crate::VkResult<()> {
-        (self.fp.create_cu_module_nvx)(device, create_info, allocator, module).result()
+        (self.fp.create_cu_module)(device, create_info, allocator, module).result()
     }
     ///vkCreateCuFunctionNVX
     #[inline]
-    pub unsafe fn create_cu_function_nvx(
+    pub unsafe fn create_cu_function(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::CuFunctionCreateInfoNVX<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         function: &mut crate::vk::CuFunctionNVX,
     ) -> crate::VkResult<()> {
-        (self.fp.create_cu_function_nvx)(device, create_info, allocator, function)
-            .result()
+        (self.fp.create_cu_function)(device, create_info, allocator, function).result()
     }
     ///vkDestroyCuModuleNVX
     #[inline]
-    pub unsafe fn destroy_cu_module_nvx(
+    pub unsafe fn destroy_cu_module(
         &self,
         device: crate::vk::Device,
         module: crate::vk::CuModuleNVX,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_cu_module_nvx)(device, module, allocator)
+        (self.fp.destroy_cu_module)(device, module, allocator)
     }
     ///vkDestroyCuFunctionNVX
     #[inline]
-    pub unsafe fn destroy_cu_function_nvx(
+    pub unsafe fn destroy_cu_function(
         &self,
         device: crate::vk::Device,
         function: crate::vk::CuFunctionNVX,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_cu_function_nvx)(device, function, allocator)
+        (self.fp.destroy_cu_function)(device, function, allocator)
     }
     ///vkCmdCuLaunchKernelNVX
     #[inline]
-    pub unsafe fn cmd_cu_launch_kernel_nvx(
+    pub unsafe fn cmd_cu_launch_kernel(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         launch_info: &crate::vk::CuLaunchInfoNVX<'_>,
     ) {
-        (self.fp.cmd_cu_launch_kernel_nvx)(command_buffer, launch_info)
+        (self.fp.cmd_cu_launch_kernel)(command_buffer, launch_info)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

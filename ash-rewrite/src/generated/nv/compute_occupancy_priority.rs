@@ -11,7 +11,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_compute_occupancy_priority_nv: crate::vk::PFN_vkCmdSetComputeOccupancyPriorityNV,
+    pub cmd_set_compute_occupancy_priority: crate::vk::PFN_vkCmdSetComputeOccupancyPriorityNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -25,8 +25,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_compute_occupancy_priority_nv: unsafe {
-                unsafe extern "system" fn cmd_set_compute_occupancy_priority_nv(
+            cmd_set_compute_occupancy_priority: unsafe {
+                unsafe extern "system" fn cmd_set_compute_occupancy_priority(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::ComputeOccupancyPriorityParametersNV<'_>,
                 ) {
@@ -34,7 +34,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetComputeOccupancyPriorityNV");
                 if val.is_null() {
-                    cmd_set_compute_occupancy_priority_nv
+                    cmd_set_compute_occupancy_priority
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -65,12 +65,12 @@ impl Device {
     }
     ///vkCmdSetComputeOccupancyPriorityNV
     #[inline]
-    pub unsafe fn cmd_set_compute_occupancy_priority_nv(
+    pub unsafe fn cmd_set_compute_occupancy_priority(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         parameters: &crate::vk::ComputeOccupancyPriorityParametersNV<'_>,
     ) {
-        (self.fp.cmd_set_compute_occupancy_priority_nv)(command_buffer, parameters)
+        (self.fp.cmd_set_compute_occupancy_priority)(command_buffer, parameters)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

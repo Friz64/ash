@@ -25,10 +25,10 @@ impl DisplayEventTypeEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub display_power_control_ext: crate::vk::PFN_vkDisplayPowerControlEXT,
-    pub register_device_event_ext: crate::vk::PFN_vkRegisterDeviceEventEXT,
-    pub register_display_event_ext: crate::vk::PFN_vkRegisterDisplayEventEXT,
-    pub get_swapchain_counter_ext: crate::vk::PFN_vkGetSwapchainCounterEXT,
+    pub display_power_control: crate::vk::PFN_vkDisplayPowerControlEXT,
+    pub register_device_event: crate::vk::PFN_vkRegisterDeviceEventEXT,
+    pub register_display_event: crate::vk::PFN_vkRegisterDisplayEventEXT,
+    pub get_swapchain_counter: crate::vk::PFN_vkGetSwapchainCounterEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -42,8 +42,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            display_power_control_ext: unsafe {
-                unsafe extern "system" fn display_power_control_ext(
+            display_power_control: unsafe {
+                unsafe extern "system" fn display_power_control(
                     _: crate::vk::Device,
                     _: crate::vk::DisplayKHR,
                     _: *const crate::vk::DisplayPowerInfoEXT<'_>,
@@ -52,13 +52,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDisplayPowerControlEXT");
                 if val.is_null() {
-                    display_power_control_ext
+                    display_power_control
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            register_device_event_ext: unsafe {
-                unsafe extern "system" fn register_device_event_ext(
+            register_device_event: unsafe {
+                unsafe extern "system" fn register_device_event(
                     _: crate::vk::Device,
                     _: *const crate::vk::DeviceEventInfoEXT<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -68,13 +68,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkRegisterDeviceEventEXT");
                 if val.is_null() {
-                    register_device_event_ext
+                    register_device_event
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            register_display_event_ext: unsafe {
-                unsafe extern "system" fn register_display_event_ext(
+            register_display_event: unsafe {
+                unsafe extern "system" fn register_display_event(
                     _: crate::vk::Device,
                     _: crate::vk::DisplayKHR,
                     _: *const crate::vk::DisplayEventInfoEXT<'_>,
@@ -85,13 +85,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkRegisterDisplayEventEXT");
                 if val.is_null() {
-                    register_display_event_ext
+                    register_display_event
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_swapchain_counter_ext: unsafe {
-                unsafe extern "system" fn get_swapchain_counter_ext(
+            get_swapchain_counter: unsafe {
+                unsafe extern "system" fn get_swapchain_counter(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: crate::vk::SurfaceCounterFlagBitsEXT,
@@ -101,7 +101,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetSwapchainCounterEXT");
                 if val.is_null() {
-                    get_swapchain_counter_ext
+                    get_swapchain_counter
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -132,29 +132,29 @@ impl Device {
     }
     ///vkDisplayPowerControlEXT
     #[inline]
-    pub unsafe fn display_power_control_ext(
+    pub unsafe fn display_power_control(
         &self,
         device: crate::vk::Device,
         display: crate::vk::DisplayKHR,
         display_power_info: &crate::vk::DisplayPowerInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.display_power_control_ext)(device, display, display_power_info).result()
+        (self.fp.display_power_control)(device, display, display_power_info).result()
     }
     ///vkRegisterDeviceEventEXT
     #[inline]
-    pub unsafe fn register_device_event_ext(
+    pub unsafe fn register_device_event(
         &self,
         device: crate::vk::Device,
         device_event_info: &crate::vk::DeviceEventInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         fence: &mut crate::vk::Fence,
     ) -> crate::VkResult<()> {
-        (self.fp.register_device_event_ext)(device, device_event_info, allocator, fence)
+        (self.fp.register_device_event)(device, device_event_info, allocator, fence)
             .result()
     }
     ///vkRegisterDisplayEventEXT
     #[inline]
-    pub unsafe fn register_display_event_ext(
+    pub unsafe fn register_display_event(
         &self,
         device: crate::vk::Device,
         display: crate::vk::DisplayKHR,
@@ -164,7 +164,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .register_display_event_ext)(
+            .register_display_event)(
                 device,
                 display,
                 display_event_info,
@@ -175,14 +175,14 @@ impl Device {
     }
     ///vkGetSwapchainCounterEXT
     #[inline]
-    pub unsafe fn get_swapchain_counter_ext(
+    pub unsafe fn get_swapchain_counter(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         counter: crate::vk::SurfaceCounterFlagBitsEXT,
         counter_value: &mut u64,
     ) -> crate::VkResult<()> {
-        (self.fp.get_swapchain_counter_ext)(device, swapchain, counter, counter_value)
+        (self.fp.get_swapchain_counter)(device, swapchain, counter, counter_value)
             .result()
     }
 }

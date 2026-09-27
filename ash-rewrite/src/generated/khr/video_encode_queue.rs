@@ -249,7 +249,7 @@ impl VideoEncodeRateControlModeFlagBitsKHR {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_video_encode_quality_level_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR,
+    pub get_physical_device_video_encode_quality_level_properties: crate::vk::PFN_vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -263,8 +263,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_video_encode_quality_level_properties_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_video_encode_quality_level_properties_khr(
+            get_physical_device_video_encode_quality_level_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_video_encode_quality_level_properties(
                     _: crate::vk::PhysicalDevice,
                     _: *const crate::vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR<
                         '_,
@@ -277,7 +277,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR");
                 if val.is_null() {
-                    get_physical_device_video_encode_quality_level_properties_khr
+                    get_physical_device_video_encode_quality_level_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -308,7 +308,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR
     #[inline]
-    pub unsafe fn get_physical_device_video_encode_quality_level_properties_khr(
+    pub unsafe fn get_physical_device_video_encode_quality_level_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         quality_level_info: &crate::vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'_>,
@@ -318,7 +318,7 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_physical_device_video_encode_quality_level_properties_khr)(
+            .get_physical_device_video_encode_quality_level_properties)(
                 physical_device,
                 quality_level_info,
                 quality_level_properties,
@@ -328,8 +328,8 @@ impl Instance {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_encoded_video_session_parameters_khr: crate::vk::PFN_vkGetEncodedVideoSessionParametersKHR,
-    pub cmd_encode_video_khr: crate::vk::PFN_vkCmdEncodeVideoKHR,
+    pub get_encoded_video_session_parameters: crate::vk::PFN_vkGetEncodedVideoSessionParametersKHR,
+    pub cmd_encode_video: crate::vk::PFN_vkCmdEncodeVideoKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -343,8 +343,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_encoded_video_session_parameters_khr: unsafe {
-                unsafe extern "system" fn get_encoded_video_session_parameters_khr(
+            get_encoded_video_session_parameters: unsafe {
+                unsafe extern "system" fn get_encoded_video_session_parameters(
                     _: crate::vk::Device,
                     _: *const crate::vk::VideoEncodeSessionParametersGetInfoKHR<'_>,
                     _: *mut crate::vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>,
@@ -355,13 +355,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetEncodedVideoSessionParametersKHR");
                 if val.is_null() {
-                    get_encoded_video_session_parameters_khr
+                    get_encoded_video_session_parameters
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_encode_video_khr: unsafe {
-                unsafe extern "system" fn cmd_encode_video_khr(
+            cmd_encode_video: unsafe {
+                unsafe extern "system" fn cmd_encode_video(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::VideoEncodeInfoKHR<'_>,
                 ) {
@@ -369,7 +369,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdEncodeVideoKHR");
                 if val.is_null() {
-                    cmd_encode_video_khr
+                    cmd_encode_video
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -400,7 +400,7 @@ impl Device {
     }
     ///vkGetEncodedVideoSessionParametersKHR
     #[inline]
-    pub unsafe fn get_encoded_video_session_parameters_khr(
+    pub unsafe fn get_encoded_video_session_parameters(
         &self,
         device: crate::vk::Device,
         video_session_parameters_info: &crate::vk::VideoEncodeSessionParametersGetInfoKHR<
@@ -410,7 +410,7 @@ impl Device {
     ) -> crate::VkResult<Vec<core::ffi::c_void>> {
         crate::read_into_uninitialized_vector(|data_size, data| (self
             .fp
-            .get_encoded_video_session_parameters_khr)(
+            .get_encoded_video_session_parameters)(
             device,
             video_session_parameters_info,
             feedback_info,
@@ -420,12 +420,12 @@ impl Device {
     }
     ///vkCmdEncodeVideoKHR
     #[inline]
-    pub unsafe fn cmd_encode_video_khr(
+    pub unsafe fn cmd_encode_video(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         encode_info: &crate::vk::VideoEncodeInfoKHR<'_>,
     ) {
-        (self.fp.cmd_encode_video_khr)(command_buffer, encode_info)
+        (self.fp.cmd_encode_video)(command_buffer, encode_info)
     }
 }
 pub const SPEC_VERSION: u32 = 12;

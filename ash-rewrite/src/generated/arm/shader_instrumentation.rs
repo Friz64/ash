@@ -19,7 +19,7 @@ impl crate::vk::ObjectType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub enumerate_physical_device_shader_instrumentation_metrics_arm: crate::vk::PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM,
+    pub enumerate_physical_device_shader_instrumentation_metrics: crate::vk::PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -33,8 +33,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            enumerate_physical_device_shader_instrumentation_metrics_arm: unsafe {
-                unsafe extern "system" fn enumerate_physical_device_shader_instrumentation_metrics_arm(
+            enumerate_physical_device_shader_instrumentation_metrics: unsafe {
+                unsafe extern "system" fn enumerate_physical_device_shader_instrumentation_metrics(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
                     _: *mut crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>,
@@ -47,7 +47,7 @@ impl InstanceFn {
                     c"vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM",
                 );
                 if val.is_null() {
-                    enumerate_physical_device_shader_instrumentation_metrics_arm
+                    enumerate_physical_device_shader_instrumentation_metrics
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -78,13 +78,13 @@ impl Instance {
     }
     ///vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM
     #[inline]
-    pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics_arm(
+    pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics(
         &self,
         physical_device: crate::vk::PhysicalDevice,
     ) -> crate::VkResult<Vec<crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>>> {
         crate::read_into_uninitialized_vector(|description_count, descriptions| (self
             .fp
-            .enumerate_physical_device_shader_instrumentation_metrics_arm)(
+            .enumerate_physical_device_shader_instrumentation_metrics)(
             physical_device,
             description_count,
             descriptions,
@@ -93,12 +93,12 @@ impl Instance {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_shader_instrumentation_arm: crate::vk::PFN_vkCreateShaderInstrumentationARM,
-    pub destroy_shader_instrumentation_arm: crate::vk::PFN_vkDestroyShaderInstrumentationARM,
-    pub cmd_begin_shader_instrumentation_arm: crate::vk::PFN_vkCmdBeginShaderInstrumentationARM,
-    pub cmd_end_shader_instrumentation_arm: crate::vk::PFN_vkCmdEndShaderInstrumentationARM,
-    pub get_shader_instrumentation_values_arm: crate::vk::PFN_vkGetShaderInstrumentationValuesARM,
-    pub clear_shader_instrumentation_metrics_arm: crate::vk::PFN_vkClearShaderInstrumentationMetricsARM,
+    pub create_shader_instrumentation: crate::vk::PFN_vkCreateShaderInstrumentationARM,
+    pub destroy_shader_instrumentation: crate::vk::PFN_vkDestroyShaderInstrumentationARM,
+    pub cmd_begin_shader_instrumentation: crate::vk::PFN_vkCmdBeginShaderInstrumentationARM,
+    pub cmd_end_shader_instrumentation: crate::vk::PFN_vkCmdEndShaderInstrumentationARM,
+    pub get_shader_instrumentation_values: crate::vk::PFN_vkGetShaderInstrumentationValuesARM,
+    pub clear_shader_instrumentation_metrics: crate::vk::PFN_vkClearShaderInstrumentationMetricsARM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -112,8 +112,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_shader_instrumentation_arm: unsafe {
-                unsafe extern "system" fn create_shader_instrumentation_arm(
+            create_shader_instrumentation: unsafe {
+                unsafe extern "system" fn create_shader_instrumentation(
                     _: crate::vk::Device,
                     _: *const crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -123,13 +123,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateShaderInstrumentationARM");
                 if val.is_null() {
-                    create_shader_instrumentation_arm
+                    create_shader_instrumentation
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_shader_instrumentation_arm: unsafe {
-                unsafe extern "system" fn destroy_shader_instrumentation_arm(
+            destroy_shader_instrumentation: unsafe {
+                unsafe extern "system" fn destroy_shader_instrumentation(
                     _: crate::vk::Device,
                     _: crate::vk::ShaderInstrumentationARM,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -138,13 +138,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyShaderInstrumentationARM");
                 if val.is_null() {
-                    destroy_shader_instrumentation_arm
+                    destroy_shader_instrumentation
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_begin_shader_instrumentation_arm: unsafe {
-                unsafe extern "system" fn cmd_begin_shader_instrumentation_arm(
+            cmd_begin_shader_instrumentation: unsafe {
+                unsafe extern "system" fn cmd_begin_shader_instrumentation(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::ShaderInstrumentationARM,
                 ) {
@@ -152,26 +152,26 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginShaderInstrumentationARM");
                 if val.is_null() {
-                    cmd_begin_shader_instrumentation_arm
+                    cmd_begin_shader_instrumentation
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_end_shader_instrumentation_arm: unsafe {
-                unsafe extern "system" fn cmd_end_shader_instrumentation_arm(
+            cmd_end_shader_instrumentation: unsafe {
+                unsafe extern "system" fn cmd_end_shader_instrumentation(
                     _: crate::vk::CommandBuffer,
                 ) {
                     panic!("unable to load vkCmdEndShaderInstrumentationARM")
                 }
                 let val = _f(c"vkCmdEndShaderInstrumentationARM");
                 if val.is_null() {
-                    cmd_end_shader_instrumentation_arm
+                    cmd_end_shader_instrumentation
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_shader_instrumentation_values_arm: unsafe {
-                unsafe extern "system" fn get_shader_instrumentation_values_arm(
+            get_shader_instrumentation_values: unsafe {
+                unsafe extern "system" fn get_shader_instrumentation_values(
                     _: crate::vk::Device,
                     _: crate::vk::ShaderInstrumentationARM,
                     _: *mut u32,
@@ -182,13 +182,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetShaderInstrumentationValuesARM");
                 if val.is_null() {
-                    get_shader_instrumentation_values_arm
+                    get_shader_instrumentation_values
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            clear_shader_instrumentation_metrics_arm: unsafe {
-                unsafe extern "system" fn clear_shader_instrumentation_metrics_arm(
+            clear_shader_instrumentation_metrics: unsafe {
+                unsafe extern "system" fn clear_shader_instrumentation_metrics(
                     _: crate::vk::Device,
                     _: crate::vk::ShaderInstrumentationARM,
                 ) {
@@ -196,7 +196,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkClearShaderInstrumentationMetricsARM");
                 if val.is_null() {
-                    clear_shader_instrumentation_metrics_arm
+                    clear_shader_instrumentation_metrics
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -227,7 +227,7 @@ impl Device {
     }
     ///vkCreateShaderInstrumentationARM
     #[inline]
-    pub unsafe fn create_shader_instrumentation_arm(
+    pub unsafe fn create_shader_instrumentation(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
@@ -236,7 +236,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_shader_instrumentation_arm)(
+            .create_shader_instrumentation)(
                 device,
                 create_info,
                 allocator,
@@ -246,34 +246,34 @@ impl Device {
     }
     ///vkDestroyShaderInstrumentationARM
     #[inline]
-    pub unsafe fn destroy_shader_instrumentation_arm(
+    pub unsafe fn destroy_shader_instrumentation(
         &self,
         device: crate::vk::Device,
         instrumentation: crate::vk::ShaderInstrumentationARM,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_shader_instrumentation_arm)(device, instrumentation, allocator)
+        (self.fp.destroy_shader_instrumentation)(device, instrumentation, allocator)
     }
     ///vkCmdBeginShaderInstrumentationARM
     #[inline]
-    pub unsafe fn cmd_begin_shader_instrumentation_arm(
+    pub unsafe fn cmd_begin_shader_instrumentation(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         instrumentation: crate::vk::ShaderInstrumentationARM,
     ) {
-        (self.fp.cmd_begin_shader_instrumentation_arm)(command_buffer, instrumentation)
+        (self.fp.cmd_begin_shader_instrumentation)(command_buffer, instrumentation)
     }
     ///vkCmdEndShaderInstrumentationARM
     #[inline]
-    pub unsafe fn cmd_end_shader_instrumentation_arm(
+    pub unsafe fn cmd_end_shader_instrumentation(
         &self,
         command_buffer: crate::vk::CommandBuffer,
     ) {
-        (self.fp.cmd_end_shader_instrumentation_arm)(command_buffer)
+        (self.fp.cmd_end_shader_instrumentation)(command_buffer)
     }
     ///vkGetShaderInstrumentationValuesARM
     #[inline]
-    pub unsafe fn get_shader_instrumentation_values_arm(
+    pub unsafe fn get_shader_instrumentation_values(
         &self,
         device: crate::vk::Device,
         instrumentation: crate::vk::ShaderInstrumentationARM,
@@ -283,7 +283,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_shader_instrumentation_values_arm)(
+            .get_shader_instrumentation_values)(
                 device,
                 instrumentation,
                 metric_block_count,
@@ -294,12 +294,12 @@ impl Device {
     }
     ///vkClearShaderInstrumentationMetricsARM
     #[inline]
-    pub unsafe fn clear_shader_instrumentation_metrics_arm(
+    pub unsafe fn clear_shader_instrumentation_metrics(
         &self,
         device: crate::vk::Device,
         instrumentation: crate::vk::ShaderInstrumentationARM,
     ) {
-        (self.fp.clear_shader_instrumentation_metrics_arm)(device, instrumentation)
+        (self.fp.clear_shader_instrumentation_metrics)(device, instrumentation)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

@@ -46,7 +46,7 @@ impl crate::vk::PipelineStageFlagBits2 {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_cooperative_vector_properties_nv: crate::vk::PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV,
+    pub get_physical_device_cooperative_vector_properties: crate::vk::PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -60,8 +60,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_cooperative_vector_properties_nv: unsafe {
-                unsafe extern "system" fn get_physical_device_cooperative_vector_properties_nv(
+            get_physical_device_cooperative_vector_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_cooperative_vector_properties(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
                     _: *mut crate::vk::CooperativeVectorPropertiesNV<'_>,
@@ -72,7 +72,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceCooperativeVectorPropertiesNV");
                 if val.is_null() {
-                    get_physical_device_cooperative_vector_properties_nv
+                    get_physical_device_cooperative_vector_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -103,13 +103,13 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceCooperativeVectorPropertiesNV
     #[inline]
-    pub unsafe fn get_physical_device_cooperative_vector_properties_nv(
+    pub unsafe fn get_physical_device_cooperative_vector_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
     ) -> crate::VkResult<Vec<crate::vk::CooperativeVectorPropertiesNV<'_>>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
-            .get_physical_device_cooperative_vector_properties_nv)(
+            .get_physical_device_cooperative_vector_properties)(
             physical_device,
             property_count,
             properties,
@@ -118,8 +118,8 @@ impl Instance {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub convert_cooperative_vector_matrix_nv: crate::vk::PFN_vkConvertCooperativeVectorMatrixNV,
-    pub cmd_convert_cooperative_vector_matrix_nv: crate::vk::PFN_vkCmdConvertCooperativeVectorMatrixNV,
+    pub convert_cooperative_vector_matrix: crate::vk::PFN_vkConvertCooperativeVectorMatrixNV,
+    pub cmd_convert_cooperative_vector_matrix: crate::vk::PFN_vkCmdConvertCooperativeVectorMatrixNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -133,8 +133,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            convert_cooperative_vector_matrix_nv: unsafe {
-                unsafe extern "system" fn convert_cooperative_vector_matrix_nv(
+            convert_cooperative_vector_matrix: unsafe {
+                unsafe extern "system" fn convert_cooperative_vector_matrix(
                     _: crate::vk::Device,
                     _: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
                 ) -> crate::vk::Result {
@@ -142,13 +142,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkConvertCooperativeVectorMatrixNV");
                 if val.is_null() {
-                    convert_cooperative_vector_matrix_nv
+                    convert_cooperative_vector_matrix
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_convert_cooperative_vector_matrix_nv: unsafe {
-                unsafe extern "system" fn cmd_convert_cooperative_vector_matrix_nv(
+            cmd_convert_cooperative_vector_matrix: unsafe {
+                unsafe extern "system" fn cmd_convert_cooperative_vector_matrix(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
@@ -157,7 +157,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdConvertCooperativeVectorMatrixNV");
                 if val.is_null() {
-                    cmd_convert_cooperative_vector_matrix_nv
+                    cmd_convert_cooperative_vector_matrix
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -188,23 +188,23 @@ impl Device {
     }
     ///vkConvertCooperativeVectorMatrixNV
     #[inline]
-    pub unsafe fn convert_cooperative_vector_matrix_nv(
+    pub unsafe fn convert_cooperative_vector_matrix(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.convert_cooperative_vector_matrix_nv)(device, info).result()
+        (self.fp.convert_cooperative_vector_matrix)(device, info).result()
     }
     ///vkCmdConvertCooperativeVectorMatrixNV
     #[inline]
-    pub unsafe fn cmd_convert_cooperative_vector_matrix_nv(
+    pub unsafe fn cmd_convert_cooperative_vector_matrix(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         infos: &[crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>],
     ) {
         (self
             .fp
-            .cmd_convert_cooperative_vector_matrix_nv)(
+            .cmd_convert_cooperative_vector_matrix)(
             command_buffer,
             infos.len() as _,
             infos.as_ptr(),

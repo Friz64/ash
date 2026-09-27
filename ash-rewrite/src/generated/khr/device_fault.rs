@@ -55,8 +55,8 @@ impl DeviceFaultFlagBitsKHR {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_device_fault_reports_khr: crate::vk::PFN_vkGetDeviceFaultReportsKHR,
-    pub get_device_fault_debug_info_khr: crate::vk::PFN_vkGetDeviceFaultDebugInfoKHR,
+    pub get_device_fault_reports: crate::vk::PFN_vkGetDeviceFaultReportsKHR,
+    pub get_device_fault_debug_info: crate::vk::PFN_vkGetDeviceFaultDebugInfoKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -70,8 +70,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_device_fault_reports_khr: unsafe {
-                unsafe extern "system" fn get_device_fault_reports_khr(
+            get_device_fault_reports: unsafe {
+                unsafe extern "system" fn get_device_fault_reports(
                     _: crate::vk::Device,
                     _: u64,
                     _: *mut u32,
@@ -81,13 +81,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceFaultReportsKHR");
                 if val.is_null() {
-                    get_device_fault_reports_khr
+                    get_device_fault_reports
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_device_fault_debug_info_khr: unsafe {
-                unsafe extern "system" fn get_device_fault_debug_info_khr(
+            get_device_fault_debug_info: unsafe {
+                unsafe extern "system" fn get_device_fault_debug_info(
                     _: crate::vk::Device,
                     _: *mut crate::vk::DeviceFaultDebugInfoKHR<'_>,
                 ) -> crate::vk::Result {
@@ -95,7 +95,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceFaultDebugInfoKHR");
                 if val.is_null() {
-                    get_device_fault_debug_info_khr
+                    get_device_fault_debug_info
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -126,23 +126,23 @@ impl Device {
     }
     ///vkGetDeviceFaultReportsKHR
     #[inline]
-    pub unsafe fn get_device_fault_reports_khr(
+    pub unsafe fn get_device_fault_reports(
         &self,
         device: crate::vk::Device,
         timeout: u64,
     ) -> crate::VkResult<Vec<crate::vk::DeviceFaultInfoKHR<'_>>> {
         crate::read_into_uninitialized_vector(|fault_counts, fault_info| (self
             .fp
-            .get_device_fault_reports_khr)(device, timeout, fault_counts, fault_info))
+            .get_device_fault_reports)(device, timeout, fault_counts, fault_info))
     }
     ///vkGetDeviceFaultDebugInfoKHR
     #[inline]
-    pub unsafe fn get_device_fault_debug_info_khr(
+    pub unsafe fn get_device_fault_debug_info(
         &self,
         device: crate::vk::Device,
         debug_info: &mut crate::vk::DeviceFaultDebugInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_device_fault_debug_info_khr)(device, debug_info).result()
+        (self.fp.get_device_fault_debug_info)(device, debug_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

@@ -51,11 +51,11 @@ impl ImageConstraintsInfoFlagBitsFUCHSIA {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_buffer_collection_fuchsia: crate::vk::PFN_vkCreateBufferCollectionFUCHSIA,
-    pub set_buffer_collection_buffer_constraints_fuchsia: crate::vk::PFN_vkSetBufferCollectionBufferConstraintsFUCHSIA,
-    pub set_buffer_collection_image_constraints_fuchsia: crate::vk::PFN_vkSetBufferCollectionImageConstraintsFUCHSIA,
-    pub destroy_buffer_collection_fuchsia: crate::vk::PFN_vkDestroyBufferCollectionFUCHSIA,
-    pub get_buffer_collection_properties_fuchsia: crate::vk::PFN_vkGetBufferCollectionPropertiesFUCHSIA,
+    pub create_buffer_collection: crate::vk::PFN_vkCreateBufferCollectionFUCHSIA,
+    pub set_buffer_collection_buffer_constraints: crate::vk::PFN_vkSetBufferCollectionBufferConstraintsFUCHSIA,
+    pub set_buffer_collection_image_constraints: crate::vk::PFN_vkSetBufferCollectionImageConstraintsFUCHSIA,
+    pub destroy_buffer_collection: crate::vk::PFN_vkDestroyBufferCollectionFUCHSIA,
+    pub get_buffer_collection_properties: crate::vk::PFN_vkGetBufferCollectionPropertiesFUCHSIA,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -69,8 +69,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_buffer_collection_fuchsia: unsafe {
-                unsafe extern "system" fn create_buffer_collection_fuchsia(
+            create_buffer_collection: unsafe {
+                unsafe extern "system" fn create_buffer_collection(
                     _: crate::vk::Device,
                     _: *const crate::vk::BufferCollectionCreateInfoFUCHSIA<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -80,13 +80,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateBufferCollectionFUCHSIA");
                 if val.is_null() {
-                    create_buffer_collection_fuchsia
+                    create_buffer_collection
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            set_buffer_collection_buffer_constraints_fuchsia: unsafe {
-                unsafe extern "system" fn set_buffer_collection_buffer_constraints_fuchsia(
+            set_buffer_collection_buffer_constraints: unsafe {
+                unsafe extern "system" fn set_buffer_collection_buffer_constraints(
                     _: crate::vk::Device,
                     _: crate::vk::BufferCollectionFUCHSIA,
                     _: *const crate::vk::BufferConstraintsInfoFUCHSIA<'_>,
@@ -97,13 +97,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkSetBufferCollectionBufferConstraintsFUCHSIA");
                 if val.is_null() {
-                    set_buffer_collection_buffer_constraints_fuchsia
+                    set_buffer_collection_buffer_constraints
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            set_buffer_collection_image_constraints_fuchsia: unsafe {
-                unsafe extern "system" fn set_buffer_collection_image_constraints_fuchsia(
+            set_buffer_collection_image_constraints: unsafe {
+                unsafe extern "system" fn set_buffer_collection_image_constraints(
                     _: crate::vk::Device,
                     _: crate::vk::BufferCollectionFUCHSIA,
                     _: *const crate::vk::ImageConstraintsInfoFUCHSIA<'_>,
@@ -112,13 +112,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkSetBufferCollectionImageConstraintsFUCHSIA");
                 if val.is_null() {
-                    set_buffer_collection_image_constraints_fuchsia
+                    set_buffer_collection_image_constraints
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_buffer_collection_fuchsia: unsafe {
-                unsafe extern "system" fn destroy_buffer_collection_fuchsia(
+            destroy_buffer_collection: unsafe {
+                unsafe extern "system" fn destroy_buffer_collection(
                     _: crate::vk::Device,
                     _: crate::vk::BufferCollectionFUCHSIA,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -127,13 +127,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyBufferCollectionFUCHSIA");
                 if val.is_null() {
-                    destroy_buffer_collection_fuchsia
+                    destroy_buffer_collection
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_buffer_collection_properties_fuchsia: unsafe {
-                unsafe extern "system" fn get_buffer_collection_properties_fuchsia(
+            get_buffer_collection_properties: unsafe {
+                unsafe extern "system" fn get_buffer_collection_properties(
                     _: crate::vk::Device,
                     _: crate::vk::BufferCollectionFUCHSIA,
                     _: *mut crate::vk::BufferCollectionPropertiesFUCHSIA<'_>,
@@ -142,7 +142,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetBufferCollectionPropertiesFUCHSIA");
                 if val.is_null() {
-                    get_buffer_collection_properties_fuchsia
+                    get_buffer_collection_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -173,26 +173,19 @@ impl Device {
     }
     ///vkCreateBufferCollectionFUCHSIA
     #[inline]
-    pub unsafe fn create_buffer_collection_fuchsia(
+    pub unsafe fn create_buffer_collection(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::BufferCollectionCreateInfoFUCHSIA<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         collection: &mut crate::vk::BufferCollectionFUCHSIA,
     ) -> crate::VkResult<()> {
-        (self
-            .fp
-            .create_buffer_collection_fuchsia)(
-                device,
-                create_info,
-                allocator,
-                collection,
-            )
+        (self.fp.create_buffer_collection)(device, create_info, allocator, collection)
             .result()
     }
     ///vkSetBufferCollectionBufferConstraintsFUCHSIA
     #[inline]
-    pub unsafe fn set_buffer_collection_buffer_constraints_fuchsia(
+    pub unsafe fn set_buffer_collection_buffer_constraints(
         &self,
         device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
@@ -200,7 +193,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .set_buffer_collection_buffer_constraints_fuchsia)(
+            .set_buffer_collection_buffer_constraints)(
                 device,
                 collection,
                 buffer_constraints_info,
@@ -209,7 +202,7 @@ impl Device {
     }
     ///vkSetBufferCollectionImageConstraintsFUCHSIA
     #[inline]
-    pub unsafe fn set_buffer_collection_image_constraints_fuchsia(
+    pub unsafe fn set_buffer_collection_image_constraints(
         &self,
         device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
@@ -217,7 +210,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .set_buffer_collection_image_constraints_fuchsia)(
+            .set_buffer_collection_image_constraints)(
                 device,
                 collection,
                 image_constraints_info,
@@ -226,25 +219,23 @@ impl Device {
     }
     ///vkDestroyBufferCollectionFUCHSIA
     #[inline]
-    pub unsafe fn destroy_buffer_collection_fuchsia(
+    pub unsafe fn destroy_buffer_collection(
         &self,
         device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_buffer_collection_fuchsia)(device, collection, allocator)
+        (self.fp.destroy_buffer_collection)(device, collection, allocator)
     }
     ///vkGetBufferCollectionPropertiesFUCHSIA
     #[inline]
-    pub unsafe fn get_buffer_collection_properties_fuchsia(
+    pub unsafe fn get_buffer_collection_properties(
         &self,
         device: crate::vk::Device,
         collection: crate::vk::BufferCollectionFUCHSIA,
         properties: &mut crate::vk::BufferCollectionPropertiesFUCHSIA<'_>,
     ) -> crate::VkResult<()> {
-        (self
-            .fp
-            .get_buffer_collection_properties_fuchsia)(device, collection, properties)
+        (self.fp.get_buffer_collection_properties)(device, collection, properties)
             .result()
     }
 }

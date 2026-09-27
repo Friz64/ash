@@ -56,14 +56,14 @@ impl DeviceGroupPresentModeFlagBitsKHR {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_swapchain_khr: crate::vk::PFN_vkCreateSwapchainKHR,
-    pub destroy_swapchain_khr: crate::vk::PFN_vkDestroySwapchainKHR,
-    pub get_swapchain_images_khr: crate::vk::PFN_vkGetSwapchainImagesKHR,
-    pub acquire_next_image_khr: crate::vk::PFN_vkAcquireNextImageKHR,
-    pub queue_present_khr: crate::vk::PFN_vkQueuePresentKHR,
-    pub get_device_group_present_capabilities_khr: crate::vk::PFN_vkGetDeviceGroupPresentCapabilitiesKHR,
-    pub get_device_group_surface_present_modes_khr: crate::vk::PFN_vkGetDeviceGroupSurfacePresentModesKHR,
-    pub acquire_next_image2_khr: crate::vk::PFN_vkAcquireNextImage2KHR,
+    pub create_swapchain: crate::vk::PFN_vkCreateSwapchainKHR,
+    pub destroy_swapchain: crate::vk::PFN_vkDestroySwapchainKHR,
+    pub get_swapchain_images: crate::vk::PFN_vkGetSwapchainImagesKHR,
+    pub acquire_next_image: crate::vk::PFN_vkAcquireNextImageKHR,
+    pub queue_present: crate::vk::PFN_vkQueuePresentKHR,
+    pub get_device_group_present_capabilities: crate::vk::PFN_vkGetDeviceGroupPresentCapabilitiesKHR,
+    pub get_device_group_surface_present_modes: crate::vk::PFN_vkGetDeviceGroupSurfacePresentModesKHR,
+    pub acquire_next_image2: crate::vk::PFN_vkAcquireNextImage2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -77,8 +77,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_swapchain_khr: unsafe {
-                unsafe extern "system" fn create_swapchain_khr(
+            create_swapchain: unsafe {
+                unsafe extern "system" fn create_swapchain(
                     _: crate::vk::Device,
                     _: *const crate::vk::SwapchainCreateInfoKHR<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -88,13 +88,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateSwapchainKHR");
                 if val.is_null() {
-                    create_swapchain_khr
+                    create_swapchain
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_swapchain_khr: unsafe {
-                unsafe extern "system" fn destroy_swapchain_khr(
+            destroy_swapchain: unsafe {
+                unsafe extern "system" fn destroy_swapchain(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -103,13 +103,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroySwapchainKHR");
                 if val.is_null() {
-                    destroy_swapchain_khr
+                    destroy_swapchain
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_swapchain_images_khr: unsafe {
-                unsafe extern "system" fn get_swapchain_images_khr(
+            get_swapchain_images: unsafe {
+                unsafe extern "system" fn get_swapchain_images(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: *mut u32,
@@ -119,13 +119,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetSwapchainImagesKHR");
                 if val.is_null() {
-                    get_swapchain_images_khr
+                    get_swapchain_images
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            acquire_next_image_khr: unsafe {
-                unsafe extern "system" fn acquire_next_image_khr(
+            acquire_next_image: unsafe {
+                unsafe extern "system" fn acquire_next_image(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: u64,
@@ -137,27 +137,23 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkAcquireNextImageKHR");
                 if val.is_null() {
-                    acquire_next_image_khr
+                    acquire_next_image
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            queue_present_khr: unsafe {
-                unsafe extern "system" fn queue_present_khr(
+            queue_present: unsafe {
+                unsafe extern "system" fn queue_present(
                     _: crate::vk::Queue,
                     _: *const crate::vk::PresentInfoKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkQueuePresentKHR")
                 }
                 let val = _f(c"vkQueuePresentKHR");
-                if val.is_null() {
-                    queue_present_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { queue_present } else { ::core::mem::transmute(val) }
             },
-            get_device_group_present_capabilities_khr: unsafe {
-                unsafe extern "system" fn get_device_group_present_capabilities_khr(
+            get_device_group_present_capabilities: unsafe {
+                unsafe extern "system" fn get_device_group_present_capabilities(
                     _: crate::vk::Device,
                     _: *mut crate::vk::DeviceGroupPresentCapabilitiesKHR<'_>,
                 ) -> crate::vk::Result {
@@ -165,13 +161,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceGroupPresentCapabilitiesKHR");
                 if val.is_null() {
-                    get_device_group_present_capabilities_khr
+                    get_device_group_present_capabilities
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_device_group_surface_present_modes_khr: unsafe {
-                unsafe extern "system" fn get_device_group_surface_present_modes_khr(
+            get_device_group_surface_present_modes: unsafe {
+                unsafe extern "system" fn get_device_group_surface_present_modes(
                     _: crate::vk::Device,
                     _: crate::vk::SurfaceKHR,
                     _: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
@@ -180,13 +176,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceGroupSurfacePresentModesKHR");
                 if val.is_null() {
-                    get_device_group_surface_present_modes_khr
+                    get_device_group_surface_present_modes
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            acquire_next_image2_khr: unsafe {
-                unsafe extern "system" fn acquire_next_image2_khr(
+            acquire_next_image2: unsafe {
+                unsafe extern "system" fn acquire_next_image2(
                     _: crate::vk::Device,
                     _: *const crate::vk::AcquireNextImageInfoKHR<'_>,
                     _: *mut u32,
@@ -195,7 +191,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkAcquireNextImage2KHR");
                 if val.is_null() {
-                    acquire_next_image2_khr
+                    acquire_next_image2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -226,36 +222,35 @@ impl Device {
     }
     ///vkCreateSwapchainKHR
     #[inline]
-    pub unsafe fn create_swapchain_khr(
+    pub unsafe fn create_swapchain(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::SwapchainCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         swapchain: &mut crate::vk::SwapchainKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_swapchain_khr)(device, create_info, allocator, swapchain)
-            .result()
+        (self.fp.create_swapchain)(device, create_info, allocator, swapchain).result()
     }
     ///vkDestroySwapchainKHR
     #[inline]
-    pub unsafe fn destroy_swapchain_khr(
+    pub unsafe fn destroy_swapchain(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_swapchain_khr)(device, swapchain, allocator)
+        (self.fp.destroy_swapchain)(device, swapchain, allocator)
     }
     ///vkGetSwapchainImagesKHR
     #[inline]
-    pub unsafe fn get_swapchain_images_khr(
+    pub unsafe fn get_swapchain_images(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
     ) -> crate::VkResult<Vec<crate::vk::Image>> {
         crate::read_into_uninitialized_vector(|swapchain_image_count, swapchain_images| (self
             .fp
-            .get_swapchain_images_khr)(
+            .get_swapchain_images)(
             device,
             swapchain,
             swapchain_image_count,
@@ -264,7 +259,7 @@ impl Device {
     }
     ///vkAcquireNextImageKHR
     #[inline]
-    pub unsafe fn acquire_next_image_khr(
+    pub unsafe fn acquire_next_image(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
@@ -275,7 +270,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .acquire_next_image_khr)(
+            .acquire_next_image)(
                 device,
                 swapchain,
                 timeout,
@@ -287,16 +282,16 @@ impl Device {
     }
     ///vkQueuePresentKHR
     #[inline]
-    pub unsafe fn queue_present_khr(
+    pub unsafe fn queue_present(
         &self,
         queue: crate::vk::Queue,
         present_info: &crate::vk::PresentInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.queue_present_khr)(queue, present_info).result()
+        (self.fp.queue_present)(queue, present_info).result()
     }
     ///vkGetDeviceGroupPresentCapabilitiesKHR
     #[inline]
-    pub unsafe fn get_device_group_present_capabilities_khr(
+    pub unsafe fn get_device_group_present_capabilities(
         &self,
         device: crate::vk::Device,
         device_group_present_capabilities: &mut crate::vk::DeviceGroupPresentCapabilitiesKHR<
@@ -305,7 +300,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_device_group_present_capabilities_khr)(
+            .get_device_group_present_capabilities)(
                 device,
                 device_group_present_capabilities,
             )
@@ -313,29 +308,28 @@ impl Device {
     }
     ///vkGetDeviceGroupSurfacePresentModesKHR
     #[inline]
-    pub unsafe fn get_device_group_surface_present_modes_khr(
+    pub unsafe fn get_device_group_surface_present_modes(
         &self,
         device: crate::vk::Device,
         surface: crate::vk::SurfaceKHR,
         modes: &mut crate::vk::DeviceGroupPresentModeFlagsKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.get_device_group_surface_present_modes_khr)(device, surface, modes)
-            .result()
+        (self.fp.get_device_group_surface_present_modes)(device, surface, modes).result()
     }
     ///vkAcquireNextImage2KHR
     #[inline]
-    pub unsafe fn acquire_next_image2_khr(
+    pub unsafe fn acquire_next_image2(
         &self,
         device: crate::vk::Device,
         acquire_info: &crate::vk::AcquireNextImageInfoKHR<'_>,
         image_index: &mut u32,
     ) -> crate::VkResult<()> {
-        (self.fp.acquire_next_image2_khr)(device, acquire_info, image_index).result()
+        (self.fp.acquire_next_image2)(device, acquire_info, image_index).result()
     }
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_present_rectangles_khr: crate::vk::PFN_vkGetPhysicalDevicePresentRectanglesKHR,
+    pub get_physical_device_present_rectangles: crate::vk::PFN_vkGetPhysicalDevicePresentRectanglesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -349,8 +343,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_present_rectangles_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_present_rectangles_khr(
+            get_physical_device_present_rectangles: unsafe {
+                unsafe extern "system" fn get_physical_device_present_rectangles(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::SurfaceKHR,
                     _: *mut u32,
@@ -360,7 +354,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDevicePresentRectanglesKHR");
                 if val.is_null() {
-                    get_physical_device_present_rectangles_khr
+                    get_physical_device_present_rectangles
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -391,14 +385,14 @@ impl Instance {
     }
     ///vkGetPhysicalDevicePresentRectanglesKHR
     #[inline]
-    pub unsafe fn get_physical_device_present_rectangles_khr(
+    pub unsafe fn get_physical_device_present_rectangles(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,
     ) -> crate::VkResult<Vec<crate::vk::Rect2D>> {
         crate::read_into_uninitialized_vector(|rect_count, rects| (self
             .fp
-            .get_physical_device_present_rectangles_khr)(
+            .get_physical_device_present_rectangles)(
             physical_device,
             surface,
             rect_count,

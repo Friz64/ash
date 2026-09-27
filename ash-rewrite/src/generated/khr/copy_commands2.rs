@@ -18,12 +18,12 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_copy_buffer2_khr: crate::vk::PFN_vkCmdCopyBuffer2KHR,
-    pub cmd_copy_image2_khr: crate::vk::PFN_vkCmdCopyImage2KHR,
-    pub cmd_blit_image2_khr: crate::vk::PFN_vkCmdBlitImage2KHR,
-    pub cmd_copy_buffer_to_image2_khr: crate::vk::PFN_vkCmdCopyBufferToImage2KHR,
-    pub cmd_copy_image_to_buffer2_khr: crate::vk::PFN_vkCmdCopyImageToBuffer2KHR,
-    pub cmd_resolve_image2_khr: crate::vk::PFN_vkCmdResolveImage2KHR,
+    pub cmd_copy_buffer2: crate::vk::PFN_vkCmdCopyBuffer2KHR,
+    pub cmd_copy_image2: crate::vk::PFN_vkCmdCopyImage2KHR,
+    pub cmd_blit_image2: crate::vk::PFN_vkCmdBlitImage2KHR,
+    pub cmd_copy_buffer_to_image2: crate::vk::PFN_vkCmdCopyBufferToImage2KHR,
+    pub cmd_copy_image_to_buffer2: crate::vk::PFN_vkCmdCopyImageToBuffer2KHR,
+    pub cmd_resolve_image2: crate::vk::PFN_vkCmdResolveImage2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -37,8 +37,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_copy_buffer2_khr: unsafe {
-                unsafe extern "system" fn cmd_copy_buffer2_khr(
+            cmd_copy_buffer2: unsafe {
+                unsafe extern "system" fn cmd_copy_buffer2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::CopyBufferInfo2<'_>,
                 ) {
@@ -46,41 +46,33 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyBuffer2KHR");
                 if val.is_null() {
-                    cmd_copy_buffer2_khr
+                    cmd_copy_buffer2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_copy_image2_khr: unsafe {
-                unsafe extern "system" fn cmd_copy_image2_khr(
+            cmd_copy_image2: unsafe {
+                unsafe extern "system" fn cmd_copy_image2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::CopyImageInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyImage2KHR")
                 }
                 let val = _f(c"vkCmdCopyImage2KHR");
-                if val.is_null() {
-                    cmd_copy_image2_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_image2 } else { ::core::mem::transmute(val) }
             },
-            cmd_blit_image2_khr: unsafe {
-                unsafe extern "system" fn cmd_blit_image2_khr(
+            cmd_blit_image2: unsafe {
+                unsafe extern "system" fn cmd_blit_image2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::BlitImageInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdBlitImage2KHR")
                 }
                 let val = _f(c"vkCmdBlitImage2KHR");
-                if val.is_null() {
-                    cmd_blit_image2_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_blit_image2 } else { ::core::mem::transmute(val) }
             },
-            cmd_copy_buffer_to_image2_khr: unsafe {
-                unsafe extern "system" fn cmd_copy_buffer_to_image2_khr(
+            cmd_copy_buffer_to_image2: unsafe {
+                unsafe extern "system" fn cmd_copy_buffer_to_image2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::CopyBufferToImageInfo2<'_>,
                 ) {
@@ -88,13 +80,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyBufferToImage2KHR");
                 if val.is_null() {
-                    cmd_copy_buffer_to_image2_khr
+                    cmd_copy_buffer_to_image2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_copy_image_to_buffer2_khr: unsafe {
-                unsafe extern "system" fn cmd_copy_image_to_buffer2_khr(
+            cmd_copy_image_to_buffer2: unsafe {
+                unsafe extern "system" fn cmd_copy_image_to_buffer2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::CopyImageToBufferInfo2<'_>,
                 ) {
@@ -102,13 +94,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyImageToBuffer2KHR");
                 if val.is_null() {
-                    cmd_copy_image_to_buffer2_khr
+                    cmd_copy_image_to_buffer2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_resolve_image2_khr: unsafe {
-                unsafe extern "system" fn cmd_resolve_image2_khr(
+            cmd_resolve_image2: unsafe {
+                unsafe extern "system" fn cmd_resolve_image2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::ResolveImageInfo2<'_>,
                 ) {
@@ -116,7 +108,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdResolveImage2KHR");
                 if val.is_null() {
-                    cmd_resolve_image2_khr
+                    cmd_resolve_image2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -147,61 +139,57 @@ impl Device {
     }
     ///vkCmdCopyBuffer2
     #[inline]
-    pub unsafe fn cmd_copy_buffer2_khr(
+    pub unsafe fn cmd_copy_buffer2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         copy_buffer_info: &crate::vk::CopyBufferInfo2<'_>,
     ) {
-        (self.fp.cmd_copy_buffer2_khr)(command_buffer, copy_buffer_info)
+        (self.fp.cmd_copy_buffer2)(command_buffer, copy_buffer_info)
     }
     ///vkCmdCopyImage2
     #[inline]
-    pub unsafe fn cmd_copy_image2_khr(
+    pub unsafe fn cmd_copy_image2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         copy_image_info: &crate::vk::CopyImageInfo2<'_>,
     ) {
-        (self.fp.cmd_copy_image2_khr)(command_buffer, copy_image_info)
+        (self.fp.cmd_copy_image2)(command_buffer, copy_image_info)
     }
     ///vkCmdBlitImage2
     #[inline]
-    pub unsafe fn cmd_blit_image2_khr(
+    pub unsafe fn cmd_blit_image2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         blit_image_info: &crate::vk::BlitImageInfo2<'_>,
     ) {
-        (self.fp.cmd_blit_image2_khr)(command_buffer, blit_image_info)
+        (self.fp.cmd_blit_image2)(command_buffer, blit_image_info)
     }
     ///vkCmdCopyBufferToImage2
     #[inline]
-    pub unsafe fn cmd_copy_buffer_to_image2_khr(
+    pub unsafe fn cmd_copy_buffer_to_image2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         copy_buffer_to_image_info: &crate::vk::CopyBufferToImageInfo2<'_>,
     ) {
-        (self
-            .fp
-            .cmd_copy_buffer_to_image2_khr)(command_buffer, copy_buffer_to_image_info)
+        (self.fp.cmd_copy_buffer_to_image2)(command_buffer, copy_buffer_to_image_info)
     }
     ///vkCmdCopyImageToBuffer2
     #[inline]
-    pub unsafe fn cmd_copy_image_to_buffer2_khr(
+    pub unsafe fn cmd_copy_image_to_buffer2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         copy_image_to_buffer_info: &crate::vk::CopyImageToBufferInfo2<'_>,
     ) {
-        (self
-            .fp
-            .cmd_copy_image_to_buffer2_khr)(command_buffer, copy_image_to_buffer_info)
+        (self.fp.cmd_copy_image_to_buffer2)(command_buffer, copy_image_to_buffer_info)
     }
     ///vkCmdResolveImage2
     #[inline]
-    pub unsafe fn cmd_resolve_image2_khr(
+    pub unsafe fn cmd_resolve_image2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         resolve_image_info: &crate::vk::ResolveImageInfo2<'_>,
     ) {
-        (self.fp.cmd_resolve_image2_khr)(command_buffer, resolve_image_info)
+        (self.fp.cmd_resolve_image2)(command_buffer, resolve_image_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

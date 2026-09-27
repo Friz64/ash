@@ -30,7 +30,7 @@ impl PhysicalDeviceSchedulingControlsFlagBitsARM {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_dispatch_parameters_arm: crate::vk::PFN_vkCmdSetDispatchParametersARM,
+    pub cmd_set_dispatch_parameters: crate::vk::PFN_vkCmdSetDispatchParametersARM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -44,8 +44,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_dispatch_parameters_arm: unsafe {
-                unsafe extern "system" fn cmd_set_dispatch_parameters_arm(
+            cmd_set_dispatch_parameters: unsafe {
+                unsafe extern "system" fn cmd_set_dispatch_parameters(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DispatchParametersARM<'_>,
                 ) {
@@ -53,7 +53,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDispatchParametersARM");
                 if val.is_null() {
-                    cmd_set_dispatch_parameters_arm
+                    cmd_set_dispatch_parameters
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -84,12 +84,12 @@ impl Device {
     }
     ///vkCmdSetDispatchParametersARM
     #[inline]
-    pub unsafe fn cmd_set_dispatch_parameters_arm(
+    pub unsafe fn cmd_set_dispatch_parameters(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         dispatch_parameters: &crate::vk::DispatchParametersARM<'_>,
     ) {
-        (self.fp.cmd_set_dispatch_parameters_arm)(command_buffer, dispatch_parameters)
+        (self.fp.cmd_set_dispatch_parameters)(command_buffer, dispatch_parameters)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

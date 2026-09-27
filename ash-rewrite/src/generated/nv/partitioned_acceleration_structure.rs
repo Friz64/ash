@@ -60,8 +60,8 @@ impl PartitionedAccelerationStructureInstanceFlagBitsNV {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_partitioned_acceleration_structures_build_sizes_nv: crate::vk::PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV,
-    pub cmd_build_partitioned_acceleration_structures_nv: crate::vk::PFN_vkCmdBuildPartitionedAccelerationStructuresNV,
+    pub get_partitioned_acceleration_structures_build_sizes: crate::vk::PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV,
+    pub cmd_build_partitioned_acceleration_structures: crate::vk::PFN_vkCmdBuildPartitionedAccelerationStructuresNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -75,8 +75,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_partitioned_acceleration_structures_build_sizes_nv: unsafe {
-                unsafe extern "system" fn get_partitioned_acceleration_structures_build_sizes_nv(
+            get_partitioned_acceleration_structures_build_sizes: unsafe {
+                unsafe extern "system" fn get_partitioned_acceleration_structures_build_sizes(
                     _: crate::vk::Device,
                     _: *const crate::vk::PartitionedAccelerationStructureInstancesInputNV<
                         '_,
@@ -89,13 +89,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetPartitionedAccelerationStructuresBuildSizesNV");
                 if val.is_null() {
-                    get_partitioned_acceleration_structures_build_sizes_nv
+                    get_partitioned_acceleration_structures_build_sizes
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_build_partitioned_acceleration_structures_nv: unsafe {
-                unsafe extern "system" fn cmd_build_partitioned_acceleration_structures_nv(
+            cmd_build_partitioned_acceleration_structures: unsafe {
+                unsafe extern "system" fn cmd_build_partitioned_acceleration_structures(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::BuildPartitionedAccelerationStructureInfoNV<'_>,
                 ) {
@@ -105,7 +105,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBuildPartitionedAccelerationStructuresNV");
                 if val.is_null() {
-                    cmd_build_partitioned_acceleration_structures_nv
+                    cmd_build_partitioned_acceleration_structures
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -136,7 +136,7 @@ impl Device {
     }
     ///vkGetPartitionedAccelerationStructuresBuildSizesNV
     #[inline]
-    pub unsafe fn get_partitioned_acceleration_structures_build_sizes_nv(
+    pub unsafe fn get_partitioned_acceleration_structures_build_sizes(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::PartitionedAccelerationStructureInstancesInputNV<'_>,
@@ -144,7 +144,7 @@ impl Device {
     ) {
         (self
             .fp
-            .get_partitioned_acceleration_structures_build_sizes_nv)(
+            .get_partitioned_acceleration_structures_build_sizes)(
             device,
             info,
             size_info,
@@ -152,17 +152,14 @@ impl Device {
     }
     ///vkCmdBuildPartitionedAccelerationStructuresNV
     #[inline]
-    pub unsafe fn cmd_build_partitioned_acceleration_structures_nv(
+    pub unsafe fn cmd_build_partitioned_acceleration_structures(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         build_info: &crate::vk::BuildPartitionedAccelerationStructureInfoNV<'_>,
     ) {
         (self
             .fp
-            .cmd_build_partitioned_acceleration_structures_nv)(
-            command_buffer,
-            build_info,
-        )
+            .cmd_build_partitioned_acceleration_structures)(command_buffer, build_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

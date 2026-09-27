@@ -8,7 +8,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_vi_surface_nn: crate::vk::PFN_vkCreateViSurfaceNN,
+    pub create_vi_surface: crate::vk::PFN_vkCreateViSurfaceNN,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -22,8 +22,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_vi_surface_nn: unsafe {
-                unsafe extern "system" fn create_vi_surface_nn(
+            create_vi_surface: unsafe {
+                unsafe extern "system" fn create_vi_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::ViSurfaceCreateInfoNN<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -33,7 +33,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateViSurfaceNN");
                 if val.is_null() {
-                    create_vi_surface_nn
+                    create_vi_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,15 +64,14 @@ impl Instance {
     }
     ///vkCreateViSurfaceNN
     #[inline]
-    pub unsafe fn create_vi_surface_nn(
+    pub unsafe fn create_vi_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::ViSurfaceCreateInfoNN<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_vi_surface_nn)(instance, create_info, allocator, surface)
-            .result()
+        (self.fp.create_vi_surface)(instance, create_info, allocator, surface).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

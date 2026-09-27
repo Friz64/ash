@@ -16,7 +16,7 @@ impl crate::vk::DynamicState {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_vertex_input_ext: crate::vk::PFN_vkCmdSetVertexInputEXT,
+    pub cmd_set_vertex_input: crate::vk::PFN_vkCmdSetVertexInputEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -30,8 +30,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_vertex_input_ext: unsafe {
-                unsafe extern "system" fn cmd_set_vertex_input_ext(
+            cmd_set_vertex_input: unsafe {
+                unsafe extern "system" fn cmd_set_vertex_input(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::VertexInputBindingDescription2EXT<'_>,
@@ -42,7 +42,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetVertexInputEXT");
                 if val.is_null() {
-                    cmd_set_vertex_input_ext
+                    cmd_set_vertex_input
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -73,7 +73,7 @@ impl Device {
     }
     ///vkCmdSetVertexInputEXT
     #[inline]
-    pub unsafe fn cmd_set_vertex_input_ext(
+    pub unsafe fn cmd_set_vertex_input(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         vertex_binding_descriptions: &[crate::vk::VertexInputBindingDescription2EXT<'_>],
@@ -83,7 +83,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_vertex_input_ext)(
+            .cmd_set_vertex_input)(
             command_buffer,
             vertex_binding_descriptions.len() as _,
             vertex_binding_descriptions.as_ptr(),

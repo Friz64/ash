@@ -36,11 +36,11 @@ impl crate::vk::PipelineCreateFlagBits2 {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_pipeline_binaries_khr: crate::vk::PFN_vkCreatePipelineBinariesKHR,
-    pub destroy_pipeline_binary_khr: crate::vk::PFN_vkDestroyPipelineBinaryKHR,
-    pub get_pipeline_key_khr: crate::vk::PFN_vkGetPipelineKeyKHR,
-    pub get_pipeline_binary_data_khr: crate::vk::PFN_vkGetPipelineBinaryDataKHR,
-    pub release_captured_pipeline_data_khr: crate::vk::PFN_vkReleaseCapturedPipelineDataKHR,
+    pub create_pipeline_binaries: crate::vk::PFN_vkCreatePipelineBinariesKHR,
+    pub destroy_pipeline_binary: crate::vk::PFN_vkDestroyPipelineBinaryKHR,
+    pub get_pipeline_key: crate::vk::PFN_vkGetPipelineKeyKHR,
+    pub get_pipeline_binary_data: crate::vk::PFN_vkGetPipelineBinaryDataKHR,
+    pub release_captured_pipeline_data: crate::vk::PFN_vkReleaseCapturedPipelineDataKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -54,8 +54,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_pipeline_binaries_khr: unsafe {
-                unsafe extern "system" fn create_pipeline_binaries_khr(
+            create_pipeline_binaries: unsafe {
+                unsafe extern "system" fn create_pipeline_binaries(
                     _: crate::vk::Device,
                     _: *const crate::vk::PipelineBinaryCreateInfoKHR<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -65,13 +65,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreatePipelineBinariesKHR");
                 if val.is_null() {
-                    create_pipeline_binaries_khr
+                    create_pipeline_binaries
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_pipeline_binary_khr: unsafe {
-                unsafe extern "system" fn destroy_pipeline_binary_khr(
+            destroy_pipeline_binary: unsafe {
+                unsafe extern "system" fn destroy_pipeline_binary(
                     _: crate::vk::Device,
                     _: crate::vk::PipelineBinaryKHR,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -80,13 +80,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyPipelineBinaryKHR");
                 if val.is_null() {
-                    destroy_pipeline_binary_khr
+                    destroy_pipeline_binary
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_pipeline_key_khr: unsafe {
-                unsafe extern "system" fn get_pipeline_key_khr(
+            get_pipeline_key: unsafe {
+                unsafe extern "system" fn get_pipeline_key(
                     _: crate::vk::Device,
                     _: *const crate::vk::PipelineCreateInfoKHR<'_>,
                     _: *mut crate::vk::PipelineBinaryKeyKHR<'_>,
@@ -95,13 +95,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetPipelineKeyKHR");
                 if val.is_null() {
-                    get_pipeline_key_khr
+                    get_pipeline_key
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_pipeline_binary_data_khr: unsafe {
-                unsafe extern "system" fn get_pipeline_binary_data_khr(
+            get_pipeline_binary_data: unsafe {
+                unsafe extern "system" fn get_pipeline_binary_data(
                     _: crate::vk::Device,
                     _: *const crate::vk::PipelineBinaryDataInfoKHR<'_>,
                     _: *mut crate::vk::PipelineBinaryKeyKHR<'_>,
@@ -112,13 +112,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetPipelineBinaryDataKHR");
                 if val.is_null() {
-                    get_pipeline_binary_data_khr
+                    get_pipeline_binary_data
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            release_captured_pipeline_data_khr: unsafe {
-                unsafe extern "system" fn release_captured_pipeline_data_khr(
+            release_captured_pipeline_data: unsafe {
+                unsafe extern "system" fn release_captured_pipeline_data(
                     _: crate::vk::Device,
                     _: *const crate::vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -127,7 +127,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkReleaseCapturedPipelineDataKHR");
                 if val.is_null() {
-                    release_captured_pipeline_data_khr
+                    release_captured_pipeline_data
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -158,40 +158,39 @@ impl Device {
     }
     ///vkCreatePipelineBinariesKHR
     #[inline]
-    pub unsafe fn create_pipeline_binaries_khr(
+    pub unsafe fn create_pipeline_binaries(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::PipelineBinaryCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         binaries: &mut crate::vk::PipelineBinaryHandlesInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.create_pipeline_binaries_khr)(device, create_info, allocator, binaries)
+        (self.fp.create_pipeline_binaries)(device, create_info, allocator, binaries)
             .result()
     }
     ///vkDestroyPipelineBinaryKHR
     #[inline]
-    pub unsafe fn destroy_pipeline_binary_khr(
+    pub unsafe fn destroy_pipeline_binary(
         &self,
         device: crate::vk::Device,
         pipeline_binary: crate::vk::PipelineBinaryKHR,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_pipeline_binary_khr)(device, pipeline_binary, allocator)
+        (self.fp.destroy_pipeline_binary)(device, pipeline_binary, allocator)
     }
     ///vkGetPipelineKeyKHR
     #[inline]
-    pub unsafe fn get_pipeline_key_khr(
+    pub unsafe fn get_pipeline_key(
         &self,
         device: crate::vk::Device,
         pipeline_create_info: &crate::vk::PipelineCreateInfoKHR<'_>,
         pipeline_key: &mut crate::vk::PipelineBinaryKeyKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_pipeline_key_khr)(device, pipeline_create_info, pipeline_key)
-            .result()
+        (self.fp.get_pipeline_key)(device, pipeline_create_info, pipeline_key).result()
     }
     ///vkGetPipelineBinaryDataKHR
     #[inline]
-    pub unsafe fn get_pipeline_binary_data_khr(
+    pub unsafe fn get_pipeline_binary_data(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::PipelineBinaryDataInfoKHR<'_>,
@@ -202,7 +201,7 @@ impl Device {
             pipeline_binary_data|
         (self
             .fp
-            .get_pipeline_binary_data_khr)(
+            .get_pipeline_binary_data)(
             device,
             info,
             pipeline_binary_key,
@@ -212,13 +211,13 @@ impl Device {
     }
     ///vkReleaseCapturedPipelineDataKHR
     #[inline]
-    pub unsafe fn release_captured_pipeline_data_khr(
+    pub unsafe fn release_captured_pipeline_data(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.release_captured_pipeline_data_khr)(device, info, allocator).result()
+        (self.fp.release_captured_pipeline_data)(device, info, allocator).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

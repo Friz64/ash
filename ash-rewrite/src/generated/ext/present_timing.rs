@@ -86,10 +86,10 @@ impl PresentTimingInfoFlagBitsEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_swapchain_present_timing_queue_size_ext: crate::vk::PFN_vkSetSwapchainPresentTimingQueueSizeEXT,
-    pub get_swapchain_timing_properties_ext: crate::vk::PFN_vkGetSwapchainTimingPropertiesEXT,
-    pub get_swapchain_time_domain_properties_ext: crate::vk::PFN_vkGetSwapchainTimeDomainPropertiesEXT,
-    pub get_past_presentation_timing_ext: crate::vk::PFN_vkGetPastPresentationTimingEXT,
+    pub set_swapchain_present_timing_queue_size: crate::vk::PFN_vkSetSwapchainPresentTimingQueueSizeEXT,
+    pub get_swapchain_timing_properties: crate::vk::PFN_vkGetSwapchainTimingPropertiesEXT,
+    pub get_swapchain_time_domain_properties: crate::vk::PFN_vkGetSwapchainTimeDomainPropertiesEXT,
+    pub get_past_presentation_timing: crate::vk::PFN_vkGetPastPresentationTimingEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -103,8 +103,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            set_swapchain_present_timing_queue_size_ext: unsafe {
-                unsafe extern "system" fn set_swapchain_present_timing_queue_size_ext(
+            set_swapchain_present_timing_queue_size: unsafe {
+                unsafe extern "system" fn set_swapchain_present_timing_queue_size(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: u32,
@@ -113,13 +113,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkSetSwapchainPresentTimingQueueSizeEXT");
                 if val.is_null() {
-                    set_swapchain_present_timing_queue_size_ext
+                    set_swapchain_present_timing_queue_size
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_swapchain_timing_properties_ext: unsafe {
-                unsafe extern "system" fn get_swapchain_timing_properties_ext(
+            get_swapchain_timing_properties: unsafe {
+                unsafe extern "system" fn get_swapchain_timing_properties(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: *mut crate::vk::SwapchainTimingPropertiesEXT<'_>,
@@ -129,13 +129,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetSwapchainTimingPropertiesEXT");
                 if val.is_null() {
-                    get_swapchain_timing_properties_ext
+                    get_swapchain_timing_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_swapchain_time_domain_properties_ext: unsafe {
-                unsafe extern "system" fn get_swapchain_time_domain_properties_ext(
+            get_swapchain_time_domain_properties: unsafe {
+                unsafe extern "system" fn get_swapchain_time_domain_properties(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: *mut crate::vk::SwapchainTimeDomainPropertiesEXT<'_>,
@@ -145,13 +145,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetSwapchainTimeDomainPropertiesEXT");
                 if val.is_null() {
-                    get_swapchain_time_domain_properties_ext
+                    get_swapchain_time_domain_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_past_presentation_timing_ext: unsafe {
-                unsafe extern "system" fn get_past_presentation_timing_ext(
+            get_past_presentation_timing: unsafe {
+                unsafe extern "system" fn get_past_presentation_timing(
                     _: crate::vk::Device,
                     _: *const crate::vk::PastPresentationTimingInfoEXT<'_>,
                     _: *mut crate::vk::PastPresentationTimingPropertiesEXT<'_>,
@@ -160,7 +160,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetPastPresentationTimingEXT");
                 if val.is_null() {
-                    get_past_presentation_timing_ext
+                    get_past_presentation_timing
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -191,18 +191,18 @@ impl Device {
     }
     ///vkSetSwapchainPresentTimingQueueSizeEXT
     #[inline]
-    pub unsafe fn set_swapchain_present_timing_queue_size_ext(
+    pub unsafe fn set_swapchain_present_timing_queue_size(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
         size: u32,
     ) -> crate::VkResult<()> {
-        (self.fp.set_swapchain_present_timing_queue_size_ext)(device, swapchain, size)
+        (self.fp.set_swapchain_present_timing_queue_size)(device, swapchain, size)
             .result()
     }
     ///vkGetSwapchainTimingPropertiesEXT
     #[inline]
-    pub unsafe fn get_swapchain_timing_properties_ext(
+    pub unsafe fn get_swapchain_timing_properties(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
@@ -211,7 +211,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_swapchain_timing_properties_ext)(
+            .get_swapchain_timing_properties)(
                 device,
                 swapchain,
                 swapchain_timing_properties,
@@ -221,7 +221,7 @@ impl Device {
     }
     ///vkGetSwapchainTimeDomainPropertiesEXT
     #[inline]
-    pub unsafe fn get_swapchain_time_domain_properties_ext(
+    pub unsafe fn get_swapchain_time_domain_properties(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
@@ -232,7 +232,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_swapchain_time_domain_properties_ext)(
+            .get_swapchain_time_domain_properties)(
                 device,
                 swapchain,
                 swapchain_time_domain_properties,
@@ -242,7 +242,7 @@ impl Device {
     }
     ///vkGetPastPresentationTimingEXT
     #[inline]
-    pub unsafe fn get_past_presentation_timing_ext(
+    pub unsafe fn get_past_presentation_timing(
         &self,
         device: crate::vk::Device,
         past_presentation_timing_info: &crate::vk::PastPresentationTimingInfoEXT<'_>,
@@ -252,7 +252,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_past_presentation_timing_ext)(
+            .get_past_presentation_timing)(
                 device,
                 past_presentation_timing_info,
                 past_presentation_timing_properties,

@@ -9,10 +9,10 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_image_view_handle_nvx: crate::vk::PFN_vkGetImageViewHandleNVX,
-    pub get_image_view_handle64_nvx: crate::vk::PFN_vkGetImageViewHandle64NVX,
-    pub get_image_view_address_nvx: crate::vk::PFN_vkGetImageViewAddressNVX,
-    pub get_device_combined_image_sampler_index_nvx: crate::vk::PFN_vkGetDeviceCombinedImageSamplerIndexNVX,
+    pub get_image_view_handle: crate::vk::PFN_vkGetImageViewHandleNVX,
+    pub get_image_view_handle64: crate::vk::PFN_vkGetImageViewHandle64NVX,
+    pub get_image_view_address: crate::vk::PFN_vkGetImageViewAddressNVX,
+    pub get_device_combined_image_sampler_index: crate::vk::PFN_vkGetDeviceCombinedImageSamplerIndexNVX,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -26,8 +26,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_image_view_handle_nvx: unsafe {
-                unsafe extern "system" fn get_image_view_handle_nvx(
+            get_image_view_handle: unsafe {
+                unsafe extern "system" fn get_image_view_handle(
                     _: crate::vk::Device,
                     _: *const crate::vk::ImageViewHandleInfoNVX<'_>,
                 ) -> u32 {
@@ -35,13 +35,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetImageViewHandleNVX");
                 if val.is_null() {
-                    get_image_view_handle_nvx
+                    get_image_view_handle
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_image_view_handle64_nvx: unsafe {
-                unsafe extern "system" fn get_image_view_handle64_nvx(
+            get_image_view_handle64: unsafe {
+                unsafe extern "system" fn get_image_view_handle64(
                     _: crate::vk::Device,
                     _: *const crate::vk::ImageViewHandleInfoNVX<'_>,
                 ) -> u64 {
@@ -49,13 +49,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetImageViewHandle64NVX");
                 if val.is_null() {
-                    get_image_view_handle64_nvx
+                    get_image_view_handle64
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_image_view_address_nvx: unsafe {
-                unsafe extern "system" fn get_image_view_address_nvx(
+            get_image_view_address: unsafe {
+                unsafe extern "system" fn get_image_view_address(
                     _: crate::vk::Device,
                     _: crate::vk::ImageView,
                     _: *mut crate::vk::ImageViewAddressPropertiesNVX<'_>,
@@ -64,13 +64,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetImageViewAddressNVX");
                 if val.is_null() {
-                    get_image_view_address_nvx
+                    get_image_view_address
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_device_combined_image_sampler_index_nvx: unsafe {
-                unsafe extern "system" fn get_device_combined_image_sampler_index_nvx(
+            get_device_combined_image_sampler_index: unsafe {
+                unsafe extern "system" fn get_device_combined_image_sampler_index(
                     _: crate::vk::Device,
                     _: u64,
                     _: u64,
@@ -79,7 +79,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceCombinedImageSamplerIndexNVX");
                 if val.is_null() {
-                    get_device_combined_image_sampler_index_nvx
+                    get_device_combined_image_sampler_index
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -110,35 +110,35 @@ impl Device {
     }
     ///vkGetImageViewHandleNVX
     #[inline]
-    pub unsafe fn get_image_view_handle_nvx(
+    pub unsafe fn get_image_view_handle(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::ImageViewHandleInfoNVX<'_>,
     ) -> u32 {
-        (self.fp.get_image_view_handle_nvx)(device, info)
+        (self.fp.get_image_view_handle)(device, info)
     }
     ///vkGetImageViewHandle64NVX
     #[inline]
-    pub unsafe fn get_image_view_handle64_nvx(
+    pub unsafe fn get_image_view_handle64(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::ImageViewHandleInfoNVX<'_>,
     ) -> u64 {
-        (self.fp.get_image_view_handle64_nvx)(device, info)
+        (self.fp.get_image_view_handle64)(device, info)
     }
     ///vkGetImageViewAddressNVX
     #[inline]
-    pub unsafe fn get_image_view_address_nvx(
+    pub unsafe fn get_image_view_address(
         &self,
         device: crate::vk::Device,
         image_view: crate::vk::ImageView,
         properties: &mut crate::vk::ImageViewAddressPropertiesNVX<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_image_view_address_nvx)(device, image_view, properties).result()
+        (self.fp.get_image_view_address)(device, image_view, properties).result()
     }
     ///vkGetDeviceCombinedImageSamplerIndexNVX
     #[inline]
-    pub unsafe fn get_device_combined_image_sampler_index_nvx(
+    pub unsafe fn get_device_combined_image_sampler_index(
         &self,
         device: crate::vk::Device,
         image_view_index: u64,
@@ -146,7 +146,7 @@ impl Device {
     ) -> u64 {
         (self
             .fp
-            .get_device_combined_image_sampler_index_nvx)(
+            .get_device_combined_image_sampler_index)(
             device,
             image_view_index,
             sampler_index,

@@ -49,7 +49,7 @@ impl crate::vk::ExternalSemaphoreFeatureFlagBits {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_external_semaphore_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR,
+    pub get_physical_device_external_semaphore_properties: crate::vk::PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -63,8 +63,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_external_semaphore_properties_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_external_semaphore_properties_khr(
+            get_physical_device_external_semaphore_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_external_semaphore_properties(
                     _: crate::vk::PhysicalDevice,
                     _: *const crate::vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
                     _: *mut crate::vk::ExternalSemaphoreProperties<'_>,
@@ -75,7 +75,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceExternalSemaphorePropertiesKHR");
                 if val.is_null() {
-                    get_physical_device_external_semaphore_properties_khr
+                    get_physical_device_external_semaphore_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -106,7 +106,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceExternalSemaphoreProperties
     #[inline]
-    pub unsafe fn get_physical_device_external_semaphore_properties_khr(
+    pub unsafe fn get_physical_device_external_semaphore_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         external_semaphore_info: &crate::vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
@@ -114,7 +114,7 @@ impl Instance {
     ) {
         (self
             .fp
-            .get_physical_device_external_semaphore_properties_khr)(
+            .get_physical_device_external_semaphore_properties)(
             physical_device,
             external_semaphore_info,
             external_semaphore_properties,

@@ -6,8 +6,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_buffer_marker";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_write_buffer_marker_amd: crate::vk::PFN_vkCmdWriteBufferMarkerAMD,
-    pub cmd_write_buffer_marker2_amd: crate::vk::PFN_vkCmdWriteBufferMarker2AMD,
+    pub cmd_write_buffer_marker: crate::vk::PFN_vkCmdWriteBufferMarkerAMD,
+    pub cmd_write_buffer_marker2: crate::vk::PFN_vkCmdWriteBufferMarker2AMD,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -21,8 +21,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_write_buffer_marker_amd: unsafe {
-                unsafe extern "system" fn cmd_write_buffer_marker_amd(
+            cmd_write_buffer_marker: unsafe {
+                unsafe extern "system" fn cmd_write_buffer_marker(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::PipelineStageFlagBits,
                     _: crate::vk::Buffer,
@@ -33,13 +33,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdWriteBufferMarkerAMD");
                 if val.is_null() {
-                    cmd_write_buffer_marker_amd
+                    cmd_write_buffer_marker
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_write_buffer_marker2_amd: unsafe {
-                unsafe extern "system" fn cmd_write_buffer_marker2_amd(
+            cmd_write_buffer_marker2: unsafe {
+                unsafe extern "system" fn cmd_write_buffer_marker2(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::PipelineStageFlags2,
                     _: crate::vk::Buffer,
@@ -50,7 +50,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdWriteBufferMarker2AMD");
                 if val.is_null() {
-                    cmd_write_buffer_marker2_amd
+                    cmd_write_buffer_marker2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -81,7 +81,7 @@ impl Device {
     }
     ///vkCmdWriteBufferMarkerAMD
     #[inline]
-    pub unsafe fn cmd_write_buffer_marker_amd(
+    pub unsafe fn cmd_write_buffer_marker(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         pipeline_stage: crate::vk::PipelineStageFlagBits,
@@ -91,7 +91,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_write_buffer_marker_amd)(
+            .cmd_write_buffer_marker)(
             command_buffer,
             pipeline_stage,
             dst_buffer,
@@ -101,7 +101,7 @@ impl Device {
     }
     ///vkCmdWriteBufferMarker2AMD
     #[inline]
-    pub unsafe fn cmd_write_buffer_marker2_amd(
+    pub unsafe fn cmd_write_buffer_marker2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         stage: crate::vk::PipelineStageFlags2,
@@ -111,7 +111,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_write_buffer_marker2_amd)(
+            .cmd_write_buffer_marker2)(
             command_buffer,
             stage,
             dst_buffer,

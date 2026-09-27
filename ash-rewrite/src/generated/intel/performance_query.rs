@@ -47,15 +47,15 @@ impl PerformanceValueTypeINTEL {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub initialize_performance_api_intel: crate::vk::PFN_vkInitializePerformanceApiINTEL,
-    pub uninitialize_performance_api_intel: crate::vk::PFN_vkUninitializePerformanceApiINTEL,
-    pub cmd_set_performance_marker_intel: crate::vk::PFN_vkCmdSetPerformanceMarkerINTEL,
-    pub cmd_set_performance_stream_marker_intel: crate::vk::PFN_vkCmdSetPerformanceStreamMarkerINTEL,
-    pub cmd_set_performance_override_intel: crate::vk::PFN_vkCmdSetPerformanceOverrideINTEL,
-    pub acquire_performance_configuration_intel: crate::vk::PFN_vkAcquirePerformanceConfigurationINTEL,
-    pub release_performance_configuration_intel: crate::vk::PFN_vkReleasePerformanceConfigurationINTEL,
-    pub queue_set_performance_configuration_intel: crate::vk::PFN_vkQueueSetPerformanceConfigurationINTEL,
-    pub get_performance_parameter_intel: crate::vk::PFN_vkGetPerformanceParameterINTEL,
+    pub initialize_performance_api: crate::vk::PFN_vkInitializePerformanceApiINTEL,
+    pub uninitialize_performance_api: crate::vk::PFN_vkUninitializePerformanceApiINTEL,
+    pub cmd_set_performance_marker: crate::vk::PFN_vkCmdSetPerformanceMarkerINTEL,
+    pub cmd_set_performance_stream_marker: crate::vk::PFN_vkCmdSetPerformanceStreamMarkerINTEL,
+    pub cmd_set_performance_override: crate::vk::PFN_vkCmdSetPerformanceOverrideINTEL,
+    pub acquire_performance_configuration: crate::vk::PFN_vkAcquirePerformanceConfigurationINTEL,
+    pub release_performance_configuration: crate::vk::PFN_vkReleasePerformanceConfigurationINTEL,
+    pub queue_set_performance_configuration: crate::vk::PFN_vkQueueSetPerformanceConfigurationINTEL,
+    pub get_performance_parameter: crate::vk::PFN_vkGetPerformanceParameterINTEL,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -69,8 +69,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            initialize_performance_api_intel: unsafe {
-                unsafe extern "system" fn initialize_performance_api_intel(
+            initialize_performance_api: unsafe {
+                unsafe extern "system" fn initialize_performance_api(
                     _: crate::vk::Device,
                     _: *const crate::vk::InitializePerformanceApiInfoINTEL<'_>,
                 ) -> crate::vk::Result {
@@ -78,26 +78,26 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkInitializePerformanceApiINTEL");
                 if val.is_null() {
-                    initialize_performance_api_intel
+                    initialize_performance_api
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            uninitialize_performance_api_intel: unsafe {
-                unsafe extern "system" fn uninitialize_performance_api_intel(
+            uninitialize_performance_api: unsafe {
+                unsafe extern "system" fn uninitialize_performance_api(
                     _: crate::vk::Device,
                 ) {
                     panic!("unable to load vkUninitializePerformanceApiINTEL")
                 }
                 let val = _f(c"vkUninitializePerformanceApiINTEL");
                 if val.is_null() {
-                    uninitialize_performance_api_intel
+                    uninitialize_performance_api
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_performance_marker_intel: unsafe {
-                unsafe extern "system" fn cmd_set_performance_marker_intel(
+            cmd_set_performance_marker: unsafe {
+                unsafe extern "system" fn cmd_set_performance_marker(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::PerformanceMarkerInfoINTEL<'_>,
                 ) -> crate::vk::Result {
@@ -105,13 +105,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetPerformanceMarkerINTEL");
                 if val.is_null() {
-                    cmd_set_performance_marker_intel
+                    cmd_set_performance_marker
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_performance_stream_marker_intel: unsafe {
-                unsafe extern "system" fn cmd_set_performance_stream_marker_intel(
+            cmd_set_performance_stream_marker: unsafe {
+                unsafe extern "system" fn cmd_set_performance_stream_marker(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::PerformanceStreamMarkerInfoINTEL<'_>,
                 ) -> crate::vk::Result {
@@ -119,13 +119,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetPerformanceStreamMarkerINTEL");
                 if val.is_null() {
-                    cmd_set_performance_stream_marker_intel
+                    cmd_set_performance_stream_marker
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_performance_override_intel: unsafe {
-                unsafe extern "system" fn cmd_set_performance_override_intel(
+            cmd_set_performance_override: unsafe {
+                unsafe extern "system" fn cmd_set_performance_override(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::PerformanceOverrideInfoINTEL<'_>,
                 ) -> crate::vk::Result {
@@ -133,13 +133,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetPerformanceOverrideINTEL");
                 if val.is_null() {
-                    cmd_set_performance_override_intel
+                    cmd_set_performance_override
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            acquire_performance_configuration_intel: unsafe {
-                unsafe extern "system" fn acquire_performance_configuration_intel(
+            acquire_performance_configuration: unsafe {
+                unsafe extern "system" fn acquire_performance_configuration(
                     _: crate::vk::Device,
                     _: *const crate::vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
                     _: *mut crate::vk::PerformanceConfigurationINTEL,
@@ -148,13 +148,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkAcquirePerformanceConfigurationINTEL");
                 if val.is_null() {
-                    acquire_performance_configuration_intel
+                    acquire_performance_configuration
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            release_performance_configuration_intel: unsafe {
-                unsafe extern "system" fn release_performance_configuration_intel(
+            release_performance_configuration: unsafe {
+                unsafe extern "system" fn release_performance_configuration(
                     _: crate::vk::Device,
                     _: crate::vk::PerformanceConfigurationINTEL,
                 ) -> crate::vk::Result {
@@ -162,13 +162,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkReleasePerformanceConfigurationINTEL");
                 if val.is_null() {
-                    release_performance_configuration_intel
+                    release_performance_configuration
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            queue_set_performance_configuration_intel: unsafe {
-                unsafe extern "system" fn queue_set_performance_configuration_intel(
+            queue_set_performance_configuration: unsafe {
+                unsafe extern "system" fn queue_set_performance_configuration(
                     _: crate::vk::Queue,
                     _: crate::vk::PerformanceConfigurationINTEL,
                 ) -> crate::vk::Result {
@@ -176,13 +176,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkQueueSetPerformanceConfigurationINTEL");
                 if val.is_null() {
-                    queue_set_performance_configuration_intel
+                    queue_set_performance_configuration
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_performance_parameter_intel: unsafe {
-                unsafe extern "system" fn get_performance_parameter_intel(
+            get_performance_parameter: unsafe {
+                unsafe extern "system" fn get_performance_parameter(
                     _: crate::vk::Device,
                     _: crate::vk::PerformanceParameterTypeINTEL,
                     _: *mut crate::vk::PerformanceValueINTEL,
@@ -191,7 +191,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetPerformanceParameterINTEL");
                 if val.is_null() {
-                    get_performance_parameter_intel
+                    get_performance_parameter
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -222,92 +222,83 @@ impl Device {
     }
     ///vkInitializePerformanceApiINTEL
     #[inline]
-    pub unsafe fn initialize_performance_api_intel(
+    pub unsafe fn initialize_performance_api(
         &self,
         device: crate::vk::Device,
         initialize_info: &crate::vk::InitializePerformanceApiInfoINTEL<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.initialize_performance_api_intel)(device, initialize_info).result()
+        (self.fp.initialize_performance_api)(device, initialize_info).result()
     }
     ///vkUninitializePerformanceApiINTEL
     #[inline]
-    pub unsafe fn uninitialize_performance_api_intel(&self, device: crate::vk::Device) {
-        (self.fp.uninitialize_performance_api_intel)(device)
+    pub unsafe fn uninitialize_performance_api(&self, device: crate::vk::Device) {
+        (self.fp.uninitialize_performance_api)(device)
     }
     ///vkCmdSetPerformanceMarkerINTEL
     #[inline]
-    pub unsafe fn cmd_set_performance_marker_intel(
+    pub unsafe fn cmd_set_performance_marker(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         marker_info: &crate::vk::PerformanceMarkerInfoINTEL<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.cmd_set_performance_marker_intel)(command_buffer, marker_info).result()
+        (self.fp.cmd_set_performance_marker)(command_buffer, marker_info).result()
     }
     ///vkCmdSetPerformanceStreamMarkerINTEL
     #[inline]
-    pub unsafe fn cmd_set_performance_stream_marker_intel(
+    pub unsafe fn cmd_set_performance_stream_marker(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         marker_info: &crate::vk::PerformanceStreamMarkerInfoINTEL<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.cmd_set_performance_stream_marker_intel)(command_buffer, marker_info)
-            .result()
+        (self.fp.cmd_set_performance_stream_marker)(command_buffer, marker_info).result()
     }
     ///vkCmdSetPerformanceOverrideINTEL
     #[inline]
-    pub unsafe fn cmd_set_performance_override_intel(
+    pub unsafe fn cmd_set_performance_override(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         override_info: &crate::vk::PerformanceOverrideInfoINTEL<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.cmd_set_performance_override_intel)(command_buffer, override_info)
-            .result()
+        (self.fp.cmd_set_performance_override)(command_buffer, override_info).result()
     }
     ///vkAcquirePerformanceConfigurationINTEL
     #[inline]
-    pub unsafe fn acquire_performance_configuration_intel(
+    pub unsafe fn acquire_performance_configuration(
         &self,
         device: crate::vk::Device,
         acquire_info: &crate::vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
         configuration: &mut crate::vk::PerformanceConfigurationINTEL,
     ) -> crate::VkResult<()> {
-        (self
-            .fp
-            .acquire_performance_configuration_intel)(
-                device,
-                acquire_info,
-                configuration,
-            )
+        (self.fp.acquire_performance_configuration)(device, acquire_info, configuration)
             .result()
     }
     ///vkReleasePerformanceConfigurationINTEL
     #[inline]
-    pub unsafe fn release_performance_configuration_intel(
+    pub unsafe fn release_performance_configuration(
         &self,
         device: crate::vk::Device,
         configuration: crate::vk::PerformanceConfigurationINTEL,
     ) -> crate::VkResult<()> {
-        (self.fp.release_performance_configuration_intel)(device, configuration).result()
+        (self.fp.release_performance_configuration)(device, configuration).result()
     }
     ///vkQueueSetPerformanceConfigurationINTEL
     #[inline]
-    pub unsafe fn queue_set_performance_configuration_intel(
+    pub unsafe fn queue_set_performance_configuration(
         &self,
         queue: crate::vk::Queue,
         configuration: crate::vk::PerformanceConfigurationINTEL,
     ) -> crate::VkResult<()> {
-        (self.fp.queue_set_performance_configuration_intel)(queue, configuration)
-            .result()
+        (self.fp.queue_set_performance_configuration)(queue, configuration).result()
     }
     ///vkGetPerformanceParameterINTEL
     #[inline]
-    pub unsafe fn get_performance_parameter_intel(
+    pub unsafe fn get_performance_parameter(
         &self,
         device: crate::vk::Device,
         parameter: crate::vk::PerformanceParameterTypeINTEL,
         value: &mut crate::vk::PerformanceValueINTEL,
     ) -> crate::VkResult<()> {
-        (self.fp.get_performance_parameter_intel)(device, parameter, value).result()
+        (self.fp.get_performance_parameter)(device, parameter, value).result()
     }
 }
 pub const SPEC_VERSION: u32 = 2;

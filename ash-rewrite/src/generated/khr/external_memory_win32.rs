@@ -11,8 +11,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_memory_win32_handle_khr: crate::vk::PFN_vkGetMemoryWin32HandleKHR,
-    pub get_memory_win32_handle_properties_khr: crate::vk::PFN_vkGetMemoryWin32HandlePropertiesKHR,
+    pub get_memory_win32_handle: crate::vk::PFN_vkGetMemoryWin32HandleKHR,
+    pub get_memory_win32_handle_properties: crate::vk::PFN_vkGetMemoryWin32HandlePropertiesKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -26,8 +26,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_memory_win32_handle_khr: unsafe {
-                unsafe extern "system" fn get_memory_win32_handle_khr(
+            get_memory_win32_handle: unsafe {
+                unsafe extern "system" fn get_memory_win32_handle(
                     _: crate::vk::Device,
                     _: *const crate::vk::MemoryGetWin32HandleInfoKHR<'_>,
                     _: *mut crate::platform_types::HANDLE,
@@ -36,13 +36,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMemoryWin32HandleKHR");
                 if val.is_null() {
-                    get_memory_win32_handle_khr
+                    get_memory_win32_handle
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_memory_win32_handle_properties_khr: unsafe {
-                unsafe extern "system" fn get_memory_win32_handle_properties_khr(
+            get_memory_win32_handle_properties: unsafe {
+                unsafe extern "system" fn get_memory_win32_handle_properties(
                     _: crate::vk::Device,
                     _: crate::vk::ExternalMemoryHandleTypeFlagBits,
                     _: crate::platform_types::HANDLE,
@@ -52,7 +52,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMemoryWin32HandlePropertiesKHR");
                 if val.is_null() {
-                    get_memory_win32_handle_properties_khr
+                    get_memory_win32_handle_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -83,18 +83,17 @@ impl Device {
     }
     ///vkGetMemoryWin32HandleKHR
     #[inline]
-    pub unsafe fn get_memory_win32_handle_khr(
+    pub unsafe fn get_memory_win32_handle(
         &self,
         device: crate::vk::Device,
         get_win32_handle_info: &crate::vk::MemoryGetWin32HandleInfoKHR<'_>,
         handle: &mut crate::platform_types::HANDLE,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_win32_handle_khr)(device, get_win32_handle_info, handle)
-            .result()
+        (self.fp.get_memory_win32_handle)(device, get_win32_handle_info, handle).result()
     }
     ///vkGetMemoryWin32HandlePropertiesKHR
     #[inline]
-    pub unsafe fn get_memory_win32_handle_properties_khr(
+    pub unsafe fn get_memory_win32_handle_properties(
         &self,
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
@@ -105,7 +104,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_memory_win32_handle_properties_khr)(
+            .get_memory_win32_handle_properties)(
                 device,
                 handle_type,
                 handle,

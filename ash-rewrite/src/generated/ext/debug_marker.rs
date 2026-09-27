@@ -10,11 +10,11 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub debug_marker_set_object_name_ext: crate::vk::PFN_vkDebugMarkerSetObjectNameEXT,
-    pub debug_marker_set_object_tag_ext: crate::vk::PFN_vkDebugMarkerSetObjectTagEXT,
-    pub cmd_debug_marker_begin_ext: crate::vk::PFN_vkCmdDebugMarkerBeginEXT,
-    pub cmd_debug_marker_end_ext: crate::vk::PFN_vkCmdDebugMarkerEndEXT,
-    pub cmd_debug_marker_insert_ext: crate::vk::PFN_vkCmdDebugMarkerInsertEXT,
+    pub debug_marker_set_object_name: crate::vk::PFN_vkDebugMarkerSetObjectNameEXT,
+    pub debug_marker_set_object_tag: crate::vk::PFN_vkDebugMarkerSetObjectTagEXT,
+    pub cmd_debug_marker_begin: crate::vk::PFN_vkCmdDebugMarkerBeginEXT,
+    pub cmd_debug_marker_end: crate::vk::PFN_vkCmdDebugMarkerEndEXT,
+    pub cmd_debug_marker_insert: crate::vk::PFN_vkCmdDebugMarkerInsertEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -28,8 +28,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            debug_marker_set_object_name_ext: unsafe {
-                unsafe extern "system" fn debug_marker_set_object_name_ext(
+            debug_marker_set_object_name: unsafe {
+                unsafe extern "system" fn debug_marker_set_object_name(
                     _: crate::vk::Device,
                     _: *const crate::vk::DebugMarkerObjectNameInfoEXT<'_>,
                 ) -> crate::vk::Result {
@@ -37,13 +37,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDebugMarkerSetObjectNameEXT");
                 if val.is_null() {
-                    debug_marker_set_object_name_ext
+                    debug_marker_set_object_name
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            debug_marker_set_object_tag_ext: unsafe {
-                unsafe extern "system" fn debug_marker_set_object_tag_ext(
+            debug_marker_set_object_tag: unsafe {
+                unsafe extern "system" fn debug_marker_set_object_tag(
                     _: crate::vk::Device,
                     _: *const crate::vk::DebugMarkerObjectTagInfoEXT<'_>,
                 ) -> crate::vk::Result {
@@ -51,13 +51,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDebugMarkerSetObjectTagEXT");
                 if val.is_null() {
-                    debug_marker_set_object_tag_ext
+                    debug_marker_set_object_tag
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_debug_marker_begin_ext: unsafe {
-                unsafe extern "system" fn cmd_debug_marker_begin_ext(
+            cmd_debug_marker_begin: unsafe {
+                unsafe extern "system" fn cmd_debug_marker_begin(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DebugMarkerMarkerInfoEXT<'_>,
                 ) {
@@ -65,26 +65,26 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDebugMarkerBeginEXT");
                 if val.is_null() {
-                    cmd_debug_marker_begin_ext
+                    cmd_debug_marker_begin
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_debug_marker_end_ext: unsafe {
-                unsafe extern "system" fn cmd_debug_marker_end_ext(
+            cmd_debug_marker_end: unsafe {
+                unsafe extern "system" fn cmd_debug_marker_end(
                     _: crate::vk::CommandBuffer,
                 ) {
                     panic!("unable to load vkCmdDebugMarkerEndEXT")
                 }
                 let val = _f(c"vkCmdDebugMarkerEndEXT");
                 if val.is_null() {
-                    cmd_debug_marker_end_ext
+                    cmd_debug_marker_end
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_debug_marker_insert_ext: unsafe {
-                unsafe extern "system" fn cmd_debug_marker_insert_ext(
+            cmd_debug_marker_insert: unsafe {
+                unsafe extern "system" fn cmd_debug_marker_insert(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DebugMarkerMarkerInfoEXT<'_>,
                 ) {
@@ -92,7 +92,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDebugMarkerInsertEXT");
                 if val.is_null() {
-                    cmd_debug_marker_insert_ext
+                    cmd_debug_marker_insert
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -123,47 +123,44 @@ impl Device {
     }
     ///vkDebugMarkerSetObjectNameEXT
     #[inline]
-    pub unsafe fn debug_marker_set_object_name_ext(
+    pub unsafe fn debug_marker_set_object_name(
         &self,
         device: crate::vk::Device,
         name_info: &crate::vk::DebugMarkerObjectNameInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.debug_marker_set_object_name_ext)(device, name_info).result()
+        (self.fp.debug_marker_set_object_name)(device, name_info).result()
     }
     ///vkDebugMarkerSetObjectTagEXT
     #[inline]
-    pub unsafe fn debug_marker_set_object_tag_ext(
+    pub unsafe fn debug_marker_set_object_tag(
         &self,
         device: crate::vk::Device,
         tag_info: &crate::vk::DebugMarkerObjectTagInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.debug_marker_set_object_tag_ext)(device, tag_info).result()
+        (self.fp.debug_marker_set_object_tag)(device, tag_info).result()
     }
     ///vkCmdDebugMarkerBeginEXT
     #[inline]
-    pub unsafe fn cmd_debug_marker_begin_ext(
+    pub unsafe fn cmd_debug_marker_begin(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         marker_info: &crate::vk::DebugMarkerMarkerInfoEXT<'_>,
     ) {
-        (self.fp.cmd_debug_marker_begin_ext)(command_buffer, marker_info)
+        (self.fp.cmd_debug_marker_begin)(command_buffer, marker_info)
     }
     ///vkCmdDebugMarkerEndEXT
     #[inline]
-    pub unsafe fn cmd_debug_marker_end_ext(
-        &self,
-        command_buffer: crate::vk::CommandBuffer,
-    ) {
-        (self.fp.cmd_debug_marker_end_ext)(command_buffer)
+    pub unsafe fn cmd_debug_marker_end(&self, command_buffer: crate::vk::CommandBuffer) {
+        (self.fp.cmd_debug_marker_end)(command_buffer)
     }
     ///vkCmdDebugMarkerInsertEXT
     #[inline]
-    pub unsafe fn cmd_debug_marker_insert_ext(
+    pub unsafe fn cmd_debug_marker_insert(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         marker_info: &crate::vk::DebugMarkerMarkerInfoEXT<'_>,
     ) {
-        (self.fp.cmd_debug_marker_insert_ext)(command_buffer, marker_info)
+        (self.fp.cmd_debug_marker_insert)(command_buffer, marker_info)
     }
 }
 pub const SPEC_VERSION: u32 = 4;

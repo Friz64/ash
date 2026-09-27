@@ -18,11 +18,11 @@ impl crate::vk::DynamicState {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_patch_control_points_ext: crate::vk::PFN_vkCmdSetPatchControlPointsEXT,
-    pub cmd_set_logic_op_ext: crate::vk::PFN_vkCmdSetLogicOpEXT,
-    pub cmd_set_rasterizer_discard_enable_ext: crate::vk::PFN_vkCmdSetRasterizerDiscardEnableEXT,
-    pub cmd_set_depth_bias_enable_ext: crate::vk::PFN_vkCmdSetDepthBiasEnableEXT,
-    pub cmd_set_primitive_restart_enable_ext: crate::vk::PFN_vkCmdSetPrimitiveRestartEnableEXT,
+    pub cmd_set_patch_control_points: crate::vk::PFN_vkCmdSetPatchControlPointsEXT,
+    pub cmd_set_logic_op: crate::vk::PFN_vkCmdSetLogicOpEXT,
+    pub cmd_set_rasterizer_discard_enable: crate::vk::PFN_vkCmdSetRasterizerDiscardEnableEXT,
+    pub cmd_set_depth_bias_enable: crate::vk::PFN_vkCmdSetDepthBiasEnableEXT,
+    pub cmd_set_primitive_restart_enable: crate::vk::PFN_vkCmdSetPrimitiveRestartEnableEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -36,8 +36,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_patch_control_points_ext: unsafe {
-                unsafe extern "system" fn cmd_set_patch_control_points_ext(
+            cmd_set_patch_control_points: unsafe {
+                unsafe extern "system" fn cmd_set_patch_control_points(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                 ) {
@@ -45,13 +45,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetPatchControlPointsEXT");
                 if val.is_null() {
-                    cmd_set_patch_control_points_ext
+                    cmd_set_patch_control_points
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_logic_op_ext: unsafe {
-                unsafe extern "system" fn cmd_set_logic_op_ext(
+            cmd_set_logic_op: unsafe {
+                unsafe extern "system" fn cmd_set_logic_op(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::LogicOp,
                 ) {
@@ -59,13 +59,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetLogicOpEXT");
                 if val.is_null() {
-                    cmd_set_logic_op_ext
+                    cmd_set_logic_op
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_rasterizer_discard_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_rasterizer_discard_enable_ext(
+            cmd_set_rasterizer_discard_enable: unsafe {
+                unsafe extern "system" fn cmd_set_rasterizer_discard_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -73,13 +73,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetRasterizerDiscardEnableEXT");
                 if val.is_null() {
-                    cmd_set_rasterizer_discard_enable_ext
+                    cmd_set_rasterizer_discard_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_depth_bias_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_depth_bias_enable_ext(
+            cmd_set_depth_bias_enable: unsafe {
+                unsafe extern "system" fn cmd_set_depth_bias_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -87,13 +87,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDepthBiasEnableEXT");
                 if val.is_null() {
-                    cmd_set_depth_bias_enable_ext
+                    cmd_set_depth_bias_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_primitive_restart_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_primitive_restart_enable_ext(
+            cmd_set_primitive_restart_enable: unsafe {
+                unsafe extern "system" fn cmd_set_primitive_restart_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -101,7 +101,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetPrimitiveRestartEnableEXT");
                 if val.is_null() {
-                    cmd_set_primitive_restart_enable_ext
+                    cmd_set_primitive_restart_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -132,58 +132,55 @@ impl Device {
     }
     ///vkCmdSetPatchControlPointsEXT
     #[inline]
-    pub unsafe fn cmd_set_patch_control_points_ext(
+    pub unsafe fn cmd_set_patch_control_points(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         patch_control_points: u32,
     ) {
-        (self.fp.cmd_set_patch_control_points_ext)(command_buffer, patch_control_points)
+        (self.fp.cmd_set_patch_control_points)(command_buffer, patch_control_points)
     }
     ///vkCmdSetLogicOpEXT
     #[inline]
-    pub unsafe fn cmd_set_logic_op_ext(
+    pub unsafe fn cmd_set_logic_op(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         logic_op: crate::vk::LogicOp,
     ) {
-        (self.fp.cmd_set_logic_op_ext)(command_buffer, logic_op)
+        (self.fp.cmd_set_logic_op)(command_buffer, logic_op)
     }
     ///vkCmdSetRasterizerDiscardEnable
     #[inline]
-    pub unsafe fn cmd_set_rasterizer_discard_enable_ext(
+    pub unsafe fn cmd_set_rasterizer_discard_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         rasterizer_discard_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_rasterizer_discard_enable_ext)(
+            .cmd_set_rasterizer_discard_enable)(
             command_buffer,
             rasterizer_discard_enable,
         )
     }
     ///vkCmdSetDepthBiasEnable
     #[inline]
-    pub unsafe fn cmd_set_depth_bias_enable_ext(
+    pub unsafe fn cmd_set_depth_bias_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_bias_enable: crate::vk::Bool32,
     ) {
-        (self.fp.cmd_set_depth_bias_enable_ext)(command_buffer, depth_bias_enable)
+        (self.fp.cmd_set_depth_bias_enable)(command_buffer, depth_bias_enable)
     }
     ///vkCmdSetPrimitiveRestartEnable
     #[inline]
-    pub unsafe fn cmd_set_primitive_restart_enable_ext(
+    pub unsafe fn cmd_set_primitive_restart_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         primitive_restart_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_primitive_restart_enable_ext)(
-            command_buffer,
-            primitive_restart_enable,
-        )
+            .cmd_set_primitive_restart_enable)(command_buffer, primitive_restart_enable)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

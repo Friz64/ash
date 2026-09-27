@@ -12,8 +12,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_descriptor_set_layout_host_mapping_info_valve: crate::vk::PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE,
-    pub get_descriptor_set_host_mapping_valve: crate::vk::PFN_vkGetDescriptorSetHostMappingVALVE,
+    pub get_descriptor_set_layout_host_mapping_info: crate::vk::PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE,
+    pub get_descriptor_set_host_mapping: crate::vk::PFN_vkGetDescriptorSetHostMappingVALVE,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -27,8 +27,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_descriptor_set_layout_host_mapping_info_valve: unsafe {
-                unsafe extern "system" fn get_descriptor_set_layout_host_mapping_info_valve(
+            get_descriptor_set_layout_host_mapping_info: unsafe {
+                unsafe extern "system" fn get_descriptor_set_layout_host_mapping_info(
                     _: crate::vk::Device,
                     _: *const crate::vk::DescriptorSetBindingReferenceVALVE<'_>,
                     _: *mut crate::vk::DescriptorSetLayoutHostMappingInfoVALVE<'_>,
@@ -37,13 +37,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDescriptorSetLayoutHostMappingInfoVALVE");
                 if val.is_null() {
-                    get_descriptor_set_layout_host_mapping_info_valve
+                    get_descriptor_set_layout_host_mapping_info
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_descriptor_set_host_mapping_valve: unsafe {
-                unsafe extern "system" fn get_descriptor_set_host_mapping_valve(
+            get_descriptor_set_host_mapping: unsafe {
+                unsafe extern "system" fn get_descriptor_set_host_mapping(
                     _: crate::vk::Device,
                     _: crate::vk::DescriptorSet,
                     _: *mut *mut core::ffi::c_void,
@@ -52,7 +52,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDescriptorSetHostMappingVALVE");
                 if val.is_null() {
-                    get_descriptor_set_host_mapping_valve
+                    get_descriptor_set_host_mapping
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -83,7 +83,7 @@ impl Device {
     }
     ///vkGetDescriptorSetLayoutHostMappingInfoVALVE
     #[inline]
-    pub unsafe fn get_descriptor_set_layout_host_mapping_info_valve(
+    pub unsafe fn get_descriptor_set_layout_host_mapping_info(
         &self,
         device: crate::vk::Device,
         binding_reference: &crate::vk::DescriptorSetBindingReferenceVALVE<'_>,
@@ -91,7 +91,7 @@ impl Device {
     ) {
         (self
             .fp
-            .get_descriptor_set_layout_host_mapping_info_valve)(
+            .get_descriptor_set_layout_host_mapping_info)(
             device,
             binding_reference,
             host_mapping,
@@ -99,13 +99,13 @@ impl Device {
     }
     ///vkGetDescriptorSetHostMappingVALVE
     #[inline]
-    pub unsafe fn get_descriptor_set_host_mapping_valve(
+    pub unsafe fn get_descriptor_set_host_mapping(
         &self,
         device: crate::vk::Device,
         descriptor_set: crate::vk::DescriptorSet,
         data: &mut *mut core::ffi::c_void,
     ) {
-        (self.fp.get_descriptor_set_host_mapping_valve)(device, descriptor_set, data)
+        (self.fp.get_descriptor_set_host_mapping)(device, descriptor_set, data)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

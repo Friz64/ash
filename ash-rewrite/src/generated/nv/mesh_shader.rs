@@ -38,9 +38,9 @@ impl crate::vk::PipelineStageFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_draw_mesh_tasks_nv: crate::vk::PFN_vkCmdDrawMeshTasksNV,
-    pub cmd_draw_mesh_tasks_indirect_nv: crate::vk::PFN_vkCmdDrawMeshTasksIndirectNV,
-    pub cmd_draw_mesh_tasks_indirect_count_nv: crate::vk::PFN_vkCmdDrawMeshTasksIndirectCountNV,
+    pub cmd_draw_mesh_tasks: crate::vk::PFN_vkCmdDrawMeshTasksNV,
+    pub cmd_draw_mesh_tasks_indirect: crate::vk::PFN_vkCmdDrawMeshTasksIndirectNV,
+    pub cmd_draw_mesh_tasks_indirect_count: crate::vk::PFN_vkCmdDrawMeshTasksIndirectCountNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -54,8 +54,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_draw_mesh_tasks_nv: unsafe {
-                unsafe extern "system" fn cmd_draw_mesh_tasks_nv(
+            cmd_draw_mesh_tasks: unsafe {
+                unsafe extern "system" fn cmd_draw_mesh_tasks(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -64,13 +64,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawMeshTasksNV");
                 if val.is_null() {
-                    cmd_draw_mesh_tasks_nv
+                    cmd_draw_mesh_tasks
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_draw_mesh_tasks_indirect_nv: unsafe {
-                unsafe extern "system" fn cmd_draw_mesh_tasks_indirect_nv(
+            cmd_draw_mesh_tasks_indirect: unsafe {
+                unsafe extern "system" fn cmd_draw_mesh_tasks_indirect(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Buffer,
                     _: crate::vk::DeviceSize,
@@ -81,13 +81,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawMeshTasksIndirectNV");
                 if val.is_null() {
-                    cmd_draw_mesh_tasks_indirect_nv
+                    cmd_draw_mesh_tasks_indirect
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_draw_mesh_tasks_indirect_count_nv: unsafe {
-                unsafe extern "system" fn cmd_draw_mesh_tasks_indirect_count_nv(
+            cmd_draw_mesh_tasks_indirect_count: unsafe {
+                unsafe extern "system" fn cmd_draw_mesh_tasks_indirect_count(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Buffer,
                     _: crate::vk::DeviceSize,
@@ -100,7 +100,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawMeshTasksIndirectCountNV");
                 if val.is_null() {
-                    cmd_draw_mesh_tasks_indirect_count_nv
+                    cmd_draw_mesh_tasks_indirect_count
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -131,17 +131,17 @@ impl Device {
     }
     ///vkCmdDrawMeshTasksNV
     #[inline]
-    pub unsafe fn cmd_draw_mesh_tasks_nv(
+    pub unsafe fn cmd_draw_mesh_tasks(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         task_count: u32,
         first_task: u32,
     ) {
-        (self.fp.cmd_draw_mesh_tasks_nv)(command_buffer, task_count, first_task)
+        (self.fp.cmd_draw_mesh_tasks)(command_buffer, task_count, first_task)
     }
     ///vkCmdDrawMeshTasksIndirectNV
     #[inline]
-    pub unsafe fn cmd_draw_mesh_tasks_indirect_nv(
+    pub unsafe fn cmd_draw_mesh_tasks_indirect(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         buffer: crate::vk::Buffer,
@@ -151,7 +151,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_draw_mesh_tasks_indirect_nv)(
+            .cmd_draw_mesh_tasks_indirect)(
             command_buffer,
             buffer,
             offset,
@@ -161,7 +161,7 @@ impl Device {
     }
     ///vkCmdDrawMeshTasksIndirectCountNV
     #[inline]
-    pub unsafe fn cmd_draw_mesh_tasks_indirect_count_nv(
+    pub unsafe fn cmd_draw_mesh_tasks_indirect_count(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         buffer: crate::vk::Buffer,
@@ -173,7 +173,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_draw_mesh_tasks_indirect_count_nv)(
+            .cmd_draw_mesh_tasks_indirect_count)(
             command_buffer,
             buffer,
             offset,

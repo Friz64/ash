@@ -20,7 +20,7 @@ impl crate::vk::DeviceFaultAddressTypeKHR {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_device_fault_info_ext: crate::vk::PFN_vkGetDeviceFaultInfoEXT,
+    pub get_device_fault_info: crate::vk::PFN_vkGetDeviceFaultInfoEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -34,8 +34,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_device_fault_info_ext: unsafe {
-                unsafe extern "system" fn get_device_fault_info_ext(
+            get_device_fault_info: unsafe {
+                unsafe extern "system" fn get_device_fault_info(
                     _: crate::vk::Device,
                     _: *mut crate::vk::DeviceFaultCountsEXT<'_>,
                     _: *mut crate::vk::DeviceFaultInfoEXT<'_>,
@@ -44,7 +44,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceFaultInfoEXT");
                 if val.is_null() {
-                    get_device_fault_info_ext
+                    get_device_fault_info
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -75,13 +75,13 @@ impl Device {
     }
     ///vkGetDeviceFaultInfoEXT
     #[inline]
-    pub unsafe fn get_device_fault_info_ext(
+    pub unsafe fn get_device_fault_info(
         &self,
         device: crate::vk::Device,
         fault_counts: &mut crate::vk::DeviceFaultCountsEXT<'_>,
         fault_info: &mut crate::vk::DeviceFaultInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_device_fault_info_ext)(device, fault_counts, fault_info).result()
+        (self.fp.get_device_fault_info)(device, fault_counts, fault_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 2;

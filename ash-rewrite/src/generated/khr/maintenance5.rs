@@ -271,10 +271,10 @@ impl crate::vk::ShaderCreateFlagBitsEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_rendering_area_granularity_khr: crate::vk::PFN_vkGetRenderingAreaGranularityKHR,
-    pub cmd_bind_index_buffer2_khr: crate::vk::PFN_vkCmdBindIndexBuffer2KHR,
-    pub get_image_subresource_layout2_khr: crate::vk::PFN_vkGetImageSubresourceLayout2KHR,
-    pub get_device_image_subresource_layout_khr: crate::vk::PFN_vkGetDeviceImageSubresourceLayoutKHR,
+    pub get_rendering_area_granularity: crate::vk::PFN_vkGetRenderingAreaGranularityKHR,
+    pub cmd_bind_index_buffer2: crate::vk::PFN_vkCmdBindIndexBuffer2KHR,
+    pub get_image_subresource_layout2: crate::vk::PFN_vkGetImageSubresourceLayout2KHR,
+    pub get_device_image_subresource_layout: crate::vk::PFN_vkGetDeviceImageSubresourceLayoutKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -288,8 +288,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_rendering_area_granularity_khr: unsafe {
-                unsafe extern "system" fn get_rendering_area_granularity_khr(
+            get_rendering_area_granularity: unsafe {
+                unsafe extern "system" fn get_rendering_area_granularity(
                     _: crate::vk::Device,
                     _: *const crate::vk::RenderingAreaInfo<'_>,
                     _: *mut crate::vk::Extent2D,
@@ -298,13 +298,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetRenderingAreaGranularityKHR");
                 if val.is_null() {
-                    get_rendering_area_granularity_khr
+                    get_rendering_area_granularity
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_bind_index_buffer2_khr: unsafe {
-                unsafe extern "system" fn cmd_bind_index_buffer2_khr(
+            cmd_bind_index_buffer2: unsafe {
+                unsafe extern "system" fn cmd_bind_index_buffer2(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Buffer,
                     _: crate::vk::DeviceSize,
@@ -315,13 +315,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindIndexBuffer2KHR");
                 if val.is_null() {
-                    cmd_bind_index_buffer2_khr
+                    cmd_bind_index_buffer2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_image_subresource_layout2_khr: unsafe {
-                unsafe extern "system" fn get_image_subresource_layout2_khr(
+            get_image_subresource_layout2: unsafe {
+                unsafe extern "system" fn get_image_subresource_layout2(
                     _: crate::vk::Device,
                     _: crate::vk::Image,
                     _: *const crate::vk::ImageSubresource2<'_>,
@@ -331,13 +331,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetImageSubresourceLayout2KHR");
                 if val.is_null() {
-                    get_image_subresource_layout2_khr
+                    get_image_subresource_layout2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_device_image_subresource_layout_khr: unsafe {
-                unsafe extern "system" fn get_device_image_subresource_layout_khr(
+            get_device_image_subresource_layout: unsafe {
+                unsafe extern "system" fn get_device_image_subresource_layout(
                     _: crate::vk::Device,
                     _: *const crate::vk::DeviceImageSubresourceInfo<'_>,
                     _: *mut crate::vk::SubresourceLayout2<'_>,
@@ -346,7 +346,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceImageSubresourceLayoutKHR");
                 if val.is_null() {
-                    get_device_image_subresource_layout_khr
+                    get_device_image_subresource_layout
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -377,7 +377,7 @@ impl Device {
     }
     ///vkGetRenderingAreaGranularity
     #[inline]
-    pub unsafe fn get_rendering_area_granularity_khr(
+    pub unsafe fn get_rendering_area_granularity(
         &self,
         device: crate::vk::Device,
         rendering_area_info: &crate::vk::RenderingAreaInfo<'_>,
@@ -385,15 +385,11 @@ impl Device {
     ) {
         (self
             .fp
-            .get_rendering_area_granularity_khr)(
-            device,
-            rendering_area_info,
-            granularity,
-        )
+            .get_rendering_area_granularity)(device, rendering_area_info, granularity)
     }
     ///vkCmdBindIndexBuffer2
     #[inline]
-    pub unsafe fn cmd_bind_index_buffer2_khr(
+    pub unsafe fn cmd_bind_index_buffer2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         buffer: crate::vk::Buffer,
@@ -403,34 +399,28 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_bind_index_buffer2_khr)(
-            command_buffer,
-            buffer,
-            offset,
-            size,
-            index_type,
-        )
+            .cmd_bind_index_buffer2)(command_buffer, buffer, offset, size, index_type)
     }
     ///vkGetImageSubresourceLayout2
     #[inline]
-    pub unsafe fn get_image_subresource_layout2_khr(
+    pub unsafe fn get_image_subresource_layout2(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
         subresource: &crate::vk::ImageSubresource2<'_>,
         layout: &mut crate::vk::SubresourceLayout2<'_>,
     ) {
-        (self.fp.get_image_subresource_layout2_khr)(device, image, subresource, layout)
+        (self.fp.get_image_subresource_layout2)(device, image, subresource, layout)
     }
     ///vkGetDeviceImageSubresourceLayout
     #[inline]
-    pub unsafe fn get_device_image_subresource_layout_khr(
+    pub unsafe fn get_device_image_subresource_layout(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::DeviceImageSubresourceInfo<'_>,
         layout: &mut crate::vk::SubresourceLayout2<'_>,
     ) {
-        (self.fp.get_device_image_subresource_layout_khr)(device, info, layout)
+        (self.fp.get_device_image_subresource_layout)(device, info, layout)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

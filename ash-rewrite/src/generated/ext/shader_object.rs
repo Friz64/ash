@@ -56,60 +56,60 @@ impl ShaderCreateFlagBitsEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_patch_control_points_ext: crate::vk::PFN_vkCmdSetPatchControlPointsEXT,
-    pub cmd_set_logic_op_ext: crate::vk::PFN_vkCmdSetLogicOpEXT,
-    pub cmd_set_tessellation_domain_origin_ext: crate::vk::PFN_vkCmdSetTessellationDomainOriginEXT,
-    pub cmd_set_depth_clamp_enable_ext: crate::vk::PFN_vkCmdSetDepthClampEnableEXT,
-    pub cmd_set_polygon_mode_ext: crate::vk::PFN_vkCmdSetPolygonModeEXT,
-    pub cmd_set_rasterization_samples_ext: crate::vk::PFN_vkCmdSetRasterizationSamplesEXT,
-    pub cmd_set_sample_mask_ext: crate::vk::PFN_vkCmdSetSampleMaskEXT,
-    pub cmd_set_alpha_to_coverage_enable_ext: crate::vk::PFN_vkCmdSetAlphaToCoverageEnableEXT,
-    pub cmd_set_alpha_to_one_enable_ext: crate::vk::PFN_vkCmdSetAlphaToOneEnableEXT,
-    pub cmd_set_logic_op_enable_ext: crate::vk::PFN_vkCmdSetLogicOpEnableEXT,
-    pub cmd_set_color_blend_enable_ext: crate::vk::PFN_vkCmdSetColorBlendEnableEXT,
-    pub cmd_set_color_blend_equation_ext: crate::vk::PFN_vkCmdSetColorBlendEquationEXT,
-    pub cmd_set_color_write_mask_ext: crate::vk::PFN_vkCmdSetColorWriteMaskEXT,
-    pub cmd_set_rasterization_stream_ext: crate::vk::PFN_vkCmdSetRasterizationStreamEXT,
-    pub cmd_set_conservative_rasterization_mode_ext: crate::vk::PFN_vkCmdSetConservativeRasterizationModeEXT,
-    pub cmd_set_extra_primitive_overestimation_size_ext: crate::vk::PFN_vkCmdSetExtraPrimitiveOverestimationSizeEXT,
-    pub cmd_set_depth_clip_enable_ext: crate::vk::PFN_vkCmdSetDepthClipEnableEXT,
-    pub cmd_set_sample_locations_enable_ext: crate::vk::PFN_vkCmdSetSampleLocationsEnableEXT,
-    pub cmd_set_color_blend_advanced_ext: crate::vk::PFN_vkCmdSetColorBlendAdvancedEXT,
-    pub cmd_set_provoking_vertex_mode_ext: crate::vk::PFN_vkCmdSetProvokingVertexModeEXT,
-    pub cmd_set_line_rasterization_mode_ext: crate::vk::PFN_vkCmdSetLineRasterizationModeEXT,
-    pub cmd_set_line_stipple_enable_ext: crate::vk::PFN_vkCmdSetLineStippleEnableEXT,
-    pub cmd_set_depth_clip_negative_one_to_one_ext: crate::vk::PFN_vkCmdSetDepthClipNegativeOneToOneEXT,
-    pub cmd_set_viewport_w_scaling_enable_nv: crate::vk::PFN_vkCmdSetViewportWScalingEnableNV,
-    pub cmd_set_viewport_swizzle_nv: crate::vk::PFN_vkCmdSetViewportSwizzleNV,
-    pub cmd_set_coverage_to_color_enable_nv: crate::vk::PFN_vkCmdSetCoverageToColorEnableNV,
-    pub cmd_set_coverage_to_color_location_nv: crate::vk::PFN_vkCmdSetCoverageToColorLocationNV,
-    pub cmd_set_coverage_modulation_mode_nv: crate::vk::PFN_vkCmdSetCoverageModulationModeNV,
-    pub cmd_set_coverage_modulation_table_enable_nv: crate::vk::PFN_vkCmdSetCoverageModulationTableEnableNV,
-    pub cmd_set_coverage_modulation_table_nv: crate::vk::PFN_vkCmdSetCoverageModulationTableNV,
-    pub cmd_set_shading_rate_image_enable_nv: crate::vk::PFN_vkCmdSetShadingRateImageEnableNV,
-    pub cmd_set_coverage_reduction_mode_nv: crate::vk::PFN_vkCmdSetCoverageReductionModeNV,
-    pub cmd_set_representative_fragment_test_enable_nv: crate::vk::PFN_vkCmdSetRepresentativeFragmentTestEnableNV,
-    pub cmd_set_vertex_input_ext: crate::vk::PFN_vkCmdSetVertexInputEXT,
-    pub create_shaders_ext: crate::vk::PFN_vkCreateShadersEXT,
-    pub destroy_shader_ext: crate::vk::PFN_vkDestroyShaderEXT,
-    pub get_shader_binary_data_ext: crate::vk::PFN_vkGetShaderBinaryDataEXT,
-    pub cmd_bind_shaders_ext: crate::vk::PFN_vkCmdBindShadersEXT,
-    pub cmd_set_depth_clamp_range_ext: crate::vk::PFN_vkCmdSetDepthClampRangeEXT,
-    pub cmd_set_cull_mode_ext: crate::vk::PFN_vkCmdSetCullModeEXT,
-    pub cmd_set_front_face_ext: crate::vk::PFN_vkCmdSetFrontFaceEXT,
-    pub cmd_set_primitive_topology_ext: crate::vk::PFN_vkCmdSetPrimitiveTopologyEXT,
-    pub cmd_set_viewport_with_count_ext: crate::vk::PFN_vkCmdSetViewportWithCountEXT,
-    pub cmd_set_scissor_with_count_ext: crate::vk::PFN_vkCmdSetScissorWithCountEXT,
-    pub cmd_bind_vertex_buffers2_ext: crate::vk::PFN_vkCmdBindVertexBuffers2EXT,
-    pub cmd_set_depth_test_enable_ext: crate::vk::PFN_vkCmdSetDepthTestEnableEXT,
-    pub cmd_set_depth_write_enable_ext: crate::vk::PFN_vkCmdSetDepthWriteEnableEXT,
-    pub cmd_set_depth_compare_op_ext: crate::vk::PFN_vkCmdSetDepthCompareOpEXT,
-    pub cmd_set_depth_bounds_test_enable_ext: crate::vk::PFN_vkCmdSetDepthBoundsTestEnableEXT,
-    pub cmd_set_stencil_test_enable_ext: crate::vk::PFN_vkCmdSetStencilTestEnableEXT,
-    pub cmd_set_stencil_op_ext: crate::vk::PFN_vkCmdSetStencilOpEXT,
-    pub cmd_set_rasterizer_discard_enable_ext: crate::vk::PFN_vkCmdSetRasterizerDiscardEnableEXT,
-    pub cmd_set_depth_bias_enable_ext: crate::vk::PFN_vkCmdSetDepthBiasEnableEXT,
-    pub cmd_set_primitive_restart_enable_ext: crate::vk::PFN_vkCmdSetPrimitiveRestartEnableEXT,
+    pub cmd_set_patch_control_points: crate::vk::PFN_vkCmdSetPatchControlPointsEXT,
+    pub cmd_set_logic_op: crate::vk::PFN_vkCmdSetLogicOpEXT,
+    pub cmd_set_tessellation_domain_origin: crate::vk::PFN_vkCmdSetTessellationDomainOriginEXT,
+    pub cmd_set_depth_clamp_enable: crate::vk::PFN_vkCmdSetDepthClampEnableEXT,
+    pub cmd_set_polygon_mode: crate::vk::PFN_vkCmdSetPolygonModeEXT,
+    pub cmd_set_rasterization_samples: crate::vk::PFN_vkCmdSetRasterizationSamplesEXT,
+    pub cmd_set_sample_mask: crate::vk::PFN_vkCmdSetSampleMaskEXT,
+    pub cmd_set_alpha_to_coverage_enable: crate::vk::PFN_vkCmdSetAlphaToCoverageEnableEXT,
+    pub cmd_set_alpha_to_one_enable: crate::vk::PFN_vkCmdSetAlphaToOneEnableEXT,
+    pub cmd_set_logic_op_enable: crate::vk::PFN_vkCmdSetLogicOpEnableEXT,
+    pub cmd_set_color_blend_enable: crate::vk::PFN_vkCmdSetColorBlendEnableEXT,
+    pub cmd_set_color_blend_equation: crate::vk::PFN_vkCmdSetColorBlendEquationEXT,
+    pub cmd_set_color_write_mask: crate::vk::PFN_vkCmdSetColorWriteMaskEXT,
+    pub cmd_set_rasterization_stream: crate::vk::PFN_vkCmdSetRasterizationStreamEXT,
+    pub cmd_set_conservative_rasterization_mode: crate::vk::PFN_vkCmdSetConservativeRasterizationModeEXT,
+    pub cmd_set_extra_primitive_overestimation_size: crate::vk::PFN_vkCmdSetExtraPrimitiveOverestimationSizeEXT,
+    pub cmd_set_depth_clip_enable: crate::vk::PFN_vkCmdSetDepthClipEnableEXT,
+    pub cmd_set_sample_locations_enable: crate::vk::PFN_vkCmdSetSampleLocationsEnableEXT,
+    pub cmd_set_color_blend_advanced: crate::vk::PFN_vkCmdSetColorBlendAdvancedEXT,
+    pub cmd_set_provoking_vertex_mode: crate::vk::PFN_vkCmdSetProvokingVertexModeEXT,
+    pub cmd_set_line_rasterization_mode: crate::vk::PFN_vkCmdSetLineRasterizationModeEXT,
+    pub cmd_set_line_stipple_enable: crate::vk::PFN_vkCmdSetLineStippleEnableEXT,
+    pub cmd_set_depth_clip_negative_one_to_one: crate::vk::PFN_vkCmdSetDepthClipNegativeOneToOneEXT,
+    pub cmd_set_viewport_w_scaling_enable: crate::vk::PFN_vkCmdSetViewportWScalingEnableNV,
+    pub cmd_set_viewport_swizzle: crate::vk::PFN_vkCmdSetViewportSwizzleNV,
+    pub cmd_set_coverage_to_color_enable: crate::vk::PFN_vkCmdSetCoverageToColorEnableNV,
+    pub cmd_set_coverage_to_color_location: crate::vk::PFN_vkCmdSetCoverageToColorLocationNV,
+    pub cmd_set_coverage_modulation_mode: crate::vk::PFN_vkCmdSetCoverageModulationModeNV,
+    pub cmd_set_coverage_modulation_table_enable: crate::vk::PFN_vkCmdSetCoverageModulationTableEnableNV,
+    pub cmd_set_coverage_modulation_table: crate::vk::PFN_vkCmdSetCoverageModulationTableNV,
+    pub cmd_set_shading_rate_image_enable: crate::vk::PFN_vkCmdSetShadingRateImageEnableNV,
+    pub cmd_set_coverage_reduction_mode: crate::vk::PFN_vkCmdSetCoverageReductionModeNV,
+    pub cmd_set_representative_fragment_test_enable: crate::vk::PFN_vkCmdSetRepresentativeFragmentTestEnableNV,
+    pub cmd_set_vertex_input: crate::vk::PFN_vkCmdSetVertexInputEXT,
+    pub create_shaders: crate::vk::PFN_vkCreateShadersEXT,
+    pub destroy_shader: crate::vk::PFN_vkDestroyShaderEXT,
+    pub get_shader_binary_data: crate::vk::PFN_vkGetShaderBinaryDataEXT,
+    pub cmd_bind_shaders: crate::vk::PFN_vkCmdBindShadersEXT,
+    pub cmd_set_depth_clamp_range: crate::vk::PFN_vkCmdSetDepthClampRangeEXT,
+    pub cmd_set_cull_mode: crate::vk::PFN_vkCmdSetCullModeEXT,
+    pub cmd_set_front_face: crate::vk::PFN_vkCmdSetFrontFaceEXT,
+    pub cmd_set_primitive_topology: crate::vk::PFN_vkCmdSetPrimitiveTopologyEXT,
+    pub cmd_set_viewport_with_count: crate::vk::PFN_vkCmdSetViewportWithCountEXT,
+    pub cmd_set_scissor_with_count: crate::vk::PFN_vkCmdSetScissorWithCountEXT,
+    pub cmd_bind_vertex_buffers2: crate::vk::PFN_vkCmdBindVertexBuffers2EXT,
+    pub cmd_set_depth_test_enable: crate::vk::PFN_vkCmdSetDepthTestEnableEXT,
+    pub cmd_set_depth_write_enable: crate::vk::PFN_vkCmdSetDepthWriteEnableEXT,
+    pub cmd_set_depth_compare_op: crate::vk::PFN_vkCmdSetDepthCompareOpEXT,
+    pub cmd_set_depth_bounds_test_enable: crate::vk::PFN_vkCmdSetDepthBoundsTestEnableEXT,
+    pub cmd_set_stencil_test_enable: crate::vk::PFN_vkCmdSetStencilTestEnableEXT,
+    pub cmd_set_stencil_op: crate::vk::PFN_vkCmdSetStencilOpEXT,
+    pub cmd_set_rasterizer_discard_enable: crate::vk::PFN_vkCmdSetRasterizerDiscardEnableEXT,
+    pub cmd_set_depth_bias_enable: crate::vk::PFN_vkCmdSetDepthBiasEnableEXT,
+    pub cmd_set_primitive_restart_enable: crate::vk::PFN_vkCmdSetPrimitiveRestartEnableEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -123,8 +123,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_patch_control_points_ext: unsafe {
-                unsafe extern "system" fn cmd_set_patch_control_points_ext(
+            cmd_set_patch_control_points: unsafe {
+                unsafe extern "system" fn cmd_set_patch_control_points(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                 ) {
@@ -132,13 +132,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetPatchControlPointsEXT");
                 if val.is_null() {
-                    cmd_set_patch_control_points_ext
+                    cmd_set_patch_control_points
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_logic_op_ext: unsafe {
-                unsafe extern "system" fn cmd_set_logic_op_ext(
+            cmd_set_logic_op: unsafe {
+                unsafe extern "system" fn cmd_set_logic_op(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::LogicOp,
                 ) {
@@ -146,13 +146,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetLogicOpEXT");
                 if val.is_null() {
-                    cmd_set_logic_op_ext
+                    cmd_set_logic_op
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_tessellation_domain_origin_ext: unsafe {
-                unsafe extern "system" fn cmd_set_tessellation_domain_origin_ext(
+            cmd_set_tessellation_domain_origin: unsafe {
+                unsafe extern "system" fn cmd_set_tessellation_domain_origin(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::TessellationDomainOrigin,
                 ) {
@@ -160,13 +160,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetTessellationDomainOriginEXT");
                 if val.is_null() {
-                    cmd_set_tessellation_domain_origin_ext
+                    cmd_set_tessellation_domain_origin
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_depth_clamp_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_depth_clamp_enable_ext(
+            cmd_set_depth_clamp_enable: unsafe {
+                unsafe extern "system" fn cmd_set_depth_clamp_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -174,13 +174,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDepthClampEnableEXT");
                 if val.is_null() {
-                    cmd_set_depth_clamp_enable_ext
+                    cmd_set_depth_clamp_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_polygon_mode_ext: unsafe {
-                unsafe extern "system" fn cmd_set_polygon_mode_ext(
+            cmd_set_polygon_mode: unsafe {
+                unsafe extern "system" fn cmd_set_polygon_mode(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::PolygonMode,
                 ) {
@@ -188,13 +188,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetPolygonModeEXT");
                 if val.is_null() {
-                    cmd_set_polygon_mode_ext
+                    cmd_set_polygon_mode
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_rasterization_samples_ext: unsafe {
-                unsafe extern "system" fn cmd_set_rasterization_samples_ext(
+            cmd_set_rasterization_samples: unsafe {
+                unsafe extern "system" fn cmd_set_rasterization_samples(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::SampleCountFlagBits,
                 ) {
@@ -202,13 +202,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetRasterizationSamplesEXT");
                 if val.is_null() {
-                    cmd_set_rasterization_samples_ext
+                    cmd_set_rasterization_samples
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_sample_mask_ext: unsafe {
-                unsafe extern "system" fn cmd_set_sample_mask_ext(
+            cmd_set_sample_mask: unsafe {
+                unsafe extern "system" fn cmd_set_sample_mask(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::SampleCountFlagBits,
                     _: *const crate::vk::SampleMask,
@@ -217,13 +217,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetSampleMaskEXT");
                 if val.is_null() {
-                    cmd_set_sample_mask_ext
+                    cmd_set_sample_mask
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_alpha_to_coverage_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_alpha_to_coverage_enable_ext(
+            cmd_set_alpha_to_coverage_enable: unsafe {
+                unsafe extern "system" fn cmd_set_alpha_to_coverage_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -231,13 +231,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetAlphaToCoverageEnableEXT");
                 if val.is_null() {
-                    cmd_set_alpha_to_coverage_enable_ext
+                    cmd_set_alpha_to_coverage_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_alpha_to_one_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_alpha_to_one_enable_ext(
+            cmd_set_alpha_to_one_enable: unsafe {
+                unsafe extern "system" fn cmd_set_alpha_to_one_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -245,13 +245,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetAlphaToOneEnableEXT");
                 if val.is_null() {
-                    cmd_set_alpha_to_one_enable_ext
+                    cmd_set_alpha_to_one_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_logic_op_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_logic_op_enable_ext(
+            cmd_set_logic_op_enable: unsafe {
+                unsafe extern "system" fn cmd_set_logic_op_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -259,13 +259,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetLogicOpEnableEXT");
                 if val.is_null() {
-                    cmd_set_logic_op_enable_ext
+                    cmd_set_logic_op_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_color_blend_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_color_blend_enable_ext(
+            cmd_set_color_blend_enable: unsafe {
+                unsafe extern "system" fn cmd_set_color_blend_enable(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -275,13 +275,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetColorBlendEnableEXT");
                 if val.is_null() {
-                    cmd_set_color_blend_enable_ext
+                    cmd_set_color_blend_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_color_blend_equation_ext: unsafe {
-                unsafe extern "system" fn cmd_set_color_blend_equation_ext(
+            cmd_set_color_blend_equation: unsafe {
+                unsafe extern "system" fn cmd_set_color_blend_equation(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -291,13 +291,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetColorBlendEquationEXT");
                 if val.is_null() {
-                    cmd_set_color_blend_equation_ext
+                    cmd_set_color_blend_equation
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_color_write_mask_ext: unsafe {
-                unsafe extern "system" fn cmd_set_color_write_mask_ext(
+            cmd_set_color_write_mask: unsafe {
+                unsafe extern "system" fn cmd_set_color_write_mask(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -307,13 +307,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetColorWriteMaskEXT");
                 if val.is_null() {
-                    cmd_set_color_write_mask_ext
+                    cmd_set_color_write_mask
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_rasterization_stream_ext: unsafe {
-                unsafe extern "system" fn cmd_set_rasterization_stream_ext(
+            cmd_set_rasterization_stream: unsafe {
+                unsafe extern "system" fn cmd_set_rasterization_stream(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                 ) {
@@ -321,13 +321,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetRasterizationStreamEXT");
                 if val.is_null() {
-                    cmd_set_rasterization_stream_ext
+                    cmd_set_rasterization_stream
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_conservative_rasterization_mode_ext: unsafe {
-                unsafe extern "system" fn cmd_set_conservative_rasterization_mode_ext(
+            cmd_set_conservative_rasterization_mode: unsafe {
+                unsafe extern "system" fn cmd_set_conservative_rasterization_mode(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::ConservativeRasterizationModeEXT,
                 ) {
@@ -335,13 +335,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetConservativeRasterizationModeEXT");
                 if val.is_null() {
-                    cmd_set_conservative_rasterization_mode_ext
+                    cmd_set_conservative_rasterization_mode
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_extra_primitive_overestimation_size_ext: unsafe {
-                unsafe extern "system" fn cmd_set_extra_primitive_overestimation_size_ext(
+            cmd_set_extra_primitive_overestimation_size: unsafe {
+                unsafe extern "system" fn cmd_set_extra_primitive_overestimation_size(
                     _: crate::vk::CommandBuffer,
                     _: core::ffi::c_float,
                 ) {
@@ -349,13 +349,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetExtraPrimitiveOverestimationSizeEXT");
                 if val.is_null() {
-                    cmd_set_extra_primitive_overestimation_size_ext
+                    cmd_set_extra_primitive_overestimation_size
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_depth_clip_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_depth_clip_enable_ext(
+            cmd_set_depth_clip_enable: unsafe {
+                unsafe extern "system" fn cmd_set_depth_clip_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -363,13 +363,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDepthClipEnableEXT");
                 if val.is_null() {
-                    cmd_set_depth_clip_enable_ext
+                    cmd_set_depth_clip_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_sample_locations_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_sample_locations_enable_ext(
+            cmd_set_sample_locations_enable: unsafe {
+                unsafe extern "system" fn cmd_set_sample_locations_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -377,13 +377,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetSampleLocationsEnableEXT");
                 if val.is_null() {
-                    cmd_set_sample_locations_enable_ext
+                    cmd_set_sample_locations_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_color_blend_advanced_ext: unsafe {
-                unsafe extern "system" fn cmd_set_color_blend_advanced_ext(
+            cmd_set_color_blend_advanced: unsafe {
+                unsafe extern "system" fn cmd_set_color_blend_advanced(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -393,13 +393,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetColorBlendAdvancedEXT");
                 if val.is_null() {
-                    cmd_set_color_blend_advanced_ext
+                    cmd_set_color_blend_advanced
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_provoking_vertex_mode_ext: unsafe {
-                unsafe extern "system" fn cmd_set_provoking_vertex_mode_ext(
+            cmd_set_provoking_vertex_mode: unsafe {
+                unsafe extern "system" fn cmd_set_provoking_vertex_mode(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::ProvokingVertexModeEXT,
                 ) {
@@ -407,13 +407,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetProvokingVertexModeEXT");
                 if val.is_null() {
-                    cmd_set_provoking_vertex_mode_ext
+                    cmd_set_provoking_vertex_mode
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_line_rasterization_mode_ext: unsafe {
-                unsafe extern "system" fn cmd_set_line_rasterization_mode_ext(
+            cmd_set_line_rasterization_mode: unsafe {
+                unsafe extern "system" fn cmd_set_line_rasterization_mode(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::LineRasterizationModeEXT,
                 ) {
@@ -421,13 +421,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetLineRasterizationModeEXT");
                 if val.is_null() {
-                    cmd_set_line_rasterization_mode_ext
+                    cmd_set_line_rasterization_mode
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_line_stipple_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_line_stipple_enable_ext(
+            cmd_set_line_stipple_enable: unsafe {
+                unsafe extern "system" fn cmd_set_line_stipple_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -435,13 +435,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetLineStippleEnableEXT");
                 if val.is_null() {
-                    cmd_set_line_stipple_enable_ext
+                    cmd_set_line_stipple_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_depth_clip_negative_one_to_one_ext: unsafe {
-                unsafe extern "system" fn cmd_set_depth_clip_negative_one_to_one_ext(
+            cmd_set_depth_clip_negative_one_to_one: unsafe {
+                unsafe extern "system" fn cmd_set_depth_clip_negative_one_to_one(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -449,13 +449,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDepthClipNegativeOneToOneEXT");
                 if val.is_null() {
-                    cmd_set_depth_clip_negative_one_to_one_ext
+                    cmd_set_depth_clip_negative_one_to_one
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_viewport_w_scaling_enable_nv: unsafe {
-                unsafe extern "system" fn cmd_set_viewport_w_scaling_enable_nv(
+            cmd_set_viewport_w_scaling_enable: unsafe {
+                unsafe extern "system" fn cmd_set_viewport_w_scaling_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -463,13 +463,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetViewportWScalingEnableNV");
                 if val.is_null() {
-                    cmd_set_viewport_w_scaling_enable_nv
+                    cmd_set_viewport_w_scaling_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_viewport_swizzle_nv: unsafe {
-                unsafe extern "system" fn cmd_set_viewport_swizzle_nv(
+            cmd_set_viewport_swizzle: unsafe {
+                unsafe extern "system" fn cmd_set_viewport_swizzle(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -479,13 +479,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetViewportSwizzleNV");
                 if val.is_null() {
-                    cmd_set_viewport_swizzle_nv
+                    cmd_set_viewport_swizzle
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_coverage_to_color_enable_nv: unsafe {
-                unsafe extern "system" fn cmd_set_coverage_to_color_enable_nv(
+            cmd_set_coverage_to_color_enable: unsafe {
+                unsafe extern "system" fn cmd_set_coverage_to_color_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -493,13 +493,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetCoverageToColorEnableNV");
                 if val.is_null() {
-                    cmd_set_coverage_to_color_enable_nv
+                    cmd_set_coverage_to_color_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_coverage_to_color_location_nv: unsafe {
-                unsafe extern "system" fn cmd_set_coverage_to_color_location_nv(
+            cmd_set_coverage_to_color_location: unsafe {
+                unsafe extern "system" fn cmd_set_coverage_to_color_location(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                 ) {
@@ -507,13 +507,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetCoverageToColorLocationNV");
                 if val.is_null() {
-                    cmd_set_coverage_to_color_location_nv
+                    cmd_set_coverage_to_color_location
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_coverage_modulation_mode_nv: unsafe {
-                unsafe extern "system" fn cmd_set_coverage_modulation_mode_nv(
+            cmd_set_coverage_modulation_mode: unsafe {
+                unsafe extern "system" fn cmd_set_coverage_modulation_mode(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::CoverageModulationModeNV,
                 ) {
@@ -521,13 +521,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetCoverageModulationModeNV");
                 if val.is_null() {
-                    cmd_set_coverage_modulation_mode_nv
+                    cmd_set_coverage_modulation_mode
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_coverage_modulation_table_enable_nv: unsafe {
-                unsafe extern "system" fn cmd_set_coverage_modulation_table_enable_nv(
+            cmd_set_coverage_modulation_table_enable: unsafe {
+                unsafe extern "system" fn cmd_set_coverage_modulation_table_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -535,13 +535,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetCoverageModulationTableEnableNV");
                 if val.is_null() {
-                    cmd_set_coverage_modulation_table_enable_nv
+                    cmd_set_coverage_modulation_table_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_coverage_modulation_table_nv: unsafe {
-                unsafe extern "system" fn cmd_set_coverage_modulation_table_nv(
+            cmd_set_coverage_modulation_table: unsafe {
+                unsafe extern "system" fn cmd_set_coverage_modulation_table(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const core::ffi::c_float,
@@ -550,13 +550,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetCoverageModulationTableNV");
                 if val.is_null() {
-                    cmd_set_coverage_modulation_table_nv
+                    cmd_set_coverage_modulation_table
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_shading_rate_image_enable_nv: unsafe {
-                unsafe extern "system" fn cmd_set_shading_rate_image_enable_nv(
+            cmd_set_shading_rate_image_enable: unsafe {
+                unsafe extern "system" fn cmd_set_shading_rate_image_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -564,13 +564,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetShadingRateImageEnableNV");
                 if val.is_null() {
-                    cmd_set_shading_rate_image_enable_nv
+                    cmd_set_shading_rate_image_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_coverage_reduction_mode_nv: unsafe {
-                unsafe extern "system" fn cmd_set_coverage_reduction_mode_nv(
+            cmd_set_coverage_reduction_mode: unsafe {
+                unsafe extern "system" fn cmd_set_coverage_reduction_mode(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::CoverageReductionModeNV,
                 ) {
@@ -578,13 +578,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetCoverageReductionModeNV");
                 if val.is_null() {
-                    cmd_set_coverage_reduction_mode_nv
+                    cmd_set_coverage_reduction_mode
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_representative_fragment_test_enable_nv: unsafe {
-                unsafe extern "system" fn cmd_set_representative_fragment_test_enable_nv(
+            cmd_set_representative_fragment_test_enable: unsafe {
+                unsafe extern "system" fn cmd_set_representative_fragment_test_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -592,13 +592,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetRepresentativeFragmentTestEnableNV");
                 if val.is_null() {
-                    cmd_set_representative_fragment_test_enable_nv
+                    cmd_set_representative_fragment_test_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_vertex_input_ext: unsafe {
-                unsafe extern "system" fn cmd_set_vertex_input_ext(
+            cmd_set_vertex_input: unsafe {
+                unsafe extern "system" fn cmd_set_vertex_input(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::VertexInputBindingDescription2EXT<'_>,
@@ -609,13 +609,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetVertexInputEXT");
                 if val.is_null() {
-                    cmd_set_vertex_input_ext
+                    cmd_set_vertex_input
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            create_shaders_ext: unsafe {
-                unsafe extern "system" fn create_shaders_ext(
+            create_shaders: unsafe {
+                unsafe extern "system" fn create_shaders(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::ShaderCreateInfoEXT<'_>,
@@ -625,14 +625,10 @@ impl DeviceFn {
                     panic!("unable to load vkCreateShadersEXT")
                 }
                 let val = _f(c"vkCreateShadersEXT");
-                if val.is_null() {
-                    create_shaders_ext
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_shaders } else { ::core::mem::transmute(val) }
             },
-            destroy_shader_ext: unsafe {
-                unsafe extern "system" fn destroy_shader_ext(
+            destroy_shader: unsafe {
+                unsafe extern "system" fn destroy_shader(
                     _: crate::vk::Device,
                     _: crate::vk::ShaderEXT,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -640,14 +636,10 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyShaderEXT")
                 }
                 let val = _f(c"vkDestroyShaderEXT");
-                if val.is_null() {
-                    destroy_shader_ext
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_shader } else { ::core::mem::transmute(val) }
             },
-            get_shader_binary_data_ext: unsafe {
-                unsafe extern "system" fn get_shader_binary_data_ext(
+            get_shader_binary_data: unsafe {
+                unsafe extern "system" fn get_shader_binary_data(
                     _: crate::vk::Device,
                     _: crate::vk::ShaderEXT,
                     _: *mut usize,
@@ -657,13 +649,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetShaderBinaryDataEXT");
                 if val.is_null() {
-                    get_shader_binary_data_ext
+                    get_shader_binary_data
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_bind_shaders_ext: unsafe {
-                unsafe extern "system" fn cmd_bind_shaders_ext(
+            cmd_bind_shaders: unsafe {
+                unsafe extern "system" fn cmd_bind_shaders(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::ShaderStageFlagBits,
@@ -673,13 +665,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindShadersEXT");
                 if val.is_null() {
-                    cmd_bind_shaders_ext
+                    cmd_bind_shaders
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_depth_clamp_range_ext: unsafe {
-                unsafe extern "system" fn cmd_set_depth_clamp_range_ext(
+            cmd_set_depth_clamp_range: unsafe {
+                unsafe extern "system" fn cmd_set_depth_clamp_range(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DepthClampModeEXT,
                     _: *const crate::vk::DepthClampRangeEXT,
@@ -688,13 +680,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDepthClampRangeEXT");
                 if val.is_null() {
-                    cmd_set_depth_clamp_range_ext
+                    cmd_set_depth_clamp_range
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_cull_mode_ext: unsafe {
-                unsafe extern "system" fn cmd_set_cull_mode_ext(
+            cmd_set_cull_mode: unsafe {
+                unsafe extern "system" fn cmd_set_cull_mode(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::CullModeFlags,
                 ) {
@@ -702,13 +694,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetCullModeEXT");
                 if val.is_null() {
-                    cmd_set_cull_mode_ext
+                    cmd_set_cull_mode
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_front_face_ext: unsafe {
-                unsafe extern "system" fn cmd_set_front_face_ext(
+            cmd_set_front_face: unsafe {
+                unsafe extern "system" fn cmd_set_front_face(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::FrontFace,
                 ) {
@@ -716,13 +708,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetFrontFaceEXT");
                 if val.is_null() {
-                    cmd_set_front_face_ext
+                    cmd_set_front_face
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_primitive_topology_ext: unsafe {
-                unsafe extern "system" fn cmd_set_primitive_topology_ext(
+            cmd_set_primitive_topology: unsafe {
+                unsafe extern "system" fn cmd_set_primitive_topology(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::PrimitiveTopology,
                 ) {
@@ -730,13 +722,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetPrimitiveTopologyEXT");
                 if val.is_null() {
-                    cmd_set_primitive_topology_ext
+                    cmd_set_primitive_topology
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_viewport_with_count_ext: unsafe {
-                unsafe extern "system" fn cmd_set_viewport_with_count_ext(
+            cmd_set_viewport_with_count: unsafe {
+                unsafe extern "system" fn cmd_set_viewport_with_count(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::Viewport,
@@ -745,13 +737,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetViewportWithCountEXT");
                 if val.is_null() {
-                    cmd_set_viewport_with_count_ext
+                    cmd_set_viewport_with_count
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_scissor_with_count_ext: unsafe {
-                unsafe extern "system" fn cmd_set_scissor_with_count_ext(
+            cmd_set_scissor_with_count: unsafe {
+                unsafe extern "system" fn cmd_set_scissor_with_count(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::Rect2D,
@@ -760,13 +752,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetScissorWithCountEXT");
                 if val.is_null() {
-                    cmd_set_scissor_with_count_ext
+                    cmd_set_scissor_with_count
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_bind_vertex_buffers2_ext: unsafe {
-                unsafe extern "system" fn cmd_bind_vertex_buffers2_ext(
+            cmd_bind_vertex_buffers2: unsafe {
+                unsafe extern "system" fn cmd_bind_vertex_buffers2(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -779,13 +771,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindVertexBuffers2EXT");
                 if val.is_null() {
-                    cmd_bind_vertex_buffers2_ext
+                    cmd_bind_vertex_buffers2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_depth_test_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_depth_test_enable_ext(
+            cmd_set_depth_test_enable: unsafe {
+                unsafe extern "system" fn cmd_set_depth_test_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -793,13 +785,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDepthTestEnableEXT");
                 if val.is_null() {
-                    cmd_set_depth_test_enable_ext
+                    cmd_set_depth_test_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_depth_write_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_depth_write_enable_ext(
+            cmd_set_depth_write_enable: unsafe {
+                unsafe extern "system" fn cmd_set_depth_write_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -807,13 +799,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDepthWriteEnableEXT");
                 if val.is_null() {
-                    cmd_set_depth_write_enable_ext
+                    cmd_set_depth_write_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_depth_compare_op_ext: unsafe {
-                unsafe extern "system" fn cmd_set_depth_compare_op_ext(
+            cmd_set_depth_compare_op: unsafe {
+                unsafe extern "system" fn cmd_set_depth_compare_op(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::CompareOp,
                 ) {
@@ -821,13 +813,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDepthCompareOpEXT");
                 if val.is_null() {
-                    cmd_set_depth_compare_op_ext
+                    cmd_set_depth_compare_op
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_depth_bounds_test_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_depth_bounds_test_enable_ext(
+            cmd_set_depth_bounds_test_enable: unsafe {
+                unsafe extern "system" fn cmd_set_depth_bounds_test_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -835,13 +827,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDepthBoundsTestEnableEXT");
                 if val.is_null() {
-                    cmd_set_depth_bounds_test_enable_ext
+                    cmd_set_depth_bounds_test_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_stencil_test_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_stencil_test_enable_ext(
+            cmd_set_stencil_test_enable: unsafe {
+                unsafe extern "system" fn cmd_set_stencil_test_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -849,13 +841,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetStencilTestEnableEXT");
                 if val.is_null() {
-                    cmd_set_stencil_test_enable_ext
+                    cmd_set_stencil_test_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_stencil_op_ext: unsafe {
-                unsafe extern "system" fn cmd_set_stencil_op_ext(
+            cmd_set_stencil_op: unsafe {
+                unsafe extern "system" fn cmd_set_stencil_op(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::StencilFaceFlags,
                     _: crate::vk::StencilOp,
@@ -867,13 +859,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetStencilOpEXT");
                 if val.is_null() {
-                    cmd_set_stencil_op_ext
+                    cmd_set_stencil_op
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_rasterizer_discard_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_rasterizer_discard_enable_ext(
+            cmd_set_rasterizer_discard_enable: unsafe {
+                unsafe extern "system" fn cmd_set_rasterizer_discard_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -881,13 +873,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetRasterizerDiscardEnableEXT");
                 if val.is_null() {
-                    cmd_set_rasterizer_discard_enable_ext
+                    cmd_set_rasterizer_discard_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_depth_bias_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_depth_bias_enable_ext(
+            cmd_set_depth_bias_enable: unsafe {
+                unsafe extern "system" fn cmd_set_depth_bias_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -895,13 +887,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDepthBiasEnableEXT");
                 if val.is_null() {
-                    cmd_set_depth_bias_enable_ext
+                    cmd_set_depth_bias_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_primitive_restart_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_primitive_restart_enable_ext(
+            cmd_set_primitive_restart_enable: unsafe {
+                unsafe extern "system" fn cmd_set_primitive_restart_enable(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
                 ) {
@@ -909,7 +901,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetPrimitiveRestartEnableEXT");
                 if val.is_null() {
-                    cmd_set_primitive_restart_enable_ext
+                    cmd_set_primitive_restart_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -940,105 +932,100 @@ impl Device {
     }
     ///vkCmdSetPatchControlPointsEXT
     #[inline]
-    pub unsafe fn cmd_set_patch_control_points_ext(
+    pub unsafe fn cmd_set_patch_control_points(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         patch_control_points: u32,
     ) {
-        (self.fp.cmd_set_patch_control_points_ext)(command_buffer, patch_control_points)
+        (self.fp.cmd_set_patch_control_points)(command_buffer, patch_control_points)
     }
     ///vkCmdSetLogicOpEXT
     #[inline]
-    pub unsafe fn cmd_set_logic_op_ext(
+    pub unsafe fn cmd_set_logic_op(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         logic_op: crate::vk::LogicOp,
     ) {
-        (self.fp.cmd_set_logic_op_ext)(command_buffer, logic_op)
+        (self.fp.cmd_set_logic_op)(command_buffer, logic_op)
     }
     ///vkCmdSetTessellationDomainOriginEXT
     #[inline]
-    pub unsafe fn cmd_set_tessellation_domain_origin_ext(
+    pub unsafe fn cmd_set_tessellation_domain_origin(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         domain_origin: crate::vk::TessellationDomainOrigin,
     ) {
-        (self.fp.cmd_set_tessellation_domain_origin_ext)(command_buffer, domain_origin)
+        (self.fp.cmd_set_tessellation_domain_origin)(command_buffer, domain_origin)
     }
     ///vkCmdSetDepthClampEnableEXT
     #[inline]
-    pub unsafe fn cmd_set_depth_clamp_enable_ext(
+    pub unsafe fn cmd_set_depth_clamp_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_clamp_enable: crate::vk::Bool32,
     ) {
-        (self.fp.cmd_set_depth_clamp_enable_ext)(command_buffer, depth_clamp_enable)
+        (self.fp.cmd_set_depth_clamp_enable)(command_buffer, depth_clamp_enable)
     }
     ///vkCmdSetPolygonModeEXT
     #[inline]
-    pub unsafe fn cmd_set_polygon_mode_ext(
+    pub unsafe fn cmd_set_polygon_mode(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         polygon_mode: crate::vk::PolygonMode,
     ) {
-        (self.fp.cmd_set_polygon_mode_ext)(command_buffer, polygon_mode)
+        (self.fp.cmd_set_polygon_mode)(command_buffer, polygon_mode)
     }
     ///vkCmdSetRasterizationSamplesEXT
     #[inline]
-    pub unsafe fn cmd_set_rasterization_samples_ext(
+    pub unsafe fn cmd_set_rasterization_samples(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         rasterization_samples: crate::vk::SampleCountFlagBits,
     ) {
-        (self
-            .fp
-            .cmd_set_rasterization_samples_ext)(command_buffer, rasterization_samples)
+        (self.fp.cmd_set_rasterization_samples)(command_buffer, rasterization_samples)
     }
     ///vkCmdSetSampleMaskEXT
     #[inline]
-    pub unsafe fn cmd_set_sample_mask_ext(
+    pub unsafe fn cmd_set_sample_mask(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         samples: crate::vk::SampleCountFlagBits,
         sample_mask: &crate::vk::SampleMask,
     ) {
-        (self.fp.cmd_set_sample_mask_ext)(command_buffer, samples, sample_mask)
+        (self.fp.cmd_set_sample_mask)(command_buffer, samples, sample_mask)
     }
     ///vkCmdSetAlphaToCoverageEnableEXT
     #[inline]
-    pub unsafe fn cmd_set_alpha_to_coverage_enable_ext(
+    pub unsafe fn cmd_set_alpha_to_coverage_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         alpha_to_coverage_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_alpha_to_coverage_enable_ext)(
-            command_buffer,
-            alpha_to_coverage_enable,
-        )
+            .cmd_set_alpha_to_coverage_enable)(command_buffer, alpha_to_coverage_enable)
     }
     ///vkCmdSetAlphaToOneEnableEXT
     #[inline]
-    pub unsafe fn cmd_set_alpha_to_one_enable_ext(
+    pub unsafe fn cmd_set_alpha_to_one_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         alpha_to_one_enable: crate::vk::Bool32,
     ) {
-        (self.fp.cmd_set_alpha_to_one_enable_ext)(command_buffer, alpha_to_one_enable)
+        (self.fp.cmd_set_alpha_to_one_enable)(command_buffer, alpha_to_one_enable)
     }
     ///vkCmdSetLogicOpEnableEXT
     #[inline]
-    pub unsafe fn cmd_set_logic_op_enable_ext(
+    pub unsafe fn cmd_set_logic_op_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         logic_op_enable: crate::vk::Bool32,
     ) {
-        (self.fp.cmd_set_logic_op_enable_ext)(command_buffer, logic_op_enable)
+        (self.fp.cmd_set_logic_op_enable)(command_buffer, logic_op_enable)
     }
     ///vkCmdSetColorBlendEnableEXT
     #[inline]
-    pub unsafe fn cmd_set_color_blend_enable_ext(
+    pub unsafe fn cmd_set_color_blend_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
@@ -1046,7 +1033,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_color_blend_enable_ext)(
+            .cmd_set_color_blend_enable)(
             command_buffer,
             first_attachment,
             color_blend_enables.len() as _,
@@ -1055,7 +1042,7 @@ impl Device {
     }
     ///vkCmdSetColorBlendEquationEXT
     #[inline]
-    pub unsafe fn cmd_set_color_blend_equation_ext(
+    pub unsafe fn cmd_set_color_blend_equation(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
@@ -1063,7 +1050,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_color_blend_equation_ext)(
+            .cmd_set_color_blend_equation)(
             command_buffer,
             first_attachment,
             color_blend_equations.len() as _,
@@ -1072,7 +1059,7 @@ impl Device {
     }
     ///vkCmdSetColorWriteMaskEXT
     #[inline]
-    pub unsafe fn cmd_set_color_write_mask_ext(
+    pub unsafe fn cmd_set_color_write_mask(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
@@ -1080,7 +1067,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_color_write_mask_ext)(
+            .cmd_set_color_write_mask)(
             command_buffer,
             first_attachment,
             color_write_masks.len() as _,
@@ -1089,67 +1076,64 @@ impl Device {
     }
     ///vkCmdSetRasterizationStreamEXT
     #[inline]
-    pub unsafe fn cmd_set_rasterization_stream_ext(
+    pub unsafe fn cmd_set_rasterization_stream(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         rasterization_stream: u32,
     ) {
-        (self.fp.cmd_set_rasterization_stream_ext)(command_buffer, rasterization_stream)
+        (self.fp.cmd_set_rasterization_stream)(command_buffer, rasterization_stream)
     }
     ///vkCmdSetConservativeRasterizationModeEXT
     #[inline]
-    pub unsafe fn cmd_set_conservative_rasterization_mode_ext(
+    pub unsafe fn cmd_set_conservative_rasterization_mode(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
     ) {
         (self
             .fp
-            .cmd_set_conservative_rasterization_mode_ext)(
+            .cmd_set_conservative_rasterization_mode)(
             command_buffer,
             conservative_rasterization_mode,
         )
     }
     ///vkCmdSetExtraPrimitiveOverestimationSizeEXT
     #[inline]
-    pub unsafe fn cmd_set_extra_primitive_overestimation_size_ext(
+    pub unsafe fn cmd_set_extra_primitive_overestimation_size(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         extra_primitive_overestimation_size: core::ffi::c_float,
     ) {
         (self
             .fp
-            .cmd_set_extra_primitive_overestimation_size_ext)(
+            .cmd_set_extra_primitive_overestimation_size)(
             command_buffer,
             extra_primitive_overestimation_size,
         )
     }
     ///vkCmdSetDepthClipEnableEXT
     #[inline]
-    pub unsafe fn cmd_set_depth_clip_enable_ext(
+    pub unsafe fn cmd_set_depth_clip_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_clip_enable: crate::vk::Bool32,
     ) {
-        (self.fp.cmd_set_depth_clip_enable_ext)(command_buffer, depth_clip_enable)
+        (self.fp.cmd_set_depth_clip_enable)(command_buffer, depth_clip_enable)
     }
     ///vkCmdSetSampleLocationsEnableEXT
     #[inline]
-    pub unsafe fn cmd_set_sample_locations_enable_ext(
+    pub unsafe fn cmd_set_sample_locations_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         sample_locations_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_sample_locations_enable_ext)(
-            command_buffer,
-            sample_locations_enable,
-        )
+            .cmd_set_sample_locations_enable)(command_buffer, sample_locations_enable)
     }
     ///vkCmdSetColorBlendAdvancedEXT
     #[inline]
-    pub unsafe fn cmd_set_color_blend_advanced_ext(
+    pub unsafe fn cmd_set_color_blend_advanced(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_attachment: u32,
@@ -1157,7 +1141,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_color_blend_advanced_ext)(
+            .cmd_set_color_blend_advanced)(
             command_buffer,
             first_attachment,
             color_blend_advanced.len() as _,
@@ -1166,69 +1150,61 @@ impl Device {
     }
     ///vkCmdSetProvokingVertexModeEXT
     #[inline]
-    pub unsafe fn cmd_set_provoking_vertex_mode_ext(
+    pub unsafe fn cmd_set_provoking_vertex_mode(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
     ) {
-        (self
-            .fp
-            .cmd_set_provoking_vertex_mode_ext)(command_buffer, provoking_vertex_mode)
+        (self.fp.cmd_set_provoking_vertex_mode)(command_buffer, provoking_vertex_mode)
     }
     ///vkCmdSetLineRasterizationModeEXT
     #[inline]
-    pub unsafe fn cmd_set_line_rasterization_mode_ext(
+    pub unsafe fn cmd_set_line_rasterization_mode(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         line_rasterization_mode: crate::vk::LineRasterizationModeEXT,
     ) {
         (self
             .fp
-            .cmd_set_line_rasterization_mode_ext)(
-            command_buffer,
-            line_rasterization_mode,
-        )
+            .cmd_set_line_rasterization_mode)(command_buffer, line_rasterization_mode)
     }
     ///vkCmdSetLineStippleEnableEXT
     #[inline]
-    pub unsafe fn cmd_set_line_stipple_enable_ext(
+    pub unsafe fn cmd_set_line_stipple_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         stippled_line_enable: crate::vk::Bool32,
     ) {
-        (self.fp.cmd_set_line_stipple_enable_ext)(command_buffer, stippled_line_enable)
+        (self.fp.cmd_set_line_stipple_enable)(command_buffer, stippled_line_enable)
     }
     ///vkCmdSetDepthClipNegativeOneToOneEXT
     #[inline]
-    pub unsafe fn cmd_set_depth_clip_negative_one_to_one_ext(
+    pub unsafe fn cmd_set_depth_clip_negative_one_to_one(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         negative_one_to_one: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_depth_clip_negative_one_to_one_ext)(
-            command_buffer,
-            negative_one_to_one,
-        )
+            .cmd_set_depth_clip_negative_one_to_one)(command_buffer, negative_one_to_one)
     }
     ///vkCmdSetViewportWScalingEnableNV
     #[inline]
-    pub unsafe fn cmd_set_viewport_w_scaling_enable_nv(
+    pub unsafe fn cmd_set_viewport_w_scaling_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         viewport_w_scaling_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_viewport_w_scaling_enable_nv)(
+            .cmd_set_viewport_w_scaling_enable)(
             command_buffer,
             viewport_w_scaling_enable,
         )
     }
     ///vkCmdSetViewportSwizzleNV
     #[inline]
-    pub unsafe fn cmd_set_viewport_swizzle_nv(
+    pub unsafe fn cmd_set_viewport_swizzle(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_viewport: u32,
@@ -1236,7 +1212,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_viewport_swizzle_nv)(
+            .cmd_set_viewport_swizzle)(
             command_buffer,
             first_viewport,
             viewport_swizzles.len() as _,
@@ -1245,70 +1221,64 @@ impl Device {
     }
     ///vkCmdSetCoverageToColorEnableNV
     #[inline]
-    pub unsafe fn cmd_set_coverage_to_color_enable_nv(
+    pub unsafe fn cmd_set_coverage_to_color_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         coverage_to_color_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_coverage_to_color_enable_nv)(
-            command_buffer,
-            coverage_to_color_enable,
-        )
+            .cmd_set_coverage_to_color_enable)(command_buffer, coverage_to_color_enable)
     }
     ///vkCmdSetCoverageToColorLocationNV
     #[inline]
-    pub unsafe fn cmd_set_coverage_to_color_location_nv(
+    pub unsafe fn cmd_set_coverage_to_color_location(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         coverage_to_color_location: u32,
     ) {
         (self
             .fp
-            .cmd_set_coverage_to_color_location_nv)(
+            .cmd_set_coverage_to_color_location)(
             command_buffer,
             coverage_to_color_location,
         )
     }
     ///vkCmdSetCoverageModulationModeNV
     #[inline]
-    pub unsafe fn cmd_set_coverage_modulation_mode_nv(
+    pub unsafe fn cmd_set_coverage_modulation_mode(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
     ) {
         (self
             .fp
-            .cmd_set_coverage_modulation_mode_nv)(
-            command_buffer,
-            coverage_modulation_mode,
-        )
+            .cmd_set_coverage_modulation_mode)(command_buffer, coverage_modulation_mode)
     }
     ///vkCmdSetCoverageModulationTableEnableNV
     #[inline]
-    pub unsafe fn cmd_set_coverage_modulation_table_enable_nv(
+    pub unsafe fn cmd_set_coverage_modulation_table_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         coverage_modulation_table_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_coverage_modulation_table_enable_nv)(
+            .cmd_set_coverage_modulation_table_enable)(
             command_buffer,
             coverage_modulation_table_enable,
         )
     }
     ///vkCmdSetCoverageModulationTableNV
     #[inline]
-    pub unsafe fn cmd_set_coverage_modulation_table_nv(
+    pub unsafe fn cmd_set_coverage_modulation_table(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         coverage_modulation_table: &[core::ffi::c_float],
     ) {
         (self
             .fp
-            .cmd_set_coverage_modulation_table_nv)(
+            .cmd_set_coverage_modulation_table)(
             command_buffer,
             coverage_modulation_table.len() as _,
             coverage_modulation_table.as_ptr(),
@@ -1316,46 +1286,46 @@ impl Device {
     }
     ///vkCmdSetShadingRateImageEnableNV
     #[inline]
-    pub unsafe fn cmd_set_shading_rate_image_enable_nv(
+    pub unsafe fn cmd_set_shading_rate_image_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         shading_rate_image_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_shading_rate_image_enable_nv)(
+            .cmd_set_shading_rate_image_enable)(
             command_buffer,
             shading_rate_image_enable,
         )
     }
     ///vkCmdSetCoverageReductionModeNV
     #[inline]
-    pub unsafe fn cmd_set_coverage_reduction_mode_nv(
+    pub unsafe fn cmd_set_coverage_reduction_mode(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
     ) {
         (self
             .fp
-            .cmd_set_coverage_reduction_mode_nv)(command_buffer, coverage_reduction_mode)
+            .cmd_set_coverage_reduction_mode)(command_buffer, coverage_reduction_mode)
     }
     ///vkCmdSetRepresentativeFragmentTestEnableNV
     #[inline]
-    pub unsafe fn cmd_set_representative_fragment_test_enable_nv(
+    pub unsafe fn cmd_set_representative_fragment_test_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         representative_fragment_test_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_representative_fragment_test_enable_nv)(
+            .cmd_set_representative_fragment_test_enable)(
             command_buffer,
             representative_fragment_test_enable,
         )
     }
     ///vkCmdSetVertexInputEXT
     #[inline]
-    pub unsafe fn cmd_set_vertex_input_ext(
+    pub unsafe fn cmd_set_vertex_input(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         vertex_binding_descriptions: &[crate::vk::VertexInputBindingDescription2EXT<'_>],
@@ -1365,7 +1335,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_vertex_input_ext)(
+            .cmd_set_vertex_input)(
             command_buffer,
             vertex_binding_descriptions.len() as _,
             vertex_binding_descriptions.as_ptr(),
@@ -1375,7 +1345,7 @@ impl Device {
     }
     ///vkCreateShadersEXT
     #[inline]
-    pub unsafe fn create_shaders_ext(
+    pub unsafe fn create_shaders(
         &self,
         device: crate::vk::Device,
         create_infos: &[crate::vk::ShaderCreateInfoEXT<'_>],
@@ -1384,7 +1354,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_shaders_ext)(
+            .create_shaders)(
                 device,
                 create_infos.len() as _,
                 create_infos.as_ptr(),
@@ -1395,28 +1365,28 @@ impl Device {
     }
     ///vkDestroyShaderEXT
     #[inline]
-    pub unsafe fn destroy_shader_ext(
+    pub unsafe fn destroy_shader(
         &self,
         device: crate::vk::Device,
         shader: crate::vk::ShaderEXT,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_shader_ext)(device, shader, allocator)
+        (self.fp.destroy_shader)(device, shader, allocator)
     }
     ///vkGetShaderBinaryDataEXT
     #[inline]
-    pub unsafe fn get_shader_binary_data_ext(
+    pub unsafe fn get_shader_binary_data(
         &self,
         device: crate::vk::Device,
         shader: crate::vk::ShaderEXT,
     ) -> crate::VkResult<Vec<core::ffi::c_void>> {
         crate::read_into_uninitialized_vector(|data_size, data| (self
             .fp
-            .get_shader_binary_data_ext)(device, shader, data_size, data))
+            .get_shader_binary_data)(device, shader, data_size, data))
     }
     ///vkCmdBindShadersEXT
     #[inline]
-    pub unsafe fn cmd_bind_shaders_ext(
+    pub unsafe fn cmd_bind_shaders(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         stages: &[crate::vk::ShaderStageFlagBits],
@@ -1424,7 +1394,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_bind_shaders_ext)(
+            .cmd_bind_shaders)(
             command_buffer,
             stages.len() as _,
             stages.as_ptr(),
@@ -1433,7 +1403,7 @@ impl Device {
     }
     ///vkCmdSetDepthClampRangeEXT
     #[inline]
-    pub unsafe fn cmd_set_depth_clamp_range_ext(
+    pub unsafe fn cmd_set_depth_clamp_range(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_clamp_mode: crate::vk::DepthClampModeEXT,
@@ -1441,7 +1411,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_depth_clamp_range_ext)(
+            .cmd_set_depth_clamp_range)(
             command_buffer,
             depth_clamp_mode,
             depth_clamp_range,
@@ -1449,41 +1419,41 @@ impl Device {
     }
     ///vkCmdSetCullMode
     #[inline]
-    pub unsafe fn cmd_set_cull_mode_ext(
+    pub unsafe fn cmd_set_cull_mode(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         cull_mode: crate::vk::CullModeFlags,
     ) {
-        (self.fp.cmd_set_cull_mode_ext)(command_buffer, cull_mode)
+        (self.fp.cmd_set_cull_mode)(command_buffer, cull_mode)
     }
     ///vkCmdSetFrontFace
     #[inline]
-    pub unsafe fn cmd_set_front_face_ext(
+    pub unsafe fn cmd_set_front_face(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         front_face: crate::vk::FrontFace,
     ) {
-        (self.fp.cmd_set_front_face_ext)(command_buffer, front_face)
+        (self.fp.cmd_set_front_face)(command_buffer, front_face)
     }
     ///vkCmdSetPrimitiveTopology
     #[inline]
-    pub unsafe fn cmd_set_primitive_topology_ext(
+    pub unsafe fn cmd_set_primitive_topology(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         primitive_topology: crate::vk::PrimitiveTopology,
     ) {
-        (self.fp.cmd_set_primitive_topology_ext)(command_buffer, primitive_topology)
+        (self.fp.cmd_set_primitive_topology)(command_buffer, primitive_topology)
     }
     ///vkCmdSetViewportWithCount
     #[inline]
-    pub unsafe fn cmd_set_viewport_with_count_ext(
+    pub unsafe fn cmd_set_viewport_with_count(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         viewports: &[crate::vk::Viewport],
     ) {
         (self
             .fp
-            .cmd_set_viewport_with_count_ext)(
+            .cmd_set_viewport_with_count)(
             command_buffer,
             viewports.len() as _,
             viewports.as_ptr(),
@@ -1491,14 +1461,14 @@ impl Device {
     }
     ///vkCmdSetScissorWithCount
     #[inline]
-    pub unsafe fn cmd_set_scissor_with_count_ext(
+    pub unsafe fn cmd_set_scissor_with_count(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         scissors: &[crate::vk::Rect2D],
     ) {
         (self
             .fp
-            .cmd_set_scissor_with_count_ext)(
+            .cmd_set_scissor_with_count)(
             command_buffer,
             scissors.len() as _,
             scissors.as_ptr(),
@@ -1506,7 +1476,7 @@ impl Device {
     }
     ///vkCmdBindVertexBuffers2
     #[inline]
-    pub unsafe fn cmd_bind_vertex_buffers2_ext(
+    pub unsafe fn cmd_bind_vertex_buffers2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
@@ -1517,7 +1487,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_bind_vertex_buffers2_ext)(
+            .cmd_bind_vertex_buffers2)(
             command_buffer,
             first_binding,
             buffers.len() as _,
@@ -1529,57 +1499,54 @@ impl Device {
     }
     ///vkCmdSetDepthTestEnable
     #[inline]
-    pub unsafe fn cmd_set_depth_test_enable_ext(
+    pub unsafe fn cmd_set_depth_test_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_test_enable: crate::vk::Bool32,
     ) {
-        (self.fp.cmd_set_depth_test_enable_ext)(command_buffer, depth_test_enable)
+        (self.fp.cmd_set_depth_test_enable)(command_buffer, depth_test_enable)
     }
     ///vkCmdSetDepthWriteEnable
     #[inline]
-    pub unsafe fn cmd_set_depth_write_enable_ext(
+    pub unsafe fn cmd_set_depth_write_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_write_enable: crate::vk::Bool32,
     ) {
-        (self.fp.cmd_set_depth_write_enable_ext)(command_buffer, depth_write_enable)
+        (self.fp.cmd_set_depth_write_enable)(command_buffer, depth_write_enable)
     }
     ///vkCmdSetDepthCompareOp
     #[inline]
-    pub unsafe fn cmd_set_depth_compare_op_ext(
+    pub unsafe fn cmd_set_depth_compare_op(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_compare_op: crate::vk::CompareOp,
     ) {
-        (self.fp.cmd_set_depth_compare_op_ext)(command_buffer, depth_compare_op)
+        (self.fp.cmd_set_depth_compare_op)(command_buffer, depth_compare_op)
     }
     ///vkCmdSetDepthBoundsTestEnable
     #[inline]
-    pub unsafe fn cmd_set_depth_bounds_test_enable_ext(
+    pub unsafe fn cmd_set_depth_bounds_test_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_bounds_test_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_depth_bounds_test_enable_ext)(
-            command_buffer,
-            depth_bounds_test_enable,
-        )
+            .cmd_set_depth_bounds_test_enable)(command_buffer, depth_bounds_test_enable)
     }
     ///vkCmdSetStencilTestEnable
     #[inline]
-    pub unsafe fn cmd_set_stencil_test_enable_ext(
+    pub unsafe fn cmd_set_stencil_test_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         stencil_test_enable: crate::vk::Bool32,
     ) {
-        (self.fp.cmd_set_stencil_test_enable_ext)(command_buffer, stencil_test_enable)
+        (self.fp.cmd_set_stencil_test_enable)(command_buffer, stencil_test_enable)
     }
     ///vkCmdSetStencilOp
     #[inline]
-    pub unsafe fn cmd_set_stencil_op_ext(
+    pub unsafe fn cmd_set_stencil_op(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         face_mask: crate::vk::StencilFaceFlags,
@@ -1590,7 +1557,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_stencil_op_ext)(
+            .cmd_set_stencil_op)(
             command_buffer,
             face_mask,
             fail_op,
@@ -1601,40 +1568,37 @@ impl Device {
     }
     ///vkCmdSetRasterizerDiscardEnable
     #[inline]
-    pub unsafe fn cmd_set_rasterizer_discard_enable_ext(
+    pub unsafe fn cmd_set_rasterizer_discard_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         rasterizer_discard_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_rasterizer_discard_enable_ext)(
+            .cmd_set_rasterizer_discard_enable)(
             command_buffer,
             rasterizer_discard_enable,
         )
     }
     ///vkCmdSetDepthBiasEnable
     #[inline]
-    pub unsafe fn cmd_set_depth_bias_enable_ext(
+    pub unsafe fn cmd_set_depth_bias_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_bias_enable: crate::vk::Bool32,
     ) {
-        (self.fp.cmd_set_depth_bias_enable_ext)(command_buffer, depth_bias_enable)
+        (self.fp.cmd_set_depth_bias_enable)(command_buffer, depth_bias_enable)
     }
     ///vkCmdSetPrimitiveRestartEnable
     #[inline]
-    pub unsafe fn cmd_set_primitive_restart_enable_ext(
+    pub unsafe fn cmd_set_primitive_restart_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         primitive_restart_enable: crate::vk::Bool32,
     ) {
         (self
             .fp
-            .cmd_set_primitive_restart_enable_ext)(
-            command_buffer,
-            primitive_restart_enable,
-        )
+            .cmd_set_primitive_restart_enable)(command_buffer, primitive_restart_enable)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

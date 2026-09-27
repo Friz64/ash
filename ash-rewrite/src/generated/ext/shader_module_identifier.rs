@@ -17,8 +17,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_shader_module_identifier_ext: crate::vk::PFN_vkGetShaderModuleIdentifierEXT,
-    pub get_shader_module_create_info_identifier_ext: crate::vk::PFN_vkGetShaderModuleCreateInfoIdentifierEXT,
+    pub get_shader_module_identifier: crate::vk::PFN_vkGetShaderModuleIdentifierEXT,
+    pub get_shader_module_create_info_identifier: crate::vk::PFN_vkGetShaderModuleCreateInfoIdentifierEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -32,8 +32,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_shader_module_identifier_ext: unsafe {
-                unsafe extern "system" fn get_shader_module_identifier_ext(
+            get_shader_module_identifier: unsafe {
+                unsafe extern "system" fn get_shader_module_identifier(
                     _: crate::vk::Device,
                     _: crate::vk::ShaderModule,
                     _: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
@@ -42,13 +42,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetShaderModuleIdentifierEXT");
                 if val.is_null() {
-                    get_shader_module_identifier_ext
+                    get_shader_module_identifier
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_shader_module_create_info_identifier_ext: unsafe {
-                unsafe extern "system" fn get_shader_module_create_info_identifier_ext(
+            get_shader_module_create_info_identifier: unsafe {
+                unsafe extern "system" fn get_shader_module_create_info_identifier(
                     _: crate::vk::Device,
                     _: *const crate::vk::ShaderModuleCreateInfo<'_>,
                     _: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
@@ -57,7 +57,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetShaderModuleCreateInfoIdentifierEXT");
                 if val.is_null() {
-                    get_shader_module_create_info_identifier_ext
+                    get_shader_module_create_info_identifier
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -88,17 +88,17 @@ impl Device {
     }
     ///vkGetShaderModuleIdentifierEXT
     #[inline]
-    pub unsafe fn get_shader_module_identifier_ext(
+    pub unsafe fn get_shader_module_identifier(
         &self,
         device: crate::vk::Device,
         shader_module: crate::vk::ShaderModule,
         identifier: &mut crate::vk::ShaderModuleIdentifierEXT<'_>,
     ) {
-        (self.fp.get_shader_module_identifier_ext)(device, shader_module, identifier)
+        (self.fp.get_shader_module_identifier)(device, shader_module, identifier)
     }
     ///vkGetShaderModuleCreateInfoIdentifierEXT
     #[inline]
-    pub unsafe fn get_shader_module_create_info_identifier_ext(
+    pub unsafe fn get_shader_module_create_info_identifier(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::ShaderModuleCreateInfo<'_>,
@@ -106,11 +106,7 @@ impl Device {
     ) {
         (self
             .fp
-            .get_shader_module_create_info_identifier_ext)(
-            device,
-            create_info,
-            identifier,
-        )
+            .get_shader_module_create_info_identifier)(device, create_info, identifier)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

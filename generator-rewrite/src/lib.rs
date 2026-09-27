@@ -166,7 +166,7 @@ impl RustTokens for Context<'_> {
             String::from("VK_")
         } else {
             let mut prefix = type_name
-                .tag_trimmed()
+                .tag_stripped()
                 .replace("FlagBits", "")
                 .TO_SHOUTY_SNEK_CASE();
 

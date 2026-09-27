@@ -10,8 +10,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_memory_fd_khr: crate::vk::PFN_vkGetMemoryFdKHR,
-    pub get_memory_fd_properties_khr: crate::vk::PFN_vkGetMemoryFdPropertiesKHR,
+    pub get_memory_fd: crate::vk::PFN_vkGetMemoryFdKHR,
+    pub get_memory_fd_properties: crate::vk::PFN_vkGetMemoryFdPropertiesKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -25,8 +25,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_memory_fd_khr: unsafe {
-                unsafe extern "system" fn get_memory_fd_khr(
+            get_memory_fd: unsafe {
+                unsafe extern "system" fn get_memory_fd(
                     _: crate::vk::Device,
                     _: *const crate::vk::MemoryGetFdInfoKHR<'_>,
                     _: *mut core::ffi::c_int,
@@ -34,14 +34,10 @@ impl DeviceFn {
                     panic!("unable to load vkGetMemoryFdKHR")
                 }
                 let val = _f(c"vkGetMemoryFdKHR");
-                if val.is_null() {
-                    get_memory_fd_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_memory_fd } else { ::core::mem::transmute(val) }
             },
-            get_memory_fd_properties_khr: unsafe {
-                unsafe extern "system" fn get_memory_fd_properties_khr(
+            get_memory_fd_properties: unsafe {
+                unsafe extern "system" fn get_memory_fd_properties(
                     _: crate::vk::Device,
                     _: crate::vk::ExternalMemoryHandleTypeFlagBits,
                     _: core::ffi::c_int,
@@ -51,7 +47,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMemoryFdPropertiesKHR");
                 if val.is_null() {
-                    get_memory_fd_properties_khr
+                    get_memory_fd_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -82,26 +78,24 @@ impl Device {
     }
     ///vkGetMemoryFdKHR
     #[inline]
-    pub unsafe fn get_memory_fd_khr(
+    pub unsafe fn get_memory_fd(
         &self,
         device: crate::vk::Device,
         get_fd_info: &crate::vk::MemoryGetFdInfoKHR<'_>,
         fd: &mut core::ffi::c_int,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_fd_khr)(device, get_fd_info, fd).result()
+        (self.fp.get_memory_fd)(device, get_fd_info, fd).result()
     }
     ///vkGetMemoryFdPropertiesKHR
     #[inline]
-    pub unsafe fn get_memory_fd_properties_khr(
+    pub unsafe fn get_memory_fd_properties(
         &self,
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         fd: core::ffi::c_int,
         memory_fd_properties: &mut crate::vk::MemoryFdPropertiesKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self
-            .fp
-            .get_memory_fd_properties_khr)(device, handle_type, fd, memory_fd_properties)
+        (self.fp.get_memory_fd_properties)(device, handle_type, fd, memory_fd_properties)
             .result()
     }
 }

@@ -26,7 +26,7 @@ impl crate::vk::ExternalMemoryHandleTypeFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_memory_host_pointer_properties_ext: crate::vk::PFN_vkGetMemoryHostPointerPropertiesEXT,
+    pub get_memory_host_pointer_properties: crate::vk::PFN_vkGetMemoryHostPointerPropertiesEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -40,8 +40,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_memory_host_pointer_properties_ext: unsafe {
-                unsafe extern "system" fn get_memory_host_pointer_properties_ext(
+            get_memory_host_pointer_properties: unsafe {
+                unsafe extern "system" fn get_memory_host_pointer_properties(
                     _: crate::vk::Device,
                     _: crate::vk::ExternalMemoryHandleTypeFlagBits,
                     _: *const core::ffi::c_void,
@@ -51,7 +51,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMemoryHostPointerPropertiesEXT");
                 if val.is_null() {
-                    get_memory_host_pointer_properties_ext
+                    get_memory_host_pointer_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -82,7 +82,7 @@ impl Device {
     }
     ///vkGetMemoryHostPointerPropertiesEXT
     #[inline]
-    pub unsafe fn get_memory_host_pointer_properties_ext(
+    pub unsafe fn get_memory_host_pointer_properties(
         &self,
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
@@ -93,7 +93,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_memory_host_pointer_properties_ext)(
+            .get_memory_host_pointer_properties)(
                 device,
                 handle_type,
                 host_pointer,

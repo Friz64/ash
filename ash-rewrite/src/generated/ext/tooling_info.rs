@@ -40,7 +40,7 @@ impl crate::vk::ToolPurposeFlagBits {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_tool_properties_ext: crate::vk::PFN_vkGetPhysicalDeviceToolPropertiesEXT,
+    pub get_physical_device_tool_properties: crate::vk::PFN_vkGetPhysicalDeviceToolPropertiesEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -54,8 +54,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_tool_properties_ext: unsafe {
-                unsafe extern "system" fn get_physical_device_tool_properties_ext(
+            get_physical_device_tool_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_tool_properties(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
                     _: *mut crate::vk::PhysicalDeviceToolProperties<'_>,
@@ -64,7 +64,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceToolPropertiesEXT");
                 if val.is_null() {
-                    get_physical_device_tool_properties_ext
+                    get_physical_device_tool_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -95,13 +95,13 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceToolProperties
     #[inline]
-    pub unsafe fn get_physical_device_tool_properties_ext(
+    pub unsafe fn get_physical_device_tool_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
     ) -> crate::VkResult<Vec<crate::vk::PhysicalDeviceToolProperties<'_>>> {
         crate::read_into_uninitialized_vector(|tool_count, tool_properties| (self
             .fp
-            .get_physical_device_tool_properties_ext)(
+            .get_physical_device_tool_properties)(
             physical_device,
             tool_count,
             tool_properties,

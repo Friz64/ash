@@ -9,8 +9,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub map_memory2_khr: crate::vk::PFN_vkMapMemory2KHR,
-    pub unmap_memory2_khr: crate::vk::PFN_vkUnmapMemory2KHR,
+    pub map_memory2: crate::vk::PFN_vkMapMemory2KHR,
+    pub unmap_memory2: crate::vk::PFN_vkUnmapMemory2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -24,8 +24,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            map_memory2_khr: unsafe {
-                unsafe extern "system" fn map_memory2_khr(
+            map_memory2: unsafe {
+                unsafe extern "system" fn map_memory2(
                     _: crate::vk::Device,
                     _: *const crate::vk::MemoryMapInfo<'_>,
                     _: *mut *mut core::ffi::c_void,
@@ -33,21 +33,17 @@ impl DeviceFn {
                     panic!("unable to load vkMapMemory2KHR")
                 }
                 let val = _f(c"vkMapMemory2KHR");
-                if val.is_null() { map_memory2_khr } else { ::core::mem::transmute(val) }
+                if val.is_null() { map_memory2 } else { ::core::mem::transmute(val) }
             },
-            unmap_memory2_khr: unsafe {
-                unsafe extern "system" fn unmap_memory2_khr(
+            unmap_memory2: unsafe {
+                unsafe extern "system" fn unmap_memory2(
                     _: crate::vk::Device,
                     _: *const crate::vk::MemoryUnmapInfo<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkUnmapMemory2KHR")
                 }
                 let val = _f(c"vkUnmapMemory2KHR");
-                if val.is_null() {
-                    unmap_memory2_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { unmap_memory2 } else { ::core::mem::transmute(val) }
             },
         }
     }
@@ -75,22 +71,22 @@ impl Device {
     }
     ///vkMapMemory2
     #[inline]
-    pub unsafe fn map_memory2_khr(
+    pub unsafe fn map_memory2(
         &self,
         device: crate::vk::Device,
         memory_map_info: &crate::vk::MemoryMapInfo<'_>,
         data: &mut *mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.fp.map_memory2_khr)(device, memory_map_info, data).result()
+        (self.fp.map_memory2)(device, memory_map_info, data).result()
     }
     ///vkUnmapMemory2
     #[inline]
-    pub unsafe fn unmap_memory2_khr(
+    pub unsafe fn unmap_memory2(
         &self,
         device: crate::vk::Device,
         memory_unmap_info: &crate::vk::MemoryUnmapInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.unmap_memory2_khr)(device, memory_unmap_info).result()
+        (self.fp.unmap_memory2)(device, memory_unmap_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

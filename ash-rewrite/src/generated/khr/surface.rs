@@ -74,11 +74,11 @@ impl SurfaceTransformFlagBitsKHR {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub destroy_surface_khr: crate::vk::PFN_vkDestroySurfaceKHR,
-    pub get_physical_device_surface_support_khr: crate::vk::PFN_vkGetPhysicalDeviceSurfaceSupportKHR,
-    pub get_physical_device_surface_capabilities_khr: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR,
-    pub get_physical_device_surface_formats_khr: crate::vk::PFN_vkGetPhysicalDeviceSurfaceFormatsKHR,
-    pub get_physical_device_surface_present_modes_khr: crate::vk::PFN_vkGetPhysicalDeviceSurfacePresentModesKHR,
+    pub destroy_surface: crate::vk::PFN_vkDestroySurfaceKHR,
+    pub get_physical_device_surface_support: crate::vk::PFN_vkGetPhysicalDeviceSurfaceSupportKHR,
+    pub get_physical_device_surface_capabilities: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR,
+    pub get_physical_device_surface_formats: crate::vk::PFN_vkGetPhysicalDeviceSurfaceFormatsKHR,
+    pub get_physical_device_surface_present_modes: crate::vk::PFN_vkGetPhysicalDeviceSurfacePresentModesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -92,8 +92,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            destroy_surface_khr: unsafe {
-                unsafe extern "system" fn destroy_surface_khr(
+            destroy_surface: unsafe {
+                unsafe extern "system" fn destroy_surface(
                     _: crate::vk::Instance,
                     _: crate::vk::SurfaceKHR,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -101,14 +101,10 @@ impl InstanceFn {
                     panic!("unable to load vkDestroySurfaceKHR")
                 }
                 let val = _f(c"vkDestroySurfaceKHR");
-                if val.is_null() {
-                    destroy_surface_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_surface } else { ::core::mem::transmute(val) }
             },
-            get_physical_device_surface_support_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_surface_support_khr(
+            get_physical_device_surface_support: unsafe {
+                unsafe extern "system" fn get_physical_device_surface_support(
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: crate::vk::SurfaceKHR,
@@ -118,13 +114,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfaceSupportKHR");
                 if val.is_null() {
-                    get_physical_device_surface_support_khr
+                    get_physical_device_surface_support
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_surface_capabilities_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_surface_capabilities_khr(
+            get_physical_device_surface_capabilities: unsafe {
+                unsafe extern "system" fn get_physical_device_surface_capabilities(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::SurfaceKHR,
                     _: *mut crate::vk::SurfaceCapabilitiesKHR,
@@ -133,13 +129,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfaceCapabilitiesKHR");
                 if val.is_null() {
-                    get_physical_device_surface_capabilities_khr
+                    get_physical_device_surface_capabilities
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_surface_formats_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_surface_formats_khr(
+            get_physical_device_surface_formats: unsafe {
+                unsafe extern "system" fn get_physical_device_surface_formats(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::SurfaceKHR,
                     _: *mut u32,
@@ -149,13 +145,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfaceFormatsKHR");
                 if val.is_null() {
-                    get_physical_device_surface_formats_khr
+                    get_physical_device_surface_formats
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_surface_present_modes_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_surface_present_modes_khr(
+            get_physical_device_surface_present_modes: unsafe {
+                unsafe extern "system" fn get_physical_device_surface_present_modes(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::SurfaceKHR,
                     _: *mut u32,
@@ -165,7 +161,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfacePresentModesKHR");
                 if val.is_null() {
-                    get_physical_device_surface_present_modes_khr
+                    get_physical_device_surface_present_modes
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -196,17 +192,17 @@ impl Instance {
     }
     ///vkDestroySurfaceKHR
     #[inline]
-    pub unsafe fn destroy_surface_khr(
+    pub unsafe fn destroy_surface(
         &self,
         instance: crate::vk::Instance,
         surface: crate::vk::SurfaceKHR,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_surface_khr)(instance, surface, allocator)
+        (self.fp.destroy_surface)(instance, surface, allocator)
     }
     ///vkGetPhysicalDeviceSurfaceSupportKHR
     #[inline]
-    pub unsafe fn get_physical_device_surface_support_khr(
+    pub unsafe fn get_physical_device_surface_support(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
@@ -215,7 +211,7 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_physical_device_surface_support_khr)(
+            .get_physical_device_surface_support)(
                 physical_device,
                 queue_family_index,
                 surface,
@@ -225,7 +221,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceSurfaceCapabilitiesKHR
     #[inline]
-    pub unsafe fn get_physical_device_surface_capabilities_khr(
+    pub unsafe fn get_physical_device_surface_capabilities(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,
@@ -233,7 +229,7 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_physical_device_surface_capabilities_khr)(
+            .get_physical_device_surface_capabilities)(
                 physical_device,
                 surface,
                 surface_capabilities,
@@ -242,14 +238,14 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceSurfaceFormatsKHR
     #[inline]
-    pub unsafe fn get_physical_device_surface_formats_khr(
+    pub unsafe fn get_physical_device_surface_formats(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,
     ) -> crate::VkResult<Vec<crate::vk::SurfaceFormatKHR>> {
         crate::read_into_uninitialized_vector(|surface_format_count, surface_formats| (self
             .fp
-            .get_physical_device_surface_formats_khr)(
+            .get_physical_device_surface_formats)(
             physical_device,
             surface,
             surface_format_count,
@@ -258,14 +254,14 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceSurfacePresentModesKHR
     #[inline]
-    pub unsafe fn get_physical_device_surface_present_modes_khr(
+    pub unsafe fn get_physical_device_surface_present_modes(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,
     ) -> crate::VkResult<Vec<crate::vk::PresentModeKHR>> {
         crate::read_into_uninitialized_vector(|present_mode_count, present_modes| (self
             .fp
-            .get_physical_device_surface_present_modes_khr)(
+            .get_physical_device_surface_present_modes)(
             physical_device,
             surface,
             present_mode_count,

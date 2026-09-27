@@ -190,20 +190,20 @@ impl crate::vk::BufferUsageFlagBits2 {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_micromap_ext: crate::vk::PFN_vkCreateMicromapEXT,
-    pub cmd_build_micromaps_ext: crate::vk::PFN_vkCmdBuildMicromapsEXT,
-    pub build_micromaps_ext: crate::vk::PFN_vkBuildMicromapsEXT,
-    pub destroy_micromap_ext: crate::vk::PFN_vkDestroyMicromapEXT,
-    pub cmd_copy_micromap_ext: crate::vk::PFN_vkCmdCopyMicromapEXT,
-    pub copy_micromap_ext: crate::vk::PFN_vkCopyMicromapEXT,
-    pub cmd_copy_micromap_to_memory_ext: crate::vk::PFN_vkCmdCopyMicromapToMemoryEXT,
-    pub copy_micromap_to_memory_ext: crate::vk::PFN_vkCopyMicromapToMemoryEXT,
-    pub cmd_copy_memory_to_micromap_ext: crate::vk::PFN_vkCmdCopyMemoryToMicromapEXT,
-    pub copy_memory_to_micromap_ext: crate::vk::PFN_vkCopyMemoryToMicromapEXT,
-    pub cmd_write_micromaps_properties_ext: crate::vk::PFN_vkCmdWriteMicromapsPropertiesEXT,
-    pub write_micromaps_properties_ext: crate::vk::PFN_vkWriteMicromapsPropertiesEXT,
-    pub get_device_micromap_compatibility_ext: crate::vk::PFN_vkGetDeviceMicromapCompatibilityEXT,
-    pub get_micromap_build_sizes_ext: crate::vk::PFN_vkGetMicromapBuildSizesEXT,
+    pub create_micromap: crate::vk::PFN_vkCreateMicromapEXT,
+    pub cmd_build_micromaps: crate::vk::PFN_vkCmdBuildMicromapsEXT,
+    pub build_micromaps: crate::vk::PFN_vkBuildMicromapsEXT,
+    pub destroy_micromap: crate::vk::PFN_vkDestroyMicromapEXT,
+    pub cmd_copy_micromap: crate::vk::PFN_vkCmdCopyMicromapEXT,
+    pub copy_micromap: crate::vk::PFN_vkCopyMicromapEXT,
+    pub cmd_copy_micromap_to_memory: crate::vk::PFN_vkCmdCopyMicromapToMemoryEXT,
+    pub copy_micromap_to_memory: crate::vk::PFN_vkCopyMicromapToMemoryEXT,
+    pub cmd_copy_memory_to_micromap: crate::vk::PFN_vkCmdCopyMemoryToMicromapEXT,
+    pub copy_memory_to_micromap: crate::vk::PFN_vkCopyMemoryToMicromapEXT,
+    pub cmd_write_micromaps_properties: crate::vk::PFN_vkCmdWriteMicromapsPropertiesEXT,
+    pub write_micromaps_properties: crate::vk::PFN_vkWriteMicromapsPropertiesEXT,
+    pub get_device_micromap_compatibility: crate::vk::PFN_vkGetDeviceMicromapCompatibilityEXT,
+    pub get_micromap_build_sizes: crate::vk::PFN_vkGetMicromapBuildSizesEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -217,8 +217,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_micromap_ext: unsafe {
-                unsafe extern "system" fn create_micromap_ext(
+            create_micromap: unsafe {
+                unsafe extern "system" fn create_micromap(
                     _: crate::vk::Device,
                     _: *const crate::vk::MicromapCreateInfoEXT<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -227,14 +227,10 @@ impl DeviceFn {
                     panic!("unable to load vkCreateMicromapEXT")
                 }
                 let val = _f(c"vkCreateMicromapEXT");
-                if val.is_null() {
-                    create_micromap_ext
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_micromap } else { ::core::mem::transmute(val) }
             },
-            cmd_build_micromaps_ext: unsafe {
-                unsafe extern "system" fn cmd_build_micromaps_ext(
+            cmd_build_micromaps: unsafe {
+                unsafe extern "system" fn cmd_build_micromaps(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::MicromapBuildInfoEXT<'_>,
@@ -243,13 +239,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBuildMicromapsEXT");
                 if val.is_null() {
-                    cmd_build_micromaps_ext
+                    cmd_build_micromaps
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            build_micromaps_ext: unsafe {
-                unsafe extern "system" fn build_micromaps_ext(
+            build_micromaps: unsafe {
+                unsafe extern "system" fn build_micromaps(
                     _: crate::vk::Device,
                     _: crate::vk::DeferredOperationKHR,
                     _: u32,
@@ -258,14 +254,10 @@ impl DeviceFn {
                     panic!("unable to load vkBuildMicromapsEXT")
                 }
                 let val = _f(c"vkBuildMicromapsEXT");
-                if val.is_null() {
-                    build_micromaps_ext
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { build_micromaps } else { ::core::mem::transmute(val) }
             },
-            destroy_micromap_ext: unsafe {
-                unsafe extern "system" fn destroy_micromap_ext(
+            destroy_micromap: unsafe {
+                unsafe extern "system" fn destroy_micromap(
                     _: crate::vk::Device,
                     _: crate::vk::MicromapEXT,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -274,13 +266,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyMicromapEXT");
                 if val.is_null() {
-                    destroy_micromap_ext
+                    destroy_micromap
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_copy_micromap_ext: unsafe {
-                unsafe extern "system" fn cmd_copy_micromap_ext(
+            cmd_copy_micromap: unsafe {
+                unsafe extern "system" fn cmd_copy_micromap(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::CopyMicromapInfoEXT<'_>,
                 ) {
@@ -288,13 +280,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyMicromapEXT");
                 if val.is_null() {
-                    cmd_copy_micromap_ext
+                    cmd_copy_micromap
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            copy_micromap_ext: unsafe {
-                unsafe extern "system" fn copy_micromap_ext(
+            copy_micromap: unsafe {
+                unsafe extern "system" fn copy_micromap(
                     _: crate::vk::Device,
                     _: crate::vk::DeferredOperationKHR,
                     _: *const crate::vk::CopyMicromapInfoEXT<'_>,
@@ -302,14 +294,10 @@ impl DeviceFn {
                     panic!("unable to load vkCopyMicromapEXT")
                 }
                 let val = _f(c"vkCopyMicromapEXT");
-                if val.is_null() {
-                    copy_micromap_ext
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { copy_micromap } else { ::core::mem::transmute(val) }
             },
-            cmd_copy_micromap_to_memory_ext: unsafe {
-                unsafe extern "system" fn cmd_copy_micromap_to_memory_ext(
+            cmd_copy_micromap_to_memory: unsafe {
+                unsafe extern "system" fn cmd_copy_micromap_to_memory(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
                 ) {
@@ -317,13 +305,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyMicromapToMemoryEXT");
                 if val.is_null() {
-                    cmd_copy_micromap_to_memory_ext
+                    cmd_copy_micromap_to_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            copy_micromap_to_memory_ext: unsafe {
-                unsafe extern "system" fn copy_micromap_to_memory_ext(
+            copy_micromap_to_memory: unsafe {
+                unsafe extern "system" fn copy_micromap_to_memory(
                     _: crate::vk::Device,
                     _: crate::vk::DeferredOperationKHR,
                     _: *const crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
@@ -332,13 +320,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCopyMicromapToMemoryEXT");
                 if val.is_null() {
-                    copy_micromap_to_memory_ext
+                    copy_micromap_to_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_copy_memory_to_micromap_ext: unsafe {
-                unsafe extern "system" fn cmd_copy_memory_to_micromap_ext(
+            cmd_copy_memory_to_micromap: unsafe {
+                unsafe extern "system" fn cmd_copy_memory_to_micromap(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
                 ) {
@@ -346,13 +334,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyMemoryToMicromapEXT");
                 if val.is_null() {
-                    cmd_copy_memory_to_micromap_ext
+                    cmd_copy_memory_to_micromap
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            copy_memory_to_micromap_ext: unsafe {
-                unsafe extern "system" fn copy_memory_to_micromap_ext(
+            copy_memory_to_micromap: unsafe {
+                unsafe extern "system" fn copy_memory_to_micromap(
                     _: crate::vk::Device,
                     _: crate::vk::DeferredOperationKHR,
                     _: *const crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
@@ -361,13 +349,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCopyMemoryToMicromapEXT");
                 if val.is_null() {
-                    copy_memory_to_micromap_ext
+                    copy_memory_to_micromap
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_write_micromaps_properties_ext: unsafe {
-                unsafe extern "system" fn cmd_write_micromaps_properties_ext(
+            cmd_write_micromaps_properties: unsafe {
+                unsafe extern "system" fn cmd_write_micromaps_properties(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::MicromapEXT,
@@ -379,13 +367,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdWriteMicromapsPropertiesEXT");
                 if val.is_null() {
-                    cmd_write_micromaps_properties_ext
+                    cmd_write_micromaps_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            write_micromaps_properties_ext: unsafe {
-                unsafe extern "system" fn write_micromaps_properties_ext(
+            write_micromaps_properties: unsafe {
+                unsafe extern "system" fn write_micromaps_properties(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::MicromapEXT,
@@ -398,13 +386,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkWriteMicromapsPropertiesEXT");
                 if val.is_null() {
-                    write_micromaps_properties_ext
+                    write_micromaps_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_device_micromap_compatibility_ext: unsafe {
-                unsafe extern "system" fn get_device_micromap_compatibility_ext(
+            get_device_micromap_compatibility: unsafe {
+                unsafe extern "system" fn get_device_micromap_compatibility(
                     _: crate::vk::Device,
                     _: *const crate::vk::MicromapVersionInfoEXT<'_>,
                     _: *mut crate::vk::AccelerationStructureCompatibilityKHR,
@@ -413,13 +401,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceMicromapCompatibilityEXT");
                 if val.is_null() {
-                    get_device_micromap_compatibility_ext
+                    get_device_micromap_compatibility
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_micromap_build_sizes_ext: unsafe {
-                unsafe extern "system" fn get_micromap_build_sizes_ext(
+            get_micromap_build_sizes: unsafe {
+                unsafe extern "system" fn get_micromap_build_sizes(
                     _: crate::vk::Device,
                     _: crate::vk::AccelerationStructureBuildTypeKHR,
                     _: *const crate::vk::MicromapBuildInfoEXT<'_>,
@@ -429,7 +417,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMicromapBuildSizesEXT");
                 if val.is_null() {
-                    get_micromap_build_sizes_ext
+                    get_micromap_build_sizes
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -460,29 +448,27 @@ impl Device {
     }
     ///vkCreateMicromapEXT
     #[inline]
-    pub unsafe fn create_micromap_ext(
+    pub unsafe fn create_micromap(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::MicromapCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         micromap: &mut crate::vk::MicromapEXT,
     ) -> crate::VkResult<()> {
-        (self.fp.create_micromap_ext)(device, create_info, allocator, micromap).result()
+        (self.fp.create_micromap)(device, create_info, allocator, micromap).result()
     }
     ///vkCmdBuildMicromapsEXT
     #[inline]
-    pub unsafe fn cmd_build_micromaps_ext(
+    pub unsafe fn cmd_build_micromaps(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         infos: &[crate::vk::MicromapBuildInfoEXT<'_>],
     ) {
-        (self
-            .fp
-            .cmd_build_micromaps_ext)(command_buffer, infos.len() as _, infos.as_ptr())
+        (self.fp.cmd_build_micromaps)(command_buffer, infos.len() as _, infos.as_ptr())
     }
     ///vkBuildMicromapsEXT
     #[inline]
-    pub unsafe fn build_micromaps_ext(
+    pub unsafe fn build_micromaps(
         &self,
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
@@ -490,7 +476,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .build_micromaps_ext)(
+            .build_micromaps)(
                 device,
                 deferred_operation,
                 infos.len() as _,
@@ -500,74 +486,74 @@ impl Device {
     }
     ///vkDestroyMicromapEXT
     #[inline]
-    pub unsafe fn destroy_micromap_ext(
+    pub unsafe fn destroy_micromap(
         &self,
         device: crate::vk::Device,
         micromap: crate::vk::MicromapEXT,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_micromap_ext)(device, micromap, allocator)
+        (self.fp.destroy_micromap)(device, micromap, allocator)
     }
     ///vkCmdCopyMicromapEXT
     #[inline]
-    pub unsafe fn cmd_copy_micromap_ext(
+    pub unsafe fn cmd_copy_micromap(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::CopyMicromapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_copy_micromap_ext)(command_buffer, info)
+        (self.fp.cmd_copy_micromap)(command_buffer, info)
     }
     ///vkCopyMicromapEXT
     #[inline]
-    pub unsafe fn copy_micromap_ext(
+    pub unsafe fn copy_micromap(
         &self,
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         info: &crate::vk::CopyMicromapInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_micromap_ext)(device, deferred_operation, info).result()
+        (self.fp.copy_micromap)(device, deferred_operation, info).result()
     }
     ///vkCmdCopyMicromapToMemoryEXT
     #[inline]
-    pub unsafe fn cmd_copy_micromap_to_memory_ext(
+    pub unsafe fn cmd_copy_micromap_to_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
     ) {
-        (self.fp.cmd_copy_micromap_to_memory_ext)(command_buffer, info)
+        (self.fp.cmd_copy_micromap_to_memory)(command_buffer, info)
     }
     ///vkCopyMicromapToMemoryEXT
     #[inline]
-    pub unsafe fn copy_micromap_to_memory_ext(
+    pub unsafe fn copy_micromap_to_memory(
         &self,
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         info: &crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_micromap_to_memory_ext)(device, deferred_operation, info).result()
+        (self.fp.copy_micromap_to_memory)(device, deferred_operation, info).result()
     }
     ///vkCmdCopyMemoryToMicromapEXT
     #[inline]
-    pub unsafe fn cmd_copy_memory_to_micromap_ext(
+    pub unsafe fn cmd_copy_memory_to_micromap(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_copy_memory_to_micromap_ext)(command_buffer, info)
+        (self.fp.cmd_copy_memory_to_micromap)(command_buffer, info)
     }
     ///vkCopyMemoryToMicromapEXT
     #[inline]
-    pub unsafe fn copy_memory_to_micromap_ext(
+    pub unsafe fn copy_memory_to_micromap(
         &self,
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         info: &crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_memory_to_micromap_ext)(device, deferred_operation, info).result()
+        (self.fp.copy_memory_to_micromap)(device, deferred_operation, info).result()
     }
     ///vkCmdWriteMicromapsPropertiesEXT
     #[inline]
-    pub unsafe fn cmd_write_micromaps_properties_ext(
+    pub unsafe fn cmd_write_micromaps_properties(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         micromaps: &[crate::vk::MicromapEXT],
@@ -577,7 +563,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_write_micromaps_properties_ext)(
+            .cmd_write_micromaps_properties)(
             command_buffer,
             micromaps.len() as _,
             micromaps.as_ptr(),
@@ -588,7 +574,7 @@ impl Device {
     }
     ///vkWriteMicromapsPropertiesEXT
     #[inline]
-    pub unsafe fn write_micromaps_properties_ext(
+    pub unsafe fn write_micromaps_properties(
         &self,
         device: crate::vk::Device,
         micromaps: &[crate::vk::MicromapEXT],
@@ -598,7 +584,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .write_micromaps_properties_ext)(
+            .write_micromaps_properties)(
                 device,
                 micromaps.len() as _,
                 micromaps.as_ptr(),
@@ -611,26 +597,24 @@ impl Device {
     }
     ///vkGetDeviceMicromapCompatibilityEXT
     #[inline]
-    pub unsafe fn get_device_micromap_compatibility_ext(
+    pub unsafe fn get_device_micromap_compatibility(
         &self,
         device: crate::vk::Device,
         version_info: &crate::vk::MicromapVersionInfoEXT<'_>,
         compatibility: &mut crate::vk::AccelerationStructureCompatibilityKHR,
     ) {
-        (self
-            .fp
-            .get_device_micromap_compatibility_ext)(device, version_info, compatibility)
+        (self.fp.get_device_micromap_compatibility)(device, version_info, compatibility)
     }
     ///vkGetMicromapBuildSizesEXT
     #[inline]
-    pub unsafe fn get_micromap_build_sizes_ext(
+    pub unsafe fn get_micromap_build_sizes(
         &self,
         device: crate::vk::Device,
         build_type: crate::vk::AccelerationStructureBuildTypeKHR,
         build_info: &crate::vk::MicromapBuildInfoEXT<'_>,
         size_info: &mut crate::vk::MicromapBuildSizesInfoEXT<'_>,
     ) {
-        (self.fp.get_micromap_build_sizes_ext)(device, build_type, build_info, size_info)
+        (self.fp.get_micromap_build_sizes)(device, build_type, build_info, size_info)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

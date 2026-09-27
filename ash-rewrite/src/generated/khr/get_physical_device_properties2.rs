@@ -16,13 +16,13 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_features2_khr: crate::vk::PFN_vkGetPhysicalDeviceFeatures2KHR,
-    pub get_physical_device_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceProperties2KHR,
-    pub get_physical_device_format_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceFormatProperties2KHR,
-    pub get_physical_device_image_format_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceImageFormatProperties2KHR,
-    pub get_physical_device_queue_family_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR,
-    pub get_physical_device_memory_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceMemoryProperties2KHR,
-    pub get_physical_device_sparse_image_format_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR,
+    pub get_physical_device_features2: crate::vk::PFN_vkGetPhysicalDeviceFeatures2KHR,
+    pub get_physical_device_properties2: crate::vk::PFN_vkGetPhysicalDeviceProperties2KHR,
+    pub get_physical_device_format_properties2: crate::vk::PFN_vkGetPhysicalDeviceFormatProperties2KHR,
+    pub get_physical_device_image_format_properties2: crate::vk::PFN_vkGetPhysicalDeviceImageFormatProperties2KHR,
+    pub get_physical_device_queue_family_properties2: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR,
+    pub get_physical_device_memory_properties2: crate::vk::PFN_vkGetPhysicalDeviceMemoryProperties2KHR,
+    pub get_physical_device_sparse_image_format_properties2: crate::vk::PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -36,8 +36,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_features2_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_features2_khr(
+            get_physical_device_features2: unsafe {
+                unsafe extern "system" fn get_physical_device_features2(
                     _: crate::vk::PhysicalDevice,
                     _: *mut crate::vk::PhysicalDeviceFeatures2<'_>,
                 ) {
@@ -45,13 +45,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceFeatures2KHR");
                 if val.is_null() {
-                    get_physical_device_features2_khr
+                    get_physical_device_features2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_properties2_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_properties2_khr(
+            get_physical_device_properties2: unsafe {
+                unsafe extern "system" fn get_physical_device_properties2(
                     _: crate::vk::PhysicalDevice,
                     _: *mut crate::vk::PhysicalDeviceProperties2<'_>,
                 ) {
@@ -59,13 +59,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceProperties2KHR");
                 if val.is_null() {
-                    get_physical_device_properties2_khr
+                    get_physical_device_properties2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_format_properties2_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_format_properties2_khr(
+            get_physical_device_format_properties2: unsafe {
+                unsafe extern "system" fn get_physical_device_format_properties2(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::Format,
                     _: *mut crate::vk::FormatProperties2<'_>,
@@ -74,13 +74,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceFormatProperties2KHR");
                 if val.is_null() {
-                    get_physical_device_format_properties2_khr
+                    get_physical_device_format_properties2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_image_format_properties2_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_image_format_properties2_khr(
+            get_physical_device_image_format_properties2: unsafe {
+                unsafe extern "system" fn get_physical_device_image_format_properties2(
                     _: crate::vk::PhysicalDevice,
                     _: *const crate::vk::PhysicalDeviceImageFormatInfo2<'_>,
                     _: *mut crate::vk::ImageFormatProperties2<'_>,
@@ -89,13 +89,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceImageFormatProperties2KHR");
                 if val.is_null() {
-                    get_physical_device_image_format_properties2_khr
+                    get_physical_device_image_format_properties2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_queue_family_properties2_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_queue_family_properties2_khr(
+            get_physical_device_queue_family_properties2: unsafe {
+                unsafe extern "system" fn get_physical_device_queue_family_properties2(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
                     _: *mut crate::vk::QueueFamilyProperties2<'_>,
@@ -104,13 +104,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceQueueFamilyProperties2KHR");
                 if val.is_null() {
-                    get_physical_device_queue_family_properties2_khr
+                    get_physical_device_queue_family_properties2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_memory_properties2_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_memory_properties2_khr(
+            get_physical_device_memory_properties2: unsafe {
+                unsafe extern "system" fn get_physical_device_memory_properties2(
                     _: crate::vk::PhysicalDevice,
                     _: *mut crate::vk::PhysicalDeviceMemoryProperties2<'_>,
                 ) {
@@ -118,13 +118,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceMemoryProperties2KHR");
                 if val.is_null() {
-                    get_physical_device_memory_properties2_khr
+                    get_physical_device_memory_properties2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_sparse_image_format_properties2_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_sparse_image_format_properties2_khr(
+            get_physical_device_sparse_image_format_properties2: unsafe {
+                unsafe extern "system" fn get_physical_device_sparse_image_format_properties2(
                     _: crate::vk::PhysicalDevice,
                     _: *const crate::vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
                     _: *mut u32,
@@ -136,7 +136,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceSparseImageFormatProperties2KHR");
                 if val.is_null() {
-                    get_physical_device_sparse_image_format_properties2_khr
+                    get_physical_device_sparse_image_format_properties2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -167,25 +167,25 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceFeatures2
     #[inline]
-    pub unsafe fn get_physical_device_features2_khr(
+    pub unsafe fn get_physical_device_features2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         features: &mut crate::vk::PhysicalDeviceFeatures2<'_>,
     ) {
-        (self.fp.get_physical_device_features2_khr)(physical_device, features)
+        (self.fp.get_physical_device_features2)(physical_device, features)
     }
     ///vkGetPhysicalDeviceProperties2
     #[inline]
-    pub unsafe fn get_physical_device_properties2_khr(
+    pub unsafe fn get_physical_device_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         properties: &mut crate::vk::PhysicalDeviceProperties2<'_>,
     ) {
-        (self.fp.get_physical_device_properties2_khr)(physical_device, properties)
+        (self.fp.get_physical_device_properties2)(physical_device, properties)
     }
     ///vkGetPhysicalDeviceFormatProperties2
     #[inline]
-    pub unsafe fn get_physical_device_format_properties2_khr(
+    pub unsafe fn get_physical_device_format_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
@@ -193,7 +193,7 @@ impl Instance {
     ) {
         (self
             .fp
-            .get_physical_device_format_properties2_khr)(
+            .get_physical_device_format_properties2)(
             physical_device,
             format,
             format_properties,
@@ -201,7 +201,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceImageFormatProperties2
     #[inline]
-    pub unsafe fn get_physical_device_image_format_properties2_khr(
+    pub unsafe fn get_physical_device_image_format_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         image_format_info: &crate::vk::PhysicalDeviceImageFormatInfo2<'_>,
@@ -209,7 +209,7 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_physical_device_image_format_properties2_khr)(
+            .get_physical_device_image_format_properties2)(
                 physical_device,
                 image_format_info,
                 image_format_properties,
@@ -218,7 +218,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceQueueFamilyProperties2
     #[inline]
-    pub unsafe fn get_physical_device_queue_family_properties2_khr(
+    pub unsafe fn get_physical_device_queue_family_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
     ) -> crate::VkResult<Vec<crate::vk::QueueFamilyProperties2<'_>>> {
@@ -227,7 +227,7 @@ impl Instance {
             queue_family_properties|
         (self
             .fp
-            .get_physical_device_queue_family_properties2_khr)(
+            .get_physical_device_queue_family_properties2)(
             physical_device,
             queue_family_property_count,
             queue_family_properties,
@@ -235,28 +235,25 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceMemoryProperties2
     #[inline]
-    pub unsafe fn get_physical_device_memory_properties2_khr(
+    pub unsafe fn get_physical_device_memory_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         memory_properties: &mut crate::vk::PhysicalDeviceMemoryProperties2<'_>,
     ) {
         (self
             .fp
-            .get_physical_device_memory_properties2_khr)(
-            physical_device,
-            memory_properties,
-        )
+            .get_physical_device_memory_properties2)(physical_device, memory_properties)
     }
     ///vkGetPhysicalDeviceSparseImageFormatProperties2
     #[inline]
-    pub unsafe fn get_physical_device_sparse_image_format_properties2_khr(
+    pub unsafe fn get_physical_device_sparse_image_format_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         format_info: &crate::vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
     ) -> crate::VkResult<Vec<crate::vk::SparseImageFormatProperties2<'_>>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
-            .get_physical_device_sparse_image_format_properties2_khr)(
+            .get_physical_device_sparse_image_format_properties2)(
             physical_device,
             format_info,
             property_count,

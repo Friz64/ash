@@ -71,9 +71,9 @@ impl DebugReportFlagBitsEXT {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_debug_report_callback_ext: crate::vk::PFN_vkCreateDebugReportCallbackEXT,
-    pub destroy_debug_report_callback_ext: crate::vk::PFN_vkDestroyDebugReportCallbackEXT,
-    pub debug_report_message_ext: crate::vk::PFN_vkDebugReportMessageEXT,
+    pub create_debug_report_callback: crate::vk::PFN_vkCreateDebugReportCallbackEXT,
+    pub destroy_debug_report_callback: crate::vk::PFN_vkDestroyDebugReportCallbackEXT,
+    pub debug_report_message: crate::vk::PFN_vkDebugReportMessageEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -87,8 +87,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_debug_report_callback_ext: unsafe {
-                unsafe extern "system" fn create_debug_report_callback_ext(
+            create_debug_report_callback: unsafe {
+                unsafe extern "system" fn create_debug_report_callback(
                     _: crate::vk::Instance,
                     _: *const crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -98,13 +98,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateDebugReportCallbackEXT");
                 if val.is_null() {
-                    create_debug_report_callback_ext
+                    create_debug_report_callback
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_debug_report_callback_ext: unsafe {
-                unsafe extern "system" fn destroy_debug_report_callback_ext(
+            destroy_debug_report_callback: unsafe {
+                unsafe extern "system" fn destroy_debug_report_callback(
                     _: crate::vk::Instance,
                     _: crate::vk::DebugReportCallbackEXT,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -113,13 +113,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkDestroyDebugReportCallbackEXT");
                 if val.is_null() {
-                    destroy_debug_report_callback_ext
+                    destroy_debug_report_callback
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            debug_report_message_ext: unsafe {
-                unsafe extern "system" fn debug_report_message_ext(
+            debug_report_message: unsafe {
+                unsafe extern "system" fn debug_report_message(
                     _: crate::vk::Instance,
                     _: crate::vk::DebugReportFlagsEXT,
                     _: crate::vk::DebugReportObjectTypeEXT,
@@ -133,7 +133,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkDebugReportMessageEXT");
                 if val.is_null() {
-                    debug_report_message_ext
+                    debug_report_message
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -164,7 +164,7 @@ impl Instance {
     }
     ///vkCreateDebugReportCallbackEXT
     #[inline]
-    pub unsafe fn create_debug_report_callback_ext(
+    pub unsafe fn create_debug_report_callback(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
@@ -173,27 +173,22 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_debug_report_callback_ext)(
-                instance,
-                create_info,
-                allocator,
-                callback,
-            )
+            .create_debug_report_callback)(instance, create_info, allocator, callback)
             .result()
     }
     ///vkDestroyDebugReportCallbackEXT
     #[inline]
-    pub unsafe fn destroy_debug_report_callback_ext(
+    pub unsafe fn destroy_debug_report_callback(
         &self,
         instance: crate::vk::Instance,
         callback: crate::vk::DebugReportCallbackEXT,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_debug_report_callback_ext)(instance, callback, allocator)
+        (self.fp.destroy_debug_report_callback)(instance, callback, allocator)
     }
     ///vkDebugReportMessageEXT
     #[inline]
-    pub unsafe fn debug_report_message_ext(
+    pub unsafe fn debug_report_message(
         &self,
         instance: crate::vk::Instance,
         flags: crate::vk::DebugReportFlagsEXT,
@@ -206,7 +201,7 @@ impl Instance {
     ) {
         (self
             .fp
-            .debug_report_message_ext)(
+            .debug_report_message)(
             instance,
             flags,
             object_type,

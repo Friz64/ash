@@ -41,7 +41,7 @@ impl crate::vk::PipelineStageFlagBits2 {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_trace_rays_indirect2_khr: crate::vk::PFN_vkCmdTraceRaysIndirect2KHR,
+    pub cmd_trace_rays_indirect2: crate::vk::PFN_vkCmdTraceRaysIndirect2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -55,8 +55,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_trace_rays_indirect2_khr: unsafe {
-                unsafe extern "system" fn cmd_trace_rays_indirect2_khr(
+            cmd_trace_rays_indirect2: unsafe {
+                unsafe extern "system" fn cmd_trace_rays_indirect2(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DeviceAddress,
                 ) {
@@ -64,7 +64,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdTraceRaysIndirect2KHR");
                 if val.is_null() {
-                    cmd_trace_rays_indirect2_khr
+                    cmd_trace_rays_indirect2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -95,12 +95,12 @@ impl Device {
     }
     ///vkCmdTraceRaysIndirect2KHR
     #[inline]
-    pub unsafe fn cmd_trace_rays_indirect2_khr(
+    pub unsafe fn cmd_trace_rays_indirect2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         indirect_device_address: crate::vk::DeviceAddress,
     ) {
-        (self.fp.cmd_trace_rays_indirect2_khr)(command_buffer, indirect_device_address)
+        (self.fp.cmd_trace_rays_indirect2)(command_buffer, indirect_device_address)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

@@ -115,18 +115,18 @@ impl GpaSqShaderStageFlagBitsAMD {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_gpa_session_amd: crate::vk::PFN_vkCreateGpaSessionAMD,
-    pub destroy_gpa_session_amd: crate::vk::PFN_vkDestroyGpaSessionAMD,
-    pub set_gpa_device_clock_mode_amd: crate::vk::PFN_vkSetGpaDeviceClockModeAMD,
-    pub get_gpa_device_clock_info_amd: crate::vk::PFN_vkGetGpaDeviceClockInfoAMD,
-    pub cmd_begin_gpa_session_amd: crate::vk::PFN_vkCmdBeginGpaSessionAMD,
-    pub cmd_end_gpa_session_amd: crate::vk::PFN_vkCmdEndGpaSessionAMD,
-    pub cmd_begin_gpa_sample_amd: crate::vk::PFN_vkCmdBeginGpaSampleAMD,
-    pub cmd_end_gpa_sample_amd: crate::vk::PFN_vkCmdEndGpaSampleAMD,
-    pub get_gpa_session_status_amd: crate::vk::PFN_vkGetGpaSessionStatusAMD,
-    pub get_gpa_session_results_amd: crate::vk::PFN_vkGetGpaSessionResultsAMD,
-    pub reset_gpa_session_amd: crate::vk::PFN_vkResetGpaSessionAMD,
-    pub cmd_copy_gpa_session_results_amd: crate::vk::PFN_vkCmdCopyGpaSessionResultsAMD,
+    pub create_gpa_session: crate::vk::PFN_vkCreateGpaSessionAMD,
+    pub destroy_gpa_session: crate::vk::PFN_vkDestroyGpaSessionAMD,
+    pub set_gpa_device_clock_mode: crate::vk::PFN_vkSetGpaDeviceClockModeAMD,
+    pub get_gpa_device_clock_info: crate::vk::PFN_vkGetGpaDeviceClockInfoAMD,
+    pub cmd_begin_gpa_session: crate::vk::PFN_vkCmdBeginGpaSessionAMD,
+    pub cmd_end_gpa_session: crate::vk::PFN_vkCmdEndGpaSessionAMD,
+    pub cmd_begin_gpa_sample: crate::vk::PFN_vkCmdBeginGpaSampleAMD,
+    pub cmd_end_gpa_sample: crate::vk::PFN_vkCmdEndGpaSampleAMD,
+    pub get_gpa_session_status: crate::vk::PFN_vkGetGpaSessionStatusAMD,
+    pub get_gpa_session_results: crate::vk::PFN_vkGetGpaSessionResultsAMD,
+    pub reset_gpa_session: crate::vk::PFN_vkResetGpaSessionAMD,
+    pub cmd_copy_gpa_session_results: crate::vk::PFN_vkCmdCopyGpaSessionResultsAMD,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -140,8 +140,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_gpa_session_amd: unsafe {
-                unsafe extern "system" fn create_gpa_session_amd(
+            create_gpa_session: unsafe {
+                unsafe extern "system" fn create_gpa_session(
                     _: crate::vk::Device,
                     _: *const crate::vk::GpaSessionCreateInfoAMD<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -151,13 +151,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateGpaSessionAMD");
                 if val.is_null() {
-                    create_gpa_session_amd
+                    create_gpa_session
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_gpa_session_amd: unsafe {
-                unsafe extern "system" fn destroy_gpa_session_amd(
+            destroy_gpa_session: unsafe {
+                unsafe extern "system" fn destroy_gpa_session(
                     _: crate::vk::Device,
                     _: crate::vk::GpaSessionAMD,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -166,13 +166,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyGpaSessionAMD");
                 if val.is_null() {
-                    destroy_gpa_session_amd
+                    destroy_gpa_session
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            set_gpa_device_clock_mode_amd: unsafe {
-                unsafe extern "system" fn set_gpa_device_clock_mode_amd(
+            set_gpa_device_clock_mode: unsafe {
+                unsafe extern "system" fn set_gpa_device_clock_mode(
                     _: crate::vk::Device,
                     _: *mut crate::vk::GpaDeviceClockModeInfoAMD<'_>,
                 ) -> crate::vk::Result {
@@ -180,13 +180,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkSetGpaDeviceClockModeAMD");
                 if val.is_null() {
-                    set_gpa_device_clock_mode_amd
+                    set_gpa_device_clock_mode
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_gpa_device_clock_info_amd: unsafe {
-                unsafe extern "system" fn get_gpa_device_clock_info_amd(
+            get_gpa_device_clock_info: unsafe {
+                unsafe extern "system" fn get_gpa_device_clock_info(
                     _: crate::vk::Device,
                     _: *mut crate::vk::GpaDeviceGetClockInfoAMD<'_>,
                 ) -> crate::vk::Result {
@@ -194,13 +194,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetGpaDeviceClockInfoAMD");
                 if val.is_null() {
-                    get_gpa_device_clock_info_amd
+                    get_gpa_device_clock_info
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_begin_gpa_session_amd: unsafe {
-                unsafe extern "system" fn cmd_begin_gpa_session_amd(
+            cmd_begin_gpa_session: unsafe {
+                unsafe extern "system" fn cmd_begin_gpa_session(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::GpaSessionAMD,
                 ) -> crate::vk::Result {
@@ -208,13 +208,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginGpaSessionAMD");
                 if val.is_null() {
-                    cmd_begin_gpa_session_amd
+                    cmd_begin_gpa_session
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_end_gpa_session_amd: unsafe {
-                unsafe extern "system" fn cmd_end_gpa_session_amd(
+            cmd_end_gpa_session: unsafe {
+                unsafe extern "system" fn cmd_end_gpa_session(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::GpaSessionAMD,
                 ) -> crate::vk::Result {
@@ -222,13 +222,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdEndGpaSessionAMD");
                 if val.is_null() {
-                    cmd_end_gpa_session_amd
+                    cmd_end_gpa_session
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_begin_gpa_sample_amd: unsafe {
-                unsafe extern "system" fn cmd_begin_gpa_sample_amd(
+            cmd_begin_gpa_sample: unsafe {
+                unsafe extern "system" fn cmd_begin_gpa_sample(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::GpaSessionAMD,
                     _: *const crate::vk::GpaSampleBeginInfoAMD<'_>,
@@ -238,13 +238,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginGpaSampleAMD");
                 if val.is_null() {
-                    cmd_begin_gpa_sample_amd
+                    cmd_begin_gpa_sample
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_end_gpa_sample_amd: unsafe {
-                unsafe extern "system" fn cmd_end_gpa_sample_amd(
+            cmd_end_gpa_sample: unsafe {
+                unsafe extern "system" fn cmd_end_gpa_sample(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::GpaSessionAMD,
                     _: u32,
@@ -253,13 +253,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdEndGpaSampleAMD");
                 if val.is_null() {
-                    cmd_end_gpa_sample_amd
+                    cmd_end_gpa_sample
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_gpa_session_status_amd: unsafe {
-                unsafe extern "system" fn get_gpa_session_status_amd(
+            get_gpa_session_status: unsafe {
+                unsafe extern "system" fn get_gpa_session_status(
                     _: crate::vk::Device,
                     _: crate::vk::GpaSessionAMD,
                 ) -> crate::vk::Result {
@@ -267,13 +267,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetGpaSessionStatusAMD");
                 if val.is_null() {
-                    get_gpa_session_status_amd
+                    get_gpa_session_status
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_gpa_session_results_amd: unsafe {
-                unsafe extern "system" fn get_gpa_session_results_amd(
+            get_gpa_session_results: unsafe {
+                unsafe extern "system" fn get_gpa_session_results(
                     _: crate::vk::Device,
                     _: crate::vk::GpaSessionAMD,
                     _: u32,
@@ -284,13 +284,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetGpaSessionResultsAMD");
                 if val.is_null() {
-                    get_gpa_session_results_amd
+                    get_gpa_session_results
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            reset_gpa_session_amd: unsafe {
-                unsafe extern "system" fn reset_gpa_session_amd(
+            reset_gpa_session: unsafe {
+                unsafe extern "system" fn reset_gpa_session(
                     _: crate::vk::Device,
                     _: crate::vk::GpaSessionAMD,
                 ) -> crate::vk::Result {
@@ -298,13 +298,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkResetGpaSessionAMD");
                 if val.is_null() {
-                    reset_gpa_session_amd
+                    reset_gpa_session
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_copy_gpa_session_results_amd: unsafe {
-                unsafe extern "system" fn cmd_copy_gpa_session_results_amd(
+            cmd_copy_gpa_session_results: unsafe {
+                unsafe extern "system" fn cmd_copy_gpa_session_results(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::GpaSessionAMD,
                 ) {
@@ -312,7 +312,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyGpaSessionResultsAMD");
                 if val.is_null() {
-                    cmd_copy_gpa_session_results_amd
+                    cmd_copy_gpa_session_results
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -343,65 +343,65 @@ impl Device {
     }
     ///vkCreateGpaSessionAMD
     #[inline]
-    pub unsafe fn create_gpa_session_amd(
+    pub unsafe fn create_gpa_session(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::GpaSessionCreateInfoAMD<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         gpa_session: &mut crate::vk::GpaSessionAMD,
     ) -> crate::VkResult<()> {
-        (self.fp.create_gpa_session_amd)(device, create_info, allocator, gpa_session)
+        (self.fp.create_gpa_session)(device, create_info, allocator, gpa_session)
             .result()
     }
     ///vkDestroyGpaSessionAMD
     #[inline]
-    pub unsafe fn destroy_gpa_session_amd(
+    pub unsafe fn destroy_gpa_session(
         &self,
         device: crate::vk::Device,
         gpa_session: crate::vk::GpaSessionAMD,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_gpa_session_amd)(device, gpa_session, allocator)
+        (self.fp.destroy_gpa_session)(device, gpa_session, allocator)
     }
     ///vkSetGpaDeviceClockModeAMD
     #[inline]
-    pub unsafe fn set_gpa_device_clock_mode_amd(
+    pub unsafe fn set_gpa_device_clock_mode(
         &self,
         device: crate::vk::Device,
         info: &mut crate::vk::GpaDeviceClockModeInfoAMD<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.set_gpa_device_clock_mode_amd)(device, info).result()
+        (self.fp.set_gpa_device_clock_mode)(device, info).result()
     }
     ///vkGetGpaDeviceClockInfoAMD
     #[inline]
-    pub unsafe fn get_gpa_device_clock_info_amd(
+    pub unsafe fn get_gpa_device_clock_info(
         &self,
         device: crate::vk::Device,
         info: &mut crate::vk::GpaDeviceGetClockInfoAMD<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_gpa_device_clock_info_amd)(device, info).result()
+        (self.fp.get_gpa_device_clock_info)(device, info).result()
     }
     ///vkCmdBeginGpaSessionAMD
     #[inline]
-    pub unsafe fn cmd_begin_gpa_session_amd(
+    pub unsafe fn cmd_begin_gpa_session(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         gpa_session: crate::vk::GpaSessionAMD,
     ) -> crate::VkResult<()> {
-        (self.fp.cmd_begin_gpa_session_amd)(command_buffer, gpa_session).result()
+        (self.fp.cmd_begin_gpa_session)(command_buffer, gpa_session).result()
     }
     ///vkCmdEndGpaSessionAMD
     #[inline]
-    pub unsafe fn cmd_end_gpa_session_amd(
+    pub unsafe fn cmd_end_gpa_session(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         gpa_session: crate::vk::GpaSessionAMD,
     ) -> crate::VkResult<()> {
-        (self.fp.cmd_end_gpa_session_amd)(command_buffer, gpa_session).result()
+        (self.fp.cmd_end_gpa_session)(command_buffer, gpa_session).result()
     }
     ///vkCmdBeginGpaSampleAMD
     #[inline]
-    pub unsafe fn cmd_begin_gpa_sample_amd(
+    pub unsafe fn cmd_begin_gpa_sample(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         gpa_session: crate::vk::GpaSessionAMD,
@@ -410,7 +410,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .cmd_begin_gpa_sample_amd)(
+            .cmd_begin_gpa_sample)(
                 command_buffer,
                 gpa_session,
                 gpa_sample_begin_info,
@@ -420,26 +420,26 @@ impl Device {
     }
     ///vkCmdEndGpaSampleAMD
     #[inline]
-    pub unsafe fn cmd_end_gpa_sample_amd(
+    pub unsafe fn cmd_end_gpa_sample(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         gpa_session: crate::vk::GpaSessionAMD,
         sample_id: u32,
     ) {
-        (self.fp.cmd_end_gpa_sample_amd)(command_buffer, gpa_session, sample_id)
+        (self.fp.cmd_end_gpa_sample)(command_buffer, gpa_session, sample_id)
     }
     ///vkGetGpaSessionStatusAMD
     #[inline]
-    pub unsafe fn get_gpa_session_status_amd(
+    pub unsafe fn get_gpa_session_status(
         &self,
         device: crate::vk::Device,
         gpa_session: crate::vk::GpaSessionAMD,
     ) -> crate::VkResult<()> {
-        (self.fp.get_gpa_session_status_amd)(device, gpa_session).result()
+        (self.fp.get_gpa_session_status)(device, gpa_session).result()
     }
     ///vkGetGpaSessionResultsAMD
     #[inline]
-    pub unsafe fn get_gpa_session_results_amd(
+    pub unsafe fn get_gpa_session_results(
         &self,
         device: crate::vk::Device,
         gpa_session: crate::vk::GpaSessionAMD,
@@ -447,7 +447,7 @@ impl Device {
     ) -> crate::VkResult<Vec<core::ffi::c_void>> {
         crate::read_into_uninitialized_vector(|size_in_bytes, data| (self
             .fp
-            .get_gpa_session_results_amd)(
+            .get_gpa_session_results)(
             device,
             gpa_session,
             sample_id,
@@ -457,21 +457,21 @@ impl Device {
     }
     ///vkResetGpaSessionAMD
     #[inline]
-    pub unsafe fn reset_gpa_session_amd(
+    pub unsafe fn reset_gpa_session(
         &self,
         device: crate::vk::Device,
         gpa_session: crate::vk::GpaSessionAMD,
     ) -> crate::VkResult<()> {
-        (self.fp.reset_gpa_session_amd)(device, gpa_session).result()
+        (self.fp.reset_gpa_session)(device, gpa_session).result()
     }
     ///vkCmdCopyGpaSessionResultsAMD
     #[inline]
-    pub unsafe fn cmd_copy_gpa_session_results_amd(
+    pub unsafe fn cmd_copy_gpa_session_results(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         gpa_session: crate::vk::GpaSessionAMD,
     ) {
-        (self.fp.cmd_copy_gpa_session_results_amd)(command_buffer, gpa_session)
+        (self.fp.cmd_copy_gpa_session_results)(command_buffer, gpa_session)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

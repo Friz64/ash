@@ -6,8 +6,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_acquire_drm_display";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub acquire_drm_display_ext: crate::vk::PFN_vkAcquireDrmDisplayEXT,
-    pub get_drm_display_ext: crate::vk::PFN_vkGetDrmDisplayEXT,
+    pub acquire_drm_display: crate::vk::PFN_vkAcquireDrmDisplayEXT,
+    pub get_drm_display: crate::vk::PFN_vkGetDrmDisplayEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -21,8 +21,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            acquire_drm_display_ext: unsafe {
-                unsafe extern "system" fn acquire_drm_display_ext(
+            acquire_drm_display: unsafe {
+                unsafe extern "system" fn acquire_drm_display(
                     _: crate::vk::PhysicalDevice,
                     _: i32,
                     _: crate::vk::DisplayKHR,
@@ -31,13 +31,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkAcquireDrmDisplayEXT");
                 if val.is_null() {
-                    acquire_drm_display_ext
+                    acquire_drm_display
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_drm_display_ext: unsafe {
-                unsafe extern "system" fn get_drm_display_ext(
+            get_drm_display: unsafe {
+                unsafe extern "system" fn get_drm_display(
                     _: crate::vk::PhysicalDevice,
                     _: i32,
                     _: u32,
@@ -46,11 +46,7 @@ impl InstanceFn {
                     panic!("unable to load vkGetDrmDisplayEXT")
                 }
                 let val = _f(c"vkGetDrmDisplayEXT");
-                if val.is_null() {
-                    get_drm_display_ext
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_drm_display } else { ::core::mem::transmute(val) }
             },
         }
     }
@@ -78,24 +74,24 @@ impl Instance {
     }
     ///vkAcquireDrmDisplayEXT
     #[inline]
-    pub unsafe fn acquire_drm_display_ext(
+    pub unsafe fn acquire_drm_display(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         drm_fd: i32,
         display: crate::vk::DisplayKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.acquire_drm_display_ext)(physical_device, drm_fd, display).result()
+        (self.fp.acquire_drm_display)(physical_device, drm_fd, display).result()
     }
     ///vkGetDrmDisplayEXT
     #[inline]
-    pub unsafe fn get_drm_display_ext(
+    pub unsafe fn get_drm_display(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         drm_fd: i32,
         connector_id: u32,
         display: &mut crate::vk::DisplayKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.get_drm_display_ext)(physical_device, drm_fd, connector_id, display)
+        (self.fp.get_drm_display)(physical_device, drm_fd, connector_id, display)
             .result()
     }
 }

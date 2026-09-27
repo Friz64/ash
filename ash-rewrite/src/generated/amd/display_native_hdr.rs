@@ -13,7 +13,7 @@ impl crate::vk::ColorSpaceKHR {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_local_dimming_amd: crate::vk::PFN_vkSetLocalDimmingAMD,
+    pub set_local_dimming: crate::vk::PFN_vkSetLocalDimmingAMD,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -27,8 +27,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            set_local_dimming_amd: unsafe {
-                unsafe extern "system" fn set_local_dimming_amd(
+            set_local_dimming: unsafe {
+                unsafe extern "system" fn set_local_dimming(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: crate::vk::Bool32,
@@ -37,7 +37,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkSetLocalDimmingAMD");
                 if val.is_null() {
-                    set_local_dimming_amd
+                    set_local_dimming
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -68,13 +68,13 @@ impl Device {
     }
     ///vkSetLocalDimmingAMD
     #[inline]
-    pub unsafe fn set_local_dimming_amd(
+    pub unsafe fn set_local_dimming(
         &self,
         device: crate::vk::Device,
         swap_chain: crate::vk::SwapchainKHR,
         local_dimming_enable: crate::vk::Bool32,
     ) {
-        (self.fp.set_local_dimming_amd)(device, swap_chain, local_dimming_enable)
+        (self.fp.set_local_dimming)(device, swap_chain, local_dimming_enable)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

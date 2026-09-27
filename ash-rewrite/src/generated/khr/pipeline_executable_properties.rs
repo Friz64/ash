@@ -36,9 +36,9 @@ impl crate::vk::PipelineCreateFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_pipeline_executable_properties_khr: crate::vk::PFN_vkGetPipelineExecutablePropertiesKHR,
-    pub get_pipeline_executable_statistics_khr: crate::vk::PFN_vkGetPipelineExecutableStatisticsKHR,
-    pub get_pipeline_executable_internal_representations_khr: crate::vk::PFN_vkGetPipelineExecutableInternalRepresentationsKHR,
+    pub get_pipeline_executable_properties: crate::vk::PFN_vkGetPipelineExecutablePropertiesKHR,
+    pub get_pipeline_executable_statistics: crate::vk::PFN_vkGetPipelineExecutableStatisticsKHR,
+    pub get_pipeline_executable_internal_representations: crate::vk::PFN_vkGetPipelineExecutableInternalRepresentationsKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -52,8 +52,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_pipeline_executable_properties_khr: unsafe {
-                unsafe extern "system" fn get_pipeline_executable_properties_khr(
+            get_pipeline_executable_properties: unsafe {
+                unsafe extern "system" fn get_pipeline_executable_properties(
                     _: crate::vk::Device,
                     _: *const crate::vk::PipelineInfoKHR<'_>,
                     _: *mut u32,
@@ -63,13 +63,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetPipelineExecutablePropertiesKHR");
                 if val.is_null() {
-                    get_pipeline_executable_properties_khr
+                    get_pipeline_executable_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_pipeline_executable_statistics_khr: unsafe {
-                unsafe extern "system" fn get_pipeline_executable_statistics_khr(
+            get_pipeline_executable_statistics: unsafe {
+                unsafe extern "system" fn get_pipeline_executable_statistics(
                     _: crate::vk::Device,
                     _: *const crate::vk::PipelineExecutableInfoKHR<'_>,
                     _: *mut u32,
@@ -79,13 +79,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetPipelineExecutableStatisticsKHR");
                 if val.is_null() {
-                    get_pipeline_executable_statistics_khr
+                    get_pipeline_executable_statistics
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_pipeline_executable_internal_representations_khr: unsafe {
-                unsafe extern "system" fn get_pipeline_executable_internal_representations_khr(
+            get_pipeline_executable_internal_representations: unsafe {
+                unsafe extern "system" fn get_pipeline_executable_internal_representations(
                     _: crate::vk::Device,
                     _: *const crate::vk::PipelineExecutableInfoKHR<'_>,
                     _: *mut u32,
@@ -97,7 +97,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetPipelineExecutableInternalRepresentationsKHR");
                 if val.is_null() {
-                    get_pipeline_executable_internal_representations_khr
+                    get_pipeline_executable_internal_representations
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -128,14 +128,14 @@ impl Device {
     }
     ///vkGetPipelineExecutablePropertiesKHR
     #[inline]
-    pub unsafe fn get_pipeline_executable_properties_khr(
+    pub unsafe fn get_pipeline_executable_properties(
         &self,
         device: crate::vk::Device,
         pipeline_info: &crate::vk::PipelineInfoKHR<'_>,
     ) -> crate::VkResult<Vec<crate::vk::PipelineExecutablePropertiesKHR<'_>>> {
         crate::read_into_uninitialized_vector(|executable_count, properties| (self
             .fp
-            .get_pipeline_executable_properties_khr)(
+            .get_pipeline_executable_properties)(
             device,
             pipeline_info,
             executable_count,
@@ -144,14 +144,14 @@ impl Device {
     }
     ///vkGetPipelineExecutableStatisticsKHR
     #[inline]
-    pub unsafe fn get_pipeline_executable_statistics_khr(
+    pub unsafe fn get_pipeline_executable_statistics(
         &self,
         device: crate::vk::Device,
         executable_info: &crate::vk::PipelineExecutableInfoKHR<'_>,
     ) -> crate::VkResult<Vec<crate::vk::PipelineExecutableStatisticKHR<'_>>> {
         crate::read_into_uninitialized_vector(|statistic_count, statistics| (self
             .fp
-            .get_pipeline_executable_statistics_khr)(
+            .get_pipeline_executable_statistics)(
             device,
             executable_info,
             statistic_count,
@@ -160,7 +160,7 @@ impl Device {
     }
     ///vkGetPipelineExecutableInternalRepresentationsKHR
     #[inline]
-    pub unsafe fn get_pipeline_executable_internal_representations_khr(
+    pub unsafe fn get_pipeline_executable_internal_representations(
         &self,
         device: crate::vk::Device,
         executable_info: &crate::vk::PipelineExecutableInfoKHR<'_>,
@@ -172,7 +172,7 @@ impl Device {
             internal_representations|
         (self
             .fp
-            .get_pipeline_executable_internal_representations_khr)(
+            .get_pipeline_executable_internal_representations)(
             device,
             executable_info,
             internal_representation_count,

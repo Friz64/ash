@@ -8,7 +8,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_mac_os_surface_mvk: crate::vk::PFN_vkCreateMacOSSurfaceMVK,
+    pub create_mac_os_surface: crate::vk::PFN_vkCreateMacOSSurfaceMVK,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -22,8 +22,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_mac_os_surface_mvk: unsafe {
-                unsafe extern "system" fn create_mac_os_surface_mvk(
+            create_mac_os_surface: unsafe {
+                unsafe extern "system" fn create_mac_os_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::MacOSSurfaceCreateInfoMVK<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -33,7 +33,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateMacOSSurfaceMVK");
                 if val.is_null() {
-                    create_mac_os_surface_mvk
+                    create_mac_os_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,14 +64,14 @@ impl Instance {
     }
     ///vkCreateMacOSSurfaceMVK
     #[inline]
-    pub unsafe fn create_mac_os_surface_mvk(
+    pub unsafe fn create_mac_os_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::MacOSSurfaceCreateInfoMVK<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_mac_os_surface_mvk)(instance, create_info, allocator, surface)
+        (self.fp.create_mac_os_surface)(instance, create_info, allocator, surface)
             .result()
     }
 }

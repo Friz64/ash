@@ -8,7 +8,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub reset_query_pool_ext: crate::vk::PFN_vkResetQueryPoolEXT,
+    pub reset_query_pool: crate::vk::PFN_vkResetQueryPoolEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -22,8 +22,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            reset_query_pool_ext: unsafe {
-                unsafe extern "system" fn reset_query_pool_ext(
+            reset_query_pool: unsafe {
+                unsafe extern "system" fn reset_query_pool(
                     _: crate::vk::Device,
                     _: crate::vk::QueryPool,
                     _: u32,
@@ -33,7 +33,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkResetQueryPoolEXT");
                 if val.is_null() {
-                    reset_query_pool_ext
+                    reset_query_pool
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,14 +64,14 @@ impl Device {
     }
     ///vkResetQueryPool
     #[inline]
-    pub unsafe fn reset_query_pool_ext(
+    pub unsafe fn reset_query_pool(
         &self,
         device: crate::vk::Device,
         query_pool: crate::vk::QueryPool,
         first_query: u32,
         query_count: u32,
     ) {
-        (self.fp.reset_query_pool_ext)(device, query_pool, first_query, query_count)
+        (self.fp.reset_query_pool)(device, query_pool, first_query, query_count)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

@@ -14,8 +14,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_rendering_attachment_locations_khr: crate::vk::PFN_vkCmdSetRenderingAttachmentLocationsKHR,
-    pub cmd_set_rendering_input_attachment_indices_khr: crate::vk::PFN_vkCmdSetRenderingInputAttachmentIndicesKHR,
+    pub cmd_set_rendering_attachment_locations: crate::vk::PFN_vkCmdSetRenderingAttachmentLocationsKHR,
+    pub cmd_set_rendering_input_attachment_indices: crate::vk::PFN_vkCmdSetRenderingInputAttachmentIndicesKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -29,8 +29,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_rendering_attachment_locations_khr: unsafe {
-                unsafe extern "system" fn cmd_set_rendering_attachment_locations_khr(
+            cmd_set_rendering_attachment_locations: unsafe {
+                unsafe extern "system" fn cmd_set_rendering_attachment_locations(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::RenderingAttachmentLocationInfo<'_>,
                 ) {
@@ -38,13 +38,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetRenderingAttachmentLocationsKHR");
                 if val.is_null() {
-                    cmd_set_rendering_attachment_locations_khr
+                    cmd_set_rendering_attachment_locations
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_rendering_input_attachment_indices_khr: unsafe {
-                unsafe extern "system" fn cmd_set_rendering_input_attachment_indices_khr(
+            cmd_set_rendering_input_attachment_indices: unsafe {
+                unsafe extern "system" fn cmd_set_rendering_input_attachment_indices(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::RenderingInputAttachmentIndexInfo<'_>,
                 ) {
@@ -52,7 +52,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetRenderingInputAttachmentIndicesKHR");
                 if val.is_null() {
-                    cmd_set_rendering_input_attachment_indices_khr
+                    cmd_set_rendering_input_attachment_indices
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -83,25 +83,23 @@ impl Device {
     }
     ///vkCmdSetRenderingAttachmentLocations
     #[inline]
-    pub unsafe fn cmd_set_rendering_attachment_locations_khr(
+    pub unsafe fn cmd_set_rendering_attachment_locations(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         location_info: &crate::vk::RenderingAttachmentLocationInfo<'_>,
     ) {
-        (self
-            .fp
-            .cmd_set_rendering_attachment_locations_khr)(command_buffer, location_info)
+        (self.fp.cmd_set_rendering_attachment_locations)(command_buffer, location_info)
     }
     ///vkCmdSetRenderingInputAttachmentIndices
     #[inline]
-    pub unsafe fn cmd_set_rendering_input_attachment_indices_khr(
+    pub unsafe fn cmd_set_rendering_input_attachment_indices(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         input_attachment_index_info: &crate::vk::RenderingInputAttachmentIndexInfo<'_>,
     ) {
         (self
             .fp
-            .cmd_set_rendering_input_attachment_indices_khr)(
+            .cmd_set_rendering_input_attachment_indices)(
             command_buffer,
             input_attachment_index_info,
         )

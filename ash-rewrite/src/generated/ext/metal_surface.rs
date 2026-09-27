@@ -8,7 +8,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_metal_surface_ext: crate::vk::PFN_vkCreateMetalSurfaceEXT,
+    pub create_metal_surface: crate::vk::PFN_vkCreateMetalSurfaceEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -22,8 +22,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_metal_surface_ext: unsafe {
-                unsafe extern "system" fn create_metal_surface_ext(
+            create_metal_surface: unsafe {
+                unsafe extern "system" fn create_metal_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::MetalSurfaceCreateInfoEXT<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -33,7 +33,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateMetalSurfaceEXT");
                 if val.is_null() {
-                    create_metal_surface_ext
+                    create_metal_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,14 +64,14 @@ impl Instance {
     }
     ///vkCreateMetalSurfaceEXT
     #[inline]
-    pub unsafe fn create_metal_surface_ext(
+    pub unsafe fn create_metal_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::MetalSurfaceCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_metal_surface_ext)(instance, create_info, allocator, surface)
+        (self.fp.create_metal_surface)(instance, create_info, allocator, surface)
             .result()
     }
 }

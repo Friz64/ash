@@ -49,7 +49,7 @@ impl crate::vk::ImageAspectFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_image_drm_format_modifier_properties_ext: crate::vk::PFN_vkGetImageDrmFormatModifierPropertiesEXT,
+    pub get_image_drm_format_modifier_properties: crate::vk::PFN_vkGetImageDrmFormatModifierPropertiesEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -63,8 +63,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_image_drm_format_modifier_properties_ext: unsafe {
-                unsafe extern "system" fn get_image_drm_format_modifier_properties_ext(
+            get_image_drm_format_modifier_properties: unsafe {
+                unsafe extern "system" fn get_image_drm_format_modifier_properties(
                     _: crate::vk::Device,
                     _: crate::vk::Image,
                     _: *mut crate::vk::ImageDrmFormatModifierPropertiesEXT<'_>,
@@ -73,7 +73,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetImageDrmFormatModifierPropertiesEXT");
                 if val.is_null() {
-                    get_image_drm_format_modifier_properties_ext
+                    get_image_drm_format_modifier_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -104,13 +104,13 @@ impl Device {
     }
     ///vkGetImageDrmFormatModifierPropertiesEXT
     #[inline]
-    pub unsafe fn get_image_drm_format_modifier_properties_ext(
+    pub unsafe fn get_image_drm_format_modifier_properties(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
         properties: &mut crate::vk::ImageDrmFormatModifierPropertiesEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_image_drm_format_modifier_properties_ext)(device, image, properties)
+        (self.fp.get_image_drm_format_modifier_properties)(device, image, properties)
             .result()
     }
 }

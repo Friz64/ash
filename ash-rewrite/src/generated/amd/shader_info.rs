@@ -10,7 +10,7 @@ impl ShaderInfoTypeAMD {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_shader_info_amd: crate::vk::PFN_vkGetShaderInfoAMD,
+    pub get_shader_info: crate::vk::PFN_vkGetShaderInfoAMD,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -24,8 +24,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_shader_info_amd: unsafe {
-                unsafe extern "system" fn get_shader_info_amd(
+            get_shader_info: unsafe {
+                unsafe extern "system" fn get_shader_info(
                     _: crate::vk::Device,
                     _: crate::vk::Pipeline,
                     _: crate::vk::ShaderStageFlagBits,
@@ -36,11 +36,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetShaderInfoAMD")
                 }
                 let val = _f(c"vkGetShaderInfoAMD");
-                if val.is_null() {
-                    get_shader_info_amd
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_shader_info } else { ::core::mem::transmute(val) }
             },
         }
     }
@@ -68,7 +64,7 @@ impl Device {
     }
     ///vkGetShaderInfoAMD
     #[inline]
-    pub unsafe fn get_shader_info_amd(
+    pub unsafe fn get_shader_info(
         &self,
         device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
@@ -77,7 +73,7 @@ impl Device {
     ) -> crate::VkResult<Vec<core::ffi::c_void>> {
         crate::read_into_uninitialized_vector(|info_size, info| (self
             .fp
-            .get_shader_info_amd)(
+            .get_shader_info)(
             device,
             pipeline,
             shader_stage,

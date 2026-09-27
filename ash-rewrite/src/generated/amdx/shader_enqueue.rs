@@ -47,13 +47,13 @@ impl crate::vk::BufferUsageFlagBits2 {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_execution_graph_pipeline_scratch_size_amdx: crate::vk::PFN_vkGetExecutionGraphPipelineScratchSizeAMDX,
-    pub get_execution_graph_pipeline_node_index_amdx: crate::vk::PFN_vkGetExecutionGraphPipelineNodeIndexAMDX,
-    pub create_execution_graph_pipelines_amdx: crate::vk::PFN_vkCreateExecutionGraphPipelinesAMDX,
-    pub cmd_initialize_graph_scratch_memory_amdx: crate::vk::PFN_vkCmdInitializeGraphScratchMemoryAMDX,
-    pub cmd_dispatch_graph_amdx: crate::vk::PFN_vkCmdDispatchGraphAMDX,
-    pub cmd_dispatch_graph_indirect_amdx: crate::vk::PFN_vkCmdDispatchGraphIndirectAMDX,
-    pub cmd_dispatch_graph_indirect_count_amdx: crate::vk::PFN_vkCmdDispatchGraphIndirectCountAMDX,
+    pub get_execution_graph_pipeline_scratch_size: crate::vk::PFN_vkGetExecutionGraphPipelineScratchSizeAMDX,
+    pub get_execution_graph_pipeline_node_index: crate::vk::PFN_vkGetExecutionGraphPipelineNodeIndexAMDX,
+    pub create_execution_graph_pipelines: crate::vk::PFN_vkCreateExecutionGraphPipelinesAMDX,
+    pub cmd_initialize_graph_scratch_memory: crate::vk::PFN_vkCmdInitializeGraphScratchMemoryAMDX,
+    pub cmd_dispatch_graph: crate::vk::PFN_vkCmdDispatchGraphAMDX,
+    pub cmd_dispatch_graph_indirect: crate::vk::PFN_vkCmdDispatchGraphIndirectAMDX,
+    pub cmd_dispatch_graph_indirect_count: crate::vk::PFN_vkCmdDispatchGraphIndirectCountAMDX,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -67,8 +67,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_execution_graph_pipeline_scratch_size_amdx: unsafe {
-                unsafe extern "system" fn get_execution_graph_pipeline_scratch_size_amdx(
+            get_execution_graph_pipeline_scratch_size: unsafe {
+                unsafe extern "system" fn get_execution_graph_pipeline_scratch_size(
                     _: crate::vk::Device,
                     _: crate::vk::Pipeline,
                     _: *mut crate::vk::ExecutionGraphPipelineScratchSizeAMDX<'_>,
@@ -77,13 +77,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetExecutionGraphPipelineScratchSizeAMDX");
                 if val.is_null() {
-                    get_execution_graph_pipeline_scratch_size_amdx
+                    get_execution_graph_pipeline_scratch_size
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_execution_graph_pipeline_node_index_amdx: unsafe {
-                unsafe extern "system" fn get_execution_graph_pipeline_node_index_amdx(
+            get_execution_graph_pipeline_node_index: unsafe {
+                unsafe extern "system" fn get_execution_graph_pipeline_node_index(
                     _: crate::vk::Device,
                     _: crate::vk::Pipeline,
                     _: *const crate::vk::PipelineShaderStageNodeCreateInfoAMDX<'_>,
@@ -93,13 +93,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetExecutionGraphPipelineNodeIndexAMDX");
                 if val.is_null() {
-                    get_execution_graph_pipeline_node_index_amdx
+                    get_execution_graph_pipeline_node_index
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            create_execution_graph_pipelines_amdx: unsafe {
-                unsafe extern "system" fn create_execution_graph_pipelines_amdx(
+            create_execution_graph_pipelines: unsafe {
+                unsafe extern "system" fn create_execution_graph_pipelines(
                     _: crate::vk::Device,
                     _: crate::vk::PipelineCache,
                     _: u32,
@@ -111,13 +111,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateExecutionGraphPipelinesAMDX");
                 if val.is_null() {
-                    create_execution_graph_pipelines_amdx
+                    create_execution_graph_pipelines
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_initialize_graph_scratch_memory_amdx: unsafe {
-                unsafe extern "system" fn cmd_initialize_graph_scratch_memory_amdx(
+            cmd_initialize_graph_scratch_memory: unsafe {
+                unsafe extern "system" fn cmd_initialize_graph_scratch_memory(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Pipeline,
                     _: crate::vk::DeviceAddress,
@@ -127,13 +127,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdInitializeGraphScratchMemoryAMDX");
                 if val.is_null() {
-                    cmd_initialize_graph_scratch_memory_amdx
+                    cmd_initialize_graph_scratch_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_dispatch_graph_amdx: unsafe {
-                unsafe extern "system" fn cmd_dispatch_graph_amdx(
+            cmd_dispatch_graph: unsafe {
+                unsafe extern "system" fn cmd_dispatch_graph(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DeviceAddress,
                     _: crate::vk::DeviceSize,
@@ -143,13 +143,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDispatchGraphAMDX");
                 if val.is_null() {
-                    cmd_dispatch_graph_amdx
+                    cmd_dispatch_graph
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_dispatch_graph_indirect_amdx: unsafe {
-                unsafe extern "system" fn cmd_dispatch_graph_indirect_amdx(
+            cmd_dispatch_graph_indirect: unsafe {
+                unsafe extern "system" fn cmd_dispatch_graph_indirect(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DeviceAddress,
                     _: crate::vk::DeviceSize,
@@ -159,13 +159,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDispatchGraphIndirectAMDX");
                 if val.is_null() {
-                    cmd_dispatch_graph_indirect_amdx
+                    cmd_dispatch_graph_indirect
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_dispatch_graph_indirect_count_amdx: unsafe {
-                unsafe extern "system" fn cmd_dispatch_graph_indirect_count_amdx(
+            cmd_dispatch_graph_indirect_count: unsafe {
+                unsafe extern "system" fn cmd_dispatch_graph_indirect_count(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DeviceAddress,
                     _: crate::vk::DeviceSize,
@@ -175,7 +175,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDispatchGraphIndirectCountAMDX");
                 if val.is_null() {
-                    cmd_dispatch_graph_indirect_count_amdx
+                    cmd_dispatch_graph_indirect_count
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -206,7 +206,7 @@ impl Device {
     }
     ///vkGetExecutionGraphPipelineScratchSizeAMDX
     #[inline]
-    pub unsafe fn get_execution_graph_pipeline_scratch_size_amdx(
+    pub unsafe fn get_execution_graph_pipeline_scratch_size(
         &self,
         device: crate::vk::Device,
         execution_graph: crate::vk::Pipeline,
@@ -214,7 +214,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_execution_graph_pipeline_scratch_size_amdx)(
+            .get_execution_graph_pipeline_scratch_size)(
                 device,
                 execution_graph,
                 size_info,
@@ -223,7 +223,7 @@ impl Device {
     }
     ///vkGetExecutionGraphPipelineNodeIndexAMDX
     #[inline]
-    pub unsafe fn get_execution_graph_pipeline_node_index_amdx(
+    pub unsafe fn get_execution_graph_pipeline_node_index(
         &self,
         device: crate::vk::Device,
         execution_graph: crate::vk::Pipeline,
@@ -232,7 +232,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_execution_graph_pipeline_node_index_amdx)(
+            .get_execution_graph_pipeline_node_index)(
                 device,
                 execution_graph,
                 node_info,
@@ -242,7 +242,7 @@ impl Device {
     }
     ///vkCreateExecutionGraphPipelinesAMDX
     #[inline]
-    pub unsafe fn create_execution_graph_pipelines_amdx(
+    pub unsafe fn create_execution_graph_pipelines(
         &self,
         device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
@@ -252,7 +252,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_execution_graph_pipelines_amdx)(
+            .create_execution_graph_pipelines)(
                 device,
                 pipeline_cache,
                 create_infos.len() as _,
@@ -264,7 +264,7 @@ impl Device {
     }
     ///vkCmdInitializeGraphScratchMemoryAMDX
     #[inline]
-    pub unsafe fn cmd_initialize_graph_scratch_memory_amdx(
+    pub unsafe fn cmd_initialize_graph_scratch_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         execution_graph: crate::vk::Pipeline,
@@ -273,7 +273,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_initialize_graph_scratch_memory_amdx)(
+            .cmd_initialize_graph_scratch_memory)(
             command_buffer,
             execution_graph,
             scratch,
@@ -282,20 +282,18 @@ impl Device {
     }
     ///vkCmdDispatchGraphAMDX
     #[inline]
-    pub unsafe fn cmd_dispatch_graph_amdx(
+    pub unsafe fn cmd_dispatch_graph(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         scratch: crate::vk::DeviceAddress,
         scratch_size: crate::vk::DeviceSize,
         count_info: &crate::vk::DispatchGraphCountInfoAMDX,
     ) {
-        (self
-            .fp
-            .cmd_dispatch_graph_amdx)(command_buffer, scratch, scratch_size, count_info)
+        (self.fp.cmd_dispatch_graph)(command_buffer, scratch, scratch_size, count_info)
     }
     ///vkCmdDispatchGraphIndirectAMDX
     #[inline]
-    pub unsafe fn cmd_dispatch_graph_indirect_amdx(
+    pub unsafe fn cmd_dispatch_graph_indirect(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         scratch: crate::vk::DeviceAddress,
@@ -304,7 +302,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_dispatch_graph_indirect_amdx)(
+            .cmd_dispatch_graph_indirect)(
             command_buffer,
             scratch,
             scratch_size,
@@ -313,7 +311,7 @@ impl Device {
     }
     ///vkCmdDispatchGraphIndirectCountAMDX
     #[inline]
-    pub unsafe fn cmd_dispatch_graph_indirect_count_amdx(
+    pub unsafe fn cmd_dispatch_graph_indirect_count(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         scratch: crate::vk::DeviceAddress,
@@ -322,7 +320,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_dispatch_graph_indirect_count_amdx)(
+            .cmd_dispatch_graph_indirect_count)(
             command_buffer,
             scratch,
             scratch_size,

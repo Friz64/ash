@@ -8,7 +8,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_stream_descriptor_surface_ggp: crate::vk::PFN_vkCreateStreamDescriptorSurfaceGGP,
+    pub create_stream_descriptor_surface: crate::vk::PFN_vkCreateStreamDescriptorSurfaceGGP,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -22,8 +22,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_stream_descriptor_surface_ggp: unsafe {
-                unsafe extern "system" fn create_stream_descriptor_surface_ggp(
+            create_stream_descriptor_surface: unsafe {
+                unsafe extern "system" fn create_stream_descriptor_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -33,7 +33,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateStreamDescriptorSurfaceGGP");
                 if val.is_null() {
-                    create_stream_descriptor_surface_ggp
+                    create_stream_descriptor_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,7 +64,7 @@ impl Instance {
     }
     ///vkCreateStreamDescriptorSurfaceGGP
     #[inline]
-    pub unsafe fn create_stream_descriptor_surface_ggp(
+    pub unsafe fn create_stream_descriptor_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
@@ -73,12 +73,7 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_stream_descriptor_surface_ggp)(
-                instance,
-                create_info,
-                allocator,
-                surface,
-            )
+            .create_stream_descriptor_surface)(instance, create_info, allocator, surface)
             .result()
     }
 }

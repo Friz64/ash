@@ -64,7 +64,7 @@ impl crate::vk::ExternalMemoryFeatureFlagBits {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_external_buffer_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR,
+    pub get_physical_device_external_buffer_properties: crate::vk::PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -78,8 +78,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_external_buffer_properties_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_external_buffer_properties_khr(
+            get_physical_device_external_buffer_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_external_buffer_properties(
                     _: crate::vk::PhysicalDevice,
                     _: *const crate::vk::PhysicalDeviceExternalBufferInfo<'_>,
                     _: *mut crate::vk::ExternalBufferProperties<'_>,
@@ -90,7 +90,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceExternalBufferPropertiesKHR");
                 if val.is_null() {
-                    get_physical_device_external_buffer_properties_khr
+                    get_physical_device_external_buffer_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -121,7 +121,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceExternalBufferProperties
     #[inline]
-    pub unsafe fn get_physical_device_external_buffer_properties_khr(
+    pub unsafe fn get_physical_device_external_buffer_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         external_buffer_info: &crate::vk::PhysicalDeviceExternalBufferInfo<'_>,
@@ -129,7 +129,7 @@ impl Instance {
     ) {
         (self
             .fp
-            .get_physical_device_external_buffer_properties_khr)(
+            .get_physical_device_external_buffer_properties)(
             physical_device,
             external_buffer_info,
             external_buffer_properties,

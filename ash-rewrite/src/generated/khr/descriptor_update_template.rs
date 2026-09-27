@@ -20,10 +20,10 @@ impl crate::vk::DebugReportObjectTypeEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_descriptor_update_template_khr: crate::vk::PFN_vkCreateDescriptorUpdateTemplateKHR,
-    pub destroy_descriptor_update_template_khr: crate::vk::PFN_vkDestroyDescriptorUpdateTemplateKHR,
-    pub update_descriptor_set_with_template_khr: crate::vk::PFN_vkUpdateDescriptorSetWithTemplateKHR,
-    pub cmd_push_descriptor_set_with_template_khr: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplateKHR,
+    pub create_descriptor_update_template: crate::vk::PFN_vkCreateDescriptorUpdateTemplateKHR,
+    pub destroy_descriptor_update_template: crate::vk::PFN_vkDestroyDescriptorUpdateTemplateKHR,
+    pub update_descriptor_set_with_template: crate::vk::PFN_vkUpdateDescriptorSetWithTemplateKHR,
+    pub cmd_push_descriptor_set_with_template: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplateKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -37,8 +37,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_descriptor_update_template_khr: unsafe {
-                unsafe extern "system" fn create_descriptor_update_template_khr(
+            create_descriptor_update_template: unsafe {
+                unsafe extern "system" fn create_descriptor_update_template(
                     _: crate::vk::Device,
                     _: *const crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -48,13 +48,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateDescriptorUpdateTemplateKHR");
                 if val.is_null() {
-                    create_descriptor_update_template_khr
+                    create_descriptor_update_template
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_descriptor_update_template_khr: unsafe {
-                unsafe extern "system" fn destroy_descriptor_update_template_khr(
+            destroy_descriptor_update_template: unsafe {
+                unsafe extern "system" fn destroy_descriptor_update_template(
                     _: crate::vk::Device,
                     _: crate::vk::DescriptorUpdateTemplate,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -63,13 +63,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyDescriptorUpdateTemplateKHR");
                 if val.is_null() {
-                    destroy_descriptor_update_template_khr
+                    destroy_descriptor_update_template
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            update_descriptor_set_with_template_khr: unsafe {
-                unsafe extern "system" fn update_descriptor_set_with_template_khr(
+            update_descriptor_set_with_template: unsafe {
+                unsafe extern "system" fn update_descriptor_set_with_template(
                     _: crate::vk::Device,
                     _: crate::vk::DescriptorSet,
                     _: crate::vk::DescriptorUpdateTemplate,
@@ -79,13 +79,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkUpdateDescriptorSetWithTemplateKHR");
                 if val.is_null() {
-                    update_descriptor_set_with_template_khr
+                    update_descriptor_set_with_template
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_push_descriptor_set_with_template_khr: unsafe {
-                unsafe extern "system" fn cmd_push_descriptor_set_with_template_khr(
+            cmd_push_descriptor_set_with_template: unsafe {
+                unsafe extern "system" fn cmd_push_descriptor_set_with_template(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DescriptorUpdateTemplate,
                     _: crate::vk::PipelineLayout,
@@ -96,7 +96,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdPushDescriptorSetWithTemplateKHR");
                 if val.is_null() {
-                    cmd_push_descriptor_set_with_template_khr
+                    cmd_push_descriptor_set_with_template
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -127,7 +127,7 @@ impl Device {
     }
     ///vkCreateDescriptorUpdateTemplate
     #[inline]
-    pub unsafe fn create_descriptor_update_template_khr(
+    pub unsafe fn create_descriptor_update_template(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
@@ -136,7 +136,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_descriptor_update_template_khr)(
+            .create_descriptor_update_template)(
                 device,
                 create_info,
                 allocator,
@@ -146,7 +146,7 @@ impl Device {
     }
     ///vkDestroyDescriptorUpdateTemplate
     #[inline]
-    pub unsafe fn destroy_descriptor_update_template_khr(
+    pub unsafe fn destroy_descriptor_update_template(
         &self,
         device: crate::vk::Device,
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
@@ -154,7 +154,7 @@ impl Device {
     ) {
         (self
             .fp
-            .destroy_descriptor_update_template_khr)(
+            .destroy_descriptor_update_template)(
             device,
             descriptor_update_template,
             allocator,
@@ -162,7 +162,7 @@ impl Device {
     }
     ///vkUpdateDescriptorSetWithTemplate
     #[inline]
-    pub unsafe fn update_descriptor_set_with_template_khr(
+    pub unsafe fn update_descriptor_set_with_template(
         &self,
         device: crate::vk::Device,
         descriptor_set: crate::vk::DescriptorSet,
@@ -171,7 +171,7 @@ impl Device {
     ) {
         (self
             .fp
-            .update_descriptor_set_with_template_khr)(
+            .update_descriptor_set_with_template)(
             device,
             descriptor_set,
             descriptor_update_template,
@@ -180,7 +180,7 @@ impl Device {
     }
     ///vkCmdPushDescriptorSetWithTemplate
     #[inline]
-    pub unsafe fn cmd_push_descriptor_set_with_template_khr(
+    pub unsafe fn cmd_push_descriptor_set_with_template(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
@@ -190,7 +190,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_push_descriptor_set_with_template_khr)(
+            .cmd_push_descriptor_set_with_template)(
             command_buffer,
             descriptor_update_template,
             layout,

@@ -26,8 +26,8 @@ impl crate::vk::ExternalMemoryHandleTypeFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_android_hardware_buffer_properties_android: crate::vk::PFN_vkGetAndroidHardwareBufferPropertiesANDROID,
-    pub get_memory_android_hardware_buffer_android: crate::vk::PFN_vkGetMemoryAndroidHardwareBufferANDROID,
+    pub get_android_hardware_buffer_properties: crate::vk::PFN_vkGetAndroidHardwareBufferPropertiesANDROID,
+    pub get_memory_android_hardware_buffer: crate::vk::PFN_vkGetMemoryAndroidHardwareBufferANDROID,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -41,8 +41,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_android_hardware_buffer_properties_android: unsafe {
-                unsafe extern "system" fn get_android_hardware_buffer_properties_android(
+            get_android_hardware_buffer_properties: unsafe {
+                unsafe extern "system" fn get_android_hardware_buffer_properties(
                     _: crate::vk::Device,
                     _: *const crate::platform_types::AHardwareBuffer,
                     _: *mut crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>,
@@ -51,13 +51,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetAndroidHardwareBufferPropertiesANDROID");
                 if val.is_null() {
-                    get_android_hardware_buffer_properties_android
+                    get_android_hardware_buffer_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_memory_android_hardware_buffer_android: unsafe {
-                unsafe extern "system" fn get_memory_android_hardware_buffer_android(
+            get_memory_android_hardware_buffer: unsafe {
+                unsafe extern "system" fn get_memory_android_hardware_buffer(
                     _: crate::vk::Device,
                     _: *const crate::vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
                     _: *mut *mut crate::platform_types::AHardwareBuffer,
@@ -66,7 +66,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMemoryAndroidHardwareBufferANDROID");
                 if val.is_null() {
-                    get_memory_android_hardware_buffer_android
+                    get_memory_android_hardware_buffer
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -97,27 +97,24 @@ impl Device {
     }
     ///vkGetAndroidHardwareBufferPropertiesANDROID
     #[inline]
-    pub unsafe fn get_android_hardware_buffer_properties_android(
+    pub unsafe fn get_android_hardware_buffer_properties(
         &self,
         device: crate::vk::Device,
         buffer: &crate::platform_types::AHardwareBuffer,
         properties: &mut crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>,
     ) -> crate::VkResult<()> {
-        (self
-            .fp
-            .get_android_hardware_buffer_properties_android)(device, buffer, properties)
+        (self.fp.get_android_hardware_buffer_properties)(device, buffer, properties)
             .result()
     }
     ///vkGetMemoryAndroidHardwareBufferANDROID
     #[inline]
-    pub unsafe fn get_memory_android_hardware_buffer_android(
+    pub unsafe fn get_memory_android_hardware_buffer(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
         buffer: &mut *mut crate::platform_types::AHardwareBuffer,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_android_hardware_buffer_android)(device, info, buffer)
-            .result()
+        (self.fp.get_memory_android_hardware_buffer)(device, info, buffer).result()
     }
 }
 pub const SPEC_VERSION: u32 = 5;

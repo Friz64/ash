@@ -8,7 +8,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_image_pipe_surface_fuchsia: crate::vk::PFN_vkCreateImagePipeSurfaceFUCHSIA,
+    pub create_image_pipe_surface: crate::vk::PFN_vkCreateImagePipeSurfaceFUCHSIA,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -22,8 +22,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_image_pipe_surface_fuchsia: unsafe {
-                unsafe extern "system" fn create_image_pipe_surface_fuchsia(
+            create_image_pipe_surface: unsafe {
+                unsafe extern "system" fn create_image_pipe_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -33,7 +33,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateImagePipeSurfaceFUCHSIA");
                 if val.is_null() {
-                    create_image_pipe_surface_fuchsia
+                    create_image_pipe_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,21 +64,14 @@ impl Instance {
     }
     ///vkCreateImagePipeSurfaceFUCHSIA
     #[inline]
-    pub unsafe fn create_image_pipe_surface_fuchsia(
+    pub unsafe fn create_image_pipe_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self
-            .fp
-            .create_image_pipe_surface_fuchsia)(
-                instance,
-                create_info,
-                allocator,
-                surface,
-            )
+        (self.fp.create_image_pipe_surface)(instance, create_info, allocator, surface)
             .result()
     }
 }

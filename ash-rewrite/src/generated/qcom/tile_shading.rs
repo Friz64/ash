@@ -49,9 +49,9 @@ impl TileShadingRenderPassFlagBitsQCOM {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_dispatch_tile_qcom: crate::vk::PFN_vkCmdDispatchTileQCOM,
-    pub cmd_begin_per_tile_execution_qcom: crate::vk::PFN_vkCmdBeginPerTileExecutionQCOM,
-    pub cmd_end_per_tile_execution_qcom: crate::vk::PFN_vkCmdEndPerTileExecutionQCOM,
+    pub cmd_dispatch_tile: crate::vk::PFN_vkCmdDispatchTileQCOM,
+    pub cmd_begin_per_tile_execution: crate::vk::PFN_vkCmdBeginPerTileExecutionQCOM,
+    pub cmd_end_per_tile_execution: crate::vk::PFN_vkCmdEndPerTileExecutionQCOM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -65,8 +65,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_dispatch_tile_qcom: unsafe {
-                unsafe extern "system" fn cmd_dispatch_tile_qcom(
+            cmd_dispatch_tile: unsafe {
+                unsafe extern "system" fn cmd_dispatch_tile(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DispatchTileInfoQCOM<'_>,
                 ) {
@@ -74,13 +74,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDispatchTileQCOM");
                 if val.is_null() {
-                    cmd_dispatch_tile_qcom
+                    cmd_dispatch_tile
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_begin_per_tile_execution_qcom: unsafe {
-                unsafe extern "system" fn cmd_begin_per_tile_execution_qcom(
+            cmd_begin_per_tile_execution: unsafe {
+                unsafe extern "system" fn cmd_begin_per_tile_execution(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::PerTileBeginInfoQCOM<'_>,
                 ) {
@@ -88,13 +88,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginPerTileExecutionQCOM");
                 if val.is_null() {
-                    cmd_begin_per_tile_execution_qcom
+                    cmd_begin_per_tile_execution
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_end_per_tile_execution_qcom: unsafe {
-                unsafe extern "system" fn cmd_end_per_tile_execution_qcom(
+            cmd_end_per_tile_execution: unsafe {
+                unsafe extern "system" fn cmd_end_per_tile_execution(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::PerTileEndInfoQCOM<'_>,
                 ) {
@@ -102,7 +102,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdEndPerTileExecutionQCOM");
                 if val.is_null() {
-                    cmd_end_per_tile_execution_qcom
+                    cmd_end_per_tile_execution
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -133,30 +133,30 @@ impl Device {
     }
     ///vkCmdDispatchTileQCOM
     #[inline]
-    pub unsafe fn cmd_dispatch_tile_qcom(
+    pub unsafe fn cmd_dispatch_tile(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         dispatch_tile_info: &crate::vk::DispatchTileInfoQCOM<'_>,
     ) {
-        (self.fp.cmd_dispatch_tile_qcom)(command_buffer, dispatch_tile_info)
+        (self.fp.cmd_dispatch_tile)(command_buffer, dispatch_tile_info)
     }
     ///vkCmdBeginPerTileExecutionQCOM
     #[inline]
-    pub unsafe fn cmd_begin_per_tile_execution_qcom(
+    pub unsafe fn cmd_begin_per_tile_execution(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         per_tile_begin_info: &crate::vk::PerTileBeginInfoQCOM<'_>,
     ) {
-        (self.fp.cmd_begin_per_tile_execution_qcom)(command_buffer, per_tile_begin_info)
+        (self.fp.cmd_begin_per_tile_execution)(command_buffer, per_tile_begin_info)
     }
     ///vkCmdEndPerTileExecutionQCOM
     #[inline]
-    pub unsafe fn cmd_end_per_tile_execution_qcom(
+    pub unsafe fn cmd_end_per_tile_execution(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         per_tile_end_info: &crate::vk::PerTileEndInfoQCOM<'_>,
     ) {
-        (self.fp.cmd_end_per_tile_execution_qcom)(command_buffer, per_tile_end_info)
+        (self.fp.cmd_end_per_tile_execution)(command_buffer, per_tile_end_info)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

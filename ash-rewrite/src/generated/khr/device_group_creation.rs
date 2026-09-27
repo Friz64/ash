@@ -19,7 +19,7 @@ impl crate::vk::MemoryHeapFlagBits {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub enumerate_physical_device_groups_khr: crate::vk::PFN_vkEnumeratePhysicalDeviceGroupsKHR,
+    pub enumerate_physical_device_groups: crate::vk::PFN_vkEnumeratePhysicalDeviceGroupsKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -33,8 +33,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            enumerate_physical_device_groups_khr: unsafe {
-                unsafe extern "system" fn enumerate_physical_device_groups_khr(
+            enumerate_physical_device_groups: unsafe {
+                unsafe extern "system" fn enumerate_physical_device_groups(
                     _: crate::vk::Instance,
                     _: *mut u32,
                     _: *mut crate::vk::PhysicalDeviceGroupProperties<'_>,
@@ -43,7 +43,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkEnumeratePhysicalDeviceGroupsKHR");
                 if val.is_null() {
-                    enumerate_physical_device_groups_khr
+                    enumerate_physical_device_groups
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -74,7 +74,7 @@ impl Instance {
     }
     ///vkEnumeratePhysicalDeviceGroups
     #[inline]
-    pub unsafe fn enumerate_physical_device_groups_khr(
+    pub unsafe fn enumerate_physical_device_groups(
         &self,
         instance: crate::vk::Instance,
     ) -> crate::VkResult<Vec<crate::vk::PhysicalDeviceGroupProperties<'_>>> {
@@ -83,7 +83,7 @@ impl Instance {
             physical_device_group_properties|
         (self
             .fp
-            .enumerate_physical_device_groups_khr)(
+            .enumerate_physical_device_groups)(
             instance,
             physical_device_group_count,
             physical_device_group_properties,

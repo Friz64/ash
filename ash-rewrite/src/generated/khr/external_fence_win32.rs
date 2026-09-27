@@ -10,8 +10,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_fence_win32_handle_khr: crate::vk::PFN_vkGetFenceWin32HandleKHR,
-    pub import_fence_win32_handle_khr: crate::vk::PFN_vkImportFenceWin32HandleKHR,
+    pub get_fence_win32_handle: crate::vk::PFN_vkGetFenceWin32HandleKHR,
+    pub import_fence_win32_handle: crate::vk::PFN_vkImportFenceWin32HandleKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -25,8 +25,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_fence_win32_handle_khr: unsafe {
-                unsafe extern "system" fn get_fence_win32_handle_khr(
+            get_fence_win32_handle: unsafe {
+                unsafe extern "system" fn get_fence_win32_handle(
                     _: crate::vk::Device,
                     _: *const crate::vk::FenceGetWin32HandleInfoKHR<'_>,
                     _: *mut crate::platform_types::HANDLE,
@@ -35,13 +35,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetFenceWin32HandleKHR");
                 if val.is_null() {
-                    get_fence_win32_handle_khr
+                    get_fence_win32_handle
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            import_fence_win32_handle_khr: unsafe {
-                unsafe extern "system" fn import_fence_win32_handle_khr(
+            import_fence_win32_handle: unsafe {
+                unsafe extern "system" fn import_fence_win32_handle(
                     _: crate::vk::Device,
                     _: *const crate::vk::ImportFenceWin32HandleInfoKHR<'_>,
                 ) -> crate::vk::Result {
@@ -49,7 +49,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkImportFenceWin32HandleKHR");
                 if val.is_null() {
-                    import_fence_win32_handle_khr
+                    import_fence_win32_handle
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -80,23 +80,22 @@ impl Device {
     }
     ///vkGetFenceWin32HandleKHR
     #[inline]
-    pub unsafe fn get_fence_win32_handle_khr(
+    pub unsafe fn get_fence_win32_handle(
         &self,
         device: crate::vk::Device,
         get_win32_handle_info: &crate::vk::FenceGetWin32HandleInfoKHR<'_>,
         handle: &mut crate::platform_types::HANDLE,
     ) -> crate::VkResult<()> {
-        (self.fp.get_fence_win32_handle_khr)(device, get_win32_handle_info, handle)
-            .result()
+        (self.fp.get_fence_win32_handle)(device, get_win32_handle_info, handle).result()
     }
     ///vkImportFenceWin32HandleKHR
     #[inline]
-    pub unsafe fn import_fence_win32_handle_khr(
+    pub unsafe fn import_fence_win32_handle(
         &self,
         device: crate::vk::Device,
         import_fence_win32_handle_info: &crate::vk::ImportFenceWin32HandleInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.import_fence_win32_handle_khr)(device, import_fence_win32_handle_info)
+        (self.fp.import_fence_win32_handle)(device, import_fence_win32_handle_info)
             .result()
     }
 }

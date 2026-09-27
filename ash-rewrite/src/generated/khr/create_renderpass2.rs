@@ -14,10 +14,10 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_render_pass2_khr: crate::vk::PFN_vkCreateRenderPass2KHR,
-    pub cmd_begin_render_pass2_khr: crate::vk::PFN_vkCmdBeginRenderPass2KHR,
-    pub cmd_next_subpass2_khr: crate::vk::PFN_vkCmdNextSubpass2KHR,
-    pub cmd_end_render_pass2_khr: crate::vk::PFN_vkCmdEndRenderPass2KHR,
+    pub create_render_pass2: crate::vk::PFN_vkCreateRenderPass2KHR,
+    pub cmd_begin_render_pass2: crate::vk::PFN_vkCmdBeginRenderPass2KHR,
+    pub cmd_next_subpass2: crate::vk::PFN_vkCmdNextSubpass2KHR,
+    pub cmd_end_render_pass2: crate::vk::PFN_vkCmdEndRenderPass2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -31,8 +31,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_render_pass2_khr: unsafe {
-                unsafe extern "system" fn create_render_pass2_khr(
+            create_render_pass2: unsafe {
+                unsafe extern "system" fn create_render_pass2(
                     _: crate::vk::Device,
                     _: *const crate::vk::RenderPassCreateInfo2<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -42,13 +42,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateRenderPass2KHR");
                 if val.is_null() {
-                    create_render_pass2_khr
+                    create_render_pass2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_begin_render_pass2_khr: unsafe {
-                unsafe extern "system" fn cmd_begin_render_pass2_khr(
+            cmd_begin_render_pass2: unsafe {
+                unsafe extern "system" fn cmd_begin_render_pass2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::RenderPassBeginInfo<'_>,
                     _: *const crate::vk::SubpassBeginInfo<'_>,
@@ -57,13 +57,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginRenderPass2KHR");
                 if val.is_null() {
-                    cmd_begin_render_pass2_khr
+                    cmd_begin_render_pass2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_next_subpass2_khr: unsafe {
-                unsafe extern "system" fn cmd_next_subpass2_khr(
+            cmd_next_subpass2: unsafe {
+                unsafe extern "system" fn cmd_next_subpass2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::SubpassBeginInfo<'_>,
                     _: *const crate::vk::SubpassEndInfo<'_>,
@@ -72,13 +72,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdNextSubpass2KHR");
                 if val.is_null() {
-                    cmd_next_subpass2_khr
+                    cmd_next_subpass2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_end_render_pass2_khr: unsafe {
-                unsafe extern "system" fn cmd_end_render_pass2_khr(
+            cmd_end_render_pass2: unsafe {
+                unsafe extern "system" fn cmd_end_render_pass2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::SubpassEndInfo<'_>,
                 ) {
@@ -86,7 +86,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdEndRenderPass2KHR");
                 if val.is_null() {
-                    cmd_end_render_pass2_khr
+                    cmd_end_render_pass2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -117,19 +117,19 @@ impl Device {
     }
     ///vkCreateRenderPass2
     #[inline]
-    pub unsafe fn create_render_pass2_khr(
+    pub unsafe fn create_render_pass2(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::RenderPassCreateInfo2<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         render_pass: &mut crate::vk::RenderPass,
     ) -> crate::VkResult<()> {
-        (self.fp.create_render_pass2_khr)(device, create_info, allocator, render_pass)
+        (self.fp.create_render_pass2)(device, create_info, allocator, render_pass)
             .result()
     }
     ///vkCmdBeginRenderPass2
     #[inline]
-    pub unsafe fn cmd_begin_render_pass2_khr(
+    pub unsafe fn cmd_begin_render_pass2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         render_pass_begin: &crate::vk::RenderPassBeginInfo<'_>,
@@ -137,7 +137,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_begin_render_pass2_khr)(
+            .cmd_begin_render_pass2)(
             command_buffer,
             render_pass_begin,
             subpass_begin_info,
@@ -145,24 +145,22 @@ impl Device {
     }
     ///vkCmdNextSubpass2
     #[inline]
-    pub unsafe fn cmd_next_subpass2_khr(
+    pub unsafe fn cmd_next_subpass2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         subpass_begin_info: &crate::vk::SubpassBeginInfo<'_>,
         subpass_end_info: &crate::vk::SubpassEndInfo<'_>,
     ) {
-        (self
-            .fp
-            .cmd_next_subpass2_khr)(command_buffer, subpass_begin_info, subpass_end_info)
+        (self.fp.cmd_next_subpass2)(command_buffer, subpass_begin_info, subpass_end_info)
     }
     ///vkCmdEndRenderPass2
     #[inline]
-    pub unsafe fn cmd_end_render_pass2_khr(
+    pub unsafe fn cmd_end_render_pass2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         subpass_end_info: &crate::vk::SubpassEndInfo<'_>,
     ) {
-        (self.fp.cmd_end_render_pass2_khr)(command_buffer, subpass_end_info)
+        (self.fp.cmd_end_render_pass2)(command_buffer, subpass_end_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

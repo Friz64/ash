@@ -6,8 +6,8 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_acquire_winrt_display";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub acquire_winrt_display_nv: crate::vk::PFN_vkAcquireWinrtDisplayNV,
-    pub get_winrt_display_nv: crate::vk::PFN_vkGetWinrtDisplayNV,
+    pub acquire_winrt_display: crate::vk::PFN_vkAcquireWinrtDisplayNV,
+    pub get_winrt_display: crate::vk::PFN_vkGetWinrtDisplayNV,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -21,8 +21,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            acquire_winrt_display_nv: unsafe {
-                unsafe extern "system" fn acquire_winrt_display_nv(
+            acquire_winrt_display: unsafe {
+                unsafe extern "system" fn acquire_winrt_display(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::DisplayKHR,
                 ) -> crate::vk::Result {
@@ -30,13 +30,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkAcquireWinrtDisplayNV");
                 if val.is_null() {
-                    acquire_winrt_display_nv
+                    acquire_winrt_display
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_winrt_display_nv: unsafe {
-                unsafe extern "system" fn get_winrt_display_nv(
+            get_winrt_display: unsafe {
+                unsafe extern "system" fn get_winrt_display(
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: *mut crate::vk::DisplayKHR,
@@ -45,7 +45,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetWinrtDisplayNV");
                 if val.is_null() {
-                    get_winrt_display_nv
+                    get_winrt_display
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -76,22 +76,22 @@ impl Instance {
     }
     ///vkAcquireWinrtDisplayNV
     #[inline]
-    pub unsafe fn acquire_winrt_display_nv(
+    pub unsafe fn acquire_winrt_display(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.acquire_winrt_display_nv)(physical_device, display).result()
+        (self.fp.acquire_winrt_display)(physical_device, display).result()
     }
     ///vkGetWinrtDisplayNV
     #[inline]
-    pub unsafe fn get_winrt_display_nv(
+    pub unsafe fn get_winrt_display(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         device_relative_id: u32,
         display: &mut crate::vk::DisplayKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.get_winrt_display_nv)(physical_device, device_relative_id, display)
+        (self.fp.get_winrt_display)(physical_device, device_relative_id, display)
             .result()
     }
 }

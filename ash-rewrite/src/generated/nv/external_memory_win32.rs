@@ -9,7 +9,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_memory_win32_handle_nv: crate::vk::PFN_vkGetMemoryWin32HandleNV,
+    pub get_memory_win32_handle: crate::vk::PFN_vkGetMemoryWin32HandleNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -23,8 +23,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_memory_win32_handle_nv: unsafe {
-                unsafe extern "system" fn get_memory_win32_handle_nv(
+            get_memory_win32_handle: unsafe {
+                unsafe extern "system" fn get_memory_win32_handle(
                     _: crate::vk::Device,
                     _: crate::vk::DeviceMemory,
                     _: crate::vk::ExternalMemoryHandleTypeFlagsNV,
@@ -34,7 +34,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMemoryWin32HandleNV");
                 if val.is_null() {
-                    get_memory_win32_handle_nv
+                    get_memory_win32_handle
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -65,15 +65,14 @@ impl Device {
     }
     ///vkGetMemoryWin32HandleNV
     #[inline]
-    pub unsafe fn get_memory_win32_handle_nv(
+    pub unsafe fn get_memory_win32_handle(
         &self,
         device: crate::vk::Device,
         memory: crate::vk::DeviceMemory,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
         handle: &mut crate::platform_types::HANDLE,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_win32_handle_nv)(device, memory, handle_type, handle)
-            .result()
+        (self.fp.get_memory_win32_handle)(device, memory, handle_type, handle).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

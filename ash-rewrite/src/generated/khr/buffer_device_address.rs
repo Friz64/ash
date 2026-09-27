@@ -50,9 +50,9 @@ impl crate::vk::MemoryAllocateFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_buffer_opaque_capture_address_khr: crate::vk::PFN_vkGetBufferOpaqueCaptureAddressKHR,
-    pub get_buffer_device_address_khr: crate::vk::PFN_vkGetBufferDeviceAddressKHR,
-    pub get_device_memory_opaque_capture_address_khr: crate::vk::PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR,
+    pub get_buffer_opaque_capture_address: crate::vk::PFN_vkGetBufferOpaqueCaptureAddressKHR,
+    pub get_buffer_device_address: crate::vk::PFN_vkGetBufferDeviceAddressKHR,
+    pub get_device_memory_opaque_capture_address: crate::vk::PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -66,8 +66,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_buffer_opaque_capture_address_khr: unsafe {
-                unsafe extern "system" fn get_buffer_opaque_capture_address_khr(
+            get_buffer_opaque_capture_address: unsafe {
+                unsafe extern "system" fn get_buffer_opaque_capture_address(
                     _: crate::vk::Device,
                     _: *const crate::vk::BufferDeviceAddressInfo<'_>,
                 ) -> u64 {
@@ -75,13 +75,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetBufferOpaqueCaptureAddressKHR");
                 if val.is_null() {
-                    get_buffer_opaque_capture_address_khr
+                    get_buffer_opaque_capture_address
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_buffer_device_address_khr: unsafe {
-                unsafe extern "system" fn get_buffer_device_address_khr(
+            get_buffer_device_address: unsafe {
+                unsafe extern "system" fn get_buffer_device_address(
                     _: crate::vk::Device,
                     _: *const crate::vk::BufferDeviceAddressInfo<'_>,
                 ) -> crate::vk::DeviceAddress {
@@ -89,13 +89,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetBufferDeviceAddressKHR");
                 if val.is_null() {
-                    get_buffer_device_address_khr
+                    get_buffer_device_address
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_device_memory_opaque_capture_address_khr: unsafe {
-                unsafe extern "system" fn get_device_memory_opaque_capture_address_khr(
+            get_device_memory_opaque_capture_address: unsafe {
+                unsafe extern "system" fn get_device_memory_opaque_capture_address(
                     _: crate::vk::Device,
                     _: *const crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
                 ) -> u64 {
@@ -103,7 +103,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceMemoryOpaqueCaptureAddressKHR");
                 if val.is_null() {
-                    get_device_memory_opaque_capture_address_khr
+                    get_device_memory_opaque_capture_address
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -134,30 +134,30 @@ impl Device {
     }
     ///vkGetBufferOpaqueCaptureAddress
     #[inline]
-    pub unsafe fn get_buffer_opaque_capture_address_khr(
+    pub unsafe fn get_buffer_opaque_capture_address(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> u64 {
-        (self.fp.get_buffer_opaque_capture_address_khr)(device, info)
+        (self.fp.get_buffer_opaque_capture_address)(device, info)
     }
     ///vkGetBufferDeviceAddress
     #[inline]
-    pub unsafe fn get_buffer_device_address_khr(
+    pub unsafe fn get_buffer_device_address(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> crate::vk::DeviceAddress {
-        (self.fp.get_buffer_device_address_khr)(device, info)
+        (self.fp.get_buffer_device_address)(device, info)
     }
     ///vkGetDeviceMemoryOpaqueCaptureAddress
     #[inline]
-    pub unsafe fn get_device_memory_opaque_capture_address_khr(
+    pub unsafe fn get_device_memory_opaque_capture_address(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
     ) -> u64 {
-        (self.fp.get_device_memory_opaque_capture_address_khr)(device, info)
+        (self.fp.get_device_memory_opaque_capture_address)(device, info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

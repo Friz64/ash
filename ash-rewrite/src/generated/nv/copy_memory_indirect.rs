@@ -9,8 +9,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_copy_memory_indirect_nv: crate::vk::PFN_vkCmdCopyMemoryIndirectNV,
-    pub cmd_copy_memory_to_image_indirect_nv: crate::vk::PFN_vkCmdCopyMemoryToImageIndirectNV,
+    pub cmd_copy_memory_indirect: crate::vk::PFN_vkCmdCopyMemoryIndirectNV,
+    pub cmd_copy_memory_to_image_indirect: crate::vk::PFN_vkCmdCopyMemoryToImageIndirectNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -24,8 +24,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_copy_memory_indirect_nv: unsafe {
-                unsafe extern "system" fn cmd_copy_memory_indirect_nv(
+            cmd_copy_memory_indirect: unsafe {
+                unsafe extern "system" fn cmd_copy_memory_indirect(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DeviceAddress,
                     _: u32,
@@ -35,13 +35,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyMemoryIndirectNV");
                 if val.is_null() {
-                    cmd_copy_memory_indirect_nv
+                    cmd_copy_memory_indirect
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_copy_memory_to_image_indirect_nv: unsafe {
-                unsafe extern "system" fn cmd_copy_memory_to_image_indirect_nv(
+            cmd_copy_memory_to_image_indirect: unsafe {
+                unsafe extern "system" fn cmd_copy_memory_to_image_indirect(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DeviceAddress,
                     _: u32,
@@ -54,7 +54,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyMemoryToImageIndirectNV");
                 if val.is_null() {
-                    cmd_copy_memory_to_image_indirect_nv
+                    cmd_copy_memory_to_image_indirect
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -85,7 +85,7 @@ impl Device {
     }
     ///vkCmdCopyMemoryIndirectNV
     #[inline]
-    pub unsafe fn cmd_copy_memory_indirect_nv(
+    pub unsafe fn cmd_copy_memory_indirect(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         copy_buffer_address: crate::vk::DeviceAddress,
@@ -94,7 +94,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_copy_memory_indirect_nv)(
+            .cmd_copy_memory_indirect)(
             command_buffer,
             copy_buffer_address,
             copy_count,
@@ -103,7 +103,7 @@ impl Device {
     }
     ///vkCmdCopyMemoryToImageIndirectNV
     #[inline]
-    pub unsafe fn cmd_copy_memory_to_image_indirect_nv(
+    pub unsafe fn cmd_copy_memory_to_image_indirect(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         copy_buffer_address: crate::vk::DeviceAddress,
@@ -114,7 +114,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_copy_memory_to_image_indirect_nv)(
+            .cmd_copy_memory_to_image_indirect)(
             command_buffer,
             copy_buffer_address,
             image_subresources.len() as _,

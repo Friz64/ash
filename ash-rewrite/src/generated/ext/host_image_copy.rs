@@ -45,11 +45,11 @@ impl crate::vk::HostImageCopyFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub copy_memory_to_image_ext: crate::vk::PFN_vkCopyMemoryToImageEXT,
-    pub copy_image_to_memory_ext: crate::vk::PFN_vkCopyImageToMemoryEXT,
-    pub copy_image_to_image_ext: crate::vk::PFN_vkCopyImageToImageEXT,
-    pub transition_image_layout_ext: crate::vk::PFN_vkTransitionImageLayoutEXT,
-    pub get_image_subresource_layout2_ext: crate::vk::PFN_vkGetImageSubresourceLayout2EXT,
+    pub copy_memory_to_image: crate::vk::PFN_vkCopyMemoryToImageEXT,
+    pub copy_image_to_memory: crate::vk::PFN_vkCopyImageToMemoryEXT,
+    pub copy_image_to_image: crate::vk::PFN_vkCopyImageToImageEXT,
+    pub transition_image_layout: crate::vk::PFN_vkTransitionImageLayoutEXT,
+    pub get_image_subresource_layout2: crate::vk::PFN_vkGetImageSubresourceLayout2EXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -63,8 +63,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            copy_memory_to_image_ext: unsafe {
-                unsafe extern "system" fn copy_memory_to_image_ext(
+            copy_memory_to_image: unsafe {
+                unsafe extern "system" fn copy_memory_to_image(
                     _: crate::vk::Device,
                     _: *const crate::vk::CopyMemoryToImageInfo<'_>,
                 ) -> crate::vk::Result {
@@ -72,13 +72,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCopyMemoryToImageEXT");
                 if val.is_null() {
-                    copy_memory_to_image_ext
+                    copy_memory_to_image
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            copy_image_to_memory_ext: unsafe {
-                unsafe extern "system" fn copy_image_to_memory_ext(
+            copy_image_to_memory: unsafe {
+                unsafe extern "system" fn copy_image_to_memory(
                     _: crate::vk::Device,
                     _: *const crate::vk::CopyImageToMemoryInfo<'_>,
                 ) -> crate::vk::Result {
@@ -86,13 +86,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCopyImageToMemoryEXT");
                 if val.is_null() {
-                    copy_image_to_memory_ext
+                    copy_image_to_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            copy_image_to_image_ext: unsafe {
-                unsafe extern "system" fn copy_image_to_image_ext(
+            copy_image_to_image: unsafe {
+                unsafe extern "system" fn copy_image_to_image(
                     _: crate::vk::Device,
                     _: *const crate::vk::CopyImageToImageInfo<'_>,
                 ) -> crate::vk::Result {
@@ -100,13 +100,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCopyImageToImageEXT");
                 if val.is_null() {
-                    copy_image_to_image_ext
+                    copy_image_to_image
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            transition_image_layout_ext: unsafe {
-                unsafe extern "system" fn transition_image_layout_ext(
+            transition_image_layout: unsafe {
+                unsafe extern "system" fn transition_image_layout(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::HostImageLayoutTransitionInfo<'_>,
@@ -115,13 +115,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkTransitionImageLayoutEXT");
                 if val.is_null() {
-                    transition_image_layout_ext
+                    transition_image_layout
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_image_subresource_layout2_ext: unsafe {
-                unsafe extern "system" fn get_image_subresource_layout2_ext(
+            get_image_subresource_layout2: unsafe {
+                unsafe extern "system" fn get_image_subresource_layout2(
                     _: crate::vk::Device,
                     _: crate::vk::Image,
                     _: *const crate::vk::ImageSubresource2<'_>,
@@ -131,7 +131,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetImageSubresourceLayout2EXT");
                 if val.is_null() {
-                    get_image_subresource_layout2_ext
+                    get_image_subresource_layout2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -162,41 +162,41 @@ impl Device {
     }
     ///vkCopyMemoryToImage
     #[inline]
-    pub unsafe fn copy_memory_to_image_ext(
+    pub unsafe fn copy_memory_to_image(
         &self,
         device: crate::vk::Device,
         copy_memory_to_image_info: &crate::vk::CopyMemoryToImageInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_memory_to_image_ext)(device, copy_memory_to_image_info).result()
+        (self.fp.copy_memory_to_image)(device, copy_memory_to_image_info).result()
     }
     ///vkCopyImageToMemory
     #[inline]
-    pub unsafe fn copy_image_to_memory_ext(
+    pub unsafe fn copy_image_to_memory(
         &self,
         device: crate::vk::Device,
         copy_image_to_memory_info: &crate::vk::CopyImageToMemoryInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_image_to_memory_ext)(device, copy_image_to_memory_info).result()
+        (self.fp.copy_image_to_memory)(device, copy_image_to_memory_info).result()
     }
     ///vkCopyImageToImage
     #[inline]
-    pub unsafe fn copy_image_to_image_ext(
+    pub unsafe fn copy_image_to_image(
         &self,
         device: crate::vk::Device,
         copy_image_to_image_info: &crate::vk::CopyImageToImageInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.copy_image_to_image_ext)(device, copy_image_to_image_info).result()
+        (self.fp.copy_image_to_image)(device, copy_image_to_image_info).result()
     }
     ///vkTransitionImageLayout
     #[inline]
-    pub unsafe fn transition_image_layout_ext(
+    pub unsafe fn transition_image_layout(
         &self,
         device: crate::vk::Device,
         transitions: &[crate::vk::HostImageLayoutTransitionInfo<'_>],
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .transition_image_layout_ext)(
+            .transition_image_layout)(
                 device,
                 transitions.len() as _,
                 transitions.as_ptr(),
@@ -205,14 +205,14 @@ impl Device {
     }
     ///vkGetImageSubresourceLayout2
     #[inline]
-    pub unsafe fn get_image_subresource_layout2_ext(
+    pub unsafe fn get_image_subresource_layout2(
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
         subresource: &crate::vk::ImageSubresource2<'_>,
         layout: &mut crate::vk::SubresourceLayout2<'_>,
     ) {
-        (self.fp.get_image_subresource_layout2_ext)(device, image, subresource, layout)
+        (self.fp.get_image_subresource_layout2)(device, image, subresource, layout)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

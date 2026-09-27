@@ -13,7 +13,7 @@ impl crate::vk::DynamicState {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_color_write_enable_ext: crate::vk::PFN_vkCmdSetColorWriteEnableEXT,
+    pub cmd_set_color_write_enable: crate::vk::PFN_vkCmdSetColorWriteEnableEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -27,8 +27,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_color_write_enable_ext: unsafe {
-                unsafe extern "system" fn cmd_set_color_write_enable_ext(
+            cmd_set_color_write_enable: unsafe {
+                unsafe extern "system" fn cmd_set_color_write_enable(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::Bool32,
@@ -37,7 +37,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetColorWriteEnableEXT");
                 if val.is_null() {
-                    cmd_set_color_write_enable_ext
+                    cmd_set_color_write_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -68,14 +68,14 @@ impl Device {
     }
     ///vkCmdSetColorWriteEnableEXT
     #[inline]
-    pub unsafe fn cmd_set_color_write_enable_ext(
+    pub unsafe fn cmd_set_color_write_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         color_write_enables: &[crate::vk::Bool32],
     ) {
         (self
             .fp
-            .cmd_set_color_write_enable_ext)(
+            .cmd_set_color_write_enable)(
             command_buffer,
             color_write_enables.len() as _,
             color_write_enables.as_ptr(),

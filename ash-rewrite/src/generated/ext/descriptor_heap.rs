@@ -169,15 +169,15 @@ impl crate::vk::ShaderCreateFlagBitsEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub write_sampler_descriptors_ext: crate::vk::PFN_vkWriteSamplerDescriptorsEXT,
-    pub write_resource_descriptors_ext: crate::vk::PFN_vkWriteResourceDescriptorsEXT,
-    pub cmd_bind_sampler_heap_ext: crate::vk::PFN_vkCmdBindSamplerHeapEXT,
-    pub cmd_bind_resource_heap_ext: crate::vk::PFN_vkCmdBindResourceHeapEXT,
-    pub cmd_push_data_ext: crate::vk::PFN_vkCmdPushDataEXT,
-    pub register_custom_border_color_ext: crate::vk::PFN_vkRegisterCustomBorderColorEXT,
-    pub unregister_custom_border_color_ext: crate::vk::PFN_vkUnregisterCustomBorderColorEXT,
-    pub get_image_opaque_capture_data_ext: crate::vk::PFN_vkGetImageOpaqueCaptureDataEXT,
-    pub get_tensor_opaque_capture_data_arm: crate::vk::PFN_vkGetTensorOpaqueCaptureDataARM,
+    pub write_sampler_descriptors: crate::vk::PFN_vkWriteSamplerDescriptorsEXT,
+    pub write_resource_descriptors: crate::vk::PFN_vkWriteResourceDescriptorsEXT,
+    pub cmd_bind_sampler_heap: crate::vk::PFN_vkCmdBindSamplerHeapEXT,
+    pub cmd_bind_resource_heap: crate::vk::PFN_vkCmdBindResourceHeapEXT,
+    pub cmd_push_data: crate::vk::PFN_vkCmdPushDataEXT,
+    pub register_custom_border_color: crate::vk::PFN_vkRegisterCustomBorderColorEXT,
+    pub unregister_custom_border_color: crate::vk::PFN_vkUnregisterCustomBorderColorEXT,
+    pub get_image_opaque_capture_data: crate::vk::PFN_vkGetImageOpaqueCaptureDataEXT,
+    pub get_tensor_opaque_capture_data: crate::vk::PFN_vkGetTensorOpaqueCaptureDataARM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -191,8 +191,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            write_sampler_descriptors_ext: unsafe {
-                unsafe extern "system" fn write_sampler_descriptors_ext(
+            write_sampler_descriptors: unsafe {
+                unsafe extern "system" fn write_sampler_descriptors(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::SamplerCreateInfo<'_>,
@@ -202,13 +202,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkWriteSamplerDescriptorsEXT");
                 if val.is_null() {
-                    write_sampler_descriptors_ext
+                    write_sampler_descriptors
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            write_resource_descriptors_ext: unsafe {
-                unsafe extern "system" fn write_resource_descriptors_ext(
+            write_resource_descriptors: unsafe {
+                unsafe extern "system" fn write_resource_descriptors(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::ResourceDescriptorInfoEXT<'_>,
@@ -218,13 +218,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkWriteResourceDescriptorsEXT");
                 if val.is_null() {
-                    write_resource_descriptors_ext
+                    write_resource_descriptors
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_bind_sampler_heap_ext: unsafe {
-                unsafe extern "system" fn cmd_bind_sampler_heap_ext(
+            cmd_bind_sampler_heap: unsafe {
+                unsafe extern "system" fn cmd_bind_sampler_heap(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::BindHeapInfoEXT<'_>,
                 ) {
@@ -232,13 +232,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindSamplerHeapEXT");
                 if val.is_null() {
-                    cmd_bind_sampler_heap_ext
+                    cmd_bind_sampler_heap
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_bind_resource_heap_ext: unsafe {
-                unsafe extern "system" fn cmd_bind_resource_heap_ext(
+            cmd_bind_resource_heap: unsafe {
+                unsafe extern "system" fn cmd_bind_resource_heap(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::BindHeapInfoEXT<'_>,
                 ) {
@@ -246,27 +246,23 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindResourceHeapEXT");
                 if val.is_null() {
-                    cmd_bind_resource_heap_ext
+                    cmd_bind_resource_heap
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_push_data_ext: unsafe {
-                unsafe extern "system" fn cmd_push_data_ext(
+            cmd_push_data: unsafe {
+                unsafe extern "system" fn cmd_push_data(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::PushDataInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdPushDataEXT")
                 }
                 let val = _f(c"vkCmdPushDataEXT");
-                if val.is_null() {
-                    cmd_push_data_ext
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_push_data } else { ::core::mem::transmute(val) }
             },
-            register_custom_border_color_ext: unsafe {
-                unsafe extern "system" fn register_custom_border_color_ext(
+            register_custom_border_color: unsafe {
+                unsafe extern "system" fn register_custom_border_color(
                     _: crate::vk::Device,
                     _: *const crate::vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
                     _: crate::vk::Bool32,
@@ -276,13 +272,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkRegisterCustomBorderColorEXT");
                 if val.is_null() {
-                    register_custom_border_color_ext
+                    register_custom_border_color
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            unregister_custom_border_color_ext: unsafe {
-                unsafe extern "system" fn unregister_custom_border_color_ext(
+            unregister_custom_border_color: unsafe {
+                unsafe extern "system" fn unregister_custom_border_color(
                     _: crate::vk::Device,
                     _: u32,
                 ) {
@@ -290,13 +286,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkUnregisterCustomBorderColorEXT");
                 if val.is_null() {
-                    unregister_custom_border_color_ext
+                    unregister_custom_border_color
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_image_opaque_capture_data_ext: unsafe {
-                unsafe extern "system" fn get_image_opaque_capture_data_ext(
+            get_image_opaque_capture_data: unsafe {
+                unsafe extern "system" fn get_image_opaque_capture_data(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::Image,
@@ -306,13 +302,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetImageOpaqueCaptureDataEXT");
                 if val.is_null() {
-                    get_image_opaque_capture_data_ext
+                    get_image_opaque_capture_data
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_tensor_opaque_capture_data_arm: unsafe {
-                unsafe extern "system" fn get_tensor_opaque_capture_data_arm(
+            get_tensor_opaque_capture_data: unsafe {
+                unsafe extern "system" fn get_tensor_opaque_capture_data(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::TensorARM,
@@ -322,7 +318,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetTensorOpaqueCaptureDataARM");
                 if val.is_null() {
-                    get_tensor_opaque_capture_data_arm
+                    get_tensor_opaque_capture_data
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -353,7 +349,7 @@ impl Device {
     }
     ///vkWriteSamplerDescriptorsEXT
     #[inline]
-    pub unsafe fn write_sampler_descriptors_ext(
+    pub unsafe fn write_sampler_descriptors(
         &self,
         device: crate::vk::Device,
         samplers: &[crate::vk::SamplerCreateInfo<'_>],
@@ -361,7 +357,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .write_sampler_descriptors_ext)(
+            .write_sampler_descriptors)(
                 device,
                 samplers.len() as _,
                 samplers.as_ptr(),
@@ -371,7 +367,7 @@ impl Device {
     }
     ///vkWriteResourceDescriptorsEXT
     #[inline]
-    pub unsafe fn write_resource_descriptors_ext(
+    pub unsafe fn write_resource_descriptors(
         &self,
         device: crate::vk::Device,
         resources: &[crate::vk::ResourceDescriptorInfoEXT<'_>],
@@ -379,7 +375,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .write_resource_descriptors_ext)(
+            .write_resource_descriptors)(
                 device,
                 resources.len() as _,
                 resources.as_ptr(),
@@ -389,34 +385,34 @@ impl Device {
     }
     ///vkCmdBindSamplerHeapEXT
     #[inline]
-    pub unsafe fn cmd_bind_sampler_heap_ext(
+    pub unsafe fn cmd_bind_sampler_heap(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         bind_info: &crate::vk::BindHeapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_bind_sampler_heap_ext)(command_buffer, bind_info)
+        (self.fp.cmd_bind_sampler_heap)(command_buffer, bind_info)
     }
     ///vkCmdBindResourceHeapEXT
     #[inline]
-    pub unsafe fn cmd_bind_resource_heap_ext(
+    pub unsafe fn cmd_bind_resource_heap(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         bind_info: &crate::vk::BindHeapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_bind_resource_heap_ext)(command_buffer, bind_info)
+        (self.fp.cmd_bind_resource_heap)(command_buffer, bind_info)
     }
     ///vkCmdPushDataEXT
     #[inline]
-    pub unsafe fn cmd_push_data_ext(
+    pub unsafe fn cmd_push_data(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         push_data_info: &crate::vk::PushDataInfoEXT<'_>,
     ) {
-        (self.fp.cmd_push_data_ext)(command_buffer, push_data_info)
+        (self.fp.cmd_push_data)(command_buffer, push_data_info)
     }
     ///vkRegisterCustomBorderColorEXT
     #[inline]
-    pub unsafe fn register_custom_border_color_ext(
+    pub unsafe fn register_custom_border_color(
         &self,
         device: crate::vk::Device,
         border_color: &crate::vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
@@ -425,26 +421,21 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .register_custom_border_color_ext)(
-                device,
-                border_color,
-                request_index,
-                index,
-            )
+            .register_custom_border_color)(device, border_color, request_index, index)
             .result()
     }
     ///vkUnregisterCustomBorderColorEXT
     #[inline]
-    pub unsafe fn unregister_custom_border_color_ext(
+    pub unsafe fn unregister_custom_border_color(
         &self,
         device: crate::vk::Device,
         index: u32,
     ) {
-        (self.fp.unregister_custom_border_color_ext)(device, index)
+        (self.fp.unregister_custom_border_color)(device, index)
     }
     ///vkGetImageOpaqueCaptureDataEXT
     #[inline]
-    pub unsafe fn get_image_opaque_capture_data_ext(
+    pub unsafe fn get_image_opaque_capture_data(
         &self,
         device: crate::vk::Device,
         images: &[crate::vk::Image],
@@ -452,7 +443,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_image_opaque_capture_data_ext)(
+            .get_image_opaque_capture_data)(
                 device,
                 images.len() as _,
                 images.as_ptr(),
@@ -462,7 +453,7 @@ impl Device {
     }
     ///vkGetTensorOpaqueCaptureDataARM
     #[inline]
-    pub unsafe fn get_tensor_opaque_capture_data_arm(
+    pub unsafe fn get_tensor_opaque_capture_data(
         &self,
         device: crate::vk::Device,
         tensors: &[crate::vk::TensorARM],
@@ -470,7 +461,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_tensor_opaque_capture_data_arm)(
+            .get_tensor_opaque_capture_data)(
                 device,
                 tensors.len() as _,
                 tensors.as_ptr(),
@@ -481,7 +472,7 @@ impl Device {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_descriptor_size_ext: crate::vk::PFN_vkGetPhysicalDeviceDescriptorSizeEXT,
+    pub get_physical_device_descriptor_size: crate::vk::PFN_vkGetPhysicalDeviceDescriptorSizeEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -495,8 +486,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_descriptor_size_ext: unsafe {
-                unsafe extern "system" fn get_physical_device_descriptor_size_ext(
+            get_physical_device_descriptor_size: unsafe {
+                unsafe extern "system" fn get_physical_device_descriptor_size(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::DescriptorType,
                 ) -> crate::vk::DeviceSize {
@@ -504,7 +495,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceDescriptorSizeEXT");
                 if val.is_null() {
-                    get_physical_device_descriptor_size_ext
+                    get_physical_device_descriptor_size
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -535,14 +526,12 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceDescriptorSizeEXT
     #[inline]
-    pub unsafe fn get_physical_device_descriptor_size_ext(
+    pub unsafe fn get_physical_device_descriptor_size(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         descriptor_type: crate::vk::DescriptorType,
     ) -> crate::vk::DeviceSize {
-        (self
-            .fp
-            .get_physical_device_descriptor_size_ext)(physical_device, descriptor_type)
+        (self.fp.get_physical_device_descriptor_size)(physical_device, descriptor_type)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

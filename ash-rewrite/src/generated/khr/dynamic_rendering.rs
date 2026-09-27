@@ -32,8 +32,8 @@ impl crate::vk::RenderingFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_begin_rendering_khr: crate::vk::PFN_vkCmdBeginRenderingKHR,
-    pub cmd_end_rendering_khr: crate::vk::PFN_vkCmdEndRenderingKHR,
+    pub cmd_begin_rendering: crate::vk::PFN_vkCmdBeginRenderingKHR,
+    pub cmd_end_rendering: crate::vk::PFN_vkCmdEndRenderingKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -47,8 +47,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_begin_rendering_khr: unsafe {
-                unsafe extern "system" fn cmd_begin_rendering_khr(
+            cmd_begin_rendering: unsafe {
+                unsafe extern "system" fn cmd_begin_rendering(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::RenderingInfo<'_>,
                 ) {
@@ -56,20 +56,20 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginRenderingKHR");
                 if val.is_null() {
-                    cmd_begin_rendering_khr
+                    cmd_begin_rendering
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_end_rendering_khr: unsafe {
-                unsafe extern "system" fn cmd_end_rendering_khr(
+            cmd_end_rendering: unsafe {
+                unsafe extern "system" fn cmd_end_rendering(
                     _: crate::vk::CommandBuffer,
                 ) {
                     panic!("unable to load vkCmdEndRenderingKHR")
                 }
                 let val = _f(c"vkCmdEndRenderingKHR");
                 if val.is_null() {
-                    cmd_end_rendering_khr
+                    cmd_end_rendering
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -100,20 +100,17 @@ impl Device {
     }
     ///vkCmdBeginRendering
     #[inline]
-    pub unsafe fn cmd_begin_rendering_khr(
+    pub unsafe fn cmd_begin_rendering(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         rendering_info: &crate::vk::RenderingInfo<'_>,
     ) {
-        (self.fp.cmd_begin_rendering_khr)(command_buffer, rendering_info)
+        (self.fp.cmd_begin_rendering)(command_buffer, rendering_info)
     }
     ///vkCmdEndRendering
     #[inline]
-    pub unsafe fn cmd_end_rendering_khr(
-        &self,
-        command_buffer: crate::vk::CommandBuffer,
-    ) {
-        (self.fp.cmd_end_rendering_khr)(command_buffer)
+    pub unsafe fn cmd_end_rendering(&self, command_buffer: crate::vk::CommandBuffer) {
+        (self.fp.cmd_end_rendering)(command_buffer)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

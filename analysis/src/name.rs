@@ -31,7 +31,7 @@ impl TypeName {
         self.original().strip_prefix(prefix).unwrap()
     }
 
-    pub fn tag_trimmed(&self) -> &'static str {
+    pub fn tag_stripped(&self) -> &'static str {
         let original = self.original();
         let tag_boundary = original
             .rfind(|c: char| c.is_lowercase() || c.is_ascii_digit())
@@ -127,6 +127,14 @@ impl CommandName {
 
     pub fn prefix_stripped(&self) -> &'static str {
         self.original().strip_prefix("vk").unwrap()
+    }
+
+    pub fn prefix_and_tag_stripped(&self) -> &'static str {
+        let prefix_stripped = self.prefix_stripped();
+        let tag_boundary = prefix_stripped
+            .rfind(|c: char| c.is_lowercase() || c.is_ascii_digit())
+            .unwrap();
+        &prefix_stripped[..=tag_boundary]
     }
 }
 

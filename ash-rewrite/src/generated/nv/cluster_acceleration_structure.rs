@@ -151,8 +151,8 @@ impl ClusterAccelerationStructureIndexFormatFlagBitsNV {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_cluster_acceleration_structure_build_sizes_nv: crate::vk::PFN_vkGetClusterAccelerationStructureBuildSizesNV,
-    pub cmd_build_cluster_acceleration_structure_indirect_nv: crate::vk::PFN_vkCmdBuildClusterAccelerationStructureIndirectNV,
+    pub get_cluster_acceleration_structure_build_sizes: crate::vk::PFN_vkGetClusterAccelerationStructureBuildSizesNV,
+    pub cmd_build_cluster_acceleration_structure_indirect: crate::vk::PFN_vkCmdBuildClusterAccelerationStructureIndirectNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -166,8 +166,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_cluster_acceleration_structure_build_sizes_nv: unsafe {
-                unsafe extern "system" fn get_cluster_acceleration_structure_build_sizes_nv(
+            get_cluster_acceleration_structure_build_sizes: unsafe {
+                unsafe extern "system" fn get_cluster_acceleration_structure_build_sizes(
                     _: crate::vk::Device,
                     _: *const crate::vk::ClusterAccelerationStructureInputInfoNV<'_>,
                     _: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
@@ -178,13 +178,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetClusterAccelerationStructureBuildSizesNV");
                 if val.is_null() {
-                    get_cluster_acceleration_structure_build_sizes_nv
+                    get_cluster_acceleration_structure_build_sizes
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_build_cluster_acceleration_structure_indirect_nv: unsafe {
-                unsafe extern "system" fn cmd_build_cluster_acceleration_structure_indirect_nv(
+            cmd_build_cluster_acceleration_structure_indirect: unsafe {
+                unsafe extern "system" fn cmd_build_cluster_acceleration_structure_indirect(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::ClusterAccelerationStructureCommandsInfoNV<'_>,
                 ) {
@@ -194,7 +194,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBuildClusterAccelerationStructureIndirectNV");
                 if val.is_null() {
-                    cmd_build_cluster_acceleration_structure_indirect_nv
+                    cmd_build_cluster_acceleration_structure_indirect
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -225,26 +225,24 @@ impl Device {
     }
     ///vkGetClusterAccelerationStructureBuildSizesNV
     #[inline]
-    pub unsafe fn get_cluster_acceleration_structure_build_sizes_nv(
+    pub unsafe fn get_cluster_acceleration_structure_build_sizes(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::ClusterAccelerationStructureInputInfoNV<'_>,
         size_info: &mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
     ) {
-        (self
-            .fp
-            .get_cluster_acceleration_structure_build_sizes_nv)(device, info, size_info)
+        (self.fp.get_cluster_acceleration_structure_build_sizes)(device, info, size_info)
     }
     ///vkCmdBuildClusterAccelerationStructureIndirectNV
     #[inline]
-    pub unsafe fn cmd_build_cluster_acceleration_structure_indirect_nv(
+    pub unsafe fn cmd_build_cluster_acceleration_structure_indirect(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         command_infos: &crate::vk::ClusterAccelerationStructureCommandsInfoNV<'_>,
     ) {
         (self
             .fp
-            .cmd_build_cluster_acceleration_structure_indirect_nv)(
+            .cmd_build_cluster_acceleration_structure_indirect)(
             command_buffer,
             command_infos,
         )

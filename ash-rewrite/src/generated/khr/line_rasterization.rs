@@ -21,7 +21,7 @@ impl crate::vk::LineRasterizationMode {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_line_stipple_khr: crate::vk::PFN_vkCmdSetLineStippleKHR,
+    pub cmd_set_line_stipple: crate::vk::PFN_vkCmdSetLineStippleKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -35,8 +35,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_line_stipple_khr: unsafe {
-                unsafe extern "system" fn cmd_set_line_stipple_khr(
+            cmd_set_line_stipple: unsafe {
+                unsafe extern "system" fn cmd_set_line_stipple(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u16,
@@ -45,7 +45,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetLineStippleKHR");
                 if val.is_null() {
-                    cmd_set_line_stipple_khr
+                    cmd_set_line_stipple
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -76,7 +76,7 @@ impl Device {
     }
     ///vkCmdSetLineStipple
     #[inline]
-    pub unsafe fn cmd_set_line_stipple_khr(
+    pub unsafe fn cmd_set_line_stipple(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         line_stipple_factor: u32,
@@ -84,7 +84,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_line_stipple_khr)(
+            .cmd_set_line_stipple)(
             command_buffer,
             line_stipple_factor,
             line_stipple_pattern,

@@ -50,14 +50,14 @@ impl DebugUtilsMessageTypeFlagBitsEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_debug_utils_object_name_ext: crate::vk::PFN_vkSetDebugUtilsObjectNameEXT,
-    pub set_debug_utils_object_tag_ext: crate::vk::PFN_vkSetDebugUtilsObjectTagEXT,
-    pub queue_begin_debug_utils_label_ext: crate::vk::PFN_vkQueueBeginDebugUtilsLabelEXT,
-    pub queue_end_debug_utils_label_ext: crate::vk::PFN_vkQueueEndDebugUtilsLabelEXT,
-    pub queue_insert_debug_utils_label_ext: crate::vk::PFN_vkQueueInsertDebugUtilsLabelEXT,
-    pub cmd_begin_debug_utils_label_ext: crate::vk::PFN_vkCmdBeginDebugUtilsLabelEXT,
-    pub cmd_end_debug_utils_label_ext: crate::vk::PFN_vkCmdEndDebugUtilsLabelEXT,
-    pub cmd_insert_debug_utils_label_ext: crate::vk::PFN_vkCmdInsertDebugUtilsLabelEXT,
+    pub set_debug_utils_object_name: crate::vk::PFN_vkSetDebugUtilsObjectNameEXT,
+    pub set_debug_utils_object_tag: crate::vk::PFN_vkSetDebugUtilsObjectTagEXT,
+    pub queue_begin_debug_utils_label: crate::vk::PFN_vkQueueBeginDebugUtilsLabelEXT,
+    pub queue_end_debug_utils_label: crate::vk::PFN_vkQueueEndDebugUtilsLabelEXT,
+    pub queue_insert_debug_utils_label: crate::vk::PFN_vkQueueInsertDebugUtilsLabelEXT,
+    pub cmd_begin_debug_utils_label: crate::vk::PFN_vkCmdBeginDebugUtilsLabelEXT,
+    pub cmd_end_debug_utils_label: crate::vk::PFN_vkCmdEndDebugUtilsLabelEXT,
+    pub cmd_insert_debug_utils_label: crate::vk::PFN_vkCmdInsertDebugUtilsLabelEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -71,8 +71,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            set_debug_utils_object_name_ext: unsafe {
-                unsafe extern "system" fn set_debug_utils_object_name_ext(
+            set_debug_utils_object_name: unsafe {
+                unsafe extern "system" fn set_debug_utils_object_name(
                     _: crate::vk::Device,
                     _: *const crate::vk::DebugUtilsObjectNameInfoEXT<'_>,
                 ) -> crate::vk::Result {
@@ -80,13 +80,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkSetDebugUtilsObjectNameEXT");
                 if val.is_null() {
-                    set_debug_utils_object_name_ext
+                    set_debug_utils_object_name
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            set_debug_utils_object_tag_ext: unsafe {
-                unsafe extern "system" fn set_debug_utils_object_tag_ext(
+            set_debug_utils_object_tag: unsafe {
+                unsafe extern "system" fn set_debug_utils_object_tag(
                     _: crate::vk::Device,
                     _: *const crate::vk::DebugUtilsObjectTagInfoEXT<'_>,
                 ) -> crate::vk::Result {
@@ -94,13 +94,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkSetDebugUtilsObjectTagEXT");
                 if val.is_null() {
-                    set_debug_utils_object_tag_ext
+                    set_debug_utils_object_tag
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            queue_begin_debug_utils_label_ext: unsafe {
-                unsafe extern "system" fn queue_begin_debug_utils_label_ext(
+            queue_begin_debug_utils_label: unsafe {
+                unsafe extern "system" fn queue_begin_debug_utils_label(
                     _: crate::vk::Queue,
                     _: *const crate::vk::DebugUtilsLabelEXT<'_>,
                 ) {
@@ -108,26 +108,26 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkQueueBeginDebugUtilsLabelEXT");
                 if val.is_null() {
-                    queue_begin_debug_utils_label_ext
+                    queue_begin_debug_utils_label
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            queue_end_debug_utils_label_ext: unsafe {
-                unsafe extern "system" fn queue_end_debug_utils_label_ext(
+            queue_end_debug_utils_label: unsafe {
+                unsafe extern "system" fn queue_end_debug_utils_label(
                     _: crate::vk::Queue,
                 ) {
                     panic!("unable to load vkQueueEndDebugUtilsLabelEXT")
                 }
                 let val = _f(c"vkQueueEndDebugUtilsLabelEXT");
                 if val.is_null() {
-                    queue_end_debug_utils_label_ext
+                    queue_end_debug_utils_label
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            queue_insert_debug_utils_label_ext: unsafe {
-                unsafe extern "system" fn queue_insert_debug_utils_label_ext(
+            queue_insert_debug_utils_label: unsafe {
+                unsafe extern "system" fn queue_insert_debug_utils_label(
                     _: crate::vk::Queue,
                     _: *const crate::vk::DebugUtilsLabelEXT<'_>,
                 ) {
@@ -135,13 +135,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkQueueInsertDebugUtilsLabelEXT");
                 if val.is_null() {
-                    queue_insert_debug_utils_label_ext
+                    queue_insert_debug_utils_label
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_begin_debug_utils_label_ext: unsafe {
-                unsafe extern "system" fn cmd_begin_debug_utils_label_ext(
+            cmd_begin_debug_utils_label: unsafe {
+                unsafe extern "system" fn cmd_begin_debug_utils_label(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DebugUtilsLabelEXT<'_>,
                 ) {
@@ -149,26 +149,26 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginDebugUtilsLabelEXT");
                 if val.is_null() {
-                    cmd_begin_debug_utils_label_ext
+                    cmd_begin_debug_utils_label
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_end_debug_utils_label_ext: unsafe {
-                unsafe extern "system" fn cmd_end_debug_utils_label_ext(
+            cmd_end_debug_utils_label: unsafe {
+                unsafe extern "system" fn cmd_end_debug_utils_label(
                     _: crate::vk::CommandBuffer,
                 ) {
                     panic!("unable to load vkCmdEndDebugUtilsLabelEXT")
                 }
                 let val = _f(c"vkCmdEndDebugUtilsLabelEXT");
                 if val.is_null() {
-                    cmd_end_debug_utils_label_ext
+                    cmd_end_debug_utils_label
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_insert_debug_utils_label_ext: unsafe {
-                unsafe extern "system" fn cmd_insert_debug_utils_label_ext(
+            cmd_insert_debug_utils_label: unsafe {
+                unsafe extern "system" fn cmd_insert_debug_utils_label(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DebugUtilsLabelEXT<'_>,
                 ) {
@@ -176,7 +176,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdInsertDebugUtilsLabelEXT");
                 if val.is_null() {
-                    cmd_insert_debug_utils_label_ext
+                    cmd_insert_debug_utils_label
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -207,77 +207,77 @@ impl Device {
     }
     ///vkSetDebugUtilsObjectNameEXT
     #[inline]
-    pub unsafe fn set_debug_utils_object_name_ext(
+    pub unsafe fn set_debug_utils_object_name(
         &self,
         device: crate::vk::Device,
         name_info: &crate::vk::DebugUtilsObjectNameInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.set_debug_utils_object_name_ext)(device, name_info).result()
+        (self.fp.set_debug_utils_object_name)(device, name_info).result()
     }
     ///vkSetDebugUtilsObjectTagEXT
     #[inline]
-    pub unsafe fn set_debug_utils_object_tag_ext(
+    pub unsafe fn set_debug_utils_object_tag(
         &self,
         device: crate::vk::Device,
         tag_info: &crate::vk::DebugUtilsObjectTagInfoEXT<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.set_debug_utils_object_tag_ext)(device, tag_info).result()
+        (self.fp.set_debug_utils_object_tag)(device, tag_info).result()
     }
     ///vkQueueBeginDebugUtilsLabelEXT
     #[inline]
-    pub unsafe fn queue_begin_debug_utils_label_ext(
+    pub unsafe fn queue_begin_debug_utils_label(
         &self,
         queue: crate::vk::Queue,
         label_info: &crate::vk::DebugUtilsLabelEXT<'_>,
     ) {
-        (self.fp.queue_begin_debug_utils_label_ext)(queue, label_info)
+        (self.fp.queue_begin_debug_utils_label)(queue, label_info)
     }
     ///vkQueueEndDebugUtilsLabelEXT
     #[inline]
-    pub unsafe fn queue_end_debug_utils_label_ext(&self, queue: crate::vk::Queue) {
-        (self.fp.queue_end_debug_utils_label_ext)(queue)
+    pub unsafe fn queue_end_debug_utils_label(&self, queue: crate::vk::Queue) {
+        (self.fp.queue_end_debug_utils_label)(queue)
     }
     ///vkQueueInsertDebugUtilsLabelEXT
     #[inline]
-    pub unsafe fn queue_insert_debug_utils_label_ext(
+    pub unsafe fn queue_insert_debug_utils_label(
         &self,
         queue: crate::vk::Queue,
         label_info: &crate::vk::DebugUtilsLabelEXT<'_>,
     ) {
-        (self.fp.queue_insert_debug_utils_label_ext)(queue, label_info)
+        (self.fp.queue_insert_debug_utils_label)(queue, label_info)
     }
     ///vkCmdBeginDebugUtilsLabelEXT
     #[inline]
-    pub unsafe fn cmd_begin_debug_utils_label_ext(
+    pub unsafe fn cmd_begin_debug_utils_label(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         label_info: &crate::vk::DebugUtilsLabelEXT<'_>,
     ) {
-        (self.fp.cmd_begin_debug_utils_label_ext)(command_buffer, label_info)
+        (self.fp.cmd_begin_debug_utils_label)(command_buffer, label_info)
     }
     ///vkCmdEndDebugUtilsLabelEXT
     #[inline]
-    pub unsafe fn cmd_end_debug_utils_label_ext(
+    pub unsafe fn cmd_end_debug_utils_label(
         &self,
         command_buffer: crate::vk::CommandBuffer,
     ) {
-        (self.fp.cmd_end_debug_utils_label_ext)(command_buffer)
+        (self.fp.cmd_end_debug_utils_label)(command_buffer)
     }
     ///vkCmdInsertDebugUtilsLabelEXT
     #[inline]
-    pub unsafe fn cmd_insert_debug_utils_label_ext(
+    pub unsafe fn cmd_insert_debug_utils_label(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         label_info: &crate::vk::DebugUtilsLabelEXT<'_>,
     ) {
-        (self.fp.cmd_insert_debug_utils_label_ext)(command_buffer, label_info)
+        (self.fp.cmd_insert_debug_utils_label)(command_buffer, label_info)
     }
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_debug_utils_messenger_ext: crate::vk::PFN_vkCreateDebugUtilsMessengerEXT,
-    pub destroy_debug_utils_messenger_ext: crate::vk::PFN_vkDestroyDebugUtilsMessengerEXT,
-    pub submit_debug_utils_message_ext: crate::vk::PFN_vkSubmitDebugUtilsMessageEXT,
+    pub create_debug_utils_messenger: crate::vk::PFN_vkCreateDebugUtilsMessengerEXT,
+    pub destroy_debug_utils_messenger: crate::vk::PFN_vkDestroyDebugUtilsMessengerEXT,
+    pub submit_debug_utils_message: crate::vk::PFN_vkSubmitDebugUtilsMessageEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -291,8 +291,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_debug_utils_messenger_ext: unsafe {
-                unsafe extern "system" fn create_debug_utils_messenger_ext(
+            create_debug_utils_messenger: unsafe {
+                unsafe extern "system" fn create_debug_utils_messenger(
                     _: crate::vk::Instance,
                     _: *const crate::vk::DebugUtilsMessengerCreateInfoEXT<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -302,13 +302,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateDebugUtilsMessengerEXT");
                 if val.is_null() {
-                    create_debug_utils_messenger_ext
+                    create_debug_utils_messenger
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_debug_utils_messenger_ext: unsafe {
-                unsafe extern "system" fn destroy_debug_utils_messenger_ext(
+            destroy_debug_utils_messenger: unsafe {
+                unsafe extern "system" fn destroy_debug_utils_messenger(
                     _: crate::vk::Instance,
                     _: crate::vk::DebugUtilsMessengerEXT,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -317,13 +317,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkDestroyDebugUtilsMessengerEXT");
                 if val.is_null() {
-                    destroy_debug_utils_messenger_ext
+                    destroy_debug_utils_messenger
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            submit_debug_utils_message_ext: unsafe {
-                unsafe extern "system" fn submit_debug_utils_message_ext(
+            submit_debug_utils_message: unsafe {
+                unsafe extern "system" fn submit_debug_utils_message(
                     _: crate::vk::Instance,
                     _: crate::vk::DebugUtilsMessageSeverityFlagBitsEXT,
                     _: crate::vk::DebugUtilsMessageTypeFlagsEXT,
@@ -333,7 +333,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkSubmitDebugUtilsMessageEXT");
                 if val.is_null() {
-                    submit_debug_utils_message_ext
+                    submit_debug_utils_message
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -364,7 +364,7 @@ impl Instance {
     }
     ///vkCreateDebugUtilsMessengerEXT
     #[inline]
-    pub unsafe fn create_debug_utils_messenger_ext(
+    pub unsafe fn create_debug_utils_messenger(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::DebugUtilsMessengerCreateInfoEXT<'_>,
@@ -373,27 +373,22 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_debug_utils_messenger_ext)(
-                instance,
-                create_info,
-                allocator,
-                messenger,
-            )
+            .create_debug_utils_messenger)(instance, create_info, allocator, messenger)
             .result()
     }
     ///vkDestroyDebugUtilsMessengerEXT
     #[inline]
-    pub unsafe fn destroy_debug_utils_messenger_ext(
+    pub unsafe fn destroy_debug_utils_messenger(
         &self,
         instance: crate::vk::Instance,
         messenger: crate::vk::DebugUtilsMessengerEXT,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_debug_utils_messenger_ext)(instance, messenger, allocator)
+        (self.fp.destroy_debug_utils_messenger)(instance, messenger, allocator)
     }
     ///vkSubmitDebugUtilsMessageEXT
     #[inline]
-    pub unsafe fn submit_debug_utils_message_ext(
+    pub unsafe fn submit_debug_utils_message(
         &self,
         instance: crate::vk::Instance,
         message_severity: crate::vk::DebugUtilsMessageSeverityFlagBitsEXT,
@@ -402,7 +397,7 @@ impl Instance {
     ) {
         (self
             .fp
-            .submit_debug_utils_message_ext)(
+            .submit_debug_utils_message)(
             instance,
             message_severity,
             message_types,

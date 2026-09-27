@@ -29,7 +29,7 @@ impl crate::vk::ExternalMemoryHandleTypeFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_memory_remote_address_nv: crate::vk::PFN_vkGetMemoryRemoteAddressNV,
+    pub get_memory_remote_address: crate::vk::PFN_vkGetMemoryRemoteAddressNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -43,8 +43,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_memory_remote_address_nv: unsafe {
-                unsafe extern "system" fn get_memory_remote_address_nv(
+            get_memory_remote_address: unsafe {
+                unsafe extern "system" fn get_memory_remote_address(
                     _: crate::vk::Device,
                     _: *const crate::vk::MemoryGetRemoteAddressInfoNV<'_>,
                     _: *mut crate::vk::RemoteAddressNV,
@@ -53,7 +53,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMemoryRemoteAddressNV");
                 if val.is_null() {
-                    get_memory_remote_address_nv
+                    get_memory_remote_address
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -84,7 +84,7 @@ impl Device {
     }
     ///vkGetMemoryRemoteAddressNV
     #[inline]
-    pub unsafe fn get_memory_remote_address_nv(
+    pub unsafe fn get_memory_remote_address(
         &self,
         device: crate::vk::Device,
         memory_get_remote_address_info: &crate::vk::MemoryGetRemoteAddressInfoNV<'_>,
@@ -92,11 +92,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_memory_remote_address_nv)(
-                device,
-                memory_get_remote_address_info,
-                address,
-            )
+            .get_memory_remote_address)(device, memory_get_remote_address_info, address)
             .result()
     }
 }

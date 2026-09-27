@@ -9,8 +9,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_draw_multi_ext: crate::vk::PFN_vkCmdDrawMultiEXT,
-    pub cmd_draw_multi_indexed_ext: crate::vk::PFN_vkCmdDrawMultiIndexedEXT,
+    pub cmd_draw_multi: crate::vk::PFN_vkCmdDrawMultiEXT,
+    pub cmd_draw_multi_indexed: crate::vk::PFN_vkCmdDrawMultiIndexedEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -24,8 +24,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_draw_multi_ext: unsafe {
-                unsafe extern "system" fn cmd_draw_multi_ext(
+            cmd_draw_multi: unsafe {
+                unsafe extern "system" fn cmd_draw_multi(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::MultiDrawInfoEXT,
@@ -36,14 +36,10 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDrawMultiEXT")
                 }
                 let val = _f(c"vkCmdDrawMultiEXT");
-                if val.is_null() {
-                    cmd_draw_multi_ext
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_draw_multi } else { ::core::mem::transmute(val) }
             },
-            cmd_draw_multi_indexed_ext: unsafe {
-                unsafe extern "system" fn cmd_draw_multi_indexed_ext(
+            cmd_draw_multi_indexed: unsafe {
+                unsafe extern "system" fn cmd_draw_multi_indexed(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::MultiDrawIndexedInfoEXT,
@@ -56,7 +52,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawMultiIndexedEXT");
                 if val.is_null() {
-                    cmd_draw_multi_indexed_ext
+                    cmd_draw_multi_indexed
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -87,7 +83,7 @@ impl Device {
     }
     ///vkCmdDrawMultiEXT
     #[inline]
-    pub unsafe fn cmd_draw_multi_ext(
+    pub unsafe fn cmd_draw_multi(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         vertex_info: &[crate::vk::MultiDrawInfoEXT],
@@ -97,7 +93,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_draw_multi_ext)(
+            .cmd_draw_multi)(
             command_buffer,
             vertex_info.len() as _,
             vertex_info.as_ptr(),
@@ -108,7 +104,7 @@ impl Device {
     }
     ///vkCmdDrawMultiIndexedEXT
     #[inline]
-    pub unsafe fn cmd_draw_multi_indexed_ext(
+    pub unsafe fn cmd_draw_multi_indexed(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         index_info: &[crate::vk::MultiDrawIndexedInfoEXT],
@@ -119,7 +115,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_draw_multi_indexed_ext)(
+            .cmd_draw_multi_indexed)(
             command_buffer,
             index_info.len() as _,
             index_info.as_ptr(),

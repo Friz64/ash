@@ -18,7 +18,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub enumerate_physical_device_queue_family_performance_counters_by_region_arm: crate::vk::PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM,
+    pub enumerate_physical_device_queue_family_performance_counters_by_region: crate::vk::PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -32,8 +32,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            enumerate_physical_device_queue_family_performance_counters_by_region_arm: unsafe {
-                unsafe extern "system" fn enumerate_physical_device_queue_family_performance_counters_by_region_arm(
+            enumerate_physical_device_queue_family_performance_counters_by_region: unsafe {
+                unsafe extern "system" fn enumerate_physical_device_queue_family_performance_counters_by_region(
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: *mut u32,
@@ -48,7 +48,7 @@ impl InstanceFn {
                     c"vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM",
                 );
                 if val.is_null() {
-                    enumerate_physical_device_queue_family_performance_counters_by_region_arm
+                    enumerate_physical_device_queue_family_performance_counters_by_region
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -79,14 +79,14 @@ impl Instance {
     }
     ///vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM
     #[inline]
-    pub unsafe fn enumerate_physical_device_queue_family_performance_counters_by_region_arm(
+    pub unsafe fn enumerate_physical_device_queue_family_performance_counters_by_region(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
     ) -> crate::VkResult<Vec<crate::vk::PerformanceCounterDescriptionARM<'_>>> {
         crate::read_into_uninitialized_vector(|counter_count, counter_descriptions| (self
             .fp
-            .enumerate_physical_device_queue_family_performance_counters_by_region_arm)(
+            .enumerate_physical_device_queue_family_performance_counters_by_region)(
             physical_device,
             queue_family_index,
             counter_count,

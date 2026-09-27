@@ -31,7 +31,7 @@ impl crate::vk::ComponentTypeKHR {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_cooperative_matrix_properties_nv: crate::vk::PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV,
+    pub get_physical_device_cooperative_matrix_properties: crate::vk::PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -45,8 +45,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_cooperative_matrix_properties_nv: unsafe {
-                unsafe extern "system" fn get_physical_device_cooperative_matrix_properties_nv(
+            get_physical_device_cooperative_matrix_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_cooperative_matrix_properties(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
                     _: *mut crate::vk::CooperativeMatrixPropertiesNV<'_>,
@@ -57,7 +57,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceCooperativeMatrixPropertiesNV");
                 if val.is_null() {
-                    get_physical_device_cooperative_matrix_properties_nv
+                    get_physical_device_cooperative_matrix_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -88,13 +88,13 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceCooperativeMatrixPropertiesNV
     #[inline]
-    pub unsafe fn get_physical_device_cooperative_matrix_properties_nv(
+    pub unsafe fn get_physical_device_cooperative_matrix_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
     ) -> crate::VkResult<Vec<crate::vk::CooperativeMatrixPropertiesNV<'_>>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
-            .get_physical_device_cooperative_matrix_properties_nv)(
+            .get_physical_device_cooperative_matrix_properties)(
             physical_device,
             property_count,
             properties,

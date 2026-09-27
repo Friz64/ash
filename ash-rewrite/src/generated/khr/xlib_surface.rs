@@ -8,8 +8,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_xlib_surface_khr: crate::vk::PFN_vkCreateXlibSurfaceKHR,
-    pub get_physical_device_xlib_presentation_support_khr: crate::vk::PFN_vkGetPhysicalDeviceXlibPresentationSupportKHR,
+    pub create_xlib_surface: crate::vk::PFN_vkCreateXlibSurfaceKHR,
+    pub get_physical_device_xlib_presentation_support: crate::vk::PFN_vkGetPhysicalDeviceXlibPresentationSupportKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -23,8 +23,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_xlib_surface_khr: unsafe {
-                unsafe extern "system" fn create_xlib_surface_khr(
+            create_xlib_surface: unsafe {
+                unsafe extern "system" fn create_xlib_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::XlibSurfaceCreateInfoKHR<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -34,13 +34,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateXlibSurfaceKHR");
                 if val.is_null() {
-                    create_xlib_surface_khr
+                    create_xlib_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_xlib_presentation_support_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_xlib_presentation_support_khr(
+            get_physical_device_xlib_presentation_support: unsafe {
+                unsafe extern "system" fn get_physical_device_xlib_presentation_support(
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: *mut crate::platform_types::Display,
@@ -52,7 +52,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceXlibPresentationSupportKHR");
                 if val.is_null() {
-                    get_physical_device_xlib_presentation_support_khr
+                    get_physical_device_xlib_presentation_support
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -83,19 +83,18 @@ impl Instance {
     }
     ///vkCreateXlibSurfaceKHR
     #[inline]
-    pub unsafe fn create_xlib_surface_khr(
+    pub unsafe fn create_xlib_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::XlibSurfaceCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_xlib_surface_khr)(instance, create_info, allocator, surface)
-            .result()
+        (self.fp.create_xlib_surface)(instance, create_info, allocator, surface).result()
     }
     ///vkGetPhysicalDeviceXlibPresentationSupportKHR
     #[inline]
-    pub unsafe fn get_physical_device_xlib_presentation_support_khr(
+    pub unsafe fn get_physical_device_xlib_presentation_support(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
@@ -104,7 +103,7 @@ impl Instance {
     ) -> crate::vk::Bool32 {
         (self
             .fp
-            .get_physical_device_xlib_presentation_support_khr)(
+            .get_physical_device_xlib_presentation_support)(
             physical_device,
             queue_family_index,
             dpy,

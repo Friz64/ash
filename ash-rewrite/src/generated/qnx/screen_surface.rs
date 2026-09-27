@@ -8,8 +8,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_screen_surface_qnx: crate::vk::PFN_vkCreateScreenSurfaceQNX,
-    pub get_physical_device_screen_presentation_support_qnx: crate::vk::PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX,
+    pub create_screen_surface: crate::vk::PFN_vkCreateScreenSurfaceQNX,
+    pub get_physical_device_screen_presentation_support: crate::vk::PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -23,8 +23,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_screen_surface_qnx: unsafe {
-                unsafe extern "system" fn create_screen_surface_qnx(
+            create_screen_surface: unsafe {
+                unsafe extern "system" fn create_screen_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::ScreenSurfaceCreateInfoQNX<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -34,13 +34,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateScreenSurfaceQNX");
                 if val.is_null() {
-                    create_screen_surface_qnx
+                    create_screen_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_screen_presentation_support_qnx: unsafe {
-                unsafe extern "system" fn get_physical_device_screen_presentation_support_qnx(
+            get_physical_device_screen_presentation_support: unsafe {
+                unsafe extern "system" fn get_physical_device_screen_presentation_support(
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: *mut crate::platform_types::_screen_window,
@@ -51,7 +51,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceScreenPresentationSupportQNX");
                 if val.is_null() {
-                    get_physical_device_screen_presentation_support_qnx
+                    get_physical_device_screen_presentation_support
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -82,19 +82,19 @@ impl Instance {
     }
     ///vkCreateScreenSurfaceQNX
     #[inline]
-    pub unsafe fn create_screen_surface_qnx(
+    pub unsafe fn create_screen_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::ScreenSurfaceCreateInfoQNX<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_screen_surface_qnx)(instance, create_info, allocator, surface)
+        (self.fp.create_screen_surface)(instance, create_info, allocator, surface)
             .result()
     }
     ///vkGetPhysicalDeviceScreenPresentationSupportQNX
     #[inline]
-    pub unsafe fn get_physical_device_screen_presentation_support_qnx(
+    pub unsafe fn get_physical_device_screen_presentation_support(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
@@ -102,7 +102,7 @@ impl Instance {
     ) -> crate::vk::Bool32 {
         (self
             .fp
-            .get_physical_device_screen_presentation_support_qnx)(
+            .get_physical_device_screen_presentation_support)(
             physical_device,
             queue_family_index,
             window,

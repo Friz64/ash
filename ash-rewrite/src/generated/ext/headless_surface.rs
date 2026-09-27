@@ -8,7 +8,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_headless_surface_ext: crate::vk::PFN_vkCreateHeadlessSurfaceEXT,
+    pub create_headless_surface: crate::vk::PFN_vkCreateHeadlessSurfaceEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -22,8 +22,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_headless_surface_ext: unsafe {
-                unsafe extern "system" fn create_headless_surface_ext(
+            create_headless_surface: unsafe {
+                unsafe extern "system" fn create_headless_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::HeadlessSurfaceCreateInfoEXT<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -33,7 +33,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateHeadlessSurfaceEXT");
                 if val.is_null() {
-                    create_headless_surface_ext
+                    create_headless_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,14 +64,14 @@ impl Instance {
     }
     ///vkCreateHeadlessSurfaceEXT
     #[inline]
-    pub unsafe fn create_headless_surface_ext(
+    pub unsafe fn create_headless_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::HeadlessSurfaceCreateInfoEXT<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_headless_surface_ext)(instance, create_info, allocator, surface)
+        (self.fp.create_headless_surface)(instance, create_info, allocator, surface)
             .result()
     }
 }

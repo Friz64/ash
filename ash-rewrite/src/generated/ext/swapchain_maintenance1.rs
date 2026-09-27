@@ -23,7 +23,7 @@ impl crate::vk::SwapchainCreateFlagBitsKHR {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub release_swapchain_images_ext: crate::vk::PFN_vkReleaseSwapchainImagesEXT,
+    pub release_swapchain_images: crate::vk::PFN_vkReleaseSwapchainImagesEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -37,8 +37,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            release_swapchain_images_ext: unsafe {
-                unsafe extern "system" fn release_swapchain_images_ext(
+            release_swapchain_images: unsafe {
+                unsafe extern "system" fn release_swapchain_images(
                     _: crate::vk::Device,
                     _: *const crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
                 ) -> crate::vk::Result {
@@ -46,7 +46,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkReleaseSwapchainImagesEXT");
                 if val.is_null() {
-                    release_swapchain_images_ext
+                    release_swapchain_images
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -77,12 +77,12 @@ impl Device {
     }
     ///vkReleaseSwapchainImagesKHR
     #[inline]
-    pub unsafe fn release_swapchain_images_ext(
+    pub unsafe fn release_swapchain_images(
         &self,
         device: crate::vk::Device,
         release_info: &crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.release_swapchain_images_ext)(device, release_info).result()
+        (self.fp.release_swapchain_images)(device, release_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

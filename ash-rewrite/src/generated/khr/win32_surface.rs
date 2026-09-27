@@ -8,8 +8,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_win32_surface_khr: crate::vk::PFN_vkCreateWin32SurfaceKHR,
-    pub get_physical_device_win32_presentation_support_khr: crate::vk::PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR,
+    pub create_win32_surface: crate::vk::PFN_vkCreateWin32SurfaceKHR,
+    pub get_physical_device_win32_presentation_support: crate::vk::PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -23,8 +23,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_win32_surface_khr: unsafe {
-                unsafe extern "system" fn create_win32_surface_khr(
+            create_win32_surface: unsafe {
+                unsafe extern "system" fn create_win32_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::Win32SurfaceCreateInfoKHR<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -34,13 +34,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateWin32SurfaceKHR");
                 if val.is_null() {
-                    create_win32_surface_khr
+                    create_win32_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_win32_presentation_support_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_win32_presentation_support_khr(
+            get_physical_device_win32_presentation_support: unsafe {
+                unsafe extern "system" fn get_physical_device_win32_presentation_support(
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                 ) -> crate::vk::Bool32 {
@@ -50,7 +50,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceWin32PresentationSupportKHR");
                 if val.is_null() {
-                    get_physical_device_win32_presentation_support_khr
+                    get_physical_device_win32_presentation_support
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -81,26 +81,26 @@ impl Instance {
     }
     ///vkCreateWin32SurfaceKHR
     #[inline]
-    pub unsafe fn create_win32_surface_khr(
+    pub unsafe fn create_win32_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::Win32SurfaceCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_win32_surface_khr)(instance, create_info, allocator, surface)
+        (self.fp.create_win32_surface)(instance, create_info, allocator, surface)
             .result()
     }
     ///vkGetPhysicalDeviceWin32PresentationSupportKHR
     #[inline]
-    pub unsafe fn get_physical_device_win32_presentation_support_khr(
+    pub unsafe fn get_physical_device_win32_presentation_support(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
     ) -> crate::vk::Bool32 {
         (self
             .fp
-            .get_physical_device_win32_presentation_support_khr)(
+            .get_physical_device_win32_presentation_support)(
             physical_device,
             queue_family_index,
         )

@@ -16,8 +16,8 @@ impl crate::vk::DynamicState {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_exclusive_scissor_nv: crate::vk::PFN_vkCmdSetExclusiveScissorNV,
-    pub cmd_set_exclusive_scissor_enable_nv: crate::vk::PFN_vkCmdSetExclusiveScissorEnableNV,
+    pub cmd_set_exclusive_scissor: crate::vk::PFN_vkCmdSetExclusiveScissorNV,
+    pub cmd_set_exclusive_scissor_enable: crate::vk::PFN_vkCmdSetExclusiveScissorEnableNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -31,8 +31,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_exclusive_scissor_nv: unsafe {
-                unsafe extern "system" fn cmd_set_exclusive_scissor_nv(
+            cmd_set_exclusive_scissor: unsafe {
+                unsafe extern "system" fn cmd_set_exclusive_scissor(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -42,13 +42,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetExclusiveScissorNV");
                 if val.is_null() {
-                    cmd_set_exclusive_scissor_nv
+                    cmd_set_exclusive_scissor
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_exclusive_scissor_enable_nv: unsafe {
-                unsafe extern "system" fn cmd_set_exclusive_scissor_enable_nv(
+            cmd_set_exclusive_scissor_enable: unsafe {
+                unsafe extern "system" fn cmd_set_exclusive_scissor_enable(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -58,7 +58,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetExclusiveScissorEnableNV");
                 if val.is_null() {
-                    cmd_set_exclusive_scissor_enable_nv
+                    cmd_set_exclusive_scissor_enable
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -89,7 +89,7 @@ impl Device {
     }
     ///vkCmdSetExclusiveScissorNV
     #[inline]
-    pub unsafe fn cmd_set_exclusive_scissor_nv(
+    pub unsafe fn cmd_set_exclusive_scissor(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_exclusive_scissor: u32,
@@ -97,7 +97,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_exclusive_scissor_nv)(
+            .cmd_set_exclusive_scissor)(
             command_buffer,
             first_exclusive_scissor,
             exclusive_scissors.len() as _,
@@ -106,7 +106,7 @@ impl Device {
     }
     ///vkCmdSetExclusiveScissorEnableNV
     #[inline]
-    pub unsafe fn cmd_set_exclusive_scissor_enable_nv(
+    pub unsafe fn cmd_set_exclusive_scissor_enable(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_exclusive_scissor: u32,
@@ -114,7 +114,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_exclusive_scissor_enable_nv)(
+            .cmd_set_exclusive_scissor_enable)(
             command_buffer,
             first_exclusive_scissor,
             exclusive_scissor_enables.len() as _,

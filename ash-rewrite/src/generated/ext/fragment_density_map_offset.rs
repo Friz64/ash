@@ -27,7 +27,7 @@ impl crate::vk::ImageCreateFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_end_rendering2_ext: crate::vk::PFN_vkCmdEndRendering2EXT,
+    pub cmd_end_rendering2: crate::vk::PFN_vkCmdEndRendering2EXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -41,8 +41,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_end_rendering2_ext: unsafe {
-                unsafe extern "system" fn cmd_end_rendering2_ext(
+            cmd_end_rendering2: unsafe {
+                unsafe extern "system" fn cmd_end_rendering2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::RenderingEndInfoKHR<'_>,
                 ) {
@@ -50,7 +50,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdEndRendering2EXT");
                 if val.is_null() {
-                    cmd_end_rendering2_ext
+                    cmd_end_rendering2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -81,12 +81,12 @@ impl Device {
     }
     ///vkCmdEndRendering2KHR
     #[inline]
-    pub unsafe fn cmd_end_rendering2_ext(
+    pub unsafe fn cmd_end_rendering2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         rendering_end_info: &crate::vk::RenderingEndInfoKHR<'_>,
     ) {
-        (self.fp.cmd_end_rendering2_ext)(command_buffer, rendering_end_info)
+        (self.fp.cmd_end_rendering2)(command_buffer, rendering_end_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

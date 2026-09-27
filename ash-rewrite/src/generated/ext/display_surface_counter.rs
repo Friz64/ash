@@ -16,7 +16,7 @@ impl SurfaceCounterFlagBitsEXT {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_surface_capabilities2_ext: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT,
+    pub get_physical_device_surface_capabilities2: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -30,8 +30,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_surface_capabilities2_ext: unsafe {
-                unsafe extern "system" fn get_physical_device_surface_capabilities2_ext(
+            get_physical_device_surface_capabilities2: unsafe {
+                unsafe extern "system" fn get_physical_device_surface_capabilities2(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::SurfaceKHR,
                     _: *mut crate::vk::SurfaceCapabilities2EXT<'_>,
@@ -40,7 +40,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfaceCapabilities2EXT");
                 if val.is_null() {
-                    get_physical_device_surface_capabilities2_ext
+                    get_physical_device_surface_capabilities2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -71,7 +71,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceSurfaceCapabilities2EXT
     #[inline]
-    pub unsafe fn get_physical_device_surface_capabilities2_ext(
+    pub unsafe fn get_physical_device_surface_capabilities2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,
@@ -79,7 +79,7 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_physical_device_surface_capabilities2_ext)(
+            .get_physical_device_surface_capabilities2)(
                 physical_device,
                 surface,
                 surface_capabilities,

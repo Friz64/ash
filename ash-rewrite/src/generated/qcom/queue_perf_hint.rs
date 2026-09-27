@@ -17,7 +17,7 @@ impl PerfHintTypeQCOM {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub queue_set_perf_hint_qcom: crate::vk::PFN_vkQueueSetPerfHintQCOM,
+    pub queue_set_perf_hint: crate::vk::PFN_vkQueueSetPerfHintQCOM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -31,8 +31,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            queue_set_perf_hint_qcom: unsafe {
-                unsafe extern "system" fn queue_set_perf_hint_qcom(
+            queue_set_perf_hint: unsafe {
+                unsafe extern "system" fn queue_set_perf_hint(
                     _: crate::vk::Queue,
                     _: *const crate::vk::PerfHintInfoQCOM<'_>,
                 ) -> crate::vk::Result {
@@ -40,7 +40,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkQueueSetPerfHintQCOM");
                 if val.is_null() {
-                    queue_set_perf_hint_qcom
+                    queue_set_perf_hint
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -71,12 +71,12 @@ impl Device {
     }
     ///vkQueueSetPerfHintQCOM
     #[inline]
-    pub unsafe fn queue_set_perf_hint_qcom(
+    pub unsafe fn queue_set_perf_hint(
         &self,
         queue: crate::vk::Queue,
         perf_hint_info: &crate::vk::PerfHintInfoQCOM<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.queue_set_perf_hint_qcom)(queue, perf_hint_info).result()
+        (self.fp.queue_set_perf_hint)(queue, perf_hint_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

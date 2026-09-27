@@ -36,7 +36,7 @@ impl FragmentShadingRateTypeNV {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_fragment_shading_rate_enum_nv: crate::vk::PFN_vkCmdSetFragmentShadingRateEnumNV,
+    pub cmd_set_fragment_shading_rate_enum: crate::vk::PFN_vkCmdSetFragmentShadingRateEnumNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -50,8 +50,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_fragment_shading_rate_enum_nv: unsafe {
-                unsafe extern "system" fn cmd_set_fragment_shading_rate_enum_nv(
+            cmd_set_fragment_shading_rate_enum: unsafe {
+                unsafe extern "system" fn cmd_set_fragment_shading_rate_enum(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::FragmentShadingRateNV,
                     _: *const [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
@@ -60,7 +60,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetFragmentShadingRateEnumNV");
                 if val.is_null() {
-                    cmd_set_fragment_shading_rate_enum_nv
+                    cmd_set_fragment_shading_rate_enum
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -91,7 +91,7 @@ impl Device {
     }
     ///vkCmdSetFragmentShadingRateEnumNV
     #[inline]
-    pub unsafe fn cmd_set_fragment_shading_rate_enum_nv(
+    pub unsafe fn cmd_set_fragment_shading_rate_enum(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         shading_rate: crate::vk::FragmentShadingRateNV,
@@ -99,7 +99,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_fragment_shading_rate_enum_nv)(
+            .cmd_set_fragment_shading_rate_enum)(
             command_buffer,
             shading_rate,
             combiner_ops,

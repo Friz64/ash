@@ -21,7 +21,7 @@ impl AntiLagStageAMD {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub anti_lag_update_amd: crate::vk::PFN_vkAntiLagUpdateAMD,
+    pub anti_lag_update: crate::vk::PFN_vkAntiLagUpdateAMD,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -35,19 +35,15 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            anti_lag_update_amd: unsafe {
-                unsafe extern "system" fn anti_lag_update_amd(
+            anti_lag_update: unsafe {
+                unsafe extern "system" fn anti_lag_update(
                     _: crate::vk::Device,
                     _: *const crate::vk::AntiLagDataAMD<'_>,
                 ) {
                     panic!("unable to load vkAntiLagUpdateAMD")
                 }
                 let val = _f(c"vkAntiLagUpdateAMD");
-                if val.is_null() {
-                    anti_lag_update_amd
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { anti_lag_update } else { ::core::mem::transmute(val) }
             },
         }
     }
@@ -75,12 +71,12 @@ impl Device {
     }
     ///vkAntiLagUpdateAMD
     #[inline]
-    pub unsafe fn anti_lag_update_amd(
+    pub unsafe fn anti_lag_update(
         &self,
         device: crate::vk::Device,
         data: &crate::vk::AntiLagDataAMD<'_>,
     ) {
-        (self.fp.anti_lag_update_amd)(device, data)
+        (self.fp.anti_lag_update)(device, data)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

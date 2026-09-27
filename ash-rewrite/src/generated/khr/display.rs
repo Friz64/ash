@@ -30,13 +30,13 @@ impl DisplayPlaneAlphaFlagBitsKHR {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_display_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceDisplayPropertiesKHR,
-    pub get_physical_device_display_plane_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR,
-    pub get_display_plane_supported_displays_khr: crate::vk::PFN_vkGetDisplayPlaneSupportedDisplaysKHR,
-    pub get_display_mode_properties_khr: crate::vk::PFN_vkGetDisplayModePropertiesKHR,
-    pub create_display_mode_khr: crate::vk::PFN_vkCreateDisplayModeKHR,
-    pub get_display_plane_capabilities_khr: crate::vk::PFN_vkGetDisplayPlaneCapabilitiesKHR,
-    pub create_display_plane_surface_khr: crate::vk::PFN_vkCreateDisplayPlaneSurfaceKHR,
+    pub get_physical_device_display_properties: crate::vk::PFN_vkGetPhysicalDeviceDisplayPropertiesKHR,
+    pub get_physical_device_display_plane_properties: crate::vk::PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR,
+    pub get_display_plane_supported_displays: crate::vk::PFN_vkGetDisplayPlaneSupportedDisplaysKHR,
+    pub get_display_mode_properties: crate::vk::PFN_vkGetDisplayModePropertiesKHR,
+    pub create_display_mode: crate::vk::PFN_vkCreateDisplayModeKHR,
+    pub get_display_plane_capabilities: crate::vk::PFN_vkGetDisplayPlaneCapabilitiesKHR,
+    pub create_display_plane_surface: crate::vk::PFN_vkCreateDisplayPlaneSurfaceKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -50,8 +50,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_display_properties_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_display_properties_khr(
+            get_physical_device_display_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_display_properties(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
                     _: *mut crate::vk::DisplayPropertiesKHR<'_>,
@@ -60,13 +60,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceDisplayPropertiesKHR");
                 if val.is_null() {
-                    get_physical_device_display_properties_khr
+                    get_physical_device_display_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_display_plane_properties_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_display_plane_properties_khr(
+            get_physical_device_display_plane_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_display_plane_properties(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
                     _: *mut crate::vk::DisplayPlanePropertiesKHR,
@@ -75,13 +75,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceDisplayPlanePropertiesKHR");
                 if val.is_null() {
-                    get_physical_device_display_plane_properties_khr
+                    get_physical_device_display_plane_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_display_plane_supported_displays_khr: unsafe {
-                unsafe extern "system" fn get_display_plane_supported_displays_khr(
+            get_display_plane_supported_displays: unsafe {
+                unsafe extern "system" fn get_display_plane_supported_displays(
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: *mut u32,
@@ -91,13 +91,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetDisplayPlaneSupportedDisplaysKHR");
                 if val.is_null() {
-                    get_display_plane_supported_displays_khr
+                    get_display_plane_supported_displays
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_display_mode_properties_khr: unsafe {
-                unsafe extern "system" fn get_display_mode_properties_khr(
+            get_display_mode_properties: unsafe {
+                unsafe extern "system" fn get_display_mode_properties(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::DisplayKHR,
                     _: *mut u32,
@@ -107,13 +107,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetDisplayModePropertiesKHR");
                 if val.is_null() {
-                    get_display_mode_properties_khr
+                    get_display_mode_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            create_display_mode_khr: unsafe {
-                unsafe extern "system" fn create_display_mode_khr(
+            create_display_mode: unsafe {
+                unsafe extern "system" fn create_display_mode(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::DisplayKHR,
                     _: *const crate::vk::DisplayModeCreateInfoKHR<'_>,
@@ -124,13 +124,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateDisplayModeKHR");
                 if val.is_null() {
-                    create_display_mode_khr
+                    create_display_mode
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_display_plane_capabilities_khr: unsafe {
-                unsafe extern "system" fn get_display_plane_capabilities_khr(
+            get_display_plane_capabilities: unsafe {
+                unsafe extern "system" fn get_display_plane_capabilities(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::DisplayModeKHR,
                     _: u32,
@@ -140,13 +140,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetDisplayPlaneCapabilitiesKHR");
                 if val.is_null() {
-                    get_display_plane_capabilities_khr
+                    get_display_plane_capabilities
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            create_display_plane_surface_khr: unsafe {
-                unsafe extern "system" fn create_display_plane_surface_khr(
+            create_display_plane_surface: unsafe {
+                unsafe extern "system" fn create_display_plane_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::DisplaySurfaceCreateInfoKHR<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -156,7 +156,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateDisplayPlaneSurfaceKHR");
                 if val.is_null() {
-                    create_display_plane_surface_khr
+                    create_display_plane_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -187,13 +187,13 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceDisplayPropertiesKHR
     #[inline]
-    pub unsafe fn get_physical_device_display_properties_khr(
+    pub unsafe fn get_physical_device_display_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
     ) -> crate::VkResult<Vec<crate::vk::DisplayPropertiesKHR<'_>>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
-            .get_physical_device_display_properties_khr)(
+            .get_physical_device_display_properties)(
             physical_device,
             property_count,
             properties,
@@ -201,13 +201,13 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceDisplayPlanePropertiesKHR
     #[inline]
-    pub unsafe fn get_physical_device_display_plane_properties_khr(
+    pub unsafe fn get_physical_device_display_plane_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
     ) -> crate::VkResult<Vec<crate::vk::DisplayPlanePropertiesKHR>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
-            .get_physical_device_display_plane_properties_khr)(
+            .get_physical_device_display_plane_properties)(
             physical_device,
             property_count,
             properties,
@@ -215,14 +215,14 @@ impl Instance {
     }
     ///vkGetDisplayPlaneSupportedDisplaysKHR
     #[inline]
-    pub unsafe fn get_display_plane_supported_displays_khr(
+    pub unsafe fn get_display_plane_supported_displays(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         plane_index: u32,
     ) -> crate::VkResult<Vec<crate::vk::DisplayKHR>> {
         crate::read_into_uninitialized_vector(|display_count, displays| (self
             .fp
-            .get_display_plane_supported_displays_khr)(
+            .get_display_plane_supported_displays)(
             physical_device,
             plane_index,
             display_count,
@@ -231,14 +231,14 @@ impl Instance {
     }
     ///vkGetDisplayModePropertiesKHR
     #[inline]
-    pub unsafe fn get_display_mode_properties_khr(
+    pub unsafe fn get_display_mode_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
     ) -> crate::VkResult<Vec<crate::vk::DisplayModePropertiesKHR>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
-            .get_display_mode_properties_khr)(
+            .get_display_mode_properties)(
             physical_device,
             display,
             property_count,
@@ -247,7 +247,7 @@ impl Instance {
     }
     ///vkCreateDisplayModeKHR
     #[inline]
-    pub unsafe fn create_display_mode_khr(
+    pub unsafe fn create_display_mode(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
@@ -257,18 +257,12 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_display_mode_khr)(
-                physical_device,
-                display,
-                create_info,
-                allocator,
-                mode,
-            )
+            .create_display_mode)(physical_device, display, create_info, allocator, mode)
             .result()
     }
     ///vkGetDisplayPlaneCapabilitiesKHR
     #[inline]
-    pub unsafe fn get_display_plane_capabilities_khr(
+    pub unsafe fn get_display_plane_capabilities(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         mode: crate::vk::DisplayModeKHR,
@@ -277,7 +271,7 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_display_plane_capabilities_khr)(
+            .get_display_plane_capabilities)(
                 physical_device,
                 mode,
                 plane_index,
@@ -287,16 +281,14 @@ impl Instance {
     }
     ///vkCreateDisplayPlaneSurfaceKHR
     #[inline]
-    pub unsafe fn create_display_plane_surface_khr(
+    pub unsafe fn create_display_plane_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::DisplaySurfaceCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self
-            .fp
-            .create_display_plane_surface_khr)(instance, create_info, allocator, surface)
+        (self.fp.create_display_plane_surface)(instance, create_info, allocator, surface)
             .result()
     }
 }

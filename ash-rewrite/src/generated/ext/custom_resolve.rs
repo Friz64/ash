@@ -46,7 +46,7 @@ impl crate::vk::ResolveModeFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_begin_custom_resolve_ext: crate::vk::PFN_vkCmdBeginCustomResolveEXT,
+    pub cmd_begin_custom_resolve: crate::vk::PFN_vkCmdBeginCustomResolveEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -60,8 +60,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_begin_custom_resolve_ext: unsafe {
-                unsafe extern "system" fn cmd_begin_custom_resolve_ext(
+            cmd_begin_custom_resolve: unsafe {
+                unsafe extern "system" fn cmd_begin_custom_resolve(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::BeginCustomResolveInfoEXT<'_>,
                 ) {
@@ -69,7 +69,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginCustomResolveEXT");
                 if val.is_null() {
-                    cmd_begin_custom_resolve_ext
+                    cmd_begin_custom_resolve
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -100,12 +100,12 @@ impl Device {
     }
     ///vkCmdBeginCustomResolveEXT
     #[inline]
-    pub unsafe fn cmd_begin_custom_resolve_ext(
+    pub unsafe fn cmd_begin_custom_resolve(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         begin_custom_resolve_info: &crate::vk::BeginCustomResolveInfoEXT<'_>,
     ) {
-        (self.fp.cmd_begin_custom_resolve_ext)(command_buffer, begin_custom_resolve_info)
+        (self.fp.cmd_begin_custom_resolve)(command_buffer, begin_custom_resolve_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

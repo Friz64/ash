@@ -16,7 +16,7 @@ impl DepthBiasRepresentationEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_depth_bias2_ext: crate::vk::PFN_vkCmdSetDepthBias2EXT,
+    pub cmd_set_depth_bias2: crate::vk::PFN_vkCmdSetDepthBias2EXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -30,8 +30,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_depth_bias2_ext: unsafe {
-                unsafe extern "system" fn cmd_set_depth_bias2_ext(
+            cmd_set_depth_bias2: unsafe {
+                unsafe extern "system" fn cmd_set_depth_bias2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DepthBiasInfoEXT<'_>,
                 ) {
@@ -39,7 +39,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDepthBias2EXT");
                 if val.is_null() {
-                    cmd_set_depth_bias2_ext
+                    cmd_set_depth_bias2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -70,12 +70,12 @@ impl Device {
     }
     ///vkCmdSetDepthBias2EXT
     #[inline]
-    pub unsafe fn cmd_set_depth_bias2_ext(
+    pub unsafe fn cmd_set_depth_bias2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_bias_info: &crate::vk::DepthBiasInfoEXT<'_>,
     ) {
-        (self.fp.cmd_set_depth_bias2_ext)(command_buffer, depth_bias_info)
+        (self.fp.cmd_set_depth_bias2)(command_buffer, depth_bias_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

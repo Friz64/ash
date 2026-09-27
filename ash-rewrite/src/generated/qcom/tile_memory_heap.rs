@@ -52,7 +52,7 @@ impl crate::vk::BufferUsageFlagBits2 {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_bind_tile_memory_qcom: crate::vk::PFN_vkCmdBindTileMemoryQCOM,
+    pub cmd_bind_tile_memory: crate::vk::PFN_vkCmdBindTileMemoryQCOM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -66,8 +66,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_bind_tile_memory_qcom: unsafe {
-                unsafe extern "system" fn cmd_bind_tile_memory_qcom(
+            cmd_bind_tile_memory: unsafe {
+                unsafe extern "system" fn cmd_bind_tile_memory(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::TileMemoryBindInfoQCOM<'_>,
                 ) {
@@ -75,7 +75,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindTileMemoryQCOM");
                 if val.is_null() {
-                    cmd_bind_tile_memory_qcom
+                    cmd_bind_tile_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -106,12 +106,12 @@ impl Device {
     }
     ///vkCmdBindTileMemoryQCOM
     #[inline]
-    pub unsafe fn cmd_bind_tile_memory_qcom(
+    pub unsafe fn cmd_bind_tile_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         tile_memory_bind_info: &crate::vk::TileMemoryBindInfoQCOM<'_>,
     ) {
-        (self.fp.cmd_bind_tile_memory_qcom)(command_buffer, tile_memory_bind_info)
+        (self.fp.cmd_bind_tile_memory)(command_buffer, tile_memory_bind_info)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

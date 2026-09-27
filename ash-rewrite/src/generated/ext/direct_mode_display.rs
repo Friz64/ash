@@ -6,7 +6,7 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_direct_mode_display";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub release_display_ext: crate::vk::PFN_vkReleaseDisplayEXT,
+    pub release_display: crate::vk::PFN_vkReleaseDisplayEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -20,19 +20,15 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            release_display_ext: unsafe {
-                unsafe extern "system" fn release_display_ext(
+            release_display: unsafe {
+                unsafe extern "system" fn release_display(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::DisplayKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkReleaseDisplayEXT")
                 }
                 let val = _f(c"vkReleaseDisplayEXT");
-                if val.is_null() {
-                    release_display_ext
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { release_display } else { ::core::mem::transmute(val) }
             },
         }
     }
@@ -60,12 +56,12 @@ impl Instance {
     }
     ///vkReleaseDisplayEXT
     #[inline]
-    pub unsafe fn release_display_ext(
+    pub unsafe fn release_display(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.release_display_ext)(physical_device, display).result()
+        (self.fp.release_display)(physical_device, display).result()
     }
 }
 pub(crate) mod items {

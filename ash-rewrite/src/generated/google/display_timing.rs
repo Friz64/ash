@@ -8,8 +8,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_refresh_cycle_duration_google: crate::vk::PFN_vkGetRefreshCycleDurationGOOGLE,
-    pub get_past_presentation_timing_google: crate::vk::PFN_vkGetPastPresentationTimingGOOGLE,
+    pub get_refresh_cycle_duration: crate::vk::PFN_vkGetRefreshCycleDurationGOOGLE,
+    pub get_past_presentation_timing: crate::vk::PFN_vkGetPastPresentationTimingGOOGLE,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -23,8 +23,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_refresh_cycle_duration_google: unsafe {
-                unsafe extern "system" fn get_refresh_cycle_duration_google(
+            get_refresh_cycle_duration: unsafe {
+                unsafe extern "system" fn get_refresh_cycle_duration(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: *mut crate::vk::RefreshCycleDurationGOOGLE,
@@ -33,13 +33,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetRefreshCycleDurationGOOGLE");
                 if val.is_null() {
-                    get_refresh_cycle_duration_google
+                    get_refresh_cycle_duration
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_past_presentation_timing_google: unsafe {
-                unsafe extern "system" fn get_past_presentation_timing_google(
+            get_past_presentation_timing: unsafe {
+                unsafe extern "system" fn get_past_presentation_timing(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                     _: *mut u32,
@@ -49,7 +49,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetPastPresentationTimingGOOGLE");
                 if val.is_null() {
-                    get_past_presentation_timing_google
+                    get_past_presentation_timing
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -80,7 +80,7 @@ impl Device {
     }
     ///vkGetRefreshCycleDurationGOOGLE
     #[inline]
-    pub unsafe fn get_refresh_cycle_duration_google(
+    pub unsafe fn get_refresh_cycle_duration(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
@@ -88,16 +88,12 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_refresh_cycle_duration_google)(
-                device,
-                swapchain,
-                display_timing_properties,
-            )
+            .get_refresh_cycle_duration)(device, swapchain, display_timing_properties)
             .result()
     }
     ///vkGetPastPresentationTimingGOOGLE
     #[inline]
-    pub unsafe fn get_past_presentation_timing_google(
+    pub unsafe fn get_past_presentation_timing(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
@@ -107,7 +103,7 @@ impl Device {
             presentation_timings|
         (self
             .fp
-            .get_past_presentation_timing_google)(
+            .get_past_presentation_timing)(
             device,
             swapchain,
             presentation_timing_count,

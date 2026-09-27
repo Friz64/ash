@@ -358,12 +358,12 @@ impl crate::vk::SubmitFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_event2_khr: crate::vk::PFN_vkCmdSetEvent2KHR,
-    pub cmd_reset_event2_khr: crate::vk::PFN_vkCmdResetEvent2KHR,
-    pub cmd_wait_events2_khr: crate::vk::PFN_vkCmdWaitEvents2KHR,
-    pub cmd_pipeline_barrier2_khr: crate::vk::PFN_vkCmdPipelineBarrier2KHR,
-    pub queue_submit2_khr: crate::vk::PFN_vkQueueSubmit2KHR,
-    pub cmd_write_timestamp2_khr: crate::vk::PFN_vkCmdWriteTimestamp2KHR,
+    pub cmd_set_event2: crate::vk::PFN_vkCmdSetEvent2KHR,
+    pub cmd_reset_event2: crate::vk::PFN_vkCmdResetEvent2KHR,
+    pub cmd_wait_events2: crate::vk::PFN_vkCmdWaitEvents2KHR,
+    pub cmd_pipeline_barrier2: crate::vk::PFN_vkCmdPipelineBarrier2KHR,
+    pub queue_submit2: crate::vk::PFN_vkQueueSubmit2KHR,
+    pub cmd_write_timestamp2: crate::vk::PFN_vkCmdWriteTimestamp2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -377,8 +377,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_event2_khr: unsafe {
-                unsafe extern "system" fn cmd_set_event2_khr(
+            cmd_set_event2: unsafe {
+                unsafe extern "system" fn cmd_set_event2(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Event,
                     _: *const crate::vk::DependencyInfo<'_>,
@@ -386,14 +386,10 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetEvent2KHR")
                 }
                 let val = _f(c"vkCmdSetEvent2KHR");
-                if val.is_null() {
-                    cmd_set_event2_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_event2 } else { ::core::mem::transmute(val) }
             },
-            cmd_reset_event2_khr: unsafe {
-                unsafe extern "system" fn cmd_reset_event2_khr(
+            cmd_reset_event2: unsafe {
+                unsafe extern "system" fn cmd_reset_event2(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Event,
                     _: crate::vk::PipelineStageFlags2,
@@ -402,13 +398,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdResetEvent2KHR");
                 if val.is_null() {
-                    cmd_reset_event2_khr
+                    cmd_reset_event2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_wait_events2_khr: unsafe {
-                unsafe extern "system" fn cmd_wait_events2_khr(
+            cmd_wait_events2: unsafe {
+                unsafe extern "system" fn cmd_wait_events2(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::Event,
@@ -418,13 +414,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdWaitEvents2KHR");
                 if val.is_null() {
-                    cmd_wait_events2_khr
+                    cmd_wait_events2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_pipeline_barrier2_khr: unsafe {
-                unsafe extern "system" fn cmd_pipeline_barrier2_khr(
+            cmd_pipeline_barrier2: unsafe {
+                unsafe extern "system" fn cmd_pipeline_barrier2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DependencyInfo<'_>,
                 ) {
@@ -432,13 +428,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdPipelineBarrier2KHR");
                 if val.is_null() {
-                    cmd_pipeline_barrier2_khr
+                    cmd_pipeline_barrier2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            queue_submit2_khr: unsafe {
-                unsafe extern "system" fn queue_submit2_khr(
+            queue_submit2: unsafe {
+                unsafe extern "system" fn queue_submit2(
                     _: crate::vk::Queue,
                     _: u32,
                     _: *const crate::vk::SubmitInfo2<'_>,
@@ -447,14 +443,10 @@ impl DeviceFn {
                     panic!("unable to load vkQueueSubmit2KHR")
                 }
                 let val = _f(c"vkQueueSubmit2KHR");
-                if val.is_null() {
-                    queue_submit2_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { queue_submit2 } else { ::core::mem::transmute(val) }
             },
-            cmd_write_timestamp2_khr: unsafe {
-                unsafe extern "system" fn cmd_write_timestamp2_khr(
+            cmd_write_timestamp2: unsafe {
+                unsafe extern "system" fn cmd_write_timestamp2(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::PipelineStageFlags2,
                     _: crate::vk::QueryPool,
@@ -464,7 +456,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdWriteTimestamp2KHR");
                 if val.is_null() {
-                    cmd_write_timestamp2_khr
+                    cmd_write_timestamp2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -495,27 +487,27 @@ impl Device {
     }
     ///vkCmdSetEvent2
     #[inline]
-    pub unsafe fn cmd_set_event2_khr(
+    pub unsafe fn cmd_set_event2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         event: crate::vk::Event,
         dependency_info: &crate::vk::DependencyInfo<'_>,
     ) {
-        (self.fp.cmd_set_event2_khr)(command_buffer, event, dependency_info)
+        (self.fp.cmd_set_event2)(command_buffer, event, dependency_info)
     }
     ///vkCmdResetEvent2
     #[inline]
-    pub unsafe fn cmd_reset_event2_khr(
+    pub unsafe fn cmd_reset_event2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         event: crate::vk::Event,
         stage_mask: crate::vk::PipelineStageFlags2,
     ) {
-        (self.fp.cmd_reset_event2_khr)(command_buffer, event, stage_mask)
+        (self.fp.cmd_reset_event2)(command_buffer, event, stage_mask)
     }
     ///vkCmdWaitEvents2
     #[inline]
-    pub unsafe fn cmd_wait_events2_khr(
+    pub unsafe fn cmd_wait_events2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         events: &[crate::vk::Event],
@@ -523,7 +515,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_wait_events2_khr)(
+            .cmd_wait_events2)(
             command_buffer,
             events.len() as _,
             events.as_ptr(),
@@ -532,34 +524,34 @@ impl Device {
     }
     ///vkCmdPipelineBarrier2
     #[inline]
-    pub unsafe fn cmd_pipeline_barrier2_khr(
+    pub unsafe fn cmd_pipeline_barrier2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         dependency_info: &crate::vk::DependencyInfo<'_>,
     ) {
-        (self.fp.cmd_pipeline_barrier2_khr)(command_buffer, dependency_info)
+        (self.fp.cmd_pipeline_barrier2)(command_buffer, dependency_info)
     }
     ///vkQueueSubmit2
     #[inline]
-    pub unsafe fn queue_submit2_khr(
+    pub unsafe fn queue_submit2(
         &self,
         queue: crate::vk::Queue,
         submits: &[crate::vk::SubmitInfo2<'_>],
         fence: crate::vk::Fence,
     ) -> crate::VkResult<()> {
-        (self.fp.queue_submit2_khr)(queue, submits.len() as _, submits.as_ptr(), fence)
+        (self.fp.queue_submit2)(queue, submits.len() as _, submits.as_ptr(), fence)
             .result()
     }
     ///vkCmdWriteTimestamp2
     #[inline]
-    pub unsafe fn cmd_write_timestamp2_khr(
+    pub unsafe fn cmd_write_timestamp2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         stage: crate::vk::PipelineStageFlags2,
         query_pool: crate::vk::QueryPool,
         query: u32,
     ) {
-        (self.fp.cmd_write_timestamp2_khr)(command_buffer, stage, query_pool, query)
+        (self.fp.cmd_write_timestamp2)(command_buffer, stage, query_pool, query)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

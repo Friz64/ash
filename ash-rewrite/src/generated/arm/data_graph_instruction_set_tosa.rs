@@ -35,7 +35,7 @@ impl DataGraphTOSAQualityFlagBitsARM {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_queue_family_data_graph_engine_operation_properties_arm: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM,
+    pub get_physical_device_queue_family_data_graph_engine_operation_properties: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -49,8 +49,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_queue_family_data_graph_engine_operation_properties_arm: unsafe {
-                unsafe extern "system" fn get_physical_device_queue_family_data_graph_engine_operation_properties_arm(
+            get_physical_device_queue_family_data_graph_engine_operation_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_queue_family_data_graph_engine_operation_properties(
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: *const crate::vk::QueueFamilyDataGraphPropertiesARM<'_>,
@@ -64,7 +64,7 @@ impl InstanceFn {
                     c"vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM",
                 );
                 if val.is_null() {
-                    get_physical_device_queue_family_data_graph_engine_operation_properties_arm
+                    get_physical_device_queue_family_data_graph_engine_operation_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -95,7 +95,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM
     #[inline]
-    pub unsafe fn get_physical_device_queue_family_data_graph_engine_operation_properties_arm(
+    pub unsafe fn get_physical_device_queue_family_data_graph_engine_operation_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
@@ -106,7 +106,7 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_physical_device_queue_family_data_graph_engine_operation_properties_arm)(
+            .get_physical_device_queue_family_data_graph_engine_operation_properties)(
                 physical_device,
                 queue_family_index,
                 queue_family_data_graph_properties,

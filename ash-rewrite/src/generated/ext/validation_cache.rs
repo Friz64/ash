@@ -17,10 +17,10 @@ impl ValidationCacheHeaderVersionEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_validation_cache_ext: crate::vk::PFN_vkCreateValidationCacheEXT,
-    pub destroy_validation_cache_ext: crate::vk::PFN_vkDestroyValidationCacheEXT,
-    pub get_validation_cache_data_ext: crate::vk::PFN_vkGetValidationCacheDataEXT,
-    pub merge_validation_caches_ext: crate::vk::PFN_vkMergeValidationCachesEXT,
+    pub create_validation_cache: crate::vk::PFN_vkCreateValidationCacheEXT,
+    pub destroy_validation_cache: crate::vk::PFN_vkDestroyValidationCacheEXT,
+    pub get_validation_cache_data: crate::vk::PFN_vkGetValidationCacheDataEXT,
+    pub merge_validation_caches: crate::vk::PFN_vkMergeValidationCachesEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -34,8 +34,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_validation_cache_ext: unsafe {
-                unsafe extern "system" fn create_validation_cache_ext(
+            create_validation_cache: unsafe {
+                unsafe extern "system" fn create_validation_cache(
                     _: crate::vk::Device,
                     _: *const crate::vk::ValidationCacheCreateInfoEXT<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -45,13 +45,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateValidationCacheEXT");
                 if val.is_null() {
-                    create_validation_cache_ext
+                    create_validation_cache
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_validation_cache_ext: unsafe {
-                unsafe extern "system" fn destroy_validation_cache_ext(
+            destroy_validation_cache: unsafe {
+                unsafe extern "system" fn destroy_validation_cache(
                     _: crate::vk::Device,
                     _: crate::vk::ValidationCacheEXT,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -60,13 +60,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyValidationCacheEXT");
                 if val.is_null() {
-                    destroy_validation_cache_ext
+                    destroy_validation_cache
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_validation_cache_data_ext: unsafe {
-                unsafe extern "system" fn get_validation_cache_data_ext(
+            get_validation_cache_data: unsafe {
+                unsafe extern "system" fn get_validation_cache_data(
                     _: crate::vk::Device,
                     _: crate::vk::ValidationCacheEXT,
                     _: *mut usize,
@@ -76,13 +76,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetValidationCacheDataEXT");
                 if val.is_null() {
-                    get_validation_cache_data_ext
+                    get_validation_cache_data
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            merge_validation_caches_ext: unsafe {
-                unsafe extern "system" fn merge_validation_caches_ext(
+            merge_validation_caches: unsafe {
+                unsafe extern "system" fn merge_validation_caches(
                     _: crate::vk::Device,
                     _: crate::vk::ValidationCacheEXT,
                     _: u32,
@@ -92,7 +92,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkMergeValidationCachesEXT");
                 if val.is_null() {
-                    merge_validation_caches_ext
+                    merge_validation_caches
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -123,7 +123,7 @@ impl Device {
     }
     ///vkCreateValidationCacheEXT
     #[inline]
-    pub unsafe fn create_validation_cache_ext(
+    pub unsafe fn create_validation_cache(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::ValidationCacheCreateInfoEXT<'_>,
@@ -132,38 +132,33 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_validation_cache_ext)(
-                device,
-                create_info,
-                allocator,
-                validation_cache,
-            )
+            .create_validation_cache)(device, create_info, allocator, validation_cache)
             .result()
     }
     ///vkDestroyValidationCacheEXT
     #[inline]
-    pub unsafe fn destroy_validation_cache_ext(
+    pub unsafe fn destroy_validation_cache(
         &self,
         device: crate::vk::Device,
         validation_cache: crate::vk::ValidationCacheEXT,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_validation_cache_ext)(device, validation_cache, allocator)
+        (self.fp.destroy_validation_cache)(device, validation_cache, allocator)
     }
     ///vkGetValidationCacheDataEXT
     #[inline]
-    pub unsafe fn get_validation_cache_data_ext(
+    pub unsafe fn get_validation_cache_data(
         &self,
         device: crate::vk::Device,
         validation_cache: crate::vk::ValidationCacheEXT,
     ) -> crate::VkResult<Vec<core::ffi::c_void>> {
         crate::read_into_uninitialized_vector(|data_size, data| (self
             .fp
-            .get_validation_cache_data_ext)(device, validation_cache, data_size, data))
+            .get_validation_cache_data)(device, validation_cache, data_size, data))
     }
     ///vkMergeValidationCachesEXT
     #[inline]
-    pub unsafe fn merge_validation_caches_ext(
+    pub unsafe fn merge_validation_caches(
         &self,
         device: crate::vk::Device,
         dst_cache: crate::vk::ValidationCacheEXT,
@@ -171,7 +166,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .merge_validation_caches_ext)(
+            .merge_validation_caches)(
                 device,
                 dst_cache,
                 src_caches.len() as _,

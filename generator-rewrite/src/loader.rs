@@ -116,7 +116,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             dest.reexport = false;
             let table = tables.entry((function_type, dest)).or_default();
 
-            let field_name = format_ident!("{}", name.prefix_stripped().to_snek_case());
+            let field_name = format_ident!("{}", name.prefix_and_tag_stripped().to_snek_case());
             let command_ty = ctx.command_tokens(name, true);
             table.fields.extend(quote! {
                 pub #field_name: #command_ty,

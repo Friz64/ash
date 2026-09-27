@@ -47,8 +47,8 @@ impl crate::vk::PipelineStageFlagBits2 {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_draw_cluster_huawei: crate::vk::PFN_vkCmdDrawClusterHUAWEI,
-    pub cmd_draw_cluster_indirect_huawei: crate::vk::PFN_vkCmdDrawClusterIndirectHUAWEI,
+    pub cmd_draw_cluster: crate::vk::PFN_vkCmdDrawClusterHUAWEI,
+    pub cmd_draw_cluster_indirect: crate::vk::PFN_vkCmdDrawClusterIndirectHUAWEI,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -62,8 +62,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_draw_cluster_huawei: unsafe {
-                unsafe extern "system" fn cmd_draw_cluster_huawei(
+            cmd_draw_cluster: unsafe {
+                unsafe extern "system" fn cmd_draw_cluster(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -73,13 +73,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawClusterHUAWEI");
                 if val.is_null() {
-                    cmd_draw_cluster_huawei
+                    cmd_draw_cluster
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_draw_cluster_indirect_huawei: unsafe {
-                unsafe extern "system" fn cmd_draw_cluster_indirect_huawei(
+            cmd_draw_cluster_indirect: unsafe {
+                unsafe extern "system" fn cmd_draw_cluster_indirect(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Buffer,
                     _: crate::vk::DeviceSize,
@@ -88,7 +88,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawClusterIndirectHUAWEI");
                 if val.is_null() {
-                    cmd_draw_cluster_indirect_huawei
+                    cmd_draw_cluster_indirect
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -119,7 +119,7 @@ impl Device {
     }
     ///vkCmdDrawClusterHUAWEI
     #[inline]
-    pub unsafe fn cmd_draw_cluster_huawei(
+    pub unsafe fn cmd_draw_cluster(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         group_count_x: u32,
@@ -128,7 +128,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_draw_cluster_huawei)(
+            .cmd_draw_cluster)(
             command_buffer,
             group_count_x,
             group_count_y,
@@ -137,13 +137,13 @@ impl Device {
     }
     ///vkCmdDrawClusterIndirectHUAWEI
     #[inline]
-    pub unsafe fn cmd_draw_cluster_indirect_huawei(
+    pub unsafe fn cmd_draw_cluster_indirect(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         buffer: crate::vk::Buffer,
         offset: crate::vk::DeviceSize,
     ) {
-        (self.fp.cmd_draw_cluster_indirect_huawei)(command_buffer, buffer, offset)
+        (self.fp.cmd_draw_cluster_indirect)(command_buffer, buffer, offset)
     }
 }
 pub const SPEC_VERSION: u32 = 3;

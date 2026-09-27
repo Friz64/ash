@@ -9,7 +9,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_descriptor_set_layout_support_khr: crate::vk::PFN_vkGetDescriptorSetLayoutSupportKHR,
+    pub get_descriptor_set_layout_support: crate::vk::PFN_vkGetDescriptorSetLayoutSupportKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -23,8 +23,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_descriptor_set_layout_support_khr: unsafe {
-                unsafe extern "system" fn get_descriptor_set_layout_support_khr(
+            get_descriptor_set_layout_support: unsafe {
+                unsafe extern "system" fn get_descriptor_set_layout_support(
                     _: crate::vk::Device,
                     _: *const crate::vk::DescriptorSetLayoutCreateInfo<'_>,
                     _: *mut crate::vk::DescriptorSetLayoutSupport<'_>,
@@ -33,7 +33,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDescriptorSetLayoutSupportKHR");
                 if val.is_null() {
-                    get_descriptor_set_layout_support_khr
+                    get_descriptor_set_layout_support
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,13 +64,13 @@ impl Device {
     }
     ///vkGetDescriptorSetLayoutSupport
     #[inline]
-    pub unsafe fn get_descriptor_set_layout_support_khr(
+    pub unsafe fn get_descriptor_set_layout_support(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::DescriptorSetLayoutCreateInfo<'_>,
         support: &mut crate::vk::DescriptorSetLayoutSupport<'_>,
     ) {
-        (self.fp.get_descriptor_set_layout_support_khr)(device, create_info, support)
+        (self.fp.get_descriptor_set_layout_support)(device, create_info, support)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

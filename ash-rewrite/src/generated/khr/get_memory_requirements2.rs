@@ -12,9 +12,9 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_buffer_memory_requirements2_khr: crate::vk::PFN_vkGetBufferMemoryRequirements2KHR,
-    pub get_image_memory_requirements2_khr: crate::vk::PFN_vkGetImageMemoryRequirements2KHR,
-    pub get_image_sparse_memory_requirements2_khr: crate::vk::PFN_vkGetImageSparseMemoryRequirements2KHR,
+    pub get_buffer_memory_requirements2: crate::vk::PFN_vkGetBufferMemoryRequirements2KHR,
+    pub get_image_memory_requirements2: crate::vk::PFN_vkGetImageMemoryRequirements2KHR,
+    pub get_image_sparse_memory_requirements2: crate::vk::PFN_vkGetImageSparseMemoryRequirements2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -28,8 +28,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_buffer_memory_requirements2_khr: unsafe {
-                unsafe extern "system" fn get_buffer_memory_requirements2_khr(
+            get_buffer_memory_requirements2: unsafe {
+                unsafe extern "system" fn get_buffer_memory_requirements2(
                     _: crate::vk::Device,
                     _: *const crate::vk::BufferMemoryRequirementsInfo2<'_>,
                     _: *mut crate::vk::MemoryRequirements2<'_>,
@@ -38,13 +38,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetBufferMemoryRequirements2KHR");
                 if val.is_null() {
-                    get_buffer_memory_requirements2_khr
+                    get_buffer_memory_requirements2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_image_memory_requirements2_khr: unsafe {
-                unsafe extern "system" fn get_image_memory_requirements2_khr(
+            get_image_memory_requirements2: unsafe {
+                unsafe extern "system" fn get_image_memory_requirements2(
                     _: crate::vk::Device,
                     _: *const crate::vk::ImageMemoryRequirementsInfo2<'_>,
                     _: *mut crate::vk::MemoryRequirements2<'_>,
@@ -53,13 +53,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetImageMemoryRequirements2KHR");
                 if val.is_null() {
-                    get_image_memory_requirements2_khr
+                    get_image_memory_requirements2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_image_sparse_memory_requirements2_khr: unsafe {
-                unsafe extern "system" fn get_image_sparse_memory_requirements2_khr(
+            get_image_sparse_memory_requirements2: unsafe {
+                unsafe extern "system" fn get_image_sparse_memory_requirements2(
                     _: crate::vk::Device,
                     _: *const crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
                     _: *mut u32,
@@ -69,7 +69,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetImageSparseMemoryRequirements2KHR");
                 if val.is_null() {
-                    get_image_sparse_memory_requirements2_khr
+                    get_image_sparse_memory_requirements2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -100,27 +100,27 @@ impl Device {
     }
     ///vkGetBufferMemoryRequirements2
     #[inline]
-    pub unsafe fn get_buffer_memory_requirements2_khr(
+    pub unsafe fn get_buffer_memory_requirements2(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::BufferMemoryRequirementsInfo2<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
-        (self.fp.get_buffer_memory_requirements2_khr)(device, info, memory_requirements)
+        (self.fp.get_buffer_memory_requirements2)(device, info, memory_requirements)
     }
     ///vkGetImageMemoryRequirements2
     #[inline]
-    pub unsafe fn get_image_memory_requirements2_khr(
+    pub unsafe fn get_image_memory_requirements2(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::ImageMemoryRequirementsInfo2<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
-        (self.fp.get_image_memory_requirements2_khr)(device, info, memory_requirements)
+        (self.fp.get_image_memory_requirements2)(device, info, memory_requirements)
     }
     ///vkGetImageSparseMemoryRequirements2
     #[inline]
-    pub unsafe fn get_image_sparse_memory_requirements2_khr(
+    pub unsafe fn get_image_sparse_memory_requirements2(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
@@ -130,7 +130,7 @@ impl Device {
             sparse_memory_requirements|
         (self
             .fp
-            .get_image_sparse_memory_requirements2_khr)(
+            .get_image_sparse_memory_requirements2)(
             device,
             info,
             sparse_memory_requirement_count,

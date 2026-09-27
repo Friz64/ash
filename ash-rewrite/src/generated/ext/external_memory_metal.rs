@@ -28,8 +28,8 @@ impl crate::vk::ExternalMemoryHandleTypeFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_memory_metal_handle_ext: crate::vk::PFN_vkGetMemoryMetalHandleEXT,
-    pub get_memory_metal_handle_properties_ext: crate::vk::PFN_vkGetMemoryMetalHandlePropertiesEXT,
+    pub get_memory_metal_handle: crate::vk::PFN_vkGetMemoryMetalHandleEXT,
+    pub get_memory_metal_handle_properties: crate::vk::PFN_vkGetMemoryMetalHandlePropertiesEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -43,8 +43,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_memory_metal_handle_ext: unsafe {
-                unsafe extern "system" fn get_memory_metal_handle_ext(
+            get_memory_metal_handle: unsafe {
+                unsafe extern "system" fn get_memory_metal_handle(
                     _: crate::vk::Device,
                     _: *const crate::vk::MemoryGetMetalHandleInfoEXT<'_>,
                     _: *mut *mut core::ffi::c_void,
@@ -53,13 +53,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMemoryMetalHandleEXT");
                 if val.is_null() {
-                    get_memory_metal_handle_ext
+                    get_memory_metal_handle
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_memory_metal_handle_properties_ext: unsafe {
-                unsafe extern "system" fn get_memory_metal_handle_properties_ext(
+            get_memory_metal_handle_properties: unsafe {
+                unsafe extern "system" fn get_memory_metal_handle_properties(
                     _: crate::vk::Device,
                     _: crate::vk::ExternalMemoryHandleTypeFlagBits,
                     _: *const core::ffi::c_void,
@@ -69,7 +69,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMemoryMetalHandlePropertiesEXT");
                 if val.is_null() {
-                    get_memory_metal_handle_properties_ext
+                    get_memory_metal_handle_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -100,18 +100,17 @@ impl Device {
     }
     ///vkGetMemoryMetalHandleEXT
     #[inline]
-    pub unsafe fn get_memory_metal_handle_ext(
+    pub unsafe fn get_memory_metal_handle(
         &self,
         device: crate::vk::Device,
         get_metal_handle_info: &crate::vk::MemoryGetMetalHandleInfoEXT<'_>,
         handle: &mut *mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_metal_handle_ext)(device, get_metal_handle_info, handle)
-            .result()
+        (self.fp.get_memory_metal_handle)(device, get_metal_handle_info, handle).result()
     }
     ///vkGetMemoryMetalHandlePropertiesEXT
     #[inline]
-    pub unsafe fn get_memory_metal_handle_properties_ext(
+    pub unsafe fn get_memory_metal_handle_properties(
         &self,
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
@@ -122,7 +121,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_memory_metal_handle_properties_ext)(
+            .get_memory_metal_handle_properties)(
                 device,
                 handle_type,
                 handle,

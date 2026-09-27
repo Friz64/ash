@@ -20,8 +20,8 @@ impl crate::vk::ExternalMemoryHandleTypeFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_memory_zircon_handle_fuchsia: crate::vk::PFN_vkGetMemoryZirconHandleFUCHSIA,
-    pub get_memory_zircon_handle_properties_fuchsia: crate::vk::PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA,
+    pub get_memory_zircon_handle: crate::vk::PFN_vkGetMemoryZirconHandleFUCHSIA,
+    pub get_memory_zircon_handle_properties: crate::vk::PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -35,8 +35,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_memory_zircon_handle_fuchsia: unsafe {
-                unsafe extern "system" fn get_memory_zircon_handle_fuchsia(
+            get_memory_zircon_handle: unsafe {
+                unsafe extern "system" fn get_memory_zircon_handle(
                     _: crate::vk::Device,
                     _: *const crate::vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
                     _: *mut crate::platform_types::zx_handle_t,
@@ -45,13 +45,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMemoryZirconHandleFUCHSIA");
                 if val.is_null() {
-                    get_memory_zircon_handle_fuchsia
+                    get_memory_zircon_handle
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_memory_zircon_handle_properties_fuchsia: unsafe {
-                unsafe extern "system" fn get_memory_zircon_handle_properties_fuchsia(
+            get_memory_zircon_handle_properties: unsafe {
+                unsafe extern "system" fn get_memory_zircon_handle_properties(
                     _: crate::vk::Device,
                     _: crate::vk::ExternalMemoryHandleTypeFlagBits,
                     _: crate::platform_types::zx_handle_t,
@@ -61,7 +61,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMemoryZirconHandlePropertiesFUCHSIA");
                 if val.is_null() {
-                    get_memory_zircon_handle_properties_fuchsia
+                    get_memory_zircon_handle_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -92,24 +92,18 @@ impl Device {
     }
     ///vkGetMemoryZirconHandleFUCHSIA
     #[inline]
-    pub unsafe fn get_memory_zircon_handle_fuchsia(
+    pub unsafe fn get_memory_zircon_handle(
         &self,
         device: crate::vk::Device,
         get_zircon_handle_info: &crate::vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
         zircon_handle: &mut crate::platform_types::zx_handle_t,
     ) -> crate::VkResult<()> {
-        (self
-            .fp
-            .get_memory_zircon_handle_fuchsia)(
-                device,
-                get_zircon_handle_info,
-                zircon_handle,
-            )
+        (self.fp.get_memory_zircon_handle)(device, get_zircon_handle_info, zircon_handle)
             .result()
     }
     ///vkGetMemoryZirconHandlePropertiesFUCHSIA
     #[inline]
-    pub unsafe fn get_memory_zircon_handle_properties_fuchsia(
+    pub unsafe fn get_memory_zircon_handle_properties(
         &self,
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
@@ -120,7 +114,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_memory_zircon_handle_properties_fuchsia)(
+            .get_memory_zircon_handle_properties)(
                 device,
                 handle_type,
                 zircon_handle,

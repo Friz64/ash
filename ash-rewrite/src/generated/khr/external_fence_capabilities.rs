@@ -45,7 +45,7 @@ impl crate::vk::ExternalFenceFeatureFlagBits {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_external_fence_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR,
+    pub get_physical_device_external_fence_properties: crate::vk::PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -59,8 +59,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_external_fence_properties_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_external_fence_properties_khr(
+            get_physical_device_external_fence_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_external_fence_properties(
                     _: crate::vk::PhysicalDevice,
                     _: *const crate::vk::PhysicalDeviceExternalFenceInfo<'_>,
                     _: *mut crate::vk::ExternalFenceProperties<'_>,
@@ -71,7 +71,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceExternalFencePropertiesKHR");
                 if val.is_null() {
-                    get_physical_device_external_fence_properties_khr
+                    get_physical_device_external_fence_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -102,7 +102,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceExternalFenceProperties
     #[inline]
-    pub unsafe fn get_physical_device_external_fence_properties_khr(
+    pub unsafe fn get_physical_device_external_fence_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         external_fence_info: &crate::vk::PhysicalDeviceExternalFenceInfo<'_>,
@@ -110,7 +110,7 @@ impl Instance {
     ) {
         (self
             .fp
-            .get_physical_device_external_fence_properties_khr)(
+            .get_physical_device_external_fence_properties)(
             physical_device,
             external_fence_info,
             external_fence_properties,

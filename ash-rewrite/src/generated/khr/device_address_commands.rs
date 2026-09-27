@@ -51,28 +51,28 @@ impl AddressCommandFlagBitsKHR {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_copy_memory_khr: crate::vk::PFN_vkCmdCopyMemoryKHR,
-    pub cmd_copy_memory_to_image_khr: crate::vk::PFN_vkCmdCopyMemoryToImageKHR,
-    pub cmd_copy_image_to_memory_khr: crate::vk::PFN_vkCmdCopyImageToMemoryKHR,
-    pub cmd_update_memory_khr: crate::vk::PFN_vkCmdUpdateMemoryKHR,
-    pub cmd_fill_memory_khr: crate::vk::PFN_vkCmdFillMemoryKHR,
-    pub cmd_copy_query_pool_results_to_memory_khr: crate::vk::PFN_vkCmdCopyQueryPoolResultsToMemoryKHR,
-    pub cmd_begin_conditional_rendering2_ext: crate::vk::PFN_vkCmdBeginConditionalRendering2EXT,
-    pub cmd_bind_transform_feedback_buffers2_ext: crate::vk::PFN_vkCmdBindTransformFeedbackBuffers2EXT,
-    pub cmd_begin_transform_feedback2_ext: crate::vk::PFN_vkCmdBeginTransformFeedback2EXT,
-    pub cmd_end_transform_feedback2_ext: crate::vk::PFN_vkCmdEndTransformFeedback2EXT,
-    pub cmd_draw_indirect_byte_count2_ext: crate::vk::PFN_vkCmdDrawIndirectByteCount2EXT,
-    pub cmd_write_marker_to_memory_amd: crate::vk::PFN_vkCmdWriteMarkerToMemoryAMD,
-    pub cmd_bind_index_buffer3_khr: crate::vk::PFN_vkCmdBindIndexBuffer3KHR,
-    pub cmd_bind_vertex_buffers3_khr: crate::vk::PFN_vkCmdBindVertexBuffers3KHR,
-    pub cmd_draw_indirect2_khr: crate::vk::PFN_vkCmdDrawIndirect2KHR,
-    pub cmd_draw_indexed_indirect2_khr: crate::vk::PFN_vkCmdDrawIndexedIndirect2KHR,
-    pub cmd_draw_indirect_count2_khr: crate::vk::PFN_vkCmdDrawIndirectCount2KHR,
-    pub cmd_draw_indexed_indirect_count2_khr: crate::vk::PFN_vkCmdDrawIndexedIndirectCount2KHR,
-    pub cmd_draw_mesh_tasks_indirect2_ext: crate::vk::PFN_vkCmdDrawMeshTasksIndirect2EXT,
-    pub cmd_draw_mesh_tasks_indirect_count2_ext: crate::vk::PFN_vkCmdDrawMeshTasksIndirectCount2EXT,
-    pub cmd_dispatch_indirect2_khr: crate::vk::PFN_vkCmdDispatchIndirect2KHR,
-    pub create_acceleration_structure2_khr: crate::vk::PFN_vkCreateAccelerationStructure2KHR,
+    pub cmd_copy_memory: crate::vk::PFN_vkCmdCopyMemoryKHR,
+    pub cmd_copy_memory_to_image: crate::vk::PFN_vkCmdCopyMemoryToImageKHR,
+    pub cmd_copy_image_to_memory: crate::vk::PFN_vkCmdCopyImageToMemoryKHR,
+    pub cmd_update_memory: crate::vk::PFN_vkCmdUpdateMemoryKHR,
+    pub cmd_fill_memory: crate::vk::PFN_vkCmdFillMemoryKHR,
+    pub cmd_copy_query_pool_results_to_memory: crate::vk::PFN_vkCmdCopyQueryPoolResultsToMemoryKHR,
+    pub cmd_begin_conditional_rendering2: crate::vk::PFN_vkCmdBeginConditionalRendering2EXT,
+    pub cmd_bind_transform_feedback_buffers2: crate::vk::PFN_vkCmdBindTransformFeedbackBuffers2EXT,
+    pub cmd_begin_transform_feedback2: crate::vk::PFN_vkCmdBeginTransformFeedback2EXT,
+    pub cmd_end_transform_feedback2: crate::vk::PFN_vkCmdEndTransformFeedback2EXT,
+    pub cmd_draw_indirect_byte_count2: crate::vk::PFN_vkCmdDrawIndirectByteCount2EXT,
+    pub cmd_write_marker_to_memory: crate::vk::PFN_vkCmdWriteMarkerToMemoryAMD,
+    pub cmd_bind_index_buffer3: crate::vk::PFN_vkCmdBindIndexBuffer3KHR,
+    pub cmd_bind_vertex_buffers3: crate::vk::PFN_vkCmdBindVertexBuffers3KHR,
+    pub cmd_draw_indirect2: crate::vk::PFN_vkCmdDrawIndirect2KHR,
+    pub cmd_draw_indexed_indirect2: crate::vk::PFN_vkCmdDrawIndexedIndirect2KHR,
+    pub cmd_draw_indirect_count2: crate::vk::PFN_vkCmdDrawIndirectCount2KHR,
+    pub cmd_draw_indexed_indirect_count2: crate::vk::PFN_vkCmdDrawIndexedIndirectCount2KHR,
+    pub cmd_draw_mesh_tasks_indirect2: crate::vk::PFN_vkCmdDrawMeshTasksIndirect2EXT,
+    pub cmd_draw_mesh_tasks_indirect_count2: crate::vk::PFN_vkCmdDrawMeshTasksIndirectCount2EXT,
+    pub cmd_dispatch_indirect2: crate::vk::PFN_vkCmdDispatchIndirect2KHR,
+    pub create_acceleration_structure2: crate::vk::PFN_vkCreateAccelerationStructure2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -86,22 +86,18 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_copy_memory_khr: unsafe {
-                unsafe extern "system" fn cmd_copy_memory_khr(
+            cmd_copy_memory: unsafe {
+                unsafe extern "system" fn cmd_copy_memory(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::CopyDeviceMemoryInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMemoryKHR")
                 }
                 let val = _f(c"vkCmdCopyMemoryKHR");
-                if val.is_null() {
-                    cmd_copy_memory_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_memory } else { ::core::mem::transmute(val) }
             },
-            cmd_copy_memory_to_image_khr: unsafe {
-                unsafe extern "system" fn cmd_copy_memory_to_image_khr(
+            cmd_copy_memory_to_image: unsafe {
+                unsafe extern "system" fn cmd_copy_memory_to_image(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
                 ) {
@@ -109,13 +105,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyMemoryToImageKHR");
                 if val.is_null() {
-                    cmd_copy_memory_to_image_khr
+                    cmd_copy_memory_to_image
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_copy_image_to_memory_khr: unsafe {
-                unsafe extern "system" fn cmd_copy_image_to_memory_khr(
+            cmd_copy_image_to_memory: unsafe {
+                unsafe extern "system" fn cmd_copy_image_to_memory(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
                 ) {
@@ -123,13 +119,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyImageToMemoryKHR");
                 if val.is_null() {
-                    cmd_copy_image_to_memory_khr
+                    cmd_copy_image_to_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_update_memory_khr: unsafe {
-                unsafe extern "system" fn cmd_update_memory_khr(
+            cmd_update_memory: unsafe {
+                unsafe extern "system" fn cmd_update_memory(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DeviceAddressRangeKHR,
                     _: crate::vk::AddressCommandFlagsKHR,
@@ -140,13 +136,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdUpdateMemoryKHR");
                 if val.is_null() {
-                    cmd_update_memory_khr
+                    cmd_update_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_fill_memory_khr: unsafe {
-                unsafe extern "system" fn cmd_fill_memory_khr(
+            cmd_fill_memory: unsafe {
+                unsafe extern "system" fn cmd_fill_memory(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DeviceAddressRangeKHR,
                     _: crate::vk::AddressCommandFlagsKHR,
@@ -155,14 +151,10 @@ impl DeviceFn {
                     panic!("unable to load vkCmdFillMemoryKHR")
                 }
                 let val = _f(c"vkCmdFillMemoryKHR");
-                if val.is_null() {
-                    cmd_fill_memory_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_fill_memory } else { ::core::mem::transmute(val) }
             },
-            cmd_copy_query_pool_results_to_memory_khr: unsafe {
-                unsafe extern "system" fn cmd_copy_query_pool_results_to_memory_khr(
+            cmd_copy_query_pool_results_to_memory: unsafe {
+                unsafe extern "system" fn cmd_copy_query_pool_results_to_memory(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::QueryPool,
                     _: u32,
@@ -175,13 +167,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdCopyQueryPoolResultsToMemoryKHR");
                 if val.is_null() {
-                    cmd_copy_query_pool_results_to_memory_khr
+                    cmd_copy_query_pool_results_to_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_begin_conditional_rendering2_ext: unsafe {
-                unsafe extern "system" fn cmd_begin_conditional_rendering2_ext(
+            cmd_begin_conditional_rendering2: unsafe {
+                unsafe extern "system" fn cmd_begin_conditional_rendering2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::ConditionalRenderingBeginInfo2EXT<'_>,
                 ) {
@@ -189,13 +181,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginConditionalRendering2EXT");
                 if val.is_null() {
-                    cmd_begin_conditional_rendering2_ext
+                    cmd_begin_conditional_rendering2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_bind_transform_feedback_buffers2_ext: unsafe {
-                unsafe extern "system" fn cmd_bind_transform_feedback_buffers2_ext(
+            cmd_bind_transform_feedback_buffers2: unsafe {
+                unsafe extern "system" fn cmd_bind_transform_feedback_buffers2(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -205,13 +197,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindTransformFeedbackBuffers2EXT");
                 if val.is_null() {
-                    cmd_bind_transform_feedback_buffers2_ext
+                    cmd_bind_transform_feedback_buffers2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_begin_transform_feedback2_ext: unsafe {
-                unsafe extern "system" fn cmd_begin_transform_feedback2_ext(
+            cmd_begin_transform_feedback2: unsafe {
+                unsafe extern "system" fn cmd_begin_transform_feedback2(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -221,13 +213,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginTransformFeedback2EXT");
                 if val.is_null() {
-                    cmd_begin_transform_feedback2_ext
+                    cmd_begin_transform_feedback2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_end_transform_feedback2_ext: unsafe {
-                unsafe extern "system" fn cmd_end_transform_feedback2_ext(
+            cmd_end_transform_feedback2: unsafe {
+                unsafe extern "system" fn cmd_end_transform_feedback2(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -237,13 +229,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdEndTransformFeedback2EXT");
                 if val.is_null() {
-                    cmd_end_transform_feedback2_ext
+                    cmd_end_transform_feedback2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_draw_indirect_byte_count2_ext: unsafe {
-                unsafe extern "system" fn cmd_draw_indirect_byte_count2_ext(
+            cmd_draw_indirect_byte_count2: unsafe {
+                unsafe extern "system" fn cmd_draw_indirect_byte_count2(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -255,13 +247,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawIndirectByteCount2EXT");
                 if val.is_null() {
-                    cmd_draw_indirect_byte_count2_ext
+                    cmd_draw_indirect_byte_count2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_write_marker_to_memory_amd: unsafe {
-                unsafe extern "system" fn cmd_write_marker_to_memory_amd(
+            cmd_write_marker_to_memory: unsafe {
+                unsafe extern "system" fn cmd_write_marker_to_memory(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::MemoryMarkerInfoAMD<'_>,
                 ) {
@@ -269,13 +261,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdWriteMarkerToMemoryAMD");
                 if val.is_null() {
-                    cmd_write_marker_to_memory_amd
+                    cmd_write_marker_to_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_bind_index_buffer3_khr: unsafe {
-                unsafe extern "system" fn cmd_bind_index_buffer3_khr(
+            cmd_bind_index_buffer3: unsafe {
+                unsafe extern "system" fn cmd_bind_index_buffer3(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::BindIndexBuffer3InfoKHR<'_>,
                 ) {
@@ -283,13 +275,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindIndexBuffer3KHR");
                 if val.is_null() {
-                    cmd_bind_index_buffer3_khr
+                    cmd_bind_index_buffer3
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_bind_vertex_buffers3_khr: unsafe {
-                unsafe extern "system" fn cmd_bind_vertex_buffers3_khr(
+            cmd_bind_vertex_buffers3: unsafe {
+                unsafe extern "system" fn cmd_bind_vertex_buffers3(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -299,13 +291,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindVertexBuffers3KHR");
                 if val.is_null() {
-                    cmd_bind_vertex_buffers3_khr
+                    cmd_bind_vertex_buffers3
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_draw_indirect2_khr: unsafe {
-                unsafe extern "system" fn cmd_draw_indirect2_khr(
+            cmd_draw_indirect2: unsafe {
+                unsafe extern "system" fn cmd_draw_indirect2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DrawIndirect2InfoKHR<'_>,
                 ) {
@@ -313,13 +305,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawIndirect2KHR");
                 if val.is_null() {
-                    cmd_draw_indirect2_khr
+                    cmd_draw_indirect2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_draw_indexed_indirect2_khr: unsafe {
-                unsafe extern "system" fn cmd_draw_indexed_indirect2_khr(
+            cmd_draw_indexed_indirect2: unsafe {
+                unsafe extern "system" fn cmd_draw_indexed_indirect2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DrawIndirect2InfoKHR<'_>,
                 ) {
@@ -327,13 +319,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawIndexedIndirect2KHR");
                 if val.is_null() {
-                    cmd_draw_indexed_indirect2_khr
+                    cmd_draw_indexed_indirect2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_draw_indirect_count2_khr: unsafe {
-                unsafe extern "system" fn cmd_draw_indirect_count2_khr(
+            cmd_draw_indirect_count2: unsafe {
+                unsafe extern "system" fn cmd_draw_indirect_count2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
                 ) {
@@ -341,13 +333,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawIndirectCount2KHR");
                 if val.is_null() {
-                    cmd_draw_indirect_count2_khr
+                    cmd_draw_indirect_count2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_draw_indexed_indirect_count2_khr: unsafe {
-                unsafe extern "system" fn cmd_draw_indexed_indirect_count2_khr(
+            cmd_draw_indexed_indirect_count2: unsafe {
+                unsafe extern "system" fn cmd_draw_indexed_indirect_count2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
                 ) {
@@ -355,13 +347,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawIndexedIndirectCount2KHR");
                 if val.is_null() {
-                    cmd_draw_indexed_indirect_count2_khr
+                    cmd_draw_indexed_indirect_count2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_draw_mesh_tasks_indirect2_ext: unsafe {
-                unsafe extern "system" fn cmd_draw_mesh_tasks_indirect2_ext(
+            cmd_draw_mesh_tasks_indirect2: unsafe {
+                unsafe extern "system" fn cmd_draw_mesh_tasks_indirect2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DrawIndirect2InfoKHR<'_>,
                 ) {
@@ -369,13 +361,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawMeshTasksIndirect2EXT");
                 if val.is_null() {
-                    cmd_draw_mesh_tasks_indirect2_ext
+                    cmd_draw_mesh_tasks_indirect2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_draw_mesh_tasks_indirect_count2_ext: unsafe {
-                unsafe extern "system" fn cmd_draw_mesh_tasks_indirect_count2_ext(
+            cmd_draw_mesh_tasks_indirect_count2: unsafe {
+                unsafe extern "system" fn cmd_draw_mesh_tasks_indirect_count2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
                 ) {
@@ -383,13 +375,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawMeshTasksIndirectCount2EXT");
                 if val.is_null() {
-                    cmd_draw_mesh_tasks_indirect_count2_ext
+                    cmd_draw_mesh_tasks_indirect_count2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_dispatch_indirect2_khr: unsafe {
-                unsafe extern "system" fn cmd_dispatch_indirect2_khr(
+            cmd_dispatch_indirect2: unsafe {
+                unsafe extern "system" fn cmd_dispatch_indirect2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::DispatchIndirect2InfoKHR<'_>,
                 ) {
@@ -397,13 +389,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDispatchIndirect2KHR");
                 if val.is_null() {
-                    cmd_dispatch_indirect2_khr
+                    cmd_dispatch_indirect2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            create_acceleration_structure2_khr: unsafe {
-                unsafe extern "system" fn create_acceleration_structure2_khr(
+            create_acceleration_structure2: unsafe {
+                unsafe extern "system" fn create_acceleration_structure2(
                     _: crate::vk::Device,
                     _: *const crate::vk::AccelerationStructureCreateInfo2KHR<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -413,7 +405,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateAccelerationStructure2KHR");
                 if val.is_null() {
-                    create_acceleration_structure2_khr
+                    create_acceleration_structure2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -444,34 +436,34 @@ impl Device {
     }
     ///vkCmdCopyMemoryKHR
     #[inline]
-    pub unsafe fn cmd_copy_memory_khr(
+    pub unsafe fn cmd_copy_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         copy_memory_info: &crate::vk::CopyDeviceMemoryInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_memory_khr)(command_buffer, copy_memory_info)
+        (self.fp.cmd_copy_memory)(command_buffer, copy_memory_info)
     }
     ///vkCmdCopyMemoryToImageKHR
     #[inline]
-    pub unsafe fn cmd_copy_memory_to_image_khr(
+    pub unsafe fn cmd_copy_memory_to_image(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         copy_memory_info: &crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_memory_to_image_khr)(command_buffer, copy_memory_info)
+        (self.fp.cmd_copy_memory_to_image)(command_buffer, copy_memory_info)
     }
     ///vkCmdCopyImageToMemoryKHR
     #[inline]
-    pub unsafe fn cmd_copy_image_to_memory_khr(
+    pub unsafe fn cmd_copy_image_to_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         copy_memory_info: &crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_image_to_memory_khr)(command_buffer, copy_memory_info)
+        (self.fp.cmd_copy_image_to_memory)(command_buffer, copy_memory_info)
     }
     ///vkCmdUpdateMemoryKHR
     #[inline]
-    pub unsafe fn cmd_update_memory_khr(
+    pub unsafe fn cmd_update_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         dst_range: &crate::vk::DeviceAddressRangeKHR,
@@ -480,7 +472,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_update_memory_khr)(
+            .cmd_update_memory)(
             command_buffer,
             dst_range,
             dst_flags,
@@ -490,18 +482,18 @@ impl Device {
     }
     ///vkCmdFillMemoryKHR
     #[inline]
-    pub unsafe fn cmd_fill_memory_khr(
+    pub unsafe fn cmd_fill_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         dst_range: &crate::vk::DeviceAddressRangeKHR,
         dst_flags: crate::vk::AddressCommandFlagsKHR,
         data: u32,
     ) {
-        (self.fp.cmd_fill_memory_khr)(command_buffer, dst_range, dst_flags, data)
+        (self.fp.cmd_fill_memory)(command_buffer, dst_range, dst_flags, data)
     }
     ///vkCmdCopyQueryPoolResultsToMemoryKHR
     #[inline]
-    pub unsafe fn cmd_copy_query_pool_results_to_memory_khr(
+    pub unsafe fn cmd_copy_query_pool_results_to_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         query_pool: crate::vk::QueryPool,
@@ -513,7 +505,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_copy_query_pool_results_to_memory_khr)(
+            .cmd_copy_query_pool_results_to_memory)(
             command_buffer,
             query_pool,
             first_query,
@@ -525,21 +517,21 @@ impl Device {
     }
     ///vkCmdBeginConditionalRendering2EXT
     #[inline]
-    pub unsafe fn cmd_begin_conditional_rendering2_ext(
+    pub unsafe fn cmd_begin_conditional_rendering2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         conditional_rendering_begin: &crate::vk::ConditionalRenderingBeginInfo2EXT<'_>,
     ) {
         (self
             .fp
-            .cmd_begin_conditional_rendering2_ext)(
+            .cmd_begin_conditional_rendering2)(
             command_buffer,
             conditional_rendering_begin,
         )
     }
     ///vkCmdBindTransformFeedbackBuffers2EXT
     #[inline]
-    pub unsafe fn cmd_bind_transform_feedback_buffers2_ext(
+    pub unsafe fn cmd_bind_transform_feedback_buffers2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
@@ -547,7 +539,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_bind_transform_feedback_buffers2_ext)(
+            .cmd_bind_transform_feedback_buffers2)(
             command_buffer,
             first_binding,
             binding_infos.len() as _,
@@ -556,7 +548,7 @@ impl Device {
     }
     ///vkCmdBeginTransformFeedback2EXT
     #[inline]
-    pub unsafe fn cmd_begin_transform_feedback2_ext(
+    pub unsafe fn cmd_begin_transform_feedback2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_counter_range: u32,
@@ -564,7 +556,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_begin_transform_feedback2_ext)(
+            .cmd_begin_transform_feedback2)(
             command_buffer,
             first_counter_range,
             counter_infos.len() as _,
@@ -573,7 +565,7 @@ impl Device {
     }
     ///vkCmdEndTransformFeedback2EXT
     #[inline]
-    pub unsafe fn cmd_end_transform_feedback2_ext(
+    pub unsafe fn cmd_end_transform_feedback2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_counter_range: u32,
@@ -581,7 +573,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_end_transform_feedback2_ext)(
+            .cmd_end_transform_feedback2)(
             command_buffer,
             first_counter_range,
             counter_infos.len() as _,
@@ -590,7 +582,7 @@ impl Device {
     }
     ///vkCmdDrawIndirectByteCount2EXT
     #[inline]
-    pub unsafe fn cmd_draw_indirect_byte_count2_ext(
+    pub unsafe fn cmd_draw_indirect_byte_count2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         instance_count: u32,
@@ -601,7 +593,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_draw_indirect_byte_count2_ext)(
+            .cmd_draw_indirect_byte_count2)(
             command_buffer,
             instance_count,
             first_instance,
@@ -612,25 +604,25 @@ impl Device {
     }
     ///vkCmdWriteMarkerToMemoryAMD
     #[inline]
-    pub unsafe fn cmd_write_marker_to_memory_amd(
+    pub unsafe fn cmd_write_marker_to_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::MemoryMarkerInfoAMD<'_>,
     ) {
-        (self.fp.cmd_write_marker_to_memory_amd)(command_buffer, info)
+        (self.fp.cmd_write_marker_to_memory)(command_buffer, info)
     }
     ///vkCmdBindIndexBuffer3KHR
     #[inline]
-    pub unsafe fn cmd_bind_index_buffer3_khr(
+    pub unsafe fn cmd_bind_index_buffer3(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::BindIndexBuffer3InfoKHR<'_>,
     ) {
-        (self.fp.cmd_bind_index_buffer3_khr)(command_buffer, info)
+        (self.fp.cmd_bind_index_buffer3)(command_buffer, info)
     }
     ///vkCmdBindVertexBuffers3KHR
     #[inline]
-    pub unsafe fn cmd_bind_vertex_buffers3_khr(
+    pub unsafe fn cmd_bind_vertex_buffers3(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
@@ -638,7 +630,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_bind_vertex_buffers3_khr)(
+            .cmd_bind_vertex_buffers3)(
             command_buffer,
             first_binding,
             binding_infos.len() as _,
@@ -647,70 +639,70 @@ impl Device {
     }
     ///vkCmdDrawIndirect2KHR
     #[inline]
-    pub unsafe fn cmd_draw_indirect2_khr(
+    pub unsafe fn cmd_draw_indirect2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::DrawIndirect2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_draw_indirect2_khr)(command_buffer, info)
+        (self.fp.cmd_draw_indirect2)(command_buffer, info)
     }
     ///vkCmdDrawIndexedIndirect2KHR
     #[inline]
-    pub unsafe fn cmd_draw_indexed_indirect2_khr(
+    pub unsafe fn cmd_draw_indexed_indirect2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::DrawIndirect2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_draw_indexed_indirect2_khr)(command_buffer, info)
+        (self.fp.cmd_draw_indexed_indirect2)(command_buffer, info)
     }
     ///vkCmdDrawIndirectCount2KHR
     #[inline]
-    pub unsafe fn cmd_draw_indirect_count2_khr(
+    pub unsafe fn cmd_draw_indirect_count2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::DrawIndirectCount2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_draw_indirect_count2_khr)(command_buffer, info)
+        (self.fp.cmd_draw_indirect_count2)(command_buffer, info)
     }
     ///vkCmdDrawIndexedIndirectCount2KHR
     #[inline]
-    pub unsafe fn cmd_draw_indexed_indirect_count2_khr(
+    pub unsafe fn cmd_draw_indexed_indirect_count2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::DrawIndirectCount2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_draw_indexed_indirect_count2_khr)(command_buffer, info)
+        (self.fp.cmd_draw_indexed_indirect_count2)(command_buffer, info)
     }
     ///vkCmdDrawMeshTasksIndirect2EXT
     #[inline]
-    pub unsafe fn cmd_draw_mesh_tasks_indirect2_ext(
+    pub unsafe fn cmd_draw_mesh_tasks_indirect2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::DrawIndirect2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_draw_mesh_tasks_indirect2_ext)(command_buffer, info)
+        (self.fp.cmd_draw_mesh_tasks_indirect2)(command_buffer, info)
     }
     ///vkCmdDrawMeshTasksIndirectCount2EXT
     #[inline]
-    pub unsafe fn cmd_draw_mesh_tasks_indirect_count2_ext(
+    pub unsafe fn cmd_draw_mesh_tasks_indirect_count2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::DrawIndirectCount2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_draw_mesh_tasks_indirect_count2_ext)(command_buffer, info)
+        (self.fp.cmd_draw_mesh_tasks_indirect_count2)(command_buffer, info)
     }
     ///vkCmdDispatchIndirect2KHR
     #[inline]
-    pub unsafe fn cmd_dispatch_indirect2_khr(
+    pub unsafe fn cmd_dispatch_indirect2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         info: &crate::vk::DispatchIndirect2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_dispatch_indirect2_khr)(command_buffer, info)
+        (self.fp.cmd_dispatch_indirect2)(command_buffer, info)
     }
     ///vkCreateAccelerationStructure2KHR
     #[inline]
-    pub unsafe fn create_acceleration_structure2_khr(
+    pub unsafe fn create_acceleration_structure2(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::AccelerationStructureCreateInfo2KHR<'_>,
@@ -719,7 +711,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_acceleration_structure2_khr)(
+            .create_acceleration_structure2)(
                 device,
                 create_info,
                 allocator,

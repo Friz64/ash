@@ -126,16 +126,16 @@ impl crate::vk::TensorViewCreateFlagBitsARM {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_tensor_arm: crate::vk::PFN_vkCreateTensorARM,
-    pub destroy_tensor_arm: crate::vk::PFN_vkDestroyTensorARM,
-    pub create_tensor_view_arm: crate::vk::PFN_vkCreateTensorViewARM,
-    pub destroy_tensor_view_arm: crate::vk::PFN_vkDestroyTensorViewARM,
-    pub get_tensor_memory_requirements_arm: crate::vk::PFN_vkGetTensorMemoryRequirementsARM,
-    pub bind_tensor_memory_arm: crate::vk::PFN_vkBindTensorMemoryARM,
-    pub get_device_tensor_memory_requirements_arm: crate::vk::PFN_vkGetDeviceTensorMemoryRequirementsARM,
-    pub cmd_copy_tensor_arm: crate::vk::PFN_vkCmdCopyTensorARM,
-    pub get_tensor_opaque_capture_descriptor_data_arm: crate::vk::PFN_vkGetTensorOpaqueCaptureDescriptorDataARM,
-    pub get_tensor_view_opaque_capture_descriptor_data_arm: crate::vk::PFN_vkGetTensorViewOpaqueCaptureDescriptorDataARM,
+    pub create_tensor: crate::vk::PFN_vkCreateTensorARM,
+    pub destroy_tensor: crate::vk::PFN_vkDestroyTensorARM,
+    pub create_tensor_view: crate::vk::PFN_vkCreateTensorViewARM,
+    pub destroy_tensor_view: crate::vk::PFN_vkDestroyTensorViewARM,
+    pub get_tensor_memory_requirements: crate::vk::PFN_vkGetTensorMemoryRequirementsARM,
+    pub bind_tensor_memory: crate::vk::PFN_vkBindTensorMemoryARM,
+    pub get_device_tensor_memory_requirements: crate::vk::PFN_vkGetDeviceTensorMemoryRequirementsARM,
+    pub cmd_copy_tensor: crate::vk::PFN_vkCmdCopyTensorARM,
+    pub get_tensor_opaque_capture_descriptor_data: crate::vk::PFN_vkGetTensorOpaqueCaptureDescriptorDataARM,
+    pub get_tensor_view_opaque_capture_descriptor_data: crate::vk::PFN_vkGetTensorViewOpaqueCaptureDescriptorDataARM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -149,8 +149,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_tensor_arm: unsafe {
-                unsafe extern "system" fn create_tensor_arm(
+            create_tensor: unsafe {
+                unsafe extern "system" fn create_tensor(
                     _: crate::vk::Device,
                     _: *const crate::vk::TensorCreateInfoARM<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -159,14 +159,10 @@ impl DeviceFn {
                     panic!("unable to load vkCreateTensorARM")
                 }
                 let val = _f(c"vkCreateTensorARM");
-                if val.is_null() {
-                    create_tensor_arm
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_tensor } else { ::core::mem::transmute(val) }
             },
-            destroy_tensor_arm: unsafe {
-                unsafe extern "system" fn destroy_tensor_arm(
+            destroy_tensor: unsafe {
+                unsafe extern "system" fn destroy_tensor(
                     _: crate::vk::Device,
                     _: crate::vk::TensorARM,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -174,14 +170,10 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyTensorARM")
                 }
                 let val = _f(c"vkDestroyTensorARM");
-                if val.is_null() {
-                    destroy_tensor_arm
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_tensor } else { ::core::mem::transmute(val) }
             },
-            create_tensor_view_arm: unsafe {
-                unsafe extern "system" fn create_tensor_view_arm(
+            create_tensor_view: unsafe {
+                unsafe extern "system" fn create_tensor_view(
                     _: crate::vk::Device,
                     _: *const crate::vk::TensorViewCreateInfoARM<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -191,13 +183,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateTensorViewARM");
                 if val.is_null() {
-                    create_tensor_view_arm
+                    create_tensor_view
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_tensor_view_arm: unsafe {
-                unsafe extern "system" fn destroy_tensor_view_arm(
+            destroy_tensor_view: unsafe {
+                unsafe extern "system" fn destroy_tensor_view(
                     _: crate::vk::Device,
                     _: crate::vk::TensorViewARM,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -206,13 +198,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroyTensorViewARM");
                 if val.is_null() {
-                    destroy_tensor_view_arm
+                    destroy_tensor_view
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_tensor_memory_requirements_arm: unsafe {
-                unsafe extern "system" fn get_tensor_memory_requirements_arm(
+            get_tensor_memory_requirements: unsafe {
+                unsafe extern "system" fn get_tensor_memory_requirements(
                     _: crate::vk::Device,
                     _: *const crate::vk::TensorMemoryRequirementsInfoARM<'_>,
                     _: *mut crate::vk::MemoryRequirements2<'_>,
@@ -221,13 +213,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetTensorMemoryRequirementsARM");
                 if val.is_null() {
-                    get_tensor_memory_requirements_arm
+                    get_tensor_memory_requirements
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            bind_tensor_memory_arm: unsafe {
-                unsafe extern "system" fn bind_tensor_memory_arm(
+            bind_tensor_memory: unsafe {
+                unsafe extern "system" fn bind_tensor_memory(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::BindTensorMemoryInfoARM<'_>,
@@ -236,13 +228,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkBindTensorMemoryARM");
                 if val.is_null() {
-                    bind_tensor_memory_arm
+                    bind_tensor_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_device_tensor_memory_requirements_arm: unsafe {
-                unsafe extern "system" fn get_device_tensor_memory_requirements_arm(
+            get_device_tensor_memory_requirements: unsafe {
+                unsafe extern "system" fn get_device_tensor_memory_requirements(
                     _: crate::vk::Device,
                     _: *const crate::vk::DeviceTensorMemoryRequirementsARM<'_>,
                     _: *mut crate::vk::MemoryRequirements2<'_>,
@@ -251,27 +243,23 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceTensorMemoryRequirementsARM");
                 if val.is_null() {
-                    get_device_tensor_memory_requirements_arm
+                    get_device_tensor_memory_requirements
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_copy_tensor_arm: unsafe {
-                unsafe extern "system" fn cmd_copy_tensor_arm(
+            cmd_copy_tensor: unsafe {
+                unsafe extern "system" fn cmd_copy_tensor(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::CopyTensorInfoARM<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyTensorARM")
                 }
                 let val = _f(c"vkCmdCopyTensorARM");
-                if val.is_null() {
-                    cmd_copy_tensor_arm
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_tensor } else { ::core::mem::transmute(val) }
             },
-            get_tensor_opaque_capture_descriptor_data_arm: unsafe {
-                unsafe extern "system" fn get_tensor_opaque_capture_descriptor_data_arm(
+            get_tensor_opaque_capture_descriptor_data: unsafe {
+                unsafe extern "system" fn get_tensor_opaque_capture_descriptor_data(
                     _: crate::vk::Device,
                     _: *const crate::vk::TensorCaptureDescriptorDataInfoARM<'_>,
                     _: *mut core::ffi::c_void,
@@ -280,13 +268,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetTensorOpaqueCaptureDescriptorDataARM");
                 if val.is_null() {
-                    get_tensor_opaque_capture_descriptor_data_arm
+                    get_tensor_opaque_capture_descriptor_data
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_tensor_view_opaque_capture_descriptor_data_arm: unsafe {
-                unsafe extern "system" fn get_tensor_view_opaque_capture_descriptor_data_arm(
+            get_tensor_view_opaque_capture_descriptor_data: unsafe {
+                unsafe extern "system" fn get_tensor_view_opaque_capture_descriptor_data(
                     _: crate::vk::Device,
                     _: *const crate::vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
                     _: *mut core::ffi::c_void,
@@ -297,7 +285,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetTensorViewOpaqueCaptureDescriptorDataARM");
                 if val.is_null() {
-                    get_tensor_view_opaque_capture_descriptor_data_arm
+                    get_tensor_view_opaque_capture_descriptor_data
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -328,71 +316,69 @@ impl Device {
     }
     ///vkCreateTensorARM
     #[inline]
-    pub unsafe fn create_tensor_arm(
+    pub unsafe fn create_tensor(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::TensorCreateInfoARM<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         tensor: &mut crate::vk::TensorARM,
     ) -> crate::VkResult<()> {
-        (self.fp.create_tensor_arm)(device, create_info, allocator, tensor).result()
+        (self.fp.create_tensor)(device, create_info, allocator, tensor).result()
     }
     ///vkDestroyTensorARM
     #[inline]
-    pub unsafe fn destroy_tensor_arm(
+    pub unsafe fn destroy_tensor(
         &self,
         device: crate::vk::Device,
         tensor: crate::vk::TensorARM,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_tensor_arm)(device, tensor, allocator)
+        (self.fp.destroy_tensor)(device, tensor, allocator)
     }
     ///vkCreateTensorViewARM
     #[inline]
-    pub unsafe fn create_tensor_view_arm(
+    pub unsafe fn create_tensor_view(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::TensorViewCreateInfoARM<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         view: &mut crate::vk::TensorViewARM,
     ) -> crate::VkResult<()> {
-        (self.fp.create_tensor_view_arm)(device, create_info, allocator, view).result()
+        (self.fp.create_tensor_view)(device, create_info, allocator, view).result()
     }
     ///vkDestroyTensorViewARM
     #[inline]
-    pub unsafe fn destroy_tensor_view_arm(
+    pub unsafe fn destroy_tensor_view(
         &self,
         device: crate::vk::Device,
         tensor_view: crate::vk::TensorViewARM,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_tensor_view_arm)(device, tensor_view, allocator)
+        (self.fp.destroy_tensor_view)(device, tensor_view, allocator)
     }
     ///vkGetTensorMemoryRequirementsARM
     #[inline]
-    pub unsafe fn get_tensor_memory_requirements_arm(
+    pub unsafe fn get_tensor_memory_requirements(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::TensorMemoryRequirementsInfoARM<'_>,
         memory_requirements: &mut crate::vk::MemoryRequirements2<'_>,
     ) {
-        (self.fp.get_tensor_memory_requirements_arm)(device, info, memory_requirements)
+        (self.fp.get_tensor_memory_requirements)(device, info, memory_requirements)
     }
     ///vkBindTensorMemoryARM
     #[inline]
-    pub unsafe fn bind_tensor_memory_arm(
+    pub unsafe fn bind_tensor_memory(
         &self,
         device: crate::vk::Device,
         bind_infos: &[crate::vk::BindTensorMemoryInfoARM<'_>],
     ) -> crate::VkResult<()> {
-        (self
-            .fp
-            .bind_tensor_memory_arm)(device, bind_infos.len() as _, bind_infos.as_ptr())
+        (self.fp.bind_tensor_memory)(device, bind_infos.len() as _, bind_infos.as_ptr())
             .result()
     }
     ///vkGetDeviceTensorMemoryRequirementsARM
     #[inline]
-    pub unsafe fn get_device_tensor_memory_requirements_arm(
+    pub unsafe fn get_device_tensor_memory_requirements(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::DeviceTensorMemoryRequirementsARM<'_>,
@@ -400,47 +386,42 @@ impl Device {
     ) {
         (self
             .fp
-            .get_device_tensor_memory_requirements_arm)(
-            device,
-            info,
-            memory_requirements,
-        )
+            .get_device_tensor_memory_requirements)(device, info, memory_requirements)
     }
     ///vkCmdCopyTensorARM
     #[inline]
-    pub unsafe fn cmd_copy_tensor_arm(
+    pub unsafe fn cmd_copy_tensor(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         copy_tensor_info: &crate::vk::CopyTensorInfoARM<'_>,
     ) {
-        (self.fp.cmd_copy_tensor_arm)(command_buffer, copy_tensor_info)
+        (self.fp.cmd_copy_tensor)(command_buffer, copy_tensor_info)
     }
     ///vkGetTensorOpaqueCaptureDescriptorDataARM
     #[inline]
-    pub unsafe fn get_tensor_opaque_capture_descriptor_data_arm(
+    pub unsafe fn get_tensor_opaque_capture_descriptor_data(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::TensorCaptureDescriptorDataInfoARM<'_>,
         data: &mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.fp.get_tensor_opaque_capture_descriptor_data_arm)(device, info, data)
-            .result()
+        (self.fp.get_tensor_opaque_capture_descriptor_data)(device, info, data).result()
     }
     ///vkGetTensorViewOpaqueCaptureDescriptorDataARM
     #[inline]
-    pub unsafe fn get_tensor_view_opaque_capture_descriptor_data_arm(
+    pub unsafe fn get_tensor_view_opaque_capture_descriptor_data(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
         data: &mut core::ffi::c_void,
     ) -> crate::VkResult<()> {
-        (self.fp.get_tensor_view_opaque_capture_descriptor_data_arm)(device, info, data)
+        (self.fp.get_tensor_view_opaque_capture_descriptor_data)(device, info, data)
             .result()
     }
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_external_tensor_properties_arm: crate::vk::PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM,
+    pub get_physical_device_external_tensor_properties: crate::vk::PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -454,8 +435,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_external_tensor_properties_arm: unsafe {
-                unsafe extern "system" fn get_physical_device_external_tensor_properties_arm(
+            get_physical_device_external_tensor_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_external_tensor_properties(
                     _: crate::vk::PhysicalDevice,
                     _: *const crate::vk::PhysicalDeviceExternalTensorInfoARM<'_>,
                     _: *mut crate::vk::ExternalTensorPropertiesARM<'_>,
@@ -466,7 +447,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceExternalTensorPropertiesARM");
                 if val.is_null() {
-                    get_physical_device_external_tensor_properties_arm
+                    get_physical_device_external_tensor_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -497,7 +478,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceExternalTensorPropertiesARM
     #[inline]
-    pub unsafe fn get_physical_device_external_tensor_properties_arm(
+    pub unsafe fn get_physical_device_external_tensor_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         external_tensor_info: &crate::vk::PhysicalDeviceExternalTensorInfoARM<'_>,
@@ -505,7 +486,7 @@ impl Instance {
     ) {
         (self
             .fp
-            .get_physical_device_external_tensor_properties_arm)(
+            .get_physical_device_external_tensor_properties)(
             physical_device,
             external_tensor_info,
             external_tensor_properties,

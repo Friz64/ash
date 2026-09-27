@@ -8,8 +8,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_wayland_surface_khr: crate::vk::PFN_vkCreateWaylandSurfaceKHR,
-    pub get_physical_device_wayland_presentation_support_khr: crate::vk::PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR,
+    pub create_wayland_surface: crate::vk::PFN_vkCreateWaylandSurfaceKHR,
+    pub get_physical_device_wayland_presentation_support: crate::vk::PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -23,8 +23,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_wayland_surface_khr: unsafe {
-                unsafe extern "system" fn create_wayland_surface_khr(
+            create_wayland_surface: unsafe {
+                unsafe extern "system" fn create_wayland_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::WaylandSurfaceCreateInfoKHR<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -34,13 +34,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateWaylandSurfaceKHR");
                 if val.is_null() {
-                    create_wayland_surface_khr
+                    create_wayland_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_wayland_presentation_support_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_wayland_presentation_support_khr(
+            get_physical_device_wayland_presentation_support: unsafe {
+                unsafe extern "system" fn get_physical_device_wayland_presentation_support(
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: *mut crate::platform_types::wl_display,
@@ -51,7 +51,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceWaylandPresentationSupportKHR");
                 if val.is_null() {
-                    get_physical_device_wayland_presentation_support_khr
+                    get_physical_device_wayland_presentation_support
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -82,19 +82,19 @@ impl Instance {
     }
     ///vkCreateWaylandSurfaceKHR
     #[inline]
-    pub unsafe fn create_wayland_surface_khr(
+    pub unsafe fn create_wayland_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::WaylandSurfaceCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_wayland_surface_khr)(instance, create_info, allocator, surface)
+        (self.fp.create_wayland_surface)(instance, create_info, allocator, surface)
             .result()
     }
     ///vkGetPhysicalDeviceWaylandPresentationSupportKHR
     #[inline]
-    pub unsafe fn get_physical_device_wayland_presentation_support_khr(
+    pub unsafe fn get_physical_device_wayland_presentation_support(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
@@ -102,7 +102,7 @@ impl Instance {
     ) -> crate::vk::Bool32 {
         (self
             .fp
-            .get_physical_device_wayland_presentation_support_khr)(
+            .get_physical_device_wayland_presentation_support)(
             physical_device,
             queue_family_index,
             display,

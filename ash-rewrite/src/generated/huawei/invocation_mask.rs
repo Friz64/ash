@@ -38,7 +38,7 @@ impl crate::vk::PipelineStageFlagBits2 {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_bind_invocation_mask_huawei: crate::vk::PFN_vkCmdBindInvocationMaskHUAWEI,
+    pub cmd_bind_invocation_mask: crate::vk::PFN_vkCmdBindInvocationMaskHUAWEI,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -52,8 +52,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_bind_invocation_mask_huawei: unsafe {
-                unsafe extern "system" fn cmd_bind_invocation_mask_huawei(
+            cmd_bind_invocation_mask: unsafe {
+                unsafe extern "system" fn cmd_bind_invocation_mask(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::ImageView,
                     _: crate::vk::ImageLayout,
@@ -62,7 +62,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindInvocationMaskHUAWEI");
                 if val.is_null() {
-                    cmd_bind_invocation_mask_huawei
+                    cmd_bind_invocation_mask
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -93,15 +93,13 @@ impl Device {
     }
     ///vkCmdBindInvocationMaskHUAWEI
     #[inline]
-    pub unsafe fn cmd_bind_invocation_mask_huawei(
+    pub unsafe fn cmd_bind_invocation_mask(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         image_view: crate::vk::ImageView,
         image_layout: crate::vk::ImageLayout,
     ) {
-        (self
-            .fp
-            .cmd_bind_invocation_mask_huawei)(command_buffer, image_view, image_layout)
+        (self.fp.cmd_bind_invocation_mask)(command_buffer, image_view, image_layout)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

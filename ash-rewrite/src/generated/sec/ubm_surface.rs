@@ -8,8 +8,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_ubm_surface_sec: crate::vk::PFN_vkCreateUbmSurfaceSEC,
-    pub get_physical_device_ubm_presentation_support_sec: crate::vk::PFN_vkGetPhysicalDeviceUbmPresentationSupportSEC,
+    pub create_ubm_surface: crate::vk::PFN_vkCreateUbmSurfaceSEC,
+    pub get_physical_device_ubm_presentation_support: crate::vk::PFN_vkGetPhysicalDeviceUbmPresentationSupportSEC,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -23,8 +23,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_ubm_surface_sec: unsafe {
-                unsafe extern "system" fn create_ubm_surface_sec(
+            create_ubm_surface: unsafe {
+                unsafe extern "system" fn create_ubm_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::UbmSurfaceCreateInfoSEC<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -34,13 +34,13 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateUbmSurfaceSEC");
                 if val.is_null() {
-                    create_ubm_surface_sec
+                    create_ubm_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_physical_device_ubm_presentation_support_sec: unsafe {
-                unsafe extern "system" fn get_physical_device_ubm_presentation_support_sec(
+            get_physical_device_ubm_presentation_support: unsafe {
+                unsafe extern "system" fn get_physical_device_ubm_presentation_support(
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: *mut crate::platform_types::ubm_device,
@@ -49,7 +49,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceUbmPresentationSupportSEC");
                 if val.is_null() {
-                    get_physical_device_ubm_presentation_support_sec
+                    get_physical_device_ubm_presentation_support
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -80,19 +80,18 @@ impl Instance {
     }
     ///vkCreateUbmSurfaceSEC
     #[inline]
-    pub unsafe fn create_ubm_surface_sec(
+    pub unsafe fn create_ubm_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::UbmSurfaceCreateInfoSEC<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_ubm_surface_sec)(instance, create_info, allocator, surface)
-            .result()
+        (self.fp.create_ubm_surface)(instance, create_info, allocator, surface).result()
     }
     ///vkGetPhysicalDeviceUbmPresentationSupportSEC
     #[inline]
-    pub unsafe fn get_physical_device_ubm_presentation_support_sec(
+    pub unsafe fn get_physical_device_ubm_presentation_support(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
@@ -100,7 +99,7 @@ impl Instance {
     ) -> crate::vk::Bool32 {
         (self
             .fp
-            .get_physical_device_ubm_presentation_support_sec)(
+            .get_physical_device_ubm_presentation_support)(
             physical_device,
             queue_family_index,
             device,

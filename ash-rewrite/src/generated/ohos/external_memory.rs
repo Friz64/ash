@@ -23,8 +23,8 @@ impl crate::vk::ExternalMemoryHandleTypeFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_native_buffer_properties_ohos: crate::vk::PFN_vkGetNativeBufferPropertiesOHOS,
-    pub get_memory_native_buffer_ohos: crate::vk::PFN_vkGetMemoryNativeBufferOHOS,
+    pub get_native_buffer_properties: crate::vk::PFN_vkGetNativeBufferPropertiesOHOS,
+    pub get_memory_native_buffer: crate::vk::PFN_vkGetMemoryNativeBufferOHOS,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -38,8 +38,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_native_buffer_properties_ohos: unsafe {
-                unsafe extern "system" fn get_native_buffer_properties_ohos(
+            get_native_buffer_properties: unsafe {
+                unsafe extern "system" fn get_native_buffer_properties(
                     _: crate::vk::Device,
                     _: *const crate::platform_types::OH_NativeBuffer,
                     _: *mut crate::vk::NativeBufferPropertiesOHOS<'_>,
@@ -48,13 +48,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetNativeBufferPropertiesOHOS");
                 if val.is_null() {
-                    get_native_buffer_properties_ohos
+                    get_native_buffer_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_memory_native_buffer_ohos: unsafe {
-                unsafe extern "system" fn get_memory_native_buffer_ohos(
+            get_memory_native_buffer: unsafe {
+                unsafe extern "system" fn get_memory_native_buffer(
                     _: crate::vk::Device,
                     _: *const crate::vk::MemoryGetNativeBufferInfoOHOS<'_>,
                     _: *mut *mut crate::platform_types::OH_NativeBuffer,
@@ -63,7 +63,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetMemoryNativeBufferOHOS");
                 if val.is_null() {
-                    get_memory_native_buffer_ohos
+                    get_memory_native_buffer
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -94,23 +94,23 @@ impl Device {
     }
     ///vkGetNativeBufferPropertiesOHOS
     #[inline]
-    pub unsafe fn get_native_buffer_properties_ohos(
+    pub unsafe fn get_native_buffer_properties(
         &self,
         device: crate::vk::Device,
         buffer: &crate::platform_types::OH_NativeBuffer,
         properties: &mut crate::vk::NativeBufferPropertiesOHOS<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_native_buffer_properties_ohos)(device, buffer, properties).result()
+        (self.fp.get_native_buffer_properties)(device, buffer, properties).result()
     }
     ///vkGetMemoryNativeBufferOHOS
     #[inline]
-    pub unsafe fn get_memory_native_buffer_ohos(
+    pub unsafe fn get_memory_native_buffer(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::MemoryGetNativeBufferInfoOHOS<'_>,
         buffer: &mut *mut crate::platform_types::OH_NativeBuffer,
     ) -> crate::VkResult<()> {
-        (self.fp.get_memory_native_buffer_ohos)(device, info, buffer).result()
+        (self.fp.get_memory_native_buffer)(device, info, buffer).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

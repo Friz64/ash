@@ -9,8 +9,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_decompress_memory_nv: crate::vk::PFN_vkCmdDecompressMemoryNV,
-    pub cmd_decompress_memory_indirect_count_nv: crate::vk::PFN_vkCmdDecompressMemoryIndirectCountNV,
+    pub cmd_decompress_memory: crate::vk::PFN_vkCmdDecompressMemoryNV,
+    pub cmd_decompress_memory_indirect_count: crate::vk::PFN_vkCmdDecompressMemoryIndirectCountNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -24,8 +24,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_decompress_memory_nv: unsafe {
-                unsafe extern "system" fn cmd_decompress_memory_nv(
+            cmd_decompress_memory: unsafe {
+                unsafe extern "system" fn cmd_decompress_memory(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::DecompressMemoryRegionNV,
@@ -34,13 +34,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDecompressMemoryNV");
                 if val.is_null() {
-                    cmd_decompress_memory_nv
+                    cmd_decompress_memory
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_decompress_memory_indirect_count_nv: unsafe {
-                unsafe extern "system" fn cmd_decompress_memory_indirect_count_nv(
+            cmd_decompress_memory_indirect_count: unsafe {
+                unsafe extern "system" fn cmd_decompress_memory_indirect_count(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DeviceAddress,
                     _: crate::vk::DeviceAddress,
@@ -50,7 +50,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDecompressMemoryIndirectCountNV");
                 if val.is_null() {
-                    cmd_decompress_memory_indirect_count_nv
+                    cmd_decompress_memory_indirect_count
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -81,14 +81,14 @@ impl Device {
     }
     ///vkCmdDecompressMemoryNV
     #[inline]
-    pub unsafe fn cmd_decompress_memory_nv(
+    pub unsafe fn cmd_decompress_memory(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         decompress_memory_regions: &[crate::vk::DecompressMemoryRegionNV],
     ) {
         (self
             .fp
-            .cmd_decompress_memory_nv)(
+            .cmd_decompress_memory)(
             command_buffer,
             decompress_memory_regions.len() as _,
             decompress_memory_regions.as_ptr(),
@@ -96,7 +96,7 @@ impl Device {
     }
     ///vkCmdDecompressMemoryIndirectCountNV
     #[inline]
-    pub unsafe fn cmd_decompress_memory_indirect_count_nv(
+    pub unsafe fn cmd_decompress_memory_indirect_count(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         indirect_commands_address: crate::vk::DeviceAddress,
@@ -105,7 +105,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_decompress_memory_indirect_count_nv)(
+            .cmd_decompress_memory_indirect_count)(
             command_buffer,
             indirect_commands_address,
             indirect_commands_count_address,

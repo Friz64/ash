@@ -20,7 +20,7 @@ impl DepthClampModeEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_depth_clamp_range_ext: crate::vk::PFN_vkCmdSetDepthClampRangeEXT,
+    pub cmd_set_depth_clamp_range: crate::vk::PFN_vkCmdSetDepthClampRangeEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -34,8 +34,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_depth_clamp_range_ext: unsafe {
-                unsafe extern "system" fn cmd_set_depth_clamp_range_ext(
+            cmd_set_depth_clamp_range: unsafe {
+                unsafe extern "system" fn cmd_set_depth_clamp_range(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DepthClampModeEXT,
                     _: *const crate::vk::DepthClampRangeEXT,
@@ -44,7 +44,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDepthClampRangeEXT");
                 if val.is_null() {
-                    cmd_set_depth_clamp_range_ext
+                    cmd_set_depth_clamp_range
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -75,7 +75,7 @@ impl Device {
     }
     ///vkCmdSetDepthClampRangeEXT
     #[inline]
-    pub unsafe fn cmd_set_depth_clamp_range_ext(
+    pub unsafe fn cmd_set_depth_clamp_range(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         depth_clamp_mode: crate::vk::DepthClampModeEXT,
@@ -83,7 +83,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_depth_clamp_range_ext)(
+            .cmd_set_depth_clamp_range)(
             command_buffer,
             depth_clamp_mode,
             depth_clamp_range,

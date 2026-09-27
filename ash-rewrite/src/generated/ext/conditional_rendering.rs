@@ -52,8 +52,8 @@ impl ConditionalRenderingFlagBitsEXT {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_begin_conditional_rendering_ext: crate::vk::PFN_vkCmdBeginConditionalRenderingEXT,
-    pub cmd_end_conditional_rendering_ext: crate::vk::PFN_vkCmdEndConditionalRenderingEXT,
+    pub cmd_begin_conditional_rendering: crate::vk::PFN_vkCmdBeginConditionalRenderingEXT,
+    pub cmd_end_conditional_rendering: crate::vk::PFN_vkCmdEndConditionalRenderingEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -67,8 +67,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_begin_conditional_rendering_ext: unsafe {
-                unsafe extern "system" fn cmd_begin_conditional_rendering_ext(
+            cmd_begin_conditional_rendering: unsafe {
+                unsafe extern "system" fn cmd_begin_conditional_rendering(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::ConditionalRenderingBeginInfoEXT<'_>,
                 ) {
@@ -76,20 +76,20 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBeginConditionalRenderingEXT");
                 if val.is_null() {
-                    cmd_begin_conditional_rendering_ext
+                    cmd_begin_conditional_rendering
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_end_conditional_rendering_ext: unsafe {
-                unsafe extern "system" fn cmd_end_conditional_rendering_ext(
+            cmd_end_conditional_rendering: unsafe {
+                unsafe extern "system" fn cmd_end_conditional_rendering(
                     _: crate::vk::CommandBuffer,
                 ) {
                     panic!("unable to load vkCmdEndConditionalRenderingEXT")
                 }
                 let val = _f(c"vkCmdEndConditionalRenderingEXT");
                 if val.is_null() {
-                    cmd_end_conditional_rendering_ext
+                    cmd_end_conditional_rendering
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -120,25 +120,25 @@ impl Device {
     }
     ///vkCmdBeginConditionalRenderingEXT
     #[inline]
-    pub unsafe fn cmd_begin_conditional_rendering_ext(
+    pub unsafe fn cmd_begin_conditional_rendering(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         conditional_rendering_begin: &crate::vk::ConditionalRenderingBeginInfoEXT<'_>,
     ) {
         (self
             .fp
-            .cmd_begin_conditional_rendering_ext)(
+            .cmd_begin_conditional_rendering)(
             command_buffer,
             conditional_rendering_begin,
         )
     }
     ///vkCmdEndConditionalRenderingEXT
     #[inline]
-    pub unsafe fn cmd_end_conditional_rendering_ext(
+    pub unsafe fn cmd_end_conditional_rendering(
         &self,
         command_buffer: crate::vk::CommandBuffer,
     ) {
-        (self.fp.cmd_end_conditional_rendering_ext)(command_buffer)
+        (self.fp.cmd_end_conditional_rendering)(command_buffer)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

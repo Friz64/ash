@@ -22,7 +22,7 @@ impl CooperativeMatrixFlagBitsEXT {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_cooperative_matrix_properties2_ext: crate::vk::PFN_vkGetPhysicalDeviceCooperativeMatrixProperties2EXT,
+    pub get_physical_device_cooperative_matrix_properties2: crate::vk::PFN_vkGetPhysicalDeviceCooperativeMatrixProperties2EXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -36,8 +36,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_cooperative_matrix_properties2_ext: unsafe {
-                unsafe extern "system" fn get_physical_device_cooperative_matrix_properties2_ext(
+            get_physical_device_cooperative_matrix_properties2: unsafe {
+                unsafe extern "system" fn get_physical_device_cooperative_matrix_properties2(
                     _: crate::vk::PhysicalDevice,
                     _: *const crate::vk::PhysicalDeviceCooperativeMatrixInfo2EXT<'_>,
                     _: *mut u32,
@@ -49,7 +49,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceCooperativeMatrixProperties2EXT");
                 if val.is_null() {
-                    get_physical_device_cooperative_matrix_properties2_ext
+                    get_physical_device_cooperative_matrix_properties2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -80,14 +80,14 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceCooperativeMatrixProperties2EXT
     #[inline]
-    pub unsafe fn get_physical_device_cooperative_matrix_properties2_ext(
+    pub unsafe fn get_physical_device_cooperative_matrix_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         cooperative_matrix_info: &crate::vk::PhysicalDeviceCooperativeMatrixInfo2EXT<'_>,
     ) -> crate::VkResult<Vec<crate::vk::CooperativeMatrixProperties2EXT<'_>>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
-            .get_physical_device_cooperative_matrix_properties2_ext)(
+            .get_physical_device_cooperative_matrix_properties2)(
             physical_device,
             cooperative_matrix_info,
             property_count,

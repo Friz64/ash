@@ -140,7 +140,7 @@ impl VideoDecodeCapabilityFlagBitsKHR {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_decode_video_khr: crate::vk::PFN_vkCmdDecodeVideoKHR,
+    pub cmd_decode_video: crate::vk::PFN_vkCmdDecodeVideoKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -154,8 +154,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_decode_video_khr: unsafe {
-                unsafe extern "system" fn cmd_decode_video_khr(
+            cmd_decode_video: unsafe {
+                unsafe extern "system" fn cmd_decode_video(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::VideoDecodeInfoKHR<'_>,
                 ) {
@@ -163,7 +163,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDecodeVideoKHR");
                 if val.is_null() {
-                    cmd_decode_video_khr
+                    cmd_decode_video
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -194,12 +194,12 @@ impl Device {
     }
     ///vkCmdDecodeVideoKHR
     #[inline]
-    pub unsafe fn cmd_decode_video_khr(
+    pub unsafe fn cmd_decode_video(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         decode_info: &crate::vk::VideoDecodeInfoKHR<'_>,
     ) {
-        (self.fp.cmd_decode_video_khr)(command_buffer, decode_info)
+        (self.fp.cmd_decode_video)(command_buffer, decode_info)
     }
 }
 pub const SPEC_VERSION: u32 = 8;

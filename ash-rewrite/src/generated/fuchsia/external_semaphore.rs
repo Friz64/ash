@@ -19,8 +19,8 @@ impl crate::vk::ExternalSemaphoreHandleTypeFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_semaphore_zircon_handle_fuchsia: crate::vk::PFN_vkGetSemaphoreZirconHandleFUCHSIA,
-    pub import_semaphore_zircon_handle_fuchsia: crate::vk::PFN_vkImportSemaphoreZirconHandleFUCHSIA,
+    pub get_semaphore_zircon_handle: crate::vk::PFN_vkGetSemaphoreZirconHandleFUCHSIA,
+    pub import_semaphore_zircon_handle: crate::vk::PFN_vkImportSemaphoreZirconHandleFUCHSIA,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -34,8 +34,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_semaphore_zircon_handle_fuchsia: unsafe {
-                unsafe extern "system" fn get_semaphore_zircon_handle_fuchsia(
+            get_semaphore_zircon_handle: unsafe {
+                unsafe extern "system" fn get_semaphore_zircon_handle(
                     _: crate::vk::Device,
                     _: *const crate::vk::SemaphoreGetZirconHandleInfoFUCHSIA<'_>,
                     _: *mut crate::platform_types::zx_handle_t,
@@ -44,13 +44,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetSemaphoreZirconHandleFUCHSIA");
                 if val.is_null() {
-                    get_semaphore_zircon_handle_fuchsia
+                    get_semaphore_zircon_handle
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            import_semaphore_zircon_handle_fuchsia: unsafe {
-                unsafe extern "system" fn import_semaphore_zircon_handle_fuchsia(
+            import_semaphore_zircon_handle: unsafe {
+                unsafe extern "system" fn import_semaphore_zircon_handle(
                     _: crate::vk::Device,
                     _: *const crate::vk::ImportSemaphoreZirconHandleInfoFUCHSIA<'_>,
                 ) -> crate::vk::Result {
@@ -58,7 +58,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkImportSemaphoreZirconHandleFUCHSIA");
                 if val.is_null() {
-                    import_semaphore_zircon_handle_fuchsia
+                    import_semaphore_zircon_handle
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -89,7 +89,7 @@ impl Device {
     }
     ///vkGetSemaphoreZirconHandleFUCHSIA
     #[inline]
-    pub unsafe fn get_semaphore_zircon_handle_fuchsia(
+    pub unsafe fn get_semaphore_zircon_handle(
         &self,
         device: crate::vk::Device,
         get_zircon_handle_info: &crate::vk::SemaphoreGetZirconHandleInfoFUCHSIA<'_>,
@@ -97,16 +97,12 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_semaphore_zircon_handle_fuchsia)(
-                device,
-                get_zircon_handle_info,
-                zircon_handle,
-            )
+            .get_semaphore_zircon_handle)(device, get_zircon_handle_info, zircon_handle)
             .result()
     }
     ///vkImportSemaphoreZirconHandleFUCHSIA
     #[inline]
-    pub unsafe fn import_semaphore_zircon_handle_fuchsia(
+    pub unsafe fn import_semaphore_zircon_handle(
         &self,
         device: crate::vk::Device,
         import_semaphore_zircon_handle_info: &crate::vk::ImportSemaphoreZirconHandleInfoFUCHSIA<
@@ -115,10 +111,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .import_semaphore_zircon_handle_fuchsia)(
-                device,
-                import_semaphore_zircon_handle_info,
-            )
+            .import_semaphore_zircon_handle)(device, import_semaphore_zircon_handle_info)
             .result()
     }
 }

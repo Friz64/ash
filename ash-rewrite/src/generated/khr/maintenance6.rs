@@ -16,12 +16,12 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_descriptor_buffer_offsets2_ext: crate::vk::PFN_vkCmdSetDescriptorBufferOffsets2EXT,
-    pub cmd_bind_descriptor_buffer_embedded_samplers2_ext: crate::vk::PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT,
-    pub cmd_bind_descriptor_sets2_khr: crate::vk::PFN_vkCmdBindDescriptorSets2KHR,
-    pub cmd_push_constants2_khr: crate::vk::PFN_vkCmdPushConstants2KHR,
-    pub cmd_push_descriptor_set2_khr: crate::vk::PFN_vkCmdPushDescriptorSet2KHR,
-    pub cmd_push_descriptor_set_with_template2_khr: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate2KHR,
+    pub cmd_set_descriptor_buffer_offsets2: crate::vk::PFN_vkCmdSetDescriptorBufferOffsets2EXT,
+    pub cmd_bind_descriptor_buffer_embedded_samplers2: crate::vk::PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT,
+    pub cmd_bind_descriptor_sets2: crate::vk::PFN_vkCmdBindDescriptorSets2KHR,
+    pub cmd_push_constants2: crate::vk::PFN_vkCmdPushConstants2KHR,
+    pub cmd_push_descriptor_set2: crate::vk::PFN_vkCmdPushDescriptorSet2KHR,
+    pub cmd_push_descriptor_set_with_template2: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -35,8 +35,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_descriptor_buffer_offsets2_ext: unsafe {
-                unsafe extern "system" fn cmd_set_descriptor_buffer_offsets2_ext(
+            cmd_set_descriptor_buffer_offsets2: unsafe {
+                unsafe extern "system" fn cmd_set_descriptor_buffer_offsets2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::SetDescriptorBufferOffsetsInfoEXT<'_>,
                 ) {
@@ -44,13 +44,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDescriptorBufferOffsets2EXT");
                 if val.is_null() {
-                    cmd_set_descriptor_buffer_offsets2_ext
+                    cmd_set_descriptor_buffer_offsets2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_bind_descriptor_buffer_embedded_samplers2_ext: unsafe {
-                unsafe extern "system" fn cmd_bind_descriptor_buffer_embedded_samplers2_ext(
+            cmd_bind_descriptor_buffer_embedded_samplers2: unsafe {
+                unsafe extern "system" fn cmd_bind_descriptor_buffer_embedded_samplers2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<'_>,
                 ) {
@@ -60,13 +60,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindDescriptorBufferEmbeddedSamplers2EXT");
                 if val.is_null() {
-                    cmd_bind_descriptor_buffer_embedded_samplers2_ext
+                    cmd_bind_descriptor_buffer_embedded_samplers2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_bind_descriptor_sets2_khr: unsafe {
-                unsafe extern "system" fn cmd_bind_descriptor_sets2_khr(
+            cmd_bind_descriptor_sets2: unsafe {
+                unsafe extern "system" fn cmd_bind_descriptor_sets2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::BindDescriptorSetsInfo<'_>,
                 ) {
@@ -74,13 +74,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdBindDescriptorSets2KHR");
                 if val.is_null() {
-                    cmd_bind_descriptor_sets2_khr
+                    cmd_bind_descriptor_sets2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_push_constants2_khr: unsafe {
-                unsafe extern "system" fn cmd_push_constants2_khr(
+            cmd_push_constants2: unsafe {
+                unsafe extern "system" fn cmd_push_constants2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::PushConstantsInfo<'_>,
                 ) {
@@ -88,13 +88,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdPushConstants2KHR");
                 if val.is_null() {
-                    cmd_push_constants2_khr
+                    cmd_push_constants2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_push_descriptor_set2_khr: unsafe {
-                unsafe extern "system" fn cmd_push_descriptor_set2_khr(
+            cmd_push_descriptor_set2: unsafe {
+                unsafe extern "system" fn cmd_push_descriptor_set2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::PushDescriptorSetInfo<'_>,
                 ) {
@@ -102,13 +102,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdPushDescriptorSet2KHR");
                 if val.is_null() {
-                    cmd_push_descriptor_set2_khr
+                    cmd_push_descriptor_set2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_push_descriptor_set_with_template2_khr: unsafe {
-                unsafe extern "system" fn cmd_push_descriptor_set_with_template2_khr(
+            cmd_push_descriptor_set_with_template2: unsafe {
+                unsafe extern "system" fn cmd_push_descriptor_set_with_template2(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::PushDescriptorSetWithTemplateInfo<'_>,
                 ) {
@@ -116,7 +116,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdPushDescriptorSetWithTemplate2KHR");
                 if val.is_null() {
-                    cmd_push_descriptor_set_with_template2_khr
+                    cmd_push_descriptor_set_with_template2
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -147,7 +147,7 @@ impl Device {
     }
     ///vkCmdSetDescriptorBufferOffsets2EXT
     #[inline]
-    pub unsafe fn cmd_set_descriptor_buffer_offsets2_ext(
+    pub unsafe fn cmd_set_descriptor_buffer_offsets2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         set_descriptor_buffer_offsets_info: &crate::vk::SetDescriptorBufferOffsetsInfoEXT<
@@ -156,14 +156,14 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_descriptor_buffer_offsets2_ext)(
+            .cmd_set_descriptor_buffer_offsets2)(
             command_buffer,
             set_descriptor_buffer_offsets_info,
         )
     }
     ///vkCmdBindDescriptorBufferEmbeddedSamplers2EXT
     #[inline]
-    pub unsafe fn cmd_bind_descriptor_buffer_embedded_samplers2_ext(
+    pub unsafe fn cmd_bind_descriptor_buffer_embedded_samplers2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         bind_descriptor_buffer_embedded_samplers_info: &crate::vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<
@@ -172,43 +172,41 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_bind_descriptor_buffer_embedded_samplers2_ext)(
+            .cmd_bind_descriptor_buffer_embedded_samplers2)(
             command_buffer,
             bind_descriptor_buffer_embedded_samplers_info,
         )
     }
     ///vkCmdBindDescriptorSets2
     #[inline]
-    pub unsafe fn cmd_bind_descriptor_sets2_khr(
+    pub unsafe fn cmd_bind_descriptor_sets2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         bind_descriptor_sets_info: &crate::vk::BindDescriptorSetsInfo<'_>,
     ) {
-        (self
-            .fp
-            .cmd_bind_descriptor_sets2_khr)(command_buffer, bind_descriptor_sets_info)
+        (self.fp.cmd_bind_descriptor_sets2)(command_buffer, bind_descriptor_sets_info)
     }
     ///vkCmdPushConstants2
     #[inline]
-    pub unsafe fn cmd_push_constants2_khr(
+    pub unsafe fn cmd_push_constants2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         push_constants_info: &crate::vk::PushConstantsInfo<'_>,
     ) {
-        (self.fp.cmd_push_constants2_khr)(command_buffer, push_constants_info)
+        (self.fp.cmd_push_constants2)(command_buffer, push_constants_info)
     }
     ///vkCmdPushDescriptorSet2
     #[inline]
-    pub unsafe fn cmd_push_descriptor_set2_khr(
+    pub unsafe fn cmd_push_descriptor_set2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         push_descriptor_set_info: &crate::vk::PushDescriptorSetInfo<'_>,
     ) {
-        (self.fp.cmd_push_descriptor_set2_khr)(command_buffer, push_descriptor_set_info)
+        (self.fp.cmd_push_descriptor_set2)(command_buffer, push_descriptor_set_info)
     }
     ///vkCmdPushDescriptorSetWithTemplate2
     #[inline]
-    pub unsafe fn cmd_push_descriptor_set_with_template2_khr(
+    pub unsafe fn cmd_push_descriptor_set_with_template2(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         push_descriptor_set_with_template_info: &crate::vk::PushDescriptorSetWithTemplateInfo<
@@ -217,7 +215,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_push_descriptor_set_with_template2_khr)(
+            .cmd_push_descriptor_set_with_template2)(
             command_buffer,
             push_descriptor_set_with_template_info,
         )

@@ -12,7 +12,7 @@ impl crate::vk::Result {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_shared_swapchains_khr: crate::vk::PFN_vkCreateSharedSwapchainsKHR,
+    pub create_shared_swapchains: crate::vk::PFN_vkCreateSharedSwapchainsKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -26,8 +26,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_shared_swapchains_khr: unsafe {
-                unsafe extern "system" fn create_shared_swapchains_khr(
+            create_shared_swapchains: unsafe {
+                unsafe extern "system" fn create_shared_swapchains(
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::SwapchainCreateInfoKHR<'_>,
@@ -38,7 +38,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateSharedSwapchainsKHR");
                 if val.is_null() {
-                    create_shared_swapchains_khr
+                    create_shared_swapchains
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -69,7 +69,7 @@ impl Device {
     }
     ///vkCreateSharedSwapchainsKHR
     #[inline]
-    pub unsafe fn create_shared_swapchains_khr(
+    pub unsafe fn create_shared_swapchains(
         &self,
         device: crate::vk::Device,
         create_infos: &[crate::vk::SwapchainCreateInfoKHR<'_>],
@@ -78,7 +78,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_shared_swapchains_khr)(
+            .create_shared_swapchains)(
                 device,
                 create_infos.len() as _,
                 create_infos.as_ptr(),

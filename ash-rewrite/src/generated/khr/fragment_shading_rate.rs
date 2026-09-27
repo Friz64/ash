@@ -98,7 +98,7 @@ impl crate::vk::FormatFeatureFlagBits2 {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_fragment_shading_rate_khr: crate::vk::PFN_vkCmdSetFragmentShadingRateKHR,
+    pub cmd_set_fragment_shading_rate: crate::vk::PFN_vkCmdSetFragmentShadingRateKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -112,8 +112,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_fragment_shading_rate_khr: unsafe {
-                unsafe extern "system" fn cmd_set_fragment_shading_rate_khr(
+            cmd_set_fragment_shading_rate: unsafe {
+                unsafe extern "system" fn cmd_set_fragment_shading_rate(
                     _: crate::vk::CommandBuffer,
                     _: *const crate::vk::Extent2D,
                     _: *const [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
@@ -122,7 +122,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetFragmentShadingRateKHR");
                 if val.is_null() {
-                    cmd_set_fragment_shading_rate_khr
+                    cmd_set_fragment_shading_rate
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -153,7 +153,7 @@ impl Device {
     }
     ///vkCmdSetFragmentShadingRateKHR
     #[inline]
-    pub unsafe fn cmd_set_fragment_shading_rate_khr(
+    pub unsafe fn cmd_set_fragment_shading_rate(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         fragment_size: &crate::vk::Extent2D,
@@ -161,16 +161,12 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_fragment_shading_rate_khr)(
-            command_buffer,
-            fragment_size,
-            combiner_ops,
-        )
+            .cmd_set_fragment_shading_rate)(command_buffer, fragment_size, combiner_ops)
     }
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_fragment_shading_rates_khr: crate::vk::PFN_vkGetPhysicalDeviceFragmentShadingRatesKHR,
+    pub get_physical_device_fragment_shading_rates: crate::vk::PFN_vkGetPhysicalDeviceFragmentShadingRatesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -184,8 +180,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_fragment_shading_rates_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_fragment_shading_rates_khr(
+            get_physical_device_fragment_shading_rates: unsafe {
+                unsafe extern "system" fn get_physical_device_fragment_shading_rates(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
                     _: *mut crate::vk::PhysicalDeviceFragmentShadingRateKHR<'_>,
@@ -194,7 +190,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceFragmentShadingRatesKHR");
                 if val.is_null() {
-                    get_physical_device_fragment_shading_rates_khr
+                    get_physical_device_fragment_shading_rates
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -225,7 +221,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceFragmentShadingRatesKHR
     #[inline]
-    pub unsafe fn get_physical_device_fragment_shading_rates_khr(
+    pub unsafe fn get_physical_device_fragment_shading_rates(
         &self,
         physical_device: crate::vk::PhysicalDevice,
     ) -> crate::VkResult<Vec<crate::vk::PhysicalDeviceFragmentShadingRateKHR<'_>>> {
@@ -234,7 +230,7 @@ impl Instance {
             fragment_shading_rates|
         (self
             .fp
-            .get_physical_device_fragment_shading_rates_khr)(
+            .get_physical_device_fragment_shading_rates)(
             physical_device,
             fragment_shading_rate_count,
             fragment_shading_rates,

@@ -6,8 +6,8 @@ pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_draw_indirect_count";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_draw_indirect_count_amd: crate::vk::PFN_vkCmdDrawIndirectCountAMD,
-    pub cmd_draw_indexed_indirect_count_amd: crate::vk::PFN_vkCmdDrawIndexedIndirectCountAMD,
+    pub cmd_draw_indirect_count: crate::vk::PFN_vkCmdDrawIndirectCountAMD,
+    pub cmd_draw_indexed_indirect_count: crate::vk::PFN_vkCmdDrawIndexedIndirectCountAMD,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -21,8 +21,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_draw_indirect_count_amd: unsafe {
-                unsafe extern "system" fn cmd_draw_indirect_count_amd(
+            cmd_draw_indirect_count: unsafe {
+                unsafe extern "system" fn cmd_draw_indirect_count(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Buffer,
                     _: crate::vk::DeviceSize,
@@ -35,13 +35,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawIndirectCountAMD");
                 if val.is_null() {
-                    cmd_draw_indirect_count_amd
+                    cmd_draw_indirect_count
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_draw_indexed_indirect_count_amd: unsafe {
-                unsafe extern "system" fn cmd_draw_indexed_indirect_count_amd(
+            cmd_draw_indexed_indirect_count: unsafe {
+                unsafe extern "system" fn cmd_draw_indexed_indirect_count(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Buffer,
                     _: crate::vk::DeviceSize,
@@ -54,7 +54,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDrawIndexedIndirectCountAMD");
                 if val.is_null() {
-                    cmd_draw_indexed_indirect_count_amd
+                    cmd_draw_indexed_indirect_count
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -85,7 +85,7 @@ impl Device {
     }
     ///vkCmdDrawIndirectCount
     #[inline]
-    pub unsafe fn cmd_draw_indirect_count_amd(
+    pub unsafe fn cmd_draw_indirect_count(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         buffer: crate::vk::Buffer,
@@ -97,7 +97,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_draw_indirect_count_amd)(
+            .cmd_draw_indirect_count)(
             command_buffer,
             buffer,
             offset,
@@ -109,7 +109,7 @@ impl Device {
     }
     ///vkCmdDrawIndexedIndirectCount
     #[inline]
-    pub unsafe fn cmd_draw_indexed_indirect_count_amd(
+    pub unsafe fn cmd_draw_indexed_indirect_count(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         buffer: crate::vk::Buffer,
@@ -121,7 +121,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_draw_indexed_indirect_count_amd)(
+            .cmd_draw_indexed_indirect_count)(
             command_buffer,
             buffer,
             offset,

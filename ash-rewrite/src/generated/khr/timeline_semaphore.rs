@@ -26,9 +26,9 @@ impl crate::vk::SemaphoreWaitFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_semaphore_counter_value_khr: crate::vk::PFN_vkGetSemaphoreCounterValueKHR,
-    pub wait_semaphores_khr: crate::vk::PFN_vkWaitSemaphoresKHR,
-    pub signal_semaphore_khr: crate::vk::PFN_vkSignalSemaphoreKHR,
+    pub get_semaphore_counter_value: crate::vk::PFN_vkGetSemaphoreCounterValueKHR,
+    pub wait_semaphores: crate::vk::PFN_vkWaitSemaphoresKHR,
+    pub signal_semaphore: crate::vk::PFN_vkSignalSemaphoreKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -42,8 +42,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_semaphore_counter_value_khr: unsafe {
-                unsafe extern "system" fn get_semaphore_counter_value_khr(
+            get_semaphore_counter_value: unsafe {
+                unsafe extern "system" fn get_semaphore_counter_value(
                     _: crate::vk::Device,
                     _: crate::vk::Semaphore,
                     _: *mut u64,
@@ -52,13 +52,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetSemaphoreCounterValueKHR");
                 if val.is_null() {
-                    get_semaphore_counter_value_khr
+                    get_semaphore_counter_value
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            wait_semaphores_khr: unsafe {
-                unsafe extern "system" fn wait_semaphores_khr(
+            wait_semaphores: unsafe {
+                unsafe extern "system" fn wait_semaphores(
                     _: crate::vk::Device,
                     _: *const crate::vk::SemaphoreWaitInfo<'_>,
                     _: u64,
@@ -66,14 +66,10 @@ impl DeviceFn {
                     panic!("unable to load vkWaitSemaphoresKHR")
                 }
                 let val = _f(c"vkWaitSemaphoresKHR");
-                if val.is_null() {
-                    wait_semaphores_khr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { wait_semaphores } else { ::core::mem::transmute(val) }
             },
-            signal_semaphore_khr: unsafe {
-                unsafe extern "system" fn signal_semaphore_khr(
+            signal_semaphore: unsafe {
+                unsafe extern "system" fn signal_semaphore(
                     _: crate::vk::Device,
                     _: *const crate::vk::SemaphoreSignalInfo<'_>,
                 ) -> crate::vk::Result {
@@ -81,7 +77,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkSignalSemaphoreKHR");
                 if val.is_null() {
-                    signal_semaphore_khr
+                    signal_semaphore
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -112,32 +108,32 @@ impl Device {
     }
     ///vkGetSemaphoreCounterValue
     #[inline]
-    pub unsafe fn get_semaphore_counter_value_khr(
+    pub unsafe fn get_semaphore_counter_value(
         &self,
         device: crate::vk::Device,
         semaphore: crate::vk::Semaphore,
         value: &mut u64,
     ) -> crate::VkResult<()> {
-        (self.fp.get_semaphore_counter_value_khr)(device, semaphore, value).result()
+        (self.fp.get_semaphore_counter_value)(device, semaphore, value).result()
     }
     ///vkWaitSemaphores
     #[inline]
-    pub unsafe fn wait_semaphores_khr(
+    pub unsafe fn wait_semaphores(
         &self,
         device: crate::vk::Device,
         wait_info: &crate::vk::SemaphoreWaitInfo<'_>,
         timeout: u64,
     ) -> crate::VkResult<()> {
-        (self.fp.wait_semaphores_khr)(device, wait_info, timeout).result()
+        (self.fp.wait_semaphores)(device, wait_info, timeout).result()
     }
     ///vkSignalSemaphore
     #[inline]
-    pub unsafe fn signal_semaphore_khr(
+    pub unsafe fn signal_semaphore(
         &self,
         device: crate::vk::Device,
         signal_info: &crate::vk::SemaphoreSignalInfo<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.signal_semaphore_khr)(device, signal_info).result()
+        (self.fp.signal_semaphore)(device, signal_info).result()
     }
 }
 pub const SPEC_VERSION: u32 = 2;

@@ -10,7 +10,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_primitive_restart_index_ext: crate::vk::PFN_vkCmdSetPrimitiveRestartIndexEXT,
+    pub cmd_set_primitive_restart_index: crate::vk::PFN_vkCmdSetPrimitiveRestartIndexEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -24,8 +24,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_set_primitive_restart_index_ext: unsafe {
-                unsafe extern "system" fn cmd_set_primitive_restart_index_ext(
+            cmd_set_primitive_restart_index: unsafe {
+                unsafe extern "system" fn cmd_set_primitive_restart_index(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                 ) {
@@ -33,7 +33,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetPrimitiveRestartIndexEXT");
                 if val.is_null() {
-                    cmd_set_primitive_restart_index_ext
+                    cmd_set_primitive_restart_index
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,17 +64,14 @@ impl Device {
     }
     ///vkCmdSetPrimitiveRestartIndexEXT
     #[inline]
-    pub unsafe fn cmd_set_primitive_restart_index_ext(
+    pub unsafe fn cmd_set_primitive_restart_index(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         primitive_restart_index: u32,
     ) {
         (self
             .fp
-            .cmd_set_primitive_restart_index_ext)(
-            command_buffer,
-            primitive_restart_index,
-        )
+            .cmd_set_primitive_restart_index)(command_buffer, primitive_restart_index)
     }
 }
 pub const SPEC_VERSION: u32 = 1;

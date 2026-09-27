@@ -8,7 +8,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_ios_surface_mvk: crate::vk::PFN_vkCreateIOSSurfaceMVK,
+    pub create_ios_surface: crate::vk::PFN_vkCreateIOSSurfaceMVK,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -22,8 +22,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_ios_surface_mvk: unsafe {
-                unsafe extern "system" fn create_ios_surface_mvk(
+            create_ios_surface: unsafe {
+                unsafe extern "system" fn create_ios_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::IOSSurfaceCreateInfoMVK<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -33,7 +33,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateIOSSurfaceMVK");
                 if val.is_null() {
-                    create_ios_surface_mvk
+                    create_ios_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,15 +64,14 @@ impl Instance {
     }
     ///vkCreateIOSSurfaceMVK
     #[inline]
-    pub unsafe fn create_ios_surface_mvk(
+    pub unsafe fn create_ios_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::IOSSurfaceCreateInfoMVK<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_ios_surface_mvk)(instance, create_info, allocator, surface)
-            .result()
+        (self.fp.create_ios_surface)(instance, create_info, allocator, surface).result()
     }
 }
 pub const SPEC_VERSION: u32 = 3;

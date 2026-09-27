@@ -8,7 +8,7 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_android_surface_khr: crate::vk::PFN_vkCreateAndroidSurfaceKHR,
+    pub create_android_surface: crate::vk::PFN_vkCreateAndroidSurfaceKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -22,8 +22,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_android_surface_khr: unsafe {
-                unsafe extern "system" fn create_android_surface_khr(
+            create_android_surface: unsafe {
+                unsafe extern "system" fn create_android_surface(
                     _: crate::vk::Instance,
                     _: *const crate::vk::AndroidSurfaceCreateInfoKHR<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -33,7 +33,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkCreateAndroidSurfaceKHR");
                 if val.is_null() {
-                    create_android_surface_khr
+                    create_android_surface
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -64,14 +64,14 @@ impl Instance {
     }
     ///vkCreateAndroidSurfaceKHR
     #[inline]
-    pub unsafe fn create_android_surface_khr(
+    pub unsafe fn create_android_surface(
         &self,
         instance: crate::vk::Instance,
         create_info: &crate::vk::AndroidSurfaceCreateInfoKHR<'_>,
         allocator: &crate::vk::AllocationCallbacks<'_>,
         surface: &mut crate::vk::SurfaceKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.create_android_surface_khr)(instance, create_info, allocator, surface)
+        (self.fp.create_android_surface)(instance, create_info, allocator, surface)
             .result()
     }
 }

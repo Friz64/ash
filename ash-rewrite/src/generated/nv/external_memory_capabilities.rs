@@ -44,7 +44,7 @@ impl ExternalMemoryFeatureFlagBitsNV {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_external_image_format_properties_nv: crate::vk::PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV,
+    pub get_physical_device_external_image_format_properties: crate::vk::PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -58,8 +58,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_external_image_format_properties_nv: unsafe {
-                unsafe extern "system" fn get_physical_device_external_image_format_properties_nv(
+            get_physical_device_external_image_format_properties: unsafe {
+                unsafe extern "system" fn get_physical_device_external_image_format_properties(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::Format,
                     _: crate::vk::ImageType,
@@ -75,7 +75,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDeviceExternalImageFormatPropertiesNV");
                 if val.is_null() {
-                    get_physical_device_external_image_format_properties_nv
+                    get_physical_device_external_image_format_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -106,7 +106,7 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceExternalImageFormatPropertiesNV
     #[inline]
-    pub unsafe fn get_physical_device_external_image_format_properties_nv(
+    pub unsafe fn get_physical_device_external_image_format_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
@@ -119,7 +119,7 @@ impl Instance {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_physical_device_external_image_format_properties_nv)(
+            .get_physical_device_external_image_format_properties)(
                 physical_device,
                 format,
                 _type,

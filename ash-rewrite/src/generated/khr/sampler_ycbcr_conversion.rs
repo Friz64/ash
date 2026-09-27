@@ -134,8 +134,8 @@ impl crate::vk::ImageAspectFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_sampler_ycbcr_conversion_khr: crate::vk::PFN_vkCreateSamplerYcbcrConversionKHR,
-    pub destroy_sampler_ycbcr_conversion_khr: crate::vk::PFN_vkDestroySamplerYcbcrConversionKHR,
+    pub create_sampler_ycbcr_conversion: crate::vk::PFN_vkCreateSamplerYcbcrConversionKHR,
+    pub destroy_sampler_ycbcr_conversion: crate::vk::PFN_vkDestroySamplerYcbcrConversionKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -149,8 +149,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            create_sampler_ycbcr_conversion_khr: unsafe {
-                unsafe extern "system" fn create_sampler_ycbcr_conversion_khr(
+            create_sampler_ycbcr_conversion: unsafe {
+                unsafe extern "system" fn create_sampler_ycbcr_conversion(
                     _: crate::vk::Device,
                     _: *const crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -160,13 +160,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCreateSamplerYcbcrConversionKHR");
                 if val.is_null() {
-                    create_sampler_ycbcr_conversion_khr
+                    create_sampler_ycbcr_conversion
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            destroy_sampler_ycbcr_conversion_khr: unsafe {
-                unsafe extern "system" fn destroy_sampler_ycbcr_conversion_khr(
+            destroy_sampler_ycbcr_conversion: unsafe {
+                unsafe extern "system" fn destroy_sampler_ycbcr_conversion(
                     _: crate::vk::Device,
                     _: crate::vk::SamplerYcbcrConversion,
                     _: *const crate::vk::AllocationCallbacks<'_>,
@@ -175,7 +175,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkDestroySamplerYcbcrConversionKHR");
                 if val.is_null() {
-                    destroy_sampler_ycbcr_conversion_khr
+                    destroy_sampler_ycbcr_conversion
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -206,7 +206,7 @@ impl Device {
     }
     ///vkCreateSamplerYcbcrConversion
     #[inline]
-    pub unsafe fn create_sampler_ycbcr_conversion_khr(
+    pub unsafe fn create_sampler_ycbcr_conversion(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
@@ -215,7 +215,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .create_sampler_ycbcr_conversion_khr)(
+            .create_sampler_ycbcr_conversion)(
                 device,
                 create_info,
                 allocator,
@@ -225,15 +225,13 @@ impl Device {
     }
     ///vkDestroySamplerYcbcrConversion
     #[inline]
-    pub unsafe fn destroy_sampler_ycbcr_conversion_khr(
+    pub unsafe fn destroy_sampler_ycbcr_conversion(
         &self,
         device: crate::vk::Device,
         ycbcr_conversion: crate::vk::SamplerYcbcrConversion,
         allocator: &crate::vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_sampler_ycbcr_conversion_khr)(device, ycbcr_conversion, allocator)
+        (self.fp.destroy_sampler_ycbcr_conversion)(device, ycbcr_conversion, allocator)
     }
 }
 pub const SPEC_VERSION: u32 = 14;

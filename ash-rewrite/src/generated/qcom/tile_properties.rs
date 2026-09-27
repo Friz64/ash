@@ -9,8 +9,8 @@ impl crate::vk::StructureType {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_framebuffer_tile_properties_qcom: crate::vk::PFN_vkGetFramebufferTilePropertiesQCOM,
-    pub get_dynamic_rendering_tile_properties_qcom: crate::vk::PFN_vkGetDynamicRenderingTilePropertiesQCOM,
+    pub get_framebuffer_tile_properties: crate::vk::PFN_vkGetFramebufferTilePropertiesQCOM,
+    pub get_dynamic_rendering_tile_properties: crate::vk::PFN_vkGetDynamicRenderingTilePropertiesQCOM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -24,8 +24,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_framebuffer_tile_properties_qcom: unsafe {
-                unsafe extern "system" fn get_framebuffer_tile_properties_qcom(
+            get_framebuffer_tile_properties: unsafe {
+                unsafe extern "system" fn get_framebuffer_tile_properties(
                     _: crate::vk::Device,
                     _: crate::vk::Framebuffer,
                     _: *mut u32,
@@ -35,13 +35,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetFramebufferTilePropertiesQCOM");
                 if val.is_null() {
-                    get_framebuffer_tile_properties_qcom
+                    get_framebuffer_tile_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_dynamic_rendering_tile_properties_qcom: unsafe {
-                unsafe extern "system" fn get_dynamic_rendering_tile_properties_qcom(
+            get_dynamic_rendering_tile_properties: unsafe {
+                unsafe extern "system" fn get_dynamic_rendering_tile_properties(
                     _: crate::vk::Device,
                     _: *const crate::vk::RenderingInfo<'_>,
                     _: *mut crate::vk::TilePropertiesQCOM<'_>,
@@ -50,7 +50,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDynamicRenderingTilePropertiesQCOM");
                 if val.is_null() {
-                    get_dynamic_rendering_tile_properties_qcom
+                    get_dynamic_rendering_tile_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -81,14 +81,14 @@ impl Device {
     }
     ///vkGetFramebufferTilePropertiesQCOM
     #[inline]
-    pub unsafe fn get_framebuffer_tile_properties_qcom(
+    pub unsafe fn get_framebuffer_tile_properties(
         &self,
         device: crate::vk::Device,
         framebuffer: crate::vk::Framebuffer,
     ) -> crate::VkResult<Vec<crate::vk::TilePropertiesQCOM<'_>>> {
         crate::read_into_uninitialized_vector(|properties_count, properties| (self
             .fp
-            .get_framebuffer_tile_properties_qcom)(
+            .get_framebuffer_tile_properties)(
             device,
             framebuffer,
             properties_count,
@@ -97,7 +97,7 @@ impl Device {
     }
     ///vkGetDynamicRenderingTilePropertiesQCOM
     #[inline]
-    pub unsafe fn get_dynamic_rendering_tile_properties_qcom(
+    pub unsafe fn get_dynamic_rendering_tile_properties(
         &self,
         device: crate::vk::Device,
         rendering_info: &crate::vk::RenderingInfo<'_>,
@@ -105,11 +105,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_dynamic_rendering_tile_properties_qcom)(
-                device,
-                rendering_info,
-                properties,
-            )
+            .get_dynamic_rendering_tile_properties)(device, rendering_info, properties)
             .result()
     }
 }

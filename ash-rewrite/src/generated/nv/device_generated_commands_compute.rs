@@ -27,9 +27,9 @@ impl crate::vk::DescriptorSetLayoutCreateFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_update_pipeline_indirect_buffer_nv: crate::vk::PFN_vkCmdUpdatePipelineIndirectBufferNV,
-    pub get_pipeline_indirect_memory_requirements_nv: crate::vk::PFN_vkGetPipelineIndirectMemoryRequirementsNV,
-    pub get_pipeline_indirect_device_address_nv: crate::vk::PFN_vkGetPipelineIndirectDeviceAddressNV,
+    pub cmd_update_pipeline_indirect_buffer: crate::vk::PFN_vkCmdUpdatePipelineIndirectBufferNV,
+    pub get_pipeline_indirect_memory_requirements: crate::vk::PFN_vkGetPipelineIndirectMemoryRequirementsNV,
+    pub get_pipeline_indirect_device_address: crate::vk::PFN_vkGetPipelineIndirectDeviceAddressNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -43,8 +43,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            cmd_update_pipeline_indirect_buffer_nv: unsafe {
-                unsafe extern "system" fn cmd_update_pipeline_indirect_buffer_nv(
+            cmd_update_pipeline_indirect_buffer: unsafe {
+                unsafe extern "system" fn cmd_update_pipeline_indirect_buffer(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::PipelineBindPoint,
                     _: crate::vk::Pipeline,
@@ -53,13 +53,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdUpdatePipelineIndirectBufferNV");
                 if val.is_null() {
-                    cmd_update_pipeline_indirect_buffer_nv
+                    cmd_update_pipeline_indirect_buffer
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_pipeline_indirect_memory_requirements_nv: unsafe {
-                unsafe extern "system" fn get_pipeline_indirect_memory_requirements_nv(
+            get_pipeline_indirect_memory_requirements: unsafe {
+                unsafe extern "system" fn get_pipeline_indirect_memory_requirements(
                     _: crate::vk::Device,
                     _: *const crate::vk::ComputePipelineCreateInfo<'_>,
                     _: *mut crate::vk::MemoryRequirements2<'_>,
@@ -68,13 +68,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetPipelineIndirectMemoryRequirementsNV");
                 if val.is_null() {
-                    get_pipeline_indirect_memory_requirements_nv
+                    get_pipeline_indirect_memory_requirements
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_pipeline_indirect_device_address_nv: unsafe {
-                unsafe extern "system" fn get_pipeline_indirect_device_address_nv(
+            get_pipeline_indirect_device_address: unsafe {
+                unsafe extern "system" fn get_pipeline_indirect_device_address(
                     _: crate::vk::Device,
                     _: *const crate::vk::PipelineIndirectDeviceAddressInfoNV<'_>,
                 ) -> crate::vk::DeviceAddress {
@@ -82,7 +82,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetPipelineIndirectDeviceAddressNV");
                 if val.is_null() {
-                    get_pipeline_indirect_device_address_nv
+                    get_pipeline_indirect_device_address
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -113,7 +113,7 @@ impl Device {
     }
     ///vkCmdUpdatePipelineIndirectBufferNV
     #[inline]
-    pub unsafe fn cmd_update_pipeline_indirect_buffer_nv(
+    pub unsafe fn cmd_update_pipeline_indirect_buffer(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         pipeline_bind_point: crate::vk::PipelineBindPoint,
@@ -121,7 +121,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_update_pipeline_indirect_buffer_nv)(
+            .cmd_update_pipeline_indirect_buffer)(
             command_buffer,
             pipeline_bind_point,
             pipeline,
@@ -129,7 +129,7 @@ impl Device {
     }
     ///vkGetPipelineIndirectMemoryRequirementsNV
     #[inline]
-    pub unsafe fn get_pipeline_indirect_memory_requirements_nv(
+    pub unsafe fn get_pipeline_indirect_memory_requirements(
         &self,
         device: crate::vk::Device,
         create_info: &crate::vk::ComputePipelineCreateInfo<'_>,
@@ -137,7 +137,7 @@ impl Device {
     ) {
         (self
             .fp
-            .get_pipeline_indirect_memory_requirements_nv)(
+            .get_pipeline_indirect_memory_requirements)(
             device,
             create_info,
             memory_requirements,
@@ -145,12 +145,12 @@ impl Device {
     }
     ///vkGetPipelineIndirectDeviceAddressNV
     #[inline]
-    pub unsafe fn get_pipeline_indirect_device_address_nv(
+    pub unsafe fn get_pipeline_indirect_device_address(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::PipelineIndirectDeviceAddressInfoNV<'_>,
     ) -> crate::vk::DeviceAddress {
-        (self.fp.get_pipeline_indirect_device_address_nv)(device, info)
+        (self.fp.get_pipeline_indirect_device_address)(device, info)
     }
 }
 pub const SPEC_VERSION: u32 = 2;

@@ -80,12 +80,12 @@ impl crate::vk::MemoryAllocateFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_device_group_present_capabilities_khr: crate::vk::PFN_vkGetDeviceGroupPresentCapabilitiesKHR,
-    pub get_device_group_surface_present_modes_khr: crate::vk::PFN_vkGetDeviceGroupSurfacePresentModesKHR,
-    pub acquire_next_image2_khr: crate::vk::PFN_vkAcquireNextImage2KHR,
-    pub get_device_group_peer_memory_features_khr: crate::vk::PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR,
-    pub cmd_set_device_mask_khr: crate::vk::PFN_vkCmdSetDeviceMaskKHR,
-    pub cmd_dispatch_base_khr: crate::vk::PFN_vkCmdDispatchBaseKHR,
+    pub get_device_group_present_capabilities: crate::vk::PFN_vkGetDeviceGroupPresentCapabilitiesKHR,
+    pub get_device_group_surface_present_modes: crate::vk::PFN_vkGetDeviceGroupSurfacePresentModesKHR,
+    pub acquire_next_image2: crate::vk::PFN_vkAcquireNextImage2KHR,
+    pub get_device_group_peer_memory_features: crate::vk::PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR,
+    pub cmd_set_device_mask: crate::vk::PFN_vkCmdSetDeviceMaskKHR,
+    pub cmd_dispatch_base: crate::vk::PFN_vkCmdDispatchBaseKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -99,8 +99,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_device_group_present_capabilities_khr: unsafe {
-                unsafe extern "system" fn get_device_group_present_capabilities_khr(
+            get_device_group_present_capabilities: unsafe {
+                unsafe extern "system" fn get_device_group_present_capabilities(
                     _: crate::vk::Device,
                     _: *mut crate::vk::DeviceGroupPresentCapabilitiesKHR<'_>,
                 ) -> crate::vk::Result {
@@ -108,13 +108,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceGroupPresentCapabilitiesKHR");
                 if val.is_null() {
-                    get_device_group_present_capabilities_khr
+                    get_device_group_present_capabilities
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_device_group_surface_present_modes_khr: unsafe {
-                unsafe extern "system" fn get_device_group_surface_present_modes_khr(
+            get_device_group_surface_present_modes: unsafe {
+                unsafe extern "system" fn get_device_group_surface_present_modes(
                     _: crate::vk::Device,
                     _: crate::vk::SurfaceKHR,
                     _: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
@@ -123,13 +123,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceGroupSurfacePresentModesKHR");
                 if val.is_null() {
-                    get_device_group_surface_present_modes_khr
+                    get_device_group_surface_present_modes
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            acquire_next_image2_khr: unsafe {
-                unsafe extern "system" fn acquire_next_image2_khr(
+            acquire_next_image2: unsafe {
+                unsafe extern "system" fn acquire_next_image2(
                     _: crate::vk::Device,
                     _: *const crate::vk::AcquireNextImageInfoKHR<'_>,
                     _: *mut u32,
@@ -138,13 +138,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkAcquireNextImage2KHR");
                 if val.is_null() {
-                    acquire_next_image2_khr
+                    acquire_next_image2
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            get_device_group_peer_memory_features_khr: unsafe {
-                unsafe extern "system" fn get_device_group_peer_memory_features_khr(
+            get_device_group_peer_memory_features: unsafe {
+                unsafe extern "system" fn get_device_group_peer_memory_features(
                     _: crate::vk::Device,
                     _: u32,
                     _: u32,
@@ -155,13 +155,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetDeviceGroupPeerMemoryFeaturesKHR");
                 if val.is_null() {
-                    get_device_group_peer_memory_features_khr
+                    get_device_group_peer_memory_features
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_set_device_mask_khr: unsafe {
-                unsafe extern "system" fn cmd_set_device_mask_khr(
+            cmd_set_device_mask: unsafe {
+                unsafe extern "system" fn cmd_set_device_mask(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                 ) {
@@ -169,13 +169,13 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdSetDeviceMaskKHR");
                 if val.is_null() {
-                    cmd_set_device_mask_khr
+                    cmd_set_device_mask
                 } else {
                     ::core::mem::transmute(val)
                 }
             },
-            cmd_dispatch_base_khr: unsafe {
-                unsafe extern "system" fn cmd_dispatch_base_khr(
+            cmd_dispatch_base: unsafe {
+                unsafe extern "system" fn cmd_dispatch_base(
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
@@ -188,7 +188,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkCmdDispatchBaseKHR");
                 if val.is_null() {
-                    cmd_dispatch_base_khr
+                    cmd_dispatch_base
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -219,7 +219,7 @@ impl Device {
     }
     ///vkGetDeviceGroupPresentCapabilitiesKHR
     #[inline]
-    pub unsafe fn get_device_group_present_capabilities_khr(
+    pub unsafe fn get_device_group_present_capabilities(
         &self,
         device: crate::vk::Device,
         device_group_present_capabilities: &mut crate::vk::DeviceGroupPresentCapabilitiesKHR<
@@ -228,7 +228,7 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self
             .fp
-            .get_device_group_present_capabilities_khr)(
+            .get_device_group_present_capabilities)(
                 device,
                 device_group_present_capabilities,
             )
@@ -236,28 +236,27 @@ impl Device {
     }
     ///vkGetDeviceGroupSurfacePresentModesKHR
     #[inline]
-    pub unsafe fn get_device_group_surface_present_modes_khr(
+    pub unsafe fn get_device_group_surface_present_modes(
         &self,
         device: crate::vk::Device,
         surface: crate::vk::SurfaceKHR,
         modes: &mut crate::vk::DeviceGroupPresentModeFlagsKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.get_device_group_surface_present_modes_khr)(device, surface, modes)
-            .result()
+        (self.fp.get_device_group_surface_present_modes)(device, surface, modes).result()
     }
     ///vkAcquireNextImage2KHR
     #[inline]
-    pub unsafe fn acquire_next_image2_khr(
+    pub unsafe fn acquire_next_image2(
         &self,
         device: crate::vk::Device,
         acquire_info: &crate::vk::AcquireNextImageInfoKHR<'_>,
         image_index: &mut u32,
     ) -> crate::VkResult<()> {
-        (self.fp.acquire_next_image2_khr)(device, acquire_info, image_index).result()
+        (self.fp.acquire_next_image2)(device, acquire_info, image_index).result()
     }
     ///vkGetDeviceGroupPeerMemoryFeatures
     #[inline]
-    pub unsafe fn get_device_group_peer_memory_features_khr(
+    pub unsafe fn get_device_group_peer_memory_features(
         &self,
         device: crate::vk::Device,
         heap_index: u32,
@@ -267,7 +266,7 @@ impl Device {
     ) {
         (self
             .fp
-            .get_device_group_peer_memory_features_khr)(
+            .get_device_group_peer_memory_features)(
             device,
             heap_index,
             local_device_index,
@@ -277,16 +276,16 @@ impl Device {
     }
     ///vkCmdSetDeviceMask
     #[inline]
-    pub unsafe fn cmd_set_device_mask_khr(
+    pub unsafe fn cmd_set_device_mask(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         device_mask: u32,
     ) {
-        (self.fp.cmd_set_device_mask_khr)(command_buffer, device_mask)
+        (self.fp.cmd_set_device_mask)(command_buffer, device_mask)
     }
     ///vkCmdDispatchBase
     #[inline]
-    pub unsafe fn cmd_dispatch_base_khr(
+    pub unsafe fn cmd_dispatch_base(
         &self,
         command_buffer: crate::vk::CommandBuffer,
         base_group_x: u32,
@@ -298,7 +297,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_dispatch_base_khr)(
+            .cmd_dispatch_base)(
             command_buffer,
             base_group_x,
             base_group_y,
@@ -311,7 +310,7 @@ impl Device {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_present_rectangles_khr: crate::vk::PFN_vkGetPhysicalDevicePresentRectanglesKHR,
+    pub get_physical_device_present_rectangles: crate::vk::PFN_vkGetPhysicalDevicePresentRectanglesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
@@ -325,8 +324,8 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_physical_device_present_rectangles_khr: unsafe {
-                unsafe extern "system" fn get_physical_device_present_rectangles_khr(
+            get_physical_device_present_rectangles: unsafe {
+                unsafe extern "system" fn get_physical_device_present_rectangles(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::SurfaceKHR,
                     _: *mut u32,
@@ -336,7 +335,7 @@ impl InstanceFn {
                 }
                 let val = _f(c"vkGetPhysicalDevicePresentRectanglesKHR");
                 if val.is_null() {
-                    get_physical_device_present_rectangles_khr
+                    get_physical_device_present_rectangles
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -367,14 +366,14 @@ impl Instance {
     }
     ///vkGetPhysicalDevicePresentRectanglesKHR
     #[inline]
-    pub unsafe fn get_physical_device_present_rectangles_khr(
+    pub unsafe fn get_physical_device_present_rectangles(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,
     ) -> crate::VkResult<Vec<crate::vk::Rect2D>> {
         crate::read_into_uninitialized_vector(|rect_count, rects| (self
             .fp
-            .get_physical_device_present_rectangles_khr)(
+            .get_physical_device_present_rectangles)(
             physical_device,
             surface,
             rect_count,

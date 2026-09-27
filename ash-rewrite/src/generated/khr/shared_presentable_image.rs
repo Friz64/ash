@@ -17,7 +17,7 @@ impl crate::vk::PresentModeKHR {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_swapchain_status_khr: crate::vk::PFN_vkGetSwapchainStatusKHR,
+    pub get_swapchain_status: crate::vk::PFN_vkGetSwapchainStatusKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -31,8 +31,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_swapchain_status_khr: unsafe {
-                unsafe extern "system" fn get_swapchain_status_khr(
+            get_swapchain_status: unsafe {
+                unsafe extern "system" fn get_swapchain_status(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
                 ) -> crate::vk::Result {
@@ -40,7 +40,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetSwapchainStatusKHR");
                 if val.is_null() {
-                    get_swapchain_status_khr
+                    get_swapchain_status
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -71,12 +71,12 @@ impl Device {
     }
     ///vkGetSwapchainStatusKHR
     #[inline]
-    pub unsafe fn get_swapchain_status_khr(
+    pub unsafe fn get_swapchain_status(
         &self,
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
     ) -> crate::VkResult<()> {
-        (self.fp.get_swapchain_status_khr)(device, swapchain).result()
+        (self.fp.get_swapchain_status)(device, swapchain).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

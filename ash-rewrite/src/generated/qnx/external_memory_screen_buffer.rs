@@ -24,7 +24,7 @@ impl crate::vk::ExternalMemoryHandleTypeFlagBits {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_screen_buffer_properties_qnx: crate::vk::PFN_vkGetScreenBufferPropertiesQNX,
+    pub get_screen_buffer_properties: crate::vk::PFN_vkGetScreenBufferPropertiesQNX,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -38,8 +38,8 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_screen_buffer_properties_qnx: unsafe {
-                unsafe extern "system" fn get_screen_buffer_properties_qnx(
+            get_screen_buffer_properties: unsafe {
+                unsafe extern "system" fn get_screen_buffer_properties(
                     _: crate::vk::Device,
                     _: *const crate::platform_types::_screen_buffer,
                     _: *mut crate::vk::ScreenBufferPropertiesQNX<'_>,
@@ -48,7 +48,7 @@ impl DeviceFn {
                 }
                 let val = _f(c"vkGetScreenBufferPropertiesQNX");
                 if val.is_null() {
-                    get_screen_buffer_properties_qnx
+                    get_screen_buffer_properties
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -79,13 +79,13 @@ impl Device {
     }
     ///vkGetScreenBufferPropertiesQNX
     #[inline]
-    pub unsafe fn get_screen_buffer_properties_qnx(
+    pub unsafe fn get_screen_buffer_properties(
         &self,
         device: crate::vk::Device,
         buffer: &crate::platform_types::_screen_buffer,
         properties: &mut crate::vk::ScreenBufferPropertiesQNX<'_>,
     ) -> crate::VkResult<()> {
-        (self.fp.get_screen_buffer_properties_qnx)(device, buffer, properties).result()
+        (self.fp.get_screen_buffer_properties)(device, buffer, properties).result()
     }
 }
 pub const SPEC_VERSION: u32 = 1;
