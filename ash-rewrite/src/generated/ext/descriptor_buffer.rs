@@ -380,11 +380,16 @@ impl Device {
         &self,
         device: crate::vk::Device,
         descriptor_info: &crate::vk::DescriptorGetInfoEXT<'_>,
-        descriptor: &mut [core::ffi::c_void],
+        descriptor: &mut [u8],
     ) {
         (self
             .fp
-            .get_descriptor)(device, descriptor_info, data_size, descriptor.as_mut_ptr())
+            .get_descriptor)(
+            device,
+            descriptor_info,
+            data_size,
+            descriptor.as_mut_ptr().cast(),
+        )
     }
     ///vkCmdBindDescriptorBuffersEXT
     #[inline]

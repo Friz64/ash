@@ -468,7 +468,7 @@ impl Device {
         command_buffer: crate::vk::CommandBuffer,
         dst_range: &crate::vk::DeviceAddressRangeKHR,
         dst_flags: crate::vk::AddressCommandFlagsKHR,
-        data: &[core::ffi::c_void],
+        data: &[u8],
     ) {
         (self
             .fp
@@ -477,7 +477,7 @@ impl Device {
             dst_range,
             dst_flags,
             data.len() as _,
-            data.as_ptr(),
+            data.as_ptr().cast(),
         )
     }
     ///vkCmdFillMemoryKHR

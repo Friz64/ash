@@ -321,7 +321,7 @@ impl Device {
         pipeline: crate::vk::Pipeline,
         first_group: u32,
         group_count: u32,
-        data: &mut [core::ffi::c_void],
+        data: &mut [u8],
     ) -> crate::VkResult<()> {
         (self
             .fp
@@ -331,7 +331,7 @@ impl Device {
                 first_group,
                 group_count,
                 data_size,
-                data.as_mut_ptr(),
+                data.as_mut_ptr().cast(),
             )
             .result()
     }
@@ -343,7 +343,7 @@ impl Device {
         pipeline: crate::vk::Pipeline,
         first_group: u32,
         group_count: u32,
-        data: &mut [core::ffi::c_void],
+        data: &mut [u8],
     ) -> crate::VkResult<()> {
         (self
             .fp
@@ -353,7 +353,7 @@ impl Device {
                 first_group,
                 group_count,
                 data_size,
-                data.as_mut_ptr(),
+                data.as_mut_ptr().cast(),
             )
             .result()
     }

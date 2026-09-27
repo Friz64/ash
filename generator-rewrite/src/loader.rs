@@ -373,13 +373,20 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                 &Ty::Ptr(element, mutability)
                     if let Some(Length::DefinedByParam(..)) = param.length =>
                 {
-                    result.call_arg = match mutability {
+                    let mut element = element.clone();
+                    let mut call_arg = match mutability {
                         Mutability::Mut => quote! { #name.as_mut_ptr() },
                         Mutability::Not => quote! { #name.as_ptr() },
                     };
 
+                    if let Ty::CPrimary(CPrimaryType::Void) = element {
+                        element = Ty::CPrimary(CPrimaryType::UInt8);
+                        call_arg = quote! { #call_arg.cast() };
+                    }
+
                     public_type =
                         Some(RustTy::Slice(Box::new(element.to_rust()), mutability, None));
+                    result.call_arg = call_arg;
                 }
                 &Ty::Ptr(to, mutability) => {
                     public_type = Some(RustTy::Ref(Box::new(to.to_rust()), mutability));

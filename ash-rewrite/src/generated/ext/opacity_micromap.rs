@@ -579,7 +579,7 @@ impl Device {
         device: crate::vk::Device,
         micromaps: &[crate::vk::MicromapEXT],
         query_type: crate::vk::QueryType,
-        data: &mut [core::ffi::c_void],
+        data: &mut [u8],
         stride: usize,
     ) -> crate::VkResult<()> {
         (self
@@ -590,7 +590,7 @@ impl Device {
                 micromaps.as_ptr(),
                 query_type,
                 data_size,
-                data.as_mut_ptr(),
+                data.as_mut_ptr().cast(),
                 stride,
             )
             .result()

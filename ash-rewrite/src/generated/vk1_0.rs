@@ -4007,7 +4007,7 @@ impl crate::Device {
         query_pool: crate::vk::QueryPool,
         first_query: u32,
         query_count: u32,
-        data: &mut [core::ffi::c_void],
+        data: &mut [u8],
         stride: crate::vk::DeviceSize,
         flags: crate::vk::QueryResultFlags,
     ) -> crate::VkResult<()> {
@@ -4019,7 +4019,7 @@ impl crate::Device {
                 first_query,
                 query_count,
                 data_size,
-                data.as_mut_ptr(),
+                data.as_mut_ptr().cast(),
                 stride,
                 flags,
             )
@@ -4963,7 +4963,7 @@ impl crate::Device {
         command_buffer: crate::vk::CommandBuffer,
         dst_buffer: crate::vk::Buffer,
         dst_offset: crate::vk::DeviceSize,
-        data: &[core::ffi::c_void],
+        data: &[u8],
     ) {
         (self
             .device_fn_1_0
@@ -4972,7 +4972,7 @@ impl crate::Device {
             dst_buffer,
             dst_offset,
             data.len() as _,
-            data.as_ptr(),
+            data.as_ptr().cast(),
         )
     }
     ///vkCmdFillBuffer
@@ -5228,7 +5228,7 @@ impl crate::Device {
         layout: crate::vk::PipelineLayout,
         stage_flags: crate::vk::ShaderStageFlags,
         offset: u32,
-        values: &[core::ffi::c_void],
+        values: &[u8],
     ) {
         (self
             .device_fn_1_0
@@ -5238,7 +5238,7 @@ impl crate::Device {
             stage_flags,
             offset,
             values.len() as _,
-            values.as_ptr(),
+            values.as_ptr().cast(),
         )
     }
     ///vkCmdBeginRenderPass
