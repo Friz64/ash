@@ -106,39 +106,69 @@ impl Device {
     }
     ///vkGetQueueCheckpointDataNV
     #[inline]
+    pub unsafe fn get_queue_checkpoint_data_len(
+        &self,
+        queue: crate::vk::Queue,
+    ) -> usize {
+        let mut checkpoint_data_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_queue_checkpoint_data)(
+            queue,
+            checkpoint_data_count.as_mut_ptr(),
+            core::ptr::null_mut(),
+        );
+        checkpoint_data_count.assume_init() as usize
+    }
+    ///vkGetQueueCheckpointDataNV
+    #[inline]
     pub unsafe fn get_queue_checkpoint_data(
         &self,
         queue: crate::vk::Queue,
-    ) -> Vec<crate::vk::CheckpointDataNV<'_>> {
-        crate::read_into_uninitialized_vector(|checkpoint_data_count, checkpoint_data| {
-                (self
-                    .fp
-                    .get_queue_checkpoint_data)(
-                    queue,
-                    checkpoint_data_count,
-                    checkpoint_data,
-                );
-                crate::vk::Result::SUCCESS
-            })
-            .unwrap()
+        checkpoint_data: &mut [crate::vk::CheckpointDataNV<'_>],
+    ) {
+        let mut checkpoint_data_count = checkpoint_data.len() as _;
+        (self
+            .fp
+            .get_queue_checkpoint_data)(
+            queue,
+            &mut checkpoint_data_count,
+            checkpoint_data.as_mut_ptr(),
+        );
+        assert_eq!(checkpoint_data_count as usize, checkpoint_data.len());
+    }
+    ///vkGetQueueCheckpointData2NV
+    #[inline]
+    pub unsafe fn get_queue_checkpoint_data2_len(
+        &self,
+        queue: crate::vk::Queue,
+    ) -> usize {
+        let mut checkpoint_data_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_queue_checkpoint_data2)(
+            queue,
+            checkpoint_data_count.as_mut_ptr(),
+            core::ptr::null_mut(),
+        );
+        checkpoint_data_count.assume_init() as usize
     }
     ///vkGetQueueCheckpointData2NV
     #[inline]
     pub unsafe fn get_queue_checkpoint_data2(
         &self,
         queue: crate::vk::Queue,
-    ) -> Vec<crate::vk::CheckpointData2NV<'_>> {
-        crate::read_into_uninitialized_vector(|checkpoint_data_count, checkpoint_data| {
-                (self
-                    .fp
-                    .get_queue_checkpoint_data2)(
-                    queue,
-                    checkpoint_data_count,
-                    checkpoint_data,
-                );
-                crate::vk::Result::SUCCESS
-            })
-            .unwrap()
+        checkpoint_data: &mut [crate::vk::CheckpointData2NV<'_>],
+    ) {
+        let mut checkpoint_data_count = checkpoint_data.len() as _;
+        (self
+            .fp
+            .get_queue_checkpoint_data2)(
+            queue,
+            &mut checkpoint_data_count,
+            checkpoint_data.as_mut_ptr(),
+        );
+        assert_eq!(checkpoint_data_count as usize, checkpoint_data.len());
     }
 }
 pub const SPEC_VERSION: u32 = 2;

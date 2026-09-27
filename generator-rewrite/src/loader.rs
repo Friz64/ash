@@ -5,7 +5,7 @@ use crate::{
 use analysis::{
     decl::{CPrimaryType, Mutability, Ty},
     item::{
-        CommandItem, RequireLocation,
+        CommandItem, RequireLocation, TypeItem,
         function::{Command, Length},
     },
     name::{CommandName, TypeName, VariableName},
@@ -305,13 +305,16 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
         .collect();
     let mut length_calculations: IndexMap<VariableName, Vec<TokenStream>> = IndexMap::new();
 
-    enum MultiCallLength {
-        ReadIntoUninitializedVector {
-            count: Ident,
-            data: Ident,
-            element: &'static Ty,
-        },
-        SeperateLenMethod {},
+    enum MultiCallKind {
+        ReadIntoUninitializedVector,
+        SeperateLenMethod,
+    }
+
+    struct MultiCallLength {
+        kind: MultiCallKind,
+        count: VariableName,
+        data: VariableName,
+        element: &'static Ty,
     }
 
     let mut multi_call_length = None;
@@ -345,24 +348,49 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                         &length_param.decl.ty
                     } =>
             {
+                let length_param_name = param_ident(length_param);
+                let length_wrapper_param = &mut wrapper_params[&length_param];
+
                 // TODO
                 // assert!(
-                //     wrapper_params[&length_param].is_none(),
+                //     length_wrapper_param.is_none(),
                 //     "only one multi call length parameter is supported"
                 // );
 
-                call_arg = quote! { #name };
-                public_type = None;
+                let kind = if let Ty::ApiType(element_type) = element
+                    && let TypeItem::Struct(structure) =
+                        ctx.items.types[element_type].resolve_alias(ctx.items)
+                    && let Some(Mutability::Mut) = structure.p_next
+                {
+                    call_arg = quote! { #name.as_mut_ptr() };
+                    public_type = Some(RustTy::Slice(
+                        Box::new(element.to_rust()),
+                        Mutability::Mut,
+                        None,
+                    ));
 
-                let length_param_name = param_ident(length_param);
-                wrapper_params[&length_param] = Some(WrapperParam {
-                    call_arg: quote! { #length_param_name },
-                    public_type: None,
-                });
+                    *length_wrapper_param = Some(WrapperParam {
+                        call_arg: quote! { &mut #length_param_name },
+                        public_type: None,
+                    });
 
-                multi_call_length = Some(MultiCallLength::ReadIntoUninitializedVector {
-                    count: length_param_name,
-                    data: name.clone(),
+                    MultiCallKind::SeperateLenMethod
+                } else {
+                    call_arg = quote! { #name };
+                    public_type = None;
+
+                    *length_wrapper_param = Some(WrapperParam {
+                        call_arg: quote! { #length_param_name },
+                        public_type: None,
+                    });
+
+                    MultiCallKind::ReadIntoUninitializedVector
+                };
+
+                multi_call_length = Some(MultiCallLength {
+                    kind,
+                    count: length_param,
+                    data: param.decl.name,
                     element,
                 });
             }
@@ -400,30 +428,43 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
         })
     }
 
-    let call_args = wrapper_params.iter().map(|(name, wrapper)| match wrapper {
-        Some(wrapper) => wrapper.call_arg.clone(),
-        None => {
-            let name = param_ident(*name);
-            quote! { #name }
-        }
-    });
+    let call_args_map: IndexMap<VariableName, TokenStream> = wrapper_params
+        .iter()
+        .map(|(&name, wrapper)| {
+            let value = match wrapper {
+                Some(wrapper) => wrapper.call_arg.clone(),
+                None => {
+                    let name = param_ident(name);
+                    quote! { #name }
+                }
+            };
 
-    let public_params = command.params.iter().enumerate().filter_map(|(i, param)| {
-        let ty = if let Some(wrapper) = wrapper_params.values().nth(i).unwrap() {
-            &wrapper.public_type
-        } else if let Ty::Ptr(to, mutability) = param.decl.ty {
-            &Some(RustTy::Ref(Box::new(to.to_rust()), mutability))
-        } else {
-            &Some(param.decl.ty.to_rust())
-        };
-
-        ty.as_ref().map(|ty| {
-            let name = param_ident(param.decl.name);
-            let ty_tokens = ty.tokens(ctx, None);
-            quote! { #name: #ty_tokens }
+            (name, value)
         })
-    });
+        .collect();
 
+    let public_params_map: IndexMap<VariableName, TokenStream> = command
+        .params
+        .iter()
+        .enumerate()
+        .filter_map(|(i, param)| {
+            let ty = if let Some(wrapper) = wrapper_params.values().nth(i).unwrap() {
+                &wrapper.public_type
+            } else if let Ty::Ptr(to, mutability) = param.decl.ty {
+                &Some(RustTy::Ref(Box::new(to.to_rust()), mutability))
+            } else {
+                &Some(param.decl.ty.to_rust())
+            };
+
+            ty.as_ref().map(|ty| {
+                let name = param_ident(param.decl.name);
+                let ty_tokens = ty.tokens(ctx, None);
+                (param.decl.name, quote! { #name: #ty_tokens })
+            })
+        })
+        .collect();
+
+    let call_args = call_args_map.values();
     let mut content = quote! { (self.#table_field.#name)( #( #call_args ),* ) };
     for calculation in length_calculations.values() {
         for [a, b] in calculation.array_windows() {
@@ -434,25 +475,27 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
         }
     }
 
+    let doc = command.name.original(); // TODO: improve
+
+    let mut len_method = None;
     let returns_result = matches!(command.return_type, Some(Ty::ApiType(TypeName::VK_RESULT)));
-    let ret_ty = if let Some(multi_call_length) = multi_call_length {
-        match multi_call_length {
-            MultiCallLength::ReadIntoUninitializedVector {
-                count,
-                data,
-                element,
-            } => {
-                let mut ret_ty = RustTy::Custom {
+    let ret_ty;
+    if let Some(multi_call_length) = multi_call_length {
+        let count = param_ident(multi_call_length.count);
+        let data = param_ident(multi_call_length.data);
+        match multi_call_length.kind {
+            MultiCallKind::ReadIntoUninitializedVector => {
+                let mut ret_ty_value = RustTy::Custom {
                     custom_type: quote! { Vec },
-                    generic_args: vec![element.to_rust()],
+                    generic_args: vec![multi_call_length.element.to_rust()],
                 };
 
                 if returns_result {
                     content =
                         quote! { crate::read_into_uninitialized_vector(|#count, #data| #content) };
-                    ret_ty = RustTy::Custom {
+                    ret_ty_value = RustTy::Custom {
                         custom_type: quote! { crate::VkResult },
-                        generic_args: vec![ret_ty],
+                        generic_args: vec![ret_ty_value],
                     };
                 } else {
                     content = quote! {
@@ -463,18 +506,74 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                     };
                 }
 
-                Some(ret_ty)
+                ret_ty = Some(ret_ty_value);
             }
-            MultiCallLength::SeperateLenMethod {} => None, // TODO WIP
+            MultiCallKind::SeperateLenMethod => {
+                if returns_result {
+                    content = quote! { #content.result()? };
+                }
+
+                content = quote! {
+                    let mut #count = #data.len() as _;
+                    #content;
+                    assert_eq!(#count as usize, #data.len());
+                };
+
+                if returns_result {
+                    content = quote! { #content Ok(()) }
+                }
+
+                ret_ty = returns_result.then(|| RustTy::Custom {
+                    custom_type: quote! { crate::VkResult },
+                    generic_args: vec![RustTy::Unit],
+                });
+
+                // TODO: refactor this code. it's ugly
+                let mut public_params_map = public_params_map.clone();
+                public_params_map.shift_remove(&multi_call_length.data);
+                let mut call_args_map = call_args_map.clone();
+                call_args_map[&multi_call_length.count] = quote! { #count.as_mut_ptr() };
+                call_args_map[&multi_call_length.data] = quote! { core::ptr::null_mut() };
+
+                let name_len = format_ident!("{name}_len");
+                let public_params = public_params_map.values();
+                let call_args = call_args_map.values();
+                let mut content = quote! { (self.#table_field.#name)( #( #call_args ),* ) };
+                let ret = if returns_result {
+                    content = quote! {
+                        #content
+                            .assume_init_on_success(#count)
+                            .map(|c| c as usize)
+                    };
+
+                    quote! { -> crate::VkResult<usize> }
+                } else {
+                    content = quote! {
+                        #content;
+                        #count.assume_init() as usize
+                    };
+
+                    quote! { -> usize }
+                };
+
+                len_method = Some(quote! {
+                    #[doc = #doc]
+                    #[inline]
+                    pub unsafe fn #name_len(&self #( , #public_params )*) #ret {
+                        let mut #count = core::mem::MaybeUninit::uninit();
+                        #content
+                    }
+                });
+            }
         }
     } else if returns_result {
         content = quote! { #content.result() };
-        Some(RustTy::Custom {
+        ret_ty = Some(RustTy::Custom {
             custom_type: quote! { crate::VkResult },
             generic_args: vec![RustTy::Unit],
-        })
+        });
     } else {
-        command.return_type.as_ref().map(|ty| ty.to_rust())
+        ret_ty = command.return_type.as_ref().map(|ty| ty.to_rust());
     };
 
     let ret = ret_ty.map(|ty| {
@@ -482,8 +581,10 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
         quote! { -> #tokens }
     });
 
-    let doc = command.name.original(); // TODO: improve
+    let public_params = public_params_map.values();
     quote! {
+        #len_method
+
         #[doc = #doc]
         #[inline]
         pub unsafe fn #name(&self #( , #public_params )*) #ret {

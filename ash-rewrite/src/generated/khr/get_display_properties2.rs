@@ -118,31 +118,94 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceDisplayProperties2KHR
     #[inline]
+    pub unsafe fn get_physical_device_display_properties2_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+    ) -> crate::VkResult<usize> {
+        let mut property_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_display_properties2)(
+                physical_device,
+                property_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(property_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetPhysicalDeviceDisplayProperties2KHR
+    #[inline]
     pub unsafe fn get_physical_device_display_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<crate::vk::DisplayProperties2KHR<'_>>> {
-        crate::read_into_uninitialized_vector(|property_count, properties| (self
+        properties: &mut [crate::vk::DisplayProperties2KHR<'_>],
+    ) -> crate::VkResult<()> {
+        let mut property_count = properties.len() as _;
+        (self
             .fp
             .get_physical_device_display_properties2)(
-            physical_device,
-            property_count,
-            properties,
-        ))
+                physical_device,
+                &mut property_count,
+                properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(property_count as usize, properties.len());
+        Ok(())
+    }
+    ///vkGetPhysicalDeviceDisplayPlaneProperties2KHR
+    #[inline]
+    pub unsafe fn get_physical_device_display_plane_properties2_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+    ) -> crate::VkResult<usize> {
+        let mut property_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_display_plane_properties2)(
+                physical_device,
+                property_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(property_count)
+            .map(|c| c as usize)
     }
     ///vkGetPhysicalDeviceDisplayPlaneProperties2KHR
     #[inline]
     pub unsafe fn get_physical_device_display_plane_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<crate::vk::DisplayPlaneProperties2KHR<'_>>> {
-        crate::read_into_uninitialized_vector(|property_count, properties| (self
+        properties: &mut [crate::vk::DisplayPlaneProperties2KHR<'_>],
+    ) -> crate::VkResult<()> {
+        let mut property_count = properties.len() as _;
+        (self
             .fp
             .get_physical_device_display_plane_properties2)(
-            physical_device,
-            property_count,
-            properties,
-        ))
+                physical_device,
+                &mut property_count,
+                properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(property_count as usize, properties.len());
+        Ok(())
+    }
+    ///vkGetDisplayModeProperties2KHR
+    #[inline]
+    pub unsafe fn get_display_mode_properties2_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        display: crate::vk::DisplayKHR,
+    ) -> crate::VkResult<usize> {
+        let mut property_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_display_mode_properties2)(
+                physical_device,
+                display,
+                property_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(property_count)
+            .map(|c| c as usize)
     }
     ///vkGetDisplayModeProperties2KHR
     #[inline]
@@ -150,15 +213,20 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
-    ) -> crate::VkResult<Vec<crate::vk::DisplayModeProperties2KHR<'_>>> {
-        crate::read_into_uninitialized_vector(|property_count, properties| (self
+        properties: &mut [crate::vk::DisplayModeProperties2KHR<'_>],
+    ) -> crate::VkResult<()> {
+        let mut property_count = properties.len() as _;
+        (self
             .fp
             .get_display_mode_properties2)(
-            physical_device,
-            display,
-            property_count,
-            properties,
-        ))
+                physical_device,
+                display,
+                &mut property_count,
+                properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(property_count as usize, properties.len());
+        Ok(())
     }
     ///vkGetDisplayPlaneCapabilities2KHR
     #[inline]

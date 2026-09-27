@@ -126,14 +126,43 @@ impl Device {
     }
     ///vkGetDeviceFaultReportsKHR
     #[inline]
+    pub unsafe fn get_device_fault_reports_len(
+        &self,
+        device: crate::vk::Device,
+        timeout: u64,
+    ) -> crate::VkResult<usize> {
+        let mut fault_counts = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_device_fault_reports)(
+                device,
+                timeout,
+                fault_counts.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(fault_counts)
+            .map(|c| c as usize)
+    }
+    ///vkGetDeviceFaultReportsKHR
+    #[inline]
     pub unsafe fn get_device_fault_reports(
         &self,
         device: crate::vk::Device,
         timeout: u64,
-    ) -> crate::VkResult<Vec<crate::vk::DeviceFaultInfoKHR<'_>>> {
-        crate::read_into_uninitialized_vector(|fault_counts, fault_info| (self
+        fault_info: &mut [crate::vk::DeviceFaultInfoKHR<'_>],
+    ) -> crate::VkResult<()> {
+        let mut fault_counts = fault_info.len() as _;
+        (self
             .fp
-            .get_device_fault_reports)(device, timeout, fault_counts, fault_info))
+            .get_device_fault_reports)(
+                device,
+                timeout,
+                &mut fault_counts,
+                fault_info.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(fault_counts as usize, fault_info.len());
+        Ok(())
     }
     ///vkGetDeviceFaultDebugInfoKHR
     #[inline]

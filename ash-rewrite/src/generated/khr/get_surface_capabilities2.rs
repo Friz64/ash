@@ -99,19 +99,43 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceSurfaceFormats2KHR
     #[inline]
+    pub unsafe fn get_physical_device_surface_formats2_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        surface_info: &crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+    ) -> crate::VkResult<usize> {
+        let mut surface_format_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_surface_formats2)(
+                physical_device,
+                surface_info,
+                surface_format_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(surface_format_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetPhysicalDeviceSurfaceFormats2KHR
+    #[inline]
     pub unsafe fn get_physical_device_surface_formats2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         surface_info: &crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-    ) -> crate::VkResult<Vec<crate::vk::SurfaceFormat2KHR<'_>>> {
-        crate::read_into_uninitialized_vector(|surface_format_count, surface_formats| (self
+        surface_formats: &mut [crate::vk::SurfaceFormat2KHR<'_>],
+    ) -> crate::VkResult<()> {
+        let mut surface_format_count = surface_formats.len() as _;
+        (self
             .fp
             .get_physical_device_surface_formats2)(
-            physical_device,
-            surface_info,
-            surface_format_count,
-            surface_formats,
-        ))
+                physical_device,
+                surface_info,
+                &mut surface_format_count,
+                surface_formats.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(surface_format_count as usize, surface_formats.len());
+        Ok(())
     }
 }
 pub const SPEC_VERSION: u32 = 1;

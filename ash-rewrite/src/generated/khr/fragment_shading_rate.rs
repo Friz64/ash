@@ -221,20 +221,41 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceFragmentShadingRatesKHR
     #[inline]
-    pub unsafe fn get_physical_device_fragment_shading_rates(
+    pub unsafe fn get_physical_device_fragment_shading_rates_len(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<crate::vk::PhysicalDeviceFragmentShadingRateKHR<'_>>> {
-        crate::read_into_uninitialized_vector(|
-            fragment_shading_rate_count,
-            fragment_shading_rates|
+    ) -> crate::VkResult<usize> {
+        let mut fragment_shading_rate_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_fragment_shading_rates)(
-            physical_device,
-            fragment_shading_rate_count,
-            fragment_shading_rates,
-        ))
+                physical_device,
+                fragment_shading_rate_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(fragment_shading_rate_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetPhysicalDeviceFragmentShadingRatesKHR
+    #[inline]
+    pub unsafe fn get_physical_device_fragment_shading_rates(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        fragment_shading_rates: &mut [crate::vk::PhysicalDeviceFragmentShadingRateKHR<
+            '_,
+        >],
+    ) -> crate::VkResult<()> {
+        let mut fragment_shading_rate_count = fragment_shading_rates.len() as _;
+        (self
+            .fp
+            .get_physical_device_fragment_shading_rates)(
+                physical_device,
+                &mut fragment_shading_rate_count,
+                fragment_shading_rates.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(fragment_shading_rate_count as usize, fragment_shading_rates.len());
+        Ok(())
     }
 }
 pub const SPEC_VERSION: u32 = 2;

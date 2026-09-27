@@ -217,19 +217,43 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceOpticalFlowImageFormatsNV
     #[inline]
+    pub unsafe fn get_physical_device_optical_flow_image_formats_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        optical_flow_image_format_info: &crate::vk::OpticalFlowImageFormatInfoNV<'_>,
+    ) -> crate::VkResult<usize> {
+        let mut format_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_optical_flow_image_formats)(
+                physical_device,
+                optical_flow_image_format_info,
+                format_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(format_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetPhysicalDeviceOpticalFlowImageFormatsNV
+    #[inline]
     pub unsafe fn get_physical_device_optical_flow_image_formats(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         optical_flow_image_format_info: &crate::vk::OpticalFlowImageFormatInfoNV<'_>,
-    ) -> crate::VkResult<Vec<crate::vk::OpticalFlowImageFormatPropertiesNV<'_>>> {
-        crate::read_into_uninitialized_vector(|format_count, image_format_properties| (self
+        image_format_properties: &mut [crate::vk::OpticalFlowImageFormatPropertiesNV<'_>],
+    ) -> crate::VkResult<()> {
+        let mut format_count = image_format_properties.len() as _;
+        (self
             .fp
             .get_physical_device_optical_flow_image_formats)(
-            physical_device,
-            optical_flow_image_format_info,
-            format_count,
-            image_format_properties,
-        ))
+                physical_device,
+                optical_flow_image_format_info,
+                &mut format_count,
+                image_format_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(format_count as usize, image_format_properties.len());
+        Ok(())
     }
 }
 #[derive(Clone)]

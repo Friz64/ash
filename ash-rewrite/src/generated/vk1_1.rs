@@ -790,24 +790,36 @@ impl crate::Instance {
     }
     ///vkGetPhysicalDeviceQueueFamilyProperties2
     #[inline]
+    pub unsafe fn get_physical_device_queue_family_properties2_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+    ) -> usize {
+        let mut queue_family_property_count = core::mem::MaybeUninit::uninit();
+        (self
+            .instance_fn_1_1
+            .get_physical_device_queue_family_properties2)(
+            physical_device,
+            queue_family_property_count.as_mut_ptr(),
+            core::ptr::null_mut(),
+        );
+        queue_family_property_count.assume_init() as usize
+    }
+    ///vkGetPhysicalDeviceQueueFamilyProperties2
+    #[inline]
     pub unsafe fn get_physical_device_queue_family_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-    ) -> Vec<crate::vk::QueueFamilyProperties2<'_>> {
-        crate::read_into_uninitialized_vector(|
-                queue_family_property_count,
-                queue_family_properties|
-            {
-                (self
-                    .instance_fn_1_1
-                    .get_physical_device_queue_family_properties2)(
-                    physical_device,
-                    queue_family_property_count,
-                    queue_family_properties,
-                );
-                crate::vk::Result::SUCCESS
-            })
-            .unwrap()
+        queue_family_properties: &mut [crate::vk::QueueFamilyProperties2<'_>],
+    ) {
+        let mut queue_family_property_count = queue_family_properties.len() as _;
+        (self
+            .instance_fn_1_1
+            .get_physical_device_queue_family_properties2)(
+            physical_device,
+            &mut queue_family_property_count,
+            queue_family_properties.as_mut_ptr(),
+        );
+        assert_eq!(queue_family_property_count as usize, queue_family_properties.len());
     }
     ///vkGetPhysicalDeviceMemoryProperties2
     #[inline]
@@ -822,23 +834,40 @@ impl crate::Instance {
     }
     ///vkGetPhysicalDeviceSparseImageFormatProperties2
     #[inline]
+    pub unsafe fn get_physical_device_sparse_image_format_properties2_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        format_info: &crate::vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
+    ) -> usize {
+        let mut property_count = core::mem::MaybeUninit::uninit();
+        (self
+            .instance_fn_1_1
+            .get_physical_device_sparse_image_format_properties2)(
+            physical_device,
+            format_info,
+            property_count.as_mut_ptr(),
+            core::ptr::null_mut(),
+        );
+        property_count.assume_init() as usize
+    }
+    ///vkGetPhysicalDeviceSparseImageFormatProperties2
+    #[inline]
     pub unsafe fn get_physical_device_sparse_image_format_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         format_info: &crate::vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
-    ) -> Vec<crate::vk::SparseImageFormatProperties2<'_>> {
-        crate::read_into_uninitialized_vector(|property_count, properties| {
-                (self
-                    .instance_fn_1_1
-                    .get_physical_device_sparse_image_format_properties2)(
-                    physical_device,
-                    format_info,
-                    property_count,
-                    properties,
-                );
-                crate::vk::Result::SUCCESS
-            })
-            .unwrap()
+        properties: &mut [crate::vk::SparseImageFormatProperties2<'_>],
+    ) {
+        let mut property_count = properties.len() as _;
+        (self
+            .instance_fn_1_1
+            .get_physical_device_sparse_image_format_properties2)(
+            physical_device,
+            format_info,
+            &mut property_count,
+            properties.as_mut_ptr(),
+        );
+        assert_eq!(property_count as usize, properties.len());
     }
     ///vkGetPhysicalDeviceExternalBufferProperties
     #[inline]
@@ -890,20 +919,44 @@ impl crate::Instance {
     }
     ///vkEnumeratePhysicalDeviceGroups
     #[inline]
-    pub unsafe fn enumerate_physical_device_groups(
+    pub unsafe fn enumerate_physical_device_groups_len(
         &self,
         instance: crate::vk::Instance,
-    ) -> crate::VkResult<Vec<crate::vk::PhysicalDeviceGroupProperties<'_>>> {
-        crate::read_into_uninitialized_vector(|
-            physical_device_group_count,
-            physical_device_group_properties|
+    ) -> crate::VkResult<usize> {
+        let mut physical_device_group_count = core::mem::MaybeUninit::uninit();
         (self
             .instance_fn_1_1
             .enumerate_physical_device_groups)(
-            instance,
-            physical_device_group_count,
-            physical_device_group_properties,
-        ))
+                instance,
+                physical_device_group_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(physical_device_group_count)
+            .map(|c| c as usize)
+    }
+    ///vkEnumeratePhysicalDeviceGroups
+    #[inline]
+    pub unsafe fn enumerate_physical_device_groups(
+        &self,
+        instance: crate::vk::Instance,
+        physical_device_group_properties: &mut [crate::vk::PhysicalDeviceGroupProperties<
+            '_,
+        >],
+    ) -> crate::VkResult<()> {
+        let mut physical_device_group_count = physical_device_group_properties.len()
+            as _;
+        (self
+            .instance_fn_1_1
+            .enumerate_physical_device_groups)(
+                instance,
+                &mut physical_device_group_count,
+                physical_device_group_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(
+            physical_device_group_count as usize, physical_device_group_properties.len()
+        );
+        Ok(())
     }
 }
 #[derive(Clone)]
@@ -1361,26 +1414,42 @@ impl crate::Device {
     }
     ///vkGetImageSparseMemoryRequirements2
     #[inline]
+    pub unsafe fn get_image_sparse_memory_requirements2_len(
+        &self,
+        device: crate::vk::Device,
+        info: &crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
+    ) -> usize {
+        let mut sparse_memory_requirement_count = core::mem::MaybeUninit::uninit();
+        (self
+            .device_fn_1_1
+            .get_image_sparse_memory_requirements2)(
+            device,
+            info,
+            sparse_memory_requirement_count.as_mut_ptr(),
+            core::ptr::null_mut(),
+        );
+        sparse_memory_requirement_count.assume_init() as usize
+    }
+    ///vkGetImageSparseMemoryRequirements2
+    #[inline]
     pub unsafe fn get_image_sparse_memory_requirements2(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
-    ) -> Vec<crate::vk::SparseImageMemoryRequirements2<'_>> {
-        crate::read_into_uninitialized_vector(|
-                sparse_memory_requirement_count,
-                sparse_memory_requirements|
-            {
-                (self
-                    .device_fn_1_1
-                    .get_image_sparse_memory_requirements2)(
-                    device,
-                    info,
-                    sparse_memory_requirement_count,
-                    sparse_memory_requirements,
-                );
-                crate::vk::Result::SUCCESS
-            })
-            .unwrap()
+        sparse_memory_requirements: &mut [crate::vk::SparseImageMemoryRequirements2<'_>],
+    ) {
+        let mut sparse_memory_requirement_count = sparse_memory_requirements.len() as _;
+        (self
+            .device_fn_1_1
+            .get_image_sparse_memory_requirements2)(
+            device,
+            info,
+            &mut sparse_memory_requirement_count,
+            sparse_memory_requirements.as_mut_ptr(),
+        );
+        assert_eq!(
+            sparse_memory_requirement_count as usize, sparse_memory_requirements.len()
+        );
     }
     ///vkCreateSamplerYcbcrConversion
     #[inline]

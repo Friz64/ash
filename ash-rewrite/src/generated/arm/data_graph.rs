@@ -382,24 +382,45 @@ impl Device {
     }
     ///vkGetDataGraphPipelineSessionBindPointRequirementsARM
     #[inline]
+    pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements_len(
+        &self,
+        device: crate::vk::Device,
+        info: &crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
+    ) -> crate::VkResult<usize> {
+        let mut bind_point_requirement_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_data_graph_pipeline_session_bind_point_requirements)(
+                device,
+                info,
+                bind_point_requirement_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(bind_point_requirement_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetDataGraphPipelineSessionBindPointRequirementsARM
+    #[inline]
     pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
-    ) -> crate::VkResult<
-        Vec<crate::vk::DataGraphPipelineSessionBindPointRequirementARM<'_>>,
-    > {
-        crate::read_into_uninitialized_vector(|
-            bind_point_requirement_count,
-            bind_point_requirements|
+        bind_point_requirements: &mut [crate::vk::DataGraphPipelineSessionBindPointRequirementARM<
+            '_,
+        >],
+    ) -> crate::VkResult<()> {
+        let mut bind_point_requirement_count = bind_point_requirements.len() as _;
         (self
             .fp
             .get_data_graph_pipeline_session_bind_point_requirements)(
-            device,
-            info,
-            bind_point_requirement_count,
-            bind_point_requirements,
-        ))
+                device,
+                info,
+                &mut bind_point_requirement_count,
+                bind_point_requirements.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(bind_point_requirement_count as usize, bind_point_requirements.len());
+        Ok(())
     }
     ///vkGetDataGraphPipelineSessionMemoryRequirementsARM
     #[inline]
@@ -572,22 +593,49 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM
     #[inline]
+    pub unsafe fn get_physical_device_queue_family_data_graph_properties_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        queue_family_index: u32,
+    ) -> crate::VkResult<usize> {
+        let mut queue_family_data_graph_property_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_queue_family_data_graph_properties)(
+                physical_device,
+                queue_family_index,
+                queue_family_data_graph_property_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(queue_family_data_graph_property_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM
+    #[inline]
     pub unsafe fn get_physical_device_queue_family_data_graph_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-    ) -> crate::VkResult<Vec<crate::vk::QueueFamilyDataGraphPropertiesARM<'_>>> {
-        crate::read_into_uninitialized_vector(|
-            queue_family_data_graph_property_count,
-            queue_family_data_graph_properties|
+        queue_family_data_graph_properties: &mut [crate::vk::QueueFamilyDataGraphPropertiesARM<
+            '_,
+        >],
+    ) -> crate::VkResult<()> {
+        let mut queue_family_data_graph_property_count = queue_family_data_graph_properties
+            .len() as _;
         (self
             .fp
             .get_physical_device_queue_family_data_graph_properties)(
-            physical_device,
-            queue_family_index,
-            queue_family_data_graph_property_count,
-            queue_family_data_graph_properties,
-        ))
+                physical_device,
+                queue_family_index,
+                &mut queue_family_data_graph_property_count,
+                queue_family_data_graph_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(
+            queue_family_data_graph_property_count as usize,
+            queue_family_data_graph_properties.len()
+        );
+        Ok(())
     }
     ///vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM
     #[inline]

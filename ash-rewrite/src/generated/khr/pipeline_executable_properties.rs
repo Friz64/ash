@@ -128,19 +128,62 @@ impl Device {
     }
     ///vkGetPipelineExecutablePropertiesKHR
     #[inline]
+    pub unsafe fn get_pipeline_executable_properties_len(
+        &self,
+        device: crate::vk::Device,
+        pipeline_info: &crate::vk::PipelineInfoKHR<'_>,
+    ) -> crate::VkResult<usize> {
+        let mut executable_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_pipeline_executable_properties)(
+                device,
+                pipeline_info,
+                executable_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(executable_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetPipelineExecutablePropertiesKHR
+    #[inline]
     pub unsafe fn get_pipeline_executable_properties(
         &self,
         device: crate::vk::Device,
         pipeline_info: &crate::vk::PipelineInfoKHR<'_>,
-    ) -> crate::VkResult<Vec<crate::vk::PipelineExecutablePropertiesKHR<'_>>> {
-        crate::read_into_uninitialized_vector(|executable_count, properties| (self
+        properties: &mut [crate::vk::PipelineExecutablePropertiesKHR<'_>],
+    ) -> crate::VkResult<()> {
+        let mut executable_count = properties.len() as _;
+        (self
             .fp
             .get_pipeline_executable_properties)(
-            device,
-            pipeline_info,
-            executable_count,
-            properties,
-        ))
+                device,
+                pipeline_info,
+                &mut executable_count,
+                properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(executable_count as usize, properties.len());
+        Ok(())
+    }
+    ///vkGetPipelineExecutableStatisticsKHR
+    #[inline]
+    pub unsafe fn get_pipeline_executable_statistics_len(
+        &self,
+        device: crate::vk::Device,
+        executable_info: &crate::vk::PipelineExecutableInfoKHR<'_>,
+    ) -> crate::VkResult<usize> {
+        let mut statistic_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_pipeline_executable_statistics)(
+                device,
+                executable_info,
+                statistic_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(statistic_count)
+            .map(|c| c as usize)
     }
     ///vkGetPipelineExecutableStatisticsKHR
     #[inline]
@@ -148,15 +191,39 @@ impl Device {
         &self,
         device: crate::vk::Device,
         executable_info: &crate::vk::PipelineExecutableInfoKHR<'_>,
-    ) -> crate::VkResult<Vec<crate::vk::PipelineExecutableStatisticKHR<'_>>> {
-        crate::read_into_uninitialized_vector(|statistic_count, statistics| (self
+        statistics: &mut [crate::vk::PipelineExecutableStatisticKHR<'_>],
+    ) -> crate::VkResult<()> {
+        let mut statistic_count = statistics.len() as _;
+        (self
             .fp
             .get_pipeline_executable_statistics)(
-            device,
-            executable_info,
-            statistic_count,
-            statistics,
-        ))
+                device,
+                executable_info,
+                &mut statistic_count,
+                statistics.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(statistic_count as usize, statistics.len());
+        Ok(())
+    }
+    ///vkGetPipelineExecutableInternalRepresentationsKHR
+    #[inline]
+    pub unsafe fn get_pipeline_executable_internal_representations_len(
+        &self,
+        device: crate::vk::Device,
+        executable_info: &crate::vk::PipelineExecutableInfoKHR<'_>,
+    ) -> crate::VkResult<usize> {
+        let mut internal_representation_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_pipeline_executable_internal_representations)(
+                device,
+                executable_info,
+                internal_representation_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(internal_representation_count)
+            .map(|c| c as usize)
     }
     ///vkGetPipelineExecutableInternalRepresentationsKHR
     #[inline]
@@ -164,20 +231,24 @@ impl Device {
         &self,
         device: crate::vk::Device,
         executable_info: &crate::vk::PipelineExecutableInfoKHR<'_>,
-    ) -> crate::VkResult<
-        Vec<crate::vk::PipelineExecutableInternalRepresentationKHR<'_>>,
-    > {
-        crate::read_into_uninitialized_vector(|
-            internal_representation_count,
-            internal_representations|
+        internal_representations: &mut [crate::vk::PipelineExecutableInternalRepresentationKHR<
+            '_,
+        >],
+    ) -> crate::VkResult<()> {
+        let mut internal_representation_count = internal_representations.len() as _;
         (self
             .fp
             .get_pipeline_executable_internal_representations)(
-            device,
-            executable_info,
-            internal_representation_count,
-            internal_representations,
-        ))
+                device,
+                executable_info,
+                &mut internal_representation_count,
+                internal_representations.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(
+            internal_representation_count as usize, internal_representations.len()
+        );
+        Ok(())
     }
 }
 pub const SPEC_VERSION: u32 = 1;

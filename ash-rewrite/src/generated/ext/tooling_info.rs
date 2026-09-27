@@ -95,17 +95,39 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceToolProperties
     #[inline]
+    pub unsafe fn get_physical_device_tool_properties_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+    ) -> crate::VkResult<usize> {
+        let mut tool_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_tool_properties)(
+                physical_device,
+                tool_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(tool_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetPhysicalDeviceToolProperties
+    #[inline]
     pub unsafe fn get_physical_device_tool_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<crate::vk::PhysicalDeviceToolProperties<'_>>> {
-        crate::read_into_uninitialized_vector(|tool_count, tool_properties| (self
+        tool_properties: &mut [crate::vk::PhysicalDeviceToolProperties<'_>],
+    ) -> crate::VkResult<()> {
+        let mut tool_count = tool_properties.len() as _;
+        (self
             .fp
             .get_physical_device_tool_properties)(
-            physical_device,
-            tool_count,
-            tool_properties,
-        ))
+                physical_device,
+                &mut tool_count,
+                tool_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(tool_count as usize, tool_properties.len());
+        Ok(())
     }
 }
 pub const SPEC_VERSION: u32 = 1;

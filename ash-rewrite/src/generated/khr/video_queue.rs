@@ -219,22 +219,43 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceVideoFormatPropertiesKHR
     #[inline]
+    pub unsafe fn get_physical_device_video_format_properties_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        video_format_info: &crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
+    ) -> crate::VkResult<usize> {
+        let mut video_format_property_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_video_format_properties)(
+                physical_device,
+                video_format_info,
+                video_format_property_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(video_format_property_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetPhysicalDeviceVideoFormatPropertiesKHR
+    #[inline]
     pub unsafe fn get_physical_device_video_format_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         video_format_info: &crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
-    ) -> crate::VkResult<Vec<crate::vk::VideoFormatPropertiesKHR<'_>>> {
-        crate::read_into_uninitialized_vector(|
-            video_format_property_count,
-            video_format_properties|
+        video_format_properties: &mut [crate::vk::VideoFormatPropertiesKHR<'_>],
+    ) -> crate::VkResult<()> {
+        let mut video_format_property_count = video_format_properties.len() as _;
         (self
             .fp
             .get_physical_device_video_format_properties)(
-            physical_device,
-            video_format_info,
-            video_format_property_count,
-            video_format_properties,
-        ))
+                physical_device,
+                video_format_info,
+                &mut video_format_property_count,
+                video_format_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(video_format_property_count as usize, video_format_properties.len());
+        Ok(())
     }
 }
 #[derive(Clone)]
@@ -513,22 +534,43 @@ impl Device {
     }
     ///vkGetVideoSessionMemoryRequirementsKHR
     #[inline]
+    pub unsafe fn get_video_session_memory_requirements_len(
+        &self,
+        device: crate::vk::Device,
+        video_session: crate::vk::VideoSessionKHR,
+    ) -> crate::VkResult<usize> {
+        let mut memory_requirements_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_video_session_memory_requirements)(
+                device,
+                video_session,
+                memory_requirements_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(memory_requirements_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetVideoSessionMemoryRequirementsKHR
+    #[inline]
     pub unsafe fn get_video_session_memory_requirements(
         &self,
         device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
-    ) -> crate::VkResult<Vec<crate::vk::VideoSessionMemoryRequirementsKHR<'_>>> {
-        crate::read_into_uninitialized_vector(|
-            memory_requirements_count,
-            memory_requirements|
+        memory_requirements: &mut [crate::vk::VideoSessionMemoryRequirementsKHR<'_>],
+    ) -> crate::VkResult<()> {
+        let mut memory_requirements_count = memory_requirements.len() as _;
         (self
             .fp
             .get_video_session_memory_requirements)(
-            device,
-            video_session,
-            memory_requirements_count,
-            memory_requirements,
-        ))
+                device,
+                video_session,
+                &mut memory_requirements_count,
+                memory_requirements.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(memory_requirements_count as usize, memory_requirements.len());
+        Ok(())
     }
     ///vkBindVideoSessionMemoryKHR
     #[inline]

@@ -273,6 +273,33 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM
     #[inline]
+    pub unsafe fn get_physical_device_queue_family_data_graph_optical_flow_image_formats_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        queue_family_index: u32,
+        queue_family_data_graph_properties: &crate::vk::QueueFamilyDataGraphPropertiesARM<
+            '_,
+        >,
+        optical_flow_image_format_info: &crate::vk::DataGraphOpticalFlowImageFormatInfoARM<
+            '_,
+        >,
+    ) -> crate::VkResult<usize> {
+        let mut format_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_queue_family_data_graph_optical_flow_image_formats)(
+                physical_device,
+                queue_family_index,
+                queue_family_data_graph_properties,
+                optical_flow_image_format_info,
+                format_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(format_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM
+    #[inline]
     pub unsafe fn get_physical_device_queue_family_data_graph_optical_flow_image_formats(
         &self,
         physical_device: crate::vk::PhysicalDevice,
@@ -283,19 +310,24 @@ impl Instance {
         optical_flow_image_format_info: &crate::vk::DataGraphOpticalFlowImageFormatInfoARM<
             '_,
         >,
-    ) -> crate::VkResult<
-        Vec<crate::vk::DataGraphOpticalFlowImageFormatPropertiesARM<'_>>,
-    > {
-        crate::read_into_uninitialized_vector(|format_count, image_format_properties| (self
+        image_format_properties: &mut [crate::vk::DataGraphOpticalFlowImageFormatPropertiesARM<
+            '_,
+        >],
+    ) -> crate::VkResult<()> {
+        let mut format_count = image_format_properties.len() as _;
+        (self
             .fp
             .get_physical_device_queue_family_data_graph_optical_flow_image_formats)(
-            physical_device,
-            queue_family_index,
-            queue_family_data_graph_properties,
-            optical_flow_image_format_info,
-            format_count,
-            image_format_properties,
-        ))
+                physical_device,
+                queue_family_index,
+                queue_family_data_graph_properties,
+                optical_flow_image_format_info,
+                &mut format_count,
+                image_format_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(format_count as usize, image_format_properties.len());
+        Ok(())
     }
 }
 pub const SPEC_VERSION: u32 = 1;

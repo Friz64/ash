@@ -81,19 +81,43 @@ impl Device {
     }
     ///vkGetFramebufferTilePropertiesQCOM
     #[inline]
+    pub unsafe fn get_framebuffer_tile_properties_len(
+        &self,
+        device: crate::vk::Device,
+        framebuffer: crate::vk::Framebuffer,
+    ) -> crate::VkResult<usize> {
+        let mut properties_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_framebuffer_tile_properties)(
+                device,
+                framebuffer,
+                properties_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(properties_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetFramebufferTilePropertiesQCOM
+    #[inline]
     pub unsafe fn get_framebuffer_tile_properties(
         &self,
         device: crate::vk::Device,
         framebuffer: crate::vk::Framebuffer,
-    ) -> crate::VkResult<Vec<crate::vk::TilePropertiesQCOM<'_>>> {
-        crate::read_into_uninitialized_vector(|properties_count, properties| (self
+        properties: &mut [crate::vk::TilePropertiesQCOM<'_>],
+    ) -> crate::VkResult<()> {
+        let mut properties_count = properties.len() as _;
+        (self
             .fp
             .get_framebuffer_tile_properties)(
-            device,
-            framebuffer,
-            properties_count,
-            properties,
-        ))
+                device,
+                framebuffer,
+                &mut properties_count,
+                properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(properties_count as usize, properties.len());
+        Ok(())
     }
     ///vkGetDynamicRenderingTilePropertiesQCOM
     #[inline]

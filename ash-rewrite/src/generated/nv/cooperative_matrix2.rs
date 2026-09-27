@@ -75,19 +75,39 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV
     #[inline]
+    pub unsafe fn get_physical_device_cooperative_matrix_flexible_dimensions_properties_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+    ) -> crate::VkResult<usize> {
+        let mut property_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_cooperative_matrix_flexible_dimensions_properties)(
+                physical_device,
+                property_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(property_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV
+    #[inline]
     pub unsafe fn get_physical_device_cooperative_matrix_flexible_dimensions_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<
-        Vec<crate::vk::CooperativeMatrixFlexibleDimensionsPropertiesNV<'_>>,
-    > {
-        crate::read_into_uninitialized_vector(|property_count, properties| (self
+        properties: &mut [crate::vk::CooperativeMatrixFlexibleDimensionsPropertiesNV<'_>],
+    ) -> crate::VkResult<()> {
+        let mut property_count = properties.len() as _;
+        (self
             .fp
             .get_physical_device_cooperative_matrix_flexible_dimensions_properties)(
-            physical_device,
-            property_count,
-            properties,
-        ))
+                physical_device,
+                &mut property_count,
+                properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(property_count as usize, properties.len());
+        Ok(())
     }
 }
 pub const SPEC_VERSION: u32 = 1;

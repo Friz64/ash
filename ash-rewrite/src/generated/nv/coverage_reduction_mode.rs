@@ -76,17 +76,39 @@ impl Instance {
     }
     ///vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV
     #[inline]
+    pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+    ) -> crate::VkResult<usize> {
+        let mut combination_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_supported_framebuffer_mixed_samples_combinations)(
+                physical_device,
+                combination_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(combination_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV
+    #[inline]
     pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<crate::vk::FramebufferMixedSamplesCombinationNV<'_>>> {
-        crate::read_into_uninitialized_vector(|combination_count, combinations| (self
+        combinations: &mut [crate::vk::FramebufferMixedSamplesCombinationNV<'_>],
+    ) -> crate::VkResult<()> {
+        let mut combination_count = combinations.len() as _;
+        (self
             .fp
             .get_physical_device_supported_framebuffer_mixed_samples_combinations)(
-            physical_device,
-            combination_count,
-            combinations,
-        ))
+                physical_device,
+                &mut combination_count,
+                combinations.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(combination_count as usize, combinations.len());
+        Ok(())
     }
 }
 pub const SPEC_VERSION: u32 = 1;

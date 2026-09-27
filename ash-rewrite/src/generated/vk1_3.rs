@@ -1105,26 +1105,42 @@ impl crate::Device {
     }
     ///vkGetDeviceImageSparseMemoryRequirements
     #[inline]
+    pub unsafe fn get_device_image_sparse_memory_requirements_len(
+        &self,
+        device: crate::vk::Device,
+        info: &crate::vk::DeviceImageMemoryRequirements<'_>,
+    ) -> usize {
+        let mut sparse_memory_requirement_count = core::mem::MaybeUninit::uninit();
+        (self
+            .device_fn_1_3
+            .get_device_image_sparse_memory_requirements)(
+            device,
+            info,
+            sparse_memory_requirement_count.as_mut_ptr(),
+            core::ptr::null_mut(),
+        );
+        sparse_memory_requirement_count.assume_init() as usize
+    }
+    ///vkGetDeviceImageSparseMemoryRequirements
+    #[inline]
     pub unsafe fn get_device_image_sparse_memory_requirements(
         &self,
         device: crate::vk::Device,
         info: &crate::vk::DeviceImageMemoryRequirements<'_>,
-    ) -> Vec<crate::vk::SparseImageMemoryRequirements2<'_>> {
-        crate::read_into_uninitialized_vector(|
-                sparse_memory_requirement_count,
-                sparse_memory_requirements|
-            {
-                (self
-                    .device_fn_1_3
-                    .get_device_image_sparse_memory_requirements)(
-                    device,
-                    info,
-                    sparse_memory_requirement_count,
-                    sparse_memory_requirements,
-                );
-                crate::vk::Result::SUCCESS
-            })
-            .unwrap()
+        sparse_memory_requirements: &mut [crate::vk::SparseImageMemoryRequirements2<'_>],
+    ) {
+        let mut sparse_memory_requirement_count = sparse_memory_requirements.len() as _;
+        (self
+            .device_fn_1_3
+            .get_device_image_sparse_memory_requirements)(
+            device,
+            info,
+            &mut sparse_memory_requirement_count,
+            sparse_memory_requirements.as_mut_ptr(),
+        );
+        assert_eq!(
+            sparse_memory_requirement_count as usize, sparse_memory_requirements.len()
+        );
     }
     ///vkCmdSetCullMode
     #[inline]
@@ -1573,17 +1589,39 @@ impl crate::Instance {
     }
     ///vkGetPhysicalDeviceToolProperties
     #[inline]
+    pub unsafe fn get_physical_device_tool_properties_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+    ) -> crate::VkResult<usize> {
+        let mut tool_count = core::mem::MaybeUninit::uninit();
+        (self
+            .instance_fn_1_3
+            .get_physical_device_tool_properties)(
+                physical_device,
+                tool_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(tool_count)
+            .map(|c| c as usize)
+    }
+    ///vkGetPhysicalDeviceToolProperties
+    #[inline]
     pub unsafe fn get_physical_device_tool_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<crate::vk::PhysicalDeviceToolProperties<'_>>> {
-        crate::read_into_uninitialized_vector(|tool_count, tool_properties| (self
+        tool_properties: &mut [crate::vk::PhysicalDeviceToolProperties<'_>],
+    ) -> crate::VkResult<()> {
+        let mut tool_count = tool_properties.len() as _;
+        (self
             .instance_fn_1_3
             .get_physical_device_tool_properties)(
-            physical_device,
-            tool_count,
-            tool_properties,
-        ))
+                physical_device,
+                &mut tool_count,
+                tool_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(tool_count as usize, tool_properties.len());
+        Ok(())
     }
 }
 pub(crate) mod items {

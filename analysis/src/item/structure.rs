@@ -1,5 +1,5 @@
 use crate::{
-    decl::{Decl, Ty},
+    decl::{CPrimaryType, Decl, Mutability, Ty},
     item::{NamedType, RequireMap, RequiredBy},
     name::{EnumeratorName, TypeName, VariableName},
     xml,
@@ -49,6 +49,7 @@ pub struct Struct {
     pub name: TypeName,
     pub extends: Vec<TypeName>,
     pub structure_type: Option<EnumeratorName>,
+    pub p_next: Option<Mutability>,
     pub members: Vec<Member>,
 }
 
@@ -74,7 +75,7 @@ impl Struct {
             .collect();
 
         let mut structure_type = None;
-
+        let mut p_next = None;
         for member in &xml.members {
             let len_slice = if member.altlen.is_empty() {
                 member.len.as_slice()
@@ -128,14 +129,23 @@ impl Struct {
                 }
             } else {
                 assert_eq!(used_bitwidth, None, "bitfield not fully used");
-                // should exist only once
-                if let Some(value) = member.values
+
+                if decl.name.original() == "sType"
+                    && let Some(value) = member.values
                     && let Ty::ApiType(ty) = decl.ty
                     && ty == TypeName::VK_STRUCTURE_TYPE
-                    && decl.name.original() == "sType"
                 {
+                    assert!(structure_type.is_none());
                     structure_type = Some(EnumeratorName::new(value));
                 }
+
+                if decl.name.original() == "pNext"
+                    && let Ty::Ptr(Ty::CPrimary(CPrimaryType::Void), mutability) = decl.ty
+                {
+                    assert!(p_next.is_none());
+                    p_next = Some(mutability);
+                }
+
                 members.push(Member::Regular(RegularMember { decl, lengths }));
             }
         }
@@ -145,6 +155,7 @@ impl Struct {
             name: xml.name,
             extends,
             structure_type,
+            p_next,
             members,
         })
     }

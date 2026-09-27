@@ -79,20 +79,47 @@ impl Instance {
     }
     ///vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM
     #[inline]
+    pub unsafe fn enumerate_physical_device_queue_family_performance_counters_by_region_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+        queue_family_index: u32,
+        counters: &mut [crate::vk::PerformanceCounterARM<'_>],
+    ) -> crate::VkResult<usize> {
+        let mut counter_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .enumerate_physical_device_queue_family_performance_counters_by_region)(
+                physical_device,
+                queue_family_index,
+                counter_count.as_mut_ptr(),
+                counters.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(counter_count)
+            .map(|c| c as usize)
+    }
+    ///vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM
+    #[inline]
     pub unsafe fn enumerate_physical_device_queue_family_performance_counters_by_region(
         &self,
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
-    ) -> crate::VkResult<Vec<crate::vk::PerformanceCounterDescriptionARM<'_>>> {
-        crate::read_into_uninitialized_vector(|counter_count, counter_descriptions| (self
+        counters: &mut [crate::vk::PerformanceCounterARM<'_>],
+        counter_descriptions: &mut [crate::vk::PerformanceCounterDescriptionARM<'_>],
+    ) -> crate::VkResult<()> {
+        let mut counter_count = counter_descriptions.len() as _;
+        (self
             .fp
             .enumerate_physical_device_queue_family_performance_counters_by_region)(
-            physical_device,
-            queue_family_index,
-            counter_count,
-            counters,
-            counter_descriptions,
-        ))
+                physical_device,
+                queue_family_index,
+                &mut counter_count,
+                counters.as_mut_ptr(),
+                counter_descriptions.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(counter_count as usize, counter_descriptions.len());
+        Ok(())
     }
 }
 pub const SPEC_VERSION: u32 = 1;

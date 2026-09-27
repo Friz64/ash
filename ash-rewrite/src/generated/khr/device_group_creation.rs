@@ -74,20 +74,44 @@ impl Instance {
     }
     ///vkEnumeratePhysicalDeviceGroups
     #[inline]
-    pub unsafe fn enumerate_physical_device_groups(
+    pub unsafe fn enumerate_physical_device_groups_len(
         &self,
         instance: crate::vk::Instance,
-    ) -> crate::VkResult<Vec<crate::vk::PhysicalDeviceGroupProperties<'_>>> {
-        crate::read_into_uninitialized_vector(|
-            physical_device_group_count,
-            physical_device_group_properties|
+    ) -> crate::VkResult<usize> {
+        let mut physical_device_group_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
             .enumerate_physical_device_groups)(
-            instance,
-            physical_device_group_count,
-            physical_device_group_properties,
-        ))
+                instance,
+                physical_device_group_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(physical_device_group_count)
+            .map(|c| c as usize)
+    }
+    ///vkEnumeratePhysicalDeviceGroups
+    #[inline]
+    pub unsafe fn enumerate_physical_device_groups(
+        &self,
+        instance: crate::vk::Instance,
+        physical_device_group_properties: &mut [crate::vk::PhysicalDeviceGroupProperties<
+            '_,
+        >],
+    ) -> crate::VkResult<()> {
+        let mut physical_device_group_count = physical_device_group_properties.len()
+            as _;
+        (self
+            .fp
+            .enumerate_physical_device_groups)(
+                instance,
+                &mut physical_device_group_count,
+                physical_device_group_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(
+            physical_device_group_count as usize, physical_device_group_properties.len()
+        );
+        Ok(())
     }
 }
 pub const SPEC_VERSION: u32 = 1;

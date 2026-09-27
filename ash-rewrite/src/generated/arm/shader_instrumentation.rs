@@ -78,17 +78,39 @@ impl Instance {
     }
     ///vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM
     #[inline]
+    pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics_len(
+        &self,
+        physical_device: crate::vk::PhysicalDevice,
+    ) -> crate::VkResult<usize> {
+        let mut description_count = core::mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .enumerate_physical_device_shader_instrumentation_metrics)(
+                physical_device,
+                description_count.as_mut_ptr(),
+                core::ptr::null_mut(),
+            )
+            .assume_init_on_success(description_count)
+            .map(|c| c as usize)
+    }
+    ///vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM
+    #[inline]
     pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>>> {
-        crate::read_into_uninitialized_vector(|description_count, descriptions| (self
+        descriptions: &mut [crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>],
+    ) -> crate::VkResult<()> {
+        let mut description_count = descriptions.len() as _;
+        (self
             .fp
             .enumerate_physical_device_shader_instrumentation_metrics)(
-            physical_device,
-            description_count,
-            descriptions,
-        ))
+                physical_device,
+                &mut description_count,
+                descriptions.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(description_count as usize, descriptions.len());
+        Ok(())
     }
 }
 #[derive(Clone)]
