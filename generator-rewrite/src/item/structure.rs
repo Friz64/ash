@@ -254,8 +254,15 @@ fn regular_builder(
     let field_name = ctx.variable_token(member.decl.name);
     let method_name = method_name_token(member);
 
-    let mut skip_override = None;
-    let mut ignore_custom_length = false;
+    #[derive(PartialEq)]
+    enum Skip {
+        No,
+        Yes,
+        IfLengthMember,
+    }
+
+    let mut skip = Skip::IfLengthMember;
+    let mut use_default_for_custom_length = false;
     match (structure.name.original(), member.decl.name.original()) {
         // pViewports is allowed to be empty if the viewport state is empty
         ("VkPipelineViewportStateCreateInfo", "viewportCount") |
@@ -267,9 +274,9 @@ fn regular_builder(
         ("VkFramebufferCreateInfo", "attachmentCount") |
         // descriptorCount also describes descriptor length in pNext extension structures
         // https://github.com/ash-rs/ash/issues/806
-        ("VkWriteDescriptorSet", "descriptorCount") => skip_override = Some(false),
+        ("VkWriteDescriptorSet", "descriptorCount") => skip = Skip::No,
 
-        ("VkShaderModuleCreateInfo", "codeSize") => skip_override = Some(true),
+        ("VkShaderModuleCreateInfo", "codeSize") => skip = Skip::Yes,
         ("VkShaderModuleCreateInfo", "pCode") => return quote! {
             pub fn #method_name(mut self, #method_name: &#lifetime [u32]) -> Self {
                 self.code_size = #method_name.len() * 4;
@@ -287,27 +294,29 @@ fn regular_builder(
 
         ("VkPipelineMultisampleStateCreateInfo", "pSampleMask") |
         ("StdVideoH265HrdParameters", "pSubLayerHrdParametersNal" | "pSubLayerHrdParametersVcl")
-            => ignore_custom_length = true,
+            => use_default_for_custom_length = true,
 
         _ => (),
     }
 
-    if skip_override.unwrap_or_else(|| {
-        // does any member have its length defined by this member?
-        structure.members.iter().any(|any_member| {
-            if let Member::Regular(RegularMember { decl: _, lengths }) = any_member {
-                lengths.iter().any(|length| {
-                    if let Length::DefinedByMember(defined_by_member) = length {
-                        defined_by_member == &member.decl.name
-                    } else {
-                        false
-                    }
-                })
-            } else {
-                false
-            }
+    if skip == Skip::Yes
+        || (skip == Skip::IfLengthMember && {
+            // does any member have its length defined by this member?
+            structure.members.iter().any(|any_member| {
+                if let Member::Regular(RegularMember { decl: _, lengths }) = any_member {
+                    lengths.iter().any(|length| {
+                        if let Length::DefinedByMember(defined_by_member) = length {
+                            defined_by_member == &member.decl.name
+                        } else {
+                            false
+                        }
+                    })
+                } else {
+                    false
+                }
+            })
         })
-    }) {
+    {
         return TokenStream::new();
     }
 
@@ -439,7 +448,7 @@ fn regular_builder(
             .lengths
             .iter()
             .any(|length| matches!(length, Length::Custom(..)))
-            && !ignore_custom_length =>
+            && !use_default_for_custom_length =>
         {
             panic!("unhandled custom length {:?}", member.lengths);
         }

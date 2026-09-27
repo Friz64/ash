@@ -188,27 +188,6 @@ impl Device {
     ) -> crate::VkResult<()> {
         (self.fp.get_pipeline_key)(device, pipeline_create_info, pipeline_key).result()
     }
-    ///vkGetPipelineBinaryDataKHR
-    #[inline]
-    pub unsafe fn get_pipeline_binary_data(
-        &self,
-        device: crate::vk::Device,
-        info: &crate::vk::PipelineBinaryDataInfoKHR<'_>,
-        pipeline_binary_key: &mut crate::vk::PipelineBinaryKeyKHR<'_>,
-    ) -> crate::VkResult<Vec<core::ffi::c_void>> {
-        crate::read_into_uninitialized_vector(|
-            pipeline_binary_data_size,
-            pipeline_binary_data|
-        (self
-            .fp
-            .get_pipeline_binary_data)(
-            device,
-            info,
-            pipeline_binary_key,
-            pipeline_binary_data_size,
-            pipeline_binary_data,
-        ))
-    }
     ///vkReleaseCapturedPipelineDataKHR
     #[inline]
     pub unsafe fn release_captured_pipeline_data(

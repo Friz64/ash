@@ -398,26 +398,6 @@ impl Device {
     pub fn device(&self) -> crate::vk::Device {
         self.handle
     }
-    ///vkGetEncodedVideoSessionParametersKHR
-    #[inline]
-    pub unsafe fn get_encoded_video_session_parameters(
-        &self,
-        device: crate::vk::Device,
-        video_session_parameters_info: &crate::vk::VideoEncodeSessionParametersGetInfoKHR<
-            '_,
-        >,
-        feedback_info: &mut crate::vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>,
-    ) -> crate::VkResult<Vec<core::ffi::c_void>> {
-        crate::read_into_uninitialized_vector(|data_size, data| (self
-            .fp
-            .get_encoded_video_session_parameters)(
-            device,
-            video_session_parameters_info,
-            feedback_info,
-            data_size,
-            data,
-        ))
-    }
     ///vkCmdEncodeVideoKHR
     #[inline]
     pub unsafe fn cmd_encode_video(

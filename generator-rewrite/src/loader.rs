@@ -289,6 +289,18 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
 fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -> TokenStream {
     trace!("generating");
 
+    match command.name.original() {
+        "vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR"
+        | "vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM"
+        | "vkGetPipelineBinaryDataKHR"
+        | "vkGetEncodedVideoSessionParametersKHR" => {
+            // todo
+            return quote! {};
+        }
+
+        _ => (),
+    }
+
     fn param_ident(name: VariableName) -> Ident {
         let stripped = crate::strip_leading_p(name.original()).to_snek_case();
         crate::escape_ident(&stripped)
@@ -351,11 +363,10 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                 let length_param_name = param_ident(length_param);
                 let length_wrapper_param = &mut wrapper_params[&length_param];
 
-                // TODO
-                // assert!(
-                //     length_wrapper_param.is_none(),
-                //     "only one multi call length parameter is supported"
-                // );
+                assert!(
+                    length_wrapper_param.is_none(),
+                    "only one multi call length parameter is supported"
+                );
 
                 let kind = if let Ty::ApiType(element_type) = element
                     && let TypeItem::Struct(structure) =

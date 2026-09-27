@@ -9,7 +9,8 @@ extern crate alloc;
     non_camel_case_types,
     unreachable_patterns,
     clippy::missing_transmute_annotations,
-    clippy::missing_safety_doc
+    clippy::missing_safety_doc,
+    clippy::too_many_arguments
 )]
 mod generated;
 mod loader;
