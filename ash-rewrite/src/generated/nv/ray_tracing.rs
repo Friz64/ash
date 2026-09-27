@@ -661,6 +661,7 @@ impl Device {
         allocator: &crate::vk::AllocationCallbacks<'_>,
         pipelines: &mut [crate::vk::Pipeline],
     ) -> crate::VkResult<()> {
+        assert_eq!(create_infos.len(), pipelines.len());
         (self
             .fp
             .create_ray_tracing_pipelines)(

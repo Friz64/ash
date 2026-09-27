@@ -417,6 +417,7 @@ impl Device {
         buffer_indices: &[u32],
         offsets: &[crate::vk::DeviceSize],
     ) {
+        assert_eq!(buffer_indices.len(), offsets.len());
         (self
             .fp
             .cmd_set_descriptor_buffer_offsets)(

@@ -70,6 +70,7 @@ impl Device {
         swapchains: &[crate::vk::SwapchainKHR],
         metadata: &[crate::vk::HdrMetadataEXT<'_>],
     ) {
+        assert_eq!(swapchains.len(), metadata.len());
         (self
             .fp
             .set_hdr_metadata)(

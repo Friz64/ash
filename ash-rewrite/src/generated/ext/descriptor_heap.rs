@@ -355,6 +355,7 @@ impl Device {
         samplers: &[crate::vk::SamplerCreateInfo<'_>],
         descriptors: &[crate::vk::HostAddressRangeEXT<'_>],
     ) -> crate::VkResult<()> {
+        assert_eq!(samplers.len(), descriptors.len());
         (self
             .fp
             .write_sampler_descriptors)(
@@ -373,6 +374,7 @@ impl Device {
         resources: &[crate::vk::ResourceDescriptorInfoEXT<'_>],
         descriptors: &[crate::vk::HostAddressRangeEXT<'_>],
     ) -> crate::VkResult<()> {
+        assert_eq!(resources.len(), descriptors.len());
         (self
             .fp
             .write_resource_descriptors)(
@@ -441,6 +443,7 @@ impl Device {
         images: &[crate::vk::Image],
         datas: &mut [crate::vk::HostAddressRangeEXT<'_>],
     ) -> crate::VkResult<()> {
+        assert_eq!(images.len(), datas.len());
         (self
             .fp
             .get_image_opaque_capture_data)(
@@ -459,6 +462,7 @@ impl Device {
         tensors: &[crate::vk::TensorARM],
         datas: &mut [crate::vk::HostAddressRangeEXT<'_>],
     ) -> crate::VkResult<()> {
+        assert_eq!(tensors.len(), datas.len());
         (self
             .fp
             .get_tensor_opaque_capture_data)(

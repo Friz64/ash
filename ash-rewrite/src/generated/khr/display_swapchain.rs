@@ -76,6 +76,7 @@ impl Device {
         allocator: &crate::vk::AllocationCallbacks<'_>,
         swapchains: &mut [crate::vk::SwapchainKHR],
     ) -> crate::VkResult<()> {
+        assert_eq!(create_infos.len(), swapchains.len());
         (self
             .fp
             .create_shared_swapchains)(

@@ -124,18 +124,22 @@ impl Device {
         &self,
         device: crate::vk::Device,
         info: &crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
-    ) -> crate::VkResult<Vec<crate::vk::SparseImageMemoryRequirements2<'_>>> {
+    ) -> Vec<crate::vk::SparseImageMemoryRequirements2<'_>> {
         crate::read_into_uninitialized_vector(|
-            sparse_memory_requirement_count,
-            sparse_memory_requirements|
-        (self
-            .fp
-            .get_image_sparse_memory_requirements2)(
-            device,
-            info,
-            sparse_memory_requirement_count,
-            sparse_memory_requirements,
-        ))
+                sparse_memory_requirement_count,
+                sparse_memory_requirements|
+            {
+                (self
+                    .fp
+                    .get_image_sparse_memory_requirements2)(
+                    device,
+                    info,
+                    sparse_memory_requirement_count,
+                    sparse_memory_requirements,
+                );
+                crate::vk::Result::SUCCESS
+            })
+            .unwrap()
     }
 }
 pub const SPEC_VERSION: u32 = 1;

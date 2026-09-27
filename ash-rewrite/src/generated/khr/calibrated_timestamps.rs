@@ -151,6 +151,7 @@ impl Device {
         timestamps: &mut [u64],
         max_deviation: &mut u64,
     ) -> crate::VkResult<()> {
+        assert_eq!(timestamp_infos.len(), timestamps.len());
         (self
             .fp
             .get_calibrated_timestamps)(

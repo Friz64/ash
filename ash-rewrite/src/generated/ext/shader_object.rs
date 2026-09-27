@@ -1352,6 +1352,7 @@ impl Device {
         allocator: &crate::vk::AllocationCallbacks<'_>,
         shaders: &mut [crate::vk::ShaderEXT],
     ) -> crate::VkResult<()> {
+        assert_eq!(create_infos.len(), shaders.len());
         (self
             .fp
             .create_shaders)(
@@ -1392,6 +1393,7 @@ impl Device {
         stages: &[crate::vk::ShaderStageFlagBits],
         shaders: &[crate::vk::ShaderEXT],
     ) {
+        assert_eq!(stages.len(), shaders.len());
         (self
             .fp
             .cmd_bind_shaders)(
@@ -1485,6 +1487,9 @@ impl Device {
         sizes: &[crate::vk::DeviceSize],
         strides: &[crate::vk::DeviceSize],
     ) {
+        assert_eq!(sizes.len(), strides.len());
+        assert_eq!(offsets.len(), sizes.len());
+        assert_eq!(buffers.len(), offsets.len());
         (self
             .fp
             .cmd_bind_vertex_buffers2)(

@@ -1542,17 +1542,21 @@ impl crate::Instance {
     pub unsafe fn get_physical_device_queue_family_properties(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<crate::vk::QueueFamilyProperties>> {
+    ) -> Vec<crate::vk::QueueFamilyProperties> {
         crate::read_into_uninitialized_vector(|
-            queue_family_property_count,
-            queue_family_properties|
-        (self
-            .instance_fn_1_0
-            .get_physical_device_queue_family_properties)(
-            physical_device,
-            queue_family_property_count,
-            queue_family_properties,
-        ))
+                queue_family_property_count,
+                queue_family_properties|
+            {
+                (self
+                    .instance_fn_1_0
+                    .get_physical_device_queue_family_properties)(
+                    physical_device,
+                    queue_family_property_count,
+                    queue_family_properties,
+                );
+                crate::vk::Result::SUCCESS
+            })
+            .unwrap()
     }
     ///vkGetPhysicalDeviceMemoryProperties
     #[inline]
@@ -1655,19 +1659,23 @@ impl crate::Instance {
         samples: crate::vk::SampleCountFlagBits,
         usage: crate::vk::ImageUsageFlags,
         tiling: crate::vk::ImageTiling,
-    ) -> crate::VkResult<Vec<crate::vk::SparseImageFormatProperties>> {
-        crate::read_into_uninitialized_vector(|property_count, properties| (self
-            .instance_fn_1_0
-            .get_physical_device_sparse_image_format_properties)(
-            physical_device,
-            format,
-            _type,
-            samples,
-            usage,
-            tiling,
-            property_count,
-            properties,
-        ))
+    ) -> Vec<crate::vk::SparseImageFormatProperties> {
+        crate::read_into_uninitialized_vector(|property_count, properties| {
+                (self
+                    .instance_fn_1_0
+                    .get_physical_device_sparse_image_format_properties)(
+                    physical_device,
+                    format,
+                    _type,
+                    samples,
+                    usage,
+                    tiling,
+                    property_count,
+                    properties,
+                );
+                crate::vk::Result::SUCCESS
+            })
+            .unwrap()
     }
 }
 #[derive(Clone)]
@@ -3819,18 +3827,22 @@ impl crate::Device {
         &self,
         device: crate::vk::Device,
         image: crate::vk::Image,
-    ) -> crate::VkResult<Vec<crate::vk::SparseImageMemoryRequirements>> {
+    ) -> Vec<crate::vk::SparseImageMemoryRequirements> {
         crate::read_into_uninitialized_vector(|
-            sparse_memory_requirement_count,
-            sparse_memory_requirements|
-        (self
-            .device_fn_1_0
-            .get_image_sparse_memory_requirements)(
-            device,
-            image,
-            sparse_memory_requirement_count,
-            sparse_memory_requirements,
-        ))
+                sparse_memory_requirement_count,
+                sparse_memory_requirements|
+            {
+                (self
+                    .device_fn_1_0
+                    .get_image_sparse_memory_requirements)(
+                    device,
+                    image,
+                    sparse_memory_requirement_count,
+                    sparse_memory_requirements,
+                );
+                crate::vk::Result::SUCCESS
+            })
+            .unwrap()
     }
     ///vkQueueBindSparse
     #[inline]
@@ -4212,6 +4224,7 @@ impl crate::Device {
         allocator: &crate::vk::AllocationCallbacks<'_>,
         pipelines: &mut [crate::vk::Pipeline],
     ) -> crate::VkResult<()> {
+        assert_eq!(create_infos.len(), pipelines.len());
         (self
             .device_fn_1_0
             .create_graphics_pipelines)(
@@ -4234,6 +4247,7 @@ impl crate::Device {
         allocator: &crate::vk::AllocationCallbacks<'_>,
         pipelines: &mut [crate::vk::Pipeline],
     ) -> crate::VkResult<()> {
+        assert_eq!(create_infos.len(), pipelines.len());
         (self
             .device_fn_1_0
             .create_compute_pipelines)(
@@ -4738,6 +4752,7 @@ impl crate::Device {
         buffers: &[crate::vk::Buffer],
         offsets: &[crate::vk::DeviceSize],
     ) {
+        assert_eq!(buffers.len(), offsets.len());
         (self
             .device_fn_1_0
             .cmd_bind_vertex_buffers)(

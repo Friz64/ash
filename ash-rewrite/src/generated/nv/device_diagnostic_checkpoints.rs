@@ -109,20 +109,36 @@ impl Device {
     pub unsafe fn get_queue_checkpoint_data(
         &self,
         queue: crate::vk::Queue,
-    ) -> crate::VkResult<Vec<crate::vk::CheckpointDataNV<'_>>> {
-        crate::read_into_uninitialized_vector(|checkpoint_data_count, checkpoint_data| (self
-            .fp
-            .get_queue_checkpoint_data)(queue, checkpoint_data_count, checkpoint_data))
+    ) -> Vec<crate::vk::CheckpointDataNV<'_>> {
+        crate::read_into_uninitialized_vector(|checkpoint_data_count, checkpoint_data| {
+                (self
+                    .fp
+                    .get_queue_checkpoint_data)(
+                    queue,
+                    checkpoint_data_count,
+                    checkpoint_data,
+                );
+                crate::vk::Result::SUCCESS
+            })
+            .unwrap()
     }
     ///vkGetQueueCheckpointData2NV
     #[inline]
     pub unsafe fn get_queue_checkpoint_data2(
         &self,
         queue: crate::vk::Queue,
-    ) -> crate::VkResult<Vec<crate::vk::CheckpointData2NV<'_>>> {
-        crate::read_into_uninitialized_vector(|checkpoint_data_count, checkpoint_data| (self
-            .fp
-            .get_queue_checkpoint_data2)(queue, checkpoint_data_count, checkpoint_data))
+    ) -> Vec<crate::vk::CheckpointData2NV<'_>> {
+        crate::read_into_uninitialized_vector(|checkpoint_data_count, checkpoint_data| {
+                (self
+                    .fp
+                    .get_queue_checkpoint_data2)(
+                    queue,
+                    checkpoint_data_count,
+                    checkpoint_data,
+                );
+                crate::vk::Result::SUCCESS
+            })
+            .unwrap()
     }
 }
 pub const SPEC_VERSION: u32 = 2;

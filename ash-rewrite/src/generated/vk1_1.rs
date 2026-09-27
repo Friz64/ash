@@ -793,17 +793,21 @@ impl crate::Instance {
     pub unsafe fn get_physical_device_queue_family_properties2(
         &self,
         physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<crate::vk::QueueFamilyProperties2<'_>>> {
+    ) -> Vec<crate::vk::QueueFamilyProperties2<'_>> {
         crate::read_into_uninitialized_vector(|
-            queue_family_property_count,
-            queue_family_properties|
-        (self
-            .instance_fn_1_1
-            .get_physical_device_queue_family_properties2)(
-            physical_device,
-            queue_family_property_count,
-            queue_family_properties,
-        ))
+                queue_family_property_count,
+                queue_family_properties|
+            {
+                (self
+                    .instance_fn_1_1
+                    .get_physical_device_queue_family_properties2)(
+                    physical_device,
+                    queue_family_property_count,
+                    queue_family_properties,
+                );
+                crate::vk::Result::SUCCESS
+            })
+            .unwrap()
     }
     ///vkGetPhysicalDeviceMemoryProperties2
     #[inline]
@@ -822,15 +826,19 @@ impl crate::Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         format_info: &crate::vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
-    ) -> crate::VkResult<Vec<crate::vk::SparseImageFormatProperties2<'_>>> {
-        crate::read_into_uninitialized_vector(|property_count, properties| (self
-            .instance_fn_1_1
-            .get_physical_device_sparse_image_format_properties2)(
-            physical_device,
-            format_info,
-            property_count,
-            properties,
-        ))
+    ) -> Vec<crate::vk::SparseImageFormatProperties2<'_>> {
+        crate::read_into_uninitialized_vector(|property_count, properties| {
+                (self
+                    .instance_fn_1_1
+                    .get_physical_device_sparse_image_format_properties2)(
+                    physical_device,
+                    format_info,
+                    property_count,
+                    properties,
+                );
+                crate::vk::Result::SUCCESS
+            })
+            .unwrap()
     }
     ///vkGetPhysicalDeviceExternalBufferProperties
     #[inline]
@@ -1357,18 +1365,22 @@ impl crate::Device {
         &self,
         device: crate::vk::Device,
         info: &crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
-    ) -> crate::VkResult<Vec<crate::vk::SparseImageMemoryRequirements2<'_>>> {
+    ) -> Vec<crate::vk::SparseImageMemoryRequirements2<'_>> {
         crate::read_into_uninitialized_vector(|
-            sparse_memory_requirement_count,
-            sparse_memory_requirements|
-        (self
-            .device_fn_1_1
-            .get_image_sparse_memory_requirements2)(
-            device,
-            info,
-            sparse_memory_requirement_count,
-            sparse_memory_requirements,
-        ))
+                sparse_memory_requirement_count,
+                sparse_memory_requirements|
+            {
+                (self
+                    .device_fn_1_1
+                    .get_image_sparse_memory_requirements2)(
+                    device,
+                    info,
+                    sparse_memory_requirement_count,
+                    sparse_memory_requirements,
+                );
+                crate::vk::Result::SUCCESS
+            })
+            .unwrap()
     }
     ///vkCreateSamplerYcbcrConversion
     #[inline]

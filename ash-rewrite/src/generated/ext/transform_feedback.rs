@@ -215,6 +215,8 @@ impl Device {
         offsets: &[crate::vk::DeviceSize],
         sizes: &[crate::vk::DeviceSize],
     ) {
+        assert_eq!(offsets.len(), sizes.len());
+        assert_eq!(buffers.len(), offsets.len());
         (self
             .fp
             .cmd_bind_transform_feedback_buffers)(
@@ -235,6 +237,7 @@ impl Device {
         counter_buffers: &[crate::vk::Buffer],
         counter_buffer_offsets: &[crate::vk::DeviceSize],
     ) {
+        assert_eq!(counter_buffers.len(), counter_buffer_offsets.len());
         (self
             .fp
             .cmd_begin_transform_feedback)(
@@ -254,6 +257,7 @@ impl Device {
         counter_buffers: &[crate::vk::Buffer],
         counter_buffer_offsets: &[crate::vk::DeviceSize],
     ) {
+        assert_eq!(counter_buffers.len(), counter_buffer_offsets.len());
         (self
             .fp
             .cmd_end_transform_feedback)(

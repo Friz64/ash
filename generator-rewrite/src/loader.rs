@@ -303,14 +303,15 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
     let mut wrapper_params: IndexMap<VariableName, Option<WrapperParam>> = (command.params.iter())
         .map(|param| (param.decl.name, None))
         .collect();
+    let mut length_calculations: IndexMap<VariableName, Vec<TokenStream>> = IndexMap::new();
 
     struct ReadIntoUninitializedVector {
         count: Ident,
         data: Ident,
+        element: &'static Ty,
     }
 
     let mut read_into_uninitialized_vector = None;
-    let mut ret_ty = command.return_type.as_ref().map(|ty| ty.to_rust());
     for (i, param) in command.params.iter().enumerate() {
         let name = param_ident(param.decl.name);
 
@@ -341,15 +342,14 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                         &length_param.decl.ty
                     } =>
             {
+                // TODO
+                // assert!(
+                //     wrapper_params[&length_param].is_none(),
+                //     "read_into_uninitialized_vector only supports one data vector"
+                // );
+
                 call_arg = quote! { #name };
                 public_type = None;
-                ret_ty = Some(RustTy::Custom {
-                    custom_type: quote! { crate::VkResult },
-                    generic_args: vec![RustTy::Custom {
-                        custom_type: quote! { Vec },
-                        generic_args: vec![element.to_rust()],
-                    }],
-                });
 
                 let length_param_name = param_ident(length_param);
                 wrapper_params[&length_param] = Some(WrapperParam {
@@ -360,6 +360,7 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                 read_into_uninitialized_vector = Some(ReadIntoUninitializedVector {
                     count: length_param_name,
                     data: name.clone(),
+                    element,
                 });
             }
             &Ty::Ptr(element, mutability)
@@ -381,6 +382,11 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                     call_arg: quote! { #name.len() as _ },
                     public_type: None,
                 });
+
+                length_calculations
+                    .entry(length_param)
+                    .or_default()
+                    .push(quote! { #name.len() });
             }
             _ => continue,
         };
@@ -416,17 +422,52 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
     });
 
     let mut content = quote! { (self.#table_field.#name)( #( #call_args ),* ) };
-    if let Some(ReadIntoUninitializedVector { count, data }) = read_into_uninitialized_vector {
-        content = quote! {
-            crate::read_into_uninitialized_vector(|#count, #data| #content)
+    for calculation in length_calculations.values() {
+        for [a, b] in calculation.array_windows() {
+            content = quote! {
+                assert_eq!(#a, #b);
+                #content
+            };
+        }
+    }
+
+    let returns_result = matches!(command.return_type, Some(Ty::ApiType(TypeName::VK_RESULT)));
+    let ret_ty = if let Some(ReadIntoUninitializedVector {
+        count,
+        data,
+        element,
+    }) = read_into_uninitialized_vector
+    {
+        let mut ret_ty = RustTy::Custom {
+            custom_type: quote! { Vec },
+            generic_args: vec![element.to_rust()],
         };
-    } else if let Some(Ty::ApiType(TypeName::VK_RESULT)) = command.return_type {
+
+        if returns_result {
+            content = quote! { crate::read_into_uninitialized_vector(|#count, #data| #content) };
+            ret_ty = RustTy::Custom {
+                custom_type: quote! { crate::VkResult },
+                generic_args: vec![ret_ty],
+            };
+        } else {
+            content = quote! {
+                crate::read_into_uninitialized_vector(|#count, #data| {
+                    #content;
+                    crate::vk::Result::SUCCESS
+                }).unwrap()
+            };
+        }
+
+        Some(ret_ty)
+    } else if returns_result {
         content = quote! { #content.result() };
-        ret_ty = Some(RustTy::Custom {
+        Some(RustTy::Custom {
             custom_type: quote! { crate::VkResult },
             generic_args: vec![RustTy::Unit],
-        });
-    }
+        })
+    } else {
+        command.return_type.as_ref().map(|ty| ty.to_rust())
+    };
 
     let ret = ret_ty.map(|ty| {
         let tokens = ty.tokens(ctx, None);

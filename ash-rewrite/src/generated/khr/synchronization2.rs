@@ -513,6 +513,7 @@ impl Device {
         events: &[crate::vk::Event],
         dependency_infos: &[crate::vk::DependencyInfo<'_>],
     ) {
+        assert_eq!(events.len(), dependency_infos.len());
         (self
             .fp
             .cmd_wait_events2)(

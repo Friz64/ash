@@ -686,6 +686,7 @@ impl Device {
         infos: &[crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
         build_range_infos: &[*const crate::vk::AccelerationStructureBuildRangeInfoKHR],
     ) {
+        assert_eq!(infos.len(), build_range_infos.len());
         (self
             .fp
             .cmd_build_acceleration_structures)(
@@ -705,6 +706,9 @@ impl Device {
         indirect_strides: &[u32],
         max_primitive_counts: &[*const u32],
     ) {
+        assert_eq!(indirect_strides.len(), max_primitive_counts.len());
+        assert_eq!(indirect_device_addresses.len(), indirect_strides.len());
+        assert_eq!(infos.len(), indirect_device_addresses.len());
         (self
             .fp
             .cmd_build_acceleration_structures_indirect)(
@@ -725,6 +729,7 @@ impl Device {
         infos: &[crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
         build_range_infos: &[*const crate::vk::AccelerationStructureBuildRangeInfoKHR],
     ) -> crate::VkResult<()> {
+        assert_eq!(infos.len(), build_range_infos.len());
         (self
             .fp
             .build_acceleration_structures)(

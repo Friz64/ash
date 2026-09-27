@@ -1109,18 +1109,22 @@ impl crate::Device {
         &self,
         device: crate::vk::Device,
         info: &crate::vk::DeviceImageMemoryRequirements<'_>,
-    ) -> crate::VkResult<Vec<crate::vk::SparseImageMemoryRequirements2<'_>>> {
+    ) -> Vec<crate::vk::SparseImageMemoryRequirements2<'_>> {
         crate::read_into_uninitialized_vector(|
-            sparse_memory_requirement_count,
-            sparse_memory_requirements|
-        (self
-            .device_fn_1_3
-            .get_device_image_sparse_memory_requirements)(
-            device,
-            info,
-            sparse_memory_requirement_count,
-            sparse_memory_requirements,
-        ))
+                sparse_memory_requirement_count,
+                sparse_memory_requirements|
+            {
+                (self
+                    .device_fn_1_3
+                    .get_device_image_sparse_memory_requirements)(
+                    device,
+                    info,
+                    sparse_memory_requirement_count,
+                    sparse_memory_requirements,
+                );
+                crate::vk::Result::SUCCESS
+            })
+            .unwrap()
     }
     ///vkCmdSetCullMode
     #[inline]
@@ -1192,6 +1196,9 @@ impl crate::Device {
         sizes: &[crate::vk::DeviceSize],
         strides: &[crate::vk::DeviceSize],
     ) {
+        assert_eq!(sizes.len(), strides.len());
+        assert_eq!(offsets.len(), sizes.len());
+        assert_eq!(buffers.len(), offsets.len());
         (self
             .device_fn_1_3
             .cmd_bind_vertex_buffers2)(
@@ -1464,6 +1471,7 @@ impl crate::Device {
         events: &[crate::vk::Event],
         dependency_infos: &[crate::vk::DependencyInfo<'_>],
     ) {
+        assert_eq!(events.len(), dependency_infos.len());
         (self
             .device_fn_1_3
             .cmd_wait_events2)(

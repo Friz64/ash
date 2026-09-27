@@ -321,6 +321,9 @@ impl Device {
         sizes: &[crate::vk::DeviceSize],
         strides: &[crate::vk::DeviceSize],
     ) {
+        assert_eq!(sizes.len(), strides.len());
+        assert_eq!(offsets.len(), sizes.len());
+        assert_eq!(buffers.len(), offsets.len());
         (self
             .fp
             .cmd_bind_vertex_buffers2)(
