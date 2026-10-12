@@ -9,7 +9,7 @@ impl crate::vk::StructureType {
 ///Provided by [VK_ARM_data_graph_instruction_set_tosa](crate::arm::data_graph_instruction_set_tosa)
 impl DataGraphTOSALevelARM {
     pub const NONE: Self = Self(0);
-    pub const _8K: Self = Self(1);
+    pub const TYPE_8K: Self = Self(1);
 }
 ///Provided by [VK_ARM_data_graph_instruction_set_tosa](crate::arm::data_graph_instruction_set_tosa)
 impl DataGraphTOSAQualityFlagsARM {
@@ -218,7 +218,7 @@ pub(crate) mod items {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
                 Self::NONE => Some("NONE"),
-                Self::_8K => Some("_8K"),
+                Self::TYPE_8K => Some("TYPE_8K"),
                 _ => None,
             } {
                 f.write_str(x)

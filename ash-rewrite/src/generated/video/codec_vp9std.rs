@@ -4,28 +4,28 @@
 #![doc(alias = "vulkan_video_codec_vp9std")]
 ///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9Profile {
-    pub const _0: Self = Self(0);
-    pub const _1: Self = Self(1);
-    pub const _2: Self = Self(2);
-    pub const _3: Self = Self(3);
+    pub const TYPE_0: Self = Self(0);
+    pub const TYPE_1: Self = Self(1);
+    pub const TYPE_2: Self = Self(2);
+    pub const TYPE_3: Self = Self(3);
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9Level {
-    pub const _1_0: Self = Self(0);
-    pub const _1_1: Self = Self(1);
-    pub const _2_0: Self = Self(2);
-    pub const _2_1: Self = Self(3);
-    pub const _3_0: Self = Self(4);
-    pub const _3_1: Self = Self(5);
-    pub const _4_0: Self = Self(6);
-    pub const _4_1: Self = Self(7);
-    pub const _5_0: Self = Self(8);
-    pub const _5_1: Self = Self(9);
-    pub const _5_2: Self = Self(10);
-    pub const _6_0: Self = Self(11);
-    pub const _6_1: Self = Self(12);
-    pub const _6_2: Self = Self(13);
+    pub const TYPE_1_0: Self = Self(0);
+    pub const TYPE_1_1: Self = Self(1);
+    pub const TYPE_2_0: Self = Self(2);
+    pub const TYPE_2_1: Self = Self(3);
+    pub const TYPE_3_0: Self = Self(4);
+    pub const TYPE_3_1: Self = Self(5);
+    pub const TYPE_4_0: Self = Self(6);
+    pub const TYPE_4_1: Self = Self(7);
+    pub const TYPE_5_0: Self = Self(8);
+    pub const TYPE_5_1: Self = Self(9);
+    pub const TYPE_5_2: Self = Self(10);
+    pub const TYPE_6_0: Self = Self(11);
+    pub const TYPE_6_1: Self = Self(12);
+    pub const TYPE_6_2: Self = Self(13);
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
@@ -378,10 +378,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for VP9Profile {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::_0 => Some("_0"),
-                Self::_1 => Some("_1"),
-                Self::_2 => Some("_2"),
-                Self::_3 => Some("_3"),
+                Self::TYPE_0 => Some("TYPE_0"),
+                Self::TYPE_1 => Some("TYPE_1"),
+                Self::TYPE_2 => Some("TYPE_2"),
+                Self::TYPE_3 => Some("TYPE_3"),
                 Self::INVALID => Some("INVALID"),
                 _ => None,
             } {
@@ -408,20 +408,20 @@ pub(crate) mod items {
     impl core::fmt::Debug for VP9Level {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::_1_0 => Some("_1_0"),
-                Self::_1_1 => Some("_1_1"),
-                Self::_2_0 => Some("_2_0"),
-                Self::_2_1 => Some("_2_1"),
-                Self::_3_0 => Some("_3_0"),
-                Self::_3_1 => Some("_3_1"),
-                Self::_4_0 => Some("_4_0"),
-                Self::_4_1 => Some("_4_1"),
-                Self::_5_0 => Some("_5_0"),
-                Self::_5_1 => Some("_5_1"),
-                Self::_5_2 => Some("_5_2"),
-                Self::_6_0 => Some("_6_0"),
-                Self::_6_1 => Some("_6_1"),
-                Self::_6_2 => Some("_6_2"),
+                Self::TYPE_1_0 => Some("TYPE_1_0"),
+                Self::TYPE_1_1 => Some("TYPE_1_1"),
+                Self::TYPE_2_0 => Some("TYPE_2_0"),
+                Self::TYPE_2_1 => Some("TYPE_2_1"),
+                Self::TYPE_3_0 => Some("TYPE_3_0"),
+                Self::TYPE_3_1 => Some("TYPE_3_1"),
+                Self::TYPE_4_0 => Some("TYPE_4_0"),
+                Self::TYPE_4_1 => Some("TYPE_4_1"),
+                Self::TYPE_5_0 => Some("TYPE_5_0"),
+                Self::TYPE_5_1 => Some("TYPE_5_1"),
+                Self::TYPE_5_2 => Some("TYPE_5_2"),
+                Self::TYPE_6_0 => Some("TYPE_6_0"),
+                Self::TYPE_6_1 => Some("TYPE_6_1"),
+                Self::TYPE_6_2 => Some("TYPE_6_2"),
                 Self::INVALID => Some("INVALID"),
                 _ => None,
             } {

@@ -8,13 +8,13 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_image_2d_view_of_3d](crate::ext::image_2d_view_of_3d)
 impl crate::vk::ImageCreateFlags {
-    pub const _2D_VIEW_COMPATIBLE_EXT: Self = Self(
-        crate::vk::ImageCreateFlagBits::_2D_VIEW_COMPATIBLE_EXT.0,
+    pub const TYPE_2D_VIEW_COMPATIBLE_EXT: Self = Self(
+        crate::vk::ImageCreateFlagBits::TYPE_2D_VIEW_COMPATIBLE_EXT.0,
     );
 }
 ///Provided by [VK_EXT_image_2d_view_of_3d](crate::ext::image_2d_view_of_3d)
 impl crate::vk::ImageCreateFlagBits {
-    pub const _2D_VIEW_COMPATIBLE_EXT: Self = Self(1 << 17);
+    pub const TYPE_2D_VIEW_COMPATIBLE_EXT: Self = Self(1 << 17);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_image_2d_view_of_3d";

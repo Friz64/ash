@@ -8,13 +8,13 @@ impl crate::vk::Result {
 }
 ///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
 impl crate::vk::ImageCreateFlags {
-    pub const _2D_ARRAY_COMPATIBLE_KHR: Self = Self(
-        crate::vk::ImageCreateFlagBits::_2D_ARRAY_COMPATIBLE_KHR.0,
+    pub const TYPE_2D_ARRAY_COMPATIBLE_KHR: Self = Self(
+        crate::vk::ImageCreateFlagBits::TYPE_2D_ARRAY_COMPATIBLE_KHR.0,
     );
 }
 ///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
 impl crate::vk::ImageCreateFlagBits {
-    pub const _2D_ARRAY_COMPATIBLE_KHR: Self = Self::_2D_ARRAY_COMPATIBLE;
+    pub const TYPE_2D_ARRAY_COMPATIBLE_KHR: Self = Self::TYPE_2D_ARRAY_COMPATIBLE;
 }
 ///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
 impl crate::vk::FormatFeatureFlags {

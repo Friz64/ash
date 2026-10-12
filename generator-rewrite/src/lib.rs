@@ -191,7 +191,9 @@ impl RustTokens for Context<'_> {
         let prefix_stripped = maybe_tag_stripped.strip_prefix(&prefix).unwrap();
         let bit_stripped = prefix_stripped.replace("_BIT", "");
 
-        let ident = crate::escape_ident(&bit_stripped.TO_SHOUTY_SNEK_CASE());
+        let shouty = bit_stripped.TO_SHOUTY_SNEK_CASE();
+        let ident = syn::parse_str(&shouty).unwrap_or_else(|_| format_ident!("TYPE_{shouty}"));
+
         let path = qualified.then(|| {
             let bits_name = self.type_tokens(type_name, true, None);
             quote! { #bits_name:: }

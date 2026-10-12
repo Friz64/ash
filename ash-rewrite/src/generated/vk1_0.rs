@@ -36,9 +36,9 @@ impl AttachmentStoreOp {
 }
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageType {
-    pub const _1D: Self = Self(0);
-    pub const _2D: Self = Self(1);
-    pub const _3D: Self = Self(2);
+    pub const TYPE_1D: Self = Self(0);
+    pub const TYPE_2D: Self = Self(1);
+    pub const TYPE_3D: Self = Self(2);
 }
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageTiling {
@@ -47,12 +47,12 @@ impl ImageTiling {
 }
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageViewType {
-    pub const _1D: Self = Self(0);
-    pub const _2D: Self = Self(1);
-    pub const _3D: Self = Self(2);
+    pub const TYPE_1D: Self = Self(0);
+    pub const TYPE_2D: Self = Self(1);
+    pub const TYPE_3D: Self = Self(2);
     pub const CUBE: Self = Self(3);
-    pub const _1D_ARRAY: Self = Self(4);
-    pub const _2D_ARRAY: Self = Self(5);
+    pub const TYPE_1D_ARRAY: Self = Self(4);
+    pub const TYPE_2D_ARRAY: Self = Self(5);
     pub const CUBE_ARRAY: Self = Self(6);
 }
 ///Provided by [Vulkan 1.0](crate::vk1_0)
@@ -904,14 +904,14 @@ impl QueryControlFlagBits {
 }
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl QueryResultFlags {
-    pub const _64: Self = Self(QueryResultFlagBits::_64.0);
+    pub const TYPE_64: Self = Self(QueryResultFlagBits::TYPE_64.0);
     pub const WAIT: Self = Self(QueryResultFlagBits::WAIT.0);
     pub const WITH_AVAILABILITY: Self = Self(QueryResultFlagBits::WITH_AVAILABILITY.0);
     pub const PARTIAL: Self = Self(QueryResultFlagBits::PARTIAL.0);
 }
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl QueryResultFlagBits {
-    pub const _64: Self = Self(1 << 0);
+    pub const TYPE_64: Self = Self(1 << 0);
     pub const WAIT: Self = Self(1 << 1);
     pub const WITH_AVAILABILITY: Self = Self(1 << 2);
     pub const PARTIAL: Self = Self(1 << 3);
@@ -1106,23 +1106,23 @@ impl PipelineStageFlagBits {
 }
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SampleCountFlags {
-    pub const _1: Self = Self(SampleCountFlagBits::_1.0);
-    pub const _2: Self = Self(SampleCountFlagBits::_2.0);
-    pub const _4: Self = Self(SampleCountFlagBits::_4.0);
-    pub const _8: Self = Self(SampleCountFlagBits::_8.0);
-    pub const _16: Self = Self(SampleCountFlagBits::_16.0);
-    pub const _32: Self = Self(SampleCountFlagBits::_32.0);
-    pub const _64: Self = Self(SampleCountFlagBits::_64.0);
+    pub const TYPE_1: Self = Self(SampleCountFlagBits::TYPE_1.0);
+    pub const TYPE_2: Self = Self(SampleCountFlagBits::TYPE_2.0);
+    pub const TYPE_4: Self = Self(SampleCountFlagBits::TYPE_4.0);
+    pub const TYPE_8: Self = Self(SampleCountFlagBits::TYPE_8.0);
+    pub const TYPE_16: Self = Self(SampleCountFlagBits::TYPE_16.0);
+    pub const TYPE_32: Self = Self(SampleCountFlagBits::TYPE_32.0);
+    pub const TYPE_64: Self = Self(SampleCountFlagBits::TYPE_64.0);
 }
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl SampleCountFlagBits {
-    pub const _1: Self = Self(1 << 0);
-    pub const _2: Self = Self(1 << 1);
-    pub const _4: Self = Self(1 << 2);
-    pub const _8: Self = Self(1 << 3);
-    pub const _16: Self = Self(1 << 4);
-    pub const _32: Self = Self(1 << 5);
-    pub const _64: Self = Self(1 << 6);
+    pub const TYPE_1: Self = Self(1 << 0);
+    pub const TYPE_2: Self = Self(1 << 1);
+    pub const TYPE_4: Self = Self(1 << 2);
+    pub const TYPE_8: Self = Self(1 << 3);
+    pub const TYPE_16: Self = Self(1 << 4);
+    pub const TYPE_32: Self = Self(1 << 5);
+    pub const TYPE_64: Self = Self(1 << 6);
 }
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl AttachmentDescriptionFlags {
@@ -12018,9 +12018,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for ImageType {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::_1D => Some("_1D"),
-                Self::_2D => Some("_2D"),
-                Self::_3D => Some("_3D"),
+                Self::TYPE_1D => Some("TYPE_1D"),
+                Self::TYPE_2D => Some("TYPE_2D"),
+                Self::TYPE_3D => Some("TYPE_3D"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -12074,12 +12074,12 @@ pub(crate) mod items {
     impl core::fmt::Debug for ImageViewType {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::_1D => Some("_1D"),
-                Self::_2D => Some("_2D"),
-                Self::_3D => Some("_3D"),
+                Self::TYPE_1D => Some("TYPE_1D"),
+                Self::TYPE_2D => Some("TYPE_2D"),
+                Self::TYPE_3D => Some("TYPE_3D"),
                 Self::CUBE => Some("CUBE"),
-                Self::_1D_ARRAY => Some("_1D_ARRAY"),
-                Self::_2D_ARRAY => Some("_2D_ARRAY"),
+                Self::TYPE_1D_ARRAY => Some("TYPE_1D_ARRAY"),
+                Self::TYPE_2D_ARRAY => Some("TYPE_2D_ARRAY"),
                 Self::CUBE_ARRAY => Some("CUBE_ARRAY"),
                 _ => None,
             } {
@@ -19835,7 +19835,7 @@ pub(crate) mod items {
                     (Self::CUBE_COMPATIBLE.0, "CUBE_COMPATIBLE"),
                     (Self::ALIAS.0, "ALIAS"),
                     (Self::SPLIT_INSTANCE_BIND_REGIONS.0, "SPLIT_INSTANCE_BIND_REGIONS"),
-                    (Self::_2D_ARRAY_COMPATIBLE.0, "_2D_ARRAY_COMPATIBLE"),
+                    (Self::TYPE_2D_ARRAY_COMPATIBLE.0, "TYPE_2D_ARRAY_COMPATIBLE"),
                     (Self::BLOCK_TEXEL_VIEW_COMPATIBLE.0, "BLOCK_TEXEL_VIEW_COMPATIBLE"),
                     (Self::EXTENDED_USAGE.0, "EXTENDED_USAGE"),
                     (Self::PROTECTED.0, "PROTECTED"),
@@ -19854,7 +19854,7 @@ pub(crate) mod items {
                         Self::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
                         "MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT",
                     ),
-                    (Self::_2D_VIEW_COMPATIBLE_EXT.0, "_2D_VIEW_COMPATIBLE_EXT"),
+                    (Self::TYPE_2D_VIEW_COMPATIBLE_EXT.0, "TYPE_2D_VIEW_COMPATIBLE_EXT"),
                     (
                         Self::VIDEO_PROFILE_INDEPENDENT_KHR.0,
                         "VIDEO_PROFILE_INDEPENDENT_KHR",
@@ -20692,7 +20692,7 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::_64.0, "_64"),
+                    (Self::TYPE_64.0, "TYPE_64"),
                     (Self::WAIT.0, "WAIT"),
                     (Self::WITH_AVAILABILITY.0, "WITH_AVAILABILITY"),
                     (Self::PARTIAL.0, "PARTIAL"),
@@ -21996,13 +21996,13 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::_1.0, "_1"),
-                    (Self::_2.0, "_2"),
-                    (Self::_4.0, "_4"),
-                    (Self::_8.0, "_8"),
-                    (Self::_16.0, "_16"),
-                    (Self::_32.0, "_32"),
-                    (Self::_64.0, "_64"),
+                    (Self::TYPE_1.0, "TYPE_1"),
+                    (Self::TYPE_2.0, "TYPE_2"),
+                    (Self::TYPE_4.0, "TYPE_4"),
+                    (Self::TYPE_8.0, "TYPE_8"),
+                    (Self::TYPE_16.0, "TYPE_16"),
+                    (Self::TYPE_32.0, "TYPE_32"),
+                    (Self::TYPE_64.0, "TYPE_64"),
                 ],
                 self.0,
             )

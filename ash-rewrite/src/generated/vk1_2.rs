@@ -159,7 +159,7 @@ impl DriverId {
 }
 ///Provided by [Vulkan 1.2](crate::vk1_2)
 impl ShaderFloatControlsIndependence {
-    pub const _32_ONLY: Self = Self(0);
+    pub const TYPE_32_ONLY: Self = Self(0);
     pub const ALL: Self = Self(1);
     pub const NONE: Self = Self(2);
 }
@@ -4880,7 +4880,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for ShaderFloatControlsIndependence {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::_32_ONLY => Some("_32_ONLY"),
+                Self::TYPE_32_ONLY => Some("TYPE_32_ONLY"),
                 Self::ALL => Some("ALL"),
                 Self::NONE => Some("NONE"),
                 _ => None,

@@ -82,18 +82,18 @@ impl crate::vk::DataGraphPipelineSessionCreateFlagBitsARM {
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowGridSizeFlagsARM {
     pub const UNKNOWN: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::UNKNOWN.0);
-    pub const _1X1: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_1X1.0);
-    pub const _2X2: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_2X2.0);
-    pub const _4X4: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_4X4.0);
-    pub const _8X8: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_8X8.0);
+    pub const TYPE_1X1: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::TYPE_1X1.0);
+    pub const TYPE_2X2: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::TYPE_2X2.0);
+    pub const TYPE_4X4: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::TYPE_4X4.0);
+    pub const TYPE_8X8: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::TYPE_8X8.0);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowGridSizeFlagBitsARM {
     pub const UNKNOWN: Self = Self(0);
-    pub const _1X1: Self = Self(1 << 0);
-    pub const _2X2: Self = Self(1 << 1);
-    pub const _4X4: Self = Self(1 << 2);
-    pub const _8X8: Self = Self(1 << 3);
+    pub const TYPE_1X1: Self = Self(1 << 0);
+    pub const TYPE_2X2: Self = Self(1 << 1);
+    pub const TYPE_4X4: Self = Self(1 << 2);
+    pub const TYPE_8X8: Self = Self(1 << 3);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowImageUsageFlagsARM {
@@ -866,10 +866,10 @@ pub(crate) mod items {
                 f,
                 &[
                     (Self::UNKNOWN.0, "UNKNOWN"),
-                    (Self::_1X1.0, "_1X1"),
-                    (Self::_2X2.0, "_2X2"),
-                    (Self::_4X4.0, "_4X4"),
-                    (Self::_8X8.0, "_8X8"),
+                    (Self::TYPE_1X1.0, "TYPE_1X1"),
+                    (Self::TYPE_2X2.0, "TYPE_2X2"),
+                    (Self::TYPE_4X4.0, "TYPE_4X4"),
+                    (Self::TYPE_8X8.0, "TYPE_8X8"),
                 ],
                 self.0,
             )

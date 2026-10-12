@@ -5,9 +5,9 @@
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264ChromaFormatIdc {
     pub const MONOCHROME: Self = Self(0);
-    pub const _420: Self = Self(1);
-    pub const _422: Self = Self(2);
-    pub const _444: Self = Self(3);
+    pub const TYPE_420: Self = Self(1);
+    pub const TYPE_422: Self = Self(2);
+    pub const TYPE_444: Self = Self(3);
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
@@ -25,53 +25,53 @@ impl H264ProfileIdc {
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264LevelIdc {
-    pub const _1_0: Self = Self(0);
-    pub const _1_1: Self = Self(1);
-    pub const _1_2: Self = Self(2);
-    pub const _1_3: Self = Self(3);
-    pub const _2_0: Self = Self(4);
-    pub const _2_1: Self = Self(5);
-    pub const _2_2: Self = Self(6);
-    pub const _3_0: Self = Self(7);
-    pub const _3_1: Self = Self(8);
-    pub const _3_2: Self = Self(9);
-    pub const _4_0: Self = Self(10);
-    pub const _4_1: Self = Self(11);
-    pub const _4_2: Self = Self(12);
-    pub const _5_0: Self = Self(13);
-    pub const _5_1: Self = Self(14);
-    pub const _5_2: Self = Self(15);
-    pub const _6_0: Self = Self(16);
-    pub const _6_1: Self = Self(17);
-    pub const _6_2: Self = Self(18);
+    pub const TYPE_1_0: Self = Self(0);
+    pub const TYPE_1_1: Self = Self(1);
+    pub const TYPE_1_2: Self = Self(2);
+    pub const TYPE_1_3: Self = Self(3);
+    pub const TYPE_2_0: Self = Self(4);
+    pub const TYPE_2_1: Self = Self(5);
+    pub const TYPE_2_2: Self = Self(6);
+    pub const TYPE_3_0: Self = Self(7);
+    pub const TYPE_3_1: Self = Self(8);
+    pub const TYPE_3_2: Self = Self(9);
+    pub const TYPE_4_0: Self = Self(10);
+    pub const TYPE_4_1: Self = Self(11);
+    pub const TYPE_4_2: Self = Self(12);
+    pub const TYPE_5_0: Self = Self(13);
+    pub const TYPE_5_1: Self = Self(14);
+    pub const TYPE_5_2: Self = Self(15);
+    pub const TYPE_6_0: Self = Self(16);
+    pub const TYPE_6_1: Self = Self(17);
+    pub const TYPE_6_2: Self = Self(18);
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264PocType {
-    pub const _0: Self = Self(0);
-    pub const _1: Self = Self(1);
-    pub const _2: Self = Self(2);
+    pub const TYPE_0: Self = Self(0);
+    pub const TYPE_1: Self = Self(1);
+    pub const TYPE_2: Self = Self(2);
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264AspectRatioIdc {
     pub const UNSPECIFIED: Self = Self(0);
     pub const SQUARE: Self = Self(1);
-    pub const _12_11: Self = Self(2);
-    pub const _10_11: Self = Self(3);
-    pub const _16_11: Self = Self(4);
-    pub const _40_33: Self = Self(5);
-    pub const _24_11: Self = Self(6);
-    pub const _20_11: Self = Self(7);
-    pub const _32_11: Self = Self(8);
-    pub const _80_33: Self = Self(9);
-    pub const _18_11: Self = Self(10);
-    pub const _15_11: Self = Self(11);
-    pub const _64_33: Self = Self(12);
-    pub const _160_99: Self = Self(13);
-    pub const _4_3: Self = Self(14);
-    pub const _3_2: Self = Self(15);
-    pub const _2_1: Self = Self(16);
+    pub const TYPE_12_11: Self = Self(2);
+    pub const TYPE_10_11: Self = Self(3);
+    pub const TYPE_16_11: Self = Self(4);
+    pub const TYPE_40_33: Self = Self(5);
+    pub const TYPE_24_11: Self = Self(6);
+    pub const TYPE_20_11: Self = Self(7);
+    pub const TYPE_32_11: Self = Self(8);
+    pub const TYPE_80_33: Self = Self(9);
+    pub const TYPE_18_11: Self = Self(10);
+    pub const TYPE_15_11: Self = Self(11);
+    pub const TYPE_64_33: Self = Self(12);
+    pub const TYPE_160_99: Self = Self(13);
+    pub const TYPE_4_3: Self = Self(14);
+    pub const TYPE_3_2: Self = Self(15);
+    pub const TYPE_2_1: Self = Self(16);
     pub const EXTENDED_SAR: Self = Self(255);
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
@@ -103,9 +103,9 @@ impl H264MemMgmtControlOp {
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264CabacInitIdc {
-    pub const _0: Self = Self(0);
-    pub const _1: Self = Self(1);
-    pub const _2: Self = Self(2);
+    pub const TYPE_0: Self = Self(0);
+    pub const TYPE_1: Self = Self(1);
+    pub const TYPE_2: Self = Self(2);
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
@@ -1208,9 +1208,9 @@ pub(crate) mod items {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
                 Self::MONOCHROME => Some("MONOCHROME"),
-                Self::_420 => Some("_420"),
-                Self::_422 => Some("_422"),
-                Self::_444 => Some("_444"),
+                Self::TYPE_420 => Some("TYPE_420"),
+                Self::TYPE_422 => Some("TYPE_422"),
+                Self::TYPE_444 => Some("TYPE_444"),
                 Self::INVALID => Some("INVALID"),
                 _ => None,
             } {
@@ -1269,25 +1269,25 @@ pub(crate) mod items {
     impl core::fmt::Debug for H264LevelIdc {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::_1_0 => Some("_1_0"),
-                Self::_1_1 => Some("_1_1"),
-                Self::_1_2 => Some("_1_2"),
-                Self::_1_3 => Some("_1_3"),
-                Self::_2_0 => Some("_2_0"),
-                Self::_2_1 => Some("_2_1"),
-                Self::_2_2 => Some("_2_2"),
-                Self::_3_0 => Some("_3_0"),
-                Self::_3_1 => Some("_3_1"),
-                Self::_3_2 => Some("_3_2"),
-                Self::_4_0 => Some("_4_0"),
-                Self::_4_1 => Some("_4_1"),
-                Self::_4_2 => Some("_4_2"),
-                Self::_5_0 => Some("_5_0"),
-                Self::_5_1 => Some("_5_1"),
-                Self::_5_2 => Some("_5_2"),
-                Self::_6_0 => Some("_6_0"),
-                Self::_6_1 => Some("_6_1"),
-                Self::_6_2 => Some("_6_2"),
+                Self::TYPE_1_0 => Some("TYPE_1_0"),
+                Self::TYPE_1_1 => Some("TYPE_1_1"),
+                Self::TYPE_1_2 => Some("TYPE_1_2"),
+                Self::TYPE_1_3 => Some("TYPE_1_3"),
+                Self::TYPE_2_0 => Some("TYPE_2_0"),
+                Self::TYPE_2_1 => Some("TYPE_2_1"),
+                Self::TYPE_2_2 => Some("TYPE_2_2"),
+                Self::TYPE_3_0 => Some("TYPE_3_0"),
+                Self::TYPE_3_1 => Some("TYPE_3_1"),
+                Self::TYPE_3_2 => Some("TYPE_3_2"),
+                Self::TYPE_4_0 => Some("TYPE_4_0"),
+                Self::TYPE_4_1 => Some("TYPE_4_1"),
+                Self::TYPE_4_2 => Some("TYPE_4_2"),
+                Self::TYPE_5_0 => Some("TYPE_5_0"),
+                Self::TYPE_5_1 => Some("TYPE_5_1"),
+                Self::TYPE_5_2 => Some("TYPE_5_2"),
+                Self::TYPE_6_0 => Some("TYPE_6_0"),
+                Self::TYPE_6_1 => Some("TYPE_6_1"),
+                Self::TYPE_6_2 => Some("TYPE_6_2"),
                 Self::INVALID => Some("INVALID"),
                 _ => None,
             } {
@@ -1314,9 +1314,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for H264PocType {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::_0 => Some("_0"),
-                Self::_1 => Some("_1"),
-                Self::_2 => Some("_2"),
+                Self::TYPE_0 => Some("TYPE_0"),
+                Self::TYPE_1 => Some("TYPE_1"),
+                Self::TYPE_2 => Some("TYPE_2"),
                 Self::INVALID => Some("INVALID"),
                 _ => None,
             } {
@@ -1345,21 +1345,21 @@ pub(crate) mod items {
             if let Some(x) = match *self {
                 Self::UNSPECIFIED => Some("UNSPECIFIED"),
                 Self::SQUARE => Some("SQUARE"),
-                Self::_12_11 => Some("_12_11"),
-                Self::_10_11 => Some("_10_11"),
-                Self::_16_11 => Some("_16_11"),
-                Self::_40_33 => Some("_40_33"),
-                Self::_24_11 => Some("_24_11"),
-                Self::_20_11 => Some("_20_11"),
-                Self::_32_11 => Some("_32_11"),
-                Self::_80_33 => Some("_80_33"),
-                Self::_18_11 => Some("_18_11"),
-                Self::_15_11 => Some("_15_11"),
-                Self::_64_33 => Some("_64_33"),
-                Self::_160_99 => Some("_160_99"),
-                Self::_4_3 => Some("_4_3"),
-                Self::_3_2 => Some("_3_2"),
-                Self::_2_1 => Some("_2_1"),
+                Self::TYPE_12_11 => Some("TYPE_12_11"),
+                Self::TYPE_10_11 => Some("TYPE_10_11"),
+                Self::TYPE_16_11 => Some("TYPE_16_11"),
+                Self::TYPE_40_33 => Some("TYPE_40_33"),
+                Self::TYPE_24_11 => Some("TYPE_24_11"),
+                Self::TYPE_20_11 => Some("TYPE_20_11"),
+                Self::TYPE_32_11 => Some("TYPE_32_11"),
+                Self::TYPE_80_33 => Some("TYPE_80_33"),
+                Self::TYPE_18_11 => Some("TYPE_18_11"),
+                Self::TYPE_15_11 => Some("TYPE_15_11"),
+                Self::TYPE_64_33 => Some("TYPE_64_33"),
+                Self::TYPE_160_99 => Some("TYPE_160_99"),
+                Self::TYPE_4_3 => Some("TYPE_4_3"),
+                Self::TYPE_3_2 => Some("TYPE_3_2"),
+                Self::TYPE_2_1 => Some("TYPE_2_1"),
                 Self::EXTENDED_SAR => Some("EXTENDED_SAR"),
                 Self::INVALID => Some("INVALID"),
                 _ => None,
@@ -1479,9 +1479,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for H264CabacInitIdc {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::_0 => Some("_0"),
-                Self::_1 => Some("_1"),
-                Self::_2 => Some("_2"),
+                Self::TYPE_0 => Some("TYPE_0"),
+                Self::TYPE_1 => Some("TYPE_1"),
+                Self::TYPE_2 => Some("TYPE_2"),
                 Self::INVALID => Some("INVALID"),
                 _ => None,
             } {

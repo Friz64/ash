@@ -21,8 +21,8 @@ impl crate::vk::GeometryTypeKHR {
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl OpacityMicromapFormatKHR {
-    pub const _2_STATE: Self = Self(1);
-    pub const _4_STATE: Self = Self(2);
+    pub const TYPE_2_STATE: Self = Self(1);
+    pub const TYPE_4_STATE: Self = Self(2);
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl OpacityMicromapSpecialIndexKHR {
@@ -398,8 +398,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for OpacityMicromapFormatKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::_2_STATE => Some("_2_STATE"),
-                Self::_4_STATE => Some("_4_STATE"),
+                Self::TYPE_2_STATE => Some("TYPE_2_STATE"),
+                Self::TYPE_4_STATE => Some("TYPE_4_STATE"),
                 _ => None,
             } {
                 f.write_str(x)

@@ -43,8 +43,8 @@ impl BuildMicromapModeEXT {
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl crate::vk::OpacityMicromapFormatKHR {
-    pub const _2_STATE_EXT: Self = Self::_2_STATE;
-    pub const _4_STATE_EXT: Self = Self::_4_STATE;
+    pub const TYPE_2_STATE_EXT: Self = Self::TYPE_2_STATE;
+    pub const TYPE_4_STATE_EXT: Self = Self::TYPE_4_STATE;
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl crate::vk::OpacityMicromapSpecialIndexKHR {

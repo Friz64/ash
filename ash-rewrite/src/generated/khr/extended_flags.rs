@@ -97,8 +97,8 @@ impl ImageCreateFlags2KHR {
     pub const SPARSE_ALIASED: Self = Self(ImageCreateFlagBits2KHR::SPARSE_ALIASED.0);
     pub const MUTABLE_FORMAT: Self = Self(ImageCreateFlagBits2KHR::MUTABLE_FORMAT.0);
     pub const CUBE_COMPATIBLE: Self = Self(ImageCreateFlagBits2KHR::CUBE_COMPATIBLE.0);
-    pub const _2D_ARRAY_COMPATIBLE: Self = Self(
-        ImageCreateFlagBits2KHR::_2D_ARRAY_COMPATIBLE.0,
+    pub const TYPE_2D_ARRAY_COMPATIBLE: Self = Self(
+        ImageCreateFlagBits2KHR::TYPE_2D_ARRAY_COMPATIBLE.0,
     );
     pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(
         ImageCreateFlagBits2KHR::SPLIT_INSTANCE_BIND_REGIONS.0,
@@ -123,8 +123,8 @@ impl ImageCreateFlags2KHR {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(
         ImageCreateFlagBits2KHR::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
     );
-    pub const _2D_VIEW_COMPATIBLE_EXT: Self = Self(
-        ImageCreateFlagBits2KHR::_2D_VIEW_COMPATIBLE_EXT.0,
+    pub const TYPE_2D_VIEW_COMPATIBLE_EXT: Self = Self(
+        ImageCreateFlagBits2KHR::TYPE_2D_VIEW_COMPATIBLE_EXT.0,
     );
     pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(
         ImageCreateFlagBits2KHR::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
@@ -140,7 +140,7 @@ impl ImageCreateFlagBits2KHR {
     pub const SPARSE_ALIASED: Self = Self(1 << 2);
     pub const MUTABLE_FORMAT: Self = Self(1 << 3);
     pub const CUBE_COMPATIBLE: Self = Self(1 << 4);
-    pub const _2D_ARRAY_COMPATIBLE: Self = Self(1 << 5);
+    pub const TYPE_2D_ARRAY_COMPATIBLE: Self = Self(1 << 5);
     pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(1 << 6);
     pub const BLOCK_TEXEL_VIEW_COMPATIBLE: Self = Self(1 << 7);
     pub const EXTENDED_USAGE: Self = Self(1 << 8);
@@ -152,7 +152,7 @@ impl ImageCreateFlagBits2KHR {
     pub const SUBSAMPLED_EXT: Self = Self(1 << 14);
     pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(1 << 15);
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 16);
-    pub const _2D_VIEW_COMPATIBLE_EXT: Self = Self(1 << 17);
+    pub const TYPE_2D_VIEW_COMPATIBLE_EXT: Self = Self(1 << 17);
     pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(1 << 18);
     pub const VIDEO_PROFILE_INDEPENDENT: Self = Self(1 << 20);
 }
@@ -659,7 +659,7 @@ pub(crate) mod items {
                         Self::ALIAS_SINGLE_LAYER_DESCRIPTOR.0,
                         "ALIAS_SINGLE_LAYER_DESCRIPTOR",
                     ),
-                    (Self::_2D_ARRAY_COMPATIBLE.0, "_2D_ARRAY_COMPATIBLE"),
+                    (Self::TYPE_2D_ARRAY_COMPATIBLE.0, "TYPE_2D_ARRAY_COMPATIBLE"),
                     (Self::SPLIT_INSTANCE_BIND_REGIONS.0, "SPLIT_INSTANCE_BIND_REGIONS"),
                     (Self::BLOCK_TEXEL_VIEW_COMPATIBLE.0, "BLOCK_TEXEL_VIEW_COMPATIBLE"),
                     (Self::EXTENDED_USAGE.0, "EXTENDED_USAGE"),
@@ -680,7 +680,7 @@ pub(crate) mod items {
                         Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
                         "DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT",
                     ),
-                    (Self::_2D_VIEW_COMPATIBLE_EXT.0, "_2D_VIEW_COMPATIBLE_EXT"),
+                    (Self::TYPE_2D_VIEW_COMPATIBLE_EXT.0, "TYPE_2D_VIEW_COMPATIBLE_EXT"),
                     (
                         Self::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
                         "MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT",

@@ -111,13 +111,13 @@ impl VideoEncodeAV1RateControlFlagBitsKHR {
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1SuperblockSizeFlagsKHR {
-    pub const _64: Self = Self(VideoEncodeAV1SuperblockSizeFlagBitsKHR::_64.0);
-    pub const _128: Self = Self(VideoEncodeAV1SuperblockSizeFlagBitsKHR::_128.0);
+    pub const TYPE_64: Self = Self(VideoEncodeAV1SuperblockSizeFlagBitsKHR::TYPE_64.0);
+    pub const TYPE_128: Self = Self(VideoEncodeAV1SuperblockSizeFlagBitsKHR::TYPE_128.0);
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1SuperblockSizeFlagBitsKHR {
-    pub const _64: Self = Self(1 << 0);
-    pub const _128: Self = Self(1 << 1);
+    pub const TYPE_64: Self = Self(1 << 0);
+    pub const TYPE_128: Self = Self(1 << 1);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_av1";
@@ -1392,7 +1392,7 @@ pub(crate) mod items {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             crate::debug_flags(
                 f,
-                &[(Self::_64.0, "_64"), (Self::_128.0, "_128")],
+                &[(Self::TYPE_64.0, "TYPE_64"), (Self::TYPE_128.0, "TYPE_128")],
                 self.0,
             )
         }

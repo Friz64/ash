@@ -19,9 +19,9 @@ impl crate::vk::MicromapTypeEXT {
 }
 ///Provided by [VK_NV_displacement_micromap](crate::nv::displacement_micromap)
 impl DisplacementMicromapFormatNV {
-    pub const _64_TRIANGLES_64_BYTES: Self = Self(1);
-    pub const _256_TRIANGLES_128_BYTES: Self = Self(2);
-    pub const _1024_TRIANGLES_128_BYTES: Self = Self(3);
+    pub const TYPE_64_TRIANGLES_64_BYTES: Self = Self(1);
+    pub const TYPE_256_TRIANGLES_128_BYTES: Self = Self(2);
+    pub const TYPE_1024_TRIANGLES_128_BYTES: Self = Self(3);
 }
 ///Provided by [VK_NV_displacement_micromap](crate::nv::displacement_micromap)
 impl crate::vk::PipelineCreateFlags {
@@ -282,11 +282,15 @@ pub(crate) mod items {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
                 #[cfg(feature = "provisional")]
-                Self::_64_TRIANGLES_64_BYTES => Some("_64_TRIANGLES_64_BYTES"),
+                Self::TYPE_64_TRIANGLES_64_BYTES => Some("TYPE_64_TRIANGLES_64_BYTES"),
                 #[cfg(feature = "provisional")]
-                Self::_256_TRIANGLES_128_BYTES => Some("_256_TRIANGLES_128_BYTES"),
+                Self::TYPE_256_TRIANGLES_128_BYTES => {
+                    Some("TYPE_256_TRIANGLES_128_BYTES")
+                }
                 #[cfg(feature = "provisional")]
-                Self::_1024_TRIANGLES_128_BYTES => Some("_1024_TRIANGLES_128_BYTES"),
+                Self::TYPE_1024_TRIANGLES_128_BYTES => {
+                    Some("TYPE_1024_TRIANGLES_128_BYTES")
+                }
                 _ => None,
             } {
                 f.write_str(x)

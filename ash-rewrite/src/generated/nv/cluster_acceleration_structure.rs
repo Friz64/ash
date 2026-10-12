@@ -131,21 +131,21 @@ impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureIndexFormatFlagsNV {
-    pub const _8BIT: Self = Self(
-        ClusterAccelerationStructureIndexFormatFlagBitsNV::_8BIT.0,
+    pub const TYPE_8BIT: Self = Self(
+        ClusterAccelerationStructureIndexFormatFlagBitsNV::TYPE_8BIT.0,
     );
-    pub const _16BIT: Self = Self(
-        ClusterAccelerationStructureIndexFormatFlagBitsNV::_16BIT.0,
+    pub const TYPE_16BIT: Self = Self(
+        ClusterAccelerationStructureIndexFormatFlagBitsNV::TYPE_16BIT.0,
     );
-    pub const _32BIT: Self = Self(
-        ClusterAccelerationStructureIndexFormatFlagBitsNV::_32BIT.0,
+    pub const TYPE_32BIT: Self = Self(
+        ClusterAccelerationStructureIndexFormatFlagBitsNV::TYPE_32BIT.0,
     );
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureIndexFormatFlagBitsNV {
-    pub const _8BIT: Self = Self(1 << 0);
-    pub const _16BIT: Self = Self(1 << 1);
-    pub const _32BIT: Self = Self(1 << 2);
+    pub const TYPE_8BIT: Self = Self(1 << 0);
+    pub const TYPE_16BIT: Self = Self(1 << 1);
+    pub const TYPE_32BIT: Self = Self(1 << 2);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -1755,9 +1755,9 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::_8BIT.0, "_8BIT"),
-                    (Self::_16BIT.0, "_16BIT"),
-                    (Self::_32BIT.0, "_32BIT"),
+                    (Self::TYPE_8BIT.0, "TYPE_8BIT"),
+                    (Self::TYPE_16BIT.0, "TYPE_16BIT"),
+                    (Self::TYPE_32BIT.0, "TYPE_32BIT"),
                 ],
                 self.0,
             )

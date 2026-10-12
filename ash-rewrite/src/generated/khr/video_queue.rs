@@ -100,31 +100,31 @@ impl VideoCodingControlFlagBitsKHR {
 impl VideoChromaSubsamplingFlagsKHR {
     pub const INVALID: Self = Self(VideoChromaSubsamplingFlagBitsKHR::INVALID.0);
     pub const MONOCHROME: Self = Self(VideoChromaSubsamplingFlagBitsKHR::MONOCHROME.0);
-    pub const _420: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_420.0);
-    pub const _422: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_422.0);
-    pub const _444: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_444.0);
+    pub const TYPE_420: Self = Self(VideoChromaSubsamplingFlagBitsKHR::TYPE_420.0);
+    pub const TYPE_422: Self = Self(VideoChromaSubsamplingFlagBitsKHR::TYPE_422.0);
+    pub const TYPE_444: Self = Self(VideoChromaSubsamplingFlagBitsKHR::TYPE_444.0);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoChromaSubsamplingFlagBitsKHR {
     pub const INVALID: Self = Self(0);
     pub const MONOCHROME: Self = Self(1 << 0);
-    pub const _420: Self = Self(1 << 1);
-    pub const _422: Self = Self(1 << 2);
-    pub const _444: Self = Self(1 << 3);
+    pub const TYPE_420: Self = Self(1 << 1);
+    pub const TYPE_422: Self = Self(1 << 2);
+    pub const TYPE_444: Self = Self(1 << 3);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoComponentBitDepthFlagsKHR {
     pub const INVALID: Self = Self(VideoComponentBitDepthFlagBitsKHR::INVALID.0);
-    pub const _8: Self = Self(VideoComponentBitDepthFlagBitsKHR::_8.0);
-    pub const _10: Self = Self(VideoComponentBitDepthFlagBitsKHR::_10.0);
-    pub const _12: Self = Self(VideoComponentBitDepthFlagBitsKHR::_12.0);
+    pub const TYPE_8: Self = Self(VideoComponentBitDepthFlagBitsKHR::TYPE_8.0);
+    pub const TYPE_10: Self = Self(VideoComponentBitDepthFlagBitsKHR::TYPE_10.0);
+    pub const TYPE_12: Self = Self(VideoComponentBitDepthFlagBitsKHR::TYPE_12.0);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoComponentBitDepthFlagBitsKHR {
     pub const INVALID: Self = Self(0);
-    pub const _8: Self = Self(1 << 0);
-    pub const _10: Self = Self(1 << 2);
-    pub const _12: Self = Self(1 << 4);
+    pub const TYPE_8: Self = Self(1 << 0);
+    pub const TYPE_10: Self = Self(1 << 2);
+    pub const TYPE_12: Self = Self(1 << 4);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -2127,9 +2127,9 @@ pub(crate) mod items {
                 &[
                     (Self::INVALID.0, "INVALID"),
                     (Self::MONOCHROME.0, "MONOCHROME"),
-                    (Self::_420.0, "_420"),
-                    (Self::_422.0, "_422"),
-                    (Self::_444.0, "_444"),
+                    (Self::TYPE_420.0, "TYPE_420"),
+                    (Self::TYPE_422.0, "TYPE_422"),
+                    (Self::TYPE_444.0, "TYPE_444"),
                 ],
                 self.0,
             )
@@ -2219,9 +2219,9 @@ pub(crate) mod items {
                 f,
                 &[
                     (Self::INVALID.0, "INVALID"),
-                    (Self::_8.0, "_8"),
-                    (Self::_10.0, "_10"),
-                    (Self::_12.0, "_12"),
+                    (Self::TYPE_8.0, "TYPE_8"),
+                    (Self::TYPE_10.0, "TYPE_10"),
+                    (Self::TYPE_12.0, "TYPE_12"),
                 ],
                 self.0,
             )

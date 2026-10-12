@@ -8,7 +8,7 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_shader_float_controls](crate::khr::shader_float_controls)
 impl crate::vk::ShaderFloatControlsIndependence {
-    pub const _32_ONLY_KHR: Self = Self::_32_ONLY;
+    pub const TYPE_32_ONLY_KHR: Self = Self::TYPE_32_ONLY;
     pub const ALL_KHR: Self = Self::ALL;
     pub const NONE_KHR: Self = Self::NONE;
 }

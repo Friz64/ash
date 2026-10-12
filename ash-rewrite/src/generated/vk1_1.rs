@@ -213,8 +213,8 @@ impl crate::vk::ImageCreateFlags {
     pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(
         crate::vk::ImageCreateFlagBits::SPLIT_INSTANCE_BIND_REGIONS.0,
     );
-    pub const _2D_ARRAY_COMPATIBLE: Self = Self(
-        crate::vk::ImageCreateFlagBits::_2D_ARRAY_COMPATIBLE.0,
+    pub const TYPE_2D_ARRAY_COMPATIBLE: Self = Self(
+        crate::vk::ImageCreateFlagBits::TYPE_2D_ARRAY_COMPATIBLE.0,
     );
     pub const BLOCK_TEXEL_VIEW_COMPATIBLE: Self = Self(
         crate::vk::ImageCreateFlagBits::BLOCK_TEXEL_VIEW_COMPATIBLE.0,
@@ -229,7 +229,7 @@ impl crate::vk::ImageCreateFlags {
 impl crate::vk::ImageCreateFlagBits {
     pub const ALIAS: Self = Self(1 << 10);
     pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(1 << 6);
-    pub const _2D_ARRAY_COMPATIBLE: Self = Self(1 << 5);
+    pub const TYPE_2D_ARRAY_COMPATIBLE: Self = Self(1 << 5);
     pub const BLOCK_TEXEL_VIEW_COMPATIBLE: Self = Self(1 << 7);
     pub const EXTENDED_USAGE: Self = Self(1 << 8);
     pub const PROTECTED: Self = Self(1 << 11);

@@ -3835,7 +3835,7 @@ pub(crate) mod items {
                         Self::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR.0,
                         "OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR",
                     ),
-                    (Self::_64_INDEXING_EXT.0, "_64_INDEXING_EXT"),
+                    (Self::TYPE_64_INDEXING_EXT.0, "TYPE_64_INDEXING_EXT"),
                 ],
                 self.0,
             )

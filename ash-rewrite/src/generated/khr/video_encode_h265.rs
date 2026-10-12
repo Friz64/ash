@@ -197,29 +197,37 @@ impl VideoEncodeH265RateControlFlagBitsKHR {
 }
 ///Provided by [VK_KHR_video_encode_h265](crate::khr::video_encode_h265)
 impl VideoEncodeH265CtbSizeFlagsKHR {
-    pub const _16: Self = Self(VideoEncodeH265CtbSizeFlagBitsKHR::_16.0);
-    pub const _32: Self = Self(VideoEncodeH265CtbSizeFlagBitsKHR::_32.0);
-    pub const _64: Self = Self(VideoEncodeH265CtbSizeFlagBitsKHR::_64.0);
+    pub const TYPE_16: Self = Self(VideoEncodeH265CtbSizeFlagBitsKHR::TYPE_16.0);
+    pub const TYPE_32: Self = Self(VideoEncodeH265CtbSizeFlagBitsKHR::TYPE_32.0);
+    pub const TYPE_64: Self = Self(VideoEncodeH265CtbSizeFlagBitsKHR::TYPE_64.0);
 }
 ///Provided by [VK_KHR_video_encode_h265](crate::khr::video_encode_h265)
 impl VideoEncodeH265CtbSizeFlagBitsKHR {
-    pub const _16: Self = Self(1 << 0);
-    pub const _32: Self = Self(1 << 1);
-    pub const _64: Self = Self(1 << 2);
+    pub const TYPE_16: Self = Self(1 << 0);
+    pub const TYPE_32: Self = Self(1 << 1);
+    pub const TYPE_64: Self = Self(1 << 2);
 }
 ///Provided by [VK_KHR_video_encode_h265](crate::khr::video_encode_h265)
 impl VideoEncodeH265TransformBlockSizeFlagsKHR {
-    pub const _4: Self = Self(VideoEncodeH265TransformBlockSizeFlagBitsKHR::_4.0);
-    pub const _8: Self = Self(VideoEncodeH265TransformBlockSizeFlagBitsKHR::_8.0);
-    pub const _16: Self = Self(VideoEncodeH265TransformBlockSizeFlagBitsKHR::_16.0);
-    pub const _32: Self = Self(VideoEncodeH265TransformBlockSizeFlagBitsKHR::_32.0);
+    pub const TYPE_4: Self = Self(
+        VideoEncodeH265TransformBlockSizeFlagBitsKHR::TYPE_4.0,
+    );
+    pub const TYPE_8: Self = Self(
+        VideoEncodeH265TransformBlockSizeFlagBitsKHR::TYPE_8.0,
+    );
+    pub const TYPE_16: Self = Self(
+        VideoEncodeH265TransformBlockSizeFlagBitsKHR::TYPE_16.0,
+    );
+    pub const TYPE_32: Self = Self(
+        VideoEncodeH265TransformBlockSizeFlagBitsKHR::TYPE_32.0,
+    );
 }
 ///Provided by [VK_KHR_video_encode_h265](crate::khr::video_encode_h265)
 impl VideoEncodeH265TransformBlockSizeFlagBitsKHR {
-    pub const _4: Self = Self(1 << 0);
-    pub const _8: Self = Self(1 << 1);
-    pub const _16: Self = Self(1 << 2);
-    pub const _32: Self = Self(1 << 3);
+    pub const TYPE_4: Self = Self(1 << 0);
+    pub const TYPE_8: Self = Self(1 << 1);
+    pub const TYPE_16: Self = Self(1 << 2);
+    pub const TYPE_32: Self = Self(1 << 3);
 }
 pub const SPEC_VERSION: u32 = 14;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_h265";
@@ -1511,7 +1519,11 @@ pub(crate) mod items {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             crate::debug_flags(
                 f,
-                &[(Self::_16.0, "_16"), (Self::_32.0, "_32"), (Self::_64.0, "_64")],
+                &[
+                    (Self::TYPE_16.0, "TYPE_16"),
+                    (Self::TYPE_32.0, "TYPE_32"),
+                    (Self::TYPE_64.0, "TYPE_64"),
+                ],
                 self.0,
             )
         }
@@ -1599,10 +1611,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::_4.0, "_4"),
-                    (Self::_8.0, "_8"),
-                    (Self::_16.0, "_16"),
-                    (Self::_32.0, "_32"),
+                    (Self::TYPE_4.0, "TYPE_4"),
+                    (Self::TYPE_8.0, "TYPE_8"),
+                    (Self::TYPE_16.0, "TYPE_16"),
+                    (Self::TYPE_32.0, "TYPE_32"),
                 ],
                 self.0,
             )
