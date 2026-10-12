@@ -88,7 +88,7 @@ pub(crate) mod items {
     pub struct PerfHintInfoQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub _type: crate::vk::PerfHintTypeQCOM,
+        pub ty: crate::vk::PerfHintTypeQCOM,
         pub scale: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
@@ -102,15 +102,15 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 scale: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
         }
     }
     impl<'a> PerfHintInfoQCOM<'a> {
-        pub fn _type(mut self, _type: crate::vk::PerfHintTypeQCOM) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::PerfHintTypeQCOM) -> Self {
+            self.ty = ty;
             self
         }
         pub fn scale(mut self, scale: u32) -> Self {

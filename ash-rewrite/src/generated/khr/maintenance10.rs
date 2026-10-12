@@ -446,8 +446,17 @@ pub(crate) mod items {
     pub struct RenderingAttachmentFlagBitsKHR(pub(crate) u32);
     impl RenderingAttachmentFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> RenderingAttachmentFlagsKHR {
             RenderingAttachmentFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -536,8 +545,17 @@ pub(crate) mod items {
     pub struct ResolveImageFlagBitsKHR(pub(crate) u32);
     impl ResolveImageFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ResolveImageFlagsKHR {
             ResolveImageFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

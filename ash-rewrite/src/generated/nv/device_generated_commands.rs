@@ -1163,8 +1163,17 @@ pub(crate) mod items {
     pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) u32);
     impl IndirectCommandsLayoutUsageFlagBitsNV {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> IndirectCommandsLayoutUsageFlagsNV {
             IndirectCommandsLayoutUsageFlagsNV::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1246,8 +1255,17 @@ pub(crate) mod items {
     pub struct IndirectStateFlagBitsNV(pub(crate) u32);
     impl IndirectStateFlagBitsNV {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> IndirectStateFlagsNV {
             IndirectStateFlagsNV::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

@@ -1773,8 +1773,17 @@ pub(crate) mod items {
     pub struct TensorCreateFlagBitsARM(pub(crate) u64);
     impl TensorCreateFlagBitsARM {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> TensorCreateFlagsARM {
             TensorCreateFlagsARM::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1866,8 +1875,17 @@ pub(crate) mod items {
     pub struct TensorUsageFlagBitsARM(pub(crate) u64);
     impl TensorUsageFlagBitsARM {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> TensorUsageFlagsARM {
             TensorUsageFlagsARM::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

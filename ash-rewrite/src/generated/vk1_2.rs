@@ -4974,8 +4974,17 @@ pub(crate) mod items {
     pub struct SemaphoreWaitFlagBits(pub(crate) u32);
     impl SemaphoreWaitFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> SemaphoreWaitFlags {
             SemaphoreWaitFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5066,8 +5075,17 @@ pub(crate) mod items {
     pub struct DescriptorBindingFlagBits(pub(crate) u32);
     impl DescriptorBindingFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DescriptorBindingFlags {
             DescriptorBindingFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5164,8 +5182,17 @@ pub(crate) mod items {
     pub struct ResolveModeFlagBits(pub(crate) u32);
     impl ResolveModeFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ResolveModeFlags {
             ResolveModeFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

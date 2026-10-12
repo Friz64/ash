@@ -64,7 +64,7 @@ pub(crate) mod items {
     pub struct LayerSettingEXT<'a> {
         pub p_layer_name: *const core::ffi::c_char,
         pub p_setting_name: *const core::ffi::c_char,
-        pub _type: crate::vk::LayerSettingTypeEXT,
+        pub ty: crate::vk::LayerSettingTypeEXT,
         pub value_count: u32,
         pub p_values: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
@@ -94,8 +94,8 @@ pub(crate) mod items {
                 Some(unsafe { core::ffi::CStr::from_ptr(self.p_setting_name) })
             }
         }
-        pub fn _type(mut self, _type: crate::vk::LayerSettingTypeEXT) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::LayerSettingTypeEXT) -> Self {
+            self.ty = ty;
             self
         }
         pub fn values(mut self, values: &'a [u8]) -> Self {

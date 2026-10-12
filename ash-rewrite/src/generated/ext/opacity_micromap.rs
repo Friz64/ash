@@ -652,7 +652,7 @@ pub(crate) mod items {
     pub struct MicromapBuildInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _type: crate::vk::MicromapTypeEXT,
+        pub ty: crate::vk::MicromapTypeEXT,
         pub flags: crate::vk::BuildMicromapFlagsEXT,
         pub mode: crate::vk::BuildMicromapModeEXT,
         pub dst_micromap: crate::vk::MicromapEXT,
@@ -675,7 +675,7 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 flags: Default::default(),
                 mode: Default::default(),
                 dst_micromap: Default::default(),
@@ -691,8 +691,8 @@ pub(crate) mod items {
         }
     }
     impl<'a> MicromapBuildInfoEXT<'a> {
-        pub fn _type(mut self, _type: crate::vk::MicromapTypeEXT) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::MicromapTypeEXT) -> Self {
+            self.ty = ty;
             self
         }
         pub fn flags(mut self, flags: crate::vk::BuildMicromapFlagsEXT) -> Self {
@@ -759,7 +759,7 @@ pub(crate) mod items {
         pub buffer: crate::vk::Buffer,
         pub offset: crate::vk::DeviceSize,
         pub size: crate::vk::DeviceSize,
-        pub _type: crate::vk::MicromapTypeEXT,
+        pub ty: crate::vk::MicromapTypeEXT,
         pub device_address: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
@@ -777,7 +777,7 @@ pub(crate) mod items {
                 buffer: Default::default(),
                 offset: Default::default(),
                 size: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 device_address: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
@@ -803,8 +803,8 @@ pub(crate) mod items {
             self.size = size;
             self
         }
-        pub fn _type(mut self, _type: crate::vk::MicromapTypeEXT) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::MicromapTypeEXT) -> Self {
+            self.ty = ty;
             self
         }
         pub fn device_address(
@@ -1392,8 +1392,17 @@ pub(crate) mod items {
     pub struct BuildMicromapFlagBitsEXT(pub(crate) u32);
     impl BuildMicromapFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> BuildMicromapFlagsEXT {
             BuildMicromapFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1484,8 +1493,17 @@ pub(crate) mod items {
     pub struct MicromapCreateFlagBitsEXT(pub(crate) u32);
     impl MicromapCreateFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> MicromapCreateFlagsEXT {
             MicromapCreateFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

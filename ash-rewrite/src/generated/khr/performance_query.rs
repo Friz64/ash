@@ -769,8 +769,17 @@ pub(crate) mod items {
     pub struct PerformanceCounterDescriptionFlagBitsKHR(pub(crate) u32);
     impl PerformanceCounterDescriptionFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PerformanceCounterDescriptionFlagsKHR {
             PerformanceCounterDescriptionFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -852,8 +861,17 @@ pub(crate) mod items {
     pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) u32);
     impl AcquireProfilingLockFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> AcquireProfilingLockFlagsKHR {
             AcquireProfilingLockFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

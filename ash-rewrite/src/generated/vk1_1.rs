@@ -1676,7 +1676,7 @@ pub(crate) mod items {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub format: crate::vk::Format,
-        pub _type: crate::vk::ImageType,
+        pub ty: crate::vk::ImageType,
         pub tiling: crate::vk::ImageTiling,
         pub usage: crate::vk::ImageUsageFlags,
         pub flags: crate::vk::ImageCreateFlags,
@@ -1693,7 +1693,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 format: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 tiling: Default::default(),
                 usage: Default::default(),
                 flags: Default::default(),
@@ -1706,8 +1706,8 @@ pub(crate) mod items {
             self.format = format;
             self
         }
-        pub fn _type(mut self, _type: crate::vk::ImageType) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::ImageType) -> Self {
+            self.ty = ty;
             self
         }
         pub fn tiling(mut self, tiling: crate::vk::ImageTiling) -> Self {
@@ -1829,7 +1829,7 @@ pub(crate) mod items {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub format: crate::vk::Format,
-        pub _type: crate::vk::ImageType,
+        pub ty: crate::vk::ImageType,
         pub samples: crate::vk::SampleCountFlagBits,
         pub usage: crate::vk::ImageUsageFlags,
         pub tiling: crate::vk::ImageTiling,
@@ -1847,7 +1847,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 format: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 samples: Default::default(),
                 usage: Default::default(),
                 tiling: Default::default(),
@@ -1860,8 +1860,8 @@ pub(crate) mod items {
             self.format = format;
             self
         }
-        pub fn _type(mut self, _type: crate::vk::ImageType) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::ImageType) -> Self {
+            self.ty = ty;
             self
         }
         pub fn samples(mut self, samples: crate::vk::SampleCountFlagBits) -> Self {
@@ -4563,8 +4563,17 @@ pub(crate) mod items {
     pub struct SubgroupFeatureFlagBits(pub(crate) u32);
     impl SubgroupFeatureFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> SubgroupFeatureFlags {
             SubgroupFeatureFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -4723,8 +4732,17 @@ pub(crate) mod items {
     pub struct PeerMemoryFeatureFlagBits(pub(crate) u32);
     impl PeerMemoryFeatureFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PeerMemoryFeatureFlags {
             PeerMemoryFeatureFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -4818,8 +4836,17 @@ pub(crate) mod items {
     pub struct MemoryAllocateFlagBits(pub(crate) u32);
     impl MemoryAllocateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> MemoryAllocateFlags {
             MemoryAllocateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -4998,8 +5025,17 @@ pub(crate) mod items {
     pub struct ExternalMemoryHandleTypeFlagBits(pub(crate) u32);
     impl ExternalMemoryHandleTypeFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ExternalMemoryHandleTypeFlags {
             ExternalMemoryHandleTypeFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5089,8 +5125,17 @@ pub(crate) mod items {
     pub struct ExternalMemoryFeatureFlagBits(pub(crate) u32);
     impl ExternalMemoryFeatureFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ExternalMemoryFeatureFlags {
             ExternalMemoryFeatureFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5183,8 +5228,17 @@ pub(crate) mod items {
     pub struct ExternalSemaphoreHandleTypeFlagBits(pub(crate) u32);
     impl ExternalSemaphoreHandleTypeFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ExternalSemaphoreHandleTypeFlags {
             ExternalSemaphoreHandleTypeFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5273,8 +5327,17 @@ pub(crate) mod items {
     pub struct ExternalSemaphoreFeatureFlagBits(pub(crate) u32);
     impl ExternalSemaphoreFeatureFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ExternalSemaphoreFeatureFlags {
             ExternalSemaphoreFeatureFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5356,8 +5419,17 @@ pub(crate) mod items {
     pub struct SemaphoreImportFlagBits(pub(crate) u32);
     impl SemaphoreImportFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> SemaphoreImportFlags {
             SemaphoreImportFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5448,8 +5520,17 @@ pub(crate) mod items {
     pub struct ExternalFenceHandleTypeFlagBits(pub(crate) u32);
     impl ExternalFenceHandleTypeFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ExternalFenceHandleTypeFlags {
             ExternalFenceHandleTypeFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5538,8 +5619,17 @@ pub(crate) mod items {
     pub struct ExternalFenceFeatureFlagBits(pub(crate) u32);
     impl ExternalFenceFeatureFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ExternalFenceFeatureFlags {
             ExternalFenceFeatureFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5621,8 +5711,17 @@ pub(crate) mod items {
     pub struct FenceImportFlagBits(pub(crate) u32);
     impl FenceImportFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> FenceImportFlags {
             FenceImportFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

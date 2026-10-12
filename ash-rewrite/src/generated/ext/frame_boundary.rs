@@ -201,8 +201,17 @@ pub(crate) mod items {
     pub struct FrameBoundaryFlagBitsEXT(pub(crate) u32);
     impl FrameBoundaryFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> FrameBoundaryFlagsEXT {
             FrameBoundaryFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

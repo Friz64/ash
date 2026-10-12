@@ -445,7 +445,7 @@ pub(crate) mod items {
     pub struct RayTracingShaderGroupCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _type: crate::vk::RayTracingShaderGroupTypeKHR,
+        pub ty: crate::vk::RayTracingShaderGroupTypeKHR,
         pub general_shader: u32,
         pub closest_hit_shader: u32,
         pub any_hit_shader: u32,
@@ -464,7 +464,7 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 general_shader: Default::default(),
                 closest_hit_shader: Default::default(),
                 any_hit_shader: Default::default(),
@@ -475,8 +475,8 @@ pub(crate) mod items {
         }
     }
     impl<'a> RayTracingShaderGroupCreateInfoKHR<'a> {
-        pub fn _type(mut self, _type: crate::vk::RayTracingShaderGroupTypeKHR) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::RayTracingShaderGroupTypeKHR) -> Self {
+            self.ty = ty;
             self
         }
         pub fn general_shader(mut self, general_shader: u32) -> Self {

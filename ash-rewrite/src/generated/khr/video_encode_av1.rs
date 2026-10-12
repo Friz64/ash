@@ -1184,8 +1184,17 @@ pub(crate) mod items {
     pub struct VideoEncodeAV1CapabilityFlagBitsKHR(pub(crate) u32);
     impl VideoEncodeAV1CapabilityFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoEncodeAV1CapabilityFlagsKHR {
             VideoEncodeAV1CapabilityFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1279,8 +1288,17 @@ pub(crate) mod items {
     pub struct VideoEncodeAV1StdFlagBitsKHR(pub(crate) u32);
     impl VideoEncodeAV1StdFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoEncodeAV1StdFlagsKHR {
             VideoEncodeAV1StdFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1374,8 +1392,17 @@ pub(crate) mod items {
     pub struct VideoEncodeAV1RateControlFlagBitsKHR(pub(crate) u32);
     impl VideoEncodeAV1RateControlFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoEncodeAV1RateControlFlagsKHR {
             VideoEncodeAV1RateControlFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1461,8 +1488,17 @@ pub(crate) mod items {
     pub struct VideoEncodeAV1SuperblockSizeFlagBitsKHR(pub(crate) u32);
     impl VideoEncodeAV1SuperblockSizeFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoEncodeAV1SuperblockSizeFlagsKHR {
             VideoEncodeAV1SuperblockSizeFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

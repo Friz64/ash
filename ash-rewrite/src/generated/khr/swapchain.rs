@@ -948,8 +948,17 @@ pub(crate) mod items {
     pub struct SwapchainCreateFlagBitsKHR(pub(crate) u32);
     impl SwapchainCreateFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> SwapchainCreateFlagsKHR {
             SwapchainCreateFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1040,8 +1049,17 @@ pub(crate) mod items {
     pub struct DeviceGroupPresentModeFlagBitsKHR(pub(crate) u32);
     impl DeviceGroupPresentModeFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DeviceGroupPresentModeFlagsKHR {
             DeviceGroupPresentModeFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

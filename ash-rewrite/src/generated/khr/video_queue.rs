@@ -1602,8 +1602,17 @@ pub(crate) mod items {
     pub struct VideoCodecOperationFlagBitsKHR(pub(crate) u32);
     impl VideoCodecOperationFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoCodecOperationFlagsKHR {
             VideoCodecOperationFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1692,8 +1701,17 @@ pub(crate) mod items {
     pub struct VideoCapabilityFlagBitsKHR(pub(crate) u32);
     impl VideoCapabilityFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoCapabilityFlagsKHR {
             VideoCapabilityFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1792,8 +1810,17 @@ pub(crate) mod items {
     pub struct VideoSessionCreateFlagBitsKHR(pub(crate) u32);
     impl VideoSessionCreateFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoSessionCreateFlagsKHR {
             VideoSessionCreateFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1879,8 +1906,17 @@ pub(crate) mod items {
     pub struct VideoSessionParametersCreateFlagBitsKHR(pub(crate) u32);
     impl VideoSessionParametersCreateFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoSessionParametersCreateFlagsKHR {
             VideoSessionParametersCreateFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -2106,8 +2142,17 @@ pub(crate) mod items {
     pub struct VideoCodingControlFlagBitsKHR(pub(crate) u32);
     impl VideoCodingControlFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoCodingControlFlagsKHR {
             VideoCodingControlFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -2199,8 +2244,17 @@ pub(crate) mod items {
     pub struct VideoChromaSubsamplingFlagBitsKHR(pub(crate) u32);
     impl VideoChromaSubsamplingFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoChromaSubsamplingFlagsKHR {
             VideoChromaSubsamplingFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -2291,8 +2345,17 @@ pub(crate) mod items {
     pub struct VideoComponentBitDepthFlagBitsKHR(pub(crate) u32);
     impl VideoComponentBitDepthFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoComponentBitDepthFlagsKHR {
             VideoComponentBitDepthFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

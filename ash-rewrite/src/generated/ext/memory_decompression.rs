@@ -399,8 +399,17 @@ pub(crate) mod items {
     pub struct MemoryDecompressionMethodFlagBitsEXT(pub(crate) u64);
     impl MemoryDecompressionMethodFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> MemoryDecompressionMethodFlagsEXT {
             MemoryDecompressionMethodFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

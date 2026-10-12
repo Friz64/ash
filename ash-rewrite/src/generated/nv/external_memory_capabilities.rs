@@ -106,7 +106,7 @@ impl Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
-        _type: crate::vk::ImageType,
+        ty: crate::vk::ImageType,
         tiling: crate::vk::ImageTiling,
         usage: crate::vk::ImageUsageFlags,
         flags: crate::vk::ImageCreateFlags,
@@ -118,7 +118,7 @@ impl Instance {
             .get_physical_device_external_image_format_properties)(
                 physical_device,
                 format,
-                _type,
+                ty,
                 tiling,
                 usage,
                 flags,
@@ -254,8 +254,17 @@ pub(crate) mod items {
     pub struct ExternalMemoryHandleTypeFlagBitsNV(pub(crate) u32);
     impl ExternalMemoryHandleTypeFlagBitsNV {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ExternalMemoryHandleTypeFlagsNV {
             ExternalMemoryHandleTypeFlagsNV::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -345,8 +354,17 @@ pub(crate) mod items {
     pub struct ExternalMemoryFeatureFlagBitsNV(pub(crate) u32);
     impl ExternalMemoryFeatureFlagBitsNV {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ExternalMemoryFeatureFlagsNV {
             ExternalMemoryFeatureFlagsNV::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -358,7 +376,7 @@ pub(crate) mod items {
     pub type PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
-        _type: crate::vk::ImageType,
+        ty: crate::vk::ImageType,
         tiling: crate::vk::ImageTiling,
         usage: crate::vk::ImageUsageFlags,
         flags: crate::vk::ImageCreateFlags,

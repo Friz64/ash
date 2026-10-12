@@ -386,8 +386,17 @@ pub(crate) mod items {
     pub struct PhysicalDeviceSchedulingControlsFlagBitsARM(pub(crate) u64);
     impl PhysicalDeviceSchedulingControlsFlagBitsARM {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PhysicalDeviceSchedulingControlsFlagsARM {
             PhysicalDeviceSchedulingControlsFlagsARM::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

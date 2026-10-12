@@ -76,8 +76,12 @@ fn strip_leading_p(s: &'static str) -> &'static str {
     s.strip_prefix(&"p".repeat(leading_p_count)).unwrap()
 }
 
-/// Tries to prepend an underscore in case the name is not a valid identifier
 fn escape_ident(name: &str) -> Ident {
+    if name == "type" {
+        return format_ident!("ty");
+    }
+
+    // tries to prepend an underscore in case the name is not a valid identifier
     syn::parse_str(name).unwrap_or_else(|_| format_ident!("_{name}"))
 }
 

@@ -1432,6 +1432,7 @@ pub use super::khr::shader_non_semantic_info::NAME as KHR_SHADER_NON_SEMANTIC_IN
 pub use super::google::surfaceless_query::SPEC_VERSION as GOOGLE_SURFACELESS_QUERY_SPEC_VERSION;
 pub use super::google::surfaceless_query::NAME as GOOGLE_SURFACELESS_QUERY_NAME;
 pub use super::video::codecs_common::items::*;
+pub use crate::platform_types::*;
 pub use crate::Handle;
 pub use crate::TaggedStructure;
 pub use crate::Extends;

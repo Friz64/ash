@@ -1226,7 +1226,7 @@ pub(crate) mod items {
         pub create_flags: crate::vk::AccelerationStructureCreateFlagsKHR,
         pub address_range: crate::vk::DeviceAddressRangeKHR,
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
-        pub _type: crate::vk::AccelerationStructureTypeKHR,
+        pub ty: crate::vk::AccelerationStructureTypeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureCreateInfo2KHR<'_> {}
@@ -1243,7 +1243,7 @@ pub(crate) mod items {
                 create_flags: Default::default(),
                 address_range: Default::default(),
                 address_flags: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
         }
@@ -1270,8 +1270,8 @@ pub(crate) mod items {
             self.address_flags = address_flags;
             self
         }
-        pub fn _type(mut self, _type: crate::vk::AccelerationStructureTypeKHR) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::AccelerationStructureTypeKHR) -> Self {
+            self.ty = ty;
             self
         }
     }
@@ -1714,8 +1714,17 @@ pub(crate) mod items {
     pub struct AddressCommandFlagBitsKHR(pub(crate) u32);
     impl AddressCommandFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> AddressCommandFlagsKHR {
             AddressCommandFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

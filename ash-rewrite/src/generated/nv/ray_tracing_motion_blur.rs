@@ -451,18 +451,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureMotionInstanceNV {
-        pub _type: crate::vk::AccelerationStructureMotionInstanceTypeNV,
+        pub ty: crate::vk::AccelerationStructureMotionInstanceTypeNV,
         pub flags: crate::vk::AccelerationStructureMotionInstanceFlagsNV,
         pub data: crate::vk::AccelerationStructureMotionInstanceDataNV,
     }
     unsafe impl Send for AccelerationStructureMotionInstanceNV {}
     unsafe impl Sync for AccelerationStructureMotionInstanceNV {}
     impl AccelerationStructureMotionInstanceNV {
-        pub fn _type(
+        pub fn ty(
             mut self,
-            _type: crate::vk::AccelerationStructureMotionInstanceTypeNV,
+            ty: crate::vk::AccelerationStructureMotionInstanceTypeNV,
         ) -> Self {
-            self._type = _type;
+            self.ty = ty;
             self
         }
         pub fn flags(

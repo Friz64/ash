@@ -109,7 +109,7 @@ pub(crate) mod items {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub flags: crate::vk::DeviceMemoryReportFlagsEXT,
-        pub _type: crate::vk::DeviceMemoryReportEventTypeEXT,
+        pub ty: crate::vk::DeviceMemoryReportEventTypeEXT,
         pub memory_object_id: u64,
         pub size: crate::vk::DeviceSize,
         pub object_type: crate::vk::ObjectType,
@@ -129,7 +129,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 flags: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 memory_object_id: Default::default(),
                 size: Default::default(),
                 object_type: Default::default(),
@@ -144,11 +144,8 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn _type(
-            mut self,
-            _type: crate::vk::DeviceMemoryReportEventTypeEXT,
-        ) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::DeviceMemoryReportEventTypeEXT) -> Self {
+            self.ty = ty;
             self
         }
         pub fn memory_object_id(mut self, memory_object_id: u64) -> Self {

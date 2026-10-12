@@ -712,7 +712,7 @@ pub(crate) mod items {
     pub struct RayTracingShaderGroupCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _type: crate::vk::RayTracingShaderGroupTypeKHR,
+        pub ty: crate::vk::RayTracingShaderGroupTypeKHR,
         pub general_shader: u32,
         pub closest_hit_shader: u32,
         pub any_hit_shader: u32,
@@ -730,7 +730,7 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 general_shader: Default::default(),
                 closest_hit_shader: Default::default(),
                 any_hit_shader: Default::default(),
@@ -740,8 +740,8 @@ pub(crate) mod items {
         }
     }
     impl<'a> RayTracingShaderGroupCreateInfoNV<'a> {
-        pub fn _type(mut self, _type: crate::vk::RayTracingShaderGroupTypeKHR) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::RayTracingShaderGroupTypeKHR) -> Self {
+            self.ty = ty;
             self
         }
         pub fn general_shader(mut self, general_shader: u32) -> Self {
@@ -1057,7 +1057,7 @@ pub(crate) mod items {
     pub struct AccelerationStructureInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _type: crate::vk::AccelerationStructureTypeNV,
+        pub ty: crate::vk::AccelerationStructureTypeNV,
         pub flags: crate::vk::BuildAccelerationStructureFlagsKHR,
         pub instance_count: u32,
         pub geometry_count: u32,
@@ -1074,7 +1074,7 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 flags: Default::default(),
                 instance_count: Default::default(),
                 geometry_count: Default::default(),
@@ -1084,8 +1084,8 @@ pub(crate) mod items {
         }
     }
     impl<'a> AccelerationStructureInfoNV<'a> {
-        pub fn _type(mut self, _type: crate::vk::AccelerationStructureTypeNV) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::AccelerationStructureTypeNV) -> Self {
+            self.ty = ty;
             self
         }
         pub fn flags(
@@ -1245,7 +1245,7 @@ pub(crate) mod items {
     pub struct AccelerationStructureMemoryRequirementsInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _type: crate::vk::AccelerationStructureMemoryRequirementsTypeNV,
+        pub ty: crate::vk::AccelerationStructureMemoryRequirementsTypeNV,
         pub acceleration_structure: crate::vk::AccelerationStructureNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
@@ -1260,18 +1260,18 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 acceleration_structure: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureMemoryRequirementsInfoNV<'a> {
-        pub fn _type(
+        pub fn ty(
             mut self,
-            _type: crate::vk::AccelerationStructureMemoryRequirementsTypeNV,
+            ty: crate::vk::AccelerationStructureMemoryRequirementsTypeNV,
         ) -> Self {
-            self._type = _type;
+            self.ty = ty;
             self
         }
         pub fn acceleration_structure(

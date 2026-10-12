@@ -1198,7 +1198,7 @@ pub(crate) mod items {
     pub struct AccelerationStructureBuildGeometryInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _type: crate::vk::AccelerationStructureTypeKHR,
+        pub ty: crate::vk::AccelerationStructureTypeKHR,
         pub flags: crate::vk::BuildAccelerationStructureFlagsKHR,
         pub mode: crate::vk::BuildAccelerationStructureModeKHR,
         pub src_acceleration_structure: crate::vk::AccelerationStructureKHR,
@@ -1220,7 +1220,7 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 flags: Default::default(),
                 mode: Default::default(),
                 src_acceleration_structure: Default::default(),
@@ -1234,8 +1234,8 @@ pub(crate) mod items {
         }
     }
     impl<'a> AccelerationStructureBuildGeometryInfoKHR<'a> {
-        pub fn _type(mut self, _type: crate::vk::AccelerationStructureTypeKHR) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::AccelerationStructureTypeKHR) -> Self {
+            self.ty = ty;
             self
         }
         pub fn flags(
@@ -1329,7 +1329,7 @@ pub(crate) mod items {
         pub buffer: crate::vk::Buffer,
         pub offset: crate::vk::DeviceSize,
         pub size: crate::vk::DeviceSize,
-        pub _type: crate::vk::AccelerationStructureTypeKHR,
+        pub ty: crate::vk::AccelerationStructureTypeKHR,
         pub device_address: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
@@ -1348,7 +1348,7 @@ pub(crate) mod items {
                 buffer: Default::default(),
                 offset: Default::default(),
                 size: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 device_address: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
@@ -1374,8 +1374,8 @@ pub(crate) mod items {
             self.size = size;
             self
         }
-        pub fn _type(mut self, _type: crate::vk::AccelerationStructureTypeKHR) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::AccelerationStructureTypeKHR) -> Self {
+            self.ty = ty;
             self
         }
         pub fn device_address(
@@ -2095,8 +2095,17 @@ pub(crate) mod items {
     pub struct GeometryFlagBitsKHR(pub(crate) u32);
     impl GeometryFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> GeometryFlagsKHR {
             GeometryFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -2195,8 +2204,17 @@ pub(crate) mod items {
     pub struct GeometryInstanceFlagBitsKHR(pub(crate) u32);
     impl GeometryInstanceFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> GeometryInstanceFlagsKHR {
             GeometryInstanceFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -2312,8 +2330,17 @@ pub(crate) mod items {
     pub struct BuildAccelerationStructureFlagBitsKHR(pub(crate) u32);
     impl BuildAccelerationStructureFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> BuildAccelerationStructureFlagsKHR {
             BuildAccelerationStructureFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -2409,8 +2436,17 @@ pub(crate) mod items {
     pub struct AccelerationStructureCreateFlagBitsKHR(pub(crate) u32);
     impl AccelerationStructureCreateFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> AccelerationStructureCreateFlagsKHR {
             AccelerationStructureCreateFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

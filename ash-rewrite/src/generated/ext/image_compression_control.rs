@@ -414,8 +414,17 @@ pub(crate) mod items {
     pub struct ImageCompressionFlagBitsEXT(pub(crate) u32);
     impl ImageCompressionFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ImageCompressionFlagsEXT {
             ImageCompressionFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -527,8 +536,17 @@ pub(crate) mod items {
     pub struct ImageCompressionFixedRateFlagBitsEXT(pub(crate) u32);
     impl ImageCompressionFixedRateFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ImageCompressionFixedRateFlagsEXT {
             ImageCompressionFixedRateFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

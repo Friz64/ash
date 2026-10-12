@@ -3714,8 +3714,17 @@ pub(crate) mod items {
     pub struct MemoryUnmapFlagBits(pub(crate) u32);
     impl MemoryUnmapFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> MemoryUnmapFlags {
             MemoryUnmapFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -3905,8 +3914,17 @@ pub(crate) mod items {
     pub struct PipelineCreateFlagBits2(pub(crate) u64);
     impl PipelineCreateFlagBits2 {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PipelineCreateFlags2 {
             PipelineCreateFlags2::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -4057,8 +4075,17 @@ pub(crate) mod items {
     pub struct BufferUsageFlagBits2(pub(crate) u64);
     impl BufferUsageFlagBits2 {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> BufferUsageFlags2 {
             BufferUsageFlags2::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -4140,8 +4167,17 @@ pub(crate) mod items {
     pub struct HostImageCopyFlagBits(pub(crate) u32);
     impl HostImageCopyFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> HostImageCopyFlags {
             HostImageCopyFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

@@ -856,8 +856,17 @@ pub(crate) mod items {
     pub struct PresentStageFlagBitsEXT(pub(crate) u32);
     impl PresentStageFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PresentStageFlagsEXT {
             PresentStageFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -946,8 +955,17 @@ pub(crate) mod items {
     pub struct PastPresentationTimingFlagBitsEXT(pub(crate) u32);
     impl PastPresentationTimingFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PastPresentationTimingFlagsEXT {
             PastPresentationTimingFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1039,8 +1057,17 @@ pub(crate) mod items {
     pub struct PresentTimingInfoFlagBitsEXT(pub(crate) u32);
     impl PresentTimingInfoFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PresentTimingInfoFlagsEXT {
             PresentTimingInfoFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

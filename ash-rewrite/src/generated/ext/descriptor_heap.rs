@@ -692,7 +692,7 @@ pub(crate) mod items {
     pub struct ResourceDescriptorInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _type: crate::vk::DescriptorType,
+        pub ty: crate::vk::DescriptorType,
         pub data: crate::vk::ResourceDescriptorDataEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
@@ -706,15 +706,15 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 data: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
         }
     }
     impl<'a> ResourceDescriptorInfoEXT<'a> {
-        pub fn _type(mut self, _type: crate::vk::DescriptorType) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::DescriptorType) -> Self {
+            self.ty = ty;
             self
         }
         pub fn data(mut self, data: crate::vk::ResourceDescriptorDataEXT<'a>) -> Self {
@@ -1953,8 +1953,17 @@ pub(crate) mod items {
     pub struct TensorViewCreateFlagBitsARM(pub(crate) u64);
     impl TensorViewCreateFlagBitsARM {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> TensorViewCreateFlagsARM {
             TensorViewCreateFlagsARM::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -2052,8 +2061,17 @@ pub(crate) mod items {
     pub struct SpirvResourceTypeFlagBitsEXT(pub(crate) u32);
     impl SpirvResourceTypeFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> SpirvResourceTypeFlagsEXT {
             SpirvResourceTypeFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

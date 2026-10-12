@@ -1423,17 +1423,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct PhysicalDeviceDataGraphProcessingEngineARM {
-        pub _type: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
+        pub ty: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
         pub is_foreign: crate::vk::Bool32,
     }
     unsafe impl Send for PhysicalDeviceDataGraphProcessingEngineARM {}
     unsafe impl Sync for PhysicalDeviceDataGraphProcessingEngineARM {}
     impl PhysicalDeviceDataGraphProcessingEngineARM {
-        pub fn _type(
+        pub fn ty(
             mut self,
-            _type: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
+            ty: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
         ) -> Self {
-            self._type = _type;
+            self.ty = ty;
             self
         }
         pub fn is_foreign(mut self, is_foreign: bool) -> Self {
@@ -1891,8 +1891,17 @@ pub(crate) mod items {
     pub struct DataGraphPipelineSessionCreateFlagBitsARM(pub(crate) u64);
     impl DataGraphPipelineSessionCreateFlagBitsARM {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DataGraphPipelineSessionCreateFlagsARM {
             DataGraphPipelineSessionCreateFlagsARM::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1974,8 +1983,17 @@ pub(crate) mod items {
     pub struct DataGraphPipelineDispatchFlagBitsARM(pub(crate) u64);
     impl DataGraphPipelineDispatchFlagBitsARM {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DataGraphPipelineDispatchFlagsARM {
             DataGraphPipelineDispatchFlagsARM::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

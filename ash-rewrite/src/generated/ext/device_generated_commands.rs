@@ -944,7 +944,7 @@ pub(crate) mod items {
     pub struct IndirectExecutionSetCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _type: crate::vk::IndirectExecutionSetInfoTypeEXT,
+        pub ty: crate::vk::IndirectExecutionSetInfoTypeEXT,
         pub info: crate::vk::IndirectExecutionSetInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
@@ -959,18 +959,15 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 info: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
         }
     }
     impl<'a> IndirectExecutionSetCreateInfoEXT<'a> {
-        pub fn _type(
-            mut self,
-            _type: crate::vk::IndirectExecutionSetInfoTypeEXT,
-        ) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::IndirectExecutionSetInfoTypeEXT) -> Self {
+            self.ty = ty;
             self
         }
         pub fn info(mut self, info: crate::vk::IndirectExecutionSetInfoEXT<'a>) -> Self {
@@ -1236,7 +1233,7 @@ pub(crate) mod items {
     pub struct IndirectCommandsLayoutTokenEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _type: crate::vk::IndirectCommandsTokenTypeEXT,
+        pub ty: crate::vk::IndirectCommandsTokenTypeEXT,
         pub data: crate::vk::IndirectCommandsTokenDataEXT,
         pub offset: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
@@ -1251,7 +1248,7 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 data: Default::default(),
                 offset: Default::default(),
                 _marker: ::core::marker::PhantomData,
@@ -1259,8 +1256,8 @@ pub(crate) mod items {
         }
     }
     impl<'a> IndirectCommandsLayoutTokenEXT<'a> {
-        pub fn _type(mut self, _type: crate::vk::IndirectCommandsTokenTypeEXT) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::IndirectCommandsTokenTypeEXT) -> Self {
+            self.ty = ty;
             self
         }
         pub fn data(mut self, data: crate::vk::IndirectCommandsTokenDataEXT) -> Self {
@@ -1405,17 +1402,14 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsExecutionSetTokenEXT {
-        pub _type: crate::vk::IndirectExecutionSetInfoTypeEXT,
+        pub ty: crate::vk::IndirectExecutionSetInfoTypeEXT,
         pub shader_stages: crate::vk::ShaderStageFlags,
     }
     unsafe impl Send for IndirectCommandsExecutionSetTokenEXT {}
     unsafe impl Sync for IndirectCommandsExecutionSetTokenEXT {}
     impl IndirectCommandsExecutionSetTokenEXT {
-        pub fn _type(
-            mut self,
-            _type: crate::vk::IndirectExecutionSetInfoTypeEXT,
-        ) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::IndirectExecutionSetInfoTypeEXT) -> Self {
+            self.ty = ty;
             self
         }
         pub fn shader_stages(
@@ -1611,8 +1605,17 @@ pub(crate) mod items {
     pub struct IndirectCommandsLayoutUsageFlagBitsEXT(pub(crate) u32);
     impl IndirectCommandsLayoutUsageFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> IndirectCommandsLayoutUsageFlagsEXT {
             IndirectCommandsLayoutUsageFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1701,8 +1704,17 @@ pub(crate) mod items {
     pub struct IndirectCommandsInputModeFlagBitsEXT(pub(crate) u32);
     impl IndirectCommandsInputModeFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> IndirectCommandsInputModeFlagsEXT {
             IndirectCommandsInputModeFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

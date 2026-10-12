@@ -311,14 +311,14 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct PerformanceValueINTEL {
-        pub _type: crate::vk::PerformanceValueTypeINTEL,
+        pub ty: crate::vk::PerformanceValueTypeINTEL,
         pub data: crate::vk::PerformanceValueDataINTEL,
     }
     unsafe impl Send for PerformanceValueINTEL {}
     unsafe impl Sync for PerformanceValueINTEL {}
     impl PerformanceValueINTEL {
-        pub fn _type(mut self, _type: crate::vk::PerformanceValueTypeINTEL) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::PerformanceValueTypeINTEL) -> Self {
+            self.ty = ty;
             self
         }
         pub fn data(mut self, data: crate::vk::PerformanceValueDataINTEL) -> Self {
@@ -459,7 +459,7 @@ pub(crate) mod items {
     pub struct PerformanceOverrideInfoINTEL<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _type: crate::vk::PerformanceOverrideTypeINTEL,
+        pub ty: crate::vk::PerformanceOverrideTypeINTEL,
         pub enable: crate::vk::Bool32,
         pub parameter: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
@@ -474,7 +474,7 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 enable: Default::default(),
                 parameter: Default::default(),
                 _marker: ::core::marker::PhantomData,
@@ -482,8 +482,8 @@ pub(crate) mod items {
         }
     }
     impl<'a> PerformanceOverrideInfoINTEL<'a> {
-        pub fn _type(mut self, _type: crate::vk::PerformanceOverrideTypeINTEL) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::PerformanceOverrideTypeINTEL) -> Self {
+            self.ty = ty;
             self
         }
         pub fn enable(mut self, enable: bool) -> Self {
@@ -501,7 +501,7 @@ pub(crate) mod items {
     pub struct PerformanceConfigurationAcquireInfoINTEL<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _type: crate::vk::PerformanceConfigurationTypeINTEL,
+        pub ty: crate::vk::PerformanceConfigurationTypeINTEL,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     unsafe impl Send for PerformanceConfigurationAcquireInfoINTEL<'_> {}
@@ -515,17 +515,14 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
         }
     }
     impl<'a> PerformanceConfigurationAcquireInfoINTEL<'a> {
-        pub fn _type(
-            mut self,
-            _type: crate::vk::PerformanceConfigurationTypeINTEL,
-        ) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::PerformanceConfigurationTypeINTEL) -> Self {
+            self.ty = ty;
             self
         }
     }

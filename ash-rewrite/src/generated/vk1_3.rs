@@ -5276,8 +5276,17 @@ pub(crate) mod items {
     pub struct PrivateDataSlotCreateFlagBits(pub(crate) u32);
     impl PrivateDataSlotCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PrivateDataSlotCreateFlags {
             PrivateDataSlotCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5370,8 +5379,17 @@ pub(crate) mod items {
     pub struct PipelineCreationFeedbackFlagBits(pub(crate) u32);
     impl PipelineCreationFeedbackFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PipelineCreationFeedbackFlags {
             PipelineCreationFeedbackFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5560,8 +5578,17 @@ pub(crate) mod items {
     pub struct AccessFlagBits2(pub(crate) u64);
     impl AccessFlagBits2 {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> AccessFlags2 {
             AccessFlags2::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5715,8 +5742,17 @@ pub(crate) mod items {
     pub struct PipelineStageFlagBits2(pub(crate) u64);
     impl PipelineStageFlagBits2 {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PipelineStageFlags2 {
             PipelineStageFlags2::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -5922,8 +5958,17 @@ pub(crate) mod items {
     pub struct FormatFeatureFlagBits2(pub(crate) u64);
     impl FormatFeatureFlagBits2 {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> FormatFeatureFlags2 {
             FormatFeatureFlags2::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -6028,8 +6073,17 @@ pub(crate) mod items {
     pub struct RenderingFlagBits(pub(crate) u32);
     impl RenderingFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> RenderingFlags {
             RenderingFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -6123,8 +6177,17 @@ pub(crate) mod items {
     pub struct ToolPurposeFlagBits(pub(crate) u32);
     impl ToolPurposeFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ToolPurposeFlags {
             ToolPurposeFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -6206,8 +6269,17 @@ pub(crate) mod items {
     pub struct SubmitFlagBits(pub(crate) u32);
     impl SubmitFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> SubmitFlags {
             SubmitFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

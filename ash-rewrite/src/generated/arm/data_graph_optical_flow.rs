@@ -939,8 +939,17 @@ pub(crate) mod items {
     pub struct DataGraphOpticalFlowGridSizeFlagBitsARM(pub(crate) u32);
     impl DataGraphOpticalFlowGridSizeFlagBitsARM {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DataGraphOpticalFlowGridSizeFlagsARM {
             DataGraphOpticalFlowGridSizeFlagsARM::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1032,8 +1041,17 @@ pub(crate) mod items {
     pub struct DataGraphOpticalFlowImageUsageFlagBitsARM(pub(crate) u32);
     impl DataGraphOpticalFlowImageUsageFlagBitsARM {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DataGraphOpticalFlowImageUsageFlagsARM {
             DataGraphOpticalFlowImageUsageFlagsARM::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1123,8 +1141,17 @@ pub(crate) mod items {
     pub struct DataGraphOpticalFlowCreateFlagBitsARM(pub(crate) u32);
     impl DataGraphOpticalFlowCreateFlagBitsARM {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DataGraphOpticalFlowCreateFlagsARM {
             DataGraphOpticalFlowCreateFlagsARM::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1216,8 +1243,17 @@ pub(crate) mod items {
     pub struct DataGraphOpticalFlowExecuteFlagBitsARM(pub(crate) u32);
     impl DataGraphOpticalFlowExecuteFlagBitsARM {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DataGraphOpticalFlowExecuteFlagsARM {
             DataGraphOpticalFlowExecuteFlagsARM::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

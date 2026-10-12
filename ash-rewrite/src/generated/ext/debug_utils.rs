@@ -813,8 +813,17 @@ pub(crate) mod items {
     pub struct DebugUtilsMessageSeverityFlagBitsEXT(pub(crate) u32);
     impl DebugUtilsMessageSeverityFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DebugUtilsMessageSeverityFlagsEXT {
             DebugUtilsMessageSeverityFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -905,8 +914,17 @@ pub(crate) mod items {
     pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) u32);
     impl DebugUtilsMessageTypeFlagBitsEXT {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DebugUtilsMessageTypeFlagsEXT {
             DebugUtilsMessageTypeFlagsEXT::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

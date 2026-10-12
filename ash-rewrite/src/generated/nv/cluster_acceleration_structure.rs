@@ -1130,7 +1130,7 @@ pub(crate) mod items {
     pub struct ClusterAccelerationStructureMoveObjectsInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub _type: crate::vk::ClusterAccelerationStructureTypeNV,
+        pub ty: crate::vk::ClusterAccelerationStructureTypeNV,
         pub no_move_overlap: crate::vk::Bool32,
         pub max_moved_bytes: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
@@ -1146,7 +1146,7 @@ pub(crate) mod items {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _type: Default::default(),
+                ty: Default::default(),
                 no_move_overlap: Default::default(),
                 max_moved_bytes: Default::default(),
                 _marker: ::core::marker::PhantomData,
@@ -1154,11 +1154,8 @@ pub(crate) mod items {
         }
     }
     impl<'a> ClusterAccelerationStructureMoveObjectsInputNV<'a> {
-        pub fn _type(
-            mut self,
-            _type: crate::vk::ClusterAccelerationStructureTypeNV,
-        ) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::ClusterAccelerationStructureTypeNV) -> Self {
+            self.ty = ty;
             self
         }
         pub fn no_move_overlap(mut self, no_move_overlap: bool) -> Self {
@@ -1538,8 +1535,17 @@ pub(crate) mod items {
     pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) u32);
     impl ClusterAccelerationStructureGeometryFlagBitsNV {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ClusterAccelerationStructureGeometryFlagsNV {
             ClusterAccelerationStructureGeometryFlagsNV::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1630,8 +1636,17 @@ pub(crate) mod items {
     pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) u32);
     impl ClusterAccelerationStructureClusterFlagBitsNV {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ClusterAccelerationStructureClusterFlagsNV {
             ClusterAccelerationStructureClusterFlagsNV::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1734,10 +1749,19 @@ pub(crate) mod items {
     pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) u32);
     impl ClusterAccelerationStructureAddressResolutionFlagBitsNV {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(
             &self,
         ) -> ClusterAccelerationStructureAddressResolutionFlagsNV {
             ClusterAccelerationStructureAddressResolutionFlagsNV::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1827,8 +1851,17 @@ pub(crate) mod items {
     pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV(pub(crate) u32);
     impl ClusterAccelerationStructureIndexFormatFlagBitsNV {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ClusterAccelerationStructureIndexFormatFlagsNV {
             ClusterAccelerationStructureIndexFormatFlagsNV::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

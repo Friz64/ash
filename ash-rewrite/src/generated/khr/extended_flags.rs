@@ -509,8 +509,17 @@ pub(crate) mod items {
     pub struct FormatFeatureFlagBits4KHR(pub(crate) u64);
     impl FormatFeatureFlagBits4KHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> FormatFeatureFlags4KHR {
             FormatFeatureFlags4KHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -631,8 +640,17 @@ pub(crate) mod items {
     pub struct ImageUsageFlagBits2KHR(pub(crate) u64);
     impl ImageUsageFlagBits2KHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ImageUsageFlags2KHR {
             ImageUsageFlags2KHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -755,8 +773,17 @@ pub(crate) mod items {
     pub struct ImageCreateFlagBits2KHR(pub(crate) u64);
     impl ImageCreateFlagBits2KHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ImageCreateFlags2KHR {
             ImageCreateFlags2KHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u64) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u64 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

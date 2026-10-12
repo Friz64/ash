@@ -33,8 +33,19 @@ impl Code for BitMask {
 
                 impl #bits_name_tokens {
                     ///Converts this enum variant to the corresponding bitmask
+                    #[inline]
                     pub const fn bitmask(&self) -> #name_tokens {
                         #name_tokens::from_raw(self.0)
+                    }
+
+                    #[inline]
+                    pub const fn from_raw(x: #base_ty) -> Self {
+                        Self(x)
+                    }
+
+                    #[inline]
+                    pub const fn as_raw(self) -> #base_ty {
+                        self.0
                     }
                 }
 

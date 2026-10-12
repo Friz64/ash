@@ -1079,8 +1079,17 @@ pub(crate) mod items {
     pub struct VideoEncodeFlagBitsKHR(pub(crate) u32);
     impl VideoEncodeFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoEncodeFlagsKHR {
             VideoEncodeFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1172,8 +1181,17 @@ pub(crate) mod items {
     pub struct VideoEncodeUsageFlagBitsKHR(pub(crate) u32);
     impl VideoEncodeUsageFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoEncodeUsageFlagsKHR {
             VideoEncodeUsageFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1264,8 +1282,17 @@ pub(crate) mod items {
     pub struct VideoEncodeContentFlagBitsKHR(pub(crate) u32);
     impl VideoEncodeContentFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoEncodeContentFlagsKHR {
             VideoEncodeContentFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1362,8 +1389,17 @@ pub(crate) mod items {
     pub struct VideoEncodeCapabilityFlagBitsKHR(pub(crate) u32);
     impl VideoEncodeCapabilityFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoEncodeCapabilityFlagsKHR {
             VideoEncodeCapabilityFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1460,8 +1496,17 @@ pub(crate) mod items {
     pub struct VideoEncodeFeedbackFlagBitsKHR(pub(crate) u32);
     impl VideoEncodeFeedbackFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoEncodeFeedbackFlagsKHR {
             VideoEncodeFeedbackFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1620,8 +1665,17 @@ pub(crate) mod items {
     pub struct VideoEncodeRateControlModeFlagBitsKHR(pub(crate) u32);
     impl VideoEncodeRateControlModeFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> VideoEncodeRateControlModeFlagsKHR {
             VideoEncodeRateControlModeFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

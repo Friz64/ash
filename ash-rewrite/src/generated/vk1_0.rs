@@ -1615,7 +1615,7 @@ impl crate::Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
-        _type: crate::vk::ImageType,
+        ty: crate::vk::ImageType,
         tiling: crate::vk::ImageTiling,
         usage: crate::vk::ImageUsageFlags,
         flags: crate::vk::ImageCreateFlags,
@@ -1626,7 +1626,7 @@ impl crate::Instance {
             .get_physical_device_image_format_properties)(
                 physical_device,
                 format,
-                _type,
+                ty,
                 tiling,
                 usage,
                 flags,
@@ -1670,7 +1670,7 @@ impl crate::Instance {
         &self,
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
-        _type: crate::vk::ImageType,
+        ty: crate::vk::ImageType,
         samples: crate::vk::SampleCountFlagBits,
         usage: crate::vk::ImageUsageFlags,
         tiling: crate::vk::ImageTiling,
@@ -1681,7 +1681,7 @@ impl crate::Instance {
                     .get_physical_device_sparse_image_format_properties)(
                     physical_device,
                     format,
-                    _type,
+                    ty,
                     samples,
                     usage,
                     tiling,
@@ -8084,14 +8084,14 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct DescriptorPoolSize {
-        pub _type: crate::vk::DescriptorType,
+        pub ty: crate::vk::DescriptorType,
         pub descriptor_count: u32,
     }
     unsafe impl Send for DescriptorPoolSize {}
     unsafe impl Sync for DescriptorPoolSize {}
     impl DescriptorPoolSize {
-        pub fn _type(mut self, _type: crate::vk::DescriptorType) -> Self {
-            self._type = _type;
+        pub fn ty(mut self, ty: crate::vk::DescriptorType) -> Self {
+            self.ty = ty;
             self
         }
         pub fn descriptor_count(mut self, descriptor_count: u32) -> Self {
@@ -17269,8 +17269,17 @@ pub(crate) mod items {
     pub struct FramebufferCreateFlagBits(pub(crate) u32);
     impl FramebufferCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> FramebufferCreateFlags {
             FramebufferCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -17352,8 +17361,17 @@ pub(crate) mod items {
     pub struct QueryPoolCreateFlagBits(pub(crate) u32);
     impl QueryPoolCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> QueryPoolCreateFlags {
             QueryPoolCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -17445,8 +17463,17 @@ pub(crate) mod items {
     pub struct RenderPassCreateFlagBits(pub(crate) u32);
     impl RenderPassCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> RenderPassCreateFlags {
             RenderPassCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -17544,8 +17571,17 @@ pub(crate) mod items {
     pub struct SamplerCreateFlagBits(pub(crate) u32);
     impl SamplerCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> SamplerCreateFlags {
             SamplerCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -17634,8 +17670,17 @@ pub(crate) mod items {
     pub struct PipelineLayoutCreateFlagBits(pub(crate) u32);
     impl PipelineLayoutCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PipelineLayoutCreateFlags {
             PipelineLayoutCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -17727,8 +17772,17 @@ pub(crate) mod items {
     pub struct PipelineCacheCreateFlagBits(pub(crate) u32);
     impl PipelineCacheCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PipelineCacheCreateFlags {
             PipelineCacheCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -17823,8 +17877,17 @@ pub(crate) mod items {
     pub struct PipelineDepthStencilStateCreateFlagBits(pub(crate) u32);
     impl PipelineDepthStencilStateCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PipelineDepthStencilStateCreateFlags {
             PipelineDepthStencilStateCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -17983,8 +18046,17 @@ pub(crate) mod items {
     pub struct PipelineColorBlendStateCreateFlagBits(pub(crate) u32);
     impl PipelineColorBlendStateCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PipelineColorBlendStateCreateFlags {
             PipelineColorBlendStateCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -18481,8 +18553,17 @@ pub(crate) mod items {
     pub struct PipelineShaderStageCreateFlagBits(pub(crate) u32);
     impl PipelineShaderStageCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PipelineShaderStageCreateFlags {
             PipelineShaderStageCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -18579,8 +18660,17 @@ pub(crate) mod items {
     pub struct DescriptorSetLayoutCreateFlagBits(pub(crate) u32);
     impl DescriptorSetLayoutCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DescriptorSetLayoutCreateFlags {
             DescriptorSetLayoutCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -18734,8 +18824,17 @@ pub(crate) mod items {
     pub struct InstanceCreateFlagBits(pub(crate) u32);
     impl InstanceCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> InstanceCreateFlags {
             InstanceCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -18892,8 +18991,17 @@ pub(crate) mod items {
     pub struct DeviceQueueCreateFlagBits(pub(crate) u32);
     impl DeviceQueueCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DeviceQueueCreateFlags {
             DeviceQueueCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -18989,8 +19097,17 @@ pub(crate) mod items {
     pub struct QueueFlagBits(pub(crate) u32);
     impl QueueFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> QueueFlags {
             QueueFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -19086,8 +19203,17 @@ pub(crate) mod items {
     pub struct MemoryPropertyFlagBits(pub(crate) u32);
     impl MemoryPropertyFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> MemoryPropertyFlags {
             MemoryPropertyFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -19177,8 +19303,17 @@ pub(crate) mod items {
     pub struct MemoryHeapFlagBits(pub(crate) u32);
     impl MemoryHeapFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> MemoryHeapFlags {
             MemoryHeapFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -19330,8 +19465,17 @@ pub(crate) mod items {
     pub struct AccessFlagBits(pub(crate) u32);
     impl AccessFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> AccessFlags {
             AccessFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -19474,8 +19618,17 @@ pub(crate) mod items {
     pub struct BufferUsageFlagBits(pub(crate) u32);
     impl BufferUsageFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> BufferUsageFlags {
             BufferUsageFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -19578,8 +19731,17 @@ pub(crate) mod items {
     pub struct BufferCreateFlagBits(pub(crate) u32);
     impl BufferCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> BufferCreateFlags {
             BufferCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -19684,8 +19846,17 @@ pub(crate) mod items {
     pub struct ShaderStageFlagBits(pub(crate) u32);
     impl ShaderStageFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ShaderStageFlags {
             ShaderStageFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -19809,8 +19980,17 @@ pub(crate) mod items {
     pub struct ImageUsageFlagBits(pub(crate) u32);
     impl ImageUsageFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ImageUsageFlags {
             ImageUsageFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -19936,8 +20116,17 @@ pub(crate) mod items {
     pub struct ImageCreateFlagBits(pub(crate) u32);
     impl ImageCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ImageCreateFlags {
             ImageCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -20036,8 +20225,17 @@ pub(crate) mod items {
     pub struct ImageViewCreateFlagBits(pub(crate) u32);
     impl ImageViewCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ImageViewCreateFlags {
             ImageViewCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -20204,8 +20402,17 @@ pub(crate) mod items {
     pub struct PipelineCreateFlagBits(pub(crate) u32);
     impl PipelineCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PipelineCreateFlags {
             PipelineCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -20296,8 +20503,17 @@ pub(crate) mod items {
     pub struct ColorComponentFlagBits(pub(crate) u32);
     impl ColorComponentFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ColorComponentFlags {
             ColorComponentFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -20379,8 +20595,17 @@ pub(crate) mod items {
     pub struct FenceCreateFlagBits(pub(crate) u32);
     impl FenceCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> FenceCreateFlags {
             FenceCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -20590,8 +20815,17 @@ pub(crate) mod items {
     pub struct FormatFeatureFlagBits(pub(crate) u32);
     impl FormatFeatureFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> FormatFeatureFlags {
             FormatFeatureFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -20673,8 +20907,17 @@ pub(crate) mod items {
     pub struct QueryControlFlagBits(pub(crate) u32);
     impl QueryControlFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> QueryControlFlags {
             QueryControlFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -20766,8 +21009,17 @@ pub(crate) mod items {
     pub struct QueryResultFlagBits(pub(crate) u32);
     impl QueryResultFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> QueryResultFlags {
             QueryResultFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -20917,8 +21169,17 @@ pub(crate) mod items {
     pub struct EventCreateFlagBits(pub(crate) u32);
     impl EventCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> EventCreateFlags {
             EventCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -21008,8 +21269,17 @@ pub(crate) mod items {
     pub struct CommandPoolCreateFlagBits(pub(crate) u32);
     impl CommandPoolCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> CommandPoolCreateFlags {
             CommandPoolCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -21095,8 +21365,17 @@ pub(crate) mod items {
     pub struct CommandPoolResetFlagBits(pub(crate) u32);
     impl CommandPoolResetFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> CommandPoolResetFlags {
             CommandPoolResetFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -21182,8 +21461,17 @@ pub(crate) mod items {
     pub struct CommandBufferResetFlagBits(pub(crate) u32);
     impl CommandBufferResetFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> CommandBufferResetFlags {
             CommandBufferResetFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -21273,8 +21561,17 @@ pub(crate) mod items {
     pub struct CommandBufferUsageFlagBits(pub(crate) u32);
     impl CommandBufferUsageFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> CommandBufferUsageFlags {
             CommandBufferUsageFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -21384,8 +21681,17 @@ pub(crate) mod items {
     pub struct QueryPipelineStatisticFlagBits(pub(crate) u32);
     impl QueryPipelineStatisticFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> QueryPipelineStatisticFlags {
             QueryPipelineStatisticFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -21467,8 +21773,17 @@ pub(crate) mod items {
     pub struct MemoryMapFlagBits(pub(crate) u32);
     impl MemoryMapFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> MemoryMapFlags {
             MemoryMapFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -21567,8 +21882,17 @@ pub(crate) mod items {
     pub struct ImageAspectFlagBits(pub(crate) u32);
     impl ImageAspectFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> ImageAspectFlags {
             ImageAspectFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -21650,8 +21974,17 @@ pub(crate) mod items {
     pub struct SparseMemoryBindFlagBits(pub(crate) u32);
     impl SparseMemoryBindFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> SparseMemoryBindFlags {
             SparseMemoryBindFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -21741,8 +22074,17 @@ pub(crate) mod items {
     pub struct SparseImageFormatFlagBits(pub(crate) u32);
     impl SparseImageFormatFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> SparseImageFormatFlags {
             SparseImageFormatFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -21850,8 +22192,17 @@ pub(crate) mod items {
     pub struct SubpassDescriptionFlagBits(pub(crate) u32);
     impl SubpassDescriptionFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> SubpassDescriptionFlags {
             SubpassDescriptionFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -21977,8 +22328,17 @@ pub(crate) mod items {
     pub struct PipelineStageFlagBits(pub(crate) u32);
     impl PipelineStageFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PipelineStageFlags {
             PipelineStageFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -22072,8 +22432,17 @@ pub(crate) mod items {
     pub struct SampleCountFlagBits(pub(crate) u32);
     impl SampleCountFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> SampleCountFlags {
             SampleCountFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -22169,8 +22538,17 @@ pub(crate) mod items {
     pub struct AttachmentDescriptionFlagBits(pub(crate) u32);
     impl AttachmentDescriptionFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> AttachmentDescriptionFlags {
             AttachmentDescriptionFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -22260,8 +22638,17 @@ pub(crate) mod items {
     pub struct StencilFaceFlagBits(pub(crate) u32);
     impl StencilFaceFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> StencilFaceFlags {
             StencilFaceFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -22352,8 +22739,17 @@ pub(crate) mod items {
     pub struct CullModeFlagBits(pub(crate) u32);
     impl CullModeFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> CullModeFlags {
             CullModeFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -22451,8 +22847,17 @@ pub(crate) mod items {
     pub struct DescriptorPoolCreateFlagBits(pub(crate) u32);
     impl DescriptorPoolCreateFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DescriptorPoolCreateFlags {
             DescriptorPoolCreateFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -22616,8 +23021,17 @@ pub(crate) mod items {
     pub struct DependencyFlagBits(pub(crate) u32);
     impl DependencyFlagBits {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> DependencyFlags {
             DependencyFlags::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -23428,7 +23842,7 @@ pub(crate) mod items {
     pub type PFN_vkGetPhysicalDeviceImageFormatProperties = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
-        _type: crate::vk::ImageType,
+        ty: crate::vk::ImageType,
         tiling: crate::vk::ImageTiling,
         usage: crate::vk::ImageUsageFlags,
         flags: crate::vk::ImageCreateFlags,
@@ -23551,7 +23965,7 @@ pub(crate) mod items {
     pub type PFN_vkGetPhysicalDeviceSparseImageFormatProperties = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,
-        _type: crate::vk::ImageType,
+        ty: crate::vk::ImageType,
         samples: crate::vk::SampleCountFlagBits,
         usage: crate::vk::ImageUsageFlags,
         tiling: crate::vk::ImageTiling,

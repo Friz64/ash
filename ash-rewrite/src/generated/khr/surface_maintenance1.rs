@@ -275,8 +275,17 @@ pub(crate) mod items {
     pub struct PresentScalingFlagBitsKHR(pub(crate) u32);
     impl PresentScalingFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PresentScalingFlagsKHR {
             PresentScalingFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -366,8 +375,17 @@ pub(crate) mod items {
     pub struct PresentGravityFlagBitsKHR(pub(crate) u32);
     impl PresentGravityFlagBitsKHR {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> PresentGravityFlagsKHR {
             PresentGravityFlagsKHR::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]

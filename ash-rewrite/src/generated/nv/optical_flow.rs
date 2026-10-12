@@ -963,8 +963,17 @@ pub(crate) mod items {
     pub struct OpticalFlowGridSizeFlagBitsNV(pub(crate) u32);
     impl OpticalFlowGridSizeFlagBitsNV {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> OpticalFlowGridSizeFlagsNV {
             OpticalFlowGridSizeFlagsNV::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1057,8 +1066,17 @@ pub(crate) mod items {
     pub struct OpticalFlowUsageFlagBitsNV(pub(crate) u32);
     impl OpticalFlowUsageFlagBitsNV {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> OpticalFlowUsageFlagsNV {
             OpticalFlowUsageFlagsNV::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1150,8 +1168,17 @@ pub(crate) mod items {
     pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) u32);
     impl OpticalFlowSessionCreateFlagBitsNV {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> OpticalFlowSessionCreateFlagsNV {
             OpticalFlowSessionCreateFlagsNV::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
@@ -1237,8 +1264,17 @@ pub(crate) mod items {
     pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) u32);
     impl OpticalFlowExecuteFlagBitsNV {
         ///Converts this enum variant to the corresponding bitmask
+        #[inline]
         pub const fn bitmask(&self) -> OpticalFlowExecuteFlagsNV {
             OpticalFlowExecuteFlagsNV::from_raw(self.0)
+        }
+        #[inline]
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> u32 {
+            self.0
         }
     }
     #[cfg(feature = "debug")]
