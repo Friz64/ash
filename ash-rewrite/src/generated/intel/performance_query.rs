@@ -21,29 +21,29 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_INTEL_performance_query](crate::intel::performance_query)
 impl PerformanceConfigurationTypeINTEL {
-    pub const COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL: Self = Self(0);
+    pub const COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED: Self = Self(0);
 }
 ///Provided by [VK_INTEL_performance_query](crate::intel::performance_query)
 impl QueryPoolSamplingModeINTEL {
-    pub const MANUAL_INTEL: Self = Self(0);
+    pub const MANUAL: Self = Self(0);
 }
 ///Provided by [VK_INTEL_performance_query](crate::intel::performance_query)
 impl PerformanceOverrideTypeINTEL {
-    pub const NULL_HARDWARE_INTEL: Self = Self(0);
-    pub const FLUSH_GPU_CACHES_INTEL: Self = Self(1);
+    pub const NULL_HARDWARE: Self = Self(0);
+    pub const FLUSH_GPU_CACHES: Self = Self(1);
 }
 ///Provided by [VK_INTEL_performance_query](crate::intel::performance_query)
 impl PerformanceParameterTypeINTEL {
-    pub const HW_COUNTERS_SUPPORTED_INTEL: Self = Self(0);
-    pub const STREAM_MARKER_VALIDS_INTEL: Self = Self(1);
+    pub const HW_COUNTERS_SUPPORTED: Self = Self(0);
+    pub const STREAM_MARKER_VALIDS: Self = Self(1);
 }
 ///Provided by [VK_INTEL_performance_query](crate::intel::performance_query)
 impl PerformanceValueTypeINTEL {
-    pub const UINT32_INTEL: Self = Self(0);
-    pub const UINT64_INTEL: Self = Self(1);
-    pub const FLOAT_INTEL: Self = Self(2);
-    pub const BOOL_INTEL: Self = Self(3);
-    pub const STRING_INTEL: Self = Self(4);
+    pub const UINT32: Self = Self(0);
+    pub const UINT64: Self = Self(1);
+    pub const FLOAT: Self = Self(2);
+    pub const BOOL: Self = Self(3);
+    pub const STRING: Self = Self(4);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -559,8 +559,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for PerformanceConfigurationTypeINTEL {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL => {
-                    Some("COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL")
+                Self::COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED => {
+                    Some("COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED")
                 }
                 _ => None,
             } {
@@ -587,7 +587,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for QueryPoolSamplingModeINTEL {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::MANUAL_INTEL => Some("MANUAL_INTEL"),
+                Self::MANUAL => Some("MANUAL"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -613,8 +613,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for PerformanceOverrideTypeINTEL {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::NULL_HARDWARE_INTEL => Some("NULL_HARDWARE_INTEL"),
-                Self::FLUSH_GPU_CACHES_INTEL => Some("FLUSH_GPU_CACHES_INTEL"),
+                Self::NULL_HARDWARE => Some("NULL_HARDWARE"),
+                Self::FLUSH_GPU_CACHES => Some("FLUSH_GPU_CACHES"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -640,8 +640,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for PerformanceParameterTypeINTEL {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::HW_COUNTERS_SUPPORTED_INTEL => Some("HW_COUNTERS_SUPPORTED_INTEL"),
-                Self::STREAM_MARKER_VALIDS_INTEL => Some("STREAM_MARKER_VALIDS_INTEL"),
+                Self::HW_COUNTERS_SUPPORTED => Some("HW_COUNTERS_SUPPORTED"),
+                Self::STREAM_MARKER_VALIDS => Some("STREAM_MARKER_VALIDS"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -667,11 +667,11 @@ pub(crate) mod items {
     impl core::fmt::Debug for PerformanceValueTypeINTEL {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::UINT32_INTEL => Some("UINT32_INTEL"),
-                Self::UINT64_INTEL => Some("UINT64_INTEL"),
-                Self::FLOAT_INTEL => Some("FLOAT_INTEL"),
-                Self::BOOL_INTEL => Some("BOOL_INTEL"),
-                Self::STRING_INTEL => Some("STRING_INTEL"),
+                Self::UINT32 => Some("UINT32"),
+                Self::UINT64 => Some("UINT64"),
+                Self::FLOAT => Some("FLOAT"),
+                Self::BOOL => Some("BOOL"),
+                Self::STRING => Some("STRING"),
                 _ => None,
             } {
                 f.write_str(x)

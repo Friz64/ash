@@ -25,29 +25,29 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_device_address_commands](crate::khr::device_address_commands)
 impl AddressCommandFlagsKHR {
-    pub const PROTECTED_KHR: Self = Self(AddressCommandFlagBitsKHR::PROTECTED_KHR.0);
-    pub const FULLY_BOUND_KHR: Self = Self(AddressCommandFlagBitsKHR::FULLY_BOUND_KHR.0);
-    pub const STORAGE_BUFFER_USAGE_KHR: Self = Self(
-        AddressCommandFlagBitsKHR::STORAGE_BUFFER_USAGE_KHR.0,
+    pub const PROTECTED: Self = Self(AddressCommandFlagBitsKHR::PROTECTED.0);
+    pub const FULLY_BOUND: Self = Self(AddressCommandFlagBitsKHR::FULLY_BOUND.0);
+    pub const STORAGE_BUFFER_USAGE: Self = Self(
+        AddressCommandFlagBitsKHR::STORAGE_BUFFER_USAGE.0,
     );
-    pub const UNKNOWN_STORAGE_BUFFER_USAGE_KHR: Self = Self(
-        AddressCommandFlagBitsKHR::UNKNOWN_STORAGE_BUFFER_USAGE_KHR.0,
+    pub const UNKNOWN_STORAGE_BUFFER_USAGE: Self = Self(
+        AddressCommandFlagBitsKHR::UNKNOWN_STORAGE_BUFFER_USAGE.0,
     );
-    pub const TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(
-        AddressCommandFlagBitsKHR::TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
+    pub const TRANSFORM_FEEDBACK_BUFFER_USAGE: Self = Self(
+        AddressCommandFlagBitsKHR::TRANSFORM_FEEDBACK_BUFFER_USAGE.0,
     );
-    pub const UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(
-        AddressCommandFlagBitsKHR::UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
+    pub const UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE: Self = Self(
+        AddressCommandFlagBitsKHR::UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE.0,
     );
 }
 ///Provided by [VK_KHR_device_address_commands](crate::khr::device_address_commands)
 impl AddressCommandFlagBitsKHR {
-    pub const PROTECTED_KHR: Self = Self(1 << 0);
-    pub const FULLY_BOUND_KHR: Self = Self(1 << 1);
-    pub const STORAGE_BUFFER_USAGE_KHR: Self = Self(1 << 2);
-    pub const UNKNOWN_STORAGE_BUFFER_USAGE_KHR: Self = Self(1 << 3);
-    pub const TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(1 << 4);
-    pub const UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(1 << 5);
+    pub const PROTECTED: Self = Self(1 << 0);
+    pub const FULLY_BOUND: Self = Self(1 << 1);
+    pub const STORAGE_BUFFER_USAGE: Self = Self(1 << 2);
+    pub const UNKNOWN_STORAGE_BUFFER_USAGE: Self = Self(1 << 3);
+    pub const TRANSFORM_FEEDBACK_BUFFER_USAGE: Self = Self(1 << 4);
+    pub const UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE: Self = Self(1 << 5);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -1630,20 +1630,20 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::PROTECTED_KHR.0, "PROTECTED_KHR"),
-                    (Self::FULLY_BOUND_KHR.0, "FULLY_BOUND_KHR"),
-                    (Self::STORAGE_BUFFER_USAGE_KHR.0, "STORAGE_BUFFER_USAGE_KHR"),
+                    (Self::PROTECTED.0, "PROTECTED"),
+                    (Self::FULLY_BOUND.0, "FULLY_BOUND"),
+                    (Self::STORAGE_BUFFER_USAGE.0, "STORAGE_BUFFER_USAGE"),
                     (
-                        Self::UNKNOWN_STORAGE_BUFFER_USAGE_KHR.0,
-                        "UNKNOWN_STORAGE_BUFFER_USAGE_KHR",
+                        Self::UNKNOWN_STORAGE_BUFFER_USAGE.0,
+                        "UNKNOWN_STORAGE_BUFFER_USAGE",
                     ),
                     (
-                        Self::TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
-                        "TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR",
+                        Self::TRANSFORM_FEEDBACK_BUFFER_USAGE.0,
+                        "TRANSFORM_FEEDBACK_BUFFER_USAGE",
                     ),
                     (
-                        Self::UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
-                        "UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR",
+                        Self::UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE.0,
+                        "UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE",
                     ),
                 ],
                 self.0,

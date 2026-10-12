@@ -36,53 +36,51 @@ impl crate::vk::SwapchainCreateFlagBitsKHR {
 }
 ///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl PresentStageFlagsEXT {
-    pub const QUEUE_OPERATIONS_END_EXT: Self = Self(
-        PresentStageFlagBitsEXT::QUEUE_OPERATIONS_END_EXT.0,
+    pub const QUEUE_OPERATIONS_END: Self = Self(
+        PresentStageFlagBitsEXT::QUEUE_OPERATIONS_END.0,
     );
-    pub const REQUEST_DEQUEUED_EXT: Self = Self(
-        PresentStageFlagBitsEXT::REQUEST_DEQUEUED_EXT.0,
+    pub const REQUEST_DEQUEUED: Self = Self(PresentStageFlagBitsEXT::REQUEST_DEQUEUED.0);
+    pub const IMAGE_FIRST_PIXEL_OUT: Self = Self(
+        PresentStageFlagBitsEXT::IMAGE_FIRST_PIXEL_OUT.0,
     );
-    pub const IMAGE_FIRST_PIXEL_OUT_EXT: Self = Self(
-        PresentStageFlagBitsEXT::IMAGE_FIRST_PIXEL_OUT_EXT.0,
-    );
-    pub const IMAGE_FIRST_PIXEL_VISIBLE_EXT: Self = Self(
-        PresentStageFlagBitsEXT::IMAGE_FIRST_PIXEL_VISIBLE_EXT.0,
+    pub const IMAGE_FIRST_PIXEL_VISIBLE: Self = Self(
+        PresentStageFlagBitsEXT::IMAGE_FIRST_PIXEL_VISIBLE.0,
     );
 }
 ///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl PresentStageFlagBitsEXT {
-    pub const QUEUE_OPERATIONS_END_EXT: Self = Self(1 << 0);
-    pub const REQUEST_DEQUEUED_EXT: Self = Self(1 << 1);
-    pub const IMAGE_FIRST_PIXEL_OUT_EXT: Self = Self(1 << 2);
-    pub const IMAGE_FIRST_PIXEL_VISIBLE_EXT: Self = Self(1 << 3);
+    pub const QUEUE_OPERATIONS_END: Self = Self(1 << 0);
+    pub const REQUEST_DEQUEUED: Self = Self(1 << 1);
+    pub const IMAGE_FIRST_PIXEL_OUT: Self = Self(1 << 2);
+    pub const IMAGE_FIRST_PIXEL_VISIBLE: Self = Self(1 << 3);
 }
 ///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl PastPresentationTimingFlagsEXT {
-    pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(
-        PastPresentationTimingFlagBitsEXT::ALLOW_PARTIAL_RESULTS_EXT.0,
+    pub const ALLOW_PARTIAL_RESULTS: Self = Self(
+        PastPresentationTimingFlagBitsEXT::ALLOW_PARTIAL_RESULTS.0,
     );
-    pub const ALLOW_OUT_OF_ORDER_RESULTS_EXT: Self = Self(
-        PastPresentationTimingFlagBitsEXT::ALLOW_OUT_OF_ORDER_RESULTS_EXT.0,
+    pub const ALLOW_OUT_OF_ORDER_RESULTS: Self = Self(
+        PastPresentationTimingFlagBitsEXT::ALLOW_OUT_OF_ORDER_RESULTS.0,
     );
 }
 ///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl PastPresentationTimingFlagBitsEXT {
-    pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(1 << 0);
-    pub const ALLOW_OUT_OF_ORDER_RESULTS_EXT: Self = Self(1 << 1);
+    pub const ALLOW_PARTIAL_RESULTS: Self = Self(1 << 0);
+    pub const ALLOW_OUT_OF_ORDER_RESULTS: Self = Self(1 << 1);
 }
 ///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl PresentTimingInfoFlagsEXT {
-    pub const PRESENT_AT_RELATIVE_TIME_EXT: Self = Self(
-        PresentTimingInfoFlagBitsEXT::PRESENT_AT_RELATIVE_TIME_EXT.0,
+    pub const PRESENT_AT_RELATIVE_TIME: Self = Self(
+        PresentTimingInfoFlagBitsEXT::PRESENT_AT_RELATIVE_TIME.0,
     );
-    pub const PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT: Self = Self(
-        PresentTimingInfoFlagBitsEXT::PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT.0,
+    pub const PRESENT_AT_NEAREST_REFRESH_CYCLE: Self = Self(
+        PresentTimingInfoFlagBitsEXT::PRESENT_AT_NEAREST_REFRESH_CYCLE.0,
     );
 }
 ///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl PresentTimingInfoFlagBitsEXT {
-    pub const PRESENT_AT_RELATIVE_TIME_EXT: Self = Self(1 << 0);
-    pub const PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT: Self = Self(1 << 1);
+    pub const PRESENT_AT_RELATIVE_TIME: Self = Self(1 << 0);
+    pub const PRESENT_AT_NEAREST_REFRESH_CYCLE: Self = Self(1 << 1);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -785,13 +783,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::QUEUE_OPERATIONS_END_EXT.0, "QUEUE_OPERATIONS_END_EXT"),
-                    (Self::REQUEST_DEQUEUED_EXT.0, "REQUEST_DEQUEUED_EXT"),
-                    (Self::IMAGE_FIRST_PIXEL_OUT_EXT.0, "IMAGE_FIRST_PIXEL_OUT_EXT"),
-                    (
-                        Self::IMAGE_FIRST_PIXEL_VISIBLE_EXT.0,
-                        "IMAGE_FIRST_PIXEL_VISIBLE_EXT",
-                    ),
+                    (Self::QUEUE_OPERATIONS_END.0, "QUEUE_OPERATIONS_END"),
+                    (Self::REQUEST_DEQUEUED.0, "REQUEST_DEQUEUED"),
+                    (Self::IMAGE_FIRST_PIXEL_OUT.0, "IMAGE_FIRST_PIXEL_OUT"),
+                    (Self::IMAGE_FIRST_PIXEL_VISIBLE.0, "IMAGE_FIRST_PIXEL_VISIBLE"),
                 ],
                 self.0,
             )
@@ -880,11 +875,8 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::ALLOW_PARTIAL_RESULTS_EXT.0, "ALLOW_PARTIAL_RESULTS_EXT"),
-                    (
-                        Self::ALLOW_OUT_OF_ORDER_RESULTS_EXT.0,
-                        "ALLOW_OUT_OF_ORDER_RESULTS_EXT",
-                    ),
+                    (Self::ALLOW_PARTIAL_RESULTS.0, "ALLOW_PARTIAL_RESULTS"),
+                    (Self::ALLOW_OUT_OF_ORDER_RESULTS.0, "ALLOW_OUT_OF_ORDER_RESULTS"),
                 ],
                 self.0,
             )
@@ -973,13 +965,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
+                    (Self::PRESENT_AT_RELATIVE_TIME.0, "PRESENT_AT_RELATIVE_TIME"),
                     (
-                        Self::PRESENT_AT_RELATIVE_TIME_EXT.0,
-                        "PRESENT_AT_RELATIVE_TIME_EXT",
-                    ),
-                    (
-                        Self::PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT.0,
-                        "PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT",
+                        Self::PRESENT_AT_NEAREST_REFRESH_CYCLE.0,
+                        "PRESENT_AT_NEAREST_REFRESH_CYCLE",
                     ),
                 ],
                 self.0,

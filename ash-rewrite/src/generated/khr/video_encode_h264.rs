@@ -25,167 +25,167 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl crate::vk::VideoCodecOperationFlagsKHR {
-    pub const ENCODE_H264_KHR: Self = Self(
-        crate::vk::VideoCodecOperationFlagBitsKHR::ENCODE_H264_KHR.0,
+    pub const ENCODE_H264: Self = Self(
+        crate::vk::VideoCodecOperationFlagBitsKHR::ENCODE_H264.0,
     );
 }
 ///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
-    pub const ENCODE_H264_KHR: Self = Self(1 << 16);
+    pub const ENCODE_H264: Self = Self(1 << 16);
 }
 ///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl VideoEncodeH264CapabilityFlagsKHR {
-    pub const HRD_COMPLIANCE_KHR: Self = Self(
-        VideoEncodeH264CapabilityFlagBitsKHR::HRD_COMPLIANCE_KHR.0,
+    pub const HRD_COMPLIANCE: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::HRD_COMPLIANCE.0,
     );
-    pub const PREDICTION_WEIGHT_TABLE_GENERATED_KHR: Self = Self(
-        VideoEncodeH264CapabilityFlagBitsKHR::PREDICTION_WEIGHT_TABLE_GENERATED_KHR.0,
+    pub const PREDICTION_WEIGHT_TABLE_GENERATED: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::PREDICTION_WEIGHT_TABLE_GENERATED.0,
     );
-    pub const ROW_UNALIGNED_SLICE_KHR: Self = Self(
-        VideoEncodeH264CapabilityFlagBitsKHR::ROW_UNALIGNED_SLICE_KHR.0,
+    pub const ROW_UNALIGNED_SLICE: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::ROW_UNALIGNED_SLICE.0,
     );
-    pub const DIFFERENT_SLICE_TYPE_KHR: Self = Self(
-        VideoEncodeH264CapabilityFlagBitsKHR::DIFFERENT_SLICE_TYPE_KHR.0,
+    pub const DIFFERENT_SLICE_TYPE: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::DIFFERENT_SLICE_TYPE.0,
     );
-    pub const B_FRAME_IN_L0_LIST_KHR: Self = Self(
-        VideoEncodeH264CapabilityFlagBitsKHR::B_FRAME_IN_L0_LIST_KHR.0,
+    pub const B_FRAME_IN_L0_LIST: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::B_FRAME_IN_L0_LIST.0,
     );
-    pub const B_FRAME_IN_L1_LIST_KHR: Self = Self(
-        VideoEncodeH264CapabilityFlagBitsKHR::B_FRAME_IN_L1_LIST_KHR.0,
+    pub const B_FRAME_IN_L1_LIST: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::B_FRAME_IN_L1_LIST.0,
     );
-    pub const PER_PICTURE_TYPE_MIN_MAX_QP_KHR: Self = Self(
-        VideoEncodeH264CapabilityFlagBitsKHR::PER_PICTURE_TYPE_MIN_MAX_QP_KHR.0,
+    pub const PER_PICTURE_TYPE_MIN_MAX_QP: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::PER_PICTURE_TYPE_MIN_MAX_QP.0,
     );
-    pub const PER_SLICE_CONSTANT_QP_KHR: Self = Self(
-        VideoEncodeH264CapabilityFlagBitsKHR::PER_SLICE_CONSTANT_QP_KHR.0,
+    pub const PER_SLICE_CONSTANT_QP: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::PER_SLICE_CONSTANT_QP.0,
     );
-    pub const GENERATE_PREFIX_NALU_KHR: Self = Self(
-        VideoEncodeH264CapabilityFlagBitsKHR::GENERATE_PREFIX_NALU_KHR.0,
+    pub const GENERATE_PREFIX_NALU: Self = Self(
+        VideoEncodeH264CapabilityFlagBitsKHR::GENERATE_PREFIX_NALU.0,
     );
 }
 ///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl VideoEncodeH264CapabilityFlagBitsKHR {
-    pub const HRD_COMPLIANCE_KHR: Self = Self(1 << 0);
-    pub const PREDICTION_WEIGHT_TABLE_GENERATED_KHR: Self = Self(1 << 1);
-    pub const ROW_UNALIGNED_SLICE_KHR: Self = Self(1 << 2);
-    pub const DIFFERENT_SLICE_TYPE_KHR: Self = Self(1 << 3);
-    pub const B_FRAME_IN_L0_LIST_KHR: Self = Self(1 << 4);
-    pub const B_FRAME_IN_L1_LIST_KHR: Self = Self(1 << 5);
-    pub const PER_PICTURE_TYPE_MIN_MAX_QP_KHR: Self = Self(1 << 6);
-    pub const PER_SLICE_CONSTANT_QP_KHR: Self = Self(1 << 7);
-    pub const GENERATE_PREFIX_NALU_KHR: Self = Self(1 << 8);
+    pub const HRD_COMPLIANCE: Self = Self(1 << 0);
+    pub const PREDICTION_WEIGHT_TABLE_GENERATED: Self = Self(1 << 1);
+    pub const ROW_UNALIGNED_SLICE: Self = Self(1 << 2);
+    pub const DIFFERENT_SLICE_TYPE: Self = Self(1 << 3);
+    pub const B_FRAME_IN_L0_LIST: Self = Self(1 << 4);
+    pub const B_FRAME_IN_L1_LIST: Self = Self(1 << 5);
+    pub const PER_PICTURE_TYPE_MIN_MAX_QP: Self = Self(1 << 6);
+    pub const PER_SLICE_CONSTANT_QP: Self = Self(1 << 7);
+    pub const GENERATE_PREFIX_NALU: Self = Self(1 << 8);
 }
 ///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl VideoEncodeH264StdFlagsKHR {
-    pub const SEPARATE_COLOR_PLANE_FLAG_SET_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::SEPARATE_COLOR_PLANE_FLAG_SET_KHR.0,
+    pub const SEPARATE_COLOR_PLANE_FLAG_SET: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::SEPARATE_COLOR_PLANE_FLAG_SET.0,
     );
-    pub const QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR.0,
+    pub const QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET.0,
     );
-    pub const SCALING_MATRIX_PRESENT_FLAG_SET_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::SCALING_MATRIX_PRESENT_FLAG_SET_KHR.0,
+    pub const SCALING_MATRIX_PRESENT_FLAG_SET: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::SCALING_MATRIX_PRESENT_FLAG_SET.0,
     );
-    pub const CHROMA_QP_INDEX_OFFSET_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::CHROMA_QP_INDEX_OFFSET_KHR.0,
+    pub const CHROMA_QP_INDEX_OFFSET: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::CHROMA_QP_INDEX_OFFSET.0,
     );
-    pub const SECOND_CHROMA_QP_INDEX_OFFSET_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::SECOND_CHROMA_QP_INDEX_OFFSET_KHR.0,
+    pub const SECOND_CHROMA_QP_INDEX_OFFSET: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::SECOND_CHROMA_QP_INDEX_OFFSET.0,
     );
-    pub const PIC_INIT_QP_MINUS26_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::PIC_INIT_QP_MINUS26_KHR.0,
+    pub const PIC_INIT_QP_MINUS26: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::PIC_INIT_QP_MINUS26.0,
     );
-    pub const WEIGHTED_PRED_FLAG_SET_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::WEIGHTED_PRED_FLAG_SET_KHR.0,
+    pub const WEIGHTED_PRED_FLAG_SET: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::WEIGHTED_PRED_FLAG_SET.0,
     );
-    pub const WEIGHTED_BIPRED_IDC_EXPLICIT_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::WEIGHTED_BIPRED_IDC_EXPLICIT_KHR.0,
+    pub const WEIGHTED_BIPRED_IDC_EXPLICIT: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::WEIGHTED_BIPRED_IDC_EXPLICIT.0,
     );
-    pub const WEIGHTED_BIPRED_IDC_IMPLICIT_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::WEIGHTED_BIPRED_IDC_IMPLICIT_KHR.0,
+    pub const WEIGHTED_BIPRED_IDC_IMPLICIT: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::WEIGHTED_BIPRED_IDC_IMPLICIT.0,
     );
-    pub const TRANSFORM_8X8_MODE_FLAG_SET_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::TRANSFORM_8X8_MODE_FLAG_SET_KHR.0,
+    pub const TRANSFORM_8X8_MODE_FLAG_SET: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::TRANSFORM_8X8_MODE_FLAG_SET.0,
     );
-    pub const DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR.0,
+    pub const DIRECT_SPATIAL_MV_PRED_FLAG_UNSET: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::DIRECT_SPATIAL_MV_PRED_FLAG_UNSET.0,
     );
-    pub const ENTROPY_CODING_MODE_FLAG_UNSET_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::ENTROPY_CODING_MODE_FLAG_UNSET_KHR.0,
+    pub const ENTROPY_CODING_MODE_FLAG_UNSET: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::ENTROPY_CODING_MODE_FLAG_UNSET.0,
     );
-    pub const ENTROPY_CODING_MODE_FLAG_SET_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::ENTROPY_CODING_MODE_FLAG_SET_KHR.0,
+    pub const ENTROPY_CODING_MODE_FLAG_SET: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::ENTROPY_CODING_MODE_FLAG_SET.0,
     );
-    pub const DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR.0,
+    pub const DIRECT_8X8_INFERENCE_FLAG_UNSET: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::DIRECT_8X8_INFERENCE_FLAG_UNSET.0,
     );
-    pub const CONSTRAINED_INTRA_PRED_FLAG_SET_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::CONSTRAINED_INTRA_PRED_FLAG_SET_KHR.0,
+    pub const CONSTRAINED_INTRA_PRED_FLAG_SET: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::CONSTRAINED_INTRA_PRED_FLAG_SET.0,
     );
-    pub const DEBLOCKING_FILTER_DISABLED_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::DEBLOCKING_FILTER_DISABLED_KHR.0,
+    pub const DEBLOCKING_FILTER_DISABLED: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::DEBLOCKING_FILTER_DISABLED.0,
     );
-    pub const DEBLOCKING_FILTER_ENABLED_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::DEBLOCKING_FILTER_ENABLED_KHR.0,
+    pub const DEBLOCKING_FILTER_ENABLED: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::DEBLOCKING_FILTER_ENABLED.0,
     );
-    pub const DEBLOCKING_FILTER_PARTIAL_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::DEBLOCKING_FILTER_PARTIAL_KHR.0,
+    pub const DEBLOCKING_FILTER_PARTIAL: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::DEBLOCKING_FILTER_PARTIAL.0,
     );
-    pub const SLICE_QP_DELTA_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::SLICE_QP_DELTA_KHR.0,
+    pub const SLICE_QP_DELTA: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::SLICE_QP_DELTA.0,
     );
-    pub const DIFFERENT_SLICE_QP_DELTA_KHR: Self = Self(
-        VideoEncodeH264StdFlagBitsKHR::DIFFERENT_SLICE_QP_DELTA_KHR.0,
+    pub const DIFFERENT_SLICE_QP_DELTA: Self = Self(
+        VideoEncodeH264StdFlagBitsKHR::DIFFERENT_SLICE_QP_DELTA.0,
     );
 }
 ///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl VideoEncodeH264StdFlagBitsKHR {
-    pub const SEPARATE_COLOR_PLANE_FLAG_SET_KHR: Self = Self(1 << 0);
-    pub const QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR: Self = Self(1 << 1);
-    pub const SCALING_MATRIX_PRESENT_FLAG_SET_KHR: Self = Self(1 << 2);
-    pub const CHROMA_QP_INDEX_OFFSET_KHR: Self = Self(1 << 3);
-    pub const SECOND_CHROMA_QP_INDEX_OFFSET_KHR: Self = Self(1 << 4);
-    pub const PIC_INIT_QP_MINUS26_KHR: Self = Self(1 << 5);
-    pub const WEIGHTED_PRED_FLAG_SET_KHR: Self = Self(1 << 6);
-    pub const WEIGHTED_BIPRED_IDC_EXPLICIT_KHR: Self = Self(1 << 7);
-    pub const WEIGHTED_BIPRED_IDC_IMPLICIT_KHR: Self = Self(1 << 8);
-    pub const TRANSFORM_8X8_MODE_FLAG_SET_KHR: Self = Self(1 << 9);
-    pub const DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR: Self = Self(1 << 10);
-    pub const ENTROPY_CODING_MODE_FLAG_UNSET_KHR: Self = Self(1 << 11);
-    pub const ENTROPY_CODING_MODE_FLAG_SET_KHR: Self = Self(1 << 12);
-    pub const DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR: Self = Self(1 << 13);
-    pub const CONSTRAINED_INTRA_PRED_FLAG_SET_KHR: Self = Self(1 << 14);
-    pub const DEBLOCKING_FILTER_DISABLED_KHR: Self = Self(1 << 15);
-    pub const DEBLOCKING_FILTER_ENABLED_KHR: Self = Self(1 << 16);
-    pub const DEBLOCKING_FILTER_PARTIAL_KHR: Self = Self(1 << 17);
-    pub const SLICE_QP_DELTA_KHR: Self = Self(1 << 19);
-    pub const DIFFERENT_SLICE_QP_DELTA_KHR: Self = Self(1 << 20);
+    pub const SEPARATE_COLOR_PLANE_FLAG_SET: Self = Self(1 << 0);
+    pub const QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET: Self = Self(1 << 1);
+    pub const SCALING_MATRIX_PRESENT_FLAG_SET: Self = Self(1 << 2);
+    pub const CHROMA_QP_INDEX_OFFSET: Self = Self(1 << 3);
+    pub const SECOND_CHROMA_QP_INDEX_OFFSET: Self = Self(1 << 4);
+    pub const PIC_INIT_QP_MINUS26: Self = Self(1 << 5);
+    pub const WEIGHTED_PRED_FLAG_SET: Self = Self(1 << 6);
+    pub const WEIGHTED_BIPRED_IDC_EXPLICIT: Self = Self(1 << 7);
+    pub const WEIGHTED_BIPRED_IDC_IMPLICIT: Self = Self(1 << 8);
+    pub const TRANSFORM_8X8_MODE_FLAG_SET: Self = Self(1 << 9);
+    pub const DIRECT_SPATIAL_MV_PRED_FLAG_UNSET: Self = Self(1 << 10);
+    pub const ENTROPY_CODING_MODE_FLAG_UNSET: Self = Self(1 << 11);
+    pub const ENTROPY_CODING_MODE_FLAG_SET: Self = Self(1 << 12);
+    pub const DIRECT_8X8_INFERENCE_FLAG_UNSET: Self = Self(1 << 13);
+    pub const CONSTRAINED_INTRA_PRED_FLAG_SET: Self = Self(1 << 14);
+    pub const DEBLOCKING_FILTER_DISABLED: Self = Self(1 << 15);
+    pub const DEBLOCKING_FILTER_ENABLED: Self = Self(1 << 16);
+    pub const DEBLOCKING_FILTER_PARTIAL: Self = Self(1 << 17);
+    pub const SLICE_QP_DELTA: Self = Self(1 << 19);
+    pub const DIFFERENT_SLICE_QP_DELTA: Self = Self(1 << 20);
 }
 ///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl VideoEncodeH264RateControlFlagsKHR {
-    pub const ATTEMPT_HRD_COMPLIANCE_KHR: Self = Self(
-        VideoEncodeH264RateControlFlagBitsKHR::ATTEMPT_HRD_COMPLIANCE_KHR.0,
+    pub const ATTEMPT_HRD_COMPLIANCE: Self = Self(
+        VideoEncodeH264RateControlFlagBitsKHR::ATTEMPT_HRD_COMPLIANCE.0,
     );
-    pub const REGULAR_GOP_KHR: Self = Self(
-        VideoEncodeH264RateControlFlagBitsKHR::REGULAR_GOP_KHR.0,
+    pub const REGULAR_GOP: Self = Self(
+        VideoEncodeH264RateControlFlagBitsKHR::REGULAR_GOP.0,
     );
-    pub const REFERENCE_PATTERN_FLAT_KHR: Self = Self(
-        VideoEncodeH264RateControlFlagBitsKHR::REFERENCE_PATTERN_FLAT_KHR.0,
+    pub const REFERENCE_PATTERN_FLAT: Self = Self(
+        VideoEncodeH264RateControlFlagBitsKHR::REFERENCE_PATTERN_FLAT.0,
     );
-    pub const REFERENCE_PATTERN_DYADIC_KHR: Self = Self(
-        VideoEncodeH264RateControlFlagBitsKHR::REFERENCE_PATTERN_DYADIC_KHR.0,
+    pub const REFERENCE_PATTERN_DYADIC: Self = Self(
+        VideoEncodeH264RateControlFlagBitsKHR::REFERENCE_PATTERN_DYADIC.0,
     );
-    pub const TEMPORAL_LAYER_PATTERN_DYADIC_KHR: Self = Self(
-        VideoEncodeH264RateControlFlagBitsKHR::TEMPORAL_LAYER_PATTERN_DYADIC_KHR.0,
+    pub const TEMPORAL_LAYER_PATTERN_DYADIC: Self = Self(
+        VideoEncodeH264RateControlFlagBitsKHR::TEMPORAL_LAYER_PATTERN_DYADIC.0,
     );
 }
 ///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl VideoEncodeH264RateControlFlagBitsKHR {
-    pub const ATTEMPT_HRD_COMPLIANCE_KHR: Self = Self(1 << 0);
-    pub const REGULAR_GOP_KHR: Self = Self(1 << 1);
-    pub const REFERENCE_PATTERN_FLAT_KHR: Self = Self(1 << 2);
-    pub const REFERENCE_PATTERN_DYADIC_KHR: Self = Self(1 << 3);
-    pub const TEMPORAL_LAYER_PATTERN_DYADIC_KHR: Self = Self(1 << 4);
+    pub const ATTEMPT_HRD_COMPLIANCE: Self = Self(1 << 0);
+    pub const REGULAR_GOP: Self = Self(1 << 1);
+    pub const REFERENCE_PATTERN_FLAT: Self = Self(1 << 2);
+    pub const REFERENCE_PATTERN_DYADIC: Self = Self(1 << 3);
+    pub const TEMPORAL_LAYER_PATTERN_DYADIC: Self = Self(1 << 4);
 }
 pub const SPEC_VERSION: u32 = 14;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_h264";
@@ -1065,23 +1065,20 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::HRD_COMPLIANCE_KHR.0, "HRD_COMPLIANCE_KHR"),
+                    (Self::HRD_COMPLIANCE.0, "HRD_COMPLIANCE"),
                     (
-                        Self::PREDICTION_WEIGHT_TABLE_GENERATED_KHR.0,
-                        "PREDICTION_WEIGHT_TABLE_GENERATED_KHR",
+                        Self::PREDICTION_WEIGHT_TABLE_GENERATED.0,
+                        "PREDICTION_WEIGHT_TABLE_GENERATED",
                     ),
-                    (Self::ROW_UNALIGNED_SLICE_KHR.0, "ROW_UNALIGNED_SLICE_KHR"),
-                    (Self::DIFFERENT_SLICE_TYPE_KHR.0, "DIFFERENT_SLICE_TYPE_KHR"),
-                    (Self::B_FRAME_IN_L0_LIST_KHR.0, "B_FRAME_IN_L0_LIST_KHR"),
-                    (Self::B_FRAME_IN_L1_LIST_KHR.0, "B_FRAME_IN_L1_LIST_KHR"),
-                    (
-                        Self::PER_PICTURE_TYPE_MIN_MAX_QP_KHR.0,
-                        "PER_PICTURE_TYPE_MIN_MAX_QP_KHR",
-                    ),
-                    (Self::PER_SLICE_CONSTANT_QP_KHR.0, "PER_SLICE_CONSTANT_QP_KHR"),
-                    (Self::GENERATE_PREFIX_NALU_KHR.0, "GENERATE_PREFIX_NALU_KHR"),
-                    (Self::B_PICTURE_INTRA_REFRESH_KHR.0, "B_PICTURE_INTRA_REFRESH_KHR"),
-                    (Self::MB_QP_DIFF_WRAPAROUND_KHR.0, "MB_QP_DIFF_WRAPAROUND_KHR"),
+                    (Self::ROW_UNALIGNED_SLICE.0, "ROW_UNALIGNED_SLICE"),
+                    (Self::DIFFERENT_SLICE_TYPE.0, "DIFFERENT_SLICE_TYPE"),
+                    (Self::B_FRAME_IN_L0_LIST.0, "B_FRAME_IN_L0_LIST"),
+                    (Self::B_FRAME_IN_L1_LIST.0, "B_FRAME_IN_L1_LIST"),
+                    (Self::PER_PICTURE_TYPE_MIN_MAX_QP.0, "PER_PICTURE_TYPE_MIN_MAX_QP"),
+                    (Self::PER_SLICE_CONSTANT_QP.0, "PER_SLICE_CONSTANT_QP"),
+                    (Self::GENERATE_PREFIX_NALU.0, "GENERATE_PREFIX_NALU"),
+                    (Self::B_PICTURE_INTRA_REFRESH.0, "B_PICTURE_INTRA_REFRESH"),
+                    (Self::MB_QP_DIFF_WRAPAROUND.0, "MB_QP_DIFF_WRAPAROUND"),
                 ],
                 self.0,
             )
@@ -1171,73 +1168,58 @@ pub(crate) mod items {
                 f,
                 &[
                     (
-                        Self::SEPARATE_COLOR_PLANE_FLAG_SET_KHR.0,
-                        "SEPARATE_COLOR_PLANE_FLAG_SET_KHR",
+                        Self::SEPARATE_COLOR_PLANE_FLAG_SET.0,
+                        "SEPARATE_COLOR_PLANE_FLAG_SET",
                     ),
                     (
-                        Self::QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR.0,
-                        "QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR",
+                        Self::QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET.0,
+                        "QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET",
                     ),
                     (
-                        Self::SCALING_MATRIX_PRESENT_FLAG_SET_KHR.0,
-                        "SCALING_MATRIX_PRESENT_FLAG_SET_KHR",
+                        Self::SCALING_MATRIX_PRESENT_FLAG_SET.0,
+                        "SCALING_MATRIX_PRESENT_FLAG_SET",
                     ),
-                    (Self::CHROMA_QP_INDEX_OFFSET_KHR.0, "CHROMA_QP_INDEX_OFFSET_KHR"),
+                    (Self::CHROMA_QP_INDEX_OFFSET.0, "CHROMA_QP_INDEX_OFFSET"),
                     (
-                        Self::SECOND_CHROMA_QP_INDEX_OFFSET_KHR.0,
-                        "SECOND_CHROMA_QP_INDEX_OFFSET_KHR",
+                        Self::SECOND_CHROMA_QP_INDEX_OFFSET.0,
+                        "SECOND_CHROMA_QP_INDEX_OFFSET",
                     ),
-                    (Self::PIC_INIT_QP_MINUS26_KHR.0, "PIC_INIT_QP_MINUS26_KHR"),
-                    (Self::WEIGHTED_PRED_FLAG_SET_KHR.0, "WEIGHTED_PRED_FLAG_SET_KHR"),
+                    (Self::PIC_INIT_QP_MINUS26.0, "PIC_INIT_QP_MINUS26"),
+                    (Self::WEIGHTED_PRED_FLAG_SET.0, "WEIGHTED_PRED_FLAG_SET"),
                     (
-                        Self::WEIGHTED_BIPRED_IDC_EXPLICIT_KHR.0,
-                        "WEIGHTED_BIPRED_IDC_EXPLICIT_KHR",
-                    ),
-                    (
-                        Self::WEIGHTED_BIPRED_IDC_IMPLICIT_KHR.0,
-                        "WEIGHTED_BIPRED_IDC_IMPLICIT_KHR",
+                        Self::WEIGHTED_BIPRED_IDC_EXPLICIT.0,
+                        "WEIGHTED_BIPRED_IDC_EXPLICIT",
                     ),
                     (
-                        Self::TRANSFORM_8X8_MODE_FLAG_SET_KHR.0,
-                        "TRANSFORM_8X8_MODE_FLAG_SET_KHR",
+                        Self::WEIGHTED_BIPRED_IDC_IMPLICIT.0,
+                        "WEIGHTED_BIPRED_IDC_IMPLICIT",
+                    ),
+                    (Self::TRANSFORM_8X8_MODE_FLAG_SET.0, "TRANSFORM_8X8_MODE_FLAG_SET"),
+                    (
+                        Self::DIRECT_SPATIAL_MV_PRED_FLAG_UNSET.0,
+                        "DIRECT_SPATIAL_MV_PRED_FLAG_UNSET",
                     ),
                     (
-                        Self::DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR.0,
-                        "DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR",
+                        Self::ENTROPY_CODING_MODE_FLAG_UNSET.0,
+                        "ENTROPY_CODING_MODE_FLAG_UNSET",
                     ),
                     (
-                        Self::ENTROPY_CODING_MODE_FLAG_UNSET_KHR.0,
-                        "ENTROPY_CODING_MODE_FLAG_UNSET_KHR",
+                        Self::ENTROPY_CODING_MODE_FLAG_SET.0,
+                        "ENTROPY_CODING_MODE_FLAG_SET",
                     ),
                     (
-                        Self::ENTROPY_CODING_MODE_FLAG_SET_KHR.0,
-                        "ENTROPY_CODING_MODE_FLAG_SET_KHR",
+                        Self::DIRECT_8X8_INFERENCE_FLAG_UNSET.0,
+                        "DIRECT_8X8_INFERENCE_FLAG_UNSET",
                     ),
                     (
-                        Self::DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR.0,
-                        "DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR",
+                        Self::CONSTRAINED_INTRA_PRED_FLAG_SET.0,
+                        "CONSTRAINED_INTRA_PRED_FLAG_SET",
                     ),
-                    (
-                        Self::CONSTRAINED_INTRA_PRED_FLAG_SET_KHR.0,
-                        "CONSTRAINED_INTRA_PRED_FLAG_SET_KHR",
-                    ),
-                    (
-                        Self::DEBLOCKING_FILTER_DISABLED_KHR.0,
-                        "DEBLOCKING_FILTER_DISABLED_KHR",
-                    ),
-                    (
-                        Self::DEBLOCKING_FILTER_ENABLED_KHR.0,
-                        "DEBLOCKING_FILTER_ENABLED_KHR",
-                    ),
-                    (
-                        Self::DEBLOCKING_FILTER_PARTIAL_KHR.0,
-                        "DEBLOCKING_FILTER_PARTIAL_KHR",
-                    ),
-                    (Self::SLICE_QP_DELTA_KHR.0, "SLICE_QP_DELTA_KHR"),
-                    (
-                        Self::DIFFERENT_SLICE_QP_DELTA_KHR.0,
-                        "DIFFERENT_SLICE_QP_DELTA_KHR",
-                    ),
+                    (Self::DEBLOCKING_FILTER_DISABLED.0, "DEBLOCKING_FILTER_DISABLED"),
+                    (Self::DEBLOCKING_FILTER_ENABLED.0, "DEBLOCKING_FILTER_ENABLED"),
+                    (Self::DEBLOCKING_FILTER_PARTIAL.0, "DEBLOCKING_FILTER_PARTIAL"),
+                    (Self::SLICE_QP_DELTA.0, "SLICE_QP_DELTA"),
+                    (Self::DIFFERENT_SLICE_QP_DELTA.0, "DIFFERENT_SLICE_QP_DELTA"),
                 ],
                 self.0,
             )
@@ -1326,16 +1308,13 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::ATTEMPT_HRD_COMPLIANCE_KHR.0, "ATTEMPT_HRD_COMPLIANCE_KHR"),
-                    (Self::REGULAR_GOP_KHR.0, "REGULAR_GOP_KHR"),
-                    (Self::REFERENCE_PATTERN_FLAT_KHR.0, "REFERENCE_PATTERN_FLAT_KHR"),
+                    (Self::ATTEMPT_HRD_COMPLIANCE.0, "ATTEMPT_HRD_COMPLIANCE"),
+                    (Self::REGULAR_GOP.0, "REGULAR_GOP"),
+                    (Self::REFERENCE_PATTERN_FLAT.0, "REFERENCE_PATTERN_FLAT"),
+                    (Self::REFERENCE_PATTERN_DYADIC.0, "REFERENCE_PATTERN_DYADIC"),
                     (
-                        Self::REFERENCE_PATTERN_DYADIC_KHR.0,
-                        "REFERENCE_PATTERN_DYADIC_KHR",
-                    ),
-                    (
-                        Self::TEMPORAL_LAYER_PATTERN_DYADIC_KHR.0,
-                        "TEMPORAL_LAYER_PATTERN_DYADIC_KHR",
+                        Self::TEMPORAL_LAYER_PATTERN_DYADIC.0,
+                        "TEMPORAL_LAYER_PATTERN_DYADIC",
                     ),
                 ],
                 self.0,

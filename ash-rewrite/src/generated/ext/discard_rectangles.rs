@@ -15,8 +15,8 @@ impl crate::vk::DynamicState {
 }
 ///Provided by [VK_EXT_discard_rectangles](crate::ext::discard_rectangles)
 impl DiscardRectangleModeEXT {
-    pub const INCLUSIVE_EXT: Self = Self(0);
-    pub const EXCLUSIVE_EXT: Self = Self(1);
+    pub const INCLUSIVE: Self = Self(0);
+    pub const EXCLUSIVE: Self = Self(1);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -242,8 +242,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for DiscardRectangleModeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::INCLUSIVE_EXT => Some("INCLUSIVE_EXT"),
-                Self::EXCLUSIVE_EXT => Some("EXCLUSIVE_EXT"),
+                Self::INCLUSIVE => Some("INCLUSIVE"),
+                Self::EXCLUSIVE => Some("EXCLUSIVE"),
                 _ => None,
             } {
                 f.write_str(x)

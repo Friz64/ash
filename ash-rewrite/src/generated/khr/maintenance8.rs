@@ -30,11 +30,11 @@ impl crate::vk::DependencyFlagBits {
 }
 ///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl AccessFlags3KHR {
-    pub const NONE_KHR: Self = Self(AccessFlagBits3KHR::NONE_KHR.0);
+    pub const NONE: Self = Self(AccessFlagBits3KHR::NONE.0);
 }
 ///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl AccessFlagBits3KHR {
-    pub const NONE_KHR: Self = Self(0);
+    pub const NONE: Self = Self(0);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance8";
@@ -130,7 +130,7 @@ pub(crate) mod items {
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for AccessFlags3KHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            crate::debug_flags(f, &[(Self::NONE_KHR.0, "NONE_KHR")], self.0)
+            crate::debug_flags(f, &[(Self::NONE.0, "NONE")], self.0)
         }
     }
     impl AccessFlags3KHR {

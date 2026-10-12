@@ -9,9 +9,9 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_image_tiling_control](crate::ext::image_tiling_control)
 impl ImageTilingControlEXT {
-    pub const DEFAULT_EXT: Self = Self(0);
-    pub const MIN_SIZE_EXT: Self = Self(1);
-    pub const MAX_PERFORMANCE_EXT: Self = Self(2);
+    pub const DEFAULT: Self = Self(0);
+    pub const MIN_SIZE: Self = Self(1);
+    pub const MAX_PERFORMANCE: Self = Self(2);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_image_tiling_control";
@@ -93,9 +93,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for ImageTilingControlEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DEFAULT_EXT => Some("DEFAULT_EXT"),
-                Self::MIN_SIZE_EXT => Some("MIN_SIZE_EXT"),
-                Self::MAX_PERFORMANCE_EXT => Some("MAX_PERFORMANCE_EXT"),
+                Self::DEFAULT => Some("DEFAULT"),
+                Self::MIN_SIZE => Some("MIN_SIZE"),
+                Self::MAX_PERFORMANCE => Some("MAX_PERFORMANCE"),
                 _ => None,
             } {
                 f.write_str(x)

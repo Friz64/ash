@@ -55,8 +55,8 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl TensorTilingARM {
-    pub const OPTIMAL_ARM: Self = Self(0);
-    pub const LINEAR_ARM: Self = Self(1);
+    pub const OPTIMAL: Self = Self(0);
+    pub const LINEAR: Self = Self(1);
 }
 ///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::ImageUsageFlags {
@@ -84,45 +84,41 @@ impl crate::vk::FormatFeatureFlagBits2 {
 }
 ///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl TensorCreateFlagsARM {
-    pub const MUTABLE_FORMAT_ARM: Self = Self(
-        TensorCreateFlagBitsARM::MUTABLE_FORMAT_ARM.0,
-    );
-    pub const PROTECTED_ARM: Self = Self(TensorCreateFlagBitsARM::PROTECTED_ARM.0);
-    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(
-        TensorCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
+    pub const MUTABLE_FORMAT: Self = Self(TensorCreateFlagBitsARM::MUTABLE_FORMAT.0);
+    pub const PROTECTED: Self = Self(TensorCreateFlagBitsARM::PROTECTED.0);
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY: Self = Self(
+        TensorCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY.0,
     );
 }
 ///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl TensorCreateFlagBitsARM {
-    pub const MUTABLE_FORMAT_ARM: Self = Self(1 << 0);
-    pub const PROTECTED_ARM: Self = Self(1 << 1);
-    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 2);
+    pub const MUTABLE_FORMAT: Self = Self(1 << 0);
+    pub const PROTECTED: Self = Self(1 << 1);
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY: Self = Self(1 << 2);
 }
 ///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl TensorUsageFlagsARM {
-    pub const SHADER_ARM: Self = Self(TensorUsageFlagBitsARM::SHADER_ARM.0);
-    pub const TRANSFER_SRC_ARM: Self = Self(TensorUsageFlagBitsARM::TRANSFER_SRC_ARM.0);
-    pub const TRANSFER_DST_ARM: Self = Self(TensorUsageFlagBitsARM::TRANSFER_DST_ARM.0);
-    pub const IMAGE_ALIASING_ARM: Self = Self(
-        TensorUsageFlagBitsARM::IMAGE_ALIASING_ARM.0,
-    );
+    pub const SHADER: Self = Self(TensorUsageFlagBitsARM::SHADER.0);
+    pub const TRANSFER_SRC: Self = Self(TensorUsageFlagBitsARM::TRANSFER_SRC.0);
+    pub const TRANSFER_DST: Self = Self(TensorUsageFlagBitsARM::TRANSFER_DST.0);
+    pub const IMAGE_ALIASING: Self = Self(TensorUsageFlagBitsARM::IMAGE_ALIASING.0);
 }
 ///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl TensorUsageFlagBitsARM {
-    pub const SHADER_ARM: Self = Self(1 << 1);
-    pub const TRANSFER_SRC_ARM: Self = Self(1 << 2);
-    pub const TRANSFER_DST_ARM: Self = Self(1 << 3);
-    pub const IMAGE_ALIASING_ARM: Self = Self(1 << 4);
+    pub const SHADER: Self = Self(1 << 1);
+    pub const TRANSFER_SRC: Self = Self(1 << 2);
+    pub const TRANSFER_DST: Self = Self(1 << 3);
+    pub const IMAGE_ALIASING: Self = Self(1 << 4);
 }
 ///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::TensorViewCreateFlagsARM {
-    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(
-        crate::vk::TensorViewCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY: Self = Self(
+        crate::vk::TensorViewCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY.0,
     );
 }
 ///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl crate::vk::TensorViewCreateFlagBitsARM {
-    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 0);
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY: Self = Self(1 << 0);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -1664,13 +1660,13 @@ pub(crate) mod items {
     impl core::fmt::Debug for TensorTilingARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::OPTIMAL_ARM => Some("OPTIMAL_ARM"),
-                Self::LINEAR_ARM => Some("LINEAR_ARM"),
-                Self::BRICK_16_WIDE_ARM => Some("BRICK_16_WIDE_ARM"),
-                Self::BRICK_8_WIDE_ARM => Some("BRICK_8_WIDE_ARM"),
-                Self::BRICK_4_WIDE_ARM => Some("BRICK_4_WIDE_ARM"),
-                Self::BLOCK_U_INTERLEAVED_ARM => Some("BLOCK_U_INTERLEAVED_ARM"),
-                Self::BLOCK_U_INTERLEAVED_64K_ARM => Some("BLOCK_U_INTERLEAVED_64K_ARM"),
+                Self::OPTIMAL => Some("OPTIMAL"),
+                Self::LINEAR => Some("LINEAR"),
+                Self::BRICK_16_WIDE => Some("BRICK_16_WIDE"),
+                Self::BRICK_8_WIDE => Some("BRICK_8_WIDE"),
+                Self::BRICK_4_WIDE => Some("BRICK_4_WIDE"),
+                Self::BLOCK_U_INTERLEAVED => Some("BLOCK_U_INTERLEAVED"),
+                Self::BLOCK_U_INTERLEAVED_64K => Some("BLOCK_U_INTERLEAVED_64K"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1698,15 +1694,15 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::MUTABLE_FORMAT_ARM.0, "MUTABLE_FORMAT_ARM"),
-                    (Self::PROTECTED_ARM.0, "PROTECTED_ARM"),
+                    (Self::MUTABLE_FORMAT.0, "MUTABLE_FORMAT"),
+                    (Self::PROTECTED.0, "PROTECTED"),
                     (
-                        Self::DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM.0,
-                        "DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM",
+                        Self::DESCRIPTOR_HEAP_CAPTURE_REPLAY.0,
+                        "DESCRIPTOR_HEAP_CAPTURE_REPLAY",
                     ),
                     (
-                        Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
-                        "DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM",
+                        Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY.0,
+                        "DESCRIPTOR_BUFFER_CAPTURE_REPLAY",
                     ),
                 ],
                 self.0,
@@ -1796,11 +1792,11 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::SHADER_ARM.0, "SHADER_ARM"),
-                    (Self::TRANSFER_SRC_ARM.0, "TRANSFER_SRC_ARM"),
-                    (Self::TRANSFER_DST_ARM.0, "TRANSFER_DST_ARM"),
-                    (Self::IMAGE_ALIASING_ARM.0, "IMAGE_ALIASING_ARM"),
-                    (Self::DATA_GRAPH_ARM.0, "DATA_GRAPH_ARM"),
+                    (Self::SHADER.0, "SHADER"),
+                    (Self::TRANSFER_SRC.0, "TRANSFER_SRC"),
+                    (Self::TRANSFER_DST.0, "TRANSFER_DST"),
+                    (Self::IMAGE_ALIASING.0, "IMAGE_ALIASING"),
+                    (Self::DATA_GRAPH.0, "DATA_GRAPH"),
                 ],
                 self.0,
             )

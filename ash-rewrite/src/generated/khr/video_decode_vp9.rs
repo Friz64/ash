@@ -11,13 +11,13 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_video_decode_vp9](crate::khr::video_decode_vp9)
 impl crate::vk::VideoCodecOperationFlagsKHR {
-    pub const DECODE_VP9_KHR: Self = Self(
-        crate::vk::VideoCodecOperationFlagBitsKHR::DECODE_VP9_KHR.0,
+    pub const DECODE_VP9: Self = Self(
+        crate::vk::VideoCodecOperationFlagBitsKHR::DECODE_VP9.0,
     );
 }
 ///Provided by [VK_KHR_video_decode_vp9](crate::khr::video_decode_vp9)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
-    pub const DECODE_VP9_KHR: Self = Self(1 << 3);
+    pub const DECODE_VP9: Self = Self(1 << 3);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_vp9";

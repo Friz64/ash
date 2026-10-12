@@ -25,38 +25,37 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_partitioned_acceleration_structure](crate::nv::partitioned_acceleration_structure)
 impl PartitionedAccelerationStructureOpTypeNV {
-    pub const WRITE_INSTANCE_NV: Self = Self(0);
-    pub const UPDATE_INSTANCE_NV: Self = Self(1);
-    pub const WRITE_PARTITION_TRANSLATION_NV: Self = Self(2);
+    pub const WRITE_INSTANCE: Self = Self(0);
+    pub const UPDATE_INSTANCE: Self = Self(1);
+    pub const WRITE_PARTITION_TRANSLATION: Self = Self(2);
 }
 ///Provided by [VK_NV_partitioned_acceleration_structure](crate::nv::partitioned_acceleration_structure)
 impl PartitionedAccelerationStructureInstanceFlagsNV {
-    pub const FLAG_TRIANGLE_FACING_CULL_DISABLE_NV: Self = Self(
-        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FACING_CULL_DISABLE_NV
+    pub const FLAG_TRIANGLE_FACING_CULL_DISABLE: Self = Self(
+        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FACING_CULL_DISABLE
             .0,
     );
-    pub const FLAG_TRIANGLE_FLIP_FACING_NV: Self = Self(
-        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FLIP_FACING_NV
-            .0,
+    pub const FLAG_TRIANGLE_FLIP_FACING: Self = Self(
+        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FLIP_FACING.0,
     );
-    pub const FLAG_FORCE_OPAQUE_NV: Self = Self(
-        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_OPAQUE_NV.0,
+    pub const FLAG_FORCE_OPAQUE: Self = Self(
+        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_OPAQUE.0,
     );
-    pub const FLAG_FORCE_NO_OPAQUE_NV: Self = Self(
-        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_NO_OPAQUE_NV.0,
+    pub const FLAG_FORCE_NO_OPAQUE: Self = Self(
+        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_NO_OPAQUE.0,
     );
-    pub const FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV: Self = Self(
-        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV
+    pub const FLAG_ENABLE_EXPLICIT_BOUNDING_BOX: Self = Self(
+        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_ENABLE_EXPLICIT_BOUNDING_BOX
             .0,
     );
 }
 ///Provided by [VK_NV_partitioned_acceleration_structure](crate::nv::partitioned_acceleration_structure)
 impl PartitionedAccelerationStructureInstanceFlagBitsNV {
-    pub const FLAG_TRIANGLE_FACING_CULL_DISABLE_NV: Self = Self(1 << 0);
-    pub const FLAG_TRIANGLE_FLIP_FACING_NV: Self = Self(1 << 1);
-    pub const FLAG_FORCE_OPAQUE_NV: Self = Self(1 << 2);
-    pub const FLAG_FORCE_NO_OPAQUE_NV: Self = Self(1 << 3);
-    pub const FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV: Self = Self(1 << 4);
+    pub const FLAG_TRIANGLE_FACING_CULL_DISABLE: Self = Self(1 << 0);
+    pub const FLAG_TRIANGLE_FLIP_FACING: Self = Self(1 << 1);
+    pub const FLAG_FORCE_OPAQUE: Self = Self(1 << 2);
+    pub const FLAG_FORCE_NO_OPAQUE: Self = Self(1 << 3);
+    pub const FLAG_ENABLE_EXPLICIT_BOUNDING_BOX: Self = Self(1 << 4);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -628,11 +627,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for PartitionedAccelerationStructureOpTypeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::WRITE_INSTANCE_NV => Some("WRITE_INSTANCE_NV"),
-                Self::UPDATE_INSTANCE_NV => Some("UPDATE_INSTANCE_NV"),
-                Self::WRITE_PARTITION_TRANSLATION_NV => {
-                    Some("WRITE_PARTITION_TRANSLATION_NV")
-                }
+                Self::WRITE_INSTANCE => Some("WRITE_INSTANCE"),
+                Self::UPDATE_INSTANCE => Some("UPDATE_INSTANCE"),
+                Self::WRITE_PARTITION_TRANSLATION => Some("WRITE_PARTITION_TRANSLATION"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -661,18 +658,15 @@ pub(crate) mod items {
                 f,
                 &[
                     (
-                        Self::FLAG_TRIANGLE_FACING_CULL_DISABLE_NV.0,
-                        "FLAG_TRIANGLE_FACING_CULL_DISABLE_NV",
+                        Self::FLAG_TRIANGLE_FACING_CULL_DISABLE.0,
+                        "FLAG_TRIANGLE_FACING_CULL_DISABLE",
                     ),
+                    (Self::FLAG_TRIANGLE_FLIP_FACING.0, "FLAG_TRIANGLE_FLIP_FACING"),
+                    (Self::FLAG_FORCE_OPAQUE.0, "FLAG_FORCE_OPAQUE"),
+                    (Self::FLAG_FORCE_NO_OPAQUE.0, "FLAG_FORCE_NO_OPAQUE"),
                     (
-                        Self::FLAG_TRIANGLE_FLIP_FACING_NV.0,
-                        "FLAG_TRIANGLE_FLIP_FACING_NV",
-                    ),
-                    (Self::FLAG_FORCE_OPAQUE_NV.0, "FLAG_FORCE_OPAQUE_NV"),
-                    (Self::FLAG_FORCE_NO_OPAQUE_NV.0, "FLAG_FORCE_NO_OPAQUE_NV"),
-                    (
-                        Self::FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV.0,
-                        "FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV",
+                        Self::FLAG_ENABLE_EXPLICIT_BOUNDING_BOX.0,
+                        "FLAG_ENABLE_EXPLICIT_BOUNDING_BOX",
                     ),
                 ],
                 self.0,

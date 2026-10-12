@@ -47,42 +47,42 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl crate::vk::DebugReportObjectTypeEXT {
-    pub const ACCELERATION_STRUCTURE_KHR_EXT: Self = Self(1000150000);
+    pub const ACCELERATION_STRUCTURE_KHR: Self = Self(1000150000);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl CopyAccelerationStructureModeKHR {
-    pub const CLONE_KHR: Self = Self(0);
-    pub const COMPACT_KHR: Self = Self(1);
-    pub const SERIALIZE_KHR: Self = Self(2);
-    pub const DESERIALIZE_KHR: Self = Self(3);
+    pub const CLONE: Self = Self(0);
+    pub const COMPACT: Self = Self(1);
+    pub const SERIALIZE: Self = Self(2);
+    pub const DESERIALIZE: Self = Self(3);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl BuildAccelerationStructureModeKHR {
-    pub const BUILD_KHR: Self = Self(0);
-    pub const UPDATE_KHR: Self = Self(1);
+    pub const BUILD: Self = Self(0);
+    pub const UPDATE: Self = Self(1);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl AccelerationStructureTypeKHR {
-    pub const TOP_LEVEL_KHR: Self = Self(0);
-    pub const BOTTOM_LEVEL_KHR: Self = Self(1);
-    pub const GENERIC_KHR: Self = Self(2);
+    pub const TOP_LEVEL: Self = Self(0);
+    pub const BOTTOM_LEVEL: Self = Self(1);
+    pub const GENERIC: Self = Self(2);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl GeometryTypeKHR {
-    pub const TRIANGLES_KHR: Self = Self(0);
-    pub const AABBS_KHR: Self = Self(1);
-    pub const INSTANCES_KHR: Self = Self(2);
+    pub const TRIANGLES: Self = Self(0);
+    pub const AABBS: Self = Self(1);
+    pub const INSTANCES: Self = Self(2);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl AccelerationStructureBuildTypeKHR {
-    pub const HOST_KHR: Self = Self(0);
-    pub const DEVICE_KHR: Self = Self(1);
-    pub const HOST_OR_DEVICE_KHR: Self = Self(2);
+    pub const HOST: Self = Self(0);
+    pub const DEVICE: Self = Self(1);
+    pub const HOST_OR_DEVICE: Self = Self(2);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl AccelerationStructureCompatibilityKHR {
-    pub const COMPATIBLE_KHR: Self = Self(0);
-    pub const INCOMPATIBLE_KHR: Self = Self(1);
+    pub const COMPATIBLE: Self = Self(0);
+    pub const INCOMPATIBLE: Self = Self(1);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl crate::vk::AccessFlags {
@@ -135,77 +135,75 @@ impl crate::vk::PipelineStageFlagBits {
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl GeometryFlagsKHR {
-    pub const OPAQUE_KHR: Self = Self(GeometryFlagBitsKHR::OPAQUE_KHR.0);
-    pub const NO_DUPLICATE_ANY_HIT_INVOCATION_KHR: Self = Self(
-        GeometryFlagBitsKHR::NO_DUPLICATE_ANY_HIT_INVOCATION_KHR.0,
+    pub const OPAQUE: Self = Self(GeometryFlagBitsKHR::OPAQUE.0);
+    pub const NO_DUPLICATE_ANY_HIT_INVOCATION: Self = Self(
+        GeometryFlagBitsKHR::NO_DUPLICATE_ANY_HIT_INVOCATION.0,
     );
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl GeometryFlagBitsKHR {
-    pub const OPAQUE_KHR: Self = Self(1 << 0);
-    pub const NO_DUPLICATE_ANY_HIT_INVOCATION_KHR: Self = Self(1 << 1);
+    pub const OPAQUE: Self = Self(1 << 0);
+    pub const NO_DUPLICATE_ANY_HIT_INVOCATION: Self = Self(1 << 1);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl GeometryInstanceFlagsKHR {
-    pub const TRIANGLE_FACING_CULL_DISABLE_KHR: Self = Self(
-        GeometryInstanceFlagBitsKHR::TRIANGLE_FACING_CULL_DISABLE_KHR.0,
+    pub const TRIANGLE_FACING_CULL_DISABLE: Self = Self(
+        GeometryInstanceFlagBitsKHR::TRIANGLE_FACING_CULL_DISABLE.0,
     );
-    pub const TRIANGLE_FLIP_FACING_KHR: Self = Self(
-        GeometryInstanceFlagBitsKHR::TRIANGLE_FLIP_FACING_KHR.0,
+    pub const TRIANGLE_FLIP_FACING: Self = Self(
+        GeometryInstanceFlagBitsKHR::TRIANGLE_FLIP_FACING.0,
     );
-    pub const FORCE_OPAQUE_KHR: Self = Self(
-        GeometryInstanceFlagBitsKHR::FORCE_OPAQUE_KHR.0,
+    pub const FORCE_OPAQUE: Self = Self(GeometryInstanceFlagBitsKHR::FORCE_OPAQUE.0);
+    pub const FORCE_NO_OPAQUE: Self = Self(
+        GeometryInstanceFlagBitsKHR::FORCE_NO_OPAQUE.0,
     );
-    pub const FORCE_NO_OPAQUE_KHR: Self = Self(
-        GeometryInstanceFlagBitsKHR::FORCE_NO_OPAQUE_KHR.0,
-    );
-    pub const TRIANGLE_FRONT_COUNTERCLOCKWISE_KHR: Self = Self(
-        GeometryInstanceFlagBitsKHR::TRIANGLE_FRONT_COUNTERCLOCKWISE_KHR.0,
+    pub const TRIANGLE_FRONT_COUNTERCLOCKWISE: Self = Self(
+        GeometryInstanceFlagBitsKHR::TRIANGLE_FRONT_COUNTERCLOCKWISE.0,
     );
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl GeometryInstanceFlagBitsKHR {
-    pub const TRIANGLE_FACING_CULL_DISABLE_KHR: Self = Self(1 << 0);
-    pub const TRIANGLE_FLIP_FACING_KHR: Self = Self(1 << 1);
-    pub const FORCE_OPAQUE_KHR: Self = Self(1 << 2);
-    pub const FORCE_NO_OPAQUE_KHR: Self = Self(1 << 3);
-    pub const TRIANGLE_FRONT_COUNTERCLOCKWISE_KHR: Self = Self::TRIANGLE_FLIP_FACING_KHR;
+    pub const TRIANGLE_FACING_CULL_DISABLE: Self = Self(1 << 0);
+    pub const TRIANGLE_FLIP_FACING: Self = Self(1 << 1);
+    pub const FORCE_OPAQUE: Self = Self(1 << 2);
+    pub const FORCE_NO_OPAQUE: Self = Self(1 << 3);
+    pub const TRIANGLE_FRONT_COUNTERCLOCKWISE: Self = Self::TRIANGLE_FLIP_FACING;
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl BuildAccelerationStructureFlagsKHR {
-    pub const ALLOW_UPDATE_KHR: Self = Self(
-        BuildAccelerationStructureFlagBitsKHR::ALLOW_UPDATE_KHR.0,
+    pub const ALLOW_UPDATE: Self = Self(
+        BuildAccelerationStructureFlagBitsKHR::ALLOW_UPDATE.0,
     );
-    pub const ALLOW_COMPACTION_KHR: Self = Self(
-        BuildAccelerationStructureFlagBitsKHR::ALLOW_COMPACTION_KHR.0,
+    pub const ALLOW_COMPACTION: Self = Self(
+        BuildAccelerationStructureFlagBitsKHR::ALLOW_COMPACTION.0,
     );
-    pub const PREFER_FAST_TRACE_KHR: Self = Self(
-        BuildAccelerationStructureFlagBitsKHR::PREFER_FAST_TRACE_KHR.0,
+    pub const PREFER_FAST_TRACE: Self = Self(
+        BuildAccelerationStructureFlagBitsKHR::PREFER_FAST_TRACE.0,
     );
-    pub const PREFER_FAST_BUILD_KHR: Self = Self(
-        BuildAccelerationStructureFlagBitsKHR::PREFER_FAST_BUILD_KHR.0,
+    pub const PREFER_FAST_BUILD: Self = Self(
+        BuildAccelerationStructureFlagBitsKHR::PREFER_FAST_BUILD.0,
     );
-    pub const LOW_MEMORY_KHR: Self = Self(
-        BuildAccelerationStructureFlagBitsKHR::LOW_MEMORY_KHR.0,
+    pub const LOW_MEMORY: Self = Self(
+        BuildAccelerationStructureFlagBitsKHR::LOW_MEMORY.0,
     );
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl BuildAccelerationStructureFlagBitsKHR {
-    pub const ALLOW_UPDATE_KHR: Self = Self(1 << 0);
-    pub const ALLOW_COMPACTION_KHR: Self = Self(1 << 1);
-    pub const PREFER_FAST_TRACE_KHR: Self = Self(1 << 2);
-    pub const PREFER_FAST_BUILD_KHR: Self = Self(1 << 3);
-    pub const LOW_MEMORY_KHR: Self = Self(1 << 4);
+    pub const ALLOW_UPDATE: Self = Self(1 << 0);
+    pub const ALLOW_COMPACTION: Self = Self(1 << 1);
+    pub const PREFER_FAST_TRACE: Self = Self(1 << 2);
+    pub const PREFER_FAST_BUILD: Self = Self(1 << 3);
+    pub const LOW_MEMORY: Self = Self(1 << 4);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl AccelerationStructureCreateFlagsKHR {
-    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self(
-        AccelerationStructureCreateFlagBitsKHR::DEVICE_ADDRESS_CAPTURE_REPLAY_KHR.0,
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(
+        AccelerationStructureCreateFlagBitsKHR::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
     );
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl AccelerationStructureCreateFlagBitsKHR {
-    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self(1 << 0);
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 0);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl crate::vk::FormatFeatureFlags2 {
@@ -1846,10 +1844,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for CopyAccelerationStructureModeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::CLONE_KHR => Some("CLONE_KHR"),
-                Self::COMPACT_KHR => Some("COMPACT_KHR"),
-                Self::SERIALIZE_KHR => Some("SERIALIZE_KHR"),
-                Self::DESERIALIZE_KHR => Some("DESERIALIZE_KHR"),
+                Self::CLONE => Some("CLONE"),
+                Self::COMPACT => Some("COMPACT"),
+                Self::SERIALIZE => Some("SERIALIZE"),
+                Self::DESERIALIZE => Some("DESERIALIZE"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1875,8 +1873,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for BuildAccelerationStructureModeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::BUILD_KHR => Some("BUILD_KHR"),
-                Self::UPDATE_KHR => Some("UPDATE_KHR"),
+                Self::BUILD => Some("BUILD"),
+                Self::UPDATE => Some("UPDATE"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1902,10 +1900,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for AccelerationStructureTypeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::TOP_LEVEL_KHR => Some("TOP_LEVEL_KHR"),
-                Self::BOTTOM_LEVEL_KHR => Some("BOTTOM_LEVEL_KHR"),
-                Self::GENERIC_KHR => Some("GENERIC_KHR"),
-                Self::OPACITY_MICROMAP_KHR => Some("OPACITY_MICROMAP_KHR"),
+                Self::TOP_LEVEL => Some("TOP_LEVEL"),
+                Self::BOTTOM_LEVEL => Some("BOTTOM_LEVEL"),
+                Self::GENERIC => Some("GENERIC"),
+                Self::OPACITY_MICROMAP => Some("OPACITY_MICROMAP"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1931,16 +1929,16 @@ pub(crate) mod items {
     impl core::fmt::Debug for GeometryTypeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::TRIANGLES_KHR => Some("TRIANGLES_KHR"),
-                Self::AABBS_KHR => Some("AABBS_KHR"),
-                Self::INSTANCES_KHR => Some("INSTANCES_KHR"),
+                Self::TRIANGLES => Some("TRIANGLES"),
+                Self::AABBS => Some("AABBS"),
+                Self::INSTANCES => Some("INSTANCES"),
                 Self::SPHERES_NV => Some("SPHERES_NV"),
                 Self::LINEAR_SWEPT_SPHERES_NV => Some("LINEAR_SWEPT_SPHERES_NV"),
                 #[cfg(feature = "provisional")]
                 Self::DENSE_GEOMETRY_FORMAT_TRIANGLES_AMDX => {
                     Some("DENSE_GEOMETRY_FORMAT_TRIANGLES_AMDX")
                 }
-                Self::MICROMAP_KHR => Some("MICROMAP_KHR"),
+                Self::MICROMAP => Some("MICROMAP"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1966,9 +1964,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for AccelerationStructureBuildTypeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::HOST_KHR => Some("HOST_KHR"),
-                Self::DEVICE_KHR => Some("DEVICE_KHR"),
-                Self::HOST_OR_DEVICE_KHR => Some("HOST_OR_DEVICE_KHR"),
+                Self::HOST => Some("HOST"),
+                Self::DEVICE => Some("DEVICE"),
+                Self::HOST_OR_DEVICE => Some("HOST_OR_DEVICE"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1994,8 +1992,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for AccelerationStructureCompatibilityKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::COMPATIBLE_KHR => Some("COMPATIBLE_KHR"),
-                Self::INCOMPATIBLE_KHR => Some("INCOMPATIBLE_KHR"),
+                Self::COMPATIBLE => Some("COMPATIBLE"),
+                Self::INCOMPATIBLE => Some("INCOMPATIBLE"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -2023,10 +2021,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::OPAQUE_KHR.0, "OPAQUE_KHR"),
+                    (Self::OPAQUE.0, "OPAQUE"),
                     (
-                        Self::NO_DUPLICATE_ANY_HIT_INVOCATION_KHR.0,
-                        "NO_DUPLICATE_ANY_HIT_INVOCATION_KHR",
+                        Self::NO_DUPLICATE_ANY_HIT_INVOCATION.0,
+                        "NO_DUPLICATE_ANY_HIT_INVOCATION",
                     ),
                 ],
                 self.0,
@@ -2117,20 +2115,17 @@ pub(crate) mod items {
                 f,
                 &[
                     (
-                        Self::TRIANGLE_FACING_CULL_DISABLE_KHR.0,
-                        "TRIANGLE_FACING_CULL_DISABLE_KHR",
+                        Self::TRIANGLE_FACING_CULL_DISABLE.0,
+                        "TRIANGLE_FACING_CULL_DISABLE",
                     ),
-                    (Self::TRIANGLE_FLIP_FACING_KHR.0, "TRIANGLE_FLIP_FACING_KHR"),
-                    (Self::FORCE_OPAQUE_KHR.0, "FORCE_OPAQUE_KHR"),
-                    (Self::FORCE_NO_OPAQUE_KHR.0, "FORCE_NO_OPAQUE_KHR"),
+                    (Self::TRIANGLE_FLIP_FACING.0, "TRIANGLE_FLIP_FACING"),
+                    (Self::FORCE_OPAQUE.0, "FORCE_OPAQUE"),
+                    (Self::FORCE_NO_OPAQUE.0, "FORCE_NO_OPAQUE"),
                     (
-                        Self::FORCE_OPACITY_MICROMAP_2_STATE_KHR.0,
-                        "FORCE_OPACITY_MICROMAP_2_STATE_KHR",
+                        Self::FORCE_OPACITY_MICROMAP_2_STATE.0,
+                        "FORCE_OPACITY_MICROMAP_2_STATE",
                     ),
-                    (
-                        Self::DISABLE_OPACITY_MICROMAPS_KHR.0,
-                        "DISABLE_OPACITY_MICROMAPS_KHR",
-                    ),
+                    (Self::DISABLE_OPACITY_MICROMAPS.0, "DISABLE_OPACITY_MICROMAPS"),
                 ],
                 self.0,
             )
@@ -2219,11 +2214,11 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::ALLOW_UPDATE_KHR.0, "ALLOW_UPDATE_KHR"),
-                    (Self::ALLOW_COMPACTION_KHR.0, "ALLOW_COMPACTION_KHR"),
-                    (Self::PREFER_FAST_TRACE_KHR.0, "PREFER_FAST_TRACE_KHR"),
-                    (Self::PREFER_FAST_BUILD_KHR.0, "PREFER_FAST_BUILD_KHR"),
-                    (Self::LOW_MEMORY_KHR.0, "LOW_MEMORY_KHR"),
+                    (Self::ALLOW_UPDATE.0, "ALLOW_UPDATE"),
+                    (Self::ALLOW_COMPACTION.0, "ALLOW_COMPACTION"),
+                    (Self::PREFER_FAST_TRACE.0, "PREFER_FAST_TRACE"),
+                    (Self::PREFER_FAST_BUILD.0, "PREFER_FAST_BUILD"),
+                    (Self::LOW_MEMORY.0, "LOW_MEMORY"),
                     (Self::MOTION_NV.0, "MOTION_NV"),
                     (
                         Self::ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT.0,
@@ -2234,20 +2229,20 @@ pub(crate) mod items {
                         Self::ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV.0,
                         "ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV",
                     ),
-                    (Self::ALLOW_DATA_ACCESS_KHR.0, "ALLOW_DATA_ACCESS_KHR"),
+                    (Self::ALLOW_DATA_ACCESS.0, "ALLOW_DATA_ACCESS"),
                     (
                         Self::ALLOW_CLUSTER_OPACITY_MICROMAPS_NV.0,
                         "ALLOW_CLUSTER_OPACITY_MICROMAPS_NV",
                     ),
                     (
-                        Self::ALLOW_OPACITY_MICROMAP_UPDATE_KHR.0,
-                        "ALLOW_OPACITY_MICROMAP_UPDATE_KHR",
+                        Self::ALLOW_OPACITY_MICROMAP_UPDATE.0,
+                        "ALLOW_OPACITY_MICROMAP_UPDATE",
                     ),
                     (
-                        Self::ALLOW_DISABLE_OPACITY_MICROMAPS_KHR.0,
-                        "ALLOW_DISABLE_OPACITY_MICROMAPS_KHR",
+                        Self::ALLOW_DISABLE_OPACITY_MICROMAPS.0,
+                        "ALLOW_DISABLE_OPACITY_MICROMAPS",
                     ),
-                    (Self::MICROMAP_LOSSY_KHR.0, "MICROMAP_LOSSY_KHR"),
+                    (Self::MICROMAP_LOSSY.0, "MICROMAP_LOSSY"),
                 ],
                 self.0,
             )
@@ -2337,8 +2332,8 @@ pub(crate) mod items {
                 f,
                 &[
                     (
-                        Self::DEVICE_ADDRESS_CAPTURE_REPLAY_KHR.0,
-                        "DEVICE_ADDRESS_CAPTURE_REPLAY_KHR",
+                        Self::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
+                        "DEVICE_ADDRESS_CAPTURE_REPLAY",
                     ),
                     (
                         Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,

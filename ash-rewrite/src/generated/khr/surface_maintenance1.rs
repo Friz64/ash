@@ -10,43 +10,43 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_surface_maintenance1](crate::khr::surface_maintenance1)
 impl PresentScalingFlagsKHR {
-    pub const ONE_TO_ONE_KHR: Self = Self(PresentScalingFlagBitsKHR::ONE_TO_ONE_KHR.0);
+    pub const ONE_TO_ONE: Self = Self(PresentScalingFlagBitsKHR::ONE_TO_ONE.0);
     pub const ONE_TO_ONE_EXT: Self = Self(PresentScalingFlagBitsKHR::ONE_TO_ONE_EXT.0);
-    pub const ASPECT_RATIO_STRETCH_KHR: Self = Self(
-        PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_KHR.0,
+    pub const ASPECT_RATIO_STRETCH: Self = Self(
+        PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH.0,
     );
     pub const ASPECT_RATIO_STRETCH_EXT: Self = Self(
         PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_EXT.0,
     );
-    pub const STRETCH_KHR: Self = Self(PresentScalingFlagBitsKHR::STRETCH_KHR.0);
+    pub const STRETCH: Self = Self(PresentScalingFlagBitsKHR::STRETCH.0);
     pub const STRETCH_EXT: Self = Self(PresentScalingFlagBitsKHR::STRETCH_EXT.0);
 }
 ///Provided by [VK_KHR_surface_maintenance1](crate::khr::surface_maintenance1)
 impl PresentScalingFlagBitsKHR {
-    pub const ONE_TO_ONE_KHR: Self = Self(1 << 0);
-    pub const ONE_TO_ONE_EXT: Self = Self::ONE_TO_ONE_KHR;
-    pub const ASPECT_RATIO_STRETCH_KHR: Self = Self(1 << 1);
-    pub const ASPECT_RATIO_STRETCH_EXT: Self = Self::ASPECT_RATIO_STRETCH_KHR;
-    pub const STRETCH_KHR: Self = Self(1 << 2);
-    pub const STRETCH_EXT: Self = Self::STRETCH_KHR;
+    pub const ONE_TO_ONE: Self = Self(1 << 0);
+    pub const ONE_TO_ONE_EXT: Self = Self::ONE_TO_ONE;
+    pub const ASPECT_RATIO_STRETCH: Self = Self(1 << 1);
+    pub const ASPECT_RATIO_STRETCH_EXT: Self = Self::ASPECT_RATIO_STRETCH;
+    pub const STRETCH: Self = Self(1 << 2);
+    pub const STRETCH_EXT: Self = Self::STRETCH;
 }
 ///Provided by [VK_KHR_surface_maintenance1](crate::khr::surface_maintenance1)
 impl PresentGravityFlagsKHR {
-    pub const MIN_KHR: Self = Self(PresentGravityFlagBitsKHR::MIN_KHR.0);
+    pub const MIN: Self = Self(PresentGravityFlagBitsKHR::MIN.0);
     pub const MIN_EXT: Self = Self(PresentGravityFlagBitsKHR::MIN_EXT.0);
-    pub const MAX_KHR: Self = Self(PresentGravityFlagBitsKHR::MAX_KHR.0);
+    pub const MAX: Self = Self(PresentGravityFlagBitsKHR::MAX.0);
     pub const MAX_EXT: Self = Self(PresentGravityFlagBitsKHR::MAX_EXT.0);
-    pub const CENTERED_KHR: Self = Self(PresentGravityFlagBitsKHR::CENTERED_KHR.0);
+    pub const CENTERED: Self = Self(PresentGravityFlagBitsKHR::CENTERED.0);
     pub const CENTERED_EXT: Self = Self(PresentGravityFlagBitsKHR::CENTERED_EXT.0);
 }
 ///Provided by [VK_KHR_surface_maintenance1](crate::khr::surface_maintenance1)
 impl PresentGravityFlagBitsKHR {
-    pub const MIN_KHR: Self = Self(1 << 0);
-    pub const MIN_EXT: Self = Self::MIN_KHR;
-    pub const MAX_KHR: Self = Self(1 << 1);
-    pub const MAX_EXT: Self = Self::MAX_KHR;
-    pub const CENTERED_KHR: Self = Self(1 << 2);
-    pub const CENTERED_EXT: Self = Self::CENTERED_KHR;
+    pub const MIN: Self = Self(1 << 0);
+    pub const MIN_EXT: Self = Self::MIN;
+    pub const MAX: Self = Self(1 << 1);
+    pub const MAX_EXT: Self = Self::MAX;
+    pub const CENTERED: Self = Self(1 << 2);
+    pub const CENTERED_EXT: Self = Self::CENTERED;
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_surface_maintenance1";
@@ -203,9 +203,9 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::ONE_TO_ONE_KHR.0, "ONE_TO_ONE_KHR"),
-                    (Self::ASPECT_RATIO_STRETCH_KHR.0, "ASPECT_RATIO_STRETCH_KHR"),
-                    (Self::STRETCH_KHR.0, "STRETCH_KHR"),
+                    (Self::ONE_TO_ONE.0, "ONE_TO_ONE"),
+                    (Self::ASPECT_RATIO_STRETCH.0, "ASPECT_RATIO_STRETCH"),
+                    (Self::STRETCH.0, "STRETCH"),
                 ],
                 self.0,
             )
@@ -294,9 +294,9 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::MIN_KHR.0, "MIN_KHR"),
-                    (Self::MAX_KHR.0, "MAX_KHR"),
-                    (Self::CENTERED_KHR.0, "CENTERED_KHR"),
+                    (Self::MIN.0, "MIN"),
+                    (Self::MAX.0, "MAX"),
+                    (Self::CENTERED.0, "CENTERED"),
                 ],
                 self.0,
             )

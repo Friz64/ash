@@ -9,8 +9,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_mesh_shader](crate::nv::mesh_shader)
 impl crate::vk::IndirectCommandsTokenTypeEXT {
-    pub const DRAW_MESH_TASKS_NV_EXT: Self = Self(1000202002);
-    pub const DRAW_MESH_TASKS_COUNT_NV_EXT: Self = Self(1000202003);
+    pub const DRAW_MESH_TASKS_NV: Self = Self(1000202002);
+    pub const DRAW_MESH_TASKS_COUNT_NV: Self = Self(1000202003);
 }
 ///Provided by [VK_NV_mesh_shader](crate::nv::mesh_shader)
 impl crate::vk::ShaderStageFlags {

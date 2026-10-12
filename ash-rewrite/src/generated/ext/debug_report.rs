@@ -16,58 +16,58 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
 impl DebugReportObjectTypeEXT {
-    pub const UNKNOWN_EXT: Self = Self(0);
-    pub const INSTANCE_EXT: Self = Self(1);
-    pub const PHYSICAL_DEVICE_EXT: Self = Self(2);
-    pub const DEVICE_EXT: Self = Self(3);
-    pub const QUEUE_EXT: Self = Self(4);
-    pub const SEMAPHORE_EXT: Self = Self(5);
-    pub const COMMAND_BUFFER_EXT: Self = Self(6);
-    pub const FENCE_EXT: Self = Self(7);
-    pub const DEVICE_MEMORY_EXT: Self = Self(8);
-    pub const BUFFER_EXT: Self = Self(9);
-    pub const IMAGE_EXT: Self = Self(10);
-    pub const EVENT_EXT: Self = Self(11);
-    pub const QUERY_POOL_EXT: Self = Self(12);
-    pub const BUFFER_VIEW_EXT: Self = Self(13);
-    pub const IMAGE_VIEW_EXT: Self = Self(14);
-    pub const SHADER_MODULE_EXT: Self = Self(15);
-    pub const PIPELINE_CACHE_EXT: Self = Self(16);
-    pub const PIPELINE_LAYOUT_EXT: Self = Self(17);
-    pub const RENDER_PASS_EXT: Self = Self(18);
-    pub const PIPELINE_EXT: Self = Self(19);
-    pub const DESCRIPTOR_SET_LAYOUT_EXT: Self = Self(20);
-    pub const SAMPLER_EXT: Self = Self(21);
-    pub const DESCRIPTOR_POOL_EXT: Self = Self(22);
-    pub const DESCRIPTOR_SET_EXT: Self = Self(23);
-    pub const FRAMEBUFFER_EXT: Self = Self(24);
-    pub const COMMAND_POOL_EXT: Self = Self(25);
-    pub const SURFACE_KHR_EXT: Self = Self(26);
-    pub const SWAPCHAIN_KHR_EXT: Self = Self(27);
-    pub const DEBUG_REPORT_CALLBACK_EXT_EXT: Self = Self(28);
-    pub const DISPLAY_KHR_EXT: Self = Self(29);
-    pub const DISPLAY_MODE_KHR_EXT: Self = Self(30);
-    pub const VALIDATION_CACHE_EXT_EXT: Self = Self(33);
-    pub const SAMPLER_YCBCR_CONVERSION_EXT: Self = Self(1000156000);
-    pub const DESCRIPTOR_UPDATE_TEMPLATE_EXT: Self = Self(1000085000);
+    pub const UNKNOWN: Self = Self(0);
+    pub const INSTANCE: Self = Self(1);
+    pub const PHYSICAL_DEVICE: Self = Self(2);
+    pub const DEVICE: Self = Self(3);
+    pub const QUEUE: Self = Self(4);
+    pub const SEMAPHORE: Self = Self(5);
+    pub const COMMAND_BUFFER: Self = Self(6);
+    pub const FENCE: Self = Self(7);
+    pub const DEVICE_MEMORY: Self = Self(8);
+    pub const BUFFER: Self = Self(9);
+    pub const IMAGE: Self = Self(10);
+    pub const EVENT: Self = Self(11);
+    pub const QUERY_POOL: Self = Self(12);
+    pub const BUFFER_VIEW: Self = Self(13);
+    pub const IMAGE_VIEW: Self = Self(14);
+    pub const SHADER_MODULE: Self = Self(15);
+    pub const PIPELINE_CACHE: Self = Self(16);
+    pub const PIPELINE_LAYOUT: Self = Self(17);
+    pub const RENDER_PASS: Self = Self(18);
+    pub const PIPELINE: Self = Self(19);
+    pub const DESCRIPTOR_SET_LAYOUT: Self = Self(20);
+    pub const SAMPLER: Self = Self(21);
+    pub const DESCRIPTOR_POOL: Self = Self(22);
+    pub const DESCRIPTOR_SET: Self = Self(23);
+    pub const FRAMEBUFFER: Self = Self(24);
+    pub const COMMAND_POOL: Self = Self(25);
+    pub const SURFACE_KHR: Self = Self(26);
+    pub const SWAPCHAIN_KHR: Self = Self(27);
+    pub const DEBUG_REPORT_CALLBACK_EXT: Self = Self(28);
+    pub const DISPLAY_KHR: Self = Self(29);
+    pub const DISPLAY_MODE_KHR: Self = Self(30);
+    pub const VALIDATION_CACHE_EXT: Self = Self(33);
+    pub const SAMPLER_YCBCR_CONVERSION: Self = Self(1000156000);
+    pub const DESCRIPTOR_UPDATE_TEMPLATE: Self = Self(1000085000);
 }
 ///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
 impl DebugReportFlagsEXT {
-    pub const INFORMATION_EXT: Self = Self(DebugReportFlagBitsEXT::INFORMATION_EXT.0);
-    pub const WARNING_EXT: Self = Self(DebugReportFlagBitsEXT::WARNING_EXT.0);
-    pub const PERFORMANCE_WARNING_EXT: Self = Self(
-        DebugReportFlagBitsEXT::PERFORMANCE_WARNING_EXT.0,
+    pub const INFORMATION: Self = Self(DebugReportFlagBitsEXT::INFORMATION.0);
+    pub const WARNING: Self = Self(DebugReportFlagBitsEXT::WARNING.0);
+    pub const PERFORMANCE_WARNING: Self = Self(
+        DebugReportFlagBitsEXT::PERFORMANCE_WARNING.0,
     );
-    pub const ERROR_EXT: Self = Self(DebugReportFlagBitsEXT::ERROR_EXT.0);
-    pub const DEBUG_EXT: Self = Self(DebugReportFlagBitsEXT::DEBUG_EXT.0);
+    pub const ERROR: Self = Self(DebugReportFlagBitsEXT::ERROR.0);
+    pub const DEBUG: Self = Self(DebugReportFlagBitsEXT::DEBUG.0);
 }
 ///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
 impl DebugReportFlagBitsEXT {
-    pub const INFORMATION_EXT: Self = Self(1 << 0);
-    pub const WARNING_EXT: Self = Self(1 << 1);
-    pub const PERFORMANCE_WARNING_EXT: Self = Self(1 << 2);
-    pub const ERROR_EXT: Self = Self(1 << 3);
-    pub const DEBUG_EXT: Self = Self(1 << 4);
+    pub const INFORMATION: Self = Self(1 << 0);
+    pub const WARNING: Self = Self(1 << 1);
+    pub const PERFORMANCE_WARNING: Self = Self(1 << 2);
+    pub const ERROR: Self = Self(1 << 3);
+    pub const DEBUG: Self = Self(1 << 4);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -284,61 +284,49 @@ pub(crate) mod items {
     impl core::fmt::Debug for DebugReportObjectTypeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::UNKNOWN_EXT => Some("UNKNOWN_EXT"),
-                Self::INSTANCE_EXT => Some("INSTANCE_EXT"),
-                Self::PHYSICAL_DEVICE_EXT => Some("PHYSICAL_DEVICE_EXT"),
-                Self::DEVICE_EXT => Some("DEVICE_EXT"),
-                Self::QUEUE_EXT => Some("QUEUE_EXT"),
-                Self::SEMAPHORE_EXT => Some("SEMAPHORE_EXT"),
-                Self::COMMAND_BUFFER_EXT => Some("COMMAND_BUFFER_EXT"),
-                Self::FENCE_EXT => Some("FENCE_EXT"),
-                Self::DEVICE_MEMORY_EXT => Some("DEVICE_MEMORY_EXT"),
-                Self::BUFFER_EXT => Some("BUFFER_EXT"),
-                Self::IMAGE_EXT => Some("IMAGE_EXT"),
-                Self::EVENT_EXT => Some("EVENT_EXT"),
-                Self::QUERY_POOL_EXT => Some("QUERY_POOL_EXT"),
-                Self::BUFFER_VIEW_EXT => Some("BUFFER_VIEW_EXT"),
-                Self::IMAGE_VIEW_EXT => Some("IMAGE_VIEW_EXT"),
-                Self::SHADER_MODULE_EXT => Some("SHADER_MODULE_EXT"),
-                Self::PIPELINE_CACHE_EXT => Some("PIPELINE_CACHE_EXT"),
-                Self::PIPELINE_LAYOUT_EXT => Some("PIPELINE_LAYOUT_EXT"),
-                Self::RENDER_PASS_EXT => Some("RENDER_PASS_EXT"),
-                Self::PIPELINE_EXT => Some("PIPELINE_EXT"),
-                Self::DESCRIPTOR_SET_LAYOUT_EXT => Some("DESCRIPTOR_SET_LAYOUT_EXT"),
-                Self::SAMPLER_EXT => Some("SAMPLER_EXT"),
-                Self::DESCRIPTOR_POOL_EXT => Some("DESCRIPTOR_POOL_EXT"),
-                Self::DESCRIPTOR_SET_EXT => Some("DESCRIPTOR_SET_EXT"),
-                Self::FRAMEBUFFER_EXT => Some("FRAMEBUFFER_EXT"),
-                Self::COMMAND_POOL_EXT => Some("COMMAND_POOL_EXT"),
-                Self::SURFACE_KHR_EXT => Some("SURFACE_KHR_EXT"),
-                Self::SWAPCHAIN_KHR_EXT => Some("SWAPCHAIN_KHR_EXT"),
-                Self::DEBUG_REPORT_CALLBACK_EXT_EXT => {
-                    Some("DEBUG_REPORT_CALLBACK_EXT_EXT")
-                }
-                Self::DISPLAY_KHR_EXT => Some("DISPLAY_KHR_EXT"),
-                Self::DISPLAY_MODE_KHR_EXT => Some("DISPLAY_MODE_KHR_EXT"),
-                Self::VALIDATION_CACHE_EXT_EXT => Some("VALIDATION_CACHE_EXT_EXT"),
-                Self::SAMPLER_YCBCR_CONVERSION_EXT => {
-                    Some("SAMPLER_YCBCR_CONVERSION_EXT")
-                }
-                Self::DESCRIPTOR_UPDATE_TEMPLATE_EXT => {
-                    Some("DESCRIPTOR_UPDATE_TEMPLATE_EXT")
-                }
-                Self::CU_MODULE_NVX_EXT => Some("CU_MODULE_NVX_EXT"),
-                Self::CU_FUNCTION_NVX_EXT => Some("CU_FUNCTION_NVX_EXT"),
-                Self::ACCELERATION_STRUCTURE_KHR_EXT => {
-                    Some("ACCELERATION_STRUCTURE_KHR_EXT")
-                }
-                Self::ACCELERATION_STRUCTURE_NV_EXT => {
-                    Some("ACCELERATION_STRUCTURE_NV_EXT")
-                }
+                Self::UNKNOWN => Some("UNKNOWN"),
+                Self::INSTANCE => Some("INSTANCE"),
+                Self::PHYSICAL_DEVICE => Some("PHYSICAL_DEVICE"),
+                Self::DEVICE => Some("DEVICE"),
+                Self::QUEUE => Some("QUEUE"),
+                Self::SEMAPHORE => Some("SEMAPHORE"),
+                Self::COMMAND_BUFFER => Some("COMMAND_BUFFER"),
+                Self::FENCE => Some("FENCE"),
+                Self::DEVICE_MEMORY => Some("DEVICE_MEMORY"),
+                Self::BUFFER => Some("BUFFER"),
+                Self::IMAGE => Some("IMAGE"),
+                Self::EVENT => Some("EVENT"),
+                Self::QUERY_POOL => Some("QUERY_POOL"),
+                Self::BUFFER_VIEW => Some("BUFFER_VIEW"),
+                Self::IMAGE_VIEW => Some("IMAGE_VIEW"),
+                Self::SHADER_MODULE => Some("SHADER_MODULE"),
+                Self::PIPELINE_CACHE => Some("PIPELINE_CACHE"),
+                Self::PIPELINE_LAYOUT => Some("PIPELINE_LAYOUT"),
+                Self::RENDER_PASS => Some("RENDER_PASS"),
+                Self::PIPELINE => Some("PIPELINE"),
+                Self::DESCRIPTOR_SET_LAYOUT => Some("DESCRIPTOR_SET_LAYOUT"),
+                Self::SAMPLER => Some("SAMPLER"),
+                Self::DESCRIPTOR_POOL => Some("DESCRIPTOR_POOL"),
+                Self::DESCRIPTOR_SET => Some("DESCRIPTOR_SET"),
+                Self::FRAMEBUFFER => Some("FRAMEBUFFER"),
+                Self::COMMAND_POOL => Some("COMMAND_POOL"),
+                Self::SURFACE_KHR => Some("SURFACE_KHR"),
+                Self::SWAPCHAIN_KHR => Some("SWAPCHAIN_KHR"),
+                Self::DEBUG_REPORT_CALLBACK_EXT => Some("DEBUG_REPORT_CALLBACK_EXT"),
+                Self::DISPLAY_KHR => Some("DISPLAY_KHR"),
+                Self::DISPLAY_MODE_KHR => Some("DISPLAY_MODE_KHR"),
+                Self::VALIDATION_CACHE_EXT => Some("VALIDATION_CACHE_EXT"),
+                Self::SAMPLER_YCBCR_CONVERSION => Some("SAMPLER_YCBCR_CONVERSION"),
+                Self::DESCRIPTOR_UPDATE_TEMPLATE => Some("DESCRIPTOR_UPDATE_TEMPLATE"),
+                Self::CU_MODULE_NVX => Some("CU_MODULE_NVX"),
+                Self::CU_FUNCTION_NVX => Some("CU_FUNCTION_NVX"),
+                Self::ACCELERATION_STRUCTURE_KHR => Some("ACCELERATION_STRUCTURE_KHR"),
+                Self::ACCELERATION_STRUCTURE_NV => Some("ACCELERATION_STRUCTURE_NV"),
                 #[cfg(feature = "provisional")]
-                Self::CUDA_MODULE_NV_EXT => Some("CUDA_MODULE_NV_EXT"),
+                Self::CUDA_MODULE_NV => Some("CUDA_MODULE_NV"),
                 #[cfg(feature = "provisional")]
-                Self::CUDA_FUNCTION_NV_EXT => Some("CUDA_FUNCTION_NV_EXT"),
-                Self::BUFFER_COLLECTION_FUCHSIA_EXT => {
-                    Some("BUFFER_COLLECTION_FUCHSIA_EXT")
-                }
+                Self::CUDA_FUNCTION_NV => Some("CUDA_FUNCTION_NV"),
+                Self::BUFFER_COLLECTION_FUCHSIA => Some("BUFFER_COLLECTION_FUCHSIA"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -366,11 +354,11 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::INFORMATION_EXT.0, "INFORMATION_EXT"),
-                    (Self::WARNING_EXT.0, "WARNING_EXT"),
-                    (Self::PERFORMANCE_WARNING_EXT.0, "PERFORMANCE_WARNING_EXT"),
-                    (Self::ERROR_EXT.0, "ERROR_EXT"),
-                    (Self::DEBUG_EXT.0, "DEBUG_EXT"),
+                    (Self::INFORMATION.0, "INFORMATION"),
+                    (Self::WARNING.0, "WARNING"),
+                    (Self::PERFORMANCE_WARNING.0, "PERFORMANCE_WARNING"),
+                    (Self::ERROR.0, "ERROR"),
+                    (Self::DEBUG.0, "DEBUG"),
                 ],
                 self.0,
             )

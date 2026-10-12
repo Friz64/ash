@@ -15,10 +15,10 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_pipeline_executable_properties](crate::khr::pipeline_executable_properties)
 impl PipelineExecutableStatisticFormatKHR {
-    pub const BOOL32_KHR: Self = Self(0);
-    pub const INT64_KHR: Self = Self(1);
-    pub const UINT64_KHR: Self = Self(2);
-    pub const FLOAT64_KHR: Self = Self(3);
+    pub const BOOL32: Self = Self(0);
+    pub const INT64: Self = Self(1);
+    pub const UINT64: Self = Self(2);
+    pub const FLOAT64: Self = Self(3);
 }
 ///Provided by [VK_KHR_pipeline_executable_properties](crate::khr::pipeline_executable_properties)
 impl crate::vk::PipelineCreateFlags {
@@ -614,10 +614,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for PipelineExecutableStatisticFormatKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::BOOL32_KHR => Some("BOOL32_KHR"),
-                Self::INT64_KHR => Some("INT64_KHR"),
-                Self::UINT64_KHR => Some("UINT64_KHR"),
-                Self::FLOAT64_KHR => Some("FLOAT64_KHR"),
+                Self::BOOL32 => Some("BOOL32"),
+                Self::INT64 => Some("INT64"),
+                Self::UINT64 => Some("UINT64"),
+                Self::FLOAT64 => Some("FLOAT64"),
                 _ => None,
             } {
                 f.write_str(x)

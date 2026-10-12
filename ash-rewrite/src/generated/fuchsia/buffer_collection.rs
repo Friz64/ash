@@ -21,33 +21,33 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_FUCHSIA_buffer_collection](crate::fuchsia::buffer_collection)
 impl crate::vk::DebugReportObjectTypeEXT {
-    pub const BUFFER_COLLECTION_FUCHSIA_EXT: Self = Self(1000366000);
+    pub const BUFFER_COLLECTION_FUCHSIA: Self = Self(1000366000);
 }
 ///Provided by [VK_FUCHSIA_buffer_collection](crate::fuchsia::buffer_collection)
 impl ImageConstraintsInfoFlagsFUCHSIA {
-    pub const CPU_READ_RARELY_FUCHSIA: Self = Self(
-        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_RARELY_FUCHSIA.0,
+    pub const CPU_READ_RARELY: Self = Self(
+        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_RARELY.0,
     );
-    pub const CPU_READ_OFTEN_FUCHSIA: Self = Self(
-        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_OFTEN_FUCHSIA.0,
+    pub const CPU_READ_OFTEN: Self = Self(
+        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_OFTEN.0,
     );
-    pub const CPU_WRITE_RARELY_FUCHSIA: Self = Self(
-        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_RARELY_FUCHSIA.0,
+    pub const CPU_WRITE_RARELY: Self = Self(
+        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_RARELY.0,
     );
-    pub const CPU_WRITE_OFTEN_FUCHSIA: Self = Self(
-        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_OFTEN_FUCHSIA.0,
+    pub const CPU_WRITE_OFTEN: Self = Self(
+        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_OFTEN.0,
     );
-    pub const PROTECTED_OPTIONAL_FUCHSIA: Self = Self(
-        ImageConstraintsInfoFlagBitsFUCHSIA::PROTECTED_OPTIONAL_FUCHSIA.0,
+    pub const PROTECTED_OPTIONAL: Self = Self(
+        ImageConstraintsInfoFlagBitsFUCHSIA::PROTECTED_OPTIONAL.0,
     );
 }
 ///Provided by [VK_FUCHSIA_buffer_collection](crate::fuchsia::buffer_collection)
 impl ImageConstraintsInfoFlagBitsFUCHSIA {
-    pub const CPU_READ_RARELY_FUCHSIA: Self = Self(1 << 0);
-    pub const CPU_READ_OFTEN_FUCHSIA: Self = Self(1 << 1);
-    pub const CPU_WRITE_RARELY_FUCHSIA: Self = Self(1 << 2);
-    pub const CPU_WRITE_OFTEN_FUCHSIA: Self = Self(1 << 3);
-    pub const PROTECTED_OPTIONAL_FUCHSIA: Self = Self(1 << 4);
+    pub const CPU_READ_RARELY: Self = Self(1 << 0);
+    pub const CPU_READ_OFTEN: Self = Self(1 << 1);
+    pub const CPU_WRITE_RARELY: Self = Self(1 << 2);
+    pub const CPU_WRITE_OFTEN: Self = Self(1 << 3);
+    pub const PROTECTED_OPTIONAL: Self = Self(1 << 4);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -890,11 +890,11 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::CPU_READ_RARELY_FUCHSIA.0, "CPU_READ_RARELY_FUCHSIA"),
-                    (Self::CPU_READ_OFTEN_FUCHSIA.0, "CPU_READ_OFTEN_FUCHSIA"),
-                    (Self::CPU_WRITE_RARELY_FUCHSIA.0, "CPU_WRITE_RARELY_FUCHSIA"),
-                    (Self::CPU_WRITE_OFTEN_FUCHSIA.0, "CPU_WRITE_OFTEN_FUCHSIA"),
-                    (Self::PROTECTED_OPTIONAL_FUCHSIA.0, "PROTECTED_OPTIONAL_FUCHSIA"),
+                    (Self::CPU_READ_RARELY.0, "CPU_READ_RARELY"),
+                    (Self::CPU_READ_OFTEN.0, "CPU_READ_OFTEN"),
+                    (Self::CPU_WRITE_RARELY.0, "CPU_WRITE_RARELY"),
+                    (Self::CPU_WRITE_OFTEN.0, "CPU_WRITE_OFTEN"),
+                    (Self::PROTECTED_OPTIONAL.0, "PROTECTED_OPTIONAL"),
                 ],
                 self.0,
             )

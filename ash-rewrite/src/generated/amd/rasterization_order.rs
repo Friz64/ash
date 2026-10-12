@@ -10,8 +10,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_AMD_rasterization_order](crate::amd::rasterization_order)
 impl RasterizationOrderAMD {
-    pub const STRICT_AMD: Self = Self(0);
-    pub const RELAXED_AMD: Self = Self(1);
+    pub const STRICT: Self = Self(0);
+    pub const RELAXED: Self = Self(1);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_rasterization_order";
@@ -59,8 +59,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for RasterizationOrderAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::STRICT_AMD => Some("STRICT_AMD"),
-                Self::RELAXED_AMD => Some("RELAXED_AMD"),
+                Self::STRICT => Some("STRICT"),
+                Self::RELAXED => Some("RELAXED"),
                 _ => None,
             } {
                 f.write_str(x)

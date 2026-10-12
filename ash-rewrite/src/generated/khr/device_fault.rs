@@ -12,46 +12,42 @@ impl crate::vk::StructureType {
 ///Provided by [VK_KHR_device_fault](crate::khr::device_fault)
 impl DeviceFaultAddressTypeKHR {
     ///Currently unused
-    pub const NONE_KHR: Self = Self(0);
-    pub const READ_INVALID_KHR: Self = Self(1);
-    pub const WRITE_INVALID_KHR: Self = Self(2);
-    pub const EXECUTE_INVALID_KHR: Self = Self(3);
-    pub const INSTRUCTION_POINTER_UNKNOWN_KHR: Self = Self(4);
-    pub const INSTRUCTION_POINTER_INVALID_KHR: Self = Self(5);
-    pub const INSTRUCTION_POINTER_FAULT_KHR: Self = Self(6);
+    pub const NONE: Self = Self(0);
+    pub const READ_INVALID: Self = Self(1);
+    pub const WRITE_INVALID: Self = Self(2);
+    pub const EXECUTE_INVALID: Self = Self(3);
+    pub const INSTRUCTION_POINTER_UNKNOWN: Self = Self(4);
+    pub const INSTRUCTION_POINTER_INVALID: Self = Self(5);
+    pub const INSTRUCTION_POINTER_FAULT: Self = Self(6);
 }
 ///Provided by [VK_KHR_device_fault](crate::khr::device_fault)
 impl DeviceFaultVendorBinaryHeaderVersionKHR {
-    pub const ONE_KHR: Self = Self(1);
-    pub const ONE_EXT: Self = Self::ONE_KHR;
+    pub const ONE: Self = Self(1);
+    pub const ONE_EXT: Self = Self::ONE;
 }
 ///Provided by [VK_KHR_device_fault](crate::khr::device_fault)
 impl DeviceFaultFlagsKHR {
-    pub const FLAG_DEVICE_LOST_KHR: Self = Self(
-        DeviceFaultFlagBitsKHR::FLAG_DEVICE_LOST_KHR.0,
+    pub const FLAG_DEVICE_LOST: Self = Self(DeviceFaultFlagBitsKHR::FLAG_DEVICE_LOST.0);
+    pub const FLAG_MEMORY_ADDRESS: Self = Self(
+        DeviceFaultFlagBitsKHR::FLAG_MEMORY_ADDRESS.0,
     );
-    pub const FLAG_MEMORY_ADDRESS_KHR: Self = Self(
-        DeviceFaultFlagBitsKHR::FLAG_MEMORY_ADDRESS_KHR.0,
+    pub const FLAG_INSTRUCTION_ADDRESS: Self = Self(
+        DeviceFaultFlagBitsKHR::FLAG_INSTRUCTION_ADDRESS.0,
     );
-    pub const FLAG_INSTRUCTION_ADDRESS_KHR: Self = Self(
-        DeviceFaultFlagBitsKHR::FLAG_INSTRUCTION_ADDRESS_KHR.0,
+    pub const FLAG_VENDOR: Self = Self(DeviceFaultFlagBitsKHR::FLAG_VENDOR.0);
+    pub const FLAG_WATCHDOG_TIMEOUT: Self = Self(
+        DeviceFaultFlagBitsKHR::FLAG_WATCHDOG_TIMEOUT.0,
     );
-    pub const FLAG_VENDOR_KHR: Self = Self(DeviceFaultFlagBitsKHR::FLAG_VENDOR_KHR.0);
-    pub const FLAG_WATCHDOG_TIMEOUT_KHR: Self = Self(
-        DeviceFaultFlagBitsKHR::FLAG_WATCHDOG_TIMEOUT_KHR.0,
-    );
-    pub const FLAG_OVERFLOW_KHR: Self = Self(
-        DeviceFaultFlagBitsKHR::FLAG_OVERFLOW_KHR.0,
-    );
+    pub const FLAG_OVERFLOW: Self = Self(DeviceFaultFlagBitsKHR::FLAG_OVERFLOW.0);
 }
 ///Provided by [VK_KHR_device_fault](crate::khr::device_fault)
 impl DeviceFaultFlagBitsKHR {
-    pub const FLAG_DEVICE_LOST_KHR: Self = Self(1 << 0);
-    pub const FLAG_MEMORY_ADDRESS_KHR: Self = Self(1 << 1);
-    pub const FLAG_INSTRUCTION_ADDRESS_KHR: Self = Self(1 << 2);
-    pub const FLAG_VENDOR_KHR: Self = Self(1 << 3);
-    pub const FLAG_WATCHDOG_TIMEOUT_KHR: Self = Self(1 << 4);
-    pub const FLAG_OVERFLOW_KHR: Self = Self(1 << 5);
+    pub const FLAG_DEVICE_LOST: Self = Self(1 << 0);
+    pub const FLAG_MEMORY_ADDRESS: Self = Self(1 << 1);
+    pub const FLAG_INSTRUCTION_ADDRESS: Self = Self(1 << 2);
+    pub const FLAG_VENDOR: Self = Self(1 << 3);
+    pub const FLAG_WATCHDOG_TIMEOUT: Self = Self(1 << 4);
+    pub const FLAG_OVERFLOW: Self = Self(1 << 5);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -570,19 +566,13 @@ pub(crate) mod items {
     impl core::fmt::Debug for DeviceFaultAddressTypeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::NONE_KHR => Some("NONE_KHR"),
-                Self::READ_INVALID_KHR => Some("READ_INVALID_KHR"),
-                Self::WRITE_INVALID_KHR => Some("WRITE_INVALID_KHR"),
-                Self::EXECUTE_INVALID_KHR => Some("EXECUTE_INVALID_KHR"),
-                Self::INSTRUCTION_POINTER_UNKNOWN_KHR => {
-                    Some("INSTRUCTION_POINTER_UNKNOWN_KHR")
-                }
-                Self::INSTRUCTION_POINTER_INVALID_KHR => {
-                    Some("INSTRUCTION_POINTER_INVALID_KHR")
-                }
-                Self::INSTRUCTION_POINTER_FAULT_KHR => {
-                    Some("INSTRUCTION_POINTER_FAULT_KHR")
-                }
+                Self::NONE => Some("NONE"),
+                Self::READ_INVALID => Some("READ_INVALID"),
+                Self::WRITE_INVALID => Some("WRITE_INVALID"),
+                Self::EXECUTE_INVALID => Some("EXECUTE_INVALID"),
+                Self::INSTRUCTION_POINTER_UNKNOWN => Some("INSTRUCTION_POINTER_UNKNOWN"),
+                Self::INSTRUCTION_POINTER_INVALID => Some("INSTRUCTION_POINTER_INVALID"),
+                Self::INSTRUCTION_POINTER_FAULT => Some("INSTRUCTION_POINTER_FAULT"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -608,7 +598,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for DeviceFaultVendorBinaryHeaderVersionKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::ONE_KHR => Some("ONE_KHR"),
+                Self::ONE => Some("ONE"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -636,15 +626,12 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::FLAG_DEVICE_LOST_KHR.0, "FLAG_DEVICE_LOST_KHR"),
-                    (Self::FLAG_MEMORY_ADDRESS_KHR.0, "FLAG_MEMORY_ADDRESS_KHR"),
-                    (
-                        Self::FLAG_INSTRUCTION_ADDRESS_KHR.0,
-                        "FLAG_INSTRUCTION_ADDRESS_KHR",
-                    ),
-                    (Self::FLAG_VENDOR_KHR.0, "FLAG_VENDOR_KHR"),
-                    (Self::FLAG_WATCHDOG_TIMEOUT_KHR.0, "FLAG_WATCHDOG_TIMEOUT_KHR"),
-                    (Self::FLAG_OVERFLOW_KHR.0, "FLAG_OVERFLOW_KHR"),
+                    (Self::FLAG_DEVICE_LOST.0, "FLAG_DEVICE_LOST"),
+                    (Self::FLAG_MEMORY_ADDRESS.0, "FLAG_MEMORY_ADDRESS"),
+                    (Self::FLAG_INSTRUCTION_ADDRESS.0, "FLAG_INSTRUCTION_ADDRESS"),
+                    (Self::FLAG_VENDOR.0, "FLAG_VENDOR"),
+                    (Self::FLAG_WATCHDOG_TIMEOUT.0, "FLAG_WATCHDOG_TIMEOUT"),
+                    (Self::FLAG_OVERFLOW.0, "FLAG_OVERFLOW"),
                 ],
                 self.0,
             )

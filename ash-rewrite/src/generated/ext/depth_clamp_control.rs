@@ -15,8 +15,8 @@ impl crate::vk::DynamicState {
 }
 ///Provided by [VK_EXT_depth_clamp_control](crate::ext::depth_clamp_control)
 impl DepthClampModeEXT {
-    pub const VIEWPORT_RANGE_EXT: Self = Self(0);
-    pub const USER_DEFINED_RANGE_EXT: Self = Self(1);
+    pub const VIEWPORT_RANGE: Self = Self(0);
+    pub const USER_DEFINED_RANGE: Self = Self(1);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -202,8 +202,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for DepthClampModeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::VIEWPORT_RANGE_EXT => Some("VIEWPORT_RANGE_EXT"),
-                Self::USER_DEFINED_RANGE_EXT => Some("USER_DEFINED_RANGE_EXT"),
+                Self::VIEWPORT_RANGE => Some("VIEWPORT_RANGE"),
+                Self::USER_DEFINED_RANGE => Some("USER_DEFINED_RANGE"),
                 _ => None,
             } {
                 f.write_str(x)

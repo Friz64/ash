@@ -16,18 +16,18 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_ARM_data_graph_neural_accelerator_statistics](crate::arm::data_graph_neural_accelerator_statistics)
 impl crate::vk::DataGraphPipelineSessionBindPointARM {
-    pub const NEURAL_ACCELERATOR_STATISTICS_ARM: Self = Self(1000676000);
+    pub const NEURAL_ACCELERATOR_STATISTICS: Self = Self(1000676000);
 }
 ///Provided by [VK_ARM_data_graph_neural_accelerator_statistics](crate::arm::data_graph_neural_accelerator_statistics)
 impl crate::vk::DataGraphPipelinePropertyARM {
-    pub const NEURAL_ACCELERATOR_DEBUG_DATABASE_ARM: Self = Self(1000676000);
-    pub const NEURAL_ACCELERATOR_STATISTICS_INFO_ARM: Self = Self(1000676001);
+    pub const NEURAL_ACCELERATOR_DEBUG_DATABASE: Self = Self(1000676000);
+    pub const NEURAL_ACCELERATOR_STATISTICS_INFO: Self = Self(1000676001);
 }
 ///Provided by [VK_ARM_data_graph_neural_accelerator_statistics](crate::arm::data_graph_neural_accelerator_statistics)
 impl NeuralAcceleratorStatisticsModeARM {
-    pub const DISABLED_ARM: Self = Self(0);
-    pub const STATISTICS0_ARM: Self = Self(1);
-    pub const STATISTICS1_ARM: Self = Self(2);
+    pub const DISABLED: Self = Self(0);
+    pub const STATISTICS0: Self = Self(1);
+    pub const STATISTICS1: Self = Self(2);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_neural_accelerator_statistics";
@@ -150,9 +150,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for NeuralAcceleratorStatisticsModeARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DISABLED_ARM => Some("DISABLED_ARM"),
-                Self::STATISTICS0_ARM => Some("STATISTICS0_ARM"),
-                Self::STATISTICS1_ARM => Some("STATISTICS1_ARM"),
+                Self::DISABLED => Some("DISABLED"),
+                Self::STATISTICS0 => Some("STATISTICS0"),
+                Self::STATISTICS1 => Some("STATISTICS1"),
                 _ => None,
             } {
                 f.write_str(x)

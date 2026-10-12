@@ -13,7 +13,7 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_EXT_validation_cache](crate::ext::validation_cache)
 impl ValidationCacheHeaderVersionEXT {
-    pub const ONE_EXT: Self = Self(1);
+    pub const ONE: Self = Self(1);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -275,7 +275,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for ValidationCacheHeaderVersionEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::ONE_EXT => Some("ONE_EXT"),
+                Self::ONE => Some("ONE"),
                 _ => None,
             } {
                 f.write_str(x)

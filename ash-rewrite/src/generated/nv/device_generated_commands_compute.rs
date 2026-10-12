@@ -12,8 +12,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_device_generated_commands_compute](crate::nv::device_generated_commands_compute)
 impl crate::vk::IndirectCommandsTokenTypeNV {
-    pub const PIPELINE_NV: Self = Self(1000428003);
-    pub const DISPATCH_NV: Self = Self(1000428004);
+    pub const PIPELINE: Self = Self(1000428003);
+    pub const DISPATCH: Self = Self(1000428004);
 }
 ///Provided by [VK_NV_device_generated_commands_compute](crate::nv::device_generated_commands_compute)
 impl crate::vk::DescriptorSetLayoutCreateFlags {

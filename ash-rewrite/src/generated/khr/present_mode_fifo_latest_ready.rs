@@ -10,7 +10,7 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_present_mode_fifo_latest_ready](crate::khr::present_mode_fifo_latest_ready)
 impl crate::vk::PresentModeKHR {
-    pub const FIFO_LATEST_READY_KHR: Self = Self(1000361000);
+    pub const FIFO_LATEST_READY: Self = Self(1000361000);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_present_mode_fifo_latest_ready";

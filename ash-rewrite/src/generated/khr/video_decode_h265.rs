@@ -15,13 +15,13 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_video_decode_h265](crate::khr::video_decode_h265)
 impl crate::vk::VideoCodecOperationFlagsKHR {
-    pub const DECODE_H265_KHR: Self = Self(
-        crate::vk::VideoCodecOperationFlagBitsKHR::DECODE_H265_KHR.0,
+    pub const DECODE_H265: Self = Self(
+        crate::vk::VideoCodecOperationFlagBitsKHR::DECODE_H265.0,
     );
 }
 ///Provided by [VK_KHR_video_decode_h265](crate::khr::video_decode_h265)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
-    pub const DECODE_H265_KHR: Self = Self(1 << 1);
+    pub const DECODE_H265: Self = Self(1 << 1);
 }
 pub const SPEC_VERSION: u32 = 8;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_h265";

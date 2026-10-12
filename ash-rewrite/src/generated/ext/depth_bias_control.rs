@@ -10,9 +10,9 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_depth_bias_control](crate::ext::depth_bias_control)
 impl DepthBiasRepresentationEXT {
-    pub const LEAST_REPRESENTABLE_VALUE_FORMAT_EXT: Self = Self(0);
-    pub const LEAST_REPRESENTABLE_VALUE_FORCE_UNORM_EXT: Self = Self(1);
-    pub const FLOAT_EXT: Self = Self(2);
+    pub const LEAST_REPRESENTABLE_VALUE_FORMAT: Self = Self(0);
+    pub const LEAST_REPRESENTABLE_VALUE_FORCE_UNORM: Self = Self(1);
+    pub const FLOAT: Self = Self(2);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -236,13 +236,13 @@ pub(crate) mod items {
     impl core::fmt::Debug for DepthBiasRepresentationEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::LEAST_REPRESENTABLE_VALUE_FORMAT_EXT => {
-                    Some("LEAST_REPRESENTABLE_VALUE_FORMAT_EXT")
+                Self::LEAST_REPRESENTABLE_VALUE_FORMAT => {
+                    Some("LEAST_REPRESENTABLE_VALUE_FORMAT")
                 }
-                Self::LEAST_REPRESENTABLE_VALUE_FORCE_UNORM_EXT => {
-                    Some("LEAST_REPRESENTABLE_VALUE_FORCE_UNORM_EXT")
+                Self::LEAST_REPRESENTABLE_VALUE_FORCE_UNORM => {
+                    Some("LEAST_REPRESENTABLE_VALUE_FORCE_UNORM")
                 }
-                Self::FLOAT_EXT => Some("FLOAT_EXT"),
+                Self::FLOAT => Some("FLOAT"),
                 _ => None,
             } {
                 f.write_str(x)

@@ -11,17 +11,17 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_cooperative_vector](crate::nv::cooperative_vector)
 impl ComponentTypeKHR {
-    pub const FLOAT16_KHR: Self = Self(0);
-    pub const FLOAT32_KHR: Self = Self(1);
-    pub const FLOAT64_KHR: Self = Self(2);
-    pub const SINT8_KHR: Self = Self(3);
-    pub const SINT16_KHR: Self = Self(4);
-    pub const SINT32_KHR: Self = Self(5);
-    pub const SINT64_KHR: Self = Self(6);
-    pub const UINT8_KHR: Self = Self(7);
-    pub const UINT16_KHR: Self = Self(8);
-    pub const UINT32_KHR: Self = Self(9);
-    pub const UINT64_KHR: Self = Self(10);
+    pub const FLOAT16: Self = Self(0);
+    pub const FLOAT32: Self = Self(1);
+    pub const FLOAT64: Self = Self(2);
+    pub const SINT8: Self = Self(3);
+    pub const SINT16: Self = Self(4);
+    pub const SINT32: Self = Self(5);
+    pub const SINT64: Self = Self(6);
+    pub const UINT8: Self = Self(7);
+    pub const UINT16: Self = Self(8);
+    pub const UINT32: Self = Self(9);
+    pub const UINT64: Self = Self(10);
     pub const SINT8_PACKED_NV: Self = Self(1000491000);
     pub const UINT8_PACKED_NV: Self = Self(1000491001);
     pub const FLOAT_E4M3_NV: Self = Self::FLOAT8_E4M3_EXT;
@@ -29,10 +29,10 @@ impl ComponentTypeKHR {
 }
 ///Provided by [VK_NV_cooperative_vector](crate::nv::cooperative_vector)
 impl CooperativeVectorMatrixLayoutNV {
-    pub const ROW_MAJOR_NV: Self = Self(0);
-    pub const COLUMN_MAJOR_NV: Self = Self(1);
-    pub const INFERENCING_OPTIMAL_NV: Self = Self(2);
-    pub const TRAINING_OPTIMAL_NV: Self = Self(3);
+    pub const ROW_MAJOR: Self = Self(0);
+    pub const COLUMN_MAJOR: Self = Self(1);
+    pub const INFERENCING_OPTIMAL: Self = Self(2);
+    pub const TRAINING_OPTIMAL: Self = Self(3);
 }
 ///Provided by [VK_NV_cooperative_vector](crate::nv::cooperative_vector)
 impl crate::vk::PipelineStageFlags2 {
@@ -532,18 +532,18 @@ pub(crate) mod items {
     impl core::fmt::Debug for ComponentTypeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::FLOAT16_KHR => Some("FLOAT16_KHR"),
-                Self::FLOAT32_KHR => Some("FLOAT32_KHR"),
-                Self::FLOAT64_KHR => Some("FLOAT64_KHR"),
-                Self::SINT8_KHR => Some("SINT8_KHR"),
-                Self::SINT16_KHR => Some("SINT16_KHR"),
-                Self::SINT32_KHR => Some("SINT32_KHR"),
-                Self::SINT64_KHR => Some("SINT64_KHR"),
-                Self::UINT8_KHR => Some("UINT8_KHR"),
-                Self::UINT16_KHR => Some("UINT16_KHR"),
-                Self::UINT32_KHR => Some("UINT32_KHR"),
-                Self::UINT64_KHR => Some("UINT64_KHR"),
-                Self::BFLOAT16_KHR => Some("BFLOAT16_KHR"),
+                Self::FLOAT16 => Some("FLOAT16"),
+                Self::FLOAT32 => Some("FLOAT32"),
+                Self::FLOAT64 => Some("FLOAT64"),
+                Self::SINT8 => Some("SINT8"),
+                Self::SINT16 => Some("SINT16"),
+                Self::SINT32 => Some("SINT32"),
+                Self::SINT64 => Some("SINT64"),
+                Self::UINT8 => Some("UINT8"),
+                Self::UINT16 => Some("UINT16"),
+                Self::UINT32 => Some("UINT32"),
+                Self::UINT64 => Some("UINT64"),
+                Self::BFLOAT16 => Some("BFLOAT16"),
                 Self::SINT8_PACKED_NV => Some("SINT8_PACKED_NV"),
                 Self::UINT8_PACKED_NV => Some("UINT8_PACKED_NV"),
                 Self::FLOAT8_E4M3_EXT => Some("FLOAT8_E4M3_EXT"),
@@ -578,10 +578,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for CooperativeVectorMatrixLayoutNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::ROW_MAJOR_NV => Some("ROW_MAJOR_NV"),
-                Self::COLUMN_MAJOR_NV => Some("COLUMN_MAJOR_NV"),
-                Self::INFERENCING_OPTIMAL_NV => Some("INFERENCING_OPTIMAL_NV"),
-                Self::TRAINING_OPTIMAL_NV => Some("TRAINING_OPTIMAL_NV"),
+                Self::ROW_MAJOR => Some("ROW_MAJOR"),
+                Self::COLUMN_MAJOR => Some("COLUMN_MAJOR"),
+                Self::INFERENCING_OPTIMAL => Some("INFERENCING_OPTIMAL"),
+                Self::TRAINING_OPTIMAL => Some("TRAINING_OPTIMAL"),
                 _ => None,
             } {
                 f.write_str(x)

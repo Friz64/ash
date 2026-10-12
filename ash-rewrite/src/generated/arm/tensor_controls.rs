@@ -9,11 +9,11 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_ARM_tensor_controls](crate::arm::tensor_controls)
 impl crate::vk::TensorTilingARM {
-    pub const BRICK_16_WIDE_ARM: Self = Self(1000565000);
-    pub const BRICK_8_WIDE_ARM: Self = Self(1000565001);
-    pub const BRICK_4_WIDE_ARM: Self = Self(1000565002);
-    pub const BLOCK_U_INTERLEAVED_ARM: Self = Self(1000565003);
-    pub const BLOCK_U_INTERLEAVED_64K_ARM: Self = Self(1000565004);
+    pub const BRICK_16_WIDE: Self = Self(1000565000);
+    pub const BRICK_8_WIDE: Self = Self(1000565001);
+    pub const BRICK_4_WIDE: Self = Self(1000565002);
+    pub const BLOCK_U_INTERLEAVED: Self = Self(1000565003);
+    pub const BLOCK_U_INTERLEAVED_64K: Self = Self(1000565004);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ARM_tensor_controls";

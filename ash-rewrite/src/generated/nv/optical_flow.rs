@@ -22,22 +22,22 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl OpticalFlowPerformanceLevelNV {
-    pub const UNKNOWN_NV: Self = Self(0);
-    pub const SLOW_NV: Self = Self(1);
-    pub const MEDIUM_NV: Self = Self(2);
-    pub const FAST_NV: Self = Self(3);
+    pub const UNKNOWN: Self = Self(0);
+    pub const SLOW: Self = Self(1);
+    pub const MEDIUM: Self = Self(2);
+    pub const FAST: Self = Self(3);
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl OpticalFlowSessionBindingPointNV {
-    pub const UNKNOWN_NV: Self = Self(0);
-    pub const INPUT_NV: Self = Self(1);
-    pub const REFERENCE_NV: Self = Self(2);
-    pub const HINT_NV: Self = Self(3);
-    pub const FLOW_VECTOR_NV: Self = Self(4);
-    pub const BACKWARD_FLOW_VECTOR_NV: Self = Self(5);
-    pub const COST_NV: Self = Self(6);
-    pub const BACKWARD_COST_NV: Self = Self(7);
-    pub const GLOBAL_FLOW_NV: Self = Self(8);
+    pub const UNKNOWN: Self = Self(0);
+    pub const INPUT: Self = Self(1);
+    pub const REFERENCE: Self = Self(2);
+    pub const HINT: Self = Self(3);
+    pub const FLOW_VECTOR: Self = Self(4);
+    pub const BACKWARD_FLOW_VECTOR: Self = Self(5);
+    pub const COST: Self = Self(6);
+    pub const BACKWARD_COST: Self = Self(7);
+    pub const GLOBAL_FLOW: Self = Self(8);
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl crate::vk::QueueFlags {
@@ -91,73 +91,73 @@ impl crate::vk::FormatFeatureFlagBits2 {
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl OpticalFlowGridSizeFlagsNV {
-    pub const UNKNOWN_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::UNKNOWN_NV.0);
-    pub const _1X1_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_1X1_NV.0);
-    pub const _2X2_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_2X2_NV.0);
-    pub const _4X4_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_4X4_NV.0);
-    pub const _8X8_NV: Self = Self(OpticalFlowGridSizeFlagBitsNV::_8X8_NV.0);
+    pub const UNKNOWN: Self = Self(OpticalFlowGridSizeFlagBitsNV::UNKNOWN.0);
+    pub const _1X1: Self = Self(OpticalFlowGridSizeFlagBitsNV::_1X1.0);
+    pub const _2X2: Self = Self(OpticalFlowGridSizeFlagBitsNV::_2X2.0);
+    pub const _4X4: Self = Self(OpticalFlowGridSizeFlagBitsNV::_4X4.0);
+    pub const _8X8: Self = Self(OpticalFlowGridSizeFlagBitsNV::_8X8.0);
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl OpticalFlowGridSizeFlagBitsNV {
-    pub const UNKNOWN_NV: Self = Self(0);
-    pub const _1X1_NV: Self = Self(1 << 0);
-    pub const _2X2_NV: Self = Self(1 << 1);
-    pub const _4X4_NV: Self = Self(1 << 2);
-    pub const _8X8_NV: Self = Self(1 << 3);
+    pub const UNKNOWN: Self = Self(0);
+    pub const _1X1: Self = Self(1 << 0);
+    pub const _2X2: Self = Self(1 << 1);
+    pub const _4X4: Self = Self(1 << 2);
+    pub const _8X8: Self = Self(1 << 3);
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl OpticalFlowUsageFlagsNV {
-    pub const UNKNOWN_NV: Self = Self(OpticalFlowUsageFlagBitsNV::UNKNOWN_NV.0);
-    pub const INPUT_NV: Self = Self(OpticalFlowUsageFlagBitsNV::INPUT_NV.0);
-    pub const OUTPUT_NV: Self = Self(OpticalFlowUsageFlagBitsNV::OUTPUT_NV.0);
-    pub const HINT_NV: Self = Self(OpticalFlowUsageFlagBitsNV::HINT_NV.0);
-    pub const COST_NV: Self = Self(OpticalFlowUsageFlagBitsNV::COST_NV.0);
-    pub const GLOBAL_FLOW_NV: Self = Self(OpticalFlowUsageFlagBitsNV::GLOBAL_FLOW_NV.0);
+    pub const UNKNOWN: Self = Self(OpticalFlowUsageFlagBitsNV::UNKNOWN.0);
+    pub const INPUT: Self = Self(OpticalFlowUsageFlagBitsNV::INPUT.0);
+    pub const OUTPUT: Self = Self(OpticalFlowUsageFlagBitsNV::OUTPUT.0);
+    pub const HINT: Self = Self(OpticalFlowUsageFlagBitsNV::HINT.0);
+    pub const COST: Self = Self(OpticalFlowUsageFlagBitsNV::COST.0);
+    pub const GLOBAL_FLOW: Self = Self(OpticalFlowUsageFlagBitsNV::GLOBAL_FLOW.0);
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl OpticalFlowUsageFlagBitsNV {
-    pub const UNKNOWN_NV: Self = Self(0);
-    pub const INPUT_NV: Self = Self(1 << 0);
-    pub const OUTPUT_NV: Self = Self(1 << 1);
-    pub const HINT_NV: Self = Self(1 << 2);
-    pub const COST_NV: Self = Self(1 << 3);
-    pub const GLOBAL_FLOW_NV: Self = Self(1 << 4);
+    pub const UNKNOWN: Self = Self(0);
+    pub const INPUT: Self = Self(1 << 0);
+    pub const OUTPUT: Self = Self(1 << 1);
+    pub const HINT: Self = Self(1 << 2);
+    pub const COST: Self = Self(1 << 3);
+    pub const GLOBAL_FLOW: Self = Self(1 << 4);
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl OpticalFlowSessionCreateFlagsNV {
-    pub const ENABLE_HINT_NV: Self = Self(
-        OpticalFlowSessionCreateFlagBitsNV::ENABLE_HINT_NV.0,
+    pub const ENABLE_HINT: Self = Self(
+        OpticalFlowSessionCreateFlagBitsNV::ENABLE_HINT.0,
     );
-    pub const ENABLE_COST_NV: Self = Self(
-        OpticalFlowSessionCreateFlagBitsNV::ENABLE_COST_NV.0,
+    pub const ENABLE_COST: Self = Self(
+        OpticalFlowSessionCreateFlagBitsNV::ENABLE_COST.0,
     );
-    pub const ENABLE_GLOBAL_FLOW_NV: Self = Self(
-        OpticalFlowSessionCreateFlagBitsNV::ENABLE_GLOBAL_FLOW_NV.0,
+    pub const ENABLE_GLOBAL_FLOW: Self = Self(
+        OpticalFlowSessionCreateFlagBitsNV::ENABLE_GLOBAL_FLOW.0,
     );
-    pub const ALLOW_REGIONS_NV: Self = Self(
-        OpticalFlowSessionCreateFlagBitsNV::ALLOW_REGIONS_NV.0,
+    pub const ALLOW_REGIONS: Self = Self(
+        OpticalFlowSessionCreateFlagBitsNV::ALLOW_REGIONS.0,
     );
-    pub const BOTH_DIRECTIONS_NV: Self = Self(
-        OpticalFlowSessionCreateFlagBitsNV::BOTH_DIRECTIONS_NV.0,
+    pub const BOTH_DIRECTIONS: Self = Self(
+        OpticalFlowSessionCreateFlagBitsNV::BOTH_DIRECTIONS.0,
     );
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl OpticalFlowSessionCreateFlagBitsNV {
-    pub const ENABLE_HINT_NV: Self = Self(1 << 0);
-    pub const ENABLE_COST_NV: Self = Self(1 << 1);
-    pub const ENABLE_GLOBAL_FLOW_NV: Self = Self(1 << 2);
-    pub const ALLOW_REGIONS_NV: Self = Self(1 << 3);
-    pub const BOTH_DIRECTIONS_NV: Self = Self(1 << 4);
+    pub const ENABLE_HINT: Self = Self(1 << 0);
+    pub const ENABLE_COST: Self = Self(1 << 1);
+    pub const ENABLE_GLOBAL_FLOW: Self = Self(1 << 2);
+    pub const ALLOW_REGIONS: Self = Self(1 << 3);
+    pub const BOTH_DIRECTIONS: Self = Self(1 << 4);
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl OpticalFlowExecuteFlagsNV {
-    pub const DISABLE_TEMPORAL_HINTS_NV: Self = Self(
-        OpticalFlowExecuteFlagBitsNV::DISABLE_TEMPORAL_HINTS_NV.0,
+    pub const DISABLE_TEMPORAL_HINTS: Self = Self(
+        OpticalFlowExecuteFlagBitsNV::DISABLE_TEMPORAL_HINTS.0,
     );
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl OpticalFlowExecuteFlagBitsNV {
-    pub const DISABLE_TEMPORAL_HINTS_NV: Self = Self(1 << 0);
+    pub const DISABLE_TEMPORAL_HINTS: Self = Self(1 << 0);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -824,10 +824,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for OpticalFlowPerformanceLevelNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::UNKNOWN_NV => Some("UNKNOWN_NV"),
-                Self::SLOW_NV => Some("SLOW_NV"),
-                Self::MEDIUM_NV => Some("MEDIUM_NV"),
-                Self::FAST_NV => Some("FAST_NV"),
+                Self::UNKNOWN => Some("UNKNOWN"),
+                Self::SLOW => Some("SLOW"),
+                Self::MEDIUM => Some("MEDIUM"),
+                Self::FAST => Some("FAST"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -853,15 +853,15 @@ pub(crate) mod items {
     impl core::fmt::Debug for OpticalFlowSessionBindingPointNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::UNKNOWN_NV => Some("UNKNOWN_NV"),
-                Self::INPUT_NV => Some("INPUT_NV"),
-                Self::REFERENCE_NV => Some("REFERENCE_NV"),
-                Self::HINT_NV => Some("HINT_NV"),
-                Self::FLOW_VECTOR_NV => Some("FLOW_VECTOR_NV"),
-                Self::BACKWARD_FLOW_VECTOR_NV => Some("BACKWARD_FLOW_VECTOR_NV"),
-                Self::COST_NV => Some("COST_NV"),
-                Self::BACKWARD_COST_NV => Some("BACKWARD_COST_NV"),
-                Self::GLOBAL_FLOW_NV => Some("GLOBAL_FLOW_NV"),
+                Self::UNKNOWN => Some("UNKNOWN"),
+                Self::INPUT => Some("INPUT"),
+                Self::REFERENCE => Some("REFERENCE"),
+                Self::HINT => Some("HINT"),
+                Self::FLOW_VECTOR => Some("FLOW_VECTOR"),
+                Self::BACKWARD_FLOW_VECTOR => Some("BACKWARD_FLOW_VECTOR"),
+                Self::COST => Some("COST"),
+                Self::BACKWARD_COST => Some("BACKWARD_COST"),
+                Self::GLOBAL_FLOW => Some("GLOBAL_FLOW"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -889,11 +889,11 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::UNKNOWN_NV.0, "UNKNOWN_NV"),
-                    (Self::_1X1_NV.0, "_1X1_NV"),
-                    (Self::_2X2_NV.0, "_2X2_NV"),
-                    (Self::_4X4_NV.0, "_4X4_NV"),
-                    (Self::_8X8_NV.0, "_8X8_NV"),
+                    (Self::UNKNOWN.0, "UNKNOWN"),
+                    (Self::_1X1.0, "_1X1"),
+                    (Self::_2X2.0, "_2X2"),
+                    (Self::_4X4.0, "_4X4"),
+                    (Self::_8X8.0, "_8X8"),
                 ],
                 self.0,
             )
@@ -982,12 +982,12 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::UNKNOWN_NV.0, "UNKNOWN_NV"),
-                    (Self::INPUT_NV.0, "INPUT_NV"),
-                    (Self::OUTPUT_NV.0, "OUTPUT_NV"),
-                    (Self::HINT_NV.0, "HINT_NV"),
-                    (Self::COST_NV.0, "COST_NV"),
-                    (Self::GLOBAL_FLOW_NV.0, "GLOBAL_FLOW_NV"),
+                    (Self::UNKNOWN.0, "UNKNOWN"),
+                    (Self::INPUT.0, "INPUT"),
+                    (Self::OUTPUT.0, "OUTPUT"),
+                    (Self::HINT.0, "HINT"),
+                    (Self::COST.0, "COST"),
+                    (Self::GLOBAL_FLOW.0, "GLOBAL_FLOW"),
                 ],
                 self.0,
             )
@@ -1076,11 +1076,11 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::ENABLE_HINT_NV.0, "ENABLE_HINT_NV"),
-                    (Self::ENABLE_COST_NV.0, "ENABLE_COST_NV"),
-                    (Self::ENABLE_GLOBAL_FLOW_NV.0, "ENABLE_GLOBAL_FLOW_NV"),
-                    (Self::ALLOW_REGIONS_NV.0, "ALLOW_REGIONS_NV"),
-                    (Self::BOTH_DIRECTIONS_NV.0, "BOTH_DIRECTIONS_NV"),
+                    (Self::ENABLE_HINT.0, "ENABLE_HINT"),
+                    (Self::ENABLE_COST.0, "ENABLE_COST"),
+                    (Self::ENABLE_GLOBAL_FLOW.0, "ENABLE_GLOBAL_FLOW"),
+                    (Self::ALLOW_REGIONS.0, "ALLOW_REGIONS"),
+                    (Self::BOTH_DIRECTIONS.0, "BOTH_DIRECTIONS"),
                 ],
                 self.0,
             )
@@ -1168,7 +1168,7 @@ pub(crate) mod items {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             crate::debug_flags(
                 f,
-                &[(Self::DISABLE_TEMPORAL_HINTS_NV.0, "DISABLE_TEMPORAL_HINTS_NV")],
+                &[(Self::DISABLE_TEMPORAL_HINTS.0, "DISABLE_TEMPORAL_HINTS")],
                 self.0,
             )
         }

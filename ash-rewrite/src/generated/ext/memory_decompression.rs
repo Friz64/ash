@@ -36,8 +36,8 @@ impl crate::vk::PipelineStageFlagBits2 {
 }
 ///Provided by [VK_EXT_memory_decompression](crate::ext::memory_decompression)
 impl MemoryDecompressionMethodFlagsEXT {
-    pub const GDEFLATE_1_0_EXT: Self = Self(
-        MemoryDecompressionMethodFlagBitsEXT::GDEFLATE_1_0_EXT.0,
+    pub const GDEFLATE_1_0: Self = Self(
+        MemoryDecompressionMethodFlagBitsEXT::GDEFLATE_1_0.0,
     );
     pub const GDEFLATE_1_0_NV: Self = Self(
         MemoryDecompressionMethodFlagBitsEXT::GDEFLATE_1_0_NV.0,
@@ -45,8 +45,8 @@ impl MemoryDecompressionMethodFlagsEXT {
 }
 ///Provided by [VK_EXT_memory_decompression](crate::ext::memory_decompression)
 impl MemoryDecompressionMethodFlagBitsEXT {
-    pub const GDEFLATE_1_0_EXT: Self = Self(1 << 0);
-    pub const GDEFLATE_1_0_NV: Self = Self::GDEFLATE_1_0_EXT;
+    pub const GDEFLATE_1_0: Self = Self(1 << 0);
+    pub const GDEFLATE_1_0_NV: Self = Self::GDEFLATE_1_0;
 }
 ///Provided by [VK_EXT_memory_decompression](crate::ext::memory_decompression)
 impl crate::vk::BufferUsageFlags2 {
@@ -332,11 +332,7 @@ pub(crate) mod items {
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for MemoryDecompressionMethodFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            crate::debug_flags(
-                f,
-                &[(Self::GDEFLATE_1_0_EXT.0, "GDEFLATE_1_0_EXT")],
-                self.0,
-            )
+            crate::debug_flags(f, &[(Self::GDEFLATE_1_0.0, "GDEFLATE_1_0")], self.0)
         }
     }
     impl MemoryDecompressionMethodFlagsEXT {

@@ -33,15 +33,15 @@ impl crate::vk::FormatFeatureFlagBits2 {
 }
 ///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
 impl AddressCopyFlagsKHR {
-    pub const DEVICE_LOCAL_KHR: Self = Self(AddressCopyFlagBitsKHR::DEVICE_LOCAL_KHR.0);
-    pub const SPARSE_KHR: Self = Self(AddressCopyFlagBitsKHR::SPARSE_KHR.0);
-    pub const PROTECTED_KHR: Self = Self(AddressCopyFlagBitsKHR::PROTECTED_KHR.0);
+    pub const DEVICE_LOCAL: Self = Self(AddressCopyFlagBitsKHR::DEVICE_LOCAL.0);
+    pub const SPARSE: Self = Self(AddressCopyFlagBitsKHR::SPARSE.0);
+    pub const PROTECTED: Self = Self(AddressCopyFlagBitsKHR::PROTECTED.0);
 }
 ///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
 impl AddressCopyFlagBitsKHR {
-    pub const DEVICE_LOCAL_KHR: Self = Self(1 << 0);
-    pub const SPARSE_KHR: Self = Self(1 << 1);
-    pub const PROTECTED_KHR: Self = Self(1 << 2);
+    pub const DEVICE_LOCAL: Self = Self(1 << 0);
+    pub const SPARSE: Self = Self(1 << 1);
+    pub const PROTECTED: Self = Self(1 << 2);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -422,9 +422,9 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::DEVICE_LOCAL_KHR.0, "DEVICE_LOCAL_KHR"),
-                    (Self::SPARSE_KHR.0, "SPARSE_KHR"),
-                    (Self::PROTECTED_KHR.0, "PROTECTED_KHR"),
+                    (Self::DEVICE_LOCAL.0, "DEVICE_LOCAL"),
+                    (Self::SPARSE.0, "SPARSE"),
+                    (Self::PROTECTED.0, "PROTECTED"),
                 ],
                 self.0,
             )

@@ -14,10 +14,10 @@ impl crate::vk::Result {
 }
 ///Provided by [VK_EXT_full_screen_exclusive](crate::ext::full_screen_exclusive)
 impl FullScreenExclusiveEXT {
-    pub const DEFAULT_EXT: Self = Self(0);
-    pub const ALLOWED_EXT: Self = Self(1);
-    pub const DISALLOWED_EXT: Self = Self(2);
-    pub const APPLICATION_CONTROLLED_EXT: Self = Self(3);
+    pub const DEFAULT: Self = Self(0);
+    pub const ALLOWED: Self = Self(1);
+    pub const DISALLOWED: Self = Self(2);
+    pub const APPLICATION_CONTROLLED: Self = Self(3);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -330,10 +330,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for FullScreenExclusiveEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DEFAULT_EXT => Some("DEFAULT_EXT"),
-                Self::ALLOWED_EXT => Some("ALLOWED_EXT"),
-                Self::DISALLOWED_EXT => Some("DISALLOWED_EXT"),
-                Self::APPLICATION_CONTROLLED_EXT => Some("APPLICATION_CONTROLLED_EXT"),
+                Self::DEFAULT => Some("DEFAULT"),
+                Self::ALLOWED => Some("ALLOWED"),
+                Self::DISALLOWED => Some("DISALLOWED"),
+                Self::APPLICATION_CONTROLLED => Some("APPLICATION_CONTROLLED"),
                 _ => None,
             } {
                 f.write_str(x)

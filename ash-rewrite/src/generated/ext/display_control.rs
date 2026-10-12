@@ -11,17 +11,17 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_display_control](crate::ext::display_control)
 impl DisplayPowerStateEXT {
-    pub const OFF_EXT: Self = Self(0);
-    pub const SUSPEND_EXT: Self = Self(1);
-    pub const ON_EXT: Self = Self(2);
+    pub const OFF: Self = Self(0);
+    pub const SUSPEND: Self = Self(1);
+    pub const ON: Self = Self(2);
 }
 ///Provided by [VK_EXT_display_control](crate::ext::display_control)
 impl DeviceEventTypeEXT {
-    pub const DISPLAY_HOTPLUG_EXT: Self = Self(0);
+    pub const DISPLAY_HOTPLUG: Self = Self(0);
 }
 ///Provided by [VK_EXT_display_control](crate::ext::display_control)
 impl DisplayEventTypeEXT {
-    pub const FIRST_PIXEL_OUT_EXT: Self = Self(0);
+    pub const FIRST_PIXEL_OUT: Self = Self(0);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -347,9 +347,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for DisplayPowerStateEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::OFF_EXT => Some("OFF_EXT"),
-                Self::SUSPEND_EXT => Some("SUSPEND_EXT"),
-                Self::ON_EXT => Some("ON_EXT"),
+                Self::OFF => Some("OFF"),
+                Self::SUSPEND => Some("SUSPEND"),
+                Self::ON => Some("ON"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -375,7 +375,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for DeviceEventTypeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DISPLAY_HOTPLUG_EXT => Some("DISPLAY_HOTPLUG_EXT"),
+                Self::DISPLAY_HOTPLUG => Some("DISPLAY_HOTPLUG"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -401,7 +401,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for DisplayEventTypeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::FIRST_PIXEL_OUT_EXT => Some("FIRST_PIXEL_OUT_EXT"),
+                Self::FIRST_PIXEL_OUT => Some("FIRST_PIXEL_OUT"),
                 _ => None,
             } {
                 f.write_str(x)

@@ -22,16 +22,16 @@ impl crate::vk::DynamicState {
 }
 ///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl RayTracingShaderGroupTypeKHR {
-    pub const GENERAL_KHR: Self = Self(0);
-    pub const TRIANGLES_HIT_GROUP_KHR: Self = Self(1);
-    pub const PROCEDURAL_HIT_GROUP_KHR: Self = Self(2);
+    pub const GENERAL: Self = Self(0);
+    pub const TRIANGLES_HIT_GROUP: Self = Self(1);
+    pub const PROCEDURAL_HIT_GROUP: Self = Self(2);
 }
 ///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl ShaderGroupShaderKHR {
-    pub const GENERAL_KHR: Self = Self(0);
-    pub const CLOSEST_HIT_KHR: Self = Self(1);
-    pub const ANY_HIT_KHR: Self = Self(2);
-    pub const INTERSECTION_KHR: Self = Self(3);
+    pub const GENERAL: Self = Self(0);
+    pub const CLOSEST_HIT: Self = Self(1);
+    pub const ANY_HIT: Self = Self(2);
+    pub const INTERSECTION: Self = Self(3);
 }
 ///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl crate::vk::BufferUsageFlags {
@@ -887,9 +887,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for RayTracingShaderGroupTypeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::GENERAL_KHR => Some("GENERAL_KHR"),
-                Self::TRIANGLES_HIT_GROUP_KHR => Some("TRIANGLES_HIT_GROUP_KHR"),
-                Self::PROCEDURAL_HIT_GROUP_KHR => Some("PROCEDURAL_HIT_GROUP_KHR"),
+                Self::GENERAL => Some("GENERAL"),
+                Self::TRIANGLES_HIT_GROUP => Some("TRIANGLES_HIT_GROUP"),
+                Self::PROCEDURAL_HIT_GROUP => Some("PROCEDURAL_HIT_GROUP"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -915,10 +915,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for ShaderGroupShaderKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::GENERAL_KHR => Some("GENERAL_KHR"),
-                Self::CLOSEST_HIT_KHR => Some("CLOSEST_HIT_KHR"),
-                Self::ANY_HIT_KHR => Some("ANY_HIT_KHR"),
-                Self::INTERSECTION_KHR => Some("INTERSECTION_KHR"),
+                Self::GENERAL => Some("GENERAL"),
+                Self::CLOSEST_HIT => Some("CLOSEST_HIT"),
+                Self::ANY_HIT => Some("ANY_HIT"),
+                Self::INTERSECTION => Some("INTERSECTION"),
                 _ => None,
             } {
                 f.write_str(x)

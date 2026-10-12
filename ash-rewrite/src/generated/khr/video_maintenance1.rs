@@ -29,13 +29,13 @@ impl crate::vk::ImageCreateFlagBits {
 }
 ///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl crate::vk::VideoSessionCreateFlagsKHR {
-    pub const INLINE_QUERIES_KHR: Self = Self(
-        crate::vk::VideoSessionCreateFlagBitsKHR::INLINE_QUERIES_KHR.0,
+    pub const INLINE_QUERIES: Self = Self(
+        crate::vk::VideoSessionCreateFlagBitsKHR::INLINE_QUERIES.0,
     );
 }
 ///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl crate::vk::VideoSessionCreateFlagBitsKHR {
-    pub const INLINE_QUERIES_KHR: Self = Self(1 << 2);
+    pub const INLINE_QUERIES: Self = Self(1 << 2);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_maintenance1";

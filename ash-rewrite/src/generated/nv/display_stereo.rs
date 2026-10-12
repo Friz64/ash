@@ -9,10 +9,10 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_display_stereo](crate::nv::display_stereo)
 impl DisplaySurfaceStereoTypeNV {
-    pub const NONE_NV: Self = Self(0);
-    pub const ONBOARD_DIN_NV: Self = Self(1);
-    pub const HDMI_3D_NV: Self = Self(2);
-    pub const INBAND_DISPLAYPORT_NV: Self = Self(3);
+    pub const NONE: Self = Self(0);
+    pub const ONBOARD_DIN: Self = Self(1);
+    pub const HDMI_3D: Self = Self(2);
+    pub const INBAND_DISPLAYPORT: Self = Self(3);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_display_stereo";
@@ -91,10 +91,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for DisplaySurfaceStereoTypeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::NONE_NV => Some("NONE_NV"),
-                Self::ONBOARD_DIN_NV => Some("ONBOARD_DIN_NV"),
-                Self::HDMI_3D_NV => Some("HDMI_3D_NV"),
-                Self::INBAND_DISPLAYPORT_NV => Some("INBAND_DISPLAYPORT_NV"),
+                Self::NONE => Some("NONE"),
+                Self::ONBOARD_DIN => Some("ONBOARD_DIN"),
+                Self::HDMI_3D => Some("HDMI_3D"),
+                Self::INBAND_DISPLAYPORT => Some("INBAND_DISPLAYPORT"),
                 _ => None,
             } {
                 f.write_str(x)

@@ -16,37 +16,29 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl DebugUtilsMessageSeverityFlagsEXT {
-    pub const VERBOSE_EXT: Self = Self(
-        DebugUtilsMessageSeverityFlagBitsEXT::VERBOSE_EXT.0,
-    );
-    pub const INFO_EXT: Self = Self(DebugUtilsMessageSeverityFlagBitsEXT::INFO_EXT.0);
-    pub const WARNING_EXT: Self = Self(
-        DebugUtilsMessageSeverityFlagBitsEXT::WARNING_EXT.0,
-    );
-    pub const ERROR_EXT: Self = Self(DebugUtilsMessageSeverityFlagBitsEXT::ERROR_EXT.0);
+    pub const VERBOSE: Self = Self(DebugUtilsMessageSeverityFlagBitsEXT::VERBOSE.0);
+    pub const INFO: Self = Self(DebugUtilsMessageSeverityFlagBitsEXT::INFO.0);
+    pub const WARNING: Self = Self(DebugUtilsMessageSeverityFlagBitsEXT::WARNING.0);
+    pub const ERROR: Self = Self(DebugUtilsMessageSeverityFlagBitsEXT::ERROR.0);
 }
 ///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl DebugUtilsMessageSeverityFlagBitsEXT {
-    pub const VERBOSE_EXT: Self = Self(1 << 0);
-    pub const INFO_EXT: Self = Self(1 << 4);
-    pub const WARNING_EXT: Self = Self(1 << 8);
-    pub const ERROR_EXT: Self = Self(1 << 12);
+    pub const VERBOSE: Self = Self(1 << 0);
+    pub const INFO: Self = Self(1 << 4);
+    pub const WARNING: Self = Self(1 << 8);
+    pub const ERROR: Self = Self(1 << 12);
 }
 ///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl DebugUtilsMessageTypeFlagsEXT {
-    pub const GENERAL_EXT: Self = Self(DebugUtilsMessageTypeFlagBitsEXT::GENERAL_EXT.0);
-    pub const VALIDATION_EXT: Self = Self(
-        DebugUtilsMessageTypeFlagBitsEXT::VALIDATION_EXT.0,
-    );
-    pub const PERFORMANCE_EXT: Self = Self(
-        DebugUtilsMessageTypeFlagBitsEXT::PERFORMANCE_EXT.0,
-    );
+    pub const GENERAL: Self = Self(DebugUtilsMessageTypeFlagBitsEXT::GENERAL.0);
+    pub const VALIDATION: Self = Self(DebugUtilsMessageTypeFlagBitsEXT::VALIDATION.0);
+    pub const PERFORMANCE: Self = Self(DebugUtilsMessageTypeFlagBitsEXT::PERFORMANCE.0);
 }
 ///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl DebugUtilsMessageTypeFlagBitsEXT {
-    pub const GENERAL_EXT: Self = Self(1 << 0);
-    pub const VALIDATION_EXT: Self = Self(1 << 1);
-    pub const PERFORMANCE_EXT: Self = Self(1 << 2);
+    pub const GENERAL: Self = Self(1 << 0);
+    pub const VALIDATION: Self = Self(1 << 1);
+    pub const PERFORMANCE: Self = Self(1 << 2);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -748,10 +740,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::VERBOSE_EXT.0, "VERBOSE_EXT"),
-                    (Self::INFO_EXT.0, "INFO_EXT"),
-                    (Self::WARNING_EXT.0, "WARNING_EXT"),
-                    (Self::ERROR_EXT.0, "ERROR_EXT"),
+                    (Self::VERBOSE.0, "VERBOSE"),
+                    (Self::INFO.0, "INFO"),
+                    (Self::WARNING.0, "WARNING"),
+                    (Self::ERROR.0, "ERROR"),
                 ],
                 self.0,
             )
@@ -840,10 +832,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::GENERAL_EXT.0, "GENERAL_EXT"),
-                    (Self::VALIDATION_EXT.0, "VALIDATION_EXT"),
-                    (Self::PERFORMANCE_EXT.0, "PERFORMANCE_EXT"),
-                    (Self::DEVICE_ADDRESS_BINDING_EXT.0, "DEVICE_ADDRESS_BINDING_EXT"),
+                    (Self::GENERAL.0, "GENERAL"),
+                    (Self::VALIDATION.0, "VALIDATION"),
+                    (Self::PERFORMANCE.0, "PERFORMANCE"),
+                    (Self::DEVICE_ADDRESS_BINDING.0, "DEVICE_ADDRESS_BINDING"),
                 ],
                 self.0,
             )

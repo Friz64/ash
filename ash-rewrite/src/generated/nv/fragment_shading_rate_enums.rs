@@ -16,23 +16,23 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_fragment_shading_rate_enums](crate::nv::fragment_shading_rate_enums)
 impl FragmentShadingRateNV {
-    pub const _1_INVOCATION_PER_PIXEL_NV: Self = Self(0);
-    pub const _1_INVOCATION_PER_1X2_PIXELS_NV: Self = Self(1);
-    pub const _1_INVOCATION_PER_2X1_PIXELS_NV: Self = Self(4);
-    pub const _1_INVOCATION_PER_2X2_PIXELS_NV: Self = Self(5);
-    pub const _1_INVOCATION_PER_2X4_PIXELS_NV: Self = Self(6);
-    pub const _1_INVOCATION_PER_4X2_PIXELS_NV: Self = Self(9);
-    pub const _1_INVOCATION_PER_4X4_PIXELS_NV: Self = Self(10);
-    pub const _2_INVOCATIONS_PER_PIXEL_NV: Self = Self(11);
-    pub const _4_INVOCATIONS_PER_PIXEL_NV: Self = Self(12);
-    pub const _8_INVOCATIONS_PER_PIXEL_NV: Self = Self(13);
-    pub const _16_INVOCATIONS_PER_PIXEL_NV: Self = Self(14);
-    pub const NO_INVOCATIONS_NV: Self = Self(15);
+    pub const _1_INVOCATION_PER_PIXEL: Self = Self(0);
+    pub const _1_INVOCATION_PER_1X2_PIXELS: Self = Self(1);
+    pub const _1_INVOCATION_PER_2X1_PIXELS: Self = Self(4);
+    pub const _1_INVOCATION_PER_2X2_PIXELS: Self = Self(5);
+    pub const _1_INVOCATION_PER_2X4_PIXELS: Self = Self(6);
+    pub const _1_INVOCATION_PER_4X2_PIXELS: Self = Self(9);
+    pub const _1_INVOCATION_PER_4X4_PIXELS: Self = Self(10);
+    pub const _2_INVOCATIONS_PER_PIXEL: Self = Self(11);
+    pub const _4_INVOCATIONS_PER_PIXEL: Self = Self(12);
+    pub const _8_INVOCATIONS_PER_PIXEL: Self = Self(13);
+    pub const _16_INVOCATIONS_PER_PIXEL: Self = Self(14);
+    pub const NO_INVOCATIONS: Self = Self(15);
 }
 ///Provided by [VK_NV_fragment_shading_rate_enums](crate::nv::fragment_shading_rate_enums)
 impl FragmentShadingRateTypeNV {
-    pub const FRAGMENT_SIZE_NV: Self = Self(0);
-    pub const ENUMS_NV: Self = Self(1);
+    pub const FRAGMENT_SIZE: Self = Self(0);
+    pub const ENUMS: Self = Self(1);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -264,32 +264,30 @@ pub(crate) mod items {
     impl core::fmt::Debug for FragmentShadingRateNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::_1_INVOCATION_PER_PIXEL_NV => Some("_1_INVOCATION_PER_PIXEL_NV"),
-                Self::_1_INVOCATION_PER_1X2_PIXELS_NV => {
-                    Some("_1_INVOCATION_PER_1X2_PIXELS_NV")
+                Self::_1_INVOCATION_PER_PIXEL => Some("_1_INVOCATION_PER_PIXEL"),
+                Self::_1_INVOCATION_PER_1X2_PIXELS => {
+                    Some("_1_INVOCATION_PER_1X2_PIXELS")
                 }
-                Self::_1_INVOCATION_PER_2X1_PIXELS_NV => {
-                    Some("_1_INVOCATION_PER_2X1_PIXELS_NV")
+                Self::_1_INVOCATION_PER_2X1_PIXELS => {
+                    Some("_1_INVOCATION_PER_2X1_PIXELS")
                 }
-                Self::_1_INVOCATION_PER_2X2_PIXELS_NV => {
-                    Some("_1_INVOCATION_PER_2X2_PIXELS_NV")
+                Self::_1_INVOCATION_PER_2X2_PIXELS => {
+                    Some("_1_INVOCATION_PER_2X2_PIXELS")
                 }
-                Self::_1_INVOCATION_PER_2X4_PIXELS_NV => {
-                    Some("_1_INVOCATION_PER_2X4_PIXELS_NV")
+                Self::_1_INVOCATION_PER_2X4_PIXELS => {
+                    Some("_1_INVOCATION_PER_2X4_PIXELS")
                 }
-                Self::_1_INVOCATION_PER_4X2_PIXELS_NV => {
-                    Some("_1_INVOCATION_PER_4X2_PIXELS_NV")
+                Self::_1_INVOCATION_PER_4X2_PIXELS => {
+                    Some("_1_INVOCATION_PER_4X2_PIXELS")
                 }
-                Self::_1_INVOCATION_PER_4X4_PIXELS_NV => {
-                    Some("_1_INVOCATION_PER_4X4_PIXELS_NV")
+                Self::_1_INVOCATION_PER_4X4_PIXELS => {
+                    Some("_1_INVOCATION_PER_4X4_PIXELS")
                 }
-                Self::_2_INVOCATIONS_PER_PIXEL_NV => Some("_2_INVOCATIONS_PER_PIXEL_NV"),
-                Self::_4_INVOCATIONS_PER_PIXEL_NV => Some("_4_INVOCATIONS_PER_PIXEL_NV"),
-                Self::_8_INVOCATIONS_PER_PIXEL_NV => Some("_8_INVOCATIONS_PER_PIXEL_NV"),
-                Self::_16_INVOCATIONS_PER_PIXEL_NV => {
-                    Some("_16_INVOCATIONS_PER_PIXEL_NV")
-                }
-                Self::NO_INVOCATIONS_NV => Some("NO_INVOCATIONS_NV"),
+                Self::_2_INVOCATIONS_PER_PIXEL => Some("_2_INVOCATIONS_PER_PIXEL"),
+                Self::_4_INVOCATIONS_PER_PIXEL => Some("_4_INVOCATIONS_PER_PIXEL"),
+                Self::_8_INVOCATIONS_PER_PIXEL => Some("_8_INVOCATIONS_PER_PIXEL"),
+                Self::_16_INVOCATIONS_PER_PIXEL => Some("_16_INVOCATIONS_PER_PIXEL"),
+                Self::NO_INVOCATIONS => Some("NO_INVOCATIONS"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -315,8 +313,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for FragmentShadingRateTypeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::FRAGMENT_SIZE_NV => Some("FRAGMENT_SIZE_NV"),
-                Self::ENUMS_NV => Some("ENUMS_NV"),
+                Self::FRAGMENT_SIZE => Some("FRAGMENT_SIZE"),
+                Self::ENUMS => Some("ENUMS"),
                 _ => None,
             } {
                 f.write_str(x)

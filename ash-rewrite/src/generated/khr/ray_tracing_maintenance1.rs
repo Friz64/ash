@@ -17,7 +17,7 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
 impl crate::vk::IndirectCommandsTokenTypeEXT {
-    pub const TRACE_RAYS2_EXT: Self = Self(1000386004);
+    pub const TRACE_RAYS2: Self = Self(1000386004);
 }
 ///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
 impl crate::vk::AccessFlags2 {

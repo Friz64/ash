@@ -14,7 +14,7 @@ impl TypeName {
     pub const VK_STRUCTURE_TYPE: Self = Self::new("VkStructureType");
     pub const VK_BOOL32: Self = Self::new("VkBool32");
 
-    pub(crate) const fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -31,12 +31,13 @@ impl TypeName {
         self.original().strip_prefix(prefix).unwrap()
     }
 
-    pub fn tag_stripped(&self) -> &'static str {
+    /// Returns the name without the tag in the first element, and the tag in the second element.
+    pub fn split_tag(&self) -> (&'static str, &'static str) {
         let original = self.original();
         let tag_boundary = original
             .rfind(|c: char| c.is_lowercase() || c.is_ascii_digit())
             .unwrap();
-        &original[..=tag_boundary]
+        (&original[..=tag_boundary], &original[tag_boundary + 1..])
     }
 }
 
@@ -44,7 +45,7 @@ impl TypeName {
 pub struct ConstantName(&'static str);
 
 impl ConstantName {
-    pub(crate) const fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -65,7 +66,7 @@ impl ConstantName {
 pub struct EnumeratorName(&'static str);
 
 impl EnumeratorName {
-    pub(crate) const fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -78,7 +79,7 @@ impl EnumeratorName {
 pub struct CMacroName(&'static str);
 
 impl CMacroName {
-    pub(crate) const fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -95,7 +96,7 @@ impl CMacroName {
 pub struct FuncPointerName(&'static str);
 
 impl FuncPointerName {
-    pub(crate) const fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -118,7 +119,7 @@ impl CommandName {
     pub const VK_CREATE_INSTANCE: Self = Self::new("vkCreateInstance");
     pub const VK_CREATE_DEVICE: Self = Self::new("vkCreateDevice");
 
-    pub(crate) const fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -143,7 +144,7 @@ impl CommandName {
 pub struct VariableName(&'static str);
 
 impl VariableName {
-    pub(crate) const fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -156,7 +157,7 @@ impl VariableName {
 pub struct ExtensionName(&'static str);
 
 impl ExtensionName {
-    pub(crate) const fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 

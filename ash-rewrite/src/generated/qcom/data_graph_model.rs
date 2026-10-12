@@ -25,7 +25,7 @@ impl crate::vk::PhysicalDeviceDataGraphOperationTypeARM {
 }
 ///Provided by [VK_QCOM_data_graph_model](crate::qcom::data_graph_model)
 impl DataGraphModelCacheTypeQCOM {
-    pub const GENERIC_BINARY_QCOM: Self = Self(0);
+    pub const GENERIC_BINARY: Self = Self(0);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_data_graph_model";
@@ -164,7 +164,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for DataGraphModelCacheTypeQCOM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::GENERIC_BINARY_QCOM => Some("GENERIC_BINARY_QCOM"),
+                Self::GENERIC_BINARY => Some("GENERIC_BINARY"),
                 _ => None,
             } {
                 f.write_str(x)

@@ -10,10 +10,10 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_cooperative_matrix](crate::khr::cooperative_matrix)
 impl ScopeKHR {
-    pub const DEVICE_KHR: Self = Self(1);
-    pub const WORKGROUP_KHR: Self = Self(2);
-    pub const SUBGROUP_KHR: Self = Self(3);
-    pub const QUEUE_FAMILY_KHR: Self = Self(5);
+    pub const DEVICE: Self = Self(1);
+    pub const WORKGROUP: Self = Self(2);
+    pub const SUBGROUP: Self = Self(3);
+    pub const QUEUE_FAMILY: Self = Self(5);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -278,10 +278,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for ScopeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DEVICE_KHR => Some("DEVICE_KHR"),
-                Self::WORKGROUP_KHR => Some("WORKGROUP_KHR"),
-                Self::SUBGROUP_KHR => Some("SUBGROUP_KHR"),
-                Self::QUEUE_FAMILY_KHR => Some("QUEUE_FAMILY_KHR"),
+                Self::DEVICE => Some("DEVICE"),
+                Self::WORKGROUP => Some("WORKGROUP"),
+                Self::SUBGROUP => Some("SUBGROUP"),
+                Self::QUEUE_FAMILY => Some("QUEUE_FAMILY"),
                 _ => None,
             } {
                 f.write_str(x)

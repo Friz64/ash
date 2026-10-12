@@ -10,10 +10,10 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_QCOM_filter_cubic_weights](crate::qcom::filter_cubic_weights)
 impl CubicFilterWeightsQCOM {
-    pub const CATMULL_ROM_QCOM: Self = Self(0);
-    pub const ZERO_TANGENT_CARDINAL_QCOM: Self = Self(1);
-    pub const B_SPLINE_QCOM: Self = Self(2);
-    pub const MITCHELL_NETRAVALI_QCOM: Self = Self(3);
+    pub const CATMULL_ROM: Self = Self(0);
+    pub const ZERO_TANGENT_CARDINAL: Self = Self(1);
+    pub const B_SPLINE: Self = Self(2);
+    pub const MITCHELL_NETRAVALI: Self = Self(3);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_filter_cubic_weights";
@@ -134,10 +134,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for CubicFilterWeightsQCOM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::CATMULL_ROM_QCOM => Some("CATMULL_ROM_QCOM"),
-                Self::ZERO_TANGENT_CARDINAL_QCOM => Some("ZERO_TANGENT_CARDINAL_QCOM"),
-                Self::B_SPLINE_QCOM => Some("B_SPLINE_QCOM"),
-                Self::MITCHELL_NETRAVALI_QCOM => Some("MITCHELL_NETRAVALI_QCOM"),
+                Self::CATMULL_ROM => Some("CATMULL_ROM"),
+                Self::ZERO_TANGENT_CARDINAL => Some("ZERO_TANGENT_CARDINAL"),
+                Self::B_SPLINE => Some("B_SPLINE"),
+                Self::MITCHELL_NETRAVALI => Some("MITCHELL_NETRAVALI"),
                 _ => None,
             } {
                 f.write_str(x)

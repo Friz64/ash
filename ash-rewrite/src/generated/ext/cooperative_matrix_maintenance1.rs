@@ -12,13 +12,13 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_cooperative_matrix_maintenance1](crate::ext::cooperative_matrix_maintenance1)
 impl CooperativeMatrixFlagsEXT {
-    pub const SATURATING_ACCUMULATION_EXT: Self = Self(
-        CooperativeMatrixFlagBitsEXT::SATURATING_ACCUMULATION_EXT.0,
+    pub const SATURATING_ACCUMULATION: Self = Self(
+        CooperativeMatrixFlagBitsEXT::SATURATING_ACCUMULATION.0,
     );
 }
 ///Provided by [VK_EXT_cooperative_matrix_maintenance1](crate::ext::cooperative_matrix_maintenance1)
 impl CooperativeMatrixFlagBitsEXT {
-    pub const SATURATING_ACCUMULATION_EXT: Self = Self(1 << 0);
+    pub const SATURATING_ACCUMULATION: Self = Self(1 << 0);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -321,7 +321,7 @@ pub(crate) mod items {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             crate::debug_flags(
                 f,
-                &[(Self::SATURATING_ACCUMULATION_EXT.0, "SATURATING_ACCUMULATION_EXT")],
+                &[(Self::SATURATING_ACCUMULATION.0, "SATURATING_ACCUMULATION")],
                 self.0,
             )
         }

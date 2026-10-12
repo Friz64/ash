@@ -58,35 +58,35 @@ impl crate::vk::RenderingFlagBits {
 }
 ///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl RenderingAttachmentFlagsKHR {
-    pub const INPUT_ATTACHMENT_FEEDBACK_KHR: Self = Self(
-        RenderingAttachmentFlagBitsKHR::INPUT_ATTACHMENT_FEEDBACK_KHR.0,
+    pub const INPUT_ATTACHMENT_FEEDBACK: Self = Self(
+        RenderingAttachmentFlagBitsKHR::INPUT_ATTACHMENT_FEEDBACK.0,
     );
-    pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
-        RenderingAttachmentFlagBitsKHR::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0,
+    pub const RESOLVE_SKIP_TRANSFER_FUNCTION: Self = Self(
+        RenderingAttachmentFlagBitsKHR::RESOLVE_SKIP_TRANSFER_FUNCTION.0,
     );
-    pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(
-        RenderingAttachmentFlagBitsKHR::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
+    pub const RESOLVE_ENABLE_TRANSFER_FUNCTION: Self = Self(
+        RenderingAttachmentFlagBitsKHR::RESOLVE_ENABLE_TRANSFER_FUNCTION.0,
     );
 }
 ///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl RenderingAttachmentFlagBitsKHR {
-    pub const INPUT_ATTACHMENT_FEEDBACK_KHR: Self = Self(1 << 0);
-    pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
-    pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
+    pub const INPUT_ATTACHMENT_FEEDBACK: Self = Self(1 << 0);
+    pub const RESOLVE_SKIP_TRANSFER_FUNCTION: Self = Self(1 << 1);
+    pub const RESOLVE_ENABLE_TRANSFER_FUNCTION: Self = Self(1 << 2);
 }
 ///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl ResolveImageFlagsKHR {
-    pub const SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
-        ResolveImageFlagBitsKHR::SKIP_TRANSFER_FUNCTION_KHR.0,
+    pub const SKIP_TRANSFER_FUNCTION: Self = Self(
+        ResolveImageFlagBitsKHR::SKIP_TRANSFER_FUNCTION.0,
     );
-    pub const ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(
-        ResolveImageFlagBitsKHR::ENABLE_TRANSFER_FUNCTION_KHR.0,
+    pub const ENABLE_TRANSFER_FUNCTION: Self = Self(
+        ResolveImageFlagBitsKHR::ENABLE_TRANSFER_FUNCTION.0,
     );
 }
 ///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl ResolveImageFlagBitsKHR {
-    pub const SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 0);
-    pub const ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
+    pub const SKIP_TRANSFER_FUNCTION: Self = Self(1 << 0);
+    pub const ENABLE_TRANSFER_FUNCTION: Self = Self(1 << 1);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -368,17 +368,14 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
+                    (Self::INPUT_ATTACHMENT_FEEDBACK.0, "INPUT_ATTACHMENT_FEEDBACK"),
                     (
-                        Self::INPUT_ATTACHMENT_FEEDBACK_KHR.0,
-                        "INPUT_ATTACHMENT_FEEDBACK_KHR",
+                        Self::RESOLVE_SKIP_TRANSFER_FUNCTION.0,
+                        "RESOLVE_SKIP_TRANSFER_FUNCTION",
                     ),
                     (
-                        Self::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0,
-                        "RESOLVE_SKIP_TRANSFER_FUNCTION_KHR",
-                    ),
-                    (
-                        Self::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
-                        "RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR",
+                        Self::RESOLVE_ENABLE_TRANSFER_FUNCTION.0,
+                        "RESOLVE_ENABLE_TRANSFER_FUNCTION",
                     ),
                 ],
                 self.0,
@@ -468,11 +465,8 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::SKIP_TRANSFER_FUNCTION_KHR.0, "SKIP_TRANSFER_FUNCTION_KHR"),
-                    (
-                        Self::ENABLE_TRANSFER_FUNCTION_KHR.0,
-                        "ENABLE_TRANSFER_FUNCTION_KHR",
-                    ),
+                    (Self::SKIP_TRANSFER_FUNCTION.0, "SKIP_TRANSFER_FUNCTION"),
+                    (Self::ENABLE_TRANSFER_FUNCTION.0, "ENABLE_TRANSFER_FUNCTION"),
                 ],
                 self.0,
             )

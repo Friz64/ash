@@ -8,9 +8,9 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_AMD_memory_overallocation_behavior](crate::amd::memory_overallocation_behavior)
 impl MemoryOverallocationBehaviorAMD {
-    pub const DEFAULT_AMD: Self = Self(0);
-    pub const ALLOWED_AMD: Self = Self(1);
-    pub const DISALLOWED_AMD: Self = Self(2);
+    pub const DEFAULT: Self = Self(0);
+    pub const ALLOWED: Self = Self(1);
+    pub const DISALLOWED: Self = Self(2);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_memory_overallocation_behavior";
@@ -58,9 +58,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for MemoryOverallocationBehaviorAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DEFAULT_AMD => Some("DEFAULT_AMD"),
-                Self::ALLOWED_AMD => Some("ALLOWED_AMD"),
-                Self::DISALLOWED_AMD => Some("DISALLOWED_AMD"),
+                Self::DEFAULT => Some("DEFAULT"),
+                Self::ALLOWED => Some("ALLOWED"),
+                Self::DISALLOWED => Some("DISALLOWED"),
                 _ => None,
             } {
                 f.write_str(x)

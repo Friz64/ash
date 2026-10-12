@@ -16,17 +16,17 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_ARM_scheduling_controls](crate::arm::scheduling_controls)
 impl PhysicalDeviceSchedulingControlsFlagsARM {
-    pub const SHADER_CORE_COUNT_ARM: Self = Self(
-        PhysicalDeviceSchedulingControlsFlagBitsARM::SHADER_CORE_COUNT_ARM.0,
+    pub const SHADER_CORE_COUNT: Self = Self(
+        PhysicalDeviceSchedulingControlsFlagBitsARM::SHADER_CORE_COUNT.0,
     );
-    pub const DISPATCH_PARAMETERS_ARM: Self = Self(
-        PhysicalDeviceSchedulingControlsFlagBitsARM::DISPATCH_PARAMETERS_ARM.0,
+    pub const DISPATCH_PARAMETERS: Self = Self(
+        PhysicalDeviceSchedulingControlsFlagBitsARM::DISPATCH_PARAMETERS.0,
     );
 }
 ///Provided by [VK_ARM_scheduling_controls](crate::arm::scheduling_controls)
 impl PhysicalDeviceSchedulingControlsFlagBitsARM {
-    pub const SHADER_CORE_COUNT_ARM: Self = Self(1 << 0);
-    pub const DISPATCH_PARAMETERS_ARM: Self = Self(1 << 1);
+    pub const SHADER_CORE_COUNT: Self = Self(1 << 0);
+    pub const DISPATCH_PARAMETERS: Self = Self(1 << 1);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -315,8 +315,8 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::SHADER_CORE_COUNT_ARM.0, "SHADER_CORE_COUNT_ARM"),
-                    (Self::DISPATCH_PARAMETERS_ARM.0, "DISPATCH_PARAMETERS_ARM"),
+                    (Self::SHADER_CORE_COUNT.0, "SHADER_CORE_COUNT"),
+                    (Self::DISPATCH_PARAMETERS.0, "DISPATCH_PARAMETERS"),
                 ],
                 self.0,
             )

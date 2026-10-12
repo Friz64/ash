@@ -18,107 +18,77 @@ impl crate::vk::Result {
 }
 ///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
 impl ImageCompressionFlagsEXT {
-    pub const DEFAULT_EXT: Self = Self(ImageCompressionFlagBitsEXT::DEFAULT_EXT.0);
-    pub const FIXED_RATE_DEFAULT_EXT: Self = Self(
-        ImageCompressionFlagBitsEXT::FIXED_RATE_DEFAULT_EXT.0,
+    pub const DEFAULT: Self = Self(ImageCompressionFlagBitsEXT::DEFAULT.0);
+    pub const FIXED_RATE_DEFAULT: Self = Self(
+        ImageCompressionFlagBitsEXT::FIXED_RATE_DEFAULT.0,
     );
-    pub const FIXED_RATE_EXPLICIT_EXT: Self = Self(
-        ImageCompressionFlagBitsEXT::FIXED_RATE_EXPLICIT_EXT.0,
+    pub const FIXED_RATE_EXPLICIT: Self = Self(
+        ImageCompressionFlagBitsEXT::FIXED_RATE_EXPLICIT.0,
     );
-    pub const DISABLED_EXT: Self = Self(ImageCompressionFlagBitsEXT::DISABLED_EXT.0);
+    pub const DISABLED: Self = Self(ImageCompressionFlagBitsEXT::DISABLED.0);
 }
 ///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
 impl ImageCompressionFlagBitsEXT {
-    pub const DEFAULT_EXT: Self = Self(0);
-    pub const FIXED_RATE_DEFAULT_EXT: Self = Self(1 << 0);
-    pub const FIXED_RATE_EXPLICIT_EXT: Self = Self(1 << 1);
-    pub const DISABLED_EXT: Self = Self(1 << 2);
+    pub const DEFAULT: Self = Self(0);
+    pub const FIXED_RATE_DEFAULT: Self = Self(1 << 0);
+    pub const FIXED_RATE_EXPLICIT: Self = Self(1 << 1);
+    pub const DISABLED: Self = Self(1 << 2);
 }
 ///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
 impl ImageCompressionFixedRateFlagsEXT {
-    pub const NONE_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::NONE_EXT.0);
-    pub const _1BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_1BPC_EXT.0);
-    pub const _2BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_2BPC_EXT.0);
-    pub const _3BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_3BPC_EXT.0);
-    pub const _4BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_4BPC_EXT.0);
-    pub const _5BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_5BPC_EXT.0);
-    pub const _6BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_6BPC_EXT.0);
-    pub const _7BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_7BPC_EXT.0);
-    pub const _8BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_8BPC_EXT.0);
-    pub const _9BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_9BPC_EXT.0);
-    pub const _10BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_10BPC_EXT.0,
-    );
-    pub const _11BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_11BPC_EXT.0,
-    );
-    pub const _12BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_12BPC_EXT.0,
-    );
-    pub const _13BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_13BPC_EXT.0,
-    );
-    pub const _14BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_14BPC_EXT.0,
-    );
-    pub const _15BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_15BPC_EXT.0,
-    );
-    pub const _16BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_16BPC_EXT.0,
-    );
-    pub const _17BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_17BPC_EXT.0,
-    );
-    pub const _18BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_18BPC_EXT.0,
-    );
-    pub const _19BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_19BPC_EXT.0,
-    );
-    pub const _20BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_20BPC_EXT.0,
-    );
-    pub const _21BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_21BPC_EXT.0,
-    );
-    pub const _22BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_22BPC_EXT.0,
-    );
-    pub const _23BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_23BPC_EXT.0,
-    );
-    pub const _24BPC_EXT: Self = Self(
-        ImageCompressionFixedRateFlagBitsEXT::_24BPC_EXT.0,
-    );
+    pub const NONE: Self = Self(ImageCompressionFixedRateFlagBitsEXT::NONE.0);
+    pub const _1BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_1BPC.0);
+    pub const _2BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_2BPC.0);
+    pub const _3BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_3BPC.0);
+    pub const _4BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_4BPC.0);
+    pub const _5BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_5BPC.0);
+    pub const _6BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_6BPC.0);
+    pub const _7BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_7BPC.0);
+    pub const _8BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_8BPC.0);
+    pub const _9BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_9BPC.0);
+    pub const _10BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_10BPC.0);
+    pub const _11BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_11BPC.0);
+    pub const _12BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_12BPC.0);
+    pub const _13BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_13BPC.0);
+    pub const _14BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_14BPC.0);
+    pub const _15BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_15BPC.0);
+    pub const _16BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_16BPC.0);
+    pub const _17BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_17BPC.0);
+    pub const _18BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_18BPC.0);
+    pub const _19BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_19BPC.0);
+    pub const _20BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_20BPC.0);
+    pub const _21BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_21BPC.0);
+    pub const _22BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_22BPC.0);
+    pub const _23BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_23BPC.0);
+    pub const _24BPC: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_24BPC.0);
 }
 ///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
 impl ImageCompressionFixedRateFlagBitsEXT {
-    pub const NONE_EXT: Self = Self(0);
-    pub const _1BPC_EXT: Self = Self(1 << 0);
-    pub const _2BPC_EXT: Self = Self(1 << 1);
-    pub const _3BPC_EXT: Self = Self(1 << 2);
-    pub const _4BPC_EXT: Self = Self(1 << 3);
-    pub const _5BPC_EXT: Self = Self(1 << 4);
-    pub const _6BPC_EXT: Self = Self(1 << 5);
-    pub const _7BPC_EXT: Self = Self(1 << 6);
-    pub const _8BPC_EXT: Self = Self(1 << 7);
-    pub const _9BPC_EXT: Self = Self(1 << 8);
-    pub const _10BPC_EXT: Self = Self(1 << 9);
-    pub const _11BPC_EXT: Self = Self(1 << 10);
-    pub const _12BPC_EXT: Self = Self(1 << 11);
-    pub const _13BPC_EXT: Self = Self(1 << 12);
-    pub const _14BPC_EXT: Self = Self(1 << 13);
-    pub const _15BPC_EXT: Self = Self(1 << 14);
-    pub const _16BPC_EXT: Self = Self(1 << 15);
-    pub const _17BPC_EXT: Self = Self(1 << 16);
-    pub const _18BPC_EXT: Self = Self(1 << 17);
-    pub const _19BPC_EXT: Self = Self(1 << 18);
-    pub const _20BPC_EXT: Self = Self(1 << 19);
-    pub const _21BPC_EXT: Self = Self(1 << 20);
-    pub const _22BPC_EXT: Self = Self(1 << 21);
-    pub const _23BPC_EXT: Self = Self(1 << 22);
-    pub const _24BPC_EXT: Self = Self(1 << 23);
+    pub const NONE: Self = Self(0);
+    pub const _1BPC: Self = Self(1 << 0);
+    pub const _2BPC: Self = Self(1 << 1);
+    pub const _3BPC: Self = Self(1 << 2);
+    pub const _4BPC: Self = Self(1 << 3);
+    pub const _5BPC: Self = Self(1 << 4);
+    pub const _6BPC: Self = Self(1 << 5);
+    pub const _7BPC: Self = Self(1 << 6);
+    pub const _8BPC: Self = Self(1 << 7);
+    pub const _9BPC: Self = Self(1 << 8);
+    pub const _10BPC: Self = Self(1 << 9);
+    pub const _11BPC: Self = Self(1 << 10);
+    pub const _12BPC: Self = Self(1 << 11);
+    pub const _13BPC: Self = Self(1 << 12);
+    pub const _14BPC: Self = Self(1 << 13);
+    pub const _15BPC: Self = Self(1 << 14);
+    pub const _16BPC: Self = Self(1 << 15);
+    pub const _17BPC: Self = Self(1 << 16);
+    pub const _18BPC: Self = Self(1 << 17);
+    pub const _19BPC: Self = Self(1 << 18);
+    pub const _20BPC: Self = Self(1 << 19);
+    pub const _21BPC: Self = Self(1 << 20);
+    pub const _22BPC: Self = Self(1 << 21);
+    pub const _23BPC: Self = Self(1 << 22);
+    pub const _24BPC: Self = Self(1 << 23);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -341,10 +311,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::DEFAULT_EXT.0, "DEFAULT_EXT"),
-                    (Self::FIXED_RATE_DEFAULT_EXT.0, "FIXED_RATE_DEFAULT_EXT"),
-                    (Self::FIXED_RATE_EXPLICIT_EXT.0, "FIXED_RATE_EXPLICIT_EXT"),
-                    (Self::DISABLED_EXT.0, "DISABLED_EXT"),
+                    (Self::DEFAULT.0, "DEFAULT"),
+                    (Self::FIXED_RATE_DEFAULT.0, "FIXED_RATE_DEFAULT"),
+                    (Self::FIXED_RATE_EXPLICIT.0, "FIXED_RATE_EXPLICIT"),
+                    (Self::DISABLED.0, "DISABLED"),
                 ],
                 self.0,
             )
@@ -433,31 +403,31 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::NONE_EXT.0, "NONE_EXT"),
-                    (Self::_1BPC_EXT.0, "_1BPC_EXT"),
-                    (Self::_2BPC_EXT.0, "_2BPC_EXT"),
-                    (Self::_3BPC_EXT.0, "_3BPC_EXT"),
-                    (Self::_4BPC_EXT.0, "_4BPC_EXT"),
-                    (Self::_5BPC_EXT.0, "_5BPC_EXT"),
-                    (Self::_6BPC_EXT.0, "_6BPC_EXT"),
-                    (Self::_7BPC_EXT.0, "_7BPC_EXT"),
-                    (Self::_8BPC_EXT.0, "_8BPC_EXT"),
-                    (Self::_9BPC_EXT.0, "_9BPC_EXT"),
-                    (Self::_10BPC_EXT.0, "_10BPC_EXT"),
-                    (Self::_11BPC_EXT.0, "_11BPC_EXT"),
-                    (Self::_12BPC_EXT.0, "_12BPC_EXT"),
-                    (Self::_13BPC_EXT.0, "_13BPC_EXT"),
-                    (Self::_14BPC_EXT.0, "_14BPC_EXT"),
-                    (Self::_15BPC_EXT.0, "_15BPC_EXT"),
-                    (Self::_16BPC_EXT.0, "_16BPC_EXT"),
-                    (Self::_17BPC_EXT.0, "_17BPC_EXT"),
-                    (Self::_18BPC_EXT.0, "_18BPC_EXT"),
-                    (Self::_19BPC_EXT.0, "_19BPC_EXT"),
-                    (Self::_20BPC_EXT.0, "_20BPC_EXT"),
-                    (Self::_21BPC_EXT.0, "_21BPC_EXT"),
-                    (Self::_22BPC_EXT.0, "_22BPC_EXT"),
-                    (Self::_23BPC_EXT.0, "_23BPC_EXT"),
-                    (Self::_24BPC_EXT.0, "_24BPC_EXT"),
+                    (Self::NONE.0, "NONE"),
+                    (Self::_1BPC.0, "_1BPC"),
+                    (Self::_2BPC.0, "_2BPC"),
+                    (Self::_3BPC.0, "_3BPC"),
+                    (Self::_4BPC.0, "_4BPC"),
+                    (Self::_5BPC.0, "_5BPC"),
+                    (Self::_6BPC.0, "_6BPC"),
+                    (Self::_7BPC.0, "_7BPC"),
+                    (Self::_8BPC.0, "_8BPC"),
+                    (Self::_9BPC.0, "_9BPC"),
+                    (Self::_10BPC.0, "_10BPC"),
+                    (Self::_11BPC.0, "_11BPC"),
+                    (Self::_12BPC.0, "_12BPC"),
+                    (Self::_13BPC.0, "_13BPC"),
+                    (Self::_14BPC.0, "_14BPC"),
+                    (Self::_15BPC.0, "_15BPC"),
+                    (Self::_16BPC.0, "_16BPC"),
+                    (Self::_17BPC.0, "_17BPC"),
+                    (Self::_18BPC.0, "_18BPC"),
+                    (Self::_19BPC.0, "_19BPC"),
+                    (Self::_20BPC.0, "_20BPC"),
+                    (Self::_21BPC.0, "_21BPC"),
+                    (Self::_22BPC.0, "_22BPC"),
+                    (Self::_23BPC.0, "_23BPC"),
+                    (Self::_24BPC.0, "_24BPC"),
                 ],
                 self.0,
             )

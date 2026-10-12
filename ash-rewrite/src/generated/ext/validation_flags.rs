@@ -8,8 +8,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_validation_flags](crate::ext::validation_flags)
 impl ValidationCheckEXT {
-    pub const ALL_EXT: Self = Self(0);
-    pub const SHADERS_EXT: Self = Self(1);
+    pub const ALL: Self = Self(0);
+    pub const SHADERS: Self = Self(1);
 }
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_flags";
@@ -59,8 +59,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for ValidationCheckEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::ALL_EXT => Some("ALL_EXT"),
-                Self::SHADERS_EXT => Some("SHADERS_EXT"),
+                Self::ALL => Some("ALL"),
+                Self::SHADERS => Some("SHADERS"),
                 _ => None,
             } {
                 f.write_str(x)

@@ -9,25 +9,25 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_device_diagnostics_config](crate::nv::device_diagnostics_config)
 impl DeviceDiagnosticsConfigFlagsNV {
-    pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(
-        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_DEBUG_INFO_NV.0,
+    pub const ENABLE_SHADER_DEBUG_INFO: Self = Self(
+        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_DEBUG_INFO.0,
     );
-    pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(
-        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_RESOURCE_TRACKING_NV.0,
+    pub const ENABLE_RESOURCE_TRACKING: Self = Self(
+        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_RESOURCE_TRACKING.0,
     );
-    pub const ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(
-        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_AUTOMATIC_CHECKPOINTS_NV.0,
+    pub const ENABLE_AUTOMATIC_CHECKPOINTS: Self = Self(
+        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_AUTOMATIC_CHECKPOINTS.0,
     );
-    pub const ENABLE_SHADER_ERROR_REPORTING_NV: Self = Self(
-        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_ERROR_REPORTING_NV.0,
+    pub const ENABLE_SHADER_ERROR_REPORTING: Self = Self(
+        DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_ERROR_REPORTING.0,
     );
 }
 ///Provided by [VK_NV_device_diagnostics_config](crate::nv::device_diagnostics_config)
 impl DeviceDiagnosticsConfigFlagBitsNV {
-    pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(1 << 0);
-    pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(1 << 1);
-    pub const ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(1 << 2);
-    pub const ENABLE_SHADER_ERROR_REPORTING_NV: Self = Self(1 << 3);
+    pub const ENABLE_SHADER_DEBUG_INFO: Self = Self(1 << 0);
+    pub const ENABLE_RESOURCE_TRACKING: Self = Self(1 << 1);
+    pub const ENABLE_AUTOMATIC_CHECKPOINTS: Self = Self(1 << 2);
+    pub const ENABLE_SHADER_ERROR_REPORTING: Self = Self(1 << 3);
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NV_device_diagnostics_config";
@@ -112,15 +112,15 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::ENABLE_SHADER_DEBUG_INFO_NV.0, "ENABLE_SHADER_DEBUG_INFO_NV"),
-                    (Self::ENABLE_RESOURCE_TRACKING_NV.0, "ENABLE_RESOURCE_TRACKING_NV"),
+                    (Self::ENABLE_SHADER_DEBUG_INFO.0, "ENABLE_SHADER_DEBUG_INFO"),
+                    (Self::ENABLE_RESOURCE_TRACKING.0, "ENABLE_RESOURCE_TRACKING"),
                     (
-                        Self::ENABLE_AUTOMATIC_CHECKPOINTS_NV.0,
-                        "ENABLE_AUTOMATIC_CHECKPOINTS_NV",
+                        Self::ENABLE_AUTOMATIC_CHECKPOINTS.0,
+                        "ENABLE_AUTOMATIC_CHECKPOINTS",
                     ),
                     (
-                        Self::ENABLE_SHADER_ERROR_REPORTING_NV.0,
-                        "ENABLE_SHADER_ERROR_REPORTING_NV",
+                        Self::ENABLE_SHADER_ERROR_REPORTING.0,
+                        "ENABLE_SHADER_ERROR_REPORTING",
                     ),
                 ],
                 self.0,

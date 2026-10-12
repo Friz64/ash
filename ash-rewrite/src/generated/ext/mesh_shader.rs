@@ -13,12 +13,12 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
 impl crate::vk::IndirectCommandsTokenTypeNV {
-    pub const DRAW_MESH_TASKS_NV: Self = Self(1000328000);
+    pub const DRAW_MESH_TASKS: Self = Self(1000328000);
 }
 ///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
 impl crate::vk::IndirectCommandsTokenTypeEXT {
-    pub const DRAW_MESH_TASKS_EXT: Self = Self(1000328000);
-    pub const DRAW_MESH_TASKS_COUNT_EXT: Self = Self(1000328001);
+    pub const DRAW_MESH_TASKS: Self = Self(1000328000);
+    pub const DRAW_MESH_TASKS_COUNT: Self = Self(1000328001);
 }
 ///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
 impl crate::vk::ShaderStageFlags {

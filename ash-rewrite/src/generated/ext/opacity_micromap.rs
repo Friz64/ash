@@ -28,30 +28,30 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl MicromapTypeEXT {
-    pub const OPACITY_MICROMAP_EXT: Self = Self(0);
+    pub const OPACITY_MICROMAP: Self = Self(0);
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl CopyMicromapModeEXT {
-    pub const CLONE_EXT: Self = Self(0);
-    pub const SERIALIZE_EXT: Self = Self(1);
-    pub const DESERIALIZE_EXT: Self = Self(2);
-    pub const COMPACT_EXT: Self = Self(3);
+    pub const CLONE: Self = Self(0);
+    pub const SERIALIZE: Self = Self(1);
+    pub const DESERIALIZE: Self = Self(2);
+    pub const COMPACT: Self = Self(3);
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl BuildMicromapModeEXT {
-    pub const BUILD_EXT: Self = Self(0);
+    pub const BUILD: Self = Self(0);
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl crate::vk::OpacityMicromapFormatKHR {
-    pub const _2_STATE_EXT: Self = Self::_2_STATE_KHR;
-    pub const _4_STATE_EXT: Self = Self::_4_STATE_KHR;
+    pub const _2_STATE_EXT: Self = Self::_2_STATE;
+    pub const _4_STATE_EXT: Self = Self::_4_STATE;
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl crate::vk::OpacityMicromapSpecialIndexKHR {
-    pub const FULLY_TRANSPARENT_EXT: Self = Self::FULLY_TRANSPARENT_KHR;
-    pub const FULLY_OPAQUE_EXT: Self = Self::FULLY_OPAQUE_KHR;
-    pub const FULLY_UNKNOWN_TRANSPARENT_EXT: Self = Self::FULLY_UNKNOWN_TRANSPARENT_KHR;
-    pub const FULLY_UNKNOWN_OPAQUE_EXT: Self = Self::FULLY_UNKNOWN_OPAQUE_KHR;
+    pub const FULLY_TRANSPARENT_EXT: Self = Self::FULLY_TRANSPARENT;
+    pub const FULLY_OPAQUE_EXT: Self = Self::FULLY_OPAQUE;
+    pub const FULLY_UNKNOWN_TRANSPARENT_EXT: Self = Self::FULLY_UNKNOWN_TRANSPARENT;
+    pub const FULLY_UNKNOWN_OPAQUE_EXT: Self = Self::FULLY_UNKNOWN_OPAQUE;
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl crate::vk::BufferUsageFlags {
@@ -88,8 +88,8 @@ impl crate::vk::GeometryInstanceFlagsKHR {
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl crate::vk::GeometryInstanceFlagBitsKHR {
-    pub const FORCE_OPACITY_MICROMAP_2_STATE_EXT: Self = Self::FORCE_OPACITY_MICROMAP_2_STATE_KHR;
-    pub const DISABLE_OPACITY_MICROMAPS_EXT: Self = Self::DISABLE_OPACITY_MICROMAPS_KHR;
+    pub const FORCE_OPACITY_MICROMAP_2_STATE_EXT: Self = Self::FORCE_OPACITY_MICROMAP_2_STATE;
+    pub const DISABLE_OPACITY_MICROMAPS_EXT: Self = Self::DISABLE_OPACITY_MICROMAPS;
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl crate::vk::BuildAccelerationStructureFlagsKHR {
@@ -108,8 +108,8 @@ impl crate::vk::BuildAccelerationStructureFlagsKHR {
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
-    pub const ALLOW_OPACITY_MICROMAP_UPDATE_EXT: Self = Self::ALLOW_OPACITY_MICROMAP_UPDATE_KHR;
-    pub const ALLOW_DISABLE_OPACITY_MICROMAPS_EXT: Self = Self::ALLOW_DISABLE_OPACITY_MICROMAPS_KHR;
+    pub const ALLOW_OPACITY_MICROMAP_UPDATE_EXT: Self = Self::ALLOW_OPACITY_MICROMAP_UPDATE;
+    pub const ALLOW_DISABLE_OPACITY_MICROMAPS_EXT: Self = Self::ALLOW_DISABLE_OPACITY_MICROMAPS;
     pub const ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT: Self = Self(1 << 8);
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
@@ -138,31 +138,31 @@ impl crate::vk::PipelineStageFlagBits2 {
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl BuildMicromapFlagsEXT {
-    pub const PREFER_FAST_TRACE_EXT: Self = Self(
-        BuildMicromapFlagBitsEXT::PREFER_FAST_TRACE_EXT.0,
+    pub const PREFER_FAST_TRACE: Self = Self(
+        BuildMicromapFlagBitsEXT::PREFER_FAST_TRACE.0,
     );
-    pub const PREFER_FAST_BUILD_EXT: Self = Self(
-        BuildMicromapFlagBitsEXT::PREFER_FAST_BUILD_EXT.0,
+    pub const PREFER_FAST_BUILD: Self = Self(
+        BuildMicromapFlagBitsEXT::PREFER_FAST_BUILD.0,
     );
-    pub const ALLOW_COMPACTION_EXT: Self = Self(
-        BuildMicromapFlagBitsEXT::ALLOW_COMPACTION_EXT.0,
+    pub const ALLOW_COMPACTION: Self = Self(
+        BuildMicromapFlagBitsEXT::ALLOW_COMPACTION.0,
     );
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl BuildMicromapFlagBitsEXT {
-    pub const PREFER_FAST_TRACE_EXT: Self = Self(1 << 0);
-    pub const PREFER_FAST_BUILD_EXT: Self = Self(1 << 1);
-    pub const ALLOW_COMPACTION_EXT: Self = Self(1 << 2);
+    pub const PREFER_FAST_TRACE: Self = Self(1 << 0);
+    pub const PREFER_FAST_BUILD: Self = Self(1 << 1);
+    pub const ALLOW_COMPACTION: Self = Self(1 << 2);
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl MicromapCreateFlagsEXT {
-    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self(
-        MicromapCreateFlagBitsEXT::DEVICE_ADDRESS_CAPTURE_REPLAY_EXT.0,
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(
+        MicromapCreateFlagBitsEXT::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
     );
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl MicromapCreateFlagBitsEXT {
-    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self(1 << 0);
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 0);
 }
 ///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl crate::vk::PipelineCreateFlags2 {
@@ -1233,7 +1233,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for MicromapTypeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::OPACITY_MICROMAP_EXT => Some("OPACITY_MICROMAP_EXT"),
+                Self::OPACITY_MICROMAP => Some("OPACITY_MICROMAP"),
                 #[cfg(feature = "provisional")]
                 Self::DISPLACEMENT_MICROMAP_NV => Some("DISPLACEMENT_MICROMAP_NV"),
                 _ => None,
@@ -1261,10 +1261,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for CopyMicromapModeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::CLONE_EXT => Some("CLONE_EXT"),
-                Self::SERIALIZE_EXT => Some("SERIALIZE_EXT"),
-                Self::DESERIALIZE_EXT => Some("DESERIALIZE_EXT"),
-                Self::COMPACT_EXT => Some("COMPACT_EXT"),
+                Self::CLONE => Some("CLONE"),
+                Self::SERIALIZE => Some("SERIALIZE"),
+                Self::DESERIALIZE => Some("DESERIALIZE"),
+                Self::COMPACT => Some("COMPACT"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1290,7 +1290,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for BuildMicromapModeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::BUILD_EXT => Some("BUILD_EXT"),
+                Self::BUILD => Some("BUILD"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1320,9 +1320,9 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::PREFER_FAST_TRACE_EXT.0, "PREFER_FAST_TRACE_EXT"),
-                    (Self::PREFER_FAST_BUILD_EXT.0, "PREFER_FAST_BUILD_EXT"),
-                    (Self::ALLOW_COMPACTION_EXT.0, "ALLOW_COMPACTION_EXT"),
+                    (Self::PREFER_FAST_TRACE.0, "PREFER_FAST_TRACE"),
+                    (Self::PREFER_FAST_BUILD.0, "PREFER_FAST_BUILD"),
+                    (Self::ALLOW_COMPACTION.0, "ALLOW_COMPACTION"),
                 ],
                 self.0,
             )
@@ -1412,8 +1412,8 @@ pub(crate) mod items {
                 f,
                 &[
                     (
-                        Self::DEVICE_ADDRESS_CAPTURE_REPLAY_EXT.0,
-                        "DEVICE_ADDRESS_CAPTURE_REPLAY_EXT",
+                        Self::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
+                        "DEVICE_ADDRESS_CAPTURE_REPLAY",
                     ),
                 ],
                 self.0,

@@ -8,14 +8,14 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_layer_settings](crate::ext::layer_settings)
 impl LayerSettingTypeEXT {
-    pub const BOOL32_EXT: Self = Self(0);
-    pub const INT32_EXT: Self = Self(1);
-    pub const INT64_EXT: Self = Self(2);
-    pub const UINT32_EXT: Self = Self(3);
-    pub const UINT64_EXT: Self = Self(4);
-    pub const FLOAT32_EXT: Self = Self(5);
-    pub const FLOAT64_EXT: Self = Self(6);
-    pub const STRING_EXT: Self = Self(7);
+    pub const BOOL32: Self = Self(0);
+    pub const INT32: Self = Self(1);
+    pub const INT64: Self = Self(2);
+    pub const UINT32: Self = Self(3);
+    pub const UINT64: Self = Self(4);
+    pub const FLOAT32: Self = Self(5);
+    pub const FLOAT64: Self = Self(6);
+    pub const STRING: Self = Self(7);
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_layer_settings";
@@ -111,14 +111,14 @@ pub(crate) mod items {
     impl core::fmt::Debug for LayerSettingTypeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::BOOL32_EXT => Some("BOOL32_EXT"),
-                Self::INT32_EXT => Some("INT32_EXT"),
-                Self::INT64_EXT => Some("INT64_EXT"),
-                Self::UINT32_EXT => Some("UINT32_EXT"),
-                Self::UINT64_EXT => Some("UINT64_EXT"),
-                Self::FLOAT32_EXT => Some("FLOAT32_EXT"),
-                Self::FLOAT64_EXT => Some("FLOAT64_EXT"),
-                Self::STRING_EXT => Some("STRING_EXT"),
+                Self::BOOL32 => Some("BOOL32"),
+                Self::INT32 => Some("INT32"),
+                Self::INT64 => Some("INT64"),
+                Self::UINT32 => Some("UINT32"),
+                Self::UINT64 => Some("UINT64"),
+                Self::FLOAT32 => Some("FLOAT32"),
+                Self::FLOAT64 => Some("FLOAT64"),
+                Self::STRING => Some("STRING"),
                 _ => None,
             } {
                 f.write_str(x)

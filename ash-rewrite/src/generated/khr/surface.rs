@@ -13,64 +13,60 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_KHR_surface](crate::khr::surface)
 impl PresentModeKHR {
-    pub const IMMEDIATE_KHR: Self = Self(0);
-    pub const MAILBOX_KHR: Self = Self(1);
-    pub const FIFO_KHR: Self = Self(2);
-    pub const FIFO_RELAXED_KHR: Self = Self(3);
+    pub const IMMEDIATE: Self = Self(0);
+    pub const MAILBOX: Self = Self(1);
+    pub const FIFO: Self = Self(2);
+    pub const FIFO_RELAXED: Self = Self(3);
 }
 ///Provided by [VK_KHR_surface](crate::khr::surface)
 impl ColorSpaceKHR {
-    pub const SRGB_NONLINEAR_KHR: Self = Self(0);
+    pub const SRGB_NONLINEAR: Self = Self(0);
 }
 ///Provided by [VK_KHR_surface](crate::khr::surface)
 impl CompositeAlphaFlagsKHR {
-    pub const OPAQUE_KHR: Self = Self(CompositeAlphaFlagBitsKHR::OPAQUE_KHR.0);
-    pub const PRE_MULTIPLIED_KHR: Self = Self(
-        CompositeAlphaFlagBitsKHR::PRE_MULTIPLIED_KHR.0,
-    );
-    pub const POST_MULTIPLIED_KHR: Self = Self(
-        CompositeAlphaFlagBitsKHR::POST_MULTIPLIED_KHR.0,
-    );
-    pub const INHERIT_KHR: Self = Self(CompositeAlphaFlagBitsKHR::INHERIT_KHR.0);
+    pub const OPAQUE: Self = Self(CompositeAlphaFlagBitsKHR::OPAQUE.0);
+    pub const PRE_MULTIPLIED: Self = Self(CompositeAlphaFlagBitsKHR::PRE_MULTIPLIED.0);
+    pub const POST_MULTIPLIED: Self = Self(CompositeAlphaFlagBitsKHR::POST_MULTIPLIED.0);
+    pub const INHERIT: Self = Self(CompositeAlphaFlagBitsKHR::INHERIT.0);
 }
 ///Provided by [VK_KHR_surface](crate::khr::surface)
 impl CompositeAlphaFlagBitsKHR {
-    pub const OPAQUE_KHR: Self = Self(1 << 0);
-    pub const PRE_MULTIPLIED_KHR: Self = Self(1 << 1);
-    pub const POST_MULTIPLIED_KHR: Self = Self(1 << 2);
-    pub const INHERIT_KHR: Self = Self(1 << 3);
+    pub const OPAQUE: Self = Self(1 << 0);
+    pub const PRE_MULTIPLIED: Self = Self(1 << 1);
+    pub const POST_MULTIPLIED: Self = Self(1 << 2);
+    pub const INHERIT: Self = Self(1 << 3);
 }
 ///Provided by [VK_KHR_surface](crate::khr::surface)
 impl SurfaceTransformFlagsKHR {
-    pub const IDENTITY_KHR: Self = Self(SurfaceTransformFlagBitsKHR::IDENTITY_KHR.0);
-    pub const ROTATE_90_KHR: Self = Self(SurfaceTransformFlagBitsKHR::ROTATE_90_KHR.0);
-    pub const ROTATE_180_KHR: Self = Self(SurfaceTransformFlagBitsKHR::ROTATE_180_KHR.0);
-    pub const ROTATE_270_KHR: Self = Self(SurfaceTransformFlagBitsKHR::ROTATE_270_KHR.0);
-    pub const HORIZONTAL_MIRROR_KHR: Self = Self(
-        SurfaceTransformFlagBitsKHR::HORIZONTAL_MIRROR_KHR.0,
+    pub const IDENTITY: Self = Self(SurfaceTransformFlagBitsKHR::IDENTITY.0);
+    pub const ROTATE_90: Self = Self(SurfaceTransformFlagBitsKHR::ROTATE_90.0);
+    pub const ROTATE_180: Self = Self(SurfaceTransformFlagBitsKHR::ROTATE_180.0);
+    pub const ROTATE_270: Self = Self(SurfaceTransformFlagBitsKHR::ROTATE_270.0);
+    pub const HORIZONTAL_MIRROR: Self = Self(
+        SurfaceTransformFlagBitsKHR::HORIZONTAL_MIRROR.0,
     );
-    pub const HORIZONTAL_MIRROR_ROTATE_90_KHR: Self = Self(
-        SurfaceTransformFlagBitsKHR::HORIZONTAL_MIRROR_ROTATE_90_KHR.0,
+    pub const HORIZONTAL_MIRROR_ROTATE_90: Self = Self(
+        SurfaceTransformFlagBitsKHR::HORIZONTAL_MIRROR_ROTATE_90.0,
     );
-    pub const HORIZONTAL_MIRROR_ROTATE_180_KHR: Self = Self(
-        SurfaceTransformFlagBitsKHR::HORIZONTAL_MIRROR_ROTATE_180_KHR.0,
+    pub const HORIZONTAL_MIRROR_ROTATE_180: Self = Self(
+        SurfaceTransformFlagBitsKHR::HORIZONTAL_MIRROR_ROTATE_180.0,
     );
-    pub const HORIZONTAL_MIRROR_ROTATE_270_KHR: Self = Self(
-        SurfaceTransformFlagBitsKHR::HORIZONTAL_MIRROR_ROTATE_270_KHR.0,
+    pub const HORIZONTAL_MIRROR_ROTATE_270: Self = Self(
+        SurfaceTransformFlagBitsKHR::HORIZONTAL_MIRROR_ROTATE_270.0,
     );
-    pub const INHERIT_KHR: Self = Self(SurfaceTransformFlagBitsKHR::INHERIT_KHR.0);
+    pub const INHERIT: Self = Self(SurfaceTransformFlagBitsKHR::INHERIT.0);
 }
 ///Provided by [VK_KHR_surface](crate::khr::surface)
 impl SurfaceTransformFlagBitsKHR {
-    pub const IDENTITY_KHR: Self = Self(1 << 0);
-    pub const ROTATE_90_KHR: Self = Self(1 << 1);
-    pub const ROTATE_180_KHR: Self = Self(1 << 2);
-    pub const ROTATE_270_KHR: Self = Self(1 << 3);
-    pub const HORIZONTAL_MIRROR_KHR: Self = Self(1 << 4);
-    pub const HORIZONTAL_MIRROR_ROTATE_90_KHR: Self = Self(1 << 5);
-    pub const HORIZONTAL_MIRROR_ROTATE_180_KHR: Self = Self(1 << 6);
-    pub const HORIZONTAL_MIRROR_ROTATE_270_KHR: Self = Self(1 << 7);
-    pub const INHERIT_KHR: Self = Self(1 << 8);
+    pub const IDENTITY: Self = Self(1 << 0);
+    pub const ROTATE_90: Self = Self(1 << 1);
+    pub const ROTATE_180: Self = Self(1 << 2);
+    pub const ROTATE_270: Self = Self(1 << 3);
+    pub const HORIZONTAL_MIRROR: Self = Self(1 << 4);
+    pub const HORIZONTAL_MIRROR_ROTATE_90: Self = Self(1 << 5);
+    pub const HORIZONTAL_MIRROR_ROTATE_180: Self = Self(1 << 6);
+    pub const HORIZONTAL_MIRROR_ROTATE_270: Self = Self(1 << 7);
+    pub const INHERIT: Self = Self(1 << 8);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -383,15 +379,13 @@ pub(crate) mod items {
     impl core::fmt::Debug for PresentModeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::IMMEDIATE_KHR => Some("IMMEDIATE_KHR"),
-                Self::MAILBOX_KHR => Some("MAILBOX_KHR"),
-                Self::FIFO_KHR => Some("FIFO_KHR"),
-                Self::FIFO_RELAXED_KHR => Some("FIFO_RELAXED_KHR"),
-                Self::SHARED_DEMAND_REFRESH_KHR => Some("SHARED_DEMAND_REFRESH_KHR"),
-                Self::SHARED_CONTINUOUS_REFRESH_KHR => {
-                    Some("SHARED_CONTINUOUS_REFRESH_KHR")
-                }
-                Self::FIFO_LATEST_READY_KHR => Some("FIFO_LATEST_READY_KHR"),
+                Self::IMMEDIATE => Some("IMMEDIATE"),
+                Self::MAILBOX => Some("MAILBOX"),
+                Self::FIFO => Some("FIFO"),
+                Self::FIFO_RELAXED => Some("FIFO_RELAXED"),
+                Self::SHARED_DEMAND_REFRESH => Some("SHARED_DEMAND_REFRESH"),
+                Self::SHARED_CONTINUOUS_REFRESH => Some("SHARED_CONTINUOUS_REFRESH"),
+                Self::FIFO_LATEST_READY => Some("FIFO_LATEST_READY"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -417,7 +411,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for ColorSpaceKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::SRGB_NONLINEAR_KHR => Some("SRGB_NONLINEAR_KHR"),
+                Self::SRGB_NONLINEAR => Some("SRGB_NONLINEAR"),
                 Self::DISPLAY_P3_NONLINEAR_EXT => Some("DISPLAY_P3_NONLINEAR_EXT"),
                 Self::EXTENDED_SRGB_LINEAR_EXT => Some("EXTENDED_SRGB_LINEAR_EXT"),
                 Self::DISPLAY_P3_LINEAR_EXT => Some("DISPLAY_P3_LINEAR_EXT"),
@@ -459,10 +453,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::OPAQUE_KHR.0, "OPAQUE_KHR"),
-                    (Self::PRE_MULTIPLIED_KHR.0, "PRE_MULTIPLIED_KHR"),
-                    (Self::POST_MULTIPLIED_KHR.0, "POST_MULTIPLIED_KHR"),
-                    (Self::INHERIT_KHR.0, "INHERIT_KHR"),
+                    (Self::OPAQUE.0, "OPAQUE"),
+                    (Self::PRE_MULTIPLIED.0, "PRE_MULTIPLIED"),
+                    (Self::POST_MULTIPLIED.0, "POST_MULTIPLIED"),
+                    (Self::INHERIT.0, "INHERIT"),
                 ],
                 self.0,
             )
@@ -551,24 +545,21 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::IDENTITY_KHR.0, "IDENTITY_KHR"),
-                    (Self::ROTATE_90_KHR.0, "ROTATE_90_KHR"),
-                    (Self::ROTATE_180_KHR.0, "ROTATE_180_KHR"),
-                    (Self::ROTATE_270_KHR.0, "ROTATE_270_KHR"),
-                    (Self::HORIZONTAL_MIRROR_KHR.0, "HORIZONTAL_MIRROR_KHR"),
+                    (Self::IDENTITY.0, "IDENTITY"),
+                    (Self::ROTATE_90.0, "ROTATE_90"),
+                    (Self::ROTATE_180.0, "ROTATE_180"),
+                    (Self::ROTATE_270.0, "ROTATE_270"),
+                    (Self::HORIZONTAL_MIRROR.0, "HORIZONTAL_MIRROR"),
+                    (Self::HORIZONTAL_MIRROR_ROTATE_90.0, "HORIZONTAL_MIRROR_ROTATE_90"),
                     (
-                        Self::HORIZONTAL_MIRROR_ROTATE_90_KHR.0,
-                        "HORIZONTAL_MIRROR_ROTATE_90_KHR",
+                        Self::HORIZONTAL_MIRROR_ROTATE_180.0,
+                        "HORIZONTAL_MIRROR_ROTATE_180",
                     ),
                     (
-                        Self::HORIZONTAL_MIRROR_ROTATE_180_KHR.0,
-                        "HORIZONTAL_MIRROR_ROTATE_180_KHR",
+                        Self::HORIZONTAL_MIRROR_ROTATE_270.0,
+                        "HORIZONTAL_MIRROR_ROTATE_270",
                     ),
-                    (
-                        Self::HORIZONTAL_MIRROR_ROTATE_270_KHR.0,
-                        "HORIZONTAL_MIRROR_ROTATE_270_KHR",
-                    ),
-                    (Self::INHERIT_KHR.0, "INHERIT_KHR"),
+                    (Self::INHERIT.0, "INHERIT"),
                 ],
                 self.0,
             )

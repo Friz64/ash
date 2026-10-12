@@ -13,9 +13,9 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_conservative_rasterization](crate::ext::conservative_rasterization)
 impl ConservativeRasterizationModeEXT {
-    pub const DISABLED_EXT: Self = Self(0);
-    pub const OVERESTIMATE_EXT: Self = Self(1);
-    pub const UNDERESTIMATE_EXT: Self = Self(2);
+    pub const DISABLED: Self = Self(0);
+    pub const OVERESTIMATE: Self = Self(1);
+    pub const UNDERESTIMATE: Self = Self(2);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_conservative_rasterization";
@@ -193,9 +193,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for ConservativeRasterizationModeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DISABLED_EXT => Some("DISABLED_EXT"),
-                Self::OVERESTIMATE_EXT => Some("OVERESTIMATE_EXT"),
-                Self::UNDERESTIMATE_EXT => Some("UNDERESTIMATE_EXT"),
+                Self::DISABLED => Some("DISABLED"),
+                Self::OVERESTIMATE => Some("OVERESTIMATE"),
+                Self::UNDERESTIMATE => Some("UNDERESTIMATE"),
                 _ => None,
             } {
                 f.write_str(x)

@@ -18,46 +18,46 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl PerformanceCounterScopeKHR {
-    pub const COMMAND_BUFFER_KHR: Self = Self(0);
-    pub const RENDER_PASS_KHR: Self = Self(1);
-    pub const COMMAND_KHR: Self = Self(2);
+    pub const COMMAND_BUFFER: Self = Self(0);
+    pub const RENDER_PASS: Self = Self(1);
+    pub const COMMAND: Self = Self(2);
 }
 ///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl PerformanceCounterUnitKHR {
-    pub const GENERIC_KHR: Self = Self(0);
-    pub const PERCENTAGE_KHR: Self = Self(1);
-    pub const NANOSECONDS_KHR: Self = Self(2);
-    pub const BYTES_KHR: Self = Self(3);
-    pub const BYTES_PER_SECOND_KHR: Self = Self(4);
-    pub const KELVIN_KHR: Self = Self(5);
-    pub const WATTS_KHR: Self = Self(6);
-    pub const VOLTS_KHR: Self = Self(7);
-    pub const AMPS_KHR: Self = Self(8);
-    pub const HERTZ_KHR: Self = Self(9);
-    pub const CYCLES_KHR: Self = Self(10);
+    pub const GENERIC: Self = Self(0);
+    pub const PERCENTAGE: Self = Self(1);
+    pub const NANOSECONDS: Self = Self(2);
+    pub const BYTES: Self = Self(3);
+    pub const BYTES_PER_SECOND: Self = Self(4);
+    pub const KELVIN: Self = Self(5);
+    pub const WATTS: Self = Self(6);
+    pub const VOLTS: Self = Self(7);
+    pub const AMPS: Self = Self(8);
+    pub const HERTZ: Self = Self(9);
+    pub const CYCLES: Self = Self(10);
 }
 ///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl PerformanceCounterStorageKHR {
-    pub const INT32_KHR: Self = Self(0);
-    pub const INT64_KHR: Self = Self(1);
-    pub const UINT32_KHR: Self = Self(2);
-    pub const UINT64_KHR: Self = Self(3);
-    pub const FLOAT32_KHR: Self = Self(4);
-    pub const FLOAT64_KHR: Self = Self(5);
+    pub const INT32: Self = Self(0);
+    pub const INT64: Self = Self(1);
+    pub const UINT32: Self = Self(2);
+    pub const UINT64: Self = Self(3);
+    pub const FLOAT32: Self = Self(4);
+    pub const FLOAT64: Self = Self(5);
 }
 ///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl PerformanceCounterDescriptionFlagsKHR {
-    pub const PERFORMANCE_IMPACTING_KHR: Self = Self(
-        PerformanceCounterDescriptionFlagBitsKHR::PERFORMANCE_IMPACTING_KHR.0,
+    pub const PERFORMANCE_IMPACTING: Self = Self(
+        PerformanceCounterDescriptionFlagBitsKHR::PERFORMANCE_IMPACTING.0,
     );
-    pub const CONCURRENTLY_IMPACTED_KHR: Self = Self(
-        PerformanceCounterDescriptionFlagBitsKHR::CONCURRENTLY_IMPACTED_KHR.0,
+    pub const CONCURRENTLY_IMPACTED: Self = Self(
+        PerformanceCounterDescriptionFlagBitsKHR::CONCURRENTLY_IMPACTED.0,
     );
 }
 ///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl PerformanceCounterDescriptionFlagBitsKHR {
-    pub const PERFORMANCE_IMPACTING_KHR: Self = Self(1 << 0);
-    pub const CONCURRENTLY_IMPACTED_KHR: Self = Self(1 << 1);
+    pub const PERFORMANCE_IMPACTING: Self = Self(1 << 0);
+    pub const CONCURRENTLY_IMPACTED: Self = Self(1 << 1);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -601,9 +601,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for PerformanceCounterScopeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::COMMAND_BUFFER_KHR => Some("COMMAND_BUFFER_KHR"),
-                Self::RENDER_PASS_KHR => Some("RENDER_PASS_KHR"),
-                Self::COMMAND_KHR => Some("COMMAND_KHR"),
+                Self::COMMAND_BUFFER => Some("COMMAND_BUFFER"),
+                Self::RENDER_PASS => Some("RENDER_PASS"),
+                Self::COMMAND => Some("COMMAND"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -629,17 +629,17 @@ pub(crate) mod items {
     impl core::fmt::Debug for PerformanceCounterUnitKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::GENERIC_KHR => Some("GENERIC_KHR"),
-                Self::PERCENTAGE_KHR => Some("PERCENTAGE_KHR"),
-                Self::NANOSECONDS_KHR => Some("NANOSECONDS_KHR"),
-                Self::BYTES_KHR => Some("BYTES_KHR"),
-                Self::BYTES_PER_SECOND_KHR => Some("BYTES_PER_SECOND_KHR"),
-                Self::KELVIN_KHR => Some("KELVIN_KHR"),
-                Self::WATTS_KHR => Some("WATTS_KHR"),
-                Self::VOLTS_KHR => Some("VOLTS_KHR"),
-                Self::AMPS_KHR => Some("AMPS_KHR"),
-                Self::HERTZ_KHR => Some("HERTZ_KHR"),
-                Self::CYCLES_KHR => Some("CYCLES_KHR"),
+                Self::GENERIC => Some("GENERIC"),
+                Self::PERCENTAGE => Some("PERCENTAGE"),
+                Self::NANOSECONDS => Some("NANOSECONDS"),
+                Self::BYTES => Some("BYTES"),
+                Self::BYTES_PER_SECOND => Some("BYTES_PER_SECOND"),
+                Self::KELVIN => Some("KELVIN"),
+                Self::WATTS => Some("WATTS"),
+                Self::VOLTS => Some("VOLTS"),
+                Self::AMPS => Some("AMPS"),
+                Self::HERTZ => Some("HERTZ"),
+                Self::CYCLES => Some("CYCLES"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -665,12 +665,12 @@ pub(crate) mod items {
     impl core::fmt::Debug for PerformanceCounterStorageKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::INT32_KHR => Some("INT32_KHR"),
-                Self::INT64_KHR => Some("INT64_KHR"),
-                Self::UINT32_KHR => Some("UINT32_KHR"),
-                Self::UINT64_KHR => Some("UINT64_KHR"),
-                Self::FLOAT32_KHR => Some("FLOAT32_KHR"),
-                Self::FLOAT64_KHR => Some("FLOAT64_KHR"),
+                Self::INT32 => Some("INT32"),
+                Self::INT64 => Some("INT64"),
+                Self::UINT32 => Some("UINT32"),
+                Self::UINT64 => Some("UINT64"),
+                Self::FLOAT32 => Some("FLOAT32"),
+                Self::FLOAT64 => Some("FLOAT64"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -698,8 +698,8 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::PERFORMANCE_IMPACTING_KHR.0, "PERFORMANCE_IMPACTING_KHR"),
-                    (Self::CONCURRENTLY_IMPACTED_KHR.0, "CONCURRENTLY_IMPACTED_KHR"),
+                    (Self::PERFORMANCE_IMPACTING.0, "PERFORMANCE_IMPACTING"),
+                    (Self::CONCURRENTLY_IMPACTED.0, "CONCURRENTLY_IMPACTED"),
                 ],
                 self.0,
             )

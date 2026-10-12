@@ -18,100 +18,100 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl GpaPerfBlockAMD {
-    pub const CPF_AMD: Self = Self(0);
-    pub const IA_AMD: Self = Self(1);
-    pub const VGT_AMD: Self = Self(2);
-    pub const PA_AMD: Self = Self(3);
-    pub const SC_AMD: Self = Self(4);
-    pub const SPI_AMD: Self = Self(5);
-    pub const SQ_AMD: Self = Self(6);
-    pub const SX_AMD: Self = Self(7);
-    pub const TA_AMD: Self = Self(8);
-    pub const TD_AMD: Self = Self(9);
-    pub const TCP_AMD: Self = Self(10);
-    pub const TCC_AMD: Self = Self(11);
-    pub const TCA_AMD: Self = Self(12);
-    pub const DB_AMD: Self = Self(13);
-    pub const CB_AMD: Self = Self(14);
-    pub const GDS_AMD: Self = Self(15);
-    pub const SRBM_AMD: Self = Self(16);
-    pub const GRBM_AMD: Self = Self(17);
-    pub const GRBM_SE_AMD: Self = Self(18);
-    pub const RLC_AMD: Self = Self(19);
-    pub const DMA_AMD: Self = Self(20);
-    pub const MC_AMD: Self = Self(21);
-    pub const CPG_AMD: Self = Self(22);
-    pub const CPC_AMD: Self = Self(23);
-    pub const WD_AMD: Self = Self(24);
-    pub const TCS_AMD: Self = Self(25);
-    pub const ATC_AMD: Self = Self(26);
-    pub const ATC_L2_AMD: Self = Self(27);
-    pub const MC_VM_L2_AMD: Self = Self(28);
-    pub const EA_AMD: Self = Self(29);
-    pub const RPB_AMD: Self = Self(30);
-    pub const RMI_AMD: Self = Self(31);
-    pub const UMCCH_AMD: Self = Self(32);
-    pub const GE_AMD: Self = Self(33);
-    pub const GL1A_AMD: Self = Self(34);
-    pub const GL1C_AMD: Self = Self(35);
-    pub const GL1CG_AMD: Self = Self(36);
-    pub const GL2A_AMD: Self = Self(37);
-    pub const GL2C_AMD: Self = Self(38);
-    pub const CHA_AMD: Self = Self(39);
-    pub const CHC_AMD: Self = Self(40);
-    pub const CHCG_AMD: Self = Self(41);
-    pub const GUS_AMD: Self = Self(42);
-    pub const GCR_AMD: Self = Self(43);
-    pub const PH_AMD: Self = Self(44);
-    pub const UTCL1_AMD: Self = Self(45);
-    pub const GE1_AMD: Self = Self::GE_AMD;
-    pub const GE_DIST_AMD: Self = Self(46);
-    pub const GE_SE_AMD: Self = Self(47);
-    pub const DF_MALL_AMD: Self = Self(48);
-    pub const SQ_WGP_AMD: Self = Self(49);
-    pub const PC_AMD: Self = Self(50);
-    pub const GL1XA_AMD: Self = Self(51);
-    pub const GL1XC_AMD: Self = Self(52);
-    pub const WGS_AMD: Self = Self(53);
-    pub const EACPWD_AMD: Self = Self(54);
-    pub const EASE_AMD: Self = Self(55);
-    pub const RLCUSER_AMD: Self = Self(56);
-    pub const RLCLOCAL_AMD: Self = Self::RLCUSER_AMD;
+    pub const CPF: Self = Self(0);
+    pub const IA: Self = Self(1);
+    pub const VGT: Self = Self(2);
+    pub const PA: Self = Self(3);
+    pub const SC: Self = Self(4);
+    pub const SPI: Self = Self(5);
+    pub const SQ: Self = Self(6);
+    pub const SX: Self = Self(7);
+    pub const TA: Self = Self(8);
+    pub const TD: Self = Self(9);
+    pub const TCP: Self = Self(10);
+    pub const TCC: Self = Self(11);
+    pub const TCA: Self = Self(12);
+    pub const DB: Self = Self(13);
+    pub const CB: Self = Self(14);
+    pub const GDS: Self = Self(15);
+    pub const SRBM: Self = Self(16);
+    pub const GRBM: Self = Self(17);
+    pub const GRBM_SE: Self = Self(18);
+    pub const RLC: Self = Self(19);
+    pub const DMA: Self = Self(20);
+    pub const MC: Self = Self(21);
+    pub const CPG: Self = Self(22);
+    pub const CPC: Self = Self(23);
+    pub const WD: Self = Self(24);
+    pub const TCS: Self = Self(25);
+    pub const ATC: Self = Self(26);
+    pub const ATC_L2: Self = Self(27);
+    pub const MC_VM_L2: Self = Self(28);
+    pub const EA: Self = Self(29);
+    pub const RPB: Self = Self(30);
+    pub const RMI: Self = Self(31);
+    pub const UMCCH: Self = Self(32);
+    pub const GE: Self = Self(33);
+    pub const GL1A: Self = Self(34);
+    pub const GL1C: Self = Self(35);
+    pub const GL1CG: Self = Self(36);
+    pub const GL2A: Self = Self(37);
+    pub const GL2C: Self = Self(38);
+    pub const CHA: Self = Self(39);
+    pub const CHC: Self = Self(40);
+    pub const CHCG: Self = Self(41);
+    pub const GUS: Self = Self(42);
+    pub const GCR: Self = Self(43);
+    pub const PH: Self = Self(44);
+    pub const UTCL1: Self = Self(45);
+    pub const GE1: Self = Self::GE;
+    pub const GE_DIST: Self = Self(46);
+    pub const GE_SE: Self = Self(47);
+    pub const DF_MALL: Self = Self(48);
+    pub const SQ_WGP: Self = Self(49);
+    pub const PC: Self = Self(50);
+    pub const GL1XA: Self = Self(51);
+    pub const GL1XC: Self = Self(52);
+    pub const WGS: Self = Self(53);
+    pub const EACPWD: Self = Self(54);
+    pub const EASE: Self = Self(55);
+    pub const RLCUSER: Self = Self(56);
+    pub const RLCLOCAL: Self = Self::RLCUSER;
 }
 ///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl GpaSampleTypeAMD {
-    pub const CUMULATIVE_AMD: Self = Self(0);
-    pub const TRACE_AMD: Self = Self(1);
-    pub const TIMING_AMD: Self = Self(2);
+    pub const CUMULATIVE: Self = Self(0);
+    pub const TRACE: Self = Self(1);
+    pub const TIMING: Self = Self(2);
 }
 ///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl GpaDeviceClockModeAMD {
-    pub const DEFAULT_AMD: Self = Self(0);
-    pub const QUERY_AMD: Self = Self(1);
-    pub const PROFILING_AMD: Self = Self(2);
-    pub const MIN_MEMORY_AMD: Self = Self(3);
-    pub const MIN_ENGINE_AMD: Self = Self(4);
-    pub const PEAK_AMD: Self = Self(5);
+    pub const DEFAULT: Self = Self(0);
+    pub const QUERY: Self = Self(1);
+    pub const PROFILING: Self = Self(2);
+    pub const MIN_MEMORY: Self = Self(3);
+    pub const MIN_ENGINE: Self = Self(4);
+    pub const PEAK: Self = Self(5);
 }
 ///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl GpaSqShaderStageFlagsAMD {
-    pub const PS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::PS_AMD.0);
-    pub const VS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::VS_AMD.0);
-    pub const GS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::GS_AMD.0);
-    pub const ES_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::ES_AMD.0);
-    pub const HS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::HS_AMD.0);
-    pub const LS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::LS_AMD.0);
-    pub const CS_AMD: Self = Self(GpaSqShaderStageFlagBitsAMD::CS_AMD.0);
+    pub const PS: Self = Self(GpaSqShaderStageFlagBitsAMD::PS.0);
+    pub const VS: Self = Self(GpaSqShaderStageFlagBitsAMD::VS.0);
+    pub const GS: Self = Self(GpaSqShaderStageFlagBitsAMD::GS.0);
+    pub const ES: Self = Self(GpaSqShaderStageFlagBitsAMD::ES.0);
+    pub const HS: Self = Self(GpaSqShaderStageFlagBitsAMD::HS.0);
+    pub const LS: Self = Self(GpaSqShaderStageFlagBitsAMD::LS.0);
+    pub const CS: Self = Self(GpaSqShaderStageFlagBitsAMD::CS.0);
 }
 ///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl GpaSqShaderStageFlagBitsAMD {
-    pub const PS_AMD: Self = Self(1 << 0);
-    pub const VS_AMD: Self = Self(1 << 1);
-    pub const GS_AMD: Self = Self(1 << 2);
-    pub const ES_AMD: Self = Self(1 << 3);
-    pub const HS_AMD: Self = Self(1 << 4);
-    pub const LS_AMD: Self = Self(1 << 5);
-    pub const CS_AMD: Self = Self(1 << 6);
+    pub const PS: Self = Self(1 << 0);
+    pub const VS: Self = Self(1 << 1);
+    pub const GS: Self = Self(1 << 2);
+    pub const ES: Self = Self(1 << 3);
+    pub const HS: Self = Self(1 << 4);
+    pub const LS: Self = Self(1 << 5);
+    pub const CS: Self = Self(1 << 6);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -996,63 +996,63 @@ pub(crate) mod items {
     impl core::fmt::Debug for GpaPerfBlockAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::CPF_AMD => Some("CPF_AMD"),
-                Self::IA_AMD => Some("IA_AMD"),
-                Self::VGT_AMD => Some("VGT_AMD"),
-                Self::PA_AMD => Some("PA_AMD"),
-                Self::SC_AMD => Some("SC_AMD"),
-                Self::SPI_AMD => Some("SPI_AMD"),
-                Self::SQ_AMD => Some("SQ_AMD"),
-                Self::SX_AMD => Some("SX_AMD"),
-                Self::TA_AMD => Some("TA_AMD"),
-                Self::TD_AMD => Some("TD_AMD"),
-                Self::TCP_AMD => Some("TCP_AMD"),
-                Self::TCC_AMD => Some("TCC_AMD"),
-                Self::TCA_AMD => Some("TCA_AMD"),
-                Self::DB_AMD => Some("DB_AMD"),
-                Self::CB_AMD => Some("CB_AMD"),
-                Self::GDS_AMD => Some("GDS_AMD"),
-                Self::SRBM_AMD => Some("SRBM_AMD"),
-                Self::GRBM_AMD => Some("GRBM_AMD"),
-                Self::GRBM_SE_AMD => Some("GRBM_SE_AMD"),
-                Self::RLC_AMD => Some("RLC_AMD"),
-                Self::DMA_AMD => Some("DMA_AMD"),
-                Self::MC_AMD => Some("MC_AMD"),
-                Self::CPG_AMD => Some("CPG_AMD"),
-                Self::CPC_AMD => Some("CPC_AMD"),
-                Self::WD_AMD => Some("WD_AMD"),
-                Self::TCS_AMD => Some("TCS_AMD"),
-                Self::ATC_AMD => Some("ATC_AMD"),
-                Self::ATC_L2_AMD => Some("ATC_L2_AMD"),
-                Self::MC_VM_L2_AMD => Some("MC_VM_L2_AMD"),
-                Self::EA_AMD => Some("EA_AMD"),
-                Self::RPB_AMD => Some("RPB_AMD"),
-                Self::RMI_AMD => Some("RMI_AMD"),
-                Self::UMCCH_AMD => Some("UMCCH_AMD"),
-                Self::GE_AMD => Some("GE_AMD"),
-                Self::GL1A_AMD => Some("GL1A_AMD"),
-                Self::GL1C_AMD => Some("GL1C_AMD"),
-                Self::GL1CG_AMD => Some("GL1CG_AMD"),
-                Self::GL2A_AMD => Some("GL2A_AMD"),
-                Self::GL2C_AMD => Some("GL2C_AMD"),
-                Self::CHA_AMD => Some("CHA_AMD"),
-                Self::CHC_AMD => Some("CHC_AMD"),
-                Self::CHCG_AMD => Some("CHCG_AMD"),
-                Self::GUS_AMD => Some("GUS_AMD"),
-                Self::GCR_AMD => Some("GCR_AMD"),
-                Self::PH_AMD => Some("PH_AMD"),
-                Self::UTCL1_AMD => Some("UTCL1_AMD"),
-                Self::GE_DIST_AMD => Some("GE_DIST_AMD"),
-                Self::GE_SE_AMD => Some("GE_SE_AMD"),
-                Self::DF_MALL_AMD => Some("DF_MALL_AMD"),
-                Self::SQ_WGP_AMD => Some("SQ_WGP_AMD"),
-                Self::PC_AMD => Some("PC_AMD"),
-                Self::GL1XA_AMD => Some("GL1XA_AMD"),
-                Self::GL1XC_AMD => Some("GL1XC_AMD"),
-                Self::WGS_AMD => Some("WGS_AMD"),
-                Self::EACPWD_AMD => Some("EACPWD_AMD"),
-                Self::EASE_AMD => Some("EASE_AMD"),
-                Self::RLCUSER_AMD => Some("RLCUSER_AMD"),
+                Self::CPF => Some("CPF"),
+                Self::IA => Some("IA"),
+                Self::VGT => Some("VGT"),
+                Self::PA => Some("PA"),
+                Self::SC => Some("SC"),
+                Self::SPI => Some("SPI"),
+                Self::SQ => Some("SQ"),
+                Self::SX => Some("SX"),
+                Self::TA => Some("TA"),
+                Self::TD => Some("TD"),
+                Self::TCP => Some("TCP"),
+                Self::TCC => Some("TCC"),
+                Self::TCA => Some("TCA"),
+                Self::DB => Some("DB"),
+                Self::CB => Some("CB"),
+                Self::GDS => Some("GDS"),
+                Self::SRBM => Some("SRBM"),
+                Self::GRBM => Some("GRBM"),
+                Self::GRBM_SE => Some("GRBM_SE"),
+                Self::RLC => Some("RLC"),
+                Self::DMA => Some("DMA"),
+                Self::MC => Some("MC"),
+                Self::CPG => Some("CPG"),
+                Self::CPC => Some("CPC"),
+                Self::WD => Some("WD"),
+                Self::TCS => Some("TCS"),
+                Self::ATC => Some("ATC"),
+                Self::ATC_L2 => Some("ATC_L2"),
+                Self::MC_VM_L2 => Some("MC_VM_L2"),
+                Self::EA => Some("EA"),
+                Self::RPB => Some("RPB"),
+                Self::RMI => Some("RMI"),
+                Self::UMCCH => Some("UMCCH"),
+                Self::GE => Some("GE"),
+                Self::GL1A => Some("GL1A"),
+                Self::GL1C => Some("GL1C"),
+                Self::GL1CG => Some("GL1CG"),
+                Self::GL2A => Some("GL2A"),
+                Self::GL2C => Some("GL2C"),
+                Self::CHA => Some("CHA"),
+                Self::CHC => Some("CHC"),
+                Self::CHCG => Some("CHCG"),
+                Self::GUS => Some("GUS"),
+                Self::GCR => Some("GCR"),
+                Self::PH => Some("PH"),
+                Self::UTCL1 => Some("UTCL1"),
+                Self::GE_DIST => Some("GE_DIST"),
+                Self::GE_SE => Some("GE_SE"),
+                Self::DF_MALL => Some("DF_MALL"),
+                Self::SQ_WGP => Some("SQ_WGP"),
+                Self::PC => Some("PC"),
+                Self::GL1XA => Some("GL1XA"),
+                Self::GL1XC => Some("GL1XC"),
+                Self::WGS => Some("WGS"),
+                Self::EACPWD => Some("EACPWD"),
+                Self::EASE => Some("EASE"),
+                Self::RLCUSER => Some("RLCUSER"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1078,9 +1078,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for GpaSampleTypeAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::CUMULATIVE_AMD => Some("CUMULATIVE_AMD"),
-                Self::TRACE_AMD => Some("TRACE_AMD"),
-                Self::TIMING_AMD => Some("TIMING_AMD"),
+                Self::CUMULATIVE => Some("CUMULATIVE"),
+                Self::TRACE => Some("TRACE"),
+                Self::TIMING => Some("TIMING"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1106,12 +1106,12 @@ pub(crate) mod items {
     impl core::fmt::Debug for GpaDeviceClockModeAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DEFAULT_AMD => Some("DEFAULT_AMD"),
-                Self::QUERY_AMD => Some("QUERY_AMD"),
-                Self::PROFILING_AMD => Some("PROFILING_AMD"),
-                Self::MIN_MEMORY_AMD => Some("MIN_MEMORY_AMD"),
-                Self::MIN_ENGINE_AMD => Some("MIN_ENGINE_AMD"),
-                Self::PEAK_AMD => Some("PEAK_AMD"),
+                Self::DEFAULT => Some("DEFAULT"),
+                Self::QUERY => Some("QUERY"),
+                Self::PROFILING => Some("PROFILING"),
+                Self::MIN_MEMORY => Some("MIN_MEMORY"),
+                Self::MIN_ENGINE => Some("MIN_ENGINE"),
+                Self::PEAK => Some("PEAK"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1139,13 +1139,13 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::PS_AMD.0, "PS_AMD"),
-                    (Self::VS_AMD.0, "VS_AMD"),
-                    (Self::GS_AMD.0, "GS_AMD"),
-                    (Self::ES_AMD.0, "ES_AMD"),
-                    (Self::HS_AMD.0, "HS_AMD"),
-                    (Self::LS_AMD.0, "LS_AMD"),
-                    (Self::CS_AMD.0, "CS_AMD"),
+                    (Self::PS.0, "PS"),
+                    (Self::VS.0, "VS"),
+                    (Self::GS.0, "GS"),
+                    (Self::ES.0, "ES"),
+                    (Self::HS.0, "HS"),
+                    (Self::LS.0, "LS"),
+                    (Self::CS.0, "CS"),
                 ],
                 self.0,
             )

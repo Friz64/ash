@@ -19,33 +19,33 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_metal_objects](crate::ext::metal_objects)
 impl ExportMetalObjectTypeFlagsEXT {
-    pub const METAL_DEVICE_EXT: Self = Self(
-        ExportMetalObjectTypeFlagBitsEXT::METAL_DEVICE_EXT.0,
+    pub const METAL_DEVICE: Self = Self(
+        ExportMetalObjectTypeFlagBitsEXT::METAL_DEVICE.0,
     );
-    pub const METAL_COMMAND_QUEUE_EXT: Self = Self(
-        ExportMetalObjectTypeFlagBitsEXT::METAL_COMMAND_QUEUE_EXT.0,
+    pub const METAL_COMMAND_QUEUE: Self = Self(
+        ExportMetalObjectTypeFlagBitsEXT::METAL_COMMAND_QUEUE.0,
     );
-    pub const METAL_BUFFER_EXT: Self = Self(
-        ExportMetalObjectTypeFlagBitsEXT::METAL_BUFFER_EXT.0,
+    pub const METAL_BUFFER: Self = Self(
+        ExportMetalObjectTypeFlagBitsEXT::METAL_BUFFER.0,
     );
-    pub const METAL_TEXTURE_EXT: Self = Self(
-        ExportMetalObjectTypeFlagBitsEXT::METAL_TEXTURE_EXT.0,
+    pub const METAL_TEXTURE: Self = Self(
+        ExportMetalObjectTypeFlagBitsEXT::METAL_TEXTURE.0,
     );
-    pub const METAL_IOSURFACE_EXT: Self = Self(
-        ExportMetalObjectTypeFlagBitsEXT::METAL_IOSURFACE_EXT.0,
+    pub const METAL_IOSURFACE: Self = Self(
+        ExportMetalObjectTypeFlagBitsEXT::METAL_IOSURFACE.0,
     );
-    pub const METAL_SHARED_EVENT_EXT: Self = Self(
-        ExportMetalObjectTypeFlagBitsEXT::METAL_SHARED_EVENT_EXT.0,
+    pub const METAL_SHARED_EVENT: Self = Self(
+        ExportMetalObjectTypeFlagBitsEXT::METAL_SHARED_EVENT.0,
     );
 }
 ///Provided by [VK_EXT_metal_objects](crate::ext::metal_objects)
 impl ExportMetalObjectTypeFlagBitsEXT {
-    pub const METAL_DEVICE_EXT: Self = Self(1 << 0);
-    pub const METAL_COMMAND_QUEUE_EXT: Self = Self(1 << 1);
-    pub const METAL_BUFFER_EXT: Self = Self(1 << 2);
-    pub const METAL_TEXTURE_EXT: Self = Self(1 << 3);
-    pub const METAL_IOSURFACE_EXT: Self = Self(1 << 4);
-    pub const METAL_SHARED_EVENT_EXT: Self = Self(1 << 5);
+    pub const METAL_DEVICE: Self = Self(1 << 0);
+    pub const METAL_COMMAND_QUEUE: Self = Self(1 << 1);
+    pub const METAL_BUFFER: Self = Self(1 << 2);
+    pub const METAL_TEXTURE: Self = Self(1 << 3);
+    pub const METAL_IOSURFACE: Self = Self(1 << 4);
+    pub const METAL_SHARED_EVENT: Self = Self(1 << 5);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -605,12 +605,12 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::METAL_DEVICE_EXT.0, "METAL_DEVICE_EXT"),
-                    (Self::METAL_COMMAND_QUEUE_EXT.0, "METAL_COMMAND_QUEUE_EXT"),
-                    (Self::METAL_BUFFER_EXT.0, "METAL_BUFFER_EXT"),
-                    (Self::METAL_TEXTURE_EXT.0, "METAL_TEXTURE_EXT"),
-                    (Self::METAL_IOSURFACE_EXT.0, "METAL_IOSURFACE_EXT"),
-                    (Self::METAL_SHARED_EVENT_EXT.0, "METAL_SHARED_EVENT_EXT"),
+                    (Self::METAL_DEVICE.0, "METAL_DEVICE"),
+                    (Self::METAL_COMMAND_QUEUE.0, "METAL_COMMAND_QUEUE"),
+                    (Self::METAL_BUFFER.0, "METAL_BUFFER"),
+                    (Self::METAL_TEXTURE.0, "METAL_TEXTURE"),
+                    (Self::METAL_IOSURFACE.0, "METAL_IOSURFACE"),
+                    (Self::METAL_SHARED_EVENT.0, "METAL_SHARED_EVENT"),
                 ],
                 self.0,
             )

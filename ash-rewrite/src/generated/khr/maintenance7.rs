@@ -16,11 +16,11 @@ impl crate::vk::SubpassContents {
 }
 ///Provided by [VK_KHR_maintenance7](crate::khr::maintenance7)
 impl PhysicalDeviceLayeredApiKHR {
-    pub const VULKAN_KHR: Self = Self(0);
-    pub const D3D12_KHR: Self = Self(1);
-    pub const METAL_KHR: Self = Self(2);
-    pub const OPENGL_KHR: Self = Self(3);
-    pub const OPENGLES_KHR: Self = Self(4);
+    pub const VULKAN: Self = Self(0);
+    pub const D3D12: Self = Self(1);
+    pub const METAL: Self = Self(2);
+    pub const OPENGL: Self = Self(3);
+    pub const OPENGLES: Self = Self(4);
 }
 ///Provided by [VK_KHR_maintenance7](crate::khr::maintenance7)
 impl crate::vk::RenderingFlags {
@@ -310,11 +310,11 @@ pub(crate) mod items {
     impl core::fmt::Debug for PhysicalDeviceLayeredApiKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::VULKAN_KHR => Some("VULKAN_KHR"),
-                Self::D3D12_KHR => Some("D3D12_KHR"),
-                Self::METAL_KHR => Some("METAL_KHR"),
-                Self::OPENGL_KHR => Some("OPENGL_KHR"),
-                Self::OPENGLES_KHR => Some("OPENGLES_KHR"),
+                Self::VULKAN => Some("VULKAN"),
+                Self::D3D12 => Some("D3D12"),
+                Self::METAL => Some("METAL"),
+                Self::OPENGL => Some("OPENGL"),
+                Self::OPENGLES => Some("OPENGLES"),
                 _ => None,
             } {
                 f.write_str(x)

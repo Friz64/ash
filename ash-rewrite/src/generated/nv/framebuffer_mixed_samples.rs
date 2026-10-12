@@ -9,10 +9,10 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_framebuffer_mixed_samples](crate::nv::framebuffer_mixed_samples)
 impl CoverageModulationModeNV {
-    pub const NONE_NV: Self = Self(0);
-    pub const RGB_NV: Self = Self(1);
-    pub const ALPHA_NV: Self = Self(2);
-    pub const RGBA_NV: Self = Self(3);
+    pub const NONE: Self = Self(0);
+    pub const RGB: Self = Self(1);
+    pub const ALPHA: Self = Self(2);
+    pub const RGBA: Self = Self(3);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_framebuffer_mixed_samples";
@@ -94,10 +94,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for CoverageModulationModeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::NONE_NV => Some("NONE_NV"),
-                Self::RGB_NV => Some("RGB_NV"),
-                Self::ALPHA_NV => Some("ALPHA_NV"),
-                Self::RGBA_NV => Some("RGBA_NV"),
+                Self::NONE => Some("NONE"),
+                Self::RGB => Some("RGB"),
+                Self::ALPHA => Some("ALPHA"),
+                Self::RGBA => Some("RGBA"),
                 _ => None,
             } {
                 f.write_str(x)

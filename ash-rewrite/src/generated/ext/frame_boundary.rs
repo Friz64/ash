@@ -9,11 +9,11 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_frame_boundary](crate::ext::frame_boundary)
 impl FrameBoundaryFlagsEXT {
-    pub const FRAME_END_EXT: Self = Self(FrameBoundaryFlagBitsEXT::FRAME_END_EXT.0);
+    pub const FRAME_END: Self = Self(FrameBoundaryFlagBitsEXT::FRAME_END.0);
 }
 ///Provided by [VK_EXT_frame_boundary](crate::ext::frame_boundary)
 impl FrameBoundaryFlagBitsEXT {
-    pub const FRAME_END_EXT: Self = Self(1 << 0);
+    pub const FRAME_END: Self = Self(1 << 0);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_frame_boundary";
@@ -134,7 +134,7 @@ pub(crate) mod items {
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for FrameBoundaryFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            crate::debug_flags(f, &[(Self::FRAME_END_EXT.0, "FRAME_END_EXT")], self.0)
+            crate::debug_flags(f, &[(Self::FRAME_END.0, "FRAME_END")], self.0)
         }
     }
     impl FrameBoundaryFlagsEXT {

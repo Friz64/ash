@@ -162,11 +162,21 @@ impl RustTokens for Context<'_> {
         type_name: TypeName,
         qualified: bool,
     ) -> TokenStream {
+        let (type_name_untagged, tag) = type_name.split_tag();
+
+        let maybe_tag_stripped = if tag.is_empty() {
+            name.original()
+        } else {
+            let suffix = format!("_{tag}");
+            name.original()
+                .strip_suffix(&suffix)
+                .unwrap_or(name.original())
+        };
+
         let prefix = if type_name == TypeName::VK_RESULT {
             String::from("VK_")
         } else {
-            let mut prefix = type_name
-                .tag_stripped()
+            let mut prefix = type_name_untagged
                 .replace("FlagBits", "")
                 .TO_SHOUTY_SNEK_CASE();
 
@@ -178,10 +188,10 @@ impl RustTokens for Context<'_> {
             prefix + "_"
         };
 
-        let prefix_stripped = name.original().strip_prefix(&prefix).unwrap();
-        let stripped_name = prefix_stripped.replace("_BIT", "");
+        let prefix_stripped = maybe_tag_stripped.strip_prefix(&prefix).unwrap();
+        let bit_stripped = prefix_stripped.replace("_BIT", "");
 
-        let ident = crate::escape_ident(&stripped_name.TO_SHOUTY_SNEK_CASE());
+        let ident = crate::escape_ident(&bit_stripped.TO_SHOUTY_SNEK_CASE());
         let path = qualified.then(|| {
             let bits_name = self.type_tokens(type_name, true, None);
             quote! { #bits_name:: }

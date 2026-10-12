@@ -24,25 +24,25 @@ impl crate::vk::DynamicState {
 }
 ///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl ShadingRatePaletteEntryNV {
-    pub const NO_INVOCATIONS_NV: Self = Self(0);
-    pub const _16_INVOCATIONS_PER_PIXEL_NV: Self = Self(1);
-    pub const _8_INVOCATIONS_PER_PIXEL_NV: Self = Self(2);
-    pub const _4_INVOCATIONS_PER_PIXEL_NV: Self = Self(3);
-    pub const _2_INVOCATIONS_PER_PIXEL_NV: Self = Self(4);
-    pub const _1_INVOCATION_PER_PIXEL_NV: Self = Self(5);
-    pub const _1_INVOCATION_PER_2X1_PIXELS_NV: Self = Self(6);
-    pub const _1_INVOCATION_PER_1X2_PIXELS_NV: Self = Self(7);
-    pub const _1_INVOCATION_PER_2X2_PIXELS_NV: Self = Self(8);
-    pub const _1_INVOCATION_PER_4X2_PIXELS_NV: Self = Self(9);
-    pub const _1_INVOCATION_PER_2X4_PIXELS_NV: Self = Self(10);
-    pub const _1_INVOCATION_PER_4X4_PIXELS_NV: Self = Self(11);
+    pub const NO_INVOCATIONS: Self = Self(0);
+    pub const _16_INVOCATIONS_PER_PIXEL: Self = Self(1);
+    pub const _8_INVOCATIONS_PER_PIXEL: Self = Self(2);
+    pub const _4_INVOCATIONS_PER_PIXEL: Self = Self(3);
+    pub const _2_INVOCATIONS_PER_PIXEL: Self = Self(4);
+    pub const _1_INVOCATION_PER_PIXEL: Self = Self(5);
+    pub const _1_INVOCATION_PER_2X1_PIXELS: Self = Self(6);
+    pub const _1_INVOCATION_PER_1X2_PIXELS: Self = Self(7);
+    pub const _1_INVOCATION_PER_2X2_PIXELS: Self = Self(8);
+    pub const _1_INVOCATION_PER_4X2_PIXELS: Self = Self(9);
+    pub const _1_INVOCATION_PER_2X4_PIXELS: Self = Self(10);
+    pub const _1_INVOCATION_PER_4X4_PIXELS: Self = Self(11);
 }
 ///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl CoarseSampleOrderTypeNV {
-    pub const DEFAULT_NV: Self = Self(0);
-    pub const CUSTOM_NV: Self = Self(1);
-    pub const PIXEL_MAJOR_NV: Self = Self(2);
-    pub const SAMPLE_MAJOR_NV: Self = Self(3);
+    pub const DEFAULT: Self = Self(0);
+    pub const CUSTOM: Self = Self(1);
+    pub const PIXEL_MAJOR: Self = Self(2);
+    pub const SAMPLE_MAJOR: Self = Self(3);
 }
 ///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl crate::vk::AccessFlags {
@@ -491,31 +491,29 @@ pub(crate) mod items {
     impl core::fmt::Debug for ShadingRatePaletteEntryNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::NO_INVOCATIONS_NV => Some("NO_INVOCATIONS_NV"),
-                Self::_16_INVOCATIONS_PER_PIXEL_NV => {
-                    Some("_16_INVOCATIONS_PER_PIXEL_NV")
+                Self::NO_INVOCATIONS => Some("NO_INVOCATIONS"),
+                Self::_16_INVOCATIONS_PER_PIXEL => Some("_16_INVOCATIONS_PER_PIXEL"),
+                Self::_8_INVOCATIONS_PER_PIXEL => Some("_8_INVOCATIONS_PER_PIXEL"),
+                Self::_4_INVOCATIONS_PER_PIXEL => Some("_4_INVOCATIONS_PER_PIXEL"),
+                Self::_2_INVOCATIONS_PER_PIXEL => Some("_2_INVOCATIONS_PER_PIXEL"),
+                Self::_1_INVOCATION_PER_PIXEL => Some("_1_INVOCATION_PER_PIXEL"),
+                Self::_1_INVOCATION_PER_2X1_PIXELS => {
+                    Some("_1_INVOCATION_PER_2X1_PIXELS")
                 }
-                Self::_8_INVOCATIONS_PER_PIXEL_NV => Some("_8_INVOCATIONS_PER_PIXEL_NV"),
-                Self::_4_INVOCATIONS_PER_PIXEL_NV => Some("_4_INVOCATIONS_PER_PIXEL_NV"),
-                Self::_2_INVOCATIONS_PER_PIXEL_NV => Some("_2_INVOCATIONS_PER_PIXEL_NV"),
-                Self::_1_INVOCATION_PER_PIXEL_NV => Some("_1_INVOCATION_PER_PIXEL_NV"),
-                Self::_1_INVOCATION_PER_2X1_PIXELS_NV => {
-                    Some("_1_INVOCATION_PER_2X1_PIXELS_NV")
+                Self::_1_INVOCATION_PER_1X2_PIXELS => {
+                    Some("_1_INVOCATION_PER_1X2_PIXELS")
                 }
-                Self::_1_INVOCATION_PER_1X2_PIXELS_NV => {
-                    Some("_1_INVOCATION_PER_1X2_PIXELS_NV")
+                Self::_1_INVOCATION_PER_2X2_PIXELS => {
+                    Some("_1_INVOCATION_PER_2X2_PIXELS")
                 }
-                Self::_1_INVOCATION_PER_2X2_PIXELS_NV => {
-                    Some("_1_INVOCATION_PER_2X2_PIXELS_NV")
+                Self::_1_INVOCATION_PER_4X2_PIXELS => {
+                    Some("_1_INVOCATION_PER_4X2_PIXELS")
                 }
-                Self::_1_INVOCATION_PER_4X2_PIXELS_NV => {
-                    Some("_1_INVOCATION_PER_4X2_PIXELS_NV")
+                Self::_1_INVOCATION_PER_2X4_PIXELS => {
+                    Some("_1_INVOCATION_PER_2X4_PIXELS")
                 }
-                Self::_1_INVOCATION_PER_2X4_PIXELS_NV => {
-                    Some("_1_INVOCATION_PER_2X4_PIXELS_NV")
-                }
-                Self::_1_INVOCATION_PER_4X4_PIXELS_NV => {
-                    Some("_1_INVOCATION_PER_4X4_PIXELS_NV")
+                Self::_1_INVOCATION_PER_4X4_PIXELS => {
+                    Some("_1_INVOCATION_PER_4X4_PIXELS")
                 }
                 _ => None,
             } {
@@ -542,10 +540,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for CoarseSampleOrderTypeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DEFAULT_NV => Some("DEFAULT_NV"),
-                Self::CUSTOM_NV => Some("CUSTOM_NV"),
-                Self::PIXEL_MAJOR_NV => Some("PIXEL_MAJOR_NV"),
-                Self::SAMPLE_MAJOR_NV => Some("SAMPLE_MAJOR_NV"),
+                Self::DEFAULT => Some("DEFAULT"),
+                Self::CUSTOM => Some("CUSTOM"),
+                Self::PIXEL_MAJOR => Some("PIXEL_MAJOR"),
+                Self::SAMPLE_MAJOR => Some("SAMPLE_MAJOR"),
                 _ => None,
             } {
                 f.write_str(x)

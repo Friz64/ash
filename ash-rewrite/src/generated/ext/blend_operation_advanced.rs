@@ -65,9 +65,9 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_blend_operation_advanced](crate::ext::blend_operation_advanced)
 impl BlendOverlapEXT {
-    pub const UNCORRELATED_EXT: Self = Self(0);
-    pub const DISJOINT_EXT: Self = Self(1);
-    pub const CONJOINT_EXT: Self = Self(2);
+    pub const UNCORRELATED: Self = Self(0);
+    pub const DISJOINT: Self = Self(1);
+    pub const CONJOINT: Self = Self(2);
 }
 ///Provided by [VK_EXT_blend_operation_advanced](crate::ext::blend_operation_advanced)
 impl crate::vk::AccessFlags {
@@ -261,9 +261,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for BlendOverlapEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::UNCORRELATED_EXT => Some("UNCORRELATED_EXT"),
-                Self::DISJOINT_EXT => Some("DISJOINT_EXT"),
-                Self::CONJOINT_EXT => Some("CONJOINT_EXT"),
+                Self::UNCORRELATED => Some("UNCORRELATED"),
+                Self::DISJOINT => Some("DISJOINT"),
+                Self::CONJOINT => Some("CONJOINT"),
                 _ => None,
             } {
                 f.write_str(x)

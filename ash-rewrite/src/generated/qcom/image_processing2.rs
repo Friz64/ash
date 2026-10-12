@@ -12,8 +12,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_QCOM_image_processing2](crate::qcom::image_processing2)
 impl BlockMatchWindowCompareModeQCOM {
-    pub const MIN_QCOM: Self = Self(0);
-    pub const MAX_QCOM: Self = Self(1);
+    pub const MIN: Self = Self(0);
+    pub const MAX: Self = Self(1);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_image_processing2";
@@ -138,8 +138,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for BlockMatchWindowCompareModeQCOM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::MIN_QCOM => Some("MIN_QCOM"),
-                Self::MAX_QCOM => Some("MAX_QCOM"),
+                Self::MIN => Some("MIN"),
+                Self::MAX => Some("MAX"),
                 _ => None,
             } {
                 f.write_str(x)

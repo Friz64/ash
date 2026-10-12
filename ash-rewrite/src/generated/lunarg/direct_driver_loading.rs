@@ -9,8 +9,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_LUNARG_direct_driver_loading](crate::lunarg::direct_driver_loading)
 impl DirectDriverLoadingModeLUNARG {
-    pub const EXCLUSIVE_LUNARG: Self = Self(0);
-    pub const INCLUSIVE_LUNARG: Self = Self(1);
+    pub const EXCLUSIVE: Self = Self(0);
+    pub const INCLUSIVE: Self = Self(1);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_LUNARG_direct_driver_loading";
@@ -108,8 +108,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for DirectDriverLoadingModeLUNARG {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::EXCLUSIVE_LUNARG => Some("EXCLUSIVE_LUNARG"),
-                Self::INCLUSIVE_LUNARG => Some("INCLUSIVE_LUNARG"),
+                Self::EXCLUSIVE => Some("EXCLUSIVE"),
+                Self::INCLUSIVE => Some("INCLUSIVE"),
                 _ => None,
             } {
                 f.write_str(x)

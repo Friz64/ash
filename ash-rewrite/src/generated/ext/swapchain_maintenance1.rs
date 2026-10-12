@@ -19,7 +19,7 @@ impl crate::vk::SwapchainCreateFlagsKHR {
 }
 ///Provided by [VK_EXT_swapchain_maintenance1](crate::ext::swapchain_maintenance1)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
-    pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self::DEFERRED_MEMORY_ALLOCATION_KHR;
+    pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self::DEFERRED_MEMORY_ALLOCATION;
 }
 #[derive(Clone)]
 pub struct DeviceFn {

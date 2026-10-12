@@ -13,8 +13,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_ray_tracing_invocation_reorder](crate::nv::ray_tracing_invocation_reorder)
 impl crate::vk::RayTracingInvocationReorderModeEXT {
-    pub const NONE_NV: Self = Self::NONE_EXT;
-    pub const REORDER_NV: Self = Self::REORDER_EXT;
+    pub const NONE_NV: Self = Self::NONE;
+    pub const REORDER_NV: Self = Self::REORDER;
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_invocation_reorder";

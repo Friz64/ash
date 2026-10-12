@@ -14,19 +14,19 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_KHR_display](crate::khr::display)
 impl DisplayPlaneAlphaFlagsKHR {
-    pub const OPAQUE_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::OPAQUE_KHR.0);
-    pub const GLOBAL_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::GLOBAL_KHR.0);
-    pub const PER_PIXEL_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL_KHR.0);
-    pub const PER_PIXEL_PREMULTIPLIED_KHR: Self = Self(
-        DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL_PREMULTIPLIED_KHR.0,
+    pub const OPAQUE: Self = Self(DisplayPlaneAlphaFlagBitsKHR::OPAQUE.0);
+    pub const GLOBAL: Self = Self(DisplayPlaneAlphaFlagBitsKHR::GLOBAL.0);
+    pub const PER_PIXEL: Self = Self(DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL.0);
+    pub const PER_PIXEL_PREMULTIPLIED: Self = Self(
+        DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL_PREMULTIPLIED.0,
     );
 }
 ///Provided by [VK_KHR_display](crate::khr::display)
 impl DisplayPlaneAlphaFlagBitsKHR {
-    pub const OPAQUE_KHR: Self = Self(1 << 0);
-    pub const GLOBAL_KHR: Self = Self(1 << 1);
-    pub const PER_PIXEL_KHR: Self = Self(1 << 2);
-    pub const PER_PIXEL_PREMULTIPLIED_KHR: Self = Self(1 << 3);
+    pub const OPAQUE: Self = Self(1 << 0);
+    pub const GLOBAL: Self = Self(1 << 1);
+    pub const PER_PIXEL: Self = Self(1 << 2);
+    pub const PER_PIXEL_PREMULTIPLIED: Self = Self(1 << 3);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -632,10 +632,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::OPAQUE_KHR.0, "OPAQUE_KHR"),
-                    (Self::GLOBAL_KHR.0, "GLOBAL_KHR"),
-                    (Self::PER_PIXEL_KHR.0, "PER_PIXEL_KHR"),
-                    (Self::PER_PIXEL_PREMULTIPLIED_KHR.0, "PER_PIXEL_PREMULTIPLIED_KHR"),
+                    (Self::OPAQUE.0, "OPAQUE"),
+                    (Self::GLOBAL.0, "GLOBAL"),
+                    (Self::PER_PIXEL.0, "PER_PIXEL"),
+                    (Self::PER_PIXEL_PREMULTIPLIED.0, "PER_PIXEL_PREMULTIPLIED"),
                 ],
                 self.0,
             )

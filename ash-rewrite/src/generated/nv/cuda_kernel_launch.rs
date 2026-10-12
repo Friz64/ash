@@ -18,8 +18,8 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_NV_cuda_kernel_launch](crate::nv::cuda_kernel_launch)
 impl crate::vk::DebugReportObjectTypeEXT {
-    pub const CUDA_MODULE_NV_EXT: Self = Self(1000307000);
-    pub const CUDA_FUNCTION_NV_EXT: Self = Self(1000307001);
+    pub const CUDA_MODULE_NV: Self = Self(1000307000);
+    pub const CUDA_FUNCTION_NV: Self = Self(1000307001);
 }
 #[derive(Clone)]
 pub struct DeviceFn {

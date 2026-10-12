@@ -10,13 +10,13 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_device_fault](crate::ext::device_fault)
 impl crate::vk::DeviceFaultAddressTypeKHR {
-    pub const NONE_EXT: Self = Self::NONE_KHR;
-    pub const READ_INVALID_EXT: Self = Self::READ_INVALID_KHR;
-    pub const WRITE_INVALID_EXT: Self = Self::WRITE_INVALID_KHR;
-    pub const EXECUTE_INVALID_EXT: Self = Self::EXECUTE_INVALID_KHR;
-    pub const INSTRUCTION_POINTER_UNKNOWN_EXT: Self = Self::INSTRUCTION_POINTER_UNKNOWN_KHR;
-    pub const INSTRUCTION_POINTER_INVALID_EXT: Self = Self::INSTRUCTION_POINTER_INVALID_KHR;
-    pub const INSTRUCTION_POINTER_FAULT_EXT: Self = Self::INSTRUCTION_POINTER_FAULT_KHR;
+    pub const NONE_EXT: Self = Self::NONE;
+    pub const READ_INVALID_EXT: Self = Self::READ_INVALID;
+    pub const WRITE_INVALID_EXT: Self = Self::WRITE_INVALID;
+    pub const EXECUTE_INVALID_EXT: Self = Self::EXECUTE_INVALID;
+    pub const INSTRUCTION_POINTER_UNKNOWN_EXT: Self = Self::INSTRUCTION_POINTER_UNKNOWN;
+    pub const INSTRUCTION_POINTER_INVALID_EXT: Self = Self::INSTRUCTION_POINTER_INVALID;
+    pub const INSTRUCTION_POINTER_FAULT_EXT: Self = Self::INSTRUCTION_POINTER_FAULT;
 }
 #[derive(Clone)]
 pub struct DeviceFn {

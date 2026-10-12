@@ -10,24 +10,24 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_cooperative_matrix](crate::nv::cooperative_matrix)
 impl crate::vk::ScopeKHR {
-    pub const DEVICE_NV: Self = Self::DEVICE_KHR;
-    pub const WORKGROUP_NV: Self = Self::WORKGROUP_KHR;
-    pub const SUBGROUP_NV: Self = Self::SUBGROUP_KHR;
-    pub const QUEUE_FAMILY_NV: Self = Self::QUEUE_FAMILY_KHR;
+    pub const DEVICE_NV: Self = Self::DEVICE;
+    pub const WORKGROUP_NV: Self = Self::WORKGROUP;
+    pub const SUBGROUP_NV: Self = Self::SUBGROUP;
+    pub const QUEUE_FAMILY_NV: Self = Self::QUEUE_FAMILY;
 }
 ///Provided by [VK_NV_cooperative_matrix](crate::nv::cooperative_matrix)
 impl crate::vk::ComponentTypeKHR {
-    pub const FLOAT16_NV: Self = Self::FLOAT16_KHR;
-    pub const FLOAT32_NV: Self = Self::FLOAT32_KHR;
-    pub const FLOAT64_NV: Self = Self::FLOAT64_KHR;
-    pub const SINT8_NV: Self = Self::SINT8_KHR;
-    pub const SINT16_NV: Self = Self::SINT16_KHR;
-    pub const SINT32_NV: Self = Self::SINT32_KHR;
-    pub const SINT64_NV: Self = Self::SINT64_KHR;
-    pub const UINT8_NV: Self = Self::UINT8_KHR;
-    pub const UINT16_NV: Self = Self::UINT16_KHR;
-    pub const UINT32_NV: Self = Self::UINT32_KHR;
-    pub const UINT64_NV: Self = Self::UINT64_KHR;
+    pub const FLOAT16_NV: Self = Self::FLOAT16;
+    pub const FLOAT32_NV: Self = Self::FLOAT32;
+    pub const FLOAT64_NV: Self = Self::FLOAT64;
+    pub const SINT8_NV: Self = Self::SINT8;
+    pub const SINT16_NV: Self = Self::SINT16;
+    pub const SINT32_NV: Self = Self::SINT32;
+    pub const SINT64_NV: Self = Self::SINT64;
+    pub const UINT8_NV: Self = Self::UINT8;
+    pub const UINT16_NV: Self = Self::UINT16;
+    pub const UINT32_NV: Self = Self::UINT32;
+    pub const UINT64_NV: Self = Self::UINT64;
 }
 #[derive(Clone)]
 pub struct InstanceFn {

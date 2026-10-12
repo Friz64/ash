@@ -14,13 +14,13 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_ray_tracing_linear_swept_spheres](crate::nv::ray_tracing_linear_swept_spheres)
 impl RayTracingLssIndexingModeNV {
-    pub const LIST_NV: Self = Self(0);
-    pub const SUCCESSIVE_NV: Self = Self(1);
+    pub const LIST: Self = Self(0);
+    pub const SUCCESSIVE: Self = Self(1);
 }
 ///Provided by [VK_NV_ray_tracing_linear_swept_spheres](crate::nv::ray_tracing_linear_swept_spheres)
 impl RayTracingLssPrimitiveEndCapsModeNV {
-    pub const NONE_NV: Self = Self(0);
-    pub const CHAINED_NV: Self = Self(1);
+    pub const NONE: Self = Self(0);
+    pub const CHAINED: Self = Self(1);
 }
 ///Provided by [VK_NV_ray_tracing_linear_swept_spheres](crate::nv::ray_tracing_linear_swept_spheres)
 impl crate::vk::GeometryTypeKHR {
@@ -299,8 +299,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for RayTracingLssIndexingModeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::LIST_NV => Some("LIST_NV"),
-                Self::SUCCESSIVE_NV => Some("SUCCESSIVE_NV"),
+                Self::LIST => Some("LIST"),
+                Self::SUCCESSIVE => Some("SUCCESSIVE"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -326,8 +326,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for RayTracingLssPrimitiveEndCapsModeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::NONE_NV => Some("NONE_NV"),
-                Self::CHAINED_NV => Some("CHAINED_NV"),
+                Self::NONE => Some("NONE"),
+                Self::CHAINED => Some("CHAINED"),
                 _ => None,
             } {
                 f.write_str(x)

@@ -42,9 +42,9 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl QueryResultStatusKHR {
-    pub const ERROR_KHR: Self = Self(-1);
-    pub const NOT_READY_KHR: Self = Self(0);
-    pub const COMPLETE_KHR: Self = Self(1);
+    pub const ERROR: Self = Self(-1);
+    pub const NOT_READY: Self = Self(0);
+    pub const COMPLETE: Self = Self(1);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl crate::vk::QueryResultFlags {
@@ -58,75 +58,73 @@ impl crate::vk::QueryResultFlagBits {
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoCodecOperationFlagsKHR {
-    pub const NONE_KHR: Self = Self(VideoCodecOperationFlagBitsKHR::NONE_KHR.0);
+    pub const NONE: Self = Self(VideoCodecOperationFlagBitsKHR::NONE.0);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoCodecOperationFlagBitsKHR {
-    pub const NONE_KHR: Self = Self(0);
+    pub const NONE: Self = Self(0);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoCapabilityFlagsKHR {
-    pub const PROTECTED_CONTENT_KHR: Self = Self(
-        VideoCapabilityFlagBitsKHR::PROTECTED_CONTENT_KHR.0,
+    pub const PROTECTED_CONTENT: Self = Self(
+        VideoCapabilityFlagBitsKHR::PROTECTED_CONTENT.0,
     );
-    pub const SEPARATE_REFERENCE_IMAGES_KHR: Self = Self(
-        VideoCapabilityFlagBitsKHR::SEPARATE_REFERENCE_IMAGES_KHR.0,
+    pub const SEPARATE_REFERENCE_IMAGES: Self = Self(
+        VideoCapabilityFlagBitsKHR::SEPARATE_REFERENCE_IMAGES.0,
     );
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoCapabilityFlagBitsKHR {
-    pub const PROTECTED_CONTENT_KHR: Self = Self(1 << 0);
-    pub const SEPARATE_REFERENCE_IMAGES_KHR: Self = Self(1 << 1);
+    pub const PROTECTED_CONTENT: Self = Self(1 << 0);
+    pub const SEPARATE_REFERENCE_IMAGES: Self = Self(1 << 1);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoSessionCreateFlagsKHR {
-    pub const PROTECTED_CONTENT_KHR: Self = Self(
-        VideoSessionCreateFlagBitsKHR::PROTECTED_CONTENT_KHR.0,
+    pub const PROTECTED_CONTENT: Self = Self(
+        VideoSessionCreateFlagBitsKHR::PROTECTED_CONTENT.0,
     );
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoSessionCreateFlagBitsKHR {
-    pub const PROTECTED_CONTENT_KHR: Self = Self(1 << 0);
+    pub const PROTECTED_CONTENT: Self = Self(1 << 0);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoCodingControlFlagsKHR {
-    pub const RESET_KHR: Self = Self(VideoCodingControlFlagBitsKHR::RESET_KHR.0);
+    pub const RESET: Self = Self(VideoCodingControlFlagBitsKHR::RESET.0);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoCodingControlFlagBitsKHR {
-    pub const RESET_KHR: Self = Self(1 << 0);
+    pub const RESET: Self = Self(1 << 0);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoChromaSubsamplingFlagsKHR {
-    pub const INVALID_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::INVALID_KHR.0);
-    pub const MONOCHROME_KHR: Self = Self(
-        VideoChromaSubsamplingFlagBitsKHR::MONOCHROME_KHR.0,
-    );
-    pub const _420_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_420_KHR.0);
-    pub const _422_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_422_KHR.0);
-    pub const _444_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_444_KHR.0);
+    pub const INVALID: Self = Self(VideoChromaSubsamplingFlagBitsKHR::INVALID.0);
+    pub const MONOCHROME: Self = Self(VideoChromaSubsamplingFlagBitsKHR::MONOCHROME.0);
+    pub const _420: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_420.0);
+    pub const _422: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_422.0);
+    pub const _444: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_444.0);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoChromaSubsamplingFlagBitsKHR {
-    pub const INVALID_KHR: Self = Self(0);
-    pub const MONOCHROME_KHR: Self = Self(1 << 0);
-    pub const _420_KHR: Self = Self(1 << 1);
-    pub const _422_KHR: Self = Self(1 << 2);
-    pub const _444_KHR: Self = Self(1 << 3);
+    pub const INVALID: Self = Self(0);
+    pub const MONOCHROME: Self = Self(1 << 0);
+    pub const _420: Self = Self(1 << 1);
+    pub const _422: Self = Self(1 << 2);
+    pub const _444: Self = Self(1 << 3);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoComponentBitDepthFlagsKHR {
-    pub const INVALID_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::INVALID_KHR.0);
-    pub const _8_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_8_KHR.0);
-    pub const _10_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_10_KHR.0);
-    pub const _12_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_12_KHR.0);
+    pub const INVALID: Self = Self(VideoComponentBitDepthFlagBitsKHR::INVALID.0);
+    pub const _8: Self = Self(VideoComponentBitDepthFlagBitsKHR::_8.0);
+    pub const _10: Self = Self(VideoComponentBitDepthFlagBitsKHR::_10.0);
+    pub const _12: Self = Self(VideoComponentBitDepthFlagBitsKHR::_12.0);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl VideoComponentBitDepthFlagBitsKHR {
-    pub const INVALID_KHR: Self = Self(0);
-    pub const _8_KHR: Self = Self(1 << 0);
-    pub const _10_KHR: Self = Self(1 << 2);
-    pub const _12_KHR: Self = Self(1 << 4);
+    pub const INVALID: Self = Self(0);
+    pub const _8: Self = Self(1 << 0);
+    pub const _10: Self = Self(1 << 2);
+    pub const _12: Self = Self(1 << 4);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -1494,11 +1492,11 @@ pub(crate) mod items {
     impl core::fmt::Debug for QueryResultStatusKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::ERROR_KHR => Some("ERROR_KHR"),
-                Self::NOT_READY_KHR => Some("NOT_READY_KHR"),
-                Self::COMPLETE_KHR => Some("COMPLETE_KHR"),
-                Self::INSUFFICIENTSTREAM_BUFFER_RANGE_KHR => {
-                    Some("INSUFFICIENTSTREAM_BUFFER_RANGE_KHR")
+                Self::ERROR => Some("ERROR"),
+                Self::NOT_READY => Some("NOT_READY"),
+                Self::COMPLETE => Some("COMPLETE"),
+                Self::INSUFFICIENTSTREAM_BUFFER_RANGE => {
+                    Some("INSUFFICIENTSTREAM_BUFFER_RANGE")
                 }
                 _ => None,
             } {
@@ -1527,14 +1525,14 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::NONE_KHR.0, "NONE_KHR"),
-                    (Self::ENCODE_H264_KHR.0, "ENCODE_H264_KHR"),
-                    (Self::ENCODE_H265_KHR.0, "ENCODE_H265_KHR"),
-                    (Self::DECODE_H264_KHR.0, "DECODE_H264_KHR"),
-                    (Self::DECODE_H265_KHR.0, "DECODE_H265_KHR"),
-                    (Self::DECODE_AV1_KHR.0, "DECODE_AV1_KHR"),
-                    (Self::ENCODE_AV1_KHR.0, "ENCODE_AV1_KHR"),
-                    (Self::DECODE_VP9_KHR.0, "DECODE_VP9_KHR"),
+                    (Self::NONE.0, "NONE"),
+                    (Self::ENCODE_H264.0, "ENCODE_H264"),
+                    (Self::ENCODE_H265.0, "ENCODE_H265"),
+                    (Self::DECODE_H264.0, "DECODE_H264"),
+                    (Self::DECODE_H265.0, "DECODE_H265"),
+                    (Self::DECODE_AV1.0, "DECODE_AV1"),
+                    (Self::ENCODE_AV1.0, "ENCODE_AV1"),
+                    (Self::DECODE_VP9.0, "DECODE_VP9"),
                 ],
                 self.0,
             )
@@ -1623,11 +1621,8 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::PROTECTED_CONTENT_KHR.0, "PROTECTED_CONTENT_KHR"),
-                    (
-                        Self::SEPARATE_REFERENCE_IMAGES_KHR.0,
-                        "SEPARATE_REFERENCE_IMAGES_KHR",
-                    ),
+                    (Self::PROTECTED_CONTENT.0, "PROTECTED_CONTENT"),
+                    (Self::SEPARATE_REFERENCE_IMAGES.0, "SEPARATE_REFERENCE_IMAGES"),
                 ],
                 self.0,
             )
@@ -1716,24 +1711,18 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::PROTECTED_CONTENT_KHR.0, "PROTECTED_CONTENT_KHR"),
+                    (Self::PROTECTED_CONTENT.0, "PROTECTED_CONTENT"),
                     (
-                        Self::ALLOW_ENCODE_PARAMETER_OPTIMIZATIONS_KHR.0,
-                        "ALLOW_ENCODE_PARAMETER_OPTIMIZATIONS_KHR",
+                        Self::ALLOW_ENCODE_PARAMETER_OPTIMIZATIONS.0,
+                        "ALLOW_ENCODE_PARAMETER_OPTIMIZATIONS",
                     ),
-                    (Self::INLINE_QUERIES_KHR.0, "INLINE_QUERIES_KHR"),
+                    (Self::INLINE_QUERIES.0, "INLINE_QUERIES"),
                     (
-                        Self::ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0,
-                        "ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR",
+                        Self::ALLOW_ENCODE_QUANTIZATION_DELTA_MAP.0,
+                        "ALLOW_ENCODE_QUANTIZATION_DELTA_MAP",
                     ),
-                    (
-                        Self::ALLOW_ENCODE_EMPHASIS_MAP_KHR.0,
-                        "ALLOW_ENCODE_EMPHASIS_MAP_KHR",
-                    ),
-                    (
-                        Self::INLINE_SESSION_PARAMETERS_KHR.0,
-                        "INLINE_SESSION_PARAMETERS_KHR",
-                    ),
+                    (Self::ALLOW_ENCODE_EMPHASIS_MAP.0, "ALLOW_ENCODE_EMPHASIS_MAP"),
+                    (Self::INLINE_SESSION_PARAMETERS.0, "INLINE_SESSION_PARAMETERS"),
                 ],
                 self.0,
             )
@@ -1821,12 +1810,7 @@ pub(crate) mod items {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             crate::debug_flags(
                 f,
-                &[
-                    (
-                        Self::QUANTIZATION_MAP_COMPATIBLE_KHR.0,
-                        "QUANTIZATION_MAP_COMPATIBLE_KHR",
-                    ),
-                ],
+                &[(Self::QUANTIZATION_MAP_COMPATIBLE.0, "QUANTIZATION_MAP_COMPATIBLE")],
                 self.0,
             )
         }
@@ -2050,9 +2034,9 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::RESET_KHR.0, "RESET_KHR"),
-                    (Self::ENCODE_RATE_CONTROL_KHR.0, "ENCODE_RATE_CONTROL_KHR"),
-                    (Self::ENCODE_QUALITY_LEVEL_KHR.0, "ENCODE_QUALITY_LEVEL_KHR"),
+                    (Self::RESET.0, "RESET"),
+                    (Self::ENCODE_RATE_CONTROL.0, "ENCODE_RATE_CONTROL"),
+                    (Self::ENCODE_QUALITY_LEVEL.0, "ENCODE_QUALITY_LEVEL"),
                 ],
                 self.0,
             )
@@ -2141,11 +2125,11 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::INVALID_KHR.0, "INVALID_KHR"),
-                    (Self::MONOCHROME_KHR.0, "MONOCHROME_KHR"),
-                    (Self::_420_KHR.0, "_420_KHR"),
-                    (Self::_422_KHR.0, "_422_KHR"),
-                    (Self::_444_KHR.0, "_444_KHR"),
+                    (Self::INVALID.0, "INVALID"),
+                    (Self::MONOCHROME.0, "MONOCHROME"),
+                    (Self::_420.0, "_420"),
+                    (Self::_422.0, "_422"),
+                    (Self::_444.0, "_444"),
                 ],
                 self.0,
             )
@@ -2234,10 +2218,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::INVALID_KHR.0, "INVALID_KHR"),
-                    (Self::_8_KHR.0, "_8_KHR"),
-                    (Self::_10_KHR.0, "_10_KHR"),
-                    (Self::_12_KHR.0, "_12_KHR"),
+                    (Self::INVALID.0, "INVALID"),
+                    (Self::_8.0, "_8"),
+                    (Self::_10.0, "_10"),
+                    (Self::_12.0, "_12"),
                 ],
                 self.0,
             )

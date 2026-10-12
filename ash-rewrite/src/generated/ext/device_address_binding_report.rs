@@ -11,28 +11,28 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl DeviceAddressBindingTypeEXT {
-    pub const BIND_EXT: Self = Self(0);
-    pub const UNBIND_EXT: Self = Self(1);
+    pub const BIND: Self = Self(0);
+    pub const UNBIND: Self = Self(1);
 }
 ///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl crate::vk::DebugUtilsMessageTypeFlagsEXT {
-    pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(
-        crate::vk::DebugUtilsMessageTypeFlagBitsEXT::DEVICE_ADDRESS_BINDING_EXT.0,
+    pub const DEVICE_ADDRESS_BINDING: Self = Self(
+        crate::vk::DebugUtilsMessageTypeFlagBitsEXT::DEVICE_ADDRESS_BINDING.0,
     );
 }
 ///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl crate::vk::DebugUtilsMessageTypeFlagBitsEXT {
-    pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(1 << 3);
+    pub const DEVICE_ADDRESS_BINDING: Self = Self(1 << 3);
 }
 ///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl DeviceAddressBindingFlagsEXT {
-    pub const INTERNAL_OBJECT_EXT: Self = Self(
-        DeviceAddressBindingFlagBitsEXT::INTERNAL_OBJECT_EXT.0,
+    pub const INTERNAL_OBJECT: Self = Self(
+        DeviceAddressBindingFlagBitsEXT::INTERNAL_OBJECT.0,
     );
 }
 ///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl DeviceAddressBindingFlagBitsEXT {
-    pub const INTERNAL_OBJECT_EXT: Self = Self(1 << 0);
+    pub const INTERNAL_OBJECT: Self = Self(1 << 0);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_device_address_binding_report";
@@ -133,8 +133,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for DeviceAddressBindingTypeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::BIND_EXT => Some("BIND_EXT"),
-                Self::UNBIND_EXT => Some("UNBIND_EXT"),
+                Self::BIND => Some("BIND"),
+                Self::UNBIND => Some("UNBIND"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -161,7 +161,7 @@ pub(crate) mod items {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             crate::debug_flags(
                 f,
-                &[(Self::INTERNAL_OBJECT_EXT.0, "INTERNAL_OBJECT_EXT")],
+                &[(Self::INTERNAL_OBJECT.0, "INTERNAL_OBJECT")],
                 self.0,
             )
         }

@@ -40,34 +40,34 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::DebugReportObjectTypeEXT {
-    pub const ACCELERATION_STRUCTURE_NV_EXT: Self = Self(1000165000);
+    pub const ACCELERATION_STRUCTURE_NV: Self = Self(1000165000);
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::CopyAccelerationStructureModeKHR {
-    pub const CLONE_NV: Self = Self::CLONE_KHR;
-    pub const COMPACT_NV: Self = Self::COMPACT_KHR;
+    pub const CLONE_NV: Self = Self::CLONE;
+    pub const COMPACT_NV: Self = Self::COMPACT;
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::AccelerationStructureTypeKHR {
-    pub const TOP_LEVEL_NV: Self = Self::TOP_LEVEL_KHR;
-    pub const BOTTOM_LEVEL_NV: Self = Self::BOTTOM_LEVEL_KHR;
+    pub const TOP_LEVEL_NV: Self = Self::TOP_LEVEL;
+    pub const BOTTOM_LEVEL_NV: Self = Self::BOTTOM_LEVEL;
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::GeometryTypeKHR {
-    pub const TRIANGLES_NV: Self = Self::TRIANGLES_KHR;
-    pub const AABBS_NV: Self = Self::AABBS_KHR;
+    pub const TRIANGLES_NV: Self = Self::TRIANGLES;
+    pub const AABBS_NV: Self = Self::AABBS;
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl AccelerationStructureMemoryRequirementsTypeNV {
-    pub const OBJECT_NV: Self = Self(0);
-    pub const BUILD_SCRATCH_NV: Self = Self(1);
-    pub const UPDATE_SCRATCH_NV: Self = Self(2);
+    pub const OBJECT: Self = Self(0);
+    pub const BUILD_SCRATCH: Self = Self(1);
+    pub const UPDATE_SCRATCH: Self = Self(2);
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::RayTracingShaderGroupTypeKHR {
-    pub const GENERAL_NV: Self = Self::GENERAL_KHR;
-    pub const TRIANGLES_HIT_GROUP_NV: Self = Self::TRIANGLES_HIT_GROUP_KHR;
-    pub const PROCEDURAL_HIT_GROUP_NV: Self = Self::PROCEDURAL_HIT_GROUP_KHR;
+    pub const GENERAL_NV: Self = Self::GENERAL;
+    pub const TRIANGLES_HIT_GROUP_NV: Self = Self::TRIANGLES_HIT_GROUP;
+    pub const PROCEDURAL_HIT_GROUP_NV: Self = Self::PROCEDURAL_HIT_GROUP;
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::AccessFlags {
@@ -148,8 +148,8 @@ impl crate::vk::GeometryFlagsKHR {
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::GeometryFlagBitsKHR {
-    pub const OPAQUE_NV: Self = Self::OPAQUE_KHR;
-    pub const NO_DUPLICATE_ANY_HIT_INVOCATION_NV: Self = Self::NO_DUPLICATE_ANY_HIT_INVOCATION_KHR;
+    pub const OPAQUE_NV: Self = Self::OPAQUE;
+    pub const NO_DUPLICATE_ANY_HIT_INVOCATION_NV: Self = Self::NO_DUPLICATE_ANY_HIT_INVOCATION;
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::GeometryInstanceFlagsKHR {
@@ -168,10 +168,10 @@ impl crate::vk::GeometryInstanceFlagsKHR {
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::GeometryInstanceFlagBitsKHR {
-    pub const TRIANGLE_CULL_DISABLE_NV: Self = Self::TRIANGLE_FACING_CULL_DISABLE_KHR;
-    pub const TRIANGLE_FRONT_COUNTERCLOCKWISE_NV: Self = Self::TRIANGLE_FRONT_COUNTERCLOCKWISE_KHR;
-    pub const FORCE_OPAQUE_NV: Self = Self::FORCE_OPAQUE_KHR;
-    pub const FORCE_NO_OPAQUE_NV: Self = Self::FORCE_NO_OPAQUE_KHR;
+    pub const TRIANGLE_CULL_DISABLE_NV: Self = Self::TRIANGLE_FACING_CULL_DISABLE;
+    pub const TRIANGLE_FRONT_COUNTERCLOCKWISE_NV: Self = Self::TRIANGLE_FRONT_COUNTERCLOCKWISE;
+    pub const FORCE_OPAQUE_NV: Self = Self::FORCE_OPAQUE;
+    pub const FORCE_NO_OPAQUE_NV: Self = Self::FORCE_NO_OPAQUE;
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::BuildAccelerationStructureFlagsKHR {
@@ -193,11 +193,11 @@ impl crate::vk::BuildAccelerationStructureFlagsKHR {
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
-    pub const ALLOW_UPDATE_NV: Self = Self::ALLOW_UPDATE_KHR;
-    pub const ALLOW_COMPACTION_NV: Self = Self::ALLOW_COMPACTION_KHR;
-    pub const PREFER_FAST_TRACE_NV: Self = Self::PREFER_FAST_TRACE_KHR;
-    pub const PREFER_FAST_BUILD_NV: Self = Self::PREFER_FAST_BUILD_KHR;
-    pub const LOW_MEMORY_NV: Self = Self::LOW_MEMORY_KHR;
+    pub const ALLOW_UPDATE_NV: Self = Self::ALLOW_UPDATE;
+    pub const ALLOW_COMPACTION_NV: Self = Self::ALLOW_COMPACTION;
+    pub const PREFER_FAST_TRACE_NV: Self = Self::PREFER_FAST_TRACE;
+    pub const PREFER_FAST_BUILD_NV: Self = Self::PREFER_FAST_BUILD;
+    pub const LOW_MEMORY_NV: Self = Self::LOW_MEMORY;
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -1376,9 +1376,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for AccelerationStructureMemoryRequirementsTypeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::OBJECT_NV => Some("OBJECT_NV"),
-                Self::BUILD_SCRATCH_NV => Some("BUILD_SCRATCH_NV"),
-                Self::UPDATE_SCRATCH_NV => Some("UPDATE_SCRATCH_NV"),
+                Self::OBJECT => Some("OBJECT"),
+                Self::BUILD_SCRATCH => Some("BUILD_SCRATCH"),
+                Self::UPDATE_SCRATCH => Some("UPDATE_SCRATCH"),
                 _ => None,
             } {
                 f.write_str(x)

@@ -27,24 +27,24 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureTypeNV {
-    pub const CLUSTERS_BOTTOM_LEVEL_NV: Self = Self(0);
-    pub const TRIANGLE_CLUSTER_NV: Self = Self(1);
-    pub const TRIANGLE_CLUSTER_TEMPLATE_NV: Self = Self(2);
+    pub const CLUSTERS_BOTTOM_LEVEL: Self = Self(0);
+    pub const TRIANGLE_CLUSTER: Self = Self(1);
+    pub const TRIANGLE_CLUSTER_TEMPLATE: Self = Self(2);
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureOpTypeNV {
-    pub const MOVE_OBJECTS_NV: Self = Self(0);
-    pub const BUILD_CLUSTERS_BOTTOM_LEVEL_NV: Self = Self(1);
-    pub const BUILD_TRIANGLE_CLUSTER_NV: Self = Self(2);
-    pub const BUILD_TRIANGLE_CLUSTER_TEMPLATE_NV: Self = Self(3);
-    pub const INSTANTIATE_TRIANGLE_CLUSTER_NV: Self = Self(4);
-    pub const GET_CLUSTER_TEMPLATE_INDICES_NV: Self = Self(5);
+    pub const MOVE_OBJECTS: Self = Self(0);
+    pub const BUILD_CLUSTERS_BOTTOM_LEVEL: Self = Self(1);
+    pub const BUILD_TRIANGLE_CLUSTER: Self = Self(2);
+    pub const BUILD_TRIANGLE_CLUSTER_TEMPLATE: Self = Self(3);
+    pub const INSTANTIATE_TRIANGLE_CLUSTER: Self = Self(4);
+    pub const GET_CLUSTER_TEMPLATE_INDICES: Self = Self(5);
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureOpModeNV {
-    pub const IMPLICIT_DESTINATIONS_NV: Self = Self(0);
-    pub const EXPLICIT_DESTINATIONS_NV: Self = Self(1);
-    pub const COMPUTE_SIZES_NV: Self = Self(2);
+    pub const IMPLICIT_DESTINATIONS: Self = Self(0);
+    pub const EXPLICIT_DESTINATIONS: Self = Self(1);
+    pub const COMPUTE_SIZES: Self = Self(2);
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl crate::vk::OpacityMicromapSpecialIndexKHR {
@@ -52,73 +52,71 @@ impl crate::vk::OpacityMicromapSpecialIndexKHR {
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureGeometryFlagsNV {
-    pub const CULL_DISABLE_NV: Self = Self(
-        ClusterAccelerationStructureGeometryFlagBitsNV::CULL_DISABLE_NV.0,
+    pub const CULL_DISABLE: Self = Self(
+        ClusterAccelerationStructureGeometryFlagBitsNV::CULL_DISABLE.0,
     );
-    pub const NO_DUPLICATE_ANYHIT_INVOCATION_NV: Self = Self(
-        ClusterAccelerationStructureGeometryFlagBitsNV::NO_DUPLICATE_ANYHIT_INVOCATION_NV
-            .0,
+    pub const NO_DUPLICATE_ANYHIT_INVOCATION: Self = Self(
+        ClusterAccelerationStructureGeometryFlagBitsNV::NO_DUPLICATE_ANYHIT_INVOCATION.0,
     );
-    pub const OPAQUE_NV: Self = Self(
-        ClusterAccelerationStructureGeometryFlagBitsNV::OPAQUE_NV.0,
+    pub const OPAQUE: Self = Self(
+        ClusterAccelerationStructureGeometryFlagBitsNV::OPAQUE.0,
     );
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureGeometryFlagBitsNV {
-    pub const CULL_DISABLE_NV: Self = Self(1 << 0);
-    pub const NO_DUPLICATE_ANYHIT_INVOCATION_NV: Self = Self(1 << 1);
-    pub const OPAQUE_NV: Self = Self(1 << 2);
+    pub const CULL_DISABLE: Self = Self(1 << 0);
+    pub const NO_DUPLICATE_ANYHIT_INVOCATION: Self = Self(1 << 1);
+    pub const OPAQUE: Self = Self(1 << 2);
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureClusterFlagsNV {
-    pub const ALLOW_DISABLE_OPACITY_MICROMAPS_NV: Self = Self(
-        ClusterAccelerationStructureClusterFlagBitsNV::ALLOW_DISABLE_OPACITY_MICROMAPS_NV
-            .0,
+    pub const ALLOW_DISABLE_OPACITY_MICROMAPS: Self = Self(
+        ClusterAccelerationStructureClusterFlagBitsNV::ALLOW_DISABLE_OPACITY_MICROMAPS.0,
     );
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureClusterFlagBitsNV {
-    pub const ALLOW_DISABLE_OPACITY_MICROMAPS_NV: Self = Self(1 << 0);
+    pub const ALLOW_DISABLE_OPACITY_MICROMAPS: Self = Self(1 << 0);
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureAddressResolutionFlagsNV {
-    pub const NONE_NV: Self = Self(
-        ClusterAccelerationStructureAddressResolutionFlagBitsNV::NONE_NV.0,
+    pub const NONE: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::NONE.0,
     );
-    pub const INDIRECTED_DST_IMPLICIT_DATA_NV: Self = Self(
-        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_IMPLICIT_DATA_NV
+    pub const INDIRECTED_DST_IMPLICIT_DATA: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_IMPLICIT_DATA
             .0,
     );
-    pub const INDIRECTED_SCRATCH_DATA_NV: Self = Self(
-        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SCRATCH_DATA_NV
+    pub const INDIRECTED_SCRATCH_DATA: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SCRATCH_DATA
             .0,
     );
-    pub const INDIRECTED_DST_ADDRESS_ARRAY_NV: Self = Self(
-        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_ADDRESS_ARRAY_NV
+    pub const INDIRECTED_DST_ADDRESS_ARRAY: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_ADDRESS_ARRAY
             .0,
     );
-    pub const INDIRECTED_DST_SIZES_ARRAY_NV: Self = Self(
-        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_SIZES_ARRAY_NV
+    pub const INDIRECTED_DST_SIZES_ARRAY: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_SIZES_ARRAY
             .0,
     );
-    pub const INDIRECTED_SRC_INFOS_ARRAY_NV: Self = Self(
-        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SRC_INFOS_ARRAY_NV
+    pub const INDIRECTED_SRC_INFOS_ARRAY: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SRC_INFOS_ARRAY
             .0,
     );
-    pub const INDIRECTED_SRC_INFOS_COUNT_NV: Self = Self(
-        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SRC_INFOS_COUNT_NV
+    pub const INDIRECTED_SRC_INFOS_COUNT: Self = Self(
+        ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SRC_INFOS_COUNT
             .0,
     );
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureAddressResolutionFlagBitsNV {
-    pub const NONE_NV: Self = Self(0);
-    pub const INDIRECTED_DST_IMPLICIT_DATA_NV: Self = Self(1 << 0);
-    pub const INDIRECTED_SCRATCH_DATA_NV: Self = Self(1 << 1);
-    pub const INDIRECTED_DST_ADDRESS_ARRAY_NV: Self = Self(1 << 2);
-    pub const INDIRECTED_DST_SIZES_ARRAY_NV: Self = Self(1 << 3);
-    pub const INDIRECTED_SRC_INFOS_ARRAY_NV: Self = Self(1 << 4);
-    pub const INDIRECTED_SRC_INFOS_COUNT_NV: Self = Self(1 << 5);
+    pub const NONE: Self = Self(0);
+    pub const INDIRECTED_DST_IMPLICIT_DATA: Self = Self(1 << 0);
+    pub const INDIRECTED_SCRATCH_DATA: Self = Self(1 << 1);
+    pub const INDIRECTED_DST_ADDRESS_ARRAY: Self = Self(1 << 2);
+    pub const INDIRECTED_DST_SIZES_ARRAY: Self = Self(1 << 3);
+    pub const INDIRECTED_SRC_INFOS_ARRAY: Self = Self(1 << 4);
+    pub const INDIRECTED_SRC_INFOS_COUNT: Self = Self(1 << 5);
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl crate::vk::BuildAccelerationStructureFlagsKHR {
@@ -133,21 +131,21 @@ impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureIndexFormatFlagsNV {
-    pub const _8BIT_NV: Self = Self(
-        ClusterAccelerationStructureIndexFormatFlagBitsNV::_8BIT_NV.0,
+    pub const _8BIT: Self = Self(
+        ClusterAccelerationStructureIndexFormatFlagBitsNV::_8BIT.0,
     );
-    pub const _16BIT_NV: Self = Self(
-        ClusterAccelerationStructureIndexFormatFlagBitsNV::_16BIT_NV.0,
+    pub const _16BIT: Self = Self(
+        ClusterAccelerationStructureIndexFormatFlagBitsNV::_16BIT.0,
     );
-    pub const _32BIT_NV: Self = Self(
-        ClusterAccelerationStructureIndexFormatFlagBitsNV::_32BIT_NV.0,
+    pub const _32BIT: Self = Self(
+        ClusterAccelerationStructureIndexFormatFlagBitsNV::_32BIT.0,
     );
 }
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureIndexFormatFlagBitsNV {
-    pub const _8BIT_NV: Self = Self(1 << 0);
-    pub const _16BIT_NV: Self = Self(1 << 1);
-    pub const _32BIT_NV: Self = Self(1 << 2);
+    pub const _8BIT: Self = Self(1 << 0);
+    pub const _16BIT: Self = Self(1 << 1);
+    pub const _32BIT: Self = Self(1 << 2);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -1370,11 +1368,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for ClusterAccelerationStructureTypeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::CLUSTERS_BOTTOM_LEVEL_NV => Some("CLUSTERS_BOTTOM_LEVEL_NV"),
-                Self::TRIANGLE_CLUSTER_NV => Some("TRIANGLE_CLUSTER_NV"),
-                Self::TRIANGLE_CLUSTER_TEMPLATE_NV => {
-                    Some("TRIANGLE_CLUSTER_TEMPLATE_NV")
-                }
+                Self::CLUSTERS_BOTTOM_LEVEL => Some("CLUSTERS_BOTTOM_LEVEL"),
+                Self::TRIANGLE_CLUSTER => Some("TRIANGLE_CLUSTER"),
+                Self::TRIANGLE_CLUSTER_TEMPLATE => Some("TRIANGLE_CLUSTER_TEMPLATE"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1400,19 +1396,17 @@ pub(crate) mod items {
     impl core::fmt::Debug for ClusterAccelerationStructureOpTypeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::MOVE_OBJECTS_NV => Some("MOVE_OBJECTS_NV"),
-                Self::BUILD_CLUSTERS_BOTTOM_LEVEL_NV => {
-                    Some("BUILD_CLUSTERS_BOTTOM_LEVEL_NV")
+                Self::MOVE_OBJECTS => Some("MOVE_OBJECTS"),
+                Self::BUILD_CLUSTERS_BOTTOM_LEVEL => Some("BUILD_CLUSTERS_BOTTOM_LEVEL"),
+                Self::BUILD_TRIANGLE_CLUSTER => Some("BUILD_TRIANGLE_CLUSTER"),
+                Self::BUILD_TRIANGLE_CLUSTER_TEMPLATE => {
+                    Some("BUILD_TRIANGLE_CLUSTER_TEMPLATE")
                 }
-                Self::BUILD_TRIANGLE_CLUSTER_NV => Some("BUILD_TRIANGLE_CLUSTER_NV"),
-                Self::BUILD_TRIANGLE_CLUSTER_TEMPLATE_NV => {
-                    Some("BUILD_TRIANGLE_CLUSTER_TEMPLATE_NV")
+                Self::INSTANTIATE_TRIANGLE_CLUSTER => {
+                    Some("INSTANTIATE_TRIANGLE_CLUSTER")
                 }
-                Self::INSTANTIATE_TRIANGLE_CLUSTER_NV => {
-                    Some("INSTANTIATE_TRIANGLE_CLUSTER_NV")
-                }
-                Self::GET_CLUSTER_TEMPLATE_INDICES_NV => {
-                    Some("GET_CLUSTER_TEMPLATE_INDICES_NV")
+                Self::GET_CLUSTER_TEMPLATE_INDICES => {
+                    Some("GET_CLUSTER_TEMPLATE_INDICES")
                 }
                 _ => None,
             } {
@@ -1439,9 +1433,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for ClusterAccelerationStructureOpModeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::IMPLICIT_DESTINATIONS_NV => Some("IMPLICIT_DESTINATIONS_NV"),
-                Self::EXPLICIT_DESTINATIONS_NV => Some("EXPLICIT_DESTINATIONS_NV"),
-                Self::COMPUTE_SIZES_NV => Some("COMPUTE_SIZES_NV"),
+                Self::IMPLICIT_DESTINATIONS => Some("IMPLICIT_DESTINATIONS"),
+                Self::EXPLICIT_DESTINATIONS => Some("EXPLICIT_DESTINATIONS"),
+                Self::COMPUTE_SIZES => Some("COMPUTE_SIZES"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1469,12 +1463,12 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::CULL_DISABLE_NV.0, "CULL_DISABLE_NV"),
+                    (Self::CULL_DISABLE.0, "CULL_DISABLE"),
                     (
-                        Self::NO_DUPLICATE_ANYHIT_INVOCATION_NV.0,
-                        "NO_DUPLICATE_ANYHIT_INVOCATION_NV",
+                        Self::NO_DUPLICATE_ANYHIT_INVOCATION.0,
+                        "NO_DUPLICATE_ANYHIT_INVOCATION",
                     ),
-                    (Self::OPAQUE_NV.0, "OPAQUE_NV"),
+                    (Self::OPAQUE.0, "OPAQUE"),
                 ],
                 self.0,
             )
@@ -1564,8 +1558,8 @@ pub(crate) mod items {
                 f,
                 &[
                     (
-                        Self::ALLOW_DISABLE_OPACITY_MICROMAPS_NV.0,
-                        "ALLOW_DISABLE_OPACITY_MICROMAPS_NV",
+                        Self::ALLOW_DISABLE_OPACITY_MICROMAPS.0,
+                        "ALLOW_DISABLE_OPACITY_MICROMAPS",
                     ),
                 ],
                 self.0,
@@ -1655,28 +1649,19 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::NONE_NV.0, "NONE_NV"),
+                    (Self::NONE.0, "NONE"),
                     (
-                        Self::INDIRECTED_DST_IMPLICIT_DATA_NV.0,
-                        "INDIRECTED_DST_IMPLICIT_DATA_NV",
+                        Self::INDIRECTED_DST_IMPLICIT_DATA.0,
+                        "INDIRECTED_DST_IMPLICIT_DATA",
                     ),
-                    (Self::INDIRECTED_SCRATCH_DATA_NV.0, "INDIRECTED_SCRATCH_DATA_NV"),
+                    (Self::INDIRECTED_SCRATCH_DATA.0, "INDIRECTED_SCRATCH_DATA"),
                     (
-                        Self::INDIRECTED_DST_ADDRESS_ARRAY_NV.0,
-                        "INDIRECTED_DST_ADDRESS_ARRAY_NV",
+                        Self::INDIRECTED_DST_ADDRESS_ARRAY.0,
+                        "INDIRECTED_DST_ADDRESS_ARRAY",
                     ),
-                    (
-                        Self::INDIRECTED_DST_SIZES_ARRAY_NV.0,
-                        "INDIRECTED_DST_SIZES_ARRAY_NV",
-                    ),
-                    (
-                        Self::INDIRECTED_SRC_INFOS_ARRAY_NV.0,
-                        "INDIRECTED_SRC_INFOS_ARRAY_NV",
-                    ),
-                    (
-                        Self::INDIRECTED_SRC_INFOS_COUNT_NV.0,
-                        "INDIRECTED_SRC_INFOS_COUNT_NV",
-                    ),
+                    (Self::INDIRECTED_DST_SIZES_ARRAY.0, "INDIRECTED_DST_SIZES_ARRAY"),
+                    (Self::INDIRECTED_SRC_INFOS_ARRAY.0, "INDIRECTED_SRC_INFOS_ARRAY"),
+                    (Self::INDIRECTED_SRC_INFOS_COUNT.0, "INDIRECTED_SRC_INFOS_COUNT"),
                 ],
                 self.0,
             )
@@ -1770,9 +1755,9 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::_8BIT_NV.0, "_8BIT_NV"),
-                    (Self::_16BIT_NV.0, "_16BIT_NV"),
-                    (Self::_32BIT_NV.0, "_32BIT_NV"),
+                    (Self::_8BIT.0, "_8BIT"),
+                    (Self::_16BIT.0, "_16BIT"),
+                    (Self::_32BIT.0, "_32BIT"),
                 ],
                 self.0,
             )

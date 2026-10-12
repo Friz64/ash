@@ -31,13 +31,13 @@ impl crate::vk::ImageCreateFlagBits {
 }
 ///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl crate::vk::ImageCreateFlags2KHR {
-    pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(
-        crate::vk::ImageCreateFlagBits2KHR::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR.0,
+    pub const ALIAS_SINGLE_LAYER_DESCRIPTOR: Self = Self(
+        crate::vk::ImageCreateFlagBits2KHR::ALIAS_SINGLE_LAYER_DESCRIPTOR.0,
     );
 }
 ///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl crate::vk::ImageCreateFlagBits2KHR {
-    pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(1 << 22);
+    pub const ALIAS_SINGLE_LAYER_DESCRIPTOR: Self = Self(1 << 22);
 }
 ///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl crate::vk::ShaderCreateFlagsEXT {

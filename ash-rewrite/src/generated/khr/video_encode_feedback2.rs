@@ -14,55 +14,53 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
 impl crate::vk::VideoEncodeFeedbackFlagsKHR {
-    pub const AVERAGE_QUANTIZATION_KHR: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::AVERAGE_QUANTIZATION_KHR.0,
+    pub const AVERAGE_QUANTIZATION: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::AVERAGE_QUANTIZATION.0,
     );
-    pub const MIN_QUANTIZATION_KHR: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::MIN_QUANTIZATION_KHR.0,
+    pub const MIN_QUANTIZATION: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::MIN_QUANTIZATION.0,
     );
-    pub const MAX_QUANTIZATION_KHR: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::MAX_QUANTIZATION_KHR.0,
+    pub const MAX_QUANTIZATION: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::MAX_QUANTIZATION.0,
     );
-    pub const INTRA_PIXELS_KHR: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::INTRA_PIXELS_KHR.0,
+    pub const INTRA_PIXELS: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::INTRA_PIXELS.0,
     );
-    pub const INTER_PIXELS_KHR: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::INTER_PIXELS_KHR.0,
+    pub const INTER_PIXELS: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::INTER_PIXELS.0,
     );
-    pub const SKIPPED_PIXELS_KHR: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::SKIPPED_PIXELS_KHR.0,
+    pub const SKIPPED_PIXELS: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::SKIPPED_PIXELS.0,
     );
-    pub const PICTURE_PARTITION_COUNT_KHR: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::PICTURE_PARTITION_COUNT_KHR.0,
+    pub const PICTURE_PARTITION_COUNT: Self = Self(
+        crate::vk::VideoEncodeFeedbackFlagBitsKHR::PICTURE_PARTITION_COUNT.0,
     );
 }
 ///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
 impl crate::vk::VideoEncodeFeedbackFlagBitsKHR {
-    pub const AVERAGE_QUANTIZATION_KHR: Self = Self(1 << 3);
-    pub const MIN_QUANTIZATION_KHR: Self = Self(1 << 4);
-    pub const MAX_QUANTIZATION_KHR: Self = Self(1 << 5);
-    pub const INTRA_PIXELS_KHR: Self = Self(1 << 6);
-    pub const INTER_PIXELS_KHR: Self = Self(1 << 7);
-    pub const SKIPPED_PIXELS_KHR: Self = Self(1 << 8);
-    pub const PICTURE_PARTITION_COUNT_KHR: Self = Self(1 << 9);
+    pub const AVERAGE_QUANTIZATION: Self = Self(1 << 3);
+    pub const MIN_QUANTIZATION: Self = Self(1 << 4);
+    pub const MAX_QUANTIZATION: Self = Self(1 << 5);
+    pub const INTRA_PIXELS: Self = Self(1 << 6);
+    pub const INTER_PIXELS: Self = Self(1 << 7);
+    pub const SKIPPED_PIXELS: Self = Self(1 << 8);
+    pub const PICTURE_PARTITION_COUNT: Self = Self(1 << 9);
 }
 ///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
 impl VideoEncodePerPartitionFeedbackFlagsKHR {
-    pub const STATUS_KHR: Self = Self(
-        VideoEncodePerPartitionFeedbackFlagBitsKHR::STATUS_KHR.0,
+    pub const STATUS: Self = Self(VideoEncodePerPartitionFeedbackFlagBitsKHR::STATUS.0);
+    pub const BITSTREAM_BUFFER_OFFSET: Self = Self(
+        VideoEncodePerPartitionFeedbackFlagBitsKHR::BITSTREAM_BUFFER_OFFSET.0,
     );
-    pub const BITSTREAM_BUFFER_OFFSET_KHR: Self = Self(
-        VideoEncodePerPartitionFeedbackFlagBitsKHR::BITSTREAM_BUFFER_OFFSET_KHR.0,
-    );
-    pub const BITSTREAM_BYTES_WRITTEN_KHR: Self = Self(
-        VideoEncodePerPartitionFeedbackFlagBitsKHR::BITSTREAM_BYTES_WRITTEN_KHR.0,
+    pub const BITSTREAM_BYTES_WRITTEN: Self = Self(
+        VideoEncodePerPartitionFeedbackFlagBitsKHR::BITSTREAM_BYTES_WRITTEN.0,
     );
 }
 ///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
 impl VideoEncodePerPartitionFeedbackFlagBitsKHR {
-    pub const STATUS_KHR: Self = Self(1 << 0);
-    pub const BITSTREAM_BUFFER_OFFSET_KHR: Self = Self(1 << 1);
-    pub const BITSTREAM_BYTES_WRITTEN_KHR: Self = Self(1 << 2);
+    pub const STATUS: Self = Self(1 << 0);
+    pub const BITSTREAM_BUFFER_OFFSET: Self = Self(1 << 1);
+    pub const BITSTREAM_BYTES_WRITTEN: Self = Self(1 << 2);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_feedback2";
@@ -201,9 +199,9 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::STATUS_KHR.0, "STATUS_KHR"),
-                    (Self::BITSTREAM_BUFFER_OFFSET_KHR.0, "BITSTREAM_BUFFER_OFFSET_KHR"),
-                    (Self::BITSTREAM_BYTES_WRITTEN_KHR.0, "BITSTREAM_BYTES_WRITTEN_KHR"),
+                    (Self::STATUS.0, "STATUS"),
+                    (Self::BITSTREAM_BUFFER_OFFSET.0, "BITSTREAM_BUFFER_OFFSET"),
+                    (Self::BITSTREAM_BYTES_WRITTEN.0, "BITSTREAM_BYTES_WRITTEN"),
                 ],
                 self.0,
             )

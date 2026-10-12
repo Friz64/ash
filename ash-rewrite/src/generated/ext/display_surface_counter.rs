@@ -8,11 +8,11 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_display_surface_counter](crate::ext::display_surface_counter)
 impl SurfaceCounterFlagsEXT {
-    pub const VBLANK_EXT: Self = Self(SurfaceCounterFlagBitsEXT::VBLANK_EXT.0);
+    pub const VBLANK: Self = Self(SurfaceCounterFlagBitsEXT::VBLANK.0);
 }
 ///Provided by [VK_EXT_display_surface_counter](crate::ext::display_surface_counter)
 impl SurfaceCounterFlagBitsEXT {
-    pub const VBLANK_EXT: Self = Self(1 << 0);
+    pub const VBLANK: Self = Self(1 << 0);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -207,7 +207,7 @@ pub(crate) mod items {
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for SurfaceCounterFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            crate::debug_flags(f, &[(Self::VBLANK_EXT.0, "VBLANK_EXT")], self.0)
+            crate::debug_flags(f, &[(Self::VBLANK.0, "VBLANK")], self.0)
         }
     }
     impl SurfaceCounterFlagsEXT {

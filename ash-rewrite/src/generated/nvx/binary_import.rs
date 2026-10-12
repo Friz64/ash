@@ -16,8 +16,8 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_NVX_binary_import](crate::nvx::binary_import)
 impl crate::vk::DebugReportObjectTypeEXT {
-    pub const CU_MODULE_NVX_EXT: Self = Self(1000029000);
-    pub const CU_FUNCTION_NVX_EXT: Self = Self(1000029001);
+    pub const CU_MODULE_NVX: Self = Self(1000029000);
+    pub const CU_FUNCTION_NVX: Self = Self(1000029001);
 }
 #[derive(Clone)]
 pub struct DeviceFn {

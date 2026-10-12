@@ -29,11 +29,11 @@ impl crate::vk::DynamicState {
 }
 ///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl FragmentShadingRateCombinerOpKHR {
-    pub const KEEP_KHR: Self = Self(0);
-    pub const REPLACE_KHR: Self = Self(1);
-    pub const MIN_KHR: Self = Self(2);
-    pub const MAX_KHR: Self = Self(3);
-    pub const MUL_KHR: Self = Self(4);
+    pub const KEEP: Self = Self(0);
+    pub const REPLACE: Self = Self(1);
+    pub const MIN: Self = Self(2);
+    pub const MAX: Self = Self(3);
+    pub const MUL: Self = Self(4);
 }
 ///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl crate::vk::AccessFlags {
@@ -693,11 +693,11 @@ pub(crate) mod items {
     impl core::fmt::Debug for FragmentShadingRateCombinerOpKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::KEEP_KHR => Some("KEEP_KHR"),
-                Self::REPLACE_KHR => Some("REPLACE_KHR"),
-                Self::MIN_KHR => Some("MIN_KHR"),
-                Self::MAX_KHR => Some("MAX_KHR"),
-                Self::MUL_KHR => Some("MUL_KHR"),
+                Self::KEEP => Some("KEEP"),
+                Self::REPLACE => Some("REPLACE"),
+                Self::MIN => Some("MIN"),
+                Self::MAX => Some("MAX"),
+                Self::MUL => Some("MUL"),
                 _ => None,
             } {
                 f.write_str(x)

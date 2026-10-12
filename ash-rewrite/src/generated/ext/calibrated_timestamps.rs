@@ -8,10 +8,10 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_calibrated_timestamps](crate::ext::calibrated_timestamps)
 impl crate::vk::TimeDomainKHR {
-    pub const DEVICE_EXT: Self = Self::DEVICE_KHR;
-    pub const CLOCK_MONOTONIC_EXT: Self = Self::CLOCK_MONOTONIC_KHR;
-    pub const CLOCK_MONOTONIC_RAW_EXT: Self = Self::CLOCK_MONOTONIC_RAW_KHR;
-    pub const QUERY_PERFORMANCE_COUNTER_EXT: Self = Self::QUERY_PERFORMANCE_COUNTER_KHR;
+    pub const DEVICE_EXT: Self = Self::DEVICE;
+    pub const CLOCK_MONOTONIC_EXT: Self = Self::CLOCK_MONOTONIC;
+    pub const CLOCK_MONOTONIC_RAW_EXT: Self = Self::CLOCK_MONOTONIC_RAW;
+    pub const QUERY_PERFORMANCE_COUNTER_EXT: Self = Self::QUERY_PERFORMANCE_COUNTER;
 }
 #[derive(Clone)]
 pub struct InstanceFn {

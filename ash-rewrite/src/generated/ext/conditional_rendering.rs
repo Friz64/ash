@@ -44,11 +44,11 @@ impl crate::vk::PipelineStageFlagBits {
 }
 ///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl ConditionalRenderingFlagsEXT {
-    pub const INVERTED_EXT: Self = Self(ConditionalRenderingFlagBitsEXT::INVERTED_EXT.0);
+    pub const INVERTED: Self = Self(ConditionalRenderingFlagBitsEXT::INVERTED.0);
 }
 ///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl ConditionalRenderingFlagBitsEXT {
-    pub const INVERTED_EXT: Self = Self(1 << 0);
+    pub const INVERTED: Self = Self(1 << 0);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -273,7 +273,7 @@ pub(crate) mod items {
     #[cfg(feature = "debug")]
     impl core::fmt::Debug for ConditionalRenderingFlagsEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            crate::debug_flags(f, &[(Self::INVERTED_EXT.0, "INVERTED_EXT")], self.0)
+            crate::debug_flags(f, &[(Self::INVERTED.0, "INVERTED")], self.0)
         }
     }
     impl ConditionalRenderingFlagsEXT {

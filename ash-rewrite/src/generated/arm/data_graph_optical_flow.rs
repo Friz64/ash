@@ -26,30 +26,30 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl crate::vk::DataGraphPipelineSessionBindPointARM {
-    pub const OPTICAL_FLOW_CACHE_ARM: Self = Self(1000631001);
+    pub const OPTICAL_FLOW_CACHE: Self = Self(1000631001);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl crate::vk::PhysicalDeviceDataGraphOperationTypeARM {
-    pub const OPTICAL_FLOW_ARM: Self = Self(1000631000);
+    pub const OPTICAL_FLOW: Self = Self(1000631000);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowPerformanceLevelARM {
-    pub const UNKNOWN_ARM: Self = Self(0);
-    pub const SLOW_ARM: Self = Self(1);
-    pub const MEDIUM_ARM: Self = Self(2);
-    pub const FAST_ARM: Self = Self(3);
+    pub const UNKNOWN: Self = Self(0);
+    pub const SLOW: Self = Self(1);
+    pub const MEDIUM: Self = Self(2);
+    pub const FAST: Self = Self(3);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphPipelineNodeConnectionTypeARM {
-    pub const OPTICAL_FLOW_INPUT_ARM: Self = Self(1000631000);
-    pub const OPTICAL_FLOW_REFERENCE_ARM: Self = Self(1000631001);
-    pub const OPTICAL_FLOW_HINT_ARM: Self = Self(1000631002);
-    pub const OPTICAL_FLOW_FLOW_VECTOR_ARM: Self = Self(1000631003);
-    pub const OPTICAL_FLOW_COST_ARM: Self = Self(1000631004);
+    pub const OPTICAL_FLOW_INPUT: Self = Self(1000631000);
+    pub const OPTICAL_FLOW_REFERENCE: Self = Self(1000631001);
+    pub const OPTICAL_FLOW_HINT: Self = Self(1000631002);
+    pub const OPTICAL_FLOW_FLOW_VECTOR: Self = Self(1000631003);
+    pub const OPTICAL_FLOW_COST: Self = Self(1000631004);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphPipelineNodeTypeARM {
-    pub const OPTICAL_FLOW_ARM: Self = Self(1000631000);
+    pub const OPTICAL_FLOW: Self = Self(1000631000);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl crate::vk::FormatFeatureFlags2 {
@@ -71,101 +71,89 @@ impl crate::vk::FormatFeatureFlagBits2 {
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl crate::vk::DataGraphPipelineSessionCreateFlagsARM {
-    pub const OPTICAL_FLOW_CACHE_ARM: Self = Self(
-        crate::vk::DataGraphPipelineSessionCreateFlagBitsARM::OPTICAL_FLOW_CACHE_ARM.0,
+    pub const OPTICAL_FLOW_CACHE: Self = Self(
+        crate::vk::DataGraphPipelineSessionCreateFlagBitsARM::OPTICAL_FLOW_CACHE.0,
     );
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl crate::vk::DataGraphPipelineSessionCreateFlagBitsARM {
-    pub const OPTICAL_FLOW_CACHE_ARM: Self = Self(1 << 1);
+    pub const OPTICAL_FLOW_CACHE: Self = Self(1 << 1);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowGridSizeFlagsARM {
-    pub const UNKNOWN_ARM: Self = Self(
-        DataGraphOpticalFlowGridSizeFlagBitsARM::UNKNOWN_ARM.0,
-    );
-    pub const _1X1_ARM: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_1X1_ARM.0);
-    pub const _2X2_ARM: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_2X2_ARM.0);
-    pub const _4X4_ARM: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_4X4_ARM.0);
-    pub const _8X8_ARM: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_8X8_ARM.0);
+    pub const UNKNOWN: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::UNKNOWN.0);
+    pub const _1X1: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_1X1.0);
+    pub const _2X2: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_2X2.0);
+    pub const _4X4: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_4X4.0);
+    pub const _8X8: Self = Self(DataGraphOpticalFlowGridSizeFlagBitsARM::_8X8.0);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowGridSizeFlagBitsARM {
-    pub const UNKNOWN_ARM: Self = Self(0);
-    pub const _1X1_ARM: Self = Self(1 << 0);
-    pub const _2X2_ARM: Self = Self(1 << 1);
-    pub const _4X4_ARM: Self = Self(1 << 2);
-    pub const _8X8_ARM: Self = Self(1 << 3);
+    pub const UNKNOWN: Self = Self(0);
+    pub const _1X1: Self = Self(1 << 0);
+    pub const _2X2: Self = Self(1 << 1);
+    pub const _4X4: Self = Self(1 << 2);
+    pub const _8X8: Self = Self(1 << 3);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowImageUsageFlagsARM {
-    pub const UNKNOWN_ARM: Self = Self(
-        DataGraphOpticalFlowImageUsageFlagBitsARM::UNKNOWN_ARM.0,
-    );
-    pub const INPUT_ARM: Self = Self(
-        DataGraphOpticalFlowImageUsageFlagBitsARM::INPUT_ARM.0,
-    );
-    pub const OUTPUT_ARM: Self = Self(
-        DataGraphOpticalFlowImageUsageFlagBitsARM::OUTPUT_ARM.0,
-    );
-    pub const HINT_ARM: Self = Self(
-        DataGraphOpticalFlowImageUsageFlagBitsARM::HINT_ARM.0,
-    );
-    pub const COST_ARM: Self = Self(
-        DataGraphOpticalFlowImageUsageFlagBitsARM::COST_ARM.0,
-    );
+    pub const UNKNOWN: Self = Self(DataGraphOpticalFlowImageUsageFlagBitsARM::UNKNOWN.0);
+    pub const INPUT: Self = Self(DataGraphOpticalFlowImageUsageFlagBitsARM::INPUT.0);
+    pub const OUTPUT: Self = Self(DataGraphOpticalFlowImageUsageFlagBitsARM::OUTPUT.0);
+    pub const HINT: Self = Self(DataGraphOpticalFlowImageUsageFlagBitsARM::HINT.0);
+    pub const COST: Self = Self(DataGraphOpticalFlowImageUsageFlagBitsARM::COST.0);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowImageUsageFlagBitsARM {
-    pub const UNKNOWN_ARM: Self = Self(0);
-    pub const INPUT_ARM: Self = Self(1 << 0);
-    pub const OUTPUT_ARM: Self = Self(1 << 1);
-    pub const HINT_ARM: Self = Self(1 << 2);
-    pub const COST_ARM: Self = Self(1 << 3);
+    pub const UNKNOWN: Self = Self(0);
+    pub const INPUT: Self = Self(1 << 0);
+    pub const OUTPUT: Self = Self(1 << 1);
+    pub const HINT: Self = Self(1 << 2);
+    pub const COST: Self = Self(1 << 3);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowCreateFlagsARM {
-    pub const ENABLE_HINT_ARM: Self = Self(
-        DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_HINT_ARM.0,
+    pub const ENABLE_HINT: Self = Self(
+        DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_HINT.0,
     );
-    pub const ENABLE_COST_ARM: Self = Self(
-        DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_COST_ARM.0,
+    pub const ENABLE_COST: Self = Self(
+        DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_COST.0,
     );
-    pub const RESERVED_30_ARM: Self = Self(
-        DataGraphOpticalFlowCreateFlagBitsARM::RESERVED_30_ARM.0,
+    pub const RESERVED_30: Self = Self(
+        DataGraphOpticalFlowCreateFlagBitsARM::RESERVED_30.0,
     );
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowCreateFlagBitsARM {
-    pub const ENABLE_HINT_ARM: Self = Self(1 << 0);
-    pub const ENABLE_COST_ARM: Self = Self(1 << 1);
-    pub const RESERVED_30_ARM: Self = Self(1 << 30);
+    pub const ENABLE_HINT: Self = Self(1 << 0);
+    pub const ENABLE_COST: Self = Self(1 << 1);
+    pub const RESERVED_30: Self = Self(1 << 30);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowExecuteFlagsARM {
-    pub const DISABLE_TEMPORAL_HINTS_ARM: Self = Self(
-        DataGraphOpticalFlowExecuteFlagBitsARM::DISABLE_TEMPORAL_HINTS_ARM.0,
+    pub const DISABLE_TEMPORAL_HINTS: Self = Self(
+        DataGraphOpticalFlowExecuteFlagBitsARM::DISABLE_TEMPORAL_HINTS.0,
     );
-    pub const INPUT_UNCHANGED_ARM: Self = Self(
-        DataGraphOpticalFlowExecuteFlagBitsARM::INPUT_UNCHANGED_ARM.0,
+    pub const INPUT_UNCHANGED: Self = Self(
+        DataGraphOpticalFlowExecuteFlagBitsARM::INPUT_UNCHANGED.0,
     );
-    pub const REFERENCE_UNCHANGED_ARM: Self = Self(
-        DataGraphOpticalFlowExecuteFlagBitsARM::REFERENCE_UNCHANGED_ARM.0,
+    pub const REFERENCE_UNCHANGED: Self = Self(
+        DataGraphOpticalFlowExecuteFlagBitsARM::REFERENCE_UNCHANGED.0,
     );
-    pub const INPUT_IS_PREVIOUS_REFERENCE_ARM: Self = Self(
-        DataGraphOpticalFlowExecuteFlagBitsARM::INPUT_IS_PREVIOUS_REFERENCE_ARM.0,
+    pub const INPUT_IS_PREVIOUS_REFERENCE: Self = Self(
+        DataGraphOpticalFlowExecuteFlagBitsARM::INPUT_IS_PREVIOUS_REFERENCE.0,
     );
-    pub const REFERENCE_IS_PREVIOUS_INPUT_ARM: Self = Self(
-        DataGraphOpticalFlowExecuteFlagBitsARM::REFERENCE_IS_PREVIOUS_INPUT_ARM.0,
+    pub const REFERENCE_IS_PREVIOUS_INPUT: Self = Self(
+        DataGraphOpticalFlowExecuteFlagBitsARM::REFERENCE_IS_PREVIOUS_INPUT.0,
     );
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl DataGraphOpticalFlowExecuteFlagBitsARM {
-    pub const DISABLE_TEMPORAL_HINTS_ARM: Self = Self(1 << 0);
-    pub const INPUT_UNCHANGED_ARM: Self = Self(1 << 1);
-    pub const REFERENCE_UNCHANGED_ARM: Self = Self(1 << 2);
-    pub const INPUT_IS_PREVIOUS_REFERENCE_ARM: Self = Self(1 << 3);
-    pub const REFERENCE_IS_PREVIOUS_INPUT_ARM: Self = Self(1 << 4);
+    pub const DISABLE_TEMPORAL_HINTS: Self = Self(1 << 0);
+    pub const INPUT_UNCHANGED: Self = Self(1 << 1);
+    pub const REFERENCE_UNCHANGED: Self = Self(1 << 2);
+    pub const INPUT_IS_PREVIOUS_REFERENCE: Self = Self(1 << 3);
+    pub const REFERENCE_IS_PREVIOUS_INPUT: Self = Self(1 << 4);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -790,10 +778,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for DataGraphOpticalFlowPerformanceLevelARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::UNKNOWN_ARM => Some("UNKNOWN_ARM"),
-                Self::SLOW_ARM => Some("SLOW_ARM"),
-                Self::MEDIUM_ARM => Some("MEDIUM_ARM"),
-                Self::FAST_ARM => Some("FAST_ARM"),
+                Self::UNKNOWN => Some("UNKNOWN"),
+                Self::SLOW => Some("SLOW"),
+                Self::MEDIUM => Some("MEDIUM"),
+                Self::FAST => Some("FAST"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -819,13 +807,11 @@ pub(crate) mod items {
     impl core::fmt::Debug for DataGraphPipelineNodeConnectionTypeARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::OPTICAL_FLOW_INPUT_ARM => Some("OPTICAL_FLOW_INPUT_ARM"),
-                Self::OPTICAL_FLOW_REFERENCE_ARM => Some("OPTICAL_FLOW_REFERENCE_ARM"),
-                Self::OPTICAL_FLOW_HINT_ARM => Some("OPTICAL_FLOW_HINT_ARM"),
-                Self::OPTICAL_FLOW_FLOW_VECTOR_ARM => {
-                    Some("OPTICAL_FLOW_FLOW_VECTOR_ARM")
-                }
-                Self::OPTICAL_FLOW_COST_ARM => Some("OPTICAL_FLOW_COST_ARM"),
+                Self::OPTICAL_FLOW_INPUT => Some("OPTICAL_FLOW_INPUT"),
+                Self::OPTICAL_FLOW_REFERENCE => Some("OPTICAL_FLOW_REFERENCE"),
+                Self::OPTICAL_FLOW_HINT => Some("OPTICAL_FLOW_HINT"),
+                Self::OPTICAL_FLOW_FLOW_VECTOR => Some("OPTICAL_FLOW_FLOW_VECTOR"),
+                Self::OPTICAL_FLOW_COST => Some("OPTICAL_FLOW_COST"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -851,7 +837,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for DataGraphPipelineNodeTypeARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::OPTICAL_FLOW_ARM => Some("OPTICAL_FLOW_ARM"),
+                Self::OPTICAL_FLOW => Some("OPTICAL_FLOW"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -879,11 +865,11 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::UNKNOWN_ARM.0, "UNKNOWN_ARM"),
-                    (Self::_1X1_ARM.0, "_1X1_ARM"),
-                    (Self::_2X2_ARM.0, "_2X2_ARM"),
-                    (Self::_4X4_ARM.0, "_4X4_ARM"),
-                    (Self::_8X8_ARM.0, "_8X8_ARM"),
+                    (Self::UNKNOWN.0, "UNKNOWN"),
+                    (Self::_1X1.0, "_1X1"),
+                    (Self::_2X2.0, "_2X2"),
+                    (Self::_4X4.0, "_4X4"),
+                    (Self::_8X8.0, "_8X8"),
                 ],
                 self.0,
             )
@@ -972,11 +958,11 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::UNKNOWN_ARM.0, "UNKNOWN_ARM"),
-                    (Self::INPUT_ARM.0, "INPUT_ARM"),
-                    (Self::OUTPUT_ARM.0, "OUTPUT_ARM"),
-                    (Self::HINT_ARM.0, "HINT_ARM"),
-                    (Self::COST_ARM.0, "COST_ARM"),
+                    (Self::UNKNOWN.0, "UNKNOWN"),
+                    (Self::INPUT.0, "INPUT"),
+                    (Self::OUTPUT.0, "OUTPUT"),
+                    (Self::HINT.0, "HINT"),
+                    (Self::COST.0, "COST"),
                 ],
                 self.0,
             )
@@ -1065,9 +1051,9 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::ENABLE_HINT_ARM.0, "ENABLE_HINT_ARM"),
-                    (Self::ENABLE_COST_ARM.0, "ENABLE_COST_ARM"),
-                    (Self::RESERVED_30_ARM.0, "RESERVED_30_ARM"),
+                    (Self::ENABLE_HINT.0, "ENABLE_HINT"),
+                    (Self::ENABLE_COST.0, "ENABLE_COST"),
+                    (Self::RESERVED_30.0, "RESERVED_30"),
                 ],
                 self.0,
             )
@@ -1156,17 +1142,11 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::DISABLE_TEMPORAL_HINTS_ARM.0, "DISABLE_TEMPORAL_HINTS_ARM"),
-                    (Self::INPUT_UNCHANGED_ARM.0, "INPUT_UNCHANGED_ARM"),
-                    (Self::REFERENCE_UNCHANGED_ARM.0, "REFERENCE_UNCHANGED_ARM"),
-                    (
-                        Self::INPUT_IS_PREVIOUS_REFERENCE_ARM.0,
-                        "INPUT_IS_PREVIOUS_REFERENCE_ARM",
-                    ),
-                    (
-                        Self::REFERENCE_IS_PREVIOUS_INPUT_ARM.0,
-                        "REFERENCE_IS_PREVIOUS_INPUT_ARM",
-                    ),
+                    (Self::DISABLE_TEMPORAL_HINTS.0, "DISABLE_TEMPORAL_HINTS"),
+                    (Self::INPUT_UNCHANGED.0, "INPUT_UNCHANGED"),
+                    (Self::REFERENCE_UNCHANGED.0, "REFERENCE_UNCHANGED"),
+                    (Self::INPUT_IS_PREVIOUS_REFERENCE.0, "INPUT_IS_PREVIOUS_REFERENCE"),
+                    (Self::REFERENCE_IS_PREVIOUS_INPUT.0, "REFERENCE_IS_PREVIOUS_INPUT"),
                 ],
                 self.0,
             )

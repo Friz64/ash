@@ -16,23 +16,23 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_low_latency2](crate::nv::low_latency2)
 impl LatencyMarkerNV {
-    pub const SIMULATION_START_NV: Self = Self(0);
-    pub const SIMULATION_END_NV: Self = Self(1);
-    pub const RENDERSUBMIT_START_NV: Self = Self(2);
-    pub const RENDERSUBMIT_END_NV: Self = Self(3);
-    pub const PRESENT_START_NV: Self = Self(4);
-    pub const PRESENT_END_NV: Self = Self(5);
-    pub const INPUT_SAMPLE_NV: Self = Self(6);
-    pub const TRIGGER_FLASH_NV: Self = Self(7);
-    pub const OUT_OF_BAND_RENDERSUBMIT_START_NV: Self = Self(8);
-    pub const OUT_OF_BAND_RENDERSUBMIT_END_NV: Self = Self(9);
-    pub const OUT_OF_BAND_PRESENT_START_NV: Self = Self(10);
-    pub const OUT_OF_BAND_PRESENT_END_NV: Self = Self(11);
+    pub const SIMULATION_START: Self = Self(0);
+    pub const SIMULATION_END: Self = Self(1);
+    pub const RENDERSUBMIT_START: Self = Self(2);
+    pub const RENDERSUBMIT_END: Self = Self(3);
+    pub const PRESENT_START: Self = Self(4);
+    pub const PRESENT_END: Self = Self(5);
+    pub const INPUT_SAMPLE: Self = Self(6);
+    pub const TRIGGER_FLASH: Self = Self(7);
+    pub const OUT_OF_BAND_RENDERSUBMIT_START: Self = Self(8);
+    pub const OUT_OF_BAND_RENDERSUBMIT_END: Self = Self(9);
+    pub const OUT_OF_BAND_PRESENT_START: Self = Self(10);
+    pub const OUT_OF_BAND_PRESENT_END: Self = Self(11);
 }
 ///Provided by [VK_NV_low_latency2](crate::nv::low_latency2)
 impl OutOfBandQueueTypeNV {
-    pub const RENDER_NV: Self = Self(0);
-    pub const PRESENT_NV: Self = Self(1);
+    pub const RENDER: Self = Self(0);
+    pub const PRESENT: Self = Self(1);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -625,24 +625,22 @@ pub(crate) mod items {
     impl core::fmt::Debug for LatencyMarkerNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::SIMULATION_START_NV => Some("SIMULATION_START_NV"),
-                Self::SIMULATION_END_NV => Some("SIMULATION_END_NV"),
-                Self::RENDERSUBMIT_START_NV => Some("RENDERSUBMIT_START_NV"),
-                Self::RENDERSUBMIT_END_NV => Some("RENDERSUBMIT_END_NV"),
-                Self::PRESENT_START_NV => Some("PRESENT_START_NV"),
-                Self::PRESENT_END_NV => Some("PRESENT_END_NV"),
-                Self::INPUT_SAMPLE_NV => Some("INPUT_SAMPLE_NV"),
-                Self::TRIGGER_FLASH_NV => Some("TRIGGER_FLASH_NV"),
-                Self::OUT_OF_BAND_RENDERSUBMIT_START_NV => {
-                    Some("OUT_OF_BAND_RENDERSUBMIT_START_NV")
+                Self::SIMULATION_START => Some("SIMULATION_START"),
+                Self::SIMULATION_END => Some("SIMULATION_END"),
+                Self::RENDERSUBMIT_START => Some("RENDERSUBMIT_START"),
+                Self::RENDERSUBMIT_END => Some("RENDERSUBMIT_END"),
+                Self::PRESENT_START => Some("PRESENT_START"),
+                Self::PRESENT_END => Some("PRESENT_END"),
+                Self::INPUT_SAMPLE => Some("INPUT_SAMPLE"),
+                Self::TRIGGER_FLASH => Some("TRIGGER_FLASH"),
+                Self::OUT_OF_BAND_RENDERSUBMIT_START => {
+                    Some("OUT_OF_BAND_RENDERSUBMIT_START")
                 }
-                Self::OUT_OF_BAND_RENDERSUBMIT_END_NV => {
-                    Some("OUT_OF_BAND_RENDERSUBMIT_END_NV")
+                Self::OUT_OF_BAND_RENDERSUBMIT_END => {
+                    Some("OUT_OF_BAND_RENDERSUBMIT_END")
                 }
-                Self::OUT_OF_BAND_PRESENT_START_NV => {
-                    Some("OUT_OF_BAND_PRESENT_START_NV")
-                }
-                Self::OUT_OF_BAND_PRESENT_END_NV => Some("OUT_OF_BAND_PRESENT_END_NV"),
+                Self::OUT_OF_BAND_PRESENT_START => Some("OUT_OF_BAND_PRESENT_START"),
+                Self::OUT_OF_BAND_PRESENT_END => Some("OUT_OF_BAND_PRESENT_END"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -668,8 +666,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for OutOfBandQueueTypeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::RENDER_NV => Some("RENDER_NV"),
-                Self::PRESENT_NV => Some("PRESENT_NV"),
+                Self::RENDER => Some("RENDER"),
+                Self::PRESENT => Some("PRESENT"),
                 _ => None,
             } {
                 f.write_str(x)

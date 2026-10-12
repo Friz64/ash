@@ -10,10 +10,10 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_QCOM_queue_perf_hint](crate::qcom::queue_perf_hint)
 impl PerfHintTypeQCOM {
-    pub const DEFAULT_QCOM: Self = Self(0);
-    pub const FREQUENCY_MIN_QCOM: Self = Self(1);
-    pub const FREQUENCY_MAX_QCOM: Self = Self(2);
-    pub const FREQUENCY_SCALED_QCOM: Self = Self(3);
+    pub const DEFAULT: Self = Self(0);
+    pub const FREQUENCY_MIN: Self = Self(1);
+    pub const FREQUENCY_MAX: Self = Self(2);
+    pub const FREQUENCY_SCALED: Self = Self(3);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -196,10 +196,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for PerfHintTypeQCOM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DEFAULT_QCOM => Some("DEFAULT_QCOM"),
-                Self::FREQUENCY_MIN_QCOM => Some("FREQUENCY_MIN_QCOM"),
-                Self::FREQUENCY_MAX_QCOM => Some("FREQUENCY_MAX_QCOM"),
-                Self::FREQUENCY_SCALED_QCOM => Some("FREQUENCY_SCALED_QCOM"),
+                Self::DEFAULT => Some("DEFAULT"),
+                Self::FREQUENCY_MIN => Some("FREQUENCY_MIN"),
+                Self::FREQUENCY_MAX => Some("FREQUENCY_MAX"),
+                Self::FREQUENCY_SCALED => Some("FREQUENCY_SCALED"),
                 _ => None,
             } {
                 f.write_str(x)

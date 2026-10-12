@@ -13,8 +13,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_ray_tracing_invocation_reorder](crate::ext::ray_tracing_invocation_reorder)
 impl RayTracingInvocationReorderModeEXT {
-    pub const NONE_EXT: Self = Self(0);
-    pub const REORDER_EXT: Self = Self(1);
+    pub const NONE: Self = Self(0);
+    pub const REORDER: Self = Self(1);
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_ray_tracing_invocation_reorder";
@@ -109,8 +109,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for RayTracingInvocationReorderModeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::NONE_EXT => Some("NONE_EXT"),
-                Self::REORDER_EXT => Some("REORDER_EXT"),
+                Self::NONE => Some("NONE"),
+                Self::REORDER => Some("REORDER"),
                 _ => None,
             } {
                 f.write_str(x)

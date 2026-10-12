@@ -4,43 +4,39 @@
 #![doc(alias = "VK_NV_external_memory_capabilities")]
 ///Provided by [VK_NV_external_memory_capabilities](crate::nv::external_memory_capabilities)
 impl ExternalMemoryHandleTypeFlagsNV {
-    pub const OPAQUE_WIN32_NV: Self = Self(
-        ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_NV.0,
+    pub const OPAQUE_WIN32: Self = Self(
+        ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32.0,
     );
-    pub const OPAQUE_WIN32_KMT_NV: Self = Self(
-        ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_KMT_NV.0,
+    pub const OPAQUE_WIN32_KMT: Self = Self(
+        ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_KMT.0,
     );
-    pub const D3D11_IMAGE_NV: Self = Self(
-        ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE_NV.0,
+    pub const D3D11_IMAGE: Self = Self(
+        ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE.0,
     );
-    pub const D3D11_IMAGE_KMT_NV: Self = Self(
-        ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE_KMT_NV.0,
+    pub const D3D11_IMAGE_KMT: Self = Self(
+        ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE_KMT.0,
     );
 }
 ///Provided by [VK_NV_external_memory_capabilities](crate::nv::external_memory_capabilities)
 impl ExternalMemoryHandleTypeFlagBitsNV {
-    pub const OPAQUE_WIN32_NV: Self = Self(1 << 0);
-    pub const OPAQUE_WIN32_KMT_NV: Self = Self(1 << 1);
-    pub const D3D11_IMAGE_NV: Self = Self(1 << 2);
-    pub const D3D11_IMAGE_KMT_NV: Self = Self(1 << 3);
+    pub const OPAQUE_WIN32: Self = Self(1 << 0);
+    pub const OPAQUE_WIN32_KMT: Self = Self(1 << 1);
+    pub const D3D11_IMAGE: Self = Self(1 << 2);
+    pub const D3D11_IMAGE_KMT: Self = Self(1 << 3);
 }
 ///Provided by [VK_NV_external_memory_capabilities](crate::nv::external_memory_capabilities)
 impl ExternalMemoryFeatureFlagsNV {
-    pub const DEDICATED_ONLY_NV: Self = Self(
-        ExternalMemoryFeatureFlagBitsNV::DEDICATED_ONLY_NV.0,
+    pub const DEDICATED_ONLY: Self = Self(
+        ExternalMemoryFeatureFlagBitsNV::DEDICATED_ONLY.0,
     );
-    pub const EXPORTABLE_NV: Self = Self(
-        ExternalMemoryFeatureFlagBitsNV::EXPORTABLE_NV.0,
-    );
-    pub const IMPORTABLE_NV: Self = Self(
-        ExternalMemoryFeatureFlagBitsNV::IMPORTABLE_NV.0,
-    );
+    pub const EXPORTABLE: Self = Self(ExternalMemoryFeatureFlagBitsNV::EXPORTABLE.0);
+    pub const IMPORTABLE: Self = Self(ExternalMemoryFeatureFlagBitsNV::IMPORTABLE.0);
 }
 ///Provided by [VK_NV_external_memory_capabilities](crate::nv::external_memory_capabilities)
 impl ExternalMemoryFeatureFlagBitsNV {
-    pub const DEDICATED_ONLY_NV: Self = Self(1 << 0);
-    pub const EXPORTABLE_NV: Self = Self(1 << 1);
-    pub const IMPORTABLE_NV: Self = Self(1 << 2);
+    pub const DEDICATED_ONLY: Self = Self(1 << 0);
+    pub const EXPORTABLE: Self = Self(1 << 1);
+    pub const IMPORTABLE: Self = Self(1 << 2);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -185,10 +181,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::OPAQUE_WIN32_NV.0, "OPAQUE_WIN32_NV"),
-                    (Self::OPAQUE_WIN32_KMT_NV.0, "OPAQUE_WIN32_KMT_NV"),
-                    (Self::D3D11_IMAGE_NV.0, "D3D11_IMAGE_NV"),
-                    (Self::D3D11_IMAGE_KMT_NV.0, "D3D11_IMAGE_KMT_NV"),
+                    (Self::OPAQUE_WIN32.0, "OPAQUE_WIN32"),
+                    (Self::OPAQUE_WIN32_KMT.0, "OPAQUE_WIN32_KMT"),
+                    (Self::D3D11_IMAGE.0, "D3D11_IMAGE"),
+                    (Self::D3D11_IMAGE_KMT.0, "D3D11_IMAGE_KMT"),
                 ],
                 self.0,
             )
@@ -277,9 +273,9 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::DEDICATED_ONLY_NV.0, "DEDICATED_ONLY_NV"),
-                    (Self::EXPORTABLE_NV.0, "EXPORTABLE_NV"),
-                    (Self::IMPORTABLE_NV.0, "IMPORTABLE_NV"),
+                    (Self::DEDICATED_ONLY.0, "DEDICATED_ONLY"),
+                    (Self::EXPORTABLE.0, "EXPORTABLE"),
+                    (Self::IMPORTABLE.0, "IMPORTABLE"),
                 ],
                 self.0,
             )

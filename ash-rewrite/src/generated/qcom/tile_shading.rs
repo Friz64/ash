@@ -37,15 +37,15 @@ impl crate::vk::AccessFlagBits2 {
 }
 ///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
 impl TileShadingRenderPassFlagsQCOM {
-    pub const ENABLE_QCOM: Self = Self(TileShadingRenderPassFlagBitsQCOM::ENABLE_QCOM.0);
-    pub const PER_TILE_EXECUTION_QCOM: Self = Self(
-        TileShadingRenderPassFlagBitsQCOM::PER_TILE_EXECUTION_QCOM.0,
+    pub const ENABLE: Self = Self(TileShadingRenderPassFlagBitsQCOM::ENABLE.0);
+    pub const PER_TILE_EXECUTION: Self = Self(
+        TileShadingRenderPassFlagBitsQCOM::PER_TILE_EXECUTION.0,
     );
 }
 ///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
 impl TileShadingRenderPassFlagBitsQCOM {
-    pub const ENABLE_QCOM: Self = Self(1 << 0);
-    pub const PER_TILE_EXECUTION_QCOM: Self = Self(1 << 1);
+    pub const ENABLE: Self = Self(1 << 0);
+    pub const PER_TILE_EXECUTION: Self = Self(1 << 1);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -493,8 +493,8 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::ENABLE_QCOM.0, "ENABLE_QCOM"),
-                    (Self::PER_TILE_EXECUTION_QCOM.0, "PER_TILE_EXECUTION_QCOM"),
+                    (Self::ENABLE.0, "ENABLE"),
+                    (Self::PER_TILE_EXECUTION.0, "PER_TILE_EXECUTION"),
                 ],
                 self.0,
             )

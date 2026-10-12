@@ -18,13 +18,13 @@ impl crate::vk::PipelineCreateFlagBits2 {
 }
 ///Provided by [VK_EXT_shader_64bit_indexing](crate::ext::shader_64bit_indexing)
 impl crate::vk::ShaderCreateFlagsEXT {
-    pub const _64_INDEXING_EXT: Self = Self(
-        crate::vk::ShaderCreateFlagBitsEXT::_64_INDEXING_EXT.0,
+    pub const _64_INDEXING: Self = Self(
+        crate::vk::ShaderCreateFlagBitsEXT::_64_INDEXING.0,
     );
 }
 ///Provided by [VK_EXT_shader_64bit_indexing](crate::ext::shader_64bit_indexing)
 impl crate::vk::ShaderCreateFlagBitsEXT {
-    pub const _64_INDEXING_EXT: Self = Self(1 << 15);
+    pub const _64_INDEXING: Self = Self(1 << 15);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_64bit_indexing";

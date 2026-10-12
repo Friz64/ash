@@ -10,13 +10,13 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_present_id2](crate::khr::present_id2)
 impl crate::vk::SwapchainCreateFlagsKHR {
-    pub const PRESENT_ID_2_KHR: Self = Self(
-        crate::vk::SwapchainCreateFlagBitsKHR::PRESENT_ID_2_KHR.0,
+    pub const PRESENT_ID_2: Self = Self(
+        crate::vk::SwapchainCreateFlagBitsKHR::PRESENT_ID_2.0,
     );
 }
 ///Provided by [VK_KHR_present_id2](crate::khr::present_id2)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
-    pub const PRESENT_ID_2_KHR: Self = Self(1 << 6);
+    pub const PRESENT_ID_2: Self = Self(1 << 6);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_present_id2";

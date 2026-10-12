@@ -12,8 +12,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_shared_presentable_image](crate::khr::shared_presentable_image)
 impl crate::vk::PresentModeKHR {
-    pub const SHARED_DEMAND_REFRESH_KHR: Self = Self(1000111000);
-    pub const SHARED_CONTINUOUS_REFRESH_KHR: Self = Self(1000111001);
+    pub const SHARED_DEMAND_REFRESH: Self = Self(1000111000);
+    pub const SHARED_CONTINUOUS_REFRESH: Self = Self(1000111001);
 }
 #[derive(Clone)]
 pub struct DeviceFn {

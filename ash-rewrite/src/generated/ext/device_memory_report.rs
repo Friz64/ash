@@ -10,11 +10,11 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_device_memory_report](crate::ext::device_memory_report)
 impl DeviceMemoryReportEventTypeEXT {
-    pub const ALLOCATE_EXT: Self = Self(0);
-    pub const FREE_EXT: Self = Self(1);
-    pub const IMPORT_EXT: Self = Self(2);
-    pub const UNIMPORT_EXT: Self = Self(3);
-    pub const ALLOCATION_FAILED_EXT: Self = Self(4);
+    pub const ALLOCATE: Self = Self(0);
+    pub const FREE: Self = Self(1);
+    pub const IMPORT: Self = Self(2);
+    pub const UNIMPORT: Self = Self(3);
+    pub const ALLOCATION_FAILED: Self = Self(4);
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_device_memory_report";
@@ -179,11 +179,11 @@ pub(crate) mod items {
     impl core::fmt::Debug for DeviceMemoryReportEventTypeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::ALLOCATE_EXT => Some("ALLOCATE_EXT"),
-                Self::FREE_EXT => Some("FREE_EXT"),
-                Self::IMPORT_EXT => Some("IMPORT_EXT"),
-                Self::UNIMPORT_EXT => Some("UNIMPORT_EXT"),
-                Self::ALLOCATION_FAILED_EXT => Some("ALLOCATION_FAILED_EXT"),
+                Self::ALLOCATE => Some("ALLOCATE"),
+                Self::FREE => Some("FREE"),
+                Self::IMPORT => Some("IMPORT"),
+                Self::UNIMPORT => Some("UNIMPORT"),
+                Self::ALLOCATION_FAILED => Some("ALLOCATION_FAILED"),
                 _ => None,
             } {
                 f.write_str(x)

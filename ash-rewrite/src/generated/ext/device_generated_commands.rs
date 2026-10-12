@@ -30,21 +30,21 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl IndirectExecutionSetInfoTypeEXT {
-    pub const PIPELINES_EXT: Self = Self(0);
-    pub const SHADER_OBJECTS_EXT: Self = Self(1);
+    pub const PIPELINES: Self = Self(0);
+    pub const SHADER_OBJECTS: Self = Self(1);
 }
 ///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl IndirectCommandsTokenTypeEXT {
-    pub const EXECUTION_SET_EXT: Self = Self(0);
-    pub const PUSH_CONSTANT_EXT: Self = Self(1);
-    pub const SEQUENCE_INDEX_EXT: Self = Self(2);
-    pub const INDEX_BUFFER_EXT: Self = Self(3);
-    pub const VERTEX_BUFFER_EXT: Self = Self(4);
-    pub const DRAW_INDEXED_EXT: Self = Self(5);
-    pub const DRAW_EXT: Self = Self(6);
-    pub const DRAW_INDEXED_COUNT_EXT: Self = Self(7);
-    pub const DRAW_COUNT_EXT: Self = Self(8);
-    pub const DISPATCH_EXT: Self = Self(9);
+    pub const EXECUTION_SET: Self = Self(0);
+    pub const PUSH_CONSTANT: Self = Self(1);
+    pub const SEQUENCE_INDEX: Self = Self(2);
+    pub const INDEX_BUFFER: Self = Self(3);
+    pub const VERTEX_BUFFER: Self = Self(4);
+    pub const DRAW_INDEXED: Self = Self(5);
+    pub const DRAW: Self = Self(6);
+    pub const DRAW_INDEXED_COUNT: Self = Self(7);
+    pub const DRAW_COUNT: Self = Self(8);
+    pub const DISPATCH: Self = Self(9);
 }
 ///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::AccessFlags {
@@ -72,31 +72,31 @@ impl crate::vk::PipelineStageFlagBits {
 }
 ///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl IndirectCommandsLayoutUsageFlagsEXT {
-    pub const EXPLICIT_PREPROCESS_EXT: Self = Self(
-        IndirectCommandsLayoutUsageFlagBitsEXT::EXPLICIT_PREPROCESS_EXT.0,
+    pub const EXPLICIT_PREPROCESS: Self = Self(
+        IndirectCommandsLayoutUsageFlagBitsEXT::EXPLICIT_PREPROCESS.0,
     );
-    pub const UNORDERED_SEQUENCES_EXT: Self = Self(
-        IndirectCommandsLayoutUsageFlagBitsEXT::UNORDERED_SEQUENCES_EXT.0,
+    pub const UNORDERED_SEQUENCES: Self = Self(
+        IndirectCommandsLayoutUsageFlagBitsEXT::UNORDERED_SEQUENCES.0,
     );
 }
 ///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl IndirectCommandsLayoutUsageFlagBitsEXT {
-    pub const EXPLICIT_PREPROCESS_EXT: Self = Self(1 << 0);
-    pub const UNORDERED_SEQUENCES_EXT: Self = Self(1 << 1);
+    pub const EXPLICIT_PREPROCESS: Self = Self(1 << 0);
+    pub const UNORDERED_SEQUENCES: Self = Self(1 << 1);
 }
 ///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl IndirectCommandsInputModeFlagsEXT {
-    pub const VULKAN_INDEX_BUFFER_EXT: Self = Self(
-        IndirectCommandsInputModeFlagBitsEXT::VULKAN_INDEX_BUFFER_EXT.0,
+    pub const VULKAN_INDEX_BUFFER: Self = Self(
+        IndirectCommandsInputModeFlagBitsEXT::VULKAN_INDEX_BUFFER.0,
     );
-    pub const DXGI_INDEX_BUFFER_EXT: Self = Self(
-        IndirectCommandsInputModeFlagBitsEXT::DXGI_INDEX_BUFFER_EXT.0,
+    pub const DXGI_INDEX_BUFFER: Self = Self(
+        IndirectCommandsInputModeFlagBitsEXT::DXGI_INDEX_BUFFER.0,
     );
 }
 ///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl IndirectCommandsInputModeFlagBitsEXT {
-    pub const VULKAN_INDEX_BUFFER_EXT: Self = Self(1 << 0);
-    pub const DXGI_INDEX_BUFFER_EXT: Self = Self(1 << 1);
+    pub const VULKAN_INDEX_BUFFER: Self = Self(1 << 0);
+    pub const DXGI_INDEX_BUFFER: Self = Self(1 << 1);
 }
 ///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::PipelineCreateFlags2 {
@@ -120,13 +120,13 @@ impl crate::vk::BufferUsageFlagBits2 {
 }
 ///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::ShaderCreateFlagsEXT {
-    pub const INDIRECT_BINDABLE_EXT: Self = Self(
-        crate::vk::ShaderCreateFlagBitsEXT::INDIRECT_BINDABLE_EXT.0,
+    pub const INDIRECT_BINDABLE: Self = Self(
+        crate::vk::ShaderCreateFlagBitsEXT::INDIRECT_BINDABLE.0,
     );
 }
 ///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl crate::vk::ShaderCreateFlagBitsEXT {
-    pub const INDIRECT_BINDABLE_EXT: Self = Self(1 << 7);
+    pub const INDIRECT_BINDABLE: Self = Self(1 << 7);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -1469,8 +1469,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for IndirectExecutionSetInfoTypeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::PIPELINES_EXT => Some("PIPELINES_EXT"),
-                Self::SHADER_OBJECTS_EXT => Some("SHADER_OBJECTS_EXT"),
+                Self::PIPELINES => Some("PIPELINES"),
+                Self::SHADER_OBJECTS => Some("SHADER_OBJECTS"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1496,27 +1496,23 @@ pub(crate) mod items {
     impl core::fmt::Debug for IndirectCommandsTokenTypeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::EXECUTION_SET_EXT => Some("EXECUTION_SET_EXT"),
-                Self::PUSH_CONSTANT_EXT => Some("PUSH_CONSTANT_EXT"),
-                Self::SEQUENCE_INDEX_EXT => Some("SEQUENCE_INDEX_EXT"),
-                Self::INDEX_BUFFER_EXT => Some("INDEX_BUFFER_EXT"),
-                Self::VERTEX_BUFFER_EXT => Some("VERTEX_BUFFER_EXT"),
-                Self::DRAW_INDEXED_EXT => Some("DRAW_INDEXED_EXT"),
-                Self::DRAW_EXT => Some("DRAW_EXT"),
-                Self::DRAW_INDEXED_COUNT_EXT => Some("DRAW_INDEXED_COUNT_EXT"),
-                Self::DRAW_COUNT_EXT => Some("DRAW_COUNT_EXT"),
-                Self::DISPATCH_EXT => Some("DISPATCH_EXT"),
-                Self::PUSH_DATA_EXT => Some("PUSH_DATA_EXT"),
-                Self::PUSH_DATA_SEQUENCE_INDEX_EXT => {
-                    Some("PUSH_DATA_SEQUENCE_INDEX_EXT")
-                }
-                Self::DRAW_MESH_TASKS_NV_EXT => Some("DRAW_MESH_TASKS_NV_EXT"),
-                Self::DRAW_MESH_TASKS_COUNT_NV_EXT => {
-                    Some("DRAW_MESH_TASKS_COUNT_NV_EXT")
-                }
-                Self::DRAW_MESH_TASKS_EXT => Some("DRAW_MESH_TASKS_EXT"),
-                Self::DRAW_MESH_TASKS_COUNT_EXT => Some("DRAW_MESH_TASKS_COUNT_EXT"),
-                Self::TRACE_RAYS2_EXT => Some("TRACE_RAYS2_EXT"),
+                Self::EXECUTION_SET => Some("EXECUTION_SET"),
+                Self::PUSH_CONSTANT => Some("PUSH_CONSTANT"),
+                Self::SEQUENCE_INDEX => Some("SEQUENCE_INDEX"),
+                Self::INDEX_BUFFER => Some("INDEX_BUFFER"),
+                Self::VERTEX_BUFFER => Some("VERTEX_BUFFER"),
+                Self::DRAW_INDEXED => Some("DRAW_INDEXED"),
+                Self::DRAW => Some("DRAW"),
+                Self::DRAW_INDEXED_COUNT => Some("DRAW_INDEXED_COUNT"),
+                Self::DRAW_COUNT => Some("DRAW_COUNT"),
+                Self::DISPATCH => Some("DISPATCH"),
+                Self::PUSH_DATA => Some("PUSH_DATA"),
+                Self::PUSH_DATA_SEQUENCE_INDEX => Some("PUSH_DATA_SEQUENCE_INDEX"),
+                Self::DRAW_MESH_TASKS_NV => Some("DRAW_MESH_TASKS_NV"),
+                Self::DRAW_MESH_TASKS_COUNT_NV => Some("DRAW_MESH_TASKS_COUNT_NV"),
+                Self::DRAW_MESH_TASKS => Some("DRAW_MESH_TASKS"),
+                Self::DRAW_MESH_TASKS_COUNT => Some("DRAW_MESH_TASKS_COUNT"),
+                Self::TRACE_RAYS2 => Some("TRACE_RAYS2"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1544,8 +1540,8 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::EXPLICIT_PREPROCESS_EXT.0, "EXPLICIT_PREPROCESS_EXT"),
-                    (Self::UNORDERED_SEQUENCES_EXT.0, "UNORDERED_SEQUENCES_EXT"),
+                    (Self::EXPLICIT_PREPROCESS.0, "EXPLICIT_PREPROCESS"),
+                    (Self::UNORDERED_SEQUENCES.0, "UNORDERED_SEQUENCES"),
                 ],
                 self.0,
             )
@@ -1634,8 +1630,8 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::VULKAN_INDEX_BUFFER_EXT.0, "VULKAN_INDEX_BUFFER_EXT"),
-                    (Self::DXGI_INDEX_BUFFER_EXT.0, "DXGI_INDEX_BUFFER_EXT"),
+                    (Self::VULKAN_INDEX_BUFFER.0, "VULKAN_INDEX_BUFFER"),
+                    (Self::DXGI_INDEX_BUFFER.0, "DXGI_INDEX_BUFFER"),
                 ],
                 self.0,
             )

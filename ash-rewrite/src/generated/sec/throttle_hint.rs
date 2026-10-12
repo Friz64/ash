@@ -9,9 +9,9 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_SEC_throttle_hint](crate::sec::throttle_hint)
 impl ThrottleHintTypeSEC {
-    pub const DEFAULT_SEC: Self = Self(0);
-    pub const LOW_SEC: Self = Self(1);
-    pub const HIGH_SEC: Self = Self(2);
+    pub const DEFAULT: Self = Self(0);
+    pub const LOW: Self = Self(1);
+    pub const HIGH: Self = Self(2);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_SEC_throttle_hint";
@@ -93,9 +93,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for ThrottleHintTypeSEC {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DEFAULT_SEC => Some("DEFAULT_SEC"),
-                Self::LOW_SEC => Some("LOW_SEC"),
-                Self::HIGH_SEC => Some("HIGH_SEC"),
+                Self::DEFAULT => Some("DEFAULT"),
+                Self::LOW => Some("LOW"),
+                Self::HIGH => Some("HIGH"),
                 _ => None,
             } {
                 f.write_str(x)

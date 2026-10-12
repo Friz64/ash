@@ -14,9 +14,9 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl AccelerationStructureMotionInstanceTypeNV {
-    pub const STATIC_NV: Self = Self(0);
-    pub const MATRIX_MOTION_NV: Self = Self(1);
-    pub const SRT_MOTION_NV: Self = Self(2);
+    pub const STATIC: Self = Self(0);
+    pub const MATRIX_MOTION: Self = Self(1);
+    pub const SRT_MOTION: Self = Self(2);
 }
 ///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::PipelineCreateFlags {
@@ -505,9 +505,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for AccelerationStructureMotionInstanceTypeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::STATIC_NV => Some("STATIC_NV"),
-                Self::MATRIX_MOTION_NV => Some("MATRIX_MOTION_NV"),
-                Self::SRT_MOTION_NV => Some("SRT_MOTION_NV"),
+                Self::STATIC => Some("STATIC"),
+                Self::MATRIX_MOTION => Some("MATRIX_MOTION"),
+                Self::SRT_MOTION => Some("SRT_MOTION"),
                 _ => None,
             } {
                 f.write_str(x)

@@ -15,13 +15,13 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_swapchain_maintenance1](crate::khr::swapchain_maintenance1)
 impl crate::vk::SwapchainCreateFlagsKHR {
-    pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(
-        crate::vk::SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_KHR.0,
+    pub const DEFERRED_MEMORY_ALLOCATION: Self = Self(
+        crate::vk::SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION.0,
     );
 }
 ///Provided by [VK_KHR_swapchain_maintenance1](crate::khr::swapchain_maintenance1)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
-    pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(1 << 3);
+    pub const DEFERRED_MEMORY_ALLOCATION: Self = Self(1 << 3);
 }
 #[derive(Clone)]
 pub struct DeviceFn {

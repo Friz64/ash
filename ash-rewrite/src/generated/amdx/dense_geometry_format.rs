@@ -18,7 +18,7 @@ impl crate::vk::GeometryTypeKHR {
 }
 ///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
 impl CompressedTriangleFormatAMDX {
-    pub const DGF1_AMDX: Self = Self(0);
+    pub const DGF1: Self = Self(0);
 }
 ///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
 impl crate::vk::BufferUsageFlags2 {
@@ -151,7 +151,7 @@ pub(crate) mod items {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
                 #[cfg(feature = "provisional")]
-                Self::DGF1_AMDX => Some("DGF1_AMDX"),
+                Self::DGF1 => Some("DGF1"),
                 _ => None,
             } {
                 f.write_str(x)

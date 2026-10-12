@@ -28,26 +28,26 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl crate::vk::IndirectCommandsTokenTypeNV {
-    pub const PUSH_DATA_NV: Self = Self(1000135000);
+    pub const PUSH_DATA: Self = Self(1000135000);
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl crate::vk::IndirectCommandsTokenTypeEXT {
-    pub const PUSH_DATA_EXT: Self = Self(1000135000);
-    pub const PUSH_DATA_SEQUENCE_INDEX_EXT: Self = Self(1000135001);
+    pub const PUSH_DATA: Self = Self(1000135000);
+    pub const PUSH_DATA_SEQUENCE_INDEX: Self = Self(1000135001);
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl DescriptorMappingSourceEXT {
-    pub const HEAP_WITH_CONSTANT_OFFSET_EXT: Self = Self(0);
-    pub const HEAP_WITH_PUSH_INDEX_EXT: Self = Self(1);
-    pub const HEAP_WITH_INDIRECT_INDEX_EXT: Self = Self(2);
-    pub const HEAP_WITH_INDIRECT_INDEX_ARRAY_EXT: Self = Self(3);
-    pub const RESOURCE_HEAP_DATA_EXT: Self = Self(4);
-    pub const PUSH_DATA_EXT: Self = Self(5);
-    pub const PUSH_ADDRESS_EXT: Self = Self(6);
-    pub const INDIRECT_ADDRESS_EXT: Self = Self(7);
-    pub const HEAP_WITH_SHADER_RECORD_INDEX_EXT: Self = Self(8);
-    pub const SHADER_RECORD_DATA_EXT: Self = Self(9);
-    pub const SHADER_RECORD_ADDRESS_EXT: Self = Self(10);
+    pub const HEAP_WITH_CONSTANT_OFFSET: Self = Self(0);
+    pub const HEAP_WITH_PUSH_INDEX: Self = Self(1);
+    pub const HEAP_WITH_INDIRECT_INDEX: Self = Self(2);
+    pub const HEAP_WITH_INDIRECT_INDEX_ARRAY: Self = Self(3);
+    pub const RESOURCE_HEAP_DATA: Self = Self(4);
+    pub const PUSH_DATA: Self = Self(5);
+    pub const PUSH_ADDRESS: Self = Self(6);
+    pub const INDIRECT_ADDRESS: Self = Self(7);
+    pub const HEAP_WITH_SHADER_RECORD_INDEX: Self = Self(8);
+    pub const SHADER_RECORD_DATA: Self = Self(9);
+    pub const SHADER_RECORD_ADDRESS: Self = Self(10);
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl crate::vk::BufferUsageFlags {
@@ -105,67 +105,65 @@ impl crate::vk::BufferUsageFlagBits2 {
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl crate::vk::TensorCreateFlagsARM {
-    pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM: Self = Self(
-        crate::vk::TensorCreateFlagBitsARM::DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM.0,
+    pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY: Self = Self(
+        crate::vk::TensorCreateFlagBitsARM::DESCRIPTOR_HEAP_CAPTURE_REPLAY.0,
     );
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl crate::vk::TensorCreateFlagBitsARM {
-    pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM: Self = Self(1 << 3);
+    pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY: Self = Self(1 << 3);
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl SpirvResourceTypeFlagsEXT {
-    pub const ALL_EXT: Self = Self(SpirvResourceTypeFlagBitsEXT::ALL_EXT.0);
-    pub const SAMPLER_EXT: Self = Self(SpirvResourceTypeFlagBitsEXT::SAMPLER_EXT.0);
-    pub const SAMPLED_IMAGE_EXT: Self = Self(
-        SpirvResourceTypeFlagBitsEXT::SAMPLED_IMAGE_EXT.0,
+    pub const ALL: Self = Self(SpirvResourceTypeFlagBitsEXT::ALL.0);
+    pub const SAMPLER: Self = Self(SpirvResourceTypeFlagBitsEXT::SAMPLER.0);
+    pub const SAMPLED_IMAGE: Self = Self(SpirvResourceTypeFlagBitsEXT::SAMPLED_IMAGE.0);
+    pub const READ_ONLY_IMAGE: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::READ_ONLY_IMAGE.0,
     );
-    pub const READ_ONLY_IMAGE_EXT: Self = Self(
-        SpirvResourceTypeFlagBitsEXT::READ_ONLY_IMAGE_EXT.0,
+    pub const READ_WRITE_IMAGE: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::READ_WRITE_IMAGE.0,
     );
-    pub const READ_WRITE_IMAGE_EXT: Self = Self(
-        SpirvResourceTypeFlagBitsEXT::READ_WRITE_IMAGE_EXT.0,
+    pub const COMBINED_SAMPLED_IMAGE: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::COMBINED_SAMPLED_IMAGE.0,
     );
-    pub const COMBINED_SAMPLED_IMAGE_EXT: Self = Self(
-        SpirvResourceTypeFlagBitsEXT::COMBINED_SAMPLED_IMAGE_EXT.0,
+    pub const UNIFORM_BUFFER: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::UNIFORM_BUFFER.0,
     );
-    pub const UNIFORM_BUFFER_EXT: Self = Self(
-        SpirvResourceTypeFlagBitsEXT::UNIFORM_BUFFER_EXT.0,
+    pub const READ_ONLY_STORAGE_BUFFER: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::READ_ONLY_STORAGE_BUFFER.0,
     );
-    pub const READ_ONLY_STORAGE_BUFFER_EXT: Self = Self(
-        SpirvResourceTypeFlagBitsEXT::READ_ONLY_STORAGE_BUFFER_EXT.0,
+    pub const READ_WRITE_STORAGE_BUFFER: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::READ_WRITE_STORAGE_BUFFER.0,
     );
-    pub const READ_WRITE_STORAGE_BUFFER_EXT: Self = Self(
-        SpirvResourceTypeFlagBitsEXT::READ_WRITE_STORAGE_BUFFER_EXT.0,
-    );
-    pub const ACCELERATION_STRUCTURE_EXT: Self = Self(
-        SpirvResourceTypeFlagBitsEXT::ACCELERATION_STRUCTURE_EXT.0,
+    pub const ACCELERATION_STRUCTURE: Self = Self(
+        SpirvResourceTypeFlagBitsEXT::ACCELERATION_STRUCTURE.0,
     );
     pub const TENSOR_ARM: Self = Self(SpirvResourceTypeFlagBitsEXT::TENSOR_ARM.0);
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl SpirvResourceTypeFlagBitsEXT {
-    pub const ALL_EXT: Self = Self(0x7FFFFFFF);
-    pub const SAMPLER_EXT: Self = Self(1 << 0);
-    pub const SAMPLED_IMAGE_EXT: Self = Self(1 << 1);
-    pub const READ_ONLY_IMAGE_EXT: Self = Self(1 << 2);
-    pub const READ_WRITE_IMAGE_EXT: Self = Self(1 << 3);
-    pub const COMBINED_SAMPLED_IMAGE_EXT: Self = Self(1 << 4);
-    pub const UNIFORM_BUFFER_EXT: Self = Self(1 << 5);
-    pub const READ_ONLY_STORAGE_BUFFER_EXT: Self = Self(1 << 6);
-    pub const READ_WRITE_STORAGE_BUFFER_EXT: Self = Self(1 << 7);
-    pub const ACCELERATION_STRUCTURE_EXT: Self = Self(1 << 8);
+    pub const ALL: Self = Self(0x7FFFFFFF);
+    pub const SAMPLER: Self = Self(1 << 0);
+    pub const SAMPLED_IMAGE: Self = Self(1 << 1);
+    pub const READ_ONLY_IMAGE: Self = Self(1 << 2);
+    pub const READ_WRITE_IMAGE: Self = Self(1 << 3);
+    pub const COMBINED_SAMPLED_IMAGE: Self = Self(1 << 4);
+    pub const UNIFORM_BUFFER: Self = Self(1 << 5);
+    pub const READ_ONLY_STORAGE_BUFFER: Self = Self(1 << 6);
+    pub const READ_WRITE_STORAGE_BUFFER: Self = Self(1 << 7);
+    pub const ACCELERATION_STRUCTURE: Self = Self(1 << 8);
     pub const TENSOR_ARM: Self = Self(1 << 9);
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl crate::vk::ShaderCreateFlagsEXT {
-    pub const DESCRIPTOR_HEAP_EXT: Self = Self(
-        crate::vk::ShaderCreateFlagBitsEXT::DESCRIPTOR_HEAP_EXT.0,
+    pub const DESCRIPTOR_HEAP: Self = Self(
+        crate::vk::ShaderCreateFlagBitsEXT::DESCRIPTOR_HEAP.0,
     );
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl crate::vk::ShaderCreateFlagBitsEXT {
-    pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 10);
+    pub const DESCRIPTOR_HEAP: Self = Self(1 << 10);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -1840,25 +1838,21 @@ pub(crate) mod items {
     impl core::fmt::Debug for DescriptorMappingSourceEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::HEAP_WITH_CONSTANT_OFFSET_EXT => {
-                    Some("HEAP_WITH_CONSTANT_OFFSET_EXT")
+                Self::HEAP_WITH_CONSTANT_OFFSET => Some("HEAP_WITH_CONSTANT_OFFSET"),
+                Self::HEAP_WITH_PUSH_INDEX => Some("HEAP_WITH_PUSH_INDEX"),
+                Self::HEAP_WITH_INDIRECT_INDEX => Some("HEAP_WITH_INDIRECT_INDEX"),
+                Self::HEAP_WITH_INDIRECT_INDEX_ARRAY => {
+                    Some("HEAP_WITH_INDIRECT_INDEX_ARRAY")
                 }
-                Self::HEAP_WITH_PUSH_INDEX_EXT => Some("HEAP_WITH_PUSH_INDEX_EXT"),
-                Self::HEAP_WITH_INDIRECT_INDEX_EXT => {
-                    Some("HEAP_WITH_INDIRECT_INDEX_EXT")
+                Self::RESOURCE_HEAP_DATA => Some("RESOURCE_HEAP_DATA"),
+                Self::PUSH_DATA => Some("PUSH_DATA"),
+                Self::PUSH_ADDRESS => Some("PUSH_ADDRESS"),
+                Self::INDIRECT_ADDRESS => Some("INDIRECT_ADDRESS"),
+                Self::HEAP_WITH_SHADER_RECORD_INDEX => {
+                    Some("HEAP_WITH_SHADER_RECORD_INDEX")
                 }
-                Self::HEAP_WITH_INDIRECT_INDEX_ARRAY_EXT => {
-                    Some("HEAP_WITH_INDIRECT_INDEX_ARRAY_EXT")
-                }
-                Self::RESOURCE_HEAP_DATA_EXT => Some("RESOURCE_HEAP_DATA_EXT"),
-                Self::PUSH_DATA_EXT => Some("PUSH_DATA_EXT"),
-                Self::PUSH_ADDRESS_EXT => Some("PUSH_ADDRESS_EXT"),
-                Self::INDIRECT_ADDRESS_EXT => Some("INDIRECT_ADDRESS_EXT"),
-                Self::HEAP_WITH_SHADER_RECORD_INDEX_EXT => {
-                    Some("HEAP_WITH_SHADER_RECORD_INDEX_EXT")
-                }
-                Self::SHADER_RECORD_DATA_EXT => Some("SHADER_RECORD_DATA_EXT"),
-                Self::SHADER_RECORD_ADDRESS_EXT => Some("SHADER_RECORD_ADDRESS_EXT"),
+                Self::SHADER_RECORD_DATA => Some("SHADER_RECORD_DATA"),
+                Self::SHADER_RECORD_ADDRESS => Some("SHADER_RECORD_ADDRESS"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1887,8 +1881,8 @@ pub(crate) mod items {
                 f,
                 &[
                     (
-                        Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
-                        "DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM",
+                        Self::DESCRIPTOR_BUFFER_CAPTURE_REPLAY.0,
+                        "DESCRIPTOR_BUFFER_CAPTURE_REPLAY",
                     ),
                 ],
                 self.0,
@@ -1978,22 +1972,16 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::ALL_EXT.0, "ALL_EXT"),
-                    (Self::SAMPLER_EXT.0, "SAMPLER_EXT"),
-                    (Self::SAMPLED_IMAGE_EXT.0, "SAMPLED_IMAGE_EXT"),
-                    (Self::READ_ONLY_IMAGE_EXT.0, "READ_ONLY_IMAGE_EXT"),
-                    (Self::READ_WRITE_IMAGE_EXT.0, "READ_WRITE_IMAGE_EXT"),
-                    (Self::COMBINED_SAMPLED_IMAGE_EXT.0, "COMBINED_SAMPLED_IMAGE_EXT"),
-                    (Self::UNIFORM_BUFFER_EXT.0, "UNIFORM_BUFFER_EXT"),
-                    (
-                        Self::READ_ONLY_STORAGE_BUFFER_EXT.0,
-                        "READ_ONLY_STORAGE_BUFFER_EXT",
-                    ),
-                    (
-                        Self::READ_WRITE_STORAGE_BUFFER_EXT.0,
-                        "READ_WRITE_STORAGE_BUFFER_EXT",
-                    ),
-                    (Self::ACCELERATION_STRUCTURE_EXT.0, "ACCELERATION_STRUCTURE_EXT"),
+                    (Self::ALL.0, "ALL"),
+                    (Self::SAMPLER.0, "SAMPLER"),
+                    (Self::SAMPLED_IMAGE.0, "SAMPLED_IMAGE"),
+                    (Self::READ_ONLY_IMAGE.0, "READ_ONLY_IMAGE"),
+                    (Self::READ_WRITE_IMAGE.0, "READ_WRITE_IMAGE"),
+                    (Self::COMBINED_SAMPLED_IMAGE.0, "COMBINED_SAMPLED_IMAGE"),
+                    (Self::UNIFORM_BUFFER.0, "UNIFORM_BUFFER"),
+                    (Self::READ_ONLY_STORAGE_BUFFER.0, "READ_ONLY_STORAGE_BUFFER"),
+                    (Self::READ_WRITE_STORAGE_BUFFER.0, "READ_WRITE_STORAGE_BUFFER"),
+                    (Self::ACCELERATION_STRUCTURE.0, "ACCELERATION_STRUCTURE"),
                     (Self::TENSOR_ARM.0, "TENSOR_ARM"),
                 ],
                 self.0,

@@ -10,13 +10,13 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_present_wait2](crate::khr::present_wait2)
 impl crate::vk::SwapchainCreateFlagsKHR {
-    pub const PRESENT_WAIT_2_KHR: Self = Self(
-        crate::vk::SwapchainCreateFlagBitsKHR::PRESENT_WAIT_2_KHR.0,
+    pub const PRESENT_WAIT_2: Self = Self(
+        crate::vk::SwapchainCreateFlagBitsKHR::PRESENT_WAIT_2.0,
     );
 }
 ///Provided by [VK_KHR_present_wait2](crate::khr::present_wait2)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
-    pub const PRESENT_WAIT_2_KHR: Self = Self(1 << 7);
+    pub const PRESENT_WAIT_2: Self = Self(1 << 7);
 }
 #[derive(Clone)]
 pub struct DeviceFn {

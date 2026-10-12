@@ -20,104 +20,104 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1PredictionModeKHR {
-    pub const INTRA_ONLY_KHR: Self = Self(0);
-    pub const SINGLE_REFERENCE_KHR: Self = Self(1);
-    pub const UNIDIRECTIONAL_COMPOUND_KHR: Self = Self(2);
-    pub const BIDIRECTIONAL_COMPOUND_KHR: Self = Self(3);
+    pub const INTRA_ONLY: Self = Self(0);
+    pub const SINGLE_REFERENCE: Self = Self(1);
+    pub const UNIDIRECTIONAL_COMPOUND: Self = Self(2);
+    pub const BIDIRECTIONAL_COMPOUND: Self = Self(3);
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1RateControlGroupKHR {
-    pub const INTRA_KHR: Self = Self(0);
-    pub const PREDICTIVE_KHR: Self = Self(1);
-    pub const BIPREDICTIVE_KHR: Self = Self(2);
+    pub const INTRA: Self = Self(0);
+    pub const PREDICTIVE: Self = Self(1);
+    pub const BIPREDICTIVE: Self = Self(2);
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl crate::vk::VideoCodecOperationFlagsKHR {
-    pub const ENCODE_AV1_KHR: Self = Self(
-        crate::vk::VideoCodecOperationFlagBitsKHR::ENCODE_AV1_KHR.0,
+    pub const ENCODE_AV1: Self = Self(
+        crate::vk::VideoCodecOperationFlagBitsKHR::ENCODE_AV1.0,
     );
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
-    pub const ENCODE_AV1_KHR: Self = Self(1 << 18);
+    pub const ENCODE_AV1: Self = Self(1 << 18);
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1CapabilityFlagsKHR {
-    pub const PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR: Self = Self(
-        VideoEncodeAV1CapabilityFlagBitsKHR::PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR.0,
+    pub const PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX: Self = Self(
+        VideoEncodeAV1CapabilityFlagBitsKHR::PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX.0,
     );
-    pub const GENERATE_OBU_EXTENSION_HEADER_KHR: Self = Self(
-        VideoEncodeAV1CapabilityFlagBitsKHR::GENERATE_OBU_EXTENSION_HEADER_KHR.0,
+    pub const GENERATE_OBU_EXTENSION_HEADER: Self = Self(
+        VideoEncodeAV1CapabilityFlagBitsKHR::GENERATE_OBU_EXTENSION_HEADER.0,
     );
-    pub const PRIMARY_REFERENCE_CDF_ONLY_KHR: Self = Self(
-        VideoEncodeAV1CapabilityFlagBitsKHR::PRIMARY_REFERENCE_CDF_ONLY_KHR.0,
+    pub const PRIMARY_REFERENCE_CDF_ONLY: Self = Self(
+        VideoEncodeAV1CapabilityFlagBitsKHR::PRIMARY_REFERENCE_CDF_ONLY.0,
     );
-    pub const FRAME_SIZE_OVERRIDE_KHR: Self = Self(
-        VideoEncodeAV1CapabilityFlagBitsKHR::FRAME_SIZE_OVERRIDE_KHR.0,
+    pub const FRAME_SIZE_OVERRIDE: Self = Self(
+        VideoEncodeAV1CapabilityFlagBitsKHR::FRAME_SIZE_OVERRIDE.0,
     );
-    pub const MOTION_VECTOR_SCALING_KHR: Self = Self(
-        VideoEncodeAV1CapabilityFlagBitsKHR::MOTION_VECTOR_SCALING_KHR.0,
+    pub const MOTION_VECTOR_SCALING: Self = Self(
+        VideoEncodeAV1CapabilityFlagBitsKHR::MOTION_VECTOR_SCALING.0,
     );
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1CapabilityFlagBitsKHR {
-    pub const PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR: Self = Self(1 << 0);
-    pub const GENERATE_OBU_EXTENSION_HEADER_KHR: Self = Self(1 << 1);
-    pub const PRIMARY_REFERENCE_CDF_ONLY_KHR: Self = Self(1 << 2);
-    pub const FRAME_SIZE_OVERRIDE_KHR: Self = Self(1 << 3);
-    pub const MOTION_VECTOR_SCALING_KHR: Self = Self(1 << 4);
+    pub const PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX: Self = Self(1 << 0);
+    pub const GENERATE_OBU_EXTENSION_HEADER: Self = Self(1 << 1);
+    pub const PRIMARY_REFERENCE_CDF_ONLY: Self = Self(1 << 2);
+    pub const FRAME_SIZE_OVERRIDE: Self = Self(1 << 3);
+    pub const MOTION_VECTOR_SCALING: Self = Self(1 << 4);
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1StdFlagsKHR {
-    pub const UNIFORM_TILE_SPACING_FLAG_SET_KHR: Self = Self(
-        VideoEncodeAV1StdFlagBitsKHR::UNIFORM_TILE_SPACING_FLAG_SET_KHR.0,
+    pub const UNIFORM_TILE_SPACING_FLAG_SET: Self = Self(
+        VideoEncodeAV1StdFlagBitsKHR::UNIFORM_TILE_SPACING_FLAG_SET.0,
     );
-    pub const SKIP_MODE_PRESENT_UNSET_KHR: Self = Self(
-        VideoEncodeAV1StdFlagBitsKHR::SKIP_MODE_PRESENT_UNSET_KHR.0,
+    pub const SKIP_MODE_PRESENT_UNSET: Self = Self(
+        VideoEncodeAV1StdFlagBitsKHR::SKIP_MODE_PRESENT_UNSET.0,
     );
-    pub const PRIMARY_REF_FRAME_KHR: Self = Self(
-        VideoEncodeAV1StdFlagBitsKHR::PRIMARY_REF_FRAME_KHR.0,
+    pub const PRIMARY_REF_FRAME: Self = Self(
+        VideoEncodeAV1StdFlagBitsKHR::PRIMARY_REF_FRAME.0,
     );
-    pub const DELTA_Q_KHR: Self = Self(VideoEncodeAV1StdFlagBitsKHR::DELTA_Q_KHR.0);
+    pub const DELTA_Q: Self = Self(VideoEncodeAV1StdFlagBitsKHR::DELTA_Q.0);
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1StdFlagBitsKHR {
-    pub const UNIFORM_TILE_SPACING_FLAG_SET_KHR: Self = Self(1 << 0);
-    pub const SKIP_MODE_PRESENT_UNSET_KHR: Self = Self(1 << 1);
-    pub const PRIMARY_REF_FRAME_KHR: Self = Self(1 << 2);
-    pub const DELTA_Q_KHR: Self = Self(1 << 3);
+    pub const UNIFORM_TILE_SPACING_FLAG_SET: Self = Self(1 << 0);
+    pub const SKIP_MODE_PRESENT_UNSET: Self = Self(1 << 1);
+    pub const PRIMARY_REF_FRAME: Self = Self(1 << 2);
+    pub const DELTA_Q: Self = Self(1 << 3);
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1RateControlFlagsKHR {
-    pub const REGULAR_GOP_KHR: Self = Self(
-        VideoEncodeAV1RateControlFlagBitsKHR::REGULAR_GOP_KHR.0,
+    pub const REGULAR_GOP: Self = Self(
+        VideoEncodeAV1RateControlFlagBitsKHR::REGULAR_GOP.0,
     );
-    pub const TEMPORAL_LAYER_PATTERN_DYADIC_KHR: Self = Self(
-        VideoEncodeAV1RateControlFlagBitsKHR::TEMPORAL_LAYER_PATTERN_DYADIC_KHR.0,
+    pub const TEMPORAL_LAYER_PATTERN_DYADIC: Self = Self(
+        VideoEncodeAV1RateControlFlagBitsKHR::TEMPORAL_LAYER_PATTERN_DYADIC.0,
     );
-    pub const REFERENCE_PATTERN_FLAT_KHR: Self = Self(
-        VideoEncodeAV1RateControlFlagBitsKHR::REFERENCE_PATTERN_FLAT_KHR.0,
+    pub const REFERENCE_PATTERN_FLAT: Self = Self(
+        VideoEncodeAV1RateControlFlagBitsKHR::REFERENCE_PATTERN_FLAT.0,
     );
-    pub const REFERENCE_PATTERN_DYADIC_KHR: Self = Self(
-        VideoEncodeAV1RateControlFlagBitsKHR::REFERENCE_PATTERN_DYADIC_KHR.0,
+    pub const REFERENCE_PATTERN_DYADIC: Self = Self(
+        VideoEncodeAV1RateControlFlagBitsKHR::REFERENCE_PATTERN_DYADIC.0,
     );
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1RateControlFlagBitsKHR {
-    pub const REGULAR_GOP_KHR: Self = Self(1 << 0);
-    pub const TEMPORAL_LAYER_PATTERN_DYADIC_KHR: Self = Self(1 << 1);
-    pub const REFERENCE_PATTERN_FLAT_KHR: Self = Self(1 << 2);
-    pub const REFERENCE_PATTERN_DYADIC_KHR: Self = Self(1 << 3);
+    pub const REGULAR_GOP: Self = Self(1 << 0);
+    pub const TEMPORAL_LAYER_PATTERN_DYADIC: Self = Self(1 << 1);
+    pub const REFERENCE_PATTERN_FLAT: Self = Self(1 << 2);
+    pub const REFERENCE_PATTERN_DYADIC: Self = Self(1 << 3);
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1SuperblockSizeFlagsKHR {
-    pub const _64_KHR: Self = Self(VideoEncodeAV1SuperblockSizeFlagBitsKHR::_64_KHR.0);
-    pub const _128_KHR: Self = Self(VideoEncodeAV1SuperblockSizeFlagBitsKHR::_128_KHR.0);
+    pub const _64: Self = Self(VideoEncodeAV1SuperblockSizeFlagBitsKHR::_64.0);
+    pub const _128: Self = Self(VideoEncodeAV1SuperblockSizeFlagBitsKHR::_128.0);
 }
 ///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl VideoEncodeAV1SuperblockSizeFlagBitsKHR {
-    pub const _64_KHR: Self = Self(1 << 0);
-    pub const _128_KHR: Self = Self(1 << 1);
+    pub const _64: Self = Self(1 << 0);
+    pub const _128: Self = Self(1 << 1);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_av1";
@@ -1041,10 +1041,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for VideoEncodeAV1PredictionModeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::INTRA_ONLY_KHR => Some("INTRA_ONLY_KHR"),
-                Self::SINGLE_REFERENCE_KHR => Some("SINGLE_REFERENCE_KHR"),
-                Self::UNIDIRECTIONAL_COMPOUND_KHR => Some("UNIDIRECTIONAL_COMPOUND_KHR"),
-                Self::BIDIRECTIONAL_COMPOUND_KHR => Some("BIDIRECTIONAL_COMPOUND_KHR"),
+                Self::INTRA_ONLY => Some("INTRA_ONLY"),
+                Self::SINGLE_REFERENCE => Some("SINGLE_REFERENCE"),
+                Self::UNIDIRECTIONAL_COMPOUND => Some("UNIDIRECTIONAL_COMPOUND"),
+                Self::BIDIRECTIONAL_COMPOUND => Some("BIDIRECTIONAL_COMPOUND"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1070,9 +1070,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for VideoEncodeAV1RateControlGroupKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::INTRA_KHR => Some("INTRA_KHR"),
-                Self::PREDICTIVE_KHR => Some("PREDICTIVE_KHR"),
-                Self::BIPREDICTIVE_KHR => Some("BIPREDICTIVE_KHR"),
+                Self::INTRA => Some("INTRA"),
+                Self::PREDICTIVE => Some("PREDICTIVE"),
+                Self::BIPREDICTIVE => Some("BIPREDICTIVE"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1101,22 +1101,19 @@ pub(crate) mod items {
                 f,
                 &[
                     (
-                        Self::PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR.0,
-                        "PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX_KHR",
+                        Self::PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX.0,
+                        "PER_RATE_CONTROL_GROUP_MIN_MAX_Q_INDEX",
                     ),
                     (
-                        Self::GENERATE_OBU_EXTENSION_HEADER_KHR.0,
-                        "GENERATE_OBU_EXTENSION_HEADER_KHR",
+                        Self::GENERATE_OBU_EXTENSION_HEADER.0,
+                        "GENERATE_OBU_EXTENSION_HEADER",
                     ),
+                    (Self::PRIMARY_REFERENCE_CDF_ONLY.0, "PRIMARY_REFERENCE_CDF_ONLY"),
+                    (Self::FRAME_SIZE_OVERRIDE.0, "FRAME_SIZE_OVERRIDE"),
+                    (Self::MOTION_VECTOR_SCALING.0, "MOTION_VECTOR_SCALING"),
                     (
-                        Self::PRIMARY_REFERENCE_CDF_ONLY_KHR.0,
-                        "PRIMARY_REFERENCE_CDF_ONLY_KHR",
-                    ),
-                    (Self::FRAME_SIZE_OVERRIDE_KHR.0, "FRAME_SIZE_OVERRIDE_KHR"),
-                    (Self::MOTION_VECTOR_SCALING_KHR.0, "MOTION_VECTOR_SCALING_KHR"),
-                    (
-                        Self::COMPOUND_PREDICTION_INTRA_REFRESH_KHR.0,
-                        "COMPOUND_PREDICTION_INTRA_REFRESH_KHR",
+                        Self::COMPOUND_PREDICTION_INTRA_REFRESH.0,
+                        "COMPOUND_PREDICTION_INTRA_REFRESH",
                     ),
                 ],
                 self.0,
@@ -1207,12 +1204,12 @@ pub(crate) mod items {
                 f,
                 &[
                     (
-                        Self::UNIFORM_TILE_SPACING_FLAG_SET_KHR.0,
-                        "UNIFORM_TILE_SPACING_FLAG_SET_KHR",
+                        Self::UNIFORM_TILE_SPACING_FLAG_SET.0,
+                        "UNIFORM_TILE_SPACING_FLAG_SET",
                     ),
-                    (Self::SKIP_MODE_PRESENT_UNSET_KHR.0, "SKIP_MODE_PRESENT_UNSET_KHR"),
-                    (Self::PRIMARY_REF_FRAME_KHR.0, "PRIMARY_REF_FRAME_KHR"),
-                    (Self::DELTA_Q_KHR.0, "DELTA_Q_KHR"),
+                    (Self::SKIP_MODE_PRESENT_UNSET.0, "SKIP_MODE_PRESENT_UNSET"),
+                    (Self::PRIMARY_REF_FRAME.0, "PRIMARY_REF_FRAME"),
+                    (Self::DELTA_Q.0, "DELTA_Q"),
                 ],
                 self.0,
             )
@@ -1301,16 +1298,13 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::REGULAR_GOP_KHR.0, "REGULAR_GOP_KHR"),
+                    (Self::REGULAR_GOP.0, "REGULAR_GOP"),
                     (
-                        Self::TEMPORAL_LAYER_PATTERN_DYADIC_KHR.0,
-                        "TEMPORAL_LAYER_PATTERN_DYADIC_KHR",
+                        Self::TEMPORAL_LAYER_PATTERN_DYADIC.0,
+                        "TEMPORAL_LAYER_PATTERN_DYADIC",
                     ),
-                    (Self::REFERENCE_PATTERN_FLAT_KHR.0, "REFERENCE_PATTERN_FLAT_KHR"),
-                    (
-                        Self::REFERENCE_PATTERN_DYADIC_KHR.0,
-                        "REFERENCE_PATTERN_DYADIC_KHR",
-                    ),
+                    (Self::REFERENCE_PATTERN_FLAT.0, "REFERENCE_PATTERN_FLAT"),
+                    (Self::REFERENCE_PATTERN_DYADIC.0, "REFERENCE_PATTERN_DYADIC"),
                 ],
                 self.0,
             )
@@ -1398,7 +1392,7 @@ pub(crate) mod items {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             crate::debug_flags(
                 f,
-                &[(Self::_64_KHR.0, "_64_KHR"), (Self::_128_KHR.0, "_128_KHR")],
+                &[(Self::_64.0, "_64"), (Self::_128.0, "_128")],
                 self.0,
             )
         }

@@ -38,25 +38,25 @@ impl crate::vk::PipelineCreateFlagBits {
 }
 ///Provided by [VK_EXT_graphics_pipeline_library](crate::ext::graphics_pipeline_library)
 impl GraphicsPipelineLibraryFlagsEXT {
-    pub const VERTEX_INPUT_INTERFACE_EXT: Self = Self(
-        GraphicsPipelineLibraryFlagBitsEXT::VERTEX_INPUT_INTERFACE_EXT.0,
+    pub const VERTEX_INPUT_INTERFACE: Self = Self(
+        GraphicsPipelineLibraryFlagBitsEXT::VERTEX_INPUT_INTERFACE.0,
     );
-    pub const PRE_RASTERIZATION_SHADERS_EXT: Self = Self(
-        GraphicsPipelineLibraryFlagBitsEXT::PRE_RASTERIZATION_SHADERS_EXT.0,
+    pub const PRE_RASTERIZATION_SHADERS: Self = Self(
+        GraphicsPipelineLibraryFlagBitsEXT::PRE_RASTERIZATION_SHADERS.0,
     );
-    pub const FRAGMENT_SHADER_EXT: Self = Self(
-        GraphicsPipelineLibraryFlagBitsEXT::FRAGMENT_SHADER_EXT.0,
+    pub const FRAGMENT_SHADER: Self = Self(
+        GraphicsPipelineLibraryFlagBitsEXT::FRAGMENT_SHADER.0,
     );
-    pub const FRAGMENT_OUTPUT_INTERFACE_EXT: Self = Self(
-        GraphicsPipelineLibraryFlagBitsEXT::FRAGMENT_OUTPUT_INTERFACE_EXT.0,
+    pub const FRAGMENT_OUTPUT_INTERFACE: Self = Self(
+        GraphicsPipelineLibraryFlagBitsEXT::FRAGMENT_OUTPUT_INTERFACE.0,
     );
 }
 ///Provided by [VK_EXT_graphics_pipeline_library](crate::ext::graphics_pipeline_library)
 impl GraphicsPipelineLibraryFlagBitsEXT {
-    pub const VERTEX_INPUT_INTERFACE_EXT: Self = Self(1 << 0);
-    pub const PRE_RASTERIZATION_SHADERS_EXT: Self = Self(1 << 1);
-    pub const FRAGMENT_SHADER_EXT: Self = Self(1 << 2);
-    pub const FRAGMENT_OUTPUT_INTERFACE_EXT: Self = Self(1 << 3);
+    pub const VERTEX_INPUT_INTERFACE: Self = Self(1 << 0);
+    pub const PRE_RASTERIZATION_SHADERS: Self = Self(1 << 1);
+    pub const FRAGMENT_SHADER: Self = Self(1 << 2);
+    pub const FRAGMENT_OUTPUT_INTERFACE: Self = Self(1 << 3);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_graphics_pipeline_library";
@@ -191,16 +191,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::VERTEX_INPUT_INTERFACE_EXT.0, "VERTEX_INPUT_INTERFACE_EXT"),
-                    (
-                        Self::PRE_RASTERIZATION_SHADERS_EXT.0,
-                        "PRE_RASTERIZATION_SHADERS_EXT",
-                    ),
-                    (Self::FRAGMENT_SHADER_EXT.0, "FRAGMENT_SHADER_EXT"),
-                    (
-                        Self::FRAGMENT_OUTPUT_INTERFACE_EXT.0,
-                        "FRAGMENT_OUTPUT_INTERFACE_EXT",
-                    ),
+                    (Self::VERTEX_INPUT_INTERFACE.0, "VERTEX_INPUT_INTERFACE"),
+                    (Self::PRE_RASTERIZATION_SHADERS.0, "PRE_RASTERIZATION_SHADERS"),
+                    (Self::FRAGMENT_SHADER.0, "FRAGMENT_SHADER"),
+                    (Self::FRAGMENT_OUTPUT_INTERFACE.0, "FRAGMENT_OUTPUT_INTERFACE"),
                 ],
                 self.0,
             )

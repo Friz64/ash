@@ -4,9 +4,9 @@
 #![doc(alias = "VK_AMD_shader_info")]
 ///Provided by [VK_AMD_shader_info](crate::amd::shader_info)
 impl ShaderInfoTypeAMD {
-    pub const STATISTICS_AMD: Self = Self(0);
-    pub const BINARY_AMD: Self = Self(1);
-    pub const DISASSEMBLY_AMD: Self = Self(2);
+    pub const STATISTICS: Self = Self(0);
+    pub const BINARY: Self = Self(1);
+    pub const DISASSEMBLY: Self = Self(2);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -201,9 +201,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for ShaderInfoTypeAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::STATISTICS_AMD => Some("STATISTICS_AMD"),
-                Self::BINARY_AMD => Some("BINARY_AMD"),
-                Self::DISASSEMBLY_AMD => Some("DISASSEMBLY_AMD"),
+                Self::STATISTICS => Some("STATISTICS"),
+                Self::BINARY => Some("BINARY"),
+                Self::DISASSEMBLY => Some("DISASSEMBLY"),
                 _ => None,
             } {
                 f.write_str(x)

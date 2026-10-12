@@ -28,31 +28,31 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl SwapchainCreateFlagsKHR {
-    pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(
-        SwapchainCreateFlagBitsKHR::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
+    pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(
+        SwapchainCreateFlagBitsKHR::SPLIT_INSTANCE_BIND_REGIONS.0,
     );
-    pub const PROTECTED_KHR: Self = Self(SwapchainCreateFlagBitsKHR::PROTECTED_KHR.0);
+    pub const PROTECTED: Self = Self(SwapchainCreateFlagBitsKHR::PROTECTED.0);
 }
 ///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl SwapchainCreateFlagBitsKHR {
-    pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(1 << 0);
-    pub const PROTECTED_KHR: Self = Self(1 << 1);
+    pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(1 << 0);
+    pub const PROTECTED: Self = Self(1 << 1);
 }
 ///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl DeviceGroupPresentModeFlagsKHR {
-    pub const LOCAL_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::LOCAL_KHR.0);
-    pub const REMOTE_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::REMOTE_KHR.0);
-    pub const SUM_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::SUM_KHR.0);
-    pub const LOCAL_MULTI_DEVICE_KHR: Self = Self(
-        DeviceGroupPresentModeFlagBitsKHR::LOCAL_MULTI_DEVICE_KHR.0,
+    pub const LOCAL: Self = Self(DeviceGroupPresentModeFlagBitsKHR::LOCAL.0);
+    pub const REMOTE: Self = Self(DeviceGroupPresentModeFlagBitsKHR::REMOTE.0);
+    pub const SUM: Self = Self(DeviceGroupPresentModeFlagBitsKHR::SUM.0);
+    pub const LOCAL_MULTI_DEVICE: Self = Self(
+        DeviceGroupPresentModeFlagBitsKHR::LOCAL_MULTI_DEVICE.0,
     );
 }
 ///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl DeviceGroupPresentModeFlagBitsKHR {
-    pub const LOCAL_KHR: Self = Self(1 << 0);
-    pub const REMOTE_KHR: Self = Self(1 << 1);
-    pub const SUM_KHR: Self = Self(1 << 2);
-    pub const LOCAL_MULTI_DEVICE_KHR: Self = Self(1 << 3);
+    pub const LOCAL: Self = Self(1 << 0);
+    pub const REMOTE: Self = Self(1 << 1);
+    pub const SUM: Self = Self(1 << 2);
+    pub const LOCAL_MULTI_DEVICE: Self = Self(1 << 3);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -868,19 +868,13 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (
-                        Self::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
-                        "SPLIT_INSTANCE_BIND_REGIONS_KHR",
-                    ),
-                    (Self::PROTECTED_KHR.0, "PROTECTED_KHR"),
-                    (Self::MUTABLE_FORMAT_KHR.0, "MUTABLE_FORMAT_KHR"),
+                    (Self::SPLIT_INSTANCE_BIND_REGIONS.0, "SPLIT_INSTANCE_BIND_REGIONS"),
+                    (Self::PROTECTED.0, "PROTECTED"),
+                    (Self::MUTABLE_FORMAT.0, "MUTABLE_FORMAT"),
                     (Self::PRESENT_TIMING_EXT.0, "PRESENT_TIMING_EXT"),
-                    (Self::PRESENT_ID_2_KHR.0, "PRESENT_ID_2_KHR"),
-                    (Self::PRESENT_WAIT_2_KHR.0, "PRESENT_WAIT_2_KHR"),
-                    (
-                        Self::DEFERRED_MEMORY_ALLOCATION_KHR.0,
-                        "DEFERRED_MEMORY_ALLOCATION_KHR",
-                    ),
+                    (Self::PRESENT_ID_2.0, "PRESENT_ID_2"),
+                    (Self::PRESENT_WAIT_2.0, "PRESENT_WAIT_2"),
+                    (Self::DEFERRED_MEMORY_ALLOCATION.0, "DEFERRED_MEMORY_ALLOCATION"),
                     (
                         Self::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
                         "MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT",
@@ -973,10 +967,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::LOCAL_KHR.0, "LOCAL_KHR"),
-                    (Self::REMOTE_KHR.0, "REMOTE_KHR"),
-                    (Self::SUM_KHR.0, "SUM_KHR"),
-                    (Self::LOCAL_MULTI_DEVICE_KHR.0, "LOCAL_MULTI_DEVICE_KHR"),
+                    (Self::LOCAL.0, "LOCAL"),
+                    (Self::REMOTE.0, "REMOTE"),
+                    (Self::SUM.0, "SUM"),
+                    (Self::LOCAL_MULTI_DEVICE.0, "LOCAL_MULTI_DEVICE"),
                 ],
                 self.0,
             )

@@ -13,27 +13,27 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl crate::vk::AccelerationStructureTypeKHR {
-    pub const OPACITY_MICROMAP_KHR: Self = Self(1000623000);
+    pub const OPACITY_MICROMAP: Self = Self(1000623000);
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl crate::vk::GeometryTypeKHR {
-    pub const MICROMAP_KHR: Self = Self(1000623000);
+    pub const MICROMAP: Self = Self(1000623000);
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl OpacityMicromapFormatKHR {
-    pub const _2_STATE_KHR: Self = Self(1);
-    pub const _4_STATE_KHR: Self = Self(2);
+    pub const _2_STATE: Self = Self(1);
+    pub const _4_STATE: Self = Self(2);
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl OpacityMicromapSpecialIndexKHR {
-    pub const FULLY_TRANSPARENT_KHR: Self = Self(-1);
-    pub const FULLY_OPAQUE_KHR: Self = Self(-2);
-    pub const FULLY_UNKNOWN_TRANSPARENT_KHR: Self = Self(-3);
-    pub const FULLY_UNKNOWN_OPAQUE_KHR: Self = Self(-4);
+    pub const FULLY_TRANSPARENT: Self = Self(-1);
+    pub const FULLY_OPAQUE: Self = Self(-2);
+    pub const FULLY_UNKNOWN_TRANSPARENT: Self = Self(-3);
+    pub const FULLY_UNKNOWN_OPAQUE: Self = Self(-4);
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl AccelerationStructureSerializedBlockTypeKHR {
-    pub const OPACITY_MICROMAP_KHR: Self = Self(0);
+    pub const OPACITY_MICROMAP: Self = Self(0);
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl crate::vk::PipelineCreateFlags {
@@ -47,37 +47,36 @@ impl crate::vk::PipelineCreateFlagBits {
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl crate::vk::GeometryInstanceFlagsKHR {
-    pub const FORCE_OPACITY_MICROMAP_2_STATE_KHR: Self = Self(
-        crate::vk::GeometryInstanceFlagBitsKHR::FORCE_OPACITY_MICROMAP_2_STATE_KHR.0,
+    pub const FORCE_OPACITY_MICROMAP_2_STATE: Self = Self(
+        crate::vk::GeometryInstanceFlagBitsKHR::FORCE_OPACITY_MICROMAP_2_STATE.0,
     );
-    pub const DISABLE_OPACITY_MICROMAPS_KHR: Self = Self(
-        crate::vk::GeometryInstanceFlagBitsKHR::DISABLE_OPACITY_MICROMAPS_KHR.0,
+    pub const DISABLE_OPACITY_MICROMAPS: Self = Self(
+        crate::vk::GeometryInstanceFlagBitsKHR::DISABLE_OPACITY_MICROMAPS.0,
     );
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl crate::vk::GeometryInstanceFlagBitsKHR {
-    pub const FORCE_OPACITY_MICROMAP_2_STATE_KHR: Self = Self(1 << 4);
-    pub const DISABLE_OPACITY_MICROMAPS_KHR: Self = Self(1 << 5);
+    pub const FORCE_OPACITY_MICROMAP_2_STATE: Self = Self(1 << 4);
+    pub const DISABLE_OPACITY_MICROMAPS: Self = Self(1 << 5);
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl crate::vk::BuildAccelerationStructureFlagsKHR {
-    pub const ALLOW_OPACITY_MICROMAP_UPDATE_KHR: Self = Self(
-        crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_OPACITY_MICROMAP_UPDATE_KHR
+    pub const ALLOW_OPACITY_MICROMAP_UPDATE: Self = Self(
+        crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_OPACITY_MICROMAP_UPDATE.0,
+    );
+    pub const ALLOW_DISABLE_OPACITY_MICROMAPS: Self = Self(
+        crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_DISABLE_OPACITY_MICROMAPS
             .0,
     );
-    pub const ALLOW_DISABLE_OPACITY_MICROMAPS_KHR: Self = Self(
-        crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_DISABLE_OPACITY_MICROMAPS_KHR
-            .0,
-    );
-    pub const MICROMAP_LOSSY_KHR: Self = Self(
-        crate::vk::BuildAccelerationStructureFlagBitsKHR::MICROMAP_LOSSY_KHR.0,
+    pub const MICROMAP_LOSSY: Self = Self(
+        crate::vk::BuildAccelerationStructureFlagBitsKHR::MICROMAP_LOSSY.0,
     );
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
-    pub const ALLOW_OPACITY_MICROMAP_UPDATE_KHR: Self = Self(1 << 6);
-    pub const ALLOW_DISABLE_OPACITY_MICROMAPS_KHR: Self = Self(1 << 7);
-    pub const MICROMAP_LOSSY_KHR: Self = Self(1 << 10);
+    pub const ALLOW_OPACITY_MICROMAP_UPDATE: Self = Self(1 << 6);
+    pub const ALLOW_DISABLE_OPACITY_MICROMAPS: Self = Self(1 << 7);
+    pub const MICROMAP_LOSSY: Self = Self(1 << 10);
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl crate::vk::PipelineCreateFlags2 {
@@ -96,14 +95,14 @@ impl crate::vk::PipelineCreateFlagBits2 {
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl crate::vk::ShaderCreateFlagsEXT {
-    pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT: Self = Self(
-        crate::vk::ShaderCreateFlagBitsEXT::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT
+    pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX: Self = Self(
+        crate::vk::ShaderCreateFlagBitsEXT::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX
             .0,
     );
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl crate::vk::ShaderCreateFlagBitsEXT {
-    pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT: Self = Self(1 << 12);
+    pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX: Self = Self(1 << 12);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_opacity_micromap";
@@ -399,8 +398,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for OpacityMicromapFormatKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::_2_STATE_KHR => Some("_2_STATE_KHR"),
-                Self::_4_STATE_KHR => Some("_4_STATE_KHR"),
+                Self::_2_STATE => Some("_2_STATE"),
+                Self::_4_STATE => Some("_4_STATE"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -426,12 +425,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for OpacityMicromapSpecialIndexKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::FULLY_TRANSPARENT_KHR => Some("FULLY_TRANSPARENT_KHR"),
-                Self::FULLY_OPAQUE_KHR => Some("FULLY_OPAQUE_KHR"),
-                Self::FULLY_UNKNOWN_TRANSPARENT_KHR => {
-                    Some("FULLY_UNKNOWN_TRANSPARENT_KHR")
-                }
-                Self::FULLY_UNKNOWN_OPAQUE_KHR => Some("FULLY_UNKNOWN_OPAQUE_KHR"),
+                Self::FULLY_TRANSPARENT => Some("FULLY_TRANSPARENT"),
+                Self::FULLY_OPAQUE => Some("FULLY_OPAQUE"),
+                Self::FULLY_UNKNOWN_TRANSPARENT => Some("FULLY_UNKNOWN_TRANSPARENT"),
+                Self::FULLY_UNKNOWN_OPAQUE => Some("FULLY_UNKNOWN_OPAQUE"),
                 Self::CLUSTER_GEOMETRY_DISABLE_OPACITY_MICROMAP_NV => {
                     Some("CLUSTER_GEOMETRY_DISABLE_OPACITY_MICROMAP_NV")
                 }
@@ -460,7 +457,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for AccelerationStructureSerializedBlockTypeKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::OPACITY_MICROMAP_KHR => Some("OPACITY_MICROMAP_KHR"),
+                Self::OPACITY_MICROMAP => Some("OPACITY_MICROMAP"),
                 _ => None,
             } {
                 f.write_str(x)

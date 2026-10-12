@@ -12,8 +12,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_coverage_reduction_mode](crate::nv::coverage_reduction_mode)
 impl CoverageReductionModeNV {
-    pub const MERGE_NV: Self = Self(0);
-    pub const TRUNCATE_NV: Self = Self(1);
+    pub const MERGE: Self = Self(0);
+    pub const TRUNCATE: Self = Self(1);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -262,8 +262,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for CoverageReductionModeNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::MERGE_NV => Some("MERGE_NV"),
-                Self::TRUNCATE_NV => Some("TRUNCATE_NV"),
+                Self::MERGE => Some("MERGE"),
+                Self::TRUNCATE => Some("TRUNCATE"),
                 _ => None,
             } {
                 f.write_str(x)

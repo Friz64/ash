@@ -16,7 +16,7 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_KHR_descriptor_update_template](crate::khr::descriptor_update_template)
 impl crate::vk::DebugReportObjectTypeEXT {
-    pub const DESCRIPTOR_UPDATE_TEMPLATE_KHR_EXT: Self = Self::DESCRIPTOR_UPDATE_TEMPLATE_EXT;
+    pub const DESCRIPTOR_UPDATE_TEMPLATE_KHR: Self = Self::DESCRIPTOR_UPDATE_TEMPLATE;
 }
 #[derive(Clone)]
 pub struct DeviceFn {

@@ -8,8 +8,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_MSFT_layered_driver](crate::msft::layered_driver)
 impl LayeredDriverUnderlyingApiMSFT {
-    pub const NONE_MSFT: Self = Self(0);
-    pub const D3D12_MSFT: Self = Self(1);
+    pub const NONE: Self = Self(0);
+    pub const D3D12: Self = Self(1);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_MSFT_layered_driver";
@@ -57,8 +57,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for LayeredDriverUnderlyingApiMSFT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::NONE_MSFT => Some("NONE_MSFT"),
-                Self::D3D12_MSFT => Some("D3D12_MSFT"),
+                Self::NONE => Some("NONE"),
+                Self::D3D12 => Some("D3D12"),
                 _ => None,
             } {
                 f.write_str(x)

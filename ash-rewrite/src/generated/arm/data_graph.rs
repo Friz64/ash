@@ -49,24 +49,24 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl DataGraphPipelineSessionBindPointARM {
-    pub const TRANSIENT_ARM: Self = Self(0);
+    pub const TRANSIENT: Self = Self(0);
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl DataGraphPipelineSessionBindPointTypeARM {
-    pub const MEMORY_ARM: Self = Self(0);
+    pub const MEMORY: Self = Self(0);
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl DataGraphPipelinePropertyARM {
-    pub const CREATION_LOG_ARM: Self = Self(0);
-    pub const IDENTIFIER_ARM: Self = Self(1);
+    pub const CREATION_LOG: Self = Self(0);
+    pub const IDENTIFIER: Self = Self(1);
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl PhysicalDeviceDataGraphProcessingEngineTypeARM {
-    pub const DEFAULT_ARM: Self = Self(0);
+    pub const DEFAULT: Self = Self(0);
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl PhysicalDeviceDataGraphOperationTypeARM {
-    pub const SPIRV_EXTENDED_INSTRUCTION_SET_ARM: Self = Self(0);
+    pub const SPIRV_EXTENDED_INSTRUCTION_SET: Self = Self(0);
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::QueueFlags {
@@ -122,23 +122,21 @@ impl crate::vk::BufferUsageFlagBits2 {
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::TensorUsageFlagsARM {
-    pub const DATA_GRAPH_ARM: Self = Self(
-        crate::vk::TensorUsageFlagBitsARM::DATA_GRAPH_ARM.0,
-    );
+    pub const DATA_GRAPH: Self = Self(crate::vk::TensorUsageFlagBitsARM::DATA_GRAPH.0);
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl crate::vk::TensorUsageFlagBitsARM {
-    pub const DATA_GRAPH_ARM: Self = Self(1 << 5);
+    pub const DATA_GRAPH: Self = Self(1 << 5);
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl DataGraphPipelineSessionCreateFlagsARM {
-    pub const PROTECTED_ARM: Self = Self(
-        DataGraphPipelineSessionCreateFlagBitsARM::PROTECTED_ARM.0,
+    pub const PROTECTED: Self = Self(
+        DataGraphPipelineSessionCreateFlagBitsARM::PROTECTED.0,
     );
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl DataGraphPipelineSessionCreateFlagBitsARM {
-    pub const PROTECTED_ARM: Self = Self(1 << 0);
+    pub const PROTECTED: Self = Self(1 << 0);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -1672,10 +1670,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for DataGraphPipelineSessionBindPointARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::TRANSIENT_ARM => Some("TRANSIENT_ARM"),
-                Self::OPTICAL_FLOW_CACHE_ARM => Some("OPTICAL_FLOW_CACHE_ARM"),
-                Self::NEURAL_ACCELERATOR_STATISTICS_ARM => {
-                    Some("NEURAL_ACCELERATOR_STATISTICS_ARM")
+                Self::TRANSIENT => Some("TRANSIENT"),
+                Self::OPTICAL_FLOW_CACHE => Some("OPTICAL_FLOW_CACHE"),
+                Self::NEURAL_ACCELERATOR_STATISTICS => {
+                    Some("NEURAL_ACCELERATOR_STATISTICS")
                 }
                 _ => None,
             } {
@@ -1702,7 +1700,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for DataGraphPipelineSessionBindPointTypeARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::MEMORY_ARM => Some("MEMORY_ARM"),
+                Self::MEMORY => Some("MEMORY"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1728,13 +1726,13 @@ pub(crate) mod items {
     impl core::fmt::Debug for DataGraphPipelinePropertyARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::CREATION_LOG_ARM => Some("CREATION_LOG_ARM"),
-                Self::IDENTIFIER_ARM => Some("IDENTIFIER_ARM"),
-                Self::NEURAL_ACCELERATOR_DEBUG_DATABASE_ARM => {
-                    Some("NEURAL_ACCELERATOR_DEBUG_DATABASE_ARM")
+                Self::CREATION_LOG => Some("CREATION_LOG"),
+                Self::IDENTIFIER => Some("IDENTIFIER"),
+                Self::NEURAL_ACCELERATOR_DEBUG_DATABASE => {
+                    Some("NEURAL_ACCELERATOR_DEBUG_DATABASE")
                 }
-                Self::NEURAL_ACCELERATOR_STATISTICS_INFO_ARM => {
-                    Some("NEURAL_ACCELERATOR_STATISTICS_INFO_ARM")
+                Self::NEURAL_ACCELERATOR_STATISTICS_INFO => {
+                    Some("NEURAL_ACCELERATOR_STATISTICS_INFO")
                 }
                 _ => None,
             } {
@@ -1761,7 +1759,7 @@ pub(crate) mod items {
     impl core::fmt::Debug for PhysicalDeviceDataGraphProcessingEngineTypeARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DEFAULT_ARM => Some("DEFAULT_ARM"),
+                Self::DEFAULT => Some("DEFAULT"),
                 Self::NEURAL_QCOM => Some("NEURAL_QCOM"),
                 Self::COMPUTE_QCOM => Some("COMPUTE_QCOM"),
                 _ => None,
@@ -1789,12 +1787,12 @@ pub(crate) mod items {
     impl core::fmt::Debug for PhysicalDeviceDataGraphOperationTypeARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::SPIRV_EXTENDED_INSTRUCTION_SET_ARM => {
-                    Some("SPIRV_EXTENDED_INSTRUCTION_SET_ARM")
+                Self::SPIRV_EXTENDED_INSTRUCTION_SET => {
+                    Some("SPIRV_EXTENDED_INSTRUCTION_SET")
                 }
                 Self::NEURAL_MODEL_QCOM => Some("NEURAL_MODEL_QCOM"),
                 Self::BUILTIN_MODEL_QCOM => Some("BUILTIN_MODEL_QCOM"),
-                Self::OPTICAL_FLOW_ARM => Some("OPTICAL_FLOW_ARM"),
+                Self::OPTICAL_FLOW => Some("OPTICAL_FLOW"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1822,8 +1820,8 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::PROTECTED_ARM.0, "PROTECTED_ARM"),
-                    (Self::OPTICAL_FLOW_CACHE_ARM.0, "OPTICAL_FLOW_CACHE_ARM"),
+                    (Self::PROTECTED.0, "PROTECTED"),
+                    (Self::OPTICAL_FLOW_CACHE.0, "OPTICAL_FLOW_CACHE"),
                 ],
                 self.0,
             )

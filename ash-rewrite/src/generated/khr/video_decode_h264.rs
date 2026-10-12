@@ -15,31 +15,31 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_video_decode_h264](crate::khr::video_decode_h264)
 impl crate::vk::VideoCodecOperationFlagsKHR {
-    pub const DECODE_H264_KHR: Self = Self(
-        crate::vk::VideoCodecOperationFlagBitsKHR::DECODE_H264_KHR.0,
+    pub const DECODE_H264: Self = Self(
+        crate::vk::VideoCodecOperationFlagBitsKHR::DECODE_H264.0,
     );
 }
 ///Provided by [VK_KHR_video_decode_h264](crate::khr::video_decode_h264)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
-    pub const DECODE_H264_KHR: Self = Self(1 << 0);
+    pub const DECODE_H264: Self = Self(1 << 0);
 }
 ///Provided by [VK_KHR_video_decode_h264](crate::khr::video_decode_h264)
 impl VideoDecodeH264PictureLayoutFlagsKHR {
-    pub const PROGRESSIVE_KHR: Self = Self(
-        VideoDecodeH264PictureLayoutFlagBitsKHR::PROGRESSIVE_KHR.0,
+    pub const PROGRESSIVE: Self = Self(
+        VideoDecodeH264PictureLayoutFlagBitsKHR::PROGRESSIVE.0,
     );
-    pub const INTERLACED_INTERLEAVED_LINES_KHR: Self = Self(
-        VideoDecodeH264PictureLayoutFlagBitsKHR::INTERLACED_INTERLEAVED_LINES_KHR.0,
+    pub const INTERLACED_INTERLEAVED_LINES: Self = Self(
+        VideoDecodeH264PictureLayoutFlagBitsKHR::INTERLACED_INTERLEAVED_LINES.0,
     );
-    pub const INTERLACED_SEPARATE_PLANES_KHR: Self = Self(
-        VideoDecodeH264PictureLayoutFlagBitsKHR::INTERLACED_SEPARATE_PLANES_KHR.0,
+    pub const INTERLACED_SEPARATE_PLANES: Self = Self(
+        VideoDecodeH264PictureLayoutFlagBitsKHR::INTERLACED_SEPARATE_PLANES.0,
     );
 }
 ///Provided by [VK_KHR_video_decode_h264](crate::khr::video_decode_h264)
 impl VideoDecodeH264PictureLayoutFlagBitsKHR {
-    pub const PROGRESSIVE_KHR: Self = Self(0);
-    pub const INTERLACED_INTERLEAVED_LINES_KHR: Self = Self(1 << 0);
-    pub const INTERLACED_SEPARATE_PLANES_KHR: Self = Self(1 << 1);
+    pub const PROGRESSIVE: Self = Self(0);
+    pub const INTERLACED_INTERLEAVED_LINES: Self = Self(1 << 0);
+    pub const INTERLACED_SEPARATE_PLANES: Self = Self(1 << 1);
 }
 pub const SPEC_VERSION: u32 = 9;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_h264";
@@ -322,15 +322,12 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::PROGRESSIVE_KHR.0, "PROGRESSIVE_KHR"),
+                    (Self::PROGRESSIVE.0, "PROGRESSIVE"),
                     (
-                        Self::INTERLACED_INTERLEAVED_LINES_KHR.0,
-                        "INTERLACED_INTERLEAVED_LINES_KHR",
+                        Self::INTERLACED_INTERLEAVED_LINES.0,
+                        "INTERLACED_INTERLEAVED_LINES",
                     ),
-                    (
-                        Self::INTERLACED_SEPARATE_PLANES_KHR.0,
-                        "INTERLACED_SEPARATE_PLANES_KHR",
-                    ),
+                    (Self::INTERLACED_SEPARATE_PLANES.0, "INTERLACED_SEPARATE_PLANES"),
                 ],
                 self.0,
             )

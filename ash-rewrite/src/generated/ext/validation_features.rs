@@ -8,22 +8,22 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_validation_features](crate::ext::validation_features)
 impl ValidationFeatureEnableEXT {
-    pub const GPU_ASSISTED_EXT: Self = Self(0);
-    pub const GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT: Self = Self(1);
-    pub const BEST_PRACTICES_EXT: Self = Self(2);
-    pub const DEBUG_PRINTF_EXT: Self = Self(3);
-    pub const SYNCHRONIZATION_VALIDATION_EXT: Self = Self(4);
+    pub const GPU_ASSISTED: Self = Self(0);
+    pub const GPU_ASSISTED_RESERVE_BINDING_SLOT: Self = Self(1);
+    pub const BEST_PRACTICES: Self = Self(2);
+    pub const DEBUG_PRINTF: Self = Self(3);
+    pub const SYNCHRONIZATION_VALIDATION: Self = Self(4);
 }
 ///Provided by [VK_EXT_validation_features](crate::ext::validation_features)
 impl ValidationFeatureDisableEXT {
-    pub const ALL_EXT: Self = Self(0);
-    pub const SHADERS_EXT: Self = Self(1);
-    pub const THREAD_SAFETY_EXT: Self = Self(2);
-    pub const API_PARAMETERS_EXT: Self = Self(3);
-    pub const OBJECT_LIFETIMES_EXT: Self = Self(4);
-    pub const CORE_CHECKS_EXT: Self = Self(5);
-    pub const UNIQUE_HANDLES_EXT: Self = Self(6);
-    pub const SHADER_VALIDATION_CACHE_EXT: Self = Self(7);
+    pub const ALL: Self = Self(0);
+    pub const SHADERS: Self = Self(1);
+    pub const THREAD_SAFETY: Self = Self(2);
+    pub const API_PARAMETERS: Self = Self(3);
+    pub const OBJECT_LIFETIMES: Self = Self(4);
+    pub const CORE_CHECKS: Self = Self(5);
+    pub const UNIQUE_HANDLES: Self = Self(6);
+    pub const SHADER_VALIDATION_CACHE: Self = Self(7);
 }
 pub const SPEC_VERSION: u32 = 6;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_features";
@@ -99,15 +99,13 @@ pub(crate) mod items {
     impl core::fmt::Debug for ValidationFeatureEnableEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::GPU_ASSISTED_EXT => Some("GPU_ASSISTED_EXT"),
-                Self::GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT => {
-                    Some("GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT")
+                Self::GPU_ASSISTED => Some("GPU_ASSISTED"),
+                Self::GPU_ASSISTED_RESERVE_BINDING_SLOT => {
+                    Some("GPU_ASSISTED_RESERVE_BINDING_SLOT")
                 }
-                Self::BEST_PRACTICES_EXT => Some("BEST_PRACTICES_EXT"),
-                Self::DEBUG_PRINTF_EXT => Some("DEBUG_PRINTF_EXT"),
-                Self::SYNCHRONIZATION_VALIDATION_EXT => {
-                    Some("SYNCHRONIZATION_VALIDATION_EXT")
-                }
+                Self::BEST_PRACTICES => Some("BEST_PRACTICES"),
+                Self::DEBUG_PRINTF => Some("DEBUG_PRINTF"),
+                Self::SYNCHRONIZATION_VALIDATION => Some("SYNCHRONIZATION_VALIDATION"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -133,14 +131,14 @@ pub(crate) mod items {
     impl core::fmt::Debug for ValidationFeatureDisableEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::ALL_EXT => Some("ALL_EXT"),
-                Self::SHADERS_EXT => Some("SHADERS_EXT"),
-                Self::THREAD_SAFETY_EXT => Some("THREAD_SAFETY_EXT"),
-                Self::API_PARAMETERS_EXT => Some("API_PARAMETERS_EXT"),
-                Self::OBJECT_LIFETIMES_EXT => Some("OBJECT_LIFETIMES_EXT"),
-                Self::CORE_CHECKS_EXT => Some("CORE_CHECKS_EXT"),
-                Self::UNIQUE_HANDLES_EXT => Some("UNIQUE_HANDLES_EXT"),
-                Self::SHADER_VALIDATION_CACHE_EXT => Some("SHADER_VALIDATION_CACHE_EXT"),
+                Self::ALL => Some("ALL"),
+                Self::SHADERS => Some("SHADERS"),
+                Self::THREAD_SAFETY => Some("THREAD_SAFETY"),
+                Self::API_PARAMETERS => Some("API_PARAMETERS"),
+                Self::OBJECT_LIFETIMES => Some("OBJECT_LIFETIMES"),
+                Self::CORE_CHECKS => Some("CORE_CHECKS"),
+                Self::UNIQUE_HANDLES => Some("UNIQUE_HANDLES"),
+                Self::SHADER_VALIDATION_CACHE => Some("SHADER_VALIDATION_CACHE"),
                 _ => None,
             } {
                 f.write_str(x)

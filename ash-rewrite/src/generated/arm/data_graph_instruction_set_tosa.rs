@@ -8,30 +8,22 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_ARM_data_graph_instruction_set_tosa](crate::arm::data_graph_instruction_set_tosa)
 impl DataGraphTOSALevelARM {
-    pub const NONE_ARM: Self = Self(0);
-    pub const _8K_ARM: Self = Self(1);
+    pub const NONE: Self = Self(0);
+    pub const _8K: Self = Self(1);
 }
 ///Provided by [VK_ARM_data_graph_instruction_set_tosa](crate::arm::data_graph_instruction_set_tosa)
 impl DataGraphTOSAQualityFlagsARM {
-    pub const ACCELERATED_ARM: Self = Self(
-        DataGraphTOSAQualityFlagBitsARM::ACCELERATED_ARM.0,
-    );
-    pub const CONFORMANT_ARM: Self = Self(
-        DataGraphTOSAQualityFlagBitsARM::CONFORMANT_ARM.0,
-    );
-    pub const EXPERIMENTAL_ARM: Self = Self(
-        DataGraphTOSAQualityFlagBitsARM::EXPERIMENTAL_ARM.0,
-    );
-    pub const DEPRECATED_ARM: Self = Self(
-        DataGraphTOSAQualityFlagBitsARM::DEPRECATED_ARM.0,
-    );
+    pub const ACCELERATED: Self = Self(DataGraphTOSAQualityFlagBitsARM::ACCELERATED.0);
+    pub const CONFORMANT: Self = Self(DataGraphTOSAQualityFlagBitsARM::CONFORMANT.0);
+    pub const EXPERIMENTAL: Self = Self(DataGraphTOSAQualityFlagBitsARM::EXPERIMENTAL.0);
+    pub const DEPRECATED: Self = Self(DataGraphTOSAQualityFlagBitsARM::DEPRECATED.0);
 }
 ///Provided by [VK_ARM_data_graph_instruction_set_tosa](crate::arm::data_graph_instruction_set_tosa)
 impl DataGraphTOSAQualityFlagBitsARM {
-    pub const ACCELERATED_ARM: Self = Self(1 << 0);
-    pub const CONFORMANT_ARM: Self = Self(1 << 1);
-    pub const EXPERIMENTAL_ARM: Self = Self(1 << 2);
-    pub const DEPRECATED_ARM: Self = Self(1 << 3);
+    pub const ACCELERATED: Self = Self(1 << 0);
+    pub const CONFORMANT: Self = Self(1 << 1);
+    pub const EXPERIMENTAL: Self = Self(1 << 2);
+    pub const DEPRECATED: Self = Self(1 << 3);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -225,8 +217,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for DataGraphTOSALevelARM {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::NONE_ARM => Some("NONE_ARM"),
-                Self::_8K_ARM => Some("_8K_ARM"),
+                Self::NONE => Some("NONE"),
+                Self::_8K => Some("_8K"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -254,10 +246,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::ACCELERATED_ARM.0, "ACCELERATED_ARM"),
-                    (Self::CONFORMANT_ARM.0, "CONFORMANT_ARM"),
-                    (Self::EXPERIMENTAL_ARM.0, "EXPERIMENTAL_ARM"),
-                    (Self::DEPRECATED_ARM.0, "DEPRECATED_ARM"),
+                    (Self::ACCELERATED.0, "ACCELERATED"),
+                    (Self::CONFORMANT.0, "CONFORMANT"),
+                    (Self::EXPERIMENTAL.0, "EXPERIMENTAL"),
+                    (Self::DEPRECATED.0, "DEPRECATED"),
                 ],
                 self.0,
             )

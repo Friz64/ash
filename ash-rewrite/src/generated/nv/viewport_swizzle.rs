@@ -8,14 +8,14 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_NV_viewport_swizzle](crate::nv::viewport_swizzle)
 impl ViewportCoordinateSwizzleNV {
-    pub const POSITIVE_X_NV: Self = Self(0);
-    pub const NEGATIVE_X_NV: Self = Self(1);
-    pub const POSITIVE_Y_NV: Self = Self(2);
-    pub const NEGATIVE_Y_NV: Self = Self(3);
-    pub const POSITIVE_Z_NV: Self = Self(4);
-    pub const NEGATIVE_Z_NV: Self = Self(5);
-    pub const POSITIVE_W_NV: Self = Self(6);
-    pub const NEGATIVE_W_NV: Self = Self(7);
+    pub const POSITIVE_X: Self = Self(0);
+    pub const NEGATIVE_X: Self = Self(1);
+    pub const POSITIVE_Y: Self = Self(2);
+    pub const NEGATIVE_Y: Self = Self(3);
+    pub const POSITIVE_Z: Self = Self(4);
+    pub const NEGATIVE_Z: Self = Self(5);
+    pub const POSITIVE_W: Self = Self(6);
+    pub const NEGATIVE_W: Self = Self(7);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_viewport_swizzle";
@@ -104,14 +104,14 @@ pub(crate) mod items {
     impl core::fmt::Debug for ViewportCoordinateSwizzleNV {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::POSITIVE_X_NV => Some("POSITIVE_X_NV"),
-                Self::NEGATIVE_X_NV => Some("NEGATIVE_X_NV"),
-                Self::POSITIVE_Y_NV => Some("POSITIVE_Y_NV"),
-                Self::NEGATIVE_Y_NV => Some("NEGATIVE_Y_NV"),
-                Self::POSITIVE_Z_NV => Some("POSITIVE_Z_NV"),
-                Self::NEGATIVE_Z_NV => Some("NEGATIVE_Z_NV"),
-                Self::POSITIVE_W_NV => Some("POSITIVE_W_NV"),
-                Self::NEGATIVE_W_NV => Some("NEGATIVE_W_NV"),
+                Self::POSITIVE_X => Some("POSITIVE_X"),
+                Self::NEGATIVE_X => Some("NEGATIVE_X"),
+                Self::POSITIVE_Y => Some("POSITIVE_Y"),
+                Self::NEGATIVE_Y => Some("NEGATIVE_Y"),
+                Self::POSITIVE_Z => Some("POSITIVE_Z"),
+                Self::NEGATIVE_Z => Some("NEGATIVE_Z"),
+                Self::POSITIVE_W => Some("POSITIVE_W"),
+                Self::NEGATIVE_W => Some("NEGATIVE_W"),
                 _ => None,
             } {
                 f.write_str(x)

@@ -12,8 +12,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_provoking_vertex](crate::ext::provoking_vertex)
 impl ProvokingVertexModeEXT {
-    pub const FIRST_VERTEX_EXT: Self = Self(0);
-    pub const LAST_VERTEX_EXT: Self = Self(1);
+    pub const FIRST_VERTEX: Self = Self(0);
+    pub const LAST_VERTEX: Self = Self(1);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_provoking_vertex";
@@ -153,8 +153,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for ProvokingVertexModeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::FIRST_VERTEX_EXT => Some("FIRST_VERTEX_EXT"),
-                Self::LAST_VERTEX_EXT => Some("LAST_VERTEX_EXT"),
+                Self::FIRST_VERTEX => Some("FIRST_VERTEX"),
+                Self::LAST_VERTEX => Some("LAST_VERTEX"),
                 _ => None,
             } {
                 f.write_str(x)

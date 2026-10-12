@@ -141,6 +141,7 @@ impl CDecl<'static> {
 /// Raw representation of Vulkan XML files (`vk.xml`, `video.xml`).
 #[derive(Debug, Default)]
 pub struct Registry {
+    pub tags: Vec<Tag>,
     pub externals: Vec<External>,
     pub basetypes: Vec<BaseType>,
     pub bitmasks: Vec<BitMask>,
@@ -176,6 +177,16 @@ impl Registry {
             .filter(|node| api_matches(node, api))
         {
             match registry_child.tag_name().name() {
+                "tags" => {
+                    for tag_node in registry_child
+                        .children()
+                        .filter(|node| node.has_tag_name("tag"))
+                    {
+                        let _s = info_span!("tag", node = node_span_field(&tag_node)).entered();
+                        trace!("encountered node");
+                        registry.tags.push(Tag::from_node(tag_node));
+                    }
+                }
                 "types" => {
                     for type_node in registry_child
                         .children()
@@ -317,6 +328,19 @@ impl Registry {
         }
 
         registry
+    }
+}
+
+#[derive(Debug)]
+pub struct Tag {
+    pub name: &'static str,
+}
+
+impl Tag {
+    fn from_node(node: Node) -> Tag {
+        Tag {
+            name: attribute(node, "name").unwrap(),
+        }
     }
 }
 

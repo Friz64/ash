@@ -13,20 +13,20 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_EXT_subpass_merge_feedback](crate::ext::subpass_merge_feedback)
 impl SubpassMergeStatusEXT {
-    pub const MERGED_EXT: Self = Self(0);
-    pub const DISALLOWED_EXT: Self = Self(1);
-    pub const NOT_MERGED_SIDE_EFFECTS_EXT: Self = Self(2);
-    pub const NOT_MERGED_SAMPLES_MISMATCH_EXT: Self = Self(3);
-    pub const NOT_MERGED_VIEWS_MISMATCH_EXT: Self = Self(4);
-    pub const NOT_MERGED_ALIASING_EXT: Self = Self(5);
-    pub const NOT_MERGED_DEPENDENCIES_EXT: Self = Self(6);
-    pub const NOT_MERGED_INCOMPATIBLE_INPUT_ATTACHMENT_EXT: Self = Self(7);
-    pub const NOT_MERGED_TOO_MANY_ATTACHMENTS_EXT: Self = Self(8);
-    pub const NOT_MERGED_INSUFFICIENT_STORAGE_EXT: Self = Self(9);
-    pub const NOT_MERGED_DEPTH_STENCIL_COUNT_EXT: Self = Self(10);
-    pub const NOT_MERGED_RESOLVE_ATTACHMENT_REUSE_EXT: Self = Self(11);
-    pub const NOT_MERGED_SINGLE_SUBPASS_EXT: Self = Self(12);
-    pub const NOT_MERGED_UNSPECIFIED_EXT: Self = Self(13);
+    pub const MERGED: Self = Self(0);
+    pub const DISALLOWED: Self = Self(1);
+    pub const NOT_MERGED_SIDE_EFFECTS: Self = Self(2);
+    pub const NOT_MERGED_SAMPLES_MISMATCH: Self = Self(3);
+    pub const NOT_MERGED_VIEWS_MISMATCH: Self = Self(4);
+    pub const NOT_MERGED_ALIASING: Self = Self(5);
+    pub const NOT_MERGED_DEPENDENCIES: Self = Self(6);
+    pub const NOT_MERGED_INCOMPATIBLE_INPUT_ATTACHMENT: Self = Self(7);
+    pub const NOT_MERGED_TOO_MANY_ATTACHMENTS: Self = Self(8);
+    pub const NOT_MERGED_INSUFFICIENT_STORAGE: Self = Self(9);
+    pub const NOT_MERGED_DEPTH_STENCIL_COUNT: Self = Self(10);
+    pub const NOT_MERGED_RESOLVE_ATTACHMENT_REUSE: Self = Self(11);
+    pub const NOT_MERGED_SINGLE_SUBPASS: Self = Self(12);
+    pub const NOT_MERGED_UNSPECIFIED: Self = Self(13);
 }
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_subpass_merge_feedback";
@@ -249,36 +249,30 @@ pub(crate) mod items {
     impl core::fmt::Debug for SubpassMergeStatusEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::MERGED_EXT => Some("MERGED_EXT"),
-                Self::DISALLOWED_EXT => Some("DISALLOWED_EXT"),
-                Self::NOT_MERGED_SIDE_EFFECTS_EXT => Some("NOT_MERGED_SIDE_EFFECTS_EXT"),
-                Self::NOT_MERGED_SAMPLES_MISMATCH_EXT => {
-                    Some("NOT_MERGED_SAMPLES_MISMATCH_EXT")
+                Self::MERGED => Some("MERGED"),
+                Self::DISALLOWED => Some("DISALLOWED"),
+                Self::NOT_MERGED_SIDE_EFFECTS => Some("NOT_MERGED_SIDE_EFFECTS"),
+                Self::NOT_MERGED_SAMPLES_MISMATCH => Some("NOT_MERGED_SAMPLES_MISMATCH"),
+                Self::NOT_MERGED_VIEWS_MISMATCH => Some("NOT_MERGED_VIEWS_MISMATCH"),
+                Self::NOT_MERGED_ALIASING => Some("NOT_MERGED_ALIASING"),
+                Self::NOT_MERGED_DEPENDENCIES => Some("NOT_MERGED_DEPENDENCIES"),
+                Self::NOT_MERGED_INCOMPATIBLE_INPUT_ATTACHMENT => {
+                    Some("NOT_MERGED_INCOMPATIBLE_INPUT_ATTACHMENT")
                 }
-                Self::NOT_MERGED_VIEWS_MISMATCH_EXT => {
-                    Some("NOT_MERGED_VIEWS_MISMATCH_EXT")
+                Self::NOT_MERGED_TOO_MANY_ATTACHMENTS => {
+                    Some("NOT_MERGED_TOO_MANY_ATTACHMENTS")
                 }
-                Self::NOT_MERGED_ALIASING_EXT => Some("NOT_MERGED_ALIASING_EXT"),
-                Self::NOT_MERGED_DEPENDENCIES_EXT => Some("NOT_MERGED_DEPENDENCIES_EXT"),
-                Self::NOT_MERGED_INCOMPATIBLE_INPUT_ATTACHMENT_EXT => {
-                    Some("NOT_MERGED_INCOMPATIBLE_INPUT_ATTACHMENT_EXT")
+                Self::NOT_MERGED_INSUFFICIENT_STORAGE => {
+                    Some("NOT_MERGED_INSUFFICIENT_STORAGE")
                 }
-                Self::NOT_MERGED_TOO_MANY_ATTACHMENTS_EXT => {
-                    Some("NOT_MERGED_TOO_MANY_ATTACHMENTS_EXT")
+                Self::NOT_MERGED_DEPTH_STENCIL_COUNT => {
+                    Some("NOT_MERGED_DEPTH_STENCIL_COUNT")
                 }
-                Self::NOT_MERGED_INSUFFICIENT_STORAGE_EXT => {
-                    Some("NOT_MERGED_INSUFFICIENT_STORAGE_EXT")
+                Self::NOT_MERGED_RESOLVE_ATTACHMENT_REUSE => {
+                    Some("NOT_MERGED_RESOLVE_ATTACHMENT_REUSE")
                 }
-                Self::NOT_MERGED_DEPTH_STENCIL_COUNT_EXT => {
-                    Some("NOT_MERGED_DEPTH_STENCIL_COUNT_EXT")
-                }
-                Self::NOT_MERGED_RESOLVE_ATTACHMENT_REUSE_EXT => {
-                    Some("NOT_MERGED_RESOLVE_ATTACHMENT_REUSE_EXT")
-                }
-                Self::NOT_MERGED_SINGLE_SUBPASS_EXT => {
-                    Some("NOT_MERGED_SINGLE_SUBPASS_EXT")
-                }
-                Self::NOT_MERGED_UNSPECIFIED_EXT => Some("NOT_MERGED_UNSPECIFIED_EXT"),
+                Self::NOT_MERGED_SINGLE_SUBPASS => Some("NOT_MERGED_SINGLE_SUBPASS"),
+                Self::NOT_MERGED_UNSPECIFIED => Some("NOT_MERGED_UNSPECIFIED"),
                 _ => None,
             } {
                 f.write_str(x)

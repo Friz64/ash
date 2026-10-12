@@ -15,57 +15,55 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbModelConversionFlagsVALVE {
-    pub const RGB_IDENTITY_VALVE: Self = Self(
-        VideoEncodeRgbModelConversionFlagBitsVALVE::RGB_IDENTITY_VALVE.0,
+    pub const RGB_IDENTITY: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::RGB_IDENTITY.0,
     );
-    pub const YCBCR_IDENTITY_VALVE: Self = Self(
-        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_IDENTITY_VALVE.0,
+    pub const YCBCR_IDENTITY: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_IDENTITY.0,
     );
-    pub const YCBCR_709_VALVE: Self = Self(
-        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_709_VALVE.0,
+    pub const YCBCR_709: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_709.0,
     );
-    pub const YCBCR_601_VALVE: Self = Self(
-        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_601_VALVE.0,
+    pub const YCBCR_601: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_601.0,
     );
-    pub const YCBCR_2020_VALVE: Self = Self(
-        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_2020_VALVE.0,
+    pub const YCBCR_2020: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_2020.0,
     );
 }
 ///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbModelConversionFlagBitsVALVE {
-    pub const RGB_IDENTITY_VALVE: Self = Self(1 << 0);
-    pub const YCBCR_IDENTITY_VALVE: Self = Self(1 << 1);
-    pub const YCBCR_709_VALVE: Self = Self(1 << 2);
-    pub const YCBCR_601_VALVE: Self = Self(1 << 3);
-    pub const YCBCR_2020_VALVE: Self = Self(1 << 4);
+    pub const RGB_IDENTITY: Self = Self(1 << 0);
+    pub const YCBCR_IDENTITY: Self = Self(1 << 1);
+    pub const YCBCR_709: Self = Self(1 << 2);
+    pub const YCBCR_601: Self = Self(1 << 3);
+    pub const YCBCR_2020: Self = Self(1 << 4);
 }
 ///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbRangeCompressionFlagsVALVE {
-    pub const FULL_RANGE_VALVE: Self = Self(
-        VideoEncodeRgbRangeCompressionFlagBitsVALVE::FULL_RANGE_VALVE.0,
+    pub const FULL_RANGE: Self = Self(
+        VideoEncodeRgbRangeCompressionFlagBitsVALVE::FULL_RANGE.0,
     );
-    pub const NARROW_RANGE_VALVE: Self = Self(
-        VideoEncodeRgbRangeCompressionFlagBitsVALVE::NARROW_RANGE_VALVE.0,
+    pub const NARROW_RANGE: Self = Self(
+        VideoEncodeRgbRangeCompressionFlagBitsVALVE::NARROW_RANGE.0,
     );
 }
 ///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbRangeCompressionFlagBitsVALVE {
-    pub const FULL_RANGE_VALVE: Self = Self(1 << 0);
-    pub const NARROW_RANGE_VALVE: Self = Self(1 << 1);
+    pub const FULL_RANGE: Self = Self(1 << 0);
+    pub const NARROW_RANGE: Self = Self(1 << 1);
 }
 ///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbChromaOffsetFlagsVALVE {
-    pub const COSITED_EVEN_VALVE: Self = Self(
-        VideoEncodeRgbChromaOffsetFlagBitsVALVE::COSITED_EVEN_VALVE.0,
+    pub const COSITED_EVEN: Self = Self(
+        VideoEncodeRgbChromaOffsetFlagBitsVALVE::COSITED_EVEN.0,
     );
-    pub const MIDPOINT_VALVE: Self = Self(
-        VideoEncodeRgbChromaOffsetFlagBitsVALVE::MIDPOINT_VALVE.0,
-    );
+    pub const MIDPOINT: Self = Self(VideoEncodeRgbChromaOffsetFlagBitsVALVE::MIDPOINT.0);
 }
 ///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbChromaOffsetFlagBitsVALVE {
-    pub const COSITED_EVEN_VALVE: Self = Self(1 << 0);
-    pub const MIDPOINT_VALVE: Self = Self(1 << 1);
+    pub const COSITED_EVEN: Self = Self(1 << 0);
+    pub const MIDPOINT: Self = Self(1 << 1);
 }
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_VALVE_video_encode_rgb_conversion";
@@ -279,11 +277,11 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::RGB_IDENTITY_VALVE.0, "RGB_IDENTITY_VALVE"),
-                    (Self::YCBCR_IDENTITY_VALVE.0, "YCBCR_IDENTITY_VALVE"),
-                    (Self::YCBCR_709_VALVE.0, "YCBCR_709_VALVE"),
-                    (Self::YCBCR_601_VALVE.0, "YCBCR_601_VALVE"),
-                    (Self::YCBCR_2020_VALVE.0, "YCBCR_2020_VALVE"),
+                    (Self::RGB_IDENTITY.0, "RGB_IDENTITY"),
+                    (Self::YCBCR_IDENTITY.0, "YCBCR_IDENTITY"),
+                    (Self::YCBCR_709.0, "YCBCR_709"),
+                    (Self::YCBCR_601.0, "YCBCR_601"),
+                    (Self::YCBCR_2020.0, "YCBCR_2020"),
                 ],
                 self.0,
             )
@@ -372,8 +370,8 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::FULL_RANGE_VALVE.0, "FULL_RANGE_VALVE"),
-                    (Self::NARROW_RANGE_VALVE.0, "NARROW_RANGE_VALVE"),
+                    (Self::FULL_RANGE.0, "FULL_RANGE"),
+                    (Self::NARROW_RANGE.0, "NARROW_RANGE"),
                 ],
                 self.0,
             )
@@ -462,8 +460,8 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::COSITED_EVEN_VALVE.0, "COSITED_EVEN_VALVE"),
-                    (Self::MIDPOINT_VALVE.0, "MIDPOINT_VALVE"),
+                    (Self::COSITED_EVEN.0, "COSITED_EVEN"),
+                    (Self::MIDPOINT.0, "MIDPOINT"),
                 ],
                 self.0,
             )

@@ -10,14 +10,14 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_AMD_anti_lag](crate::amd::anti_lag)
 impl AntiLagModeAMD {
-    pub const DRIVER_CONTROL_AMD: Self = Self(0);
-    pub const ON_AMD: Self = Self(1);
-    pub const OFF_AMD: Self = Self(2);
+    pub const DRIVER_CONTROL: Self = Self(0);
+    pub const ON: Self = Self(1);
+    pub const OFF: Self = Self(2);
 }
 ///Provided by [VK_AMD_anti_lag](crate::amd::anti_lag)
 impl AntiLagStageAMD {
-    pub const INPUT_AMD: Self = Self(0);
-    pub const PRESENT_AMD: Self = Self(1);
+    pub const INPUT: Self = Self(0);
+    pub const PRESENT: Self = Self(1);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -200,9 +200,9 @@ pub(crate) mod items {
     impl core::fmt::Debug for AntiLagModeAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DRIVER_CONTROL_AMD => Some("DRIVER_CONTROL_AMD"),
-                Self::ON_AMD => Some("ON_AMD"),
-                Self::OFF_AMD => Some("OFF_AMD"),
+                Self::DRIVER_CONTROL => Some("DRIVER_CONTROL"),
+                Self::ON => Some("ON"),
+                Self::OFF => Some("OFF"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -228,8 +228,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for AntiLagStageAMD {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::INPUT_AMD => Some("INPUT_AMD"),
-                Self::PRESENT_AMD => Some("PRESENT_AMD"),
+                Self::INPUT => Some("INPUT"),
+                Self::PRESENT => Some("PRESENT"),
                 _ => None,
             } {
                 f.write_str(x)

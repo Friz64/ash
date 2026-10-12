@@ -54,7 +54,7 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::DebugReportObjectTypeEXT {
-    pub const SAMPLER_YCBCR_CONVERSION_KHR_EXT: Self = Self::SAMPLER_YCBCR_CONVERSION_EXT;
+    pub const SAMPLER_YCBCR_CONVERSION_KHR: Self = Self::SAMPLER_YCBCR_CONVERSION;
 }
 ///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl crate::vk::SamplerYcbcrModelConversion {

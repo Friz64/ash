@@ -8,10 +8,10 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_calibrated_timestamps](crate::khr::calibrated_timestamps)
 impl TimeDomainKHR {
-    pub const DEVICE_KHR: Self = Self(0);
-    pub const CLOCK_MONOTONIC_KHR: Self = Self(1);
-    pub const CLOCK_MONOTONIC_RAW_KHR: Self = Self(2);
-    pub const QUERY_PERFORMANCE_COUNTER_KHR: Self = Self(3);
+    pub const DEVICE: Self = Self(0);
+    pub const CLOCK_MONOTONIC: Self = Self(1);
+    pub const CLOCK_MONOTONIC_RAW: Self = Self(2);
+    pub const QUERY_PERFORMANCE_COUNTER: Self = Self(3);
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -203,12 +203,10 @@ pub(crate) mod items {
     impl core::fmt::Debug for TimeDomainKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::DEVICE_KHR => Some("DEVICE_KHR"),
-                Self::CLOCK_MONOTONIC_KHR => Some("CLOCK_MONOTONIC_KHR"),
-                Self::CLOCK_MONOTONIC_RAW_KHR => Some("CLOCK_MONOTONIC_RAW_KHR"),
-                Self::QUERY_PERFORMANCE_COUNTER_KHR => {
-                    Some("QUERY_PERFORMANCE_COUNTER_KHR")
-                }
+                Self::DEVICE => Some("DEVICE"),
+                Self::CLOCK_MONOTONIC => Some("CLOCK_MONOTONIC"),
+                Self::CLOCK_MONOTONIC_RAW => Some("CLOCK_MONOTONIC_RAW"),
+                Self::QUERY_PERFORMANCE_COUNTER => Some("QUERY_PERFORMANCE_COUNTER"),
                 Self::PRESENT_STAGE_LOCAL_EXT => Some("PRESENT_STAGE_LOCAL_EXT"),
                 Self::SWAPCHAIN_LOCAL_EXT => Some("SWAPCHAIN_LOCAL_EXT"),
                 _ => None,

@@ -10,8 +10,8 @@ impl crate::vk::StructureType {
 }
 ///Provided by [VK_KHR_maintenance9](crate::khr::maintenance9)
 impl DefaultVertexAttributeValueKHR {
-    pub const ZERO_ZERO_ZERO_ZERO_KHR: Self = Self(0);
-    pub const ZERO_ZERO_ZERO_ONE_KHR: Self = Self(1);
+    pub const ZERO_ZERO_ZERO_ZERO: Self = Self(0);
+    pub const ZERO_ZERO_ZERO_ONE: Self = Self(1);
 }
 ///Provided by [VK_KHR_maintenance9](crate::khr::maintenance9)
 impl crate::vk::QueryPoolCreateFlags {
@@ -157,8 +157,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for DefaultVertexAttributeValueKHR {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::ZERO_ZERO_ZERO_ZERO_KHR => Some("ZERO_ZERO_ZERO_ZERO_KHR"),
-                Self::ZERO_ZERO_ZERO_ONE_KHR => Some("ZERO_ZERO_ZERO_ONE_KHR"),
+                Self::ZERO_ZERO_ZERO_ZERO => Some("ZERO_ZERO_ZERO_ZERO"),
+                Self::ZERO_ZERO_ZERO_ONE => Some("ZERO_ZERO_ZERO_ONE"),
                 _ => None,
             } {
                 f.write_str(x)

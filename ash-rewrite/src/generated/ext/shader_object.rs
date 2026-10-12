@@ -19,40 +19,36 @@ impl crate::vk::ObjectType {
 }
 ///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
 impl ShaderCodeTypeEXT {
-    pub const BINARY_EXT: Self = Self(0);
-    pub const SPIRV_EXT: Self = Self(1);
+    pub const BINARY: Self = Self(0);
+    pub const SPIRV: Self = Self(1);
 }
 ///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
 impl ShaderCreateFlagsEXT {
-    pub const LINK_STAGE_EXT: Self = Self(ShaderCreateFlagBitsEXT::LINK_STAGE_EXT.0);
-    pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(
-        ShaderCreateFlagBitsEXT::ALLOW_VARYING_SUBGROUP_SIZE_EXT.0,
+    pub const LINK_STAGE: Self = Self(ShaderCreateFlagBitsEXT::LINK_STAGE.0);
+    pub const ALLOW_VARYING_SUBGROUP_SIZE: Self = Self(
+        ShaderCreateFlagBitsEXT::ALLOW_VARYING_SUBGROUP_SIZE.0,
     );
-    pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self(
-        ShaderCreateFlagBitsEXT::REQUIRE_FULL_SUBGROUPS_EXT.0,
+    pub const REQUIRE_FULL_SUBGROUPS: Self = Self(
+        ShaderCreateFlagBitsEXT::REQUIRE_FULL_SUBGROUPS.0,
     );
-    pub const NO_TASK_SHADER_EXT: Self = Self(
-        ShaderCreateFlagBitsEXT::NO_TASK_SHADER_EXT.0,
+    pub const NO_TASK_SHADER: Self = Self(ShaderCreateFlagBitsEXT::NO_TASK_SHADER.0);
+    pub const DISPATCH_BASE: Self = Self(ShaderCreateFlagBitsEXT::DISPATCH_BASE.0);
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT: Self = Self(
+        ShaderCreateFlagBitsEXT::FRAGMENT_SHADING_RATE_ATTACHMENT.0,
     );
-    pub const DISPATCH_BASE_EXT: Self = Self(
-        ShaderCreateFlagBitsEXT::DISPATCH_BASE_EXT.0,
-    );
-    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_EXT: Self = Self(
-        ShaderCreateFlagBitsEXT::FRAGMENT_SHADING_RATE_ATTACHMENT_EXT.0,
-    );
-    pub const FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(
-        ShaderCreateFlagBitsEXT::FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0,
+    pub const FRAGMENT_DENSITY_MAP_ATTACHMENT: Self = Self(
+        ShaderCreateFlagBitsEXT::FRAGMENT_DENSITY_MAP_ATTACHMENT.0,
     );
 }
 ///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
 impl ShaderCreateFlagBitsEXT {
-    pub const LINK_STAGE_EXT: Self = Self(1 << 0);
-    pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(1 << 1);
-    pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self(1 << 2);
-    pub const NO_TASK_SHADER_EXT: Self = Self(1 << 3);
-    pub const DISPATCH_BASE_EXT: Self = Self(1 << 4);
-    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_EXT: Self = Self(1 << 5);
-    pub const FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 6);
+    pub const LINK_STAGE: Self = Self(1 << 0);
+    pub const ALLOW_VARYING_SUBGROUP_SIZE: Self = Self(1 << 1);
+    pub const REQUIRE_FULL_SUBGROUPS: Self = Self(1 << 2);
+    pub const NO_TASK_SHADER: Self = Self(1 << 3);
+    pub const DISPATCH_BASE: Self = Self(1 << 4);
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT: Self = Self(1 << 5);
+    pub const FRAGMENT_DENSITY_MAP_ATTACHMENT: Self = Self(1 << 6);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -1820,8 +1816,8 @@ pub(crate) mod items {
     impl core::fmt::Debug for ShaderCodeTypeEXT {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             if let Some(x) = match *self {
-                Self::BINARY_EXT => Some("BINARY_EXT"),
-                Self::SPIRV_EXT => Some("SPIRV_EXT"),
+                Self::BINARY => Some("BINARY"),
+                Self::SPIRV => Some("SPIRV"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -1849,30 +1845,27 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::LINK_STAGE_EXT.0, "LINK_STAGE_EXT"),
-                    (Self::DESCRIPTOR_HEAP_EXT.0, "DESCRIPTOR_HEAP_EXT"),
+                    (Self::LINK_STAGE.0, "LINK_STAGE"),
+                    (Self::DESCRIPTOR_HEAP.0, "DESCRIPTOR_HEAP"),
                     (Self::INSTRUMENT_SHADER_ARM.0, "INSTRUMENT_SHADER_ARM"),
+                    (Self::ALLOW_VARYING_SUBGROUP_SIZE.0, "ALLOW_VARYING_SUBGROUP_SIZE"),
+                    (Self::REQUIRE_FULL_SUBGROUPS.0, "REQUIRE_FULL_SUBGROUPS"),
+                    (Self::NO_TASK_SHADER.0, "NO_TASK_SHADER"),
+                    (Self::DISPATCH_BASE.0, "DISPATCH_BASE"),
                     (
-                        Self::ALLOW_VARYING_SUBGROUP_SIZE_EXT.0,
-                        "ALLOW_VARYING_SUBGROUP_SIZE_EXT",
-                    ),
-                    (Self::REQUIRE_FULL_SUBGROUPS_EXT.0, "REQUIRE_FULL_SUBGROUPS_EXT"),
-                    (Self::NO_TASK_SHADER_EXT.0, "NO_TASK_SHADER_EXT"),
-                    (Self::DISPATCH_BASE_EXT.0, "DISPATCH_BASE_EXT"),
-                    (
-                        Self::FRAGMENT_SHADING_RATE_ATTACHMENT_EXT.0,
-                        "FRAGMENT_SHADING_RATE_ATTACHMENT_EXT",
+                        Self::FRAGMENT_SHADING_RATE_ATTACHMENT.0,
+                        "FRAGMENT_SHADING_RATE_ATTACHMENT",
                     ),
                     (
-                        Self::FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0,
-                        "FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT",
+                        Self::FRAGMENT_DENSITY_MAP_ATTACHMENT.0,
+                        "FRAGMENT_DENSITY_MAP_ATTACHMENT",
                     ),
-                    (Self::INDIRECT_BINDABLE_EXT.0, "INDIRECT_BINDABLE_EXT"),
+                    (Self::INDIRECT_BINDABLE.0, "INDIRECT_BINDABLE"),
                     (
-                        Self::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT.0,
-                        "OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT",
+                        Self::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX.0,
+                        "OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX",
                     ),
-                    (Self::_64_INDEXING_EXT.0, "_64_INDEXING_EXT"),
+                    (Self::_64_INDEXING.0, "_64_INDEXING"),
                     (Self::INDEPENDENT_SETS_KHR.0, "INDEPENDENT_SETS_KHR"),
                 ],
                 self.0,

@@ -110,33 +110,31 @@ impl crate::vk::FormatFeatureFlagBits2 {
 }
 ///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl VideoDecodeUsageFlagsKHR {
-    pub const DEFAULT_KHR: Self = Self(VideoDecodeUsageFlagBitsKHR::DEFAULT_KHR.0);
-    pub const TRANSCODING_KHR: Self = Self(
-        VideoDecodeUsageFlagBitsKHR::TRANSCODING_KHR.0,
-    );
-    pub const OFFLINE_KHR: Self = Self(VideoDecodeUsageFlagBitsKHR::OFFLINE_KHR.0);
-    pub const STREAMING_KHR: Self = Self(VideoDecodeUsageFlagBitsKHR::STREAMING_KHR.0);
+    pub const DEFAULT: Self = Self(VideoDecodeUsageFlagBitsKHR::DEFAULT.0);
+    pub const TRANSCODING: Self = Self(VideoDecodeUsageFlagBitsKHR::TRANSCODING.0);
+    pub const OFFLINE: Self = Self(VideoDecodeUsageFlagBitsKHR::OFFLINE.0);
+    pub const STREAMING: Self = Self(VideoDecodeUsageFlagBitsKHR::STREAMING.0);
 }
 ///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl VideoDecodeUsageFlagBitsKHR {
-    pub const DEFAULT_KHR: Self = Self(0);
-    pub const TRANSCODING_KHR: Self = Self(1 << 0);
-    pub const OFFLINE_KHR: Self = Self(1 << 1);
-    pub const STREAMING_KHR: Self = Self(1 << 2);
+    pub const DEFAULT: Self = Self(0);
+    pub const TRANSCODING: Self = Self(1 << 0);
+    pub const OFFLINE: Self = Self(1 << 1);
+    pub const STREAMING: Self = Self(1 << 2);
 }
 ///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl VideoDecodeCapabilityFlagsKHR {
-    pub const DPB_AND_OUTPUT_COINCIDE_KHR: Self = Self(
-        VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_COINCIDE_KHR.0,
+    pub const DPB_AND_OUTPUT_COINCIDE: Self = Self(
+        VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_COINCIDE.0,
     );
-    pub const DPB_AND_OUTPUT_DISTINCT_KHR: Self = Self(
-        VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_DISTINCT_KHR.0,
+    pub const DPB_AND_OUTPUT_DISTINCT: Self = Self(
+        VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_DISTINCT.0,
     );
 }
 ///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl VideoDecodeCapabilityFlagBitsKHR {
-    pub const DPB_AND_OUTPUT_COINCIDE_KHR: Self = Self(1 << 0);
-    pub const DPB_AND_OUTPUT_DISTINCT_KHR: Self = Self(1 << 1);
+    pub const DPB_AND_OUTPUT_COINCIDE: Self = Self(1 << 0);
+    pub const DPB_AND_OUTPUT_DISTINCT: Self = Self(1 << 1);
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -367,10 +365,10 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::DEFAULT_KHR.0, "DEFAULT_KHR"),
-                    (Self::TRANSCODING_KHR.0, "TRANSCODING_KHR"),
-                    (Self::OFFLINE_KHR.0, "OFFLINE_KHR"),
-                    (Self::STREAMING_KHR.0, "STREAMING_KHR"),
+                    (Self::DEFAULT.0, "DEFAULT"),
+                    (Self::TRANSCODING.0, "TRANSCODING"),
+                    (Self::OFFLINE.0, "OFFLINE"),
+                    (Self::STREAMING.0, "STREAMING"),
                 ],
                 self.0,
             )
@@ -459,8 +457,8 @@ pub(crate) mod items {
             crate::debug_flags(
                 f,
                 &[
-                    (Self::DPB_AND_OUTPUT_COINCIDE_KHR.0, "DPB_AND_OUTPUT_COINCIDE_KHR"),
-                    (Self::DPB_AND_OUTPUT_DISTINCT_KHR.0, "DPB_AND_OUTPUT_DISTINCT_KHR"),
+                    (Self::DPB_AND_OUTPUT_COINCIDE.0, "DPB_AND_OUTPUT_COINCIDE"),
+                    (Self::DPB_AND_OUTPUT_DISTINCT.0, "DPB_AND_OUTPUT_DISTINCT"),
                 ],
                 self.0,
             )
