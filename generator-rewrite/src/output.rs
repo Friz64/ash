@@ -18,17 +18,17 @@ use std::{
 use syn::Ident;
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ReexportAs {
-    pub original: Ident,
-    pub alias: Ident,
+pub enum Reexport {
+    No,
+    AsIs,
+    As { original: Ident, alias: Ident },
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Destination {
     pub library: LibraryName,
     pub location: RequireLocation,
-    pub reexport: bool,
-    pub reexport_as: Vec<ReexportAs>,
+    pub reexport: Reexport,
 }
 
 impl Destination {
@@ -36,8 +36,7 @@ impl Destination {
         Destination {
             library: required_by.library,
             location: required_by.primary_location(),
-            reexport: true,
-            reexport_as: Vec::new(),
+            reexport: Reexport::AsIs,
         }
     }
 
@@ -47,8 +46,7 @@ impl Destination {
             .map(move |location| Destination {
                 library: required_by.library,
                 location,
-                reexport: true,
-                reexport_as: Vec::new(),
+                reexport: Reexport::AsIs,
             })
     }
 }
@@ -201,14 +199,15 @@ impl CodeMap {
                 content: TokenStream::new(),
             });
 
-            if destination.reexport {
-                source_file.reexport_content.extend(content.clone());
-            } else {
-                source_file.content.extend(content.clone());
-            }
-
-            for ReexportAs { original, alias } in &destination.reexport_as {
-                (source_file.reexport_items).push(quote! { #original as #alias });
+            match &destination.reexport {
+                Reexport::No => source_file.content.extend(content.clone()),
+                Reexport::AsIs => source_file.reexport_content.extend(content.clone()),
+                Reexport::As { original, alias } => {
+                    source_file.content.extend(content.clone());
+                    source_file
+                        .reexport_items
+                        .push(quote! { #original as #alias })
+                }
             }
 
             // collect mod.rs files to be created

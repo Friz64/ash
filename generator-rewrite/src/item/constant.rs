@@ -1,5 +1,5 @@
 use super::{Code, Context};
-use crate::output::{CodeMap, Destination, ReexportAs};
+use crate::output::{CodeMap, Destination, Reexport};
 use analysis::{
     item::constant::{Constant, ConstantType},
     rust::RustTokens,
@@ -19,11 +19,11 @@ impl Code for Constant {
         for special in ["EXTENSION_NAME", "SPEC_VERSION"] {
             if self.name.original().ends_with(special) {
                 let new_name = ctx.constant_token_from_prefix_stripped(special);
-                location.reexport = false;
-                location.reexport_as.push(ReexportAs {
+                std::assert_matches!(location.reexport, Reexport::AsIs); // TODO remove
+                location.reexport = Reexport::As {
                     original: new_name.clone(),
                     alias: name,
-                });
+                };
 
                 name = new_name;
                 break;

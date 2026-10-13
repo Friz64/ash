@@ -1,6 +1,6 @@
 use crate::{
     Context,
-    output::{CodeMap, Destination},
+    output::{CodeMap, Destination, Reexport},
 };
 use analysis::{
     decl::{CPrimaryType, Mutability, Ty},
@@ -113,7 +113,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
         for mut dest in Destination::all_locations(required_by) {
             let table_field = function_type.table_field(&dest);
 
-            dest.reexport = false;
+            dest.reexport = Reexport::No;
             let table = tables.entry((function_type, dest)).or_default();
 
             let field_name = format_ident!("{}", name.prefix_and_tag_stripped().to_snek_case());

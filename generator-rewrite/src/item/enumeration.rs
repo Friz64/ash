@@ -1,5 +1,5 @@
 use super::{Code, Context};
-use crate::output::{CodeMap, Destination};
+use crate::output::{CodeMap, Destination, Reexport};
 use analysis::{
     item::enumeration::{Enum, Value},
     name::TypeName,
@@ -152,7 +152,7 @@ impl Code for Enum {
                 None,
             );
 
-            dest.reexport = false;
+            dest.reexport = Reexport::No;
             let doc = dest.provided_by_doc_comment();
             codemap.extend(CodeMap::new(
                 dest,
