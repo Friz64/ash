@@ -1,7 +1,7 @@
 use crate::{
     item::{NamedType, RequireMap, RequiredBy},
     name::{EnumeratorName, TypeName},
-    xml::{self, cexpr::CExprItems},
+    xml::{self, Deprecated, cexpr::CExprItems},
 };
 use indexmap::IndexMap;
 use std::collections::HashMap;
@@ -24,6 +24,7 @@ pub enum Value {
 pub struct Item {
     pub required_by: RequiredBy,
     pub value: Value,
+    pub deprecated: Option<Deprecated>,
 }
 
 #[derive(Debug)]
@@ -69,7 +70,10 @@ impl BitMask {
         if let Some(bits_xml) = bits_xml {
             bitmask.extend(
                 required_by,
-                bits_xml.enumerators.iter().map(|en| (en.name, &en.value)),
+                bits_xml
+                    .enumerators
+                    .iter()
+                    .map(|en| (en.name, &en.value, en.deprecated)),
             );
         }
 
@@ -79,9 +83,11 @@ impl BitMask {
     pub(crate) fn extend<'a>(
         &mut self,
         required_by: RequiredBy,
-        enumerators: impl Iterator<Item = (EnumeratorName, &'a xml::EnumeratorValue)>,
+        enumerators: impl Iterator<
+            Item = (EnumeratorName, &'a xml::EnumeratorValue, Option<Deprecated>),
+        >,
     ) {
-        for (name, value) in enumerators {
+        for (name, value, deprecated) in enumerators {
             let value = match value {
                 xml::EnumeratorValue::Expr(cexpr_items) => Value::Expr(cexpr_items.clone()),
                 xml::EnumeratorValue::BitPos(bitpos) => Value::BitPos(*bitpos),
@@ -89,7 +95,12 @@ impl BitMask {
                 xml::EnumeratorValue::EnumOffset { .. } => unreachable!(),
             };
 
-            let item = (self.items.entry(name)).or_insert_with(|| Item { required_by, value });
+            let item = (self.items.entry(name)).or_insert_with(|| Item {
+                required_by,
+                value,
+                deprecated,
+            });
+
             item.required_by.merge(required_by);
         }
     }

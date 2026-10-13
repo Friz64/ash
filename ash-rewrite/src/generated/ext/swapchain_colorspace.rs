@@ -12,6 +12,7 @@ impl crate::vk::ColorSpaceKHR {
     pub const BT709_NONLINEAR_EXT: Self = Self(1000104006);
     pub const BT2020_LINEAR_EXT: Self = Self(1000104007);
     pub const HDR10_ST2084_EXT: Self = Self(1000104008);
+    pub const DOLBYVISION_EXT: Self = Self(1000104009);
     pub const HDR10_HLG_EXT: Self = Self(1000104010);
     pub const ADOBERGB_LINEAR_EXT: Self = Self(1000104011);
     pub const ADOBERGB_NONLINEAR_EXT: Self = Self(1000104012);

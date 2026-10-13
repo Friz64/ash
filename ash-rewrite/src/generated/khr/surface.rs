@@ -420,6 +420,7 @@ pub(crate) mod items {
                 Self::BT709_NONLINEAR_EXT => Some("BT709_NONLINEAR_EXT"),
                 Self::BT2020_LINEAR_EXT => Some("BT2020_LINEAR_EXT"),
                 Self::HDR10_ST2084_EXT => Some("HDR10_ST2084_EXT"),
+                Self::DOLBYVISION_EXT => Some("DOLBYVISION_EXT"),
                 Self::HDR10_HLG_EXT => Some("HDR10_HLG_EXT"),
                 Self::ADOBERGB_LINEAR_EXT => Some("ADOBERGB_LINEAR_EXT"),
                 Self::ADOBERGB_NONLINEAR_EXT => Some("ADOBERGB_NONLINEAR_EXT"),

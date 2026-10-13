@@ -61,8 +61,22 @@ fn api_matches(node: &Node, expected: &str) -> bool {
         .unwrap_or(true)
 }
 
-fn not_deprecated(node: &Node) -> bool {
-    !node.has_attribute("deprecated")
+#[derive(Debug, Clone, Copy)]
+pub enum Deprecated {
+    True,
+    Aliased,
+    Unused,
+}
+
+impl Deprecated {
+    fn from_node(node: Node) -> Option<Deprecated> {
+        Some(match node.attribute("deprecated")? {
+            "true" => Deprecated::True,
+            "aliased" => Deprecated::Aliased,
+            "unused" => Deprecated::Unused,
+            unknown => unimplemented!("deprecated={unknown:?}"),
+        })
+    }
 }
 
 /// Returns a "pseudo-XML" representation of the node, for use in tracing spans.
@@ -500,6 +514,7 @@ pub struct StructureMember {
     pub len: Vec<&'static str>,
     pub altlen: Vec<&'static str>,
     pub optional: Vec<bool>,
+    pub deprecated: Option<Deprecated>,
 }
 
 impl StructureMember {
@@ -512,6 +527,7 @@ impl StructureMember {
             optional: attribute(node, "optional")
                 .map(|value| value.split(',').map(|s| s.parse().unwrap()).collect())
                 .unwrap_or_default(),
+            deprecated: Deprecated::from_node(node),
         }
     }
 }
@@ -690,6 +706,7 @@ pub struct Enumerator {
     pub name: EnumeratorName,
     pub value: EnumeratorValue,
     pub comment: Option<&'static str>,
+    pub deprecated: Option<Deprecated>,
 }
 
 impl Enumerator {
@@ -697,11 +714,11 @@ impl Enumerator {
         node.children()
             .filter(|node| node.has_tag_name("enum"))
             .filter(|node| api_matches(node, api))
-            .filter(not_deprecated)
             .map(|enumerator| Enumerator {
                 name: EnumeratorName::new(attribute(enumerator, "name").unwrap()),
                 value: EnumeratorValue::from_node(enumerator, None),
                 comment: attribute(enumerator, "comment"),
+                deprecated: Deprecated::from_node(enumerator),
             })
             .collect()
     }
@@ -794,6 +811,7 @@ pub struct RequireConstant {
     pub name: ConstantName,
     /// `Some` indicates a new constant being defined here.
     pub value: Option<CExprItems>,
+    pub deprecated: Option<Deprecated>,
 }
 
 impl RequireConstant {
@@ -801,6 +819,7 @@ impl RequireConstant {
         RequireConstant {
             name: ConstantName::new(attribute(node, "name").unwrap()),
             value: attribute(node, "value").map(cexpr::parse),
+            deprecated: Deprecated::from_node(node),
         }
     }
 }
@@ -810,6 +829,7 @@ pub struct RequireEnumerator {
     pub name: EnumeratorName,
     pub extends: TypeName,
     pub value: EnumeratorValue,
+    pub deprecated: Option<Deprecated>,
 }
 
 impl RequireEnumerator {
@@ -818,6 +838,7 @@ impl RequireEnumerator {
             name: EnumeratorName::new(attribute(node, "name").unwrap()),
             extends: TypeName::new(attribute(node, "extends")?),
             value: EnumeratorValue::from_node(node, extension_num),
+            deprecated: Deprecated::from_node(node),
         })
     }
 }
@@ -905,11 +926,7 @@ impl Require {
             ..Default::default()
         };
 
-        for child in node
-            .children()
-            .filter(|node| api_matches(node, api))
-            .filter(not_deprecated)
-        {
+        for child in node.children().filter(|node| api_matches(node, api)) {
             match child.tag_name().name() {
                 "enum" => {
                     if let Some(en) = RequireEnumerator::from_node(child, extension_num) {

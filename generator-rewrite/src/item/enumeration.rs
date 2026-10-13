@@ -4,7 +4,7 @@ use analysis::{
     item::enumeration::{Enum, Value},
     name::TypeName,
     rust::RustTokens,
-    xml::cexpr::CExprItem,
+    xml::{Deprecated, cexpr::CExprItem},
 };
 use proc_macro2::Literal;
 use quote::quote;
@@ -16,11 +16,19 @@ impl Code for Enum {
         trace!("generating");
         let name = ctx.type_tokens(self.name, false, None);
 
+        let filtered_items: Vec<_> = self
+            .items
+            .iter()
+            // `Deprecated::Aliased` enums have degenerated names
+            .filter(|(_name, item)| matches!(item.deprecated, None | Some(Deprecated::True)))
+            .collect();
+
         let debug = {
-            let debug_items = (self.items.iter())
+            let debug_items = filtered_items
+                .iter()
                 .filter(|(_name, item)| !matches!(item.value, Value::Alias(..)))
-                .map(|(&name, item)| {
-                    let name = ctx.enumerator_tokens(name, self.name, false);
+                .map(|(name, item)| {
+                    let name = ctx.enumerator_tokens(**name, self.name, false);
                     let name_string = name.to_string();
 
                     let is_provisional = item.required_by.primary_location().is_provisional(ctx);
@@ -55,14 +63,15 @@ impl Code for Enum {
         };
 
         let display = (self.name == TypeName::VK_RESULT).then(|| {
-            let display_items = (self.items.iter())
+            let display_items = filtered_items
+                .iter()
                 .filter_map(|(name, item)| match (item.comment, &item.value) {
                     (_, Value::Alias(..)) => None, // filter out aliases
                     (Some(comment), _) => Some((name, crate::expand_doc_comment(comment))),
                     _ => None,
                 })
-                .map(|(&name, comment)| {
-                    let name = ctx.enumerator_tokens(name, self.name, false);
+                .map(|(name, comment)| {
+                    let name = ctx.enumerator_tokens(**name, self.name, false);
                     quote! { Self::#name => Some(#comment), }
                 });
 
@@ -104,7 +113,7 @@ impl Code for Enum {
         };
 
         let mut impl_map = CodeMap::default();
-        for (&name, item) in &self.items {
+        for (&name, item) in filtered_items {
             let name = ctx.enumerator_tokens(name, self.name, false);
             let value = match &item.value {
                 Value::Variant(variant) => {

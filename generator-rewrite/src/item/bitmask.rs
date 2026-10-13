@@ -3,7 +3,7 @@ use crate::output::{CodeMap, Destination};
 use analysis::{
     item::bitmask::{BitMask, BitWidth, Item, Value},
     rust::RustTokens,
-    xml::cexpr::CExprItem,
+    xml::{Deprecated, cexpr::CExprItem},
 };
 use proc_macro2::{Literal, TokenStream};
 use quote::quote;
@@ -57,7 +57,17 @@ impl Code for BitMask {
                 }
             };
 
-            for (&name, Item { required_by, value }) in &self.items {
+            for (&name, item) in &self.items {
+                let Item {
+                    required_by,
+                    value,
+                    // `Deprecated::Aliased` enums have degenerated names
+                    deprecated: None | Some(Deprecated::True),
+                } = item
+                else {
+                    continue;
+                };
+
                 let name = ctx.enumerator_tokens(name, bits_name, false);
                 let dest = Destination::primary_location(*required_by);
                 let value_tokens = match &value {

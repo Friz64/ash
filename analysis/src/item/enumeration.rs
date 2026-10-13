@@ -1,7 +1,7 @@
 use crate::{
     item::{NamedType, RequireMap, RequiredBy},
     name::{EnumeratorName, TypeName},
-    xml::{self, cexpr::CExprItems},
+    xml::{self, Deprecated, cexpr::CExprItems},
 };
 use indexmap::IndexMap;
 use tracing::{instrument, trace};
@@ -18,6 +18,7 @@ pub struct Item {
     pub required_by: RequiredBy,
     pub value: Value,
     pub comment: Option<&'static str>,
+    pub deprecated: Option<Deprecated>,
 }
 
 #[derive(Debug)]
@@ -37,6 +38,7 @@ pub(crate) struct ExtendEnumerator<'a> {
     name: EnumeratorName,
     value: &'a xml::EnumeratorValue,
     comment: Option<&'static str>,
+    deprecated: Option<Deprecated>,
 }
 
 impl<'a> From<&'a xml::Enumerator> for ExtendEnumerator<'a> {
@@ -45,6 +47,7 @@ impl<'a> From<&'a xml::Enumerator> for ExtendEnumerator<'a> {
             name: xml.name,
             value: &xml.value,
             comment: xml.comment,
+            deprecated: xml.deprecated,
         }
     }
 }
@@ -55,6 +58,7 @@ impl<'a> From<&'a xml::RequireEnumerator> for ExtendEnumerator<'a> {
             name: xml.name,
             value: &xml.value,
             comment: None,
+            deprecated: xml.deprecated,
         }
     }
 }
@@ -85,6 +89,7 @@ impl Enum {
             name,
             value,
             comment,
+            deprecated,
         } in enumerators.map(|e| e.into())
         {
             let value = match value {
@@ -107,6 +112,7 @@ impl Enum {
                 required_by,
                 value,
                 comment,
+                deprecated,
             });
 
             item.required_by.merge(required_by);

@@ -311,7 +311,7 @@ impl Items {
 
                         bitmask.extend(
                             required_by,
-                            iter::once((enumerator.name, &enumerator.value)),
+                            iter::once((enumerator.name, &enumerator.value, enumerator.deprecated)),
                         );
                     }
                     TypeItem::Enum(enumeration) => {
