@@ -1,8 +1,9 @@
 mod item;
 pub mod loader;
 mod output;
+mod rules;
 
-use crate::output::CodeMap;
+use crate::{output::CodeMap, rules::BuilderRules};
 use analysis::{
     Analysis, AnalysisResult,
     item::RequiredBy,
@@ -21,11 +22,19 @@ use std::{borrow::Cow, fmt::Display, io, ops::Deref, path::Path, sync::LazyLock}
 use syn::Ident;
 use tracing::debug;
 
-pub fn generate(analysis: &Analysis, output_path: impl AsRef<Path>) -> io::Result<()> {
+pub fn generate(
+    analysis: &Analysis,
+    builder_rules: &syn::File,
+    output_path: impl AsRef<Path>,
+) -> io::Result<()> {
     debug!("building codemap");
-    let mut codemap = CodeMap::default();
 
-    let ctx = Context(analysis.result());
+    let ctx = Context {
+        analysis: analysis.result(),
+        builder_rules: BuilderRules::new(builder_rules),
+    };
+
+    let mut codemap = CodeMap::default();
     item::generate_code(&ctx, &mut codemap);
     loader::generate_code(&ctx, &mut codemap);
 
@@ -86,13 +95,16 @@ fn escape_ident(name: &str) -> Ident {
 }
 
 #[derive(Debug)]
-pub struct Context<'a>(&'a AnalysisResult);
+pub struct Context<'a> {
+    analysis: &'a AnalysisResult,
+    builder_rules: BuilderRules,
+}
 
 impl<'a> Deref for Context<'a> {
     type Target = AnalysisResult;
 
     fn deref(&self) -> &'a Self::Target {
-        self.0
+        self.analysis
     }
 }
 

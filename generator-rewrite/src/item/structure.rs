@@ -1,7 +1,10 @@
 use core::str::FromStr;
 
 use super::{Code, Context};
-use crate::output::{CodeMap, Destination};
+use crate::{
+    output::{CodeMap, Destination},
+    rules::{BuilderMethod, BuilderRule},
+};
 use analysis::{
     decl::{CPrimaryType, Mutability, Ty},
     item::structure::{BitfieldMemberRange, Length, Member, RegularMember, Struct, Union},
@@ -220,7 +223,23 @@ impl Code for Struct {
         let mut bitfield_i = 0;
         let builders = self.members.iter().flat_map(|member| match member {
             Member::Regular(member) => {
-                itertools::Either::Left(iter::once(regular_builder(ctx, self, member, &lifetime)))
+                let tokens = match ctx.builder_rules.get(self.name, member.decl.name) {
+                    Some(BuilderRule::Skip) => quote! {},
+                    Some(BuilderRule::Replace(BuilderMethod {
+                        inputs,
+                        output,
+                        block,
+                    })) => {
+                        let method_name = method_name_token(member);
+                        quote! { pub fn #method_name(#inputs) #output #block }
+                    }
+                    rule @ (Some(BuilderRule::Keep) | None) => {
+                        let keep = matches!(rule, Some(BuilderRule::Keep));
+                        regular_builder(ctx, self, member, &lifetime, keep)
+                    }
+                };
+
+                itertools::Either::Left(iter::once(tokens))
             }
             Member::Bitfield(bitfield_ranges) => {
                 let bitfield_builder = bitfield_builder(ctx, bitfield_i, bitfield_ranges);
@@ -250,6 +269,7 @@ fn regular_builder(
     structure: &Struct,
     member: &RegularMember,
     lifetime: &Lifetime,
+    keep: bool,
 ) -> TokenStream {
     if matches!(member.decl.name.original(), "sType" | "pNext") {
         return quote! {};
@@ -258,69 +278,22 @@ fn regular_builder(
     let field_name = ctx.variable_token(member.decl.name);
     let method_name = method_name_token(member);
 
-    #[derive(PartialEq)]
-    enum Skip {
-        No,
-        Yes,
-        IfLengthMember,
-    }
-
-    let mut skip = Skip::IfLengthMember;
-    let mut use_default_for_custom_length = false;
-    match (structure.name.original(), member.decl.name.original()) {
-        // pViewports is allowed to be empty if the viewport state is empty
-        ("VkPipelineViewportStateCreateInfo", "viewportCount") |
-        // Must match viewportCount
-        ("VkPipelineViewportStateCreateInfo", "scissorCount") |
-        // descriptorCount is settable regardless of having pImmutableSamplers
-        ("VkDescriptorSetLayoutBinding", "descriptorCount") |
-        // No ImageView attachments when VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT is set
-        ("VkFramebufferCreateInfo", "attachmentCount") |
-        // descriptorCount also describes descriptor length in pNext extension structures
-        // https://github.com/ash-rs/ash/issues/806
-        ("VkWriteDescriptorSet", "descriptorCount") => skip = Skip::No,
-
-        ("VkShaderModuleCreateInfo", "codeSize") => skip = Skip::Yes,
-        ("VkShaderModuleCreateInfo", "pCode") => return quote! {
-            pub fn #method_name(mut self, #method_name: &#lifetime [u32]) -> Self {
-                self.code_size = #method_name.len() * 4;
-                self.p_code = #method_name.as_ptr();
-                self
+    if !keep && {
+        // does any member have its length defined by this member?
+        structure.members.iter().any(|any_member| {
+            if let Member::Regular(RegularMember { decl: _, lengths }) = any_member {
+                lengths.iter().any(|length| {
+                    if let Length::DefinedByMember(defined_by_member) = length {
+                        defined_by_member == &member.decl.name
+                    } else {
+                        false
+                    }
+                })
+            } else {
+                false
             }
-        },
-
-        ("VkAccelerationStructureVersionInfoKHR" | "VkMicromapVersionInfoEXT", "pVersionData") => return quote! {
-            pub fn #method_name(mut self, #method_name: &#lifetime [u8; 2 * crate::vk::UUID_SIZE as usize]) -> Self {
-                self.#field_name = #method_name.as_ptr();
-                self
-            }
-        },
-
-        ("VkPipelineMultisampleStateCreateInfo", "pSampleMask") |
-        ("StdVideoH265HrdParameters", "pSubLayerHrdParametersNal" | "pSubLayerHrdParametersVcl")
-            => use_default_for_custom_length = true,
-
-        _ => (),
-    }
-
-    if skip == Skip::Yes
-        || (skip == Skip::IfLengthMember && {
-            // does any member have its length defined by this member?
-            structure.members.iter().any(|any_member| {
-                if let Member::Regular(RegularMember { decl: _, lengths }) = any_member {
-                    lengths.iter().any(|length| {
-                        if let Length::DefinedByMember(defined_by_member) = length {
-                            defined_by_member == &member.decl.name
-                        } else {
-                            false
-                        }
-                    })
-                } else {
-                    false
-                }
-            })
         })
-    {
+    } {
         return TokenStream::new();
     }
 
@@ -447,14 +420,6 @@ fn regular_builder(
                     self
                 }
             }
-        }
-        _ if member
-            .lengths
-            .iter()
-            .any(|length| matches!(length, Length::Custom(..)))
-            && !use_default_for_custom_length =>
-        {
-            panic!("unhandled custom length {:?}", member.lengths);
         }
         _ => {
             let ty = member.decl.ty.to_rust().tokens(ctx, Some(lifetime));
