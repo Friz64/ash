@@ -61,7 +61,7 @@ impl NamedType for Struct {
 
 impl Struct {
     #[instrument(skip(require_map))]
-    pub(crate) fn new(require_map: &RequireMap, xml: &xml::Structure) -> Option<Struct> {
+    pub(crate) fn new(require_map: &RequireMap, xml: &xml::Struct) -> Option<Struct> {
         let required_by = *require_map.ty.get(&xml.name)?;
         trace!(?required_by, "constructing");
 
@@ -176,7 +176,7 @@ impl NamedType for Union {
 
 impl Union {
     #[instrument(skip(require_map))]
-    pub(crate) fn new(require_map: &RequireMap, xml: &xml::Structure) -> Option<Union> {
+    pub(crate) fn new(require_map: &RequireMap, xml: &xml::Struct) -> Option<Union> {
         let required_by = *require_map.ty.get(&xml.name)?;
         trace!(?required_by, "constructing");
 

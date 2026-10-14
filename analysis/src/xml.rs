@@ -165,9 +165,9 @@ pub struct Registry {
     pub enum_types: Vec<EnumType>,
     pub enum_aliases: Vec<TypeAlias>,
     pub func_pointers: Vec<FuncPointer>,
-    pub structs: Vec<Structure>,
+    pub structs: Vec<Struct>,
     pub struct_aliases: Vec<TypeAlias>,
-    pub unions: Vec<Structure>,
+    pub unions: Vec<Struct>,
     pub cmacros: Vec<CMacro>,
     pub constants: Vec<BaseConstant>,
     pub enums: Vec<Enum>,
@@ -251,10 +251,10 @@ impl Registry {
                                     .func_pointers
                                     .push(FuncPointer::from_node(type_node, api)),
                                 Some("struct") => {
-                                    registry.structs.push(Structure::from_node(type_node, api))
+                                    registry.structs.push(Struct::from_node(type_node, api))
                                 }
                                 Some("union") => {
-                                    registry.unions.push(Structure::from_node(type_node, api));
+                                    registry.unions.push(Struct::from_node(type_node, api));
                                 }
                                 Some("define") => {
                                     if let Some(define) = CMacro::from_node(type_node) {
@@ -508,7 +508,7 @@ impl FuncPointer {
 }
 
 #[derive(Debug)]
-pub struct StructureMember {
+pub struct StructMember {
     pub c_decl: CDecl<'static>,
     pub values: Option<&'static str>,
     pub len: Vec<&'static str>,
@@ -517,9 +517,9 @@ pub struct StructureMember {
     pub deprecated: Option<Deprecated>,
 }
 
-impl StructureMember {
-    fn from_node(node: Node) -> StructureMember {
-        StructureMember {
+impl StructMember {
+    fn from_node(node: Node) -> StructMember {
+        StructMember {
             c_decl: CDecl::from_xml(CDeclMode::StructMember, node.children()),
             values: attribute(node, "values"),
             len: attribute_comma_separated(node, "len"),
@@ -533,22 +533,22 @@ impl StructureMember {
 }
 
 #[derive(Debug)]
-pub struct Structure {
+pub struct Struct {
     pub name: TypeName,
     pub structextends: Vec<&'static str>,
-    pub members: Vec<StructureMember>,
+    pub members: Vec<StructMember>,
 }
 
-impl Structure {
-    fn from_node(node: Node, api: &str) -> Structure {
-        Structure {
+impl Struct {
+    fn from_node(node: Node, api: &str) -> Struct {
+        Struct {
             name: TypeName::new(attribute(node, "name").unwrap()),
             structextends: attribute_comma_separated(node, "structextends"),
             members: node
                 .children()
                 .filter(|node| node.has_tag_name("member"))
                 .filter(|node| api_matches(node, api))
-                .map(StructureMember::from_node)
+                .map(StructMember::from_node)
                 .collect(),
         }
     }

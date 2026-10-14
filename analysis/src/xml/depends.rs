@@ -8,7 +8,7 @@ pub enum Depends {
     Core(Version),
     Extension(&'static str),
     Feature {
-        feature_structure: TypeName,
+        feature_struct: TypeName,
         feature_member: VariableName,
     },
     And(Box<Depends>, Box<Depends>),
@@ -88,9 +88,9 @@ impl Depends {
 
                 let new = if let Some(version) = Version::from_str(tok) {
                     Depends::Core(version)
-                } else if let Some((feature_structure, feature_member)) = tok.split_once("::") {
+                } else if let Some((feature_struct, feature_member)) = tok.split_once("::") {
                     Depends::Feature {
-                        feature_structure: TypeName::new(feature_structure),
+                        feature_struct: TypeName::new(feature_struct),
                         feature_member: VariableName::new(feature_member),
                     }
                 } else {
@@ -179,7 +179,7 @@ mod tests {
             Ok(And(
                 Box::new(Extension("VK_KHR_fragment_shading_rate")),
                 Box::new(Feature {
-                    feature_structure: TypeName::new("VkPhysicalDeviceMeshShaderFeaturesEXT"),
+                    feature_struct: TypeName::new("VkPhysicalDeviceMeshShaderFeaturesEXT"),
                     feature_member: VariableName::new("primitiveFragmentShadingRateMeshShader")
                 }),
             )),

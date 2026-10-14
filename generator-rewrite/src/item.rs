@@ -10,7 +10,7 @@ mod constant;
 mod enumeration;
 mod function;
 mod handle;
-mod structure;
+mod struct_;
 
 pub trait Code {
     fn code(&self, ctx: &Context) -> CodeMap;
@@ -20,7 +20,7 @@ impl Code for TypeItem {
     fn code(&self, ctx: &Context) -> CodeMap {
         match self {
             TypeItem::Alias(alias) => alias.code(ctx),
-            TypeItem::Struct(structure) => structure.code(ctx),
+            TypeItem::Struct(struct_) => struct_.code(ctx),
             TypeItem::Union(union) => union.code(ctx),
             TypeItem::Enum(enumeration) => enumeration.code(ctx),
             TypeItem::BitMask(bitmask) => bitmask.code(ctx),

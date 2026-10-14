@@ -6,7 +6,7 @@ pub mod constant;
 pub mod enumeration;
 pub mod function;
 pub mod handle;
-pub mod structure;
+pub mod struct_;
 
 use crate::{
     AnalysisResult, Library, LibraryName,
@@ -19,7 +19,7 @@ use crate::{
         enumeration::Enum,
         function::{Command, FuncPointer},
         handle::Handle,
-        structure::{Struct, Union},
+        struct_::{Struct, Union},
     },
     name::{CMacroName, CommandName, ConstantName, ExtensionName, FuncPointerName, TypeName},
     xml::{self, Require, RequireCommand, RequireConstant, RequireType},

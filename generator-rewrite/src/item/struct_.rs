@@ -1,5 +1,3 @@
-use core::str::FromStr;
-
 use super::{Code, Context};
 use crate::{
     output::{CodeMap, Destination},
@@ -7,14 +5,14 @@ use crate::{
 };
 use analysis::{
     decl::{CPrimaryType, Mutability, Ty},
-    item::structure::{BitfieldMemberRange, Length, Member, RegularMember, Struct, Union},
+    item::struct_::{BitfieldMemberRange, Length, Member, RegularMember, Struct, Union},
     name::TypeName,
     rust::{Lifetime, RustTokens, RustTy},
 };
 use heck::ToSnekCase;
 use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};
-use std::iter;
+use std::{iter, str::FromStr};
 use syn::Ident;
 use tracing::{instrument, trace};
 

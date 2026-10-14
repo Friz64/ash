@@ -386,9 +386,9 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                 );
 
                 let kind = if let Ty::ApiType(element_type) = element
-                    && let TypeItem::Struct(structure) =
+                    && let TypeItem::Struct(struct_) =
                         ctx.items.types[element_type].resolve_alias(ctx.items)
-                    && let Some(Mutability::Mut) = structure.p_next
+                    && let Some(Mutability::Mut) = struct_.p_next
                 {
                     call_arg = quote! { #name.as_mut_ptr() };
                     public_type = Some(RustTy::Slice(

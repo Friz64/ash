@@ -5,7 +5,7 @@ use crate::{
     decl::{Decl, Ty},
     item::{
         TypeItem,
-        structure::{Member, RegularMember},
+        struct_::{Member, RegularMember},
     },
     name::TypeName,
 };
