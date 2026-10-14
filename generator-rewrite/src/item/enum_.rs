@@ -1,7 +1,7 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination, Reexport};
 use analysis::{
-    item::enumeration::{Enum, Value},
+    item::enum_::{Enum, Value},
     name::TypeName,
     rust::RustTokens,
     xml::{Deprecated, cexpr::CExprItem},

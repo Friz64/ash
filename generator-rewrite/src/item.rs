@@ -7,7 +7,7 @@ mod basetype;
 mod bitmask;
 mod cmacro;
 mod constant;
-mod enumeration;
+mod enum_;
 mod function;
 mod handle;
 mod struct_;
@@ -22,7 +22,7 @@ impl Code for TypeItem {
             TypeItem::Alias(alias) => alias.code(ctx),
             TypeItem::Struct(struct_) => struct_.code(ctx),
             TypeItem::Union(union) => union.code(ctx),
-            TypeItem::Enum(enumeration) => enumeration.code(ctx),
+            TypeItem::Enum(enum_) => enum_.code(ctx),
             TypeItem::BitMask(bitmask) => bitmask.code(ctx),
             TypeItem::BitMaskBits { .. } => CodeMap::default(), // covered by `TypeItem::BitMask`
             TypeItem::BaseType(basetype) => basetype.code(ctx),

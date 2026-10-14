@@ -69,15 +69,15 @@ impl Enum {
         let required_by = *require_map.ty.get(&xml.name)?;
         trace!(?required_by, "constructing");
 
-        let mut enumeration = Enum {
+        let mut enum_ = Enum {
             required_by,
             name: xml.name,
             items: IndexMap::new(),
         };
 
-        enumeration.extend(required_by, xml.enumerators.iter());
+        enum_.extend(required_by, xml.enumerators.iter());
 
-        Some(enumeration)
+        Some(enum_)
     }
 
     pub(crate) fn extend<'a>(

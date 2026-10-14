@@ -3,7 +3,7 @@ pub mod basetype;
 pub mod bitmask;
 pub mod cmacro;
 pub mod constant;
-pub mod enumeration;
+pub mod enum_;
 pub mod function;
 pub mod handle;
 pub mod struct_;
@@ -16,7 +16,7 @@ use crate::{
         bitmask::BitMask,
         cmacro::CMacro,
         constant::Constant,
-        enumeration::Enum,
+        enum_::Enum,
         function::{Command, FuncPointer},
         handle::Handle,
         struct_::{Struct, Union},
@@ -314,8 +314,8 @@ impl Items {
                             iter::once((enumerator.name, &enumerator.value, enumerator.deprecated)),
                         );
                     }
-                    TypeItem::Enum(enumeration) => {
-                        enumeration.extend(required_by, iter::once(enumerator));
+                    TypeItem::Enum(enum_) => {
+                        enum_.extend(required_by, iter::once(enumerator));
                     }
                     _ => unreachable!(),
                 }
