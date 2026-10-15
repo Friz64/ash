@@ -4,7 +4,8 @@
 #![doc(alias = "VK_NV_copy_memory_indirect")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_NV_copy_memory_indirect](crate::nv::copy_memory_indirect)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV: Self = Self(1000426000);
@@ -20,10 +21,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_copy_memory_indirect: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_indirect(
@@ -35,11 +36,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdCopyMemoryIndirectNV")
                 }
                 let val = _f(c"vkCmdCopyMemoryIndirectNV");
-                if val.is_null() {
-                    cmd_copy_memory_indirect
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_memory_indirect } else { transmute(val) }
             },
             cmd_copy_memory_to_image_indirect: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_to_image_indirect(
@@ -57,7 +54,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_copy_memory_to_image_indirect
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -66,13 +63,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -81,7 +78,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdCopyMemoryIndirectNV
@@ -129,29 +126,32 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub indirect_copy: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV,
                 p_next: Default::default(),
                 indirect_copy: Default::default(),
                 _marker: PhantomData,

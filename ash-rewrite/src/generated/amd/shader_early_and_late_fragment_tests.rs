@@ -15,29 +15,32 @@ pub const NAME: &CStr = c"VK_AMD_shader_early_and_late_fragment_tests";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_early_and_late_fragment_tests: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_FEATURES_AMD;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {}
     impl<'a> Default for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_FEATURES_AMD,
                 p_next: Default::default(),
                 shader_early_and_late_fragment_tests: Default::default(),
                 _marker: PhantomData,

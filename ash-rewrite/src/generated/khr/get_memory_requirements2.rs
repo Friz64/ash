@@ -4,7 +4,10 @@
 #![doc(alias = "VK_KHR_get_memory_requirements2")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ptr;
+use core::ffi;
 ///Provided by [VK_KHR_get_memory_requirements2](crate::khr::get_memory_requirements2)
 impl vk::StructureType {
     pub const BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::BUFFER_MEMORY_REQUIREMENTS_INFO_2;
@@ -24,10 +27,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_buffer_memory_requirements2: unsafe {
                 unsafe extern "system" fn get_buffer_memory_requirements2(
@@ -41,7 +44,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_buffer_memory_requirements2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_image_memory_requirements2: unsafe {
@@ -56,7 +59,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_image_memory_requirements2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_image_sparse_memory_requirements2: unsafe {
@@ -72,7 +75,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_image_sparse_memory_requirements2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -81,13 +84,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -96,7 +99,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetBufferMemoryRequirements2
@@ -105,7 +108,7 @@ impl Device {
         &self,
         info: &vk::BufferMemoryRequirementsInfo2<'_>,
     ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        let mut memory_requirements = MaybeUninit::uninit();
         (self
             .fp
             .get_buffer_memory_requirements2)(
@@ -121,7 +124,7 @@ impl Device {
         &self,
         info: &vk::ImageMemoryRequirementsInfo2<'_>,
     ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        let mut memory_requirements = MaybeUninit::uninit();
         (self
             .fp
             .get_image_memory_requirements2)(
@@ -137,14 +140,14 @@ impl Device {
         &self,
         info: &vk::ImageSparseMemoryRequirementsInfo2<'_>,
     ) -> usize {
-        let mut sparse_memory_requirement_count = core::mem::MaybeUninit::uninit();
+        let mut sparse_memory_requirement_count = MaybeUninit::uninit();
         (self
             .fp
             .get_image_sparse_memory_requirements2)(
             self.handle,
             info,
             sparse_memory_requirement_count.as_mut_ptr(),
-            core::ptr::null_mut(),
+            ptr::null_mut(),
         );
         sparse_memory_requirement_count.assume_init() as usize
     }

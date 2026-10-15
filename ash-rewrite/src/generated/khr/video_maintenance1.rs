@@ -44,29 +44,32 @@ pub const NAME: &CStr = c"VK_KHR_video_maintenance1";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub video_maintenance1: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceVideoMaintenance1FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceVideoMaintenance1FeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR,
                 p_next: Default::default(),
                 video_maintenance1: Default::default(),
                 _marker: PhantomData,
@@ -84,7 +87,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoInlineQueryInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub query_pool: vk::QueryPool,
         pub first_query: u32,
         pub query_count: u32,
@@ -92,17 +95,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoInlineQueryInfoKHR<'_> {}
     unsafe impl Sync for VideoInlineQueryInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoInlineQueryInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoInlineQueryInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_INLINE_QUERY_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoDecodeInfoKHR<'_>>
-    for VideoInlineQueryInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::VideoEncodeInfoKHR<'_>>
-    for VideoInlineQueryInfoKHR<'a> {}
+    unsafe impl<'a> Extends<vk::VideoDecodeInfoKHR<'_>> for VideoInlineQueryInfoKHR<'a> {}
+    unsafe impl<'a> Extends<vk::VideoEncodeInfoKHR<'_>> for VideoInlineQueryInfoKHR<'a> {}
     impl<'a> Default for VideoInlineQueryInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_INLINE_QUERY_INFO_KHR,
                 p_next: Default::default(),
                 query_pool: Default::default(),
                 first_query: Default::default(),

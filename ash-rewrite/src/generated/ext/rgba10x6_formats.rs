@@ -13,29 +13,32 @@ pub const NAME: &CStr = c"VK_EXT_rgba10x6_formats";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub format_rgba10x6_without_y_cb_cr_sampler: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT,
                 p_next: Default::default(),
                 format_rgba10x6_without_y_cb_cr_sampler: Default::default(),
                 _marker: PhantomData,

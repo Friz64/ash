@@ -5,7 +5,8 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_swapchain_maintenance1](crate::ext::swapchain_maintenance1)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR;
@@ -34,10 +35,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             release_swapchain_images: unsafe {
                 unsafe extern "system" fn release_swapchain_images(
@@ -47,11 +48,7 @@ impl DeviceFn {
                     panic!("unable to load vkReleaseSwapchainImagesEXT")
                 }
                 let val = _f(c"vkReleaseSwapchainImagesEXT");
-                if val.is_null() {
-                    release_swapchain_images
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { release_swapchain_images } else { transmute(val) }
             },
         }
     }
@@ -59,13 +56,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -74,7 +71,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkReleaseSwapchainImagesKHR

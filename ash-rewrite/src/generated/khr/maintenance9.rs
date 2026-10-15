@@ -38,29 +38,33 @@ pub const NAME: &CStr = c"VK_KHR_maintenance9";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance9FeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub maintenance9: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMaintenance9FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance9FeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMaintenance9FeaturesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMaintenance9FeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMaintenance9FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMaintenance9FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance9FeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_FEATURES_KHR,
                 p_next: Default::default(),
                 maintenance9: Default::default(),
                 _marker: PhantomData,
@@ -78,23 +82,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance9PropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub image2_d_view_of3_d_sparse: vk::Bool32,
         pub default_vertex_attribute_value: vk::DefaultVertexAttributeValueKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMaintenance9PropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance9PropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMaintenance9PropertiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMaintenance9PropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceMaintenance9PropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance9PropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_PROPERTIES_KHR,
                 p_next: Default::default(),
                 image2_d_view_of3_d_sparse: Default::default(),
                 default_vertex_attribute_value: Default::default(),
@@ -123,22 +126,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct QueueFamilyOwnershipTransferPropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub optimal_image_transfer_to_queue_families: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyOwnershipTransferPropertiesKHR<'_> {}
     unsafe impl Sync for QueueFamilyOwnershipTransferPropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for QueueFamilyOwnershipTransferPropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::QueueFamilyProperties2<'_>>
+    unsafe impl<'a> Extends<vk::QueueFamilyProperties2<'_>>
     for QueueFamilyOwnershipTransferPropertiesKHR<'a> {}
     impl<'a> Default for QueueFamilyOwnershipTransferPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR,
                 p_next: Default::default(),
                 optimal_image_transfer_to_queue_families: Default::default(),
                 _marker: PhantomData,
@@ -158,8 +161,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DefaultVertexAttributeValueKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DefaultVertexAttributeValueKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DefaultVertexAttributeValueKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::ZERO_ZERO_ZERO_ZERO => Some("ZERO_ZERO_ZERO_ZERO"),
                 Self::ZERO_ZERO_ZERO_ONE => Some("ZERO_ZERO_ZERO_ONE"),
@@ -167,7 +170,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

@@ -4,8 +4,12 @@
 #![doc(alias = "VK_KHR_swapchain")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use alloc::vec::Vec;
+use core::ffi;
 ///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl vk::ImageLayout {
     pub const PRESENT_SRC_KHR: Self = Self(1000001002);
@@ -74,10 +78,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_swapchain: unsafe {
                 unsafe extern "system" fn create_swapchain(
@@ -89,11 +93,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateSwapchainKHR")
                 }
                 let val = _f(c"vkCreateSwapchainKHR");
-                if val.is_null() {
-                    create_swapchain
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_swapchain } else { transmute(val) }
             },
             destroy_swapchain: unsafe {
                 unsafe extern "system" fn destroy_swapchain(
@@ -104,11 +104,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroySwapchainKHR")
                 }
                 let val = _f(c"vkDestroySwapchainKHR");
-                if val.is_null() {
-                    destroy_swapchain
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_swapchain } else { transmute(val) }
             },
             get_swapchain_images: unsafe {
                 unsafe extern "system" fn get_swapchain_images(
@@ -120,11 +116,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetSwapchainImagesKHR")
                 }
                 let val = _f(c"vkGetSwapchainImagesKHR");
-                if val.is_null() {
-                    get_swapchain_images
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_swapchain_images } else { transmute(val) }
             },
             acquire_next_image: unsafe {
                 unsafe extern "system" fn acquire_next_image(
@@ -138,11 +130,7 @@ impl DeviceFn {
                     panic!("unable to load vkAcquireNextImageKHR")
                 }
                 let val = _f(c"vkAcquireNextImageKHR");
-                if val.is_null() {
-                    acquire_next_image
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { acquire_next_image } else { transmute(val) }
             },
             queue_present: unsafe {
                 unsafe extern "system" fn queue_present(
@@ -152,7 +140,7 @@ impl DeviceFn {
                     panic!("unable to load vkQueuePresentKHR")
                 }
                 let val = _f(c"vkQueuePresentKHR");
-                if val.is_null() { queue_present } else { ::core::mem::transmute(val) }
+                if val.is_null() { queue_present } else { transmute(val) }
             },
             get_device_group_present_capabilities: unsafe {
                 unsafe extern "system" fn get_device_group_present_capabilities(
@@ -165,7 +153,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_device_group_present_capabilities
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_device_group_surface_present_modes: unsafe {
@@ -180,7 +168,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_device_group_surface_present_modes
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             acquire_next_image2: unsafe {
@@ -192,11 +180,7 @@ impl DeviceFn {
                     panic!("unable to load vkAcquireNextImage2KHR")
                 }
                 let val = _f(c"vkAcquireNextImage2KHR");
-                if val.is_null() {
-                    acquire_next_image2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { acquire_next_image2 } else { transmute(val) }
             },
         }
     }
@@ -204,13 +188,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -219,7 +203,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateSwapchainKHR
@@ -229,7 +213,7 @@ impl Device {
         create_info: &vk::SwapchainCreateInfoKHR<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::SwapchainKHR> {
-        let mut swapchain = core::mem::MaybeUninit::uninit();
+        let mut swapchain = MaybeUninit::uninit();
         (self
             .fp
             .create_swapchain)(
@@ -237,7 +221,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 swapchain.as_mut_ptr(),
             )
@@ -257,7 +241,7 @@ impl Device {
             swapchain,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -266,7 +250,7 @@ impl Device {
     pub unsafe fn get_swapchain_images(
         &self,
         swapchain: vk::SwapchainKHR,
-    ) -> crate::VkResult<Vec<vk::Image>> {
+    ) -> VkResult<Vec<vk::Image>> {
         crate::read_into_uninitialized_vector(|swapchain_image_count, swapchain_images| (self
             .fp
             .get_swapchain_images)(
@@ -285,7 +269,7 @@ impl Device {
         semaphore: vk::Semaphore,
         fence: vk::Fence,
     ) -> VkResult<u32> {
-        let mut image_index = core::mem::MaybeUninit::uninit();
+        let mut image_index = MaybeUninit::uninit();
         (self
             .fp
             .acquire_next_image)(
@@ -312,7 +296,7 @@ impl Device {
     pub unsafe fn get_device_group_present_capabilities(
         &self,
     ) -> VkResult<vk::DeviceGroupPresentCapabilitiesKHR<'_>> {
-        let mut device_group_present_capabilities = core::mem::MaybeUninit::uninit();
+        let mut device_group_present_capabilities = MaybeUninit::uninit();
         (self
             .fp
             .get_device_group_present_capabilities)(
@@ -327,7 +311,7 @@ impl Device {
         &self,
         surface: vk::SurfaceKHR,
     ) -> VkResult<vk::DeviceGroupPresentModeFlagsKHR> {
-        let mut modes = core::mem::MaybeUninit::uninit();
+        let mut modes = MaybeUninit::uninit();
         (self
             .fp
             .get_device_group_surface_present_modes)(
@@ -343,7 +327,7 @@ impl Device {
         &self,
         acquire_info: &vk::AcquireNextImageInfoKHR<'_>,
     ) -> VkResult<u32> {
-        let mut image_index = core::mem::MaybeUninit::uninit();
+        let mut image_index = MaybeUninit::uninit();
         (self
             .fp
             .acquire_next_image2)(self.handle, acquire_info, image_index.as_mut_ptr())
@@ -357,10 +341,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_present_rectangles: unsafe {
                 unsafe extern "system" fn get_physical_device_present_rectangles(
@@ -375,7 +359,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_present_rectangles
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -384,13 +368,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -399,7 +383,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDevicePresentRectanglesKHR
@@ -408,7 +392,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         surface: vk::SurfaceKHR,
-    ) -> crate::VkResult<Vec<vk::Rect2D>> {
+    ) -> VkResult<Vec<vk::Rect2D>> {
         crate::read_into_uninitialized_vector(|rect_count, rects| (self
             .fp
             .get_physical_device_present_rectangles)(
@@ -422,16 +406,21 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    use core::mem::zeroed;
+    use crate::Extends;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SwapchainCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::SwapchainCreateFlagsKHR,
         pub surface: vk::SurfaceKHR,
         pub min_image_count: u32,
@@ -452,13 +441,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for SwapchainCreateInfoKHR<'_> {}
     unsafe impl Sync for SwapchainCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SwapchainCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_CREATE_INFO_KHR;
     }
     impl<'a> Default for SwapchainCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SWAPCHAIN_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 surface: Default::default(),
@@ -560,7 +549,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PresentInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub wait_semaphore_count: u32,
         pub p_wait_semaphores: *const vk::Semaphore,
         pub swapchain_count: u32,
@@ -571,13 +560,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for PresentInfoKHR<'_> {}
     unsafe impl Sync for PresentInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PresentInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PresentInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRESENT_INFO_KHR;
     }
     impl<'a> Default for PresentInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PRESENT_INFO_KHR,
                 p_next: Default::default(),
                 wait_semaphore_count: Default::default(),
                 p_wait_semaphores: Default::default(),
@@ -616,23 +605,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceGroupPresentCapabilitiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub present_mask: [u32; vk::MAX_DEVICE_GROUP_SIZE as _],
         pub modes: vk::DeviceGroupPresentModeFlagsKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceGroupPresentCapabilitiesKHR<'_> {}
     unsafe impl Sync for DeviceGroupPresentCapabilitiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DeviceGroupPresentCapabilitiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceGroupPresentCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_GROUP_PRESENT_CAPABILITIES_KHR;
     }
     impl<'a> Default for DeviceGroupPresentCapabilitiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_GROUP_PRESENT_CAPABILITIES_KHR,
                 p_next: Default::default(),
-                present_mask: unsafe { core::mem::zeroed() },
+                present_mask: unsafe { zeroed() },
                 modes: Default::default(),
                 _marker: PhantomData,
             }
@@ -656,21 +644,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageSwapchainCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub swapchain: vk::SwapchainKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageSwapchainCreateInfoKHR<'_> {}
     unsafe impl Sync for ImageSwapchainCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageSwapchainCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageSwapchainCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_SWAPCHAIN_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for ImageSwapchainCreateInfoKHR<'a> {}
     impl<'a> Default for ImageSwapchainCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_SWAPCHAIN_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 swapchain: Default::default(),
                 _marker: PhantomData,
@@ -688,22 +676,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BindImageMemorySwapchainInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub swapchain: vk::SwapchainKHR,
         pub image_index: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BindImageMemorySwapchainInfoKHR<'_> {}
     unsafe impl Sync for BindImageMemorySwapchainInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BindImageMemorySwapchainInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BindImageMemorySwapchainInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::BindImageMemoryInfo<'_>>
+    unsafe impl<'a> Extends<vk::BindImageMemoryInfo<'_>>
     for BindImageMemorySwapchainInfoKHR<'a> {}
     impl<'a> Default for BindImageMemorySwapchainInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR,
                 p_next: Default::default(),
                 swapchain: Default::default(),
                 image_index: Default::default(),
@@ -726,7 +714,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AcquireNextImageInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub swapchain: vk::SwapchainKHR,
         pub timeout: u64,
         pub semaphore: vk::Semaphore,
@@ -736,13 +724,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for AcquireNextImageInfoKHR<'_> {}
     unsafe impl Sync for AcquireNextImageInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for AcquireNextImageInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for AcquireNextImageInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACQUIRE_NEXT_IMAGE_INFO_KHR;
     }
     impl<'a> Default for AcquireNextImageInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACQUIRE_NEXT_IMAGE_INFO_KHR,
                 p_next: Default::default(),
                 swapchain: Default::default(),
                 timeout: Default::default(),
@@ -780,7 +768,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceGroupPresentInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub swapchain_count: u32,
         pub p_device_masks: *const u32,
         pub mode: vk::DeviceGroupPresentModeFlagBitsKHR,
@@ -788,15 +776,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for DeviceGroupPresentInfoKHR<'_> {}
     unsafe impl Sync for DeviceGroupPresentInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceGroupPresentInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceGroupPresentInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_GROUP_PRESENT_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>>
-    for DeviceGroupPresentInfoKHR<'a> {}
+    unsafe impl<'a> Extends<vk::PresentInfoKHR<'_>> for DeviceGroupPresentInfoKHR<'a> {}
     impl<'a> Default for DeviceGroupPresentInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_GROUP_PRESENT_INFO_KHR,
                 p_next: Default::default(),
                 swapchain_count: Default::default(),
                 p_device_masks: Default::default(),
@@ -821,22 +808,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceGroupSwapchainCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub modes: vk::DeviceGroupPresentModeFlagsKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceGroupSwapchainCreateInfoKHR<'_> {}
     unsafe impl Sync for DeviceGroupSwapchainCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DeviceGroupSwapchainCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceGroupSwapchainCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::SwapchainCreateInfoKHR<'_>>
     for DeviceGroupSwapchainCreateInfoKHR<'a> {}
     impl<'a> Default for DeviceGroupSwapchainCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 modes: Default::default(),
                 _marker: PhantomData,
@@ -853,8 +839,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SwapchainCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SwapchainCreateFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SwapchainCreateFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -894,40 +880,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for SwapchainCreateFlagsKHR {
+    impl BitOr for SwapchainCreateFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for SwapchainCreateFlagsKHR {
+    impl BitOrAssign for SwapchainCreateFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for SwapchainCreateFlagsKHR {
+    impl BitAnd for SwapchainCreateFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for SwapchainCreateFlagsKHR {
+    impl BitAndAssign for SwapchainCreateFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for SwapchainCreateFlagsKHR {
+    impl BitXor for SwapchainCreateFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for SwapchainCreateFlagsKHR {
+    impl BitXorAssign for SwapchainCreateFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for SwapchainCreateFlagsKHR {
+    impl Not for SwapchainCreateFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -952,17 +938,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SwapchainCreateFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for SwapchainCreateFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceGroupPresentModeFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceGroupPresentModeFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -995,40 +981,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DeviceGroupPresentModeFlagsKHR {
+    impl BitOr for DeviceGroupPresentModeFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DeviceGroupPresentModeFlagsKHR {
+    impl BitOrAssign for DeviceGroupPresentModeFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DeviceGroupPresentModeFlagsKHR {
+    impl BitAnd for DeviceGroupPresentModeFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DeviceGroupPresentModeFlagsKHR {
+    impl BitAndAssign for DeviceGroupPresentModeFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DeviceGroupPresentModeFlagsKHR {
+    impl BitXor for DeviceGroupPresentModeFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DeviceGroupPresentModeFlagsKHR {
+    impl BitXorAssign for DeviceGroupPresentModeFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DeviceGroupPresentModeFlagsKHR {
+    impl Not for DeviceGroupPresentModeFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1053,9 +1039,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceGroupPresentModeFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DeviceGroupPresentModeFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1081,8 +1067,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for SwapchainKHR {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for SwapchainKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

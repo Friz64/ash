@@ -4,8 +4,10 @@
 #![doc(alias = "VK_ARM_data_graph_instruction_set_tosa")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_ARM_data_graph_instruction_set_tosa](crate::arm::data_graph_instruction_set_tosa)
 impl vk::StructureType {
     pub const QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM: Self = Self(1000508000);
@@ -38,10 +40,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_queue_family_data_graph_engine_operation_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_queue_family_data_graph_engine_operation_properties(
@@ -60,7 +62,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_queue_family_data_graph_engine_operation_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -69,13 +71,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -84,7 +86,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM
@@ -95,7 +97,7 @@ impl Instance {
         queue_family_index: u32,
         queue_family_data_graph_properties: &vk::QueueFamilyDataGraphPropertiesARM<'_>,
     ) -> VkResult<vk::BaseOutStructure<'_>> {
-        let mut properties = core::mem::MaybeUninit::uninit();
+        let mut properties = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_queue_family_data_graph_engine_operation_properties)(
@@ -108,14 +110,19 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
-    use core::ffi::CStr;
     use core::ffi;
+    use crate::vk;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ffi::CStr;
     use core::marker::PhantomData;
+    use crate::TaggedStructure;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphTOSANameQualityARM {
-        pub name: [core::ffi::c_char; vk::MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM as _],
+        pub name: [ffi::c_char; vk::MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM as _],
         pub quality_flags: vk::DataGraphTOSAQualityFlagsARM,
     }
     unsafe impl Send for DataGraphTOSANameQualityARM {}
@@ -123,14 +130,14 @@ pub(crate) mod items {
     impl Default for DataGraphTOSANameQualityARM {
         fn default() -> Self {
             Self {
-                name: unsafe { core::mem::zeroed() },
+                name: unsafe { zeroed() },
                 quality_flags: Default::default(),
             }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphTOSANameQualityARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DataGraphTOSANameQualityARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("DataGraphTOSANameQualityARM")
                 .field("name", &self.name_as_c_str())
                 .field("quality_flags", &self.quality_flags)
@@ -162,7 +169,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct QueueFamilyDataGraphTOSAPropertiesARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub profile_count: u32,
         pub p_profiles: *const vk::DataGraphTOSANameQualityARM,
         pub extension_count: u32,
@@ -172,14 +179,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for QueueFamilyDataGraphTOSAPropertiesARM<'_> {}
     unsafe impl Sync for QueueFamilyDataGraphTOSAPropertiesARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for QueueFamilyDataGraphTOSAPropertiesARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for QueueFamilyDataGraphTOSAPropertiesARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM;
     }
     impl<'a> Default for QueueFamilyDataGraphTOSAPropertiesARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM,
                 p_next: Default::default(),
                 profile_count: Default::default(),
                 p_profiles: Default::default(),
@@ -216,8 +222,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DataGraphTOSALevelARM(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphTOSALevelARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DataGraphTOSALevelARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::NONE => Some("NONE"),
                 Self::TYPE_8K => Some("TYPE_8K"),
@@ -225,7 +231,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -243,8 +249,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphTOSAQualityFlagsARM(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphTOSAQualityFlagsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DataGraphTOSAQualityFlagsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -277,40 +283,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DataGraphTOSAQualityFlagsARM {
+    impl BitOr for DataGraphTOSAQualityFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DataGraphTOSAQualityFlagsARM {
+    impl BitOrAssign for DataGraphTOSAQualityFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DataGraphTOSAQualityFlagsARM {
+    impl BitAnd for DataGraphTOSAQualityFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DataGraphTOSAQualityFlagsARM {
+    impl BitAndAssign for DataGraphTOSAQualityFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DataGraphTOSAQualityFlagsARM {
+    impl BitXor for DataGraphTOSAQualityFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DataGraphTOSAQualityFlagsARM {
+    impl BitXorAssign for DataGraphTOSAQualityFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DataGraphTOSAQualityFlagsARM {
+    impl Not for DataGraphTOSAQualityFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -335,9 +341,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphTOSAQualityFlagBitsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DataGraphTOSAQualityFlagBitsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM = unsafe extern "system" fn(

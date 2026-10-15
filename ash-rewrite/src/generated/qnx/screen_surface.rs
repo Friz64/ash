@@ -4,8 +4,11 @@
 #![doc(alias = "VK_QNX_screen_surface")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_QNX_screen_surface](crate::qnx::screen_surface)
 impl vk::StructureType {
     pub const SCREEN_SURFACE_CREATE_INFO_QNX: Self = Self(1000378000);
@@ -20,10 +23,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_screen_surface: unsafe {
                 unsafe extern "system" fn create_screen_surface(
@@ -35,17 +38,13 @@ impl InstanceFn {
                     panic!("unable to load vkCreateScreenSurfaceQNX")
                 }
                 let val = _f(c"vkCreateScreenSurfaceQNX");
-                if val.is_null() {
-                    create_screen_surface
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_screen_surface } else { transmute(val) }
             },
             get_physical_device_screen_presentation_support: unsafe {
                 unsafe extern "system" fn get_physical_device_screen_presentation_support(
                     _: vk::PhysicalDevice,
                     _: u32,
-                    _: *mut crate::platform_types::_screen_window,
+                    _: *mut vk::_screen_window,
                 ) -> vk::Bool32 {
                     panic!(
                         "unable to load vkGetPhysicalDeviceScreenPresentationSupportQNX"
@@ -55,7 +54,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_screen_presentation_support
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -64,13 +63,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -79,7 +78,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkCreateScreenSurfaceQNX
@@ -89,7 +88,7 @@ impl Instance {
         create_info: &vk::ScreenSurfaceCreateInfoQNX<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = core::mem::MaybeUninit::uninit();
+        let mut surface = MaybeUninit::uninit();
         (self
             .fp
             .create_screen_surface)(
@@ -97,7 +96,7 @@ impl Instance {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 surface.as_mut_ptr(),
             )
@@ -109,8 +108,8 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-    ) -> crate::platform_types::_screen_window {
-        let mut window = core::mem::MaybeUninit::uninit();
+    ) -> vk::_screen_window {
+        let mut window = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_screen_presentation_support)(
@@ -124,26 +123,31 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ScreenSurfaceCreateInfoQNX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::ScreenSurfaceCreateFlagsQNX,
-        pub context: *mut crate::platform_types::_screen_context,
-        pub window: *mut crate::platform_types::_screen_window,
+        pub context: *mut vk::_screen_context,
+        pub window: *mut vk::_screen_window,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ScreenSurfaceCreateInfoQNX<'_> {}
     unsafe impl Sync for ScreenSurfaceCreateInfoQNX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ScreenSurfaceCreateInfoQNX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ScreenSurfaceCreateInfoQNX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SCREEN_SURFACE_CREATE_INFO_QNX;
     }
     impl<'a> Default for ScreenSurfaceCreateInfoQNX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SCREEN_SURFACE_CREATE_INFO_QNX,
                 p_next: Default::default(),
                 flags: Default::default(),
                 context: Default::default(),
@@ -157,17 +161,11 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn context(
-            mut self,
-            context: &'a mut crate::platform_types::_screen_context,
-        ) -> Self {
+        pub fn context(mut self, context: &'a mut vk::_screen_context) -> Self {
             self.context = context;
             self
         }
-        pub fn window(
-            mut self,
-            window: &'a mut crate::platform_types::_screen_window,
-        ) -> Self {
+        pub fn window(mut self, window: &'a mut vk::_screen_window) -> Self {
             self.window = window;
             self
         }
@@ -176,9 +174,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ScreenSurfaceCreateFlagsQNX(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ScreenSurfaceCreateFlagsQNX {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for ScreenSurfaceCreateFlagsQNX {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl ScreenSurfaceCreateFlagsQNX {
@@ -201,40 +199,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ScreenSurfaceCreateFlagsQNX {
+    impl BitOr for ScreenSurfaceCreateFlagsQNX {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ScreenSurfaceCreateFlagsQNX {
+    impl BitOrAssign for ScreenSurfaceCreateFlagsQNX {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ScreenSurfaceCreateFlagsQNX {
+    impl BitAnd for ScreenSurfaceCreateFlagsQNX {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ScreenSurfaceCreateFlagsQNX {
+    impl BitAndAssign for ScreenSurfaceCreateFlagsQNX {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ScreenSurfaceCreateFlagsQNX {
+    impl BitXor for ScreenSurfaceCreateFlagsQNX {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ScreenSurfaceCreateFlagsQNX {
+    impl BitXorAssign for ScreenSurfaceCreateFlagsQNX {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ScreenSurfaceCreateFlagsQNX {
+    impl Not for ScreenSurfaceCreateFlagsQNX {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -249,7 +247,7 @@ pub(crate) mod items {
     pub type PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX = unsafe extern "system" fn(
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        window: *mut crate::platform_types::_screen_window,
+        window: *mut vk::_screen_window,
     ) -> vk::Bool32;
 }
 pub use items::*;

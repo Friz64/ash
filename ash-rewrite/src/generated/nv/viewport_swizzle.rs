@@ -24,6 +24,12 @@ pub const NAME: &CStr = c"VK_NV_viewport_swizzle";
 pub(crate) mod items {
     use crate::vk;
     use core::marker::PhantomData;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -58,7 +64,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineViewportSwizzleStateCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineViewportSwizzleStateCreateFlagsNV,
         pub viewport_count: u32,
         pub p_viewport_swizzles: *const vk::ViewportSwizzleNV,
@@ -66,16 +72,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineViewportSwizzleStateCreateInfoNV<'_> {}
     unsafe impl Sync for PipelineViewportSwizzleStateCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineViewportSwizzleStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineViewportStateCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineViewportStateCreateInfo<'_>>
     for PipelineViewportSwizzleStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineViewportSwizzleStateCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV,
                 p_next: Default::default(),
                 flags: Default::default(),
                 viewport_count: Default::default(),
@@ -105,8 +111,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ViewportCoordinateSwizzleNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ViewportCoordinateSwizzleNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ViewportCoordinateSwizzleNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::POSITIVE_X => Some("POSITIVE_X"),
                 Self::NEGATIVE_X => Some("NEGATIVE_X"),
@@ -120,7 +126,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -138,9 +144,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineViewportSwizzleStateCreateFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineViewportSwizzleStateCreateFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineViewportSwizzleStateCreateFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineViewportSwizzleStateCreateFlagsNV {
@@ -163,40 +169,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineViewportSwizzleStateCreateFlagsNV {
+    impl BitOr for PipelineViewportSwizzleStateCreateFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineViewportSwizzleStateCreateFlagsNV {
+    impl BitOrAssign for PipelineViewportSwizzleStateCreateFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineViewportSwizzleStateCreateFlagsNV {
+    impl BitAnd for PipelineViewportSwizzleStateCreateFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineViewportSwizzleStateCreateFlagsNV {
+    impl BitAndAssign for PipelineViewportSwizzleStateCreateFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineViewportSwizzleStateCreateFlagsNV {
+    impl BitXor for PipelineViewportSwizzleStateCreateFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineViewportSwizzleStateCreateFlagsNV {
+    impl BitXorAssign for PipelineViewportSwizzleStateCreateFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineViewportSwizzleStateCreateFlagsNV {
+    impl Not for PipelineViewportSwizzleStateCreateFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

@@ -13,30 +13,32 @@ pub const NAME: &CStr = c"VK_QCOM_rotated_copy_commands";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CopyCommandTransformInfoQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub transform: vk::SurfaceTransformFlagBitsKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CopyCommandTransformInfoQCOM<'_> {}
     unsafe impl Sync for CopyCommandTransformInfoQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CopyCommandTransformInfoQCOM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CopyCommandTransformInfoQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_COMMAND_TRANSFORM_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::BufferImageCopy2<'_>>
+    unsafe impl<'a> Extends<vk::BufferImageCopy2<'_>>
     for CopyCommandTransformInfoQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ImageBlit2<'_>>
-    for CopyCommandTransformInfoQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceMemoryImageCopyKHR<'_>>
+    unsafe impl<'a> Extends<vk::ImageBlit2<'_>> for CopyCommandTransformInfoQCOM<'a> {}
+    unsafe impl<'a> Extends<vk::DeviceMemoryImageCopyKHR<'_>>
     for CopyCommandTransformInfoQCOM<'a> {}
     impl<'a> Default for CopyCommandTransformInfoQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COPY_COMMAND_TRANSFORM_INFO_QCOM,
                 p_next: Default::default(),
                 transform: Default::default(),
                 _marker: PhantomData,

@@ -30,27 +30,30 @@ pub const NAME: &CStr = c"VK_NVX_multiview_per_view_attributes";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub per_view_position_all_components: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'_> {}
     unsafe impl Sync for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {}
     impl<'a> Default for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX,
                 p_next: Default::default(),
                 per_view_position_all_components: Default::default(),
                 _marker: PhantomData,
@@ -72,27 +75,26 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MultiviewPerViewAttributesInfoNVX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub per_view_attributes: vk::Bool32,
         pub per_view_attributes_position_x_only: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MultiviewPerViewAttributesInfoNVX<'_> {}
     unsafe impl Sync for MultiviewPerViewAttributesInfoNVX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for MultiviewPerViewAttributesInfoNVX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MultiviewPerViewAttributesInfoNVX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX;
     }
-    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> Extends<vk::CommandBufferInheritanceInfo<'_>>
     for MultiviewPerViewAttributesInfoNVX<'a> {}
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for MultiviewPerViewAttributesInfoNVX<'a> {}
-    unsafe impl<'a> crate::Extends<vk::RenderingInfo<'_>>
+    unsafe impl<'a> Extends<vk::RenderingInfo<'_>>
     for MultiviewPerViewAttributesInfoNVX<'a> {}
     impl<'a> Default for MultiviewPerViewAttributesInfoNVX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX,
                 p_next: Default::default(),
                 per_view_attributes: Default::default(),
                 per_view_attributes_position_x_only: Default::default(),

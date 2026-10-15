@@ -7,8 +7,11 @@ use core::ffi::CStr;
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_VERSION_1_0_0;
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_vp9_decode";
 pub(crate) mod items {
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     use core::marker::PhantomData;
     use crate::vk;
+    use core::mem::zeroed;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DecodeVP9PictureInfoFlags {
@@ -25,8 +28,8 @@ pub(crate) mod items {
     unsafe impl Send for DecodeVP9PictureInfoFlags {}
     unsafe impl Sync for DecodeVP9PictureInfoFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DecodeVP9PictureInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DecodeVP9PictureInfoFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("DecodeVP9PictureInfoFlags")
                 .field("error_resilient_mode", &self.get_error_resilient_mode())
                 .field("intra_only", &self.get_intra_only())
@@ -155,7 +158,7 @@ pub(crate) mod items {
                 delta_q_uv_ac: Default::default(),
                 tile_cols_log2: Default::default(),
                 tile_rows_log2: Default::default(),
-                reserved1: unsafe { core::mem::zeroed() },
+                reserved1: unsafe { zeroed() },
                 p_color_config: Default::default(),
                 p_loop_filter: Default::default(),
                 p_segmentation: Default::default(),

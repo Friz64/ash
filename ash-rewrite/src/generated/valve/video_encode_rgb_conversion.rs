@@ -72,29 +72,35 @@ pub const NAME: &CStr = c"VK_VALVE_video_encode_rgb_conversion";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub video_encode_rgb_conversion: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'_> {}
     unsafe impl Sync for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_RGB_CONVERSION_FEATURES_VALVE;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {}
     impl<'a> Default for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_RGB_CONVERSION_FEATURES_VALVE,
                 p_next: Default::default(),
                 video_encode_rgb_conversion: Default::default(),
                 _marker: PhantomData,
@@ -115,7 +121,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub rgb_models: vk::VideoEncodeRgbModelConversionFlagsVALVE,
         pub rgb_ranges: vk::VideoEncodeRgbRangeCompressionFlagsVALVE,
         pub x_chroma_offsets: vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
@@ -124,16 +130,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoEncodeRgbConversionCapabilitiesVALVE<'_> {}
     unsafe impl Sync for VideoEncodeRgbConversionCapabilitiesVALVE<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_ENCODE_RGB_CONVERSION_CAPABILITIES_VALVE;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoCapabilitiesKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoCapabilitiesKHR<'_>>
     for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {}
     impl<'a> Default for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_ENCODE_RGB_CONVERSION_CAPABILITIES_VALVE,
                 p_next: Default::default(),
                 rgb_models: Default::default(),
                 rgb_ranges: Default::default(),
@@ -178,22 +184,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoEncodeProfileRgbConversionInfoVALVE<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub perform_encode_rgb_conversion: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoEncodeProfileRgbConversionInfoVALVE<'_> {}
     unsafe impl Sync for VideoEncodeProfileRgbConversionInfoVALVE<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for VideoEncodeProfileRgbConversionInfoVALVE<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_ENCODE_PROFILE_RGB_CONVERSION_INFO_VALVE;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoProfileInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoProfileInfoKHR<'_>>
     for VideoEncodeProfileRgbConversionInfoVALVE<'a> {}
     impl<'a> Default for VideoEncodeProfileRgbConversionInfoVALVE<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_ENCODE_PROFILE_RGB_CONVERSION_INFO_VALVE,
                 p_next: Default::default(),
                 perform_encode_rgb_conversion: Default::default(),
                 _marker: PhantomData,
@@ -214,7 +220,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub rgb_model: vk::VideoEncodeRgbModelConversionFlagBitsVALVE,
         pub rgb_range: vk::VideoEncodeRgbRangeCompressionFlagBitsVALVE,
         pub x_chroma_offset: vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
@@ -223,16 +229,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoEncodeSessionRgbConversionCreateInfoVALVE<'_> {}
     unsafe impl Sync for VideoEncodeSessionRgbConversionCreateInfoVALVE<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_ENCODE_SESSION_RGB_CONVERSION_CREATE_INFO_VALVE;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoSessionCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoSessionCreateInfoKHR<'_>>
     for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {}
     impl<'a> Default for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_ENCODE_SESSION_RGB_CONVERSION_CREATE_INFO_VALVE,
                 p_next: Default::default(),
                 rgb_model: Default::default(),
                 rgb_range: Default::default(),
@@ -276,8 +282,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRgbModelConversionFlagsVALVE(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoEncodeRgbModelConversionFlagsVALVE {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VideoEncodeRgbModelConversionFlagsVALVE {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -311,40 +317,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoEncodeRgbModelConversionFlagsVALVE {
+    impl BitOr for VideoEncodeRgbModelConversionFlagsVALVE {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoEncodeRgbModelConversionFlagsVALVE {
+    impl BitOrAssign for VideoEncodeRgbModelConversionFlagsVALVE {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoEncodeRgbModelConversionFlagsVALVE {
+    impl BitAnd for VideoEncodeRgbModelConversionFlagsVALVE {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoEncodeRgbModelConversionFlagsVALVE {
+    impl BitAndAssign for VideoEncodeRgbModelConversionFlagsVALVE {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoEncodeRgbModelConversionFlagsVALVE {
+    impl BitXor for VideoEncodeRgbModelConversionFlagsVALVE {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoEncodeRgbModelConversionFlagsVALVE {
+    impl BitXorAssign for VideoEncodeRgbModelConversionFlagsVALVE {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoEncodeRgbModelConversionFlagsVALVE {
+    impl Not for VideoEncodeRgbModelConversionFlagsVALVE {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -369,17 +375,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoEncodeRgbModelConversionFlagBitsVALVE {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for VideoEncodeRgbModelConversionFlagBitsVALVE {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRgbRangeCompressionFlagsVALVE(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoEncodeRgbRangeCompressionFlagsVALVE {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VideoEncodeRgbRangeCompressionFlagsVALVE {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -410,40 +416,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    impl BitOr for VideoEncodeRgbRangeCompressionFlagsVALVE {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    impl BitOrAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    impl BitAnd for VideoEncodeRgbRangeCompressionFlagsVALVE {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    impl BitAndAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    impl BitXor for VideoEncodeRgbRangeCompressionFlagsVALVE {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    impl BitXorAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    impl Not for VideoEncodeRgbRangeCompressionFlagsVALVE {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -468,17 +474,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoEncodeRgbRangeCompressionFlagBitsVALVE {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for VideoEncodeRgbRangeCompressionFlagBitsVALVE {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEncodeRgbChromaOffsetFlagsVALVE(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoEncodeRgbChromaOffsetFlagsVALVE {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VideoEncodeRgbChromaOffsetFlagsVALVE {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -509,40 +515,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    impl BitOr for VideoEncodeRgbChromaOffsetFlagsVALVE {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    impl BitOrAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    impl BitAnd for VideoEncodeRgbChromaOffsetFlagsVALVE {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    impl BitAndAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    impl BitXor for VideoEncodeRgbChromaOffsetFlagsVALVE {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    impl BitXorAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    impl Not for VideoEncodeRgbChromaOffsetFlagsVALVE {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -567,9 +573,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoEncodeRgbChromaOffsetFlagBitsVALVE {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for VideoEncodeRgbChromaOffsetFlagBitsVALVE {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
 }

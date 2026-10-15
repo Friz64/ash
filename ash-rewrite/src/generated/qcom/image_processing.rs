@@ -66,12 +66,15 @@ pub const NAME: &CStr = c"VK_QCOM_image_processing";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageViewSampleWeightCreateInfoQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub filter_center: vk::Offset2D,
         pub filter_size: vk::Extent2D,
         pub num_phases: u32,
@@ -79,16 +82,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageViewSampleWeightCreateInfoQCOM<'_> {}
     unsafe impl Sync for ImageViewSampleWeightCreateInfoQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ImageViewSampleWeightCreateInfoQCOM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageViewSampleWeightCreateInfoQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageViewCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageViewCreateInfo<'_>>
     for ImageViewSampleWeightCreateInfoQCOM<'a> {}
     impl<'a> Default for ImageViewSampleWeightCreateInfoQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM,
                 p_next: Default::default(),
                 filter_center: Default::default(),
                 filter_size: Default::default(),
@@ -116,7 +118,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub texture_sample_weighted: vk::Bool32,
         pub texture_box_filter: vk::Bool32,
         pub texture_block_match: vk::Bool32,
@@ -124,18 +126,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceImageProcessingFeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceImageProcessingFeaturesQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM,
                 p_next: Default::default(),
                 texture_sample_weighted: Default::default(),
                 texture_box_filter: Default::default(),
@@ -163,7 +165,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_weight_filter_phases: u32,
         pub max_weight_filter_dimension: vk::Extent2D,
         pub max_block_match_region: vk::Extent2D,
@@ -172,16 +174,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceImageProcessingPropertiesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceImageProcessingPropertiesQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM,
                 p_next: Default::default(),
                 max_weight_filter_phases: Default::default(),
                 max_weight_filter_dimension: Default::default(),

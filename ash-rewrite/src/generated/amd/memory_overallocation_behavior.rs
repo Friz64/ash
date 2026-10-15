@@ -19,27 +19,31 @@ pub const NAME: &CStr = c"VK_AMD_memory_overallocation_behavior";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DeviceMemoryOverallocationCreateInfoAMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub overallocation_behavior: vk::MemoryOverallocationBehaviorAMD,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceMemoryOverallocationCreateInfoAMD<'_> {}
     unsafe impl Sync for DeviceMemoryOverallocationCreateInfoAMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DeviceMemoryOverallocationCreateInfoAMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceMemoryOverallocationCreateInfoAMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD;
     }
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for DeviceMemoryOverallocationCreateInfoAMD<'a> {}
     impl<'a> Default for DeviceMemoryOverallocationCreateInfoAMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD,
                 p_next: Default::default(),
                 overallocation_behavior: Default::default(),
                 _marker: PhantomData,
@@ -59,8 +63,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct MemoryOverallocationBehaviorAMD(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for MemoryOverallocationBehaviorAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for MemoryOverallocationBehaviorAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::DEFAULT => Some("DEFAULT"),
                 Self::ALLOWED => Some("ALLOWED"),
@@ -69,7 +73,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

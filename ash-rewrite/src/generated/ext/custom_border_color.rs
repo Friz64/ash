@@ -22,28 +22,30 @@ pub const NAME: &CStr = c"VK_EXT_custom_border_color";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SamplerCustomBorderColorCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub custom_border_color: vk::ClearColorValue,
         pub format: vk::Format,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SamplerCustomBorderColorCreateInfoEXT<'_> {}
     unsafe impl Sync for SamplerCustomBorderColorCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for SamplerCustomBorderColorCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SamplerCustomBorderColorCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::SamplerCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::SamplerCreateInfo<'_>>
     for SamplerCustomBorderColorCreateInfoEXT<'a> {}
     impl<'a> Default for SamplerCustomBorderColorCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 custom_border_color: Default::default(),
                 format: Default::default(),
@@ -69,22 +71,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_custom_border_color_samplers: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCustomBorderColorPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceCustomBorderColorPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT,
                 p_next: Default::default(),
                 max_custom_border_color_samplers: Default::default(),
                 _marker: PhantomData,
@@ -105,25 +107,25 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub custom_border_colors: vk::Bool32,
         pub custom_border_color_without_format: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCustomBorderColorFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceCustomBorderColorFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT,
                 p_next: Default::default(),
                 custom_border_colors: Default::default(),
                 custom_border_color_without_format: Default::default(),

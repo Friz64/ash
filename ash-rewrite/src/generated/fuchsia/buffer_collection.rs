@@ -4,8 +4,11 @@
 #![doc(alias = "VK_FUCHSIA_buffer_collection")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_FUCHSIA_buffer_collection](crate::fuchsia::buffer_collection)
 impl vk::StructureType {
     pub const BUFFER_COLLECTION_CREATE_INFO_FUCHSIA: Self = Self(1000366000);
@@ -66,10 +69,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_buffer_collection: unsafe {
                 unsafe extern "system" fn create_buffer_collection(
@@ -81,11 +84,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateBufferCollectionFUCHSIA")
                 }
                 let val = _f(c"vkCreateBufferCollectionFUCHSIA");
-                if val.is_null() {
-                    create_buffer_collection
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_buffer_collection } else { transmute(val) }
             },
             set_buffer_collection_buffer_constraints: unsafe {
                 unsafe extern "system" fn set_buffer_collection_buffer_constraints(
@@ -101,7 +100,7 @@ impl DeviceFn {
                 if val.is_null() {
                     set_buffer_collection_buffer_constraints
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             set_buffer_collection_image_constraints: unsafe {
@@ -116,7 +115,7 @@ impl DeviceFn {
                 if val.is_null() {
                     set_buffer_collection_image_constraints
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             destroy_buffer_collection: unsafe {
@@ -128,11 +127,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyBufferCollectionFUCHSIA")
                 }
                 let val = _f(c"vkDestroyBufferCollectionFUCHSIA");
-                if val.is_null() {
-                    destroy_buffer_collection
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_buffer_collection } else { transmute(val) }
             },
             get_buffer_collection_properties: unsafe {
                 unsafe extern "system" fn get_buffer_collection_properties(
@@ -146,7 +141,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_buffer_collection_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -155,13 +150,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -170,7 +165,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateBufferCollectionFUCHSIA
@@ -180,7 +175,7 @@ impl Device {
         create_info: &vk::BufferCollectionCreateInfoFUCHSIA<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::BufferCollectionFUCHSIA> {
-        let mut collection = core::mem::MaybeUninit::uninit();
+        let mut collection = MaybeUninit::uninit();
         (self
             .fp
             .create_buffer_collection)(
@@ -188,7 +183,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 collection.as_mut_ptr(),
             )
@@ -240,7 +235,7 @@ impl Device {
             collection,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -250,7 +245,7 @@ impl Device {
         &self,
         collection: vk::BufferCollectionFUCHSIA,
     ) -> VkResult<vk::BufferCollectionPropertiesFUCHSIA<'_>> {
-        let mut properties = core::mem::MaybeUninit::uninit();
+        let mut properties = MaybeUninit::uninit();
         (self
             .fp
             .get_buffer_collection_properties)(
@@ -264,32 +259,35 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImportMemoryBufferCollectionFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub collection: vk::BufferCollectionFUCHSIA,
         pub index: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportMemoryBufferCollectionFUCHSIA<'_> {}
     unsafe impl Sync for ImportMemoryBufferCollectionFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ImportMemoryBufferCollectionFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportMemoryBufferCollectionFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA;
     }
-    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> Extends<vk::MemoryAllocateInfo<'_>>
     for ImportMemoryBufferCollectionFUCHSIA<'a> {}
     impl<'a> Default for ImportMemoryBufferCollectionFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA,
                 p_next: Default::default(),
                 collection: Default::default(),
                 index: Default::default(),
@@ -312,23 +310,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferCollectionImageCreateInfoFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub collection: vk::BufferCollectionFUCHSIA,
         pub index: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BufferCollectionImageCreateInfoFUCHSIA<'_> {}
     unsafe impl Sync for BufferCollectionImageCreateInfoFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for BufferCollectionImageCreateInfoFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferCollectionImageCreateInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for BufferCollectionImageCreateInfoFUCHSIA<'a> {}
     impl<'a> Default for BufferCollectionImageCreateInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA,
                 p_next: Default::default(),
                 collection: Default::default(),
                 index: Default::default(),
@@ -351,23 +348,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferCollectionBufferCreateInfoFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub collection: vk::BufferCollectionFUCHSIA,
         pub index: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BufferCollectionBufferCreateInfoFUCHSIA<'_> {}
     unsafe impl Sync for BufferCollectionBufferCreateInfoFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for BufferCollectionBufferCreateInfoFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferCollectionBufferCreateInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA;
     }
-    unsafe impl<'a> crate::Extends<vk::BufferCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::BufferCreateInfo<'_>>
     for BufferCollectionBufferCreateInfoFUCHSIA<'a> {}
     impl<'a> Default for BufferCollectionBufferCreateInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA,
                 p_next: Default::default(),
                 collection: Default::default(),
                 index: Default::default(),
@@ -390,20 +386,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferCollectionCreateInfoFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub collection_token: crate::platform_types::zx_handle_t,
+        pub p_next: *const ffi::c_void,
+        pub collection_token: vk::zx_handle_t,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BufferCollectionCreateInfoFUCHSIA<'_> {}
     unsafe impl Sync for BufferCollectionCreateInfoFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for BufferCollectionCreateInfoFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferCollectionCreateInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_COLLECTION_CREATE_INFO_FUCHSIA;
     }
     impl<'a> Default for BufferCollectionCreateInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_COLLECTION_CREATE_INFO_FUCHSIA,
                 p_next: Default::default(),
                 collection_token: Default::default(),
                 _marker: PhantomData,
@@ -411,10 +406,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> BufferCollectionCreateInfoFUCHSIA<'a> {
-        pub fn collection_token(
-            mut self,
-            collection_token: crate::platform_types::zx_handle_t,
-        ) -> Self {
+        pub fn collection_token(mut self, collection_token: vk::zx_handle_t) -> Self {
             self.collection_token = collection_token;
             self
         }
@@ -424,7 +416,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferCollectionPropertiesFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub memory_type_bits: u32,
         pub buffer_count: u32,
         pub create_info_index: u32,
@@ -440,14 +432,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BufferCollectionPropertiesFUCHSIA<'_> {}
     unsafe impl Sync for BufferCollectionPropertiesFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for BufferCollectionPropertiesFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferCollectionPropertiesFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_COLLECTION_PROPERTIES_FUCHSIA;
     }
     impl<'a> Default for BufferCollectionPropertiesFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_COLLECTION_PROPERTIES_FUCHSIA,
                 p_next: Default::default(),
                 memory_type_bits: Default::default(),
                 buffer_count: Default::default(),
@@ -536,7 +527,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferConstraintsInfoFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub create_info: vk::BufferCreateInfo<'a>,
         pub required_format_features: vk::FormatFeatureFlags,
         pub buffer_collection_constraints: vk::BufferCollectionConstraintsInfoFUCHSIA<
@@ -546,13 +537,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BufferConstraintsInfoFUCHSIA<'_> {}
     unsafe impl Sync for BufferConstraintsInfoFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BufferConstraintsInfoFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferConstraintsInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_CONSTRAINTS_INFO_FUCHSIA;
     }
     impl<'a> Default for BufferConstraintsInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_CONSTRAINTS_INFO_FUCHSIA,
                 p_next: Default::default(),
                 create_info: Default::default(),
                 required_format_features: Default::default(),
@@ -586,19 +577,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SysmemColorSpaceFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub color_space: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SysmemColorSpaceFUCHSIA<'_> {}
     unsafe impl Sync for SysmemColorSpaceFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SysmemColorSpaceFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SysmemColorSpaceFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SYSMEM_COLOR_SPACE_FUCHSIA;
     }
     impl<'a> Default for SysmemColorSpaceFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SYSMEM_COLOR_SPACE_FUCHSIA,
                 p_next: Default::default(),
                 color_space: Default::default(),
                 _marker: PhantomData,
@@ -616,7 +607,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageFormatConstraintsInfoFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub image_create_info: vk::ImageCreateInfo<'a>,
         pub required_format_features: vk::FormatFeatureFlags,
         pub flags: vk::ImageFormatConstraintsFlagsFUCHSIA,
@@ -627,14 +618,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageFormatConstraintsInfoFUCHSIA<'_> {}
     unsafe impl Sync for ImageFormatConstraintsInfoFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ImageFormatConstraintsInfoFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageFormatConstraintsInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA;
     }
     impl<'a> Default for ImageFormatConstraintsInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA,
                 p_next: Default::default(),
                 image_create_info: Default::default(),
                 required_format_features: Default::default(),
@@ -683,7 +673,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageConstraintsInfoFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub format_constraints_count: u32,
         pub p_format_constraints: *const vk::ImageFormatConstraintsInfoFUCHSIA<'a>,
         pub buffer_collection_constraints: vk::BufferCollectionConstraintsInfoFUCHSIA<
@@ -694,13 +684,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageConstraintsInfoFUCHSIA<'_> {}
     unsafe impl Sync for ImageConstraintsInfoFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageConstraintsInfoFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageConstraintsInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_CONSTRAINTS_INFO_FUCHSIA;
     }
     impl<'a> Default for ImageConstraintsInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_CONSTRAINTS_INFO_FUCHSIA,
                 p_next: Default::default(),
                 format_constraints_count: Default::default(),
                 p_format_constraints: Default::default(),
@@ -736,7 +726,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferCollectionConstraintsInfoFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub min_buffer_count: u32,
         pub max_buffer_count: u32,
         pub min_buffer_count_for_camping: u32,
@@ -746,14 +736,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BufferCollectionConstraintsInfoFUCHSIA<'_> {}
     unsafe impl Sync for BufferCollectionConstraintsInfoFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for BufferCollectionConstraintsInfoFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferCollectionConstraintsInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA;
     }
     impl<'a> Default for BufferCollectionConstraintsInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA,
                 p_next: Default::default(),
                 min_buffer_count: Default::default(),
                 max_buffer_count: Default::default(),
@@ -799,9 +788,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageFormatConstraintsFlagsFUCHSIA(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageFormatConstraintsFlagsFUCHSIA {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for ImageFormatConstraintsFlagsFUCHSIA {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl ImageFormatConstraintsFlagsFUCHSIA {
@@ -824,40 +813,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ImageFormatConstraintsFlagsFUCHSIA {
+    impl BitOr for ImageFormatConstraintsFlagsFUCHSIA {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ImageFormatConstraintsFlagsFUCHSIA {
+    impl BitOrAssign for ImageFormatConstraintsFlagsFUCHSIA {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ImageFormatConstraintsFlagsFUCHSIA {
+    impl BitAnd for ImageFormatConstraintsFlagsFUCHSIA {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ImageFormatConstraintsFlagsFUCHSIA {
+    impl BitAndAssign for ImageFormatConstraintsFlagsFUCHSIA {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ImageFormatConstraintsFlagsFUCHSIA {
+    impl BitXor for ImageFormatConstraintsFlagsFUCHSIA {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ImageFormatConstraintsFlagsFUCHSIA {
+    impl BitXorAssign for ImageFormatConstraintsFlagsFUCHSIA {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ImageFormatConstraintsFlagsFUCHSIA {
+    impl Not for ImageFormatConstraintsFlagsFUCHSIA {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -867,8 +856,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageConstraintsInfoFlagsFUCHSIA(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageConstraintsInfoFlagsFUCHSIA {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -902,40 +891,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ImageConstraintsInfoFlagsFUCHSIA {
+    impl BitOr for ImageConstraintsInfoFlagsFUCHSIA {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ImageConstraintsInfoFlagsFUCHSIA {
+    impl BitOrAssign for ImageConstraintsInfoFlagsFUCHSIA {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ImageConstraintsInfoFlagsFUCHSIA {
+    impl BitAnd for ImageConstraintsInfoFlagsFUCHSIA {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ImageConstraintsInfoFlagsFUCHSIA {
+    impl BitAndAssign for ImageConstraintsInfoFlagsFUCHSIA {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ImageConstraintsInfoFlagsFUCHSIA {
+    impl BitXor for ImageConstraintsInfoFlagsFUCHSIA {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ImageConstraintsInfoFlagsFUCHSIA {
+    impl BitXorAssign for ImageConstraintsInfoFlagsFUCHSIA {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ImageConstraintsInfoFlagsFUCHSIA {
+    impl Not for ImageConstraintsInfoFlagsFUCHSIA {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -960,9 +949,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageConstraintsInfoFlagBitsFUCHSIA {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ImageConstraintsInfoFlagBitsFUCHSIA {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -988,8 +977,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for BufferCollectionFUCHSIA {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for BufferCollectionFUCHSIA {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

@@ -4,8 +4,11 @@
 #![doc(alias = "VK_SEC_ubm_surface")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_SEC_ubm_surface](crate::sec::ubm_surface)
 impl vk::StructureType {
     pub const UBM_SURFACE_CREATE_INFO_SEC: Self = Self(1000664000);
@@ -20,10 +23,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_ubm_surface: unsafe {
                 unsafe extern "system" fn create_ubm_surface(
@@ -35,17 +38,13 @@ impl InstanceFn {
                     panic!("unable to load vkCreateUbmSurfaceSEC")
                 }
                 let val = _f(c"vkCreateUbmSurfaceSEC");
-                if val.is_null() {
-                    create_ubm_surface
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_ubm_surface } else { transmute(val) }
             },
             get_physical_device_ubm_presentation_support: unsafe {
                 unsafe extern "system" fn get_physical_device_ubm_presentation_support(
                     _: vk::PhysicalDevice,
                     _: u32,
-                    _: *mut crate::platform_types::ubm_device,
+                    _: *mut vk::ubm_device,
                 ) -> vk::Bool32 {
                     panic!("unable to load vkGetPhysicalDeviceUbmPresentationSupportSEC")
                 }
@@ -53,7 +52,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_ubm_presentation_support
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -62,13 +61,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -77,7 +76,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkCreateUbmSurfaceSEC
@@ -87,7 +86,7 @@ impl Instance {
         create_info: &vk::UbmSurfaceCreateInfoSEC<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = core::mem::MaybeUninit::uninit();
+        let mut surface = MaybeUninit::uninit();
         (self
             .fp
             .create_ubm_surface)(
@@ -95,7 +94,7 @@ impl Instance {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 surface.as_mut_ptr(),
             )
@@ -107,8 +106,8 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-    ) -> crate::platform_types::ubm_device {
-        let mut device = core::mem::MaybeUninit::uninit();
+    ) -> vk::ubm_device {
+        let mut device = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_ubm_presentation_support)(
@@ -122,26 +121,31 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct UbmSurfaceCreateInfoSEC<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::UbmSurfaceCreateFlagsSEC,
-        pub device: *mut crate::platform_types::ubm_device,
-        pub surface: *mut crate::platform_types::ubm_surface,
+        pub device: *mut vk::ubm_device,
+        pub surface: *mut vk::ubm_surface,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for UbmSurfaceCreateInfoSEC<'_> {}
     unsafe impl Sync for UbmSurfaceCreateInfoSEC<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for UbmSurfaceCreateInfoSEC<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for UbmSurfaceCreateInfoSEC<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::UBM_SURFACE_CREATE_INFO_SEC;
     }
     impl<'a> Default for UbmSurfaceCreateInfoSEC<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::UBM_SURFACE_CREATE_INFO_SEC,
                 p_next: Default::default(),
                 flags: Default::default(),
                 device: Default::default(),
@@ -155,17 +159,11 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn device(
-            mut self,
-            device: &'a mut crate::platform_types::ubm_device,
-        ) -> Self {
+        pub fn device(mut self, device: &'a mut vk::ubm_device) -> Self {
             self.device = device;
             self
         }
-        pub fn surface(
-            mut self,
-            surface: &'a mut crate::platform_types::ubm_surface,
-        ) -> Self {
+        pub fn surface(mut self, surface: &'a mut vk::ubm_surface) -> Self {
             self.surface = surface;
             self
         }
@@ -174,9 +172,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct UbmSurfaceCreateFlagsSEC(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for UbmSurfaceCreateFlagsSEC {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for UbmSurfaceCreateFlagsSEC {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl UbmSurfaceCreateFlagsSEC {
@@ -199,40 +197,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for UbmSurfaceCreateFlagsSEC {
+    impl BitOr for UbmSurfaceCreateFlagsSEC {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for UbmSurfaceCreateFlagsSEC {
+    impl BitOrAssign for UbmSurfaceCreateFlagsSEC {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for UbmSurfaceCreateFlagsSEC {
+    impl BitAnd for UbmSurfaceCreateFlagsSEC {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for UbmSurfaceCreateFlagsSEC {
+    impl BitAndAssign for UbmSurfaceCreateFlagsSEC {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for UbmSurfaceCreateFlagsSEC {
+    impl BitXor for UbmSurfaceCreateFlagsSEC {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for UbmSurfaceCreateFlagsSEC {
+    impl BitXorAssign for UbmSurfaceCreateFlagsSEC {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for UbmSurfaceCreateFlagsSEC {
+    impl Not for UbmSurfaceCreateFlagsSEC {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -247,7 +245,7 @@ pub(crate) mod items {
     pub type PFN_vkGetPhysicalDeviceUbmPresentationSupportSEC = unsafe extern "system" fn(
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        device: *mut crate::platform_types::ubm_device,
+        device: *mut vk::ubm_device,
     ) -> vk::Bool32;
 }
 pub use items::*;

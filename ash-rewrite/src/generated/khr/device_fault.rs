@@ -5,7 +5,10 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_device_fault](crate::khr::device_fault)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FAULT_FEATURES_KHR: Self = Self(1000573000);
@@ -63,10 +66,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_device_fault_reports: unsafe {
                 unsafe extern "system" fn get_device_fault_reports(
@@ -78,11 +81,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetDeviceFaultReportsKHR")
                 }
                 let val = _f(c"vkGetDeviceFaultReportsKHR");
-                if val.is_null() {
-                    get_device_fault_reports
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_device_fault_reports } else { transmute(val) }
             },
             get_device_fault_debug_info: unsafe {
                 unsafe extern "system" fn get_device_fault_debug_info(
@@ -92,11 +91,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetDeviceFaultDebugInfoKHR")
                 }
                 let val = _f(c"vkGetDeviceFaultDebugInfoKHR");
-                if val.is_null() {
-                    get_device_fault_debug_info
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_device_fault_debug_info } else { transmute(val) }
             },
         }
     }
@@ -104,13 +99,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -119,20 +114,20 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetDeviceFaultReportsKHR
     #[inline]
     pub unsafe fn get_device_fault_reports_len(&self, timeout: u64) -> VkResult<usize> {
-        let mut fault_counts = core::mem::MaybeUninit::uninit();
+        let mut fault_counts = MaybeUninit::uninit();
         (self
             .fp
             .get_device_fault_reports)(
                 self.handle,
                 timeout,
                 fault_counts.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(fault_counts)
             .map(|c| c as usize)
@@ -143,7 +138,7 @@ impl Device {
         &self,
         timeout: u64,
         fault_info: &mut [vk::DeviceFaultInfoKHR<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut fault_counts = fault_info.len() as _;
         (self
             .fp
@@ -162,16 +157,22 @@ impl Device {
     pub unsafe fn get_device_fault_debug_info(
         &self,
     ) -> VkResult<vk::DeviceFaultDebugInfoKHR<'_>> {
-        let mut debug_info = core::mem::MaybeUninit::uninit();
+        let mut debug_info = MaybeUninit::uninit();
         (self.fp.get_device_fault_debug_info)(self.handle, debug_info.as_mut_ptr())
             .assume_init_on_success(debug_info)
     }
 }
 pub(crate) mod items {
     use crate::vk;
-    use core::ffi::CStr;
     use core::ffi;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ffi::CStr;
     use core::marker::PhantomData;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -202,7 +203,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceFaultVendorInfoKHR {
-        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub description: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
         pub vendor_fault_code: u64,
         pub vendor_fault_data: u64,
     }
@@ -211,15 +212,15 @@ pub(crate) mod items {
     impl Default for DeviceFaultVendorInfoKHR {
         fn default() -> Self {
             Self {
-                description: unsafe { core::mem::zeroed() },
+                description: unsafe { zeroed() },
                 vendor_fault_code: Default::default(),
                 vendor_fault_data: Default::default(),
             }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceFaultVendorInfoKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceFaultVendorInfoKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("DeviceFaultVendorInfoKHR")
                 .field("description", &self.description_as_c_str())
                 .field("vendor_fault_code", &self.vendor_fault_code)
@@ -253,10 +254,10 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceFaultInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub flags: vk::DeviceFaultFlagsKHR,
         pub group_id: u64,
-        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub description: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
         pub fault_address_info: vk::DeviceFaultAddressInfoKHR,
         pub instruction_address_info: vk::DeviceFaultAddressInfoKHR,
         pub vendor_info: vk::DeviceFaultVendorInfoKHR,
@@ -264,17 +265,17 @@ pub(crate) mod items {
     }
     unsafe impl Send for DeviceFaultInfoKHR<'_> {}
     unsafe impl Sync for DeviceFaultInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceFaultInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_FAULT_INFO_KHR;
     }
     impl<'a> Default for DeviceFaultInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_FAULT_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 group_id: Default::default(),
-                description: unsafe { core::mem::zeroed() },
+                description: unsafe { zeroed() },
                 fault_address_info: Default::default(),
                 instruction_address_info: Default::default(),
                 vendor_info: Default::default(),
@@ -283,8 +284,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl<'a> core::fmt::Debug for DeviceFaultInfoKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl<'a> fmtd::Debug for DeviceFaultInfoKHR<'a> {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("DeviceFaultInfoKHR < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
@@ -342,20 +343,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceFaultDebugInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub vendor_binary_size: u32,
-        pub p_vendor_binary_data: *mut core::ffi::c_void,
+        pub p_vendor_binary_data: *mut ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceFaultDebugInfoKHR<'_> {}
     unsafe impl Sync for DeviceFaultDebugInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultDebugInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceFaultDebugInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_FAULT_DEBUG_INFO_KHR;
     }
     impl<'a> Default for DeviceFaultDebugInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_FAULT_DEBUG_INFO_KHR,
                 p_next: Default::default(),
                 vendor_binary_size: Default::default(),
                 p_vendor_binary_data: Default::default(),
@@ -396,7 +397,7 @@ pub(crate) mod items {
                 vendor_id: Default::default(),
                 device_id: Default::default(),
                 driver_version: Default::default(),
-                pipeline_cache_uuid: unsafe { core::mem::zeroed() },
+                pipeline_cache_uuid: unsafe { zeroed() },
                 application_name_offset: Default::default(),
                 application_version: Default::default(),
                 engine_name_offset: Default::default(),
@@ -462,7 +463,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFaultFeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub device_fault: vk::Bool32,
         pub device_fault_vendor_binary: vk::Bool32,
         pub device_fault_report_masked: vk::Bool32,
@@ -471,17 +472,17 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceFaultFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceFaultFeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFaultFeaturesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceFaultFeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFaultFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFaultFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceFaultFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_KHR,
                 p_next: Default::default(),
                 device_fault: Default::default(),
                 device_fault_vendor_binary: Default::default(),
@@ -524,21 +525,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFaultPropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_device_fault_count: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFaultPropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceFaultPropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFaultPropertiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceFaultPropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FAULT_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceFaultPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceFaultPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FAULT_PROPERTIES_KHR,
                 p_next: Default::default(),
                 max_device_fault_count: Default::default(),
                 _marker: PhantomData,
@@ -555,8 +556,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DeviceFaultAddressTypeKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceFaultAddressTypeKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceFaultAddressTypeKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::NONE => Some("NONE"),
                 Self::READ_INVALID => Some("READ_INVALID"),
@@ -569,7 +570,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -587,15 +588,15 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DeviceFaultVendorBinaryHeaderVersionKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceFaultVendorBinaryHeaderVersionKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceFaultVendorBinaryHeaderVersionKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::ONE => Some("ONE"),
                 _ => None,
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -613,8 +614,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceFaultFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceFaultFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceFaultFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -649,40 +650,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DeviceFaultFlagsKHR {
+    impl BitOr for DeviceFaultFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DeviceFaultFlagsKHR {
+    impl BitOrAssign for DeviceFaultFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DeviceFaultFlagsKHR {
+    impl BitAnd for DeviceFaultFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DeviceFaultFlagsKHR {
+    impl BitAndAssign for DeviceFaultFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DeviceFaultFlagsKHR {
+    impl BitXor for DeviceFaultFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DeviceFaultFlagsKHR {
+    impl BitXorAssign for DeviceFaultFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DeviceFaultFlagsKHR {
+    impl Not for DeviceFaultFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -707,9 +708,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceFaultFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DeviceFaultFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetDeviceFaultReportsKHR = unsafe extern "system" fn(

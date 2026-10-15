@@ -4,8 +4,10 @@
 #![doc(alias = "VK_EXT_image_drm_format_modifier")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_image_drm_format_modifier](crate::ext::image_drm_format_modifier)
 impl vk::ImageTiling {
     pub const DRM_FORMAT_MODIFIER_EXT: Self = Self(1000158000);
@@ -60,10 +62,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_image_drm_format_modifier_properties: unsafe {
                 unsafe extern "system" fn get_image_drm_format_modifier_properties(
@@ -77,7 +79,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_image_drm_format_modifier_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -86,13 +88,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -101,7 +103,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetImageDrmFormatModifierPropertiesEXT
@@ -110,7 +112,7 @@ impl Device {
         &self,
         image: vk::Image,
     ) -> VkResult<vk::ImageDrmFormatModifierPropertiesEXT<'_>> {
-        let mut properties = core::mem::MaybeUninit::uninit();
+        let mut properties = MaybeUninit::uninit();
         (self
             .fp
             .get_image_drm_format_modifier_properties)(
@@ -124,28 +126,30 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DrmFormatModifierPropertiesListEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub drm_format_modifier_count: u32,
         pub p_drm_format_modifier_properties: *mut vk::DrmFormatModifierPropertiesEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DrmFormatModifierPropertiesListEXT<'_> {}
     unsafe impl Sync for DrmFormatModifierPropertiesListEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DrmFormatModifierPropertiesListEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DrmFormatModifierPropertiesListEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::FormatProperties2<'_>>
+    unsafe impl<'a> Extends<vk::FormatProperties2<'_>>
     for DrmFormatModifierPropertiesListEXT<'a> {}
     impl<'a> Default for DrmFormatModifierPropertiesListEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT,
                 p_next: Default::default(),
                 drm_format_modifier_count: Default::default(),
                 p_drm_format_modifier_properties: Default::default(),
@@ -199,7 +203,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub drm_format_modifier: u64,
         pub sharing_mode: vk::SharingMode,
         pub queue_family_index_count: u32,
@@ -208,16 +212,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceImageDrmFormatModifierInfoEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceImageDrmFormatModifierInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {}
     impl<'a> Default for PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT,
                 p_next: Default::default(),
                 drm_format_modifier: Default::default(),
                 sharing_mode: Default::default(),
@@ -247,23 +251,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageDrmFormatModifierListCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub drm_format_modifier_count: u32,
         pub p_drm_format_modifiers: *const u64,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageDrmFormatModifierListCreateInfoEXT<'_> {}
     unsafe impl Sync for ImageDrmFormatModifierListCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ImageDrmFormatModifierListCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageDrmFormatModifierListCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for ImageDrmFormatModifierListCreateInfoEXT<'a> {}
     impl<'a> Default for ImageDrmFormatModifierListCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 drm_format_modifier_count: Default::default(),
                 p_drm_format_modifiers: Default::default(),
@@ -283,7 +286,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub drm_format_modifier: u64,
         pub drm_format_modifier_plane_count: u32,
         pub p_plane_layouts: *const vk::SubresourceLayout,
@@ -291,16 +294,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageDrmFormatModifierExplicitCreateInfoEXT<'_> {}
     unsafe impl Sync for ImageDrmFormatModifierExplicitCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {}
     impl<'a> Default for ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 drm_format_modifier: Default::default(),
                 drm_format_modifier_plane_count: Default::default(),
@@ -328,20 +331,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageDrmFormatModifierPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub drm_format_modifier: u64,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageDrmFormatModifierPropertiesEXT<'_> {}
     unsafe impl Sync for ImageDrmFormatModifierPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ImageDrmFormatModifierPropertiesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageDrmFormatModifierPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT;
     }
     impl<'a> Default for ImageDrmFormatModifierPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT,
                 p_next: Default::default(),
                 drm_format_modifier: Default::default(),
                 _marker: PhantomData,
@@ -359,23 +361,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DrmFormatModifierPropertiesList2EXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub drm_format_modifier_count: u32,
         pub p_drm_format_modifier_properties: *mut vk::DrmFormatModifierProperties2EXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DrmFormatModifierPropertiesList2EXT<'_> {}
     unsafe impl Sync for DrmFormatModifierPropertiesList2EXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DrmFormatModifierPropertiesList2EXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DrmFormatModifierPropertiesList2EXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::FormatProperties2<'_>>
+    unsafe impl<'a> Extends<vk::FormatProperties2<'_>>
     for DrmFormatModifierPropertiesList2EXT<'a> {}
     impl<'a> Default for DrmFormatModifierPropertiesList2EXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT,
                 p_next: Default::default(),
                 drm_format_modifier_count: Default::default(),
                 p_drm_format_modifier_properties: Default::default(),

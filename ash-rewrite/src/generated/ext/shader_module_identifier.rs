@@ -4,7 +4,9 @@
 #![doc(alias = "VK_EXT_shader_module_identifier")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_shader_module_identifier](crate::ext::shader_module_identifier)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT: Self = Self(
@@ -28,10 +30,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_shader_module_identifier: unsafe {
                 unsafe extern "system" fn get_shader_module_identifier(
@@ -42,11 +44,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetShaderModuleIdentifierEXT")
                 }
                 let val = _f(c"vkGetShaderModuleIdentifierEXT");
-                if val.is_null() {
-                    get_shader_module_identifier
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_shader_module_identifier } else { transmute(val) }
             },
             get_shader_module_create_info_identifier: unsafe {
                 unsafe extern "system" fn get_shader_module_create_info_identifier(
@@ -60,7 +58,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_shader_module_create_info_identifier
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -69,13 +67,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -84,7 +82,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetShaderModuleIdentifierEXT
@@ -93,7 +91,7 @@ impl Device {
         &self,
         shader_module: vk::ShaderModule,
     ) -> vk::ShaderModuleIdentifierEXT<'_> {
-        let mut identifier = core::mem::MaybeUninit::uninit();
+        let mut identifier = MaybeUninit::uninit();
         (self
             .fp
             .get_shader_module_identifier)(
@@ -109,7 +107,7 @@ impl Device {
         &self,
         create_info: &vk::ShaderModuleCreateInfo<'_>,
     ) -> vk::ShaderModuleIdentifierEXT<'_> {
-        let mut identifier = core::mem::MaybeUninit::uninit();
+        let mut identifier = MaybeUninit::uninit();
         (self
             .fp
             .get_shader_module_create_info_identifier)(
@@ -123,29 +121,33 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    use core::mem::zeroed;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_module_identifier: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT,
                 p_next: Default::default(),
                 shader_module_identifier: Default::default(),
                 _marker: PhantomData,
@@ -166,24 +168,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_module_identifier_algorithm_uuid: [u8; vk::UUID_SIZE as _],
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT,
                 p_next: Default::default(),
-                shader_module_identifier_algorithm_uuid: unsafe { core::mem::zeroed() },
+                shader_module_identifier_algorithm_uuid: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }
@@ -202,23 +204,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub identifier_size: u32,
         pub p_identifier: *const u8,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineShaderStageModuleIdentifierCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineShaderStageModuleIdentifierCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineShaderStageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineShaderStageCreateInfo<'_>>
     for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 identifier_size: Default::default(),
                 p_identifier: Default::default(),
@@ -238,23 +240,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ShaderModuleIdentifierEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub identifier_size: u32,
         pub identifier: [u8; vk::MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT as _],
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ShaderModuleIdentifierEXT<'_> {}
     unsafe impl Sync for ShaderModuleIdentifierEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ShaderModuleIdentifierEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ShaderModuleIdentifierEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SHADER_MODULE_IDENTIFIER_EXT;
     }
     impl<'a> Default for ShaderModuleIdentifierEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SHADER_MODULE_IDENTIFIER_EXT,
                 p_next: Default::default(),
                 identifier_size: Default::default(),
-                identifier: unsafe { core::mem::zeroed() },
+                identifier: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }

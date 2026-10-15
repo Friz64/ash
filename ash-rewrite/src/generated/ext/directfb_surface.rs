@@ -4,8 +4,11 @@
 #![doc(alias = "VK_EXT_directfb_surface")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_directfb_surface](crate::ext::directfb_surface)
 impl vk::StructureType {
     pub const DIRECTFB_SURFACE_CREATE_INFO_EXT: Self = Self(1000346000);
@@ -20,10 +23,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_direct_fb_surface: unsafe {
                 unsafe extern "system" fn create_direct_fb_surface(
@@ -35,17 +38,13 @@ impl InstanceFn {
                     panic!("unable to load vkCreateDirectFBSurfaceEXT")
                 }
                 let val = _f(c"vkCreateDirectFBSurfaceEXT");
-                if val.is_null() {
-                    create_direct_fb_surface
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_direct_fb_surface } else { transmute(val) }
             },
             get_physical_device_direct_fb_presentation_support: unsafe {
                 unsafe extern "system" fn get_physical_device_direct_fb_presentation_support(
                     _: vk::PhysicalDevice,
                     _: u32,
-                    _: *mut crate::platform_types::IDirectFB,
+                    _: *mut vk::IDirectFB,
                 ) -> vk::Bool32 {
                     panic!(
                         "unable to load vkGetPhysicalDeviceDirectFBPresentationSupportEXT"
@@ -55,7 +54,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_direct_fb_presentation_support
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -64,13 +63,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -79,7 +78,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkCreateDirectFBSurfaceEXT
@@ -89,7 +88,7 @@ impl Instance {
         create_info: &vk::DirectFBSurfaceCreateInfoEXT<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = core::mem::MaybeUninit::uninit();
+        let mut surface = MaybeUninit::uninit();
         (self
             .fp
             .create_direct_fb_surface)(
@@ -97,7 +96,7 @@ impl Instance {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 surface.as_mut_ptr(),
             )
@@ -109,8 +108,8 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-    ) -> crate::platform_types::IDirectFB {
-        let mut dfb = core::mem::MaybeUninit::uninit();
+    ) -> vk::IDirectFB {
+        let mut dfb = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_direct_fb_presentation_support)(
@@ -124,26 +123,31 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DirectFBSurfaceCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::DirectFBSurfaceCreateFlagsEXT,
-        pub dfb: *mut crate::platform_types::IDirectFB,
-        pub surface: *mut crate::platform_types::IDirectFBSurface,
+        pub dfb: *mut vk::IDirectFB,
+        pub surface: *mut vk::IDirectFBSurface,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DirectFBSurfaceCreateInfoEXT<'_> {}
     unsafe impl Sync for DirectFBSurfaceCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DirectFBSurfaceCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DirectFBSurfaceCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DIRECTFB_SURFACE_CREATE_INFO_EXT;
     }
     impl<'a> Default for DirectFBSurfaceCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DIRECTFB_SURFACE_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 flags: Default::default(),
                 dfb: Default::default(),
@@ -157,14 +161,11 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn dfb(mut self, dfb: &'a mut crate::platform_types::IDirectFB) -> Self {
+        pub fn dfb(mut self, dfb: &'a mut vk::IDirectFB) -> Self {
             self.dfb = dfb;
             self
         }
-        pub fn surface(
-            mut self,
-            surface: &'a mut crate::platform_types::IDirectFBSurface,
-        ) -> Self {
+        pub fn surface(mut self, surface: &'a mut vk::IDirectFBSurface) -> Self {
             self.surface = surface;
             self
         }
@@ -173,9 +174,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DirectFBSurfaceCreateFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DirectFBSurfaceCreateFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for DirectFBSurfaceCreateFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl DirectFBSurfaceCreateFlagsEXT {
@@ -198,40 +199,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DirectFBSurfaceCreateFlagsEXT {
+    impl BitOr for DirectFBSurfaceCreateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DirectFBSurfaceCreateFlagsEXT {
+    impl BitOrAssign for DirectFBSurfaceCreateFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DirectFBSurfaceCreateFlagsEXT {
+    impl BitAnd for DirectFBSurfaceCreateFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DirectFBSurfaceCreateFlagsEXT {
+    impl BitAndAssign for DirectFBSurfaceCreateFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DirectFBSurfaceCreateFlagsEXT {
+    impl BitXor for DirectFBSurfaceCreateFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DirectFBSurfaceCreateFlagsEXT {
+    impl BitXorAssign for DirectFBSurfaceCreateFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DirectFBSurfaceCreateFlagsEXT {
+    impl Not for DirectFBSurfaceCreateFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -246,7 +247,7 @@ pub(crate) mod items {
     pub type PFN_vkGetPhysicalDeviceDirectFBPresentationSupportEXT = unsafe extern "system" fn(
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        dfb: *mut crate::platform_types::IDirectFB,
+        dfb: *mut vk::IDirectFB,
     ) -> vk::Bool32;
 }
 pub use items::*;

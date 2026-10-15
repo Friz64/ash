@@ -4,8 +4,10 @@
 #![doc(alias = "VK_KHR_performance_query")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::transmute;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ffi;
 ///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl vk::QueryType {
     pub const PERFORMANCE_QUERY_KHR: Self = Self(1000116000);
@@ -73,10 +75,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             enumerate_physical_device_queue_family_performance_query_counters: unsafe {
                 unsafe extern "system" fn enumerate_physical_device_queue_family_performance_query_counters(
@@ -96,7 +98,7 @@ impl InstanceFn {
                 if val.is_null() {
                     enumerate_physical_device_queue_family_performance_query_counters
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_queue_family_performance_query_passes: unsafe {
@@ -113,7 +115,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_queue_family_performance_query_passes
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -122,13 +124,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -137,7 +139,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR
@@ -147,7 +149,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         performance_query_create_info: &vk::QueryPoolPerformanceCreateInfoKHR<'_>,
     ) -> u32 {
-        let mut num_passes = core::mem::MaybeUninit::uninit();
+        let mut num_passes = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_queue_family_performance_query_passes)(
@@ -166,10 +168,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             acquire_profiling_lock: unsafe {
                 unsafe extern "system" fn acquire_profiling_lock(
@@ -179,22 +181,14 @@ impl DeviceFn {
                     panic!("unable to load vkAcquireProfilingLockKHR")
                 }
                 let val = _f(c"vkAcquireProfilingLockKHR");
-                if val.is_null() {
-                    acquire_profiling_lock
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { acquire_profiling_lock } else { transmute(val) }
             },
             release_profiling_lock: unsafe {
                 unsafe extern "system" fn release_profiling_lock(_: vk::Device) {
                     panic!("unable to load vkReleaseProfilingLockKHR")
                 }
                 let val = _f(c"vkReleaseProfilingLockKHR");
-                if val.is_null() {
-                    release_profiling_lock
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { release_profiling_lock } else { transmute(val) }
             },
         }
     }
@@ -202,13 +196,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -217,7 +211,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkAcquireProfilingLockKHR
@@ -237,32 +231,38 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
-    use core::ffi::CStr;
+    use crate::TaggedStructure;
+    use crate::Extends;
     use core::ffi;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ffi::CStr;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub performance_counter_query_pools: vk::Bool32,
         pub performance_counter_multiple_query_pools: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePerformanceQueryFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDevicePerformanceQueryFeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePerformanceQueryFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePerformanceQueryFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR,
                 p_next: Default::default(),
                 performance_counter_query_pools: Default::default(),
                 performance_counter_multiple_query_pools: Default::default(),
@@ -293,22 +293,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub allow_command_buffer_query_copies: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePerformanceQueryPropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDevicePerformanceQueryPropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDevicePerformanceQueryPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR,
                 p_next: Default::default(),
                 allow_command_buffer_query_copies: Default::default(),
                 _marker: PhantomData,
@@ -330,7 +330,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PerformanceCounterKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub unit: vk::PerformanceCounterUnitKHR,
         pub scope: vk::PerformanceCounterScopeKHR,
         pub storage: vk::PerformanceCounterStorageKHR,
@@ -339,18 +339,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PerformanceCounterKHR<'_> {}
     unsafe impl Sync for PerformanceCounterKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceCounterKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PerformanceCounterKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PERFORMANCE_COUNTER_KHR;
     }
     impl<'a> Default for PerformanceCounterKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PERFORMANCE_COUNTER_KHR,
                 p_next: Default::default(),
                 unit: Default::default(),
                 scope: Default::default(),
                 storage: Default::default(),
-                uuid: unsafe { core::mem::zeroed() },
+                uuid: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }
@@ -377,34 +377,34 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PerformanceCounterDescriptionKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub flags: vk::PerformanceCounterDescriptionFlagsKHR,
-        pub name: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
-        pub category: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
-        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub name: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub category: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub description: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PerformanceCounterDescriptionKHR<'_> {}
     unsafe impl Sync for PerformanceCounterDescriptionKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceCounterDescriptionKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PerformanceCounterDescriptionKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PERFORMANCE_COUNTER_DESCRIPTION_KHR;
     }
     impl<'a> Default for PerformanceCounterDescriptionKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PERFORMANCE_COUNTER_DESCRIPTION_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
-                name: unsafe { core::mem::zeroed() },
-                category: unsafe { core::mem::zeroed() },
-                description: unsafe { core::mem::zeroed() },
+                name: unsafe { zeroed() },
+                category: unsafe { zeroed() },
+                description: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }
     }
     #[cfg(feature = "debug")]
-    impl<'a> core::fmt::Debug for PerformanceCounterDescriptionKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl<'a> fmtd::Debug for PerformanceCounterDescriptionKHR<'a> {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("PerformanceCounterDescriptionKHR < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
@@ -463,7 +463,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct QueryPoolPerformanceCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub queue_family_index: u32,
         pub counter_index_count: u32,
         pub p_counter_indices: *const u32,
@@ -471,16 +471,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for QueryPoolPerformanceCreateInfoKHR<'_> {}
     unsafe impl Sync for QueryPoolPerformanceCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for QueryPoolPerformanceCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for QueryPoolPerformanceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::QueryPoolCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::QueryPoolCreateInfo<'_>>
     for QueryPoolPerformanceCreateInfoKHR<'a> {}
     impl<'a> Default for QueryPoolPerformanceCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 queue_family_index: Default::default(),
                 counter_index_count: Default::default(),
@@ -505,20 +504,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AcquireProfilingLockInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::AcquireProfilingLockFlagsKHR,
         pub timeout: u64,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AcquireProfilingLockInfoKHR<'_> {}
     unsafe impl Sync for AcquireProfilingLockInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for AcquireProfilingLockInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for AcquireProfilingLockInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACQUIRE_PROFILING_LOCK_INFO_KHR;
     }
     impl<'a> Default for AcquireProfilingLockInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACQUIRE_PROFILING_LOCK_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 timeout: Default::default(),
@@ -541,23 +540,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PerformanceQuerySubmitInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub counter_pass_index: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PerformanceQuerySubmitInfoKHR<'_> {}
     unsafe impl Sync for PerformanceQuerySubmitInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceQuerySubmitInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PerformanceQuerySubmitInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PERFORMANCE_QUERY_SUBMIT_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SubmitInfo<'_>>
-    for PerformanceQuerySubmitInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SubmitInfo2<'_>>
-    for PerformanceQuerySubmitInfoKHR<'a> {}
+    unsafe impl<'a> Extends<vk::SubmitInfo<'_>> for PerformanceQuerySubmitInfoKHR<'a> {}
+    unsafe impl<'a> Extends<vk::SubmitInfo2<'_>> for PerformanceQuerySubmitInfoKHR<'a> {}
     impl<'a> Default for PerformanceQuerySubmitInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PERFORMANCE_QUERY_SUBMIT_INFO_KHR,
                 p_next: Default::default(),
                 counter_pass_index: Default::default(),
                 _marker: PhantomData,
@@ -577,17 +574,17 @@ pub(crate) mod items {
         pub int64: i64,
         pub uint32: u32,
         pub uint64: u64,
-        pub float32: core::ffi::c_float,
-        pub float64: core::ffi::c_double,
+        pub float32: ffi::c_float,
+        pub float64: ffi::c_double,
     }
     impl Default for PerformanceCounterResultKHR {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PerformanceCounterResultKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PerformanceCounterResultKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "PerformanceCounterResultKHR")
         }
     }
@@ -595,8 +592,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PerformanceCounterScopeKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PerformanceCounterScopeKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PerformanceCounterScopeKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::COMMAND_BUFFER => Some("COMMAND_BUFFER"),
                 Self::RENDER_PASS => Some("RENDER_PASS"),
@@ -605,7 +602,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -623,8 +620,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PerformanceCounterUnitKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PerformanceCounterUnitKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PerformanceCounterUnitKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::GENERIC => Some("GENERIC"),
                 Self::PERCENTAGE => Some("PERCENTAGE"),
@@ -641,7 +638,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -659,8 +656,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PerformanceCounterStorageKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PerformanceCounterStorageKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PerformanceCounterStorageKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::INT32 => Some("INT32"),
                 Self::INT64 => Some("INT64"),
@@ -672,7 +669,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -690,8 +687,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PerformanceCounterDescriptionFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PerformanceCounterDescriptionFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -722,40 +719,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PerformanceCounterDescriptionFlagsKHR {
+    impl BitOr for PerformanceCounterDescriptionFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PerformanceCounterDescriptionFlagsKHR {
+    impl BitOrAssign for PerformanceCounterDescriptionFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PerformanceCounterDescriptionFlagsKHR {
+    impl BitAnd for PerformanceCounterDescriptionFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PerformanceCounterDescriptionFlagsKHR {
+    impl BitAndAssign for PerformanceCounterDescriptionFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PerformanceCounterDescriptionFlagsKHR {
+    impl BitXor for PerformanceCounterDescriptionFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PerformanceCounterDescriptionFlagsKHR {
+    impl BitXorAssign for PerformanceCounterDescriptionFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PerformanceCounterDescriptionFlagsKHR {
+    impl Not for PerformanceCounterDescriptionFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -780,18 +777,18 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PerformanceCounterDescriptionFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PerformanceCounterDescriptionFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AcquireProfilingLockFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AcquireProfilingLockFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for AcquireProfilingLockFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl AcquireProfilingLockFlagsKHR {
@@ -814,40 +811,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for AcquireProfilingLockFlagsKHR {
+    impl BitOr for AcquireProfilingLockFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for AcquireProfilingLockFlagsKHR {
+    impl BitOrAssign for AcquireProfilingLockFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for AcquireProfilingLockFlagsKHR {
+    impl BitAnd for AcquireProfilingLockFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for AcquireProfilingLockFlagsKHR {
+    impl BitAndAssign for AcquireProfilingLockFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for AcquireProfilingLockFlagsKHR {
+    impl BitXor for AcquireProfilingLockFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for AcquireProfilingLockFlagsKHR {
+    impl BitXorAssign for AcquireProfilingLockFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for AcquireProfilingLockFlagsKHR {
+    impl Not for AcquireProfilingLockFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -872,9 +869,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AcquireProfilingLockFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for AcquireProfilingLockFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = unsafe extern "system" fn(

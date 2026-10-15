@@ -4,8 +4,11 @@
 #![doc(alias = "VK_NVX_binary_import")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_NVX_binary_import](crate::nvx::binary_import)
 impl vk::StructureType {
     pub const CU_MODULE_CREATE_INFO_NVX: Self = Self(1000029000);
@@ -36,10 +39,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_cu_module: unsafe {
                 unsafe extern "system" fn create_cu_module(
@@ -51,11 +54,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateCuModuleNVX")
                 }
                 let val = _f(c"vkCreateCuModuleNVX");
-                if val.is_null() {
-                    create_cu_module
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_cu_module } else { transmute(val) }
             },
             create_cu_function: unsafe {
                 unsafe extern "system" fn create_cu_function(
@@ -67,11 +66,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateCuFunctionNVX")
                 }
                 let val = _f(c"vkCreateCuFunctionNVX");
-                if val.is_null() {
-                    create_cu_function
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_cu_function } else { transmute(val) }
             },
             destroy_cu_module: unsafe {
                 unsafe extern "system" fn destroy_cu_module(
@@ -82,11 +77,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyCuModuleNVX")
                 }
                 let val = _f(c"vkDestroyCuModuleNVX");
-                if val.is_null() {
-                    destroy_cu_module
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_cu_module } else { transmute(val) }
             },
             destroy_cu_function: unsafe {
                 unsafe extern "system" fn destroy_cu_function(
@@ -97,11 +88,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyCuFunctionNVX")
                 }
                 let val = _f(c"vkDestroyCuFunctionNVX");
-                if val.is_null() {
-                    destroy_cu_function
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_cu_function } else { transmute(val) }
             },
             cmd_cu_launch_kernel: unsafe {
                 unsafe extern "system" fn cmd_cu_launch_kernel(
@@ -111,11 +98,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdCuLaunchKernelNVX")
                 }
                 let val = _f(c"vkCmdCuLaunchKernelNVX");
-                if val.is_null() {
-                    cmd_cu_launch_kernel
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_cu_launch_kernel } else { transmute(val) }
             },
         }
     }
@@ -123,13 +106,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -138,7 +121,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateCuModuleNVX
@@ -148,7 +131,7 @@ impl Device {
         create_info: &vk::CuModuleCreateInfoNVX<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::CuModuleNVX> {
-        let mut module = core::mem::MaybeUninit::uninit();
+        let mut module = MaybeUninit::uninit();
         (self
             .fp
             .create_cu_module)(
@@ -156,7 +139,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 module.as_mut_ptr(),
             )
@@ -169,7 +152,7 @@ impl Device {
         create_info: &vk::CuFunctionCreateInfoNVX<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::CuFunctionNVX> {
-        let mut function = core::mem::MaybeUninit::uninit();
+        let mut function = MaybeUninit::uninit();
         (self
             .fp
             .create_cu_function)(
@@ -177,7 +160,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 function.as_mut_ptr(),
             )
@@ -197,7 +180,7 @@ impl Device {
             module,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -215,7 +198,7 @@ impl Device {
             function,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -232,30 +215,33 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    use crate::Extends;
     use core::ffi::CStr;
     use crate::Handle;
     use core::fmt;
     #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CuModuleCreateInfoNVX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub data_size: usize,
-        pub p_data: *const core::ffi::c_void,
+        pub p_data: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CuModuleCreateInfoNVX<'_> {}
     unsafe impl Sync for CuModuleCreateInfoNVX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CuModuleCreateInfoNVX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CuModuleCreateInfoNVX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CU_MODULE_CREATE_INFO_NVX;
     }
     impl<'a> Default for CuModuleCreateInfoNVX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CU_MODULE_CREATE_INFO_NVX,
                 p_next: Default::default(),
                 data_size: Default::default(),
                 p_data: Default::default(),
@@ -275,22 +261,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CuModuleTexturingModeCreateInfoNVX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub use64bit_texturing: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CuModuleTexturingModeCreateInfoNVX<'_> {}
     unsafe impl Sync for CuModuleTexturingModeCreateInfoNVX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for CuModuleTexturingModeCreateInfoNVX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CuModuleTexturingModeCreateInfoNVX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CU_MODULE_TEXTURING_MODE_CREATE_INFO_NVX;
     }
-    unsafe impl<'a> crate::Extends<vk::CuModuleCreateInfoNVX<'_>>
+    unsafe impl<'a> Extends<vk::CuModuleCreateInfoNVX<'_>>
     for CuModuleTexturingModeCreateInfoNVX<'a> {}
     impl<'a> Default for CuModuleTexturingModeCreateInfoNVX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CU_MODULE_TEXTURING_MODE_CREATE_INFO_NVX,
                 p_next: Default::default(),
                 use64bit_texturing: Default::default(),
                 _marker: PhantomData,
@@ -308,20 +293,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CuFunctionCreateInfoNVX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub module: vk::CuModuleNVX,
-        pub p_name: *const core::ffi::c_char,
+        pub p_name: *const ffi::c_char,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CuFunctionCreateInfoNVX<'_> {}
     unsafe impl Sync for CuFunctionCreateInfoNVX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CuFunctionCreateInfoNVX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CuFunctionCreateInfoNVX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CU_FUNCTION_CREATE_INFO_NVX;
     }
     impl<'a> Default for CuFunctionCreateInfoNVX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CU_FUNCTION_CREATE_INFO_NVX,
                 p_next: Default::default(),
                 module: Default::default(),
                 p_name: Default::default(),
@@ -351,7 +336,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CuLaunchInfoNVX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub function: vk::CuFunctionNVX,
         pub grid_dim_x: u32,
         pub grid_dim_y: u32,
@@ -361,20 +346,20 @@ pub(crate) mod items {
         pub block_dim_z: u32,
         pub shared_mem_bytes: u32,
         pub param_count: usize,
-        pub p_params: *const *const core::ffi::c_void,
+        pub p_params: *const *const ffi::c_void,
         pub extra_count: usize,
-        pub p_extras: *const *const core::ffi::c_void,
+        pub p_extras: *const *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CuLaunchInfoNVX<'_> {}
     unsafe impl Sync for CuLaunchInfoNVX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CuLaunchInfoNVX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CuLaunchInfoNVX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CU_LAUNCH_INFO_NVX;
     }
     impl<'a> Default for CuLaunchInfoNVX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CU_LAUNCH_INFO_NVX,
                 p_next: Default::default(),
                 function: Default::default(),
                 grid_dim_x: Default::default(),
@@ -425,12 +410,12 @@ pub(crate) mod items {
             self.shared_mem_bytes = shared_mem_bytes;
             self
         }
-        pub fn params(mut self, params: &'a [*const core::ffi::c_void]) -> Self {
+        pub fn params(mut self, params: &'a [*const ffi::c_void]) -> Self {
             self.param_count = params.len() as _;
             self.p_params = params.as_ptr();
             self
         }
-        pub fn extras(mut self, extras: &'a [*const core::ffi::c_void]) -> Self {
+        pub fn extras(mut self, extras: &'a [*const ffi::c_void]) -> Self {
             self.extra_count = extras.len() as _;
             self.p_extras = extras.as_ptr();
             self
@@ -459,8 +444,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for CuModuleNVX {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for CuModuleNVX {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -487,8 +472,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for CuFunctionNVX {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for CuFunctionNVX {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

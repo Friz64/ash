@@ -13,12 +13,15 @@ pub const NAME: &CStr = c"VK_AMD_mixed_attachment_samples";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AttachmentSampleCountInfoAMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub color_attachment_count: u32,
         pub p_color_attachment_samples: *const vk::SampleCountFlagBits,
         pub depth_stencil_attachment_samples: vk::SampleCountFlagBits,
@@ -26,17 +29,17 @@ pub(crate) mod items {
     }
     unsafe impl Send for AttachmentSampleCountInfoAMD<'_> {}
     unsafe impl Sync for AttachmentSampleCountInfoAMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentSampleCountInfoAMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for AttachmentSampleCountInfoAMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
     }
-    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> Extends<vk::CommandBufferInheritanceInfo<'_>>
     for AttachmentSampleCountInfoAMD<'a> {}
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for AttachmentSampleCountInfoAMD<'a> {}
     impl<'a> Default for AttachmentSampleCountInfoAMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ATTACHMENT_SAMPLE_COUNT_INFO_AMD,
                 p_next: Default::default(),
                 color_attachment_count: Default::default(),
                 p_color_attachment_samples: Default::default(),

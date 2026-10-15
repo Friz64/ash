@@ -4,7 +4,8 @@
 #![doc(alias = "VK_AMD_buffer_marker")]
 use core::ffi::CStr;
 use crate::vk;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_AMD_buffer_marker";
 #[derive(Clone)]
@@ -15,10 +16,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_write_buffer_marker: unsafe {
                 unsafe extern "system" fn cmd_write_buffer_marker(
@@ -31,11 +32,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdWriteBufferMarkerAMD")
                 }
                 let val = _f(c"vkCmdWriteBufferMarkerAMD");
-                if val.is_null() {
-                    cmd_write_buffer_marker
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_write_buffer_marker } else { transmute(val) }
             },
             cmd_write_buffer_marker2: unsafe {
                 unsafe extern "system" fn cmd_write_buffer_marker2(
@@ -48,11 +45,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdWriteBufferMarker2AMD")
                 }
                 let val = _f(c"vkCmdWriteBufferMarker2AMD");
-                if val.is_null() {
-                    cmd_write_buffer_marker2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_write_buffer_marker2 } else { transmute(val) }
             },
         }
     }
@@ -60,13 +53,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -75,7 +68,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdWriteBufferMarkerAMD

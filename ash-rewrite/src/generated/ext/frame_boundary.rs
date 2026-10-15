@@ -22,12 +22,18 @@ pub const NAME: &CStr = c"VK_EXT_frame_boundary";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct FrameBoundaryEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::FrameBoundaryFlagsEXT,
         pub frame_id: u64,
         pub image_count: u32,
@@ -36,22 +42,22 @@ pub(crate) mod items {
         pub p_buffers: *const vk::Buffer,
         pub tag_name: u64,
         pub tag_size: usize,
-        pub p_tag: *const core::ffi::c_void,
+        pub p_tag: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for FrameBoundaryEXT<'_> {}
     unsafe impl Sync for FrameBoundaryEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for FrameBoundaryEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for FrameBoundaryEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FRAME_BOUNDARY_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::SubmitInfo<'_>> for FrameBoundaryEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SubmitInfo2<'_>> for FrameBoundaryEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>> for FrameBoundaryEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::BindSparseInfo<'_>> for FrameBoundaryEXT<'a> {}
+    unsafe impl<'a> Extends<vk::SubmitInfo<'_>> for FrameBoundaryEXT<'a> {}
+    unsafe impl<'a> Extends<vk::SubmitInfo2<'_>> for FrameBoundaryEXT<'a> {}
+    unsafe impl<'a> Extends<vk::PresentInfoKHR<'_>> for FrameBoundaryEXT<'a> {}
+    unsafe impl<'a> Extends<vk::BindSparseInfo<'_>> for FrameBoundaryEXT<'a> {}
     impl<'a> Default for FrameBoundaryEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::FRAME_BOUNDARY_EXT,
                 p_next: Default::default(),
                 flags: Default::default(),
                 frame_id: Default::default(),
@@ -100,24 +106,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub frame_boundary: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFrameBoundaryFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceFrameBoundaryFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT,
                 p_next: Default::default(),
                 frame_boundary: Default::default(),
                 _marker: PhantomData,
@@ -134,8 +139,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FrameBoundaryFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FrameBoundaryFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for FrameBoundaryFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(f, &[(Self::FRAME_END.0, "FRAME_END")], self.0)
         }
     }
@@ -159,40 +164,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for FrameBoundaryFlagsEXT {
+    impl BitOr for FrameBoundaryFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for FrameBoundaryFlagsEXT {
+    impl BitOrAssign for FrameBoundaryFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for FrameBoundaryFlagsEXT {
+    impl BitAnd for FrameBoundaryFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for FrameBoundaryFlagsEXT {
+    impl BitAndAssign for FrameBoundaryFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for FrameBoundaryFlagsEXT {
+    impl BitXor for FrameBoundaryFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for FrameBoundaryFlagsEXT {
+    impl BitXorAssign for FrameBoundaryFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for FrameBoundaryFlagsEXT {
+    impl Not for FrameBoundaryFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -217,9 +222,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FrameBoundaryFlagBitsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for FrameBoundaryFlagBitsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
 }

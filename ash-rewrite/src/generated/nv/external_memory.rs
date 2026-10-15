@@ -14,26 +14,29 @@ pub const NAME: &CStr = c"VK_NV_external_memory";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ExternalMemoryImageCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub handle_types: vk::ExternalMemoryHandleTypeFlagsNV,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExternalMemoryImageCreateInfoNV<'_> {}
     unsafe impl Sync for ExternalMemoryImageCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalMemoryImageCreateInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExternalMemoryImageCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for ExternalMemoryImageCreateInfoNV<'a> {}
     impl<'a> Default for ExternalMemoryImageCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV,
                 p_next: Default::default(),
                 handle_types: Default::default(),
                 _marker: PhantomData,
@@ -54,21 +57,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExportMemoryAllocateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub handle_types: vk::ExternalMemoryHandleTypeFlagsNV,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExportMemoryAllocateInfoNV<'_> {}
     unsafe impl Sync for ExportMemoryAllocateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryAllocateInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExportMemoryAllocateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> Extends<vk::MemoryAllocateInfo<'_>>
     for ExportMemoryAllocateInfoNV<'a> {}
     impl<'a> Default for ExportMemoryAllocateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV,
                 p_next: Default::default(),
                 handle_types: Default::default(),
                 _marker: PhantomData,

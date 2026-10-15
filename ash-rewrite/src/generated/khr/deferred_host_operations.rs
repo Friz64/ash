@@ -4,8 +4,11 @@
 #![doc(alias = "VK_KHR_deferred_host_operations")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_deferred_host_operations](crate::khr::deferred_host_operations)
 impl vk::Result {
     pub const THREAD_IDLE_KHR: Self = Self(1000268000);
@@ -30,10 +33,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_deferred_operation: unsafe {
                 unsafe extern "system" fn create_deferred_operation(
@@ -44,11 +47,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateDeferredOperationKHR")
                 }
                 let val = _f(c"vkCreateDeferredOperationKHR");
-                if val.is_null() {
-                    create_deferred_operation
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_deferred_operation } else { transmute(val) }
             },
             destroy_deferred_operation: unsafe {
                 unsafe extern "system" fn destroy_deferred_operation(
@@ -59,11 +58,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyDeferredOperationKHR")
                 }
                 let val = _f(c"vkDestroyDeferredOperationKHR");
-                if val.is_null() {
-                    destroy_deferred_operation
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_deferred_operation } else { transmute(val) }
             },
             get_deferred_operation_max_concurrency: unsafe {
                 unsafe extern "system" fn get_deferred_operation_max_concurrency(
@@ -76,7 +71,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_deferred_operation_max_concurrency
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_deferred_operation_result: unsafe {
@@ -90,7 +85,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_deferred_operation_result
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             deferred_operation_join: unsafe {
@@ -101,11 +96,7 @@ impl DeviceFn {
                     panic!("unable to load vkDeferredOperationJoinKHR")
                 }
                 let val = _f(c"vkDeferredOperationJoinKHR");
-                if val.is_null() {
-                    deferred_operation_join
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { deferred_operation_join } else { transmute(val) }
             },
         }
     }
@@ -113,13 +104,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -128,7 +119,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateDeferredOperationKHR
@@ -137,14 +128,14 @@ impl Device {
         &self,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::DeferredOperationKHR> {
-        let mut deferred_operation = core::mem::MaybeUninit::uninit();
+        let mut deferred_operation = MaybeUninit::uninit();
         (self
             .fp
             .create_deferred_operation)(
                 self.handle,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 deferred_operation.as_mut_ptr(),
             )
@@ -164,7 +155,7 @@ impl Device {
             operation,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -198,7 +189,7 @@ pub(crate) mod items {
     use crate::Handle;
     use core::fmt;
     #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
+    use core::fmt as fmtd;
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DeferredOperationKHR(u64);
@@ -222,8 +213,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for DeferredOperationKHR {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for DeferredOperationKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

@@ -4,7 +4,8 @@
 #![doc(alias = "VK_EXT_pageable_device_local_memory")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::ffi;
+use core::mem::transmute;
 ///Provided by [VK_EXT_pageable_device_local_memory](crate::ext::pageable_device_local_memory)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT: Self = Self(
@@ -20,25 +21,21 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             set_device_memory_priority: unsafe {
                 unsafe extern "system" fn set_device_memory_priority(
                     _: vk::Device,
                     _: vk::DeviceMemory,
-                    _: core::ffi::c_float,
+                    _: ffi::c_float,
                 ) {
                     panic!("unable to load vkSetDeviceMemoryPriorityEXT")
                 }
                 let val = _f(c"vkSetDeviceMemoryPriorityEXT");
-                if val.is_null() {
-                    set_device_memory_priority
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { set_device_memory_priority } else { transmute(val) }
             },
         }
     }
@@ -46,13 +43,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -61,7 +58,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkSetDeviceMemoryPriorityEXT
@@ -69,7 +66,7 @@ impl Device {
     pub unsafe fn set_device_memory_priority(
         &self,
         memory: vk::DeviceMemory,
-        priority: core::ffi::c_float,
+        priority: ffi::c_float,
     ) {
         (self.fp.set_device_memory_priority)(self.handle, memory, priority)
     }
@@ -77,29 +74,32 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub pageable_device_local_memory: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT,
                 p_next: Default::default(),
                 pageable_device_local_memory: Default::default(),
                 _marker: PhantomData,
@@ -118,7 +118,7 @@ pub(crate) mod items {
     pub type PFN_vkSetDeviceMemoryPriorityEXT = unsafe extern "system" fn(
         device: vk::Device,
         memory: vk::DeviceMemory,
-        priority: core::ffi::c_float,
+        priority: ffi::c_float,
     );
 }
 pub use items::*;

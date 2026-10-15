@@ -30,27 +30,30 @@ pub const NAME: &CStr = c"VK_EXT_filter_cubic";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub image_view_type: vk::ImageViewType,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageViewImageFormatInfoEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceImageViewImageFormatInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {}
     impl<'a> Default for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT,
                 p_next: Default::default(),
                 image_view_type: Default::default(),
                 _marker: PhantomData,
@@ -68,23 +71,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct FilterCubicImageViewImageFormatPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub filter_cubic: vk::Bool32,
         pub filter_cubic_minmax: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for FilterCubicImageViewImageFormatPropertiesEXT<'_> {}
     unsafe impl Sync for FilterCubicImageViewImageFormatPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for FilterCubicImageViewImageFormatPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageFormatProperties2<'_>>
+    unsafe impl<'a> Extends<vk::ImageFormatProperties2<'_>>
     for FilterCubicImageViewImageFormatPropertiesEXT<'a> {}
     impl<'a> Default for FilterCubicImageViewImageFormatPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT,
                 p_next: Default::default(),
                 filter_cubic: Default::default(),
                 filter_cubic_minmax: Default::default(),

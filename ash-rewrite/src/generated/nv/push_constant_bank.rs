@@ -15,32 +15,33 @@ pub const NAME: &CStr = c"VK_NV_push_constant_bank";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PushConstantBankInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub bank: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PushConstantBankInfoNV<'_> {}
     unsafe impl Sync for PushConstantBankInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PushConstantBankInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PushConstantBankInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PUSH_CONSTANT_BANK_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::DescriptorSetAndBindingMappingEXT<'_>>
+    unsafe impl<'a> Extends<vk::DescriptorSetAndBindingMappingEXT<'_>>
     for PushConstantBankInfoNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PushDataInfoEXT<'_>>
-    for PushConstantBankInfoNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PushConstantsInfo<'_>>
-    for PushConstantBankInfoNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::IndirectCommandsLayoutTokenEXT<'_>>
+    unsafe impl<'a> Extends<vk::PushDataInfoEXT<'_>> for PushConstantBankInfoNV<'a> {}
+    unsafe impl<'a> Extends<vk::PushConstantsInfo<'_>> for PushConstantBankInfoNV<'a> {}
+    unsafe impl<'a> Extends<vk::IndirectCommandsLayoutTokenEXT<'_>>
     for PushConstantBankInfoNV<'a> {}
     impl<'a> Default for PushConstantBankInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PUSH_CONSTANT_BANK_INFO_NV,
                 p_next: Default::default(),
                 bank: Default::default(),
                 _marker: PhantomData,
@@ -58,24 +59,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePushConstantBankFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub push_constant_bank: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePushConstantBankFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDevicePushConstantBankFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDevicePushConstantBankFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePushConstantBankFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePushConstantBankFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDevicePushConstantBankFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV,
                 p_next: Default::default(),
                 push_constant_bank: Default::default(),
                 _marker: PhantomData,
@@ -93,7 +94,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePushConstantBankPropertiesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_graphics_push_constant_banks: u32,
         pub max_compute_push_constant_banks: u32,
         pub max_graphics_push_data_banks: u32,
@@ -102,16 +103,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDevicePushConstantBankPropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDevicePushConstantBankPropertiesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDevicePushConstantBankPropertiesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDevicePushConstantBankPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDevicePushConstantBankPropertiesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV,
                 p_next: Default::default(),
                 max_graphics_push_constant_banks: Default::default(),
                 max_compute_push_constant_banks: Default::default(),

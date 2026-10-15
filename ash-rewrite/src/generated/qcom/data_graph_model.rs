@@ -33,7 +33,13 @@ pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_QCOM_data_graph_model";
 pub(crate) mod items {
     use crate::vk;
+    use core::mem::zeroed;
     use core::marker::PhantomData;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -54,7 +60,7 @@ pub(crate) mod items {
                 header_version: Default::default(),
                 cache_type: Default::default(),
                 cache_version: Default::default(),
-                toolchain_version: unsafe { core::mem::zeroed() },
+                toolchain_version: unsafe { zeroed() },
             }
         }
     }
@@ -95,22 +101,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_operation: *const vk::PhysicalDeviceDataGraphOperationSupportARM,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineBuiltinModelCreateInfoQCOM<'_> {}
     unsafe impl Sync for DataGraphPipelineBuiltinModelCreateInfoQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {}
     impl<'a> Default for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM,
                 p_next: Default::default(),
                 p_operation: Default::default(),
                 _marker: PhantomData,
@@ -131,24 +137,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub data_graph_model: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDataGraphModelFeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceDataGraphModelFeaturesQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM,
                 p_next: Default::default(),
                 data_graph_model: Default::default(),
                 _marker: PhantomData,
@@ -165,15 +171,15 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DataGraphModelCacheTypeQCOM(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphModelCacheTypeQCOM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DataGraphModelCacheTypeQCOM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::GENERIC_BINARY => Some("GENERIC_BINARY"),
                 _ => None,
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

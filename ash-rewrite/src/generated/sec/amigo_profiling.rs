@@ -14,29 +14,31 @@ pub const NAME: &CStr = c"VK_SEC_amigo_profiling";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub amigo_profiling: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceAmigoProfilingFeaturesSEC<'_> {}
     unsafe impl Sync for PhysicalDeviceAmigoProfilingFeaturesSEC<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {}
     impl<'a> Default for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC,
                 p_next: Default::default(),
                 amigo_profiling: Default::default(),
                 _marker: PhantomData,
@@ -54,22 +56,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AmigoProfilingSubmitInfoSEC<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub first_draw_timestamp: u64,
         pub swap_buffer_timestamp: u64,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AmigoProfilingSubmitInfoSEC<'_> {}
     unsafe impl Sync for AmigoProfilingSubmitInfoSEC<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for AmigoProfilingSubmitInfoSEC<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for AmigoProfilingSubmitInfoSEC<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC;
     }
-    unsafe impl<'a> crate::Extends<vk::SubmitInfo<'_>>
-    for AmigoProfilingSubmitInfoSEC<'a> {}
+    unsafe impl<'a> Extends<vk::SubmitInfo<'_>> for AmigoProfilingSubmitInfoSEC<'a> {}
     impl<'a> Default for AmigoProfilingSubmitInfoSEC<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC,
                 p_next: Default::default(),
                 first_draw_timestamp: Default::default(),
                 swap_buffer_timestamp: Default::default(),

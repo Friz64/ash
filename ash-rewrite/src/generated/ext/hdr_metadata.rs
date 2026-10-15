@@ -4,7 +4,8 @@
 #![doc(alias = "VK_EXT_hdr_metadata")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_hdr_metadata](crate::ext::hdr_metadata)
 impl vk::StructureType {
     pub const HDR_METADATA_EXT: Self = Self(1000105000);
@@ -18,10 +19,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             set_hdr_metadata: unsafe {
                 unsafe extern "system" fn set_hdr_metadata(
@@ -33,11 +34,7 @@ impl DeviceFn {
                     panic!("unable to load vkSetHdrMetadataEXT")
                 }
                 let val = _f(c"vkSetHdrMetadataEXT");
-                if val.is_null() {
-                    set_hdr_metadata
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { set_hdr_metadata } else { transmute(val) }
             },
         }
     }
@@ -45,13 +42,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -60,7 +57,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkSetHdrMetadataEXT
@@ -82,23 +79,25 @@ impl Device {
     }
 }
 pub(crate) mod items {
+    use core::ffi;
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct XYColorEXT {
-        pub x: core::ffi::c_float,
-        pub y: core::ffi::c_float,
+        pub x: ffi::c_float,
+        pub y: ffi::c_float,
     }
     unsafe impl Send for XYColorEXT {}
     unsafe impl Sync for XYColorEXT {}
     impl XYColorEXT {
-        pub fn x(mut self, x: core::ffi::c_float) -> Self {
+        pub fn x(mut self, x: ffi::c_float) -> Self {
             self.x = x;
             self
         }
-        pub fn y(mut self, y: core::ffi::c_float) -> Self {
+        pub fn y(mut self, y: ffi::c_float) -> Self {
             self.y = y;
             self
         }
@@ -108,26 +107,26 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct HdrMetadataEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub display_primary_red: vk::XYColorEXT,
         pub display_primary_green: vk::XYColorEXT,
         pub display_primary_blue: vk::XYColorEXT,
         pub white_point: vk::XYColorEXT,
-        pub max_luminance: core::ffi::c_float,
-        pub min_luminance: core::ffi::c_float,
-        pub max_content_light_level: core::ffi::c_float,
-        pub max_frame_average_light_level: core::ffi::c_float,
+        pub max_luminance: ffi::c_float,
+        pub min_luminance: ffi::c_float,
+        pub max_content_light_level: ffi::c_float,
+        pub max_frame_average_light_level: ffi::c_float,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for HdrMetadataEXT<'_> {}
     unsafe impl Sync for HdrMetadataEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for HdrMetadataEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for HdrMetadataEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::HDR_METADATA_EXT;
     }
     impl<'a> Default for HdrMetadataEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::HDR_METADATA_EXT,
                 p_next: Default::default(),
                 display_primary_red: Default::default(),
                 display_primary_green: Default::default(),
@@ -167,24 +166,24 @@ pub(crate) mod items {
             self.white_point = white_point;
             self
         }
-        pub fn max_luminance(mut self, max_luminance: core::ffi::c_float) -> Self {
+        pub fn max_luminance(mut self, max_luminance: ffi::c_float) -> Self {
             self.max_luminance = max_luminance;
             self
         }
-        pub fn min_luminance(mut self, min_luminance: core::ffi::c_float) -> Self {
+        pub fn min_luminance(mut self, min_luminance: ffi::c_float) -> Self {
             self.min_luminance = min_luminance;
             self
         }
         pub fn max_content_light_level(
             mut self,
-            max_content_light_level: core::ffi::c_float,
+            max_content_light_level: ffi::c_float,
         ) -> Self {
             self.max_content_light_level = max_content_light_level;
             self
         }
         pub fn max_frame_average_light_level(
             mut self,
-            max_frame_average_light_level: core::ffi::c_float,
+            max_frame_average_light_level: ffi::c_float,
         ) -> Self {
             self.max_frame_average_light_level = max_frame_average_light_level;
             self

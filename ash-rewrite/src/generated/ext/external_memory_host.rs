@@ -4,8 +4,10 @@
 #![doc(alias = "VK_EXT_external_memory_host")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ffi;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
 ///Provided by [VK_EXT_external_memory_host](crate::ext::external_memory_host)
 impl vk::StructureType {
     pub const IMPORT_MEMORY_HOST_POINTER_INFO_EXT: Self = Self(1000178000);
@@ -37,16 +39,16 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_memory_host_pointer_properties: unsafe {
                 unsafe extern "system" fn get_memory_host_pointer_properties(
                     _: vk::Device,
                     _: vk::ExternalMemoryHandleTypeFlagBits,
-                    _: *const core::ffi::c_void,
+                    _: *const ffi::c_void,
                     _: *mut vk::MemoryHostPointerPropertiesEXT<'_>,
                 ) -> vk::Result {
                     panic!("unable to load vkGetMemoryHostPointerPropertiesEXT")
@@ -55,7 +57,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_memory_host_pointer_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -64,13 +66,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -79,7 +81,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetMemoryHostPointerPropertiesEXT
@@ -87,9 +89,9 @@ impl Device {
     pub unsafe fn get_memory_host_pointer_properties(
         &self,
         handle_type: vk::ExternalMemoryHandleTypeFlagBits,
-        host_pointer: &core::ffi::c_void,
+        host_pointer: &ffi::c_void,
     ) -> VkResult<vk::MemoryHostPointerPropertiesEXT<'_>> {
-        let mut memory_host_pointer_properties = core::mem::MaybeUninit::uninit();
+        let mut memory_host_pointer_properties = MaybeUninit::uninit();
         (self
             .fp
             .get_memory_host_pointer_properties)(
@@ -104,27 +106,30 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImportMemoryHostPointerInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub handle_type: vk::ExternalMemoryHandleTypeFlagBits,
-        pub p_host_pointer: *mut core::ffi::c_void,
+        pub p_host_pointer: *mut ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportMemoryHostPointerInfoEXT<'_> {}
     unsafe impl Sync for ImportMemoryHostPointerInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryHostPointerInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportMemoryHostPointerInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_MEMORY_HOST_POINTER_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> Extends<vk::MemoryAllocateInfo<'_>>
     for ImportMemoryHostPointerInfoEXT<'a> {}
     impl<'a> Default for ImportMemoryHostPointerInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_MEMORY_HOST_POINTER_INFO_EXT,
                 p_next: Default::default(),
                 handle_type: Default::default(),
                 p_host_pointer: Default::default(),
@@ -140,7 +145,7 @@ pub(crate) mod items {
             self.handle_type = handle_type;
             self
         }
-        pub fn host_pointer(mut self, host_pointer: &'a mut core::ffi::c_void) -> Self {
+        pub fn host_pointer(mut self, host_pointer: &'a mut ffi::c_void) -> Self {
             self.p_host_pointer = host_pointer;
             self
         }
@@ -150,19 +155,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MemoryHostPointerPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub memory_type_bits: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryHostPointerPropertiesEXT<'_> {}
     unsafe impl Sync for MemoryHostPointerPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryHostPointerPropertiesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MemoryHostPointerPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_HOST_POINTER_PROPERTIES_EXT;
     }
     impl<'a> Default for MemoryHostPointerPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MEMORY_HOST_POINTER_PROPERTIES_EXT,
                 p_next: Default::default(),
                 memory_type_bits: Default::default(),
                 _marker: PhantomData,
@@ -180,22 +185,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub min_imported_host_pointer_alignment: vk::DeviceSize,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceExternalMemoryHostPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceExternalMemoryHostPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT,
                 p_next: Default::default(),
                 min_imported_host_pointer_alignment: Default::default(),
                 _marker: PhantomData,
@@ -214,7 +219,7 @@ pub(crate) mod items {
     pub type PFN_vkGetMemoryHostPointerPropertiesEXT = unsafe extern "system" fn(
         device: vk::Device,
         handle_type: vk::ExternalMemoryHandleTypeFlagBits,
-        p_host_pointer: *const core::ffi::c_void,
+        p_host_pointer: *const ffi::c_void,
         p_memory_host_pointer_properties: *mut vk::MemoryHostPointerPropertiesEXT<'_>,
     ) -> vk::Result;
 }

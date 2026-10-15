@@ -3,9 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_0.html) · Vulkan version 1.0
 #![doc(alias = "VK_VERSION_1_0")]
 use crate::vk;
+use core::mem::transmute;
+use core::ptr;
+use alloc::vec::Vec;
 use crate::VkResult;
+use core::ffi;
+use core::mem::MaybeUninit;
 use core::ffi::CStr;
-use core::ffi::c_void;
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageLayout {
     ///Implicit layout an image is when its contents are undefined due to various reasons (e.g. right after creation)
@@ -1189,10 +1193,10 @@ pub struct EntryFnV1_0 {
 unsafe impl Send for EntryFnV1_0 {}
 unsafe impl Sync for EntryFnV1_0 {}
 impl EntryFnV1_0 {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_instance: unsafe {
                 unsafe extern "system" fn create_instance(
@@ -1203,7 +1207,7 @@ impl EntryFnV1_0 {
                     panic!("unable to load vkCreateInstance")
                 }
                 let val = _f(c"vkCreateInstance");
-                if val.is_null() { create_instance } else { ::core::mem::transmute(val) }
+                if val.is_null() { create_instance } else { transmute(val) }
             },
             enumerate_instance_layer_properties: unsafe {
                 unsafe extern "system" fn enumerate_instance_layer_properties(
@@ -1216,12 +1220,12 @@ impl EntryFnV1_0 {
                 if val.is_null() {
                     enumerate_instance_layer_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             enumerate_instance_extension_properties: unsafe {
                 unsafe extern "system" fn enumerate_instance_extension_properties(
-                    _: *const core::ffi::c_char,
+                    _: *const ffi::c_char,
                     _: *mut u32,
                     _: *mut vk::ExtensionProperties,
                 ) -> vk::Result {
@@ -1231,7 +1235,7 @@ impl EntryFnV1_0 {
                 if val.is_null() {
                     enumerate_instance_extension_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -1247,7 +1251,7 @@ impl crate::Entry {
     #[inline]
     pub unsafe fn enumerate_instance_layer_properties(
         &self,
-    ) -> crate::VkResult<Vec<vk::LayerProperties>> {
+    ) -> VkResult<Vec<vk::LayerProperties>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .entry_fn_1_0
             .enumerate_instance_layer_properties)(property_count, properties))
@@ -1257,11 +1261,11 @@ impl crate::Entry {
     pub unsafe fn enumerate_instance_extension_properties(
         &self,
         layer_name: Option<&CStr>,
-    ) -> crate::VkResult<Vec<vk::ExtensionProperties>> {
+    ) -> VkResult<Vec<vk::ExtensionProperties>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .entry_fn_1_0
             .enumerate_instance_extension_properties)(
-            layer_name.map_or(core::ptr::null(), |s| s.as_ptr()),
+            layer_name.map_or(ptr::null(), |s| s.as_ptr()),
             property_count,
             properties,
         ))
@@ -1286,10 +1290,10 @@ pub struct InstanceFnV1_0 {
 unsafe impl Send for InstanceFnV1_0 {}
 unsafe impl Sync for InstanceFnV1_0 {}
 impl InstanceFnV1_0 {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             destroy_instance: unsafe {
                 unsafe extern "system" fn destroy_instance(
@@ -1299,11 +1303,7 @@ impl InstanceFnV1_0 {
                     panic!("unable to load vkDestroyInstance")
                 }
                 let val = _f(c"vkDestroyInstance");
-                if val.is_null() {
-                    destroy_instance
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_instance } else { transmute(val) }
             },
             enumerate_physical_devices: unsafe {
                 unsafe extern "system" fn enumerate_physical_devices(
@@ -1314,25 +1314,17 @@ impl InstanceFnV1_0 {
                     panic!("unable to load vkEnumeratePhysicalDevices")
                 }
                 let val = _f(c"vkEnumeratePhysicalDevices");
-                if val.is_null() {
-                    enumerate_physical_devices
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { enumerate_physical_devices } else { transmute(val) }
             },
             get_device_proc_addr: unsafe {
                 unsafe extern "system" fn get_device_proc_addr(
                     _: vk::Device,
-                    _: *const core::ffi::c_char,
+                    _: *const ffi::c_char,
                 ) -> vk::PFN_vkVoidFunction {
                     panic!("unable to load vkGetDeviceProcAddr")
                 }
                 let val = _f(c"vkGetDeviceProcAddr");
-                if val.is_null() {
-                    get_device_proc_addr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_device_proc_addr } else { transmute(val) }
             },
             get_physical_device_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_properties(
@@ -1345,7 +1337,7 @@ impl InstanceFnV1_0 {
                 if val.is_null() {
                     get_physical_device_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_queue_family_properties: unsafe {
@@ -1360,7 +1352,7 @@ impl InstanceFnV1_0 {
                 if val.is_null() {
                     get_physical_device_queue_family_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_memory_properties: unsafe {
@@ -1374,7 +1366,7 @@ impl InstanceFnV1_0 {
                 if val.is_null() {
                     get_physical_device_memory_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_features: unsafe {
@@ -1385,11 +1377,7 @@ impl InstanceFnV1_0 {
                     panic!("unable to load vkGetPhysicalDeviceFeatures")
                 }
                 let val = _f(c"vkGetPhysicalDeviceFeatures");
-                if val.is_null() {
-                    get_physical_device_features
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_physical_device_features } else { transmute(val) }
             },
             get_physical_device_format_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_format_properties(
@@ -1403,7 +1391,7 @@ impl InstanceFnV1_0 {
                 if val.is_null() {
                     get_physical_device_format_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_image_format_properties: unsafe {
@@ -1422,7 +1410,7 @@ impl InstanceFnV1_0 {
                 if val.is_null() {
                     get_physical_device_image_format_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             create_device: unsafe {
@@ -1435,7 +1423,7 @@ impl InstanceFnV1_0 {
                     panic!("unable to load vkCreateDevice")
                 }
                 let val = _f(c"vkCreateDevice");
-                if val.is_null() { create_device } else { ::core::mem::transmute(val) }
+                if val.is_null() { create_device } else { transmute(val) }
             },
             enumerate_device_layer_properties: unsafe {
                 unsafe extern "system" fn enumerate_device_layer_properties(
@@ -1449,13 +1437,13 @@ impl InstanceFnV1_0 {
                 if val.is_null() {
                     enumerate_device_layer_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             enumerate_device_extension_properties: unsafe {
                 unsafe extern "system" fn enumerate_device_extension_properties(
                     _: vk::PhysicalDevice,
-                    _: *const core::ffi::c_char,
+                    _: *const ffi::c_char,
                     _: *mut u32,
                     _: *mut vk::ExtensionProperties,
                 ) -> vk::Result {
@@ -1465,7 +1453,7 @@ impl InstanceFnV1_0 {
                 if val.is_null() {
                     enumerate_device_extension_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_sparse_image_format_properties: unsafe {
@@ -1487,7 +1475,7 @@ impl InstanceFnV1_0 {
                 if val.is_null() {
                     get_physical_device_sparse_image_format_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -1511,7 +1499,7 @@ impl crate::Instance {
             self.handle,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -1519,7 +1507,7 @@ impl crate::Instance {
     #[inline]
     pub unsafe fn enumerate_physical_devices(
         &self,
-    ) -> crate::VkResult<Vec<vk::PhysicalDevice>> {
+    ) -> VkResult<Vec<vk::PhysicalDevice>> {
         crate::read_into_uninitialized_vector(|physical_device_count, physical_devices| (self
             .instance_fn_1_0
             .enumerate_physical_devices)(
@@ -1534,7 +1522,7 @@ impl crate::Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> vk::PhysicalDeviceProperties {
-        let mut properties = core::mem::MaybeUninit::uninit();
+        let mut properties = MaybeUninit::uninit();
         (self
             .instance_fn_1_0
             .get_physical_device_properties)(physical_device, properties.as_mut_ptr());
@@ -1557,7 +1545,7 @@ impl crate::Instance {
                     queue_family_property_count,
                     queue_family_properties,
                 );
-                crate::vk::Result::SUCCESS
+                vk::Result::SUCCESS
             })
             .unwrap()
     }
@@ -1567,7 +1555,7 @@ impl crate::Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> vk::PhysicalDeviceMemoryProperties {
-        let mut memory_properties = core::mem::MaybeUninit::uninit();
+        let mut memory_properties = MaybeUninit::uninit();
         (self
             .instance_fn_1_0
             .get_physical_device_memory_properties)(
@@ -1582,7 +1570,7 @@ impl crate::Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> vk::PhysicalDeviceFeatures {
-        let mut features = core::mem::MaybeUninit::uninit();
+        let mut features = MaybeUninit::uninit();
         (self
             .instance_fn_1_0
             .get_physical_device_features)(physical_device, features.as_mut_ptr());
@@ -1595,7 +1583,7 @@ impl crate::Instance {
         physical_device: vk::PhysicalDevice,
         format: vk::Format,
     ) -> vk::FormatProperties {
-        let mut format_properties = core::mem::MaybeUninit::uninit();
+        let mut format_properties = MaybeUninit::uninit();
         (self
             .instance_fn_1_0
             .get_physical_device_format_properties)(
@@ -1616,7 +1604,7 @@ impl crate::Instance {
         usage: vk::ImageUsageFlags,
         flags: vk::ImageCreateFlags,
     ) -> VkResult<vk::ImageFormatProperties> {
-        let mut image_format_properties = core::mem::MaybeUninit::uninit();
+        let mut image_format_properties = MaybeUninit::uninit();
         (self
             .instance_fn_1_0
             .get_physical_device_image_format_properties)(
@@ -1635,7 +1623,7 @@ impl crate::Instance {
     pub unsafe fn enumerate_device_layer_properties(
         &self,
         physical_device: vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<vk::LayerProperties>> {
+    ) -> VkResult<Vec<vk::LayerProperties>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .instance_fn_1_0
             .enumerate_device_layer_properties)(
@@ -1650,12 +1638,12 @@ impl crate::Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         layer_name: Option<&CStr>,
-    ) -> crate::VkResult<Vec<vk::ExtensionProperties>> {
+    ) -> VkResult<Vec<vk::ExtensionProperties>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .instance_fn_1_0
             .enumerate_device_extension_properties)(
             physical_device,
-            layer_name.map_or(core::ptr::null(), |s| s.as_ptr()),
+            layer_name.map_or(ptr::null(), |s| s.as_ptr()),
             property_count,
             properties,
         ))
@@ -1684,7 +1672,7 @@ impl crate::Instance {
                     property_count,
                     properties,
                 );
-                crate::vk::Result::SUCCESS
+                vk::Result::SUCCESS
             })
             .unwrap()
     }
@@ -1696,24 +1684,20 @@ pub struct StaticFn {
 unsafe impl Send for StaticFn {}
 unsafe impl Sync for StaticFn {}
 impl StaticFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_instance_proc_addr: unsafe {
                 unsafe extern "system" fn get_instance_proc_addr(
                     _: vk::Instance,
-                    _: *const core::ffi::c_char,
+                    _: *const ffi::c_char,
                 ) -> vk::PFN_vkVoidFunction {
                     panic!("unable to load vkGetInstanceProcAddr")
                 }
                 let val = _f(c"vkGetInstanceProcAddr");
-                if val.is_null() {
-                    get_instance_proc_addr
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_instance_proc_addr } else { transmute(val) }
             },
         }
     }
@@ -1846,10 +1830,10 @@ pub struct DeviceFnV1_0 {
 unsafe impl Send for DeviceFnV1_0 {}
 unsafe impl Sync for DeviceFnV1_0 {}
 impl DeviceFnV1_0 {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             destroy_device: unsafe {
                 unsafe extern "system" fn destroy_device(
@@ -1859,7 +1843,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyDevice")
                 }
                 let val = _f(c"vkDestroyDevice");
-                if val.is_null() { destroy_device } else { ::core::mem::transmute(val) }
+                if val.is_null() { destroy_device } else { transmute(val) }
             },
             get_device_queue: unsafe {
                 unsafe extern "system" fn get_device_queue(
@@ -1871,11 +1855,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkGetDeviceQueue")
                 }
                 let val = _f(c"vkGetDeviceQueue");
-                if val.is_null() {
-                    get_device_queue
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_device_queue } else { transmute(val) }
             },
             queue_submit: unsafe {
                 unsafe extern "system" fn queue_submit(
@@ -1887,25 +1867,21 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkQueueSubmit")
                 }
                 let val = _f(c"vkQueueSubmit");
-                if val.is_null() { queue_submit } else { ::core::mem::transmute(val) }
+                if val.is_null() { queue_submit } else { transmute(val) }
             },
             queue_wait_idle: unsafe {
                 unsafe extern "system" fn queue_wait_idle(_: vk::Queue) -> vk::Result {
                     panic!("unable to load vkQueueWaitIdle")
                 }
                 let val = _f(c"vkQueueWaitIdle");
-                if val.is_null() { queue_wait_idle } else { ::core::mem::transmute(val) }
+                if val.is_null() { queue_wait_idle } else { transmute(val) }
             },
             device_wait_idle: unsafe {
                 unsafe extern "system" fn device_wait_idle(_: vk::Device) -> vk::Result {
                     panic!("unable to load vkDeviceWaitIdle")
                 }
                 let val = _f(c"vkDeviceWaitIdle");
-                if val.is_null() {
-                    device_wait_idle
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { device_wait_idle } else { transmute(val) }
             },
             allocate_memory: unsafe {
                 unsafe extern "system" fn allocate_memory(
@@ -1917,7 +1893,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkAllocateMemory")
                 }
                 let val = _f(c"vkAllocateMemory");
-                if val.is_null() { allocate_memory } else { ::core::mem::transmute(val) }
+                if val.is_null() { allocate_memory } else { transmute(val) }
             },
             free_memory: unsafe {
                 unsafe extern "system" fn free_memory(
@@ -1928,7 +1904,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkFreeMemory")
                 }
                 let val = _f(c"vkFreeMemory");
-                if val.is_null() { free_memory } else { ::core::mem::transmute(val) }
+                if val.is_null() { free_memory } else { transmute(val) }
             },
             map_memory: unsafe {
                 unsafe extern "system" fn map_memory(
@@ -1937,12 +1913,12 @@ impl DeviceFnV1_0 {
                     _: vk::DeviceSize,
                     _: vk::DeviceSize,
                     _: vk::MemoryMapFlags,
-                    _: *mut *mut core::ffi::c_void,
+                    _: *mut *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!("unable to load vkMapMemory")
                 }
                 let val = _f(c"vkMapMemory");
-                if val.is_null() { map_memory } else { ::core::mem::transmute(val) }
+                if val.is_null() { map_memory } else { transmute(val) }
             },
             unmap_memory: unsafe {
                 unsafe extern "system" fn unmap_memory(
@@ -1952,7 +1928,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkUnmapMemory")
                 }
                 let val = _f(c"vkUnmapMemory");
-                if val.is_null() { unmap_memory } else { ::core::mem::transmute(val) }
+                if val.is_null() { unmap_memory } else { transmute(val) }
             },
             flush_mapped_memory_ranges: unsafe {
                 unsafe extern "system" fn flush_mapped_memory_ranges(
@@ -1963,11 +1939,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkFlushMappedMemoryRanges")
                 }
                 let val = _f(c"vkFlushMappedMemoryRanges");
-                if val.is_null() {
-                    flush_mapped_memory_ranges
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { flush_mapped_memory_ranges } else { transmute(val) }
             },
             invalidate_mapped_memory_ranges: unsafe {
                 unsafe extern "system" fn invalidate_mapped_memory_ranges(
@@ -1981,7 +1953,7 @@ impl DeviceFnV1_0 {
                 if val.is_null() {
                     invalidate_mapped_memory_ranges
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_device_memory_commitment: unsafe {
@@ -1993,11 +1965,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkGetDeviceMemoryCommitment")
                 }
                 let val = _f(c"vkGetDeviceMemoryCommitment");
-                if val.is_null() {
-                    get_device_memory_commitment
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_device_memory_commitment } else { transmute(val) }
             },
             get_buffer_memory_requirements: unsafe {
                 unsafe extern "system" fn get_buffer_memory_requirements(
@@ -2011,7 +1979,7 @@ impl DeviceFnV1_0 {
                 if val.is_null() {
                     get_buffer_memory_requirements
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             bind_buffer_memory: unsafe {
@@ -2024,11 +1992,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkBindBufferMemory")
                 }
                 let val = _f(c"vkBindBufferMemory");
-                if val.is_null() {
-                    bind_buffer_memory
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { bind_buffer_memory } else { transmute(val) }
             },
             get_image_memory_requirements: unsafe {
                 unsafe extern "system" fn get_image_memory_requirements(
@@ -2042,7 +2006,7 @@ impl DeviceFnV1_0 {
                 if val.is_null() {
                     get_image_memory_requirements
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             bind_image_memory: unsafe {
@@ -2055,11 +2019,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkBindImageMemory")
                 }
                 let val = _f(c"vkBindImageMemory");
-                if val.is_null() {
-                    bind_image_memory
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { bind_image_memory } else { transmute(val) }
             },
             get_image_sparse_memory_requirements: unsafe {
                 unsafe extern "system" fn get_image_sparse_memory_requirements(
@@ -2074,7 +2034,7 @@ impl DeviceFnV1_0 {
                 if val.is_null() {
                     get_image_sparse_memory_requirements
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             queue_bind_sparse: unsafe {
@@ -2087,11 +2047,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkQueueBindSparse")
                 }
                 let val = _f(c"vkQueueBindSparse");
-                if val.is_null() {
-                    queue_bind_sparse
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { queue_bind_sparse } else { transmute(val) }
             },
             create_fence: unsafe {
                 unsafe extern "system" fn create_fence(
@@ -2103,7 +2059,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateFence")
                 }
                 let val = _f(c"vkCreateFence");
-                if val.is_null() { create_fence } else { ::core::mem::transmute(val) }
+                if val.is_null() { create_fence } else { transmute(val) }
             },
             destroy_fence: unsafe {
                 unsafe extern "system" fn destroy_fence(
@@ -2114,7 +2070,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyFence")
                 }
                 let val = _f(c"vkDestroyFence");
-                if val.is_null() { destroy_fence } else { ::core::mem::transmute(val) }
+                if val.is_null() { destroy_fence } else { transmute(val) }
             },
             reset_fences: unsafe {
                 unsafe extern "system" fn reset_fences(
@@ -2125,7 +2081,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkResetFences")
                 }
                 let val = _f(c"vkResetFences");
-                if val.is_null() { reset_fences } else { ::core::mem::transmute(val) }
+                if val.is_null() { reset_fences } else { transmute(val) }
             },
             get_fence_status: unsafe {
                 unsafe extern "system" fn get_fence_status(
@@ -2135,11 +2091,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkGetFenceStatus")
                 }
                 let val = _f(c"vkGetFenceStatus");
-                if val.is_null() {
-                    get_fence_status
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_fence_status } else { transmute(val) }
             },
             wait_for_fences: unsafe {
                 unsafe extern "system" fn wait_for_fences(
@@ -2152,7 +2104,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkWaitForFences")
                 }
                 let val = _f(c"vkWaitForFences");
-                if val.is_null() { wait_for_fences } else { ::core::mem::transmute(val) }
+                if val.is_null() { wait_for_fences } else { transmute(val) }
             },
             create_semaphore: unsafe {
                 unsafe extern "system" fn create_semaphore(
@@ -2164,11 +2116,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateSemaphore")
                 }
                 let val = _f(c"vkCreateSemaphore");
-                if val.is_null() {
-                    create_semaphore
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_semaphore } else { transmute(val) }
             },
             destroy_semaphore: unsafe {
                 unsafe extern "system" fn destroy_semaphore(
@@ -2179,11 +2127,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroySemaphore")
                 }
                 let val = _f(c"vkDestroySemaphore");
-                if val.is_null() {
-                    destroy_semaphore
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_semaphore } else { transmute(val) }
             },
             create_event: unsafe {
                 unsafe extern "system" fn create_event(
@@ -2195,7 +2139,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateEvent")
                 }
                 let val = _f(c"vkCreateEvent");
-                if val.is_null() { create_event } else { ::core::mem::transmute(val) }
+                if val.is_null() { create_event } else { transmute(val) }
             },
             destroy_event: unsafe {
                 unsafe extern "system" fn destroy_event(
@@ -2206,7 +2150,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyEvent")
                 }
                 let val = _f(c"vkDestroyEvent");
-                if val.is_null() { destroy_event } else { ::core::mem::transmute(val) }
+                if val.is_null() { destroy_event } else { transmute(val) }
             },
             get_event_status: unsafe {
                 unsafe extern "system" fn get_event_status(
@@ -2216,11 +2160,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkGetEventStatus")
                 }
                 let val = _f(c"vkGetEventStatus");
-                if val.is_null() {
-                    get_event_status
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_event_status } else { transmute(val) }
             },
             set_event: unsafe {
                 unsafe extern "system" fn set_event(
@@ -2230,7 +2170,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkSetEvent")
                 }
                 let val = _f(c"vkSetEvent");
-                if val.is_null() { set_event } else { ::core::mem::transmute(val) }
+                if val.is_null() { set_event } else { transmute(val) }
             },
             reset_event: unsafe {
                 unsafe extern "system" fn reset_event(
@@ -2240,7 +2180,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkResetEvent")
                 }
                 let val = _f(c"vkResetEvent");
-                if val.is_null() { reset_event } else { ::core::mem::transmute(val) }
+                if val.is_null() { reset_event } else { transmute(val) }
             },
             create_query_pool: unsafe {
                 unsafe extern "system" fn create_query_pool(
@@ -2252,11 +2192,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateQueryPool")
                 }
                 let val = _f(c"vkCreateQueryPool");
-                if val.is_null() {
-                    create_query_pool
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_query_pool } else { transmute(val) }
             },
             destroy_query_pool: unsafe {
                 unsafe extern "system" fn destroy_query_pool(
@@ -2267,11 +2203,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyQueryPool")
                 }
                 let val = _f(c"vkDestroyQueryPool");
-                if val.is_null() {
-                    destroy_query_pool
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_query_pool } else { transmute(val) }
             },
             get_query_pool_results: unsafe {
                 unsafe extern "system" fn get_query_pool_results(
@@ -2280,18 +2212,14 @@ impl DeviceFnV1_0 {
                     _: u32,
                     _: u32,
                     _: usize,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                     _: vk::DeviceSize,
                     _: vk::QueryResultFlags,
                 ) -> vk::Result {
                     panic!("unable to load vkGetQueryPoolResults")
                 }
                 let val = _f(c"vkGetQueryPoolResults");
-                if val.is_null() {
-                    get_query_pool_results
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_query_pool_results } else { transmute(val) }
             },
             create_buffer: unsafe {
                 unsafe extern "system" fn create_buffer(
@@ -2303,7 +2231,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateBuffer")
                 }
                 let val = _f(c"vkCreateBuffer");
-                if val.is_null() { create_buffer } else { ::core::mem::transmute(val) }
+                if val.is_null() { create_buffer } else { transmute(val) }
             },
             destroy_buffer: unsafe {
                 unsafe extern "system" fn destroy_buffer(
@@ -2314,7 +2242,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyBuffer")
                 }
                 let val = _f(c"vkDestroyBuffer");
-                if val.is_null() { destroy_buffer } else { ::core::mem::transmute(val) }
+                if val.is_null() { destroy_buffer } else { transmute(val) }
             },
             create_buffer_view: unsafe {
                 unsafe extern "system" fn create_buffer_view(
@@ -2326,11 +2254,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateBufferView")
                 }
                 let val = _f(c"vkCreateBufferView");
-                if val.is_null() {
-                    create_buffer_view
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_buffer_view } else { transmute(val) }
             },
             destroy_buffer_view: unsafe {
                 unsafe extern "system" fn destroy_buffer_view(
@@ -2341,11 +2265,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyBufferView")
                 }
                 let val = _f(c"vkDestroyBufferView");
-                if val.is_null() {
-                    destroy_buffer_view
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_buffer_view } else { transmute(val) }
             },
             create_image: unsafe {
                 unsafe extern "system" fn create_image(
@@ -2357,7 +2277,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateImage")
                 }
                 let val = _f(c"vkCreateImage");
-                if val.is_null() { create_image } else { ::core::mem::transmute(val) }
+                if val.is_null() { create_image } else { transmute(val) }
             },
             destroy_image: unsafe {
                 unsafe extern "system" fn destroy_image(
@@ -2368,7 +2288,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyImage")
                 }
                 let val = _f(c"vkDestroyImage");
-                if val.is_null() { destroy_image } else { ::core::mem::transmute(val) }
+                if val.is_null() { destroy_image } else { transmute(val) }
             },
             get_image_subresource_layout: unsafe {
                 unsafe extern "system" fn get_image_subresource_layout(
@@ -2380,11 +2300,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkGetImageSubresourceLayout")
                 }
                 let val = _f(c"vkGetImageSubresourceLayout");
-                if val.is_null() {
-                    get_image_subresource_layout
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_image_subresource_layout } else { transmute(val) }
             },
             create_image_view: unsafe {
                 unsafe extern "system" fn create_image_view(
@@ -2396,11 +2312,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateImageView")
                 }
                 let val = _f(c"vkCreateImageView");
-                if val.is_null() {
-                    create_image_view
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_image_view } else { transmute(val) }
             },
             destroy_image_view: unsafe {
                 unsafe extern "system" fn destroy_image_view(
@@ -2411,11 +2323,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyImageView")
                 }
                 let val = _f(c"vkDestroyImageView");
-                if val.is_null() {
-                    destroy_image_view
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_image_view } else { transmute(val) }
             },
             create_shader_module: unsafe {
                 unsafe extern "system" fn create_shader_module(
@@ -2427,11 +2335,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateShaderModule")
                 }
                 let val = _f(c"vkCreateShaderModule");
-                if val.is_null() {
-                    create_shader_module
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_shader_module } else { transmute(val) }
             },
             destroy_shader_module: unsafe {
                 unsafe extern "system" fn destroy_shader_module(
@@ -2442,11 +2346,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyShaderModule")
                 }
                 let val = _f(c"vkDestroyShaderModule");
-                if val.is_null() {
-                    destroy_shader_module
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_shader_module } else { transmute(val) }
             },
             create_pipeline_cache: unsafe {
                 unsafe extern "system" fn create_pipeline_cache(
@@ -2458,11 +2358,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreatePipelineCache")
                 }
                 let val = _f(c"vkCreatePipelineCache");
-                if val.is_null() {
-                    create_pipeline_cache
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_pipeline_cache } else { transmute(val) }
             },
             destroy_pipeline_cache: unsafe {
                 unsafe extern "system" fn destroy_pipeline_cache(
@@ -2473,27 +2369,19 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyPipelineCache")
                 }
                 let val = _f(c"vkDestroyPipelineCache");
-                if val.is_null() {
-                    destroy_pipeline_cache
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_pipeline_cache } else { transmute(val) }
             },
             get_pipeline_cache_data: unsafe {
                 unsafe extern "system" fn get_pipeline_cache_data(
                     _: vk::Device,
                     _: vk::PipelineCache,
                     _: *mut usize,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!("unable to load vkGetPipelineCacheData")
                 }
                 let val = _f(c"vkGetPipelineCacheData");
-                if val.is_null() {
-                    get_pipeline_cache_data
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_pipeline_cache_data } else { transmute(val) }
             },
             merge_pipeline_caches: unsafe {
                 unsafe extern "system" fn merge_pipeline_caches(
@@ -2505,11 +2393,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkMergePipelineCaches")
                 }
                 let val = _f(c"vkMergePipelineCaches");
-                if val.is_null() {
-                    merge_pipeline_caches
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { merge_pipeline_caches } else { transmute(val) }
             },
             create_graphics_pipelines: unsafe {
                 unsafe extern "system" fn create_graphics_pipelines(
@@ -2523,11 +2407,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateGraphicsPipelines")
                 }
                 let val = _f(c"vkCreateGraphicsPipelines");
-                if val.is_null() {
-                    create_graphics_pipelines
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_graphics_pipelines } else { transmute(val) }
             },
             create_compute_pipelines: unsafe {
                 unsafe extern "system" fn create_compute_pipelines(
@@ -2541,11 +2421,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateComputePipelines")
                 }
                 let val = _f(c"vkCreateComputePipelines");
-                if val.is_null() {
-                    create_compute_pipelines
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_compute_pipelines } else { transmute(val) }
             },
             destroy_pipeline: unsafe {
                 unsafe extern "system" fn destroy_pipeline(
@@ -2556,11 +2432,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyPipeline")
                 }
                 let val = _f(c"vkDestroyPipeline");
-                if val.is_null() {
-                    destroy_pipeline
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_pipeline } else { transmute(val) }
             },
             create_pipeline_layout: unsafe {
                 unsafe extern "system" fn create_pipeline_layout(
@@ -2572,11 +2444,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreatePipelineLayout")
                 }
                 let val = _f(c"vkCreatePipelineLayout");
-                if val.is_null() {
-                    create_pipeline_layout
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_pipeline_layout } else { transmute(val) }
             },
             destroy_pipeline_layout: unsafe {
                 unsafe extern "system" fn destroy_pipeline_layout(
@@ -2587,11 +2455,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyPipelineLayout")
                 }
                 let val = _f(c"vkDestroyPipelineLayout");
-                if val.is_null() {
-                    destroy_pipeline_layout
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_pipeline_layout } else { transmute(val) }
             },
             create_sampler: unsafe {
                 unsafe extern "system" fn create_sampler(
@@ -2603,7 +2467,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateSampler")
                 }
                 let val = _f(c"vkCreateSampler");
-                if val.is_null() { create_sampler } else { ::core::mem::transmute(val) }
+                if val.is_null() { create_sampler } else { transmute(val) }
             },
             destroy_sampler: unsafe {
                 unsafe extern "system" fn destroy_sampler(
@@ -2614,7 +2478,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroySampler")
                 }
                 let val = _f(c"vkDestroySampler");
-                if val.is_null() { destroy_sampler } else { ::core::mem::transmute(val) }
+                if val.is_null() { destroy_sampler } else { transmute(val) }
             },
             create_descriptor_set_layout: unsafe {
                 unsafe extern "system" fn create_descriptor_set_layout(
@@ -2626,11 +2490,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateDescriptorSetLayout")
                 }
                 let val = _f(c"vkCreateDescriptorSetLayout");
-                if val.is_null() {
-                    create_descriptor_set_layout
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_descriptor_set_layout } else { transmute(val) }
             },
             destroy_descriptor_set_layout: unsafe {
                 unsafe extern "system" fn destroy_descriptor_set_layout(
@@ -2644,7 +2504,7 @@ impl DeviceFnV1_0 {
                 if val.is_null() {
                     destroy_descriptor_set_layout
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             create_descriptor_pool: unsafe {
@@ -2657,11 +2517,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateDescriptorPool")
                 }
                 let val = _f(c"vkCreateDescriptorPool");
-                if val.is_null() {
-                    create_descriptor_pool
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_descriptor_pool } else { transmute(val) }
             },
             destroy_descriptor_pool: unsafe {
                 unsafe extern "system" fn destroy_descriptor_pool(
@@ -2672,11 +2528,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyDescriptorPool")
                 }
                 let val = _f(c"vkDestroyDescriptorPool");
-                if val.is_null() {
-                    destroy_descriptor_pool
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_descriptor_pool } else { transmute(val) }
             },
             reset_descriptor_pool: unsafe {
                 unsafe extern "system" fn reset_descriptor_pool(
@@ -2687,11 +2539,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkResetDescriptorPool")
                 }
                 let val = _f(c"vkResetDescriptorPool");
-                if val.is_null() {
-                    reset_descriptor_pool
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { reset_descriptor_pool } else { transmute(val) }
             },
             allocate_descriptor_sets: unsafe {
                 unsafe extern "system" fn allocate_descriptor_sets(
@@ -2702,11 +2550,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkAllocateDescriptorSets")
                 }
                 let val = _f(c"vkAllocateDescriptorSets");
-                if val.is_null() {
-                    allocate_descriptor_sets
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { allocate_descriptor_sets } else { transmute(val) }
             },
             free_descriptor_sets: unsafe {
                 unsafe extern "system" fn free_descriptor_sets(
@@ -2718,11 +2562,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkFreeDescriptorSets")
                 }
                 let val = _f(c"vkFreeDescriptorSets");
-                if val.is_null() {
-                    free_descriptor_sets
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { free_descriptor_sets } else { transmute(val) }
             },
             update_descriptor_sets: unsafe {
                 unsafe extern "system" fn update_descriptor_sets(
@@ -2735,11 +2575,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkUpdateDescriptorSets")
                 }
                 let val = _f(c"vkUpdateDescriptorSets");
-                if val.is_null() {
-                    update_descriptor_sets
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { update_descriptor_sets } else { transmute(val) }
             },
             create_framebuffer: unsafe {
                 unsafe extern "system" fn create_framebuffer(
@@ -2751,11 +2587,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateFramebuffer")
                 }
                 let val = _f(c"vkCreateFramebuffer");
-                if val.is_null() {
-                    create_framebuffer
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_framebuffer } else { transmute(val) }
             },
             destroy_framebuffer: unsafe {
                 unsafe extern "system" fn destroy_framebuffer(
@@ -2766,11 +2598,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyFramebuffer")
                 }
                 let val = _f(c"vkDestroyFramebuffer");
-                if val.is_null() {
-                    destroy_framebuffer
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_framebuffer } else { transmute(val) }
             },
             create_render_pass: unsafe {
                 unsafe extern "system" fn create_render_pass(
@@ -2782,11 +2610,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateRenderPass")
                 }
                 let val = _f(c"vkCreateRenderPass");
-                if val.is_null() {
-                    create_render_pass
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_render_pass } else { transmute(val) }
             },
             destroy_render_pass: unsafe {
                 unsafe extern "system" fn destroy_render_pass(
@@ -2797,11 +2621,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyRenderPass")
                 }
                 let val = _f(c"vkDestroyRenderPass");
-                if val.is_null() {
-                    destroy_render_pass
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_render_pass } else { transmute(val) }
             },
             get_render_area_granularity: unsafe {
                 unsafe extern "system" fn get_render_area_granularity(
@@ -2812,11 +2632,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkGetRenderAreaGranularity")
                 }
                 let val = _f(c"vkGetRenderAreaGranularity");
-                if val.is_null() {
-                    get_render_area_granularity
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_render_area_granularity } else { transmute(val) }
             },
             create_command_pool: unsafe {
                 unsafe extern "system" fn create_command_pool(
@@ -2828,11 +2644,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCreateCommandPool")
                 }
                 let val = _f(c"vkCreateCommandPool");
-                if val.is_null() {
-                    create_command_pool
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_command_pool } else { transmute(val) }
             },
             destroy_command_pool: unsafe {
                 unsafe extern "system" fn destroy_command_pool(
@@ -2843,11 +2655,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkDestroyCommandPool")
                 }
                 let val = _f(c"vkDestroyCommandPool");
-                if val.is_null() {
-                    destroy_command_pool
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_command_pool } else { transmute(val) }
             },
             reset_command_pool: unsafe {
                 unsafe extern "system" fn reset_command_pool(
@@ -2858,11 +2666,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkResetCommandPool")
                 }
                 let val = _f(c"vkResetCommandPool");
-                if val.is_null() {
-                    reset_command_pool
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { reset_command_pool } else { transmute(val) }
             },
             allocate_command_buffers: unsafe {
                 unsafe extern "system" fn allocate_command_buffers(
@@ -2873,11 +2677,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkAllocateCommandBuffers")
                 }
                 let val = _f(c"vkAllocateCommandBuffers");
-                if val.is_null() {
-                    allocate_command_buffers
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { allocate_command_buffers } else { transmute(val) }
             },
             free_command_buffers: unsafe {
                 unsafe extern "system" fn free_command_buffers(
@@ -2889,11 +2689,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkFreeCommandBuffers")
                 }
                 let val = _f(c"vkFreeCommandBuffers");
-                if val.is_null() {
-                    free_command_buffers
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { free_command_buffers } else { transmute(val) }
             },
             begin_command_buffer: unsafe {
                 unsafe extern "system" fn begin_command_buffer(
@@ -2903,11 +2699,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkBeginCommandBuffer")
                 }
                 let val = _f(c"vkBeginCommandBuffer");
-                if val.is_null() {
-                    begin_command_buffer
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { begin_command_buffer } else { transmute(val) }
             },
             end_command_buffer: unsafe {
                 unsafe extern "system" fn end_command_buffer(
@@ -2916,11 +2708,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkEndCommandBuffer")
                 }
                 let val = _f(c"vkEndCommandBuffer");
-                if val.is_null() {
-                    end_command_buffer
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { end_command_buffer } else { transmute(val) }
             },
             reset_command_buffer: unsafe {
                 unsafe extern "system" fn reset_command_buffer(
@@ -2930,11 +2718,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkResetCommandBuffer")
                 }
                 let val = _f(c"vkResetCommandBuffer");
-                if val.is_null() {
-                    reset_command_buffer
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { reset_command_buffer } else { transmute(val) }
             },
             cmd_bind_pipeline: unsafe {
                 unsafe extern "system" fn cmd_bind_pipeline(
@@ -2945,11 +2729,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdBindPipeline")
                 }
                 let val = _f(c"vkCmdBindPipeline");
-                if val.is_null() {
-                    cmd_bind_pipeline
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_bind_pipeline } else { transmute(val) }
             },
             cmd_set_viewport: unsafe {
                 unsafe extern "system" fn cmd_set_viewport(
@@ -2961,11 +2741,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdSetViewport")
                 }
                 let val = _f(c"vkCmdSetViewport");
-                if val.is_null() {
-                    cmd_set_viewport
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_viewport } else { transmute(val) }
             },
             cmd_set_scissor: unsafe {
                 unsafe extern "system" fn cmd_set_scissor(
@@ -2977,66 +2753,50 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdSetScissor")
                 }
                 let val = _f(c"vkCmdSetScissor");
-                if val.is_null() { cmd_set_scissor } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_set_scissor } else { transmute(val) }
             },
             cmd_set_line_width: unsafe {
                 unsafe extern "system" fn cmd_set_line_width(
                     _: vk::CommandBuffer,
-                    _: core::ffi::c_float,
+                    _: ffi::c_float,
                 ) {
                     panic!("unable to load vkCmdSetLineWidth")
                 }
                 let val = _f(c"vkCmdSetLineWidth");
-                if val.is_null() {
-                    cmd_set_line_width
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_line_width } else { transmute(val) }
             },
             cmd_set_depth_bias: unsafe {
                 unsafe extern "system" fn cmd_set_depth_bias(
                     _: vk::CommandBuffer,
-                    _: core::ffi::c_float,
-                    _: core::ffi::c_float,
-                    _: core::ffi::c_float,
+                    _: ffi::c_float,
+                    _: ffi::c_float,
+                    _: ffi::c_float,
                 ) {
                     panic!("unable to load vkCmdSetDepthBias")
                 }
                 let val = _f(c"vkCmdSetDepthBias");
-                if val.is_null() {
-                    cmd_set_depth_bias
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_depth_bias } else { transmute(val) }
             },
             cmd_set_blend_constants: unsafe {
                 unsafe extern "system" fn cmd_set_blend_constants(
                     _: vk::CommandBuffer,
-                    _: *const [core::ffi::c_float; 4 as _],
+                    _: *const [ffi::c_float; 4 as _],
                 ) {
                     panic!("unable to load vkCmdSetBlendConstants")
                 }
                 let val = _f(c"vkCmdSetBlendConstants");
-                if val.is_null() {
-                    cmd_set_blend_constants
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_blend_constants } else { transmute(val) }
             },
             cmd_set_depth_bounds: unsafe {
                 unsafe extern "system" fn cmd_set_depth_bounds(
                     _: vk::CommandBuffer,
-                    _: core::ffi::c_float,
-                    _: core::ffi::c_float,
+                    _: ffi::c_float,
+                    _: ffi::c_float,
                 ) {
                     panic!("unable to load vkCmdSetDepthBounds")
                 }
                 let val = _f(c"vkCmdSetDepthBounds");
-                if val.is_null() {
-                    cmd_set_depth_bounds
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_depth_bounds } else { transmute(val) }
             },
             cmd_set_stencil_compare_mask: unsafe {
                 unsafe extern "system" fn cmd_set_stencil_compare_mask(
@@ -3047,11 +2807,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdSetStencilCompareMask")
                 }
                 let val = _f(c"vkCmdSetStencilCompareMask");
-                if val.is_null() {
-                    cmd_set_stencil_compare_mask
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_stencil_compare_mask } else { transmute(val) }
             },
             cmd_set_stencil_write_mask: unsafe {
                 unsafe extern "system" fn cmd_set_stencil_write_mask(
@@ -3062,11 +2818,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdSetStencilWriteMask")
                 }
                 let val = _f(c"vkCmdSetStencilWriteMask");
-                if val.is_null() {
-                    cmd_set_stencil_write_mask
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_stencil_write_mask } else { transmute(val) }
             },
             cmd_set_stencil_reference: unsafe {
                 unsafe extern "system" fn cmd_set_stencil_reference(
@@ -3077,11 +2829,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdSetStencilReference")
                 }
                 let val = _f(c"vkCmdSetStencilReference");
-                if val.is_null() {
-                    cmd_set_stencil_reference
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_stencil_reference } else { transmute(val) }
             },
             cmd_bind_descriptor_sets: unsafe {
                 unsafe extern "system" fn cmd_bind_descriptor_sets(
@@ -3097,11 +2845,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdBindDescriptorSets")
                 }
                 let val = _f(c"vkCmdBindDescriptorSets");
-                if val.is_null() {
-                    cmd_bind_descriptor_sets
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_bind_descriptor_sets } else { transmute(val) }
             },
             cmd_bind_index_buffer: unsafe {
                 unsafe extern "system" fn cmd_bind_index_buffer(
@@ -3113,11 +2857,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdBindIndexBuffer")
                 }
                 let val = _f(c"vkCmdBindIndexBuffer");
-                if val.is_null() {
-                    cmd_bind_index_buffer
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_bind_index_buffer } else { transmute(val) }
             },
             cmd_bind_vertex_buffers: unsafe {
                 unsafe extern "system" fn cmd_bind_vertex_buffers(
@@ -3130,11 +2870,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdBindVertexBuffers")
                 }
                 let val = _f(c"vkCmdBindVertexBuffers");
-                if val.is_null() {
-                    cmd_bind_vertex_buffers
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_bind_vertex_buffers } else { transmute(val) }
             },
             cmd_draw: unsafe {
                 unsafe extern "system" fn cmd_draw(
@@ -3147,7 +2883,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdDraw")
                 }
                 let val = _f(c"vkCmdDraw");
-                if val.is_null() { cmd_draw } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_draw } else { transmute(val) }
             },
             cmd_draw_indexed: unsafe {
                 unsafe extern "system" fn cmd_draw_indexed(
@@ -3161,11 +2897,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdDrawIndexed")
                 }
                 let val = _f(c"vkCmdDrawIndexed");
-                if val.is_null() {
-                    cmd_draw_indexed
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_draw_indexed } else { transmute(val) }
             },
             cmd_draw_indirect: unsafe {
                 unsafe extern "system" fn cmd_draw_indirect(
@@ -3178,11 +2910,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdDrawIndirect")
                 }
                 let val = _f(c"vkCmdDrawIndirect");
-                if val.is_null() {
-                    cmd_draw_indirect
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_draw_indirect } else { transmute(val) }
             },
             cmd_draw_indexed_indirect: unsafe {
                 unsafe extern "system" fn cmd_draw_indexed_indirect(
@@ -3195,11 +2923,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdDrawIndexedIndirect")
                 }
                 let val = _f(c"vkCmdDrawIndexedIndirect");
-                if val.is_null() {
-                    cmd_draw_indexed_indirect
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_draw_indexed_indirect } else { transmute(val) }
             },
             cmd_dispatch: unsafe {
                 unsafe extern "system" fn cmd_dispatch(
@@ -3211,7 +2935,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdDispatch")
                 }
                 let val = _f(c"vkCmdDispatch");
-                if val.is_null() { cmd_dispatch } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_dispatch } else { transmute(val) }
             },
             cmd_dispatch_indirect: unsafe {
                 unsafe extern "system" fn cmd_dispatch_indirect(
@@ -3222,11 +2946,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdDispatchIndirect")
                 }
                 let val = _f(c"vkCmdDispatchIndirect");
-                if val.is_null() {
-                    cmd_dispatch_indirect
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_dispatch_indirect } else { transmute(val) }
             },
             cmd_copy_buffer: unsafe {
                 unsafe extern "system" fn cmd_copy_buffer(
@@ -3239,7 +2959,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdCopyBuffer")
                 }
                 let val = _f(c"vkCmdCopyBuffer");
-                if val.is_null() { cmd_copy_buffer } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_copy_buffer } else { transmute(val) }
             },
             cmd_copy_image: unsafe {
                 unsafe extern "system" fn cmd_copy_image(
@@ -3254,7 +2974,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdCopyImage")
                 }
                 let val = _f(c"vkCmdCopyImage");
-                if val.is_null() { cmd_copy_image } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_copy_image } else { transmute(val) }
             },
             cmd_blit_image: unsafe {
                 unsafe extern "system" fn cmd_blit_image(
@@ -3270,7 +2990,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdBlitImage")
                 }
                 let val = _f(c"vkCmdBlitImage");
-                if val.is_null() { cmd_blit_image } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_blit_image } else { transmute(val) }
             },
             cmd_copy_buffer_to_image: unsafe {
                 unsafe extern "system" fn cmd_copy_buffer_to_image(
@@ -3284,11 +3004,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdCopyBufferToImage")
                 }
                 let val = _f(c"vkCmdCopyBufferToImage");
-                if val.is_null() {
-                    cmd_copy_buffer_to_image
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_buffer_to_image } else { transmute(val) }
             },
             cmd_copy_image_to_buffer: unsafe {
                 unsafe extern "system" fn cmd_copy_image_to_buffer(
@@ -3302,11 +3018,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdCopyImageToBuffer")
                 }
                 let val = _f(c"vkCmdCopyImageToBuffer");
-                if val.is_null() {
-                    cmd_copy_image_to_buffer
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_image_to_buffer } else { transmute(val) }
             },
             cmd_update_buffer: unsafe {
                 unsafe extern "system" fn cmd_update_buffer(
@@ -3314,16 +3026,12 @@ impl DeviceFnV1_0 {
                     _: vk::Buffer,
                     _: vk::DeviceSize,
                     _: vk::DeviceSize,
-                    _: *const core::ffi::c_void,
+                    _: *const ffi::c_void,
                 ) {
                     panic!("unable to load vkCmdUpdateBuffer")
                 }
                 let val = _f(c"vkCmdUpdateBuffer");
-                if val.is_null() {
-                    cmd_update_buffer
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_update_buffer } else { transmute(val) }
             },
             cmd_fill_buffer: unsafe {
                 unsafe extern "system" fn cmd_fill_buffer(
@@ -3336,7 +3044,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdFillBuffer")
                 }
                 let val = _f(c"vkCmdFillBuffer");
-                if val.is_null() { cmd_fill_buffer } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_fill_buffer } else { transmute(val) }
             },
             cmd_clear_color_image: unsafe {
                 unsafe extern "system" fn cmd_clear_color_image(
@@ -3350,11 +3058,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdClearColorImage")
                 }
                 let val = _f(c"vkCmdClearColorImage");
-                if val.is_null() {
-                    cmd_clear_color_image
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_clear_color_image } else { transmute(val) }
             },
             cmd_clear_depth_stencil_image: unsafe {
                 unsafe extern "system" fn cmd_clear_depth_stencil_image(
@@ -3371,7 +3075,7 @@ impl DeviceFnV1_0 {
                 if val.is_null() {
                     cmd_clear_depth_stencil_image
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_clear_attachments: unsafe {
@@ -3385,11 +3089,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdClearAttachments")
                 }
                 let val = _f(c"vkCmdClearAttachments");
-                if val.is_null() {
-                    cmd_clear_attachments
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_clear_attachments } else { transmute(val) }
             },
             cmd_resolve_image: unsafe {
                 unsafe extern "system" fn cmd_resolve_image(
@@ -3404,11 +3104,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdResolveImage")
                 }
                 let val = _f(c"vkCmdResolveImage");
-                if val.is_null() {
-                    cmd_resolve_image
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_resolve_image } else { transmute(val) }
             },
             cmd_set_event: unsafe {
                 unsafe extern "system" fn cmd_set_event(
@@ -3419,7 +3115,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdSetEvent")
                 }
                 let val = _f(c"vkCmdSetEvent");
-                if val.is_null() { cmd_set_event } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_set_event } else { transmute(val) }
             },
             cmd_reset_event: unsafe {
                 unsafe extern "system" fn cmd_reset_event(
@@ -3430,7 +3126,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdResetEvent")
                 }
                 let val = _f(c"vkCmdResetEvent");
-                if val.is_null() { cmd_reset_event } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_reset_event } else { transmute(val) }
             },
             cmd_wait_events: unsafe {
                 unsafe extern "system" fn cmd_wait_events(
@@ -3449,7 +3145,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdWaitEvents")
                 }
                 let val = _f(c"vkCmdWaitEvents");
-                if val.is_null() { cmd_wait_events } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_wait_events } else { transmute(val) }
             },
             cmd_pipeline_barrier: unsafe {
                 unsafe extern "system" fn cmd_pipeline_barrier(
@@ -3467,11 +3163,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdPipelineBarrier")
                 }
                 let val = _f(c"vkCmdPipelineBarrier");
-                if val.is_null() {
-                    cmd_pipeline_barrier
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_pipeline_barrier } else { transmute(val) }
             },
             cmd_begin_query: unsafe {
                 unsafe extern "system" fn cmd_begin_query(
@@ -3483,7 +3175,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdBeginQuery")
                 }
                 let val = _f(c"vkCmdBeginQuery");
-                if val.is_null() { cmd_begin_query } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_begin_query } else { transmute(val) }
             },
             cmd_end_query: unsafe {
                 unsafe extern "system" fn cmd_end_query(
@@ -3494,7 +3186,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdEndQuery")
                 }
                 let val = _f(c"vkCmdEndQuery");
-                if val.is_null() { cmd_end_query } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_end_query } else { transmute(val) }
             },
             cmd_reset_query_pool: unsafe {
                 unsafe extern "system" fn cmd_reset_query_pool(
@@ -3506,11 +3198,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdResetQueryPool")
                 }
                 let val = _f(c"vkCmdResetQueryPool");
-                if val.is_null() {
-                    cmd_reset_query_pool
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_reset_query_pool } else { transmute(val) }
             },
             cmd_write_timestamp: unsafe {
                 unsafe extern "system" fn cmd_write_timestamp(
@@ -3522,11 +3210,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdWriteTimestamp")
                 }
                 let val = _f(c"vkCmdWriteTimestamp");
-                if val.is_null() {
-                    cmd_write_timestamp
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_write_timestamp } else { transmute(val) }
             },
             cmd_copy_query_pool_results: unsafe {
                 unsafe extern "system" fn cmd_copy_query_pool_results(
@@ -3542,11 +3226,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdCopyQueryPoolResults")
                 }
                 let val = _f(c"vkCmdCopyQueryPoolResults");
-                if val.is_null() {
-                    cmd_copy_query_pool_results
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_query_pool_results } else { transmute(val) }
             },
             cmd_push_constants: unsafe {
                 unsafe extern "system" fn cmd_push_constants(
@@ -3555,16 +3235,12 @@ impl DeviceFnV1_0 {
                     _: vk::ShaderStageFlags,
                     _: u32,
                     _: u32,
-                    _: *const core::ffi::c_void,
+                    _: *const ffi::c_void,
                 ) {
                     panic!("unable to load vkCmdPushConstants")
                 }
                 let val = _f(c"vkCmdPushConstants");
-                if val.is_null() {
-                    cmd_push_constants
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_push_constants } else { transmute(val) }
             },
             cmd_begin_render_pass: unsafe {
                 unsafe extern "system" fn cmd_begin_render_pass(
@@ -3575,11 +3251,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdBeginRenderPass")
                 }
                 let val = _f(c"vkCmdBeginRenderPass");
-                if val.is_null() {
-                    cmd_begin_render_pass
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_begin_render_pass } else { transmute(val) }
             },
             cmd_next_subpass: unsafe {
                 unsafe extern "system" fn cmd_next_subpass(
@@ -3589,22 +3261,14 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdNextSubpass")
                 }
                 let val = _f(c"vkCmdNextSubpass");
-                if val.is_null() {
-                    cmd_next_subpass
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_next_subpass } else { transmute(val) }
             },
             cmd_end_render_pass: unsafe {
                 unsafe extern "system" fn cmd_end_render_pass(_: vk::CommandBuffer) {
                     panic!("unable to load vkCmdEndRenderPass")
                 }
                 let val = _f(c"vkCmdEndRenderPass");
-                if val.is_null() {
-                    cmd_end_render_pass
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_end_render_pass } else { transmute(val) }
             },
             cmd_execute_commands: unsafe {
                 unsafe extern "system" fn cmd_execute_commands(
@@ -3615,11 +3279,7 @@ impl DeviceFnV1_0 {
                     panic!("unable to load vkCmdExecuteCommands")
                 }
                 let val = _f(c"vkCmdExecuteCommands");
-                if val.is_null() {
-                    cmd_execute_commands
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_execute_commands } else { transmute(val) }
             },
         }
     }
@@ -3642,7 +3302,7 @@ impl crate::Device {
             self.handle,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -3653,7 +3313,7 @@ impl crate::Device {
         queue_family_index: u32,
         queue_index: u32,
     ) -> vk::Queue {
-        let mut queue = core::mem::MaybeUninit::uninit();
+        let mut queue = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .get_device_queue)(
@@ -3694,7 +3354,7 @@ impl crate::Device {
         allocate_info: &vk::MemoryAllocateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::DeviceMemory> {
-        let mut memory = core::mem::MaybeUninit::uninit();
+        let mut memory = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .allocate_memory)(
@@ -3702,7 +3362,7 @@ impl crate::Device {
                 allocate_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 memory.as_mut_ptr(),
             )
@@ -3722,7 +3382,7 @@ impl crate::Device {
             memory,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -3734,8 +3394,8 @@ impl crate::Device {
         offset: vk::DeviceSize,
         size: vk::DeviceSize,
         flags: vk::MemoryMapFlags,
-    ) -> VkResult<*mut core::ffi::c_void> {
-        let mut data = core::mem::MaybeUninit::uninit();
+    ) -> VkResult<*mut ffi::c_void> {
+        let mut data = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .map_memory)(self.handle, memory, offset, size, flags, data.as_mut_ptr())
@@ -3782,7 +3442,7 @@ impl crate::Device {
         &self,
         memory: vk::DeviceMemory,
     ) -> vk::DeviceSize {
-        let mut committed_memory_in_bytes = core::mem::MaybeUninit::uninit();
+        let mut committed_memory_in_bytes = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .get_device_memory_commitment)(
@@ -3798,7 +3458,7 @@ impl crate::Device {
         &self,
         buffer: vk::Buffer,
     ) -> vk::MemoryRequirements {
-        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        let mut memory_requirements = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .get_buffer_memory_requirements)(
@@ -3827,7 +3487,7 @@ impl crate::Device {
         &self,
         image: vk::Image,
     ) -> vk::MemoryRequirements {
-        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        let mut memory_requirements = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .get_image_memory_requirements)(
@@ -3866,7 +3526,7 @@ impl crate::Device {
                     sparse_memory_requirement_count,
                     sparse_memory_requirements,
                 );
-                crate::vk::Result::SUCCESS
+                vk::Result::SUCCESS
             })
             .unwrap()
     }
@@ -3890,7 +3550,7 @@ impl crate::Device {
         create_info: &vk::FenceCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::Fence> {
-        let mut fence = core::mem::MaybeUninit::uninit();
+        let mut fence = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_fence)(
@@ -3898,7 +3558,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 fence.as_mut_ptr(),
             )
@@ -3918,7 +3578,7 @@ impl crate::Device {
             fence,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -3932,14 +3592,11 @@ impl crate::Device {
     }
     /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetFenceStatus.html>
     #[inline]
-    pub unsafe fn get_fence_status(
-        &self,
-        fence: crate::vk::Fence,
-    ) -> crate::VkResult<bool> {
+    pub unsafe fn get_fence_status(&self, fence: vk::Fence) -> VkResult<bool> {
         let err_code = (self.device_fn_1_0.get_fence_status)(self.handle(), fence);
         match err_code {
-            crate::vk::Result::SUCCESS => Ok(true),
-            crate::vk::Result::NOT_READY => Ok(false),
+            vk::Result::SUCCESS => Ok(true),
+            vk::Result::NOT_READY => Ok(false),
             _ => Err(err_code),
         }
     }
@@ -3969,7 +3626,7 @@ impl crate::Device {
         create_info: &vk::SemaphoreCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::Semaphore> {
-        let mut semaphore = core::mem::MaybeUninit::uninit();
+        let mut semaphore = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_semaphore)(
@@ -3977,7 +3634,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 semaphore.as_mut_ptr(),
             )
@@ -3997,7 +3654,7 @@ impl crate::Device {
             semaphore,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4008,7 +3665,7 @@ impl crate::Device {
         create_info: &vk::EventCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::Event> {
-        let mut event = core::mem::MaybeUninit::uninit();
+        let mut event = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_event)(
@@ -4016,7 +3673,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 event.as_mut_ptr(),
             )
@@ -4036,7 +3693,7 @@ impl crate::Device {
             event,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4062,7 +3719,7 @@ impl crate::Device {
         create_info: &vk::QueryPoolCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::QueryPool> {
-        let mut query_pool = core::mem::MaybeUninit::uninit();
+        let mut query_pool = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_query_pool)(
@@ -4070,7 +3727,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 query_pool.as_mut_ptr(),
             )
@@ -4090,7 +3747,7 @@ impl crate::Device {
             query_pool,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4126,7 +3783,7 @@ impl crate::Device {
         create_info: &vk::BufferCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::Buffer> {
-        let mut buffer = core::mem::MaybeUninit::uninit();
+        let mut buffer = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_buffer)(
@@ -4134,7 +3791,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 buffer.as_mut_ptr(),
             )
@@ -4154,7 +3811,7 @@ impl crate::Device {
             buffer,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4165,7 +3822,7 @@ impl crate::Device {
         create_info: &vk::BufferViewCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::BufferView> {
-        let mut view = core::mem::MaybeUninit::uninit();
+        let mut view = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_buffer_view)(
@@ -4173,7 +3830,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 view.as_mut_ptr(),
             )
@@ -4193,7 +3850,7 @@ impl crate::Device {
             buffer_view,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4204,7 +3861,7 @@ impl crate::Device {
         create_info: &vk::ImageCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::Image> {
-        let mut image = core::mem::MaybeUninit::uninit();
+        let mut image = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_image)(
@@ -4212,7 +3869,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 image.as_mut_ptr(),
             )
@@ -4232,7 +3889,7 @@ impl crate::Device {
             image,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4243,7 +3900,7 @@ impl crate::Device {
         image: vk::Image,
         subresource: &vk::ImageSubresource,
     ) -> vk::SubresourceLayout {
-        let mut layout = core::mem::MaybeUninit::uninit();
+        let mut layout = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .get_image_subresource_layout)(
@@ -4261,7 +3918,7 @@ impl crate::Device {
         create_info: &vk::ImageViewCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::ImageView> {
-        let mut view = core::mem::MaybeUninit::uninit();
+        let mut view = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_image_view)(
@@ -4269,7 +3926,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 view.as_mut_ptr(),
             )
@@ -4289,7 +3946,7 @@ impl crate::Device {
             image_view,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4300,7 +3957,7 @@ impl crate::Device {
         create_info: &vk::ShaderModuleCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::ShaderModule> {
-        let mut shader_module = core::mem::MaybeUninit::uninit();
+        let mut shader_module = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_shader_module)(
@@ -4308,7 +3965,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 shader_module.as_mut_ptr(),
             )
@@ -4328,7 +3985,7 @@ impl crate::Device {
             shader_module,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4339,7 +3996,7 @@ impl crate::Device {
         create_info: &vk::PipelineCacheCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::PipelineCache> {
-        let mut pipeline_cache = core::mem::MaybeUninit::uninit();
+        let mut pipeline_cache = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_pipeline_cache)(
@@ -4347,7 +4004,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 pipeline_cache.as_mut_ptr(),
             )
@@ -4367,7 +4024,7 @@ impl crate::Device {
             pipeline_cache,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4376,7 +4033,7 @@ impl crate::Device {
     pub unsafe fn get_pipeline_cache_data(
         &self,
         pipeline_cache: vk::PipelineCache,
-    ) -> crate::VkResult<Vec<core::ffi::c_void>> {
+    ) -> VkResult<Vec<ffi::c_void>> {
         crate::read_into_uninitialized_vector(|data_size, data| (self
             .device_fn_1_0
             .get_pipeline_cache_data)(self.handle, pipeline_cache, data_size, data))
@@ -4417,7 +4074,7 @@ impl crate::Device {
                 create_infos.as_ptr(),
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 pipelines.as_mut_ptr(),
             )
@@ -4442,7 +4099,7 @@ impl crate::Device {
                 create_infos.as_ptr(),
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 pipelines.as_mut_ptr(),
             )
@@ -4462,7 +4119,7 @@ impl crate::Device {
             pipeline,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4473,7 +4130,7 @@ impl crate::Device {
         create_info: &vk::PipelineLayoutCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::PipelineLayout> {
-        let mut pipeline_layout = core::mem::MaybeUninit::uninit();
+        let mut pipeline_layout = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_pipeline_layout)(
@@ -4481,7 +4138,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 pipeline_layout.as_mut_ptr(),
             )
@@ -4501,7 +4158,7 @@ impl crate::Device {
             pipeline_layout,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4512,7 +4169,7 @@ impl crate::Device {
         create_info: &vk::SamplerCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::Sampler> {
-        let mut sampler = core::mem::MaybeUninit::uninit();
+        let mut sampler = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_sampler)(
@@ -4520,7 +4177,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 sampler.as_mut_ptr(),
             )
@@ -4540,7 +4197,7 @@ impl crate::Device {
             sampler,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4551,7 +4208,7 @@ impl crate::Device {
         create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::DescriptorSetLayout> {
-        let mut set_layout = core::mem::MaybeUninit::uninit();
+        let mut set_layout = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_descriptor_set_layout)(
@@ -4559,7 +4216,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 set_layout.as_mut_ptr(),
             )
@@ -4579,7 +4236,7 @@ impl crate::Device {
             descriptor_set_layout,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4590,7 +4247,7 @@ impl crate::Device {
         create_info: &vk::DescriptorPoolCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::DescriptorPool> {
-        let mut descriptor_pool = core::mem::MaybeUninit::uninit();
+        let mut descriptor_pool = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_descriptor_pool)(
@@ -4598,7 +4255,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 descriptor_pool.as_mut_ptr(),
             )
@@ -4618,7 +4275,7 @@ impl crate::Device {
             descriptor_pool,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4638,7 +4295,7 @@ impl crate::Device {
         &self,
         allocate_info: &vk::DescriptorSetAllocateInfo<'_>,
     ) -> VkResult<vk::DescriptorSet> {
-        let mut descriptor_sets = core::mem::MaybeUninit::uninit();
+        let mut descriptor_sets = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .allocate_descriptor_sets)(
@@ -4689,7 +4346,7 @@ impl crate::Device {
         create_info: &vk::FramebufferCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::Framebuffer> {
-        let mut framebuffer = core::mem::MaybeUninit::uninit();
+        let mut framebuffer = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_framebuffer)(
@@ -4697,7 +4354,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 framebuffer.as_mut_ptr(),
             )
@@ -4717,7 +4374,7 @@ impl crate::Device {
             framebuffer,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4728,7 +4385,7 @@ impl crate::Device {
         create_info: &vk::RenderPassCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::RenderPass> {
-        let mut render_pass = core::mem::MaybeUninit::uninit();
+        let mut render_pass = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_render_pass)(
@@ -4736,7 +4393,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 render_pass.as_mut_ptr(),
             )
@@ -4756,7 +4413,7 @@ impl crate::Device {
             render_pass,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4766,7 +4423,7 @@ impl crate::Device {
         &self,
         render_pass: vk::RenderPass,
     ) -> vk::Extent2D {
-        let mut granularity = core::mem::MaybeUninit::uninit();
+        let mut granularity = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .get_render_area_granularity)(
@@ -4783,7 +4440,7 @@ impl crate::Device {
         create_info: &vk::CommandPoolCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::CommandPool> {
-        let mut command_pool = core::mem::MaybeUninit::uninit();
+        let mut command_pool = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .create_command_pool)(
@@ -4791,7 +4448,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 command_pool.as_mut_ptr(),
             )
@@ -4811,7 +4468,7 @@ impl crate::Device {
             command_pool,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -4831,7 +4488,7 @@ impl crate::Device {
         &self,
         allocate_info: &vk::CommandBufferAllocateInfo<'_>,
     ) -> VkResult<vk::CommandBuffer> {
-        let mut command_buffers = core::mem::MaybeUninit::uninit();
+        let mut command_buffers = MaybeUninit::uninit();
         (self
             .device_fn_1_0
             .allocate_command_buffers)(
@@ -4934,7 +4591,7 @@ impl crate::Device {
     pub unsafe fn cmd_set_line_width(
         &self,
         command_buffer: vk::CommandBuffer,
-        line_width: core::ffi::c_float,
+        line_width: ffi::c_float,
     ) {
         (self.device_fn_1_0.cmd_set_line_width)(command_buffer, line_width)
     }
@@ -4943,9 +4600,9 @@ impl crate::Device {
     pub unsafe fn cmd_set_depth_bias(
         &self,
         command_buffer: vk::CommandBuffer,
-        depth_bias_constant_factor: core::ffi::c_float,
-        depth_bias_clamp: core::ffi::c_float,
-        depth_bias_slope_factor: core::ffi::c_float,
+        depth_bias_constant_factor: ffi::c_float,
+        depth_bias_clamp: ffi::c_float,
+        depth_bias_slope_factor: ffi::c_float,
     ) {
         (self
             .device_fn_1_0
@@ -4961,7 +4618,7 @@ impl crate::Device {
     pub unsafe fn cmd_set_blend_constants(
         &self,
         command_buffer: vk::CommandBuffer,
-        blend_constants: &[core::ffi::c_float; 4 as _],
+        blend_constants: &[ffi::c_float; 4 as _],
     ) {
         (self.device_fn_1_0.cmd_set_blend_constants)(command_buffer, blend_constants)
     }
@@ -4970,8 +4627,8 @@ impl crate::Device {
     pub unsafe fn cmd_set_depth_bounds(
         &self,
         command_buffer: vk::CommandBuffer,
-        min_depth_bounds: core::ffi::c_float,
-        max_depth_bounds: core::ffi::c_float,
+        min_depth_bounds: ffi::c_float,
+        max_depth_bounds: ffi::c_float,
     ) {
         (self
             .device_fn_1_0
@@ -5608,12 +5265,16 @@ impl crate::Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
-    use core::ffi::CStr;
     use core::ffi;
-    use crate::Handle;
-    use core::fmt;
+    use core::mem::zeroed;
     #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
+    use core::fmt as fmtd;
+    use core::ffi::CStr;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::fmt;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
+    use crate::Handle;
     use core::ptr;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
@@ -5727,37 +5388,37 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct Viewport {
-        pub x: core::ffi::c_float,
-        pub y: core::ffi::c_float,
-        pub width: core::ffi::c_float,
-        pub height: core::ffi::c_float,
-        pub min_depth: core::ffi::c_float,
-        pub max_depth: core::ffi::c_float,
+        pub x: ffi::c_float,
+        pub y: ffi::c_float,
+        pub width: ffi::c_float,
+        pub height: ffi::c_float,
+        pub min_depth: ffi::c_float,
+        pub max_depth: ffi::c_float,
     }
     unsafe impl Send for Viewport {}
     unsafe impl Sync for Viewport {}
     impl Viewport {
-        pub fn x(mut self, x: core::ffi::c_float) -> Self {
+        pub fn x(mut self, x: ffi::c_float) -> Self {
             self.x = x;
             self
         }
-        pub fn y(mut self, y: core::ffi::c_float) -> Self {
+        pub fn y(mut self, y: ffi::c_float) -> Self {
             self.y = y;
             self
         }
-        pub fn width(mut self, width: core::ffi::c_float) -> Self {
+        pub fn width(mut self, width: ffi::c_float) -> Self {
             self.width = width;
             self
         }
-        pub fn height(mut self, height: core::ffi::c_float) -> Self {
+        pub fn height(mut self, height: ffi::c_float) -> Self {
             self.height = height;
             self
         }
-        pub fn min_depth(mut self, min_depth: core::ffi::c_float) -> Self {
+        pub fn min_depth(mut self, min_depth: ffi::c_float) -> Self {
             self.min_depth = min_depth;
             self
         }
-        pub fn max_depth(mut self, max_depth: core::ffi::c_float) -> Self {
+        pub fn max_depth(mut self, max_depth: ffi::c_float) -> Self {
             self.max_depth = max_depth;
             self
         }
@@ -5842,7 +5503,7 @@ pub(crate) mod items {
         pub vendor_id: u32,
         pub device_id: u32,
         pub device_type: vk::PhysicalDeviceType,
-        pub device_name: [core::ffi::c_char; vk::MAX_PHYSICAL_DEVICE_NAME_SIZE as _],
+        pub device_name: [ffi::c_char; vk::MAX_PHYSICAL_DEVICE_NAME_SIZE as _],
         pub pipeline_cache_uuid: [u8; vk::UUID_SIZE as _],
         pub limits: vk::PhysicalDeviceLimits,
         pub sparse_properties: vk::PhysicalDeviceSparseProperties,
@@ -5857,16 +5518,16 @@ pub(crate) mod items {
                 vendor_id: Default::default(),
                 device_id: Default::default(),
                 device_type: Default::default(),
-                device_name: unsafe { core::mem::zeroed() },
-                pipeline_cache_uuid: unsafe { core::mem::zeroed() },
+                device_name: unsafe { zeroed() },
+                pipeline_cache_uuid: unsafe { zeroed() },
                 limits: Default::default(),
                 sparse_properties: Default::default(),
             }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PhysicalDeviceProperties {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PhysicalDeviceProperties {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("PhysicalDeviceProperties")
                 .field("api_version", &self.api_version)
                 .field("driver_version", &self.driver_version)
@@ -5935,7 +5596,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExtensionProperties {
-        pub extension_name: [core::ffi::c_char; vk::MAX_EXTENSION_NAME_SIZE as _],
+        pub extension_name: [ffi::c_char; vk::MAX_EXTENSION_NAME_SIZE as _],
         pub spec_version: u32,
     }
     unsafe impl Send for ExtensionProperties {}
@@ -5943,14 +5604,14 @@ pub(crate) mod items {
     impl Default for ExtensionProperties {
         fn default() -> Self {
             Self {
-                extension_name: unsafe { core::mem::zeroed() },
+                extension_name: unsafe { zeroed() },
                 spec_version: Default::default(),
             }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ExtensionProperties {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ExtensionProperties {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("ExtensionProperties")
                 .field("extension_name", &self.extension_name_as_c_str())
                 .field("spec_version", &self.spec_version)
@@ -5978,26 +5639,26 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct LayerProperties {
-        pub layer_name: [core::ffi::c_char; vk::MAX_EXTENSION_NAME_SIZE as _],
+        pub layer_name: [ffi::c_char; vk::MAX_EXTENSION_NAME_SIZE as _],
         pub spec_version: u32,
         pub implementation_version: u32,
-        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub description: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
     }
     unsafe impl Send for LayerProperties {}
     unsafe impl Sync for LayerProperties {}
     impl Default for LayerProperties {
         fn default() -> Self {
             Self {
-                layer_name: unsafe { core::mem::zeroed() },
+                layer_name: unsafe { zeroed() },
                 spec_version: Default::default(),
                 implementation_version: Default::default(),
-                description: unsafe { core::mem::zeroed() },
+                description: unsafe { zeroed() },
             }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for LayerProperties {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for LayerProperties {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("LayerProperties")
                 .field("layer_name", &self.layer_name_as_c_str())
                 .field("spec_version", &self.spec_version)
@@ -6045,23 +5706,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ApplicationInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub p_application_name: *const core::ffi::c_char,
+        pub p_next: *const ffi::c_void,
+        pub p_application_name: *const ffi::c_char,
         pub application_version: u32,
-        pub p_engine_name: *const core::ffi::c_char,
+        pub p_engine_name: *const ffi::c_char,
         pub engine_version: u32,
         pub api_version: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ApplicationInfo<'_> {}
     unsafe impl Sync for ApplicationInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ApplicationInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ApplicationInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::APPLICATION_INFO;
     }
     impl<'a> Default for ApplicationInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::APPLICATION_INFO,
                 p_next: Default::default(),
                 p_application_name: Default::default(),
                 application_version: Default::default(),
@@ -6112,7 +5773,7 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct AllocationCallbacks<'a> {
-        pub p_user_data: *mut core::ffi::c_void,
+        pub p_user_data: *mut ffi::c_void,
         pub pfn_allocation: vk::PFN_vkAllocationFunction,
         pub pfn_reallocation: vk::PFN_vkReallocationFunction,
         pub pfn_free: vk::PFN_vkFreeFunction,
@@ -6123,7 +5784,7 @@ pub(crate) mod items {
     unsafe impl Send for AllocationCallbacks<'_> {}
     unsafe impl Sync for AllocationCallbacks<'_> {}
     impl<'a> AllocationCallbacks<'a> {
-        pub fn user_data(mut self, user_data: &'a mut core::ffi::c_void) -> Self {
+        pub fn user_data(mut self, user_data: &'a mut ffi::c_void) -> Self {
             self.p_user_data = user_data;
             self
         }
@@ -6165,22 +5826,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceQueueCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::DeviceQueueCreateFlags,
         pub queue_family_index: u32,
         pub queue_count: u32,
-        pub p_queue_priorities: *const core::ffi::c_float,
+        pub p_queue_priorities: *const ffi::c_float,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceQueueCreateInfo<'_> {}
     unsafe impl Sync for DeviceQueueCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceQueueCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceQueueCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_QUEUE_CREATE_INFO;
     }
     impl<'a> Default for DeviceQueueCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_QUEUE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 queue_family_index: Default::default(),
@@ -6199,10 +5860,7 @@ pub(crate) mod items {
             self.queue_family_index = queue_family_index;
             self
         }
-        pub fn queue_priorities(
-            mut self,
-            queue_priorities: &'a [core::ffi::c_float],
-        ) -> Self {
+        pub fn queue_priorities(mut self, queue_priorities: &'a [ffi::c_float]) -> Self {
             self.queue_count = queue_priorities.len() as _;
             self.p_queue_priorities = queue_priorities.as_ptr();
             self
@@ -6213,26 +5871,26 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::DeviceCreateFlags,
         pub queue_create_info_count: u32,
         pub p_queue_create_infos: *const vk::DeviceQueueCreateInfo<'a>,
         pub enabled_layer_count: u32,
-        pub pp_enabled_layer_names: *const *const core::ffi::c_char,
+        pub pp_enabled_layer_names: *const *const ffi::c_char,
         pub enabled_extension_count: u32,
-        pub pp_enabled_extension_names: *const *const core::ffi::c_char,
+        pub pp_enabled_extension_names: *const *const ffi::c_char,
         pub p_enabled_features: *const vk::PhysicalDeviceFeatures,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceCreateInfo<'_> {}
     unsafe impl Sync for DeviceCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_CREATE_INFO;
     }
     impl<'a> Default for DeviceCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 queue_create_info_count: Default::default(),
@@ -6261,7 +5919,7 @@ pub(crate) mod items {
         }
         pub fn enabled_layer_names(
             mut self,
-            enabled_layer_names: &'a [*const core::ffi::c_char],
+            enabled_layer_names: &'a [*const ffi::c_char],
         ) -> Self {
             self.enabled_layer_count = enabled_layer_names.len() as _;
             self.pp_enabled_layer_names = enabled_layer_names.as_ptr();
@@ -6269,7 +5927,7 @@ pub(crate) mod items {
         }
         pub fn enabled_extension_names(
             mut self,
-            enabled_extension_names: &'a [*const core::ffi::c_char],
+            enabled_extension_names: &'a [*const ffi::c_char],
         ) -> Self {
             self.enabled_extension_count = enabled_extension_names.len() as _;
             self.pp_enabled_extension_names = enabled_extension_names.as_ptr();
@@ -6288,24 +5946,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct InstanceCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::InstanceCreateFlags,
         pub p_application_info: *const vk::ApplicationInfo<'a>,
         pub enabled_layer_count: u32,
-        pub pp_enabled_layer_names: *const *const core::ffi::c_char,
+        pub pp_enabled_layer_names: *const *const ffi::c_char,
         pub enabled_extension_count: u32,
-        pub pp_enabled_extension_names: *const *const core::ffi::c_char,
+        pub pp_enabled_extension_names: *const *const ffi::c_char,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for InstanceCreateInfo<'_> {}
     unsafe impl Sync for InstanceCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for InstanceCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for InstanceCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::INSTANCE_CREATE_INFO;
     }
     impl<'a> Default for InstanceCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::INSTANCE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 p_application_info: Default::default(),
@@ -6331,7 +5989,7 @@ pub(crate) mod items {
         }
         pub fn enabled_layer_names(
             mut self,
-            enabled_layer_names: &'a [*const core::ffi::c_char],
+            enabled_layer_names: &'a [*const ffi::c_char],
         ) -> Self {
             self.enabled_layer_count = enabled_layer_names.len() as _;
             self.pp_enabled_layer_names = enabled_layer_names.as_ptr();
@@ -6339,7 +5997,7 @@ pub(crate) mod items {
         }
         pub fn enabled_extension_names(
             mut self,
-            enabled_extension_names: &'a [*const core::ffi::c_char],
+            enabled_extension_names: &'a [*const ffi::c_char],
         ) -> Self {
             self.enabled_extension_count = enabled_extension_names.len() as _;
             self.pp_enabled_extension_names = enabled_extension_names.as_ptr();
@@ -6393,9 +6051,9 @@ pub(crate) mod items {
         fn default() -> Self {
             Self {
                 memory_type_count: Default::default(),
-                memory_types: unsafe { core::mem::zeroed() },
+                memory_types: unsafe { zeroed() },
                 memory_heap_count: Default::default(),
-                memory_heaps: unsafe { core::mem::zeroed() },
+                memory_heaps: unsafe { zeroed() },
             }
         }
     }
@@ -6422,20 +6080,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MemoryAllocateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub allocation_size: vk::DeviceSize,
         pub memory_type_index: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryAllocateInfo<'_> {}
     unsafe impl Sync for MemoryAllocateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryAllocateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MemoryAllocateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_ALLOCATE_INFO;
     }
     impl<'a> Default for MemoryAllocateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MEMORY_ALLOCATE_INFO,
                 p_next: Default::default(),
                 allocation_size: Default::default(),
                 memory_type_index: Default::default(),
@@ -6596,7 +6254,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MappedMemoryRange<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub memory: vk::DeviceMemory,
         pub offset: vk::DeviceSize,
         pub size: vk::DeviceSize,
@@ -6604,13 +6262,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for MappedMemoryRange<'_> {}
     unsafe impl Sync for MappedMemoryRange<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for MappedMemoryRange<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MappedMemoryRange<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MAPPED_MEMORY_RANGE;
     }
     impl<'a> Default for MappedMemoryRange<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MAPPED_MEMORY_RANGE,
                 p_next: Default::default(),
                 memory: Default::default(),
                 offset: Default::default(),
@@ -6753,7 +6411,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSet<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub dst_set: vk::DescriptorSet,
         pub dst_binding: u32,
         pub dst_array_element: u32,
@@ -6766,13 +6424,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for WriteDescriptorSet<'_> {}
     unsafe impl Sync for WriteDescriptorSet<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for WriteDescriptorSet<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for WriteDescriptorSet<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WRITE_DESCRIPTOR_SET;
     }
     impl<'a> Default for WriteDescriptorSet<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::WRITE_DESCRIPTOR_SET,
                 p_next: Default::default(),
                 dst_set: Default::default(),
                 dst_binding: Default::default(),
@@ -6834,7 +6492,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CopyDescriptorSet<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_set: vk::DescriptorSet,
         pub src_binding: u32,
         pub src_array_element: u32,
@@ -6846,13 +6504,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for CopyDescriptorSet<'_> {}
     unsafe impl Sync for CopyDescriptorSet<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CopyDescriptorSet<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CopyDescriptorSet<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_DESCRIPTOR_SET;
     }
     impl<'a> Default for CopyDescriptorSet<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COPY_DESCRIPTOR_SET,
                 p_next: Default::default(),
                 src_set: Default::default(),
                 src_binding: Default::default(),
@@ -6900,7 +6558,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::BufferCreateFlags,
         pub size: vk::DeviceSize,
         pub usage: vk::BufferUsageFlags,
@@ -6911,13 +6569,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BufferCreateInfo<'_> {}
     unsafe impl Sync for BufferCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BufferCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_CREATE_INFO;
     }
     impl<'a> Default for BufferCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 size: Default::default(),
@@ -6957,7 +6615,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferViewCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::BufferViewCreateFlags,
         pub buffer: vk::Buffer,
         pub format: vk::Format,
@@ -6967,13 +6625,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BufferViewCreateInfo<'_> {}
     unsafe impl Sync for BufferViewCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BufferViewCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferViewCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_VIEW_CREATE_INFO;
     }
     impl<'a> Default for BufferViewCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_VIEW_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 buffer: Default::default(),
@@ -7098,20 +6756,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MemoryBarrier<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_access_mask: vk::AccessFlags,
         pub dst_access_mask: vk::AccessFlags,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryBarrier<'_> {}
     unsafe impl Sync for MemoryBarrier<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryBarrier<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MemoryBarrier<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_BARRIER;
     }
     impl<'a> Default for MemoryBarrier<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MEMORY_BARRIER,
                 p_next: Default::default(),
                 src_access_mask: Default::default(),
                 dst_access_mask: Default::default(),
@@ -7134,7 +6792,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferMemoryBarrier<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_access_mask: vk::AccessFlags,
         pub dst_access_mask: vk::AccessFlags,
         pub src_queue_family_index: u32,
@@ -7146,13 +6804,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BufferMemoryBarrier<'_> {}
     unsafe impl Sync for BufferMemoryBarrier<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BufferMemoryBarrier<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferMemoryBarrier<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_MEMORY_BARRIER;
     }
     impl<'a> Default for BufferMemoryBarrier<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_MEMORY_BARRIER,
                 p_next: Default::default(),
                 src_access_mask: Default::default(),
                 dst_access_mask: Default::default(),
@@ -7200,7 +6858,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageMemoryBarrier<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_access_mask: vk::AccessFlags,
         pub dst_access_mask: vk::AccessFlags,
         pub old_layout: vk::ImageLayout,
@@ -7213,13 +6871,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageMemoryBarrier<'_> {}
     unsafe impl Sync for ImageMemoryBarrier<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageMemoryBarrier<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageMemoryBarrier<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_MEMORY_BARRIER;
     }
     impl<'a> Default for ImageMemoryBarrier<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_MEMORY_BARRIER,
                 p_next: Default::default(),
                 src_access_mask: Default::default(),
                 dst_access_mask: Default::default(),
@@ -7275,7 +6933,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::ImageCreateFlags,
         pub image_type: vk::ImageType,
         pub format: vk::Format,
@@ -7293,13 +6951,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageCreateInfo<'_> {}
     unsafe impl Sync for ImageCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_CREATE_INFO;
     }
     impl<'a> Default for ImageCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 image_type: Default::default(),
@@ -7408,7 +7066,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageViewCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::ImageViewCreateFlags,
         pub image: vk::Image,
         pub view_type: vk::ImageViewType,
@@ -7419,13 +7077,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageViewCreateInfo<'_> {}
     unsafe impl Sync for ImageViewCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageViewCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_VIEW_CREATE_INFO;
     }
     impl<'a> Default for ImageViewCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_VIEW_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 image: Default::default(),
@@ -7634,7 +7292,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BindSparseInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub wait_semaphore_count: u32,
         pub p_wait_semaphores: *const vk::Semaphore,
         pub buffer_bind_count: u32,
@@ -7649,13 +7307,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BindSparseInfo<'_> {}
     unsafe impl Sync for BindSparseInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BindSparseInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BindSparseInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_SPARSE_INFO;
     }
     impl<'a> Default for BindSparseInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BIND_SPARSE_INFO,
                 p_next: Default::default(),
                 wait_semaphore_count: Default::default(),
                 p_wait_semaphores: Default::default(),
@@ -7765,9 +7423,9 @@ pub(crate) mod items {
         fn default() -> Self {
             Self {
                 src_subresource: Default::default(),
-                src_offsets: unsafe { core::mem::zeroed() },
+                src_offsets: unsafe { zeroed() },
                 dst_subresource: Default::default(),
-                dst_offsets: unsafe { core::mem::zeroed() },
+                dst_offsets: unsafe { zeroed() },
             }
         }
     }
@@ -7882,7 +7540,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ShaderModuleCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::ShaderModuleCreateFlags,
         pub code_size: usize,
         pub p_code: *const u32,
@@ -7890,17 +7548,17 @@ pub(crate) mod items {
     }
     unsafe impl Send for ShaderModuleCreateInfo<'_> {}
     unsafe impl Sync for ShaderModuleCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ShaderModuleCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ShaderModuleCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SHADER_MODULE_CREATE_INFO;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineShaderStageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineShaderStageCreateInfo<'_>>
     for ShaderModuleCreateInfo<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for ShaderModuleCreateInfo<'a> {}
     impl<'a> Default for ShaderModuleCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SHADER_MODULE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 code_size: Default::default(),
@@ -7964,7 +7622,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DescriptorSetLayoutCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::DescriptorSetLayoutCreateFlags,
         pub binding_count: u32,
         pub p_bindings: *const vk::DescriptorSetLayoutBinding<'a>,
@@ -7972,13 +7630,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for DescriptorSetLayoutCreateInfo<'_> {}
     unsafe impl Sync for DescriptorSetLayoutCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorSetLayoutCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DescriptorSetLayoutCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
     }
     impl<'a> Default for DescriptorSetLayoutCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DESCRIPTOR_SET_LAYOUT_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 binding_count: Default::default(),
@@ -8025,7 +7683,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DescriptorPoolCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::DescriptorPoolCreateFlags,
         pub max_sets: u32,
         pub pool_size_count: u32,
@@ -8034,13 +7692,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for DescriptorPoolCreateInfo<'_> {}
     unsafe impl Sync for DescriptorPoolCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorPoolCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DescriptorPoolCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DESCRIPTOR_POOL_CREATE_INFO;
     }
     impl<'a> Default for DescriptorPoolCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DESCRIPTOR_POOL_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 max_sets: Default::default(),
@@ -8070,7 +7728,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DescriptorSetAllocateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub descriptor_pool: vk::DescriptorPool,
         pub descriptor_set_count: u32,
         pub p_set_layouts: *const vk::DescriptorSetLayout,
@@ -8078,13 +7736,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for DescriptorSetAllocateInfo<'_> {}
     unsafe impl Sync for DescriptorSetAllocateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorSetAllocateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DescriptorSetAllocateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DESCRIPTOR_SET_ALLOCATE_INFO;
     }
     impl<'a> Default for DescriptorSetAllocateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DESCRIPTOR_SET_ALLOCATE_INFO,
                 p_next: Default::default(),
                 descriptor_pool: Default::default(),
                 descriptor_set_count: Default::default(),
@@ -8138,7 +7796,7 @@ pub(crate) mod items {
         pub map_entry_count: u32,
         pub p_map_entries: *const vk::SpecializationMapEntry,
         pub data_size: usize,
-        pub p_data: *const core::ffi::c_void,
+        pub p_data: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SpecializationInfo<'_> {}
@@ -8163,23 +7821,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineShaderStageCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineShaderStageCreateFlags,
         pub stage: vk::ShaderStageFlagBits,
         pub module: vk::ShaderModule,
-        pub p_name: *const core::ffi::c_char,
+        pub p_name: *const ffi::c_char,
         pub p_specialization_info: *const vk::SpecializationInfo<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineShaderStageCreateInfo<'_> {}
     unsafe impl Sync for PipelineShaderStageCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineShaderStageCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineShaderStageCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_SHADER_STAGE_CREATE_INFO;
     }
     impl<'a> Default for PipelineShaderStageCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_SHADER_STAGE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 stage: Default::default(),
@@ -8227,7 +7885,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ComputePipelineCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineCreateFlags,
         pub stage: vk::PipelineShaderStageCreateInfo<'a>,
         pub layout: vk::PipelineLayout,
@@ -8237,13 +7895,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ComputePipelineCreateInfo<'_> {}
     unsafe impl Sync for ComputePipelineCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ComputePipelineCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ComputePipelineCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMPUTE_PIPELINE_CREATE_INFO;
     }
     impl<'a> Default for ComputePipelineCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COMPUTE_PIPELINE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 stage: Default::default(),
@@ -8337,7 +7995,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineVertexInputStateCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineVertexInputStateCreateFlags,
         pub vertex_binding_description_count: u32,
         pub p_vertex_binding_descriptions: *const vk::VertexInputBindingDescription,
@@ -8347,14 +8005,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineVertexInputStateCreateInfo<'_> {}
     unsafe impl Sync for PipelineVertexInputStateCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PipelineVertexInputStateCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineVertexInputStateCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
     }
     impl<'a> Default for PipelineVertexInputStateCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 vertex_binding_description_count: Default::default(),
@@ -8395,7 +8052,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineInputAssemblyStateCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineInputAssemblyStateCreateFlags,
         pub topology: vk::PrimitiveTopology,
         pub primitive_restart_enable: vk::Bool32,
@@ -8403,14 +8060,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineInputAssemblyStateCreateInfo<'_> {}
     unsafe impl Sync for PipelineInputAssemblyStateCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PipelineInputAssemblyStateCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineInputAssemblyStateCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
     }
     impl<'a> Default for PipelineInputAssemblyStateCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 topology: Default::default(),
@@ -8444,21 +8100,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineTessellationStateCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineTessellationStateCreateFlags,
         pub patch_control_points: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineTessellationStateCreateInfo<'_> {}
     unsafe impl Sync for PipelineTessellationStateCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PipelineTessellationStateCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineTessellationStateCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_TESSELLATION_STATE_CREATE_INFO;
     }
     impl<'a> Default for PipelineTessellationStateCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_TESSELLATION_STATE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 patch_control_points: Default::default(),
@@ -8481,7 +8136,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineViewportStateCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineViewportStateCreateFlags,
         pub viewport_count: u32,
         pub p_viewports: *const vk::Viewport,
@@ -8491,13 +8146,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineViewportStateCreateInfo<'_> {}
     unsafe impl Sync for PipelineViewportStateCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineViewportStateCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineViewportStateCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_VIEWPORT_STATE_CREATE_INFO;
     }
     impl<'a> Default for PipelineViewportStateCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_VIEWPORT_STATE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 viewport_count: Default::default(),
@@ -8537,7 +8192,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationStateCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineRasterizationStateCreateFlags,
         pub depth_clamp_enable: vk::Bool32,
         pub rasterizer_discard_enable: vk::Bool32,
@@ -8545,22 +8200,21 @@ pub(crate) mod items {
         pub cull_mode: vk::CullModeFlags,
         pub front_face: vk::FrontFace,
         pub depth_bias_enable: vk::Bool32,
-        pub depth_bias_constant_factor: core::ffi::c_float,
-        pub depth_bias_clamp: core::ffi::c_float,
-        pub depth_bias_slope_factor: core::ffi::c_float,
-        pub line_width: core::ffi::c_float,
+        pub depth_bias_constant_factor: ffi::c_float,
+        pub depth_bias_clamp: ffi::c_float,
+        pub depth_bias_slope_factor: ffi::c_float,
+        pub line_width: ffi::c_float,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineRasterizationStateCreateInfo<'_> {}
     unsafe impl Sync for PipelineRasterizationStateCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PipelineRasterizationStateCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineRasterizationStateCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
     }
     impl<'a> Default for PipelineRasterizationStateCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_RASTERIZATION_STATE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 depth_clamp_enable: Default::default(),
@@ -8614,23 +8268,23 @@ pub(crate) mod items {
         }
         pub fn depth_bias_constant_factor(
             mut self,
-            depth_bias_constant_factor: core::ffi::c_float,
+            depth_bias_constant_factor: ffi::c_float,
         ) -> Self {
             self.depth_bias_constant_factor = depth_bias_constant_factor;
             self
         }
-        pub fn depth_bias_clamp(mut self, depth_bias_clamp: core::ffi::c_float) -> Self {
+        pub fn depth_bias_clamp(mut self, depth_bias_clamp: ffi::c_float) -> Self {
             self.depth_bias_clamp = depth_bias_clamp;
             self
         }
         pub fn depth_bias_slope_factor(
             mut self,
-            depth_bias_slope_factor: core::ffi::c_float,
+            depth_bias_slope_factor: ffi::c_float,
         ) -> Self {
             self.depth_bias_slope_factor = depth_bias_slope_factor;
             self
         }
-        pub fn line_width(mut self, line_width: core::ffi::c_float) -> Self {
+        pub fn line_width(mut self, line_width: ffi::c_float) -> Self {
             self.line_width = line_width;
             self
         }
@@ -8640,11 +8294,11 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineMultisampleStateCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineMultisampleStateCreateFlags,
         pub rasterization_samples: vk::SampleCountFlagBits,
         pub sample_shading_enable: vk::Bool32,
-        pub min_sample_shading: core::ffi::c_float,
+        pub min_sample_shading: ffi::c_float,
         pub p_sample_mask: *const vk::SampleMask,
         pub alpha_to_coverage_enable: vk::Bool32,
         pub alpha_to_one_enable: vk::Bool32,
@@ -8652,14 +8306,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineMultisampleStateCreateInfo<'_> {}
     unsafe impl Sync for PipelineMultisampleStateCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PipelineMultisampleStateCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineMultisampleStateCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
     }
     impl<'a> Default for PipelineMultisampleStateCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_MULTISAMPLE_STATE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 rasterization_samples: Default::default(),
@@ -8688,10 +8341,7 @@ pub(crate) mod items {
             self.sample_shading_enable = sample_shading_enable.into();
             self
         }
-        pub fn min_sample_shading(
-            mut self,
-            min_sample_shading: core::ffi::c_float,
-        ) -> Self {
+        pub fn min_sample_shading(mut self, min_sample_shading: ffi::c_float) -> Self {
             self.min_sample_shading = min_sample_shading;
             self
         }
@@ -8780,32 +8430,31 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineColorBlendStateCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineColorBlendStateCreateFlags,
         pub logic_op_enable: vk::Bool32,
         pub logic_op: vk::LogicOp,
         pub attachment_count: u32,
         pub p_attachments: *const vk::PipelineColorBlendAttachmentState,
-        pub blend_constants: [core::ffi::c_float; 4 as _],
+        pub blend_constants: [ffi::c_float; 4 as _],
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineColorBlendStateCreateInfo<'_> {}
     unsafe impl Sync for PipelineColorBlendStateCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PipelineColorBlendStateCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineColorBlendStateCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
     }
     impl<'a> Default for PipelineColorBlendStateCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_COLOR_BLEND_STATE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 logic_op_enable: Default::default(),
                 logic_op: Default::default(),
                 attachment_count: Default::default(),
                 p_attachments: Default::default(),
-                blend_constants: unsafe { core::mem::zeroed() },
+                blend_constants: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }
@@ -8833,7 +8482,7 @@ pub(crate) mod items {
         }
         pub fn blend_constants(
             mut self,
-            blend_constants: [core::ffi::c_float; 4 as _],
+            blend_constants: [ffi::c_float; 4 as _],
         ) -> Self {
             self.blend_constants = blend_constants;
             self
@@ -8844,7 +8493,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineDynamicStateCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineDynamicStateCreateFlags,
         pub dynamic_state_count: u32,
         pub p_dynamic_states: *const vk::DynamicState,
@@ -8852,13 +8501,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineDynamicStateCreateInfo<'_> {}
     unsafe impl Sync for PipelineDynamicStateCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineDynamicStateCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineDynamicStateCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_DYNAMIC_STATE_CREATE_INFO;
     }
     impl<'a> Default for PipelineDynamicStateCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_DYNAMIC_STATE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 dynamic_state_count: Default::default(),
@@ -8927,7 +8576,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineDepthStencilStateCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineDepthStencilStateCreateFlags,
         pub depth_test_enable: vk::Bool32,
         pub depth_write_enable: vk::Bool32,
@@ -8936,20 +8585,19 @@ pub(crate) mod items {
         pub stencil_test_enable: vk::Bool32,
         pub front: vk::StencilOpState,
         pub back: vk::StencilOpState,
-        pub min_depth_bounds: core::ffi::c_float,
-        pub max_depth_bounds: core::ffi::c_float,
+        pub min_depth_bounds: ffi::c_float,
+        pub max_depth_bounds: ffi::c_float,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineDepthStencilStateCreateInfo<'_> {}
     unsafe impl Sync for PipelineDepthStencilStateCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PipelineDepthStencilStateCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineDepthStencilStateCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
     }
     impl<'a> Default for PipelineDepthStencilStateCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 depth_test_enable: Default::default(),
@@ -9001,11 +8649,11 @@ pub(crate) mod items {
             self.back = back;
             self
         }
-        pub fn min_depth_bounds(mut self, min_depth_bounds: core::ffi::c_float) -> Self {
+        pub fn min_depth_bounds(mut self, min_depth_bounds: ffi::c_float) -> Self {
             self.min_depth_bounds = min_depth_bounds;
             self
         }
-        pub fn max_depth_bounds(mut self, max_depth_bounds: core::ffi::c_float) -> Self {
+        pub fn max_depth_bounds(mut self, max_depth_bounds: ffi::c_float) -> Self {
             self.max_depth_bounds = max_depth_bounds;
             self
         }
@@ -9015,7 +8663,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct GraphicsPipelineCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineCreateFlags,
         pub stage_count: u32,
         pub p_stages: *const vk::PipelineShaderStageCreateInfo<'a>,
@@ -9037,13 +8685,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for GraphicsPipelineCreateInfo<'_> {}
     unsafe impl Sync for GraphicsPipelineCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for GraphicsPipelineCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for GraphicsPipelineCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GRAPHICS_PIPELINE_CREATE_INFO;
     }
     impl<'a> Default for GraphicsPipelineCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::GRAPHICS_PIPELINE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 stage_count: Default::default(),
@@ -9171,21 +8819,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineCacheCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineCacheCreateFlags,
         pub initial_data_size: usize,
-        pub p_initial_data: *const core::ffi::c_void,
+        pub p_initial_data: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineCacheCreateInfo<'_> {}
     unsafe impl Sync for PipelineCacheCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineCacheCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineCacheCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_CACHE_CREATE_INFO;
     }
     impl<'a> Default for PipelineCacheCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_CACHE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 initial_data_size: Default::default(),
@@ -9224,7 +8872,7 @@ pub(crate) mod items {
                 header_version: Default::default(),
                 vendor_id: Default::default(),
                 device_id: Default::default(),
-                pipeline_cache_uuid: unsafe { core::mem::zeroed() },
+                pipeline_cache_uuid: unsafe { zeroed() },
             }
         }
     }
@@ -9285,7 +8933,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineLayoutCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineLayoutCreateFlags,
         pub set_layout_count: u32,
         pub p_set_layouts: *const vk::DescriptorSetLayout,
@@ -9295,27 +8943,26 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineLayoutCreateInfo<'_> {}
     unsafe impl Sync for PipelineLayoutCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineLayoutCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineLayoutCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_LAYOUT_CREATE_INFO;
     }
-    unsafe impl<'a> crate::Extends<vk::BindDescriptorSetsInfo<'_>>
+    unsafe impl<'a> Extends<vk::BindDescriptorSetsInfo<'_>>
     for PipelineLayoutCreateInfo<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PushConstantsInfo<'_>>
+    unsafe impl<'a> Extends<vk::PushConstantsInfo<'_>> for PipelineLayoutCreateInfo<'a> {}
+    unsafe impl<'a> Extends<vk::PushDescriptorSetInfo<'_>>
     for PipelineLayoutCreateInfo<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PushDescriptorSetInfo<'_>>
+    unsafe impl<'a> Extends<vk::PushDescriptorSetWithTemplateInfo<'_>>
     for PipelineLayoutCreateInfo<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PushDescriptorSetWithTemplateInfo<'_>>
+    unsafe impl<'a> Extends<vk::SetDescriptorBufferOffsetsInfoEXT<'_>>
     for PipelineLayoutCreateInfo<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SetDescriptorBufferOffsetsInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<'_>>
     for PipelineLayoutCreateInfo<'a> {}
-    unsafe impl<'a> crate::Extends<vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<'_>>
-    for PipelineLayoutCreateInfo<'a> {}
-    unsafe impl<'a> crate::Extends<vk::IndirectCommandsLayoutCreateInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::IndirectCommandsLayoutCreateInfoEXT<'_>>
     for PipelineLayoutCreateInfo<'a> {}
     impl<'a> Default for PipelineLayoutCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_LAYOUT_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 set_layout_count: Default::default(),
@@ -9353,7 +9000,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SamplerCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::SamplerCreateFlags,
         pub mag_filter: vk::Filter,
         pub min_filter: vk::Filter,
@@ -9361,26 +9008,26 @@ pub(crate) mod items {
         pub address_mode_u: vk::SamplerAddressMode,
         pub address_mode_v: vk::SamplerAddressMode,
         pub address_mode_w: vk::SamplerAddressMode,
-        pub mip_lod_bias: core::ffi::c_float,
+        pub mip_lod_bias: ffi::c_float,
         pub anisotropy_enable: vk::Bool32,
-        pub max_anisotropy: core::ffi::c_float,
+        pub max_anisotropy: ffi::c_float,
         pub compare_enable: vk::Bool32,
         pub compare_op: vk::CompareOp,
-        pub min_lod: core::ffi::c_float,
-        pub max_lod: core::ffi::c_float,
+        pub min_lod: ffi::c_float,
+        pub max_lod: ffi::c_float,
         pub border_color: vk::BorderColor,
         pub unnormalized_coordinates: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SamplerCreateInfo<'_> {}
     unsafe impl Sync for SamplerCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SamplerCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SamplerCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SAMPLER_CREATE_INFO;
     }
     impl<'a> Default for SamplerCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SAMPLER_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 mag_filter: Default::default(),
@@ -9431,7 +9078,7 @@ pub(crate) mod items {
             self.address_mode_w = address_mode_w;
             self
         }
-        pub fn mip_lod_bias(mut self, mip_lod_bias: core::ffi::c_float) -> Self {
+        pub fn mip_lod_bias(mut self, mip_lod_bias: ffi::c_float) -> Self {
             self.mip_lod_bias = mip_lod_bias;
             self
         }
@@ -9439,7 +9086,7 @@ pub(crate) mod items {
             self.anisotropy_enable = anisotropy_enable.into();
             self
         }
-        pub fn max_anisotropy(mut self, max_anisotropy: core::ffi::c_float) -> Self {
+        pub fn max_anisotropy(mut self, max_anisotropy: ffi::c_float) -> Self {
             self.max_anisotropy = max_anisotropy;
             self
         }
@@ -9451,11 +9098,11 @@ pub(crate) mod items {
             self.compare_op = compare_op;
             self
         }
-        pub fn min_lod(mut self, min_lod: core::ffi::c_float) -> Self {
+        pub fn min_lod(mut self, min_lod: ffi::c_float) -> Self {
             self.min_lod = min_lod;
             self
         }
-        pub fn max_lod(mut self, max_lod: core::ffi::c_float) -> Self {
+        pub fn max_lod(mut self, max_lod: ffi::c_float) -> Self {
             self.max_lod = max_lod;
             self
         }
@@ -9476,20 +9123,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CommandPoolCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::CommandPoolCreateFlags,
         pub queue_family_index: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CommandPoolCreateInfo<'_> {}
     unsafe impl Sync for CommandPoolCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CommandPoolCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CommandPoolCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMMAND_POOL_CREATE_INFO;
     }
     impl<'a> Default for CommandPoolCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COMMAND_POOL_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 queue_family_index: Default::default(),
@@ -9512,7 +9159,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CommandBufferAllocateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub command_pool: vk::CommandPool,
         pub level: vk::CommandBufferLevel,
         pub command_buffer_count: u32,
@@ -9520,13 +9167,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for CommandBufferAllocateInfo<'_> {}
     unsafe impl Sync for CommandBufferAllocateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CommandBufferAllocateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CommandBufferAllocateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMMAND_BUFFER_ALLOCATE_INFO;
     }
     impl<'a> Default for CommandBufferAllocateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COMMAND_BUFFER_ALLOCATE_INFO,
                 p_next: Default::default(),
                 command_pool: Default::default(),
                 level: Default::default(),
@@ -9554,7 +9201,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CommandBufferInheritanceInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub render_pass: vk::RenderPass,
         pub subpass: u32,
         pub framebuffer: vk::Framebuffer,
@@ -9565,13 +9212,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for CommandBufferInheritanceInfo<'_> {}
     unsafe impl Sync for CommandBufferInheritanceInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CommandBufferInheritanceInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CommandBufferInheritanceInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMMAND_BUFFER_INHERITANCE_INFO;
     }
     impl<'a> Default for CommandBufferInheritanceInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COMMAND_BUFFER_INHERITANCE_INFO,
                 p_next: Default::default(),
                 render_pass: Default::default(),
                 subpass: Default::default(),
@@ -9617,20 +9264,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CommandBufferBeginInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::CommandBufferUsageFlags,
         pub p_inheritance_info: *const vk::CommandBufferInheritanceInfo<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CommandBufferBeginInfo<'_> {}
     unsafe impl Sync for CommandBufferBeginInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CommandBufferBeginInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CommandBufferBeginInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMMAND_BUFFER_BEGIN_INFO;
     }
     impl<'a> Default for CommandBufferBeginInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COMMAND_BUFFER_BEGIN_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 p_inheritance_info: Default::default(),
@@ -9656,7 +9303,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderPassBeginInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub render_pass: vk::RenderPass,
         pub framebuffer: vk::Framebuffer,
         pub render_area: vk::Rect2D,
@@ -9666,13 +9313,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for RenderPassBeginInfo<'_> {}
     unsafe impl Sync for RenderPassBeginInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassBeginInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RenderPassBeginInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_BEGIN_INFO;
     }
     impl<'a> Default for RenderPassBeginInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDER_PASS_BEGIN_INFO,
                 p_next: Default::default(),
                 render_pass: Default::default(),
                 framebuffer: Default::default(),
@@ -9706,13 +9353,13 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct ClearDepthStencilValue {
-        pub depth: core::ffi::c_float,
+        pub depth: ffi::c_float,
         pub stencil: u32,
     }
     unsafe impl Send for ClearDepthStencilValue {}
     unsafe impl Sync for ClearDepthStencilValue {}
     impl ClearDepthStencilValue {
-        pub fn depth(mut self, depth: core::ffi::c_float) -> Self {
+        pub fn depth(mut self, depth: ffi::c_float) -> Self {
             self.depth = depth;
             self
         }
@@ -9940,7 +9587,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderPassCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::RenderPassCreateFlags,
         pub attachment_count: u32,
         pub p_attachments: *const vk::AttachmentDescription,
@@ -9952,13 +9599,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for RenderPassCreateInfo<'_> {}
     unsafe impl Sync for RenderPassCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RenderPassCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_CREATE_INFO;
     }
     impl<'a> Default for RenderPassCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDER_PASS_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 attachment_count: Default::default(),
@@ -10003,19 +9650,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct EventCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::EventCreateFlags,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for EventCreateInfo<'_> {}
     unsafe impl Sync for EventCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for EventCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for EventCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EVENT_CREATE_INFO;
     }
     impl<'a> Default for EventCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EVENT_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 _marker: PhantomData,
@@ -10033,19 +9680,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct FenceCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::FenceCreateFlags,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for FenceCreateInfo<'_> {}
     unsafe impl Sync for FenceCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for FenceCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for FenceCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FENCE_CREATE_INFO;
     }
     impl<'a> Default for FenceCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::FENCE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 _marker: PhantomData,
@@ -10543,11 +10190,11 @@ pub(crate) mod items {
         pub mipmap_precision_bits: u32,
         pub max_draw_indexed_index_value: u32,
         pub max_draw_indirect_count: u32,
-        pub max_sampler_lod_bias: core::ffi::c_float,
-        pub max_sampler_anisotropy: core::ffi::c_float,
+        pub max_sampler_lod_bias: ffi::c_float,
+        pub max_sampler_anisotropy: ffi::c_float,
         pub max_viewports: u32,
         pub max_viewport_dimensions: [u32; 2 as _],
-        pub viewport_bounds_range: [core::ffi::c_float; 2 as _],
+        pub viewport_bounds_range: [ffi::c_float; 2 as _],
         pub viewport_sub_pixel_bits: u32,
         pub min_memory_map_alignment: usize,
         pub min_texel_buffer_offset_alignment: vk::DeviceSize,
@@ -10557,8 +10204,8 @@ pub(crate) mod items {
         pub max_texel_offset: u32,
         pub min_texel_gather_offset: i32,
         pub max_texel_gather_offset: u32,
-        pub min_interpolation_offset: core::ffi::c_float,
-        pub max_interpolation_offset: core::ffi::c_float,
+        pub min_interpolation_offset: ffi::c_float,
+        pub max_interpolation_offset: ffi::c_float,
         pub sub_pixel_interpolation_offset_bits: u32,
         pub max_framebuffer_width: u32,
         pub max_framebuffer_height: u32,
@@ -10575,15 +10222,15 @@ pub(crate) mod items {
         pub storage_image_sample_counts: vk::SampleCountFlags,
         pub max_sample_mask_words: u32,
         pub timestamp_compute_and_graphics: vk::Bool32,
-        pub timestamp_period: core::ffi::c_float,
+        pub timestamp_period: ffi::c_float,
         pub max_clip_distances: u32,
         pub max_cull_distances: u32,
         pub max_combined_clip_and_cull_distances: u32,
         pub discrete_queue_priorities: u32,
-        pub point_size_range: [core::ffi::c_float; 2 as _],
-        pub line_width_range: [core::ffi::c_float; 2 as _],
-        pub point_size_granularity: core::ffi::c_float,
-        pub line_width_granularity: core::ffi::c_float,
+        pub point_size_range: [ffi::c_float; 2 as _],
+        pub line_width_range: [ffi::c_float; 2 as _],
+        pub point_size_granularity: ffi::c_float,
+        pub line_width_granularity: ffi::c_float,
         pub strict_lines: vk::Bool32,
         pub standard_sample_locations: vk::Bool32,
         pub optimal_buffer_copy_offset_alignment: vk::DeviceSize,
@@ -10647,9 +10294,9 @@ pub(crate) mod items {
                 max_fragment_dual_src_attachments: Default::default(),
                 max_fragment_combined_output_resources: Default::default(),
                 max_compute_shared_memory_size: Default::default(),
-                max_compute_work_group_count: unsafe { core::mem::zeroed() },
+                max_compute_work_group_count: unsafe { zeroed() },
                 max_compute_work_group_invocations: Default::default(),
-                max_compute_work_group_size: unsafe { core::mem::zeroed() },
+                max_compute_work_group_size: unsafe { zeroed() },
                 sub_pixel_precision_bits: Default::default(),
                 sub_texel_precision_bits: Default::default(),
                 mipmap_precision_bits: Default::default(),
@@ -10658,8 +10305,8 @@ pub(crate) mod items {
                 max_sampler_lod_bias: Default::default(),
                 max_sampler_anisotropy: Default::default(),
                 max_viewports: Default::default(),
-                max_viewport_dimensions: unsafe { core::mem::zeroed() },
-                viewport_bounds_range: unsafe { core::mem::zeroed() },
+                max_viewport_dimensions: unsafe { zeroed() },
+                viewport_bounds_range: unsafe { zeroed() },
                 viewport_sub_pixel_bits: Default::default(),
                 min_memory_map_alignment: Default::default(),
                 min_texel_buffer_offset_alignment: Default::default(),
@@ -10692,8 +10339,8 @@ pub(crate) mod items {
                 max_cull_distances: Default::default(),
                 max_combined_clip_and_cull_distances: Default::default(),
                 discrete_queue_priorities: Default::default(),
-                point_size_range: unsafe { core::mem::zeroed() },
-                line_width_range: unsafe { core::mem::zeroed() },
+                point_size_range: unsafe { zeroed() },
+                line_width_range: unsafe { zeroed() },
                 point_size_granularity: Default::default(),
                 line_width_granularity: Default::default(),
                 strict_lines: Default::default(),
@@ -11103,14 +10750,14 @@ pub(crate) mod items {
         }
         pub fn max_sampler_lod_bias(
             mut self,
-            max_sampler_lod_bias: core::ffi::c_float,
+            max_sampler_lod_bias: ffi::c_float,
         ) -> Self {
             self.max_sampler_lod_bias = max_sampler_lod_bias;
             self
         }
         pub fn max_sampler_anisotropy(
             mut self,
-            max_sampler_anisotropy: core::ffi::c_float,
+            max_sampler_anisotropy: ffi::c_float,
         ) -> Self {
             self.max_sampler_anisotropy = max_sampler_anisotropy;
             self
@@ -11128,7 +10775,7 @@ pub(crate) mod items {
         }
         pub fn viewport_bounds_range(
             mut self,
-            viewport_bounds_range: [core::ffi::c_float; 2 as _],
+            viewport_bounds_range: [ffi::c_float; 2 as _],
         ) -> Self {
             self.viewport_bounds_range = viewport_bounds_range;
             self
@@ -11183,14 +10830,14 @@ pub(crate) mod items {
         }
         pub fn min_interpolation_offset(
             mut self,
-            min_interpolation_offset: core::ffi::c_float,
+            min_interpolation_offset: ffi::c_float,
         ) -> Self {
             self.min_interpolation_offset = min_interpolation_offset;
             self
         }
         pub fn max_interpolation_offset(
             mut self,
-            max_interpolation_offset: core::ffi::c_float,
+            max_interpolation_offset: ffi::c_float,
         ) -> Self {
             self.max_interpolation_offset = max_interpolation_offset;
             self
@@ -11292,7 +10939,7 @@ pub(crate) mod items {
             self.timestamp_compute_and_graphics = timestamp_compute_and_graphics.into();
             self
         }
-        pub fn timestamp_period(mut self, timestamp_period: core::ffi::c_float) -> Self {
+        pub fn timestamp_period(mut self, timestamp_period: ffi::c_float) -> Self {
             self.timestamp_period = timestamp_period;
             self
         }
@@ -11320,28 +10967,28 @@ pub(crate) mod items {
         }
         pub fn point_size_range(
             mut self,
-            point_size_range: [core::ffi::c_float; 2 as _],
+            point_size_range: [ffi::c_float; 2 as _],
         ) -> Self {
             self.point_size_range = point_size_range;
             self
         }
         pub fn line_width_range(
             mut self,
-            line_width_range: [core::ffi::c_float; 2 as _],
+            line_width_range: [ffi::c_float; 2 as _],
         ) -> Self {
             self.line_width_range = line_width_range;
             self
         }
         pub fn point_size_granularity(
             mut self,
-            point_size_granularity: core::ffi::c_float,
+            point_size_granularity: ffi::c_float,
         ) -> Self {
             self.point_size_granularity = point_size_granularity;
             self
         }
         pub fn line_width_granularity(
             mut self,
-            line_width_granularity: core::ffi::c_float,
+            line_width_granularity: ffi::c_float,
         ) -> Self {
             self.line_width_granularity = line_width_granularity;
             self
@@ -11384,19 +11031,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SemaphoreCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::SemaphoreCreateFlags,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SemaphoreCreateInfo<'_> {}
     unsafe impl Sync for SemaphoreCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SemaphoreCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SEMAPHORE_CREATE_INFO;
     }
     impl<'a> Default for SemaphoreCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SEMAPHORE_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 _marker: PhantomData,
@@ -11414,7 +11061,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct QueryPoolCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::QueryPoolCreateFlags,
         pub query_type: vk::QueryType,
         pub query_count: u32,
@@ -11423,13 +11070,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for QueryPoolCreateInfo<'_> {}
     unsafe impl Sync for QueryPoolCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for QueryPoolCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for QueryPoolCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUERY_POOL_CREATE_INFO;
     }
     impl<'a> Default for QueryPoolCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::QUERY_POOL_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 query_type: Default::default(),
@@ -11465,7 +11112,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct FramebufferCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::FramebufferCreateFlags,
         pub render_pass: vk::RenderPass,
         pub attachment_count: u32,
@@ -11477,13 +11124,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for FramebufferCreateInfo<'_> {}
     unsafe impl Sync for FramebufferCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for FramebufferCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for FramebufferCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FRAMEBUFFER_CREATE_INFO;
     }
     impl<'a> Default for FramebufferCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::FRAMEBUFFER_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 render_pass: Default::default(),
@@ -11619,7 +11266,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SubmitInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub wait_semaphore_count: u32,
         pub p_wait_semaphores: *const vk::Semaphore,
         pub p_wait_dst_stage_mask: *const vk::PipelineStageFlags,
@@ -11631,13 +11278,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for SubmitInfo<'_> {}
     unsafe impl Sync for SubmitInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SubmitInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SubmitInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SUBMIT_INFO;
     }
     impl<'a> Default for SubmitInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SUBMIT_INFO,
                 p_next: Default::default(),
                 wait_semaphore_count: Default::default(),
                 p_wait_semaphores: Default::default(),
@@ -11684,18 +11331,18 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union ClearColorValue {
-        pub float32: [core::ffi::c_float; 4 as _],
+        pub float32: [ffi::c_float; 4 as _],
         pub int32: [i32; 4 as _],
         pub uint32: [u32; 4 as _],
     }
     impl Default for ClearColorValue {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClearColorValue {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClearColorValue {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "ClearColorValue")
         }
     }
@@ -11707,12 +11354,12 @@ pub(crate) mod items {
     }
     impl Default for ClearValue {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClearValue {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClearValue {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "ClearValue")
         }
     }
@@ -11720,8 +11367,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ImageLayout(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageLayout {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageLayout {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::UNDEFINED => Some("UNDEFINED"),
                 Self::GENERAL => Some("GENERAL"),
@@ -11775,7 +11422,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -11793,8 +11440,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AttachmentLoadOp(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AttachmentLoadOp {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AttachmentLoadOp {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::LOAD => Some("LOAD"),
                 Self::CLEAR => Some("CLEAR"),
@@ -11804,7 +11451,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -11822,8 +11469,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AttachmentStoreOp(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AttachmentStoreOp {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AttachmentStoreOp {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::STORE => Some("STORE"),
                 Self::DONT_CARE => Some("DONT_CARE"),
@@ -11832,7 +11479,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -11850,8 +11497,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ImageType(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageType {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::TYPE_1D => Some("TYPE_1D"),
                 Self::TYPE_2D => Some("TYPE_2D"),
@@ -11860,7 +11507,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -11878,8 +11525,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ImageTiling(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageTiling {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageTiling {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::OPTIMAL => Some("OPTIMAL"),
                 Self::LINEAR => Some("LINEAR"),
@@ -11888,7 +11535,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -11906,8 +11553,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ImageViewType(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageViewType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageViewType {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::TYPE_1D => Some("TYPE_1D"),
                 Self::TYPE_2D => Some("TYPE_2D"),
@@ -11920,7 +11567,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -11938,8 +11585,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct CommandBufferLevel(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CommandBufferLevel {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CommandBufferLevel {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::PRIMARY => Some("PRIMARY"),
                 Self::SECONDARY => Some("SECONDARY"),
@@ -11947,7 +11594,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -11965,8 +11612,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ComponentSwizzle(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ComponentSwizzle {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ComponentSwizzle {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::IDENTITY => Some("IDENTITY"),
                 Self::ZERO => Some("ZERO"),
@@ -11979,7 +11626,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -11997,8 +11644,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DescriptorType(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DescriptorType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DescriptorType {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::SAMPLER => Some("SAMPLER"),
                 Self::COMBINED_IMAGE_SAMPLER => Some("COMBINED_IMAGE_SAMPLER"),
@@ -12025,7 +11672,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12043,8 +11690,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct QueryType(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueryType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for QueryType {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::OCCLUSION => Some("OCCLUSION"),
                 Self::PIPELINE_STATISTICS => Some("PIPELINE_STATISTICS"),
@@ -12086,7 +11733,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12104,8 +11751,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct BorderColor(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BorderColor {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for BorderColor {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::FLOAT_TRANSPARENT_BLACK => Some("FLOAT_TRANSPARENT_BLACK"),
                 Self::INT_TRANSPARENT_BLACK => Some("INT_TRANSPARENT_BLACK"),
@@ -12119,7 +11766,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12137,8 +11784,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PipelineBindPoint(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineBindPoint {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineBindPoint {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::GRAPHICS => Some("GRAPHICS"),
                 Self::COMPUTE => Some("COMPUTE"),
@@ -12151,7 +11798,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12169,8 +11816,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PipelineCacheHeaderVersion(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineCacheHeaderVersion {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineCacheHeaderVersion {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::ONE => Some("ONE"),
                 Self::DATA_GRAPH_QCOM => Some("DATA_GRAPH_QCOM"),
@@ -12178,7 +11825,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12196,8 +11843,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PrimitiveTopology(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PrimitiveTopology {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PrimitiveTopology {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::POINT_LIST => Some("POINT_LIST"),
                 Self::LINE_LIST => Some("LINE_LIST"),
@@ -12218,7 +11865,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12236,8 +11883,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct SharingMode(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SharingMode {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SharingMode {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::EXCLUSIVE => Some("EXCLUSIVE"),
                 Self::CONCURRENT => Some("CONCURRENT"),
@@ -12245,7 +11892,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12263,8 +11910,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct IndexType(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for IndexType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for IndexType {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::UINT16 => Some("UINT16"),
                 Self::UINT32 => Some("UINT32"),
@@ -12274,7 +11921,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12292,8 +11939,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct Filter(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for Filter {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for Filter {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::NEAREST => Some("NEAREST"),
                 Self::LINEAR => Some("LINEAR"),
@@ -12302,7 +11949,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12320,8 +11967,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct SamplerMipmapMode(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SamplerMipmapMode {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SamplerMipmapMode {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::NEAREST => Some("NEAREST"),
                 Self::LINEAR => Some("LINEAR"),
@@ -12329,7 +11976,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12347,8 +11994,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct SamplerAddressMode(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SamplerAddressMode {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SamplerAddressMode {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::REPEAT => Some("REPEAT"),
                 Self::MIRRORED_REPEAT => Some("MIRRORED_REPEAT"),
@@ -12359,7 +12006,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12377,8 +12024,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct CompareOp(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CompareOp {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CompareOp {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::NEVER => Some("NEVER"),
                 Self::LESS => Some("LESS"),
@@ -12392,7 +12039,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12410,8 +12057,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PolygonMode(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PolygonMode {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PolygonMode {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::FILL => Some("FILL"),
                 Self::LINE => Some("LINE"),
@@ -12421,7 +12068,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12439,8 +12086,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct FrontFace(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FrontFace {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for FrontFace {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::COUNTER_CLOCKWISE => Some("COUNTER_CLOCKWISE"),
                 Self::CLOCKWISE => Some("CLOCKWISE"),
@@ -12448,7 +12095,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12466,8 +12113,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct BlendFactor(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BlendFactor {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for BlendFactor {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::ZERO => Some("ZERO"),
                 Self::ONE => Some("ONE"),
@@ -12492,7 +12139,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12510,8 +12157,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct BlendOp(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BlendOp {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for BlendOp {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::ADD => Some("ADD"),
                 Self::SUBTRACT => Some("SUBTRACT"),
@@ -12568,7 +12215,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12586,8 +12233,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct StencilOp(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for StencilOp {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for StencilOp {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::KEEP => Some("KEEP"),
                 Self::ZERO => Some("ZERO"),
@@ -12601,7 +12248,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12619,8 +12266,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct LogicOp(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for LogicOp {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for LogicOp {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::CLEAR => Some("CLEAR"),
                 Self::AND => Some("AND"),
@@ -12642,7 +12289,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12660,15 +12307,15 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct InternalAllocationType(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for InternalAllocationType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for InternalAllocationType {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::EXECUTABLE => Some("EXECUTABLE"),
                 _ => None,
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12686,8 +12333,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct SystemAllocationScope(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SystemAllocationScope {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SystemAllocationScope {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::COMMAND => Some("COMMAND"),
                 Self::OBJECT => Some("OBJECT"),
@@ -12698,7 +12345,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12716,8 +12363,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PhysicalDeviceType(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PhysicalDeviceType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PhysicalDeviceType {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::OTHER => Some("OTHER"),
                 Self::INTEGRATED_GPU => Some("INTEGRATED_GPU"),
@@ -12728,7 +12375,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12746,8 +12393,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VertexInputRate(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VertexInputRate {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VertexInputRate {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::VERTEX => Some("VERTEX"),
                 Self::INSTANCE => Some("INSTANCE"),
@@ -12755,7 +12402,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -12773,8 +12420,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct Format(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for Format {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for Format {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::UNDEFINED => Some("UNDEFINED"),
                 Self::R4G4_UNORM_PACK8 => Some("R4G4_UNORM_PACK8"),
@@ -13140,7 +12787,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -13158,8 +12805,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct StructureType(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for StructureType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for StructureType {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::APPLICATION_INFO => Some("APPLICATION_INFO"),
                 Self::INSTANCE_CREATE_INFO => Some("INSTANCE_CREATE_INFO"),
@@ -16563,7 +16210,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -16581,8 +16228,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct SubpassContents(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SubpassContents {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SubpassContents {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::INLINE => Some("INLINE"),
                 Self::SECONDARY_COMMAND_BUFFERS => Some("SECONDARY_COMMAND_BUFFERS"),
@@ -16593,7 +16240,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -16610,8 +16257,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct Result(pub(crate) i32);
-    impl core::fmt::Debug for Result {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Debug for Result {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             if let Some(x) = match *self {
                 Self::SUCCESS => Some("SUCCESS"),
                 Self::NOT_READY => Some("NOT_READY"),
@@ -16699,12 +16346,12 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmt::Debug::fmt(&self.0, f)
             }
         }
     }
-    impl core::fmt::Display for Result {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Display for Result {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             if let Some(x) = match *self {
                 Self::SUCCESS => Some("Command completed successfully"),
                 Self::NOT_READY => Some("A fence or query has not yet completed"),
@@ -16759,7 +16406,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmt::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -16777,8 +16424,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DynamicState(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DynamicState {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DynamicState {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::VIEWPORT => Some("VIEWPORT"),
                 Self::SCISSOR => Some("SCISSOR"),
@@ -16889,7 +16536,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -16906,8 +16553,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ObjectType(pub(crate) i32);
-    impl core::fmt::Debug for ObjectType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Debug for ObjectType {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             if let Some(x) = match *self {
                 Self::UNKNOWN => Some("UNKNOWN"),
                 Self::INSTANCE => Some("INSTANCE"),
@@ -16983,7 +16630,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmt::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -17001,8 +16648,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VendorId(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VendorId {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VendorId {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::KHRONOS => Some("KHRONOS"),
                 Self::VIV => Some("VIV"),
@@ -17017,7 +16664,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -17035,8 +16682,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FramebufferCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FramebufferCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for FramebufferCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(f, &[(Self::IMAGELESS.0, "IMAGELESS")], self.0)
         }
     }
@@ -17060,40 +16707,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for FramebufferCreateFlags {
+    impl BitOr for FramebufferCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for FramebufferCreateFlags {
+    impl BitOrAssign for FramebufferCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for FramebufferCreateFlags {
+    impl BitAnd for FramebufferCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for FramebufferCreateFlags {
+    impl BitAndAssign for FramebufferCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for FramebufferCreateFlags {
+    impl BitXor for FramebufferCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for FramebufferCreateFlags {
+    impl BitXorAssign for FramebufferCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for FramebufferCreateFlags {
+    impl Not for FramebufferCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -17118,17 +16765,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FramebufferCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for FramebufferCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryPoolCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueryPoolCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for QueryPoolCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(f, &[(Self::RESET_KHR.0, "RESET_KHR")], self.0)
         }
     }
@@ -17152,40 +16799,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for QueryPoolCreateFlags {
+    impl BitOr for QueryPoolCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for QueryPoolCreateFlags {
+    impl BitOrAssign for QueryPoolCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for QueryPoolCreateFlags {
+    impl BitAnd for QueryPoolCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for QueryPoolCreateFlags {
+    impl BitAndAssign for QueryPoolCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for QueryPoolCreateFlags {
+    impl BitXor for QueryPoolCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for QueryPoolCreateFlags {
+    impl BitXorAssign for QueryPoolCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for QueryPoolCreateFlags {
+    impl Not for QueryPoolCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -17210,17 +16857,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueryPoolCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for QueryPoolCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct RenderPassCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for RenderPassCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for RenderPassCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -17254,40 +16901,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for RenderPassCreateFlags {
+    impl BitOr for RenderPassCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for RenderPassCreateFlags {
+    impl BitOrAssign for RenderPassCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for RenderPassCreateFlags {
+    impl BitAnd for RenderPassCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for RenderPassCreateFlags {
+    impl BitAndAssign for RenderPassCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for RenderPassCreateFlags {
+    impl BitXor for RenderPassCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for RenderPassCreateFlags {
+    impl BitXorAssign for RenderPassCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for RenderPassCreateFlags {
+    impl Not for RenderPassCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -17312,17 +16959,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for RenderPassCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for RenderPassCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SamplerCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SamplerCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SamplerCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -17362,40 +17009,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for SamplerCreateFlags {
+    impl BitOr for SamplerCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for SamplerCreateFlags {
+    impl BitOrAssign for SamplerCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for SamplerCreateFlags {
+    impl BitAnd for SamplerCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for SamplerCreateFlags {
+    impl BitAndAssign for SamplerCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for SamplerCreateFlags {
+    impl BitXor for SamplerCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for SamplerCreateFlags {
+    impl BitXorAssign for SamplerCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for SamplerCreateFlags {
+    impl Not for SamplerCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -17420,17 +17067,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SamplerCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for SamplerCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineLayoutCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineLayoutCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineLayoutCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -17461,40 +17108,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineLayoutCreateFlags {
+    impl BitOr for PipelineLayoutCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineLayoutCreateFlags {
+    impl BitOrAssign for PipelineLayoutCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineLayoutCreateFlags {
+    impl BitAnd for PipelineLayoutCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineLayoutCreateFlags {
+    impl BitAndAssign for PipelineLayoutCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineLayoutCreateFlags {
+    impl BitXor for PipelineLayoutCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineLayoutCreateFlags {
+    impl BitXorAssign for PipelineLayoutCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineLayoutCreateFlags {
+    impl Not for PipelineLayoutCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -17519,17 +17166,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineLayoutCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PipelineLayoutCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCacheCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineCacheCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineCacheCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -17563,40 +17210,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineCacheCreateFlags {
+    impl BitOr for PipelineCacheCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineCacheCreateFlags {
+    impl BitOrAssign for PipelineCacheCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineCacheCreateFlags {
+    impl BitAnd for PipelineCacheCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineCacheCreateFlags {
+    impl BitAndAssign for PipelineCacheCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineCacheCreateFlags {
+    impl BitXor for PipelineCacheCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineCacheCreateFlags {
+    impl BitXorAssign for PipelineCacheCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineCacheCreateFlags {
+    impl Not for PipelineCacheCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -17621,17 +17268,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineCacheCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PipelineCacheCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineDepthStencilStateCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineDepthStencilStateCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineDepthStencilStateCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -17668,40 +17315,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineDepthStencilStateCreateFlags {
+    impl BitOr for PipelineDepthStencilStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineDepthStencilStateCreateFlags {
+    impl BitOrAssign for PipelineDepthStencilStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineDepthStencilStateCreateFlags {
+    impl BitAnd for PipelineDepthStencilStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineDepthStencilStateCreateFlags {
+    impl BitAndAssign for PipelineDepthStencilStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineDepthStencilStateCreateFlags {
+    impl BitXor for PipelineDepthStencilStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineDepthStencilStateCreateFlags {
+    impl BitXorAssign for PipelineDepthStencilStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineDepthStencilStateCreateFlags {
+    impl Not for PipelineDepthStencilStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -17726,18 +17373,18 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineDepthStencilStateCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PipelineDepthStencilStateCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineDynamicStateCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineDynamicStateCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineDynamicStateCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineDynamicStateCreateFlags {
@@ -17760,40 +17407,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineDynamicStateCreateFlags {
+    impl BitOr for PipelineDynamicStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineDynamicStateCreateFlags {
+    impl BitOrAssign for PipelineDynamicStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineDynamicStateCreateFlags {
+    impl BitAnd for PipelineDynamicStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineDynamicStateCreateFlags {
+    impl BitAndAssign for PipelineDynamicStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineDynamicStateCreateFlags {
+    impl BitXor for PipelineDynamicStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineDynamicStateCreateFlags {
+    impl BitXorAssign for PipelineDynamicStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineDynamicStateCreateFlags {
+    impl Not for PipelineDynamicStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -17803,8 +17450,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineColorBlendStateCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineColorBlendStateCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineColorBlendStateCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -17837,40 +17484,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineColorBlendStateCreateFlags {
+    impl BitOr for PipelineColorBlendStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineColorBlendStateCreateFlags {
+    impl BitOrAssign for PipelineColorBlendStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineColorBlendStateCreateFlags {
+    impl BitAnd for PipelineColorBlendStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineColorBlendStateCreateFlags {
+    impl BitAndAssign for PipelineColorBlendStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineColorBlendStateCreateFlags {
+    impl BitXor for PipelineColorBlendStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineColorBlendStateCreateFlags {
+    impl BitXorAssign for PipelineColorBlendStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineColorBlendStateCreateFlags {
+    impl Not for PipelineColorBlendStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -17895,18 +17542,18 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineColorBlendStateCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PipelineColorBlendStateCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineMultisampleStateCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineMultisampleStateCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineMultisampleStateCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineMultisampleStateCreateFlags {
@@ -17929,40 +17576,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineMultisampleStateCreateFlags {
+    impl BitOr for PipelineMultisampleStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineMultisampleStateCreateFlags {
+    impl BitOrAssign for PipelineMultisampleStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineMultisampleStateCreateFlags {
+    impl BitAnd for PipelineMultisampleStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineMultisampleStateCreateFlags {
+    impl BitAndAssign for PipelineMultisampleStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineMultisampleStateCreateFlags {
+    impl BitXor for PipelineMultisampleStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineMultisampleStateCreateFlags {
+    impl BitXorAssign for PipelineMultisampleStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineMultisampleStateCreateFlags {
+    impl Not for PipelineMultisampleStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -17972,9 +17619,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineRasterizationStateCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineRasterizationStateCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineRasterizationStateCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineRasterizationStateCreateFlags {
@@ -17997,40 +17644,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineRasterizationStateCreateFlags {
+    impl BitOr for PipelineRasterizationStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineRasterizationStateCreateFlags {
+    impl BitOrAssign for PipelineRasterizationStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineRasterizationStateCreateFlags {
+    impl BitAnd for PipelineRasterizationStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineRasterizationStateCreateFlags {
+    impl BitAndAssign for PipelineRasterizationStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineRasterizationStateCreateFlags {
+    impl BitXor for PipelineRasterizationStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineRasterizationStateCreateFlags {
+    impl BitXorAssign for PipelineRasterizationStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineRasterizationStateCreateFlags {
+    impl Not for PipelineRasterizationStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -18040,9 +17687,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineViewportStateCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineViewportStateCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineViewportStateCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineViewportStateCreateFlags {
@@ -18065,40 +17712,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineViewportStateCreateFlags {
+    impl BitOr for PipelineViewportStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineViewportStateCreateFlags {
+    impl BitOrAssign for PipelineViewportStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineViewportStateCreateFlags {
+    impl BitAnd for PipelineViewportStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineViewportStateCreateFlags {
+    impl BitAndAssign for PipelineViewportStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineViewportStateCreateFlags {
+    impl BitXor for PipelineViewportStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineViewportStateCreateFlags {
+    impl BitXorAssign for PipelineViewportStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineViewportStateCreateFlags {
+    impl Not for PipelineViewportStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -18108,9 +17755,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineTessellationStateCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineTessellationStateCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineTessellationStateCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineTessellationStateCreateFlags {
@@ -18133,40 +17780,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineTessellationStateCreateFlags {
+    impl BitOr for PipelineTessellationStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineTessellationStateCreateFlags {
+    impl BitOrAssign for PipelineTessellationStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineTessellationStateCreateFlags {
+    impl BitAnd for PipelineTessellationStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineTessellationStateCreateFlags {
+    impl BitAndAssign for PipelineTessellationStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineTessellationStateCreateFlags {
+    impl BitXor for PipelineTessellationStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineTessellationStateCreateFlags {
+    impl BitXorAssign for PipelineTessellationStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineTessellationStateCreateFlags {
+    impl Not for PipelineTessellationStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -18176,9 +17823,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineInputAssemblyStateCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineInputAssemblyStateCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineInputAssemblyStateCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineInputAssemblyStateCreateFlags {
@@ -18201,40 +17848,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineInputAssemblyStateCreateFlags {
+    impl BitOr for PipelineInputAssemblyStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineInputAssemblyStateCreateFlags {
+    impl BitOrAssign for PipelineInputAssemblyStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineInputAssemblyStateCreateFlags {
+    impl BitAnd for PipelineInputAssemblyStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineInputAssemblyStateCreateFlags {
+    impl BitAndAssign for PipelineInputAssemblyStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineInputAssemblyStateCreateFlags {
+    impl BitXor for PipelineInputAssemblyStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineInputAssemblyStateCreateFlags {
+    impl BitXorAssign for PipelineInputAssemblyStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineInputAssemblyStateCreateFlags {
+    impl Not for PipelineInputAssemblyStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -18244,9 +17891,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineVertexInputStateCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineVertexInputStateCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineVertexInputStateCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineVertexInputStateCreateFlags {
@@ -18269,40 +17916,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineVertexInputStateCreateFlags {
+    impl BitOr for PipelineVertexInputStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineVertexInputStateCreateFlags {
+    impl BitOrAssign for PipelineVertexInputStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineVertexInputStateCreateFlags {
+    impl BitAnd for PipelineVertexInputStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineVertexInputStateCreateFlags {
+    impl BitAndAssign for PipelineVertexInputStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineVertexInputStateCreateFlags {
+    impl BitXor for PipelineVertexInputStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineVertexInputStateCreateFlags {
+    impl BitXorAssign for PipelineVertexInputStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineVertexInputStateCreateFlags {
+    impl Not for PipelineVertexInputStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -18312,8 +17959,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineShaderStageCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineShaderStageCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineShaderStageCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -18344,40 +17991,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineShaderStageCreateFlags {
+    impl BitOr for PipelineShaderStageCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineShaderStageCreateFlags {
+    impl BitOrAssign for PipelineShaderStageCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineShaderStageCreateFlags {
+    impl BitAnd for PipelineShaderStageCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineShaderStageCreateFlags {
+    impl BitAndAssign for PipelineShaderStageCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineShaderStageCreateFlags {
+    impl BitXor for PipelineShaderStageCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineShaderStageCreateFlags {
+    impl BitXorAssign for PipelineShaderStageCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineShaderStageCreateFlags {
+    impl Not for PipelineShaderStageCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -18402,17 +18049,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineShaderStageCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PipelineShaderStageCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorSetLayoutCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DescriptorSetLayoutCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DescriptorSetLayoutCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -18451,40 +18098,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DescriptorSetLayoutCreateFlags {
+    impl BitOr for DescriptorSetLayoutCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DescriptorSetLayoutCreateFlags {
+    impl BitOrAssign for DescriptorSetLayoutCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DescriptorSetLayoutCreateFlags {
+    impl BitAnd for DescriptorSetLayoutCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DescriptorSetLayoutCreateFlags {
+    impl BitAndAssign for DescriptorSetLayoutCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DescriptorSetLayoutCreateFlags {
+    impl BitXor for DescriptorSetLayoutCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DescriptorSetLayoutCreateFlags {
+    impl BitXorAssign for DescriptorSetLayoutCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DescriptorSetLayoutCreateFlags {
+    impl Not for DescriptorSetLayoutCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -18509,18 +18156,18 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DescriptorSetLayoutCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DescriptorSetLayoutCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BufferViewCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BufferViewCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for BufferViewCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl BufferViewCreateFlags {
@@ -18543,40 +18190,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for BufferViewCreateFlags {
+    impl BitOr for BufferViewCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for BufferViewCreateFlags {
+    impl BitOrAssign for BufferViewCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for BufferViewCreateFlags {
+    impl BitAnd for BufferViewCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for BufferViewCreateFlags {
+    impl BitAndAssign for BufferViewCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for BufferViewCreateFlags {
+    impl BitXor for BufferViewCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for BufferViewCreateFlags {
+    impl BitXorAssign for BufferViewCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for BufferViewCreateFlags {
+    impl Not for BufferViewCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -18586,8 +18233,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct InstanceCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for InstanceCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for InstanceCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[(Self::ENUMERATE_PORTABILITY_KHR.0, "ENUMERATE_PORTABILITY_KHR")],
@@ -18615,40 +18262,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for InstanceCreateFlags {
+    impl BitOr for InstanceCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for InstanceCreateFlags {
+    impl BitOrAssign for InstanceCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for InstanceCreateFlags {
+    impl BitAnd for InstanceCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for InstanceCreateFlags {
+    impl BitAndAssign for InstanceCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for InstanceCreateFlags {
+    impl BitXor for InstanceCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for InstanceCreateFlags {
+    impl BitXorAssign for InstanceCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for InstanceCreateFlags {
+    impl Not for InstanceCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -18673,18 +18320,18 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for InstanceCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for InstanceCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for DeviceCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl DeviceCreateFlags {
@@ -18707,40 +18354,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DeviceCreateFlags {
+    impl BitOr for DeviceCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DeviceCreateFlags {
+    impl BitOrAssign for DeviceCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DeviceCreateFlags {
+    impl BitAnd for DeviceCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DeviceCreateFlags {
+    impl BitAndAssign for DeviceCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DeviceCreateFlags {
+    impl BitXor for DeviceCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DeviceCreateFlags {
+    impl BitXorAssign for DeviceCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DeviceCreateFlags {
+    impl Not for DeviceCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -18750,8 +18397,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceQueueCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceQueueCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceQueueCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -18782,40 +18429,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DeviceQueueCreateFlags {
+    impl BitOr for DeviceQueueCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DeviceQueueCreateFlags {
+    impl BitOrAssign for DeviceQueueCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DeviceQueueCreateFlags {
+    impl BitAnd for DeviceQueueCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DeviceQueueCreateFlags {
+    impl BitAndAssign for DeviceQueueCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DeviceQueueCreateFlags {
+    impl BitXor for DeviceQueueCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DeviceQueueCreateFlags {
+    impl BitXorAssign for DeviceQueueCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DeviceQueueCreateFlags {
+    impl Not for DeviceQueueCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -18840,17 +18487,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceQueueCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DeviceQueueCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueueFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueueFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for QueueFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -18888,40 +18535,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for QueueFlags {
+    impl BitOr for QueueFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for QueueFlags {
+    impl BitOrAssign for QueueFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for QueueFlags {
+    impl BitAnd for QueueFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for QueueFlags {
+    impl BitAndAssign for QueueFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for QueueFlags {
+    impl BitXor for QueueFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for QueueFlags {
+    impl BitXorAssign for QueueFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for QueueFlags {
+    impl Not for QueueFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -18946,17 +18593,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueueFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for QueueFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryPropertyFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for MemoryPropertyFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for MemoryPropertyFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -18994,40 +18641,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for MemoryPropertyFlags {
+    impl BitOr for MemoryPropertyFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for MemoryPropertyFlags {
+    impl BitOrAssign for MemoryPropertyFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for MemoryPropertyFlags {
+    impl BitAnd for MemoryPropertyFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for MemoryPropertyFlags {
+    impl BitAndAssign for MemoryPropertyFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for MemoryPropertyFlags {
+    impl BitXor for MemoryPropertyFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for MemoryPropertyFlags {
+    impl BitXorAssign for MemoryPropertyFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for MemoryPropertyFlags {
+    impl Not for MemoryPropertyFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -19052,17 +18699,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for MemoryPropertyFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for MemoryPropertyFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryHeapFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for MemoryHeapFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for MemoryHeapFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -19094,40 +18741,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for MemoryHeapFlags {
+    impl BitOr for MemoryHeapFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for MemoryHeapFlags {
+    impl BitOrAssign for MemoryHeapFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for MemoryHeapFlags {
+    impl BitAnd for MemoryHeapFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for MemoryHeapFlags {
+    impl BitAndAssign for MemoryHeapFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for MemoryHeapFlags {
+    impl BitXor for MemoryHeapFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for MemoryHeapFlags {
+    impl BitXorAssign for MemoryHeapFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for MemoryHeapFlags {
+    impl Not for MemoryHeapFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -19152,17 +18799,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for MemoryHeapFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for MemoryHeapFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccessFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccessFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccessFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -19256,40 +18903,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for AccessFlags {
+    impl BitOr for AccessFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for AccessFlags {
+    impl BitOrAssign for AccessFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for AccessFlags {
+    impl BitAnd for AccessFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for AccessFlags {
+    impl BitAndAssign for AccessFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for AccessFlags {
+    impl BitXor for AccessFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for AccessFlags {
+    impl BitXorAssign for AccessFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for AccessFlags {
+    impl Not for AccessFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -19314,17 +18961,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccessFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for AccessFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BufferUsageFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BufferUsageFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for BufferUsageFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -19409,40 +19056,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for BufferUsageFlags {
+    impl BitOr for BufferUsageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for BufferUsageFlags {
+    impl BitOrAssign for BufferUsageFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for BufferUsageFlags {
+    impl BitAnd for BufferUsageFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for BufferUsageFlags {
+    impl BitAndAssign for BufferUsageFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for BufferUsageFlags {
+    impl BitXor for BufferUsageFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for BufferUsageFlags {
+    impl BitXorAssign for BufferUsageFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for BufferUsageFlags {
+    impl Not for BufferUsageFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -19467,17 +19114,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BufferUsageFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for BufferUsageFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BufferCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BufferCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for BufferCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -19522,40 +19169,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for BufferCreateFlags {
+    impl BitOr for BufferCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for BufferCreateFlags {
+    impl BitOrAssign for BufferCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for BufferCreateFlags {
+    impl BitAnd for BufferCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for BufferCreateFlags {
+    impl BitAndAssign for BufferCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for BufferCreateFlags {
+    impl BitXor for BufferCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for BufferCreateFlags {
+    impl BitXorAssign for BufferCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for BufferCreateFlags {
+    impl Not for BufferCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -19580,17 +19227,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BufferCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for BufferCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ShaderStageFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ShaderStageFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ShaderStageFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -19637,40 +19284,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ShaderStageFlags {
+    impl BitOr for ShaderStageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ShaderStageFlags {
+    impl BitOrAssign for ShaderStageFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ShaderStageFlags {
+    impl BitAnd for ShaderStageFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ShaderStageFlags {
+    impl BitAndAssign for ShaderStageFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ShaderStageFlags {
+    impl BitXor for ShaderStageFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ShaderStageFlags {
+    impl BitXorAssign for ShaderStageFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ShaderStageFlags {
+    impl Not for ShaderStageFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -19695,17 +19342,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ShaderStageFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ShaderStageFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageUsageFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageUsageFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageUsageFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -19771,40 +19418,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ImageUsageFlags {
+    impl BitOr for ImageUsageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ImageUsageFlags {
+    impl BitOrAssign for ImageUsageFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ImageUsageFlags {
+    impl BitAnd for ImageUsageFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ImageUsageFlags {
+    impl BitAndAssign for ImageUsageFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ImageUsageFlags {
+    impl BitXor for ImageUsageFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ImageUsageFlags {
+    impl BitXorAssign for ImageUsageFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ImageUsageFlags {
+    impl Not for ImageUsageFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -19829,17 +19476,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageUsageFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ImageUsageFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -19907,40 +19554,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ImageCreateFlags {
+    impl BitOr for ImageCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ImageCreateFlags {
+    impl BitOrAssign for ImageCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ImageCreateFlags {
+    impl BitAnd for ImageCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ImageCreateFlags {
+    impl BitAndAssign for ImageCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ImageCreateFlags {
+    impl BitXor for ImageCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ImageCreateFlags {
+    impl BitXorAssign for ImageCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ImageCreateFlags {
+    impl Not for ImageCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -19965,17 +19612,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ImageCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageViewCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageViewCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageViewCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -20016,40 +19663,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ImageViewCreateFlags {
+    impl BitOr for ImageViewCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ImageViewCreateFlags {
+    impl BitOrAssign for ImageViewCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ImageViewCreateFlags {
+    impl BitAnd for ImageViewCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ImageViewCreateFlags {
+    impl BitAndAssign for ImageViewCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ImageViewCreateFlags {
+    impl BitXor for ImageViewCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ImageViewCreateFlags {
+    impl BitXorAssign for ImageViewCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ImageViewCreateFlags {
+    impl Not for ImageViewCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -20074,17 +19721,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageViewCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ImageViewCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -20193,40 +19840,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineCreateFlags {
+    impl BitOr for PipelineCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineCreateFlags {
+    impl BitOrAssign for PipelineCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineCreateFlags {
+    impl BitAnd for PipelineCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineCreateFlags {
+    impl BitAndAssign for PipelineCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineCreateFlags {
+    impl BitXor for PipelineCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineCreateFlags {
+    impl BitXorAssign for PipelineCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineCreateFlags {
+    impl Not for PipelineCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -20251,17 +19898,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PipelineCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ColorComponentFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ColorComponentFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ColorComponentFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -20294,40 +19941,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ColorComponentFlags {
+    impl BitOr for ColorComponentFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ColorComponentFlags {
+    impl BitOrAssign for ColorComponentFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ColorComponentFlags {
+    impl BitAnd for ColorComponentFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ColorComponentFlags {
+    impl BitAndAssign for ColorComponentFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ColorComponentFlags {
+    impl BitXor for ColorComponentFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ColorComponentFlags {
+    impl BitXorAssign for ColorComponentFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ColorComponentFlags {
+    impl Not for ColorComponentFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -20352,17 +19999,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ColorComponentFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ColorComponentFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FenceCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FenceCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for FenceCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(f, &[(Self::SIGNALED.0, "SIGNALED")], self.0)
         }
     }
@@ -20386,40 +20033,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for FenceCreateFlags {
+    impl BitOr for FenceCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for FenceCreateFlags {
+    impl BitOrAssign for FenceCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for FenceCreateFlags {
+    impl BitAnd for FenceCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for FenceCreateFlags {
+    impl BitAndAssign for FenceCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for FenceCreateFlags {
+    impl BitXor for FenceCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for FenceCreateFlags {
+    impl BitXorAssign for FenceCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for FenceCreateFlags {
+    impl Not for FenceCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -20444,18 +20091,18 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FenceCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for FenceCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SemaphoreCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SemaphoreCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for SemaphoreCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl SemaphoreCreateFlags {
@@ -20478,40 +20125,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for SemaphoreCreateFlags {
+    impl BitOr for SemaphoreCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for SemaphoreCreateFlags {
+    impl BitOrAssign for SemaphoreCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for SemaphoreCreateFlags {
+    impl BitAnd for SemaphoreCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for SemaphoreCreateFlags {
+    impl BitAndAssign for SemaphoreCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for SemaphoreCreateFlags {
+    impl BitXor for SemaphoreCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for SemaphoreCreateFlags {
+    impl BitXorAssign for SemaphoreCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for SemaphoreCreateFlags {
+    impl Not for SemaphoreCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -20521,8 +20168,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FormatFeatureFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FormatFeatureFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for FormatFeatureFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -20606,40 +20253,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for FormatFeatureFlags {
+    impl BitOr for FormatFeatureFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for FormatFeatureFlags {
+    impl BitOrAssign for FormatFeatureFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for FormatFeatureFlags {
+    impl BitAnd for FormatFeatureFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for FormatFeatureFlags {
+    impl BitAndAssign for FormatFeatureFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for FormatFeatureFlags {
+    impl BitXor for FormatFeatureFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for FormatFeatureFlags {
+    impl BitXorAssign for FormatFeatureFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for FormatFeatureFlags {
+    impl Not for FormatFeatureFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -20664,17 +20311,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FormatFeatureFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for FormatFeatureFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryControlFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueryControlFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for QueryControlFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(f, &[(Self::PRECISE.0, "PRECISE")], self.0)
         }
     }
@@ -20698,40 +20345,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for QueryControlFlags {
+    impl BitOr for QueryControlFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for QueryControlFlags {
+    impl BitOrAssign for QueryControlFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for QueryControlFlags {
+    impl BitAnd for QueryControlFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for QueryControlFlags {
+    impl BitAndAssign for QueryControlFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for QueryControlFlags {
+    impl BitXor for QueryControlFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for QueryControlFlags {
+    impl BitXorAssign for QueryControlFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for QueryControlFlags {
+    impl Not for QueryControlFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -20756,17 +20403,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueryControlFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for QueryControlFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryResultFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueryResultFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for QueryResultFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -20800,40 +20447,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for QueryResultFlags {
+    impl BitOr for QueryResultFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for QueryResultFlags {
+    impl BitOrAssign for QueryResultFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for QueryResultFlags {
+    impl BitAnd for QueryResultFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for QueryResultFlags {
+    impl BitAndAssign for QueryResultFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for QueryResultFlags {
+    impl BitXor for QueryResultFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for QueryResultFlags {
+    impl BitXorAssign for QueryResultFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for QueryResultFlags {
+    impl Not for QueryResultFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -20858,18 +20505,18 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueryResultFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for QueryResultFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ShaderModuleCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ShaderModuleCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for ShaderModuleCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl ShaderModuleCreateFlags {
@@ -20892,40 +20539,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ShaderModuleCreateFlags {
+    impl BitOr for ShaderModuleCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ShaderModuleCreateFlags {
+    impl BitOrAssign for ShaderModuleCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ShaderModuleCreateFlags {
+    impl BitAnd for ShaderModuleCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ShaderModuleCreateFlags {
+    impl BitAndAssign for ShaderModuleCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ShaderModuleCreateFlags {
+    impl BitXor for ShaderModuleCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ShaderModuleCreateFlags {
+    impl BitXorAssign for ShaderModuleCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ShaderModuleCreateFlags {
+    impl Not for ShaderModuleCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -20935,8 +20582,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct EventCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for EventCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for EventCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(f, &[(Self::DEVICE_ONLY.0, "DEVICE_ONLY")], self.0)
         }
     }
@@ -20960,40 +20607,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for EventCreateFlags {
+    impl BitOr for EventCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for EventCreateFlags {
+    impl BitOrAssign for EventCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for EventCreateFlags {
+    impl BitAnd for EventCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for EventCreateFlags {
+    impl BitAndAssign for EventCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for EventCreateFlags {
+    impl BitXor for EventCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for EventCreateFlags {
+    impl BitXorAssign for EventCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for EventCreateFlags {
+    impl Not for EventCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -21018,17 +20665,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for EventCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for EventCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandPoolCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CommandPoolCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CommandPoolCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -21060,40 +20707,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for CommandPoolCreateFlags {
+    impl BitOr for CommandPoolCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for CommandPoolCreateFlags {
+    impl BitOrAssign for CommandPoolCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for CommandPoolCreateFlags {
+    impl BitAnd for CommandPoolCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for CommandPoolCreateFlags {
+    impl BitAndAssign for CommandPoolCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for CommandPoolCreateFlags {
+    impl BitXor for CommandPoolCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for CommandPoolCreateFlags {
+    impl BitXorAssign for CommandPoolCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for CommandPoolCreateFlags {
+    impl Not for CommandPoolCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -21118,17 +20765,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CommandPoolCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for CommandPoolCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandPoolResetFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CommandPoolResetFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CommandPoolResetFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[(Self::RELEASE_RESOURCES.0, "RELEASE_RESOURCES")],
@@ -21156,40 +20803,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for CommandPoolResetFlags {
+    impl BitOr for CommandPoolResetFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for CommandPoolResetFlags {
+    impl BitOrAssign for CommandPoolResetFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for CommandPoolResetFlags {
+    impl BitAnd for CommandPoolResetFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for CommandPoolResetFlags {
+    impl BitAndAssign for CommandPoolResetFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for CommandPoolResetFlags {
+    impl BitXor for CommandPoolResetFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for CommandPoolResetFlags {
+    impl BitXorAssign for CommandPoolResetFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for CommandPoolResetFlags {
+    impl Not for CommandPoolResetFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -21214,17 +20861,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CommandPoolResetFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for CommandPoolResetFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandBufferResetFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CommandBufferResetFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CommandBufferResetFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[(Self::RELEASE_RESOURCES.0, "RELEASE_RESOURCES")],
@@ -21252,40 +20899,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for CommandBufferResetFlags {
+    impl BitOr for CommandBufferResetFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for CommandBufferResetFlags {
+    impl BitOrAssign for CommandBufferResetFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for CommandBufferResetFlags {
+    impl BitAnd for CommandBufferResetFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for CommandBufferResetFlags {
+    impl BitAndAssign for CommandBufferResetFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for CommandBufferResetFlags {
+    impl BitXor for CommandBufferResetFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for CommandBufferResetFlags {
+    impl BitXorAssign for CommandBufferResetFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for CommandBufferResetFlags {
+    impl Not for CommandBufferResetFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -21310,17 +20957,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CommandBufferResetFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for CommandBufferResetFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CommandBufferUsageFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CommandBufferUsageFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CommandBufferUsageFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -21352,40 +20999,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for CommandBufferUsageFlags {
+    impl BitOr for CommandBufferUsageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for CommandBufferUsageFlags {
+    impl BitOrAssign for CommandBufferUsageFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for CommandBufferUsageFlags {
+    impl BitAnd for CommandBufferUsageFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for CommandBufferUsageFlags {
+    impl BitAndAssign for CommandBufferUsageFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for CommandBufferUsageFlags {
+    impl BitXor for CommandBufferUsageFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for CommandBufferUsageFlags {
+    impl BitXorAssign for CommandBufferUsageFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for CommandBufferUsageFlags {
+    impl Not for CommandBufferUsageFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -21410,17 +21057,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CommandBufferUsageFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for CommandBufferUsageFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct QueryPipelineStatisticFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueryPipelineStatisticFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for QueryPipelineStatisticFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -21472,40 +21119,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for QueryPipelineStatisticFlags {
+    impl BitOr for QueryPipelineStatisticFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for QueryPipelineStatisticFlags {
+    impl BitOrAssign for QueryPipelineStatisticFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for QueryPipelineStatisticFlags {
+    impl BitAnd for QueryPipelineStatisticFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for QueryPipelineStatisticFlags {
+    impl BitAndAssign for QueryPipelineStatisticFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for QueryPipelineStatisticFlags {
+    impl BitXor for QueryPipelineStatisticFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for QueryPipelineStatisticFlags {
+    impl BitXorAssign for QueryPipelineStatisticFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for QueryPipelineStatisticFlags {
+    impl Not for QueryPipelineStatisticFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -21530,17 +21177,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueryPipelineStatisticFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for QueryPipelineStatisticFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MemoryMapFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for MemoryMapFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for MemoryMapFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(f, &[(Self::PLACED_EXT.0, "PLACED_EXT")], self.0)
         }
     }
@@ -21564,40 +21211,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for MemoryMapFlags {
+    impl BitOr for MemoryMapFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for MemoryMapFlags {
+    impl BitOrAssign for MemoryMapFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for MemoryMapFlags {
+    impl BitAnd for MemoryMapFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for MemoryMapFlags {
+    impl BitAndAssign for MemoryMapFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for MemoryMapFlags {
+    impl BitXor for MemoryMapFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for MemoryMapFlags {
+    impl BitXorAssign for MemoryMapFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for MemoryMapFlags {
+    impl Not for MemoryMapFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -21622,17 +21269,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for MemoryMapFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for MemoryMapFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageAspectFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageAspectFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageAspectFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -21673,40 +21320,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ImageAspectFlags {
+    impl BitOr for ImageAspectFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ImageAspectFlags {
+    impl BitOrAssign for ImageAspectFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ImageAspectFlags {
+    impl BitAnd for ImageAspectFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ImageAspectFlags {
+    impl BitAndAssign for ImageAspectFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ImageAspectFlags {
+    impl BitXor for ImageAspectFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ImageAspectFlags {
+    impl BitXorAssign for ImageAspectFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ImageAspectFlags {
+    impl Not for ImageAspectFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -21731,17 +21378,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageAspectFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ImageAspectFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SparseMemoryBindFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SparseMemoryBindFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SparseMemoryBindFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(f, &[(Self::METADATA.0, "METADATA")], self.0)
         }
     }
@@ -21765,40 +21412,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for SparseMemoryBindFlags {
+    impl BitOr for SparseMemoryBindFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for SparseMemoryBindFlags {
+    impl BitOrAssign for SparseMemoryBindFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for SparseMemoryBindFlags {
+    impl BitAnd for SparseMemoryBindFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for SparseMemoryBindFlags {
+    impl BitAndAssign for SparseMemoryBindFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for SparseMemoryBindFlags {
+    impl BitXor for SparseMemoryBindFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for SparseMemoryBindFlags {
+    impl BitXorAssign for SparseMemoryBindFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for SparseMemoryBindFlags {
+    impl Not for SparseMemoryBindFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -21823,17 +21470,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SparseMemoryBindFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for SparseMemoryBindFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SparseImageFormatFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SparseImageFormatFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SparseImageFormatFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -21865,40 +21512,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for SparseImageFormatFlags {
+    impl BitOr for SparseImageFormatFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for SparseImageFormatFlags {
+    impl BitOrAssign for SparseImageFormatFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for SparseImageFormatFlags {
+    impl BitAnd for SparseImageFormatFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for SparseImageFormatFlags {
+    impl BitAndAssign for SparseImageFormatFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for SparseImageFormatFlags {
+    impl BitXor for SparseImageFormatFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for SparseImageFormatFlags {
+    impl BitXorAssign for SparseImageFormatFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for SparseImageFormatFlags {
+    impl Not for SparseImageFormatFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -21923,17 +21570,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SparseImageFormatFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for SparseImageFormatFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SubpassDescriptionFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SubpassDescriptionFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SubpassDescriptionFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -21983,40 +21630,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for SubpassDescriptionFlags {
+    impl BitOr for SubpassDescriptionFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for SubpassDescriptionFlags {
+    impl BitOrAssign for SubpassDescriptionFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for SubpassDescriptionFlags {
+    impl BitAnd for SubpassDescriptionFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for SubpassDescriptionFlags {
+    impl BitAndAssign for SubpassDescriptionFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for SubpassDescriptionFlags {
+    impl BitXor for SubpassDescriptionFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for SubpassDescriptionFlags {
+    impl BitXorAssign for SubpassDescriptionFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for SubpassDescriptionFlags {
+    impl Not for SubpassDescriptionFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -22041,17 +21688,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SubpassDescriptionFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for SubpassDescriptionFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineStageFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineStageFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineStageFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -22119,40 +21766,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineStageFlags {
+    impl BitOr for PipelineStageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineStageFlags {
+    impl BitOrAssign for PipelineStageFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineStageFlags {
+    impl BitAnd for PipelineStageFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineStageFlags {
+    impl BitAndAssign for PipelineStageFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineStageFlags {
+    impl BitXor for PipelineStageFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineStageFlags {
+    impl BitXorAssign for PipelineStageFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineStageFlags {
+    impl Not for PipelineStageFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -22177,17 +21824,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineStageFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PipelineStageFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SampleCountFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SampleCountFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SampleCountFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -22223,40 +21870,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for SampleCountFlags {
+    impl BitOr for SampleCountFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for SampleCountFlags {
+    impl BitOrAssign for SampleCountFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for SampleCountFlags {
+    impl BitAnd for SampleCountFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for SampleCountFlags {
+    impl BitAndAssign for SampleCountFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for SampleCountFlags {
+    impl BitXor for SampleCountFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for SampleCountFlags {
+    impl BitXorAssign for SampleCountFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for SampleCountFlags {
+    impl Not for SampleCountFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -22281,17 +21928,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SampleCountFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for SampleCountFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AttachmentDescriptionFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AttachmentDescriptionFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AttachmentDescriptionFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -22329,40 +21976,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for AttachmentDescriptionFlags {
+    impl BitOr for AttachmentDescriptionFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for AttachmentDescriptionFlags {
+    impl BitOrAssign for AttachmentDescriptionFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for AttachmentDescriptionFlags {
+    impl BitAnd for AttachmentDescriptionFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for AttachmentDescriptionFlags {
+    impl BitAndAssign for AttachmentDescriptionFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for AttachmentDescriptionFlags {
+    impl BitXor for AttachmentDescriptionFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for AttachmentDescriptionFlags {
+    impl BitXorAssign for AttachmentDescriptionFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for AttachmentDescriptionFlags {
+    impl Not for AttachmentDescriptionFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -22387,17 +22034,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AttachmentDescriptionFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for AttachmentDescriptionFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct StencilFaceFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for StencilFaceFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for StencilFaceFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -22429,40 +22076,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for StencilFaceFlags {
+    impl BitOr for StencilFaceFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for StencilFaceFlags {
+    impl BitOrAssign for StencilFaceFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for StencilFaceFlags {
+    impl BitAnd for StencilFaceFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for StencilFaceFlags {
+    impl BitAndAssign for StencilFaceFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for StencilFaceFlags {
+    impl BitXor for StencilFaceFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for StencilFaceFlags {
+    impl BitXorAssign for StencilFaceFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for StencilFaceFlags {
+    impl Not for StencilFaceFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -22487,17 +22134,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for StencilFaceFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for StencilFaceFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CullModeFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CullModeFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CullModeFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -22530,40 +22177,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for CullModeFlags {
+    impl BitOr for CullModeFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for CullModeFlags {
+    impl BitOrAssign for CullModeFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for CullModeFlags {
+    impl BitAnd for CullModeFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for CullModeFlags {
+    impl BitAndAssign for CullModeFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for CullModeFlags {
+    impl BitXor for CullModeFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for CullModeFlags {
+    impl BitXorAssign for CullModeFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for CullModeFlags {
+    impl Not for CullModeFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -22588,17 +22235,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CullModeFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for CullModeFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorPoolCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DescriptorPoolCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DescriptorPoolCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -22638,40 +22285,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DescriptorPoolCreateFlags {
+    impl BitOr for DescriptorPoolCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DescriptorPoolCreateFlags {
+    impl BitOrAssign for DescriptorPoolCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DescriptorPoolCreateFlags {
+    impl BitAnd for DescriptorPoolCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DescriptorPoolCreateFlags {
+    impl BitAndAssign for DescriptorPoolCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DescriptorPoolCreateFlags {
+    impl BitXor for DescriptorPoolCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DescriptorPoolCreateFlags {
+    impl BitXorAssign for DescriptorPoolCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DescriptorPoolCreateFlags {
+    impl Not for DescriptorPoolCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -22696,18 +22343,18 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DescriptorPoolCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DescriptorPoolCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DescriptorPoolResetFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DescriptorPoolResetFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for DescriptorPoolResetFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl DescriptorPoolResetFlags {
@@ -22730,40 +22377,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DescriptorPoolResetFlags {
+    impl BitOr for DescriptorPoolResetFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DescriptorPoolResetFlags {
+    impl BitOrAssign for DescriptorPoolResetFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DescriptorPoolResetFlags {
+    impl BitAnd for DescriptorPoolResetFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DescriptorPoolResetFlags {
+    impl BitAndAssign for DescriptorPoolResetFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DescriptorPoolResetFlags {
+    impl BitXor for DescriptorPoolResetFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DescriptorPoolResetFlags {
+    impl BitXorAssign for DescriptorPoolResetFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DescriptorPoolResetFlags {
+    impl Not for DescriptorPoolResetFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -22773,8 +22420,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DependencyFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DependencyFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DependencyFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -22812,40 +22459,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DependencyFlags {
+    impl BitOr for DependencyFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DependencyFlags {
+    impl BitOrAssign for DependencyFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DependencyFlags {
+    impl BitAnd for DependencyFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DependencyFlags {
+    impl BitAndAssign for DependencyFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DependencyFlags {
+    impl BitXor for DependencyFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DependencyFlags {
+    impl BitXorAssign for DependencyFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DependencyFlags {
+    impl Not for DependencyFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -22870,9 +22517,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DependencyFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DependencyFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type SampleMask = u32;
@@ -22910,9 +22557,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for Instance {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
-            fmtdebug::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for Instance {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     #[repr(transparent)]
@@ -22945,9 +22592,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for PhysicalDevice {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
-            fmtdebug::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PhysicalDevice {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     #[repr(transparent)]
@@ -22980,9 +22627,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for Device {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
-            fmtdebug::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for Device {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     #[repr(transparent)]
@@ -23015,9 +22662,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for Queue {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
-            fmtdebug::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for Queue {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     #[repr(transparent)]
@@ -23050,9 +22697,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for CommandBuffer {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
-            fmtdebug::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for CommandBuffer {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     #[repr(transparent)]
@@ -23078,8 +22725,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for DeviceMemory {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for DeviceMemory {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23106,8 +22753,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for CommandPool {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for CommandPool {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23134,8 +22781,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for Buffer {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for Buffer {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23162,8 +22809,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for BufferView {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for BufferView {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23190,8 +22837,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for Image {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for Image {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23218,8 +22865,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for ImageView {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for ImageView {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23246,8 +22893,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for ShaderModule {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for ShaderModule {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23274,8 +22921,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for Pipeline {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for Pipeline {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23302,8 +22949,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for PipelineLayout {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for PipelineLayout {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23330,8 +22977,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for Sampler {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for Sampler {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23358,8 +23005,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for DescriptorSet {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for DescriptorSet {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23386,8 +23033,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for DescriptorSetLayout {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for DescriptorSetLayout {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23414,8 +23061,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for DescriptorPool {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for DescriptorPool {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23442,8 +23089,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for Fence {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for Fence {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23470,8 +23117,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for Semaphore {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for Semaphore {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23498,8 +23145,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for Event {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for Event {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23526,8 +23173,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for QueryPool {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for QueryPool {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23554,8 +23201,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for Framebuffer {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for Framebuffer {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23582,8 +23229,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for RenderPass {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for RenderPass {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -23610,14 +23257,14 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for PipelineCache {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for PipelineCache {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkInternalAllocationNotification = Option<
         unsafe extern "system" fn(
-            p_user_data: *mut core::ffi::c_void,
+            p_user_data: *mut ffi::c_void,
             size: usize,
             allocation_type: vk::InternalAllocationType,
             allocation_scope: vk::SystemAllocationScope,
@@ -23625,7 +23272,7 @@ pub(crate) mod items {
     >;
     pub type PFN_vkInternalFreeNotification = Option<
         unsafe extern "system" fn(
-            p_user_data: *mut core::ffi::c_void,
+            p_user_data: *mut ffi::c_void,
             size: usize,
             allocation_type: vk::InternalAllocationType,
             allocation_scope: vk::SystemAllocationScope,
@@ -23633,25 +23280,25 @@ pub(crate) mod items {
     >;
     pub type PFN_vkReallocationFunction = Option<
         unsafe extern "system" fn(
-            p_user_data: *mut core::ffi::c_void,
-            p_original: *mut core::ffi::c_void,
+            p_user_data: *mut ffi::c_void,
+            p_original: *mut ffi::c_void,
             size: usize,
             alignment: usize,
             allocation_scope: vk::SystemAllocationScope,
-        ) -> *mut core::ffi::c_void,
+        ) -> *mut ffi::c_void,
     >;
     pub type PFN_vkAllocationFunction = Option<
         unsafe extern "system" fn(
-            p_user_data: *mut core::ffi::c_void,
+            p_user_data: *mut ffi::c_void,
             size: usize,
             alignment: usize,
             allocation_scope: vk::SystemAllocationScope,
-        ) -> *mut core::ffi::c_void,
+        ) -> *mut ffi::c_void,
     >;
     pub type PFN_vkFreeFunction = Option<
         unsafe extern "system" fn(
-            p_user_data: *mut core::ffi::c_void,
-            p_memory: *mut core::ffi::c_void,
+            p_user_data: *mut ffi::c_void,
+            p_memory: *mut ffi::c_void,
         ),
     >;
     pub type PFN_vkVoidFunction = Option<unsafe extern "system" fn()>;
@@ -23671,11 +23318,11 @@ pub(crate) mod items {
     ) -> vk::Result;
     pub type PFN_vkGetDeviceProcAddr = unsafe extern "system" fn(
         device: vk::Device,
-        p_name: *const core::ffi::c_char,
+        p_name: *const ffi::c_char,
     ) -> vk::PFN_vkVoidFunction;
     pub type PFN_vkGetInstanceProcAddr = unsafe extern "system" fn(
         instance: vk::Instance,
-        p_name: *const core::ffi::c_char,
+        p_name: *const ffi::c_char,
     ) -> vk::PFN_vkVoidFunction;
     pub type PFN_vkGetPhysicalDeviceProperties = unsafe extern "system" fn(
         physical_device: vk::PhysicalDevice,
@@ -23723,7 +23370,7 @@ pub(crate) mod items {
         p_properties: *mut vk::LayerProperties,
     ) -> vk::Result;
     pub type PFN_vkEnumerateInstanceExtensionProperties = unsafe extern "system" fn(
-        p_layer_name: *const core::ffi::c_char,
+        p_layer_name: *const ffi::c_char,
         p_property_count: *mut u32,
         p_properties: *mut vk::ExtensionProperties,
     ) -> vk::Result;
@@ -23734,7 +23381,7 @@ pub(crate) mod items {
     ) -> vk::Result;
     pub type PFN_vkEnumerateDeviceExtensionProperties = unsafe extern "system" fn(
         physical_device: vk::PhysicalDevice,
-        p_layer_name: *const core::ffi::c_char,
+        p_layer_name: *const ffi::c_char,
         p_property_count: *mut u32,
         p_properties: *mut vk::ExtensionProperties,
     ) -> vk::Result;
@@ -23773,7 +23420,7 @@ pub(crate) mod items {
         offset: vk::DeviceSize,
         size: vk::DeviceSize,
         flags: vk::MemoryMapFlags,
-        pp_data: *mut *mut core::ffi::c_void,
+        pp_data: *mut *mut ffi::c_void,
     ) -> vk::Result;
     pub type PFN_vkUnmapMemory = unsafe extern "system" fn(
         device: vk::Device,
@@ -23916,7 +23563,7 @@ pub(crate) mod items {
         first_query: u32,
         query_count: u32,
         data_size: usize,
-        p_data: *mut core::ffi::c_void,
+        p_data: *mut ffi::c_void,
         stride: vk::DeviceSize,
         flags: vk::QueryResultFlags,
     ) -> vk::Result;
@@ -23996,7 +23643,7 @@ pub(crate) mod items {
         device: vk::Device,
         pipeline_cache: vk::PipelineCache,
         p_data_size: *mut usize,
-        p_data: *mut core::ffi::c_void,
+        p_data: *mut ffi::c_void,
     ) -> vk::Result;
     pub type PFN_vkMergePipelineCaches = unsafe extern "system" fn(
         device: vk::Device,
@@ -24176,22 +23823,22 @@ pub(crate) mod items {
     );
     pub type PFN_vkCmdSetLineWidth = unsafe extern "system" fn(
         command_buffer: vk::CommandBuffer,
-        line_width: core::ffi::c_float,
+        line_width: ffi::c_float,
     );
     pub type PFN_vkCmdSetDepthBias = unsafe extern "system" fn(
         command_buffer: vk::CommandBuffer,
-        depth_bias_constant_factor: core::ffi::c_float,
-        depth_bias_clamp: core::ffi::c_float,
-        depth_bias_slope_factor: core::ffi::c_float,
+        depth_bias_constant_factor: ffi::c_float,
+        depth_bias_clamp: ffi::c_float,
+        depth_bias_slope_factor: ffi::c_float,
     );
     pub type PFN_vkCmdSetBlendConstants = unsafe extern "system" fn(
         command_buffer: vk::CommandBuffer,
-        blend_constants: *const [core::ffi::c_float; 4 as _],
+        blend_constants: *const [ffi::c_float; 4 as _],
     );
     pub type PFN_vkCmdSetDepthBounds = unsafe extern "system" fn(
         command_buffer: vk::CommandBuffer,
-        min_depth_bounds: core::ffi::c_float,
-        max_depth_bounds: core::ffi::c_float,
+        min_depth_bounds: ffi::c_float,
+        max_depth_bounds: ffi::c_float,
     );
     pub type PFN_vkCmdSetStencilCompareMask = unsafe extern "system" fn(
         command_buffer: vk::CommandBuffer,
@@ -24318,7 +23965,7 @@ pub(crate) mod items {
         dst_buffer: vk::Buffer,
         dst_offset: vk::DeviceSize,
         data_size: vk::DeviceSize,
-        p_data: *const core::ffi::c_void,
+        p_data: *const ffi::c_void,
     );
     pub type PFN_vkCmdFillBuffer = unsafe extern "system" fn(
         command_buffer: vk::CommandBuffer,
@@ -24433,7 +24080,7 @@ pub(crate) mod items {
         stage_flags: vk::ShaderStageFlags,
         offset: u32,
         size: u32,
-        p_values: *const core::ffi::c_void,
+        p_values: *const ffi::c_void,
     );
     pub type PFN_vkCmdBeginRenderPass = unsafe extern "system" fn(
         command_buffer: vk::CommandBuffer,
@@ -24458,7 +24105,7 @@ pub(crate) mod items {
     pub const MAX_DESCRIPTION_SIZE: u32 = 256;
     pub const MAX_MEMORY_TYPES: u32 = 32;
     pub const MAX_MEMORY_HEAPS: u32 = 16;
-    pub const LOD_CLAMP_NONE: core::ffi::c_float = 1000.0;
+    pub const LOD_CLAMP_NONE: ffi::c_float = 1000.0;
     pub const REMAINING_MIP_LEVELS: u32 = (!0);
     pub const REMAINING_ARRAY_LAYERS: u32 = (!0);
     pub const WHOLE_SIZE: u64 = (!0);

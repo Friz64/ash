@@ -21,26 +21,31 @@ pub const NAME: &CStr = c"VK_NV_display_stereo";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DisplaySurfaceStereoCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub stereo_type: vk::DisplaySurfaceStereoTypeNV,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplaySurfaceStereoCreateInfoNV<'_> {}
     unsafe impl Sync for DisplaySurfaceStereoCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DisplaySurfaceStereoCreateInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DisplaySurfaceStereoCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_SURFACE_STEREO_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::DisplaySurfaceCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::DisplaySurfaceCreateInfoKHR<'_>>
     for DisplaySurfaceStereoCreateInfoNV<'a> {}
     impl<'a> Default for DisplaySurfaceStereoCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DISPLAY_SURFACE_STEREO_CREATE_INFO_NV,
                 p_next: Default::default(),
                 stereo_type: Default::default(),
                 _marker: PhantomData,
@@ -61,21 +66,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DisplayModeStereoPropertiesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub hdmi3_d_supported: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplayModeStereoPropertiesNV<'_> {}
     unsafe impl Sync for DisplayModeStereoPropertiesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeStereoPropertiesNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DisplayModeStereoPropertiesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_MODE_STEREO_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::DisplayModeProperties2KHR<'_>>
+    unsafe impl<'a> Extends<vk::DisplayModeProperties2KHR<'_>>
     for DisplayModeStereoPropertiesNV<'a> {}
     impl<'a> Default for DisplayModeStereoPropertiesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DISPLAY_MODE_STEREO_PROPERTIES_NV,
                 p_next: Default::default(),
                 hdmi3_d_supported: Default::default(),
                 _marker: PhantomData,
@@ -92,8 +97,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DisplaySurfaceStereoTypeNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DisplaySurfaceStereoTypeNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DisplaySurfaceStereoTypeNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::NONE => Some("NONE"),
                 Self::ONBOARD_DIN => Some("ONBOARD_DIN"),
@@ -103,7 +108,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

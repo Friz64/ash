@@ -4,7 +4,9 @@
 #![doc(alias = "VK_EXT_image_compression_control")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT: Self = Self(
@@ -132,10 +134,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_image_subresource_layout2: unsafe {
                 unsafe extern "system" fn get_image_subresource_layout2(
@@ -150,7 +152,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_image_subresource_layout2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -159,13 +161,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -174,7 +176,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetImageSubresourceLayout2
@@ -184,7 +186,7 @@ impl Device {
         image: vk::Image,
         subresource: &vk::ImageSubresource2<'_>,
     ) -> vk::SubresourceLayout2<'_> {
-        let mut layout = core::mem::MaybeUninit::uninit();
+        let mut layout = MaybeUninit::uninit();
         (self
             .fp
             .get_image_subresource_layout2)(
@@ -199,12 +201,18 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageCompressionControlEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::ImageCompressionFlagsEXT,
         pub compression_control_plane_count: u32,
         pub p_fixed_rate_flags: *mut vk::ImageCompressionFixedRateFlagsEXT,
@@ -212,19 +220,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageCompressionControlEXT<'_> {}
     unsafe impl Sync for ImageCompressionControlEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageCompressionControlEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageCompressionControlEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_COMPRESSION_CONTROL_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>> for ImageCompressionControlEXT<'a> {}
+    unsafe impl<'a> Extends<vk::SwapchainCreateInfoKHR<'_>>
     for ImageCompressionControlEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
-    for ImageCompressionControlEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for ImageCompressionControlEXT<'a> {}
     impl<'a> Default for ImageCompressionControlEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_COMPRESSION_CONTROL_EXT,
                 p_next: Default::default(),
                 flags: Default::default(),
                 compression_control_plane_count: Default::default(),
@@ -252,24 +259,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub image_compression_control: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageCompressionControlFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceImageCompressionControlFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT,
                 p_next: Default::default(),
                 image_compression_control: Default::default(),
                 _marker: PhantomData,
@@ -290,26 +297,26 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageCompressionPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub image_compression_flags: vk::ImageCompressionFlagsEXT,
         pub image_compression_fixed_rate_flags: vk::ImageCompressionFixedRateFlagsEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageCompressionPropertiesEXT<'_> {}
     unsafe impl Sync for ImageCompressionPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageCompressionPropertiesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageCompressionPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_COMPRESSION_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageFormatProperties2<'_>>
+    unsafe impl<'a> Extends<vk::ImageFormatProperties2<'_>>
     for ImageCompressionPropertiesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SurfaceFormat2KHR<'_>>
+    unsafe impl<'a> Extends<vk::SurfaceFormat2KHR<'_>>
     for ImageCompressionPropertiesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SubresourceLayout2<'_>>
+    unsafe impl<'a> Extends<vk::SubresourceLayout2<'_>>
     for ImageCompressionPropertiesEXT<'a> {}
     impl<'a> Default for ImageCompressionPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_COMPRESSION_PROPERTIES_EXT,
                 p_next: Default::default(),
                 image_compression_flags: Default::default(),
                 image_compression_fixed_rate_flags: Default::default(),
@@ -337,8 +344,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCompressionFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageCompressionFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageCompressionFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -371,40 +378,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ImageCompressionFlagsEXT {
+    impl BitOr for ImageCompressionFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ImageCompressionFlagsEXT {
+    impl BitOrAssign for ImageCompressionFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ImageCompressionFlagsEXT {
+    impl BitAnd for ImageCompressionFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ImageCompressionFlagsEXT {
+    impl BitAndAssign for ImageCompressionFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ImageCompressionFlagsEXT {
+    impl BitXor for ImageCompressionFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ImageCompressionFlagsEXT {
+    impl BitXorAssign for ImageCompressionFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ImageCompressionFlagsEXT {
+    impl Not for ImageCompressionFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -429,17 +436,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageCompressionFlagBitsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ImageCompressionFlagBitsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCompressionFixedRateFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageCompressionFixedRateFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageCompressionFixedRateFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -493,40 +500,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ImageCompressionFixedRateFlagsEXT {
+    impl BitOr for ImageCompressionFixedRateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ImageCompressionFixedRateFlagsEXT {
+    impl BitOrAssign for ImageCompressionFixedRateFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ImageCompressionFixedRateFlagsEXT {
+    impl BitAnd for ImageCompressionFixedRateFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ImageCompressionFixedRateFlagsEXT {
+    impl BitAndAssign for ImageCompressionFixedRateFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ImageCompressionFixedRateFlagsEXT {
+    impl BitXor for ImageCompressionFixedRateFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ImageCompressionFixedRateFlagsEXT {
+    impl BitXorAssign for ImageCompressionFixedRateFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ImageCompressionFixedRateFlagsEXT {
+    impl Not for ImageCompressionFixedRateFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -551,9 +558,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageCompressionFixedRateFlagBitsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ImageCompressionFixedRateFlagBitsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
 }

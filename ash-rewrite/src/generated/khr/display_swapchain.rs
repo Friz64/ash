@@ -4,8 +4,10 @@
 #![doc(alias = "VK_KHR_display_swapchain")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_display_swapchain](crate::khr::display_swapchain)
 impl vk::StructureType {
     pub const DISPLAY_PRESENT_INFO_KHR: Self = Self(1000003000);
@@ -23,10 +25,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_shared_swapchains: unsafe {
                 unsafe extern "system" fn create_shared_swapchains(
@@ -39,11 +41,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateSharedSwapchainsKHR")
                 }
                 let val = _f(c"vkCreateSharedSwapchainsKHR");
-                if val.is_null() {
-                    create_shared_swapchains
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_shared_swapchains } else { transmute(val) }
             },
         }
     }
@@ -51,13 +49,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -66,7 +64,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateSharedSwapchainsKHR
@@ -86,7 +84,7 @@ impl Device {
                 create_infos.as_ptr(),
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 swapchains.as_mut_ptr(),
             )
@@ -96,12 +94,15 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DisplayPresentInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_rect: vk::Rect2D,
         pub dst_rect: vk::Rect2D,
         pub persistent: vk::Bool32,
@@ -109,15 +110,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for DisplayPresentInfoKHR<'_> {}
     unsafe impl Sync for DisplayPresentInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPresentInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DisplayPresentInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_PRESENT_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>>
-    for DisplayPresentInfoKHR<'a> {}
+    unsafe impl<'a> Extends<vk::PresentInfoKHR<'_>> for DisplayPresentInfoKHR<'a> {}
     impl<'a> Default for DisplayPresentInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DISPLAY_PRESENT_INFO_KHR,
                 p_next: Default::default(),
                 src_rect: Default::default(),
                 dst_rect: Default::default(),

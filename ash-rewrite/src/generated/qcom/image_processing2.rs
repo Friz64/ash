@@ -22,29 +22,34 @@ pub const NAME: &CStr = c"VK_QCOM_image_processing2";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub texture_block_match2: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageProcessing2FeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceImageProcessing2FeaturesQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_FEATURES_QCOM,
                 p_next: Default::default(),
                 texture_block_match2: Default::default(),
                 _marker: PhantomData,
@@ -62,22 +67,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_block_match_window: vk::Extent2D,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageProcessing2PropertiesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceImageProcessing2PropertiesQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_PROPERTIES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_PROPERTIES_QCOM,
                 p_next: Default::default(),
                 max_block_match_window: Default::default(),
                 _marker: PhantomData,
@@ -98,23 +103,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SamplerBlockMatchWindowCreateInfoQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub window_extent: vk::Extent2D,
         pub window_compare_mode: vk::BlockMatchWindowCompareModeQCOM,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SamplerBlockMatchWindowCreateInfoQCOM<'_> {}
     unsafe impl Sync for SamplerBlockMatchWindowCreateInfoQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::SamplerCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::SamplerCreateInfo<'_>>
     for SamplerBlockMatchWindowCreateInfoQCOM<'a> {}
     impl<'a> Default for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM,
                 p_next: Default::default(),
                 window_extent: Default::default(),
                 window_compare_mode: Default::default(),
@@ -139,8 +143,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct BlockMatchWindowCompareModeQCOM(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BlockMatchWindowCompareModeQCOM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for BlockMatchWindowCompareModeQCOM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::MIN => Some("MIN"),
                 Self::MAX => Some("MAX"),
@@ -148,7 +152,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

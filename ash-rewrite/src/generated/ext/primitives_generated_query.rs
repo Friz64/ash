@@ -19,12 +19,15 @@ pub const NAME: &CStr = c"VK_EXT_primitives_generated_query";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub primitives_generated_query: vk::Bool32,
         pub primitives_generated_query_with_rasterizer_discard: vk::Bool32,
         pub primitives_generated_query_with_non_zero_streams: vk::Bool32,
@@ -32,18 +35,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PRIMITIVES_GENERATED_QUERY_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PRIMITIVES_GENERATED_QUERY_FEATURES_EXT,
                 p_next: Default::default(),
                 primitives_generated_query: Default::default(),
                 primitives_generated_query_with_rasterizer_discard: Default::default(),

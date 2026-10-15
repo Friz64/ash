@@ -4,7 +4,8 @@
 #![doc(alias = "VK_KHR_maintenance6")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_maintenance6](crate::khr::maintenance6)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES;
@@ -31,10 +32,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_set_descriptor_buffer_offsets2: unsafe {
                 unsafe extern "system" fn cmd_set_descriptor_buffer_offsets2(
@@ -47,7 +48,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_descriptor_buffer_offsets2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_bind_descriptor_buffer_embedded_samplers2: unsafe {
@@ -63,7 +64,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_bind_descriptor_buffer_embedded_samplers2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_bind_descriptor_sets2: unsafe {
@@ -74,11 +75,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdBindDescriptorSets2KHR")
                 }
                 let val = _f(c"vkCmdBindDescriptorSets2KHR");
-                if val.is_null() {
-                    cmd_bind_descriptor_sets2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_bind_descriptor_sets2 } else { transmute(val) }
             },
             cmd_push_constants2: unsafe {
                 unsafe extern "system" fn cmd_push_constants2(
@@ -88,11 +85,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdPushConstants2KHR")
                 }
                 let val = _f(c"vkCmdPushConstants2KHR");
-                if val.is_null() {
-                    cmd_push_constants2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_push_constants2 } else { transmute(val) }
             },
             cmd_push_descriptor_set2: unsafe {
                 unsafe extern "system" fn cmd_push_descriptor_set2(
@@ -102,11 +95,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdPushDescriptorSet2KHR")
                 }
                 let val = _f(c"vkCmdPushDescriptorSet2KHR");
-                if val.is_null() {
-                    cmd_push_descriptor_set2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_push_descriptor_set2 } else { transmute(val) }
             },
             cmd_push_descriptor_set_with_template2: unsafe {
                 unsafe extern "system" fn cmd_push_descriptor_set_with_template2(
@@ -119,7 +108,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_push_descriptor_set_with_template2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -128,13 +117,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -143,7 +132,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdSetDescriptorBufferOffsets2EXT
@@ -223,12 +212,14 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SetDescriptorBufferOffsetsInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub stage_flags: vk::ShaderStageFlags,
         pub layout: vk::PipelineLayout,
         pub first_set: u32,
@@ -239,14 +230,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for SetDescriptorBufferOffsetsInfoEXT<'_> {}
     unsafe impl Sync for SetDescriptorBufferOffsetsInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for SetDescriptorBufferOffsetsInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SetDescriptorBufferOffsetsInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT;
     }
     impl<'a> Default for SetDescriptorBufferOffsetsInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT,
                 p_next: Default::default(),
                 stage_flags: Default::default(),
                 layout: Default::default(),
@@ -287,7 +277,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub stage_flags: vk::ShaderStageFlags,
         pub layout: vk::PipelineLayout,
         pub set: u32,
@@ -295,14 +285,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for BindDescriptorBufferEmbeddedSamplersInfoEXT<'_> {}
     unsafe impl Sync for BindDescriptorBufferEmbeddedSamplersInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT;
     }
     impl<'a> Default for BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT,
                 p_next: Default::default(),
                 stage_flags: Default::default(),
                 layout: Default::default(),

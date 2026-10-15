@@ -4,8 +4,10 @@
 #![doc(alias = "VK_FUCHSIA_external_semaphore")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_FUCHSIA_external_semaphore](crate::fuchsia::external_semaphore)
 impl vk::StructureType {
     pub const IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000365000);
@@ -31,25 +33,21 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_semaphore_zircon_handle: unsafe {
                 unsafe extern "system" fn get_semaphore_zircon_handle(
                     _: vk::Device,
                     _: *const vk::SemaphoreGetZirconHandleInfoFUCHSIA<'_>,
-                    _: *mut crate::platform_types::zx_handle_t,
+                    _: *mut vk::zx_handle_t,
                 ) -> vk::Result {
                     panic!("unable to load vkGetSemaphoreZirconHandleFUCHSIA")
                 }
                 let val = _f(c"vkGetSemaphoreZirconHandleFUCHSIA");
-                if val.is_null() {
-                    get_semaphore_zircon_handle
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_semaphore_zircon_handle } else { transmute(val) }
             },
             import_semaphore_zircon_handle: unsafe {
                 unsafe extern "system" fn import_semaphore_zircon_handle(
@@ -62,7 +60,7 @@ impl DeviceFn {
                 if val.is_null() {
                     import_semaphore_zircon_handle
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -71,13 +69,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -86,7 +84,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetSemaphoreZirconHandleFUCHSIA
@@ -94,8 +92,8 @@ impl Device {
     pub unsafe fn get_semaphore_zircon_handle(
         &self,
         get_zircon_handle_info: &vk::SemaphoreGetZirconHandleInfoFUCHSIA<'_>,
-    ) -> VkResult<crate::platform_types::zx_handle_t> {
-        let mut zircon_handle = core::mem::MaybeUninit::uninit();
+    ) -> VkResult<vk::zx_handle_t> {
+        let mut zircon_handle = MaybeUninit::uninit();
         (self
             .fp
             .get_semaphore_zircon_handle)(
@@ -125,28 +123,29 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub semaphore: vk::Semaphore,
         pub flags: vk::SemaphoreImportFlags,
         pub handle_type: vk::ExternalSemaphoreHandleTypeFlagBits,
-        pub zircon_handle: crate::platform_types::zx_handle_t,
+        pub zircon_handle: vk::zx_handle_t,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportSemaphoreZirconHandleInfoFUCHSIA<'_> {}
     unsafe impl Sync for ImportSemaphoreZirconHandleInfoFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA;
     }
     impl<'a> Default for ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA,
                 p_next: Default::default(),
                 semaphore: Default::default(),
                 flags: Default::default(),
@@ -172,10 +171,7 @@ pub(crate) mod items {
             self.handle_type = handle_type;
             self
         }
-        pub fn zircon_handle(
-            mut self,
-            zircon_handle: crate::platform_types::zx_handle_t,
-        ) -> Self {
+        pub fn zircon_handle(mut self, zircon_handle: vk::zx_handle_t) -> Self {
             self.zircon_handle = zircon_handle;
             self
         }
@@ -185,21 +181,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub semaphore: vk::Semaphore,
         pub handle_type: vk::ExternalSemaphoreHandleTypeFlagBits,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SemaphoreGetZirconHandleInfoFUCHSIA<'_> {}
     unsafe impl Sync for SemaphoreGetZirconHandleInfoFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA;
     }
     impl<'a> Default for SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA,
                 p_next: Default::default(),
                 semaphore: Default::default(),
                 handle_type: Default::default(),
@@ -223,7 +218,7 @@ pub(crate) mod items {
     pub type PFN_vkGetSemaphoreZirconHandleFUCHSIA = unsafe extern "system" fn(
         device: vk::Device,
         p_get_zircon_handle_info: *const vk::SemaphoreGetZirconHandleInfoFUCHSIA<'_>,
-        p_zircon_handle: *mut crate::platform_types::zx_handle_t,
+        p_zircon_handle: *mut vk::zx_handle_t,
     ) -> vk::Result;
     pub type PFN_vkImportSemaphoreZirconHandleFUCHSIA = unsafe extern "system" fn(
         device: vk::Device,

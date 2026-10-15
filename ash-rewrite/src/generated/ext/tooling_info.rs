@@ -5,7 +5,10 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_tooling_info](crate::ext::tooling_info)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TOOL_PROPERTIES;
@@ -47,10 +50,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_tool_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_tool_properties(
@@ -64,7 +67,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_tool_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -73,13 +76,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -88,7 +91,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceToolProperties
@@ -97,13 +100,13 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> VkResult<usize> {
-        let mut tool_count = core::mem::MaybeUninit::uninit();
+        let mut tool_count = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_tool_properties)(
                 physical_device,
                 tool_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(tool_count)
             .map(|c| c as usize)
@@ -114,7 +117,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         tool_properties: &mut [vk::PhysicalDeviceToolProperties<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut tool_count = tool_properties.len() as _;
         (self
             .fp

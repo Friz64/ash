@@ -74,7 +74,10 @@ impl H265AspectRatioIdc {
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub(crate) mod items {
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     use crate::vk;
+    use core::mem::zeroed;
     use core::marker::PhantomData;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -89,8 +92,8 @@ pub(crate) mod items {
     unsafe impl Send for H265ProfileTierLevelFlags {}
     unsafe impl Sync for H265ProfileTierLevelFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265ProfileTierLevelFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265ProfileTierLevelFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("H265ProfileTierLevelFlags")
                 .field("general_tier_flag", &self.get_general_tier_flag())
                 .field(
@@ -210,9 +213,9 @@ pub(crate) mod items {
     impl Default for H265DecPicBufMgr {
         fn default() -> Self {
             Self {
-                max_latency_increase_plus1: unsafe { core::mem::zeroed() },
-                max_dec_pic_buffering_minus1: unsafe { core::mem::zeroed() },
-                max_num_reorder_pics: unsafe { core::mem::zeroed() },
+                max_latency_increase_plus1: unsafe { zeroed() },
+                max_dec_pic_buffering_minus1: unsafe { zeroed() },
+                max_num_reorder_pics: unsafe { zeroed() },
             }
         }
     }
@@ -254,10 +257,10 @@ pub(crate) mod items {
     impl Default for H265SubLayerHrdParameters {
         fn default() -> Self {
             Self {
-                bit_rate_value_minus1: unsafe { core::mem::zeroed() },
-                cpb_size_value_minus1: unsafe { core::mem::zeroed() },
-                cpb_size_du_value_minus1: unsafe { core::mem::zeroed() },
-                bit_rate_du_value_minus1: unsafe { core::mem::zeroed() },
+                bit_rate_value_minus1: unsafe { zeroed() },
+                cpb_size_value_minus1: unsafe { zeroed() },
+                cpb_size_du_value_minus1: unsafe { zeroed() },
+                bit_rate_du_value_minus1: unsafe { zeroed() },
                 cbr_flag: Default::default(),
             }
         }
@@ -311,8 +314,8 @@ pub(crate) mod items {
     unsafe impl Send for H265HrdFlags {}
     unsafe impl Sync for H265HrdFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265HrdFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265HrdFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("H265HrdFlags")
                 .field(
                     "nal_hrd_parameters_present_flag",
@@ -458,9 +461,9 @@ pub(crate) mod items {
                 initial_cpb_removal_delay_length_minus1: Default::default(),
                 au_cpb_removal_delay_length_minus1: Default::default(),
                 dpb_output_delay_length_minus1: Default::default(),
-                cpb_cnt_minus1: unsafe { core::mem::zeroed() },
-                elemental_duration_in_tc_minus1: unsafe { core::mem::zeroed() },
-                reserved: unsafe { core::mem::zeroed() },
+                cpb_cnt_minus1: unsafe { zeroed() },
+                elemental_duration_in_tc_minus1: unsafe { zeroed() },
+                reserved: unsafe { zeroed() },
                 p_sub_layer_hrd_parameters_nal: Default::default(),
                 p_sub_layer_hrd_parameters_vcl: Default::default(),
                 _marker: PhantomData,
@@ -568,8 +571,8 @@ pub(crate) mod items {
     unsafe impl Send for H265VpsFlags {}
     unsafe impl Sync for H265VpsFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265VpsFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265VpsFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("H265VpsFlags")
                 .field(
                     "vps_temporal_id_nesting_flag",
@@ -747,12 +750,12 @@ pub(crate) mod items {
     impl Default for H265ScalingLists {
         fn default() -> Self {
             Self {
-                scaling_list4x4: unsafe { core::mem::zeroed() },
-                scaling_list8x8: unsafe { core::mem::zeroed() },
-                scaling_list16x16: unsafe { core::mem::zeroed() },
-                scaling_list32x32: unsafe { core::mem::zeroed() },
-                scaling_list_dc_coef16x16: unsafe { core::mem::zeroed() },
-                scaling_list_dc_coef32x32: unsafe { core::mem::zeroed() },
+                scaling_list4x4: unsafe { zeroed() },
+                scaling_list8x8: unsafe { zeroed() },
+                scaling_list16x16: unsafe { zeroed() },
+                scaling_list32x32: unsafe { zeroed() },
+                scaling_list_dc_coef16x16: unsafe { zeroed() },
+                scaling_list_dc_coef32x32: unsafe { zeroed() },
             }
         }
     }
@@ -814,8 +817,8 @@ pub(crate) mod items {
     unsafe impl Send for H265ShortTermRefPicSetFlags {}
     unsafe impl Sync for H265ShortTermRefPicSetFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265ShortTermRefPicSetFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265ShortTermRefPicSetFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("H265ShortTermRefPicSetFlags")
                 .field(
                     "inter_ref_pic_set_prediction_flag",
@@ -882,8 +885,8 @@ pub(crate) mod items {
                 reserved3: Default::default(),
                 num_negative_pics: Default::default(),
                 num_positive_pics: Default::default(),
-                delta_poc_s0_minus1: unsafe { core::mem::zeroed() },
-                delta_poc_s1_minus1: unsafe { core::mem::zeroed() },
+                delta_poc_s0_minus1: unsafe { zeroed() },
+                delta_poc_s1_minus1: unsafe { zeroed() },
             }
         }
     }
@@ -970,7 +973,7 @@ pub(crate) mod items {
         fn default() -> Self {
             Self {
                 used_by_curr_pic_lt_sps_flag: Default::default(),
-                lt_ref_pic_poc_lsb_sps: unsafe { core::mem::zeroed() },
+                lt_ref_pic_poc_lsb_sps: unsafe { zeroed() },
             }
         }
     }
@@ -1016,8 +1019,8 @@ pub(crate) mod items {
     unsafe impl Send for H265SpsVuiFlags {}
     unsafe impl Sync for H265SpsVuiFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265SpsVuiFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265SpsVuiFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("H265SpsVuiFlags")
                 .field(
                     "aspect_ratio_info_present_flag",
@@ -1481,7 +1484,7 @@ pub(crate) mod items {
     impl Default for H265PredictorPaletteEntries {
         fn default() -> Self {
             Self {
-                predictor_palette_entries: unsafe { core::mem::zeroed() },
+                predictor_palette_entries: unsafe { zeroed() },
             }
         }
     }
@@ -1533,8 +1536,8 @@ pub(crate) mod items {
     unsafe impl Send for H265SpsFlags {}
     unsafe impl Sync for H265SpsFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265SpsFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265SpsFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("H265SpsFlags")
                 .field(
                     "sps_temporal_id_nesting_flag",
@@ -2303,8 +2306,8 @@ pub(crate) mod items {
     unsafe impl Send for H265PpsFlags {}
     unsafe impl Sync for H265PpsFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265PpsFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265PpsFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("H265PpsFlags")
                 .field(
                     "dependent_slice_segments_enabled_flag",
@@ -2814,8 +2817,8 @@ pub(crate) mod items {
                 log2_max_transform_skip_block_size_minus2: Default::default(),
                 diff_cu_chroma_qp_offset_depth: Default::default(),
                 chroma_qp_offset_list_len_minus1: Default::default(),
-                cb_qp_offset_list: unsafe { core::mem::zeroed() },
-                cr_qp_offset_list: unsafe { core::mem::zeroed() },
+                cb_qp_offset_list: unsafe { zeroed() },
+                cr_qp_offset_list: unsafe { zeroed() },
                 log2_sao_offset_scale_luma: Default::default(),
                 log2_sao_offset_scale_chroma: Default::default(),
                 pps_act_y_qp_offset_plus5: Default::default(),
@@ -2828,8 +2831,8 @@ pub(crate) mod items {
                 num_tile_rows_minus1: Default::default(),
                 reserved1: Default::default(),
                 reserved2: Default::default(),
-                column_width_minus1: unsafe { core::mem::zeroed() },
-                row_height_minus1: unsafe { core::mem::zeroed() },
+                column_width_minus1: unsafe { zeroed() },
+                row_height_minus1: unsafe { zeroed() },
                 reserved3: Default::default(),
                 p_scaling_lists: Default::default(),
                 p_predictor_palette_entries: Default::default(),
@@ -3051,8 +3054,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H265ChromaFormatIdc(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265ChromaFormatIdc {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265ChromaFormatIdc {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::MONOCHROME => Some("MONOCHROME"),
                 Self::TYPE_420 => Some("TYPE_420"),
@@ -3063,7 +3066,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -3081,8 +3084,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H265ProfileIdc(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265ProfileIdc {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265ProfileIdc {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::MAIN => Some("MAIN"),
                 Self::MAIN_10 => Some("MAIN_10"),
@@ -3094,7 +3097,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -3112,8 +3115,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H265LevelIdc(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265LevelIdc {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265LevelIdc {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::TYPE_1_0 => Some("TYPE_1_0"),
                 Self::TYPE_2_0 => Some("TYPE_2_0"),
@@ -3133,7 +3136,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -3151,8 +3154,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H265SliceType(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265SliceType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265SliceType {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::B => Some("B"),
                 Self::P => Some("P"),
@@ -3162,7 +3165,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -3180,8 +3183,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H265PictureType(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265PictureType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265PictureType {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::P => Some("P"),
                 Self::B => Some("B"),
@@ -3192,7 +3195,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -3210,8 +3213,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H265AspectRatioIdc(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for H265AspectRatioIdc {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for H265AspectRatioIdc {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::UNSPECIFIED => Some("UNSPECIFIED"),
                 Self::SQUARE => Some("SQUARE"),
@@ -3236,7 +3239,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

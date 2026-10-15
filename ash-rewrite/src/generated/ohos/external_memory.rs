@@ -4,8 +4,10 @@
 #![doc(alias = "VK_OHOS_external_memory")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_OHOS_external_memory](crate::ohos::external_memory)
 impl vk::StructureType {
     pub const NATIVE_BUFFER_USAGE_OHOS: Self = Self(1000452000);
@@ -35,40 +37,32 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_native_buffer_properties: unsafe {
                 unsafe extern "system" fn get_native_buffer_properties(
                     _: vk::Device,
-                    _: *const crate::platform_types::OH_NativeBuffer,
+                    _: *const vk::OH_NativeBuffer,
                     _: *mut vk::NativeBufferPropertiesOHOS<'_>,
                 ) -> vk::Result {
                     panic!("unable to load vkGetNativeBufferPropertiesOHOS")
                 }
                 let val = _f(c"vkGetNativeBufferPropertiesOHOS");
-                if val.is_null() {
-                    get_native_buffer_properties
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_native_buffer_properties } else { transmute(val) }
             },
             get_memory_native_buffer: unsafe {
                 unsafe extern "system" fn get_memory_native_buffer(
                     _: vk::Device,
                     _: *const vk::MemoryGetNativeBufferInfoOHOS<'_>,
-                    _: *mut *mut crate::platform_types::OH_NativeBuffer,
+                    _: *mut *mut vk::OH_NativeBuffer,
                 ) -> vk::Result {
                     panic!("unable to load vkGetMemoryNativeBufferOHOS")
                 }
                 let val = _f(c"vkGetMemoryNativeBufferOHOS");
-                if val.is_null() {
-                    get_memory_native_buffer
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_memory_native_buffer } else { transmute(val) }
             },
         }
     }
@@ -76,13 +70,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -91,16 +85,16 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetNativeBufferPropertiesOHOS
     #[inline]
     pub unsafe fn get_native_buffer_properties(
         &self,
-        buffer: &crate::platform_types::OH_NativeBuffer,
+        buffer: &vk::OH_NativeBuffer,
     ) -> VkResult<vk::NativeBufferPropertiesOHOS<'_>> {
-        let mut properties = core::mem::MaybeUninit::uninit();
+        let mut properties = MaybeUninit::uninit();
         (self
             .fp
             .get_native_buffer_properties)(self.handle, buffer, properties.as_mut_ptr())
@@ -111,8 +105,8 @@ impl Device {
     pub unsafe fn get_memory_native_buffer(
         &self,
         info: &vk::MemoryGetNativeBufferInfoOHOS<'_>,
-    ) -> VkResult<*mut crate::platform_types::OH_NativeBuffer> {
-        let mut buffer = core::mem::MaybeUninit::uninit();
+    ) -> VkResult<*mut vk::OH_NativeBuffer> {
+        let mut buffer = MaybeUninit::uninit();
         (self.fp.get_memory_native_buffer)(self.handle, info, buffer.as_mut_ptr())
             .assume_init_on_success(buffer)
     }
@@ -120,26 +114,29 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct NativeBufferUsageOHOS<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub ohos_native_buffer_usage: u64,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for NativeBufferUsageOHOS<'_> {}
     unsafe impl Sync for NativeBufferUsageOHOS<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferUsageOHOS<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for NativeBufferUsageOHOS<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::NATIVE_BUFFER_USAGE_OHOS;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageFormatProperties2<'_>>
+    unsafe impl<'a> Extends<vk::ImageFormatProperties2<'_>>
     for NativeBufferUsageOHOS<'a> {}
     impl<'a> Default for NativeBufferUsageOHOS<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::NATIVE_BUFFER_USAGE_OHOS,
                 p_next: Default::default(),
                 ohos_native_buffer_usage: Default::default(),
                 _marker: PhantomData,
@@ -160,20 +157,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct NativeBufferPropertiesOHOS<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub allocation_size: vk::DeviceSize,
         pub memory_type_bits: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for NativeBufferPropertiesOHOS<'_> {}
     unsafe impl Sync for NativeBufferPropertiesOHOS<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferPropertiesOHOS<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for NativeBufferPropertiesOHOS<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::NATIVE_BUFFER_PROPERTIES_OHOS;
     }
     impl<'a> Default for NativeBufferPropertiesOHOS<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::NATIVE_BUFFER_PROPERTIES_OHOS,
                 p_next: Default::default(),
                 allocation_size: Default::default(),
                 memory_type_bits: Default::default(),
@@ -196,7 +193,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct NativeBufferFormatPropertiesOHOS<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub format: vk::Format,
         pub external_format: u64,
         pub format_features: vk::FormatFeatureFlags,
@@ -209,15 +206,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for NativeBufferFormatPropertiesOHOS<'_> {}
     unsafe impl Sync for NativeBufferFormatPropertiesOHOS<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferFormatPropertiesOHOS<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for NativeBufferFormatPropertiesOHOS<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::NATIVE_BUFFER_FORMAT_PROPERTIES_OHOS;
     }
-    unsafe impl<'a> crate::Extends<vk::NativeBufferPropertiesOHOS<'_>>
+    unsafe impl<'a> Extends<vk::NativeBufferPropertiesOHOS<'_>>
     for NativeBufferFormatPropertiesOHOS<'a> {}
     impl<'a> Default for NativeBufferFormatPropertiesOHOS<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::NATIVE_BUFFER_FORMAT_PROPERTIES_OHOS,
                 p_next: Default::default(),
                 format: Default::default(),
                 external_format: Default::default(),
@@ -288,21 +285,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImportNativeBufferInfoOHOS<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub buffer: *mut crate::platform_types::OH_NativeBuffer,
+        pub p_next: *const ffi::c_void,
+        pub buffer: *mut vk::OH_NativeBuffer,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportNativeBufferInfoOHOS<'_> {}
     unsafe impl Sync for ImportNativeBufferInfoOHOS<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImportNativeBufferInfoOHOS<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportNativeBufferInfoOHOS<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_NATIVE_BUFFER_INFO_OHOS;
     }
-    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> Extends<vk::MemoryAllocateInfo<'_>>
     for ImportNativeBufferInfoOHOS<'a> {}
     impl<'a> Default for ImportNativeBufferInfoOHOS<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_NATIVE_BUFFER_INFO_OHOS,
                 p_next: Default::default(),
                 buffer: Default::default(),
                 _marker: PhantomData,
@@ -310,10 +307,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> ImportNativeBufferInfoOHOS<'a> {
-        pub fn buffer(
-            mut self,
-            buffer: &'a mut crate::platform_types::OH_NativeBuffer,
-        ) -> Self {
+        pub fn buffer(mut self, buffer: &'a mut vk::OH_NativeBuffer) -> Self {
             self.buffer = buffer;
             self
         }
@@ -323,19 +317,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MemoryGetNativeBufferInfoOHOS<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub memory: vk::DeviceMemory,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryGetNativeBufferInfoOHOS<'_> {}
     unsafe impl Sync for MemoryGetNativeBufferInfoOHOS<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetNativeBufferInfoOHOS<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MemoryGetNativeBufferInfoOHOS<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_GET_NATIVE_BUFFER_INFO_OHOS;
     }
     impl<'a> Default for MemoryGetNativeBufferInfoOHOS<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MEMORY_GET_NATIVE_BUFFER_INFO_OHOS,
                 p_next: Default::default(),
                 memory: Default::default(),
                 _marker: PhantomData,
@@ -353,28 +347,27 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExternalFormatOHOS<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub external_format: u64,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExternalFormatOHOS<'_> {}
     unsafe impl Sync for ExternalFormatOHOS<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatOHOS<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExternalFormatOHOS<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXTERNAL_FORMAT_OHOS;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>> for ExternalFormatOHOS<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SamplerYcbcrConversionCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>> for ExternalFormatOHOS<'a> {}
+    unsafe impl<'a> Extends<vk::SamplerYcbcrConversionCreateInfo<'_>>
     for ExternalFormatOHOS<'a> {}
-    unsafe impl<'a> crate::Extends<vk::AttachmentDescription2<'_>>
+    unsafe impl<'a> Extends<vk::AttachmentDescription2<'_>> for ExternalFormatOHOS<'a> {}
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for ExternalFormatOHOS<'a> {}
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
-    for ExternalFormatOHOS<'a> {}
-    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> Extends<vk::CommandBufferInheritanceInfo<'_>>
     for ExternalFormatOHOS<'a> {}
     impl<'a> Default for ExternalFormatOHOS<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXTERNAL_FORMAT_OHOS,
                 p_next: Default::default(),
                 external_format: Default::default(),
                 _marker: PhantomData,
@@ -389,13 +382,13 @@ pub(crate) mod items {
     }
     pub type PFN_vkGetNativeBufferPropertiesOHOS = unsafe extern "system" fn(
         device: vk::Device,
-        buffer: *const crate::platform_types::OH_NativeBuffer,
+        buffer: *const vk::OH_NativeBuffer,
         p_properties: *mut vk::NativeBufferPropertiesOHOS<'_>,
     ) -> vk::Result;
     pub type PFN_vkGetMemoryNativeBufferOHOS = unsafe extern "system" fn(
         device: vk::Device,
         p_info: *const vk::MemoryGetNativeBufferInfoOHOS<'_>,
-        p_buffer: *mut *mut crate::platform_types::OH_NativeBuffer,
+        p_buffer: *mut *mut vk::OH_NativeBuffer,
     ) -> vk::Result;
 }
 pub use items::*;

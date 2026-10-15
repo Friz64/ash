@@ -4,7 +4,8 @@
 #![doc(alias = "VK_KHR_dynamic_rendering")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_dynamic_rendering](crate::khr::dynamic_rendering)
 impl vk::AttachmentStoreOp {
     pub const NONE_KHR: Self = Self::NONE;
@@ -41,10 +42,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_begin_rendering: unsafe {
                 unsafe extern "system" fn cmd_begin_rendering(
@@ -54,22 +55,14 @@ impl DeviceFn {
                     panic!("unable to load vkCmdBeginRenderingKHR")
                 }
                 let val = _f(c"vkCmdBeginRenderingKHR");
-                if val.is_null() {
-                    cmd_begin_rendering
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_begin_rendering } else { transmute(val) }
             },
             cmd_end_rendering: unsafe {
                 unsafe extern "system" fn cmd_end_rendering(_: vk::CommandBuffer) {
                     panic!("unable to load vkCmdEndRenderingKHR")
                 }
                 let val = _f(c"vkCmdEndRenderingKHR");
-                if val.is_null() {
-                    cmd_end_rendering
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_end_rendering } else { transmute(val) }
             },
         }
     }
@@ -77,13 +70,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -92,7 +85,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdBeginRendering

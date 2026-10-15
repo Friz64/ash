@@ -4,8 +4,11 @@
 #![doc(alias = "VK_ARM_tensors")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl vk::ImageLayout {
     pub const TENSOR_ALIASING_ARM: Self = Self(1000460000);
@@ -142,10 +145,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_tensor: unsafe {
                 unsafe extern "system" fn create_tensor(
@@ -157,7 +160,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateTensorARM")
                 }
                 let val = _f(c"vkCreateTensorARM");
-                if val.is_null() { create_tensor } else { ::core::mem::transmute(val) }
+                if val.is_null() { create_tensor } else { transmute(val) }
             },
             destroy_tensor: unsafe {
                 unsafe extern "system" fn destroy_tensor(
@@ -168,7 +171,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyTensorARM")
                 }
                 let val = _f(c"vkDestroyTensorARM");
-                if val.is_null() { destroy_tensor } else { ::core::mem::transmute(val) }
+                if val.is_null() { destroy_tensor } else { transmute(val) }
             },
             create_tensor_view: unsafe {
                 unsafe extern "system" fn create_tensor_view(
@@ -180,11 +183,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateTensorViewARM")
                 }
                 let val = _f(c"vkCreateTensorViewARM");
-                if val.is_null() {
-                    create_tensor_view
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_tensor_view } else { transmute(val) }
             },
             destroy_tensor_view: unsafe {
                 unsafe extern "system" fn destroy_tensor_view(
@@ -195,11 +194,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyTensorViewARM")
                 }
                 let val = _f(c"vkDestroyTensorViewARM");
-                if val.is_null() {
-                    destroy_tensor_view
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_tensor_view } else { transmute(val) }
             },
             get_tensor_memory_requirements: unsafe {
                 unsafe extern "system" fn get_tensor_memory_requirements(
@@ -213,7 +208,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_tensor_memory_requirements
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             bind_tensor_memory: unsafe {
@@ -225,11 +220,7 @@ impl DeviceFn {
                     panic!("unable to load vkBindTensorMemoryARM")
                 }
                 let val = _f(c"vkBindTensorMemoryARM");
-                if val.is_null() {
-                    bind_tensor_memory
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { bind_tensor_memory } else { transmute(val) }
             },
             get_device_tensor_memory_requirements: unsafe {
                 unsafe extern "system" fn get_device_tensor_memory_requirements(
@@ -243,7 +234,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_device_tensor_memory_requirements
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_copy_tensor: unsafe {
@@ -254,13 +245,13 @@ impl DeviceFn {
                     panic!("unable to load vkCmdCopyTensorARM")
                 }
                 let val = _f(c"vkCmdCopyTensorARM");
-                if val.is_null() { cmd_copy_tensor } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_copy_tensor } else { transmute(val) }
             },
             get_tensor_opaque_capture_descriptor_data: unsafe {
                 unsafe extern "system" fn get_tensor_opaque_capture_descriptor_data(
                     _: vk::Device,
                     _: *const vk::TensorCaptureDescriptorDataInfoARM<'_>,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!("unable to load vkGetTensorOpaqueCaptureDescriptorDataARM")
                 }
@@ -268,14 +259,14 @@ impl DeviceFn {
                 if val.is_null() {
                     get_tensor_opaque_capture_descriptor_data
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_tensor_view_opaque_capture_descriptor_data: unsafe {
                 unsafe extern "system" fn get_tensor_view_opaque_capture_descriptor_data(
                     _: vk::Device,
                     _: *const vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!(
                         "unable to load vkGetTensorViewOpaqueCaptureDescriptorDataARM"
@@ -285,7 +276,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_tensor_view_opaque_capture_descriptor_data
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -294,13 +285,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -309,7 +300,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateTensorARM
@@ -319,7 +310,7 @@ impl Device {
         create_info: &vk::TensorCreateInfoARM<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::TensorARM> {
-        let mut tensor = core::mem::MaybeUninit::uninit();
+        let mut tensor = MaybeUninit::uninit();
         (self
             .fp
             .create_tensor)(
@@ -327,7 +318,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 tensor.as_mut_ptr(),
             )
@@ -347,7 +338,7 @@ impl Device {
             tensor,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -358,7 +349,7 @@ impl Device {
         create_info: &vk::TensorViewCreateInfoARM<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::TensorViewARM> {
-        let mut view = core::mem::MaybeUninit::uninit();
+        let mut view = MaybeUninit::uninit();
         (self
             .fp
             .create_tensor_view)(
@@ -366,7 +357,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 view.as_mut_ptr(),
             )
@@ -386,7 +377,7 @@ impl Device {
             tensor_view,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -396,7 +387,7 @@ impl Device {
         &self,
         info: &vk::TensorMemoryRequirementsInfoARM<'_>,
     ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        let mut memory_requirements = MaybeUninit::uninit();
         (self
             .fp
             .get_tensor_memory_requirements)(
@@ -423,7 +414,7 @@ impl Device {
         &self,
         info: &vk::DeviceTensorMemoryRequirementsARM<'_>,
     ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        let mut memory_requirements = MaybeUninit::uninit();
         (self
             .fp
             .get_device_tensor_memory_requirements)(
@@ -447,8 +438,8 @@ impl Device {
     pub unsafe fn get_tensor_opaque_capture_descriptor_data(
         &self,
         info: &vk::TensorCaptureDescriptorDataInfoARM<'_>,
-    ) -> VkResult<core::ffi::c_void> {
-        let mut data = core::mem::MaybeUninit::uninit();
+    ) -> VkResult<ffi::c_void> {
+        let mut data = MaybeUninit::uninit();
         (self
             .fp
             .get_tensor_opaque_capture_descriptor_data)(
@@ -463,8 +454,8 @@ impl Device {
     pub unsafe fn get_tensor_view_opaque_capture_descriptor_data(
         &self,
         info: &vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
-    ) -> VkResult<core::ffi::c_void> {
-        let mut data = core::mem::MaybeUninit::uninit();
+    ) -> VkResult<ffi::c_void> {
+        let mut data = MaybeUninit::uninit();
         (self
             .fp
             .get_tensor_view_opaque_capture_descriptor_data)(
@@ -482,10 +473,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_external_tensor_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_external_tensor_properties(
@@ -501,7 +492,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_external_tensor_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -510,13 +501,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -525,7 +516,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceExternalTensorPropertiesARM
@@ -535,7 +526,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         external_tensor_info: &vk::PhysicalDeviceExternalTensorInfoARM<'_>,
     ) -> vk::ExternalTensorPropertiesARM<'_> {
-        let mut external_tensor_properties = core::mem::MaybeUninit::uninit();
+        let mut external_tensor_properties = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_external_tensor_properties)(
@@ -549,16 +540,20 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct TensorDescriptionARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub tiling: vk::TensorTilingARM,
         pub format: vk::Format,
         pub dimension_count: u32,
@@ -569,17 +564,17 @@ pub(crate) mod items {
     }
     unsafe impl Send for TensorDescriptionARM<'_> {}
     unsafe impl Sync for TensorDescriptionARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for TensorDescriptionARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for TensorDescriptionARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TENSOR_DESCRIPTION_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineResourceInfoARM<'_>>
+    unsafe impl<'a> Extends<vk::DataGraphPipelineResourceInfoARM<'_>>
     for TensorDescriptionARM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineConstantARM<'_>>
+    unsafe impl<'a> Extends<vk::DataGraphPipelineConstantARM<'_>>
     for TensorDescriptionARM<'a> {}
     impl<'a> Default for TensorDescriptionARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::TENSOR_DESCRIPTION_ARM,
                 p_next: Default::default(),
                 tiling: Default::default(),
                 format: Default::default(),
@@ -620,7 +615,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct TensorCreateInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::TensorCreateFlagsARM,
         pub p_description: *const vk::TensorDescriptionARM<'a>,
         pub sharing_mode: vk::SharingMode,
@@ -630,13 +625,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for TensorCreateInfoARM<'_> {}
     unsafe impl Sync for TensorCreateInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for TensorCreateInfoARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for TensorCreateInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TENSOR_CREATE_INFO_ARM;
     }
     impl<'a> Default for TensorCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::TENSOR_CREATE_INFO_ARM,
                 p_next: Default::default(),
                 flags: Default::default(),
                 p_description: Default::default(),
@@ -674,19 +669,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct TensorMemoryRequirementsInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub tensor: vk::TensorARM,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TensorMemoryRequirementsInfoARM<'_> {}
     unsafe impl Sync for TensorMemoryRequirementsInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for TensorMemoryRequirementsInfoARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for TensorMemoryRequirementsInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TENSOR_MEMORY_REQUIREMENTS_INFO_ARM;
     }
     impl<'a> Default for TensorMemoryRequirementsInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::TENSOR_MEMORY_REQUIREMENTS_INFO_ARM,
                 p_next: Default::default(),
                 tensor: Default::default(),
                 _marker: PhantomData,
@@ -704,7 +699,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BindTensorMemoryInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub tensor: vk::TensorARM,
         pub memory: vk::DeviceMemory,
         pub memory_offset: vk::DeviceSize,
@@ -712,13 +707,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BindTensorMemoryInfoARM<'_> {}
     unsafe impl Sync for BindTensorMemoryInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BindTensorMemoryInfoARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BindTensorMemoryInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_TENSOR_MEMORY_INFO_ARM;
     }
     impl<'a> Default for BindTensorMemoryInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BIND_TENSOR_MEMORY_INFO_ARM,
                 p_next: Default::default(),
                 tensor: Default::default(),
                 memory: Default::default(),
@@ -746,22 +741,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetTensorARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub tensor_view_count: u32,
         pub p_tensor_views: *const vk::TensorViewARM,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for WriteDescriptorSetTensorARM<'_> {}
     unsafe impl Sync for WriteDescriptorSetTensorARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for WriteDescriptorSetTensorARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for WriteDescriptorSetTensorARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WRITE_DESCRIPTOR_SET_TENSOR_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::WriteDescriptorSet<'_>>
+    unsafe impl<'a> Extends<vk::WriteDescriptorSet<'_>>
     for WriteDescriptorSetTensorARM<'a> {}
     impl<'a> Default for WriteDescriptorSetTensorARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::WRITE_DESCRIPTOR_SET_TENSOR_ARM,
                 p_next: Default::default(),
                 tensor_view_count: Default::default(),
                 p_tensor_views: Default::default(),
@@ -781,22 +776,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct TensorFormatPropertiesARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub optimal_tiling_tensor_features: vk::FormatFeatureFlags2,
         pub linear_tiling_tensor_features: vk::FormatFeatureFlags2,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TensorFormatPropertiesARM<'_> {}
     unsafe impl Sync for TensorFormatPropertiesARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for TensorFormatPropertiesARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for TensorFormatPropertiesARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TENSOR_FORMAT_PROPERTIES_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::FormatProperties2<'_>>
+    unsafe impl<'a> Extends<vk::FormatProperties2<'_>>
     for TensorFormatPropertiesARM<'a> {}
     impl<'a> Default for TensorFormatPropertiesARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::TENSOR_FORMAT_PROPERTIES_ARM,
                 p_next: Default::default(),
                 optimal_tiling_tensor_features: Default::default(),
                 linear_tiling_tensor_features: Default::default(),
@@ -825,7 +820,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTensorPropertiesARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_tensor_dimension_count: u32,
         pub max_tensor_elements: u64,
         pub max_per_dimension_tensor_elements: u64,
@@ -843,16 +838,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceTensorPropertiesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceTensorPropertiesARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceTensorPropertiesARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceTensorPropertiesARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TENSOR_PROPERTIES_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceTensorPropertiesARM<'a> {}
     impl<'a> Default for PhysicalDeviceTensorPropertiesARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_TENSOR_PROPERTIES_ARM,
                 p_next: Default::default(),
                 max_tensor_dimension_count: Default::default(),
                 max_tensor_elements: Default::default(),
@@ -961,7 +955,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct TensorMemoryBarrierARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_stage_mask: vk::PipelineStageFlags2,
         pub src_access_mask: vk::AccessFlags2,
         pub dst_stage_mask: vk::PipelineStageFlags2,
@@ -973,15 +967,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for TensorMemoryBarrierARM<'_> {}
     unsafe impl Sync for TensorMemoryBarrierARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for TensorMemoryBarrierARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for TensorMemoryBarrierARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TENSOR_MEMORY_BARRIER_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::DependencyInfo<'_>>
-    for TensorMemoryBarrierARM<'a> {}
+    unsafe impl<'a> Extends<vk::DependencyInfo<'_>> for TensorMemoryBarrierARM<'a> {}
     impl<'a> Default for TensorMemoryBarrierARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::TENSOR_MEMORY_BARRIER_ARM,
                 p_next: Default::default(),
                 src_stage_mask: Default::default(),
                 src_access_mask: Default::default(),
@@ -1035,22 +1028,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct TensorDependencyInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub tensor_memory_barrier_count: u32,
         pub p_tensor_memory_barriers: *const vk::TensorMemoryBarrierARM<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TensorDependencyInfoARM<'_> {}
     unsafe impl Sync for TensorDependencyInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for TensorDependencyInfoARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for TensorDependencyInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TENSOR_DEPENDENCY_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::DependencyInfo<'_>>
-    for TensorDependencyInfoARM<'a> {}
+    unsafe impl<'a> Extends<vk::DependencyInfo<'_>> for TensorDependencyInfoARM<'a> {}
     impl<'a> Default for TensorDependencyInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::TENSOR_DEPENDENCY_INFO_ARM,
                 p_next: Default::default(),
                 tensor_memory_barrier_count: Default::default(),
                 p_tensor_memory_barriers: Default::default(),
@@ -1073,7 +1065,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTensorFeaturesARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub tensor_non_packed: vk::Bool32,
         pub shader_tensor_access: vk::Bool32,
         pub shader_storage_tensor_array_dynamic_indexing: vk::Bool32,
@@ -1084,17 +1076,17 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceTensorFeaturesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceTensorFeaturesARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceTensorFeaturesARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceTensorFeaturesARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TENSOR_FEATURES_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceTensorFeaturesARM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceTensorFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceTensorFeaturesARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_TENSOR_FEATURES_ARM,
                 p_next: Default::default(),
                 tensor_non_packed: Default::default(),
                 shader_tensor_access: Default::default(),
@@ -1149,20 +1141,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceTensorMemoryRequirementsARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_create_info: *const vk::TensorCreateInfoARM<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceTensorMemoryRequirementsARM<'_> {}
     unsafe impl Sync for DeviceTensorMemoryRequirementsARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DeviceTensorMemoryRequirementsARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceTensorMemoryRequirementsARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_TENSOR_MEMORY_REQUIREMENTS_ARM;
     }
     impl<'a> Default for DeviceTensorMemoryRequirementsARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_TENSOR_MEMORY_REQUIREMENTS_ARM,
                 p_next: Default::default(),
                 p_create_info: Default::default(),
                 _marker: PhantomData,
@@ -1183,7 +1174,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CopyTensorInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_tensor: vk::TensorARM,
         pub dst_tensor: vk::TensorARM,
         pub region_count: u32,
@@ -1192,13 +1183,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for CopyTensorInfoARM<'_> {}
     unsafe impl Sync for CopyTensorInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CopyTensorInfoARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CopyTensorInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_TENSOR_INFO_ARM;
     }
     impl<'a> Default for CopyTensorInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COPY_TENSOR_INFO_ARM,
                 p_next: Default::default(),
                 src_tensor: Default::default(),
                 dst_tensor: Default::default(),
@@ -1228,7 +1219,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct TensorCopyARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub dimension_count: u32,
         pub p_src_offset: *const u64,
         pub p_dst_offset: *const u64,
@@ -1237,13 +1228,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for TensorCopyARM<'_> {}
     unsafe impl Sync for TensorCopyARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for TensorCopyARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for TensorCopyARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TENSOR_COPY_ARM;
     }
     impl<'a> Default for TensorCopyARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::TENSOR_COPY_ARM,
                 p_next: Default::default(),
                 dimension_count: Default::default(),
                 p_src_offset: Default::default(),
@@ -1275,22 +1266,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MemoryDedicatedAllocateInfoTensorARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub tensor: vk::TensorARM,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryDedicatedAllocateInfoTensorARM<'_> {}
     unsafe impl Sync for MemoryDedicatedAllocateInfoTensorARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for MemoryDedicatedAllocateInfoTensorARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MemoryDedicatedAllocateInfoTensorARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_DEDICATED_ALLOCATE_INFO_TENSOR_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> Extends<vk::MemoryAllocateInfo<'_>>
     for MemoryDedicatedAllocateInfoTensorARM<'a> {}
     impl<'a> Default for MemoryDedicatedAllocateInfoTensorARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MEMORY_DEDICATED_ALLOCATE_INFO_TENSOR_ARM,
                 p_next: Default::default(),
                 tensor: Default::default(),
                 _marker: PhantomData,
@@ -1308,7 +1298,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorBufferTensorPropertiesARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub tensor_capture_replay_descriptor_data_size: usize,
         pub tensor_view_capture_replay_descriptor_data_size: usize,
         pub tensor_descriptor_size: usize,
@@ -1316,16 +1306,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_PROPERTIES_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_PROPERTIES_ARM,
                 p_next: Default::default(),
                 tensor_capture_replay_descriptor_data_size: Default::default(),
                 tensor_view_capture_replay_descriptor_data_size: Default::default(),
@@ -1359,24 +1349,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub descriptor_buffer_tensor_descriptors: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_FEATURES_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_FEATURES_ARM,
                 p_next: Default::default(),
                 descriptor_buffer_tensor_descriptors: Default::default(),
                 _marker: PhantomData,
@@ -1398,20 +1388,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct TensorCaptureDescriptorDataInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub tensor: vk::TensorARM,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TensorCaptureDescriptorDataInfoARM<'_> {}
     unsafe impl Sync for TensorCaptureDescriptorDataInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for TensorCaptureDescriptorDataInfoARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for TensorCaptureDescriptorDataInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TENSOR_CAPTURE_DESCRIPTOR_DATA_INFO_ARM;
     }
     impl<'a> Default for TensorCaptureDescriptorDataInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::TENSOR_CAPTURE_DESCRIPTOR_DATA_INFO_ARM,
                 p_next: Default::default(),
                 tensor: Default::default(),
                 _marker: PhantomData,
@@ -1429,20 +1418,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct TensorViewCaptureDescriptorDataInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub tensor_view: vk::TensorViewARM,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TensorViewCaptureDescriptorDataInfoARM<'_> {}
     unsafe impl Sync for TensorViewCaptureDescriptorDataInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for TensorViewCaptureDescriptorDataInfoARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for TensorViewCaptureDescriptorDataInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TENSOR_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_ARM;
     }
     impl<'a> Default for TensorViewCaptureDescriptorDataInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::TENSOR_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_ARM,
                 p_next: Default::default(),
                 tensor_view: Default::default(),
                 _marker: PhantomData,
@@ -1460,21 +1448,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DescriptorGetTensorInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub tensor_view: vk::TensorViewARM,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DescriptorGetTensorInfoARM<'_> {}
     unsafe impl Sync for DescriptorGetTensorInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorGetTensorInfoARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DescriptorGetTensorInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DESCRIPTOR_GET_TENSOR_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::DescriptorGetInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::DescriptorGetInfoEXT<'_>>
     for DescriptorGetTensorInfoARM<'a> {}
     impl<'a> Default for DescriptorGetTensorInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DESCRIPTOR_GET_TENSOR_INFO_ARM,
                 p_next: Default::default(),
                 tensor_view: Default::default(),
                 _marker: PhantomData,
@@ -1492,26 +1480,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct FrameBoundaryTensorsARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub tensor_count: u32,
         pub p_tensors: *const vk::TensorARM,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for FrameBoundaryTensorsARM<'_> {}
     unsafe impl Sync for FrameBoundaryTensorsARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for FrameBoundaryTensorsARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for FrameBoundaryTensorsARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FRAME_BOUNDARY_TENSORS_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::SubmitInfo<'_>> for FrameBoundaryTensorsARM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SubmitInfo2<'_>> for FrameBoundaryTensorsARM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>>
-    for FrameBoundaryTensorsARM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::BindSparseInfo<'_>>
-    for FrameBoundaryTensorsARM<'a> {}
+    unsafe impl<'a> Extends<vk::SubmitInfo<'_>> for FrameBoundaryTensorsARM<'a> {}
+    unsafe impl<'a> Extends<vk::SubmitInfo2<'_>> for FrameBoundaryTensorsARM<'a> {}
+    unsafe impl<'a> Extends<vk::PresentInfoKHR<'_>> for FrameBoundaryTensorsARM<'a> {}
+    unsafe impl<'a> Extends<vk::BindSparseInfo<'_>> for FrameBoundaryTensorsARM<'a> {}
     impl<'a> Default for FrameBoundaryTensorsARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::FRAME_BOUNDARY_TENSORS_ARM,
                 p_next: Default::default(),
                 tensor_count: Default::default(),
                 p_tensors: Default::default(),
@@ -1531,7 +1517,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExternalTensorInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::TensorCreateFlagsARM,
         pub p_description: *const vk::TensorDescriptionARM<'a>,
         pub handle_type: vk::ExternalMemoryHandleTypeFlagBits,
@@ -1539,14 +1525,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceExternalTensorInfoARM<'_> {}
     unsafe impl Sync for PhysicalDeviceExternalTensorInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceExternalTensorInfoARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceExternalTensorInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_TENSOR_INFO_ARM;
     }
     impl<'a> Default for PhysicalDeviceExternalTensorInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_TENSOR_INFO_ARM,
                 p_next: Default::default(),
                 flags: Default::default(),
                 p_description: Default::default(),
@@ -1580,19 +1565,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExternalTensorPropertiesARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub external_memory_properties: vk::ExternalMemoryProperties,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExternalTensorPropertiesARM<'_> {}
     unsafe impl Sync for ExternalTensorPropertiesARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalTensorPropertiesARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExternalTensorPropertiesARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXTERNAL_TENSOR_PROPERTIES_ARM;
     }
     impl<'a> Default for ExternalTensorPropertiesARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXTERNAL_TENSOR_PROPERTIES_ARM,
                 p_next: Default::default(),
                 external_memory_properties: Default::default(),
                 _marker: PhantomData,
@@ -1613,22 +1598,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExternalMemoryTensorCreateInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub handle_types: vk::ExternalMemoryHandleTypeFlags,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExternalMemoryTensorCreateInfoARM<'_> {}
     unsafe impl Sync for ExternalMemoryTensorCreateInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ExternalMemoryTensorCreateInfoARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExternalMemoryTensorCreateInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXTERNAL_MEMORY_TENSOR_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::TensorCreateInfoARM<'_>>
+    unsafe impl<'a> Extends<vk::TensorCreateInfoARM<'_>>
     for ExternalMemoryTensorCreateInfoARM<'a> {}
     impl<'a> Default for ExternalMemoryTensorCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXTERNAL_MEMORY_TENSOR_CREATE_INFO_ARM,
                 p_next: Default::default(),
                 handle_types: Default::default(),
                 _marker: PhantomData,
@@ -1648,8 +1632,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct TensorTilingARM(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for TensorTilingARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for TensorTilingARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::OPTIMAL => Some("OPTIMAL"),
                 Self::LINEAR => Some("LINEAR"),
@@ -1662,7 +1646,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1680,8 +1664,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TensorCreateFlagsARM(pub(crate) u64);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for TensorCreateFlagsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for TensorCreateFlagsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1720,40 +1704,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for TensorCreateFlagsARM {
+    impl BitOr for TensorCreateFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for TensorCreateFlagsARM {
+    impl BitOrAssign for TensorCreateFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for TensorCreateFlagsARM {
+    impl BitAnd for TensorCreateFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for TensorCreateFlagsARM {
+    impl BitAndAssign for TensorCreateFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for TensorCreateFlagsARM {
+    impl BitXor for TensorCreateFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for TensorCreateFlagsARM {
+    impl BitXorAssign for TensorCreateFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for TensorCreateFlagsARM {
+    impl Not for TensorCreateFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1778,17 +1762,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for TensorCreateFlagBitsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for TensorCreateFlagBitsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TensorUsageFlagsARM(pub(crate) u64);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for TensorUsageFlagsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for TensorUsageFlagsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1822,40 +1806,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for TensorUsageFlagsARM {
+    impl BitOr for TensorUsageFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for TensorUsageFlagsARM {
+    impl BitOrAssign for TensorUsageFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for TensorUsageFlagsARM {
+    impl BitAnd for TensorUsageFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for TensorUsageFlagsARM {
+    impl BitAndAssign for TensorUsageFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for TensorUsageFlagsARM {
+    impl BitXor for TensorUsageFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for TensorUsageFlagsARM {
+    impl BitXorAssign for TensorUsageFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for TensorUsageFlagsARM {
+    impl Not for TensorUsageFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1880,9 +1864,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for TensorUsageFlagBitsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for TensorUsageFlagBitsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1908,8 +1892,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for TensorViewARM {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for TensorViewARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -1957,12 +1941,12 @@ pub(crate) mod items {
     pub type PFN_vkGetTensorOpaqueCaptureDescriptorDataARM = unsafe extern "system" fn(
         device: vk::Device,
         p_info: *const vk::TensorCaptureDescriptorDataInfoARM<'_>,
-        p_data: *mut core::ffi::c_void,
+        p_data: *mut ffi::c_void,
     ) -> vk::Result;
     pub type PFN_vkGetTensorViewOpaqueCaptureDescriptorDataARM = unsafe extern "system" fn(
         device: vk::Device,
         p_info: *const vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
-        p_data: *mut core::ffi::c_void,
+        p_data: *mut ffi::c_void,
     ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM = unsafe extern "system" fn(
         physical_device: vk::PhysicalDevice,

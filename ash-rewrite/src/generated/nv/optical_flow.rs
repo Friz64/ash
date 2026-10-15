@@ -5,7 +5,10 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl vk::Format {
     pub const R16G16_SFIXED5_NV: Self = Self(1000464000);
@@ -172,10 +175,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_optical_flow_image_formats: unsafe {
                 unsafe extern "system" fn get_physical_device_optical_flow_image_formats(
@@ -190,7 +193,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_optical_flow_image_formats
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -199,13 +202,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -214,7 +217,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceOpticalFlowImageFormatsNV
@@ -224,14 +227,14 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         optical_flow_image_format_info: &vk::OpticalFlowImageFormatInfoNV<'_>,
     ) -> VkResult<usize> {
-        let mut format_count = core::mem::MaybeUninit::uninit();
+        let mut format_count = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_optical_flow_image_formats)(
                 physical_device,
                 optical_flow_image_format_info,
                 format_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(format_count)
             .map(|c| c as usize)
@@ -243,7 +246,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         optical_flow_image_format_info: &vk::OpticalFlowImageFormatInfoNV<'_>,
         image_format_properties: &mut [vk::OpticalFlowImageFormatPropertiesNV<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut format_count = image_format_properties.len() as _;
         (self
             .fp
@@ -268,10 +271,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_optical_flow_session: unsafe {
                 unsafe extern "system" fn create_optical_flow_session(
@@ -283,11 +286,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateOpticalFlowSessionNV")
                 }
                 let val = _f(c"vkCreateOpticalFlowSessionNV");
-                if val.is_null() {
-                    create_optical_flow_session
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_optical_flow_session } else { transmute(val) }
             },
             destroy_optical_flow_session: unsafe {
                 unsafe extern "system" fn destroy_optical_flow_session(
@@ -298,11 +297,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyOpticalFlowSessionNV")
                 }
                 let val = _f(c"vkDestroyOpticalFlowSessionNV");
-                if val.is_null() {
-                    destroy_optical_flow_session
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_optical_flow_session } else { transmute(val) }
             },
             bind_optical_flow_session_image: unsafe {
                 unsafe extern "system" fn bind_optical_flow_session_image(
@@ -318,7 +313,7 @@ impl DeviceFn {
                 if val.is_null() {
                     bind_optical_flow_session_image
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_optical_flow_execute: unsafe {
@@ -330,11 +325,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdOpticalFlowExecuteNV")
                 }
                 let val = _f(c"vkCmdOpticalFlowExecuteNV");
-                if val.is_null() {
-                    cmd_optical_flow_execute
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_optical_flow_execute } else { transmute(val) }
             },
         }
     }
@@ -342,13 +333,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -357,7 +348,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateOpticalFlowSessionNV
@@ -367,7 +358,7 @@ impl Device {
         create_info: &vk::OpticalFlowSessionCreateInfoNV<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::OpticalFlowSessionNV> {
-        let mut session = core::mem::MaybeUninit::uninit();
+        let mut session = MaybeUninit::uninit();
         (self
             .fp
             .create_optical_flow_session)(
@@ -375,7 +366,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 session.as_mut_ptr(),
             )
@@ -395,7 +386,7 @@ impl Device {
             session,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -433,33 +424,36 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpticalFlowFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub optical_flow: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceOpticalFlowFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceOpticalFlowFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceOpticalFlowFeaturesNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceOpticalFlowFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceOpticalFlowFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceOpticalFlowFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceOpticalFlowFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV,
                 p_next: Default::default(),
                 optical_flow: Default::default(),
                 _marker: PhantomData,
@@ -477,7 +471,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpticalFlowPropertiesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub supported_output_grid_sizes: vk::OpticalFlowGridSizeFlagsNV,
         pub supported_hint_grid_sizes: vk::OpticalFlowGridSizeFlagsNV,
         pub hint_supported: vk::Bool32,
@@ -493,16 +487,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceOpticalFlowPropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceOpticalFlowPropertiesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceOpticalFlowPropertiesNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceOpticalFlowPropertiesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceOpticalFlowPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceOpticalFlowPropertiesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV,
                 p_next: Default::default(),
                 supported_output_grid_sizes: Default::default(),
                 supported_hint_grid_sizes: Default::default(),
@@ -582,23 +575,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct OpticalFlowImageFormatInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub usage: vk::OpticalFlowUsageFlagsNV,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for OpticalFlowImageFormatInfoNV<'_> {}
     unsafe impl Sync for OpticalFlowImageFormatInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowImageFormatInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for OpticalFlowImageFormatInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for OpticalFlowImageFormatInfoNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for OpticalFlowImageFormatInfoNV<'a> {}
     impl<'a> Default for OpticalFlowImageFormatInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV,
                 p_next: Default::default(),
                 usage: Default::default(),
                 _marker: PhantomData,
@@ -616,20 +609,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct OpticalFlowImageFormatPropertiesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub format: vk::Format,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for OpticalFlowImageFormatPropertiesNV<'_> {}
     unsafe impl Sync for OpticalFlowImageFormatPropertiesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for OpticalFlowImageFormatPropertiesNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for OpticalFlowImageFormatPropertiesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_NV;
     }
     impl<'a> Default for OpticalFlowImageFormatPropertiesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_NV,
                 p_next: Default::default(),
                 format: Default::default(),
                 _marker: PhantomData,
@@ -647,7 +639,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct OpticalFlowSessionCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub width: u32,
         pub height: u32,
         pub image_format: vk::Format,
@@ -661,13 +653,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for OpticalFlowSessionCreateInfoNV<'_> {}
     unsafe impl Sync for OpticalFlowSessionCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowSessionCreateInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for OpticalFlowSessionCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_INFO_NV;
     }
     impl<'a> Default for OpticalFlowSessionCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_INFO_NV,
                 p_next: Default::default(),
                 width: Default::default(),
                 height: Default::default(),
@@ -734,24 +726,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub id: u32,
         pub size: u32,
-        pub p_private_data: *const core::ffi::c_void,
+        pub p_private_data: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for OpticalFlowSessionCreatePrivateDataInfoNV<'_> {}
     unsafe impl Sync for OpticalFlowSessionCreatePrivateDataInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::OpticalFlowSessionCreateInfoNV<'_>>
+    unsafe impl<'a> Extends<vk::OpticalFlowSessionCreateInfoNV<'_>>
     for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {}
     impl<'a> Default for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV,
                 p_next: Default::default(),
                 id: Default::default(),
                 size: Default::default(),
@@ -769,7 +761,7 @@ pub(crate) mod items {
             self.size = size;
             self
         }
-        pub fn private_data(mut self, private_data: &'a core::ffi::c_void) -> Self {
+        pub fn private_data(mut self, private_data: &'a ffi::c_void) -> Self {
             self.p_private_data = private_data;
             self
         }
@@ -779,7 +771,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct OpticalFlowExecuteInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub flags: vk::OpticalFlowExecuteFlagsNV,
         pub region_count: u32,
         pub p_regions: *const vk::Rect2D,
@@ -787,13 +779,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for OpticalFlowExecuteInfoNV<'_> {}
     unsafe impl Sync for OpticalFlowExecuteInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowExecuteInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for OpticalFlowExecuteInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::OPTICAL_FLOW_EXECUTE_INFO_NV;
     }
     impl<'a> Default for OpticalFlowExecuteInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::OPTICAL_FLOW_EXECUTE_INFO_NV,
                 p_next: Default::default(),
                 flags: Default::default(),
                 region_count: Default::default(),
@@ -817,8 +809,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct OpticalFlowPerformanceLevelNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for OpticalFlowPerformanceLevelNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for OpticalFlowPerformanceLevelNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::UNKNOWN => Some("UNKNOWN"),
                 Self::SLOW => Some("SLOW"),
@@ -828,7 +820,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -846,8 +838,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct OpticalFlowSessionBindingPointNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for OpticalFlowSessionBindingPointNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for OpticalFlowSessionBindingPointNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::UNKNOWN => Some("UNKNOWN"),
                 Self::INPUT => Some("INPUT"),
@@ -862,7 +854,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -880,8 +872,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowGridSizeFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for OpticalFlowGridSizeFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for OpticalFlowGridSizeFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -915,40 +907,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for OpticalFlowGridSizeFlagsNV {
+    impl BitOr for OpticalFlowGridSizeFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for OpticalFlowGridSizeFlagsNV {
+    impl BitOrAssign for OpticalFlowGridSizeFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for OpticalFlowGridSizeFlagsNV {
+    impl BitAnd for OpticalFlowGridSizeFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for OpticalFlowGridSizeFlagsNV {
+    impl BitAndAssign for OpticalFlowGridSizeFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for OpticalFlowGridSizeFlagsNV {
+    impl BitXor for OpticalFlowGridSizeFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for OpticalFlowGridSizeFlagsNV {
+    impl BitXorAssign for OpticalFlowGridSizeFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for OpticalFlowGridSizeFlagsNV {
+    impl Not for OpticalFlowGridSizeFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -973,17 +965,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for OpticalFlowGridSizeFlagBitsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for OpticalFlowGridSizeFlagBitsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowUsageFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for OpticalFlowUsageFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for OpticalFlowUsageFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1018,40 +1010,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for OpticalFlowUsageFlagsNV {
+    impl BitOr for OpticalFlowUsageFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for OpticalFlowUsageFlagsNV {
+    impl BitOrAssign for OpticalFlowUsageFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for OpticalFlowUsageFlagsNV {
+    impl BitAnd for OpticalFlowUsageFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for OpticalFlowUsageFlagsNV {
+    impl BitAndAssign for OpticalFlowUsageFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for OpticalFlowUsageFlagsNV {
+    impl BitXor for OpticalFlowUsageFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for OpticalFlowUsageFlagsNV {
+    impl BitXorAssign for OpticalFlowUsageFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for OpticalFlowUsageFlagsNV {
+    impl Not for OpticalFlowUsageFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1076,17 +1068,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for OpticalFlowUsageFlagBitsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for OpticalFlowUsageFlagBitsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowSessionCreateFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for OpticalFlowSessionCreateFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for OpticalFlowSessionCreateFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1120,40 +1112,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for OpticalFlowSessionCreateFlagsNV {
+    impl BitOr for OpticalFlowSessionCreateFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for OpticalFlowSessionCreateFlagsNV {
+    impl BitOrAssign for OpticalFlowSessionCreateFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for OpticalFlowSessionCreateFlagsNV {
+    impl BitAnd for OpticalFlowSessionCreateFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for OpticalFlowSessionCreateFlagsNV {
+    impl BitAndAssign for OpticalFlowSessionCreateFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for OpticalFlowSessionCreateFlagsNV {
+    impl BitXor for OpticalFlowSessionCreateFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for OpticalFlowSessionCreateFlagsNV {
+    impl BitXorAssign for OpticalFlowSessionCreateFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for OpticalFlowSessionCreateFlagsNV {
+    impl Not for OpticalFlowSessionCreateFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1178,17 +1170,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for OpticalFlowSessionCreateFlagBitsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for OpticalFlowSessionCreateFlagBitsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct OpticalFlowExecuteFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for OpticalFlowExecuteFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for OpticalFlowExecuteFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[(Self::DISABLE_TEMPORAL_HINTS.0, "DISABLE_TEMPORAL_HINTS")],
@@ -1216,40 +1208,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for OpticalFlowExecuteFlagsNV {
+    impl BitOr for OpticalFlowExecuteFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for OpticalFlowExecuteFlagsNV {
+    impl BitOrAssign for OpticalFlowExecuteFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for OpticalFlowExecuteFlagsNV {
+    impl BitAnd for OpticalFlowExecuteFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for OpticalFlowExecuteFlagsNV {
+    impl BitAndAssign for OpticalFlowExecuteFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for OpticalFlowExecuteFlagsNV {
+    impl BitXor for OpticalFlowExecuteFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for OpticalFlowExecuteFlagsNV {
+    impl BitXorAssign for OpticalFlowExecuteFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for OpticalFlowExecuteFlagsNV {
+    impl Not for OpticalFlowExecuteFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1274,9 +1266,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for OpticalFlowExecuteFlagBitsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for OpticalFlowExecuteFlagBitsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1302,8 +1294,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for OpticalFlowSessionNV {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for OpticalFlowSessionNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

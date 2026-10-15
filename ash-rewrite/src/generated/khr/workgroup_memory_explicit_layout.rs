@@ -15,12 +15,15 @@ pub const NAME: &CStr = c"VK_KHR_workgroup_memory_explicit_layout";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub workgroup_memory_explicit_layout: vk::Bool32,
         pub workgroup_memory_explicit_layout_scalar_block_layout: vk::Bool32,
         pub workgroup_memory_explicit_layout8_bit_access: vk::Bool32,
@@ -29,18 +32,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR,
                 p_next: Default::default(),
                 workgroup_memory_explicit_layout: Default::default(),
                 workgroup_memory_explicit_layout_scalar_block_layout: Default::default(),

@@ -4,8 +4,11 @@
 #![doc(alias = "VK_KHR_win32_surface")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_win32_surface](crate::khr::win32_surface)
 impl vk::StructureType {
     pub const WIN32_SURFACE_CREATE_INFO_KHR: Self = Self(1000009000);
@@ -20,10 +23,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_win32_surface: unsafe {
                 unsafe extern "system" fn create_win32_surface(
@@ -35,11 +38,7 @@ impl InstanceFn {
                     panic!("unable to load vkCreateWin32SurfaceKHR")
                 }
                 let val = _f(c"vkCreateWin32SurfaceKHR");
-                if val.is_null() {
-                    create_win32_surface
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_win32_surface } else { transmute(val) }
             },
             get_physical_device_win32_presentation_support: unsafe {
                 unsafe extern "system" fn get_physical_device_win32_presentation_support(
@@ -54,7 +53,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_win32_presentation_support
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -63,13 +62,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -78,7 +77,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkCreateWin32SurfaceKHR
@@ -88,7 +87,7 @@ impl Instance {
         create_info: &vk::Win32SurfaceCreateInfoKHR<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = core::mem::MaybeUninit::uninit();
+        let mut surface = MaybeUninit::uninit();
         (self
             .fp
             .create_win32_surface)(
@@ -96,7 +95,7 @@ impl Instance {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 surface.as_mut_ptr(),
             )
@@ -120,26 +119,31 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct Win32SurfaceCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::Win32SurfaceCreateFlagsKHR,
-        pub hinstance: crate::platform_types::HINSTANCE,
-        pub hwnd: crate::platform_types::HWND,
+        pub hinstance: vk::HINSTANCE,
+        pub hwnd: vk::HWND,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for Win32SurfaceCreateInfoKHR<'_> {}
     unsafe impl Sync for Win32SurfaceCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for Win32SurfaceCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for Win32SurfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WIN32_SURFACE_CREATE_INFO_KHR;
     }
     impl<'a> Default for Win32SurfaceCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::WIN32_SURFACE_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 hinstance: Default::default(),
@@ -153,11 +157,11 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn hinstance(mut self, hinstance: crate::platform_types::HINSTANCE) -> Self {
+        pub fn hinstance(mut self, hinstance: vk::HINSTANCE) -> Self {
             self.hinstance = hinstance;
             self
         }
-        pub fn hwnd(mut self, hwnd: crate::platform_types::HWND) -> Self {
+        pub fn hwnd(mut self, hwnd: vk::HWND) -> Self {
             self.hwnd = hwnd;
             self
         }
@@ -166,9 +170,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct Win32SurfaceCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for Win32SurfaceCreateFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for Win32SurfaceCreateFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl Win32SurfaceCreateFlagsKHR {
@@ -191,40 +195,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for Win32SurfaceCreateFlagsKHR {
+    impl BitOr for Win32SurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for Win32SurfaceCreateFlagsKHR {
+    impl BitOrAssign for Win32SurfaceCreateFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for Win32SurfaceCreateFlagsKHR {
+    impl BitAnd for Win32SurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for Win32SurfaceCreateFlagsKHR {
+    impl BitAndAssign for Win32SurfaceCreateFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for Win32SurfaceCreateFlagsKHR {
+    impl BitXor for Win32SurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for Win32SurfaceCreateFlagsKHR {
+    impl BitXorAssign for Win32SurfaceCreateFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for Win32SurfaceCreateFlagsKHR {
+    impl Not for Win32SurfaceCreateFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

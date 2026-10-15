@@ -5,7 +5,10 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_pipeline_executable_properties](crate::khr::pipeline_executable_properties)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR: Self = Self(
@@ -49,10 +52,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_pipeline_executable_properties: unsafe {
                 unsafe extern "system" fn get_pipeline_executable_properties(
@@ -67,7 +70,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_pipeline_executable_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_pipeline_executable_statistics: unsafe {
@@ -83,7 +86,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_pipeline_executable_statistics
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_pipeline_executable_internal_representations: unsafe {
@@ -101,7 +104,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_pipeline_executable_internal_representations
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -110,13 +113,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -125,7 +128,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetPipelineExecutablePropertiesKHR
@@ -134,14 +137,14 @@ impl Device {
         &self,
         pipeline_info: &vk::PipelineInfoKHR<'_>,
     ) -> VkResult<usize> {
-        let mut executable_count = core::mem::MaybeUninit::uninit();
+        let mut executable_count = MaybeUninit::uninit();
         (self
             .fp
             .get_pipeline_executable_properties)(
                 self.handle,
                 pipeline_info,
                 executable_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(executable_count)
             .map(|c| c as usize)
@@ -152,7 +155,7 @@ impl Device {
         &self,
         pipeline_info: &vk::PipelineInfoKHR<'_>,
         properties: &mut [vk::PipelineExecutablePropertiesKHR<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut executable_count = properties.len() as _;
         (self
             .fp
@@ -172,14 +175,14 @@ impl Device {
         &self,
         executable_info: &vk::PipelineExecutableInfoKHR<'_>,
     ) -> VkResult<usize> {
-        let mut statistic_count = core::mem::MaybeUninit::uninit();
+        let mut statistic_count = MaybeUninit::uninit();
         (self
             .fp
             .get_pipeline_executable_statistics)(
                 self.handle,
                 executable_info,
                 statistic_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(statistic_count)
             .map(|c| c as usize)
@@ -190,7 +193,7 @@ impl Device {
         &self,
         executable_info: &vk::PipelineExecutableInfoKHR<'_>,
         statistics: &mut [vk::PipelineExecutableStatisticKHR<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut statistic_count = statistics.len() as _;
         (self
             .fp
@@ -210,14 +213,14 @@ impl Device {
         &self,
         executable_info: &vk::PipelineExecutableInfoKHR<'_>,
     ) -> VkResult<usize> {
-        let mut internal_representation_count = core::mem::MaybeUninit::uninit();
+        let mut internal_representation_count = MaybeUninit::uninit();
         (self
             .fp
             .get_pipeline_executable_internal_representations)(
                 self.handle,
                 executable_info,
                 internal_representation_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(internal_representation_count)
             .map(|c| c as usize)
@@ -230,7 +233,7 @@ impl Device {
         internal_representations: &mut [vk::PipelineExecutableInternalRepresentationKHR<
             '_,
         >],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut internal_representation_count = internal_representations.len() as _;
         (self
             .fp
@@ -250,31 +253,36 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
-    use core::ffi::CStr;
+    use crate::TaggedStructure;
+    use crate::Extends;
     use core::ffi;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ffi::CStr;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub pipeline_executable_info: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR,
                 p_next: Default::default(),
                 pipeline_executable_info: Default::default(),
                 _marker: PhantomData,
@@ -295,19 +303,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub pipeline: vk::Pipeline,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineInfoKHR<'_> {}
     unsafe impl Sync for PipelineInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_INFO_KHR;
     }
     impl<'a> Default for PipelineInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_INFO_KHR,
                 p_next: Default::default(),
                 pipeline: Default::default(),
                 _marker: PhantomData,
@@ -324,34 +332,34 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineExecutablePropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub stages: vk::ShaderStageFlags,
-        pub name: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
-        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub name: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub description: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
         pub subgroup_size: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineExecutablePropertiesKHR<'_> {}
     unsafe impl Sync for PipelineExecutablePropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutablePropertiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineExecutablePropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_EXECUTABLE_PROPERTIES_KHR;
     }
     impl<'a> Default for PipelineExecutablePropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_EXECUTABLE_PROPERTIES_KHR,
                 p_next: Default::default(),
                 stages: Default::default(),
-                name: unsafe { core::mem::zeroed() },
-                description: unsafe { core::mem::zeroed() },
+                name: unsafe { zeroed() },
+                description: unsafe { zeroed() },
                 subgroup_size: Default::default(),
                 _marker: PhantomData,
             }
         }
     }
     #[cfg(feature = "debug")]
-    impl<'a> core::fmt::Debug for PipelineExecutablePropertiesKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl<'a> fmtd::Debug for PipelineExecutablePropertiesKHR<'a> {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("PipelineExecutablePropertiesKHR < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
@@ -400,20 +408,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineExecutableInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub pipeline: vk::Pipeline,
         pub executable_index: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineExecutableInfoKHR<'_> {}
     unsafe impl Sync for PipelineExecutableInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutableInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineExecutableInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_EXECUTABLE_INFO_KHR;
     }
     impl<'a> Default for PipelineExecutableInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_EXECUTABLE_INFO_KHR,
                 p_next: Default::default(),
                 pipeline: Default::default(),
                 executable_index: Default::default(),
@@ -435,25 +443,25 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineExecutableStatisticKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
-        pub name: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
-        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub p_next: *mut ffi::c_void,
+        pub name: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub description: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
         pub format: vk::PipelineExecutableStatisticFormatKHR,
         pub value: vk::PipelineExecutableStatisticValueKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineExecutableStatisticKHR<'_> {}
     unsafe impl Sync for PipelineExecutableStatisticKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutableStatisticKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineExecutableStatisticKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_EXECUTABLE_STATISTIC_KHR;
     }
     impl<'a> Default for PipelineExecutableStatisticKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_EXECUTABLE_STATISTIC_KHR,
                 p_next: Default::default(),
-                name: unsafe { core::mem::zeroed() },
-                description: unsafe { core::mem::zeroed() },
+                name: unsafe { zeroed() },
+                description: unsafe { zeroed() },
                 format: Default::default(),
                 value: Default::default(),
                 _marker: PhantomData,
@@ -461,8 +469,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl<'a> core::fmt::Debug for PipelineExecutableStatisticKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl<'a> fmtd::Debug for PipelineExecutableStatisticKHR<'a> {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("PipelineExecutableStatisticKHR < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
@@ -513,27 +521,27 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineExecutableInternalRepresentationKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
-        pub name: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
-        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub p_next: *mut ffi::c_void,
+        pub name: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub description: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
         pub is_text: vk::Bool32,
         pub data_size: usize,
-        pub p_data: *mut core::ffi::c_void,
+        pub p_data: *mut ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineExecutableInternalRepresentationKHR<'_> {}
     unsafe impl Sync for PipelineExecutableInternalRepresentationKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineExecutableInternalRepresentationKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR;
     }
     impl<'a> Default for PipelineExecutableInternalRepresentationKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR,
                 p_next: Default::default(),
-                name: unsafe { core::mem::zeroed() },
-                description: unsafe { core::mem::zeroed() },
+                name: unsafe { zeroed() },
+                description: unsafe { zeroed() },
                 is_text: Default::default(),
                 data_size: Default::default(),
                 p_data: Default::default(),
@@ -542,8 +550,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl<'a> core::fmt::Debug for PipelineExecutableInternalRepresentationKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl<'a> fmtd::Debug for PipelineExecutableInternalRepresentationKHR<'a> {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("PipelineExecutableInternalRepresentationKHR < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
@@ -595,16 +603,16 @@ pub(crate) mod items {
         pub b32: vk::Bool32,
         pub i64: i64,
         pub u64: u64,
-        pub f64: core::ffi::c_double,
+        pub f64: ffi::c_double,
     }
     impl Default for PipelineExecutableStatisticValueKHR {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineExecutableStatisticValueKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineExecutableStatisticValueKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "PipelineExecutableStatisticValueKHR")
         }
     }
@@ -612,8 +620,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PipelineExecutableStatisticFormatKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineExecutableStatisticFormatKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineExecutableStatisticFormatKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::BOOL32 => Some("BOOL32"),
                 Self::INT64 => Some("INT64"),
@@ -623,7 +631,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

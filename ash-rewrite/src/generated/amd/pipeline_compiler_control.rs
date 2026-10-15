@@ -13,32 +13,37 @@ pub const NAME: &CStr = c"VK_AMD_pipeline_compiler_control";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineCompilerControlCreateInfoAMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub compiler_control_flags: vk::PipelineCompilerControlFlagsAMD,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineCompilerControlCreateInfoAMD<'_> {}
     unsafe impl Sync for PipelineCompilerControlCreateInfoAMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PipelineCompilerControlCreateInfoAMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineCompilerControlCreateInfoAMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD;
     }
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for PipelineCompilerControlCreateInfoAMD<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ComputePipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ComputePipelineCreateInfo<'_>>
     for PipelineCompilerControlCreateInfoAMD<'a> {}
     #[cfg(feature = "provisional")]
-    unsafe impl<'a> crate::Extends<vk::ExecutionGraphPipelineCreateInfoAMDX<'_>>
+    unsafe impl<'a> Extends<vk::ExecutionGraphPipelineCreateInfoAMDX<'_>>
     for PipelineCompilerControlCreateInfoAMD<'a> {}
     impl<'a> Default for PipelineCompilerControlCreateInfoAMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD,
                 p_next: Default::default(),
                 compiler_control_flags: Default::default(),
                 _marker: PhantomData,
@@ -58,9 +63,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCompilerControlFlagsAMD(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineCompilerControlFlagsAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineCompilerControlFlagsAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineCompilerControlFlagsAMD {
@@ -83,40 +88,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineCompilerControlFlagsAMD {
+    impl BitOr for PipelineCompilerControlFlagsAMD {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineCompilerControlFlagsAMD {
+    impl BitOrAssign for PipelineCompilerControlFlagsAMD {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineCompilerControlFlagsAMD {
+    impl BitAnd for PipelineCompilerControlFlagsAMD {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineCompilerControlFlagsAMD {
+    impl BitAndAssign for PipelineCompilerControlFlagsAMD {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineCompilerControlFlagsAMD {
+    impl BitXor for PipelineCompilerControlFlagsAMD {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineCompilerControlFlagsAMD {
+    impl BitXorAssign for PipelineCompilerControlFlagsAMD {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineCompilerControlFlagsAMD {
+    impl Not for PipelineCompilerControlFlagsAMD {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -141,9 +146,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineCompilerControlFlagBitsAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PipelineCompilerControlFlagBitsAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
 }

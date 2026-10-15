@@ -13,12 +13,15 @@ pub const NAME: &CStr = c"VK_EXT_pci_bus_info";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub pci_domain: u32,
         pub pci_bus: u32,
         pub pci_device: u32,
@@ -27,16 +30,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDevicePCIBusInfoPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDevicePCIBusInfoPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT,
                 p_next: Default::default(),
                 pci_domain: Default::default(),
                 pci_bus: Default::default(),

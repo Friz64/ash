@@ -4,7 +4,8 @@
 #![doc(alias = "VK_EXT_mesh_shader")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
 impl vk::QueryType {
     pub const MESH_PRIMITIVES_GENERATED_EXT: Self = Self(1000328000);
@@ -68,10 +69,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_draw_mesh_tasks: unsafe {
                 unsafe extern "system" fn cmd_draw_mesh_tasks(
@@ -83,11 +84,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDrawMeshTasksEXT")
                 }
                 let val = _f(c"vkCmdDrawMeshTasksEXT");
-                if val.is_null() {
-                    cmd_draw_mesh_tasks
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_draw_mesh_tasks } else { transmute(val) }
             },
             cmd_draw_mesh_tasks_indirect: unsafe {
                 unsafe extern "system" fn cmd_draw_mesh_tasks_indirect(
@@ -100,11 +97,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDrawMeshTasksIndirectEXT")
                 }
                 let val = _f(c"vkCmdDrawMeshTasksIndirectEXT");
-                if val.is_null() {
-                    cmd_draw_mesh_tasks_indirect
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_draw_mesh_tasks_indirect } else { transmute(val) }
             },
             cmd_draw_mesh_tasks_indirect_count: unsafe {
                 unsafe extern "system" fn cmd_draw_mesh_tasks_indirect_count(
@@ -122,7 +115,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_draw_mesh_tasks_indirect_count
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -131,13 +124,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -146,7 +139,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdDrawMeshTasksEXT
@@ -215,12 +208,16 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    use core::mem::zeroed;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMeshShaderFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub task_shader: vk::Bool32,
         pub mesh_shader: vk::Bool32,
         pub multiview_mesh_shader: vk::Bool32,
@@ -230,18 +227,17 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceMeshShaderFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMeshShaderFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMeshShaderFeaturesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMeshShaderFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMeshShaderFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMeshShaderFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMeshShaderFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_EXT,
                 p_next: Default::default(),
                 task_shader: Default::default(),
                 mesh_shader: Default::default(),
@@ -283,7 +279,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMeshShaderPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_task_work_group_total_count: u32,
         pub max_task_work_group_count: [u32; 3 as _],
         pub max_task_work_group_invocations: u32,
@@ -316,28 +312,27 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceMeshShaderPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMeshShaderPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMeshShaderPropertiesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMeshShaderPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceMeshShaderPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMeshShaderPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_EXT,
                 p_next: Default::default(),
                 max_task_work_group_total_count: Default::default(),
-                max_task_work_group_count: unsafe { core::mem::zeroed() },
+                max_task_work_group_count: unsafe { zeroed() },
                 max_task_work_group_invocations: Default::default(),
-                max_task_work_group_size: unsafe { core::mem::zeroed() },
+                max_task_work_group_size: unsafe { zeroed() },
                 max_task_payload_size: Default::default(),
                 max_task_shared_memory_size: Default::default(),
                 max_task_payload_and_shared_memory_size: Default::default(),
                 max_mesh_work_group_total_count: Default::default(),
-                max_mesh_work_group_count: unsafe { core::mem::zeroed() },
+                max_mesh_work_group_count: unsafe { zeroed() },
                 max_mesh_work_group_invocations: Default::default(),
-                max_mesh_work_group_size: unsafe { core::mem::zeroed() },
+                max_mesh_work_group_size: unsafe { zeroed() },
                 max_mesh_shared_memory_size: Default::default(),
                 max_mesh_payload_and_shared_memory_size: Default::default(),
                 max_mesh_output_memory_size: Default::default(),

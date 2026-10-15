@@ -4,8 +4,11 @@
 #![doc(alias = "VK_KHR_wayland_surface")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_wayland_surface](crate::khr::wayland_surface)
 impl vk::StructureType {
     pub const WAYLAND_SURFACE_CREATE_INFO_KHR: Self = Self(1000006000);
@@ -20,10 +23,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_wayland_surface: unsafe {
                 unsafe extern "system" fn create_wayland_surface(
@@ -35,17 +38,13 @@ impl InstanceFn {
                     panic!("unable to load vkCreateWaylandSurfaceKHR")
                 }
                 let val = _f(c"vkCreateWaylandSurfaceKHR");
-                if val.is_null() {
-                    create_wayland_surface
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_wayland_surface } else { transmute(val) }
             },
             get_physical_device_wayland_presentation_support: unsafe {
                 unsafe extern "system" fn get_physical_device_wayland_presentation_support(
                     _: vk::PhysicalDevice,
                     _: u32,
-                    _: *mut crate::platform_types::wl_display,
+                    _: *mut vk::wl_display,
                 ) -> vk::Bool32 {
                     panic!(
                         "unable to load vkGetPhysicalDeviceWaylandPresentationSupportKHR"
@@ -55,7 +54,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_wayland_presentation_support
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -64,13 +63,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -79,7 +78,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkCreateWaylandSurfaceKHR
@@ -89,7 +88,7 @@ impl Instance {
         create_info: &vk::WaylandSurfaceCreateInfoKHR<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = core::mem::MaybeUninit::uninit();
+        let mut surface = MaybeUninit::uninit();
         (self
             .fp
             .create_wayland_surface)(
@@ -97,7 +96,7 @@ impl Instance {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 surface.as_mut_ptr(),
             )
@@ -109,8 +108,8 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-    ) -> crate::platform_types::wl_display {
-        let mut display = core::mem::MaybeUninit::uninit();
+    ) -> vk::wl_display {
+        let mut display = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_wayland_presentation_support)(
@@ -124,26 +123,31 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct WaylandSurfaceCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::WaylandSurfaceCreateFlagsKHR,
-        pub display: *mut crate::platform_types::wl_display,
-        pub surface: *mut crate::platform_types::wl_surface,
+        pub display: *mut vk::wl_display,
+        pub surface: *mut vk::wl_surface,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for WaylandSurfaceCreateInfoKHR<'_> {}
     unsafe impl Sync for WaylandSurfaceCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for WaylandSurfaceCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for WaylandSurfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WAYLAND_SURFACE_CREATE_INFO_KHR;
     }
     impl<'a> Default for WaylandSurfaceCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::WAYLAND_SURFACE_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 display: Default::default(),
@@ -157,17 +161,11 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn display(
-            mut self,
-            display: &'a mut crate::platform_types::wl_display,
-        ) -> Self {
+        pub fn display(mut self, display: &'a mut vk::wl_display) -> Self {
             self.display = display;
             self
         }
-        pub fn surface(
-            mut self,
-            surface: &'a mut crate::platform_types::wl_surface,
-        ) -> Self {
+        pub fn surface(mut self, surface: &'a mut vk::wl_surface) -> Self {
             self.surface = surface;
             self
         }
@@ -176,9 +174,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct WaylandSurfaceCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for WaylandSurfaceCreateFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for WaylandSurfaceCreateFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl WaylandSurfaceCreateFlagsKHR {
@@ -201,40 +199,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for WaylandSurfaceCreateFlagsKHR {
+    impl BitOr for WaylandSurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for WaylandSurfaceCreateFlagsKHR {
+    impl BitOrAssign for WaylandSurfaceCreateFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for WaylandSurfaceCreateFlagsKHR {
+    impl BitAnd for WaylandSurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for WaylandSurfaceCreateFlagsKHR {
+    impl BitAndAssign for WaylandSurfaceCreateFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for WaylandSurfaceCreateFlagsKHR {
+    impl BitXor for WaylandSurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for WaylandSurfaceCreateFlagsKHR {
+    impl BitXorAssign for WaylandSurfaceCreateFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for WaylandSurfaceCreateFlagsKHR {
+    impl Not for WaylandSurfaceCreateFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -249,7 +247,7 @@ pub(crate) mod items {
     pub type PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR = unsafe extern "system" fn(
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        display: *mut crate::platform_types::wl_display,
+        display: *mut vk::wl_display,
     ) -> vk::Bool32;
 }
 pub use items::*;

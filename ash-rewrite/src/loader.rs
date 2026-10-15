@@ -58,7 +58,7 @@ mod loaded {
 }
 
 use crate::{vk, RawPtr, VkResult};
-use core::{ffi, fmt, mem, ptr};
+use core::{ffi, fmt, mem};
 
 /// Holds the Vulkan functions independent of a particular instance
 #[derive(Clone)]
@@ -190,7 +190,7 @@ impl Entry {
         let static_fn = crate::StaticFn::load_checked(|name| {
             lib.get(name.to_bytes_with_nul())
                 .map(|symbol| *symbol)
-                .unwrap_or(ptr::null_mut())
+                .unwrap_or(core::ptr::null_mut())
         })?;
 
         Ok(Self {

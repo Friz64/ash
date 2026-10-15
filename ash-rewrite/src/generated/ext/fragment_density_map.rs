@@ -114,12 +114,15 @@ pub const NAME: &CStr = c"VK_EXT_fragment_density_map";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub fragment_density_map: vk::Bool32,
         pub fragment_density_map_dynamic: vk::Bool32,
         pub fragment_density_map_non_subsampled_images: vk::Bool32,
@@ -127,18 +130,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceFragmentDensityMapFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentDensityMapFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT,
                 p_next: Default::default(),
                 fragment_density_map: Default::default(),
                 fragment_density_map_dynamic: Default::default(),
@@ -173,7 +176,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub min_fragment_density_texel_size: vk::Extent2D,
         pub max_fragment_density_texel_size: vk::Extent2D,
         pub fragment_density_invocations: vk::Bool32,
@@ -181,16 +184,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceFragmentDensityMapPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentDensityMapPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT,
                 p_next: Default::default(),
                 min_fragment_density_texel_size: Default::default(),
                 max_fragment_density_texel_size: Default::default(),
@@ -227,24 +230,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderPassFragmentDensityMapCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub fragment_density_map_attachment: vk::AttachmentReference,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassFragmentDensityMapCreateInfoEXT<'_> {}
     unsafe impl Sync for RenderPassFragmentDensityMapCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for RenderPassFragmentDensityMapCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::RenderPassCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::RenderPassCreateInfo<'_>>
     for RenderPassFragmentDensityMapCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::RenderPassCreateInfo2<'_>>
+    unsafe impl<'a> Extends<vk::RenderPassCreateInfo2<'_>>
     for RenderPassFragmentDensityMapCreateInfoEXT<'a> {}
     impl<'a> Default for RenderPassFragmentDensityMapCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 fragment_density_map_attachment: Default::default(),
                 _marker: PhantomData,
@@ -265,23 +268,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub image_view: vk::ImageView,
         pub image_layout: vk::ImageLayout,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderingFragmentDensityMapAttachmentInfoEXT<'_> {}
     unsafe impl Sync for RenderingFragmentDensityMapAttachmentInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::RenderingInfo<'_>>
+    unsafe impl<'a> Extends<vk::RenderingInfo<'_>>
     for RenderingFragmentDensityMapAttachmentInfoEXT<'a> {}
     impl<'a> Default for RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT,
                 p_next: Default::default(),
                 image_view: Default::default(),
                 image_layout: Default::default(),

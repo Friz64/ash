@@ -26,26 +26,29 @@ pub const NAME: &CStr = c"VK_QCOM_render_pass_transform";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RenderPassTransformBeginInfoQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub transform: vk::SurfaceTransformFlagBitsKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassTransformBeginInfoQCOM<'_> {}
     unsafe impl Sync for RenderPassTransformBeginInfoQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassTransformBeginInfoQCOM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RenderPassTransformBeginInfoQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::RenderPassBeginInfo<'_>>
+    unsafe impl<'a> Extends<vk::RenderPassBeginInfo<'_>>
     for RenderPassTransformBeginInfoQCOM<'a> {}
     impl<'a> Default for RenderPassTransformBeginInfoQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM,
                 p_next: Default::default(),
                 transform: Default::default(),
                 _marker: PhantomData,
@@ -63,23 +66,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub transform: vk::SurfaceTransformFlagBitsKHR,
         pub render_area: vk::Rect2D,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CommandBufferInheritanceRenderPassTransformInfoQCOM<'_> {}
     unsafe impl Sync for CommandBufferInheritanceRenderPassTransformInfoQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> Extends<vk::CommandBufferInheritanceInfo<'_>>
     for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {}
     impl<'a> Default for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM,
                 p_next: Default::default(),
                 transform: Default::default(),
                 render_area: Default::default(),

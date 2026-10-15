@@ -4,7 +4,8 @@
 #![doc(alias = "VK_NV_memory_decompression")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_NV_memory_decompression](crate::nv::memory_decompression)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_NV: Self = Self::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT;
@@ -20,10 +21,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_decompress_memory: unsafe {
                 unsafe extern "system" fn cmd_decompress_memory(
@@ -34,11 +35,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDecompressMemoryNV")
                 }
                 let val = _f(c"vkCmdDecompressMemoryNV");
-                if val.is_null() {
-                    cmd_decompress_memory
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_decompress_memory } else { transmute(val) }
             },
             cmd_decompress_memory_indirect_count: unsafe {
                 unsafe extern "system" fn cmd_decompress_memory_indirect_count(
@@ -53,7 +50,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_decompress_memory_indirect_count
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -62,13 +59,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -77,7 +74,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdDecompressMemoryNV

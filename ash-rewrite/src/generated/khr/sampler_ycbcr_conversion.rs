@@ -4,8 +4,11 @@
 #![doc(alias = "VK_KHR_sampler_ycbcr_conversion")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl vk::Format {
     pub const G8B8G8R8_422_UNORM_KHR: Self = Self::G8B8G8R8_422_UNORM;
@@ -143,10 +146,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_sampler_ycbcr_conversion: unsafe {
                 unsafe extern "system" fn create_sampler_ycbcr_conversion(
@@ -161,7 +164,7 @@ impl DeviceFn {
                 if val.is_null() {
                     create_sampler_ycbcr_conversion
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             destroy_sampler_ycbcr_conversion: unsafe {
@@ -176,7 +179,7 @@ impl DeviceFn {
                 if val.is_null() {
                     destroy_sampler_ycbcr_conversion
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -185,13 +188,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -200,7 +203,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateSamplerYcbcrConversion
@@ -210,7 +213,7 @@ impl Device {
         create_info: &vk::SamplerYcbcrConversionCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::SamplerYcbcrConversion> {
-        let mut ycbcr_conversion = core::mem::MaybeUninit::uninit();
+        let mut ycbcr_conversion = MaybeUninit::uninit();
         (self
             .fp
             .create_sampler_ycbcr_conversion)(
@@ -218,7 +221,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 ycbcr_conversion.as_mut_ptr(),
             )
@@ -238,7 +241,7 @@ impl Device {
             ycbcr_conversion,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }

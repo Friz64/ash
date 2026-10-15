@@ -4,7 +4,9 @@
 #![doc(alias = "VK_EXT_metal_objects")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_metal_objects](crate::ext::metal_objects)
 impl vk::StructureType {
     pub const EXPORT_METAL_OBJECT_CREATE_INFO_EXT: Self = Self(1000311000);
@@ -59,10 +61,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             export_metal_objects: unsafe {
                 unsafe extern "system" fn export_metal_objects(
@@ -72,11 +74,7 @@ impl DeviceFn {
                     panic!("unable to load vkExportMetalObjectsEXT")
                 }
                 let val = _f(c"vkExportMetalObjectsEXT");
-                if val.is_null() {
-                    export_metal_objects
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { export_metal_objects } else { transmute(val) }
             },
         }
     }
@@ -84,13 +82,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -99,13 +97,13 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkExportMetalObjectsEXT
     #[inline]
     pub unsafe fn export_metal_objects(&self) -> vk::ExportMetalObjectsInfoEXT<'_> {
-        let mut metal_objects_info = core::mem::MaybeUninit::uninit();
+        let mut metal_objects_info = MaybeUninit::uninit();
         (self.fp.export_metal_objects)(self.handle, metal_objects_info.as_mut_ptr());
         metal_objects_info.assume_init()
     }
@@ -113,38 +111,44 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ExportMetalObjectCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub export_object_type: vk::ExportMetalObjectTypeFlagBitsEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExportMetalObjectCreateInfoEXT<'_> {}
     unsafe impl Sync for ExportMetalObjectCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalObjectCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExportMetalObjectCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXPORT_METAL_OBJECT_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::InstanceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::InstanceCreateInfo<'_>>
     for ExportMetalObjectCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> Extends<vk::MemoryAllocateInfo<'_>>
     for ExportMetalObjectCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for ExportMetalObjectCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ImageViewCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageViewCreateInfo<'_>>
     for ExportMetalObjectCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::BufferViewCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::BufferViewCreateInfo<'_>>
     for ExportMetalObjectCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SemaphoreCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::SemaphoreCreateInfo<'_>>
     for ExportMetalObjectCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::EventCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::EventCreateInfo<'_>>
     for ExportMetalObjectCreateInfoEXT<'a> {}
     impl<'a> Default for ExportMetalObjectCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXPORT_METAL_OBJECT_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 export_object_type: Default::default(),
                 _marker: PhantomData,
@@ -165,18 +169,18 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExportMetalObjectsInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExportMetalObjectsInfoEXT<'_> {}
     unsafe impl Sync for ExportMetalObjectsInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalObjectsInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExportMetalObjectsInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXPORT_METAL_OBJECTS_INFO_EXT;
     }
     impl<'a> Default for ExportMetalObjectsInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXPORT_METAL_OBJECTS_INFO_EXT,
                 p_next: Default::default(),
                 _marker: PhantomData,
             }
@@ -188,21 +192,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExportMetalDeviceInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub mtl_device: crate::platform_types::MTLDevice_id,
+        pub p_next: *const ffi::c_void,
+        pub mtl_device: vk::MTLDevice_id,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExportMetalDeviceInfoEXT<'_> {}
     unsafe impl Sync for ExportMetalDeviceInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalDeviceInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExportMetalDeviceInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXPORT_METAL_DEVICE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ExportMetalObjectsInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::ExportMetalObjectsInfoEXT<'_>>
     for ExportMetalDeviceInfoEXT<'a> {}
     impl<'a> Default for ExportMetalDeviceInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXPORT_METAL_DEVICE_INFO_EXT,
                 p_next: Default::default(),
                 mtl_device: Default::default(),
                 _marker: PhantomData,
@@ -210,10 +214,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> ExportMetalDeviceInfoEXT<'a> {
-        pub fn mtl_device(
-            mut self,
-            mtl_device: crate::platform_types::MTLDevice_id,
-        ) -> Self {
+        pub fn mtl_device(mut self, mtl_device: vk::MTLDevice_id) -> Self {
             self.mtl_device = mtl_device;
             self
         }
@@ -223,22 +224,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExportMetalCommandQueueInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub queue: vk::Queue,
-        pub mtl_command_queue: crate::platform_types::MTLCommandQueue_id,
+        pub mtl_command_queue: vk::MTLCommandQueue_id,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExportMetalCommandQueueInfoEXT<'_> {}
     unsafe impl Sync for ExportMetalCommandQueueInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalCommandQueueInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExportMetalCommandQueueInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXPORT_METAL_COMMAND_QUEUE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ExportMetalObjectsInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::ExportMetalObjectsInfoEXT<'_>>
     for ExportMetalCommandQueueInfoEXT<'a> {}
     impl<'a> Default for ExportMetalCommandQueueInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXPORT_METAL_COMMAND_QUEUE_INFO_EXT,
                 p_next: Default::default(),
                 queue: Default::default(),
                 mtl_command_queue: Default::default(),
@@ -253,7 +254,7 @@ pub(crate) mod items {
         }
         pub fn mtl_command_queue(
             mut self,
-            mtl_command_queue: crate::platform_types::MTLCommandQueue_id,
+            mtl_command_queue: vk::MTLCommandQueue_id,
         ) -> Self {
             self.mtl_command_queue = mtl_command_queue;
             self
@@ -264,22 +265,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExportMetalBufferInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub memory: vk::DeviceMemory,
-        pub mtl_buffer: crate::platform_types::MTLBuffer_id,
+        pub mtl_buffer: vk::MTLBuffer_id,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExportMetalBufferInfoEXT<'_> {}
     unsafe impl Sync for ExportMetalBufferInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalBufferInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExportMetalBufferInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXPORT_METAL_BUFFER_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ExportMetalObjectsInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::ExportMetalObjectsInfoEXT<'_>>
     for ExportMetalBufferInfoEXT<'a> {}
     impl<'a> Default for ExportMetalBufferInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXPORT_METAL_BUFFER_INFO_EXT,
                 p_next: Default::default(),
                 memory: Default::default(),
                 mtl_buffer: Default::default(),
@@ -292,10 +293,7 @@ pub(crate) mod items {
             self.memory = memory;
             self
         }
-        pub fn mtl_buffer(
-            mut self,
-            mtl_buffer: crate::platform_types::MTLBuffer_id,
-        ) -> Self {
+        pub fn mtl_buffer(mut self, mtl_buffer: vk::MTLBuffer_id) -> Self {
             self.mtl_buffer = mtl_buffer;
             self
         }
@@ -305,21 +303,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImportMetalBufferInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub mtl_buffer: crate::platform_types::MTLBuffer_id,
+        pub p_next: *const ffi::c_void,
+        pub mtl_buffer: vk::MTLBuffer_id,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportMetalBufferInfoEXT<'_> {}
     unsafe impl Sync for ImportMetalBufferInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalBufferInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportMetalBufferInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_METAL_BUFFER_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> Extends<vk::MemoryAllocateInfo<'_>>
     for ImportMetalBufferInfoEXT<'a> {}
     impl<'a> Default for ImportMetalBufferInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_METAL_BUFFER_INFO_EXT,
                 p_next: Default::default(),
                 mtl_buffer: Default::default(),
                 _marker: PhantomData,
@@ -327,10 +325,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> ImportMetalBufferInfoEXT<'a> {
-        pub fn mtl_buffer(
-            mut self,
-            mtl_buffer: crate::platform_types::MTLBuffer_id,
-        ) -> Self {
+        pub fn mtl_buffer(mut self, mtl_buffer: vk::MTLBuffer_id) -> Self {
             self.mtl_buffer = mtl_buffer;
             self
         }
@@ -340,25 +335,25 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExportMetalTextureInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub image: vk::Image,
         pub image_view: vk::ImageView,
         pub buffer_view: vk::BufferView,
         pub plane: vk::ImageAspectFlagBits,
-        pub mtl_texture: crate::platform_types::MTLTexture_id,
+        pub mtl_texture: vk::MTLTexture_id,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExportMetalTextureInfoEXT<'_> {}
     unsafe impl Sync for ExportMetalTextureInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalTextureInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExportMetalTextureInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXPORT_METAL_TEXTURE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ExportMetalObjectsInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::ExportMetalObjectsInfoEXT<'_>>
     for ExportMetalTextureInfoEXT<'a> {}
     impl<'a> Default for ExportMetalTextureInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXPORT_METAL_TEXTURE_INFO_EXT,
                 p_next: Default::default(),
                 image: Default::default(),
                 image_view: Default::default(),
@@ -386,10 +381,7 @@ pub(crate) mod items {
             self.plane = plane;
             self
         }
-        pub fn mtl_texture(
-            mut self,
-            mtl_texture: crate::platform_types::MTLTexture_id,
-        ) -> Self {
+        pub fn mtl_texture(mut self, mtl_texture: vk::MTLTexture_id) -> Self {
             self.mtl_texture = mtl_texture;
             self
         }
@@ -399,22 +391,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImportMetalTextureInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub plane: vk::ImageAspectFlagBits,
-        pub mtl_texture: crate::platform_types::MTLTexture_id,
+        pub mtl_texture: vk::MTLTexture_id,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportMetalTextureInfoEXT<'_> {}
     unsafe impl Sync for ImportMetalTextureInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalTextureInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportMetalTextureInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_METAL_TEXTURE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
-    for ImportMetalTextureInfoEXT<'a> {}
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>> for ImportMetalTextureInfoEXT<'a> {}
     impl<'a> Default for ImportMetalTextureInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_METAL_TEXTURE_INFO_EXT,
                 p_next: Default::default(),
                 plane: Default::default(),
                 mtl_texture: Default::default(),
@@ -427,10 +418,7 @@ pub(crate) mod items {
             self.plane = plane;
             self
         }
-        pub fn mtl_texture(
-            mut self,
-            mtl_texture: crate::platform_types::MTLTexture_id,
-        ) -> Self {
+        pub fn mtl_texture(mut self, mtl_texture: vk::MTLTexture_id) -> Self {
             self.mtl_texture = mtl_texture;
             self
         }
@@ -440,22 +428,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExportMetalIOSurfaceInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub image: vk::Image,
-        pub io_surface: crate::platform_types::IOSurfaceRef,
+        pub io_surface: vk::IOSurfaceRef,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExportMetalIOSurfaceInfoEXT<'_> {}
     unsafe impl Sync for ExportMetalIOSurfaceInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalIOSurfaceInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExportMetalIOSurfaceInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXPORT_METAL_IO_SURFACE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ExportMetalObjectsInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::ExportMetalObjectsInfoEXT<'_>>
     for ExportMetalIOSurfaceInfoEXT<'a> {}
     impl<'a> Default for ExportMetalIOSurfaceInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXPORT_METAL_IO_SURFACE_INFO_EXT,
                 p_next: Default::default(),
                 image: Default::default(),
                 io_surface: Default::default(),
@@ -468,10 +456,7 @@ pub(crate) mod items {
             self.image = image;
             self
         }
-        pub fn io_surface(
-            mut self,
-            io_surface: crate::platform_types::IOSurfaceRef,
-        ) -> Self {
+        pub fn io_surface(mut self, io_surface: vk::IOSurfaceRef) -> Self {
             self.io_surface = io_surface;
             self
         }
@@ -481,21 +466,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImportMetalIOSurfaceInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub io_surface: crate::platform_types::IOSurfaceRef,
+        pub p_next: *const ffi::c_void,
+        pub io_surface: vk::IOSurfaceRef,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportMetalIOSurfaceInfoEXT<'_> {}
     unsafe impl Sync for ImportMetalIOSurfaceInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalIOSurfaceInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportMetalIOSurfaceInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_METAL_IO_SURFACE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for ImportMetalIOSurfaceInfoEXT<'a> {}
     impl<'a> Default for ImportMetalIOSurfaceInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_METAL_IO_SURFACE_INFO_EXT,
                 p_next: Default::default(),
                 io_surface: Default::default(),
                 _marker: PhantomData,
@@ -503,10 +488,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> ImportMetalIOSurfaceInfoEXT<'a> {
-        pub fn io_surface(
-            mut self,
-            io_surface: crate::platform_types::IOSurfaceRef,
-        ) -> Self {
+        pub fn io_surface(mut self, io_surface: vk::IOSurfaceRef) -> Self {
             self.io_surface = io_surface;
             self
         }
@@ -516,23 +498,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExportMetalSharedEventInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub semaphore: vk::Semaphore,
         pub event: vk::Event,
-        pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
+        pub mtl_shared_event: vk::MTLSharedEvent_id,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExportMetalSharedEventInfoEXT<'_> {}
     unsafe impl Sync for ExportMetalSharedEventInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalSharedEventInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExportMetalSharedEventInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXPORT_METAL_SHARED_EVENT_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ExportMetalObjectsInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::ExportMetalObjectsInfoEXT<'_>>
     for ExportMetalSharedEventInfoEXT<'a> {}
     impl<'a> Default for ExportMetalSharedEventInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXPORT_METAL_SHARED_EVENT_INFO_EXT,
                 p_next: Default::default(),
                 semaphore: Default::default(),
                 event: Default::default(),
@@ -552,7 +534,7 @@ pub(crate) mod items {
         }
         pub fn mtl_shared_event(
             mut self,
-            mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
+            mtl_shared_event: vk::MTLSharedEvent_id,
         ) -> Self {
             self.mtl_shared_event = mtl_shared_event;
             self
@@ -563,23 +545,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImportMetalSharedEventInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
+        pub p_next: *const ffi::c_void,
+        pub mtl_shared_event: vk::MTLSharedEvent_id,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportMetalSharedEventInfoEXT<'_> {}
     unsafe impl Sync for ImportMetalSharedEventInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalSharedEventInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportMetalSharedEventInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_METAL_SHARED_EVENT_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::SemaphoreCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::SemaphoreCreateInfo<'_>>
     for ImportMetalSharedEventInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::EventCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::EventCreateInfo<'_>>
     for ImportMetalSharedEventInfoEXT<'a> {}
     impl<'a> Default for ImportMetalSharedEventInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_METAL_SHARED_EVENT_INFO_EXT,
                 p_next: Default::default(),
                 mtl_shared_event: Default::default(),
                 _marker: PhantomData,
@@ -589,7 +571,7 @@ pub(crate) mod items {
     impl<'a> ImportMetalSharedEventInfoEXT<'a> {
         pub fn mtl_shared_event(
             mut self,
-            mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
+            mtl_shared_event: vk::MTLSharedEvent_id,
         ) -> Self {
             self.mtl_shared_event = mtl_shared_event;
             self
@@ -599,8 +581,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExportMetalObjectTypeFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ExportMetalObjectTypeFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ExportMetalObjectTypeFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -635,40 +617,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ExportMetalObjectTypeFlagsEXT {
+    impl BitOr for ExportMetalObjectTypeFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ExportMetalObjectTypeFlagsEXT {
+    impl BitOrAssign for ExportMetalObjectTypeFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ExportMetalObjectTypeFlagsEXT {
+    impl BitAnd for ExportMetalObjectTypeFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ExportMetalObjectTypeFlagsEXT {
+    impl BitAndAssign for ExportMetalObjectTypeFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ExportMetalObjectTypeFlagsEXT {
+    impl BitXor for ExportMetalObjectTypeFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ExportMetalObjectTypeFlagsEXT {
+    impl BitXorAssign for ExportMetalObjectTypeFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ExportMetalObjectTypeFlagsEXT {
+    impl Not for ExportMetalObjectTypeFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -693,9 +675,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ExportMetalObjectTypeFlagBitsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ExportMetalObjectTypeFlagBitsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkExportMetalObjectsEXT = unsafe extern "system" fn(

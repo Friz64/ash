@@ -13,7 +13,10 @@ impl DecodeH264FieldOrderCount {
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0;
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_h264_decode";
 pub(crate) mod items {
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     use crate::vk;
+    use core::mem::zeroed;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DecodeH264PictureInfoFlags {
@@ -28,8 +31,8 @@ pub(crate) mod items {
     unsafe impl Send for DecodeH264PictureInfoFlags {}
     unsafe impl Sync for DecodeH264PictureInfoFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DecodeH264PictureInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DecodeH264PictureInfoFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("DecodeH264PictureInfoFlags")
                 .field("field_pic_flag", &self.get_field_pic_flag())
                 .field("is_intra", &self.get_is_intra())
@@ -118,7 +121,7 @@ pub(crate) mod items {
                 reserved2: Default::default(),
                 frame_num: Default::default(),
                 idr_pic_id: Default::default(),
-                pic_order_cnt: unsafe { core::mem::zeroed() },
+                pic_order_cnt: unsafe { zeroed() },
             }
         }
     }
@@ -171,8 +174,8 @@ pub(crate) mod items {
     unsafe impl Send for DecodeH264ReferenceInfoFlags {}
     unsafe impl Sync for DecodeH264ReferenceInfoFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DecodeH264ReferenceInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DecodeH264ReferenceInfoFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("DecodeH264ReferenceInfoFlags")
                 .field("top_field_flag", &self.get_top_field_flag())
                 .field("bottom_field_flag", &self.get_bottom_field_flag())
@@ -239,7 +242,7 @@ pub(crate) mod items {
                 flags: Default::default(),
                 frame_num: Default::default(),
                 reserved: Default::default(),
-                pic_order_cnt: unsafe { core::mem::zeroed() },
+                pic_order_cnt: unsafe { zeroed() },
             }
         }
     }
@@ -268,8 +271,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DecodeH264FieldOrderCount(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DecodeH264FieldOrderCount {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DecodeH264FieldOrderCount {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::TOP => Some("TOP"),
                 Self::BOTTOM => Some("BOTTOM"),
@@ -278,7 +281,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

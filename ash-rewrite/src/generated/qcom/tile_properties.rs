@@ -5,7 +5,10 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_QCOM_tile_properties](crate::qcom::tile_properties)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM: Self = Self(1000484000);
@@ -21,10 +24,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_framebuffer_tile_properties: unsafe {
                 unsafe extern "system" fn get_framebuffer_tile_properties(
@@ -39,7 +42,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_framebuffer_tile_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_dynamic_rendering_tile_properties: unsafe {
@@ -54,7 +57,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_dynamic_rendering_tile_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -63,13 +66,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -78,7 +81,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetFramebufferTilePropertiesQCOM
@@ -87,14 +90,14 @@ impl Device {
         &self,
         framebuffer: vk::Framebuffer,
     ) -> VkResult<usize> {
-        let mut properties_count = core::mem::MaybeUninit::uninit();
+        let mut properties_count = MaybeUninit::uninit();
         (self
             .fp
             .get_framebuffer_tile_properties)(
                 self.handle,
                 framebuffer,
                 properties_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(properties_count)
             .map(|c| c as usize)
@@ -105,7 +108,7 @@ impl Device {
         &self,
         framebuffer: vk::Framebuffer,
         properties: &mut [vk::TilePropertiesQCOM<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut properties_count = properties.len() as _;
         (self
             .fp
@@ -125,7 +128,7 @@ impl Device {
         &self,
         rendering_info: &vk::RenderingInfo<'_>,
     ) -> VkResult<vk::TilePropertiesQCOM<'_>> {
-        let mut properties = core::mem::MaybeUninit::uninit();
+        let mut properties = MaybeUninit::uninit();
         (self
             .fp
             .get_dynamic_rendering_tile_properties)(
@@ -139,29 +142,32 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub tile_properties: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceTilePropertiesFeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceTilePropertiesFeaturesQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM,
                 p_next: Default::default(),
                 tile_properties: Default::default(),
                 _marker: PhantomData,
@@ -179,7 +185,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct TilePropertiesQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub tile_size: vk::Extent3D,
         pub apron_size: vk::Extent2D,
         pub origin: vk::Offset2D,
@@ -187,13 +193,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for TilePropertiesQCOM<'_> {}
     unsafe impl Sync for TilePropertiesQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for TilePropertiesQCOM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for TilePropertiesQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TILE_PROPERTIES_QCOM;
     }
     impl<'a> Default for TilePropertiesQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::TILE_PROPERTIES_QCOM,
                 p_next: Default::default(),
                 tile_size: Default::default(),
                 apron_size: Default::default(),

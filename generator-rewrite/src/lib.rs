@@ -4,11 +4,12 @@ mod output;
 mod rules;
 
 use crate::{
-    output::{CodeMap, Import, OutputContext},
+    output::{CodeMap, OutputContext},
     rules::BuilderRules,
 };
 use analysis::{
     Analysis, AnalysisResult,
+    decl::CPrimaryType,
     item::RequiredBy,
     name::{
         CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
@@ -18,8 +19,8 @@ use analysis::{
 };
 use heck::{ToShoutySnekCase, ToSnekCase};
 use proc_macro2::TokenStream;
-use quote::format_ident;
 use quote::quote;
+use quote::{ToTokens, format_ident};
 use regex::Regex;
 use std::{borrow::Cow, fmt::Display, io, ops::Deref, path::Path, sync::LazyLock};
 use syn::Ident;
@@ -115,6 +116,60 @@ impl Context<'_> {
     fn type_required_by(&self, name: TypeName) -> RequiredBy {
         let type_item = &self.items.types[&name];
         type_item.required_by(self.items)
+    }
+}
+
+#[derive(PartialEq, Eq, Hash)]
+pub enum Import {
+    CrateVk,
+    CrateVkResult,
+    CrateHandle,
+    CrateExtends,
+    CrateTaggedStructure,
+    CoreMarkerPhantomData,
+    CoreMemMaybeUninit,
+    CoreMemTransmute,
+    CoreMemZeroed,
+    CoreFfi,
+    CoreFfiCStr,
+    CoreFmt,
+    /// `#[cfg(feature = "debug")] use core::fmt as fmtd;`
+    DebugCoreFmt,
+    CorePtr,
+    CoreOpsBitmask,
+    AllocVecVec,
+}
+
+impl ToTokens for Import {
+    fn to_tokens(&self, tokens: &mut TokenStream) {
+        use Import::*;
+        let code = match self {
+            CrateVk => quote! { use crate::vk; },
+            CrateVkResult => quote! { use crate::VkResult; },
+            CrateHandle => quote! { use crate::Handle; },
+            CrateExtends => quote! { use crate::Extends; },
+            CrateTaggedStructure => quote! { use crate::TaggedStructure; },
+            CoreMarkerPhantomData => quote! { use core::marker::PhantomData; },
+            CoreMemMaybeUninit => quote! { use core::mem::MaybeUninit; },
+            CoreMemTransmute => quote! { use core::mem::transmute; },
+            CoreMemZeroed => quote! { use core::mem::zeroed; },
+            CoreFfi => quote! { use core::ffi; },
+            CoreFfiCStr => quote! { use core::ffi::CStr; },
+            CoreFmt => quote! { use core::fmt; },
+            DebugCoreFmt => quote! {
+                #[cfg(feature = "debug")]
+                use core::fmt as fmtd;
+            },
+            CorePtr => quote! { use core::ptr; },
+            CoreOpsBitmask => quote! {
+                use core::ops::{
+                    BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not
+                };
+            },
+            AllocVecVec => quote! { use alloc::vec::Vec; },
+        };
+
+        tokens.extend(code);
     }
 }
 
@@ -256,7 +311,42 @@ impl RustTokens for OutputContext<'_, '_> {
 
     fn platform_type_tokens(&self, raw: &str, qualified: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(raw).unwrap();
-        let path = qualified.then(|| quote! { crate::platform_types:: });
+        self.insert_import(Import::CrateVk);
+        let path = qualified.then(|| quote! { vk:: });
         quote! { #path #ident }
+    }
+
+    fn primary_type_tokens(&self, primary_ty: CPrimaryType) -> TokenStream {
+        match primary_ty {
+            CPrimaryType::Void => {
+                self.insert_import(Import::CoreFfi);
+                quote! { ffi::c_void }
+            }
+            CPrimaryType::Char => {
+                self.insert_import(Import::CoreFfi);
+                quote! { ffi::c_char }
+            }
+            CPrimaryType::Int => {
+                self.insert_import(Import::CoreFfi);
+                quote! { ffi::c_int }
+            }
+            CPrimaryType::Float => {
+                self.insert_import(Import::CoreFfi);
+                quote! { ffi::c_float }
+            }
+            CPrimaryType::Double => {
+                self.insert_import(Import::CoreFfi);
+                quote! { ffi::c_double }
+            }
+            CPrimaryType::Int8 => quote! { i8 },
+            CPrimaryType::UInt8 => quote! { u8 },
+            CPrimaryType::Int16 => quote! { i16 },
+            CPrimaryType::UInt16 => quote! { u16 },
+            CPrimaryType::Int32 => quote! { i32 },
+            CPrimaryType::UInt32 => quote! { u32 },
+            CPrimaryType::Int64 => quote! { i64 },
+            CPrimaryType::UInt64 => quote! { u64 },
+            CPrimaryType::Size => quote! { usize },
+        }
     }
 }

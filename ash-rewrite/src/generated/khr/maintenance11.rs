@@ -56,29 +56,31 @@ pub const NAME: &CStr = c"VK_KHR_maintenance11";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance11FeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub maintenance11: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMaintenance11FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance11FeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMaintenance11FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMaintenance11FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR,
                 p_next: Default::default(),
                 maintenance11: Default::default(),
                 _marker: PhantomData,
@@ -96,22 +98,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub optimal_image_transfer_granularity: vk::Extent3D,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'_> {}
     unsafe impl Sync for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::QueueFamilyProperties2<'_>>
+    unsafe impl<'a> Extends<vk::QueueFamilyProperties2<'_>>
     for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {}
     impl<'a> Default for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR,
                 p_next: Default::default(),
                 optimal_image_transfer_granularity: Default::default(),
                 _marker: PhantomData,

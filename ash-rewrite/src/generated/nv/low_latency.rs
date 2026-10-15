@@ -4,7 +4,9 @@
 #![doc(alias = "VK_NV_low_latency")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
+use core::mem::MaybeUninit;
 ///Provided by [VK_NV_low_latency](crate::nv::low_latency)
 impl vk::StructureType {
     pub const QUERY_LOW_LATENCY_SUPPORT_NV: Self = Self(1000310000);
@@ -24,10 +26,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             set_latency_sleep_mode_legacy: unsafe {
                 unsafe extern "system" fn set_latency_sleep_mode_legacy(
@@ -42,7 +44,7 @@ impl DeviceFn {
                 if val.is_null() {
                     set_latency_sleep_mode_legacy
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             latency_sleep_legacy: unsafe {
@@ -54,11 +56,7 @@ impl DeviceFn {
                     panic!("unable to load vkLatencySleepLegacyNV")
                 }
                 let val = _f(c"vkLatencySleepLegacyNV");
-                if val.is_null() {
-                    latency_sleep_legacy
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { latency_sleep_legacy } else { transmute(val) }
             },
             set_latency_marker_legacy: unsafe {
                 unsafe extern "system" fn set_latency_marker_legacy(
@@ -69,25 +67,17 @@ impl DeviceFn {
                     panic!("unable to load vkSetLatencyMarkerLegacyNV")
                 }
                 let val = _f(c"vkSetLatencyMarkerLegacyNV");
-                if val.is_null() {
-                    set_latency_marker_legacy
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { set_latency_marker_legacy } else { transmute(val) }
             },
             get_latency_timings_legacy: unsafe {
                 unsafe extern "system" fn get_latency_timings_legacy(
                     _: vk::Device,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                 ) {
                     panic!("unable to load vkGetLatencyTimingsLegacyNV")
                 }
                 let val = _f(c"vkGetLatencyTimingsLegacyNV");
-                if val.is_null() {
-                    get_latency_timings_legacy
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_latency_timings_legacy } else { transmute(val) }
             },
             queue_notify_out_of_band_legacy: unsafe {
                 unsafe extern "system" fn queue_notify_out_of_band_legacy(
@@ -100,7 +90,7 @@ impl DeviceFn {
                 if val.is_null() {
                     queue_notify_out_of_band_legacy
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_sleep_status_legacy: unsafe {
@@ -111,11 +101,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetSleepStatusLegacyNV")
                 }
                 let val = _f(c"vkGetSleepStatusLegacyNV");
-                if val.is_null() {
-                    get_sleep_status_legacy
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_sleep_status_legacy } else { transmute(val) }
             },
             shutdown_latency_device_legacy: unsafe {
                 unsafe extern "system" fn shutdown_latency_device_legacy(_: vk::Device) {
@@ -125,7 +111,7 @@ impl DeviceFn {
                 if val.is_null() {
                     shutdown_latency_device_legacy
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -134,13 +120,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -149,7 +135,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkSetLatencySleepModeLegacyNV
@@ -185,8 +171,8 @@ impl Device {
     }
     ///vkGetLatencyTimingsLegacyNV
     #[inline]
-    pub unsafe fn get_latency_timings_legacy(&self) -> core::ffi::c_void {
-        let mut timings = core::mem::MaybeUninit::uninit();
+    pub unsafe fn get_latency_timings_legacy(&self) -> ffi::c_void {
+        let mut timings = MaybeUninit::uninit();
         (self.fp.get_latency_timings_legacy)(self.handle, timings.as_mut_ptr());
         timings.assume_init()
     }
@@ -202,7 +188,7 @@ impl Device {
     ///vkGetSleepStatusLegacyNV
     #[inline]
     pub unsafe fn get_sleep_status_legacy(&self) -> vk::Bool32 {
-        let mut low_latency_mode = core::mem::MaybeUninit::uninit();
+        let mut low_latency_mode = MaybeUninit::uninit();
         (self.fp.get_sleep_status_legacy)(self.handle, low_latency_mode.as_mut_ptr());
         low_latency_mode.assume_init()
     }
@@ -215,26 +201,29 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueryLowLatencySupportNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub p_queried_low_latency_data: *mut core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
+        pub p_queried_low_latency_data: *mut ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueryLowLatencySupportNV<'_> {}
     unsafe impl Sync for QueryLowLatencySupportNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for QueryLowLatencySupportNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for QueryLowLatencySupportNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUERY_LOW_LATENCY_SUPPORT_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::SemaphoreCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::SemaphoreCreateInfo<'_>>
     for QueryLowLatencySupportNV<'a> {}
     impl<'a> Default for QueryLowLatencySupportNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::QUERY_LOW_LATENCY_SUPPORT_NV,
                 p_next: Default::default(),
                 p_queried_low_latency_data: Default::default(),
                 _marker: PhantomData,
@@ -244,7 +233,7 @@ pub(crate) mod items {
     impl<'a> QueryLowLatencySupportNV<'a> {
         pub fn queried_low_latency_data(
             mut self,
-            queried_low_latency_data: &'a mut core::ffi::c_void,
+            queried_low_latency_data: &'a mut ffi::c_void,
         ) -> Self {
             self.p_queried_low_latency_data = queried_low_latency_data;
             self
@@ -268,7 +257,7 @@ pub(crate) mod items {
     );
     pub type PFN_vkGetLatencyTimingsLegacyNV = unsafe extern "system" fn(
         device: vk::Device,
-        p_timings: *mut core::ffi::c_void,
+        p_timings: *mut ffi::c_void,
     );
     pub type PFN_vkQueueNotifyOutOfBandLegacyNV = unsafe extern "system" fn(
         queue: vk::Queue,

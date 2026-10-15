@@ -1,6 +1,6 @@
 use crate::{
-    Context,
-    output::{CodeMap, GlobExport, Import, OutputContext, OutputLocation},
+    Context, Import,
+    output::{CodeMap, GlobExport, OutputContext, OutputLocation},
 };
 use analysis::{
     decl::{CPrimaryType, Mutability, Ty},
@@ -148,6 +148,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                 quote! { -> #rust_ty }
             });
 
+            octx.insert_import(Import::CoreMemTransmute);
             table.loaders.extend(quote! {
                 #field_name: unsafe {
                     unsafe extern "system" fn #field_name( #( #params ),* ) #ret {
@@ -158,7 +159,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                     if val.is_null() {
                         #field_name
                     } else {
-                        ::core::mem::transmute(val)
+                        transmute(val)
                     }
                 },
             });
@@ -174,7 +175,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
         } = table;
 
         octx.insert_import(Import::CoreFfiCStr);
-        octx.insert_import(Import::CoreFfiCVoid);
+        octx.insert_import(Import::CoreFfi);
         let table_name = function_type.table_name(output.require);
         let table_code = quote! {
             #[derive(Clone)]
@@ -186,17 +187,18 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             unsafe impl Sync for #table_name {}
 
             impl #table_name {
-                pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+                pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
                     Self::load_erased(&mut f)
                 }
 
-                fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+                fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
                     Self { #loaders }
                 }
             }
         };
 
         octx.insert_import(Import::CrateVk);
+        octx.insert_import(Import::CoreMemTransmute);
         let loader_name = function_type.loader_name();
         let loader_code = match (output.require, function_type) {
             (RequireLocation::Core { major, minor }, _) => {
@@ -228,14 +230,14 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                 #[derive(Clone)]
                 pub struct #loader_name {
                     pub(crate) fp: #table_name,
-                    pub(crate) handle: crate::vk::Instance,
+                    pub(crate) handle: vk::Instance,
                 }
 
                 impl #loader_name {
                     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
                         let handle = instance.handle;
                         let fp = #table_name::load(|name| unsafe {
-                            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+                            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
                         });
                         Self { handle, fp }
                     }
@@ -246,7 +248,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                     }
 
                     #[inline]
-                    pub fn instance(&self) -> crate::vk::Instance {
+                    pub fn instance(&self) -> vk::Instance {
                         self.handle
                     }
 
@@ -257,14 +259,14 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                 #[derive(Clone)]
                 pub struct #loader_name {
                     pub(crate) fp: #table_name,
-                    pub(crate) handle: crate::vk::Device,
+                    pub(crate) handle: vk::Device,
                 }
 
                 impl #loader_name {
                     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
                         let handle = device.handle;
                         let fp = #table_name::load(|name| unsafe {
-                            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+                            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
                         });
                         Self { handle, fp }
                     }
@@ -275,7 +277,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                     }
 
                     #[inline]
-                    pub fn device(&self) -> crate::vk::Device {
+                    pub fn device(&self) -> vk::Device {
                         self.handle
                     }
 
@@ -311,11 +313,11 @@ fn wrapper(
             return quote! {
                 /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetFenceStatus.html>
                 #[inline]
-                pub unsafe fn get_fence_status(&self, fence: crate::vk::Fence) -> crate::VkResult<bool> {
+                pub unsafe fn get_fence_status(&self, fence: vk::Fence) -> VkResult<bool> {
                     let err_code = (self.device_fn_1_0.get_fence_status)(self.handle(), fence);
                     match err_code {
-                        crate::vk::Result::SUCCESS => Ok(true),
-                        crate::vk::Result::NOT_READY => Ok(false),
+                        vk::Result::SUCCESS => Ok(true),
+                        vk::Result::NOT_READY => Ok(false),
                         _ => Err(err_code),
                     }
                 }
@@ -365,7 +367,8 @@ fn wrapper(
             Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), Mutability::Not)
                 if matches!(param.length, Some(Length::NullTerminated)) =>
             {
-                call_arg = quote! { #name.map_or(core::ptr::null(), |s| s.as_ptr()) };
+                octx.insert_import(Import::CorePtr);
+                call_arg = quote! { #name.map_or(ptr::null(), |s| s.as_ptr()) };
                 octx.insert_import(Import::CoreFfiCStr);
                 public_type = Some(RustTy::Custom {
                     custom_type: quote! { Option },
@@ -476,14 +479,15 @@ fn wrapper(
                 continue;
             }
             &Ty::Ptr(to, mutability) if param.optional_at_depth(0) == Some(true) => {
+                octx.insert_import(Import::CorePtr);
                 call_arg = match mutability {
                     Mutability::Mut => quote! { match #name {
                         Some(inner) => inner,
-                        None => core::ptr::null(),
+                        None => ptr::null(),
                     } },
                     Mutability::Not => quote! { match #name {
                         Some(inner) => inner,
-                        None => core::ptr::null_mut(),
+                        None => ptr::null_mut(),
                     } },
                 };
 
@@ -566,6 +570,7 @@ fn wrapper(
         let data = param_ident(multi_call_length.data);
         match multi_call_length.kind {
             MultiCallKind::ReadIntoUninitializedVector => {
+                octx.insert_import(Import::AllocVecVec);
                 let mut ret_ty_value = RustTy::Custom {
                     custom_type: quote! { Vec },
                     generic_args: vec![multi_call_length.element.to_rust()],
@@ -574,15 +579,16 @@ fn wrapper(
                 if returns_result {
                     content =
                         quote! { crate::read_into_uninitialized_vector(|#count, #data| #content) };
+                    octx.insert_import(Import::CrateVkResult);
                     ret_ty_value = RustTy::Custom {
-                        custom_type: quote! { crate::VkResult },
+                        custom_type: quote! { VkResult },
                         generic_args: vec![ret_ty_value],
                     };
                 } else {
                     content = quote! {
                         crate::read_into_uninitialized_vector(|#count, #data| {
                             #content;
-                            crate::vk::Result::SUCCESS
+                            vk::Result::SUCCESS
                         }).unwrap()
                     };
                 }
@@ -606,7 +612,7 @@ fn wrapper(
                 }
 
                 ret_ty = returns_result.then(|| RustTy::Custom {
-                    custom_type: quote! { crate::VkResult },
+                    custom_type: quote! { VkResult },
                     generic_args: vec![RustTy::Unit],
                 });
 
@@ -615,7 +621,8 @@ fn wrapper(
                 public_params_map.shift_remove(&multi_call_length.data);
                 let mut call_args_map = call_args_map.clone();
                 call_args_map[&multi_call_length.count] = quote! { #count.as_mut_ptr() };
-                call_args_map[&multi_call_length.data] = quote! { core::ptr::null_mut() };
+                octx.insert_import(Import::CorePtr);
+                call_args_map[&multi_call_length.data] = quote! { ptr::null_mut() };
 
                 let name_len = format_ident!("{name}_len");
                 let public_params = public_params_map.values();
@@ -628,6 +635,7 @@ fn wrapper(
                             .map(|c| c as usize)
                     };
 
+                    octx.insert_import(Import::CrateVkResult);
                     quote! { -> VkResult<usize> }
                 } else {
                     content = quote! {
@@ -638,11 +646,12 @@ fn wrapper(
                     quote! { -> usize }
                 };
 
+                octx.insert_import(Import::CoreMemMaybeUninit);
                 len_method = Some(quote! {
                     #[doc = #doc]
                     #[inline]
                     pub unsafe fn #name_len(&self #( , #public_params )*) #ret {
-                        let mut #count = core::mem::MaybeUninit::uninit();
+                        let mut #count = MaybeUninit::uninit();
                         #content
                     }
                 });
@@ -651,8 +660,9 @@ fn wrapper(
     } else if returns_result {
         if let Some((single_return, ..)) = single_return {
             let name = param_ident(single_return);
+            octx.insert_import(Import::CoreMemMaybeUninit);
             content = quote! {
-                let mut #name = core::mem::MaybeUninit::uninit();
+                let mut #name = MaybeUninit::uninit();
                 #content
             };
 
@@ -673,8 +683,9 @@ fn wrapper(
     } else {
         if let Some((single_return, ty)) = single_return {
             let name = param_ident(single_return);
+            octx.insert_import(Import::CoreMemMaybeUninit);
             content = quote! {
-                let mut #name = core::mem::MaybeUninit::uninit();
+                let mut #name = MaybeUninit::uninit();
                 #content;
                 #name.assume_init()
             };

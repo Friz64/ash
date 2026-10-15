@@ -51,29 +51,34 @@ pub const NAME: &CStr = c"VK_NV_displacement_micromap";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub displacement_micromap: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDisplacementMicromapFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceDisplacementMicromapFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_FEATURES_NV,
                 p_next: Default::default(),
                 displacement_micromap: Default::default(),
                 _marker: PhantomData,
@@ -91,22 +96,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_displacement_micromap_subdivision_level: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDisplacementMicromapPropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceDisplacementMicromapPropertiesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_PROPERTIES_NV,
                 p_next: Default::default(),
                 max_displacement_micromap_subdivision_level: Default::default(),
                 _marker: PhantomData,
@@ -127,7 +132,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub displacement_bias_and_scale_format: vk::Format,
         pub displacement_vector_format: vk::Format,
         pub displacement_bias_and_scale_buffer: vk::DeviceOrHostAddressConstKHR,
@@ -148,16 +153,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for AccelerationStructureTrianglesDisplacementMicromapNV<'_> {}
     unsafe impl Sync for AccelerationStructureTrianglesDisplacementMicromapNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_DISPLACEMENT_MICROMAP_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
+    unsafe impl<'a> Extends<vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
     for AccelerationStructureTrianglesDisplacementMicromapNV<'a> {}
     impl<'a> Default for AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_DISPLACEMENT_MICROMAP_NV,
                 p_next: Default::default(),
                 displacement_bias_and_scale_format: Default::default(),
                 displacement_vector_format: Default::default(),
@@ -277,8 +282,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DisplacementMicromapFormatNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DisplacementMicromapFormatNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DisplacementMicromapFormatNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 #[cfg(feature = "provisional")]
                 Self::TYPE_64_TRIANGLES_64_BYTES => Some("TYPE_64_TRIANGLES_64_BYTES"),
@@ -294,7 +299,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

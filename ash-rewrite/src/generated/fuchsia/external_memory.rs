@@ -4,8 +4,10 @@
 #![doc(alias = "VK_FUCHSIA_external_memory")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_FUCHSIA_external_memory](crate::fuchsia::external_memory)
 impl vk::StructureType {
     pub const IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000364000);
@@ -32,31 +34,27 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_memory_zircon_handle: unsafe {
                 unsafe extern "system" fn get_memory_zircon_handle(
                     _: vk::Device,
                     _: *const vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
-                    _: *mut crate::platform_types::zx_handle_t,
+                    _: *mut vk::zx_handle_t,
                 ) -> vk::Result {
                     panic!("unable to load vkGetMemoryZirconHandleFUCHSIA")
                 }
                 let val = _f(c"vkGetMemoryZirconHandleFUCHSIA");
-                if val.is_null() {
-                    get_memory_zircon_handle
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_memory_zircon_handle } else { transmute(val) }
             },
             get_memory_zircon_handle_properties: unsafe {
                 unsafe extern "system" fn get_memory_zircon_handle_properties(
                     _: vk::Device,
                     _: vk::ExternalMemoryHandleTypeFlagBits,
-                    _: crate::platform_types::zx_handle_t,
+                    _: vk::zx_handle_t,
                     _: *mut vk::MemoryZirconHandlePropertiesFUCHSIA<'_>,
                 ) -> vk::Result {
                     panic!("unable to load vkGetMemoryZirconHandlePropertiesFUCHSIA")
@@ -65,7 +63,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_memory_zircon_handle_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -74,13 +72,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -89,7 +87,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetMemoryZirconHandleFUCHSIA
@@ -97,8 +95,8 @@ impl Device {
     pub unsafe fn get_memory_zircon_handle(
         &self,
         get_zircon_handle_info: &vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
-    ) -> VkResult<crate::platform_types::zx_handle_t> {
-        let mut zircon_handle = core::mem::MaybeUninit::uninit();
+    ) -> VkResult<vk::zx_handle_t> {
+        let mut zircon_handle = MaybeUninit::uninit();
         (self
             .fp
             .get_memory_zircon_handle)(
@@ -113,9 +111,9 @@ impl Device {
     pub unsafe fn get_memory_zircon_handle_properties(
         &self,
         handle_type: vk::ExternalMemoryHandleTypeFlagBits,
-        zircon_handle: crate::platform_types::zx_handle_t,
+        zircon_handle: vk::zx_handle_t,
     ) -> VkResult<vk::MemoryZirconHandlePropertiesFUCHSIA<'_>> {
-        let mut memory_zircon_handle_properties = core::mem::MaybeUninit::uninit();
+        let mut memory_zircon_handle_properties = MaybeUninit::uninit();
         (self
             .fp
             .get_memory_zircon_handle_properties)(
@@ -130,28 +128,30 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImportMemoryZirconHandleInfoFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub handle_type: vk::ExternalMemoryHandleTypeFlagBits,
-        pub handle: crate::platform_types::zx_handle_t,
+        pub handle: vk::zx_handle_t,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportMemoryZirconHandleInfoFUCHSIA<'_> {}
     unsafe impl Sync for ImportMemoryZirconHandleInfoFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ImportMemoryZirconHandleInfoFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportMemoryZirconHandleInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA;
     }
-    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> Extends<vk::MemoryAllocateInfo<'_>>
     for ImportMemoryZirconHandleInfoFUCHSIA<'a> {}
     impl<'a> Default for ImportMemoryZirconHandleInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA,
                 p_next: Default::default(),
                 handle_type: Default::default(),
                 handle: Default::default(),
@@ -167,7 +167,7 @@ pub(crate) mod items {
             self.handle_type = handle_type;
             self
         }
-        pub fn handle(mut self, handle: crate::platform_types::zx_handle_t) -> Self {
+        pub fn handle(mut self, handle: vk::zx_handle_t) -> Self {
             self.handle = handle;
             self
         }
@@ -177,20 +177,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MemoryZirconHandlePropertiesFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub memory_type_bits: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryZirconHandlePropertiesFUCHSIA<'_> {}
     unsafe impl Sync for MemoryZirconHandlePropertiesFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for MemoryZirconHandlePropertiesFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MemoryZirconHandlePropertiesFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA;
     }
     impl<'a> Default for MemoryZirconHandlePropertiesFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA,
                 p_next: Default::default(),
                 memory_type_bits: Default::default(),
                 _marker: PhantomData,
@@ -208,20 +207,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MemoryGetZirconHandleInfoFUCHSIA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub memory: vk::DeviceMemory,
         pub handle_type: vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryGetZirconHandleInfoFUCHSIA<'_> {}
     unsafe impl Sync for MemoryGetZirconHandleInfoFUCHSIA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetZirconHandleInfoFUCHSIA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MemoryGetZirconHandleInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA;
     }
     impl<'a> Default for MemoryGetZirconHandleInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA,
                 p_next: Default::default(),
                 memory: Default::default(),
                 handle_type: Default::default(),
@@ -245,12 +244,12 @@ pub(crate) mod items {
     pub type PFN_vkGetMemoryZirconHandleFUCHSIA = unsafe extern "system" fn(
         device: vk::Device,
         p_get_zircon_handle_info: *const vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
-        p_zircon_handle: *mut crate::platform_types::zx_handle_t,
+        p_zircon_handle: *mut vk::zx_handle_t,
     ) -> vk::Result;
     pub type PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA = unsafe extern "system" fn(
         device: vk::Device,
         handle_type: vk::ExternalMemoryHandleTypeFlagBits,
-        zircon_handle: crate::platform_types::zx_handle_t,
+        zircon_handle: vk::zx_handle_t,
         p_memory_zircon_handle_properties: *mut vk::MemoryZirconHandlePropertiesFUCHSIA<
             '_,
         >,

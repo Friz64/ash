@@ -5,7 +5,8 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_debug_marker](crate::ext::debug_marker)
 impl vk::StructureType {
     pub const DEBUG_MARKER_OBJECT_NAME_INFO_EXT: Self = Self(1000022000);
@@ -25,10 +26,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             debug_marker_set_object_name: unsafe {
                 unsafe extern "system" fn debug_marker_set_object_name(
@@ -38,11 +39,7 @@ impl DeviceFn {
                     panic!("unable to load vkDebugMarkerSetObjectNameEXT")
                 }
                 let val = _f(c"vkDebugMarkerSetObjectNameEXT");
-                if val.is_null() {
-                    debug_marker_set_object_name
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { debug_marker_set_object_name } else { transmute(val) }
             },
             debug_marker_set_object_tag: unsafe {
                 unsafe extern "system" fn debug_marker_set_object_tag(
@@ -52,11 +49,7 @@ impl DeviceFn {
                     panic!("unable to load vkDebugMarkerSetObjectTagEXT")
                 }
                 let val = _f(c"vkDebugMarkerSetObjectTagEXT");
-                if val.is_null() {
-                    debug_marker_set_object_tag
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { debug_marker_set_object_tag } else { transmute(val) }
             },
             cmd_debug_marker_begin: unsafe {
                 unsafe extern "system" fn cmd_debug_marker_begin(
@@ -66,22 +59,14 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDebugMarkerBeginEXT")
                 }
                 let val = _f(c"vkCmdDebugMarkerBeginEXT");
-                if val.is_null() {
-                    cmd_debug_marker_begin
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_debug_marker_begin } else { transmute(val) }
             },
             cmd_debug_marker_end: unsafe {
                 unsafe extern "system" fn cmd_debug_marker_end(_: vk::CommandBuffer) {
                     panic!("unable to load vkCmdDebugMarkerEndEXT")
                 }
                 let val = _f(c"vkCmdDebugMarkerEndEXT");
-                if val.is_null() {
-                    cmd_debug_marker_end
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_debug_marker_end } else { transmute(val) }
             },
             cmd_debug_marker_insert: unsafe {
                 unsafe extern "system" fn cmd_debug_marker_insert(
@@ -91,11 +76,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDebugMarkerInsertEXT")
                 }
                 let val = _f(c"vkCmdDebugMarkerInsertEXT");
-                if val.is_null() {
-                    cmd_debug_marker_insert
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_debug_marker_insert } else { transmute(val) }
             },
         }
     }
@@ -103,13 +84,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -118,7 +99,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkDebugMarkerSetObjectNameEXT
@@ -164,27 +145,30 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
     use core::ffi::CStr;
+    use core::mem::zeroed;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DebugMarkerObjectNameInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub object_type: vk::DebugReportObjectTypeEXT,
         pub object: u64,
-        pub p_object_name: *const core::ffi::c_char,
+        pub p_object_name: *const ffi::c_char,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugMarkerObjectNameInfoEXT<'_> {}
     unsafe impl Sync for DebugMarkerObjectNameInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerObjectNameInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DebugMarkerObjectNameInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_MARKER_OBJECT_NAME_INFO_EXT;
     }
     impl<'a> Default for DebugMarkerObjectNameInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEBUG_MARKER_OBJECT_NAME_INFO_EXT,
                 p_next: Default::default(),
                 object_type: Default::default(),
                 object: Default::default(),
@@ -219,23 +203,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DebugMarkerObjectTagInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub object_type: vk::DebugReportObjectTypeEXT,
         pub object: u64,
         pub tag_name: u64,
         pub tag_size: usize,
-        pub p_tag: *const core::ffi::c_void,
+        pub p_tag: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugMarkerObjectTagInfoEXT<'_> {}
     unsafe impl Sync for DebugMarkerObjectTagInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerObjectTagInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DebugMarkerObjectTagInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_MARKER_OBJECT_TAG_INFO_EXT;
     }
     impl<'a> Default for DebugMarkerObjectTagInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEBUG_MARKER_OBJECT_TAG_INFO_EXT,
                 p_next: Default::default(),
                 object_type: Default::default(),
                 object: Default::default(),
@@ -270,23 +254,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DebugMarkerMarkerInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub p_marker_name: *const core::ffi::c_char,
-        pub color: [core::ffi::c_float; 4 as _],
+        pub p_next: *const ffi::c_void,
+        pub p_marker_name: *const ffi::c_char,
+        pub color: [ffi::c_float; 4 as _],
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugMarkerMarkerInfoEXT<'_> {}
     unsafe impl Sync for DebugMarkerMarkerInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerMarkerInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DebugMarkerMarkerInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_MARKER_MARKER_INFO_EXT;
     }
     impl<'a> Default for DebugMarkerMarkerInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEBUG_MARKER_MARKER_INFO_EXT,
                 p_next: Default::default(),
                 p_marker_name: Default::default(),
-                color: unsafe { core::mem::zeroed() },
+                color: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }
@@ -303,7 +287,7 @@ pub(crate) mod items {
                 Some(unsafe { CStr::from_ptr(self.p_marker_name) })
             }
         }
-        pub fn color(mut self, color: [core::ffi::c_float; 4 as _]) -> Self {
+        pub fn color(mut self, color: [ffi::c_float; 4 as _]) -> Self {
             self.color = color;
             self
         }

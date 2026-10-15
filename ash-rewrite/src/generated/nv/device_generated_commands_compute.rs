@@ -4,7 +4,9 @@
 #![doc(alias = "VK_NV_device_generated_commands_compute")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::mem::MaybeUninit;
+use core::ffi;
 ///Provided by [VK_NV_device_generated_commands_compute](crate::nv::device_generated_commands_compute)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_COMPUTE_FEATURES_NV: Self = Self(
@@ -39,10 +41,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_update_pipeline_indirect_buffer: unsafe {
                 unsafe extern "system" fn cmd_update_pipeline_indirect_buffer(
@@ -56,7 +58,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_update_pipeline_indirect_buffer
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_pipeline_indirect_memory_requirements: unsafe {
@@ -71,7 +73,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_pipeline_indirect_memory_requirements
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_pipeline_indirect_device_address: unsafe {
@@ -85,7 +87,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_pipeline_indirect_device_address
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -94,13 +96,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -109,7 +111,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdUpdatePipelineIndirectBufferNV
@@ -134,7 +136,7 @@ impl Device {
         &self,
         create_info: &vk::ComputePipelineCreateInfo<'_>,
     ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        let mut memory_requirements = MaybeUninit::uninit();
         (self
             .fp
             .get_pipeline_indirect_memory_requirements)(
@@ -156,12 +158,15 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ComputePipelineIndirectBufferInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub device_address: vk::DeviceAddress,
         pub size: vk::DeviceSize,
         pub pipeline_device_address_capture_replay: vk::DeviceAddress,
@@ -169,16 +174,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for ComputePipelineIndirectBufferInfoNV<'_> {}
     unsafe impl Sync for ComputePipelineIndirectBufferInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ComputePipelineIndirectBufferInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ComputePipelineIndirectBufferInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMPUTE_PIPELINE_INDIRECT_BUFFER_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::ComputePipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ComputePipelineCreateInfo<'_>>
     for ComputePipelineIndirectBufferInfoNV<'a> {}
     impl<'a> Default for ComputePipelineIndirectBufferInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COMPUTE_PIPELINE_INDIRECT_BUFFER_INFO_NV,
                 p_next: Default::default(),
                 device_address: Default::default(),
                 size: Default::default(),
@@ -209,7 +213,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub device_generated_compute: vk::Bool32,
         pub device_generated_compute_pipelines: vk::Bool32,
         pub device_generated_compute_capture_replay: vk::Bool32,
@@ -217,18 +221,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_COMPUTE_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_COMPUTE_FEATURES_NV,
                 p_next: Default::default(),
                 device_generated_compute: Default::default(),
                 device_generated_compute_pipelines: Default::default(),
@@ -267,21 +271,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineIndirectDeviceAddressInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub pipeline_bind_point: vk::PipelineBindPoint,
         pub pipeline: vk::Pipeline,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineIndirectDeviceAddressInfoNV<'_> {}
     unsafe impl Sync for PipelineIndirectDeviceAddressInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PipelineIndirectDeviceAddressInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineIndirectDeviceAddressInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_INDIRECT_DEVICE_ADDRESS_INFO_NV;
     }
     impl<'a> Default for PipelineIndirectDeviceAddressInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_INDIRECT_DEVICE_ADDRESS_INFO_NV,
                 p_next: Default::default(),
                 pipeline_bind_point: Default::default(),
                 pipeline: Default::default(),

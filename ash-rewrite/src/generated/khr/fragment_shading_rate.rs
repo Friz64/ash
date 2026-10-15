@@ -4,8 +4,11 @@
 #![doc(alias = "VK_KHR_fragment_shading_rate")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::transmute;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::ffi;
 ///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::ImageLayout {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR: Self = Self(1000164003);
@@ -108,10 +111,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_set_fragment_shading_rate: unsafe {
                 unsafe extern "system" fn cmd_set_fragment_shading_rate(
@@ -125,7 +128,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_fragment_shading_rate
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -134,13 +137,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -149,7 +152,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdSetFragmentShadingRateKHR
@@ -172,10 +175,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_fragment_shading_rates: unsafe {
                 unsafe extern "system" fn get_physical_device_fragment_shading_rates(
@@ -189,7 +192,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_fragment_shading_rates
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -198,13 +201,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -213,7 +216,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceFragmentShadingRatesKHR
@@ -222,13 +225,13 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> VkResult<usize> {
-        let mut fragment_shading_rate_count = core::mem::MaybeUninit::uninit();
+        let mut fragment_shading_rate_count = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_fragment_shading_rates)(
                 physical_device,
                 fragment_shading_rate_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(fragment_shading_rate_count)
             .map(|c| c as usize)
@@ -239,7 +242,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         fragment_shading_rates: &mut [vk::PhysicalDeviceFragmentShadingRateKHR<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut fragment_shading_rate_count = fragment_shading_rates.len() as _;
         (self
             .fp
@@ -256,28 +259,33 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct FragmentShadingRateAttachmentInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_fragment_shading_rate_attachment: *const vk::AttachmentReference2<'a>,
         pub shading_rate_attachment_texel_size: vk::Extent2D,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for FragmentShadingRateAttachmentInfoKHR<'_> {}
     unsafe impl Sync for FragmentShadingRateAttachmentInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for FragmentShadingRateAttachmentInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for FragmentShadingRateAttachmentInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SubpassDescription2<'_>>
+    unsafe impl<'a> Extends<vk::SubpassDescription2<'_>>
     for FragmentShadingRateAttachmentInfoKHR<'a> {}
     impl<'a> Default for FragmentShadingRateAttachmentInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR,
                 p_next: Default::default(),
                 p_fragment_shading_rate_attachment: Default::default(),
                 shading_rate_attachment_texel_size: Default::default(),
@@ -306,26 +314,26 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub fragment_size: vk::Extent2D,
         pub combiner_ops: [vk::FragmentShadingRateCombinerOpKHR; 2 as _],
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineFragmentShadingRateStateCreateInfoKHR<'_> {}
     unsafe impl Sync for PipelineFragmentShadingRateStateCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for PipelineFragmentShadingRateStateCreateInfoKHR<'a> {}
     impl<'a> Default for PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 fragment_size: Default::default(),
-                combiner_ops: unsafe { core::mem::zeroed() },
+                combiner_ops: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }
@@ -348,7 +356,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub pipeline_fragment_shading_rate: vk::Bool32,
         pub primitive_fragment_shading_rate: vk::Bool32,
         pub attachment_fragment_shading_rate: vk::Bool32,
@@ -356,18 +364,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceFragmentShadingRateFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentShadingRateFeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR,
                 p_next: Default::default(),
                 pipeline_fragment_shading_rate: Default::default(),
                 primitive_fragment_shading_rate: Default::default(),
@@ -406,7 +414,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub min_fragment_shading_rate_attachment_texel_size: vk::Extent2D,
         pub max_fragment_shading_rate_attachment_texel_size: vk::Extent2D,
         pub max_fragment_shading_rate_attachment_texel_size_aspect_ratio: u32,
@@ -428,16 +436,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceFragmentShadingRatePropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentShadingRatePropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR,
                 p_next: Default::default(),
                 min_fragment_shading_rate_attachment_texel_size: Default::default(),
                 max_fragment_shading_rate_attachment_texel_size: Default::default(),
@@ -593,21 +601,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShadingRateKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub sample_counts: vk::SampleCountFlags,
         pub fragment_size: vk::Extent2D,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFragmentShadingRateKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentShadingRateKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceFragmentShadingRateKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceFragmentShadingRateKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR;
     }
     impl<'a> Default for PhysicalDeviceFragmentShadingRateKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR,
                 p_next: Default::default(),
                 sample_counts: Default::default(),
                 fragment_size: Default::default(),
@@ -630,7 +637,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderingFragmentShadingRateAttachmentInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub image_view: vk::ImageView,
         pub image_layout: vk::ImageLayout,
         pub shading_rate_attachment_texel_size: vk::Extent2D,
@@ -638,16 +645,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for RenderingFragmentShadingRateAttachmentInfoKHR<'_> {}
     unsafe impl Sync for RenderingFragmentShadingRateAttachmentInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for RenderingFragmentShadingRateAttachmentInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::RenderingInfo<'_>>
+    unsafe impl<'a> Extends<vk::RenderingInfo<'_>>
     for RenderingFragmentShadingRateAttachmentInfoKHR<'a> {}
     impl<'a> Default for RenderingFragmentShadingRateAttachmentInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR,
                 p_next: Default::default(),
                 image_view: Default::default(),
                 image_layout: Default::default(),
@@ -677,8 +684,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct FragmentShadingRateCombinerOpKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FragmentShadingRateCombinerOpKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for FragmentShadingRateCombinerOpKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::KEEP => Some("KEEP"),
                 Self::REPLACE => Some("REPLACE"),
@@ -689,7 +696,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

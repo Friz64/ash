@@ -4,8 +4,11 @@
 #![doc(alias = "VK_ARM_data_graph_optical_flow")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ptr;
+use core::ffi;
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM: Self = Self(
@@ -169,10 +172,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_queue_family_data_graph_engine_operation_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_queue_family_data_graph_engine_operation_properties(
@@ -191,7 +194,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_queue_family_data_graph_engine_operation_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_queue_family_data_graph_optical_flow_image_formats: unsafe {
@@ -213,7 +216,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_queue_family_data_graph_optical_flow_image_formats
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -222,13 +225,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -237,7 +240,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM
@@ -248,7 +251,7 @@ impl Instance {
         queue_family_index: u32,
         queue_family_data_graph_properties: &vk::QueueFamilyDataGraphPropertiesARM<'_>,
     ) -> VkResult<vk::BaseOutStructure<'_>> {
-        let mut properties = core::mem::MaybeUninit::uninit();
+        let mut properties = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_queue_family_data_graph_engine_operation_properties)(
@@ -268,7 +271,7 @@ impl Instance {
         queue_family_data_graph_properties: &vk::QueueFamilyDataGraphPropertiesARM<'_>,
         optical_flow_image_format_info: &vk::DataGraphOpticalFlowImageFormatInfoARM<'_>,
     ) -> VkResult<usize> {
-        let mut format_count = core::mem::MaybeUninit::uninit();
+        let mut format_count = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_queue_family_data_graph_optical_flow_image_formats)(
@@ -277,7 +280,7 @@ impl Instance {
                 queue_family_data_graph_properties,
                 optical_flow_image_format_info,
                 format_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(format_count)
             .map(|c| c as usize)
@@ -293,7 +296,7 @@ impl Instance {
         image_format_properties: &mut [vk::DataGraphOpticalFlowImageFormatPropertiesARM<
             '_,
         >],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut format_count = image_format_properties.len() as _;
         (self
             .fp
@@ -313,27 +316,33 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineResourceInfoImageLayoutARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub layout: vk::ImageLayout,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineResourceInfoImageLayoutARM<'_> {}
     unsafe impl Sync for DataGraphPipelineResourceInfoImageLayoutARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for DataGraphPipelineResourceInfoImageLayoutARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_IMAGE_LAYOUT_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineResourceInfoARM<'_>>
+    unsafe impl<'a> Extends<vk::DataGraphPipelineResourceInfoARM<'_>>
     for DataGraphPipelineResourceInfoImageLayoutARM<'a> {}
     impl<'a> Default for DataGraphPipelineResourceInfoImageLayoutARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_IMAGE_LAYOUT_ARM,
                 p_next: Default::default(),
                 layout: Default::default(),
                 _marker: PhantomData,
@@ -351,7 +360,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSingleNodeConnectionARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub set: u32,
         pub binding: u32,
         pub connection: vk::DataGraphPipelineNodeConnectionTypeARM,
@@ -359,14 +368,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for DataGraphPipelineSingleNodeConnectionARM<'_> {}
     unsafe impl Sync for DataGraphPipelineSingleNodeConnectionARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for DataGraphPipelineSingleNodeConnectionARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CONNECTION_ARM;
     }
     impl<'a> Default for DataGraphPipelineSingleNodeConnectionARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CONNECTION_ARM,
                 p_next: Default::default(),
                 set: Default::default(),
                 binding: Default::default(),
@@ -397,24 +406,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub data_graph_optical_flow: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM,
                 p_next: Default::default(),
                 data_graph_optical_flow: Default::default(),
                 _marker: PhantomData,
@@ -432,7 +441,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub supported_output_grid_sizes: vk::DataGraphOpticalFlowGridSizeFlagsARM,
         pub supported_hint_grid_sizes: vk::DataGraphOpticalFlowGridSizeFlagsARM,
         pub hint_supported: vk::Bool32,
@@ -445,14 +454,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for QueueFamilyDataGraphOpticalFlowPropertiesARM<'_> {}
     unsafe impl Sync for QueueFamilyDataGraphOpticalFlowPropertiesARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_OPTICAL_FLOW_PROPERTIES_ARM;
     }
     impl<'a> Default for QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_OPTICAL_FLOW_PROPERTIES_ARM,
                 p_next: Default::default(),
                 supported_output_grid_sizes: Default::default(),
                 supported_hint_grid_sizes: Default::default(),
@@ -511,24 +520,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DataGraphOpticalFlowImageFormatInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub usage: vk::DataGraphOpticalFlowImageUsageFlagsARM,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphOpticalFlowImageFormatInfoARM<'_> {}
     unsafe impl Sync for DataGraphOpticalFlowImageFormatInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DataGraphOpticalFlowImageFormatInfoARM<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DataGraphOpticalFlowImageFormatInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for DataGraphOpticalFlowImageFormatInfoARM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for DataGraphOpticalFlowImageFormatInfoARM<'a> {}
     impl<'a> Default for DataGraphOpticalFlowImageFormatInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_INFO_ARM,
                 p_next: Default::default(),
                 usage: Default::default(),
                 _marker: PhantomData,
@@ -549,20 +557,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub format: vk::Format,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphOpticalFlowImageFormatPropertiesARM<'_> {}
     unsafe impl Sync for DataGraphOpticalFlowImageFormatPropertiesARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_ARM;
     }
     impl<'a> Default for DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_ARM,
                 p_next: Default::default(),
                 format: Default::default(),
                 _marker: PhantomData,
@@ -580,7 +588,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSingleNodeCreateInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub node_type: vk::DataGraphPipelineNodeTypeARM,
         pub connection_count: u32,
         pub p_connections: *const vk::DataGraphPipelineSingleNodeConnectionARM<'a>,
@@ -588,16 +596,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for DataGraphPipelineSingleNodeCreateInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineSingleNodeCreateInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for DataGraphPipelineSingleNodeCreateInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for DataGraphPipelineSingleNodeCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineSingleNodeCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CREATE_INFO_ARM,
                 p_next: Default::default(),
                 node_type: Default::default(),
                 connection_count: Default::default(),
@@ -625,7 +633,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub width: u32,
         pub height: u32,
         pub image_format: vk::Format,
@@ -639,16 +647,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for DataGraphPipelineOpticalFlowCreateInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineOpticalFlowCreateInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_CREATE_INFO_ARM,
                 p_next: Default::default(),
                 width: Default::default(),
                 height: Default::default(),
@@ -715,23 +723,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub flags: vk::DataGraphOpticalFlowExecuteFlagsARM,
         pub mean_flow_l1_norm_hint: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineOpticalFlowDispatchInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineOpticalFlowDispatchInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_DISPATCH_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineDispatchInfoARM<'_>>
+    unsafe impl<'a> Extends<vk::DataGraphPipelineDispatchInfoARM<'_>>
     for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_DISPATCH_INFO_ARM,
                 p_next: Default::default(),
                 flags: Default::default(),
                 mean_flow_l1_norm_hint: Default::default(),
@@ -753,8 +761,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DataGraphOpticalFlowPerformanceLevelARM(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphOpticalFlowPerformanceLevelARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DataGraphOpticalFlowPerformanceLevelARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::UNKNOWN => Some("UNKNOWN"),
                 Self::SLOW => Some("SLOW"),
@@ -764,7 +772,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -782,8 +790,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DataGraphPipelineNodeConnectionTypeARM(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphPipelineNodeConnectionTypeARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DataGraphPipelineNodeConnectionTypeARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::OPTICAL_FLOW_INPUT => Some("OPTICAL_FLOW_INPUT"),
                 Self::OPTICAL_FLOW_REFERENCE => Some("OPTICAL_FLOW_REFERENCE"),
@@ -794,7 +802,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -812,15 +820,15 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DataGraphPipelineNodeTypeARM(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphPipelineNodeTypeARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DataGraphPipelineNodeTypeARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::OPTICAL_FLOW => Some("OPTICAL_FLOW"),
                 _ => None,
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -838,8 +846,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowGridSizeFlagsARM(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphOpticalFlowGridSizeFlagsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DataGraphOpticalFlowGridSizeFlagsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -873,40 +881,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl BitOr for DataGraphOpticalFlowGridSizeFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl BitOrAssign for DataGraphOpticalFlowGridSizeFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl BitAnd for DataGraphOpticalFlowGridSizeFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl BitAndAssign for DataGraphOpticalFlowGridSizeFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl BitXor for DataGraphOpticalFlowGridSizeFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl BitXorAssign for DataGraphOpticalFlowGridSizeFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl Not for DataGraphOpticalFlowGridSizeFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -931,17 +939,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphOpticalFlowGridSizeFlagBitsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DataGraphOpticalFlowGridSizeFlagBitsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowImageUsageFlagsARM(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphOpticalFlowImageUsageFlagsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DataGraphOpticalFlowImageUsageFlagsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -975,40 +983,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl BitOr for DataGraphOpticalFlowImageUsageFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl BitOrAssign for DataGraphOpticalFlowImageUsageFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl BitAnd for DataGraphOpticalFlowImageUsageFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl BitAndAssign for DataGraphOpticalFlowImageUsageFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl BitXor for DataGraphOpticalFlowImageUsageFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl BitXorAssign for DataGraphOpticalFlowImageUsageFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl Not for DataGraphOpticalFlowImageUsageFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1033,17 +1041,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphOpticalFlowImageUsageFlagBitsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DataGraphOpticalFlowImageUsageFlagBitsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowCreateFlagsARM(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphOpticalFlowCreateFlagsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DataGraphOpticalFlowCreateFlagsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1075,40 +1083,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DataGraphOpticalFlowCreateFlagsARM {
+    impl BitOr for DataGraphOpticalFlowCreateFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DataGraphOpticalFlowCreateFlagsARM {
+    impl BitOrAssign for DataGraphOpticalFlowCreateFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DataGraphOpticalFlowCreateFlagsARM {
+    impl BitAnd for DataGraphOpticalFlowCreateFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DataGraphOpticalFlowCreateFlagsARM {
+    impl BitAndAssign for DataGraphOpticalFlowCreateFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DataGraphOpticalFlowCreateFlagsARM {
+    impl BitXor for DataGraphOpticalFlowCreateFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DataGraphOpticalFlowCreateFlagsARM {
+    impl BitXorAssign for DataGraphOpticalFlowCreateFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DataGraphOpticalFlowCreateFlagsARM {
+    impl Not for DataGraphOpticalFlowCreateFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1133,17 +1141,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphOpticalFlowCreateFlagBitsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DataGraphOpticalFlowCreateFlagBitsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DataGraphOpticalFlowExecuteFlagsARM(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphOpticalFlowExecuteFlagsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DataGraphOpticalFlowExecuteFlagsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1177,40 +1185,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DataGraphOpticalFlowExecuteFlagsARM {
+    impl BitOr for DataGraphOpticalFlowExecuteFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DataGraphOpticalFlowExecuteFlagsARM {
+    impl BitOrAssign for DataGraphOpticalFlowExecuteFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DataGraphOpticalFlowExecuteFlagsARM {
+    impl BitAnd for DataGraphOpticalFlowExecuteFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DataGraphOpticalFlowExecuteFlagsARM {
+    impl BitAndAssign for DataGraphOpticalFlowExecuteFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DataGraphOpticalFlowExecuteFlagsARM {
+    impl BitXor for DataGraphOpticalFlowExecuteFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DataGraphOpticalFlowExecuteFlagsARM {
+    impl BitXorAssign for DataGraphOpticalFlowExecuteFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DataGraphOpticalFlowExecuteFlagsARM {
+    impl Not for DataGraphOpticalFlowExecuteFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1235,9 +1243,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DataGraphOpticalFlowExecuteFlagBitsARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DataGraphOpticalFlowExecuteFlagBitsARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM = unsafe extern "system" fn(

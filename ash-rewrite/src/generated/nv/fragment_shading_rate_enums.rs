@@ -4,7 +4,8 @@
 #![doc(alias = "VK_NV_fragment_shading_rate_enums")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_NV_fragment_shading_rate_enums](crate::nv::fragment_shading_rate_enums)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV: Self = Self(
@@ -46,10 +47,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_set_fragment_shading_rate_enum: unsafe {
                 unsafe extern "system" fn cmd_set_fragment_shading_rate_enum(
@@ -63,7 +64,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_fragment_shading_rate_enum
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -72,13 +73,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -87,7 +88,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdSetFragmentShadingRateEnumNV
@@ -110,12 +111,18 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub fragment_shading_rate_enums: vk::Bool32,
         pub supersample_fragment_shading_rates: vk::Bool32,
         pub no_invocation_fragment_shading_rates: vk::Bool32,
@@ -123,18 +130,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV,
                 p_next: Default::default(),
                 fragment_shading_rate_enums: Default::default(),
                 supersample_fragment_shading_rates: Default::default(),
@@ -173,22 +180,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_fragment_shading_rate_invocation_count: vk::SampleCountFlagBits,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV,
                 p_next: Default::default(),
                 max_fragment_shading_rate_invocation_count: Default::default(),
                 _marker: PhantomData,
@@ -209,7 +216,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub shading_rate_type: vk::FragmentShadingRateTypeNV,
         pub shading_rate: vk::FragmentShadingRateNV,
         pub combiner_ops: [vk::FragmentShadingRateCombinerOpKHR; 2 as _],
@@ -217,20 +224,20 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineFragmentShadingRateEnumStateCreateInfoNV<'_> {}
     unsafe impl Sync for PipelineFragmentShadingRateEnumStateCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV,
                 p_next: Default::default(),
                 shading_rate_type: Default::default(),
                 shading_rate: Default::default(),
-                combiner_ops: unsafe { core::mem::zeroed() },
+                combiner_ops: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }
@@ -259,8 +266,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct FragmentShadingRateNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FragmentShadingRateNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for FragmentShadingRateNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::TYPE_1_INVOCATION_PER_PIXEL => Some("TYPE_1_INVOCATION_PER_PIXEL"),
                 Self::TYPE_1_INVOCATION_PER_1X2_PIXELS => {
@@ -298,7 +305,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -316,8 +323,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct FragmentShadingRateTypeNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FragmentShadingRateTypeNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for FragmentShadingRateTypeNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::FRAGMENT_SIZE => Some("FRAGMENT_SIZE"),
                 Self::ENUMS => Some("ENUMS"),
@@ -325,7 +332,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

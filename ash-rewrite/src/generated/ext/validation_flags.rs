@@ -18,27 +18,31 @@ pub const NAME: &CStr = c"VK_EXT_validation_flags";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ValidationFlagsEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub disabled_validation_check_count: u32,
         pub p_disabled_validation_checks: *const vk::ValidationCheckEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ValidationFlagsEXT<'_> {}
     unsafe impl Sync for ValidationFlagsEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFlagsEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ValidationFlagsEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VALIDATION_FLAGS_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::InstanceCreateInfo<'_>>
-    for ValidationFlagsEXT<'a> {}
+    unsafe impl<'a> Extends<vk::InstanceCreateInfo<'_>> for ValidationFlagsEXT<'a> {}
     impl<'a> Default for ValidationFlagsEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VALIDATION_FLAGS_EXT,
                 p_next: Default::default(),
                 disabled_validation_check_count: Default::default(),
                 p_disabled_validation_checks: Default::default(),
@@ -60,8 +64,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ValidationCheckEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ValidationCheckEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ValidationCheckEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::ALL => Some("ALL"),
                 Self::SHADERS => Some("SHADERS"),
@@ -69,7 +73,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

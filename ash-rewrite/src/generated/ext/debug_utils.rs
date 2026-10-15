@@ -5,7 +5,10 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::ffi;
 ///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl vk::StructureType {
     pub const DEBUG_UTILS_OBJECT_NAME_INFO_EXT: Self = Self(1000128000);
@@ -60,10 +63,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             set_debug_utils_object_name: unsafe {
                 unsafe extern "system" fn set_debug_utils_object_name(
@@ -73,11 +76,7 @@ impl DeviceFn {
                     panic!("unable to load vkSetDebugUtilsObjectNameEXT")
                 }
                 let val = _f(c"vkSetDebugUtilsObjectNameEXT");
-                if val.is_null() {
-                    set_debug_utils_object_name
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { set_debug_utils_object_name } else { transmute(val) }
             },
             set_debug_utils_object_tag: unsafe {
                 unsafe extern "system" fn set_debug_utils_object_tag(
@@ -87,11 +86,7 @@ impl DeviceFn {
                     panic!("unable to load vkSetDebugUtilsObjectTagEXT")
                 }
                 let val = _f(c"vkSetDebugUtilsObjectTagEXT");
-                if val.is_null() {
-                    set_debug_utils_object_tag
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { set_debug_utils_object_tag } else { transmute(val) }
             },
             queue_begin_debug_utils_label: unsafe {
                 unsafe extern "system" fn queue_begin_debug_utils_label(
@@ -104,7 +99,7 @@ impl DeviceFn {
                 if val.is_null() {
                     queue_begin_debug_utils_label
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             queue_end_debug_utils_label: unsafe {
@@ -112,11 +107,7 @@ impl DeviceFn {
                     panic!("unable to load vkQueueEndDebugUtilsLabelEXT")
                 }
                 let val = _f(c"vkQueueEndDebugUtilsLabelEXT");
-                if val.is_null() {
-                    queue_end_debug_utils_label
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { queue_end_debug_utils_label } else { transmute(val) }
             },
             queue_insert_debug_utils_label: unsafe {
                 unsafe extern "system" fn queue_insert_debug_utils_label(
@@ -129,7 +120,7 @@ impl DeviceFn {
                 if val.is_null() {
                     queue_insert_debug_utils_label
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_begin_debug_utils_label: unsafe {
@@ -140,11 +131,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdBeginDebugUtilsLabelEXT")
                 }
                 let val = _f(c"vkCmdBeginDebugUtilsLabelEXT");
-                if val.is_null() {
-                    cmd_begin_debug_utils_label
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_begin_debug_utils_label } else { transmute(val) }
             },
             cmd_end_debug_utils_label: unsafe {
                 unsafe extern "system" fn cmd_end_debug_utils_label(
@@ -153,11 +140,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdEndDebugUtilsLabelEXT")
                 }
                 let val = _f(c"vkCmdEndDebugUtilsLabelEXT");
-                if val.is_null() {
-                    cmd_end_debug_utils_label
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_end_debug_utils_label } else { transmute(val) }
             },
             cmd_insert_debug_utils_label: unsafe {
                 unsafe extern "system" fn cmd_insert_debug_utils_label(
@@ -167,11 +150,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdInsertDebugUtilsLabelEXT")
                 }
                 let val = _f(c"vkCmdInsertDebugUtilsLabelEXT");
-                if val.is_null() {
-                    cmd_insert_debug_utils_label
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_insert_debug_utils_label } else { transmute(val) }
             },
         }
     }
@@ -179,13 +158,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -194,7 +173,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkSetDebugUtilsObjectNameEXT
@@ -269,10 +248,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_debug_utils_messenger: unsafe {
                 unsafe extern "system" fn create_debug_utils_messenger(
@@ -284,11 +263,7 @@ impl InstanceFn {
                     panic!("unable to load vkCreateDebugUtilsMessengerEXT")
                 }
                 let val = _f(c"vkCreateDebugUtilsMessengerEXT");
-                if val.is_null() {
-                    create_debug_utils_messenger
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_debug_utils_messenger } else { transmute(val) }
             },
             destroy_debug_utils_messenger: unsafe {
                 unsafe extern "system" fn destroy_debug_utils_messenger(
@@ -302,7 +277,7 @@ impl InstanceFn {
                 if val.is_null() {
                     destroy_debug_utils_messenger
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             submit_debug_utils_message: unsafe {
@@ -315,11 +290,7 @@ impl InstanceFn {
                     panic!("unable to load vkSubmitDebugUtilsMessageEXT")
                 }
                 let val = _f(c"vkSubmitDebugUtilsMessageEXT");
-                if val.is_null() {
-                    submit_debug_utils_message
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { submit_debug_utils_message } else { transmute(val) }
             },
         }
     }
@@ -327,13 +298,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -342,7 +313,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkCreateDebugUtilsMessengerEXT
@@ -352,7 +323,7 @@ impl Instance {
         create_info: &vk::DebugUtilsMessengerCreateInfoEXT<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::DebugUtilsMessengerEXT> {
-        let mut messenger = core::mem::MaybeUninit::uninit();
+        let mut messenger = MaybeUninit::uninit();
         (self
             .fp
             .create_debug_utils_messenger)(
@@ -360,7 +331,7 @@ impl Instance {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 messenger.as_mut_ptr(),
             )
@@ -380,7 +351,7 @@ impl Instance {
             messenger,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -405,37 +376,42 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     use core::ffi::CStr;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsObjectNameInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub object_type: vk::ObjectType,
         pub object_handle: u64,
-        pub p_object_name: *const core::ffi::c_char,
+        pub p_object_name: *const ffi::c_char,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugUtilsObjectNameInfoEXT<'_> {}
     unsafe impl Sync for DebugUtilsObjectNameInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsObjectNameInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DebugUtilsObjectNameInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_UTILS_OBJECT_NAME_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineShaderStageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineShaderStageCreateInfo<'_>>
     for DebugUtilsObjectNameInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ResourceDescriptorInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::ResourceDescriptorInfoEXT<'_>>
     for DebugUtilsObjectNameInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SamplerCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::SamplerCreateInfo<'_>>
     for DebugUtilsObjectNameInfoEXT<'a> {}
     impl<'a> Default for DebugUtilsObjectNameInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEBUG_UTILS_OBJECT_NAME_INFO_EXT,
                 p_next: Default::default(),
                 object_type: Default::default(),
                 object_handle: Default::default(),
@@ -470,23 +446,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DebugUtilsObjectTagInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub object_type: vk::ObjectType,
         pub object_handle: u64,
         pub tag_name: u64,
         pub tag_size: usize,
-        pub p_tag: *const core::ffi::c_void,
+        pub p_tag: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugUtilsObjectTagInfoEXT<'_> {}
     unsafe impl Sync for DebugUtilsObjectTagInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsObjectTagInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DebugUtilsObjectTagInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_UTILS_OBJECT_TAG_INFO_EXT;
     }
     impl<'a> Default for DebugUtilsObjectTagInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEBUG_UTILS_OBJECT_TAG_INFO_EXT,
                 p_next: Default::default(),
                 object_type: Default::default(),
                 object_handle: Default::default(),
@@ -521,23 +497,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DebugUtilsLabelEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub p_label_name: *const core::ffi::c_char,
-        pub color: [core::ffi::c_float; 4 as _],
+        pub p_next: *const ffi::c_void,
+        pub p_label_name: *const ffi::c_char,
+        pub color: [ffi::c_float; 4 as _],
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugUtilsLabelEXT<'_> {}
     unsafe impl Sync for DebugUtilsLabelEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsLabelEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DebugUtilsLabelEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_UTILS_LABEL_EXT;
     }
     impl<'a> Default for DebugUtilsLabelEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEBUG_UTILS_LABEL_EXT,
                 p_next: Default::default(),
                 p_label_name: Default::default(),
-                color: unsafe { core::mem::zeroed() },
+                color: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }
@@ -554,7 +530,7 @@ pub(crate) mod items {
                 Some(unsafe { CStr::from_ptr(self.p_label_name) })
             }
         }
-        pub fn color(mut self, color: [core::ffi::c_float; 4 as _]) -> Self {
+        pub fn color(mut self, color: [ffi::c_float; 4 as _]) -> Self {
             self.color = color;
             self
         }
@@ -564,25 +540,25 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DebugUtilsMessengerCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::DebugUtilsMessengerCreateFlagsEXT,
         pub message_severity: vk::DebugUtilsMessageSeverityFlagsEXT,
         pub message_type: vk::DebugUtilsMessageTypeFlagsEXT,
         pub pfn_user_callback: vk::PFN_vkDebugUtilsMessengerCallbackEXT,
-        pub p_user_data: *mut core::ffi::c_void,
+        pub p_user_data: *mut ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugUtilsMessengerCreateInfoEXT<'_> {}
     unsafe impl Sync for DebugUtilsMessengerCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsMessengerCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DebugUtilsMessengerCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::InstanceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::InstanceCreateInfo<'_>>
     for DebugUtilsMessengerCreateInfoEXT<'a> {}
     impl<'a> Default for DebugUtilsMessengerCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 flags: Default::default(),
                 message_severity: Default::default(),
@@ -619,7 +595,7 @@ pub(crate) mod items {
             self.pfn_user_callback = pfn_user_callback;
             self
         }
-        pub fn user_data(mut self, user_data: &'a mut core::ffi::c_void) -> Self {
+        pub fn user_data(mut self, user_data: &'a mut ffi::c_void) -> Self {
             self.p_user_data = user_data;
             self
         }
@@ -629,11 +605,11 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DebugUtilsMessengerCallbackDataEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::DebugUtilsMessengerCallbackDataFlagsEXT,
-        pub p_message_id_name: *const core::ffi::c_char,
+        pub p_message_id_name: *const ffi::c_char,
         pub message_id_number: i32,
-        pub p_message: *const core::ffi::c_char,
+        pub p_message: *const ffi::c_char,
         pub queue_label_count: u32,
         pub p_queue_labels: *const vk::DebugUtilsLabelEXT<'a>,
         pub cmd_buf_label_count: u32,
@@ -644,14 +620,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for DebugUtilsMessengerCallbackDataEXT<'_> {}
     unsafe impl Sync for DebugUtilsMessengerCallbackDataEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DebugUtilsMessengerCallbackDataEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DebugUtilsMessengerCallbackDataEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT;
     }
     impl<'a> Default for DebugUtilsMessengerCallbackDataEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT,
                 p_next: Default::default(),
                 flags: Default::default(),
                 p_message_id_name: Default::default(),
@@ -730,8 +705,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugUtilsMessageSeverityFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DebugUtilsMessageSeverityFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -764,40 +739,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DebugUtilsMessageSeverityFlagsEXT {
+    impl BitOr for DebugUtilsMessageSeverityFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DebugUtilsMessageSeverityFlagsEXT {
+    impl BitOrAssign for DebugUtilsMessageSeverityFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DebugUtilsMessageSeverityFlagsEXT {
+    impl BitAnd for DebugUtilsMessageSeverityFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DebugUtilsMessageSeverityFlagsEXT {
+    impl BitAndAssign for DebugUtilsMessageSeverityFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DebugUtilsMessageSeverityFlagsEXT {
+    impl BitXor for DebugUtilsMessageSeverityFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DebugUtilsMessageSeverityFlagsEXT {
+    impl BitXorAssign for DebugUtilsMessageSeverityFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DebugUtilsMessageSeverityFlagsEXT {
+    impl Not for DebugUtilsMessageSeverityFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -822,17 +797,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DebugUtilsMessageSeverityFlagBitsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DebugUtilsMessageSeverityFlagBitsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugUtilsMessageTypeFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DebugUtilsMessageTypeFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DebugUtilsMessageTypeFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -865,40 +840,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DebugUtilsMessageTypeFlagsEXT {
+    impl BitOr for DebugUtilsMessageTypeFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DebugUtilsMessageTypeFlagsEXT {
+    impl BitOrAssign for DebugUtilsMessageTypeFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DebugUtilsMessageTypeFlagsEXT {
+    impl BitAnd for DebugUtilsMessageTypeFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DebugUtilsMessageTypeFlagsEXT {
+    impl BitAndAssign for DebugUtilsMessageTypeFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DebugUtilsMessageTypeFlagsEXT {
+    impl BitXor for DebugUtilsMessageTypeFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DebugUtilsMessageTypeFlagsEXT {
+    impl BitXorAssign for DebugUtilsMessageTypeFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DebugUtilsMessageTypeFlagsEXT {
+    impl Not for DebugUtilsMessageTypeFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -923,18 +898,18 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DebugUtilsMessageTypeFlagBitsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DebugUtilsMessageTypeFlagBitsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugUtilsMessengerCreateFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DebugUtilsMessengerCreateFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for DebugUtilsMessengerCreateFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl DebugUtilsMessengerCreateFlagsEXT {
@@ -957,40 +932,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DebugUtilsMessengerCreateFlagsEXT {
+    impl BitOr for DebugUtilsMessengerCreateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DebugUtilsMessengerCreateFlagsEXT {
+    impl BitOrAssign for DebugUtilsMessengerCreateFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DebugUtilsMessengerCreateFlagsEXT {
+    impl BitAnd for DebugUtilsMessengerCreateFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DebugUtilsMessengerCreateFlagsEXT {
+    impl BitAndAssign for DebugUtilsMessengerCreateFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DebugUtilsMessengerCreateFlagsEXT {
+    impl BitXor for DebugUtilsMessengerCreateFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DebugUtilsMessengerCreateFlagsEXT {
+    impl BitXorAssign for DebugUtilsMessengerCreateFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DebugUtilsMessengerCreateFlagsEXT {
+    impl Not for DebugUtilsMessengerCreateFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1000,9 +975,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DebugUtilsMessengerCallbackDataFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DebugUtilsMessengerCallbackDataFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for DebugUtilsMessengerCallbackDataFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl DebugUtilsMessengerCallbackDataFlagsEXT {
@@ -1025,40 +1000,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl BitOr for DebugUtilsMessengerCallbackDataFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl BitOrAssign for DebugUtilsMessengerCallbackDataFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl BitAnd for DebugUtilsMessengerCallbackDataFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl BitAndAssign for DebugUtilsMessengerCallbackDataFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl BitXor for DebugUtilsMessengerCallbackDataFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl BitXorAssign for DebugUtilsMessengerCallbackDataFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl Not for DebugUtilsMessengerCallbackDataFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1087,8 +1062,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for DebugUtilsMessengerEXT {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for DebugUtilsMessengerEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -1097,7 +1072,7 @@ pub(crate) mod items {
             message_severity: vk::DebugUtilsMessageSeverityFlagBitsEXT,
             message_types: vk::DebugUtilsMessageTypeFlagsEXT,
             p_callback_data: *const vk::DebugUtilsMessengerCallbackDataEXT<'_>,
-            p_user_data: *mut core::ffi::c_void,
+            p_user_data: *mut ffi::c_void,
         ) -> vk::Bool32,
     >;
     pub type PFN_vkSetDebugUtilsObjectNameEXT = unsafe extern "system" fn(

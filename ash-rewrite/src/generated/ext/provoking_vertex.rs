@@ -22,30 +22,35 @@ pub const NAME: &CStr = c"VK_EXT_provoking_vertex";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub provoking_vertex_last: vk::Bool32,
         pub transform_feedback_preserves_provoking_vertex: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceProvokingVertexFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceProvokingVertexFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT,
                 p_next: Default::default(),
                 provoking_vertex_last: Default::default(),
                 transform_feedback_preserves_provoking_vertex: Default::default(),
@@ -72,23 +77,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub provoking_vertex_mode_per_pipeline: vk::Bool32,
         pub transform_feedback_preserves_triangle_fan_provoking_vertex: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceProvokingVertexPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceProvokingVertexPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT,
                 p_next: Default::default(),
                 provoking_vertex_mode_per_pipeline: Default::default(),
                 transform_feedback_preserves_triangle_fan_provoking_vertex: Default::default(),
@@ -119,22 +124,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub provoking_vertex_mode: vk::ProvokingVertexModeEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineRasterizationStateCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineRasterizationStateCreateInfo<'_>>
     for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 provoking_vertex_mode: Default::default(),
                 _marker: PhantomData,
@@ -154,8 +159,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ProvokingVertexModeEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ProvokingVertexModeEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ProvokingVertexModeEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::FIRST_VERTEX => Some("FIRST_VERTEX"),
                 Self::LAST_VERTEX => Some("LAST_VERTEX"),
@@ -163,7 +168,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

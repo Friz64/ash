@@ -86,29 +86,34 @@ pub const NAME: &CStr = c"VK_EXT_blend_operation_advanced";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub advanced_blend_coherent_operations: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT,
                 p_next: Default::default(),
                 advanced_blend_coherent_operations: Default::default(),
                 _marker: PhantomData,
@@ -130,7 +135,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub advanced_blend_max_color_attachments: u32,
         pub advanced_blend_independent_blend: vk::Bool32,
         pub advanced_blend_non_premultiplied_src_color: vk::Bool32,
@@ -141,16 +146,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT,
                 p_next: Default::default(),
                 advanced_blend_max_color_attachments: Default::default(),
                 advanced_blend_independent_blend: Default::default(),
@@ -215,7 +220,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_premultiplied: vk::Bool32,
         pub dst_premultiplied: vk::Bool32,
         pub blend_overlap: vk::BlendOverlapEXT,
@@ -223,16 +228,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineColorBlendAdvancedStateCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineColorBlendAdvancedStateCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineColorBlendStateCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineColorBlendStateCreateInfo<'_>>
     for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 src_premultiplied: Default::default(),
                 dst_premultiplied: Default::default(),
@@ -259,8 +264,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct BlendOverlapEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BlendOverlapEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for BlendOverlapEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::UNCORRELATED => Some("UNCORRELATED"),
                 Self::DISJOINT => Some("DISJOINT"),
@@ -269,7 +274,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

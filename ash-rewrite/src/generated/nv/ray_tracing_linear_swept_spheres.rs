@@ -57,12 +57,17 @@ pub const NAME: &CStr = c"VK_NV_ray_tracing_linear_swept_spheres";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub vertex_format: vk::Format,
         pub vertex_data: vk::DeviceOrHostAddressConstKHR,
         pub vertex_stride: vk::DeviceSize,
@@ -78,16 +83,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for AccelerationStructureGeometryLinearSweptSpheresDataNV<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryLinearSweptSpheresDataNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_LINEAR_SWEPT_SPHERES_DATA_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::AccelerationStructureGeometryKHR<'_>>
+    unsafe impl<'a> Extends<vk::AccelerationStructureGeometryKHR<'_>>
     for AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {}
     impl<'a> Default for AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_LINEAR_SWEPT_SPHERES_DATA_NV,
                 p_next: Default::default(),
                 vertex_format: Default::default(),
                 vertex_data: Default::default(),
@@ -170,7 +175,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometrySpheresDataNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub vertex_format: vk::Format,
         pub vertex_data: vk::DeviceOrHostAddressConstKHR,
         pub vertex_stride: vk::DeviceSize,
@@ -184,16 +189,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for AccelerationStructureGeometrySpheresDataNV<'_> {}
     unsafe impl Sync for AccelerationStructureGeometrySpheresDataNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureGeometrySpheresDataNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::AccelerationStructureGeometryKHR<'_>>
+    unsafe impl<'a> Extends<vk::AccelerationStructureGeometryKHR<'_>>
     for AccelerationStructureGeometrySpheresDataNV<'a> {}
     impl<'a> Default for AccelerationStructureGeometrySpheresDataNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV,
                 p_next: Default::default(),
                 vertex_format: Default::default(),
                 vertex_data: Default::default(),
@@ -260,25 +265,25 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub spheres: vk::Bool32,
         pub linear_swept_spheres: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_LINEAR_SWEPT_SPHERES_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_LINEAR_SWEPT_SPHERES_FEATURES_NV,
                 p_next: Default::default(),
                 spheres: Default::default(),
                 linear_swept_spheres: Default::default(),
@@ -300,8 +305,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct RayTracingLssIndexingModeNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for RayTracingLssIndexingModeNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for RayTracingLssIndexingModeNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::LIST => Some("LIST"),
                 Self::SUCCESSIVE => Some("SUCCESSIVE"),
@@ -309,7 +314,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -327,8 +332,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct RayTracingLssPrimitiveEndCapsModeNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for RayTracingLssPrimitiveEndCapsModeNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for RayTracingLssPrimitiveEndCapsModeNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::NONE => Some("NONE"),
                 Self::CHAINED => Some("CHAINED"),
@@ -336,7 +341,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

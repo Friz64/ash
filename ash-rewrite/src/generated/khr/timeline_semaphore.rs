@@ -4,8 +4,10 @@
 #![doc(alias = "VK_KHR_timeline_semaphore")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_timeline_semaphore](crate::khr::timeline_semaphore)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES;
@@ -39,10 +41,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_semaphore_counter_value: unsafe {
                 unsafe extern "system" fn get_semaphore_counter_value(
@@ -53,11 +55,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetSemaphoreCounterValueKHR")
                 }
                 let val = _f(c"vkGetSemaphoreCounterValueKHR");
-                if val.is_null() {
-                    get_semaphore_counter_value
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_semaphore_counter_value } else { transmute(val) }
             },
             wait_semaphores: unsafe {
                 unsafe extern "system" fn wait_semaphores(
@@ -68,7 +66,7 @@ impl DeviceFn {
                     panic!("unable to load vkWaitSemaphoresKHR")
                 }
                 let val = _f(c"vkWaitSemaphoresKHR");
-                if val.is_null() { wait_semaphores } else { ::core::mem::transmute(val) }
+                if val.is_null() { wait_semaphores } else { transmute(val) }
             },
             signal_semaphore: unsafe {
                 unsafe extern "system" fn signal_semaphore(
@@ -78,11 +76,7 @@ impl DeviceFn {
                     panic!("unable to load vkSignalSemaphoreKHR")
                 }
                 let val = _f(c"vkSignalSemaphoreKHR");
-                if val.is_null() {
-                    signal_semaphore
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { signal_semaphore } else { transmute(val) }
             },
         }
     }
@@ -90,13 +84,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -105,7 +99,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetSemaphoreCounterValue
@@ -114,7 +108,7 @@ impl Device {
         &self,
         semaphore: vk::Semaphore,
     ) -> VkResult<u64> {
-        let mut value = core::mem::MaybeUninit::uninit();
+        let mut value = MaybeUninit::uninit();
         (self.fp.get_semaphore_counter_value)(self.handle, semaphore, value.as_mut_ptr())
             .assume_init_on_success(value)
     }

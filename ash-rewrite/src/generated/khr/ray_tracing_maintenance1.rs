@@ -4,7 +4,8 @@
 #![doc(alias = "VK_KHR_ray_tracing_maintenance1")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
 impl vk::QueryType {
     pub const ACCELERATION_STRUCTURE_SERIALIZATION_BOTTOM_LEVEL_POINTERS_KHR: Self = Self(
@@ -51,10 +52,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_trace_rays_indirect2: unsafe {
                 unsafe extern "system" fn cmd_trace_rays_indirect2(
@@ -64,11 +65,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdTraceRaysIndirect2KHR")
                 }
                 let val = _f(c"vkCmdTraceRaysIndirect2KHR");
-                if val.is_null() {
-                    cmd_trace_rays_indirect2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_trace_rays_indirect2 } else { transmute(val) }
             },
         }
     }
@@ -76,13 +73,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -91,7 +88,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdTraceRaysIndirect2KHR
@@ -107,6 +104,9 @@ impl Device {
 pub(crate) mod items {
     use crate::vk;
     use core::marker::PhantomData;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -224,25 +224,25 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub ray_tracing_maintenance1: vk::Bool32,
         pub ray_tracing_pipeline_trace_rays_indirect2: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR,
                 p_next: Default::default(),
                 ray_tracing_maintenance1: Default::default(),
                 ray_tracing_pipeline_trace_rays_indirect2: Default::default(),

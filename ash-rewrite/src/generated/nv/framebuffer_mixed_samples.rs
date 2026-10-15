@@ -21,31 +21,37 @@ pub const NAME: &CStr = c"VK_NV_framebuffer_mixed_samples";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineCoverageModulationStateCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineCoverageModulationStateCreateFlagsNV,
         pub coverage_modulation_mode: vk::CoverageModulationModeNV,
         pub coverage_modulation_table_enable: vk::Bool32,
         pub coverage_modulation_table_count: u32,
-        pub p_coverage_modulation_table: *const core::ffi::c_float,
+        pub p_coverage_modulation_table: *const ffi::c_float,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineCoverageModulationStateCreateInfoNV<'_> {}
     unsafe impl Sync for PipelineCoverageModulationStateCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineCoverageModulationStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineMultisampleStateCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineMultisampleStateCreateInfo<'_>>
     for PipelineCoverageModulationStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineCoverageModulationStateCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV,
                 p_next: Default::default(),
                 flags: Default::default(),
                 coverage_modulation_mode: Default::default(),
@@ -81,7 +87,7 @@ pub(crate) mod items {
         }
         pub fn coverage_modulation_table(
             mut self,
-            coverage_modulation_table: &'a [core::ffi::c_float],
+            coverage_modulation_table: &'a [ffi::c_float],
         ) -> Self {
             self.coverage_modulation_table_count = coverage_modulation_table.len() as _;
             self.p_coverage_modulation_table = coverage_modulation_table.as_ptr();
@@ -93,8 +99,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct CoverageModulationModeNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CoverageModulationModeNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CoverageModulationModeNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::NONE => Some("NONE"),
                 Self::RGB => Some("RGB"),
@@ -104,7 +110,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -122,9 +128,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCoverageModulationStateCreateFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineCoverageModulationStateCreateFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineCoverageModulationStateCreateFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineCoverageModulationStateCreateFlagsNV {
@@ -147,40 +153,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineCoverageModulationStateCreateFlagsNV {
+    impl BitOr for PipelineCoverageModulationStateCreateFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineCoverageModulationStateCreateFlagsNV {
+    impl BitOrAssign for PipelineCoverageModulationStateCreateFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineCoverageModulationStateCreateFlagsNV {
+    impl BitAnd for PipelineCoverageModulationStateCreateFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineCoverageModulationStateCreateFlagsNV {
+    impl BitAndAssign for PipelineCoverageModulationStateCreateFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineCoverageModulationStateCreateFlagsNV {
+    impl BitXor for PipelineCoverageModulationStateCreateFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineCoverageModulationStateCreateFlagsNV {
+    impl BitXorAssign for PipelineCoverageModulationStateCreateFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineCoverageModulationStateCreateFlagsNV {
+    impl Not for PipelineCoverageModulationStateCreateFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

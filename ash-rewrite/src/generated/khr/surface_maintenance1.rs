@@ -55,26 +55,32 @@ pub const NAME: &CStr = c"VK_KHR_surface_maintenance1";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SurfacePresentModeKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub present_mode: vk::PresentModeKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SurfacePresentModeKHR<'_> {}
     unsafe impl Sync for SurfacePresentModeKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentModeKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SurfacePresentModeKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_PRESENT_MODE_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
     for SurfacePresentModeKHR<'a> {}
     impl<'a> Default for SurfacePresentModeKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SURFACE_PRESENT_MODE_KHR,
                 p_next: Default::default(),
                 present_mode: Default::default(),
                 _marker: PhantomData,
@@ -92,7 +98,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SurfacePresentScalingCapabilitiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub supported_present_scaling: vk::PresentScalingFlagsKHR,
         pub supported_present_gravity_x: vk::PresentGravityFlagsKHR,
         pub supported_present_gravity_y: vk::PresentGravityFlagsKHR,
@@ -102,16 +108,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for SurfacePresentScalingCapabilitiesKHR<'_> {}
     unsafe impl Sync for SurfacePresentScalingCapabilitiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for SurfacePresentScalingCapabilitiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SurfacePresentScalingCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> Extends<vk::SurfaceCapabilities2KHR<'_>>
     for SurfacePresentScalingCapabilitiesKHR<'a> {}
     impl<'a> Default for SurfacePresentScalingCapabilitiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR,
                 p_next: Default::default(),
                 supported_present_scaling: Default::default(),
                 supported_present_gravity_x: Default::default(),
@@ -164,23 +169,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SurfacePresentModeCompatibilityKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub present_mode_count: u32,
         pub p_present_modes: *mut vk::PresentModeKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SurfacePresentModeCompatibilityKHR<'_> {}
     unsafe impl Sync for SurfacePresentModeCompatibilityKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for SurfacePresentModeCompatibilityKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SurfacePresentModeCompatibilityKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> Extends<vk::SurfaceCapabilities2KHR<'_>>
     for SurfacePresentModeCompatibilityKHR<'a> {}
     impl<'a> Default for SurfacePresentModeCompatibilityKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR,
                 p_next: Default::default(),
                 present_mode_count: Default::default(),
                 p_present_modes: Default::default(),
@@ -202,8 +206,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PresentScalingFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PresentScalingFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PresentScalingFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -235,40 +239,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PresentScalingFlagsKHR {
+    impl BitOr for PresentScalingFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PresentScalingFlagsKHR {
+    impl BitOrAssign for PresentScalingFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PresentScalingFlagsKHR {
+    impl BitAnd for PresentScalingFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PresentScalingFlagsKHR {
+    impl BitAndAssign for PresentScalingFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PresentScalingFlagsKHR {
+    impl BitXor for PresentScalingFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PresentScalingFlagsKHR {
+    impl BitXorAssign for PresentScalingFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PresentScalingFlagsKHR {
+    impl Not for PresentScalingFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -293,17 +297,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PresentScalingFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PresentScalingFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PresentGravityFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PresentGravityFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PresentGravityFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -335,40 +339,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PresentGravityFlagsKHR {
+    impl BitOr for PresentGravityFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PresentGravityFlagsKHR {
+    impl BitOrAssign for PresentGravityFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PresentGravityFlagsKHR {
+    impl BitAnd for PresentGravityFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PresentGravityFlagsKHR {
+    impl BitAndAssign for PresentGravityFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PresentGravityFlagsKHR {
+    impl BitXor for PresentGravityFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PresentGravityFlagsKHR {
+    impl BitXorAssign for PresentGravityFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PresentGravityFlagsKHR {
+    impl Not for PresentGravityFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -393,9 +397,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PresentGravityFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PresentGravityFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
 }

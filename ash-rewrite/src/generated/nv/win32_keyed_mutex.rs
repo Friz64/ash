@@ -13,12 +13,15 @@ pub const NAME: &CStr = c"VK_NV_win32_keyed_mutex";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct Win32KeyedMutexAcquireReleaseInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub acquire_count: u32,
         pub p_acquire_syncs: *const vk::DeviceMemory,
         pub p_acquire_keys: *const u64,
@@ -30,18 +33,17 @@ pub(crate) mod items {
     }
     unsafe impl Send for Win32KeyedMutexAcquireReleaseInfoNV<'_> {}
     unsafe impl Sync for Win32KeyedMutexAcquireReleaseInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for Win32KeyedMutexAcquireReleaseInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for Win32KeyedMutexAcquireReleaseInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::SubmitInfo<'_>>
+    unsafe impl<'a> Extends<vk::SubmitInfo<'_>>
     for Win32KeyedMutexAcquireReleaseInfoNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SubmitInfo2<'_>>
+    unsafe impl<'a> Extends<vk::SubmitInfo2<'_>>
     for Win32KeyedMutexAcquireReleaseInfoNV<'a> {}
     impl<'a> Default for Win32KeyedMutexAcquireReleaseInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV,
                 p_next: Default::default(),
                 acquire_count: Default::default(),
                 p_acquire_syncs: Default::default(),

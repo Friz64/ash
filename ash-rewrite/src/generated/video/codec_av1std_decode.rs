@@ -7,8 +7,11 @@ use core::ffi::CStr;
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_AV1_DECODE_API_VERSION_1_0_0;
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_av1_decode";
 pub(crate) mod items {
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     use core::marker::PhantomData;
     use crate::vk;
+    use core::mem::zeroed;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DecodeAV1PictureInfoFlags {
@@ -46,8 +49,8 @@ pub(crate) mod items {
     unsafe impl Send for DecodeAV1PictureInfoFlags {}
     unsafe impl Sync for DecodeAV1PictureInfoFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DecodeAV1PictureInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DecodeAV1PictureInfoFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("DecodeAV1PictureInfoFlags")
                 .field("error_resilient_mode", &self.get_error_resilient_mode())
                 .field("disable_cdf_update", &self.get_disable_cdf_update())
@@ -413,11 +416,11 @@ pub(crate) mod items {
                 tx_mode: Default::default(),
                 delta_q_res: Default::default(),
                 delta_lf_res: Default::default(),
-                skip_mode_frame: unsafe { core::mem::zeroed() },
+                skip_mode_frame: unsafe { zeroed() },
                 coded_denom: Default::default(),
-                reserved2: unsafe { core::mem::zeroed() },
-                order_hints: unsafe { core::mem::zeroed() },
-                expected_frame_id: unsafe { core::mem::zeroed() },
+                reserved2: unsafe { zeroed() },
+                order_hints: unsafe { zeroed() },
+                expected_frame_id: unsafe { zeroed() },
                 p_tile_info: Default::default(),
                 p_quantization: Default::default(),
                 p_segmentation: Default::default(),
@@ -553,8 +556,8 @@ pub(crate) mod items {
     unsafe impl Send for DecodeAV1ReferenceInfoFlags {}
     unsafe impl Sync for DecodeAV1ReferenceInfoFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DecodeAV1ReferenceInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DecodeAV1ReferenceInfoFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("DecodeAV1ReferenceInfoFlags")
                 .field(
                     "disable_frame_end_update_cdf",
@@ -604,7 +607,7 @@ pub(crate) mod items {
                 frame_type: Default::default(),
                 ref_frame_sign_bias: Default::default(),
                 order_hint: Default::default(),
-                saved_order_hints: unsafe { core::mem::zeroed() },
+                saved_order_hints: unsafe { zeroed() },
             }
         }
     }

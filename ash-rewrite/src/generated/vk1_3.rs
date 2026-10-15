@@ -3,9 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_3.html) · Vulkan version 1.3
 #![doc(alias = "VK_VERSION_1_3")]
 use crate::vk;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ptr;
 use crate::VkResult;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::ffi;
 ///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::ImageLayout {
     pub const READ_ONLY_OPTIMAL: Self = Self(1000314000);
@@ -546,10 +549,10 @@ pub struct DeviceFnV1_3 {
 unsafe impl Send for DeviceFnV1_3 {}
 unsafe impl Sync for DeviceFnV1_3 {}
 impl DeviceFnV1_3 {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_device_buffer_memory_requirements: unsafe {
                 unsafe extern "system" fn get_device_buffer_memory_requirements(
@@ -563,7 +566,7 @@ impl DeviceFnV1_3 {
                 if val.is_null() {
                     get_device_buffer_memory_requirements
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_device_image_memory_requirements: unsafe {
@@ -578,7 +581,7 @@ impl DeviceFnV1_3 {
                 if val.is_null() {
                     get_device_image_memory_requirements
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_device_image_sparse_memory_requirements: unsafe {
@@ -594,7 +597,7 @@ impl DeviceFnV1_3 {
                 if val.is_null() {
                     get_device_image_sparse_memory_requirements
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_cull_mode: unsafe {
@@ -605,11 +608,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdSetCullMode")
                 }
                 let val = _f(c"vkCmdSetCullMode");
-                if val.is_null() {
-                    cmd_set_cull_mode
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_cull_mode } else { transmute(val) }
             },
             cmd_set_front_face: unsafe {
                 unsafe extern "system" fn cmd_set_front_face(
@@ -619,11 +618,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdSetFrontFace")
                 }
                 let val = _f(c"vkCmdSetFrontFace");
-                if val.is_null() {
-                    cmd_set_front_face
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_front_face } else { transmute(val) }
             },
             cmd_set_primitive_topology: unsafe {
                 unsafe extern "system" fn cmd_set_primitive_topology(
@@ -633,11 +628,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdSetPrimitiveTopology")
                 }
                 let val = _f(c"vkCmdSetPrimitiveTopology");
-                if val.is_null() {
-                    cmd_set_primitive_topology
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_primitive_topology } else { transmute(val) }
             },
             cmd_set_viewport_with_count: unsafe {
                 unsafe extern "system" fn cmd_set_viewport_with_count(
@@ -648,11 +639,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdSetViewportWithCount")
                 }
                 let val = _f(c"vkCmdSetViewportWithCount");
-                if val.is_null() {
-                    cmd_set_viewport_with_count
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_viewport_with_count } else { transmute(val) }
             },
             cmd_set_scissor_with_count: unsafe {
                 unsafe extern "system" fn cmd_set_scissor_with_count(
@@ -663,11 +650,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdSetScissorWithCount")
                 }
                 let val = _f(c"vkCmdSetScissorWithCount");
-                if val.is_null() {
-                    cmd_set_scissor_with_count
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_scissor_with_count } else { transmute(val) }
             },
             cmd_bind_vertex_buffers2: unsafe {
                 unsafe extern "system" fn cmd_bind_vertex_buffers2(
@@ -682,11 +665,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdBindVertexBuffers2")
                 }
                 let val = _f(c"vkCmdBindVertexBuffers2");
-                if val.is_null() {
-                    cmd_bind_vertex_buffers2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_bind_vertex_buffers2 } else { transmute(val) }
             },
             cmd_set_depth_test_enable: unsafe {
                 unsafe extern "system" fn cmd_set_depth_test_enable(
@@ -696,11 +675,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdSetDepthTestEnable")
                 }
                 let val = _f(c"vkCmdSetDepthTestEnable");
-                if val.is_null() {
-                    cmd_set_depth_test_enable
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_depth_test_enable } else { transmute(val) }
             },
             cmd_set_depth_write_enable: unsafe {
                 unsafe extern "system" fn cmd_set_depth_write_enable(
@@ -710,11 +685,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdSetDepthWriteEnable")
                 }
                 let val = _f(c"vkCmdSetDepthWriteEnable");
-                if val.is_null() {
-                    cmd_set_depth_write_enable
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_depth_write_enable } else { transmute(val) }
             },
             cmd_set_depth_compare_op: unsafe {
                 unsafe extern "system" fn cmd_set_depth_compare_op(
@@ -724,11 +695,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdSetDepthCompareOp")
                 }
                 let val = _f(c"vkCmdSetDepthCompareOp");
-                if val.is_null() {
-                    cmd_set_depth_compare_op
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_depth_compare_op } else { transmute(val) }
             },
             cmd_set_depth_bounds_test_enable: unsafe {
                 unsafe extern "system" fn cmd_set_depth_bounds_test_enable(
@@ -741,7 +708,7 @@ impl DeviceFnV1_3 {
                 if val.is_null() {
                     cmd_set_depth_bounds_test_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_stencil_test_enable: unsafe {
@@ -752,11 +719,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdSetStencilTestEnable")
                 }
                 let val = _f(c"vkCmdSetStencilTestEnable");
-                if val.is_null() {
-                    cmd_set_stencil_test_enable
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_stencil_test_enable } else { transmute(val) }
             },
             cmd_set_stencil_op: unsafe {
                 unsafe extern "system" fn cmd_set_stencil_op(
@@ -770,11 +733,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdSetStencilOp")
                 }
                 let val = _f(c"vkCmdSetStencilOp");
-                if val.is_null() {
-                    cmd_set_stencil_op
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_stencil_op } else { transmute(val) }
             },
             cmd_set_rasterizer_discard_enable: unsafe {
                 unsafe extern "system" fn cmd_set_rasterizer_discard_enable(
@@ -787,7 +746,7 @@ impl DeviceFnV1_3 {
                 if val.is_null() {
                     cmd_set_rasterizer_discard_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_depth_bias_enable: unsafe {
@@ -798,11 +757,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdSetDepthBiasEnable")
                 }
                 let val = _f(c"vkCmdSetDepthBiasEnable");
-                if val.is_null() {
-                    cmd_set_depth_bias_enable
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_depth_bias_enable } else { transmute(val) }
             },
             cmd_set_primitive_restart_enable: unsafe {
                 unsafe extern "system" fn cmd_set_primitive_restart_enable(
@@ -815,7 +770,7 @@ impl DeviceFnV1_3 {
                 if val.is_null() {
                     cmd_set_primitive_restart_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             create_private_data_slot: unsafe {
@@ -828,11 +783,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCreatePrivateDataSlot")
                 }
                 let val = _f(c"vkCreatePrivateDataSlot");
-                if val.is_null() {
-                    create_private_data_slot
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_private_data_slot } else { transmute(val) }
             },
             destroy_private_data_slot: unsafe {
                 unsafe extern "system" fn destroy_private_data_slot(
@@ -843,11 +794,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkDestroyPrivateDataSlot")
                 }
                 let val = _f(c"vkDestroyPrivateDataSlot");
-                if val.is_null() {
-                    destroy_private_data_slot
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_private_data_slot } else { transmute(val) }
             },
             set_private_data: unsafe {
                 unsafe extern "system" fn set_private_data(
@@ -860,11 +807,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkSetPrivateData")
                 }
                 let val = _f(c"vkSetPrivateData");
-                if val.is_null() {
-                    set_private_data
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { set_private_data } else { transmute(val) }
             },
             get_private_data: unsafe {
                 unsafe extern "system" fn get_private_data(
@@ -877,11 +820,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkGetPrivateData")
                 }
                 let val = _f(c"vkGetPrivateData");
-                if val.is_null() {
-                    get_private_data
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_private_data } else { transmute(val) }
             },
             cmd_copy_buffer2: unsafe {
                 unsafe extern "system" fn cmd_copy_buffer2(
@@ -891,11 +830,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdCopyBuffer2")
                 }
                 let val = _f(c"vkCmdCopyBuffer2");
-                if val.is_null() {
-                    cmd_copy_buffer2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_buffer2 } else { transmute(val) }
             },
             cmd_copy_image2: unsafe {
                 unsafe extern "system" fn cmd_copy_image2(
@@ -905,7 +840,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdCopyImage2")
                 }
                 let val = _f(c"vkCmdCopyImage2");
-                if val.is_null() { cmd_copy_image2 } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_copy_image2 } else { transmute(val) }
             },
             cmd_blit_image2: unsafe {
                 unsafe extern "system" fn cmd_blit_image2(
@@ -915,7 +850,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdBlitImage2")
                 }
                 let val = _f(c"vkCmdBlitImage2");
-                if val.is_null() { cmd_blit_image2 } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_blit_image2 } else { transmute(val) }
             },
             cmd_copy_buffer_to_image2: unsafe {
                 unsafe extern "system" fn cmd_copy_buffer_to_image2(
@@ -925,11 +860,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdCopyBufferToImage2")
                 }
                 let val = _f(c"vkCmdCopyBufferToImage2");
-                if val.is_null() {
-                    cmd_copy_buffer_to_image2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_buffer_to_image2 } else { transmute(val) }
             },
             cmd_copy_image_to_buffer2: unsafe {
                 unsafe extern "system" fn cmd_copy_image_to_buffer2(
@@ -939,11 +870,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdCopyImageToBuffer2")
                 }
                 let val = _f(c"vkCmdCopyImageToBuffer2");
-                if val.is_null() {
-                    cmd_copy_image_to_buffer2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_image_to_buffer2 } else { transmute(val) }
             },
             cmd_resolve_image2: unsafe {
                 unsafe extern "system" fn cmd_resolve_image2(
@@ -953,11 +880,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdResolveImage2")
                 }
                 let val = _f(c"vkCmdResolveImage2");
-                if val.is_null() {
-                    cmd_resolve_image2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_resolve_image2 } else { transmute(val) }
             },
             cmd_set_event2: unsafe {
                 unsafe extern "system" fn cmd_set_event2(
@@ -968,7 +891,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdSetEvent2")
                 }
                 let val = _f(c"vkCmdSetEvent2");
-                if val.is_null() { cmd_set_event2 } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_set_event2 } else { transmute(val) }
             },
             cmd_reset_event2: unsafe {
                 unsafe extern "system" fn cmd_reset_event2(
@@ -979,11 +902,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdResetEvent2")
                 }
                 let val = _f(c"vkCmdResetEvent2");
-                if val.is_null() {
-                    cmd_reset_event2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_reset_event2 } else { transmute(val) }
             },
             cmd_wait_events2: unsafe {
                 unsafe extern "system" fn cmd_wait_events2(
@@ -995,11 +914,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdWaitEvents2")
                 }
                 let val = _f(c"vkCmdWaitEvents2");
-                if val.is_null() {
-                    cmd_wait_events2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_wait_events2 } else { transmute(val) }
             },
             cmd_pipeline_barrier2: unsafe {
                 unsafe extern "system" fn cmd_pipeline_barrier2(
@@ -1009,11 +924,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdPipelineBarrier2")
                 }
                 let val = _f(c"vkCmdPipelineBarrier2");
-                if val.is_null() {
-                    cmd_pipeline_barrier2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_pipeline_barrier2 } else { transmute(val) }
             },
             queue_submit2: unsafe {
                 unsafe extern "system" fn queue_submit2(
@@ -1025,7 +936,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkQueueSubmit2")
                 }
                 let val = _f(c"vkQueueSubmit2");
-                if val.is_null() { queue_submit2 } else { ::core::mem::transmute(val) }
+                if val.is_null() { queue_submit2 } else { transmute(val) }
             },
             cmd_write_timestamp2: unsafe {
                 unsafe extern "system" fn cmd_write_timestamp2(
@@ -1037,11 +948,7 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdWriteTimestamp2")
                 }
                 let val = _f(c"vkCmdWriteTimestamp2");
-                if val.is_null() {
-                    cmd_write_timestamp2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_write_timestamp2 } else { transmute(val) }
             },
             cmd_begin_rendering: unsafe {
                 unsafe extern "system" fn cmd_begin_rendering(
@@ -1051,22 +958,14 @@ impl DeviceFnV1_3 {
                     panic!("unable to load vkCmdBeginRendering")
                 }
                 let val = _f(c"vkCmdBeginRendering");
-                if val.is_null() {
-                    cmd_begin_rendering
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_begin_rendering } else { transmute(val) }
             },
             cmd_end_rendering: unsafe {
                 unsafe extern "system" fn cmd_end_rendering(_: vk::CommandBuffer) {
                     panic!("unable to load vkCmdEndRendering")
                 }
                 let val = _f(c"vkCmdEndRendering");
-                if val.is_null() {
-                    cmd_end_rendering
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_end_rendering } else { transmute(val) }
             },
         }
     }
@@ -1083,7 +982,7 @@ impl crate::Device {
         &self,
         info: &vk::DeviceBufferMemoryRequirements<'_>,
     ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        let mut memory_requirements = MaybeUninit::uninit();
         (self
             .device_fn_1_3
             .get_device_buffer_memory_requirements)(
@@ -1099,7 +998,7 @@ impl crate::Device {
         &self,
         info: &vk::DeviceImageMemoryRequirements<'_>,
     ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        let mut memory_requirements = MaybeUninit::uninit();
         (self
             .device_fn_1_3
             .get_device_image_memory_requirements)(
@@ -1115,14 +1014,14 @@ impl crate::Device {
         &self,
         info: &vk::DeviceImageMemoryRequirements<'_>,
     ) -> usize {
-        let mut sparse_memory_requirement_count = core::mem::MaybeUninit::uninit();
+        let mut sparse_memory_requirement_count = MaybeUninit::uninit();
         (self
             .device_fn_1_3
             .get_device_image_sparse_memory_requirements)(
             self.handle,
             info,
             sparse_memory_requirement_count.as_mut_ptr(),
-            core::ptr::null_mut(),
+            ptr::null_mut(),
         );
         sparse_memory_requirement_count.assume_init() as usize
     }
@@ -1345,7 +1244,7 @@ impl crate::Device {
         create_info: &vk::PrivateDataSlotCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::PrivateDataSlot> {
-        let mut private_data_slot = core::mem::MaybeUninit::uninit();
+        let mut private_data_slot = MaybeUninit::uninit();
         (self
             .device_fn_1_3
             .create_private_data_slot)(
@@ -1353,7 +1252,7 @@ impl crate::Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 private_data_slot.as_mut_ptr(),
             )
@@ -1373,7 +1272,7 @@ impl crate::Device {
             private_data_slot,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -1405,7 +1304,7 @@ impl crate::Device {
         object_handle: u64,
         private_data_slot: vk::PrivateDataSlot,
     ) -> u64 {
-        let mut data = core::mem::MaybeUninit::uninit();
+        let mut data = MaybeUninit::uninit();
         (self
             .device_fn_1_3
             .get_private_data)(
@@ -1570,10 +1469,10 @@ pub struct InstanceFnV1_3 {
 unsafe impl Send for InstanceFnV1_3 {}
 unsafe impl Sync for InstanceFnV1_3 {}
 impl InstanceFnV1_3 {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_tool_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_tool_properties(
@@ -1587,7 +1486,7 @@ impl InstanceFnV1_3 {
                 if val.is_null() {
                     get_physical_device_tool_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -1605,13 +1504,13 @@ impl crate::Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> VkResult<usize> {
-        let mut tool_count = core::mem::MaybeUninit::uninit();
+        let mut tool_count = MaybeUninit::uninit();
         (self
             .instance_fn_1_3
             .get_physical_device_tool_properties)(
                 physical_device,
                 tool_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(tool_count)
             .map(|c| c as usize)
@@ -1622,7 +1521,7 @@ impl crate::Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         tool_properties: &mut [vk::PhysicalDeviceToolProperties<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut tool_count = tool_properties.len() as _;
         (self
             .instance_fn_1_3
@@ -1639,32 +1538,36 @@ impl crate::Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
-    use core::ffi::CStr;
+    use crate::TaggedStructure;
+    use crate::Extends;
     use core::ffi;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ffi::CStr;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DevicePrivateDataCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub private_data_slot_request_count: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DevicePrivateDataCreateInfo<'_> {}
     unsafe impl Sync for DevicePrivateDataCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DevicePrivateDataCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DevicePrivateDataCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_PRIVATE_DATA_CREATE_INFO;
     }
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for DevicePrivateDataCreateInfo<'a> {}
     impl<'a> Default for DevicePrivateDataCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_PRIVATE_DATA_CREATE_INFO,
                 p_next: Default::default(),
                 private_data_slot_request_count: Default::default(),
                 _marker: PhantomData,
@@ -1685,19 +1588,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PrivateDataSlotCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PrivateDataSlotCreateFlags,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PrivateDataSlotCreateInfo<'_> {}
     unsafe impl Sync for PrivateDataSlotCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PrivateDataSlotCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PrivateDataSlotCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRIVATE_DATA_SLOT_CREATE_INFO;
     }
     impl<'a> Default for PrivateDataSlotCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PRIVATE_DATA_SLOT_CREATE_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 _marker: PhantomData,
@@ -1715,24 +1618,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePrivateDataFeatures<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub private_data: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePrivateDataFeatures<'_> {}
     unsafe impl Sync for PhysicalDevicePrivateDataFeatures<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDevicePrivateDataFeatures<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDevicePrivateDataFeatures<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePrivateDataFeatures<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePrivateDataFeatures<'a> {}
     impl<'a> Default for PhysicalDevicePrivateDataFeatures<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES,
                 p_next: Default::default(),
                 private_data: Default::default(),
                 _marker: PhantomData,
@@ -1750,19 +1652,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceBufferMemoryRequirements<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_create_info: *const vk::BufferCreateInfo<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceBufferMemoryRequirements<'_> {}
     unsafe impl Sync for DeviceBufferMemoryRequirements<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceBufferMemoryRequirements<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceBufferMemoryRequirements<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_BUFFER_MEMORY_REQUIREMENTS;
     }
     impl<'a> Default for DeviceBufferMemoryRequirements<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_BUFFER_MEMORY_REQUIREMENTS,
                 p_next: Default::default(),
                 p_create_info: Default::default(),
                 _marker: PhantomData,
@@ -1780,20 +1682,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceImageMemoryRequirements<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_create_info: *const vk::ImageCreateInfo<'a>,
         pub plane_aspect: vk::ImageAspectFlagBits,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceImageMemoryRequirements<'_> {}
     unsafe impl Sync for DeviceImageMemoryRequirements<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceImageMemoryRequirements<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceImageMemoryRequirements<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_IMAGE_MEMORY_REQUIREMENTS;
     }
     impl<'a> Default for DeviceImageMemoryRequirements<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_IMAGE_MEMORY_REQUIREMENTS,
                 p_next: Default::default(),
                 p_create_info: Default::default(),
                 plane_aspect: Default::default(),
@@ -1816,25 +1718,25 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceInlineUniformBlockFeatures<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub inline_uniform_block: vk::Bool32,
         pub descriptor_binding_inline_uniform_block_update_after_bind: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceInlineUniformBlockFeatures<'_> {}
     unsafe impl Sync for PhysicalDeviceInlineUniformBlockFeatures<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceInlineUniformBlockFeatures<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceInlineUniformBlockFeatures<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceInlineUniformBlockFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceInlineUniformBlockFeatures<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES,
                 p_next: Default::default(),
                 inline_uniform_block: Default::default(),
                 descriptor_binding_inline_uniform_block_update_after_bind: Default::default(),
@@ -1861,7 +1763,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceInlineUniformBlockProperties<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_inline_uniform_block_size: u32,
         pub max_per_stage_descriptor_inline_uniform_blocks: u32,
         pub max_per_stage_descriptor_update_after_bind_inline_uniform_blocks: u32,
@@ -1871,16 +1773,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceInlineUniformBlockProperties<'_> {}
     unsafe impl Sync for PhysicalDeviceInlineUniformBlockProperties<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceInlineUniformBlockProperties<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceInlineUniformBlockProperties<'a> {}
     impl<'a> Default for PhysicalDeviceInlineUniformBlockProperties<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES,
                 p_next: Default::default(),
                 max_inline_uniform_block_size: Default::default(),
                 max_per_stage_descriptor_inline_uniform_blocks: Default::default(),
@@ -1933,23 +1835,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetInlineUniformBlock<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub data_size: u32,
-        pub p_data: *const core::ffi::c_void,
+        pub p_data: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for WriteDescriptorSetInlineUniformBlock<'_> {}
     unsafe impl Sync for WriteDescriptorSetInlineUniformBlock<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for WriteDescriptorSetInlineUniformBlock<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for WriteDescriptorSetInlineUniformBlock<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK;
     }
-    unsafe impl<'a> crate::Extends<vk::WriteDescriptorSet<'_>>
+    unsafe impl<'a> Extends<vk::WriteDescriptorSet<'_>>
     for WriteDescriptorSetInlineUniformBlock<'a> {}
     impl<'a> Default for WriteDescriptorSetInlineUniformBlock<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK,
                 p_next: Default::default(),
                 data_size: Default::default(),
                 p_data: Default::default(),
@@ -1969,22 +1870,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DescriptorPoolInlineUniformBlockCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub max_inline_uniform_block_bindings: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DescriptorPoolInlineUniformBlockCreateInfo<'_> {}
     unsafe impl Sync for DescriptorPoolInlineUniformBlockCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for DescriptorPoolInlineUniformBlockCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO;
     }
-    unsafe impl<'a> crate::Extends<vk::DescriptorPoolCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DescriptorPoolCreateInfo<'_>>
     for DescriptorPoolInlineUniformBlockCreateInfo<'a> {}
     impl<'a> Default for DescriptorPoolInlineUniformBlockCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO,
                 p_next: Default::default(),
                 max_inline_uniform_block_bindings: Default::default(),
                 _marker: PhantomData,
@@ -2005,24 +1906,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance4Features<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub maintenance4: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMaintenance4Features<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance4Features<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMaintenance4Features<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMaintenance4Features<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMaintenance4Features<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMaintenance4Features<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance4Features<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES,
                 p_next: Default::default(),
                 maintenance4: Default::default(),
                 _marker: PhantomData,
@@ -2040,22 +1940,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance4Properties<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_buffer_size: vk::DeviceSize,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMaintenance4Properties<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance4Properties<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMaintenance4Properties<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMaintenance4Properties<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceMaintenance4Properties<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance4Properties<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES,
                 p_next: Default::default(),
                 max_buffer_size: Default::default(),
                 _marker: PhantomData,
@@ -2073,24 +1972,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTextureCompressionASTCHDRFeatures<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub texture_compression_astc_hdr: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceTextureCompressionASTCHDRFeatures<'_> {}
     unsafe impl Sync for PhysicalDeviceTextureCompressionASTCHDRFeatures<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceTextureCompressionASTCHDRFeatures<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceTextureCompressionASTCHDRFeatures<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceTextureCompressionASTCHDRFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceTextureCompressionASTCHDRFeatures<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES,
                 p_next: Default::default(),
                 texture_compression_astc_hdr: Default::default(),
                 _marker: PhantomData,
@@ -2130,7 +2029,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineCreationFeedbackCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_pipeline_creation_feedback: *mut vk::PipelineCreationFeedback,
         pub pipeline_stage_creation_feedback_count: u32,
         pub p_pipeline_stage_creation_feedbacks: *mut vk::PipelineCreationFeedback,
@@ -2138,27 +2037,26 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineCreationFeedbackCreateInfo<'_> {}
     unsafe impl Sync for PipelineCreationFeedbackCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PipelineCreationFeedbackCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineCreationFeedbackCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_CREATION_FEEDBACK_CREATE_INFO;
     }
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for PipelineCreationFeedbackCreateInfo<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ComputePipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ComputePipelineCreateInfo<'_>>
     for PipelineCreationFeedbackCreateInfo<'a> {}
-    unsafe impl<'a> crate::Extends<vk::RayTracingPipelineCreateInfoNV<'_>>
+    unsafe impl<'a> Extends<vk::RayTracingPipelineCreateInfoNV<'_>>
     for PipelineCreationFeedbackCreateInfo<'a> {}
-    unsafe impl<'a> crate::Extends<vk::RayTracingPipelineCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::RayTracingPipelineCreateInfoKHR<'_>>
     for PipelineCreationFeedbackCreateInfo<'a> {}
     #[cfg(feature = "provisional")]
-    unsafe impl<'a> crate::Extends<vk::ExecutionGraphPipelineCreateInfoAMDX<'_>>
+    unsafe impl<'a> Extends<vk::ExecutionGraphPipelineCreateInfoAMDX<'_>>
     for PipelineCreationFeedbackCreateInfo<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for PipelineCreationFeedbackCreateInfo<'a> {}
     impl<'a> Default for PipelineCreationFeedbackCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_CREATION_FEEDBACK_CREATE_INFO,
                 p_next: Default::default(),
                 p_pipeline_creation_feedback: Default::default(),
                 pipeline_stage_creation_feedback_count: Default::default(),
@@ -2191,24 +2089,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_demote_to_helper_invocation: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES,
                 p_next: Default::default(),
                 shader_demote_to_helper_invocation: Default::default(),
                 _marker: PhantomData,
@@ -2230,7 +2128,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTexelBufferAlignmentProperties<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub storage_texel_buffer_offset_alignment_bytes: vk::DeviceSize,
         pub storage_texel_buffer_offset_single_texel_alignment: vk::Bool32,
         pub uniform_texel_buffer_offset_alignment_bytes: vk::DeviceSize,
@@ -2239,16 +2137,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceTexelBufferAlignmentProperties<'_> {}
     unsafe impl Sync for PhysicalDeviceTexelBufferAlignmentProperties<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceTexelBufferAlignmentProperties<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceTexelBufferAlignmentProperties<'a> {}
     impl<'a> Default for PhysicalDeviceTexelBufferAlignmentProperties<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES,
                 p_next: Default::default(),
                 storage_texel_buffer_offset_alignment_bytes: Default::default(),
                 storage_texel_buffer_offset_single_texel_alignment: Default::default(),
@@ -2295,25 +2193,25 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubgroupSizeControlFeatures<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub subgroup_size_control: vk::Bool32,
         pub compute_full_subgroups: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSubgroupSizeControlFeatures<'_> {}
     unsafe impl Sync for PhysicalDeviceSubgroupSizeControlFeatures<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceSubgroupSizeControlFeatures<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceSubgroupSizeControlFeatures<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceSubgroupSizeControlFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceSubgroupSizeControlFeatures<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES,
                 p_next: Default::default(),
                 subgroup_size_control: Default::default(),
                 compute_full_subgroups: Default::default(),
@@ -2336,7 +2234,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubgroupSizeControlProperties<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub min_subgroup_size: u32,
         pub max_subgroup_size: u32,
         pub max_compute_workgroup_subgroups: u32,
@@ -2345,16 +2243,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceSubgroupSizeControlProperties<'_> {}
     unsafe impl Sync for PhysicalDeviceSubgroupSizeControlProperties<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceSubgroupSizeControlProperties<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceSubgroupSizeControlProperties<'a> {}
     impl<'a> Default for PhysicalDeviceSubgroupSizeControlProperties<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES,
                 p_next: Default::default(),
                 min_subgroup_size: Default::default(),
                 max_subgroup_size: Default::default(),
@@ -2393,24 +2291,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineShaderStageRequiredSubgroupSizeCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub required_subgroup_size: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineShaderStageRequiredSubgroupSizeCreateInfo<'_> {}
     unsafe impl Sync for PipelineShaderStageRequiredSubgroupSizeCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineShaderStageRequiredSubgroupSizeCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineShaderStageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineShaderStageCreateInfo<'_>>
     for PipelineShaderStageRequiredSubgroupSizeCreateInfo<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ShaderCreateInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::ShaderCreateInfoEXT<'_>>
     for PipelineShaderStageRequiredSubgroupSizeCreateInfo<'a> {}
     impl<'a> Default for PipelineShaderStageRequiredSubgroupSizeCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO,
                 p_next: Default::default(),
                 required_subgroup_size: Default::default(),
                 _marker: PhantomData,
@@ -2428,24 +2326,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineCreationCacheControlFeatures<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub pipeline_creation_cache_control: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePipelineCreationCacheControlFeatures<'_> {}
     unsafe impl Sync for PhysicalDevicePipelineCreationCacheControlFeatures<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDevicePipelineCreationCacheControlFeatures<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePipelineCreationCacheControlFeatures<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePipelineCreationCacheControlFeatures<'a> {}
     impl<'a> Default for PhysicalDevicePipelineCreationCacheControlFeatures<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES,
                 p_next: Default::default(),
                 pipeline_creation_cache_control: Default::default(),
                 _marker: PhantomData,
@@ -2467,7 +2365,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVulkan13Features<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub robust_image_access: vk::Bool32,
         pub inline_uniform_block: vk::Bool32,
         pub descriptor_binding_inline_uniform_block_update_after_bind: vk::Bool32,
@@ -2487,17 +2385,17 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceVulkan13Features<'_> {}
     unsafe impl Sync for PhysicalDeviceVulkan13Features<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan13Features<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceVulkan13Features<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_3_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceVulkan13Features<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceVulkan13Features<'a> {}
     impl<'a> Default for PhysicalDeviceVulkan13Features<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_3_FEATURES,
                 p_next: Default::default(),
                 robust_image_access: Default::default(),
                 inline_uniform_block: Default::default(),
@@ -2610,7 +2508,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVulkan13Properties<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub min_subgroup_size: u32,
         pub max_subgroup_size: u32,
         pub max_compute_workgroup_subgroups: u32,
@@ -2660,15 +2558,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceVulkan13Properties<'_> {}
     unsafe impl Sync for PhysicalDeviceVulkan13Properties<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan13Properties<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceVulkan13Properties<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceVulkan13Properties<'a> {}
     impl<'a> Default for PhysicalDeviceVulkan13Properties<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES,
                 p_next: Default::default(),
                 min_subgroup_size: Default::default(),
                 max_subgroup_size: Default::default(),
@@ -3073,36 +2971,36 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceToolProperties<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
-        pub name: [core::ffi::c_char; vk::MAX_EXTENSION_NAME_SIZE as _],
-        pub version: [core::ffi::c_char; vk::MAX_EXTENSION_NAME_SIZE as _],
+        pub p_next: *mut ffi::c_void,
+        pub name: [ffi::c_char; vk::MAX_EXTENSION_NAME_SIZE as _],
+        pub version: [ffi::c_char; vk::MAX_EXTENSION_NAME_SIZE as _],
         pub purposes: vk::ToolPurposeFlags,
-        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
-        pub layer: [core::ffi::c_char; vk::MAX_EXTENSION_NAME_SIZE as _],
+        pub description: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub layer: [ffi::c_char; vk::MAX_EXTENSION_NAME_SIZE as _],
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceToolProperties<'_> {}
     unsafe impl Sync for PhysicalDeviceToolProperties<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceToolProperties<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceToolProperties<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TOOL_PROPERTIES;
     }
     impl<'a> Default for PhysicalDeviceToolProperties<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_TOOL_PROPERTIES,
                 p_next: Default::default(),
-                name: unsafe { core::mem::zeroed() },
-                version: unsafe { core::mem::zeroed() },
+                name: unsafe { zeroed() },
+                version: unsafe { zeroed() },
                 purposes: Default::default(),
-                description: unsafe { core::mem::zeroed() },
-                layer: unsafe { core::mem::zeroed() },
+                description: unsafe { zeroed() },
+                layer: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }
     }
     #[cfg(feature = "debug")]
-    impl<'a> core::fmt::Debug for PhysicalDeviceToolProperties<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl<'a> fmtd::Debug for PhysicalDeviceToolProperties<'a> {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("PhysicalDeviceToolProperties < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
@@ -3170,24 +3068,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_zero_initialize_workgroup_memory: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'_> {}
     unsafe impl Sync for PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES,
                 p_next: Default::default(),
                 shader_zero_initialize_workgroup_memory: Default::default(),
                 _marker: PhantomData,
@@ -3209,24 +3107,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageRobustnessFeatures<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub robust_image_access: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageRobustnessFeatures<'_> {}
     unsafe impl Sync for PhysicalDeviceImageRobustnessFeatures<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceImageRobustnessFeatures<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceImageRobustnessFeatures<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageRobustnessFeatures<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageRobustnessFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceImageRobustnessFeatures<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES,
                 p_next: Default::default(),
                 robust_image_access: Default::default(),
                 _marker: PhantomData,
@@ -3244,7 +3141,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferCopy2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_offset: vk::DeviceSize,
         pub dst_offset: vk::DeviceSize,
         pub size: vk::DeviceSize,
@@ -3252,13 +3149,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BufferCopy2<'_> {}
     unsafe impl Sync for BufferCopy2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BufferCopy2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferCopy2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_COPY_2;
     }
     impl<'a> Default for BufferCopy2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_COPY_2,
                 p_next: Default::default(),
                 src_offset: Default::default(),
                 dst_offset: Default::default(),
@@ -3286,7 +3183,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageCopy2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_subresource: vk::ImageSubresourceLayers,
         pub src_offset: vk::Offset3D,
         pub dst_subresource: vk::ImageSubresourceLayers,
@@ -3296,13 +3193,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageCopy2<'_> {}
     unsafe impl Sync for ImageCopy2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageCopy2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageCopy2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_COPY_2;
     }
     impl<'a> Default for ImageCopy2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_COPY_2,
                 p_next: Default::default(),
                 src_subresource: Default::default(),
                 src_offset: Default::default(),
@@ -3346,7 +3243,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageBlit2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_subresource: vk::ImageSubresourceLayers,
         pub src_offsets: [vk::Offset3D; 2 as _],
         pub dst_subresource: vk::ImageSubresourceLayers,
@@ -3355,18 +3252,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageBlit2<'_> {}
     unsafe impl Sync for ImageBlit2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageBlit2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageBlit2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_BLIT_2;
     }
     impl<'a> Default for ImageBlit2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_BLIT_2,
                 p_next: Default::default(),
                 src_subresource: Default::default(),
-                src_offsets: unsafe { core::mem::zeroed() },
+                src_offsets: unsafe { zeroed() },
                 dst_subresource: Default::default(),
-                dst_offsets: unsafe { core::mem::zeroed() },
+                dst_offsets: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }
@@ -3400,7 +3297,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferImageCopy2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub buffer_offset: vk::DeviceSize,
         pub buffer_row_length: u32,
         pub buffer_image_height: u32,
@@ -3411,13 +3308,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BufferImageCopy2<'_> {}
     unsafe impl Sync for BufferImageCopy2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BufferImageCopy2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferImageCopy2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_IMAGE_COPY_2;
     }
     impl<'a> Default for BufferImageCopy2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_IMAGE_COPY_2,
                 p_next: Default::default(),
                 buffer_offset: Default::default(),
                 buffer_row_length: Default::default(),
@@ -3463,7 +3360,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageResolve2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_subresource: vk::ImageSubresourceLayers,
         pub src_offset: vk::Offset3D,
         pub dst_subresource: vk::ImageSubresourceLayers,
@@ -3473,13 +3370,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageResolve2<'_> {}
     unsafe impl Sync for ImageResolve2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageResolve2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageResolve2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_RESOLVE_2;
     }
     impl<'a> Default for ImageResolve2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_RESOLVE_2,
                 p_next: Default::default(),
                 src_subresource: Default::default(),
                 src_offset: Default::default(),
@@ -3523,7 +3420,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CopyBufferInfo2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_buffer: vk::Buffer,
         pub dst_buffer: vk::Buffer,
         pub region_count: u32,
@@ -3532,13 +3429,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for CopyBufferInfo2<'_> {}
     unsafe impl Sync for CopyBufferInfo2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CopyBufferInfo2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CopyBufferInfo2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_BUFFER_INFO_2;
     }
     impl<'a> Default for CopyBufferInfo2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COPY_BUFFER_INFO_2,
                 p_next: Default::default(),
                 src_buffer: Default::default(),
                 dst_buffer: Default::default(),
@@ -3568,7 +3465,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CopyImageInfo2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_image: vk::Image,
         pub src_image_layout: vk::ImageLayout,
         pub dst_image: vk::Image,
@@ -3579,13 +3476,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for CopyImageInfo2<'_> {}
     unsafe impl Sync for CopyImageInfo2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CopyImageInfo2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CopyImageInfo2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_IMAGE_INFO_2;
     }
     impl<'a> Default for CopyImageInfo2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COPY_IMAGE_INFO_2,
                 p_next: Default::default(),
                 src_image: Default::default(),
                 src_image_layout: Default::default(),
@@ -3625,7 +3522,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BlitImageInfo2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_image: vk::Image,
         pub src_image_layout: vk::ImageLayout,
         pub dst_image: vk::Image,
@@ -3637,13 +3534,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BlitImageInfo2<'_> {}
     unsafe impl Sync for BlitImageInfo2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BlitImageInfo2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BlitImageInfo2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BLIT_IMAGE_INFO_2;
     }
     impl<'a> Default for BlitImageInfo2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BLIT_IMAGE_INFO_2,
                 p_next: Default::default(),
                 src_image: Default::default(),
                 src_image_layout: Default::default(),
@@ -3688,7 +3585,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CopyBufferToImageInfo2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_buffer: vk::Buffer,
         pub dst_image: vk::Image,
         pub dst_image_layout: vk::ImageLayout,
@@ -3698,13 +3595,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for CopyBufferToImageInfo2<'_> {}
     unsafe impl Sync for CopyBufferToImageInfo2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CopyBufferToImageInfo2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CopyBufferToImageInfo2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_BUFFER_TO_IMAGE_INFO_2;
     }
     impl<'a> Default for CopyBufferToImageInfo2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COPY_BUFFER_TO_IMAGE_INFO_2,
                 p_next: Default::default(),
                 src_buffer: Default::default(),
                 dst_image: Default::default(),
@@ -3739,7 +3636,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CopyImageToBufferInfo2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_image: vk::Image,
         pub src_image_layout: vk::ImageLayout,
         pub dst_buffer: vk::Buffer,
@@ -3749,13 +3646,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for CopyImageToBufferInfo2<'_> {}
     unsafe impl Sync for CopyImageToBufferInfo2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CopyImageToBufferInfo2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CopyImageToBufferInfo2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_IMAGE_TO_BUFFER_INFO_2;
     }
     impl<'a> Default for CopyImageToBufferInfo2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COPY_IMAGE_TO_BUFFER_INFO_2,
                 p_next: Default::default(),
                 src_image: Default::default(),
                 src_image_layout: Default::default(),
@@ -3790,7 +3687,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ResolveImageInfo2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_image: vk::Image,
         pub src_image_layout: vk::ImageLayout,
         pub dst_image: vk::Image,
@@ -3801,13 +3698,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ResolveImageInfo2<'_> {}
     unsafe impl Sync for ResolveImageInfo2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ResolveImageInfo2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ResolveImageInfo2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RESOLVE_IMAGE_INFO_2;
     }
     impl<'a> Default for ResolveImageInfo2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RESOLVE_IMAGE_INFO_2,
                 p_next: Default::default(),
                 src_image: Default::default(),
                 src_image_layout: Default::default(),
@@ -3847,24 +3744,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderTerminateInvocationFeatures<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_terminate_invocation: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderTerminateInvocationFeatures<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderTerminateInvocationFeatures<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceShaderTerminateInvocationFeatures<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderTerminateInvocationFeatures<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderTerminateInvocationFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceShaderTerminateInvocationFeatures<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES,
                 p_next: Default::default(),
                 shader_terminate_invocation: Default::default(),
                 _marker: PhantomData,
@@ -3885,7 +3782,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MemoryBarrier2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_stage_mask: vk::PipelineStageFlags2,
         pub src_access_mask: vk::AccessFlags2,
         pub dst_stage_mask: vk::PipelineStageFlags2,
@@ -3894,14 +3791,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for MemoryBarrier2<'_> {}
     unsafe impl Sync for MemoryBarrier2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryBarrier2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MemoryBarrier2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_BARRIER_2;
     }
-    unsafe impl<'a> crate::Extends<vk::SubpassDependency2<'_>> for MemoryBarrier2<'a> {}
+    unsafe impl<'a> Extends<vk::SubpassDependency2<'_>> for MemoryBarrier2<'a> {}
     impl<'a> Default for MemoryBarrier2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MEMORY_BARRIER_2,
                 p_next: Default::default(),
                 src_stage_mask: Default::default(),
                 src_access_mask: Default::default(),
@@ -3940,7 +3837,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageMemoryBarrier2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_stage_mask: vk::PipelineStageFlags2,
         pub src_access_mask: vk::AccessFlags2,
         pub dst_stage_mask: vk::PipelineStageFlags2,
@@ -3955,13 +3852,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageMemoryBarrier2<'_> {}
     unsafe impl Sync for ImageMemoryBarrier2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageMemoryBarrier2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageMemoryBarrier2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_MEMORY_BARRIER_2;
     }
     impl<'a> Default for ImageMemoryBarrier2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_MEMORY_BARRIER_2,
                 p_next: Default::default(),
                 src_stage_mask: Default::default(),
                 src_access_mask: Default::default(),
@@ -4033,7 +3930,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferMemoryBarrier2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_stage_mask: vk::PipelineStageFlags2,
         pub src_access_mask: vk::AccessFlags2,
         pub dst_stage_mask: vk::PipelineStageFlags2,
@@ -4047,13 +3944,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BufferMemoryBarrier2<'_> {}
     unsafe impl Sync for BufferMemoryBarrier2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BufferMemoryBarrier2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferMemoryBarrier2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_MEMORY_BARRIER_2;
     }
     impl<'a> Default for BufferMemoryBarrier2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_MEMORY_BARRIER_2,
                 p_next: Default::default(),
                 src_stage_mask: Default::default(),
                 src_access_mask: Default::default(),
@@ -4117,7 +4014,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DependencyInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub dependency_flags: vk::DependencyFlags,
         pub memory_barrier_count: u32,
         pub p_memory_barriers: *const vk::MemoryBarrier2<'a>,
@@ -4129,13 +4026,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for DependencyInfo<'_> {}
     unsafe impl Sync for DependencyInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DependencyInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DependencyInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEPENDENCY_INFO;
     }
     impl<'a> Default for DependencyInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEPENDENCY_INFO,
                 p_next: Default::default(),
                 dependency_flags: Default::default(),
                 memory_barrier_count: Default::default(),
@@ -4186,7 +4083,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SemaphoreSubmitInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub semaphore: vk::Semaphore,
         pub value: u64,
         pub stage_mask: vk::PipelineStageFlags2,
@@ -4195,13 +4092,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for SemaphoreSubmitInfo<'_> {}
     unsafe impl Sync for SemaphoreSubmitInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreSubmitInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SemaphoreSubmitInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SEMAPHORE_SUBMIT_INFO;
     }
     impl<'a> Default for SemaphoreSubmitInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SEMAPHORE_SUBMIT_INFO,
                 p_next: Default::default(),
                 semaphore: Default::default(),
                 value: Default::default(),
@@ -4234,20 +4131,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CommandBufferSubmitInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub command_buffer: vk::CommandBuffer,
         pub device_mask: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CommandBufferSubmitInfo<'_> {}
     unsafe impl Sync for CommandBufferSubmitInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CommandBufferSubmitInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CommandBufferSubmitInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMMAND_BUFFER_SUBMIT_INFO;
     }
     impl<'a> Default for CommandBufferSubmitInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COMMAND_BUFFER_SUBMIT_INFO,
                 p_next: Default::default(),
                 command_buffer: Default::default(),
                 device_mask: Default::default(),
@@ -4270,7 +4167,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SubmitInfo2<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::SubmitFlags,
         pub wait_semaphore_info_count: u32,
         pub p_wait_semaphore_infos: *const vk::SemaphoreSubmitInfo<'a>,
@@ -4282,13 +4179,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for SubmitInfo2<'_> {}
     unsafe impl Sync for SubmitInfo2<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SubmitInfo2<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SubmitInfo2<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SUBMIT_INFO_2;
     }
     impl<'a> Default for SubmitInfo2<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SUBMIT_INFO_2,
                 p_next: Default::default(),
                 flags: Default::default(),
                 wait_semaphore_info_count: Default::default(),
@@ -4336,24 +4233,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSynchronization2Features<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub synchronization2: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSynchronization2Features<'_> {}
     unsafe impl Sync for PhysicalDeviceSynchronization2Features<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceSynchronization2Features<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceSynchronization2Features<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceSynchronization2Features<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceSynchronization2Features<'a> {}
     impl<'a> Default for PhysicalDeviceSynchronization2Features<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES,
                 p_next: Default::default(),
                 synchronization2: Default::default(),
                 _marker: PhantomData,
@@ -4371,24 +4267,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderIntegerDotProductFeatures<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_integer_dot_product: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderIntegerDotProductFeatures<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderIntegerDotProductFeatures<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceShaderIntegerDotProductFeatures<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderIntegerDotProductFeatures<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderIntegerDotProductFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceShaderIntegerDotProductFeatures<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES,
                 p_next: Default::default(),
                 shader_integer_dot_product: Default::default(),
                 _marker: PhantomData,
@@ -4409,7 +4305,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderIntegerDotProductProperties<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub integer_dot_product8_bit_unsigned_accelerated: vk::Bool32,
         pub integer_dot_product8_bit_signed_accelerated: vk::Bool32,
         pub integer_dot_product8_bit_mixed_signedness_accelerated: vk::Bool32,
@@ -4444,16 +4340,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceShaderIntegerDotProductProperties<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderIntegerDotProductProperties<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceShaderIntegerDotProductProperties<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceShaderIntegerDotProductProperties<'a> {}
     impl<'a> Default for PhysicalDeviceShaderIntegerDotProductProperties<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES,
                 p_next: Default::default(),
                 integer_dot_product8_bit_unsigned_accelerated: Default::default(),
                 integer_dot_product8_bit_signed_accelerated: Default::default(),
@@ -4746,7 +4642,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct FormatProperties3<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub linear_tiling_features: vk::FormatFeatureFlags2,
         pub optimal_tiling_features: vk::FormatFeatureFlags2,
         pub buffer_features: vk::FormatFeatureFlags2,
@@ -4754,14 +4650,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for FormatProperties3<'_> {}
     unsafe impl Sync for FormatProperties3<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for FormatProperties3<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for FormatProperties3<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FORMAT_PROPERTIES_3;
     }
-    unsafe impl<'a> crate::Extends<vk::FormatProperties2<'_>> for FormatProperties3<'a> {}
+    unsafe impl<'a> Extends<vk::FormatProperties2<'_>> for FormatProperties3<'a> {}
     impl<'a> Default for FormatProperties3<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::FORMAT_PROPERTIES_3,
                 p_next: Default::default(),
                 linear_tiling_features: Default::default(),
                 optimal_tiling_features: Default::default(),
@@ -4798,7 +4694,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineRenderingCreateInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub view_mask: u32,
         pub color_attachment_count: u32,
         pub p_color_attachment_formats: *const vk::Format,
@@ -4808,15 +4704,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineRenderingCreateInfo<'_> {}
     unsafe impl Sync for PipelineRenderingCreateInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineRenderingCreateInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineRenderingCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_RENDERING_CREATE_INFO;
     }
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for PipelineRenderingCreateInfo<'a> {}
     impl<'a> Default for PipelineRenderingCreateInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_RENDERING_CREATE_INFO,
                 p_next: Default::default(),
                 view_mask: Default::default(),
                 color_attachment_count: Default::default(),
@@ -4860,7 +4756,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderingInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::RenderingFlags,
         pub render_area: vk::Rect2D,
         pub layer_count: u32,
@@ -4873,13 +4769,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for RenderingInfo<'_> {}
     unsafe impl Sync for RenderingInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for RenderingInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RenderingInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDERING_INFO;
     }
     impl<'a> Default for RenderingInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDERING_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 render_area: Default::default(),
@@ -4938,7 +4834,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderingAttachmentInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub image_view: vk::ImageView,
         pub image_layout: vk::ImageLayout,
         pub resolve_mode: vk::ResolveModeFlagBits,
@@ -4951,13 +4847,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for RenderingAttachmentInfo<'_> {}
     unsafe impl Sync for RenderingAttachmentInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for RenderingAttachmentInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RenderingAttachmentInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDERING_ATTACHMENT_INFO;
     }
     impl<'a> Default for RenderingAttachmentInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDERING_ATTACHMENT_INFO,
                 p_next: Default::default(),
                 image_view: Default::default(),
                 image_layout: Default::default(),
@@ -5013,24 +4909,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDynamicRenderingFeatures<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub dynamic_rendering: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDynamicRenderingFeatures<'_> {}
     unsafe impl Sync for PhysicalDeviceDynamicRenderingFeatures<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceDynamicRenderingFeatures<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceDynamicRenderingFeatures<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDynamicRenderingFeatures<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDynamicRenderingFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceDynamicRenderingFeatures<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES,
                 p_next: Default::default(),
                 dynamic_rendering: Default::default(),
                 _marker: PhantomData,
@@ -5048,7 +4943,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CommandBufferInheritanceRenderingInfo<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::RenderingFlags,
         pub view_mask: u32,
         pub color_attachment_count: u32,
@@ -5060,16 +4955,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for CommandBufferInheritanceRenderingInfo<'_> {}
     unsafe impl Sync for CommandBufferInheritanceRenderingInfo<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for CommandBufferInheritanceRenderingInfo<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CommandBufferInheritanceRenderingInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDERING_INFO;
     }
-    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> Extends<vk::CommandBufferInheritanceInfo<'_>>
     for CommandBufferInheritanceRenderingInfo<'a> {}
     impl<'a> Default for CommandBufferInheritanceRenderingInfo<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDERING_INFO,
                 p_next: Default::default(),
                 flags: Default::default(),
                 view_mask: Default::default(),
@@ -5125,8 +5019,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PrivateDataSlotCreateFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PrivateDataSlotCreateFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PrivateDataSlotCreateFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[(Self::BASE_OBJECT_HANDLE_NV.0, "BASE_OBJECT_HANDLE_NV")],
@@ -5154,40 +5048,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PrivateDataSlotCreateFlags {
+    impl BitOr for PrivateDataSlotCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PrivateDataSlotCreateFlags {
+    impl BitOrAssign for PrivateDataSlotCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PrivateDataSlotCreateFlags {
+    impl BitAnd for PrivateDataSlotCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PrivateDataSlotCreateFlags {
+    impl BitAndAssign for PrivateDataSlotCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PrivateDataSlotCreateFlags {
+    impl BitXor for PrivateDataSlotCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PrivateDataSlotCreateFlags {
+    impl BitXorAssign for PrivateDataSlotCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PrivateDataSlotCreateFlags {
+    impl Not for PrivateDataSlotCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5212,17 +5106,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PrivateDataSlotCreateFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PrivateDataSlotCreateFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCreationFeedbackFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineCreationFeedbackFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineCreationFeedbackFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -5257,40 +5151,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineCreationFeedbackFlags {
+    impl BitOr for PipelineCreationFeedbackFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineCreationFeedbackFlags {
+    impl BitOrAssign for PipelineCreationFeedbackFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineCreationFeedbackFlags {
+    impl BitAnd for PipelineCreationFeedbackFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineCreationFeedbackFlags {
+    impl BitAndAssign for PipelineCreationFeedbackFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineCreationFeedbackFlags {
+    impl BitXor for PipelineCreationFeedbackFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineCreationFeedbackFlags {
+    impl BitXorAssign for PipelineCreationFeedbackFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineCreationFeedbackFlags {
+    impl Not for PipelineCreationFeedbackFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5315,17 +5209,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineCreationFeedbackFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PipelineCreationFeedbackFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccessFlags2(pub(crate) u64);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccessFlags2 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccessFlags2 {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -5456,40 +5350,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for AccessFlags2 {
+    impl BitOr for AccessFlags2 {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for AccessFlags2 {
+    impl BitOrAssign for AccessFlags2 {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for AccessFlags2 {
+    impl BitAnd for AccessFlags2 {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for AccessFlags2 {
+    impl BitAndAssign for AccessFlags2 {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for AccessFlags2 {
+    impl BitXor for AccessFlags2 {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for AccessFlags2 {
+    impl BitXorAssign for AccessFlags2 {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for AccessFlags2 {
+    impl Not for AccessFlags2 {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5514,17 +5408,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccessFlagBits2 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for AccessFlagBits2 {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineStageFlags2(pub(crate) u64);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineStageFlags2 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PipelineStageFlags2 {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -5620,40 +5514,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineStageFlags2 {
+    impl BitOr for PipelineStageFlags2 {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineStageFlags2 {
+    impl BitOrAssign for PipelineStageFlags2 {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineStageFlags2 {
+    impl BitAnd for PipelineStageFlags2 {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineStageFlags2 {
+    impl BitAndAssign for PipelineStageFlags2 {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineStageFlags2 {
+    impl BitXor for PipelineStageFlags2 {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineStageFlags2 {
+    impl BitXorAssign for PipelineStageFlags2 {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineStageFlags2 {
+    impl Not for PipelineStageFlags2 {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5678,17 +5572,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineStageFlagBits2 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PipelineStageFlagBits2 {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FormatFeatureFlags2(pub(crate) u64);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FormatFeatureFlags2 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for FormatFeatureFlags2 {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -5836,40 +5730,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for FormatFeatureFlags2 {
+    impl BitOr for FormatFeatureFlags2 {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for FormatFeatureFlags2 {
+    impl BitOrAssign for FormatFeatureFlags2 {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for FormatFeatureFlags2 {
+    impl BitAnd for FormatFeatureFlags2 {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for FormatFeatureFlags2 {
+    impl BitAndAssign for FormatFeatureFlags2 {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for FormatFeatureFlags2 {
+    impl BitXor for FormatFeatureFlags2 {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for FormatFeatureFlags2 {
+    impl BitXorAssign for FormatFeatureFlags2 {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for FormatFeatureFlags2 {
+    impl Not for FormatFeatureFlags2 {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5894,17 +5788,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FormatFeatureFlagBits2 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for FormatFeatureFlagBits2 {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct RenderingFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for RenderingFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for RenderingFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -5951,40 +5845,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for RenderingFlags {
+    impl BitOr for RenderingFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for RenderingFlags {
+    impl BitOrAssign for RenderingFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for RenderingFlags {
+    impl BitAnd for RenderingFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for RenderingFlags {
+    impl BitAndAssign for RenderingFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for RenderingFlags {
+    impl BitXor for RenderingFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for RenderingFlags {
+    impl BitXorAssign for RenderingFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for RenderingFlags {
+    impl Not for RenderingFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -6009,17 +5903,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for RenderingFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for RenderingFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ToolPurposeFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ToolPurposeFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ToolPurposeFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -6055,40 +5949,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ToolPurposeFlags {
+    impl BitOr for ToolPurposeFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ToolPurposeFlags {
+    impl BitOrAssign for ToolPurposeFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ToolPurposeFlags {
+    impl BitAnd for ToolPurposeFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ToolPurposeFlags {
+    impl BitAndAssign for ToolPurposeFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ToolPurposeFlags {
+    impl BitXor for ToolPurposeFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ToolPurposeFlags {
+    impl BitXorAssign for ToolPurposeFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ToolPurposeFlags {
+    impl Not for ToolPurposeFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -6113,17 +6007,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ToolPurposeFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ToolPurposeFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SubmitFlags(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SubmitFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SubmitFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(f, &[(Self::PROTECTED.0, "PROTECTED")], self.0)
         }
     }
@@ -6147,40 +6041,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for SubmitFlags {
+    impl BitOr for SubmitFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for SubmitFlags {
+    impl BitOrAssign for SubmitFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for SubmitFlags {
+    impl BitAnd for SubmitFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for SubmitFlags {
+    impl BitAndAssign for SubmitFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for SubmitFlags {
+    impl BitXor for SubmitFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for SubmitFlags {
+    impl BitXorAssign for SubmitFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for SubmitFlags {
+    impl Not for SubmitFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -6205,9 +6099,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SubmitFlagBits {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for SubmitFlagBits {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type Flags64 = u64;
@@ -6234,8 +6128,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for PrivateDataSlot {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for PrivateDataSlot {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

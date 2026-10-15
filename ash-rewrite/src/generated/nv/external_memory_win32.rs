@@ -4,8 +4,10 @@
 #![doc(alias = "VK_NV_external_memory_win32")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_NV_external_memory_win32](crate::nv::external_memory_win32)
 impl vk::StructureType {
     pub const IMPORT_MEMORY_WIN32_HANDLE_INFO_NV: Self = Self(1000057000);
@@ -20,26 +22,22 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_memory_win32_handle: unsafe {
                 unsafe extern "system" fn get_memory_win32_handle(
                     _: vk::Device,
                     _: vk::DeviceMemory,
                     _: vk::ExternalMemoryHandleTypeFlagsNV,
-                    _: *mut crate::platform_types::HANDLE,
+                    _: *mut vk::HANDLE,
                 ) -> vk::Result {
                     panic!("unable to load vkGetMemoryWin32HandleNV")
                 }
                 let val = _f(c"vkGetMemoryWin32HandleNV");
-                if val.is_null() {
-                    get_memory_win32_handle
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_memory_win32_handle } else { transmute(val) }
             },
         }
     }
@@ -47,13 +45,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -62,7 +60,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetMemoryWin32HandleNV
@@ -71,8 +69,8 @@ impl Device {
         &self,
         memory: vk::DeviceMemory,
         handle_type: vk::ExternalMemoryHandleTypeFlagsNV,
-    ) -> VkResult<crate::platform_types::HANDLE> {
-        let mut handle = core::mem::MaybeUninit::uninit();
+    ) -> VkResult<vk::HANDLE> {
+        let mut handle = MaybeUninit::uninit();
         (self
             .fp
             .get_memory_win32_handle)(
@@ -87,27 +85,30 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImportMemoryWin32HandleInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub handle_type: vk::ExternalMemoryHandleTypeFlagsNV,
-        pub handle: crate::platform_types::HANDLE,
+        pub handle: vk::HANDLE,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportMemoryWin32HandleInfoNV<'_> {}
     unsafe impl Sync for ImportMemoryWin32HandleInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryWin32HandleInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportMemoryWin32HandleInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> Extends<vk::MemoryAllocateInfo<'_>>
     for ImportMemoryWin32HandleInfoNV<'a> {}
     impl<'a> Default for ImportMemoryWin32HandleInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_NV,
                 p_next: Default::default(),
                 handle_type: Default::default(),
                 handle: Default::default(),
@@ -123,7 +124,7 @@ pub(crate) mod items {
             self.handle_type = handle_type;
             self
         }
-        pub fn handle(mut self, handle: crate::platform_types::HANDLE) -> Self {
+        pub fn handle(mut self, handle: vk::HANDLE) -> Self {
             self.handle = handle;
             self
         }
@@ -133,22 +134,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExportMemoryWin32HandleInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
-        pub dw_access: crate::platform_types::DWORD,
+        pub p_next: *const ffi::c_void,
+        pub p_attributes: *const vk::SECURITY_ATTRIBUTES,
+        pub dw_access: vk::DWORD,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExportMemoryWin32HandleInfoNV<'_> {}
     unsafe impl Sync for ExportMemoryWin32HandleInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryWin32HandleInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExportMemoryWin32HandleInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> Extends<vk::MemoryAllocateInfo<'_>>
     for ExportMemoryWin32HandleInfoNV<'a> {}
     impl<'a> Default for ExportMemoryWin32HandleInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_NV,
                 p_next: Default::default(),
                 p_attributes: Default::default(),
                 dw_access: Default::default(),
@@ -157,14 +158,11 @@ pub(crate) mod items {
         }
     }
     impl<'a> ExportMemoryWin32HandleInfoNV<'a> {
-        pub fn attributes(
-            mut self,
-            attributes: &'a crate::platform_types::SECURITY_ATTRIBUTES,
-        ) -> Self {
+        pub fn attributes(mut self, attributes: &'a vk::SECURITY_ATTRIBUTES) -> Self {
             self.p_attributes = attributes;
             self
         }
-        pub fn dw_access(mut self, dw_access: crate::platform_types::DWORD) -> Self {
+        pub fn dw_access(mut self, dw_access: vk::DWORD) -> Self {
             self.dw_access = dw_access;
             self
         }
@@ -173,7 +171,7 @@ pub(crate) mod items {
         device: vk::Device,
         memory: vk::DeviceMemory,
         handle_type: vk::ExternalMemoryHandleTypeFlagsNV,
-        p_handle: *mut crate::platform_types::HANDLE,
+        p_handle: *mut vk::HANDLE,
     ) -> vk::Result;
 }
 pub use items::*;

@@ -5,7 +5,8 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_shared_presentable_image](crate::khr::shared_presentable_image)
 impl vk::ImageLayout {
     pub const SHARED_PRESENT_KHR: Self = Self(1000111000);
@@ -28,10 +29,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_swapchain_status: unsafe {
                 unsafe extern "system" fn get_swapchain_status(
@@ -41,11 +42,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetSwapchainStatusKHR")
                 }
                 let val = _f(c"vkGetSwapchainStatusKHR");
-                if val.is_null() {
-                    get_swapchain_status
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_swapchain_status } else { transmute(val) }
             },
         }
     }
@@ -53,13 +50,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -68,7 +65,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetSwapchainStatusKHR
@@ -83,27 +80,29 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SharedPresentSurfaceCapabilitiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shared_present_supported_usage_flags: vk::ImageUsageFlags,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SharedPresentSurfaceCapabilitiesKHR<'_> {}
     unsafe impl Sync for SharedPresentSurfaceCapabilitiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for SharedPresentSurfaceCapabilitiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SharedPresentSurfaceCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> Extends<vk::SurfaceCapabilities2KHR<'_>>
     for SharedPresentSurfaceCapabilitiesKHR<'a> {}
     impl<'a> Default for SharedPresentSurfaceCapabilitiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_KHR,
                 p_next: Default::default(),
                 shared_present_supported_usage_flags: Default::default(),
                 _marker: PhantomData,

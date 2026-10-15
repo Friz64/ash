@@ -4,7 +4,9 @@
 #![doc(alias = "VK_VALVE_descriptor_set_host_mapping")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_VALVE_descriptor_set_host_mapping](crate::valve::descriptor_set_host_mapping)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE: Self = Self(
@@ -23,10 +25,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_descriptor_set_layout_host_mapping_info: unsafe {
                 unsafe extern "system" fn get_descriptor_set_layout_host_mapping_info(
@@ -40,14 +42,14 @@ impl DeviceFn {
                 if val.is_null() {
                     get_descriptor_set_layout_host_mapping_info
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_descriptor_set_host_mapping: unsafe {
                 unsafe extern "system" fn get_descriptor_set_host_mapping(
                     _: vk::Device,
                     _: vk::DescriptorSet,
-                    _: *mut *mut core::ffi::c_void,
+                    _: *mut *mut ffi::c_void,
                 ) {
                     panic!("unable to load vkGetDescriptorSetHostMappingVALVE")
                 }
@@ -55,7 +57,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_descriptor_set_host_mapping
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -64,13 +66,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -79,7 +81,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetDescriptorSetLayoutHostMappingInfoVALVE
@@ -88,7 +90,7 @@ impl Device {
         &self,
         binding_reference: &vk::DescriptorSetBindingReferenceVALVE<'_>,
     ) -> vk::DescriptorSetLayoutHostMappingInfoVALVE<'_> {
-        let mut host_mapping = core::mem::MaybeUninit::uninit();
+        let mut host_mapping = MaybeUninit::uninit();
         (self
             .fp
             .get_descriptor_set_layout_host_mapping_info)(
@@ -103,8 +105,8 @@ impl Device {
     pub unsafe fn get_descriptor_set_host_mapping(
         &self,
         descriptor_set: vk::DescriptorSet,
-    ) -> *mut core::ffi::c_void {
-        let mut data = core::mem::MaybeUninit::uninit();
+    ) -> *mut ffi::c_void {
+        let mut data = MaybeUninit::uninit();
         (self
             .fp
             .get_descriptor_set_host_mapping)(
@@ -118,29 +120,32 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub descriptor_set_host_mapping: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'_> {}
     unsafe impl Sync for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE,
                 p_next: Default::default(),
                 descriptor_set_host_mapping: Default::default(),
                 _marker: PhantomData,
@@ -161,21 +166,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DescriptorSetBindingReferenceVALVE<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub descriptor_set_layout: vk::DescriptorSetLayout,
         pub binding: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DescriptorSetBindingReferenceVALVE<'_> {}
     unsafe impl Sync for DescriptorSetBindingReferenceVALVE<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DescriptorSetBindingReferenceVALVE<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DescriptorSetBindingReferenceVALVE<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DESCRIPTOR_SET_BINDING_REFERENCE_VALVE;
     }
     impl<'a> Default for DescriptorSetBindingReferenceVALVE<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DESCRIPTOR_SET_BINDING_REFERENCE_VALVE,
                 p_next: Default::default(),
                 descriptor_set_layout: Default::default(),
                 binding: Default::default(),
@@ -201,21 +205,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DescriptorSetLayoutHostMappingInfoVALVE<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub descriptor_offset: usize,
         pub descriptor_size: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DescriptorSetLayoutHostMappingInfoVALVE<'_> {}
     unsafe impl Sync for DescriptorSetLayoutHostMappingInfoVALVE<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DescriptorSetLayoutHostMappingInfoVALVE<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DescriptorSetLayoutHostMappingInfoVALVE<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE;
     }
     impl<'a> Default for DescriptorSetLayoutHostMappingInfoVALVE<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE,
                 p_next: Default::default(),
                 descriptor_offset: Default::default(),
                 descriptor_size: Default::default(),
@@ -241,7 +244,7 @@ pub(crate) mod items {
     pub type PFN_vkGetDescriptorSetHostMappingVALVE = unsafe extern "system" fn(
         device: vk::Device,
         descriptor_set: vk::DescriptorSet,
-        pp_data: *mut *mut core::ffi::c_void,
+        pp_data: *mut *mut ffi::c_void,
     );
 }
 pub use items::*;

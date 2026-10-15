@@ -4,7 +4,10 @@
 #![doc(alias = "VK_AMD_shader_info")]
 use core::ffi::CStr;
 use crate::vk;
-use core::ffi::c_void;
+use alloc::vec::Vec;
+use crate::VkResult;
+use core::ffi;
+use core::mem::transmute;
 ///Provided by [VK_AMD_shader_info](crate::amd::shader_info)
 impl ShaderInfoTypeAMD {
     pub const STATISTICS: Self = Self(0);
@@ -20,10 +23,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_shader_info: unsafe {
                 unsafe extern "system" fn get_shader_info(
@@ -32,12 +35,12 @@ impl DeviceFn {
                     _: vk::ShaderStageFlagBits,
                     _: vk::ShaderInfoTypeAMD,
                     _: *mut usize,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!("unable to load vkGetShaderInfoAMD")
                 }
                 let val = _f(c"vkGetShaderInfoAMD");
-                if val.is_null() { get_shader_info } else { ::core::mem::transmute(val) }
+                if val.is_null() { get_shader_info } else { transmute(val) }
             },
         }
     }
@@ -45,13 +48,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -60,7 +63,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetShaderInfoAMD
@@ -70,7 +73,7 @@ impl Device {
         pipeline: vk::Pipeline,
         shader_stage: vk::ShaderStageFlagBits,
         info_type: vk::ShaderInfoTypeAMD,
-    ) -> crate::VkResult<Vec<core::ffi::c_void>> {
+    ) -> VkResult<Vec<ffi::c_void>> {
         crate::read_into_uninitialized_vector(|info_size, info| (self
             .fp
             .get_shader_info)(
@@ -85,6 +88,10 @@ impl Device {
 }
 pub(crate) mod items {
     use crate::vk;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -151,7 +158,7 @@ pub(crate) mod items {
                 num_physical_sgprs: Default::default(),
                 num_available_vgprs: Default::default(),
                 num_available_sgprs: Default::default(),
-                compute_work_group_size: unsafe { core::mem::zeroed() },
+                compute_work_group_size: unsafe { zeroed() },
             }
         }
     }
@@ -198,8 +205,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ShaderInfoTypeAMD(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ShaderInfoTypeAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ShaderInfoTypeAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::STATISTICS => Some("STATISTICS"),
                 Self::BINARY => Some("BINARY"),
@@ -208,7 +215,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -228,7 +235,7 @@ pub(crate) mod items {
         shader_stage: vk::ShaderStageFlagBits,
         info_type: vk::ShaderInfoTypeAMD,
         p_info_size: *mut usize,
-        p_info: *mut core::ffi::c_void,
+        p_info: *mut ffi::c_void,
     ) -> vk::Result;
 }
 pub use items::*;

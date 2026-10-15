@@ -4,7 +4,8 @@
 #![doc(alias = "VK_KHR_buffer_device_address")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_buffer_device_address](crate::khr::buffer_device_address)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES;
@@ -62,10 +63,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_buffer_opaque_capture_address: unsafe {
                 unsafe extern "system" fn get_buffer_opaque_capture_address(
@@ -78,7 +79,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_buffer_opaque_capture_address
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_buffer_device_address: unsafe {
@@ -89,11 +90,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetBufferDeviceAddressKHR")
                 }
                 let val = _f(c"vkGetBufferDeviceAddressKHR");
-                if val.is_null() {
-                    get_buffer_device_address
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_buffer_device_address } else { transmute(val) }
             },
             get_device_memory_opaque_capture_address: unsafe {
                 unsafe extern "system" fn get_device_memory_opaque_capture_address(
@@ -106,7 +103,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_device_memory_opaque_capture_address
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -115,13 +112,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -130,7 +127,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetBufferOpaqueCaptureAddress

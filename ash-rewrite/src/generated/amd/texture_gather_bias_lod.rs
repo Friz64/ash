@@ -13,27 +13,29 @@ pub const NAME: &CStr = c"VK_AMD_texture_gather_bias_lod";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct TextureLODGatherFormatPropertiesAMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub supports_texture_gather_lod_bias_amd: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TextureLODGatherFormatPropertiesAMD<'_> {}
     unsafe impl Sync for TextureLODGatherFormatPropertiesAMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for TextureLODGatherFormatPropertiesAMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for TextureLODGatherFormatPropertiesAMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageFormatProperties2<'_>>
+    unsafe impl<'a> Extends<vk::ImageFormatProperties2<'_>>
     for TextureLODGatherFormatPropertiesAMD<'a> {}
     impl<'a> Default for TextureLODGatherFormatPropertiesAMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD,
                 p_next: Default::default(),
                 supports_texture_gather_lod_bias_amd: Default::default(),
                 _marker: PhantomData,

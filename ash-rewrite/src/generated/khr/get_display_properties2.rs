@@ -5,7 +5,10 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_get_display_properties2](crate::khr::get_display_properties2)
 impl vk::StructureType {
     pub const DISPLAY_PROPERTIES_2_KHR: Self = Self(1000121000);
@@ -26,10 +29,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_display_properties2: unsafe {
                 unsafe extern "system" fn get_physical_device_display_properties2(
@@ -43,7 +46,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_display_properties2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_display_plane_properties2: unsafe {
@@ -60,7 +63,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_display_plane_properties2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_display_mode_properties2: unsafe {
@@ -73,11 +76,7 @@ impl InstanceFn {
                     panic!("unable to load vkGetDisplayModeProperties2KHR")
                 }
                 let val = _f(c"vkGetDisplayModeProperties2KHR");
-                if val.is_null() {
-                    get_display_mode_properties2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_display_mode_properties2 } else { transmute(val) }
             },
             get_display_plane_capabilities2: unsafe {
                 unsafe extern "system" fn get_display_plane_capabilities2(
@@ -91,7 +90,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_display_plane_capabilities2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -100,13 +99,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -115,7 +114,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceDisplayProperties2KHR
@@ -124,13 +123,13 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> VkResult<usize> {
-        let mut property_count = core::mem::MaybeUninit::uninit();
+        let mut property_count = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_display_properties2)(
                 physical_device,
                 property_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(property_count)
             .map(|c| c as usize)
@@ -141,7 +140,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         properties: &mut [vk::DisplayProperties2KHR<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut property_count = properties.len() as _;
         (self
             .fp
@@ -160,13 +159,13 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> VkResult<usize> {
-        let mut property_count = core::mem::MaybeUninit::uninit();
+        let mut property_count = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_display_plane_properties2)(
                 physical_device,
                 property_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(property_count)
             .map(|c| c as usize)
@@ -177,7 +176,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         properties: &mut [vk::DisplayPlaneProperties2KHR<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut property_count = properties.len() as _;
         (self
             .fp
@@ -197,14 +196,14 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         display: vk::DisplayKHR,
     ) -> VkResult<usize> {
-        let mut property_count = core::mem::MaybeUninit::uninit();
+        let mut property_count = MaybeUninit::uninit();
         (self
             .fp
             .get_display_mode_properties2)(
                 physical_device,
                 display,
                 property_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(property_count)
             .map(|c| c as usize)
@@ -216,7 +215,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         display: vk::DisplayKHR,
         properties: &mut [vk::DisplayModeProperties2KHR<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut property_count = properties.len() as _;
         (self
             .fp
@@ -237,7 +236,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         display_plane_info: &vk::DisplayPlaneInfo2KHR<'_>,
     ) -> VkResult<vk::DisplayPlaneCapabilities2KHR<'_>> {
-        let mut capabilities = core::mem::MaybeUninit::uninit();
+        let mut capabilities = MaybeUninit::uninit();
         (self
             .fp
             .get_display_plane_capabilities2)(
@@ -251,24 +250,26 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DisplayProperties2KHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub display_properties: vk::DisplayPropertiesKHR<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplayProperties2KHR<'_> {}
     unsafe impl Sync for DisplayProperties2KHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayProperties2KHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DisplayProperties2KHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_PROPERTIES_2_KHR;
     }
     impl<'a> Default for DisplayProperties2KHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DISPLAY_PROPERTIES_2_KHR,
                 p_next: Default::default(),
                 display_properties: Default::default(),
                 _marker: PhantomData,
@@ -289,19 +290,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DisplayPlaneProperties2KHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub display_plane_properties: vk::DisplayPlanePropertiesKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplayPlaneProperties2KHR<'_> {}
     unsafe impl Sync for DisplayPlaneProperties2KHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPlaneProperties2KHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DisplayPlaneProperties2KHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_PLANE_PROPERTIES_2_KHR;
     }
     impl<'a> Default for DisplayPlaneProperties2KHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DISPLAY_PLANE_PROPERTIES_2_KHR,
                 p_next: Default::default(),
                 display_plane_properties: Default::default(),
                 _marker: PhantomData,
@@ -322,19 +323,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DisplayModeProperties2KHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub display_mode_properties: vk::DisplayModePropertiesKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplayModeProperties2KHR<'_> {}
     unsafe impl Sync for DisplayModeProperties2KHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeProperties2KHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DisplayModeProperties2KHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_MODE_PROPERTIES_2_KHR;
     }
     impl<'a> Default for DisplayModeProperties2KHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DISPLAY_MODE_PROPERTIES_2_KHR,
                 p_next: Default::default(),
                 display_mode_properties: Default::default(),
                 _marker: PhantomData,
@@ -355,20 +356,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DisplayPlaneInfo2KHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub mode: vk::DisplayModeKHR,
         pub plane_index: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplayPlaneInfo2KHR<'_> {}
     unsafe impl Sync for DisplayPlaneInfo2KHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPlaneInfo2KHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DisplayPlaneInfo2KHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_PLANE_INFO_2_KHR;
     }
     impl<'a> Default for DisplayPlaneInfo2KHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DISPLAY_PLANE_INFO_2_KHR,
                 p_next: Default::default(),
                 mode: Default::default(),
                 plane_index: Default::default(),
@@ -391,19 +392,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DisplayPlaneCapabilities2KHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub capabilities: vk::DisplayPlaneCapabilitiesKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplayPlaneCapabilities2KHR<'_> {}
     unsafe impl Sync for DisplayPlaneCapabilities2KHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPlaneCapabilities2KHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DisplayPlaneCapabilities2KHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_PLANE_CAPABILITIES_2_KHR;
     }
     impl<'a> Default for DisplayPlaneCapabilities2KHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DISPLAY_PLANE_CAPABILITIES_2_KHR,
                 p_next: Default::default(),
                 capabilities: Default::default(),
                 _marker: PhantomData,

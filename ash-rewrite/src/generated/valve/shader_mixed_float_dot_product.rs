@@ -15,12 +15,15 @@ pub const NAME: &CStr = c"VK_VALVE_shader_mixed_float_dot_product";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_mixed_float_dot_product_float16_acc_float32: vk::Bool32,
         pub shader_mixed_float_dot_product_float16_acc_float16: vk::Bool32,
         pub shader_mixed_float_dot_product_b_float16_acc: vk::Bool32,
@@ -29,18 +32,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {}
     impl<'a> Default for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE,
                 p_next: Default::default(),
                 shader_mixed_float_dot_product_float16_acc_float32: Default::default(),
                 shader_mixed_float_dot_product_float16_acc_float16: Default::default(),

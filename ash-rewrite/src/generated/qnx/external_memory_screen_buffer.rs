@@ -4,8 +4,10 @@
 #![doc(alias = "VK_QNX_external_memory_screen_buffer")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_QNX_external_memory_screen_buffer](crate::qnx::external_memory_screen_buffer)
 impl vk::StructureType {
     pub const SCREEN_BUFFER_PROPERTIES_QNX: Self = Self(1000529000);
@@ -35,25 +37,21 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_screen_buffer_properties: unsafe {
                 unsafe extern "system" fn get_screen_buffer_properties(
                     _: vk::Device,
-                    _: *const crate::platform_types::_screen_buffer,
+                    _: *const vk::_screen_buffer,
                     _: *mut vk::ScreenBufferPropertiesQNX<'_>,
                 ) -> vk::Result {
                     panic!("unable to load vkGetScreenBufferPropertiesQNX")
                 }
                 let val = _f(c"vkGetScreenBufferPropertiesQNX");
-                if val.is_null() {
-                    get_screen_buffer_properties
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_screen_buffer_properties } else { transmute(val) }
             },
         }
     }
@@ -61,13 +59,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -76,16 +74,16 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetScreenBufferPropertiesQNX
     #[inline]
     pub unsafe fn get_screen_buffer_properties(
         &self,
-        buffer: &crate::platform_types::_screen_buffer,
+        buffer: &vk::_screen_buffer,
     ) -> VkResult<vk::ScreenBufferPropertiesQNX<'_>> {
-        let mut properties = core::mem::MaybeUninit::uninit();
+        let mut properties = MaybeUninit::uninit();
         (self
             .fp
             .get_screen_buffer_properties)(self.handle, buffer, properties.as_mut_ptr())
@@ -95,26 +93,29 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImportScreenBufferInfoQNX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub buffer: *mut crate::platform_types::_screen_buffer,
+        pub p_next: *const ffi::c_void,
+        pub buffer: *mut vk::_screen_buffer,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportScreenBufferInfoQNX<'_> {}
     unsafe impl Sync for ImportScreenBufferInfoQNX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImportScreenBufferInfoQNX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportScreenBufferInfoQNX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_SCREEN_BUFFER_INFO_QNX;
     }
-    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> Extends<vk::MemoryAllocateInfo<'_>>
     for ImportScreenBufferInfoQNX<'a> {}
     impl<'a> Default for ImportScreenBufferInfoQNX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_SCREEN_BUFFER_INFO_QNX,
                 p_next: Default::default(),
                 buffer: Default::default(),
                 _marker: PhantomData,
@@ -122,10 +123,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> ImportScreenBufferInfoQNX<'a> {
-        pub fn buffer(
-            mut self,
-            buffer: &'a mut crate::platform_types::_screen_buffer,
-        ) -> Self {
+        pub fn buffer(mut self, buffer: &'a mut vk::_screen_buffer) -> Self {
             self.buffer = buffer;
             self
         }
@@ -135,20 +133,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ScreenBufferPropertiesQNX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub allocation_size: vk::DeviceSize,
         pub memory_type_bits: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ScreenBufferPropertiesQNX<'_> {}
     unsafe impl Sync for ScreenBufferPropertiesQNX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ScreenBufferPropertiesQNX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ScreenBufferPropertiesQNX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SCREEN_BUFFER_PROPERTIES_QNX;
     }
     impl<'a> Default for ScreenBufferPropertiesQNX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SCREEN_BUFFER_PROPERTIES_QNX,
                 p_next: Default::default(),
                 allocation_size: Default::default(),
                 memory_type_bits: Default::default(),
@@ -171,7 +169,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ScreenBufferFormatPropertiesQNX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub format: vk::Format,
         pub external_format: u64,
         pub screen_usage: u64,
@@ -185,15 +183,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for ScreenBufferFormatPropertiesQNX<'_> {}
     unsafe impl Sync for ScreenBufferFormatPropertiesQNX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ScreenBufferFormatPropertiesQNX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ScreenBufferFormatPropertiesQNX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SCREEN_BUFFER_FORMAT_PROPERTIES_QNX;
     }
-    unsafe impl<'a> crate::Extends<vk::ScreenBufferPropertiesQNX<'_>>
+    unsafe impl<'a> Extends<vk::ScreenBufferPropertiesQNX<'_>>
     for ScreenBufferFormatPropertiesQNX<'a> {}
     impl<'a> Default for ScreenBufferFormatPropertiesQNX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SCREEN_BUFFER_FORMAT_PROPERTIES_QNX,
                 p_next: Default::default(),
                 format: Default::default(),
                 external_format: Default::default(),
@@ -269,22 +267,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExternalFormatQNX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub external_format: u64,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExternalFormatQNX<'_> {}
     unsafe impl Sync for ExternalFormatQNX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatQNX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExternalFormatQNX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXTERNAL_FORMAT_QNX;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>> for ExternalFormatQNX<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SamplerYcbcrConversionCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>> for ExternalFormatQNX<'a> {}
+    unsafe impl<'a> Extends<vk::SamplerYcbcrConversionCreateInfo<'_>>
     for ExternalFormatQNX<'a> {}
     impl<'a> Default for ExternalFormatQNX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXTERNAL_FORMAT_QNX,
                 p_next: Default::default(),
                 external_format: Default::default(),
                 _marker: PhantomData,
@@ -302,24 +300,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub screen_buffer_import: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'_> {}
     unsafe impl Sync for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_SCREEN_BUFFER_FEATURES_QNX;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {}
     impl<'a> Default for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_SCREEN_BUFFER_FEATURES_QNX,
                 p_next: Default::default(),
                 screen_buffer_import: Default::default(),
                 _marker: PhantomData,
@@ -334,7 +332,7 @@ pub(crate) mod items {
     }
     pub type PFN_vkGetScreenBufferPropertiesQNX = unsafe extern "system" fn(
         device: vk::Device,
-        buffer: *const crate::platform_types::_screen_buffer,
+        buffer: *const vk::_screen_buffer,
         p_properties: *mut vk::ScreenBufferPropertiesQNX<'_>,
     ) -> vk::Result;
 }

@@ -1,5 +1,8 @@
 use super::{Code, Context};
-use crate::output::{CodeMap, GlobExport, OutputLocation};
+use crate::{
+    Import,
+    output::{CodeMap, GlobExport, OutputLocation},
+};
 use analysis::{
     item::bitmask::{BitMask, BitWidth, Item, Value},
     rust::RustTokens,
@@ -21,6 +24,7 @@ impl Code for BitMask {
             BitWidth::Bits64 => quote! { u64 },
         };
 
+        octx.insert_import(Import::DebugCoreFmt);
         let mut bits_definition = TokenStream::default();
         let mut bitmask_impl_map = CodeMap::default();
         let mut bits_impl_map = CodeMap::default();
@@ -51,9 +55,9 @@ impl Code for BitMask {
                 }
 
                 #[cfg(feature = "debug")]
-                impl core::fmt::Debug for #bits_name_tokens {
-                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-                        core::fmt::Debug::fmt(&self.bitmask(), f)
+                impl fmtd::Debug for #bits_name_tokens {
+                    fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+                        fmtd::Debug::fmt(&self.bitmask(), f)
                     }
                 }
             };
@@ -115,18 +119,19 @@ impl Code for BitMask {
         }
 
         let debug_content = match debug_items.as_slice() {
-            [] => quote! { core::fmt::Debug::fmt(&self.0, f) },
+            [] => quote! { fmtd::Debug::fmt(&self.0, f) },
             debug_items => quote! { crate::debug_flags(f, &[ #( #debug_items, )* ], self.0) },
         };
 
+        octx.insert_import(Import::CoreOpsBitmask);
         octx.insert_tokens(quote! {
             #[repr(transparent)]
             #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
             pub struct #name_tokens(pub(crate) #base_ty);
 
             #[cfg(feature = "debug")]
-            impl core::fmt::Debug for #name_tokens {
-                fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            impl fmtd::Debug for #name_tokens {
+                fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
                     #debug_content
                 }
             }
@@ -157,7 +162,7 @@ impl Code for BitMask {
                 }
             }
 
-            impl core::ops::BitOr for #name_tokens {
+            impl BitOr for #name_tokens {
                 type Output = Self;
 
                 fn bitor(self, rhs: Self) -> Self {
@@ -165,13 +170,13 @@ impl Code for BitMask {
                 }
             }
 
-            impl core::ops::BitOrAssign for #name_tokens {
+            impl BitOrAssign for #name_tokens {
                 fn bitor_assign(&mut self, rhs: Self) {
                     *self = *self | rhs;
                 }
             }
 
-            impl core::ops::BitAnd for #name_tokens {
+            impl BitAnd for #name_tokens {
                 type Output = Self;
 
                 fn bitand(self, rhs: Self) -> Self {
@@ -179,13 +184,13 @@ impl Code for BitMask {
                 }
             }
 
-            impl core::ops::BitAndAssign for #name_tokens {
+            impl BitAndAssign for #name_tokens {
                 fn bitand_assign(&mut self, rhs: Self) {
                     *self = *self & rhs;
                 }
             }
 
-            impl core::ops::BitXor for #name_tokens {
+            impl BitXor for #name_tokens {
                 type Output = Self;
 
                 fn bitxor(self, rhs: Self) -> Self {
@@ -193,13 +198,13 @@ impl Code for BitMask {
                 }
             }
 
-            impl core::ops::BitXorAssign for #name_tokens {
+            impl BitXorAssign for #name_tokens {
                 fn bitxor_assign(&mut self, rhs: Self) {
                     *self = *self ^ rhs;
                 }
             }
 
-            impl core::ops::Not for #name_tokens {
+            impl Not for #name_tokens {
                 type Output = Self;
 
                 fn not(self) -> Self {

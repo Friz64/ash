@@ -48,29 +48,35 @@ pub const NAME: &CStr = c"VK_KHR_video_decode_h264";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoDecodeH264ProfileInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub std_profile_idc: vk::H264ProfileIdc,
         pub picture_layout: vk::VideoDecodeH264PictureLayoutFlagBitsKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeH264ProfileInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeH264ProfileInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeH264ProfileInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoDecodeH264ProfileInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_H264_PROFILE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoProfileInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoProfileInfoKHR<'_>>
     for VideoDecodeH264ProfileInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::QueryPoolCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::QueryPoolCreateInfo<'_>>
     for VideoDecodeH264ProfileInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeH264ProfileInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_DECODE_H264_PROFILE_INFO_KHR,
                 p_next: Default::default(),
                 std_profile_idc: Default::default(),
                 picture_layout: Default::default(),
@@ -96,22 +102,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoDecodeH264CapabilitiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_level_idc: vk::H264LevelIdc,
         pub field_offset_granularity: vk::Offset2D,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeH264CapabilitiesKHR<'_> {}
     unsafe impl Sync for VideoDecodeH264CapabilitiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeH264CapabilitiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoDecodeH264CapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_H264_CAPABILITIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoCapabilitiesKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoCapabilitiesKHR<'_>>
     for VideoDecodeH264CapabilitiesKHR<'a> {}
     impl<'a> Default for VideoDecodeH264CapabilitiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_DECODE_H264_CAPABILITIES_KHR,
                 p_next: Default::default(),
                 max_level_idc: Default::default(),
                 field_offset_granularity: Default::default(),
@@ -137,7 +143,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoDecodeH264SessionParametersAddInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub std_sps_count: u32,
         pub p_std_sp_ss: *const vk::H264SequenceParameterSet<'a>,
         pub std_pps_count: u32,
@@ -146,16 +152,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoDecodeH264SessionParametersAddInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeH264SessionParametersAddInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for VideoDecodeH264SessionParametersAddInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoSessionParametersUpdateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoSessionParametersUpdateInfoKHR<'_>>
     for VideoDecodeH264SessionParametersAddInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeH264SessionParametersAddInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR,
                 p_next: Default::default(),
                 std_sps_count: Default::default(),
                 p_std_sp_ss: Default::default(),
@@ -188,7 +194,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoDecodeH264SessionParametersCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub max_std_sps_count: u32,
         pub max_std_pps_count: u32,
         pub p_parameters_add_info: *const vk::VideoDecodeH264SessionParametersAddInfoKHR<
@@ -198,16 +204,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoDecodeH264SessionParametersCreateInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeH264SessionParametersCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for VideoDecodeH264SessionParametersCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoSessionParametersCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoSessionParametersCreateInfoKHR<'_>>
     for VideoDecodeH264SessionParametersCreateInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeH264SessionParametersCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 max_std_sps_count: Default::default(),
                 max_std_pps_count: Default::default(),
@@ -238,7 +244,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoDecodeH264PictureInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_std_picture_info: *const vk::DecodeH264PictureInfo,
         pub slice_count: u32,
         pub p_slice_offsets: *const u32,
@@ -246,15 +252,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoDecodeH264PictureInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeH264PictureInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeH264PictureInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoDecodeH264PictureInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_H264_PICTURE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoDecodeInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoDecodeInfoKHR<'_>>
     for VideoDecodeH264PictureInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeH264PictureInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_DECODE_H264_PICTURE_INFO_KHR,
                 p_next: Default::default(),
                 p_std_picture_info: Default::default(),
                 slice_count: Default::default(),
@@ -282,21 +288,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoDecodeH264DpbSlotInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_std_reference_info: *const vk::DecodeH264ReferenceInfo,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeH264DpbSlotInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeH264DpbSlotInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeH264DpbSlotInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoDecodeH264DpbSlotInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_H264_DPB_SLOT_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoReferenceSlotInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoReferenceSlotInfoKHR<'_>>
     for VideoDecodeH264DpbSlotInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeH264DpbSlotInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_DECODE_H264_DPB_SLOT_INFO_KHR,
                 p_next: Default::default(),
                 p_std_reference_info: Default::default(),
                 _marker: PhantomData,
@@ -316,8 +322,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoDecodeH264PictureLayoutFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoDecodeH264PictureLayoutFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VideoDecodeH264PictureLayoutFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -352,40 +358,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoDecodeH264PictureLayoutFlagsKHR {
+    impl BitOr for VideoDecodeH264PictureLayoutFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoDecodeH264PictureLayoutFlagsKHR {
+    impl BitOrAssign for VideoDecodeH264PictureLayoutFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoDecodeH264PictureLayoutFlagsKHR {
+    impl BitAnd for VideoDecodeH264PictureLayoutFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoDecodeH264PictureLayoutFlagsKHR {
+    impl BitAndAssign for VideoDecodeH264PictureLayoutFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoDecodeH264PictureLayoutFlagsKHR {
+    impl BitXor for VideoDecodeH264PictureLayoutFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoDecodeH264PictureLayoutFlagsKHR {
+    impl BitXorAssign for VideoDecodeH264PictureLayoutFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoDecodeH264PictureLayoutFlagsKHR {
+    impl Not for VideoDecodeH264PictureLayoutFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -410,9 +416,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoDecodeH264PictureLayoutFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for VideoDecodeH264PictureLayoutFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
 }

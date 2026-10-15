@@ -108,12 +108,17 @@ pub const NAME: &CStr = c"VK_KHR_opacity_micromap";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryMicromapDataKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub usage_counts_count: u32,
         pub p_usage_counts: *const vk::MicromapUsageKHR,
         pub pp_usage_counts: *const *const vk::MicromapUsageKHR,
@@ -124,16 +129,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for AccelerationStructureGeometryMicromapDataKHR<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryMicromapDataKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureGeometryMicromapDataKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MICROMAP_DATA_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::AccelerationStructureGeometryKHR<'_>>
+    unsafe impl<'a> Extends<vk::AccelerationStructureGeometryKHR<'_>>
     for AccelerationStructureGeometryMicromapDataKHR<'a> {}
     impl<'a> Default for AccelerationStructureGeometryMicromapDataKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MICROMAP_DATA_KHR,
                 p_next: Default::default(),
                 usage_counts_count: Default::default(),
                 p_usage_counts: Default::default(),
@@ -228,24 +233,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub micromap: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceOpacityMicromapFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceOpacityMicromapFeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_KHR,
                 p_next: Default::default(),
                 micromap: Default::default(),
                 _marker: PhantomData,
@@ -263,7 +268,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpacityMicromapPropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_opacity2_state_subdivision_level: u32,
         pub max_opacity4_state_subdivision_level: u32,
         pub max_opacity_lossy4_state_subdivision_level: u32,
@@ -272,16 +277,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceOpacityMicromapPropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceOpacityMicromapPropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceOpacityMicromapPropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceOpacityMicromapPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceOpacityMicromapPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_KHR,
                 p_next: Default::default(),
                 max_opacity2_state_subdivision_level: Default::default(),
                 max_opacity4_state_subdivision_level: Default::default(),
@@ -323,7 +328,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureTrianglesOpacityMicromapKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub index_type: vk::IndexType,
         pub index_buffer: vk::DeviceAddress,
         pub index_stride: vk::DeviceSize,
@@ -333,21 +338,21 @@ pub(crate) mod items {
     }
     unsafe impl Send for AccelerationStructureTrianglesOpacityMicromapKHR<'_> {}
     unsafe impl Sync for AccelerationStructureTrianglesOpacityMicromapKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureTrianglesOpacityMicromapKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
+    unsafe impl<'a> Extends<vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
     for AccelerationStructureTrianglesOpacityMicromapKHR<'a> {}
     #[cfg(feature = "provisional")]
     unsafe impl<
         'a,
-    > crate::Extends<vk::AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'_>>
+    > Extends<vk::AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'_>>
     for AccelerationStructureTrianglesOpacityMicromapKHR<'a> {}
     impl<'a> Default for AccelerationStructureTrianglesOpacityMicromapKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_KHR,
                 p_next: Default::default(),
                 index_type: Default::default(),
                 index_buffer: Default::default(),
@@ -384,8 +389,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct OpacityMicromapFormatKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for OpacityMicromapFormatKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for OpacityMicromapFormatKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::TYPE_2_STATE => Some("TYPE_2_STATE"),
                 Self::TYPE_4_STATE => Some("TYPE_4_STATE"),
@@ -393,7 +398,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -411,8 +416,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct OpacityMicromapSpecialIndexKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for OpacityMicromapSpecialIndexKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for OpacityMicromapSpecialIndexKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::FULLY_TRANSPARENT => Some("FULLY_TRANSPARENT"),
                 Self::FULLY_OPAQUE => Some("FULLY_OPAQUE"),
@@ -425,7 +430,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -443,15 +448,15 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AccelerationStructureSerializedBlockTypeKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureSerializedBlockTypeKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccelerationStructureSerializedBlockTypeKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::OPACITY_MICROMAP => Some("OPACITY_MICROMAP"),
                 _ => None,
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

@@ -5,7 +5,10 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_NV_coverage_reduction_mode](crate::nv::coverage_reduction_mode)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV: Self = Self(
@@ -28,10 +31,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_supported_framebuffer_mixed_samples_combinations: unsafe {
                 unsafe extern "system" fn get_physical_device_supported_framebuffer_mixed_samples_combinations(
@@ -49,7 +52,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_supported_framebuffer_mixed_samples_combinations
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -58,13 +61,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -73,7 +76,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV
@@ -82,13 +85,13 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> VkResult<usize> {
-        let mut combination_count = core::mem::MaybeUninit::uninit();
+        let mut combination_count = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_supported_framebuffer_mixed_samples_combinations)(
                 physical_device,
                 combination_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(combination_count)
             .map(|c| c as usize)
@@ -99,7 +102,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         combinations: &mut [vk::FramebufferMixedSamplesCombinationNV<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut combination_count = combinations.len() as _;
         (self
             .fp
@@ -116,29 +119,35 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub coverage_reduction_mode: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCoverageReductionModeFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceCoverageReductionModeFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV,
                 p_next: Default::default(),
                 coverage_reduction_mode: Default::default(),
                 _marker: PhantomData,
@@ -156,23 +165,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineCoverageReductionStateCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineCoverageReductionStateCreateFlagsNV,
         pub coverage_reduction_mode: vk::CoverageReductionModeNV,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineCoverageReductionStateCreateInfoNV<'_> {}
     unsafe impl Sync for PipelineCoverageReductionStateCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineCoverageReductionStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineMultisampleStateCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineMultisampleStateCreateInfo<'_>>
     for PipelineCoverageReductionStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineCoverageReductionStateCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV,
                 p_next: Default::default(),
                 flags: Default::default(),
                 coverage_reduction_mode: Default::default(),
@@ -201,7 +210,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct FramebufferMixedSamplesCombinationNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub coverage_reduction_mode: vk::CoverageReductionModeNV,
         pub rasterization_samples: vk::SampleCountFlagBits,
         pub depth_stencil_samples: vk::SampleCountFlags,
@@ -210,14 +219,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for FramebufferMixedSamplesCombinationNV<'_> {}
     unsafe impl Sync for FramebufferMixedSamplesCombinationNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for FramebufferMixedSamplesCombinationNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for FramebufferMixedSamplesCombinationNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV;
     }
     impl<'a> Default for FramebufferMixedSamplesCombinationNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV,
                 p_next: Default::default(),
                 coverage_reduction_mode: Default::default(),
                 rasterization_samples: Default::default(),
@@ -258,8 +266,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct CoverageReductionModeNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CoverageReductionModeNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CoverageReductionModeNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::MERGE => Some("MERGE"),
                 Self::TRUNCATE => Some("TRUNCATE"),
@@ -267,7 +275,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -285,9 +293,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineCoverageReductionStateCreateFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineCoverageReductionStateCreateFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineCoverageReductionStateCreateFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineCoverageReductionStateCreateFlagsNV {
@@ -310,40 +318,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineCoverageReductionStateCreateFlagsNV {
+    impl BitOr for PipelineCoverageReductionStateCreateFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineCoverageReductionStateCreateFlagsNV {
+    impl BitOrAssign for PipelineCoverageReductionStateCreateFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineCoverageReductionStateCreateFlagsNV {
+    impl BitAnd for PipelineCoverageReductionStateCreateFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineCoverageReductionStateCreateFlagsNV {
+    impl BitAndAssign for PipelineCoverageReductionStateCreateFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineCoverageReductionStateCreateFlagsNV {
+    impl BitXor for PipelineCoverageReductionStateCreateFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineCoverageReductionStateCreateFlagsNV {
+    impl BitXorAssign for PipelineCoverageReductionStateCreateFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineCoverageReductionStateCreateFlagsNV {
+    impl Not for PipelineCoverageReductionStateCreateFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

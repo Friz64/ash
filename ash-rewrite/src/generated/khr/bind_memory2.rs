@@ -5,7 +5,8 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_bind_memory2](crate::khr::bind_memory2)
 impl vk::StructureType {
     pub const BIND_BUFFER_MEMORY_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_INFO;
@@ -29,10 +30,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             bind_buffer_memory2: unsafe {
                 unsafe extern "system" fn bind_buffer_memory2(
@@ -43,11 +44,7 @@ impl DeviceFn {
                     panic!("unable to load vkBindBufferMemory2KHR")
                 }
                 let val = _f(c"vkBindBufferMemory2KHR");
-                if val.is_null() {
-                    bind_buffer_memory2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { bind_buffer_memory2 } else { transmute(val) }
             },
             bind_image_memory2: unsafe {
                 unsafe extern "system" fn bind_image_memory2(
@@ -58,11 +55,7 @@ impl DeviceFn {
                     panic!("unable to load vkBindImageMemory2KHR")
                 }
                 let val = _f(c"vkBindImageMemory2KHR");
-                if val.is_null() {
-                    bind_image_memory2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { bind_image_memory2 } else { transmute(val) }
             },
         }
     }
@@ -70,13 +63,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -85,7 +78,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkBindBufferMemory2

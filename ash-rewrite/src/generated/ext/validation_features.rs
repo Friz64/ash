@@ -32,12 +32,17 @@ pub const NAME: &CStr = c"VK_EXT_validation_features";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ValidationFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub enabled_validation_feature_count: u32,
         pub p_enabled_validation_features: *const vk::ValidationFeatureEnableEXT,
         pub disabled_validation_feature_count: u32,
@@ -46,27 +51,25 @@ pub(crate) mod items {
     }
     unsafe impl Send for ValidationFeaturesEXT<'_> {}
     unsafe impl Sync for ValidationFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFeaturesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ValidationFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VALIDATION_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::InstanceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::InstanceCreateInfo<'_>> for ValidationFeaturesEXT<'a> {}
+    unsafe impl<'a> Extends<vk::ShaderModuleCreateInfo<'_>>
     for ValidationFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ShaderModuleCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ShaderCreateInfoEXT<'_>> for ValidationFeaturesEXT<'a> {}
+    unsafe impl<'a> Extends<vk::PipelineShaderStageCreateInfo<'_>>
     for ValidationFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ShaderCreateInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for ValidationFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PipelineShaderStageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ComputePipelineCreateInfo<'_>>
     for ValidationFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
-    for ValidationFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ComputePipelineCreateInfo<'_>>
-    for ValidationFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::RayTracingPipelineCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::RayTracingPipelineCreateInfoKHR<'_>>
     for ValidationFeaturesEXT<'a> {}
     impl<'a> Default for ValidationFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VALIDATION_FEATURES_EXT,
                 p_next: Default::default(),
                 enabled_validation_feature_count: Default::default(),
                 p_enabled_validation_features: Default::default(),
@@ -100,8 +103,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ValidationFeatureEnableEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ValidationFeatureEnableEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ValidationFeatureEnableEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::GPU_ASSISTED => Some("GPU_ASSISTED"),
                 Self::GPU_ASSISTED_RESERVE_BINDING_SLOT => {
@@ -114,7 +117,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -132,8 +135,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ValidationFeatureDisableEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ValidationFeatureDisableEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ValidationFeatureDisableEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::ALL => Some("ALL"),
                 Self::SHADERS => Some("SHADERS"),
@@ -147,7 +150,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

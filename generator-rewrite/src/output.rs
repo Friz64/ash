@@ -1,6 +1,6 @@
 mod vfs;
 
-use crate::{Context, output::vfs::VirtualRustFs};
+use crate::{Context, Import, output::vfs::VirtualRustFs};
 use analysis::{
     LibraryName,
     item::{RequireLocation, RequiredBy},
@@ -9,7 +9,7 @@ use heck::ToSnekCase;
 use indexmap::{IndexMap, IndexSet};
 use itertools::Itertools;
 use proc_macro2::TokenStream;
-use quote::{ToTokens, TokenStreamExt, format_ident, quote};
+use quote::{TokenStreamExt, format_ident, quote};
 use std::{
     cell::{Ref, RefCell},
     hash::Hash,
@@ -122,44 +122,6 @@ impl PathComponent {
 struct ReexportAs {
     original: Ident,
     alias: Ident,
-}
-
-#[derive(PartialEq, Eq, Hash)]
-pub enum Import {
-    CrateVk,
-    CrateVkResult,
-    CrateHandle,
-    CoreMarkerPhantomData,
-    CoreMemMaybeUninit,
-    CoreFfi,
-    CoreFfiCStr,
-    CoreFfiCVoid,
-    CoreFmt,
-    DebugCoreFmt,
-    CorePtr,
-}
-
-impl ToTokens for Import {
-    fn to_tokens(&self, tokens: &mut TokenStream) {
-        let code = match self {
-            Import::CrateVk => quote! { use crate::vk; },
-            Import::CrateVkResult => quote! { use crate::VkResult; },
-            Import::CrateHandle => quote! { use crate::Handle; },
-            Import::CoreMarkerPhantomData => quote! { use core::marker::PhantomData; },
-            Import::CoreMemMaybeUninit => quote! { use core::mem::MaybeUninit; },
-            Import::CoreFfi => quote! { use core::ffi; },
-            Import::CoreFfiCStr => quote! { use core::ffi::CStr; },
-            Import::CoreFfiCVoid => quote! { use core::ffi::c_void; },
-            Import::CoreFmt => quote! { use core::fmt; },
-            Import::DebugCoreFmt => quote! {
-                #[cfg(feature = "debug")]
-                use core::fmt as fmtdebug;
-            },
-            Import::CorePtr => quote! { use core::ptr; },
-        };
-
-        tokens.extend(code);
-    }
 }
 
 #[derive(Default)]

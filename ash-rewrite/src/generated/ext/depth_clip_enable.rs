@@ -16,29 +16,35 @@ pub const NAME: &CStr = c"VK_EXT_depth_clip_enable";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub depth_clip_enable: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDepthClipEnableFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDepthClipEnableFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT,
                 p_next: Default::default(),
                 depth_clip_enable: Default::default(),
                 _marker: PhantomData,
@@ -56,23 +62,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
         pub depth_clip_enable: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineRasterizationDepthClipStateCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineRasterizationDepthClipStateCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineRasterizationStateCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineRasterizationStateCreateInfo<'_>>
     for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 flags: Default::default(),
                 depth_clip_enable: Default::default(),
@@ -97,9 +103,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineRasterizationDepthClipStateCreateFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineRasterizationDepthClipStateCreateFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineRasterizationDepthClipStateCreateFlagsEXT {
@@ -122,40 +128,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    impl BitOr for PipelineRasterizationDepthClipStateCreateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    impl BitOrAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    impl BitAnd for PipelineRasterizationDepthClipStateCreateFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    impl BitAndAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    impl BitXor for PipelineRasterizationDepthClipStateCreateFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    impl BitXorAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    impl Not for PipelineRasterizationDepthClipStateCreateFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

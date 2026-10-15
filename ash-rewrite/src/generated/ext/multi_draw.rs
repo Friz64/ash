@@ -4,7 +4,9 @@
 #![doc(alias = "VK_EXT_multi_draw")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ptr;
+use core::ffi;
 ///Provided by [VK_EXT_multi_draw](crate::ext::multi_draw)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT: Self = Self(1000392000);
@@ -20,10 +22,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_draw_multi: unsafe {
                 unsafe extern "system" fn cmd_draw_multi(
@@ -37,7 +39,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDrawMultiEXT")
                 }
                 let val = _f(c"vkCmdDrawMultiEXT");
-                if val.is_null() { cmd_draw_multi } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_draw_multi } else { transmute(val) }
             },
             cmd_draw_multi_indexed: unsafe {
                 unsafe extern "system" fn cmd_draw_multi_indexed(
@@ -52,11 +54,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDrawMultiIndexedEXT")
                 }
                 let val = _f(c"vkCmdDrawMultiIndexedEXT");
-                if val.is_null() {
-                    cmd_draw_multi_indexed
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_draw_multi_indexed } else { transmute(val) }
             },
         }
     }
@@ -64,13 +62,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -79,7 +77,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdDrawMultiEXT
@@ -125,7 +123,7 @@ impl Device {
             stride,
             match vertex_offset {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -133,6 +131,9 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -181,22 +182,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMultiDrawPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_multi_draw_count: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMultiDrawPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMultiDrawPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMultiDrawPropertiesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMultiDrawPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceMultiDrawPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMultiDrawPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT,
                 p_next: Default::default(),
                 max_multi_draw_count: Default::default(),
                 _marker: PhantomData,
@@ -214,24 +214,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMultiDrawFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub multi_draw: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMultiDrawFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMultiDrawFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMultiDrawFeaturesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMultiDrawFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMultiDrawFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMultiDrawFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMultiDrawFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT,
                 p_next: Default::default(),
                 multi_draw: Default::default(),
                 _marker: PhantomData,

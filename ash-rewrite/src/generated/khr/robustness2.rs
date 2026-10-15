@@ -14,12 +14,15 @@ pub const NAME: &CStr = c"VK_KHR_robustness2";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRobustness2FeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub robust_buffer_access2: vk::Bool32,
         pub robust_image_access2: vk::Bool32,
         pub null_descriptor: vk::Bool32,
@@ -27,18 +30,17 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceRobustness2FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceRobustness2FeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceRobustness2FeaturesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceRobustness2FeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceRobustness2FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceRobustness2FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRobustness2FeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR,
                 p_next: Default::default(),
                 robust_buffer_access2: Default::default(),
                 robust_image_access2: Default::default(),
@@ -66,23 +68,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRobustness2PropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub robust_storage_buffer_access_size_alignment: vk::DeviceSize,
         pub robust_uniform_buffer_access_size_alignment: vk::DeviceSize,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRobustness2PropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceRobustness2PropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceRobustness2PropertiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceRobustness2PropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceRobustness2PropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRobustness2PropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR,
                 p_next: Default::default(),
                 robust_storage_buffer_access_size_alignment: Default::default(),
                 robust_uniform_buffer_access_size_alignment: Default::default(),

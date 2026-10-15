@@ -4,8 +4,11 @@
 #![doc(alias = "VK_KHR_descriptor_update_template")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_descriptor_update_template](crate::khr::descriptor_update_template)
 impl vk::StructureType {
     pub const DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR: Self = Self::DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO;
@@ -34,10 +37,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_descriptor_update_template: unsafe {
                 unsafe extern "system" fn create_descriptor_update_template(
@@ -52,7 +55,7 @@ impl DeviceFn {
                 if val.is_null() {
                     create_descriptor_update_template
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             destroy_descriptor_update_template: unsafe {
@@ -67,7 +70,7 @@ impl DeviceFn {
                 if val.is_null() {
                     destroy_descriptor_update_template
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             update_descriptor_set_with_template: unsafe {
@@ -75,7 +78,7 @@ impl DeviceFn {
                     _: vk::Device,
                     _: vk::DescriptorSet,
                     _: vk::DescriptorUpdateTemplate,
-                    _: *const core::ffi::c_void,
+                    _: *const ffi::c_void,
                 ) {
                     panic!("unable to load vkUpdateDescriptorSetWithTemplateKHR")
                 }
@@ -83,7 +86,7 @@ impl DeviceFn {
                 if val.is_null() {
                     update_descriptor_set_with_template
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_push_descriptor_set_with_template: unsafe {
@@ -92,7 +95,7 @@ impl DeviceFn {
                     _: vk::DescriptorUpdateTemplate,
                     _: vk::PipelineLayout,
                     _: u32,
-                    _: *const core::ffi::c_void,
+                    _: *const ffi::c_void,
                 ) {
                     panic!("unable to load vkCmdPushDescriptorSetWithTemplateKHR")
                 }
@@ -100,7 +103,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_push_descriptor_set_with_template
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -109,13 +112,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -124,7 +127,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateDescriptorUpdateTemplate
@@ -134,7 +137,7 @@ impl Device {
         create_info: &vk::DescriptorUpdateTemplateCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::DescriptorUpdateTemplate> {
-        let mut descriptor_update_template = core::mem::MaybeUninit::uninit();
+        let mut descriptor_update_template = MaybeUninit::uninit();
         (self
             .fp
             .create_descriptor_update_template)(
@@ -142,7 +145,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 descriptor_update_template.as_mut_ptr(),
             )
@@ -162,7 +165,7 @@ impl Device {
             descriptor_update_template,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -172,7 +175,7 @@ impl Device {
         &self,
         descriptor_set: vk::DescriptorSet,
         descriptor_update_template: vk::DescriptorUpdateTemplate,
-        data: &core::ffi::c_void,
+        data: &ffi::c_void,
     ) {
         (self
             .fp
@@ -191,7 +194,7 @@ impl Device {
         descriptor_update_template: vk::DescriptorUpdateTemplate,
         layout: vk::PipelineLayout,
         set: u32,
-        data: &core::ffi::c_void,
+        data: &ffi::c_void,
     ) {
         (self
             .fp

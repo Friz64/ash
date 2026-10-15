@@ -13,12 +13,15 @@ pub const NAME: &CStr = c"VK_AMD_shader_core_properties";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderCorePropertiesAMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_engine_count: u32,
         pub shader_arrays_per_engine_count: u32,
         pub compute_units_per_shader_array: u32,
@@ -37,16 +40,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceShaderCorePropertiesAMD<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderCorePropertiesAMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceShaderCorePropertiesAMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceShaderCorePropertiesAMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceShaderCorePropertiesAMD<'a> {}
     impl<'a> Default for PhysicalDeviceShaderCorePropertiesAMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD,
                 p_next: Default::default(),
                 shader_engine_count: Default::default(),
                 shader_arrays_per_engine_count: Default::default(),

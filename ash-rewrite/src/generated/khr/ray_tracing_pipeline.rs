@@ -4,8 +4,10 @@
 #![doc(alias = "VK_KHR_ray_tracing_pipeline")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::transmute;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ffi;
+use core::ptr;
 ///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl vk::PipelineBindPoint {
     pub const RAY_TRACING_KHR: Self = Self(1000165000);
@@ -134,10 +136,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_trace_rays: unsafe {
                 unsafe extern "system" fn cmd_trace_rays(
@@ -153,7 +155,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdTraceRaysKHR")
                 }
                 let val = _f(c"vkCmdTraceRaysKHR");
-                if val.is_null() { cmd_trace_rays } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_trace_rays } else { transmute(val) }
             },
             get_ray_tracing_shader_group_handles: unsafe {
                 unsafe extern "system" fn get_ray_tracing_shader_group_handles(
@@ -162,7 +164,7 @@ impl DeviceFn {
                     _: u32,
                     _: u32,
                     _: usize,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!("unable to load vkGetRayTracingShaderGroupHandlesKHR")
                 }
@@ -170,7 +172,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_ray_tracing_shader_group_handles
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_ray_tracing_capture_replay_shader_group_handles: unsafe {
@@ -180,7 +182,7 @@ impl DeviceFn {
                     _: u32,
                     _: u32,
                     _: usize,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!(
                         "unable to load vkGetRayTracingCaptureReplayShaderGroupHandlesKHR"
@@ -190,7 +192,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_ray_tracing_capture_replay_shader_group_handles
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             create_ray_tracing_pipelines: unsafe {
@@ -206,11 +208,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateRayTracingPipelinesKHR")
                 }
                 let val = _f(c"vkCreateRayTracingPipelinesKHR");
-                if val.is_null() {
-                    create_ray_tracing_pipelines
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_ray_tracing_pipelines } else { transmute(val) }
             },
             cmd_trace_rays_indirect: unsafe {
                 unsafe extern "system" fn cmd_trace_rays_indirect(
@@ -224,11 +222,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdTraceRaysIndirectKHR")
                 }
                 let val = _f(c"vkCmdTraceRaysIndirectKHR");
-                if val.is_null() {
-                    cmd_trace_rays_indirect
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_trace_rays_indirect } else { transmute(val) }
             },
             get_ray_tracing_shader_group_stack_size: unsafe {
                 unsafe extern "system" fn get_ray_tracing_shader_group_stack_size(
@@ -243,7 +237,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_ray_tracing_shader_group_stack_size
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_ray_tracing_pipeline_stack_size: unsafe {
@@ -257,7 +251,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_ray_tracing_pipeline_stack_size
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -266,13 +260,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -281,7 +275,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdTraceRaysKHR
@@ -373,7 +367,7 @@ impl Device {
                 create_infos.as_ptr(),
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 pipelines.as_mut_ptr(),
             )
@@ -436,30 +430,34 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    use crate::Extends;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RayTracingShaderGroupCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub ty: vk::RayTracingShaderGroupTypeKHR,
         pub general_shader: u32,
         pub closest_hit_shader: u32,
         pub any_hit_shader: u32,
         pub intersection_shader: u32,
-        pub p_shader_group_capture_replay_handle: *const core::ffi::c_void,
+        pub p_shader_group_capture_replay_handle: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RayTracingShaderGroupCreateInfoKHR<'_> {}
     unsafe impl Sync for RayTracingShaderGroupCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for RayTracingShaderGroupCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RayTracingShaderGroupCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR;
     }
     impl<'a> Default for RayTracingShaderGroupCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 ty: Default::default(),
                 general_shader: Default::default(),
@@ -494,7 +492,7 @@ pub(crate) mod items {
         }
         pub fn shader_group_capture_replay_handle(
             mut self,
-            shader_group_capture_replay_handle: &'a core::ffi::c_void,
+            shader_group_capture_replay_handle: &'a ffi::c_void,
         ) -> Self {
             self.p_shader_group_capture_replay_handle = shader_group_capture_replay_handle;
             self
@@ -505,7 +503,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RayTracingPipelineCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineCreateFlags,
         pub stage_count: u32,
         pub p_stages: *const vk::PipelineShaderStageCreateInfo<'a>,
@@ -522,13 +520,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for RayTracingPipelineCreateInfoKHR<'_> {}
     unsafe impl Sync for RayTracingPipelineCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for RayTracingPipelineCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RayTracingPipelineCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_KHR;
     }
     impl<'a> Default for RayTracingPipelineCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 stage_count: Default::default(),
@@ -616,7 +614,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub ray_tracing_pipeline: vk::Bool32,
         pub ray_tracing_pipeline_shader_group_handle_capture_replay: vk::Bool32,
         pub ray_tracing_pipeline_shader_group_handle_capture_replay_mixed: vk::Bool32,
@@ -626,18 +624,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceRayTracingPipelineFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceRayTracingPipelineFeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR,
                 p_next: Default::default(),
                 ray_tracing_pipeline: Default::default(),
                 ray_tracing_pipeline_shader_group_handle_capture_replay: Default::default(),
@@ -691,7 +689,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_group_handle_size: u32,
         pub max_ray_recursion_depth: u32,
         pub max_shader_group_stride: u32,
@@ -704,16 +702,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceRayTracingPipelinePropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceRayTracingPipelinePropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR,
                 p_next: Default::default(),
                 shader_group_handle_size: Default::default(),
                 max_ray_recursion_depth: Default::default(),
@@ -832,21 +830,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RayTracingPipelineInterfaceCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub max_pipeline_ray_payload_size: u32,
         pub max_pipeline_ray_hit_attribute_size: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RayTracingPipelineInterfaceCreateInfoKHR<'_> {}
     unsafe impl Sync for RayTracingPipelineInterfaceCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for RayTracingPipelineInterfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR;
     }
     impl<'a> Default for RayTracingPipelineInterfaceCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 max_pipeline_ray_payload_size: Default::default(),
                 max_pipeline_ray_hit_attribute_size: Default::default(),
@@ -874,8 +872,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct RayTracingShaderGroupTypeKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for RayTracingShaderGroupTypeKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for RayTracingShaderGroupTypeKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::GENERAL => Some("GENERAL"),
                 Self::TRIANGLES_HIT_GROUP => Some("TRIANGLES_HIT_GROUP"),
@@ -884,7 +882,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -902,8 +900,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ShaderGroupShaderKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ShaderGroupShaderKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ShaderGroupShaderKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::GENERAL => Some("GENERAL"),
                 Self::CLOSEST_HIT => Some("CLOSEST_HIT"),
@@ -913,7 +911,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -943,7 +941,7 @@ pub(crate) mod items {
         first_group: u32,
         group_count: u32,
         data_size: usize,
-        p_data: *mut core::ffi::c_void,
+        p_data: *mut ffi::c_void,
     ) -> vk::Result;
     pub type PFN_vkGetRayTracingCaptureReplayShaderGroupHandlesKHR = unsafe extern "system" fn(
         device: vk::Device,
@@ -951,7 +949,7 @@ pub(crate) mod items {
         first_group: u32,
         group_count: u32,
         data_size: usize,
-        p_data: *mut core::ffi::c_void,
+        p_data: *mut ffi::c_void,
     ) -> vk::Result;
     pub type PFN_vkCreateRayTracingPipelinesKHR = unsafe extern "system" fn(
         device: vk::Device,

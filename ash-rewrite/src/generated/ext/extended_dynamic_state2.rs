@@ -4,7 +4,8 @@
 #![doc(alias = "VK_EXT_extended_dynamic_state2")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_extended_dynamic_state2](crate::ext::extended_dynamic_state2)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT: Self = Self(
@@ -32,10 +33,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_set_patch_control_points: unsafe {
                 unsafe extern "system" fn cmd_set_patch_control_points(
@@ -45,11 +46,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetPatchControlPointsEXT")
                 }
                 let val = _f(c"vkCmdSetPatchControlPointsEXT");
-                if val.is_null() {
-                    cmd_set_patch_control_points
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_patch_control_points } else { transmute(val) }
             },
             cmd_set_logic_op: unsafe {
                 unsafe extern "system" fn cmd_set_logic_op(
@@ -59,11 +56,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetLogicOpEXT")
                 }
                 let val = _f(c"vkCmdSetLogicOpEXT");
-                if val.is_null() {
-                    cmd_set_logic_op
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_logic_op } else { transmute(val) }
             },
             cmd_set_rasterizer_discard_enable: unsafe {
                 unsafe extern "system" fn cmd_set_rasterizer_discard_enable(
@@ -76,7 +69,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_rasterizer_discard_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_depth_bias_enable: unsafe {
@@ -87,11 +80,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetDepthBiasEnableEXT")
                 }
                 let val = _f(c"vkCmdSetDepthBiasEnableEXT");
-                if val.is_null() {
-                    cmd_set_depth_bias_enable
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_depth_bias_enable } else { transmute(val) }
             },
             cmd_set_primitive_restart_enable: unsafe {
                 unsafe extern "system" fn cmd_set_primitive_restart_enable(
@@ -104,7 +93,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_primitive_restart_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -113,13 +102,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -128,7 +117,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdSetPatchControlPointsEXT
@@ -187,12 +176,15 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub extended_dynamic_state2: vk::Bool32,
         pub extended_dynamic_state2_logic_op: vk::Bool32,
         pub extended_dynamic_state2_patch_control_points: vk::Bool32,
@@ -200,18 +192,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT,
                 p_next: Default::default(),
                 extended_dynamic_state2: Default::default(),
                 extended_dynamic_state2_logic_op: Default::default(),

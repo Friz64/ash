@@ -4,7 +4,8 @@
 #![doc(alias = "VK_EXT_discard_rectangles")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_discard_rectangles](crate::ext::discard_rectangles)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT: Self = Self(1000099000);
@@ -32,10 +33,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_set_discard_rectangle: unsafe {
                 unsafe extern "system" fn cmd_set_discard_rectangle(
@@ -47,11 +48,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetDiscardRectangleEXT")
                 }
                 let val = _f(c"vkCmdSetDiscardRectangleEXT");
-                if val.is_null() {
-                    cmd_set_discard_rectangle
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_discard_rectangle } else { transmute(val) }
             },
             cmd_set_discard_rectangle_enable: unsafe {
                 unsafe extern "system" fn cmd_set_discard_rectangle_enable(
@@ -64,7 +61,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_discard_rectangle_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_discard_rectangle_mode: unsafe {
@@ -78,7 +75,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_discard_rectangle_mode
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -87,13 +84,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -102,7 +99,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdSetDiscardRectangleEXT
@@ -146,27 +143,33 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_discard_rectangles: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDiscardRectanglePropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDiscardRectanglePropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT,
                 p_next: Default::default(),
                 max_discard_rectangles: Default::default(),
                 _marker: PhantomData,
@@ -184,7 +187,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineDiscardRectangleStateCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineDiscardRectangleStateCreateFlagsEXT,
         pub discard_rectangle_mode: vk::DiscardRectangleModeEXT,
         pub discard_rectangle_count: u32,
@@ -193,16 +196,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineDiscardRectangleStateCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineDiscardRectangleStateCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for PipelineDiscardRectangleStateCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 flags: Default::default(),
                 discard_rectangle_mode: Default::default(),
@@ -240,8 +243,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DiscardRectangleModeEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DiscardRectangleModeEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DiscardRectangleModeEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::INCLUSIVE => Some("INCLUSIVE"),
                 Self::EXCLUSIVE => Some("EXCLUSIVE"),
@@ -249,7 +252,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -267,9 +270,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineDiscardRectangleStateCreateFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineDiscardRectangleStateCreateFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineDiscardRectangleStateCreateFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineDiscardRectangleStateCreateFlagsEXT {
@@ -292,40 +295,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl BitOr for PipelineDiscardRectangleStateCreateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl BitOrAssign for PipelineDiscardRectangleStateCreateFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl BitAnd for PipelineDiscardRectangleStateCreateFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl BitAndAssign for PipelineDiscardRectangleStateCreateFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl BitXor for PipelineDiscardRectangleStateCreateFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl BitXorAssign for PipelineDiscardRectangleStateCreateFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl Not for PipelineDiscardRectangleStateCreateFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

@@ -13,12 +13,15 @@ pub const NAME: &CStr = c"VK_EXT_physical_device_drm";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDrmPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub has_primary: vk::Bool32,
         pub has_render: vk::Bool32,
         pub primary_major: i64,
@@ -29,15 +32,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceDrmPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDrmPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceDrmPropertiesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceDrmPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DRM_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceDrmPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDrmPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DRM_PROPERTIES_EXT,
                 p_next: Default::default(),
                 has_primary: Default::default(),
                 has_render: Default::default(),

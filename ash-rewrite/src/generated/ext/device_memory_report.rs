@@ -23,29 +23,35 @@ pub const NAME: &CStr = c"VK_EXT_device_memory_report";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub device_memory_report: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT,
                 p_next: Default::default(),
                 device_memory_report: Default::default(),
                 _marker: PhantomData,
@@ -63,24 +69,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceDeviceMemoryReportCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::DeviceMemoryReportFlagsEXT,
         pub pfn_user_callback: vk::PFN_vkDeviceMemoryReportCallbackEXT,
-        pub p_user_data: *mut core::ffi::c_void,
+        pub p_user_data: *mut ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceDeviceMemoryReportCreateInfoEXT<'_> {}
     unsafe impl Sync for DeviceDeviceMemoryReportCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for DeviceDeviceMemoryReportCreateInfoEXT<'a> {}
     impl<'a> Default for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 flags: Default::default(),
                 pfn_user_callback: Default::default(),
@@ -101,7 +106,7 @@ pub(crate) mod items {
             self.pfn_user_callback = pfn_user_callback;
             self
         }
-        pub fn user_data(mut self, user_data: &'a mut core::ffi::c_void) -> Self {
+        pub fn user_data(mut self, user_data: &'a mut ffi::c_void) -> Self {
             self.p_user_data = user_data;
             self
         }
@@ -111,7 +116,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceMemoryReportCallbackDataEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub flags: vk::DeviceMemoryReportFlagsEXT,
         pub ty: vk::DeviceMemoryReportEventTypeEXT,
         pub memory_object_id: u64,
@@ -123,14 +128,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for DeviceMemoryReportCallbackDataEXT<'_> {}
     unsafe impl Sync for DeviceMemoryReportCallbackDataEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DeviceMemoryReportCallbackDataEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceMemoryReportCallbackDataEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT;
     }
     impl<'a> Default for DeviceMemoryReportCallbackDataEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT,
                 p_next: Default::default(),
                 flags: Default::default(),
                 ty: Default::default(),
@@ -177,8 +181,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DeviceMemoryReportEventTypeEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceMemoryReportEventTypeEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceMemoryReportEventTypeEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::ALLOCATE => Some("ALLOCATE"),
                 Self::FREE => Some("FREE"),
@@ -189,7 +193,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -207,9 +211,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceMemoryReportFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceMemoryReportFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for DeviceMemoryReportFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl DeviceMemoryReportFlagsEXT {
@@ -232,40 +236,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DeviceMemoryReportFlagsEXT {
+    impl BitOr for DeviceMemoryReportFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DeviceMemoryReportFlagsEXT {
+    impl BitOrAssign for DeviceMemoryReportFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DeviceMemoryReportFlagsEXT {
+    impl BitAnd for DeviceMemoryReportFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DeviceMemoryReportFlagsEXT {
+    impl BitAndAssign for DeviceMemoryReportFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DeviceMemoryReportFlagsEXT {
+    impl BitXor for DeviceMemoryReportFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DeviceMemoryReportFlagsEXT {
+    impl BitXorAssign for DeviceMemoryReportFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DeviceMemoryReportFlagsEXT {
+    impl Not for DeviceMemoryReportFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -274,7 +278,7 @@ pub(crate) mod items {
     pub type PFN_vkDeviceMemoryReportCallbackEXT = Option<
         unsafe extern "system" fn(
             p_callback_data: *const vk::DeviceMemoryReportCallbackDataEXT<'_>,
-            p_user_data: *mut core::ffi::c_void,
+            p_user_data: *mut ffi::c_void,
         ),
     >;
 }

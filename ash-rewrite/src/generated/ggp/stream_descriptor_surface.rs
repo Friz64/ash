@@ -4,8 +4,11 @@
 #![doc(alias = "VK_GGP_stream_descriptor_surface")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_GGP_stream_descriptor_surface](crate::ggp::stream_descriptor_surface)
 impl vk::StructureType {
     pub const STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP: Self = Self(1000049000);
@@ -19,10 +22,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_stream_descriptor_surface: unsafe {
                 unsafe extern "system" fn create_stream_descriptor_surface(
@@ -37,7 +40,7 @@ impl InstanceFn {
                 if val.is_null() {
                     create_stream_descriptor_surface
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -46,13 +49,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -61,7 +64,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkCreateStreamDescriptorSurfaceGGP
@@ -71,7 +74,7 @@ impl Instance {
         create_info: &vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = core::mem::MaybeUninit::uninit();
+        let mut surface = MaybeUninit::uninit();
         (self
             .fp
             .create_stream_descriptor_surface)(
@@ -79,7 +82,7 @@ impl Instance {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 surface.as_mut_ptr(),
             )
@@ -89,26 +92,30 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct StreamDescriptorSurfaceCreateInfoGGP<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::StreamDescriptorSurfaceCreateFlagsGGP,
-        pub stream_descriptor: crate::platform_types::GgpStreamDescriptor,
+        pub stream_descriptor: vk::GgpStreamDescriptor,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for StreamDescriptorSurfaceCreateInfoGGP<'_> {}
     unsafe impl Sync for StreamDescriptorSurfaceCreateInfoGGP<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for StreamDescriptorSurfaceCreateInfoGGP<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for StreamDescriptorSurfaceCreateInfoGGP<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP;
     }
     impl<'a> Default for StreamDescriptorSurfaceCreateInfoGGP<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP,
                 p_next: Default::default(),
                 flags: Default::default(),
                 stream_descriptor: Default::default(),
@@ -126,7 +133,7 @@ pub(crate) mod items {
         }
         pub fn stream_descriptor(
             mut self,
-            stream_descriptor: crate::platform_types::GgpStreamDescriptor,
+            stream_descriptor: vk::GgpStreamDescriptor,
         ) -> Self {
             self.stream_descriptor = stream_descriptor;
             self
@@ -136,9 +143,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct StreamDescriptorSurfaceCreateFlagsGGP(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for StreamDescriptorSurfaceCreateFlagsGGP {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for StreamDescriptorSurfaceCreateFlagsGGP {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl StreamDescriptorSurfaceCreateFlagsGGP {
@@ -161,40 +168,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl BitOr for StreamDescriptorSurfaceCreateFlagsGGP {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl BitOrAssign for StreamDescriptorSurfaceCreateFlagsGGP {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl BitAnd for StreamDescriptorSurfaceCreateFlagsGGP {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl BitAndAssign for StreamDescriptorSurfaceCreateFlagsGGP {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl BitXor for StreamDescriptorSurfaceCreateFlagsGGP {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl BitXorAssign for StreamDescriptorSurfaceCreateFlagsGGP {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl Not for StreamDescriptorSurfaceCreateFlagsGGP {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

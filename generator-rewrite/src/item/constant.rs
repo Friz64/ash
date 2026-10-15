@@ -1,5 +1,8 @@
 use super::{Code, Context};
-use crate::output::{CodeMap, GlobExport, Import, OutputLocation};
+use crate::{
+    Import,
+    output::{CodeMap, GlobExport, OutputLocation},
+};
 use analysis::{
     item::constant::{Constant, ConstantType},
     rust::RustTokens,

@@ -4,8 +4,9 @@
 #![doc(alias = "VK_KHR_synchronization2")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::transmute;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ffi;
 ///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::ImageLayout {
     pub const READ_ONLY_OPTIMAL_KHR: Self = Self::READ_ONLY_OPTIMAL;
@@ -352,10 +353,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_set_event2: unsafe {
                 unsafe extern "system" fn cmd_set_event2(
@@ -366,7 +367,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetEvent2KHR")
                 }
                 let val = _f(c"vkCmdSetEvent2KHR");
-                if val.is_null() { cmd_set_event2 } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_set_event2 } else { transmute(val) }
             },
             cmd_reset_event2: unsafe {
                 unsafe extern "system" fn cmd_reset_event2(
@@ -377,11 +378,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdResetEvent2KHR")
                 }
                 let val = _f(c"vkCmdResetEvent2KHR");
-                if val.is_null() {
-                    cmd_reset_event2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_reset_event2 } else { transmute(val) }
             },
             cmd_wait_events2: unsafe {
                 unsafe extern "system" fn cmd_wait_events2(
@@ -393,11 +390,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdWaitEvents2KHR")
                 }
                 let val = _f(c"vkCmdWaitEvents2KHR");
-                if val.is_null() {
-                    cmd_wait_events2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_wait_events2 } else { transmute(val) }
             },
             cmd_pipeline_barrier2: unsafe {
                 unsafe extern "system" fn cmd_pipeline_barrier2(
@@ -407,11 +400,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdPipelineBarrier2KHR")
                 }
                 let val = _f(c"vkCmdPipelineBarrier2KHR");
-                if val.is_null() {
-                    cmd_pipeline_barrier2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_pipeline_barrier2 } else { transmute(val) }
             },
             queue_submit2: unsafe {
                 unsafe extern "system" fn queue_submit2(
@@ -423,7 +412,7 @@ impl DeviceFn {
                     panic!("unable to load vkQueueSubmit2KHR")
                 }
                 let val = _f(c"vkQueueSubmit2KHR");
-                if val.is_null() { queue_submit2 } else { ::core::mem::transmute(val) }
+                if val.is_null() { queue_submit2 } else { transmute(val) }
             },
             cmd_write_timestamp2: unsafe {
                 unsafe extern "system" fn cmd_write_timestamp2(
@@ -435,11 +424,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdWriteTimestamp2KHR")
                 }
                 let val = _f(c"vkCmdWriteTimestamp2KHR");
-                if val.is_null() {
-                    cmd_write_timestamp2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_write_timestamp2 } else { transmute(val) }
             },
         }
     }
@@ -447,13 +432,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -462,7 +447,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdSetEvent2

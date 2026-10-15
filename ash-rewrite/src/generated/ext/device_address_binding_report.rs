@@ -41,29 +41,35 @@ pub const NAME: &CStr = c"VK_EXT_device_address_binding_report";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub report_address_binding: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceAddressBindingReportFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceAddressBindingReportFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT,
                 p_next: Default::default(),
                 report_address_binding: Default::default(),
                 _marker: PhantomData,
@@ -81,7 +87,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceAddressBindingCallbackDataEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub flags: vk::DeviceAddressBindingFlagsEXT,
         pub base_address: vk::DeviceAddress,
         pub size: vk::DeviceSize,
@@ -90,16 +96,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for DeviceAddressBindingCallbackDataEXT<'_> {}
     unsafe impl Sync for DeviceAddressBindingCallbackDataEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for DeviceAddressBindingCallbackDataEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceAddressBindingCallbackDataEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::DebugUtilsMessengerCallbackDataEXT<'_>>
+    unsafe impl<'a> Extends<vk::DebugUtilsMessengerCallbackDataEXT<'_>>
     for DeviceAddressBindingCallbackDataEXT<'a> {}
     impl<'a> Default for DeviceAddressBindingCallbackDataEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT,
                 p_next: Default::default(),
                 flags: Default::default(),
                 base_address: Default::default(),
@@ -134,8 +139,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceAddressBindingTypeEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceAddressBindingTypeEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::BIND => Some("BIND"),
                 Self::UNBIND => Some("UNBIND"),
@@ -143,7 +148,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -161,8 +166,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DeviceAddressBindingFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceAddressBindingFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceAddressBindingFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[(Self::INTERNAL_OBJECT.0, "INTERNAL_OBJECT")],
@@ -190,40 +195,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DeviceAddressBindingFlagsEXT {
+    impl BitOr for DeviceAddressBindingFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DeviceAddressBindingFlagsEXT {
+    impl BitOrAssign for DeviceAddressBindingFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DeviceAddressBindingFlagsEXT {
+    impl BitAnd for DeviceAddressBindingFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DeviceAddressBindingFlagsEXT {
+    impl BitAndAssign for DeviceAddressBindingFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DeviceAddressBindingFlagsEXT {
+    impl BitXor for DeviceAddressBindingFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DeviceAddressBindingFlagsEXT {
+    impl BitXorAssign for DeviceAddressBindingFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DeviceAddressBindingFlagsEXT {
+    impl Not for DeviceAddressBindingFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -248,9 +253,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceAddressBindingFlagBitsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DeviceAddressBindingFlagBitsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
 }

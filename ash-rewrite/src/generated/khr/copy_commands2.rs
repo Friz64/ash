@@ -4,7 +4,8 @@
 #![doc(alias = "VK_KHR_copy_commands2")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_copy_commands2](crate::khr::copy_commands2)
 impl vk::StructureType {
     pub const COPY_BUFFER_INFO_2_KHR: Self = Self::COPY_BUFFER_INFO_2;
@@ -33,10 +34,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_copy_buffer2: unsafe {
                 unsafe extern "system" fn cmd_copy_buffer2(
@@ -46,11 +47,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdCopyBuffer2KHR")
                 }
                 let val = _f(c"vkCmdCopyBuffer2KHR");
-                if val.is_null() {
-                    cmd_copy_buffer2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_buffer2 } else { transmute(val) }
             },
             cmd_copy_image2: unsafe {
                 unsafe extern "system" fn cmd_copy_image2(
@@ -60,7 +57,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdCopyImage2KHR")
                 }
                 let val = _f(c"vkCmdCopyImage2KHR");
-                if val.is_null() { cmd_copy_image2 } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_copy_image2 } else { transmute(val) }
             },
             cmd_blit_image2: unsafe {
                 unsafe extern "system" fn cmd_blit_image2(
@@ -70,7 +67,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdBlitImage2KHR")
                 }
                 let val = _f(c"vkCmdBlitImage2KHR");
-                if val.is_null() { cmd_blit_image2 } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_blit_image2 } else { transmute(val) }
             },
             cmd_copy_buffer_to_image2: unsafe {
                 unsafe extern "system" fn cmd_copy_buffer_to_image2(
@@ -80,11 +77,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdCopyBufferToImage2KHR")
                 }
                 let val = _f(c"vkCmdCopyBufferToImage2KHR");
-                if val.is_null() {
-                    cmd_copy_buffer_to_image2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_buffer_to_image2 } else { transmute(val) }
             },
             cmd_copy_image_to_buffer2: unsafe {
                 unsafe extern "system" fn cmd_copy_image_to_buffer2(
@@ -94,11 +87,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdCopyImageToBuffer2KHR")
                 }
                 let val = _f(c"vkCmdCopyImageToBuffer2KHR");
-                if val.is_null() {
-                    cmd_copy_image_to_buffer2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_image_to_buffer2 } else { transmute(val) }
             },
             cmd_resolve_image2: unsafe {
                 unsafe extern "system" fn cmd_resolve_image2(
@@ -108,11 +97,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdResolveImage2KHR")
                 }
                 let val = _f(c"vkCmdResolveImage2KHR");
-                if val.is_null() {
-                    cmd_resolve_image2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_resolve_image2 } else { transmute(val) }
             },
         }
     }
@@ -120,13 +105,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -135,7 +120,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdCopyBuffer2

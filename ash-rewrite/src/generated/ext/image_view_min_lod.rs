@@ -14,29 +14,32 @@ pub const NAME: &CStr = c"VK_EXT_image_view_min_lod";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub min_lod: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageViewMinLodFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceImageViewMinLodFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT,
                 p_next: Default::default(),
                 min_lod: Default::default(),
                 _marker: PhantomData,
@@ -54,21 +57,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageViewMinLodCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub min_lod: core::ffi::c_float,
+        pub p_next: *const ffi::c_void,
+        pub min_lod: ffi::c_float,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageViewMinLodCreateInfoEXT<'_> {}
     unsafe impl Sync for ImageViewMinLodCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewMinLodCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageViewMinLodCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageViewCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageViewCreateInfo<'_>>
     for ImageViewMinLodCreateInfoEXT<'a> {}
     impl<'a> Default for ImageViewMinLodCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 min_lod: Default::default(),
                 _marker: PhantomData,
@@ -76,7 +79,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> ImageViewMinLodCreateInfoEXT<'a> {
-        pub fn min_lod(mut self, min_lod: core::ffi::c_float) -> Self {
+        pub fn min_lod(mut self, min_lod: ffi::c_float) -> Self {
             self.min_lod = min_lod;
             self
         }

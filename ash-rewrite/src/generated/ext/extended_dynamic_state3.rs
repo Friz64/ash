@@ -4,7 +4,9 @@
 #![doc(alias = "VK_EXT_extended_dynamic_state3")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ptr;
+use core::ffi;
 ///Provided by [VK_EXT_extended_dynamic_state3](crate::ext::extended_dynamic_state3)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT: Self = Self(
@@ -87,10 +89,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_set_tessellation_domain_origin: unsafe {
                 unsafe extern "system" fn cmd_set_tessellation_domain_origin(
@@ -103,7 +105,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_tessellation_domain_origin
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_depth_clamp_enable: unsafe {
@@ -114,11 +116,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetDepthClampEnableEXT")
                 }
                 let val = _f(c"vkCmdSetDepthClampEnableEXT");
-                if val.is_null() {
-                    cmd_set_depth_clamp_enable
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_depth_clamp_enable } else { transmute(val) }
             },
             cmd_set_polygon_mode: unsafe {
                 unsafe extern "system" fn cmd_set_polygon_mode(
@@ -128,11 +126,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetPolygonModeEXT")
                 }
                 let val = _f(c"vkCmdSetPolygonModeEXT");
-                if val.is_null() {
-                    cmd_set_polygon_mode
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_polygon_mode } else { transmute(val) }
             },
             cmd_set_rasterization_samples: unsafe {
                 unsafe extern "system" fn cmd_set_rasterization_samples(
@@ -145,7 +139,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_rasterization_samples
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_sample_mask: unsafe {
@@ -157,11 +151,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetSampleMaskEXT")
                 }
                 let val = _f(c"vkCmdSetSampleMaskEXT");
-                if val.is_null() {
-                    cmd_set_sample_mask
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_sample_mask } else { transmute(val) }
             },
             cmd_set_alpha_to_coverage_enable: unsafe {
                 unsafe extern "system" fn cmd_set_alpha_to_coverage_enable(
@@ -174,7 +164,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_alpha_to_coverage_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_alpha_to_one_enable: unsafe {
@@ -185,11 +175,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetAlphaToOneEnableEXT")
                 }
                 let val = _f(c"vkCmdSetAlphaToOneEnableEXT");
-                if val.is_null() {
-                    cmd_set_alpha_to_one_enable
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_alpha_to_one_enable } else { transmute(val) }
             },
             cmd_set_logic_op_enable: unsafe {
                 unsafe extern "system" fn cmd_set_logic_op_enable(
@@ -199,11 +185,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetLogicOpEnableEXT")
                 }
                 let val = _f(c"vkCmdSetLogicOpEnableEXT");
-                if val.is_null() {
-                    cmd_set_logic_op_enable
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_logic_op_enable } else { transmute(val) }
             },
             cmd_set_color_blend_enable: unsafe {
                 unsafe extern "system" fn cmd_set_color_blend_enable(
@@ -215,11 +197,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetColorBlendEnableEXT")
                 }
                 let val = _f(c"vkCmdSetColorBlendEnableEXT");
-                if val.is_null() {
-                    cmd_set_color_blend_enable
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_color_blend_enable } else { transmute(val) }
             },
             cmd_set_color_blend_equation: unsafe {
                 unsafe extern "system" fn cmd_set_color_blend_equation(
@@ -231,11 +209,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetColorBlendEquationEXT")
                 }
                 let val = _f(c"vkCmdSetColorBlendEquationEXT");
-                if val.is_null() {
-                    cmd_set_color_blend_equation
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_color_blend_equation } else { transmute(val) }
             },
             cmd_set_color_write_mask: unsafe {
                 unsafe extern "system" fn cmd_set_color_write_mask(
@@ -247,11 +221,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetColorWriteMaskEXT")
                 }
                 let val = _f(c"vkCmdSetColorWriteMaskEXT");
-                if val.is_null() {
-                    cmd_set_color_write_mask
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_color_write_mask } else { transmute(val) }
             },
             cmd_set_rasterization_stream: unsafe {
                 unsafe extern "system" fn cmd_set_rasterization_stream(
@@ -261,11 +231,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetRasterizationStreamEXT")
                 }
                 let val = _f(c"vkCmdSetRasterizationStreamEXT");
-                if val.is_null() {
-                    cmd_set_rasterization_stream
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_rasterization_stream } else { transmute(val) }
             },
             cmd_set_conservative_rasterization_mode: unsafe {
                 unsafe extern "system" fn cmd_set_conservative_rasterization_mode(
@@ -278,13 +244,13 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_conservative_rasterization_mode
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_extra_primitive_overestimation_size: unsafe {
                 unsafe extern "system" fn cmd_set_extra_primitive_overestimation_size(
                     _: vk::CommandBuffer,
-                    _: core::ffi::c_float,
+                    _: ffi::c_float,
                 ) {
                     panic!("unable to load vkCmdSetExtraPrimitiveOverestimationSizeEXT")
                 }
@@ -292,7 +258,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_extra_primitive_overestimation_size
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_depth_clip_enable: unsafe {
@@ -303,11 +269,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetDepthClipEnableEXT")
                 }
                 let val = _f(c"vkCmdSetDepthClipEnableEXT");
-                if val.is_null() {
-                    cmd_set_depth_clip_enable
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_depth_clip_enable } else { transmute(val) }
             },
             cmd_set_sample_locations_enable: unsafe {
                 unsafe extern "system" fn cmd_set_sample_locations_enable(
@@ -320,7 +282,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_sample_locations_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_color_blend_advanced: unsafe {
@@ -333,11 +295,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetColorBlendAdvancedEXT")
                 }
                 let val = _f(c"vkCmdSetColorBlendAdvancedEXT");
-                if val.is_null() {
-                    cmd_set_color_blend_advanced
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_color_blend_advanced } else { transmute(val) }
             },
             cmd_set_provoking_vertex_mode: unsafe {
                 unsafe extern "system" fn cmd_set_provoking_vertex_mode(
@@ -350,7 +308,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_provoking_vertex_mode
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_line_rasterization_mode: unsafe {
@@ -364,7 +322,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_line_rasterization_mode
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_line_stipple_enable: unsafe {
@@ -375,11 +333,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetLineStippleEnableEXT")
                 }
                 let val = _f(c"vkCmdSetLineStippleEnableEXT");
-                if val.is_null() {
-                    cmd_set_line_stipple_enable
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_line_stipple_enable } else { transmute(val) }
             },
             cmd_set_depth_clip_negative_one_to_one: unsafe {
                 unsafe extern "system" fn cmd_set_depth_clip_negative_one_to_one(
@@ -392,7 +346,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_depth_clip_negative_one_to_one
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_viewport_w_scaling_enable: unsafe {
@@ -406,7 +360,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_viewport_w_scaling_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_viewport_swizzle: unsafe {
@@ -419,11 +373,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetViewportSwizzleNV")
                 }
                 let val = _f(c"vkCmdSetViewportSwizzleNV");
-                if val.is_null() {
-                    cmd_set_viewport_swizzle
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_viewport_swizzle } else { transmute(val) }
             },
             cmd_set_coverage_to_color_enable: unsafe {
                 unsafe extern "system" fn cmd_set_coverage_to_color_enable(
@@ -436,7 +386,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_coverage_to_color_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_coverage_to_color_location: unsafe {
@@ -450,7 +400,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_coverage_to_color_location
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_coverage_modulation_mode: unsafe {
@@ -464,7 +414,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_coverage_modulation_mode
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_coverage_modulation_table_enable: unsafe {
@@ -478,14 +428,14 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_coverage_modulation_table_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_coverage_modulation_table: unsafe {
                 unsafe extern "system" fn cmd_set_coverage_modulation_table(
                     _: vk::CommandBuffer,
                     _: u32,
-                    _: *const core::ffi::c_float,
+                    _: *const ffi::c_float,
                 ) {
                     panic!("unable to load vkCmdSetCoverageModulationTableNV")
                 }
@@ -493,7 +443,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_coverage_modulation_table
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_shading_rate_image_enable: unsafe {
@@ -507,7 +457,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_shading_rate_image_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_coverage_reduction_mode: unsafe {
@@ -521,7 +471,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_coverage_reduction_mode
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_representative_fragment_test_enable: unsafe {
@@ -535,7 +485,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_representative_fragment_test_enable
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -544,13 +494,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -559,7 +509,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdSetTessellationDomainOriginEXT
@@ -613,7 +563,7 @@ impl Device {
             samples,
             match sample_mask {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -725,7 +675,7 @@ impl Device {
     pub unsafe fn cmd_set_extra_primitive_overestimation_size(
         &self,
         command_buffer: vk::CommandBuffer,
-        extra_primitive_overestimation_size: core::ffi::c_float,
+        extra_primitive_overestimation_size: ffi::c_float,
     ) {
         (self
             .fp
@@ -897,7 +847,7 @@ impl Device {
     pub unsafe fn cmd_set_coverage_modulation_table(
         &self,
         command_buffer: vk::CommandBuffer,
-        coverage_modulation_table: &[core::ffi::c_float],
+        coverage_modulation_table: &[ffi::c_float],
     ) {
         (self
             .fp
@@ -950,12 +900,15 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub extended_dynamic_state3_tessellation_domain_origin: vk::Bool32,
         pub extended_dynamic_state3_depth_clamp_enable: vk::Bool32,
         pub extended_dynamic_state3_polygon_mode: vk::Bool32,
@@ -991,18 +944,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT,
                 p_next: Default::default(),
                 extended_dynamic_state3_tessellation_domain_origin: Default::default(),
                 extended_dynamic_state3_depth_clamp_enable: Default::default(),
@@ -1294,22 +1247,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub dynamic_primitive_topology_unrestricted: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_PROPERTIES_EXT,
                 p_next: Default::default(),
                 dynamic_primitive_topology_unrestricted: Default::default(),
                 _marker: PhantomData,
@@ -1472,7 +1425,7 @@ pub(crate) mod items {
     );
     pub type PFN_vkCmdSetExtraPrimitiveOverestimationSizeEXT = unsafe extern "system" fn(
         command_buffer: vk::CommandBuffer,
-        extra_primitive_overestimation_size: core::ffi::c_float,
+        extra_primitive_overestimation_size: ffi::c_float,
     );
     pub type PFN_vkCmdSetDepthClipEnableEXT = unsafe extern "system" fn(
         command_buffer: vk::CommandBuffer,
@@ -1533,7 +1486,7 @@ pub(crate) mod items {
     pub type PFN_vkCmdSetCoverageModulationTableNV = unsafe extern "system" fn(
         command_buffer: vk::CommandBuffer,
         coverage_modulation_table_count: u32,
-        p_coverage_modulation_table: *const core::ffi::c_float,
+        p_coverage_modulation_table: *const ffi::c_float,
     );
     pub type PFN_vkCmdSetShadingRateImageEnableNV = unsafe extern "system" fn(
         command_buffer: vk::CommandBuffer,

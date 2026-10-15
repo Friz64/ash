@@ -4,7 +4,8 @@
 #![doc(alias = "VK_NV_clip_space_w_scaling")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_NV_clip_space_w_scaling](crate::nv::clip_space_w_scaling)
 impl vk::StructureType {
     pub const PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV: Self = Self(1000087000);
@@ -22,10 +23,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_set_viewport_w_scaling: unsafe {
                 unsafe extern "system" fn cmd_set_viewport_w_scaling(
@@ -37,11 +38,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetViewportWScalingNV")
                 }
                 let val = _f(c"vkCmdSetViewportWScalingNV");
-                if val.is_null() {
-                    cmd_set_viewport_w_scaling
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_viewport_w_scaling } else { transmute(val) }
             },
         }
     }
@@ -49,13 +46,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -64,7 +61,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdSetViewportWScalingNV
@@ -86,23 +83,26 @@ impl Device {
     }
 }
 pub(crate) mod items {
+    use core::ffi;
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct ViewportWScalingNV {
-        pub xcoeff: core::ffi::c_float,
-        pub ycoeff: core::ffi::c_float,
+        pub xcoeff: ffi::c_float,
+        pub ycoeff: ffi::c_float,
     }
     unsafe impl Send for ViewportWScalingNV {}
     unsafe impl Sync for ViewportWScalingNV {}
     impl ViewportWScalingNV {
-        pub fn xcoeff(mut self, xcoeff: core::ffi::c_float) -> Self {
+        pub fn xcoeff(mut self, xcoeff: ffi::c_float) -> Self {
             self.xcoeff = xcoeff;
             self
         }
-        pub fn ycoeff(mut self, ycoeff: core::ffi::c_float) -> Self {
+        pub fn ycoeff(mut self, ycoeff: ffi::c_float) -> Self {
             self.ycoeff = ycoeff;
             self
         }
@@ -112,7 +112,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineViewportWScalingStateCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub viewport_w_scaling_enable: vk::Bool32,
         pub viewport_count: u32,
         pub p_viewport_w_scalings: *const vk::ViewportWScalingNV,
@@ -120,16 +120,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PipelineViewportWScalingStateCreateInfoNV<'_> {}
     unsafe impl Sync for PipelineViewportWScalingStateCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineViewportWScalingStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineViewportStateCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineViewportStateCreateInfo<'_>>
     for PipelineViewportWScalingStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineViewportWScalingStateCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV,
                 p_next: Default::default(),
                 viewport_w_scaling_enable: Default::default(),
                 viewport_count: Default::default(),

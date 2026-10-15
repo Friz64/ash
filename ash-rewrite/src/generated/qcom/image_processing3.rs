@@ -23,12 +23,15 @@ pub const NAME: &CStr = c"VK_QCOM_image_processing3";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub image_gather_linear: vk::Bool32,
         pub image_gather_extended_modes: vk::Bool32,
         pub block_match_extended_clamp_to_edge: vk::Bool32,
@@ -36,18 +39,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceImageProcessing3FeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceImageProcessing3FeaturesQCOM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_3_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_3_FEATURES_QCOM,
                 p_next: Default::default(),
                 image_gather_linear: Default::default(),
                 image_gather_extended_modes: Default::default(),

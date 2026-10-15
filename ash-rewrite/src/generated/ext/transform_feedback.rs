@@ -4,7 +4,8 @@
 #![doc(alias = "VK_EXT_transform_feedback")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl vk::QueryType {
     pub const TRANSFORM_FEEDBACK_STREAM_EXT: Self = Self(1000028004);
@@ -73,10 +74,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_bind_transform_feedback_buffers: unsafe {
                 unsafe extern "system" fn cmd_bind_transform_feedback_buffers(
@@ -93,7 +94,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_bind_transform_feedback_buffers
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_begin_transform_feedback: unsafe {
@@ -107,11 +108,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdBeginTransformFeedbackEXT")
                 }
                 let val = _f(c"vkCmdBeginTransformFeedbackEXT");
-                if val.is_null() {
-                    cmd_begin_transform_feedback
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_begin_transform_feedback } else { transmute(val) }
             },
             cmd_end_transform_feedback: unsafe {
                 unsafe extern "system" fn cmd_end_transform_feedback(
@@ -124,11 +121,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdEndTransformFeedbackEXT")
                 }
                 let val = _f(c"vkCmdEndTransformFeedbackEXT");
-                if val.is_null() {
-                    cmd_end_transform_feedback
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_end_transform_feedback } else { transmute(val) }
             },
             cmd_begin_query_indexed: unsafe {
                 unsafe extern "system" fn cmd_begin_query_indexed(
@@ -141,11 +134,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdBeginQueryIndexedEXT")
                 }
                 let val = _f(c"vkCmdBeginQueryIndexedEXT");
-                if val.is_null() {
-                    cmd_begin_query_indexed
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_begin_query_indexed } else { transmute(val) }
             },
             cmd_end_query_indexed: unsafe {
                 unsafe extern "system" fn cmd_end_query_indexed(
@@ -157,11 +146,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdEndQueryIndexedEXT")
                 }
                 let val = _f(c"vkCmdEndQueryIndexedEXT");
-                if val.is_null() {
-                    cmd_end_query_indexed
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_end_query_indexed } else { transmute(val) }
             },
             cmd_draw_indirect_byte_count: unsafe {
                 unsafe extern "system" fn cmd_draw_indirect_byte_count(
@@ -176,11 +161,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDrawIndirectByteCountEXT")
                 }
                 let val = _f(c"vkCmdDrawIndirectByteCountEXT");
-                if val.is_null() {
-                    cmd_draw_indirect_byte_count
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_draw_indirect_byte_count } else { transmute(val) }
             },
         }
     }
@@ -188,13 +169,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -203,7 +184,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdBindTransformFeedbackBuffersEXT
@@ -322,30 +303,36 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub transform_feedback: vk::Bool32,
         pub geometry_streams: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceTransformFeedbackFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceTransformFeedbackFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT,
                 p_next: Default::default(),
                 transform_feedback: Default::default(),
                 geometry_streams: Default::default(),
@@ -368,7 +355,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_transform_feedback_streams: u32,
         pub max_transform_feedback_buffers: u32,
         pub max_transform_feedback_buffer_size: vk::DeviceSize,
@@ -383,16 +370,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceTransformFeedbackPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceTransformFeedbackPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT,
                 p_next: Default::default(),
                 max_transform_feedback_streams: Default::default(),
                 max_transform_feedback_buffers: Default::default(),
@@ -484,23 +471,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationStateStreamCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineRasterizationStateStreamCreateFlagsEXT,
         pub rasterization_stream: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineRasterizationStateStreamCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineRasterizationStateStreamCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineRasterizationStateCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineRasterizationStateCreateInfo<'_>>
     for PipelineRasterizationStateStreamCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 flags: Default::default(),
                 rasterization_stream: Default::default(),
@@ -525,9 +512,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PipelineRasterizationStateStreamCreateFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PipelineRasterizationStateStreamCreateFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PipelineRasterizationStateStreamCreateFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PipelineRasterizationStateStreamCreateFlagsEXT {
@@ -550,40 +537,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl BitOr for PipelineRasterizationStateStreamCreateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl BitOrAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl BitAnd for PipelineRasterizationStateStreamCreateFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl BitAndAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl BitXor for PipelineRasterizationStateStreamCreateFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl BitXorAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl Not for PipelineRasterizationStateStreamCreateFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

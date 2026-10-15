@@ -27,29 +27,33 @@ pub const NAME: &CStr = c"VK_KHR_video_decode_av1";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    use core::mem::zeroed;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoDecodeAV1ProfileInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub std_profile: vk::AV1Profile,
         pub film_grain_support: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeAV1ProfileInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeAV1ProfileInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeAV1ProfileInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoDecodeAV1ProfileInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_AV1_PROFILE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoProfileInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoProfileInfoKHR<'_>>
     for VideoDecodeAV1ProfileInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::QueryPoolCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::QueryPoolCreateInfo<'_>>
     for VideoDecodeAV1ProfileInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeAV1ProfileInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_DECODE_AV1_PROFILE_INFO_KHR,
                 p_next: Default::default(),
                 std_profile: Default::default(),
                 film_grain_support: Default::default(),
@@ -72,21 +76,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoDecodeAV1CapabilitiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_level: vk::AV1Level,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeAV1CapabilitiesKHR<'_> {}
     unsafe impl Sync for VideoDecodeAV1CapabilitiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeAV1CapabilitiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoDecodeAV1CapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_AV1_CAPABILITIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoCapabilitiesKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoCapabilitiesKHR<'_>>
     for VideoDecodeAV1CapabilitiesKHR<'a> {}
     impl<'a> Default for VideoDecodeAV1CapabilitiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_DECODE_AV1_CAPABILITIES_KHR,
                 p_next: Default::default(),
                 max_level: Default::default(),
                 _marker: PhantomData,
@@ -104,22 +108,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_std_sequence_header: *const vk::AV1SequenceHeader<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeAV1SessionParametersCreateInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeAV1SessionParametersCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoSessionParametersCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoSessionParametersCreateInfoKHR<'_>>
     for VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_DECODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 p_std_sequence_header: Default::default(),
                 _marker: PhantomData,
@@ -140,7 +144,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoDecodeAV1PictureInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_std_picture_info: *const vk::DecodeAV1PictureInfo<'a>,
         pub reference_name_slot_indices: [i32; vk::MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR
             as _],
@@ -152,18 +156,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoDecodeAV1PictureInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeAV1PictureInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeAV1PictureInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoDecodeAV1PictureInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_AV1_PICTURE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoDecodeInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoDecodeInfoKHR<'_>>
     for VideoDecodeAV1PictureInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeAV1PictureInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_DECODE_AV1_PICTURE_INFO_KHR,
                 p_next: Default::default(),
                 p_std_picture_info: Default::default(),
-                reference_name_slot_indices: unsafe { core::mem::zeroed() },
+                reference_name_slot_indices: unsafe { zeroed() },
                 frame_header_offset: Default::default(),
                 tile_count: Default::default(),
                 p_tile_offsets: Default::default(),
@@ -208,21 +212,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoDecodeAV1DpbSlotInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_std_reference_info: *const vk::DecodeAV1ReferenceInfo,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeAV1DpbSlotInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeAV1DpbSlotInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeAV1DpbSlotInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoDecodeAV1DpbSlotInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::VideoReferenceSlotInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoReferenceSlotInfoKHR<'_>>
     for VideoDecodeAV1DpbSlotInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeAV1DpbSlotInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR,
                 p_next: Default::default(),
                 p_std_reference_info: Default::default(),
                 _marker: PhantomData,

@@ -4,7 +4,8 @@
 #![doc(alias = "VK_HUAWEI_cluster_culling_shader")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI: Self = Self(
@@ -57,10 +58,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_draw_cluster: unsafe {
                 unsafe extern "system" fn cmd_draw_cluster(
@@ -72,11 +73,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDrawClusterHUAWEI")
                 }
                 let val = _f(c"vkCmdDrawClusterHUAWEI");
-                if val.is_null() {
-                    cmd_draw_cluster
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_draw_cluster } else { transmute(val) }
             },
             cmd_draw_cluster_indirect: unsafe {
                 unsafe extern "system" fn cmd_draw_cluster_indirect(
@@ -87,11 +84,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDrawClusterIndirectHUAWEI")
                 }
                 let val = _f(c"vkCmdDrawClusterIndirectHUAWEI");
-                if val.is_null() {
-                    cmd_draw_cluster_indirect
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_draw_cluster_indirect } else { transmute(val) }
             },
         }
     }
@@ -99,13 +92,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -114,7 +107,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdDrawClusterHUAWEI
@@ -149,12 +142,16 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    use core::mem::zeroed;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_work_group_count: [u32; 3 as _],
         pub max_work_group_size: [u32; 3 as _],
         pub max_output_cluster_count: u32,
@@ -163,19 +160,19 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI,
                 p_next: Default::default(),
-                max_work_group_count: unsafe { core::mem::zeroed() },
-                max_work_group_size: unsafe { core::mem::zeroed() },
+                max_work_group_count: unsafe { zeroed() },
+                max_work_group_size: unsafe { zeroed() },
                 max_output_cluster_count: Default::default(),
                 indirect_buffer_offset_alignment: Default::default(),
                 _marker: PhantomData,
@@ -217,25 +214,25 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub clusterculling_shader: vk::Bool32,
         pub multiview_cluster_culling_shader: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI,
                 p_next: Default::default(),
                 clusterculling_shader: Default::default(),
                 multiview_cluster_culling_shader: Default::default(),
@@ -262,24 +259,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub cluster_shading_rate: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI;
     }
-    unsafe impl<
-        'a,
-    > crate::Extends<vk::PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'_>>
     for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI,
                 p_next: Default::default(),
                 cluster_shading_rate: Default::default(),
                 _marker: PhantomData,

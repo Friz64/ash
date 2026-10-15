@@ -4,8 +4,10 @@
 #![doc(alias = "VK_NV_external_memory_capabilities")]
 use core::ffi::CStr;
 use crate::vk;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_NV_external_memory_capabilities](crate::nv::external_memory_capabilities)
 impl ExternalMemoryHandleTypeFlagsNV {
     pub const OPAQUE_WIN32: Self = Self(
@@ -51,10 +53,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_external_image_format_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_external_image_format_properties(
@@ -75,7 +77,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_external_image_format_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -84,13 +86,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -99,7 +101,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceExternalImageFormatPropertiesNV
@@ -114,7 +116,7 @@ impl Instance {
         flags: vk::ImageCreateFlags,
         external_handle_type: vk::ExternalMemoryHandleTypeFlagsNV,
     ) -> VkResult<vk::ExternalImageFormatPropertiesNV> {
-        let mut external_image_format_properties = core::mem::MaybeUninit::uninit();
+        let mut external_image_format_properties = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_external_image_format_properties)(
@@ -132,6 +134,9 @@ impl Instance {
 }
 pub(crate) mod items {
     use crate::vk;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -177,8 +182,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryHandleTypeFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ExternalMemoryHandleTypeFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -211,40 +216,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ExternalMemoryHandleTypeFlagsNV {
+    impl BitOr for ExternalMemoryHandleTypeFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ExternalMemoryHandleTypeFlagsNV {
+    impl BitOrAssign for ExternalMemoryHandleTypeFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ExternalMemoryHandleTypeFlagsNV {
+    impl BitAnd for ExternalMemoryHandleTypeFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ExternalMemoryHandleTypeFlagsNV {
+    impl BitAndAssign for ExternalMemoryHandleTypeFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ExternalMemoryHandleTypeFlagsNV {
+    impl BitXor for ExternalMemoryHandleTypeFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ExternalMemoryHandleTypeFlagsNV {
+    impl BitXorAssign for ExternalMemoryHandleTypeFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ExternalMemoryHandleTypeFlagsNV {
+    impl Not for ExternalMemoryHandleTypeFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -269,17 +274,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ExternalMemoryHandleTypeFlagBitsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ExternalMemoryHandleTypeFlagBitsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ExternalMemoryFeatureFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ExternalMemoryFeatureFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ExternalMemoryFeatureFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -311,40 +316,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ExternalMemoryFeatureFlagsNV {
+    impl BitOr for ExternalMemoryFeatureFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ExternalMemoryFeatureFlagsNV {
+    impl BitOrAssign for ExternalMemoryFeatureFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ExternalMemoryFeatureFlagsNV {
+    impl BitAnd for ExternalMemoryFeatureFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ExternalMemoryFeatureFlagsNV {
+    impl BitAndAssign for ExternalMemoryFeatureFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ExternalMemoryFeatureFlagsNV {
+    impl BitXor for ExternalMemoryFeatureFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ExternalMemoryFeatureFlagsNV {
+    impl BitXorAssign for ExternalMemoryFeatureFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ExternalMemoryFeatureFlagsNV {
+    impl Not for ExternalMemoryFeatureFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -369,9 +374,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ExternalMemoryFeatureFlagBitsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ExternalMemoryFeatureFlagBitsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV = unsafe extern "system" fn(

@@ -21,27 +21,30 @@ pub const NAME: &CStr = c"VK_KHR_pipeline_library";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineLibraryCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub library_count: u32,
         pub p_libraries: *const vk::Pipeline,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineLibraryCreateInfoKHR<'_> {}
     unsafe impl Sync for PipelineLibraryCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineLibraryCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineLibraryCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_LIBRARY_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for PipelineLibraryCreateInfoKHR<'a> {}
     impl<'a> Default for PipelineLibraryCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_LIBRARY_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 library_count: Default::default(),
                 p_libraries: Default::default(),

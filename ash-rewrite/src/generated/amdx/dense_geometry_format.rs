@@ -37,29 +37,34 @@ pub const NAME: &CStr = c"VK_AMDX_dense_geometry_format";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub dense_geometry_format: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'_> {}
     unsafe impl Sync for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {}
     impl<'a> Default for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX,
                 p_next: Default::default(),
                 dense_geometry_format: Default::default(),
                 _marker: PhantomData,
@@ -77,7 +82,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub compressed_data: vk::DeviceOrHostAddressConstKHR,
         pub data_size: vk::DeviceSize,
         pub num_triangles: u32,
@@ -89,16 +94,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'_> {}
     unsafe impl Sync for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX;
     }
-    unsafe impl<'a> crate::Extends<vk::AccelerationStructureGeometryKHR<'_>>
+    unsafe impl<'a> Extends<vk::AccelerationStructureGeometryKHR<'_>>
     for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {}
     impl<'a> Default for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX,
                 p_next: Default::default(),
                 compressed_data: Default::default(),
                 data_size: Default::default(),
@@ -148,8 +153,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct CompressedTriangleFormatAMDX(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CompressedTriangleFormatAMDX {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CompressedTriangleFormatAMDX {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 #[cfg(feature = "provisional")]
                 Self::DGF1 => Some("DGF1"),
@@ -157,7 +162,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

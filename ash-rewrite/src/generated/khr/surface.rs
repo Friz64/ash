@@ -4,8 +4,12 @@
 #![doc(alias = "VK_KHR_surface")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::transmute;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use alloc::vec::Vec;
+use core::ffi;
 ///Provided by [VK_KHR_surface](crate::khr::surface)
 impl vk::Result {
     pub const ERROR_SURFACE_LOST_KHR: Self = Self(-1000000000);
@@ -85,10 +89,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             destroy_surface: unsafe {
                 unsafe extern "system" fn destroy_surface(
@@ -99,7 +103,7 @@ impl InstanceFn {
                     panic!("unable to load vkDestroySurfaceKHR")
                 }
                 let val = _f(c"vkDestroySurfaceKHR");
-                if val.is_null() { destroy_surface } else { ::core::mem::transmute(val) }
+                if val.is_null() { destroy_surface } else { transmute(val) }
             },
             get_physical_device_surface_support: unsafe {
                 unsafe extern "system" fn get_physical_device_surface_support(
@@ -114,7 +118,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_surface_support
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_surface_capabilities: unsafe {
@@ -129,7 +133,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_surface_capabilities
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_surface_formats: unsafe {
@@ -145,7 +149,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_surface_formats
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_surface_present_modes: unsafe {
@@ -161,7 +165,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_surface_present_modes
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -170,13 +174,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -185,7 +189,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkDestroySurfaceKHR
@@ -202,7 +206,7 @@ impl Instance {
             surface,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -214,7 +218,7 @@ impl Instance {
         queue_family_index: u32,
         surface: vk::SurfaceKHR,
     ) -> VkResult<vk::Bool32> {
-        let mut supported = core::mem::MaybeUninit::uninit();
+        let mut supported = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_surface_support)(
@@ -232,7 +236,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         surface: vk::SurfaceKHR,
     ) -> VkResult<vk::SurfaceCapabilitiesKHR> {
-        let mut surface_capabilities = core::mem::MaybeUninit::uninit();
+        let mut surface_capabilities = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_surface_capabilities)(
@@ -248,7 +252,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         surface: vk::SurfaceKHR,
-    ) -> crate::VkResult<Vec<vk::SurfaceFormatKHR>> {
+    ) -> VkResult<Vec<vk::SurfaceFormatKHR>> {
         crate::read_into_uninitialized_vector(|surface_format_count, surface_formats| (self
             .fp
             .get_physical_device_surface_formats)(
@@ -264,7 +268,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         surface: vk::SurfaceKHR,
-    ) -> crate::VkResult<Vec<vk::PresentModeKHR>> {
+    ) -> VkResult<Vec<vk::PresentModeKHR>> {
         crate::read_into_uninitialized_vector(|present_mode_count, present_modes| (self
             .fp
             .get_physical_device_surface_present_modes)(
@@ -277,10 +281,11 @@ impl Instance {
 }
 pub(crate) mod items {
     use crate::vk;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -375,8 +380,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PresentModeKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PresentModeKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PresentModeKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::IMMEDIATE => Some("IMMEDIATE"),
                 Self::MAILBOX => Some("MAILBOX"),
@@ -389,7 +394,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -407,8 +412,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ColorSpaceKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ColorSpaceKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ColorSpaceKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::SRGB_NONLINEAR => Some("SRGB_NONLINEAR"),
                 Self::DISPLAY_P3_NONLINEAR_EXT => Some("DISPLAY_P3_NONLINEAR_EXT"),
@@ -430,7 +435,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -448,8 +453,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct CompositeAlphaFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CompositeAlphaFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CompositeAlphaFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -482,40 +487,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for CompositeAlphaFlagsKHR {
+    impl BitOr for CompositeAlphaFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for CompositeAlphaFlagsKHR {
+    impl BitOrAssign for CompositeAlphaFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for CompositeAlphaFlagsKHR {
+    impl BitAnd for CompositeAlphaFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for CompositeAlphaFlagsKHR {
+    impl BitAndAssign for CompositeAlphaFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for CompositeAlphaFlagsKHR {
+    impl BitXor for CompositeAlphaFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for CompositeAlphaFlagsKHR {
+    impl BitXorAssign for CompositeAlphaFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for CompositeAlphaFlagsKHR {
+    impl Not for CompositeAlphaFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -540,17 +545,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CompositeAlphaFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for CompositeAlphaFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SurfaceTransformFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SurfaceTransformFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SurfaceTransformFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -594,40 +599,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for SurfaceTransformFlagsKHR {
+    impl BitOr for SurfaceTransformFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for SurfaceTransformFlagsKHR {
+    impl BitOrAssign for SurfaceTransformFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for SurfaceTransformFlagsKHR {
+    impl BitAnd for SurfaceTransformFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for SurfaceTransformFlagsKHR {
+    impl BitAndAssign for SurfaceTransformFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for SurfaceTransformFlagsKHR {
+    impl BitXor for SurfaceTransformFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for SurfaceTransformFlagsKHR {
+    impl BitXorAssign for SurfaceTransformFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for SurfaceTransformFlagsKHR {
+    impl Not for SurfaceTransformFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -652,9 +657,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SurfaceTransformFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for SurfaceTransformFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -680,8 +685,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for SurfaceKHR {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for SurfaceKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

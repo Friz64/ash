@@ -13,33 +13,35 @@ pub const NAME: &CStr = c"VK_EXT_external_memory_acquire_unmodified";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ExternalMemoryAcquireUnmodifiedEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub acquire_unmodified_memory: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExternalMemoryAcquireUnmodifiedEXT<'_> {}
     unsafe impl Sync for ExternalMemoryAcquireUnmodifiedEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ExternalMemoryAcquireUnmodifiedEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExternalMemoryAcquireUnmodifiedEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::BufferMemoryBarrier<'_>>
+    unsafe impl<'a> Extends<vk::BufferMemoryBarrier<'_>>
     for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::BufferMemoryBarrier2<'_>>
+    unsafe impl<'a> Extends<vk::BufferMemoryBarrier2<'_>>
     for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ImageMemoryBarrier<'_>>
+    unsafe impl<'a> Extends<vk::ImageMemoryBarrier<'_>>
     for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ImageMemoryBarrier2<'_>>
+    unsafe impl<'a> Extends<vk::ImageMemoryBarrier2<'_>>
     for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
     impl<'a> Default for ExternalMemoryAcquireUnmodifiedEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT,
                 p_next: Default::default(),
                 acquire_unmodified_memory: Default::default(),
                 _marker: PhantomData,

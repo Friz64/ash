@@ -26,27 +26,29 @@ pub const NAME: &CStr = c"VK_EXT_multisampled_render_to_swapchain";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SwapchainFlagsSurfaceCapabilitiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub swapchain_supported_flags: vk::SwapchainCreateFlagsKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainFlagsSurfaceCapabilitiesEXT<'_> {}
     unsafe impl Sync for SwapchainFlagsSurfaceCapabilitiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for SwapchainFlagsSurfaceCapabilitiesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SwapchainFlagsSurfaceCapabilitiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_FLAGS_SURFACE_CAPABILITIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> Extends<vk::SurfaceCapabilities2KHR<'_>>
     for SwapchainFlagsSurfaceCapabilitiesEXT<'a> {}
     impl<'a> Default for SwapchainFlagsSurfaceCapabilitiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SWAPCHAIN_FLAGS_SURFACE_CAPABILITIES_EXT,
                 p_next: Default::default(),
                 swapchain_supported_flags: Default::default(),
                 _marker: PhantomData,
@@ -67,24 +69,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub multisampled_render_to_swapchain: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SWAPCHAIN_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SWAPCHAIN_FEATURES_EXT,
                 p_next: Default::default(),
                 multisampled_render_to_swapchain: Default::default(),
                 _marker: PhantomData,

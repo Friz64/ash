@@ -4,7 +4,9 @@
 #![doc(alias = "VK_KHR_external_memory_capabilities")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO;
@@ -74,10 +76,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_external_buffer_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_external_buffer_properties(
@@ -93,7 +95,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_external_buffer_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -102,13 +104,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -117,7 +119,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceExternalBufferProperties
@@ -127,7 +129,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo<'_>,
     ) -> vk::ExternalBufferProperties<'_> {
-        let mut external_buffer_properties = core::mem::MaybeUninit::uninit();
+        let mut external_buffer_properties = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_external_buffer_properties)(

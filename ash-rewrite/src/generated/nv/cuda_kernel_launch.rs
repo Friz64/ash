@@ -5,8 +5,12 @@
 #![doc(alias = "VK_NV_cuda_kernel_launch")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use alloc::vec::Vec;
+use core::ffi;
 ///Provided by [VK_NV_cuda_kernel_launch](crate::nv::cuda_kernel_launch)
 impl vk::StructureType {
     pub const CUDA_MODULE_CREATE_INFO_NV: Self = Self(1000307000);
@@ -39,10 +43,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_cuda_module: unsafe {
                 unsafe extern "system" fn create_cuda_module(
@@ -54,27 +58,19 @@ impl DeviceFn {
                     panic!("unable to load vkCreateCudaModuleNV")
                 }
                 let val = _f(c"vkCreateCudaModuleNV");
-                if val.is_null() {
-                    create_cuda_module
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_cuda_module } else { transmute(val) }
             },
             get_cuda_module_cache: unsafe {
                 unsafe extern "system" fn get_cuda_module_cache(
                     _: vk::Device,
                     _: vk::CudaModuleNV,
                     _: *mut usize,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!("unable to load vkGetCudaModuleCacheNV")
                 }
                 let val = _f(c"vkGetCudaModuleCacheNV");
-                if val.is_null() {
-                    get_cuda_module_cache
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_cuda_module_cache } else { transmute(val) }
             },
             create_cuda_function: unsafe {
                 unsafe extern "system" fn create_cuda_function(
@@ -86,11 +82,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateCudaFunctionNV")
                 }
                 let val = _f(c"vkCreateCudaFunctionNV");
-                if val.is_null() {
-                    create_cuda_function
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_cuda_function } else { transmute(val) }
             },
             destroy_cuda_module: unsafe {
                 unsafe extern "system" fn destroy_cuda_module(
@@ -101,11 +93,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyCudaModuleNV")
                 }
                 let val = _f(c"vkDestroyCudaModuleNV");
-                if val.is_null() {
-                    destroy_cuda_module
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_cuda_module } else { transmute(val) }
             },
             destroy_cuda_function: unsafe {
                 unsafe extern "system" fn destroy_cuda_function(
@@ -116,11 +104,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyCudaFunctionNV")
                 }
                 let val = _f(c"vkDestroyCudaFunctionNV");
-                if val.is_null() {
-                    destroy_cuda_function
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_cuda_function } else { transmute(val) }
             },
             cmd_cuda_launch_kernel: unsafe {
                 unsafe extern "system" fn cmd_cuda_launch_kernel(
@@ -130,11 +114,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdCudaLaunchKernelNV")
                 }
                 let val = _f(c"vkCmdCudaLaunchKernelNV");
-                if val.is_null() {
-                    cmd_cuda_launch_kernel
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_cuda_launch_kernel } else { transmute(val) }
             },
         }
     }
@@ -142,13 +122,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -157,7 +137,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateCudaModuleNV
@@ -167,7 +147,7 @@ impl Device {
         create_info: &vk::CudaModuleCreateInfoNV<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::CudaModuleNV> {
-        let mut module = core::mem::MaybeUninit::uninit();
+        let mut module = MaybeUninit::uninit();
         (self
             .fp
             .create_cuda_module)(
@@ -175,7 +155,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 module.as_mut_ptr(),
             )
@@ -186,7 +166,7 @@ impl Device {
     pub unsafe fn get_cuda_module_cache(
         &self,
         module: vk::CudaModuleNV,
-    ) -> crate::VkResult<Vec<core::ffi::c_void>> {
+    ) -> VkResult<Vec<ffi::c_void>> {
         crate::read_into_uninitialized_vector(|cache_size, cache_data| (self
             .fp
             .get_cuda_module_cache)(self.handle, module, cache_size, cache_data))
@@ -198,7 +178,7 @@ impl Device {
         create_info: &vk::CudaFunctionCreateInfoNV<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::CudaFunctionNV> {
-        let mut function = core::mem::MaybeUninit::uninit();
+        let mut function = MaybeUninit::uninit();
         (self
             .fp
             .create_cuda_function)(
@@ -206,7 +186,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 function.as_mut_ptr(),
             )
@@ -226,7 +206,7 @@ impl Device {
             module,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -244,7 +224,7 @@ impl Device {
             function,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -261,30 +241,33 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
     use core::ffi::CStr;
+    use crate::Extends;
     use crate::Handle;
     use core::fmt;
     #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CudaModuleCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub data_size: usize,
-        pub p_data: *const core::ffi::c_void,
+        pub p_data: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CudaModuleCreateInfoNV<'_> {}
     unsafe impl Sync for CudaModuleCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CudaModuleCreateInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CudaModuleCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CUDA_MODULE_CREATE_INFO_NV;
     }
     impl<'a> Default for CudaModuleCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CUDA_MODULE_CREATE_INFO_NV,
                 p_next: Default::default(),
                 data_size: Default::default(),
                 p_data: Default::default(),
@@ -304,20 +287,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CudaFunctionCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub module: vk::CudaModuleNV,
-        pub p_name: *const core::ffi::c_char,
+        pub p_name: *const ffi::c_char,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CudaFunctionCreateInfoNV<'_> {}
     unsafe impl Sync for CudaFunctionCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CudaFunctionCreateInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CudaFunctionCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CUDA_FUNCTION_CREATE_INFO_NV;
     }
     impl<'a> Default for CudaFunctionCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CUDA_FUNCTION_CREATE_INFO_NV,
                 p_next: Default::default(),
                 module: Default::default(),
                 p_name: Default::default(),
@@ -347,7 +330,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CudaLaunchInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub function: vk::CudaFunctionNV,
         pub grid_dim_x: u32,
         pub grid_dim_y: u32,
@@ -357,20 +340,20 @@ pub(crate) mod items {
         pub block_dim_z: u32,
         pub shared_mem_bytes: u32,
         pub param_count: usize,
-        pub p_params: *const *const core::ffi::c_void,
+        pub p_params: *const *const ffi::c_void,
         pub extra_count: usize,
-        pub p_extras: *const *const core::ffi::c_void,
+        pub p_extras: *const *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CudaLaunchInfoNV<'_> {}
     unsafe impl Sync for CudaLaunchInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CudaLaunchInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CudaLaunchInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CUDA_LAUNCH_INFO_NV;
     }
     impl<'a> Default for CudaLaunchInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CUDA_LAUNCH_INFO_NV,
                 p_next: Default::default(),
                 function: Default::default(),
                 grid_dim_x: Default::default(),
@@ -421,12 +404,12 @@ pub(crate) mod items {
             self.shared_mem_bytes = shared_mem_bytes;
             self
         }
-        pub fn params(mut self, params: &'a [*const core::ffi::c_void]) -> Self {
+        pub fn params(mut self, params: &'a [*const ffi::c_void]) -> Self {
             self.param_count = params.len() as _;
             self.p_params = params.as_ptr();
             self
         }
-        pub fn extras(mut self, extras: &'a [*const core::ffi::c_void]) -> Self {
+        pub fn extras(mut self, extras: &'a [*const ffi::c_void]) -> Self {
             self.extra_count = extras.len() as _;
             self.p_extras = extras.as_ptr();
             self
@@ -437,24 +420,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub cuda_kernel_launch_features: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCudaKernelLaunchFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceCudaKernelLaunchFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV,
                 p_next: Default::default(),
                 cuda_kernel_launch_features: Default::default(),
                 _marker: PhantomData,
@@ -475,23 +458,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub compute_capability_minor: u32,
         pub compute_capability_major: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCudaKernelLaunchPropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceCudaKernelLaunchPropertiesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV,
                 p_next: Default::default(),
                 compute_capability_minor: Default::default(),
                 compute_capability_major: Default::default(),
@@ -538,8 +521,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for CudaModuleNV {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for CudaModuleNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -566,8 +549,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for CudaFunctionNV {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for CudaFunctionNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -581,7 +564,7 @@ pub(crate) mod items {
         device: vk::Device,
         module: vk::CudaModuleNV,
         p_cache_size: *mut usize,
-        p_cache_data: *mut core::ffi::c_void,
+        p_cache_data: *mut ffi::c_void,
     ) -> vk::Result;
     pub type PFN_vkCreateCudaFunctionNV = unsafe extern "system" fn(
         device: vk::Device,

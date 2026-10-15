@@ -163,32 +163,38 @@ pub const NAME: &CStr = c"VK_KHR_extended_flags";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageCreateFlags2CreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub flags: vk::ImageCreateFlags2KHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageCreateFlags2CreateInfoKHR<'_> {}
     unsafe impl Sync for ImageCreateFlags2CreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageCreateFlags2CreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageCreateFlags2CreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for ImageCreateFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for ImageCreateFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::FramebufferAttachmentImageInfo<'_>>
+    unsafe impl<'a> Extends<vk::FramebufferAttachmentImageInfo<'_>>
     for ImageCreateFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::VideoFormatPropertiesKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoFormatPropertiesKHR<'_>>
     for ImageCreateFlags2CreateInfoKHR<'a> {}
     impl<'a> Default for ImageCreateFlags2CreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 _marker: PhantomData,
@@ -206,35 +212,35 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageUsageFlags2CreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub usage: vk::ImageUsageFlags2KHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageUsageFlags2CreateInfoKHR<'_> {}
     unsafe impl Sync for ImageUsageFlags2CreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageUsageFlags2CreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageUsageFlags2CreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::FramebufferAttachmentImageInfo<'_>>
+    unsafe impl<'a> Extends<vk::FramebufferAttachmentImageInfo<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceSparseImageFormatInfo2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceSparseImageFormatInfo2<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceVideoFormatInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceVideoFormatInfoKHR<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> Extends<vk::SurfaceCapabilities2KHR<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::SwapchainCreateInfoKHR<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::VideoFormatPropertiesKHR<'_>>
+    unsafe impl<'a> Extends<vk::VideoFormatPropertiesKHR<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
     impl<'a> Default for ImageUsageFlags2CreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 usage: Default::default(),
                 _marker: PhantomData,
@@ -252,22 +258,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SharedPresentSurfaceCapabilities2KHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shared_present_supported_usage_flags: vk::ImageUsageFlags2KHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SharedPresentSurfaceCapabilities2KHR<'_> {}
     unsafe impl Sync for SharedPresentSurfaceCapabilities2KHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for SharedPresentSurfaceCapabilities2KHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SharedPresentSurfaceCapabilities2KHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> Extends<vk::SurfaceCapabilities2KHR<'_>>
     for SharedPresentSurfaceCapabilities2KHR<'a> {}
     impl<'a> Default for SharedPresentSurfaceCapabilities2KHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR,
                 p_next: Default::default(),
                 shared_present_supported_usage_flags: Default::default(),
                 _marker: PhantomData,
@@ -288,21 +293,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageViewUsage2CreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub usage: vk::ImageUsageFlags2KHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageViewUsage2CreateInfoKHR<'_> {}
     unsafe impl Sync for ImageViewUsage2CreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewUsage2CreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageViewUsage2CreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_VIEW_USAGE_2_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageViewCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageViewCreateInfo<'_>>
     for ImageViewUsage2CreateInfoKHR<'a> {}
     impl<'a> Default for ImageViewUsage2CreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_VIEW_USAGE_2_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 usage: Default::default(),
                 _marker: PhantomData,
@@ -320,23 +325,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageStencilUsage2CreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub stencil_usage: vk::ImageUsageFlags2KHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageStencilUsage2CreateInfoKHR<'_> {}
     unsafe impl Sync for ImageStencilUsage2CreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageStencilUsage2CreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageStencilUsage2CreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_STENCIL_USAGE_2_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for ImageStencilUsage2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for ImageStencilUsage2CreateInfoKHR<'a> {}
     impl<'a> Default for ImageStencilUsage2CreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_STENCIL_USAGE_2_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 stencil_usage: Default::default(),
                 _marker: PhantomData,
@@ -354,24 +359,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub extended_flags: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceExtendedFlagsFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceExtendedFlagsFeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTENDED_FLAGS_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_EXTENDED_FLAGS_FEATURES_KHR,
                 p_next: Default::default(),
                 extended_flags: Default::default(),
                 _marker: PhantomData,
@@ -389,7 +393,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct FormatProperties4KHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub linear_tiling_features: vk::FormatFeatureFlags4KHR,
         pub optimal_tiling_features: vk::FormatFeatureFlags4KHR,
         pub buffer_features: vk::FormatFeatureFlags4KHR,
@@ -397,15 +401,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for FormatProperties4KHR<'_> {}
     unsafe impl Sync for FormatProperties4KHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for FormatProperties4KHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for FormatProperties4KHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FORMAT_PROPERTIES_4_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::FormatProperties2<'_>>
-    for FormatProperties4KHR<'a> {}
+    unsafe impl<'a> Extends<vk::FormatProperties2<'_>> for FormatProperties4KHR<'a> {}
     impl<'a> Default for FormatProperties4KHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::FORMAT_PROPERTIES_4_KHR,
                 p_next: Default::default(),
                 linear_tiling_features: Default::default(),
                 optimal_tiling_features: Default::default(),
@@ -441,9 +444,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FormatFeatureFlags4KHR(pub(crate) u64);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FormatFeatureFlags4KHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for FormatFeatureFlags4KHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl FormatFeatureFlags4KHR {
@@ -466,40 +469,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for FormatFeatureFlags4KHR {
+    impl BitOr for FormatFeatureFlags4KHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for FormatFeatureFlags4KHR {
+    impl BitOrAssign for FormatFeatureFlags4KHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for FormatFeatureFlags4KHR {
+    impl BitAnd for FormatFeatureFlags4KHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for FormatFeatureFlags4KHR {
+    impl BitAndAssign for FormatFeatureFlags4KHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for FormatFeatureFlags4KHR {
+    impl BitXor for FormatFeatureFlags4KHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for FormatFeatureFlags4KHR {
+    impl BitXorAssign for FormatFeatureFlags4KHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for FormatFeatureFlags4KHR {
+    impl Not for FormatFeatureFlags4KHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -524,17 +527,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for FormatFeatureFlagBits4KHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for FormatFeatureFlagBits4KHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageUsageFlags2KHR(pub(crate) u64);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageUsageFlags2KHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageUsageFlags2KHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -597,40 +600,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ImageUsageFlags2KHR {
+    impl BitOr for ImageUsageFlags2KHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ImageUsageFlags2KHR {
+    impl BitOrAssign for ImageUsageFlags2KHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ImageUsageFlags2KHR {
+    impl BitAnd for ImageUsageFlags2KHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ImageUsageFlags2KHR {
+    impl BitAndAssign for ImageUsageFlags2KHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ImageUsageFlags2KHR {
+    impl BitXor for ImageUsageFlags2KHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ImageUsageFlags2KHR {
+    impl BitXorAssign for ImageUsageFlags2KHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ImageUsageFlags2KHR {
+    impl Not for ImageUsageFlags2KHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -655,17 +658,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageUsageFlagBits2KHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ImageUsageFlagBits2KHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ImageCreateFlags2KHR(pub(crate) u64);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageCreateFlags2KHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ImageCreateFlags2KHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -730,40 +733,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ImageCreateFlags2KHR {
+    impl BitOr for ImageCreateFlags2KHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ImageCreateFlags2KHR {
+    impl BitOrAssign for ImageCreateFlags2KHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ImageCreateFlags2KHR {
+    impl BitAnd for ImageCreateFlags2KHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ImageCreateFlags2KHR {
+    impl BitAndAssign for ImageCreateFlags2KHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ImageCreateFlags2KHR {
+    impl BitXor for ImageCreateFlags2KHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ImageCreateFlags2KHR {
+    impl BitXorAssign for ImageCreateFlags2KHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ImageCreateFlags2KHR {
+    impl Not for ImageCreateFlags2KHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -788,9 +791,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ImageCreateFlagBits2KHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ImageCreateFlagBits2KHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
 }

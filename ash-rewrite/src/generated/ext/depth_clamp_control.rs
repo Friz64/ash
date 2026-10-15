@@ -4,7 +4,9 @@
 #![doc(alias = "VK_EXT_depth_clamp_control")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_depth_clamp_control](crate::ext::depth_clamp_control)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT: Self = Self(1000582000);
@@ -30,10 +32,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_set_depth_clamp_range: unsafe {
                 unsafe extern "system" fn cmd_set_depth_clamp_range(
@@ -44,11 +46,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetDepthClampRangeEXT")
                 }
                 let val = _f(c"vkCmdSetDepthClampRangeEXT");
-                if val.is_null() {
-                    cmd_set_depth_clamp_range
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_depth_clamp_range } else { transmute(val) }
             },
         }
     }
@@ -56,13 +54,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -71,7 +69,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdSetDepthClampRangeEXT
@@ -89,7 +87,7 @@ impl Device {
             depth_clamp_mode,
             match depth_clamp_range {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -97,29 +95,34 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub depth_clamp_control: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDepthClampControlFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDepthClampControlFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT,
                 p_next: Default::default(),
                 depth_clamp_control: Default::default(),
                 _marker: PhantomData,
@@ -137,23 +140,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineViewportDepthClampControlCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub depth_clamp_mode: vk::DepthClampModeEXT,
         pub p_depth_clamp_range: *const vk::DepthClampRangeEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineViewportDepthClampControlCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineViewportDepthClampControlCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineViewportDepthClampControlCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineViewportStateCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineViewportStateCreateInfo<'_>>
     for PipelineViewportDepthClampControlCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineViewportDepthClampControlCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 depth_clamp_mode: Default::default(),
                 p_depth_clamp_range: Default::default(),
@@ -181,17 +184,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct DepthClampRangeEXT {
-        pub min_depth_clamp: core::ffi::c_float,
-        pub max_depth_clamp: core::ffi::c_float,
+        pub min_depth_clamp: ffi::c_float,
+        pub max_depth_clamp: ffi::c_float,
     }
     unsafe impl Send for DepthClampRangeEXT {}
     unsafe impl Sync for DepthClampRangeEXT {}
     impl DepthClampRangeEXT {
-        pub fn min_depth_clamp(mut self, min_depth_clamp: core::ffi::c_float) -> Self {
+        pub fn min_depth_clamp(mut self, min_depth_clamp: ffi::c_float) -> Self {
             self.min_depth_clamp = min_depth_clamp;
             self
         }
-        pub fn max_depth_clamp(mut self, max_depth_clamp: core::ffi::c_float) -> Self {
+        pub fn max_depth_clamp(mut self, max_depth_clamp: ffi::c_float) -> Self {
             self.max_depth_clamp = max_depth_clamp;
             self
         }
@@ -200,8 +203,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DepthClampModeEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DepthClampModeEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DepthClampModeEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::VIEWPORT_RANGE => Some("VIEWPORT_RANGE"),
                 Self::USER_DEFINED_RANGE => Some("USER_DEFINED_RANGE"),
@@ -209,7 +212,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

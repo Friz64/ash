@@ -19,29 +19,32 @@ pub const NAME: &CStr = c"VK_MESA_image_alignment_control";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub image_alignment_control: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageAlignmentControlFeaturesMESA<'_> {}
     unsafe impl Sync for PhysicalDeviceImageAlignmentControlFeaturesMESA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {}
     impl<'a> Default for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA,
                 p_next: Default::default(),
                 image_alignment_control: Default::default(),
                 _marker: PhantomData,
@@ -59,22 +62,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub supported_image_alignment_mask: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageAlignmentControlPropertiesMESA<'_> {}
     unsafe impl Sync for PhysicalDeviceImageAlignmentControlPropertiesMESA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {}
     impl<'a> Default for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA,
                 p_next: Default::default(),
                 supported_image_alignment_mask: Default::default(),
                 _marker: PhantomData,
@@ -95,22 +98,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageAlignmentControlCreateInfoMESA<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub maximum_requested_alignment: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageAlignmentControlCreateInfoMESA<'_> {}
     unsafe impl Sync for ImageAlignmentControlCreateInfoMESA<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ImageAlignmentControlCreateInfoMESA<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageAlignmentControlCreateInfoMESA<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>>
     for ImageAlignmentControlCreateInfoMESA<'a> {}
     impl<'a> Default for ImageAlignmentControlCreateInfoMESA<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA,
                 p_next: Default::default(),
                 maximum_requested_alignment: Default::default(),
                 _marker: PhantomData,

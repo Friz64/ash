@@ -42,29 +42,34 @@ pub const NAME: &CStr = c"VK_KHR_maintenance8";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance8FeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub maintenance8: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMaintenance8FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance8FeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMaintenance8FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMaintenance8FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR,
                 p_next: Default::default(),
                 maintenance8: Default::default(),
                 _marker: PhantomData,
@@ -82,28 +87,28 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MemoryBarrierAccessFlags3KHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_access_mask3: vk::AccessFlags3KHR,
         pub dst_access_mask3: vk::AccessFlags3KHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryBarrierAccessFlags3KHR<'_> {}
     unsafe impl Sync for MemoryBarrierAccessFlags3KHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryBarrierAccessFlags3KHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MemoryBarrierAccessFlags3KHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_BARRIER_ACCESS_FLAGS_3_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SubpassDependency2<'_>>
+    unsafe impl<'a> Extends<vk::SubpassDependency2<'_>>
     for MemoryBarrierAccessFlags3KHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::BufferMemoryBarrier2<'_>>
+    unsafe impl<'a> Extends<vk::BufferMemoryBarrier2<'_>>
     for MemoryBarrierAccessFlags3KHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ImageMemoryBarrier2<'_>>
+    unsafe impl<'a> Extends<vk::ImageMemoryBarrier2<'_>>
     for MemoryBarrierAccessFlags3KHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::MemoryRangeBarriersInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::MemoryRangeBarriersInfoKHR<'_>>
     for MemoryBarrierAccessFlags3KHR<'a> {}
     impl<'a> Default for MemoryBarrierAccessFlags3KHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MEMORY_BARRIER_ACCESS_FLAGS_3_KHR,
                 p_next: Default::default(),
                 src_access_mask3: Default::default(),
                 dst_access_mask3: Default::default(),
@@ -131,8 +136,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccessFlags3KHR(pub(crate) u64);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccessFlags3KHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccessFlags3KHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(f, &[(Self::NONE.0, "NONE")], self.0)
         }
     }
@@ -156,40 +161,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for AccessFlags3KHR {
+    impl BitOr for AccessFlags3KHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for AccessFlags3KHR {
+    impl BitOrAssign for AccessFlags3KHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for AccessFlags3KHR {
+    impl BitAnd for AccessFlags3KHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for AccessFlags3KHR {
+    impl BitAndAssign for AccessFlags3KHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for AccessFlags3KHR {
+    impl BitXor for AccessFlags3KHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for AccessFlags3KHR {
+    impl BitXorAssign for AccessFlags3KHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for AccessFlags3KHR {
+    impl Not for AccessFlags3KHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -214,9 +219,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccessFlagBits3KHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for AccessFlagBits3KHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
 }

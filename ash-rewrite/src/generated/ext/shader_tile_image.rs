@@ -14,12 +14,15 @@ pub const NAME: &CStr = c"VK_EXT_shader_tile_image";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_tile_image_color_read_access: vk::Bool32,
         pub shader_tile_image_depth_read_access: vk::Bool32,
         pub shader_tile_image_stencil_read_access: vk::Bool32,
@@ -27,18 +30,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceShaderTileImageFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderTileImageFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT,
                 p_next: Default::default(),
                 shader_tile_image_color_read_access: Default::default(),
                 shader_tile_image_depth_read_access: Default::default(),
@@ -78,7 +81,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_tile_image_coherent_read_accelerated: vk::Bool32,
         pub shader_tile_image_read_sample_from_pixel_rate_invocation: vk::Bool32,
         pub shader_tile_image_read_from_helper_invocation: vk::Bool32,
@@ -86,16 +89,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceShaderTileImagePropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderTileImagePropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT,
                 p_next: Default::default(),
                 shader_tile_image_coherent_read_accelerated: Default::default(),
                 shader_tile_image_read_sample_from_pixel_rate_invocation: Default::default(),

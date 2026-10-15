@@ -4,8 +4,10 @@
 #![doc(alias = "VK_HUAWEI_subpass_shading")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
 impl vk::PipelineBindPoint {
     pub const SUBPASS_SHADING_HUAWEI: Self = Self(1000369003);
@@ -46,10 +48,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_device_subpass_shading_max_workgroup_size: unsafe {
                 unsafe extern "system" fn get_device_subpass_shading_max_workgroup_size(
@@ -65,7 +67,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_device_subpass_shading_max_workgroup_size
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_subpass_shading: unsafe {
@@ -73,11 +75,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSubpassShadingHUAWEI")
                 }
                 let val = _f(c"vkCmdSubpassShadingHUAWEI");
-                if val.is_null() {
-                    cmd_subpass_shading
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_subpass_shading } else { transmute(val) }
             },
         }
     }
@@ -85,13 +83,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -100,7 +98,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI
@@ -109,7 +107,7 @@ impl Device {
         &self,
         renderpass: vk::RenderPass,
     ) -> VkResult<vk::Extent2D> {
-        let mut max_workgroup_size = core::mem::MaybeUninit::uninit();
+        let mut max_workgroup_size = MaybeUninit::uninit();
         (self
             .fp
             .get_device_subpass_shading_max_workgroup_size)(
@@ -128,28 +126,30 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SubpassShadingPipelineCreateInfoHUAWEI<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub render_pass: vk::RenderPass,
         pub subpass: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SubpassShadingPipelineCreateInfoHUAWEI<'_> {}
     unsafe impl Sync for SubpassShadingPipelineCreateInfoHUAWEI<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<vk::ComputePipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ComputePipelineCreateInfo<'_>>
     for SubpassShadingPipelineCreateInfoHUAWEI<'a> {}
     impl<'a> Default for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI,
                 p_next: Default::default(),
                 render_pass: Default::default(),
                 subpass: Default::default(),
@@ -172,22 +172,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_subpass_shading_workgroup_size_aspect_ratio: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI,
                 p_next: Default::default(),
                 max_subpass_shading_workgroup_size_aspect_ratio: Default::default(),
                 _marker: PhantomData,
@@ -208,24 +208,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub subpass_shading: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI,
                 p_next: Default::default(),
                 subpass_shading: Default::default(),
                 _marker: PhantomData,

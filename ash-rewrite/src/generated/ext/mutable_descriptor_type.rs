@@ -40,29 +40,32 @@ pub const NAME: &CStr = c"VK_EXT_mutable_descriptor_type";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub mutable_descriptor_type: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT,
                 p_next: Default::default(),
                 mutable_descriptor_type: Default::default(),
                 _marker: PhantomData,
@@ -100,25 +103,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MutableDescriptorTypeCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub mutable_descriptor_type_list_count: u32,
         pub p_mutable_descriptor_type_lists: *const vk::MutableDescriptorTypeListEXT<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MutableDescriptorTypeCreateInfoEXT<'_> {}
     unsafe impl Sync for MutableDescriptorTypeCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for MutableDescriptorTypeCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MutableDescriptorTypeCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::DescriptorSetLayoutCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DescriptorSetLayoutCreateInfo<'_>>
     for MutableDescriptorTypeCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DescriptorPoolCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DescriptorPoolCreateInfo<'_>>
     for MutableDescriptorTypeCreateInfoEXT<'a> {}
     impl<'a> Default for MutableDescriptorTypeCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 mutable_descriptor_type_list_count: Default::default(),
                 p_mutable_descriptor_type_lists: Default::default(),

@@ -1,5 +1,8 @@
 use super::{Code, Context};
-use crate::output::{CodeMap, GlobExport, OutputLocation};
+use crate::{
+    Import,
+    output::{CodeMap, GlobExport, OutputLocation},
+};
 use analysis::{
     item::enum_::{Enum, Value},
     name::TypeName,
@@ -43,21 +46,28 @@ impl Code for Enum {
                     }
                 });
 
-            let cfg_guard = (self.name != TypeName::VK_RESULT
-                && self.name != TypeName::VK_OBJECT_TYPE)
-                .then_some(quote! { #[cfg(feature = "debug")] });
+            let unconditional_debug =
+                self.name == TypeName::VK_RESULT || self.name == TypeName::VK_OBJECT_TYPE;
+            let cfg_guard = (!unconditional_debug).then_some(quote! { #[cfg(feature = "debug")] });
+            let fmt = if unconditional_debug {
+                octx.insert_import(Import::CoreFmt);
+                quote! { fmt }
+            } else {
+                octx.insert_import(Import::DebugCoreFmt);
+                quote! { fmtd }
+            };
 
             quote! {
                 #cfg_guard
-                impl core::fmt::Debug for #name {
-                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                impl #fmt::Debug for #name {
+                    fn fmt(&self, f: &mut #fmt::Formatter) -> #fmt::Result {
                         if let Some(x) = match *self {
                             #( #debug_items )*
                             _ => None,
                         } {
                             f.write_str(x)
                         } else {
-                            core::fmt::Debug::fmt(&self.0, f)
+                            #fmt::Debug::fmt(&self.0, f)
                         }
                     }
                 }
@@ -77,16 +87,17 @@ impl Code for Enum {
                     quote! { Self::#name => Some(#comment), }
                 });
 
+            octx.insert_import(Import::CoreFmt);
             quote! {
-                impl core::fmt::Display for #name {
-                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                impl fmt::Display for #name {
+                    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
                         if let Some(x) = match *self {
                             #( #display_items )*
                             _ => None,
                         } {
                             f.write_str(x)
                         } else {
-                            core::fmt::Debug::fmt(&self.0, f)
+                            fmt::Debug::fmt(&self.0, f)
                         }
                     }
                 }

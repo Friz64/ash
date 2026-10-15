@@ -16,30 +16,33 @@ pub const NAME: &CStr = c"VK_KHR_unified_image_layouts";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub unified_image_layouts: vk::Bool32,
         pub unified_image_layouts_video: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR,
                 p_next: Default::default(),
                 unified_image_layouts: Default::default(),
                 unified_image_layouts_video: Default::default(),
@@ -65,21 +68,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AttachmentFeedbackLoopInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub feedback_loop_enable: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AttachmentFeedbackLoopInfoEXT<'_> {}
     unsafe impl Sync for AttachmentFeedbackLoopInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentFeedbackLoopInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for AttachmentFeedbackLoopInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ATTACHMENT_FEEDBACK_LOOP_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::RenderingAttachmentInfo<'_>>
+    unsafe impl<'a> Extends<vk::RenderingAttachmentInfo<'_>>
     for AttachmentFeedbackLoopInfoEXT<'a> {}
     impl<'a> Default for AttachmentFeedbackLoopInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ATTACHMENT_FEEDBACK_LOOP_INFO_EXT,
                 p_next: Default::default(),
                 feedback_loop_enable: Default::default(),
                 _marker: PhantomData,

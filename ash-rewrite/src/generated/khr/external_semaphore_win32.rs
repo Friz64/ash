@@ -4,8 +4,10 @@
 #![doc(alias = "VK_KHR_external_semaphore_win32")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_external_semaphore_win32](crate::khr::external_semaphore_win32)
 impl vk::StructureType {
     pub const IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR: Self = Self(1000078000);
@@ -23,25 +25,21 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_semaphore_win32_handle: unsafe {
                 unsafe extern "system" fn get_semaphore_win32_handle(
                     _: vk::Device,
                     _: *const vk::SemaphoreGetWin32HandleInfoKHR<'_>,
-                    _: *mut crate::platform_types::HANDLE,
+                    _: *mut vk::HANDLE,
                 ) -> vk::Result {
                     panic!("unable to load vkGetSemaphoreWin32HandleKHR")
                 }
                 let val = _f(c"vkGetSemaphoreWin32HandleKHR");
-                if val.is_null() {
-                    get_semaphore_win32_handle
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_semaphore_win32_handle } else { transmute(val) }
             },
             import_semaphore_win32_handle: unsafe {
                 unsafe extern "system" fn import_semaphore_win32_handle(
@@ -54,7 +52,7 @@ impl DeviceFn {
                 if val.is_null() {
                     import_semaphore_win32_handle
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -63,13 +61,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -78,7 +76,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetSemaphoreWin32HandleKHR
@@ -86,8 +84,8 @@ impl Device {
     pub unsafe fn get_semaphore_win32_handle(
         &self,
         get_win32_handle_info: &vk::SemaphoreGetWin32HandleInfoKHR<'_>,
-    ) -> VkResult<crate::platform_types::HANDLE> {
-        let mut handle = core::mem::MaybeUninit::uninit();
+    ) -> VkResult<vk::HANDLE> {
+        let mut handle = MaybeUninit::uninit();
         (self
             .fp
             .get_semaphore_win32_handle)(
@@ -115,29 +113,31 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    use crate::Extends;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImportSemaphoreWin32HandleInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub semaphore: vk::Semaphore,
         pub flags: vk::SemaphoreImportFlags,
         pub handle_type: vk::ExternalSemaphoreHandleTypeFlagBits,
-        pub handle: crate::platform_types::HANDLE,
-        pub name: crate::platform_types::LPCWSTR,
+        pub handle: vk::HANDLE,
+        pub name: vk::LPCWSTR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportSemaphoreWin32HandleInfoKHR<'_> {}
     unsafe impl Sync for ImportSemaphoreWin32HandleInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ImportSemaphoreWin32HandleInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportSemaphoreWin32HandleInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR;
     }
     impl<'a> Default for ImportSemaphoreWin32HandleInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR,
                 p_next: Default::default(),
                 semaphore: Default::default(),
                 flags: Default::default(),
@@ -164,11 +164,11 @@ pub(crate) mod items {
             self.handle_type = handle_type;
             self
         }
-        pub fn handle(mut self, handle: crate::platform_types::HANDLE) -> Self {
+        pub fn handle(mut self, handle: vk::HANDLE) -> Self {
             self.handle = handle;
             self
         }
-        pub fn name(mut self, name: crate::platform_types::LPCWSTR) -> Self {
+        pub fn name(mut self, name: vk::LPCWSTR) -> Self {
             self.name = name;
             self
         }
@@ -178,24 +178,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExportSemaphoreWin32HandleInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
-        pub dw_access: crate::platform_types::DWORD,
-        pub name: crate::platform_types::LPCWSTR,
+        pub p_next: *const ffi::c_void,
+        pub p_attributes: *const vk::SECURITY_ATTRIBUTES,
+        pub dw_access: vk::DWORD,
+        pub name: vk::LPCWSTR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExportSemaphoreWin32HandleInfoKHR<'_> {}
     unsafe impl Sync for ExportSemaphoreWin32HandleInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ExportSemaphoreWin32HandleInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExportSemaphoreWin32HandleInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SemaphoreCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::SemaphoreCreateInfo<'_>>
     for ExportSemaphoreWin32HandleInfoKHR<'a> {}
     impl<'a> Default for ExportSemaphoreWin32HandleInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR,
                 p_next: Default::default(),
                 p_attributes: Default::default(),
                 dw_access: Default::default(),
@@ -205,18 +204,15 @@ pub(crate) mod items {
         }
     }
     impl<'a> ExportSemaphoreWin32HandleInfoKHR<'a> {
-        pub fn attributes(
-            mut self,
-            attributes: &'a crate::platform_types::SECURITY_ATTRIBUTES,
-        ) -> Self {
+        pub fn attributes(mut self, attributes: &'a vk::SECURITY_ATTRIBUTES) -> Self {
             self.p_attributes = attributes;
             self
         }
-        pub fn dw_access(mut self, dw_access: crate::platform_types::DWORD) -> Self {
+        pub fn dw_access(mut self, dw_access: vk::DWORD) -> Self {
             self.dw_access = dw_access;
             self
         }
-        pub fn name(mut self, name: crate::platform_types::LPCWSTR) -> Self {
+        pub fn name(mut self, name: vk::LPCWSTR) -> Self {
             self.name = name;
             self
         }
@@ -226,7 +222,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct D3D12FenceSubmitInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub wait_semaphore_values_count: u32,
         pub p_wait_semaphore_values: *const u64,
         pub signal_semaphore_values_count: u32,
@@ -235,14 +231,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for D3D12FenceSubmitInfoKHR<'_> {}
     unsafe impl Sync for D3D12FenceSubmitInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for D3D12FenceSubmitInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for D3D12FenceSubmitInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::D3D12_FENCE_SUBMIT_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SubmitInfo<'_>> for D3D12FenceSubmitInfoKHR<'a> {}
+    unsafe impl<'a> Extends<vk::SubmitInfo<'_>> for D3D12FenceSubmitInfoKHR<'a> {}
     impl<'a> Default for D3D12FenceSubmitInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::D3D12_FENCE_SUBMIT_INFO_KHR,
                 p_next: Default::default(),
                 wait_semaphore_values_count: Default::default(),
                 p_wait_semaphore_values: Default::default(),
@@ -275,20 +271,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SemaphoreGetWin32HandleInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub semaphore: vk::Semaphore,
         pub handle_type: vk::ExternalSemaphoreHandleTypeFlagBits,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SemaphoreGetWin32HandleInfoKHR<'_> {}
     unsafe impl Sync for SemaphoreGetWin32HandleInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreGetWin32HandleInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SemaphoreGetWin32HandleInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR;
     }
     impl<'a> Default for SemaphoreGetWin32HandleInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR,
                 p_next: Default::default(),
                 semaphore: Default::default(),
                 handle_type: Default::default(),
@@ -312,7 +308,7 @@ pub(crate) mod items {
     pub type PFN_vkGetSemaphoreWin32HandleKHR = unsafe extern "system" fn(
         device: vk::Device,
         p_get_win32_handle_info: *const vk::SemaphoreGetWin32HandleInfoKHR<'_>,
-        p_handle: *mut crate::platform_types::HANDLE,
+        p_handle: *mut vk::HANDLE,
     ) -> vk::Result;
     pub type PFN_vkImportSemaphoreWin32HandleKHR = unsafe extern "system" fn(
         device: vk::Device,

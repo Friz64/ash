@@ -8,6 +8,9 @@ pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_H264_ENCODE_API_VERSION
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_h264_encode";
 pub(crate) mod items {
     use crate::vk;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     use core::marker::PhantomData;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
@@ -66,14 +69,14 @@ pub(crate) mod items {
                 flags: Default::default(),
                 luma_log2_weight_denom: Default::default(),
                 chroma_log2_weight_denom: Default::default(),
-                luma_weight_l0: unsafe { core::mem::zeroed() },
-                luma_offset_l0: unsafe { core::mem::zeroed() },
-                chroma_weight_l0: unsafe { core::mem::zeroed() },
-                chroma_offset_l0: unsafe { core::mem::zeroed() },
-                luma_weight_l1: unsafe { core::mem::zeroed() },
-                luma_offset_l1: unsafe { core::mem::zeroed() },
-                chroma_weight_l1: unsafe { core::mem::zeroed() },
-                chroma_offset_l1: unsafe { core::mem::zeroed() },
+                luma_weight_l0: unsafe { zeroed() },
+                luma_offset_l0: unsafe { zeroed() },
+                chroma_weight_l0: unsafe { zeroed() },
+                chroma_offset_l0: unsafe { zeroed() },
+                luma_weight_l1: unsafe { zeroed() },
+                luma_offset_l1: unsafe { zeroed() },
+                chroma_weight_l1: unsafe { zeroed() },
+                chroma_offset_l1: unsafe { zeroed() },
             }
         }
     }
@@ -161,8 +164,8 @@ pub(crate) mod items {
     unsafe impl Send for EncodeH264SliceHeaderFlags {}
     unsafe impl Sync for EncodeH264SliceHeaderFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for EncodeH264SliceHeaderFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for EncodeH264SliceHeaderFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("EncodeH264SliceHeaderFlags")
                 .field(
                     "direct_spatial_mv_pred_flag",
@@ -213,8 +216,8 @@ pub(crate) mod items {
     unsafe impl Send for EncodeH264PictureInfoFlags {}
     unsafe impl Sync for EncodeH264PictureInfoFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for EncodeH264PictureInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for EncodeH264PictureInfoFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("EncodeH264PictureInfoFlags")
                 .field("idr_pic_flag", &self.get_idr_pic_flag())
                 .field("is_reference", &self.get_is_reference())
@@ -292,8 +295,8 @@ pub(crate) mod items {
     unsafe impl Send for EncodeH264ReferenceInfoFlags {}
     unsafe impl Sync for EncodeH264ReferenceInfoFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for EncodeH264ReferenceInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for EncodeH264ReferenceInfoFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("EncodeH264ReferenceInfoFlags")
                 .field(
                     "used_for_long_term_reference",
@@ -325,8 +328,8 @@ pub(crate) mod items {
     unsafe impl Send for EncodeH264ReferenceListsInfoFlags {}
     unsafe impl Sync for EncodeH264ReferenceListsInfoFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for EncodeH264ReferenceListsInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for EncodeH264ReferenceListsInfoFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("EncodeH264ReferenceListsInfoFlags")
                 .field(
                     "ref_pic_list_modification_flag_l0",
@@ -460,12 +463,12 @@ pub(crate) mod items {
                 flags: Default::default(),
                 num_ref_idx_l0_active_minus1: Default::default(),
                 num_ref_idx_l1_active_minus1: Default::default(),
-                ref_pic_list0: unsafe { core::mem::zeroed() },
-                ref_pic_list1: unsafe { core::mem::zeroed() },
+                ref_pic_list0: unsafe { zeroed() },
+                ref_pic_list1: unsafe { zeroed() },
                 ref_list0_mod_op_count: Default::default(),
                 ref_list1_mod_op_count: Default::default(),
                 ref_pic_marking_op_count: Default::default(),
-                reserved1: unsafe { core::mem::zeroed() },
+                reserved1: unsafe { zeroed() },
                 p_ref_list0_mod_operations: Default::default(),
                 p_ref_list1_mod_operations: Default::default(),
                 p_ref_pic_marking_operations: Default::default(),
@@ -564,7 +567,7 @@ pub(crate) mod items {
                 frame_num: Default::default(),
                 pic_order_cnt: Default::default(),
                 temporal_id: Default::default(),
-                reserved1: unsafe { core::mem::zeroed() },
+                reserved1: unsafe { zeroed() },
                 p_ref_lists: Default::default(),
                 _marker: PhantomData,
             }

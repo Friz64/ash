@@ -39,29 +39,34 @@ pub const NAME: &CStr = c"VK_KHR_maintenance7";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance7FeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub maintenance7: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMaintenance7FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance7FeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMaintenance7FeaturesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMaintenance7FeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMaintenance7FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMaintenance7FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance7FeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_FEATURES_KHR,
                 p_next: Default::default(),
                 maintenance7: Default::default(),
                 _marker: PhantomData,
@@ -79,7 +84,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance7PropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub robust_fragment_shading_rate_attachment_access: vk::Bool32,
         pub separate_depth_stencil_attachment_access: vk::Bool32,
         pub max_descriptor_set_total_uniform_buffers_dynamic: u32,
@@ -92,16 +97,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceMaintenance7PropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance7PropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMaintenance7PropertiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMaintenance7PropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceMaintenance7PropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance7PropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_PROPERTIES_KHR,
                 p_next: Default::default(),
                 robust_fragment_shading_rate_attachment_access: Default::default(),
                 separate_depth_stencil_attachment_access: Default::default(),
@@ -180,23 +184,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub layered_api_count: u32,
         pub p_layered_apis: *mut vk::PhysicalDeviceLayeredApiPropertiesKHR<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceLayeredApiPropertiesListKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceLayeredApiPropertiesListKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {}
     impl<'a> Default for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR,
                 p_next: Default::default(),
                 layered_api_count: Default::default(),
                 p_layered_apis: Default::default(),
@@ -219,28 +223,27 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceLayeredApiPropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub vendor_id: u32,
         pub device_id: u32,
         pub layered_api: vk::PhysicalDeviceLayeredApiKHR,
-        pub device_name: [core::ffi::c_char; vk::MAX_PHYSICAL_DEVICE_NAME_SIZE as _],
+        pub device_name: [ffi::c_char; vk::MAX_PHYSICAL_DEVICE_NAME_SIZE as _],
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceLayeredApiPropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceLayeredApiPropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceLayeredApiPropertiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceLayeredApiPropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_KHR;
     }
     impl<'a> Default for PhysicalDeviceLayeredApiPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_KHR,
                 p_next: Default::default(),
                 vendor_id: Default::default(),
                 device_id: Default::default(),
                 layered_api: Default::default(),
-                device_name: unsafe { core::mem::zeroed() },
+                device_name: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }
@@ -263,7 +266,7 @@ pub(crate) mod items {
         }
         pub fn device_name(
             mut self,
-            device_name: [core::ffi::c_char; vk::MAX_PHYSICAL_DEVICE_NAME_SIZE as _],
+            device_name: [ffi::c_char; vk::MAX_PHYSICAL_DEVICE_NAME_SIZE as _],
         ) -> Self {
             self.device_name = device_name;
             self
@@ -274,22 +277,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub properties: vk::PhysicalDeviceProperties2<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceLayeredApiPropertiesKHR<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceLayeredApiPropertiesKHR<'_>>
     for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR,
                 p_next: Default::default(),
                 properties: Default::default(),
                 _marker: PhantomData,
@@ -309,8 +312,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PhysicalDeviceLayeredApiKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PhysicalDeviceLayeredApiKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PhysicalDeviceLayeredApiKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::VULKAN => Some("VULKAN"),
                 Self::D3D12 => Some("D3D12"),
@@ -321,7 +324,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

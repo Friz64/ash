@@ -5,7 +5,8 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_device_fault](crate::ext::device_fault)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FAULT_FEATURES_EXT: Self = Self(1000341000);
@@ -31,10 +32,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_device_fault_info: unsafe {
                 unsafe extern "system" fn get_device_fault_info(
@@ -45,11 +46,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetDeviceFaultInfoEXT")
                 }
                 let val = _f(c"vkGetDeviceFaultInfoEXT");
-                if val.is_null() {
-                    get_device_fault_info
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_device_fault_info } else { transmute(val) }
             },
         }
     }
@@ -57,13 +54,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -72,7 +69,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetDeviceFaultInfoEXT
@@ -88,31 +85,36 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
-    use core::ffi::CStr;
+    use crate::TaggedStructure;
+    use crate::Extends;
     use core::ffi;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ffi::CStr;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFaultFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub device_fault: vk::Bool32,
         pub device_fault_vendor_binary: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFaultFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceFaultFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFaultFeaturesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceFaultFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFaultFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFaultFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFaultFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_EXT,
                 p_next: Default::default(),
                 device_fault: Default::default(),
                 device_fault_vendor_binary: Default::default(),
@@ -138,7 +140,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceFaultCountsEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub address_info_count: u32,
         pub vendor_info_count: u32,
         pub vendor_binary_size: vk::DeviceSize,
@@ -146,13 +148,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for DeviceFaultCountsEXT<'_> {}
     unsafe impl Sync for DeviceFaultCountsEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultCountsEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceFaultCountsEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_FAULT_COUNTS_EXT;
     }
     impl<'a> Default for DeviceFaultCountsEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_FAULT_COUNTS_EXT,
                 p_next: Default::default(),
                 address_info_count: Default::default(),
                 vendor_info_count: Default::default(),
@@ -179,24 +181,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceFaultInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
-        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub p_next: *mut ffi::c_void,
+        pub description: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
         pub p_address_infos: *mut vk::DeviceFaultAddressInfoKHR,
         pub p_vendor_infos: *mut vk::DeviceFaultVendorInfoKHR,
-        pub p_vendor_binary_data: *mut core::ffi::c_void,
+        pub p_vendor_binary_data: *mut ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceFaultInfoEXT<'_> {}
     unsafe impl Sync for DeviceFaultInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceFaultInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_FAULT_INFO_EXT;
     }
     impl<'a> Default for DeviceFaultInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_FAULT_INFO_EXT,
                 p_next: Default::default(),
-                description: unsafe { core::mem::zeroed() },
+                description: unsafe { zeroed() },
                 p_address_infos: Default::default(),
                 p_vendor_infos: Default::default(),
                 p_vendor_binary_data: Default::default(),
@@ -205,8 +207,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl<'a> core::fmt::Debug for DeviceFaultInfoEXT<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl<'a> fmtd::Debug for DeviceFaultInfoEXT<'a> {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("DeviceFaultInfoEXT < 'a >")
                 .field("s_type", &self.s_type)
                 .field("p_next", &self.p_next)
@@ -246,7 +248,7 @@ pub(crate) mod items {
         }
         pub fn vendor_binary_data(
             mut self,
-            vendor_binary_data: &'a mut core::ffi::c_void,
+            vendor_binary_data: &'a mut ffi::c_void,
         ) -> Self {
             self.p_vendor_binary_data = vendor_binary_data;
             self

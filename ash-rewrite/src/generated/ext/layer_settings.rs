@@ -24,28 +24,33 @@ pub const NAME: &CStr = c"VK_EXT_layer_settings";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     use core::ffi::CStr;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct LayerSettingsCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub setting_count: u32,
         pub p_settings: *const vk::LayerSettingEXT<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for LayerSettingsCreateInfoEXT<'_> {}
     unsafe impl Sync for LayerSettingsCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for LayerSettingsCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for LayerSettingsCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::LAYER_SETTINGS_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::InstanceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::InstanceCreateInfo<'_>>
     for LayerSettingsCreateInfoEXT<'a> {}
     impl<'a> Default for LayerSettingsCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::LAYER_SETTINGS_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 setting_count: Default::default(),
                 p_settings: Default::default(),
@@ -64,11 +69,11 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct LayerSettingEXT<'a> {
-        pub p_layer_name: *const core::ffi::c_char,
-        pub p_setting_name: *const core::ffi::c_char,
+        pub p_layer_name: *const ffi::c_char,
+        pub p_setting_name: *const ffi::c_char,
         pub ty: vk::LayerSettingTypeEXT,
         pub value_count: u32,
-        pub p_values: *const core::ffi::c_void,
+        pub p_values: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for LayerSettingEXT<'_> {}
@@ -110,8 +115,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct LayerSettingTypeEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for LayerSettingTypeEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for LayerSettingTypeEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::BOOL32 => Some("BOOL32"),
                 Self::INT32 => Some("INT32"),
@@ -125,7 +130,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

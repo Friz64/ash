@@ -4,7 +4,9 @@
 #![doc(alias = "VK_EXT_fragment_density_map_offset")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_fragment_density_map_offset](crate::ext::fragment_density_map_offset)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT: Self = Self(
@@ -37,10 +39,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_end_rendering2: unsafe {
                 unsafe extern "system" fn cmd_end_rendering2(
@@ -50,11 +52,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdEndRendering2EXT")
                 }
                 let val = _f(c"vkCmdEndRendering2EXT");
-                if val.is_null() {
-                    cmd_end_rendering2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_end_rendering2 } else { transmute(val) }
             },
         }
     }
@@ -62,13 +60,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -77,7 +75,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdEndRendering2KHR
@@ -93,7 +91,7 @@ impl Device {
             command_buffer,
             match rendering_end_info {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -101,29 +99,32 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub fragment_density_map_offset: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT,
                 p_next: Default::default(),
                 fragment_density_map_offset: Default::default(),
                 _marker: PhantomData,
@@ -144,22 +145,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub fragment_density_offset_granularity: vk::Extent2D,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT,
                 p_next: Default::default(),
                 fragment_density_offset_granularity: Default::default(),
                 _marker: PhantomData,
@@ -180,25 +181,25 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub fragment_density_offset_count: u32,
         pub p_fragment_density_offsets: *const vk::Offset2D,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassFragmentDensityMapOffsetEndInfoEXT<'_> {}
     unsafe impl Sync for RenderPassFragmentDensityMapOffsetEndInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::SubpassEndInfo<'_>>
+    unsafe impl<'a> Extends<vk::SubpassEndInfo<'_>>
     for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::RenderingEndInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::RenderingEndInfoKHR<'_>>
     for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {}
     impl<'a> Default for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT,
                 p_next: Default::default(),
                 fragment_density_offset_count: Default::default(),
                 p_fragment_density_offsets: Default::default(),

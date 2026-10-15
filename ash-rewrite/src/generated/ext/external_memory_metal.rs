@@ -4,8 +4,10 @@
 #![doc(alias = "VK_EXT_external_memory_metal")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ffi;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
 ///Provided by [VK_EXT_external_memory_metal](crate::ext::external_memory_metal)
 impl vk::StructureType {
     pub const IMPORT_MEMORY_METAL_HANDLE_INFO_EXT: Self = Self(1000602000);
@@ -40,31 +42,27 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_memory_metal_handle: unsafe {
                 unsafe extern "system" fn get_memory_metal_handle(
                     _: vk::Device,
                     _: *const vk::MemoryGetMetalHandleInfoEXT<'_>,
-                    _: *mut *mut core::ffi::c_void,
+                    _: *mut *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!("unable to load vkGetMemoryMetalHandleEXT")
                 }
                 let val = _f(c"vkGetMemoryMetalHandleEXT");
-                if val.is_null() {
-                    get_memory_metal_handle
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_memory_metal_handle } else { transmute(val) }
             },
             get_memory_metal_handle_properties: unsafe {
                 unsafe extern "system" fn get_memory_metal_handle_properties(
                     _: vk::Device,
                     _: vk::ExternalMemoryHandleTypeFlagBits,
-                    _: *const core::ffi::c_void,
+                    _: *const ffi::c_void,
                     _: *mut vk::MemoryMetalHandlePropertiesEXT<'_>,
                 ) -> vk::Result {
                     panic!("unable to load vkGetMemoryMetalHandlePropertiesEXT")
@@ -73,7 +71,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_memory_metal_handle_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -82,13 +80,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -97,7 +95,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetMemoryMetalHandleEXT
@@ -105,8 +103,8 @@ impl Device {
     pub unsafe fn get_memory_metal_handle(
         &self,
         get_metal_handle_info: &vk::MemoryGetMetalHandleInfoEXT<'_>,
-    ) -> VkResult<*mut core::ffi::c_void> {
-        let mut handle = core::mem::MaybeUninit::uninit();
+    ) -> VkResult<*mut ffi::c_void> {
+        let mut handle = MaybeUninit::uninit();
         (self
             .fp
             .get_memory_metal_handle)(
@@ -121,9 +119,9 @@ impl Device {
     pub unsafe fn get_memory_metal_handle_properties(
         &self,
         handle_type: vk::ExternalMemoryHandleTypeFlagBits,
-        handle: &core::ffi::c_void,
+        handle: &ffi::c_void,
     ) -> VkResult<vk::MemoryMetalHandlePropertiesEXT<'_>> {
-        let mut memory_metal_handle_properties = core::mem::MaybeUninit::uninit();
+        let mut memory_metal_handle_properties = MaybeUninit::uninit();
         (self
             .fp
             .get_memory_metal_handle_properties)(
@@ -138,27 +136,30 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImportMemoryMetalHandleInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub handle_type: vk::ExternalMemoryHandleTypeFlagBits,
-        pub handle: *mut core::ffi::c_void,
+        pub handle: *mut ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportMemoryMetalHandleInfoEXT<'_> {}
     unsafe impl Sync for ImportMemoryMetalHandleInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryMetalHandleInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImportMemoryMetalHandleInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_MEMORY_METAL_HANDLE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> Extends<vk::MemoryAllocateInfo<'_>>
     for ImportMemoryMetalHandleInfoEXT<'a> {}
     impl<'a> Default for ImportMemoryMetalHandleInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMPORT_MEMORY_METAL_HANDLE_INFO_EXT,
                 p_next: Default::default(),
                 handle_type: Default::default(),
                 handle: Default::default(),
@@ -174,7 +175,7 @@ pub(crate) mod items {
             self.handle_type = handle_type;
             self
         }
-        pub fn handle(mut self, handle: &'a mut core::ffi::c_void) -> Self {
+        pub fn handle(mut self, handle: &'a mut ffi::c_void) -> Self {
             self.handle = handle;
             self
         }
@@ -184,19 +185,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MemoryMetalHandlePropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub memory_type_bits: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryMetalHandlePropertiesEXT<'_> {}
     unsafe impl Sync for MemoryMetalHandlePropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryMetalHandlePropertiesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MemoryMetalHandlePropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_METAL_HANDLE_PROPERTIES_EXT;
     }
     impl<'a> Default for MemoryMetalHandlePropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MEMORY_METAL_HANDLE_PROPERTIES_EXT,
                 p_next: Default::default(),
                 memory_type_bits: Default::default(),
                 _marker: PhantomData,
@@ -214,20 +215,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct MemoryGetMetalHandleInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub memory: vk::DeviceMemory,
         pub handle_type: vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryGetMetalHandleInfoEXT<'_> {}
     unsafe impl Sync for MemoryGetMetalHandleInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetMetalHandleInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MemoryGetMetalHandleInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_GET_METAL_HANDLE_INFO_EXT;
     }
     impl<'a> Default for MemoryGetMetalHandleInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MEMORY_GET_METAL_HANDLE_INFO_EXT,
                 p_next: Default::default(),
                 memory: Default::default(),
                 handle_type: Default::default(),
@@ -251,12 +252,12 @@ pub(crate) mod items {
     pub type PFN_vkGetMemoryMetalHandleEXT = unsafe extern "system" fn(
         device: vk::Device,
         p_get_metal_handle_info: *const vk::MemoryGetMetalHandleInfoEXT<'_>,
-        p_handle: *mut *mut core::ffi::c_void,
+        p_handle: *mut *mut ffi::c_void,
     ) -> vk::Result;
     pub type PFN_vkGetMemoryMetalHandlePropertiesEXT = unsafe extern "system" fn(
         device: vk::Device,
         handle_type: vk::ExternalMemoryHandleTypeFlagBits,
-        p_handle: *const core::ffi::c_void,
+        p_handle: *const ffi::c_void,
         p_memory_metal_handle_properties: *mut vk::MemoryMetalHandlePropertiesEXT<'_>,
     ) -> vk::Result;
 }

@@ -14,26 +14,29 @@ pub const NAME: &CStr = c"VK_EXT_astc_decode_mode";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageViewASTCDecodeModeEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub decode_mode: vk::Format,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageViewASTCDecodeModeEXT<'_> {}
     unsafe impl Sync for ImageViewASTCDecodeModeEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewASTCDecodeModeEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageViewASTCDecodeModeEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_VIEW_ASTC_DECODE_MODE_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageViewCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageViewCreateInfo<'_>>
     for ImageViewASTCDecodeModeEXT<'a> {}
     impl<'a> Default for ImageViewASTCDecodeModeEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_VIEW_ASTC_DECODE_MODE_EXT,
                 p_next: Default::default(),
                 decode_mode: Default::default(),
                 _marker: PhantomData,
@@ -51,24 +54,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub decode_mode_shared_exponent: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceASTCDecodeFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceASTCDecodeFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT,
                 p_next: Default::default(),
                 decode_mode_shared_exponent: Default::default(),
                 _marker: PhantomData,

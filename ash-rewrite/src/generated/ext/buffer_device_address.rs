@@ -4,7 +4,8 @@
 #![doc(alias = "VK_EXT_buffer_device_address")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_buffer_device_address](crate::ext::buffer_device_address)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT: Self = Self(
@@ -47,10 +48,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_buffer_device_address: unsafe {
                 unsafe extern "system" fn get_buffer_device_address(
@@ -60,11 +61,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetBufferDeviceAddressEXT")
                 }
                 let val = _f(c"vkGetBufferDeviceAddressEXT");
-                if val.is_null() {
-                    get_buffer_device_address
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_buffer_device_address } else { transmute(val) }
             },
         }
     }
@@ -72,13 +69,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -87,7 +84,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetBufferDeviceAddress
@@ -102,12 +99,15 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub buffer_device_address: vk::Bool32,
         pub buffer_device_address_capture_replay: vk::Bool32,
         pub buffer_device_address_multi_device: vk::Bool32,
@@ -115,18 +115,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT,
                 p_next: Default::default(),
                 buffer_device_address: Default::default(),
                 buffer_device_address_capture_replay: Default::default(),
@@ -162,21 +162,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BufferDeviceAddressCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub device_address: vk::DeviceAddress,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BufferDeviceAddressCreateInfoEXT<'_> {}
     unsafe impl Sync for BufferDeviceAddressCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BufferDeviceAddressCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BufferDeviceAddressCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::BufferCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::BufferCreateInfo<'_>>
     for BufferDeviceAddressCreateInfoEXT<'a> {}
     impl<'a> Default for BufferDeviceAddressCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 device_address: Default::default(),
                 _marker: PhantomData,

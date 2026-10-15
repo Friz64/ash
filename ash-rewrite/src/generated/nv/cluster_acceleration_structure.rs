@@ -4,7 +4,9 @@
 #![doc(alias = "VK_NV_cluster_acceleration_structure")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV: Self = Self(
@@ -159,10 +161,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_cluster_acceleration_structure_build_sizes: unsafe {
                 unsafe extern "system" fn get_cluster_acceleration_structure_build_sizes(
@@ -178,7 +180,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_cluster_acceleration_structure_build_sizes
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_build_cluster_acceleration_structure_indirect: unsafe {
@@ -194,7 +196,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_build_cluster_acceleration_structure_indirect
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -203,13 +205,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -218,7 +220,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetClusterAccelerationStructureBuildSizesNV
@@ -227,7 +229,7 @@ impl Device {
         &self,
         info: &vk::ClusterAccelerationStructureInputInfoNV<'_>,
     ) -> vk::AccelerationStructureBuildSizesInfoKHR<'_> {
-        let mut size_info = core::mem::MaybeUninit::uninit();
+        let mut size_info = MaybeUninit::uninit();
         (self
             .fp
             .get_cluster_acceleration_structure_build_sizes)(
@@ -255,29 +257,36 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::mem::zeroed;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub cluster_acceleration_structure: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV,
                 p_next: Default::default(),
                 cluster_acceleration_structure: Default::default(),
                 _marker: PhantomData,
@@ -298,7 +307,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_vertices_per_cluster: u32,
         pub max_triangles_per_cluster: u32,
         pub cluster_scratch_byte_alignment: u32,
@@ -311,16 +320,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_PROPERTIES_NV,
                 p_next: Default::default(),
                 max_vertices_per_cluster: Default::default(),
                 max_triangles_per_cluster: Default::default(),
@@ -413,22 +422,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub allow_cluster_acceleration_structure: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'_> {}
     unsafe impl Sync for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RAY_TRACING_PIPELINE_CLUSTER_ACCELERATION_STRUCTURE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::RayTracingPipelineCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::RayTracingPipelineCreateInfoKHR<'_>>
     for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {}
     impl<'a> Default for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RAY_TRACING_PIPELINE_CLUSTER_ACCELERATION_STRUCTURE_CREATE_INFO_NV,
                 p_next: Default::default(),
                 allow_cluster_acceleration_structure: Default::default(),
                 _marker: PhantomData,
@@ -455,9 +464,8 @@ pub(crate) mod items {
     unsafe impl Send for ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {}
     unsafe impl Sync for ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug
-    for ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV")
                 .field("geometry_index", &self.get_geometry_index())
                 .field("geometry_flags", &self.get_geometry_flags())
@@ -574,8 +582,8 @@ pub(crate) mod items {
     unsafe impl Send for ClusterAccelerationStructureBuildTriangleClusterInfoNV {}
     unsafe impl Sync for ClusterAccelerationStructureBuildTriangleClusterInfoNV {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureBuildTriangleClusterInfoNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClusterAccelerationStructureBuildTriangleClusterInfoNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("ClusterAccelerationStructureBuildTriangleClusterInfoNV")
                 .field("cluster_id", &self.cluster_id)
                 .field("cluster_flags", &self.cluster_flags)
@@ -763,9 +771,8 @@ pub(crate) mod items {
     unsafe impl Send for ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {}
     unsafe impl Sync for ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug
-    for ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct(
                     "ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV",
                 )
@@ -952,8 +959,8 @@ pub(crate) mod items {
     unsafe impl Send for ClusterAccelerationStructureInstantiateClusterInfoNV {}
     unsafe impl Sync for ClusterAccelerationStructureInstantiateClusterInfoNV {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureInstantiateClusterInfoNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClusterAccelerationStructureInstantiateClusterInfoNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("ClusterAccelerationStructureInstantiateClusterInfoNV")
                 .field("cluster_id_offset", &self.cluster_id_offset)
                 .field("geometry_index_offset", &self.get_geometry_index_offset())
@@ -995,21 +1002,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureClustersBottomLevelInputNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_total_cluster_count: u32,
         pub max_cluster_count_per_acceleration_structure: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ClusterAccelerationStructureClustersBottomLevelInputNV<'_> {}
     unsafe impl Sync for ClusterAccelerationStructureClustersBottomLevelInputNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for ClusterAccelerationStructureClustersBottomLevelInputNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_CLUSTERS_BOTTOM_LEVEL_INPUT_NV;
     }
     impl<'a> Default for ClusterAccelerationStructureClustersBottomLevelInputNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_CLUSTERS_BOTTOM_LEVEL_INPUT_NV,
                 p_next: Default::default(),
                 max_total_cluster_count: Default::default(),
                 max_cluster_count_per_acceleration_structure: Default::default(),
@@ -1035,7 +1042,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureTriangleClusterInputNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub vertex_format: vk::Format,
         pub max_geometry_index_value: u32,
         pub max_cluster_unique_geometry_count: u32,
@@ -1048,14 +1055,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for ClusterAccelerationStructureTriangleClusterInputNV<'_> {}
     unsafe impl Sync for ClusterAccelerationStructureTriangleClusterInputNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for ClusterAccelerationStructureTriangleClusterInputNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_TRIANGLE_CLUSTER_INPUT_NV;
     }
     impl<'a> Default for ClusterAccelerationStructureTriangleClusterInputNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_TRIANGLE_CLUSTER_INPUT_NV,
                 p_next: Default::default(),
                 vertex_format: Default::default(),
                 max_geometry_index_value: Default::default(),
@@ -1126,7 +1133,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureMoveObjectsInputNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub ty: vk::ClusterAccelerationStructureTypeNV,
         pub no_move_overlap: vk::Bool32,
         pub max_moved_bytes: vk::DeviceSize,
@@ -1134,14 +1141,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for ClusterAccelerationStructureMoveObjectsInputNV<'_> {}
     unsafe impl Sync for ClusterAccelerationStructureMoveObjectsInputNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for ClusterAccelerationStructureMoveObjectsInputNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_MOVE_OBJECTS_INPUT_NV;
     }
     impl<'a> Default for ClusterAccelerationStructureMoveObjectsInputNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_MOVE_OBJECTS_INPUT_NV,
                 p_next: Default::default(),
                 ty: Default::default(),
                 no_move_overlap: Default::default(),
@@ -1169,7 +1176,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureInputInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_acceleration_structure_count: u32,
         pub flags: vk::BuildAccelerationStructureFlagsKHR,
         pub op_type: vk::ClusterAccelerationStructureOpTypeNV,
@@ -1179,14 +1186,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ClusterAccelerationStructureInputInfoNV<'_> {}
     unsafe impl Sync for ClusterAccelerationStructureInputInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ClusterAccelerationStructureInputInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ClusterAccelerationStructureInputInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_INPUT_INFO_NV;
     }
     impl<'a> Default for ClusterAccelerationStructureInputInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_INPUT_INFO_NV,
                 p_next: Default::default(),
                 max_acceleration_structure_count: Default::default(),
                 flags: Default::default(),
@@ -1236,7 +1242,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureCommandsInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub input: vk::ClusterAccelerationStructureInputInfoNV<'a>,
         pub dst_implicit_data: vk::DeviceAddress,
         pub scratch_data: vk::DeviceAddress,
@@ -1249,14 +1255,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for ClusterAccelerationStructureCommandsInfoNV<'_> {}
     unsafe impl Sync for ClusterAccelerationStructureCommandsInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for ClusterAccelerationStructureCommandsInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV;
     }
     impl<'a> Default for ClusterAccelerationStructureCommandsInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV,
                 p_next: Default::default(),
                 input: Default::default(),
                 dst_implicit_data: Default::default(),
@@ -1335,12 +1341,12 @@ pub(crate) mod items {
     }
     impl<'a> Default for ClusterAccelerationStructureOpInputNV<'a> {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl<'a> core::fmt::Debug for ClusterAccelerationStructureOpInputNV<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl<'a> fmtd::Debug for ClusterAccelerationStructureOpInputNV<'a> {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "ClusterAccelerationStructureOpInputNV < 'a >")
         }
     }
@@ -1348,8 +1354,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ClusterAccelerationStructureTypeNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureTypeNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClusterAccelerationStructureTypeNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::CLUSTERS_BOTTOM_LEVEL => Some("CLUSTERS_BOTTOM_LEVEL"),
                 Self::TRIANGLE_CLUSTER => Some("TRIANGLE_CLUSTER"),
@@ -1358,7 +1364,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1376,8 +1382,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ClusterAccelerationStructureOpTypeNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureOpTypeNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClusterAccelerationStructureOpTypeNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::MOVE_OBJECTS => Some("MOVE_OBJECTS"),
                 Self::BUILD_CLUSTERS_BOTTOM_LEVEL => Some("BUILD_CLUSTERS_BOTTOM_LEVEL"),
@@ -1395,7 +1401,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1413,8 +1419,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ClusterAccelerationStructureOpModeNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureOpModeNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClusterAccelerationStructureOpModeNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::IMPLICIT_DESTINATIONS => Some("IMPLICIT_DESTINATIONS"),
                 Self::EXPLICIT_DESTINATIONS => Some("EXPLICIT_DESTINATIONS"),
@@ -1423,7 +1429,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1441,8 +1447,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureGeometryFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureGeometryFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClusterAccelerationStructureGeometryFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1477,40 +1483,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ClusterAccelerationStructureGeometryFlagsNV {
+    impl BitOr for ClusterAccelerationStructureGeometryFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ClusterAccelerationStructureGeometryFlagsNV {
+    impl BitOrAssign for ClusterAccelerationStructureGeometryFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ClusterAccelerationStructureGeometryFlagsNV {
+    impl BitAnd for ClusterAccelerationStructureGeometryFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ClusterAccelerationStructureGeometryFlagsNV {
+    impl BitAndAssign for ClusterAccelerationStructureGeometryFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ClusterAccelerationStructureGeometryFlagsNV {
+    impl BitXor for ClusterAccelerationStructureGeometryFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ClusterAccelerationStructureGeometryFlagsNV {
+    impl BitXorAssign for ClusterAccelerationStructureGeometryFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ClusterAccelerationStructureGeometryFlagsNV {
+    impl Not for ClusterAccelerationStructureGeometryFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1535,17 +1541,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureGeometryFlagBitsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ClusterAccelerationStructureGeometryFlagBitsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureClusterFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureClusterFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClusterAccelerationStructureClusterFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1578,40 +1584,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ClusterAccelerationStructureClusterFlagsNV {
+    impl BitOr for ClusterAccelerationStructureClusterFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ClusterAccelerationStructureClusterFlagsNV {
+    impl BitOrAssign for ClusterAccelerationStructureClusterFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ClusterAccelerationStructureClusterFlagsNV {
+    impl BitAnd for ClusterAccelerationStructureClusterFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ClusterAccelerationStructureClusterFlagsNV {
+    impl BitAndAssign for ClusterAccelerationStructureClusterFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ClusterAccelerationStructureClusterFlagsNV {
+    impl BitXor for ClusterAccelerationStructureClusterFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ClusterAccelerationStructureClusterFlagsNV {
+    impl BitXorAssign for ClusterAccelerationStructureClusterFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ClusterAccelerationStructureClusterFlagsNV {
+    impl Not for ClusterAccelerationStructureClusterFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1636,17 +1642,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureClusterFlagBitsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ClusterAccelerationStructureClusterFlagBitsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureAddressResolutionFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureAddressResolutionFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClusterAccelerationStructureAddressResolutionFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1688,43 +1694,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ClusterAccelerationStructureAddressResolutionFlagsNV {
+    impl BitOr for ClusterAccelerationStructureAddressResolutionFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign
-    for ClusterAccelerationStructureAddressResolutionFlagsNV {
+    impl BitOrAssign for ClusterAccelerationStructureAddressResolutionFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ClusterAccelerationStructureAddressResolutionFlagsNV {
+    impl BitAnd for ClusterAccelerationStructureAddressResolutionFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign
-    for ClusterAccelerationStructureAddressResolutionFlagsNV {
+    impl BitAndAssign for ClusterAccelerationStructureAddressResolutionFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ClusterAccelerationStructureAddressResolutionFlagsNV {
+    impl BitXor for ClusterAccelerationStructureAddressResolutionFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign
-    for ClusterAccelerationStructureAddressResolutionFlagsNV {
+    impl BitXorAssign for ClusterAccelerationStructureAddressResolutionFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ClusterAccelerationStructureAddressResolutionFlagsNV {
+    impl Not for ClusterAccelerationStructureAddressResolutionFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1751,17 +1754,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureAddressResolutionFlagBitsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ClusterAccelerationStructureAddressResolutionFlagBitsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ClusterAccelerationStructureIndexFormatFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureIndexFormatFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ClusterAccelerationStructureIndexFormatFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1793,40 +1796,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ClusterAccelerationStructureIndexFormatFlagsNV {
+    impl BitOr for ClusterAccelerationStructureIndexFormatFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ClusterAccelerationStructureIndexFormatFlagsNV {
+    impl BitOrAssign for ClusterAccelerationStructureIndexFormatFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ClusterAccelerationStructureIndexFormatFlagsNV {
+    impl BitAnd for ClusterAccelerationStructureIndexFormatFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ClusterAccelerationStructureIndexFormatFlagsNV {
+    impl BitAndAssign for ClusterAccelerationStructureIndexFormatFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ClusterAccelerationStructureIndexFormatFlagsNV {
+    impl BitXor for ClusterAccelerationStructureIndexFormatFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ClusterAccelerationStructureIndexFormatFlagsNV {
+    impl BitXorAssign for ClusterAccelerationStructureIndexFormatFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ClusterAccelerationStructureIndexFormatFlagsNV {
+    impl Not for ClusterAccelerationStructureIndexFormatFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1851,9 +1854,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ClusterAccelerationStructureIndexFormatFlagBitsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ClusterAccelerationStructureIndexFormatFlagBitsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetClusterAccelerationStructureBuildSizesNV = unsafe extern "system" fn(

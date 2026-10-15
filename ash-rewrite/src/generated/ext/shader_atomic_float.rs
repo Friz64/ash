@@ -13,12 +13,15 @@ pub const NAME: &CStr = c"VK_EXT_shader_atomic_float";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_buffer_float32_atomics: vk::Bool32,
         pub shader_buffer_float32_atomic_add: vk::Bool32,
         pub shader_buffer_float64_atomics: vk::Bool32,
@@ -35,18 +38,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT,
                 p_next: Default::default(),
                 shader_buffer_float32_atomics: Default::default(),
                 shader_buffer_float32_atomic_add: Default::default(),

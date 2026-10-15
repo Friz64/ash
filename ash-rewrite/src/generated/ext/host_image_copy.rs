@@ -5,7 +5,9 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::mem::MaybeUninit;
+use core::ffi;
 ///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES;
@@ -60,10 +62,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             copy_memory_to_image: unsafe {
                 unsafe extern "system" fn copy_memory_to_image(
@@ -73,11 +75,7 @@ impl DeviceFn {
                     panic!("unable to load vkCopyMemoryToImageEXT")
                 }
                 let val = _f(c"vkCopyMemoryToImageEXT");
-                if val.is_null() {
-                    copy_memory_to_image
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { copy_memory_to_image } else { transmute(val) }
             },
             copy_image_to_memory: unsafe {
                 unsafe extern "system" fn copy_image_to_memory(
@@ -87,11 +85,7 @@ impl DeviceFn {
                     panic!("unable to load vkCopyImageToMemoryEXT")
                 }
                 let val = _f(c"vkCopyImageToMemoryEXT");
-                if val.is_null() {
-                    copy_image_to_memory
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { copy_image_to_memory } else { transmute(val) }
             },
             copy_image_to_image: unsafe {
                 unsafe extern "system" fn copy_image_to_image(
@@ -101,11 +95,7 @@ impl DeviceFn {
                     panic!("unable to load vkCopyImageToImageEXT")
                 }
                 let val = _f(c"vkCopyImageToImageEXT");
-                if val.is_null() {
-                    copy_image_to_image
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { copy_image_to_image } else { transmute(val) }
             },
             transition_image_layout: unsafe {
                 unsafe extern "system" fn transition_image_layout(
@@ -116,11 +106,7 @@ impl DeviceFn {
                     panic!("unable to load vkTransitionImageLayoutEXT")
                 }
                 let val = _f(c"vkTransitionImageLayoutEXT");
-                if val.is_null() {
-                    transition_image_layout
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { transition_image_layout } else { transmute(val) }
             },
             get_image_subresource_layout2: unsafe {
                 unsafe extern "system" fn get_image_subresource_layout2(
@@ -135,7 +121,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_image_subresource_layout2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -144,13 +130,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -159,7 +145,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCopyMemoryToImage
@@ -208,7 +194,7 @@ impl Device {
         image: vk::Image,
         subresource: &vk::ImageSubresource2<'_>,
     ) -> vk::SubresourceLayout2<'_> {
-        let mut layout = core::mem::MaybeUninit::uninit();
+        let mut layout = MaybeUninit::uninit();
         (self
             .fp
             .get_image_subresource_layout2)(

@@ -4,8 +4,12 @@
 #![doc(alias = "VK_AMD_gpa_interface")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use alloc::vec::Vec;
+use core::ffi;
 ///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_GPA_FEATURES_AMD: Self = Self(1000133000);
@@ -137,10 +141,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_gpa_session: unsafe {
                 unsafe extern "system" fn create_gpa_session(
@@ -152,11 +156,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateGpaSessionAMD")
                 }
                 let val = _f(c"vkCreateGpaSessionAMD");
-                if val.is_null() {
-                    create_gpa_session
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_gpa_session } else { transmute(val) }
             },
             destroy_gpa_session: unsafe {
                 unsafe extern "system" fn destroy_gpa_session(
@@ -167,11 +167,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyGpaSessionAMD")
                 }
                 let val = _f(c"vkDestroyGpaSessionAMD");
-                if val.is_null() {
-                    destroy_gpa_session
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_gpa_session } else { transmute(val) }
             },
             set_gpa_device_clock_mode: unsafe {
                 unsafe extern "system" fn set_gpa_device_clock_mode(
@@ -181,11 +177,7 @@ impl DeviceFn {
                     panic!("unable to load vkSetGpaDeviceClockModeAMD")
                 }
                 let val = _f(c"vkSetGpaDeviceClockModeAMD");
-                if val.is_null() {
-                    set_gpa_device_clock_mode
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { set_gpa_device_clock_mode } else { transmute(val) }
             },
             get_gpa_device_clock_info: unsafe {
                 unsafe extern "system" fn get_gpa_device_clock_info(
@@ -195,11 +187,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetGpaDeviceClockInfoAMD")
                 }
                 let val = _f(c"vkGetGpaDeviceClockInfoAMD");
-                if val.is_null() {
-                    get_gpa_device_clock_info
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_gpa_device_clock_info } else { transmute(val) }
             },
             cmd_begin_gpa_session: unsafe {
                 unsafe extern "system" fn cmd_begin_gpa_session(
@@ -209,11 +197,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdBeginGpaSessionAMD")
                 }
                 let val = _f(c"vkCmdBeginGpaSessionAMD");
-                if val.is_null() {
-                    cmd_begin_gpa_session
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_begin_gpa_session } else { transmute(val) }
             },
             cmd_end_gpa_session: unsafe {
                 unsafe extern "system" fn cmd_end_gpa_session(
@@ -223,11 +207,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdEndGpaSessionAMD")
                 }
                 let val = _f(c"vkCmdEndGpaSessionAMD");
-                if val.is_null() {
-                    cmd_end_gpa_session
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_end_gpa_session } else { transmute(val) }
             },
             cmd_begin_gpa_sample: unsafe {
                 unsafe extern "system" fn cmd_begin_gpa_sample(
@@ -239,11 +219,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdBeginGpaSampleAMD")
                 }
                 let val = _f(c"vkCmdBeginGpaSampleAMD");
-                if val.is_null() {
-                    cmd_begin_gpa_sample
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_begin_gpa_sample } else { transmute(val) }
             },
             cmd_end_gpa_sample: unsafe {
                 unsafe extern "system" fn cmd_end_gpa_sample(
@@ -254,11 +230,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdEndGpaSampleAMD")
                 }
                 let val = _f(c"vkCmdEndGpaSampleAMD");
-                if val.is_null() {
-                    cmd_end_gpa_sample
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_end_gpa_sample } else { transmute(val) }
             },
             get_gpa_session_status: unsafe {
                 unsafe extern "system" fn get_gpa_session_status(
@@ -268,11 +240,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetGpaSessionStatusAMD")
                 }
                 let val = _f(c"vkGetGpaSessionStatusAMD");
-                if val.is_null() {
-                    get_gpa_session_status
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_gpa_session_status } else { transmute(val) }
             },
             get_gpa_session_results: unsafe {
                 unsafe extern "system" fn get_gpa_session_results(
@@ -280,16 +248,12 @@ impl DeviceFn {
                     _: vk::GpaSessionAMD,
                     _: u32,
                     _: *mut usize,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!("unable to load vkGetGpaSessionResultsAMD")
                 }
                 let val = _f(c"vkGetGpaSessionResultsAMD");
-                if val.is_null() {
-                    get_gpa_session_results
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_gpa_session_results } else { transmute(val) }
             },
             reset_gpa_session: unsafe {
                 unsafe extern "system" fn reset_gpa_session(
@@ -299,11 +263,7 @@ impl DeviceFn {
                     panic!("unable to load vkResetGpaSessionAMD")
                 }
                 let val = _f(c"vkResetGpaSessionAMD");
-                if val.is_null() {
-                    reset_gpa_session
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { reset_gpa_session } else { transmute(val) }
             },
             cmd_copy_gpa_session_results: unsafe {
                 unsafe extern "system" fn cmd_copy_gpa_session_results(
@@ -313,11 +273,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdCopyGpaSessionResultsAMD")
                 }
                 let val = _f(c"vkCmdCopyGpaSessionResultsAMD");
-                if val.is_null() {
-                    cmd_copy_gpa_session_results
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_copy_gpa_session_results } else { transmute(val) }
             },
         }
     }
@@ -325,13 +281,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -340,7 +296,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateGpaSessionAMD
@@ -350,7 +306,7 @@ impl Device {
         create_info: &vk::GpaSessionCreateInfoAMD<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::GpaSessionAMD> {
-        let mut gpa_session = core::mem::MaybeUninit::uninit();
+        let mut gpa_session = MaybeUninit::uninit();
         (self
             .fp
             .create_gpa_session)(
@@ -358,7 +314,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 gpa_session.as_mut_ptr(),
             )
@@ -378,7 +334,7 @@ impl Device {
             gpa_session,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -387,7 +343,7 @@ impl Device {
     pub unsafe fn set_gpa_device_clock_mode(
         &self,
     ) -> VkResult<vk::GpaDeviceClockModeInfoAMD<'_>> {
-        let mut info = core::mem::MaybeUninit::uninit();
+        let mut info = MaybeUninit::uninit();
         (self.fp.set_gpa_device_clock_mode)(self.handle, info.as_mut_ptr())
             .assume_init_on_success(info)
     }
@@ -396,7 +352,7 @@ impl Device {
     pub unsafe fn get_gpa_device_clock_info(
         &self,
     ) -> VkResult<vk::GpaDeviceGetClockInfoAMD<'_>> {
-        let mut info = core::mem::MaybeUninit::uninit();
+        let mut info = MaybeUninit::uninit();
         (self.fp.get_gpa_device_clock_info)(self.handle, info.as_mut_ptr())
             .assume_init_on_success(info)
     }
@@ -426,7 +382,7 @@ impl Device {
         gpa_session: vk::GpaSessionAMD,
         gpa_sample_begin_info: &vk::GpaSampleBeginInfoAMD<'_>,
     ) -> VkResult<u32> {
-        let mut sample_id = core::mem::MaybeUninit::uninit();
+        let mut sample_id = MaybeUninit::uninit();
         (self
             .fp
             .cmd_begin_gpa_sample)(
@@ -461,7 +417,7 @@ impl Device {
         &self,
         gpa_session: vk::GpaSessionAMD,
         sample_id: u32,
-    ) -> crate::VkResult<Vec<core::ffi::c_void>> {
+    ) -> VkResult<Vec<ffi::c_void>> {
         crate::read_into_uninitialized_vector(|size_in_bytes, data| (self
             .fp
             .get_gpa_session_results)(
@@ -493,10 +449,14 @@ impl Device {
 pub(crate) mod items {
     use crate::vk;
     use core::marker::PhantomData;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -552,7 +512,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGpaFeaturesAMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub perf_counters: vk::Bool32,
         pub streaming_perf_counters: vk::Bool32,
         pub sq_thread_tracing: vk::Bool32,
@@ -561,17 +521,17 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceGpaFeaturesAMD<'_> {}
     unsafe impl Sync for PhysicalDeviceGpaFeaturesAMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceGpaFeaturesAMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceGpaFeaturesAMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_GPA_FEATURES_AMD;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceGpaFeaturesAMD<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceGpaFeaturesAMD<'a> {}
     impl<'a> Default for PhysicalDeviceGpaFeaturesAMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_GPA_FEATURES_AMD,
                 p_next: Default::default(),
                 perf_counters: Default::default(),
                 streaming_perf_counters: Default::default(),
@@ -604,7 +564,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGpaPropertiesAMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub flags: vk::PhysicalDeviceGpaPropertiesFlagsAMD,
         pub max_sqtt_se_buffer_size: vk::DeviceSize,
         pub shader_engine_count: u32,
@@ -614,15 +574,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceGpaPropertiesAMD<'_> {}
     unsafe impl Sync for PhysicalDeviceGpaPropertiesAMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceGpaPropertiesAMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceGpaPropertiesAMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_AMD;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceGpaPropertiesAMD<'a> {}
     impl<'a> Default for PhysicalDeviceGpaPropertiesAMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_AMD,
                 p_next: Default::default(),
                 flags: Default::default(),
                 max_sqtt_se_buffer_size: Default::default(),
@@ -663,21 +623,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGpaProperties2AMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub revision_id: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceGpaProperties2AMD<'_> {}
     unsafe impl Sync for PhysicalDeviceGpaProperties2AMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceGpaProperties2AMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceGpaProperties2AMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_2_AMD;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceGpaProperties2AMD<'a> {}
     impl<'a> Default for PhysicalDeviceGpaProperties2AMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_2_AMD,
                 p_next: Default::default(),
                 revision_id: Default::default(),
                 _marker: PhantomData,
@@ -719,7 +679,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct GpaSampleBeginInfoAMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub sample_type: vk::GpaSampleTypeAMD,
         pub sample_internal_operations: vk::Bool32,
         pub cache_flush_on_counter_collection: vk::Bool32,
@@ -738,13 +698,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for GpaSampleBeginInfoAMD<'_> {}
     unsafe impl Sync for GpaSampleBeginInfoAMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for GpaSampleBeginInfoAMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for GpaSampleBeginInfoAMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GPA_SAMPLE_BEGIN_INFO_AMD;
     }
     impl<'a> Default for GpaSampleBeginInfoAMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::GPA_SAMPLE_BEGIN_INFO_AMD,
                 p_next: Default::default(),
                 sample_type: Default::default(),
                 sample_internal_operations: Default::default(),
@@ -856,21 +816,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct GpaDeviceClockModeInfoAMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub clock_mode: vk::GpaDeviceClockModeAMD,
-        pub memory_clock_ratio_to_peak: core::ffi::c_float,
-        pub engine_clock_ratio_to_peak: core::ffi::c_float,
+        pub memory_clock_ratio_to_peak: ffi::c_float,
+        pub engine_clock_ratio_to_peak: ffi::c_float,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GpaDeviceClockModeInfoAMD<'_> {}
     unsafe impl Sync for GpaDeviceClockModeInfoAMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for GpaDeviceClockModeInfoAMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for GpaDeviceClockModeInfoAMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GPA_DEVICE_CLOCK_MODE_INFO_AMD;
     }
     impl<'a> Default for GpaDeviceClockModeInfoAMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::GPA_DEVICE_CLOCK_MODE_INFO_AMD,
                 p_next: Default::default(),
                 clock_mode: Default::default(),
                 memory_clock_ratio_to_peak: Default::default(),
@@ -886,14 +846,14 @@ pub(crate) mod items {
         }
         pub fn memory_clock_ratio_to_peak(
             mut self,
-            memory_clock_ratio_to_peak: core::ffi::c_float,
+            memory_clock_ratio_to_peak: ffi::c_float,
         ) -> Self {
             self.memory_clock_ratio_to_peak = memory_clock_ratio_to_peak;
             self
         }
         pub fn engine_clock_ratio_to_peak(
             mut self,
-            engine_clock_ratio_to_peak: core::ffi::c_float,
+            engine_clock_ratio_to_peak: ffi::c_float,
         ) -> Self {
             self.engine_clock_ratio_to_peak = engine_clock_ratio_to_peak;
             self
@@ -904,22 +864,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct GpaDeviceGetClockInfoAMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
-        pub memory_clock_ratio_to_peak: core::ffi::c_float,
-        pub engine_clock_ratio_to_peak: core::ffi::c_float,
+        pub p_next: *mut ffi::c_void,
+        pub memory_clock_ratio_to_peak: ffi::c_float,
+        pub engine_clock_ratio_to_peak: ffi::c_float,
         pub memory_clock_frequency: u32,
         pub engine_clock_frequency: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GpaDeviceGetClockInfoAMD<'_> {}
     unsafe impl Sync for GpaDeviceGetClockInfoAMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for GpaDeviceGetClockInfoAMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for GpaDeviceGetClockInfoAMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GPA_DEVICE_GET_CLOCK_INFO_AMD;
     }
     impl<'a> Default for GpaDeviceGetClockInfoAMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::GPA_DEVICE_GET_CLOCK_INFO_AMD,
                 p_next: Default::default(),
                 memory_clock_ratio_to_peak: Default::default(),
                 engine_clock_ratio_to_peak: Default::default(),
@@ -932,14 +892,14 @@ pub(crate) mod items {
     impl<'a> GpaDeviceGetClockInfoAMD<'a> {
         pub fn memory_clock_ratio_to_peak(
             mut self,
-            memory_clock_ratio_to_peak: core::ffi::c_float,
+            memory_clock_ratio_to_peak: ffi::c_float,
         ) -> Self {
             self.memory_clock_ratio_to_peak = memory_clock_ratio_to_peak;
             self
         }
         pub fn engine_clock_ratio_to_peak(
             mut self,
-            engine_clock_ratio_to_peak: core::ffi::c_float,
+            engine_clock_ratio_to_peak: ffi::c_float,
         ) -> Self {
             self.engine_clock_ratio_to_peak = engine_clock_ratio_to_peak;
             self
@@ -958,19 +918,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct GpaSessionCreateInfoAMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub secondary_copy_source: vk::GpaSessionAMD,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GpaSessionCreateInfoAMD<'_> {}
     unsafe impl Sync for GpaSessionCreateInfoAMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for GpaSessionCreateInfoAMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for GpaSessionCreateInfoAMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GPA_SESSION_CREATE_INFO_AMD;
     }
     impl<'a> Default for GpaSessionCreateInfoAMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::GPA_SESSION_CREATE_INFO_AMD,
                 p_next: Default::default(),
                 secondary_copy_source: Default::default(),
                 _marker: PhantomData,
@@ -990,8 +950,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct GpaPerfBlockAMD(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for GpaPerfBlockAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for GpaPerfBlockAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::CPF => Some("CPF"),
                 Self::IA => Some("IA"),
@@ -1054,7 +1014,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1072,8 +1032,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct GpaSampleTypeAMD(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for GpaSampleTypeAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for GpaSampleTypeAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::CUMULATIVE => Some("CUMULATIVE"),
                 Self::TRACE => Some("TRACE"),
@@ -1082,7 +1042,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1100,8 +1060,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct GpaDeviceClockModeAMD(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for GpaDeviceClockModeAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for GpaDeviceClockModeAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::DEFAULT => Some("DEFAULT"),
                 Self::QUERY => Some("QUERY"),
@@ -1113,7 +1073,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1131,8 +1091,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GpaSqShaderStageFlagsAMD(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for GpaSqShaderStageFlagsAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for GpaSqShaderStageFlagsAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1168,40 +1128,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for GpaSqShaderStageFlagsAMD {
+    impl BitOr for GpaSqShaderStageFlagsAMD {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for GpaSqShaderStageFlagsAMD {
+    impl BitOrAssign for GpaSqShaderStageFlagsAMD {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for GpaSqShaderStageFlagsAMD {
+    impl BitAnd for GpaSqShaderStageFlagsAMD {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for GpaSqShaderStageFlagsAMD {
+    impl BitAndAssign for GpaSqShaderStageFlagsAMD {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for GpaSqShaderStageFlagsAMD {
+    impl BitXor for GpaSqShaderStageFlagsAMD {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for GpaSqShaderStageFlagsAMD {
+    impl BitXorAssign for GpaSqShaderStageFlagsAMD {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for GpaSqShaderStageFlagsAMD {
+    impl Not for GpaSqShaderStageFlagsAMD {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1226,18 +1186,18 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for GpaSqShaderStageFlagBitsAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for GpaSqShaderStageFlagBitsAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GpaPerfBlockPropertiesFlagsAMD(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for GpaPerfBlockPropertiesFlagsAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for GpaPerfBlockPropertiesFlagsAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl GpaPerfBlockPropertiesFlagsAMD {
@@ -1260,40 +1220,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for GpaPerfBlockPropertiesFlagsAMD {
+    impl BitOr for GpaPerfBlockPropertiesFlagsAMD {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for GpaPerfBlockPropertiesFlagsAMD {
+    impl BitOrAssign for GpaPerfBlockPropertiesFlagsAMD {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for GpaPerfBlockPropertiesFlagsAMD {
+    impl BitAnd for GpaPerfBlockPropertiesFlagsAMD {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for GpaPerfBlockPropertiesFlagsAMD {
+    impl BitAndAssign for GpaPerfBlockPropertiesFlagsAMD {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for GpaPerfBlockPropertiesFlagsAMD {
+    impl BitXor for GpaPerfBlockPropertiesFlagsAMD {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for GpaPerfBlockPropertiesFlagsAMD {
+    impl BitXorAssign for GpaPerfBlockPropertiesFlagsAMD {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for GpaPerfBlockPropertiesFlagsAMD {
+    impl Not for GpaPerfBlockPropertiesFlagsAMD {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1303,9 +1263,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PhysicalDeviceGpaPropertiesFlagsAMD(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PhysicalDeviceGpaPropertiesFlagsAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for PhysicalDeviceGpaPropertiesFlagsAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl PhysicalDeviceGpaPropertiesFlagsAMD {
@@ -1328,40 +1288,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PhysicalDeviceGpaPropertiesFlagsAMD {
+    impl BitOr for PhysicalDeviceGpaPropertiesFlagsAMD {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PhysicalDeviceGpaPropertiesFlagsAMD {
+    impl BitOrAssign for PhysicalDeviceGpaPropertiesFlagsAMD {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PhysicalDeviceGpaPropertiesFlagsAMD {
+    impl BitAnd for PhysicalDeviceGpaPropertiesFlagsAMD {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PhysicalDeviceGpaPropertiesFlagsAMD {
+    impl BitAndAssign for PhysicalDeviceGpaPropertiesFlagsAMD {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PhysicalDeviceGpaPropertiesFlagsAMD {
+    impl BitXor for PhysicalDeviceGpaPropertiesFlagsAMD {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PhysicalDeviceGpaPropertiesFlagsAMD {
+    impl BitXorAssign for PhysicalDeviceGpaPropertiesFlagsAMD {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PhysicalDeviceGpaPropertiesFlagsAMD {
+    impl Not for PhysicalDeviceGpaPropertiesFlagsAMD {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1390,8 +1350,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for GpaSessionAMD {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for GpaSessionAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -1442,7 +1402,7 @@ pub(crate) mod items {
         gpa_session: vk::GpaSessionAMD,
         sample_id: u32,
         p_size_in_bytes: *mut usize,
-        p_data: *mut core::ffi::c_void,
+        p_data: *mut ffi::c_void,
     ) -> vk::Result;
     pub type PFN_vkResetGpaSessionAMD = unsafe extern "system" fn(
         device: vk::Device,

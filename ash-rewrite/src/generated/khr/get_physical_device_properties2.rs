@@ -4,8 +4,11 @@
 #![doc(alias = "VK_KHR_get_physical_device_properties2")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ptr;
+use core::ffi;
 ///Provided by [VK_KHR_get_physical_device_properties2](crate::khr::get_physical_device_properties2)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FEATURES_2_KHR: Self = Self::PHYSICAL_DEVICE_FEATURES_2;
@@ -33,10 +36,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_features2: unsafe {
                 unsafe extern "system" fn get_physical_device_features2(
@@ -49,7 +52,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_features2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_properties2: unsafe {
@@ -63,7 +66,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_properties2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_format_properties2: unsafe {
@@ -78,7 +81,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_format_properties2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_image_format_properties2: unsafe {
@@ -93,7 +96,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_image_format_properties2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_queue_family_properties2: unsafe {
@@ -108,7 +111,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_queue_family_properties2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_memory_properties2: unsafe {
@@ -122,7 +125,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_memory_properties2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_sparse_image_format_properties2: unsafe {
@@ -140,7 +143,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_sparse_image_format_properties2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -149,13 +152,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -164,7 +167,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceFeatures2
@@ -173,7 +176,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> vk::PhysicalDeviceFeatures2<'_> {
-        let mut features = core::mem::MaybeUninit::uninit();
+        let mut features = MaybeUninit::uninit();
         (self.fp.get_physical_device_features2)(physical_device, features.as_mut_ptr());
         features.assume_init()
     }
@@ -183,7 +186,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> vk::PhysicalDeviceProperties2<'_> {
-        let mut properties = core::mem::MaybeUninit::uninit();
+        let mut properties = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_properties2)(physical_device, properties.as_mut_ptr());
@@ -196,7 +199,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         format: vk::Format,
     ) -> vk::FormatProperties2<'_> {
-        let mut format_properties = core::mem::MaybeUninit::uninit();
+        let mut format_properties = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_format_properties2)(
@@ -213,7 +216,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         image_format_info: &vk::PhysicalDeviceImageFormatInfo2<'_>,
     ) -> VkResult<vk::ImageFormatProperties2<'_>> {
-        let mut image_format_properties = core::mem::MaybeUninit::uninit();
+        let mut image_format_properties = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_image_format_properties2)(
@@ -229,13 +232,13 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> usize {
-        let mut queue_family_property_count = core::mem::MaybeUninit::uninit();
+        let mut queue_family_property_count = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_queue_family_properties2)(
             physical_device,
             queue_family_property_count.as_mut_ptr(),
-            core::ptr::null_mut(),
+            ptr::null_mut(),
         );
         queue_family_property_count.assume_init() as usize
     }
@@ -262,7 +265,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> vk::PhysicalDeviceMemoryProperties2<'_> {
-        let mut memory_properties = core::mem::MaybeUninit::uninit();
+        let mut memory_properties = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_memory_properties2)(
@@ -278,14 +281,14 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         format_info: &vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
     ) -> usize {
-        let mut property_count = core::mem::MaybeUninit::uninit();
+        let mut property_count = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_sparse_image_format_properties2)(
             physical_device,
             format_info,
             property_count.as_mut_ptr(),
-            core::ptr::null_mut(),
+            ptr::null_mut(),
         );
         property_count.assume_init() as usize
     }

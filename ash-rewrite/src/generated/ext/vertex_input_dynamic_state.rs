@@ -4,7 +4,8 @@
 #![doc(alias = "VK_EXT_vertex_input_dynamic_state")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_vertex_input_dynamic_state](crate::ext::vertex_input_dynamic_state)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
@@ -26,10 +27,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_set_vertex_input: unsafe {
                 unsafe extern "system" fn cmd_set_vertex_input(
@@ -42,11 +43,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetVertexInputEXT")
                 }
                 let val = _f(c"vkCmdSetVertexInputEXT");
-                if val.is_null() {
-                    cmd_set_vertex_input
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_vertex_input } else { transmute(val) }
             },
         }
     }
@@ -54,13 +51,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -69,7 +66,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdSetVertexInputEXT
@@ -94,29 +91,32 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub vertex_input_dynamic_state: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT,
                 p_next: Default::default(),
                 vertex_input_dynamic_state: Default::default(),
                 _marker: PhantomData,
@@ -137,7 +137,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VertexInputBindingDescription2EXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub binding: u32,
         pub stride: u32,
         pub input_rate: vk::VertexInputRate,
@@ -146,14 +146,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for VertexInputBindingDescription2EXT<'_> {}
     unsafe impl Sync for VertexInputBindingDescription2EXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for VertexInputBindingDescription2EXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VertexInputBindingDescription2EXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT;
     }
     impl<'a> Default for VertexInputBindingDescription2EXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT,
                 p_next: Default::default(),
                 binding: Default::default(),
                 stride: Default::default(),
@@ -186,7 +185,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VertexInputAttributeDescription2EXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub location: u32,
         pub binding: u32,
         pub format: vk::Format,
@@ -195,14 +194,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for VertexInputAttributeDescription2EXT<'_> {}
     unsafe impl Sync for VertexInputAttributeDescription2EXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for VertexInputAttributeDescription2EXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VertexInputAttributeDescription2EXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT;
     }
     impl<'a> Default for VertexInputAttributeDescription2EXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT,
                 p_next: Default::default(),
                 location: Default::default(),
                 binding: Default::default(),

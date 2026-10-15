@@ -13,25 +13,28 @@ pub const NAME: &CStr = c"VK_GGP_frame_token";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PresentFrameTokenGGP<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub frame_token: crate::platform_types::GgpFrameToken,
+        pub p_next: *const ffi::c_void,
+        pub frame_token: vk::GgpFrameToken,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PresentFrameTokenGGP<'_> {}
     unsafe impl Sync for PresentFrameTokenGGP<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PresentFrameTokenGGP<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PresentFrameTokenGGP<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRESENT_FRAME_TOKEN_GGP;
     }
-    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>> for PresentFrameTokenGGP<'a> {}
+    unsafe impl<'a> Extends<vk::PresentInfoKHR<'_>> for PresentFrameTokenGGP<'a> {}
     impl<'a> Default for PresentFrameTokenGGP<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PRESENT_FRAME_TOKEN_GGP,
                 p_next: Default::default(),
                 frame_token: Default::default(),
                 _marker: PhantomData,
@@ -39,10 +42,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> PresentFrameTokenGGP<'a> {
-        pub fn frame_token(
-            mut self,
-            frame_token: crate::platform_types::GgpFrameToken,
-        ) -> Self {
+        pub fn frame_token(mut self, frame_token: vk::GgpFrameToken) -> Self {
             self.frame_token = frame_token;
             self
         }

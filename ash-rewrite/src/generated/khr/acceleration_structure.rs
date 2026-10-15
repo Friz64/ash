@@ -4,8 +4,11 @@
 #![doc(alias = "VK_KHR_acceleration_structure")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::transmute;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ffi;
+use core::mem::MaybeUninit;
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl vk::DescriptorType {
     pub const ACCELERATION_STRUCTURE_KHR: Self = Self(1000150000);
@@ -242,10 +245,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             destroy_acceleration_structure: unsafe {
                 unsafe extern "system" fn destroy_acceleration_structure(
@@ -259,7 +262,7 @@ impl DeviceFn {
                 if val.is_null() {
                     destroy_acceleration_structure
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_copy_acceleration_structure: unsafe {
@@ -273,7 +276,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_copy_acceleration_structure
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             copy_acceleration_structure: unsafe {
@@ -285,11 +288,7 @@ impl DeviceFn {
                     panic!("unable to load vkCopyAccelerationStructureKHR")
                 }
                 let val = _f(c"vkCopyAccelerationStructureKHR");
-                if val.is_null() {
-                    copy_acceleration_structure
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { copy_acceleration_structure } else { transmute(val) }
             },
             cmd_copy_acceleration_structure_to_memory: unsafe {
                 unsafe extern "system" fn cmd_copy_acceleration_structure_to_memory(
@@ -302,7 +301,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_copy_acceleration_structure_to_memory
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             copy_acceleration_structure_to_memory: unsafe {
@@ -317,7 +316,7 @@ impl DeviceFn {
                 if val.is_null() {
                     copy_acceleration_structure_to_memory
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_copy_memory_to_acceleration_structure: unsafe {
@@ -331,7 +330,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_copy_memory_to_acceleration_structure
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             copy_memory_to_acceleration_structure: unsafe {
@@ -346,7 +345,7 @@ impl DeviceFn {
                 if val.is_null() {
                     copy_memory_to_acceleration_structure
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_write_acceleration_structures_properties: unsafe {
@@ -366,7 +365,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_write_acceleration_structures_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             write_acceleration_structures_properties: unsafe {
@@ -376,7 +375,7 @@ impl DeviceFn {
                     _: *const vk::AccelerationStructureKHR,
                     _: vk::QueryType,
                     _: usize,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                     _: usize,
                 ) -> vk::Result {
                     panic!("unable to load vkWriteAccelerationStructuresPropertiesKHR")
@@ -385,7 +384,7 @@ impl DeviceFn {
                 if val.is_null() {
                     write_acceleration_structures_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_device_acceleration_structure_compatibility: unsafe {
@@ -402,7 +401,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_device_acceleration_structure_compatibility
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             create_acceleration_structure: unsafe {
@@ -418,7 +417,7 @@ impl DeviceFn {
                 if val.is_null() {
                     create_acceleration_structure
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_build_acceleration_structures: unsafe {
@@ -434,7 +433,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_build_acceleration_structures
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_build_acceleration_structures_indirect: unsafe {
@@ -452,7 +451,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_build_acceleration_structures_indirect
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             build_acceleration_structures: unsafe {
@@ -469,7 +468,7 @@ impl DeviceFn {
                 if val.is_null() {
                     build_acceleration_structures
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_acceleration_structure_device_address: unsafe {
@@ -483,7 +482,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_acceleration_structure_device_address
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_acceleration_structure_build_sizes: unsafe {
@@ -500,7 +499,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_acceleration_structure_build_sizes
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -509,13 +508,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -524,7 +523,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkDestroyAccelerationStructureKHR
@@ -541,7 +540,7 @@ impl Device {
             acceleration_structure,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -663,7 +662,7 @@ impl Device {
         &self,
         version_info: &vk::AccelerationStructureVersionInfoKHR<'_>,
     ) -> vk::AccelerationStructureCompatibilityKHR {
-        let mut compatibility = core::mem::MaybeUninit::uninit();
+        let mut compatibility = MaybeUninit::uninit();
         (self
             .fp
             .get_device_acceleration_structure_compatibility)(
@@ -680,7 +679,7 @@ impl Device {
         create_info: &vk::AccelerationStructureCreateInfoKHR<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::AccelerationStructureKHR> {
-        let mut acceleration_structure = core::mem::MaybeUninit::uninit();
+        let mut acceleration_structure = MaybeUninit::uninit();
         (self
             .fp
             .create_acceleration_structure)(
@@ -688,7 +687,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 acceleration_structure.as_mut_ptr(),
             )
@@ -772,7 +771,7 @@ impl Device {
         build_info: &vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
         max_primitive_counts: Option<&u32>,
     ) -> vk::AccelerationStructureBuildSizesInfoKHR<'_> {
-        let mut size_info = core::mem::MaybeUninit::uninit();
+        let mut size_info = MaybeUninit::uninit();
         (self
             .fp
             .get_acceleration_structure_build_sizes)(
@@ -781,7 +780,7 @@ impl Device {
             build_info,
             match max_primitive_counts {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
             size_info.as_mut_ptr(),
         );
@@ -791,32 +790,37 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetAccelerationStructureKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub acceleration_structure_count: u32,
         pub p_acceleration_structures: *const vk::AccelerationStructureKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for WriteDescriptorSetAccelerationStructureKHR<'_> {}
     unsafe impl Sync for WriteDescriptorSetAccelerationStructureKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for WriteDescriptorSetAccelerationStructureKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::WriteDescriptorSet<'_>>
+    unsafe impl<'a> Extends<vk::WriteDescriptorSet<'_>>
     for WriteDescriptorSetAccelerationStructureKHR<'a> {}
     impl<'a> Default for WriteDescriptorSetAccelerationStructureKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR,
                 p_next: Default::default(),
                 acceleration_structure_count: Default::default(),
                 p_acceleration_structures: Default::default(),
@@ -839,7 +843,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub acceleration_structure: vk::Bool32,
         pub acceleration_structure_capture_replay: vk::Bool32,
         pub acceleration_structure_indirect_build: vk::Bool32,
@@ -849,18 +853,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceAccelerationStructureFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceAccelerationStructureFeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR,
                 p_next: Default::default(),
                 acceleration_structure: Default::default(),
                 acceleration_structure_capture_replay: Default::default(),
@@ -914,7 +918,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_geometry_count: u64,
         pub max_instance_count: u64,
         pub max_primitive_count: u64,
@@ -927,16 +931,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceAccelerationStructurePropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceAccelerationStructurePropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR,
                 p_next: Default::default(),
                 max_geometry_count: Default::default(),
                 max_instance_count: Default::default(),
@@ -1004,7 +1008,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryTrianglesDataKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub vertex_format: vk::Format,
         pub vertex_data: vk::DeviceOrHostAddressConstKHR,
         pub vertex_stride: vk::DeviceSize,
@@ -1016,14 +1020,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for AccelerationStructureGeometryTrianglesDataKHR<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryTrianglesDataKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureGeometryTrianglesDataKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR;
     }
     impl<'a> Default for AccelerationStructureGeometryTrianglesDataKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR,
                 p_next: Default::default(),
                 vertex_format: Default::default(),
                 vertex_data: Default::default(),
@@ -1080,21 +1084,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryAabbsDataKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub data: vk::DeviceOrHostAddressConstKHR,
         pub stride: vk::DeviceSize,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureGeometryAabbsDataKHR<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryAabbsDataKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureGeometryAabbsDataKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR;
     }
     impl<'a> Default for AccelerationStructureGeometryAabbsDataKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR,
                 p_next: Default::default(),
                 data: Default::default(),
                 stride: Default::default(),
@@ -1117,21 +1121,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryInstancesDataKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub array_of_pointers: vk::Bool32,
         pub data: vk::DeviceOrHostAddressConstKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureGeometryInstancesDataKHR<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryInstancesDataKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureGeometryInstancesDataKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR;
     }
     impl<'a> Default for AccelerationStructureGeometryInstancesDataKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR,
                 p_next: Default::default(),
                 array_of_pointers: Default::default(),
                 data: Default::default(),
@@ -1154,7 +1158,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub geometry_type: vk::GeometryTypeKHR,
         pub geometry: vk::AccelerationStructureGeometryDataKHR<'a>,
         pub flags: vk::GeometryFlagsKHR,
@@ -1162,13 +1166,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for AccelerationStructureGeometryKHR<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureGeometryKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for AccelerationStructureGeometryKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_KHR;
     }
     impl<'a> Default for AccelerationStructureGeometryKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_KHR,
                 p_next: Default::default(),
                 geometry_type: Default::default(),
                 geometry: Default::default(),
@@ -1199,7 +1203,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureBuildGeometryInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub ty: vk::AccelerationStructureTypeKHR,
         pub flags: vk::BuildAccelerationStructureFlagsKHR,
         pub mode: vk::BuildAccelerationStructureModeKHR,
@@ -1213,14 +1217,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for AccelerationStructureBuildGeometryInfoKHR<'_> {}
     unsafe impl Sync for AccelerationStructureBuildGeometryInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureBuildGeometryInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR;
     }
     impl<'a> Default for AccelerationStructureBuildGeometryInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR,
                 p_next: Default::default(),
                 ty: Default::default(),
                 flags: Default::default(),
@@ -1317,7 +1321,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub create_flags: vk::AccelerationStructureCreateFlagsKHR,
         pub buffer: vk::Buffer,
         pub offset: vk::DeviceSize,
@@ -1328,14 +1332,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for AccelerationStructureCreateInfoKHR<'_> {}
     unsafe impl Sync for AccelerationStructureCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for AccelerationStructureCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for AccelerationStructureCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_KHR;
     }
     impl<'a> Default for AccelerationStructureCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 create_flags: Default::default(),
                 buffer: Default::default(),
@@ -1380,37 +1383,37 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct AabbPositionsKHR {
-        pub min_x: core::ffi::c_float,
-        pub min_y: core::ffi::c_float,
-        pub min_z: core::ffi::c_float,
-        pub max_x: core::ffi::c_float,
-        pub max_y: core::ffi::c_float,
-        pub max_z: core::ffi::c_float,
+        pub min_x: ffi::c_float,
+        pub min_y: ffi::c_float,
+        pub min_z: ffi::c_float,
+        pub max_x: ffi::c_float,
+        pub max_y: ffi::c_float,
+        pub max_z: ffi::c_float,
     }
     unsafe impl Send for AabbPositionsKHR {}
     unsafe impl Sync for AabbPositionsKHR {}
     impl AabbPositionsKHR {
-        pub fn min_x(mut self, min_x: core::ffi::c_float) -> Self {
+        pub fn min_x(mut self, min_x: ffi::c_float) -> Self {
             self.min_x = min_x;
             self
         }
-        pub fn min_y(mut self, min_y: core::ffi::c_float) -> Self {
+        pub fn min_y(mut self, min_y: ffi::c_float) -> Self {
             self.min_y = min_y;
             self
         }
-        pub fn min_z(mut self, min_z: core::ffi::c_float) -> Self {
+        pub fn min_z(mut self, min_z: ffi::c_float) -> Self {
             self.min_z = min_z;
             self
         }
-        pub fn max_x(mut self, max_x: core::ffi::c_float) -> Self {
+        pub fn max_x(mut self, max_x: ffi::c_float) -> Self {
             self.max_x = max_x;
             self
         }
-        pub fn max_y(mut self, max_y: core::ffi::c_float) -> Self {
+        pub fn max_y(mut self, max_y: ffi::c_float) -> Self {
             self.max_y = max_y;
             self
         }
-        pub fn max_z(mut self, max_z: core::ffi::c_float) -> Self {
+        pub fn max_z(mut self, max_z: ffi::c_float) -> Self {
             self.max_z = max_z;
             self
         }
@@ -1419,19 +1422,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct TransformMatrixKHR {
-        pub matrix: [[core::ffi::c_float; 4 as _]; 3 as _],
+        pub matrix: [[ffi::c_float; 4 as _]; 3 as _],
     }
     unsafe impl Send for TransformMatrixKHR {}
     unsafe impl Sync for TransformMatrixKHR {}
     impl Default for TransformMatrixKHR {
         fn default() -> Self {
             Self {
-                matrix: unsafe { core::mem::zeroed() },
+                matrix: unsafe { zeroed() },
             }
         }
     }
     impl TransformMatrixKHR {
-        pub fn matrix(mut self, matrix: [[core::ffi::c_float; 4 as _]; 3 as _]) -> Self {
+        pub fn matrix(mut self, matrix: [[ffi::c_float; 4 as _]; 3 as _]) -> Self {
             self.matrix = matrix;
             self
         }
@@ -1451,8 +1454,8 @@ pub(crate) mod items {
     unsafe impl Send for AccelerationStructureInstanceKHR {}
     unsafe impl Sync for AccelerationStructureInstanceKHR {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureInstanceKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccelerationStructureInstanceKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("AccelerationStructureInstanceKHR")
                 .field("transform", &self.transform)
                 .field("instance_custom_index", &self.get_instance_custom_index())
@@ -1523,20 +1526,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureDeviceAddressInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub acceleration_structure: vk::AccelerationStructureKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureDeviceAddressInfoKHR<'_> {}
     unsafe impl Sync for AccelerationStructureDeviceAddressInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureDeviceAddressInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR;
     }
     impl<'a> Default for AccelerationStructureDeviceAddressInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR,
                 p_next: Default::default(),
                 acceleration_structure: Default::default(),
                 _marker: PhantomData,
@@ -1557,20 +1560,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureVersionInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_version_data: *const u8,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureVersionInfoKHR<'_> {}
     unsafe impl Sync for AccelerationStructureVersionInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for AccelerationStructureVersionInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for AccelerationStructureVersionInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_VERSION_INFO_KHR;
     }
     impl<'a> Default for AccelerationStructureVersionInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_VERSION_INFO_KHR,
                 p_next: Default::default(),
                 p_version_data: Default::default(),
                 _marker: PhantomData,
@@ -1580,7 +1582,7 @@ pub(crate) mod items {
     impl<'a> AccelerationStructureVersionInfoKHR<'a> {
         pub fn version_data(
             mut self,
-            version_data: &'a [u8; 2 * crate::vk::UUID_SIZE as usize],
+            version_data: &'a [u8; 2 * vk::UUID_SIZE as usize],
         ) -> Self {
             self.p_version_data = version_data.as_ptr();
             self
@@ -1591,7 +1593,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CopyAccelerationStructureInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src: vk::AccelerationStructureKHR,
         pub dst: vk::AccelerationStructureKHR,
         pub mode: vk::CopyAccelerationStructureModeKHR,
@@ -1599,13 +1601,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for CopyAccelerationStructureInfoKHR<'_> {}
     unsafe impl Sync for CopyAccelerationStructureInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CopyAccelerationStructureInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CopyAccelerationStructureInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_ACCELERATION_STRUCTURE_INFO_KHR;
     }
     impl<'a> Default for CopyAccelerationStructureInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COPY_ACCELERATION_STRUCTURE_INFO_KHR,
                 p_next: Default::default(),
                 src: Default::default(),
                 dst: Default::default(),
@@ -1633,7 +1635,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CopyAccelerationStructureToMemoryInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src: vk::AccelerationStructureKHR,
         pub dst: vk::DeviceOrHostAddressKHR,
         pub mode: vk::CopyAccelerationStructureModeKHR,
@@ -1641,14 +1643,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for CopyAccelerationStructureToMemoryInfoKHR<'_> {}
     unsafe impl Sync for CopyAccelerationStructureToMemoryInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for CopyAccelerationStructureToMemoryInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR;
     }
     impl<'a> Default for CopyAccelerationStructureToMemoryInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR,
                 p_next: Default::default(),
                 src: Default::default(),
                 dst: Default::default(),
@@ -1676,7 +1678,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CopyMemoryToAccelerationStructureInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src: vk::DeviceOrHostAddressConstKHR,
         pub dst: vk::AccelerationStructureKHR,
         pub mode: vk::CopyAccelerationStructureModeKHR,
@@ -1684,14 +1686,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for CopyMemoryToAccelerationStructureInfoKHR<'_> {}
     unsafe impl Sync for CopyMemoryToAccelerationStructureInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for CopyMemoryToAccelerationStructureInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR;
     }
     impl<'a> Default for CopyMemoryToAccelerationStructureInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR,
                 p_next: Default::default(),
                 src: Default::default(),
                 dst: Default::default(),
@@ -1719,7 +1721,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureBuildSizesInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub acceleration_structure_size: vk::DeviceSize,
         pub update_scratch_size: vk::DeviceSize,
         pub build_scratch_size: vk::DeviceSize,
@@ -1727,14 +1729,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for AccelerationStructureBuildSizesInfoKHR<'_> {}
     unsafe impl Sync for AccelerationStructureBuildSizesInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for AccelerationStructureBuildSizesInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for AccelerationStructureBuildSizesInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR;
     }
     impl<'a> Default for AccelerationStructureBuildSizesInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR,
                 p_next: Default::default(),
                 acceleration_structure_size: Default::default(),
                 update_scratch_size: Default::default(),
@@ -1767,16 +1768,16 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub union DeviceOrHostAddressKHR {
         pub device_address: vk::DeviceAddress,
-        pub host_address: *mut core::ffi::c_void,
+        pub host_address: *mut ffi::c_void,
     }
     impl Default for DeviceOrHostAddressKHR {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceOrHostAddressKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceOrHostAddressKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "DeviceOrHostAddressKHR")
         }
     }
@@ -1784,16 +1785,16 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub union DeviceOrHostAddressConstKHR {
         pub device_address: vk::DeviceAddress,
-        pub host_address: *const core::ffi::c_void,
+        pub host_address: *const ffi::c_void,
     }
     impl Default for DeviceOrHostAddressConstKHR {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceOrHostAddressConstKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceOrHostAddressConstKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "DeviceOrHostAddressConstKHR")
         }
     }
@@ -1806,12 +1807,12 @@ pub(crate) mod items {
     }
     impl<'a> Default for AccelerationStructureGeometryDataKHR<'a> {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl<'a> core::fmt::Debug for AccelerationStructureGeometryDataKHR<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl<'a> fmtd::Debug for AccelerationStructureGeometryDataKHR<'a> {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "AccelerationStructureGeometryDataKHR < 'a >")
         }
     }
@@ -1819,8 +1820,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct CopyAccelerationStructureModeKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CopyAccelerationStructureModeKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CopyAccelerationStructureModeKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::CLONE => Some("CLONE"),
                 Self::COMPACT => Some("COMPACT"),
@@ -1830,7 +1831,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1848,8 +1849,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct BuildAccelerationStructureModeKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BuildAccelerationStructureModeKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for BuildAccelerationStructureModeKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::BUILD => Some("BUILD"),
                 Self::UPDATE => Some("UPDATE"),
@@ -1857,7 +1858,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1875,8 +1876,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AccelerationStructureTypeKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureTypeKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccelerationStructureTypeKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::TOP_LEVEL => Some("TOP_LEVEL"),
                 Self::BOTTOM_LEVEL => Some("BOTTOM_LEVEL"),
@@ -1886,7 +1887,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1904,8 +1905,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct GeometryTypeKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for GeometryTypeKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for GeometryTypeKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::TRIANGLES => Some("TRIANGLES"),
                 Self::AABBS => Some("AABBS"),
@@ -1921,7 +1922,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1939,8 +1940,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AccelerationStructureBuildTypeKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureBuildTypeKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccelerationStructureBuildTypeKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::HOST => Some("HOST"),
                 Self::DEVICE => Some("DEVICE"),
@@ -1949,7 +1950,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1967,8 +1968,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AccelerationStructureCompatibilityKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureCompatibilityKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccelerationStructureCompatibilityKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::COMPATIBLE => Some("COMPATIBLE"),
                 Self::INCOMPATIBLE => Some("INCOMPATIBLE"),
@@ -1976,7 +1977,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1994,8 +1995,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GeometryFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for GeometryFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for GeometryFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -2029,40 +2030,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for GeometryFlagsKHR {
+    impl BitOr for GeometryFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for GeometryFlagsKHR {
+    impl BitOrAssign for GeometryFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for GeometryFlagsKHR {
+    impl BitAnd for GeometryFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for GeometryFlagsKHR {
+    impl BitAndAssign for GeometryFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for GeometryFlagsKHR {
+    impl BitXor for GeometryFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for GeometryFlagsKHR {
+    impl BitXorAssign for GeometryFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for GeometryFlagsKHR {
+    impl Not for GeometryFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -2087,17 +2088,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for GeometryFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for GeometryFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct GeometryInstanceFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for GeometryInstanceFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for GeometryInstanceFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -2138,40 +2139,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for GeometryInstanceFlagsKHR {
+    impl BitOr for GeometryInstanceFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for GeometryInstanceFlagsKHR {
+    impl BitOrAssign for GeometryInstanceFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for GeometryInstanceFlagsKHR {
+    impl BitAnd for GeometryInstanceFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for GeometryInstanceFlagsKHR {
+    impl BitAndAssign for GeometryInstanceFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for GeometryInstanceFlagsKHR {
+    impl BitXor for GeometryInstanceFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for GeometryInstanceFlagsKHR {
+    impl BitXorAssign for GeometryInstanceFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for GeometryInstanceFlagsKHR {
+    impl Not for GeometryInstanceFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -2196,17 +2197,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for GeometryInstanceFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for GeometryInstanceFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct BuildAccelerationStructureFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BuildAccelerationStructureFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for BuildAccelerationStructureFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -2264,40 +2265,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for BuildAccelerationStructureFlagsKHR {
+    impl BitOr for BuildAccelerationStructureFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for BuildAccelerationStructureFlagsKHR {
+    impl BitOrAssign for BuildAccelerationStructureFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for BuildAccelerationStructureFlagsKHR {
+    impl BitAnd for BuildAccelerationStructureFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for BuildAccelerationStructureFlagsKHR {
+    impl BitAndAssign for BuildAccelerationStructureFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for BuildAccelerationStructureFlagsKHR {
+    impl BitXor for BuildAccelerationStructureFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for BuildAccelerationStructureFlagsKHR {
+    impl BitXorAssign for BuildAccelerationStructureFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for BuildAccelerationStructureFlagsKHR {
+    impl Not for BuildAccelerationStructureFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -2322,17 +2323,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for BuildAccelerationStructureFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for BuildAccelerationStructureFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccelerationStructureCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureCreateFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccelerationStructureCreateFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -2370,40 +2371,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for AccelerationStructureCreateFlagsKHR {
+    impl BitOr for AccelerationStructureCreateFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for AccelerationStructureCreateFlagsKHR {
+    impl BitOrAssign for AccelerationStructureCreateFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for AccelerationStructureCreateFlagsKHR {
+    impl BitAnd for AccelerationStructureCreateFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for AccelerationStructureCreateFlagsKHR {
+    impl BitAndAssign for AccelerationStructureCreateFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for AccelerationStructureCreateFlagsKHR {
+    impl BitXor for AccelerationStructureCreateFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for AccelerationStructureCreateFlagsKHR {
+    impl BitXorAssign for AccelerationStructureCreateFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for AccelerationStructureCreateFlagsKHR {
+    impl Not for AccelerationStructureCreateFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -2428,9 +2429,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureCreateFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for AccelerationStructureCreateFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -2456,8 +2457,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for AccelerationStructureKHR {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for AccelerationStructureKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -2507,7 +2508,7 @@ pub(crate) mod items {
         p_acceleration_structures: *const vk::AccelerationStructureKHR,
         query_type: vk::QueryType,
         data_size: usize,
-        p_data: *mut core::ffi::c_void,
+        p_data: *mut ffi::c_void,
         stride: usize,
     ) -> vk::Result;
     pub type PFN_vkGetDeviceAccelerationStructureCompatibilityKHR = unsafe extern "system" fn(

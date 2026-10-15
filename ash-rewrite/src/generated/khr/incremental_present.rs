@@ -13,26 +13,29 @@ pub const NAME: &CStr = c"VK_KHR_incremental_present";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PresentRegionsKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub swapchain_count: u32,
         pub p_regions: *const vk::PresentRegionKHR<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PresentRegionsKHR<'_> {}
     unsafe impl Sync for PresentRegionsKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PresentRegionsKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PresentRegionsKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRESENT_REGIONS_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>> for PresentRegionsKHR<'a> {}
+    unsafe impl<'a> Extends<vk::PresentInfoKHR<'_>> for PresentRegionsKHR<'a> {}
     impl<'a> Default for PresentRegionsKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PRESENT_REGIONS_KHR,
                 p_next: Default::default(),
                 swapchain_count: Default::default(),
                 p_regions: Default::default(),

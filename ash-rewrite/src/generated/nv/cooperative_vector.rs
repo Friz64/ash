@@ -5,7 +5,10 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_NV_cooperative_vector](crate::nv::cooperative_vector)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV: Self = Self(1000491000);
@@ -57,10 +60,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_cooperative_vector_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_cooperative_vector_properties(
@@ -76,7 +79,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_cooperative_vector_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -85,13 +88,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -100,7 +103,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceCooperativeVectorPropertiesNV
@@ -109,13 +112,13 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
     ) -> VkResult<usize> {
-        let mut property_count = core::mem::MaybeUninit::uninit();
+        let mut property_count = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_cooperative_vector_properties)(
                 physical_device,
                 property_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(property_count)
             .map(|c| c as usize)
@@ -126,7 +129,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         properties: &mut [vk::CooperativeVectorPropertiesNV<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut property_count = properties.len() as _;
         (self
             .fp
@@ -148,10 +151,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             convert_cooperative_vector_matrix: unsafe {
                 unsafe extern "system" fn convert_cooperative_vector_matrix(
@@ -164,7 +167,7 @@ impl DeviceFn {
                 if val.is_null() {
                     convert_cooperative_vector_matrix
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_convert_cooperative_vector_matrix: unsafe {
@@ -179,7 +182,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_convert_cooperative_vector_matrix
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -188,13 +191,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -203,7 +206,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkConvertCooperativeVectorMatrixNV
@@ -233,30 +236,35 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub cooperative_vector: vk::Bool32,
         pub cooperative_vector_training: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCooperativeVectorFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceCooperativeVectorFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV,
                 p_next: Default::default(),
                 cooperative_vector: Default::default(),
                 cooperative_vector_training: Default::default(),
@@ -282,7 +290,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CooperativeVectorPropertiesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub input_type: vk::ComponentTypeKHR,
         pub input_interpretation: vk::ComponentTypeKHR,
         pub matrix_interpretation: vk::ComponentTypeKHR,
@@ -293,13 +301,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for CooperativeVectorPropertiesNV<'_> {}
     unsafe impl Sync for CooperativeVectorPropertiesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CooperativeVectorPropertiesNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CooperativeVectorPropertiesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COOPERATIVE_VECTOR_PROPERTIES_NV;
     }
     impl<'a> Default for CooperativeVectorPropertiesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::COOPERATIVE_VECTOR_PROPERTIES_NV,
                 p_next: Default::default(),
                 input_type: Default::default(),
                 input_interpretation: Default::default(),
@@ -351,7 +359,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub cooperative_vector_supported_stages: vk::ShaderStageFlags,
         pub cooperative_vector_training_float16_accumulation: vk::Bool32,
         pub cooperative_vector_training_float32_accumulation: vk::Bool32,
@@ -360,16 +368,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceCooperativeVectorPropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceCooperativeVectorPropertiesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_PROPERTIES_NV,
                 p_next: Default::default(),
                 cooperative_vector_supported_stages: Default::default(),
                 cooperative_vector_training_float16_accumulation: Default::default(),
@@ -416,7 +424,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ConvertCooperativeVectorMatrixInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub src_size: usize,
         pub src_data: vk::DeviceOrHostAddressConstKHR,
         pub p_dst_size: *mut usize,
@@ -433,14 +441,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ConvertCooperativeVectorMatrixInfoNV<'_> {}
     unsafe impl Sync for ConvertCooperativeVectorMatrixInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ConvertCooperativeVectorMatrixInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ConvertCooperativeVectorMatrixInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CONVERT_COOPERATIVE_VECTOR_MATRIX_INFO_NV;
     }
     impl<'a> Default for ConvertCooperativeVectorMatrixInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CONVERT_COOPERATIVE_VECTOR_MATRIX_INFO_NV,
                 p_next: Default::default(),
                 src_size: Default::default(),
                 src_data: Default::default(),
@@ -524,8 +531,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct ComponentTypeKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ComponentTypeKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ComponentTypeKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::FLOAT16 => Some("FLOAT16"),
                 Self::FLOAT32 => Some("FLOAT32"),
@@ -552,7 +559,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -570,8 +577,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct CooperativeVectorMatrixLayoutNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for CooperativeVectorMatrixLayoutNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for CooperativeVectorMatrixLayoutNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::ROW_MAJOR => Some("ROW_MAJOR"),
                 Self::COLUMN_MAJOR => Some("COLUMN_MAJOR"),
@@ -581,7 +588,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

@@ -5,7 +5,10 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::ffi;
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::DescriptorType {
     pub const ACCELERATION_STRUCTURE_NV: Self = Self(1000165000);
@@ -217,10 +220,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             compile_deferred: unsafe {
                 unsafe extern "system" fn compile_deferred(
@@ -231,11 +234,7 @@ impl DeviceFn {
                     panic!("unable to load vkCompileDeferredNV")
                 }
                 let val = _f(c"vkCompileDeferredNV");
-                if val.is_null() {
-                    compile_deferred
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { compile_deferred } else { transmute(val) }
             },
             create_acceleration_structure: unsafe {
                 unsafe extern "system" fn create_acceleration_structure(
@@ -250,7 +249,7 @@ impl DeviceFn {
                 if val.is_null() {
                     create_acceleration_structure
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             destroy_acceleration_structure: unsafe {
@@ -265,7 +264,7 @@ impl DeviceFn {
                 if val.is_null() {
                     destroy_acceleration_structure
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_acceleration_structure_memory_requirements: unsafe {
@@ -282,7 +281,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_acceleration_structure_memory_requirements
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             bind_acceleration_structure_memory: unsafe {
@@ -297,7 +296,7 @@ impl DeviceFn {
                 if val.is_null() {
                     bind_acceleration_structure_memory
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_copy_acceleration_structure: unsafe {
@@ -313,7 +312,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_copy_acceleration_structure
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_write_acceleration_structures_properties: unsafe {
@@ -331,7 +330,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_write_acceleration_structures_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_build_acceleration_structure: unsafe {
@@ -352,7 +351,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_build_acceleration_structure
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_trace_rays: unsafe {
@@ -376,14 +375,14 @@ impl DeviceFn {
                     panic!("unable to load vkCmdTraceRaysNV")
                 }
                 let val = _f(c"vkCmdTraceRaysNV");
-                if val.is_null() { cmd_trace_rays } else { ::core::mem::transmute(val) }
+                if val.is_null() { cmd_trace_rays } else { transmute(val) }
             },
             get_acceleration_structure_handle: unsafe {
                 unsafe extern "system" fn get_acceleration_structure_handle(
                     _: vk::Device,
                     _: vk::AccelerationStructureNV,
                     _: usize,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!("unable to load vkGetAccelerationStructureHandleNV")
                 }
@@ -391,7 +390,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_acceleration_structure_handle
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             create_ray_tracing_pipelines: unsafe {
@@ -406,11 +405,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateRayTracingPipelinesNV")
                 }
                 let val = _f(c"vkCreateRayTracingPipelinesNV");
-                if val.is_null() {
-                    create_ray_tracing_pipelines
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_ray_tracing_pipelines } else { transmute(val) }
             },
             get_ray_tracing_shader_group_handles: unsafe {
                 unsafe extern "system" fn get_ray_tracing_shader_group_handles(
@@ -419,7 +414,7 @@ impl DeviceFn {
                     _: u32,
                     _: u32,
                     _: usize,
-                    _: *mut core::ffi::c_void,
+                    _: *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!("unable to load vkGetRayTracingShaderGroupHandlesNV")
                 }
@@ -427,7 +422,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_ray_tracing_shader_group_handles
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -436,13 +431,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -451,7 +446,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCompileDeferredNV
@@ -470,7 +465,7 @@ impl Device {
         create_info: &vk::AccelerationStructureCreateInfoNV<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::AccelerationStructureNV> {
-        let mut acceleration_structure = core::mem::MaybeUninit::uninit();
+        let mut acceleration_structure = MaybeUninit::uninit();
         (self
             .fp
             .create_acceleration_structure)(
@@ -478,7 +473,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 acceleration_structure.as_mut_ptr(),
             )
@@ -498,7 +493,7 @@ impl Device {
             acceleration_structure,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -508,7 +503,7 @@ impl Device {
         &self,
         info: &vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
     ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        let mut memory_requirements = MaybeUninit::uninit();
         (self
             .fp
             .get_acceleration_structure_memory_requirements)(
@@ -669,7 +664,7 @@ impl Device {
                 create_infos.as_ptr(),
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 pipelines.as_mut_ptr(),
             )
@@ -700,16 +695,19 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    use crate::Extends;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RayTracingShaderGroupCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub ty: vk::RayTracingShaderGroupTypeKHR,
         pub general_shader: u32,
         pub closest_hit_shader: u32,
@@ -719,14 +717,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for RayTracingShaderGroupCreateInfoNV<'_> {}
     unsafe impl Sync for RayTracingShaderGroupCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for RayTracingShaderGroupCreateInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RayTracingShaderGroupCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV;
     }
     impl<'a> Default for RayTracingShaderGroupCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV,
                 p_next: Default::default(),
                 ty: Default::default(),
                 general_shader: Default::default(),
@@ -764,7 +761,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RayTracingPipelineCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineCreateFlags,
         pub stage_count: u32,
         pub p_stages: *const vk::PipelineShaderStageCreateInfo<'a>,
@@ -778,13 +775,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for RayTracingPipelineCreateInfoNV<'_> {}
     unsafe impl Sync for RayTracingPipelineCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for RayTracingPipelineCreateInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RayTracingPipelineCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_NV;
     }
     impl<'a> Default for RayTracingPipelineCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_NV,
                 p_next: Default::default(),
                 flags: Default::default(),
                 stage_count: Default::default(),
@@ -845,7 +842,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct GeometryTrianglesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub vertex_data: vk::Buffer,
         pub vertex_offset: vk::DeviceSize,
         pub vertex_count: u32,
@@ -861,13 +858,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for GeometryTrianglesNV<'_> {}
     unsafe impl Sync for GeometryTrianglesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for GeometryTrianglesNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for GeometryTrianglesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GEOMETRY_TRIANGLES_NV;
     }
     impl<'a> Default for GeometryTrianglesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::GEOMETRY_TRIANGLES_NV,
                 p_next: Default::default(),
                 vertex_data: Default::default(),
                 vertex_offset: Default::default(),
@@ -935,7 +932,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct GeometryAABBNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub aabb_data: vk::Buffer,
         pub num_aab_bs: u32,
         pub stride: u32,
@@ -944,13 +941,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for GeometryAABBNV<'_> {}
     unsafe impl Sync for GeometryAABBNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for GeometryAABBNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for GeometryAABBNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GEOMETRY_AABB_NV;
     }
     impl<'a> Default for GeometryAABBNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::GEOMETRY_AABB_NV,
                 p_next: Default::default(),
                 aabb_data: Default::default(),
                 num_aab_bs: Default::default(),
@@ -1003,7 +1000,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct GeometryNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub geometry_type: vk::GeometryTypeKHR,
         pub geometry: vk::GeometryDataNV<'a>,
         pub flags: vk::GeometryFlagsKHR,
@@ -1011,13 +1008,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for GeometryNV<'_> {}
     unsafe impl Sync for GeometryNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for GeometryNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for GeometryNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GEOMETRY_NV;
     }
     impl<'a> Default for GeometryNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::GEOMETRY_NV,
                 p_next: Default::default(),
                 geometry_type: Default::default(),
                 geometry: Default::default(),
@@ -1045,7 +1042,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub ty: vk::AccelerationStructureTypeNV,
         pub flags: vk::BuildAccelerationStructureFlagsKHR,
         pub instance_count: u32,
@@ -1055,13 +1052,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for AccelerationStructureInfoNV<'_> {}
     unsafe impl Sync for AccelerationStructureInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for AccelerationStructureInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_INFO_NV;
     }
     impl<'a> Default for AccelerationStructureInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_INFO_NV,
                 p_next: Default::default(),
                 ty: Default::default(),
                 flags: Default::default(),
@@ -1096,21 +1093,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureCreateInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub compacted_size: vk::DeviceSize,
         pub info: vk::AccelerationStructureInfoNV<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureCreateInfoNV<'_> {}
     unsafe impl Sync for AccelerationStructureCreateInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for AccelerationStructureCreateInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for AccelerationStructureCreateInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_NV;
     }
     impl<'a> Default for AccelerationStructureCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_NV,
                 p_next: Default::default(),
                 compacted_size: Default::default(),
                 info: Default::default(),
@@ -1133,7 +1129,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BindAccelerationStructureMemoryInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub acceleration_structure: vk::AccelerationStructureNV,
         pub memory: vk::DeviceMemory,
         pub memory_offset: vk::DeviceSize,
@@ -1143,14 +1139,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BindAccelerationStructureMemoryInfoNV<'_> {}
     unsafe impl Sync for BindAccelerationStructureMemoryInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for BindAccelerationStructureMemoryInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BindAccelerationStructureMemoryInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV;
     }
     impl<'a> Default for BindAccelerationStructureMemoryInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV,
                 p_next: Default::default(),
                 acceleration_structure: Default::default(),
                 memory: Default::default(),
@@ -1188,23 +1183,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetAccelerationStructureNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub acceleration_structure_count: u32,
         pub p_acceleration_structures: *const vk::AccelerationStructureNV,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for WriteDescriptorSetAccelerationStructureNV<'_> {}
     unsafe impl Sync for WriteDescriptorSetAccelerationStructureNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for WriteDescriptorSetAccelerationStructureNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::WriteDescriptorSet<'_>>
+    unsafe impl<'a> Extends<vk::WriteDescriptorSet<'_>>
     for WriteDescriptorSetAccelerationStructureNV<'a> {}
     impl<'a> Default for WriteDescriptorSetAccelerationStructureNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV,
                 p_next: Default::default(),
                 acceleration_structure_count: Default::default(),
                 p_acceleration_structures: Default::default(),
@@ -1227,21 +1222,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureMemoryRequirementsInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub ty: vk::AccelerationStructureMemoryRequirementsTypeNV,
         pub acceleration_structure: vk::AccelerationStructureNV,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureMemoryRequirementsInfoNV<'_> {}
     unsafe impl Sync for AccelerationStructureMemoryRequirementsInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureMemoryRequirementsInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV;
     }
     impl<'a> Default for AccelerationStructureMemoryRequirementsInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV,
                 p_next: Default::default(),
                 ty: Default::default(),
                 acceleration_structure: Default::default(),
@@ -1270,7 +1265,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingPropertiesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_group_handle_size: u32,
         pub max_recursion_depth: u32,
         pub max_shader_group_stride: u32,
@@ -1283,16 +1278,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceRayTracingPropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceRayTracingPropertiesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceRayTracingPropertiesNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceRayTracingPropertiesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceRayTracingPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingPropertiesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV,
                 p_next: Default::default(),
                 shader_group_handle_size: Default::default(),
                 max_recursion_depth: Default::default(),
@@ -1356,8 +1350,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AccelerationStructureMemoryRequirementsTypeNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureMemoryRequirementsTypeNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccelerationStructureMemoryRequirementsTypeNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::OBJECT => Some("OBJECT"),
                 Self::BUILD_SCRATCH => Some("BUILD_SCRATCH"),
@@ -1366,7 +1360,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1413,8 +1407,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for AccelerationStructureNV {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for AccelerationStructureNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -1490,7 +1484,7 @@ pub(crate) mod items {
         device: vk::Device,
         acceleration_structure: vk::AccelerationStructureNV,
         data_size: usize,
-        p_data: *mut core::ffi::c_void,
+        p_data: *mut ffi::c_void,
     ) -> vk::Result;
     pub type PFN_vkCreateRayTracingPipelinesNV = unsafe extern "system" fn(
         device: vk::Device,

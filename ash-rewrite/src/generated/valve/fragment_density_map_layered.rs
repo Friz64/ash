@@ -51,27 +51,30 @@ pub const NAME: &CStr = c"VK_VALVE_fragment_density_map_layered";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_fragment_density_map_layers: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_PROPERTIES_VALVE;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_PROPERTIES_VALVE,
                 p_next: Default::default(),
                 max_fragment_density_map_layers: Default::default(),
                 _marker: PhantomData,
@@ -92,24 +95,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub fragment_density_map_layered: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_FEATURES_VALVE;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_FEATURES_VALVE,
                 p_next: Default::default(),
                 fragment_density_map_layered: Default::default(),
                 _marker: PhantomData,
@@ -130,22 +133,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub max_fragment_density_map_layers: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'_> {}
     unsafe impl Sync for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_FRAGMENT_DENSITY_MAP_LAYERED_CREATE_INFO_VALVE;
     }
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {}
     impl<'a> Default for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_FRAGMENT_DENSITY_MAP_LAYERED_CREATE_INFO_VALVE,
                 p_next: Default::default(),
                 max_fragment_density_map_layers: Default::default(),
                 _marker: PhantomData,

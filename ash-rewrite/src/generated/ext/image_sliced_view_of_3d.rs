@@ -16,27 +16,30 @@ pub const NAME: &CStr = c"VK_EXT_image_sliced_view_of_3d";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageViewSlicedCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub slice_offset: u32,
         pub slice_count: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageViewSlicedCreateInfoEXT<'_> {}
     unsafe impl Sync for ImageViewSlicedCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewSlicedCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageViewSlicedCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_VIEW_SLICED_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::ImageViewCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::ImageViewCreateInfo<'_>>
     for ImageViewSlicedCreateInfoEXT<'a> {}
     impl<'a> Default for ImageViewSlicedCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_VIEW_SLICED_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 slice_offset: Default::default(),
                 slice_count: Default::default(),
@@ -59,24 +62,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub image_sliced_view_of3_d: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT,
                 p_next: Default::default(),
                 image_sliced_view_of3_d: Default::default(),
                 _marker: PhantomData,

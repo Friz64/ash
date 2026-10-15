@@ -4,8 +4,11 @@
 #![doc(alias = "VK_EXT_device_generated_commands")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::transmute;
+use core::mem::MaybeUninit;
+use core::ptr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ffi;
 ///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_EXT: Self = Self(
@@ -149,10 +152,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_execute_generated_commands: unsafe {
                 unsafe extern "system" fn cmd_execute_generated_commands(
@@ -166,7 +169,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_execute_generated_commands
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_preprocess_generated_commands: unsafe {
@@ -181,7 +184,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_preprocess_generated_commands
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_generated_commands_memory_requirements: unsafe {
@@ -196,7 +199,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_generated_commands_memory_requirements
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             create_indirect_commands_layout: unsafe {
@@ -212,7 +215,7 @@ impl DeviceFn {
                 if val.is_null() {
                     create_indirect_commands_layout
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             destroy_indirect_commands_layout: unsafe {
@@ -227,7 +230,7 @@ impl DeviceFn {
                 if val.is_null() {
                     destroy_indirect_commands_layout
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             create_indirect_execution_set: unsafe {
@@ -243,7 +246,7 @@ impl DeviceFn {
                 if val.is_null() {
                     create_indirect_execution_set
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             destroy_indirect_execution_set: unsafe {
@@ -258,7 +261,7 @@ impl DeviceFn {
                 if val.is_null() {
                     destroy_indirect_execution_set
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             update_indirect_execution_set_pipeline: unsafe {
@@ -274,7 +277,7 @@ impl DeviceFn {
                 if val.is_null() {
                     update_indirect_execution_set_pipeline
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             update_indirect_execution_set_shader: unsafe {
@@ -290,7 +293,7 @@ impl DeviceFn {
                 if val.is_null() {
                     update_indirect_execution_set_shader
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -299,13 +302,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -314,7 +317,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdExecuteGeneratedCommandsEXT
@@ -355,7 +358,7 @@ impl Device {
         &self,
         info: &vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>,
     ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = core::mem::MaybeUninit::uninit();
+        let mut memory_requirements = MaybeUninit::uninit();
         (self
             .fp
             .get_generated_commands_memory_requirements)(
@@ -372,7 +375,7 @@ impl Device {
         create_info: &vk::IndirectCommandsLayoutCreateInfoEXT<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::IndirectCommandsLayoutEXT> {
-        let mut indirect_commands_layout = core::mem::MaybeUninit::uninit();
+        let mut indirect_commands_layout = MaybeUninit::uninit();
         (self
             .fp
             .create_indirect_commands_layout)(
@@ -380,7 +383,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 indirect_commands_layout.as_mut_ptr(),
             )
@@ -400,7 +403,7 @@ impl Device {
             indirect_commands_layout,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -411,7 +414,7 @@ impl Device {
         create_info: &vk::IndirectExecutionSetCreateInfoEXT<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::IndirectExecutionSetEXT> {
-        let mut indirect_execution_set = core::mem::MaybeUninit::uninit();
+        let mut indirect_execution_set = MaybeUninit::uninit();
         (self
             .fp
             .create_indirect_execution_set)(
@@ -419,7 +422,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 indirect_execution_set.as_mut_ptr(),
             )
@@ -439,7 +442,7 @@ impl Device {
             indirect_execution_set,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -479,34 +482,39 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub device_generated_commands: vk::Bool32,
         pub dynamic_generated_pipeline_layout: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_EXT,
                 p_next: Default::default(),
                 device_generated_commands: Default::default(),
                 dynamic_generated_pipeline_layout: Default::default(),
@@ -536,7 +544,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_indirect_pipeline_count: u32,
         pub max_indirect_shader_object_count: u32,
         pub max_indirect_sequence_count: u32,
@@ -553,16 +561,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_EXT,
                 p_next: Default::default(),
                 max_indirect_pipeline_count: Default::default(),
                 max_indirect_shader_object_count: Default::default(),
@@ -673,23 +681,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct GeneratedCommandsPipelineInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub pipeline: vk::Pipeline,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GeneratedCommandsPipelineInfoEXT<'_> {}
     unsafe impl Sync for GeneratedCommandsPipelineInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsPipelineInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for GeneratedCommandsPipelineInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GENERATED_COMMANDS_PIPELINE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::GeneratedCommandsInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::GeneratedCommandsInfoEXT<'_>>
     for GeneratedCommandsPipelineInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>>
     for GeneratedCommandsPipelineInfoEXT<'a> {}
     impl<'a> Default for GeneratedCommandsPipelineInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::GENERATED_COMMANDS_PIPELINE_INFO_EXT,
                 p_next: Default::default(),
                 pipeline: Default::default(),
                 _marker: PhantomData,
@@ -707,24 +715,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct GeneratedCommandsShaderInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_count: u32,
         pub p_shaders: *const vk::ShaderEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GeneratedCommandsShaderInfoEXT<'_> {}
     unsafe impl Sync for GeneratedCommandsShaderInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsShaderInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for GeneratedCommandsShaderInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GENERATED_COMMANDS_SHADER_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::GeneratedCommandsInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::GeneratedCommandsInfoEXT<'_>>
     for GeneratedCommandsShaderInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>>
     for GeneratedCommandsShaderInfoEXT<'a> {}
     impl<'a> Default for GeneratedCommandsShaderInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::GENERATED_COMMANDS_SHADER_INFO_EXT,
                 p_next: Default::default(),
                 shader_count: Default::default(),
                 p_shaders: Default::default(),
@@ -744,7 +752,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct GeneratedCommandsMemoryRequirementsInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub indirect_execution_set: vk::IndirectExecutionSetEXT,
         pub indirect_commands_layout: vk::IndirectCommandsLayoutEXT,
         pub max_sequence_count: u32,
@@ -753,14 +761,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for GeneratedCommandsMemoryRequirementsInfoEXT<'_> {}
     unsafe impl Sync for GeneratedCommandsMemoryRequirementsInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for GeneratedCommandsMemoryRequirementsInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_EXT;
     }
     impl<'a> Default for GeneratedCommandsMemoryRequirementsInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_EXT,
                 p_next: Default::default(),
                 indirect_execution_set: Default::default(),
                 indirect_commands_layout: Default::default(),
@@ -799,21 +807,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct IndirectExecutionSetPipelineInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub initial_pipeline: vk::Pipeline,
         pub max_pipeline_count: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for IndirectExecutionSetPipelineInfoEXT<'_> {}
     unsafe impl Sync for IndirectExecutionSetPipelineInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for IndirectExecutionSetPipelineInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for IndirectExecutionSetPipelineInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::INDIRECT_EXECUTION_SET_PIPELINE_INFO_EXT;
     }
     impl<'a> Default for IndirectExecutionSetPipelineInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::INDIRECT_EXECUTION_SET_PIPELINE_INFO_EXT,
                 p_next: Default::default(),
                 initial_pipeline: Default::default(),
                 max_pipeline_count: Default::default(),
@@ -836,21 +843,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct IndirectExecutionSetShaderLayoutInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub set_layout_count: u32,
         pub p_set_layouts: *const vk::DescriptorSetLayout,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for IndirectExecutionSetShaderLayoutInfoEXT<'_> {}
     unsafe impl Sync for IndirectExecutionSetShaderLayoutInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for IndirectExecutionSetShaderLayoutInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for IndirectExecutionSetShaderLayoutInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::INDIRECT_EXECUTION_SET_SHADER_LAYOUT_INFO_EXT;
     }
     impl<'a> Default for IndirectExecutionSetShaderLayoutInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::INDIRECT_EXECUTION_SET_SHADER_LAYOUT_INFO_EXT,
                 p_next: Default::default(),
                 set_layout_count: Default::default(),
                 p_set_layouts: Default::default(),
@@ -873,7 +879,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct IndirectExecutionSetShaderInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub shader_count: u32,
         pub p_initial_shaders: *const vk::ShaderEXT,
         pub p_set_layout_infos: *const vk::IndirectExecutionSetShaderLayoutInfoEXT<'a>,
@@ -884,14 +890,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for IndirectExecutionSetShaderInfoEXT<'_> {}
     unsafe impl Sync for IndirectExecutionSetShaderInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for IndirectExecutionSetShaderInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for IndirectExecutionSetShaderInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::INDIRECT_EXECUTION_SET_SHADER_INFO_EXT;
     }
     impl<'a> Default for IndirectExecutionSetShaderInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::INDIRECT_EXECUTION_SET_SHADER_INFO_EXT,
                 p_next: Default::default(),
                 shader_count: Default::default(),
                 p_initial_shaders: Default::default(),
@@ -935,21 +940,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct IndirectExecutionSetCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub ty: vk::IndirectExecutionSetInfoTypeEXT,
         pub info: vk::IndirectExecutionSetInfoEXT<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for IndirectExecutionSetCreateInfoEXT<'_> {}
     unsafe impl Sync for IndirectExecutionSetCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for IndirectExecutionSetCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for IndirectExecutionSetCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::INDIRECT_EXECUTION_SET_CREATE_INFO_EXT;
     }
     impl<'a> Default for IndirectExecutionSetCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::INDIRECT_EXECUTION_SET_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 ty: Default::default(),
                 info: Default::default(),
@@ -972,7 +976,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct GeneratedCommandsInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub shader_stages: vk::ShaderStageFlags,
         pub indirect_execution_set: vk::IndirectExecutionSetEXT,
         pub indirect_commands_layout: vk::IndirectCommandsLayoutEXT,
@@ -987,13 +991,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for GeneratedCommandsInfoEXT<'_> {}
     unsafe impl Sync for GeneratedCommandsInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for GeneratedCommandsInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GENERATED_COMMANDS_INFO_EXT;
     }
     impl<'a> Default for GeneratedCommandsInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::GENERATED_COMMANDS_INFO_EXT,
                 p_next: Default::default(),
                 shader_stages: Default::default(),
                 indirect_execution_set: Default::default(),
@@ -1071,21 +1075,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct WriteIndirectExecutionSetPipelineEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub index: u32,
         pub pipeline: vk::Pipeline,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for WriteIndirectExecutionSetPipelineEXT<'_> {}
     unsafe impl Sync for WriteIndirectExecutionSetPipelineEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for WriteIndirectExecutionSetPipelineEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for WriteIndirectExecutionSetPipelineEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WRITE_INDIRECT_EXECUTION_SET_PIPELINE_EXT;
     }
     impl<'a> Default for WriteIndirectExecutionSetPipelineEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::WRITE_INDIRECT_EXECUTION_SET_PIPELINE_EXT,
                 p_next: Default::default(),
                 index: Default::default(),
                 pipeline: Default::default(),
@@ -1108,21 +1111,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct WriteIndirectExecutionSetShaderEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub index: u32,
         pub shader: vk::ShaderEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for WriteIndirectExecutionSetShaderEXT<'_> {}
     unsafe impl Sync for WriteIndirectExecutionSetShaderEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for WriteIndirectExecutionSetShaderEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for WriteIndirectExecutionSetShaderEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WRITE_INDIRECT_EXECUTION_SET_SHADER_EXT;
     }
     impl<'a> Default for WriteIndirectExecutionSetShaderEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::WRITE_INDIRECT_EXECUTION_SET_SHADER_EXT,
                 p_next: Default::default(),
                 index: Default::default(),
                 shader: Default::default(),
@@ -1145,7 +1147,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::IndirectCommandsLayoutUsageFlagsEXT,
         pub shader_stages: vk::ShaderStageFlags,
         pub indirect_stride: u32,
@@ -1156,14 +1158,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for IndirectCommandsLayoutCreateInfoEXT<'_> {}
     unsafe impl Sync for IndirectCommandsLayoutCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for IndirectCommandsLayoutCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for IndirectCommandsLayoutCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_EXT;
     }
     impl<'a> Default for IndirectCommandsLayoutCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 flags: Default::default(),
                 shader_stages: Default::default(),
@@ -1206,7 +1207,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutTokenEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub ty: vk::IndirectCommandsTokenTypeEXT,
         pub data: vk::IndirectCommandsTokenDataEXT,
         pub offset: u32,
@@ -1214,13 +1215,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for IndirectCommandsLayoutTokenEXT<'_> {}
     unsafe impl Sync for IndirectCommandsLayoutTokenEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for IndirectCommandsLayoutTokenEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for IndirectCommandsLayoutTokenEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_EXT;
     }
     impl<'a> Default for IndirectCommandsLayoutTokenEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_EXT,
                 p_next: Default::default(),
                 ty: Default::default(),
                 data: Default::default(),
@@ -1384,12 +1385,12 @@ pub(crate) mod items {
     }
     impl<'a> Default for IndirectExecutionSetInfoEXT<'a> {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl<'a> core::fmt::Debug for IndirectExecutionSetInfoEXT<'a> {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl<'a> fmtd::Debug for IndirectExecutionSetInfoEXT<'a> {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "IndirectExecutionSetInfoEXT < 'a >")
         }
     }
@@ -1403,12 +1404,12 @@ pub(crate) mod items {
     }
     impl Default for IndirectCommandsTokenDataEXT {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for IndirectCommandsTokenDataEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for IndirectCommandsTokenDataEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "IndirectCommandsTokenDataEXT")
         }
     }
@@ -1416,8 +1417,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct IndirectExecutionSetInfoTypeEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for IndirectExecutionSetInfoTypeEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for IndirectExecutionSetInfoTypeEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::PIPELINES => Some("PIPELINES"),
                 Self::SHADER_OBJECTS => Some("SHADER_OBJECTS"),
@@ -1425,7 +1426,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1443,8 +1444,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct IndirectCommandsTokenTypeEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for IndirectCommandsTokenTypeEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for IndirectCommandsTokenTypeEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::EXECUTION_SET => Some("EXECUTION_SET"),
                 Self::PUSH_CONSTANT => Some("PUSH_CONSTANT"),
@@ -1467,7 +1468,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1485,8 +1486,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectCommandsLayoutUsageFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for IndirectCommandsLayoutUsageFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for IndirectCommandsLayoutUsageFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1517,40 +1518,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for IndirectCommandsLayoutUsageFlagsEXT {
+    impl BitOr for IndirectCommandsLayoutUsageFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for IndirectCommandsLayoutUsageFlagsEXT {
+    impl BitOrAssign for IndirectCommandsLayoutUsageFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for IndirectCommandsLayoutUsageFlagsEXT {
+    impl BitAnd for IndirectCommandsLayoutUsageFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for IndirectCommandsLayoutUsageFlagsEXT {
+    impl BitAndAssign for IndirectCommandsLayoutUsageFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for IndirectCommandsLayoutUsageFlagsEXT {
+    impl BitXor for IndirectCommandsLayoutUsageFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for IndirectCommandsLayoutUsageFlagsEXT {
+    impl BitXorAssign for IndirectCommandsLayoutUsageFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for IndirectCommandsLayoutUsageFlagsEXT {
+    impl Not for IndirectCommandsLayoutUsageFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1575,17 +1576,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for IndirectCommandsLayoutUsageFlagBitsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for IndirectCommandsLayoutUsageFlagBitsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct IndirectCommandsInputModeFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for IndirectCommandsInputModeFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for IndirectCommandsInputModeFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1616,40 +1617,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for IndirectCommandsInputModeFlagsEXT {
+    impl BitOr for IndirectCommandsInputModeFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for IndirectCommandsInputModeFlagsEXT {
+    impl BitOrAssign for IndirectCommandsInputModeFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for IndirectCommandsInputModeFlagsEXT {
+    impl BitAnd for IndirectCommandsInputModeFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for IndirectCommandsInputModeFlagsEXT {
+    impl BitAndAssign for IndirectCommandsInputModeFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for IndirectCommandsInputModeFlagsEXT {
+    impl BitXor for IndirectCommandsInputModeFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for IndirectCommandsInputModeFlagsEXT {
+    impl BitXorAssign for IndirectCommandsInputModeFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for IndirectCommandsInputModeFlagsEXT {
+    impl Not for IndirectCommandsInputModeFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1674,9 +1675,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for IndirectCommandsInputModeFlagBitsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for IndirectCommandsInputModeFlagBitsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -1702,8 +1703,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for IndirectCommandsLayoutEXT {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for IndirectCommandsLayoutEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -1730,8 +1731,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for IndirectExecutionSetEXT {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for IndirectExecutionSetEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

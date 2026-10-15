@@ -4,8 +4,10 @@
 #![doc(alias = "VK_EXT_display_surface_counter")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_display_surface_counter](crate::ext::display_surface_counter)
 impl vk::StructureType {
     pub const SURFACE_CAPABILITIES_2_EXT: Self = Self(1000090000);
@@ -27,10 +29,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_surface_capabilities2: unsafe {
                 unsafe extern "system" fn get_physical_device_surface_capabilities2(
@@ -44,7 +46,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_surface_capabilities2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -53,13 +55,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -68,7 +70,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceSurfaceCapabilities2EXT
@@ -78,7 +80,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         surface: vk::SurfaceKHR,
     ) -> VkResult<vk::SurfaceCapabilities2EXT<'_>> {
-        let mut surface_capabilities = core::mem::MaybeUninit::uninit();
+        let mut surface_capabilities = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_surface_capabilities2)(
@@ -92,12 +94,17 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilities2EXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub min_image_count: u32,
         pub max_image_count: u32,
         pub current_extent: vk::Extent2D,
@@ -113,13 +120,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for SurfaceCapabilities2EXT<'_> {}
     unsafe impl Sync for SurfaceCapabilities2EXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilities2EXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SurfaceCapabilities2EXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_CAPABILITIES_2_EXT;
     }
     impl<'a> Default for SurfaceCapabilities2EXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SURFACE_CAPABILITIES_2_EXT,
                 p_next: Default::default(),
                 min_image_count: Default::default(),
                 max_image_count: Default::default(),
@@ -201,8 +208,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct SurfaceCounterFlagsEXT(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SurfaceCounterFlagsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SurfaceCounterFlagsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(f, &[(Self::VBLANK.0, "VBLANK")], self.0)
         }
     }
@@ -226,40 +233,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for SurfaceCounterFlagsEXT {
+    impl BitOr for SurfaceCounterFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for SurfaceCounterFlagsEXT {
+    impl BitOrAssign for SurfaceCounterFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for SurfaceCounterFlagsEXT {
+    impl BitAnd for SurfaceCounterFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for SurfaceCounterFlagsEXT {
+    impl BitAndAssign for SurfaceCounterFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for SurfaceCounterFlagsEXT {
+    impl BitXor for SurfaceCounterFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for SurfaceCounterFlagsEXT {
+    impl BitXorAssign for SurfaceCounterFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for SurfaceCounterFlagsEXT {
+    impl Not for SurfaceCounterFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -284,9 +291,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SurfaceCounterFlagBitsEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for SurfaceCounterFlagBitsEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT = unsafe extern "system" fn(

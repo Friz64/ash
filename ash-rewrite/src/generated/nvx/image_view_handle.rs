@@ -4,8 +4,10 @@
 #![doc(alias = "VK_NVX_image_view_handle")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::transmute;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ffi;
 ///Provided by [VK_NVX_image_view_handle](crate::nvx::image_view_handle)
 impl vk::StructureType {
     pub const IMAGE_VIEW_HANDLE_INFO_NVX: Self = Self(1000030000);
@@ -23,10 +25,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_image_view_handle: unsafe {
                 unsafe extern "system" fn get_image_view_handle(
@@ -36,11 +38,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetImageViewHandleNVX")
                 }
                 let val = _f(c"vkGetImageViewHandleNVX");
-                if val.is_null() {
-                    get_image_view_handle
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_image_view_handle } else { transmute(val) }
             },
             get_image_view_handle64: unsafe {
                 unsafe extern "system" fn get_image_view_handle64(
@@ -50,11 +48,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetImageViewHandle64NVX")
                 }
                 let val = _f(c"vkGetImageViewHandle64NVX");
-                if val.is_null() {
-                    get_image_view_handle64
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_image_view_handle64 } else { transmute(val) }
             },
             get_image_view_address: unsafe {
                 unsafe extern "system" fn get_image_view_address(
@@ -65,11 +59,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetImageViewAddressNVX")
                 }
                 let val = _f(c"vkGetImageViewAddressNVX");
-                if val.is_null() {
-                    get_image_view_address
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_image_view_address } else { transmute(val) }
             },
             get_device_combined_image_sampler_index: unsafe {
                 unsafe extern "system" fn get_device_combined_image_sampler_index(
@@ -83,7 +73,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_device_combined_image_sampler_index
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -92,13 +82,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -107,7 +97,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetImageViewHandleNVX
@@ -132,7 +122,7 @@ impl Device {
         &self,
         image_view: vk::ImageView,
     ) -> VkResult<vk::ImageViewAddressPropertiesNVX<'_>> {
-        let mut properties = core::mem::MaybeUninit::uninit();
+        let mut properties = MaybeUninit::uninit();
         (self
             .fp
             .get_image_view_address)(self.handle, image_view, properties.as_mut_ptr())
@@ -157,12 +147,14 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageViewHandleInfoNVX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub image_view: vk::ImageView,
         pub descriptor_type: vk::DescriptorType,
         pub sampler: vk::Sampler,
@@ -170,13 +162,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ImageViewHandleInfoNVX<'_> {}
     unsafe impl Sync for ImageViewHandleInfoNVX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewHandleInfoNVX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageViewHandleInfoNVX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_VIEW_HANDLE_INFO_NVX;
     }
     impl<'a> Default for ImageViewHandleInfoNVX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_VIEW_HANDLE_INFO_NVX,
                 p_next: Default::default(),
                 image_view: Default::default(),
                 descriptor_type: Default::default(),
@@ -204,20 +196,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ImageViewAddressPropertiesNVX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub device_address: vk::DeviceAddress,
         pub size: vk::DeviceSize,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageViewAddressPropertiesNVX<'_> {}
     unsafe impl Sync for ImageViewAddressPropertiesNVX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewAddressPropertiesNVX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ImageViewAddressPropertiesNVX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_VIEW_ADDRESS_PROPERTIES_NVX;
     }
     impl<'a> Default for ImageViewAddressPropertiesNVX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::IMAGE_VIEW_ADDRESS_PROPERTIES_NVX,
                 p_next: Default::default(),
                 device_address: Default::default(),
                 size: Default::default(),

@@ -5,7 +5,10 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_device_group_creation](crate::khr::device_group_creation)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_GROUP_PROPERTIES;
@@ -30,10 +33,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             enumerate_physical_device_groups: unsafe {
                 unsafe extern "system" fn enumerate_physical_device_groups(
@@ -47,7 +50,7 @@ impl InstanceFn {
                 if val.is_null() {
                     enumerate_physical_device_groups
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -56,13 +59,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -71,19 +74,19 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkEnumeratePhysicalDeviceGroups
     #[inline]
     pub unsafe fn enumerate_physical_device_groups_len(&self) -> VkResult<usize> {
-        let mut physical_device_group_count = core::mem::MaybeUninit::uninit();
+        let mut physical_device_group_count = MaybeUninit::uninit();
         (self
             .fp
             .enumerate_physical_device_groups)(
                 self.handle,
                 physical_device_group_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(physical_device_group_count)
             .map(|c| c as usize)
@@ -93,7 +96,7 @@ impl Instance {
     pub unsafe fn enumerate_physical_device_groups(
         &self,
         physical_device_group_properties: &mut [vk::PhysicalDeviceGroupProperties<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut physical_device_group_count = physical_device_group_properties.len()
             as _;
         (self

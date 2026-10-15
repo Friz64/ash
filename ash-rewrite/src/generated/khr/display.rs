@@ -4,8 +4,12 @@
 #![doc(alias = "VK_KHR_display")]
 use crate::vk;
 use core::ffi::CStr;
+use alloc::vec::Vec;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::ffi;
 ///Provided by [VK_KHR_display](crate::khr::display)
 impl vk::StructureType {
     pub const DISPLAY_MODE_CREATE_INFO_KHR: Self = Self(1000002000);
@@ -47,10 +51,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_display_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_display_properties(
@@ -64,7 +68,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_display_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_display_plane_properties: unsafe {
@@ -79,7 +83,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_display_plane_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_display_plane_supported_displays: unsafe {
@@ -95,7 +99,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_display_plane_supported_displays
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_display_mode_properties: unsafe {
@@ -108,11 +112,7 @@ impl InstanceFn {
                     panic!("unable to load vkGetDisplayModePropertiesKHR")
                 }
                 let val = _f(c"vkGetDisplayModePropertiesKHR");
-                if val.is_null() {
-                    get_display_mode_properties
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_display_mode_properties } else { transmute(val) }
             },
             create_display_mode: unsafe {
                 unsafe extern "system" fn create_display_mode(
@@ -125,11 +125,7 @@ impl InstanceFn {
                     panic!("unable to load vkCreateDisplayModeKHR")
                 }
                 let val = _f(c"vkCreateDisplayModeKHR");
-                if val.is_null() {
-                    create_display_mode
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_display_mode } else { transmute(val) }
             },
             get_display_plane_capabilities: unsafe {
                 unsafe extern "system" fn get_display_plane_capabilities(
@@ -144,7 +140,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_display_plane_capabilities
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             create_display_plane_surface: unsafe {
@@ -157,11 +153,7 @@ impl InstanceFn {
                     panic!("unable to load vkCreateDisplayPlaneSurfaceKHR")
                 }
                 let val = _f(c"vkCreateDisplayPlaneSurfaceKHR");
-                if val.is_null() {
-                    create_display_plane_surface
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_display_plane_surface } else { transmute(val) }
             },
         }
     }
@@ -169,13 +161,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -184,7 +176,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceDisplayPropertiesKHR
@@ -192,7 +184,7 @@ impl Instance {
     pub unsafe fn get_physical_device_display_properties(
         &self,
         physical_device: vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<vk::DisplayPropertiesKHR<'_>>> {
+    ) -> VkResult<Vec<vk::DisplayPropertiesKHR<'_>>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
             .get_physical_device_display_properties)(
@@ -206,7 +198,7 @@ impl Instance {
     pub unsafe fn get_physical_device_display_plane_properties(
         &self,
         physical_device: vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<vk::DisplayPlanePropertiesKHR>> {
+    ) -> VkResult<Vec<vk::DisplayPlanePropertiesKHR>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
             .get_physical_device_display_plane_properties)(
@@ -221,7 +213,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         plane_index: u32,
-    ) -> crate::VkResult<Vec<vk::DisplayKHR>> {
+    ) -> VkResult<Vec<vk::DisplayKHR>> {
         crate::read_into_uninitialized_vector(|display_count, displays| (self
             .fp
             .get_display_plane_supported_displays)(
@@ -237,7 +229,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         display: vk::DisplayKHR,
-    ) -> crate::VkResult<Vec<vk::DisplayModePropertiesKHR>> {
+    ) -> VkResult<Vec<vk::DisplayModePropertiesKHR>> {
         crate::read_into_uninitialized_vector(|property_count, properties| (self
             .fp
             .get_display_mode_properties)(
@@ -256,7 +248,7 @@ impl Instance {
         create_info: &vk::DisplayModeCreateInfoKHR<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::DisplayModeKHR> {
-        let mut mode = core::mem::MaybeUninit::uninit();
+        let mut mode = MaybeUninit::uninit();
         (self
             .fp
             .create_display_mode)(
@@ -265,7 +257,7 @@ impl Instance {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 mode.as_mut_ptr(),
             )
@@ -279,7 +271,7 @@ impl Instance {
         mode: vk::DisplayModeKHR,
         plane_index: u32,
     ) -> VkResult<vk::DisplayPlaneCapabilitiesKHR> {
-        let mut capabilities = core::mem::MaybeUninit::uninit();
+        let mut capabilities = MaybeUninit::uninit();
         (self
             .fp
             .get_display_plane_capabilities)(
@@ -297,7 +289,7 @@ impl Instance {
         create_info: &vk::DisplaySurfaceCreateInfoKHR<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = core::mem::MaybeUninit::uninit();
+        let mut surface = MaybeUninit::uninit();
         (self
             .fp
             .create_display_plane_surface)(
@@ -305,7 +297,7 @@ impl Instance {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 surface.as_mut_ptr(),
             )
@@ -315,17 +307,20 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use core::ffi;
     use core::ffi::CStr;
+    use crate::TaggedStructure;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct DisplayPropertiesKHR<'a> {
         pub display: vk::DisplayKHR,
-        pub display_name: *const core::ffi::c_char,
+        pub display_name: *const ffi::c_char,
         pub physical_dimensions: vk::Extent2D,
         pub physical_resolution: vk::Extent2D,
         pub supported_transforms: vk::SurfaceTransformFlagsKHR,
@@ -437,20 +432,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DisplayModeCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::DisplayModeCreateFlagsKHR,
         pub parameters: vk::DisplayModeParametersKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplayModeCreateInfoKHR<'_> {}
     unsafe impl Sync for DisplayModeCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DisplayModeCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_MODE_CREATE_INFO_KHR;
     }
     impl<'a> Default for DisplayModeCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DISPLAY_MODE_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 parameters: Default::default(),
@@ -530,26 +525,26 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DisplaySurfaceCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::DisplaySurfaceCreateFlagsKHR,
         pub display_mode: vk::DisplayModeKHR,
         pub plane_index: u32,
         pub plane_stack_index: u32,
         pub transform: vk::SurfaceTransformFlagBitsKHR,
-        pub global_alpha: core::ffi::c_float,
+        pub global_alpha: ffi::c_float,
         pub alpha_mode: vk::DisplayPlaneAlphaFlagBitsKHR,
         pub image_extent: vk::Extent2D,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplaySurfaceCreateInfoKHR<'_> {}
     unsafe impl Sync for DisplaySurfaceCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DisplaySurfaceCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DisplaySurfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_SURFACE_CREATE_INFO_KHR;
     }
     impl<'a> Default for DisplaySurfaceCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DISPLAY_SURFACE_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 display_mode: Default::default(),
@@ -584,7 +579,7 @@ pub(crate) mod items {
             self.transform = transform;
             self
         }
-        pub fn global_alpha(mut self, global_alpha: core::ffi::c_float) -> Self {
+        pub fn global_alpha(mut self, global_alpha: ffi::c_float) -> Self {
             self.global_alpha = global_alpha;
             self
         }
@@ -604,8 +599,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DisplayPlaneAlphaFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DisplayPlaneAlphaFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -638,40 +633,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DisplayPlaneAlphaFlagsKHR {
+    impl BitOr for DisplayPlaneAlphaFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DisplayPlaneAlphaFlagsKHR {
+    impl BitOrAssign for DisplayPlaneAlphaFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DisplayPlaneAlphaFlagsKHR {
+    impl BitAnd for DisplayPlaneAlphaFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DisplayPlaneAlphaFlagsKHR {
+    impl BitAndAssign for DisplayPlaneAlphaFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DisplayPlaneAlphaFlagsKHR {
+    impl BitXor for DisplayPlaneAlphaFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DisplayPlaneAlphaFlagsKHR {
+    impl BitXorAssign for DisplayPlaneAlphaFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DisplayPlaneAlphaFlagsKHR {
+    impl Not for DisplayPlaneAlphaFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -696,18 +691,18 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DisplayPlaneAlphaFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for DisplayPlaneAlphaFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DisplayModeCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DisplayModeCreateFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for DisplayModeCreateFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl DisplayModeCreateFlagsKHR {
@@ -730,40 +725,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DisplayModeCreateFlagsKHR {
+    impl BitOr for DisplayModeCreateFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DisplayModeCreateFlagsKHR {
+    impl BitOrAssign for DisplayModeCreateFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DisplayModeCreateFlagsKHR {
+    impl BitAnd for DisplayModeCreateFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DisplayModeCreateFlagsKHR {
+    impl BitAndAssign for DisplayModeCreateFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DisplayModeCreateFlagsKHR {
+    impl BitXor for DisplayModeCreateFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DisplayModeCreateFlagsKHR {
+    impl BitXorAssign for DisplayModeCreateFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DisplayModeCreateFlagsKHR {
+    impl Not for DisplayModeCreateFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -773,9 +768,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct DisplaySurfaceCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DisplaySurfaceCreateFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for DisplaySurfaceCreateFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl DisplaySurfaceCreateFlagsKHR {
@@ -798,40 +793,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for DisplaySurfaceCreateFlagsKHR {
+    impl BitOr for DisplaySurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for DisplaySurfaceCreateFlagsKHR {
+    impl BitOrAssign for DisplaySurfaceCreateFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for DisplaySurfaceCreateFlagsKHR {
+    impl BitAnd for DisplaySurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for DisplaySurfaceCreateFlagsKHR {
+    impl BitAndAssign for DisplaySurfaceCreateFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for DisplaySurfaceCreateFlagsKHR {
+    impl BitXor for DisplaySurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for DisplaySurfaceCreateFlagsKHR {
+    impl BitXorAssign for DisplaySurfaceCreateFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for DisplaySurfaceCreateFlagsKHR {
+    impl Not for DisplaySurfaceCreateFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -860,8 +855,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for DisplayKHR {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for DisplayKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -888,8 +883,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for DisplayModeKHR {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for DisplayModeKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

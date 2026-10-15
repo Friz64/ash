@@ -4,7 +4,9 @@
 #![doc(alias = "VK_NV_partitioned_acceleration_structure")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_NV_partitioned_acceleration_structure](crate::nv::partitioned_acceleration_structure)
 impl vk::DescriptorType {
     pub const PARTITIONED_ACCELERATION_STRUCTURE_NV: Self = Self(1000570000);
@@ -70,10 +72,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_partitioned_acceleration_structures_build_sizes: unsafe {
                 unsafe extern "system" fn get_partitioned_acceleration_structures_build_sizes(
@@ -89,7 +91,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_partitioned_acceleration_structures_build_sizes
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_build_partitioned_acceleration_structures: unsafe {
@@ -105,7 +107,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_build_partitioned_acceleration_structures
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -114,13 +116,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -129,7 +131,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetPartitionedAccelerationStructuresBuildSizesNV
@@ -138,7 +140,7 @@ impl Device {
         &self,
         info: &vk::PartitionedAccelerationStructureInstancesInputNV<'_>,
     ) -> vk::AccelerationStructureBuildSizesInfoKHR<'_> {
-        let mut size_info = core::mem::MaybeUninit::uninit();
+        let mut size_info = MaybeUninit::uninit();
         (self
             .fp
             .get_partitioned_acceleration_structures_build_sizes)(
@@ -163,29 +165,36 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub partitioned_acceleration_structure: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_FEATURES_NV,
                 p_next: Default::default(),
                 partitioned_acceleration_structure: Default::default(),
                 _marker: PhantomData,
@@ -207,22 +216,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_partition_count: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {}
     impl<'a> Default for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_PROPERTIES_NV,
                 p_next: Default::default(),
                 max_partition_count: Default::default(),
                 _marker: PhantomData,
@@ -267,24 +276,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PartitionedAccelerationStructureFlagsNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub enable_partition_translation: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PartitionedAccelerationStructureFlagsNV<'_> {}
     unsafe impl Sync for PartitionedAccelerationStructureFlagsNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PartitionedAccelerationStructureFlagsNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PartitionedAccelerationStructureFlagsNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_FLAGS_NV;
     }
-    unsafe impl<
-        'a,
-    > crate::Extends<vk::PartitionedAccelerationStructureInstancesInputNV<'_>>
+    unsafe impl<'a> Extends<vk::PartitionedAccelerationStructureInstancesInputNV<'_>>
     for PartitionedAccelerationStructureFlagsNV<'a> {}
     impl<'a> Default for PartitionedAccelerationStructureFlagsNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_FLAGS_NV,
                 p_next: Default::default(),
                 enable_partition_translation: Default::default(),
                 _marker: PhantomData,
@@ -305,7 +311,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PartitionedAccelerationStructureWriteInstanceDataNV {
         pub transform: vk::TransformMatrixKHR,
-        pub explicit_aabb: [core::ffi::c_float; 6 as _],
+        pub explicit_aabb: [ffi::c_float; 6 as _],
         pub instance_id: u32,
         pub instance_mask: u32,
         pub instance_contribution_to_hit_group_index: u32,
@@ -320,7 +326,7 @@ pub(crate) mod items {
         fn default() -> Self {
             Self {
                 transform: Default::default(),
-                explicit_aabb: unsafe { core::mem::zeroed() },
+                explicit_aabb: unsafe { zeroed() },
                 instance_id: Default::default(),
                 instance_mask: Default::default(),
                 instance_contribution_to_hit_group_index: Default::default(),
@@ -336,10 +342,7 @@ pub(crate) mod items {
             self.transform = transform;
             self
         }
-        pub fn explicit_aabb(
-            mut self,
-            explicit_aabb: [core::ffi::c_float; 6 as _],
-        ) -> Self {
+        pub fn explicit_aabb(mut self, explicit_aabb: [ffi::c_float; 6 as _]) -> Self {
             self.explicit_aabb = explicit_aabb;
             self
         }
@@ -416,7 +419,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PartitionedAccelerationStructureWritePartitionTranslationDataNV {
         pub partition_index: u32,
-        pub partition_translation: [core::ffi::c_float; 3 as _],
+        pub partition_translation: [ffi::c_float; 3 as _],
     }
     unsafe impl Send
     for PartitionedAccelerationStructureWritePartitionTranslationDataNV {}
@@ -426,7 +429,7 @@ pub(crate) mod items {
         fn default() -> Self {
             Self {
                 partition_index: Default::default(),
-                partition_translation: unsafe { core::mem::zeroed() },
+                partition_translation: unsafe { zeroed() },
             }
         }
     }
@@ -437,7 +440,7 @@ pub(crate) mod items {
         }
         pub fn partition_translation(
             mut self,
-            partition_translation: [core::ffi::c_float; 3 as _],
+            partition_translation: [ffi::c_float; 3 as _],
         ) -> Self {
             self.partition_translation = partition_translation;
             self
@@ -448,23 +451,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub acceleration_structure_count: u32,
         pub p_acceleration_structures: *const vk::DeviceAddress,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for WriteDescriptorSetPartitionedAccelerationStructureNV<'_> {}
     unsafe impl Sync for WriteDescriptorSetPartitionedAccelerationStructureNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WRITE_DESCRIPTOR_SET_PARTITIONED_ACCELERATION_STRUCTURE_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::WriteDescriptorSet<'_>>
+    unsafe impl<'a> Extends<vk::WriteDescriptorSet<'_>>
     for WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {}
     impl<'a> Default for WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::WRITE_DESCRIPTOR_SET_PARTITIONED_ACCELERATION_STRUCTURE_NV,
                 p_next: Default::default(),
                 acceleration_structure_count: Default::default(),
                 p_acceleration_structures: Default::default(),
@@ -487,7 +490,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PartitionedAccelerationStructureInstancesInputNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub flags: vk::BuildAccelerationStructureFlagsKHR,
         pub instance_count: u32,
         pub max_instance_per_partition_count: u32,
@@ -497,14 +500,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for PartitionedAccelerationStructureInstancesInputNV<'_> {}
     unsafe impl Sync for PartitionedAccelerationStructureInstancesInputNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PartitionedAccelerationStructureInstancesInputNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_INSTANCES_INPUT_NV;
     }
     impl<'a> Default for PartitionedAccelerationStructureInstancesInputNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_INSTANCES_INPUT_NV,
                 p_next: Default::default(),
                 flags: Default::default(),
                 instance_count: Default::default(),
@@ -548,7 +551,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BuildPartitionedAccelerationStructureInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub input: vk::PartitionedAccelerationStructureInstancesInputNV<'a>,
         pub src_acceleration_structure_data: vk::DeviceAddress,
         pub dst_acceleration_structure_data: vk::DeviceAddress,
@@ -559,14 +562,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for BuildPartitionedAccelerationStructureInfoNV<'_> {}
     unsafe impl Sync for BuildPartitionedAccelerationStructureInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for BuildPartitionedAccelerationStructureInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUILD_PARTITIONED_ACCELERATION_STRUCTURE_INFO_NV;
     }
     impl<'a> Default for BuildPartitionedAccelerationStructureInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BUILD_PARTITIONED_ACCELERATION_STRUCTURE_INFO_NV,
                 p_next: Default::default(),
                 input: Default::default(),
                 src_acceleration_structure_data: Default::default(),
@@ -617,8 +620,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PartitionedAccelerationStructureOpTypeNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PartitionedAccelerationStructureOpTypeNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PartitionedAccelerationStructureOpTypeNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::WRITE_INSTANCE => Some("WRITE_INSTANCE"),
                 Self::UPDATE_INSTANCE => Some("UPDATE_INSTANCE"),
@@ -627,7 +630,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -645,8 +648,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PartitionedAccelerationStructureInstanceFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PartitionedAccelerationStructureInstanceFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PartitionedAccelerationStructureInstanceFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -686,40 +689,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl BitOr for PartitionedAccelerationStructureInstanceFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl BitOrAssign for PartitionedAccelerationStructureInstanceFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl BitAnd for PartitionedAccelerationStructureInstanceFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl BitAndAssign for PartitionedAccelerationStructureInstanceFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl BitXor for PartitionedAccelerationStructureInstanceFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl BitXorAssign for PartitionedAccelerationStructureInstanceFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl Not for PartitionedAccelerationStructureInstanceFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -744,9 +747,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PartitionedAccelerationStructureInstanceFlagBitsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for PartitionedAccelerationStructureInstanceFlagBitsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV = unsafe extern "system" fn(

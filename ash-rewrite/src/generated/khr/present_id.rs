@@ -14,29 +14,31 @@ pub const NAME: &CStr = c"VK_KHR_present_id";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePresentIdFeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub present_id: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePresentIdFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDevicePresentIdFeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDevicePresentIdFeaturesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDevicePresentIdFeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePresentIdFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePresentIdFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePresentIdFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR,
                 p_next: Default::default(),
                 present_id: Default::default(),
                 _marker: PhantomData,
@@ -54,21 +56,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PresentIdKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub swapchain_count: u32,
         pub p_present_ids: *const u64,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PresentIdKHR<'_> {}
     unsafe impl Sync for PresentIdKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PresentIdKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PresentIdKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRESENT_ID_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>> for PresentIdKHR<'a> {}
+    unsafe impl<'a> Extends<vk::PresentInfoKHR<'_>> for PresentIdKHR<'a> {}
     impl<'a> Default for PresentIdKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PRESENT_ID_KHR,
                 p_next: Default::default(),
                 swapchain_count: Default::default(),
                 p_present_ids: Default::default(),

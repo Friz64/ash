@@ -4,8 +4,11 @@
 #![doc(alias = "VK_KHR_video_queue")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ptr;
+use core::ffi;
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl vk::QueryType {
     pub const RESULT_STATUS_ONLY_KHR: Self = Self(1000023000);
@@ -138,10 +141,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_video_capabilities: unsafe {
                 unsafe extern "system" fn get_physical_device_video_capabilities(
@@ -155,7 +158,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_video_capabilities
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_physical_device_video_format_properties: unsafe {
@@ -171,7 +174,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_video_format_properties
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -180,13 +183,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -195,7 +198,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceVideoCapabilitiesKHR
@@ -205,7 +208,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         video_profile: &vk::VideoProfileInfoKHR<'_>,
     ) -> VkResult<vk::VideoCapabilitiesKHR<'_>> {
-        let mut capabilities = core::mem::MaybeUninit::uninit();
+        let mut capabilities = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_video_capabilities)(
@@ -222,14 +225,14 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         video_format_info: &vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
     ) -> VkResult<usize> {
-        let mut video_format_property_count = core::mem::MaybeUninit::uninit();
+        let mut video_format_property_count = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_video_format_properties)(
                 physical_device,
                 video_format_info,
                 video_format_property_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(video_format_property_count)
             .map(|c| c as usize)
@@ -241,7 +244,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         video_format_info: &vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
         video_format_properties: &mut [vk::VideoFormatPropertiesKHR<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut video_format_property_count = video_format_properties.len() as _;
         (self
             .fp
@@ -272,10 +275,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_video_session: unsafe {
                 unsafe extern "system" fn create_video_session(
@@ -287,11 +290,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateVideoSessionKHR")
                 }
                 let val = _f(c"vkCreateVideoSessionKHR");
-                if val.is_null() {
-                    create_video_session
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_video_session } else { transmute(val) }
             },
             destroy_video_session: unsafe {
                 unsafe extern "system" fn destroy_video_session(
@@ -302,11 +301,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyVideoSessionKHR")
                 }
                 let val = _f(c"vkDestroyVideoSessionKHR");
-                if val.is_null() {
-                    destroy_video_session
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_video_session } else { transmute(val) }
             },
             create_video_session_parameters: unsafe {
                 unsafe extern "system" fn create_video_session_parameters(
@@ -321,7 +316,7 @@ impl DeviceFn {
                 if val.is_null() {
                     create_video_session_parameters
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             update_video_session_parameters: unsafe {
@@ -336,7 +331,7 @@ impl DeviceFn {
                 if val.is_null() {
                     update_video_session_parameters
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             destroy_video_session_parameters: unsafe {
@@ -351,7 +346,7 @@ impl DeviceFn {
                 if val.is_null() {
                     destroy_video_session_parameters
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_video_session_memory_requirements: unsafe {
@@ -367,7 +362,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_video_session_memory_requirements
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             bind_video_session_memory: unsafe {
@@ -380,11 +375,7 @@ impl DeviceFn {
                     panic!("unable to load vkBindVideoSessionMemoryKHR")
                 }
                 let val = _f(c"vkBindVideoSessionMemoryKHR");
-                if val.is_null() {
-                    bind_video_session_memory
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { bind_video_session_memory } else { transmute(val) }
             },
             cmd_begin_video_coding: unsafe {
                 unsafe extern "system" fn cmd_begin_video_coding(
@@ -394,11 +385,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdBeginVideoCodingKHR")
                 }
                 let val = _f(c"vkCmdBeginVideoCodingKHR");
-                if val.is_null() {
-                    cmd_begin_video_coding
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_begin_video_coding } else { transmute(val) }
             },
             cmd_control_video_coding: unsafe {
                 unsafe extern "system" fn cmd_control_video_coding(
@@ -408,11 +395,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdControlVideoCodingKHR")
                 }
                 let val = _f(c"vkCmdControlVideoCodingKHR");
-                if val.is_null() {
-                    cmd_control_video_coding
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_control_video_coding } else { transmute(val) }
             },
             cmd_end_video_coding: unsafe {
                 unsafe extern "system" fn cmd_end_video_coding(
@@ -422,11 +405,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdEndVideoCodingKHR")
                 }
                 let val = _f(c"vkCmdEndVideoCodingKHR");
-                if val.is_null() {
-                    cmd_end_video_coding
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_end_video_coding } else { transmute(val) }
             },
         }
     }
@@ -434,13 +413,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -449,7 +428,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateVideoSessionKHR
@@ -459,7 +438,7 @@ impl Device {
         create_info: &vk::VideoSessionCreateInfoKHR<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::VideoSessionKHR> {
-        let mut video_session = core::mem::MaybeUninit::uninit();
+        let mut video_session = MaybeUninit::uninit();
         (self
             .fp
             .create_video_session)(
@@ -467,7 +446,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 video_session.as_mut_ptr(),
             )
@@ -487,7 +466,7 @@ impl Device {
             video_session,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -498,7 +477,7 @@ impl Device {
         create_info: &vk::VideoSessionParametersCreateInfoKHR<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::VideoSessionParametersKHR> {
-        let mut video_session_parameters = core::mem::MaybeUninit::uninit();
+        let mut video_session_parameters = MaybeUninit::uninit();
         (self
             .fp
             .create_video_session_parameters)(
@@ -506,7 +485,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 video_session_parameters.as_mut_ptr(),
             )
@@ -542,7 +521,7 @@ impl Device {
             video_session_parameters,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -552,14 +531,14 @@ impl Device {
         &self,
         video_session: vk::VideoSessionKHR,
     ) -> VkResult<usize> {
-        let mut memory_requirements_count = core::mem::MaybeUninit::uninit();
+        let mut memory_requirements_count = MaybeUninit::uninit();
         (self
             .fp
             .get_video_session_memory_requirements)(
                 self.handle,
                 video_session,
                 memory_requirements_count.as_mut_ptr(),
-                core::ptr::null_mut(),
+                ptr::null_mut(),
             )
             .assume_init_on_success(memory_requirements_count)
             .map(|c| c as usize)
@@ -570,7 +549,7 @@ impl Device {
         &self,
         video_session: vk::VideoSessionKHR,
         memory_requirements: &mut [vk::VideoSessionMemoryRequirementsKHR<'_>],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         let mut memory_requirements_count = memory_requirements.len() as _;
         (self
             .fp
@@ -632,30 +611,34 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyVideoPropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub video_codec_operations: vk::VideoCodecOperationFlagsKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyVideoPropertiesKHR<'_> {}
     unsafe impl Sync for QueueFamilyVideoPropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for QueueFamilyVideoPropertiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for QueueFamilyVideoPropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_VIDEO_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::QueueFamilyProperties2<'_>>
+    unsafe impl<'a> Extends<vk::QueueFamilyProperties2<'_>>
     for QueueFamilyVideoPropertiesKHR<'a> {}
     impl<'a> Default for QueueFamilyVideoPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::QUEUE_FAMILY_VIDEO_PROPERTIES_KHR,
                 p_next: Default::default(),
                 video_codec_operations: Default::default(),
                 _marker: PhantomData,
@@ -676,22 +659,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct QueueFamilyQueryResultStatusPropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub query_result_status_support: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyQueryResultStatusPropertiesKHR<'_> {}
     unsafe impl Sync for QueueFamilyQueryResultStatusPropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for QueueFamilyQueryResultStatusPropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::QueueFamilyProperties2<'_>>
+    unsafe impl<'a> Extends<vk::QueueFamilyProperties2<'_>>
     for QueueFamilyQueryResultStatusPropertiesKHR<'a> {}
     impl<'a> Default for QueueFamilyQueryResultStatusPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_KHR,
                 p_next: Default::default(),
                 query_result_status_support: Default::default(),
                 _marker: PhantomData,
@@ -712,28 +695,26 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoProfileListInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub profile_count: u32,
         pub p_profiles: *const vk::VideoProfileInfoKHR<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoProfileListInfoKHR<'_> {}
     unsafe impl Sync for VideoProfileListInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoProfileListInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoProfileListInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_PROFILE_LIST_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for VideoProfileListInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceVideoFormatInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceVideoFormatInfoKHR<'_>>
     for VideoProfileListInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
-    for VideoProfileListInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::BufferCreateInfo<'_>>
-    for VideoProfileListInfoKHR<'a> {}
+    unsafe impl<'a> Extends<vk::ImageCreateInfo<'_>> for VideoProfileListInfoKHR<'a> {}
+    unsafe impl<'a> Extends<vk::BufferCreateInfo<'_>> for VideoProfileListInfoKHR<'a> {}
     impl<'a> Default for VideoProfileListInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_PROFILE_LIST_INFO_KHR,
                 p_next: Default::default(),
                 profile_count: Default::default(),
                 p_profiles: Default::default(),
@@ -753,19 +734,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVideoFormatInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub image_usage: vk::ImageUsageFlags,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceVideoFormatInfoKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceVideoFormatInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVideoFormatInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceVideoFormatInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR;
     }
     impl<'a> Default for PhysicalDeviceVideoFormatInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR,
                 p_next: Default::default(),
                 image_usage: Default::default(),
                 _marker: PhantomData,
@@ -783,7 +764,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoFormatPropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub format: vk::Format,
         pub component_mapping: vk::ComponentMapping,
         pub image_create_flags: vk::ImageCreateFlags,
@@ -794,13 +775,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoFormatPropertiesKHR<'_> {}
     unsafe impl Sync for VideoFormatPropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoFormatPropertiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoFormatPropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_FORMAT_PROPERTIES_KHR;
     }
     impl<'a> Default for VideoFormatPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_FORMAT_PROPERTIES_KHR,
                 p_next: Default::default(),
                 format: Default::default(),
                 component_mapping: Default::default(),
@@ -852,7 +833,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoProfileInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub video_codec_operation: vk::VideoCodecOperationFlagBitsKHR,
         pub chroma_subsampling: vk::VideoChromaSubsamplingFlagsKHR,
         pub luma_bit_depth: vk::VideoComponentBitDepthFlagsKHR,
@@ -861,15 +842,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoProfileInfoKHR<'_> {}
     unsafe impl Sync for VideoProfileInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoProfileInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoProfileInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_PROFILE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::QueryPoolCreateInfo<'_>>
-    for VideoProfileInfoKHR<'a> {}
+    unsafe impl<'a> Extends<vk::QueryPoolCreateInfo<'_>> for VideoProfileInfoKHR<'a> {}
     impl<'a> Default for VideoProfileInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_PROFILE_INFO_KHR,
                 p_next: Default::default(),
                 video_codec_operation: Default::default(),
                 chroma_subsampling: Default::default(),
@@ -914,7 +894,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoCapabilitiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub flags: vk::VideoCapabilityFlagsKHR,
         pub min_bitstream_buffer_offset_alignment: vk::DeviceSize,
         pub min_bitstream_buffer_size_alignment: vk::DeviceSize,
@@ -928,13 +908,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoCapabilitiesKHR<'_> {}
     unsafe impl Sync for VideoCapabilitiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoCapabilitiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_CAPABILITIES_KHR;
     }
     impl<'a> Default for VideoCapabilitiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_CAPABILITIES_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 min_bitstream_buffer_offset_alignment: Default::default(),
@@ -1007,21 +987,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoSessionMemoryRequirementsKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub memory_bind_index: u32,
         pub memory_requirements: vk::MemoryRequirements,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoSessionMemoryRequirementsKHR<'_> {}
     unsafe impl Sync for VideoSessionMemoryRequirementsKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for VideoSessionMemoryRequirementsKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoSessionMemoryRequirementsKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_SESSION_MEMORY_REQUIREMENTS_KHR;
     }
     impl<'a> Default for VideoSessionMemoryRequirementsKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_SESSION_MEMORY_REQUIREMENTS_KHR,
                 p_next: Default::default(),
                 memory_bind_index: Default::default(),
                 memory_requirements: Default::default(),
@@ -1047,7 +1026,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct BindVideoSessionMemoryInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub memory_bind_index: u32,
         pub memory: vk::DeviceMemory,
         pub memory_offset: vk::DeviceSize,
@@ -1056,13 +1035,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for BindVideoSessionMemoryInfoKHR<'_> {}
     unsafe impl Sync for BindVideoSessionMemoryInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BindVideoSessionMemoryInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BindVideoSessionMemoryInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_VIDEO_SESSION_MEMORY_INFO_KHR;
     }
     impl<'a> Default for BindVideoSessionMemoryInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BIND_VIDEO_SESSION_MEMORY_INFO_KHR,
                 p_next: Default::default(),
                 memory_bind_index: Default::default(),
                 memory: Default::default(),
@@ -1095,7 +1074,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoPictureResourceInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub coded_offset: vk::Offset2D,
         pub coded_extent: vk::Extent2D,
         pub base_array_layer: u32,
@@ -1104,13 +1083,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoPictureResourceInfoKHR<'_> {}
     unsafe impl Sync for VideoPictureResourceInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoPictureResourceInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoPictureResourceInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_PICTURE_RESOURCE_INFO_KHR;
     }
     impl<'a> Default for VideoPictureResourceInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_PICTURE_RESOURCE_INFO_KHR,
                 p_next: Default::default(),
                 coded_offset: Default::default(),
                 coded_extent: Default::default(),
@@ -1143,20 +1122,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoReferenceSlotInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub slot_index: i32,
         pub p_picture_resource: *const vk::VideoPictureResourceInfoKHR<'a>,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoReferenceSlotInfoKHR<'_> {}
     unsafe impl Sync for VideoReferenceSlotInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoReferenceSlotInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoReferenceSlotInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_REFERENCE_SLOT_INFO_KHR;
     }
     impl<'a> Default for VideoReferenceSlotInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_REFERENCE_SLOT_INFO_KHR,
                 p_next: Default::default(),
                 slot_index: Default::default(),
                 p_picture_resource: Default::default(),
@@ -1182,7 +1161,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoSessionCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub queue_family_index: u32,
         pub flags: vk::VideoSessionCreateFlagsKHR,
         pub p_video_profile: *const vk::VideoProfileInfoKHR<'a>,
@@ -1196,13 +1175,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoSessionCreateInfoKHR<'_> {}
     unsafe impl Sync for VideoSessionCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoSessionCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoSessionCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_SESSION_CREATE_INFO_KHR;
     }
     impl<'a> Default for VideoSessionCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_SESSION_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 queue_family_index: Default::default(),
                 flags: Default::default(),
@@ -1272,7 +1251,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoSessionParametersCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::VideoSessionParametersCreateFlagsKHR,
         pub video_session_parameters_template: vk::VideoSessionParametersKHR,
         pub video_session: vk::VideoSessionKHR,
@@ -1280,14 +1259,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoSessionParametersCreateInfoKHR<'_> {}
     unsafe impl Sync for VideoSessionParametersCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for VideoSessionParametersCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoSessionParametersCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR;
     }
     impl<'a> Default for VideoSessionParametersCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 video_session_parameters_template: Default::default(),
@@ -1318,20 +1296,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoSessionParametersUpdateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub update_sequence_count: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoSessionParametersUpdateInfoKHR<'_> {}
     unsafe impl Sync for VideoSessionParametersUpdateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for VideoSessionParametersUpdateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoSessionParametersUpdateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR;
     }
     impl<'a> Default for VideoSessionParametersUpdateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR,
                 p_next: Default::default(),
                 update_sequence_count: Default::default(),
                 _marker: PhantomData,
@@ -1349,7 +1326,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoBeginCodingInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::VideoBeginCodingFlagsKHR,
         pub video_session: vk::VideoSessionKHR,
         pub video_session_parameters: vk::VideoSessionParametersKHR,
@@ -1359,13 +1336,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for VideoBeginCodingInfoKHR<'_> {}
     unsafe impl Sync for VideoBeginCodingInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoBeginCodingInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoBeginCodingInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_BEGIN_CODING_INFO_KHR;
     }
     impl<'a> Default for VideoBeginCodingInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_BEGIN_CODING_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 video_session: Default::default(),
@@ -1406,19 +1383,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoEndCodingInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::VideoEndCodingFlagsKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoEndCodingInfoKHR<'_> {}
     unsafe impl Sync for VideoEndCodingInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoEndCodingInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoEndCodingInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_END_CODING_INFO_KHR;
     }
     impl<'a> Default for VideoEndCodingInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_END_CODING_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 _marker: PhantomData,
@@ -1436,19 +1413,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct VideoCodingControlInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::VideoCodingControlFlagsKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoCodingControlInfoKHR<'_> {}
     unsafe impl Sync for VideoCodingControlInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for VideoCodingControlInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for VideoCodingControlInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_CODING_CONTROL_INFO_KHR;
     }
     impl<'a> Default for VideoCodingControlInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::VIDEO_CODING_CONTROL_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 _marker: PhantomData,
@@ -1465,8 +1442,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct QueryResultStatusKHR(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueryResultStatusKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for QueryResultStatusKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::ERROR => Some("ERROR"),
                 Self::NOT_READY => Some("NOT_READY"),
@@ -1478,7 +1455,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1496,8 +1473,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoCodecOperationFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoCodecOperationFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VideoCodecOperationFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1534,40 +1511,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoCodecOperationFlagsKHR {
+    impl BitOr for VideoCodecOperationFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoCodecOperationFlagsKHR {
+    impl BitOrAssign for VideoCodecOperationFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoCodecOperationFlagsKHR {
+    impl BitAnd for VideoCodecOperationFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoCodecOperationFlagsKHR {
+    impl BitAndAssign for VideoCodecOperationFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoCodecOperationFlagsKHR {
+    impl BitXor for VideoCodecOperationFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoCodecOperationFlagsKHR {
+    impl BitXorAssign for VideoCodecOperationFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoCodecOperationFlagsKHR {
+    impl Not for VideoCodecOperationFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1592,17 +1569,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoCodecOperationFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for VideoCodecOperationFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoCapabilityFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoCapabilityFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VideoCapabilityFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1633,40 +1610,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoCapabilityFlagsKHR {
+    impl BitOr for VideoCapabilityFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoCapabilityFlagsKHR {
+    impl BitOrAssign for VideoCapabilityFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoCapabilityFlagsKHR {
+    impl BitAnd for VideoCapabilityFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoCapabilityFlagsKHR {
+    impl BitAndAssign for VideoCapabilityFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoCapabilityFlagsKHR {
+    impl BitXor for VideoCapabilityFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoCapabilityFlagsKHR {
+    impl BitXorAssign for VideoCapabilityFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoCapabilityFlagsKHR {
+    impl Not for VideoCapabilityFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1691,17 +1668,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoCapabilityFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for VideoCapabilityFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoSessionCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoSessionCreateFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VideoSessionCreateFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -1742,40 +1719,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoSessionCreateFlagsKHR {
+    impl BitOr for VideoSessionCreateFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoSessionCreateFlagsKHR {
+    impl BitOrAssign for VideoSessionCreateFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoSessionCreateFlagsKHR {
+    impl BitAnd for VideoSessionCreateFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoSessionCreateFlagsKHR {
+    impl BitAndAssign for VideoSessionCreateFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoSessionCreateFlagsKHR {
+    impl BitXor for VideoSessionCreateFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoSessionCreateFlagsKHR {
+    impl BitXorAssign for VideoSessionCreateFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoSessionCreateFlagsKHR {
+    impl Not for VideoSessionCreateFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1800,17 +1777,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoSessionCreateFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for VideoSessionCreateFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoSessionParametersCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoSessionParametersCreateFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VideoSessionParametersCreateFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[(Self::QUANTIZATION_MAP_COMPATIBLE.0, "QUANTIZATION_MAP_COMPATIBLE")],
@@ -1838,40 +1815,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoSessionParametersCreateFlagsKHR {
+    impl BitOr for VideoSessionParametersCreateFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoSessionParametersCreateFlagsKHR {
+    impl BitOrAssign for VideoSessionParametersCreateFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoSessionParametersCreateFlagsKHR {
+    impl BitAnd for VideoSessionParametersCreateFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoSessionParametersCreateFlagsKHR {
+    impl BitAndAssign for VideoSessionParametersCreateFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoSessionParametersCreateFlagsKHR {
+    impl BitXor for VideoSessionParametersCreateFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoSessionParametersCreateFlagsKHR {
+    impl BitXorAssign for VideoSessionParametersCreateFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoSessionParametersCreateFlagsKHR {
+    impl Not for VideoSessionParametersCreateFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1896,18 +1873,18 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoSessionParametersCreateFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for VideoSessionParametersCreateFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoBeginCodingFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoBeginCodingFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for VideoBeginCodingFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl VideoBeginCodingFlagsKHR {
@@ -1930,40 +1907,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoBeginCodingFlagsKHR {
+    impl BitOr for VideoBeginCodingFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoBeginCodingFlagsKHR {
+    impl BitOrAssign for VideoBeginCodingFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoBeginCodingFlagsKHR {
+    impl BitAnd for VideoBeginCodingFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoBeginCodingFlagsKHR {
+    impl BitAndAssign for VideoBeginCodingFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoBeginCodingFlagsKHR {
+    impl BitXor for VideoBeginCodingFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoBeginCodingFlagsKHR {
+    impl BitXorAssign for VideoBeginCodingFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoBeginCodingFlagsKHR {
+    impl Not for VideoBeginCodingFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1973,9 +1950,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoEndCodingFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoEndCodingFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for VideoEndCodingFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl VideoEndCodingFlagsKHR {
@@ -1998,40 +1975,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoEndCodingFlagsKHR {
+    impl BitOr for VideoEndCodingFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoEndCodingFlagsKHR {
+    impl BitOrAssign for VideoEndCodingFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoEndCodingFlagsKHR {
+    impl BitAnd for VideoEndCodingFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoEndCodingFlagsKHR {
+    impl BitAndAssign for VideoEndCodingFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoEndCodingFlagsKHR {
+    impl BitXor for VideoEndCodingFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoEndCodingFlagsKHR {
+    impl BitXorAssign for VideoEndCodingFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoEndCodingFlagsKHR {
+    impl Not for VideoEndCodingFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -2041,8 +2018,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoCodingControlFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoCodingControlFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VideoCodingControlFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -2074,40 +2051,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoCodingControlFlagsKHR {
+    impl BitOr for VideoCodingControlFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoCodingControlFlagsKHR {
+    impl BitOrAssign for VideoCodingControlFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoCodingControlFlagsKHR {
+    impl BitAnd for VideoCodingControlFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoCodingControlFlagsKHR {
+    impl BitAndAssign for VideoCodingControlFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoCodingControlFlagsKHR {
+    impl BitXor for VideoCodingControlFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoCodingControlFlagsKHR {
+    impl BitXorAssign for VideoCodingControlFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoCodingControlFlagsKHR {
+    impl Not for VideoCodingControlFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -2132,17 +2109,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoCodingControlFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for VideoCodingControlFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoChromaSubsamplingFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VideoChromaSubsamplingFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -2176,40 +2153,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoChromaSubsamplingFlagsKHR {
+    impl BitOr for VideoChromaSubsamplingFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoChromaSubsamplingFlagsKHR {
+    impl BitOrAssign for VideoChromaSubsamplingFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoChromaSubsamplingFlagsKHR {
+    impl BitAnd for VideoChromaSubsamplingFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoChromaSubsamplingFlagsKHR {
+    impl BitAndAssign for VideoChromaSubsamplingFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoChromaSubsamplingFlagsKHR {
+    impl BitXor for VideoChromaSubsamplingFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoChromaSubsamplingFlagsKHR {
+    impl BitXorAssign for VideoChromaSubsamplingFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoChromaSubsamplingFlagsKHR {
+    impl Not for VideoChromaSubsamplingFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -2234,17 +2211,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoChromaSubsamplingFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for VideoChromaSubsamplingFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct VideoComponentBitDepthFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoComponentBitDepthFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for VideoComponentBitDepthFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -2277,40 +2254,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for VideoComponentBitDepthFlagsKHR {
+    impl BitOr for VideoComponentBitDepthFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for VideoComponentBitDepthFlagsKHR {
+    impl BitOrAssign for VideoComponentBitDepthFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for VideoComponentBitDepthFlagsKHR {
+    impl BitAnd for VideoComponentBitDepthFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for VideoComponentBitDepthFlagsKHR {
+    impl BitAndAssign for VideoComponentBitDepthFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for VideoComponentBitDepthFlagsKHR {
+    impl BitXor for VideoComponentBitDepthFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for VideoComponentBitDepthFlagsKHR {
+    impl BitXorAssign for VideoComponentBitDepthFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for VideoComponentBitDepthFlagsKHR {
+    impl Not for VideoComponentBitDepthFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -2335,9 +2312,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for VideoComponentBitDepthFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for VideoComponentBitDepthFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
@@ -2363,8 +2340,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for VideoSessionKHR {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for VideoSessionKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
@@ -2391,8 +2368,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for VideoSessionParametersKHR {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for VideoSessionParametersKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

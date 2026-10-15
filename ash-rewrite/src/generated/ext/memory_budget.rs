@@ -13,31 +13,34 @@ pub const NAME: &CStr = c"VK_EXT_memory_budget";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    use core::mem::zeroed;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub heap_budget: [vk::DeviceSize; vk::MAX_MEMORY_HEAPS as _],
         pub heap_usage: [vk::DeviceSize; vk::MAX_MEMORY_HEAPS as _],
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMemoryBudgetPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMemoryBudgetPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceMemoryProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceMemoryProperties2<'_>>
     for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT,
                 p_next: Default::default(),
-                heap_budget: unsafe { core::mem::zeroed() },
-                heap_usage: unsafe { core::mem::zeroed() },
+                heap_budget: unsafe { zeroed() },
+                heap_usage: unsafe { zeroed() },
                 _marker: PhantomData,
             }
         }

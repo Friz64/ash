@@ -4,8 +4,11 @@
 #![doc(alias = "VK_EXT_calibrated_timestamps")]
 use crate::vk;
 use core::ffi::CStr;
+use alloc::vec::Vec;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::mem::MaybeUninit;
+use core::ffi;
 ///Provided by [VK_EXT_calibrated_timestamps](crate::ext::calibrated_timestamps)
 impl vk::StructureType {
     pub const CALIBRATED_TIMESTAMP_INFO_EXT: Self = Self::CALIBRATED_TIMESTAMP_INFO_KHR;
@@ -26,10 +29,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_calibrateable_time_domains: unsafe {
                 unsafe extern "system" fn get_physical_device_calibrateable_time_domains(
@@ -45,7 +48,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_calibrateable_time_domains
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -54,13 +57,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -69,7 +72,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDeviceCalibrateableTimeDomainsKHR
@@ -77,7 +80,7 @@ impl Instance {
     pub unsafe fn get_physical_device_calibrateable_time_domains(
         &self,
         physical_device: vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<vk::TimeDomainKHR>> {
+    ) -> VkResult<Vec<vk::TimeDomainKHR>> {
         crate::read_into_uninitialized_vector(|time_domain_count, time_domains| (self
             .fp
             .get_physical_device_calibrateable_time_domains)(
@@ -94,10 +97,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_calibrated_timestamps: unsafe {
                 unsafe extern "system" fn get_calibrated_timestamps(
@@ -110,11 +113,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetCalibratedTimestampsEXT")
                 }
                 let val = _f(c"vkGetCalibratedTimestampsEXT");
-                if val.is_null() {
-                    get_calibrated_timestamps
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_calibrated_timestamps } else { transmute(val) }
             },
         }
     }
@@ -122,13 +121,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -137,7 +136,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetCalibratedTimestampsKHR
@@ -147,7 +146,7 @@ impl Device {
         timestamp_infos: &[vk::CalibratedTimestampInfoKHR<'_>],
         timestamps: &mut [u64],
     ) -> VkResult<u64> {
-        let mut max_deviation = core::mem::MaybeUninit::uninit();
+        let mut max_deviation = MaybeUninit::uninit();
         assert_eq!(timestamp_infos.len(), timestamps.len());
         (self
             .fp

@@ -1,5 +1,8 @@
 use super::{Code, Context};
-use crate::output::{CodeMap, GlobExport, Import, OutputLocation};
+use crate::{
+    Import,
+    output::{CodeMap, GlobExport, OutputLocation},
+};
 use analysis::{item::handle::Handle, name::TypeName, rust::RustTokens};
 use quote::quote;
 use tracing::{instrument, trace};
@@ -58,9 +61,9 @@ impl Code for Handle {
                 }
 
                 #[cfg(feature = "debug")]
-                impl fmtdebug::Debug for #name {
-                    fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
-                        fmtdebug::Debug::fmt(&self.0, f)
+                impl fmtd::Debug for #name {
+                    fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+                        fmtd::Debug::fmt(&self.0, f)
                     }
                 }
             }
@@ -95,8 +98,8 @@ impl Code for Handle {
                 }
 
                 #[cfg(feature = "debug")]
-                impl fmtdebug::Debug for #name {
-                    fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+                impl fmtd::Debug for #name {
+                    fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
                         write!(f, "0x{:x}", self.0)
                     }
                 }

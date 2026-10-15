@@ -4,8 +4,11 @@
 #![doc(alias = "VK_MVK_macos_surface")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_MVK_macos_surface](crate::mvk::macos_surface)
 impl vk::StructureType {
     pub const MACOS_SURFACE_CREATE_INFO_MVK: Self = Self(1000123000);
@@ -19,10 +22,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_mac_os_surface: unsafe {
                 unsafe extern "system" fn create_mac_os_surface(
@@ -34,11 +37,7 @@ impl InstanceFn {
                     panic!("unable to load vkCreateMacOSSurfaceMVK")
                 }
                 let val = _f(c"vkCreateMacOSSurfaceMVK");
-                if val.is_null() {
-                    create_mac_os_surface
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_mac_os_surface } else { transmute(val) }
             },
         }
     }
@@ -46,13 +45,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -61,7 +60,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkCreateMacOSSurfaceMVK
@@ -71,7 +70,7 @@ impl Instance {
         create_info: &vk::MacOSSurfaceCreateInfoMVK<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = core::mem::MaybeUninit::uninit();
+        let mut surface = MaybeUninit::uninit();
         (self
             .fp
             .create_mac_os_surface)(
@@ -79,7 +78,7 @@ impl Instance {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 surface.as_mut_ptr(),
             )
@@ -89,25 +88,30 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MacOSSurfaceCreateInfoMVK<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::MacOSSurfaceCreateFlagsMVK,
-        pub p_view: *const core::ffi::c_void,
+        pub p_view: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MacOSSurfaceCreateInfoMVK<'_> {}
     unsafe impl Sync for MacOSSurfaceCreateInfoMVK<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for MacOSSurfaceCreateInfoMVK<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for MacOSSurfaceCreateInfoMVK<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MACOS_SURFACE_CREATE_INFO_MVK;
     }
     impl<'a> Default for MacOSSurfaceCreateInfoMVK<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::MACOS_SURFACE_CREATE_INFO_MVK,
                 p_next: Default::default(),
                 flags: Default::default(),
                 p_view: Default::default(),
@@ -120,7 +124,7 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn view(mut self, view: &'a core::ffi::c_void) -> Self {
+        pub fn view(mut self, view: &'a ffi::c_void) -> Self {
             self.p_view = view;
             self
         }
@@ -129,9 +133,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct MacOSSurfaceCreateFlagsMVK(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for MacOSSurfaceCreateFlagsMVK {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for MacOSSurfaceCreateFlagsMVK {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl MacOSSurfaceCreateFlagsMVK {
@@ -154,40 +158,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for MacOSSurfaceCreateFlagsMVK {
+    impl BitOr for MacOSSurfaceCreateFlagsMVK {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for MacOSSurfaceCreateFlagsMVK {
+    impl BitOrAssign for MacOSSurfaceCreateFlagsMVK {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for MacOSSurfaceCreateFlagsMVK {
+    impl BitAnd for MacOSSurfaceCreateFlagsMVK {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for MacOSSurfaceCreateFlagsMVK {
+    impl BitAndAssign for MacOSSurfaceCreateFlagsMVK {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for MacOSSurfaceCreateFlagsMVK {
+    impl BitXor for MacOSSurfaceCreateFlagsMVK {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for MacOSSurfaceCreateFlagsMVK {
+    impl BitXorAssign for MacOSSurfaceCreateFlagsMVK {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for MacOSSurfaceCreateFlagsMVK {
+    impl Not for MacOSSurfaceCreateFlagsMVK {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

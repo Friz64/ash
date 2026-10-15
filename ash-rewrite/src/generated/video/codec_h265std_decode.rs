@@ -7,7 +7,10 @@ use core::ffi::CStr;
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0;
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_h265_decode";
 pub(crate) mod items {
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     use crate::vk;
+    use core::mem::zeroed;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DecodeH265PictureInfoFlags {
@@ -20,8 +23,8 @@ pub(crate) mod items {
     unsafe impl Send for DecodeH265PictureInfoFlags {}
     unsafe impl Sync for DecodeH265PictureInfoFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DecodeH265PictureInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DecodeH265PictureInfoFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("DecodeH265PictureInfoFlags")
                 .field("irap_pic_flag", &self.get_irap_pic_flag())
                 .field("idr_pic_flag", &self.get_idr_pic_flag())
@@ -100,9 +103,9 @@ pub(crate) mod items {
                 pic_order_cnt_val: Default::default(),
                 num_bits_for_st_ref_pic_set_in_slice: Default::default(),
                 reserved: Default::default(),
-                ref_pic_set_st_curr_before: unsafe { core::mem::zeroed() },
-                ref_pic_set_st_curr_after: unsafe { core::mem::zeroed() },
-                ref_pic_set_lt_curr: unsafe { core::mem::zeroed() },
+                ref_pic_set_st_curr_before: unsafe { zeroed() },
+                ref_pic_set_st_curr_after: unsafe { zeroed() },
+                ref_pic_set_lt_curr: unsafe { zeroed() },
             }
         }
     }
@@ -180,8 +183,8 @@ pub(crate) mod items {
     unsafe impl Send for DecodeH265ReferenceInfoFlags {}
     unsafe impl Sync for DecodeH265ReferenceInfoFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DecodeH265ReferenceInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DecodeH265ReferenceInfoFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("DecodeH265ReferenceInfoFlags")
                 .field(
                     "used_for_long_term_reference",

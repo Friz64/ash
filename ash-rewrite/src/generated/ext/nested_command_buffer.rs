@@ -32,12 +32,15 @@ pub const NAME: &CStr = c"VK_EXT_nested_command_buffer";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub nested_command_buffer: vk::Bool32,
         pub nested_command_buffer_rendering: vk::Bool32,
         pub nested_command_buffer_simultaneous_use: vk::Bool32,
@@ -45,18 +48,18 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceNestedCommandBufferFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceNestedCommandBufferFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT,
                 p_next: Default::default(),
                 nested_command_buffer: Default::default(),
                 nested_command_buffer_rendering: Default::default(),
@@ -92,22 +95,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_command_buffer_nesting_level: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceNestedCommandBufferPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceNestedCommandBufferPropertiesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT,
                 p_next: Default::default(),
                 max_command_buffer_nesting_level: Default::default(),
                 _marker: PhantomData,

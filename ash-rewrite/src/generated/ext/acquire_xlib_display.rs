@@ -4,8 +4,10 @@
 #![doc(alias = "VK_EXT_acquire_xlib_display")]
 use core::ffi::CStr;
 use crate::vk;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_acquire_xlib_display";
 #[derive(Clone)]
@@ -16,41 +18,33 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             acquire_xlib_display: unsafe {
                 unsafe extern "system" fn acquire_xlib_display(
                     _: vk::PhysicalDevice,
-                    _: *mut crate::platform_types::Display,
+                    _: *mut vk::Display,
                     _: vk::DisplayKHR,
                 ) -> vk::Result {
                     panic!("unable to load vkAcquireXlibDisplayEXT")
                 }
                 let val = _f(c"vkAcquireXlibDisplayEXT");
-                if val.is_null() {
-                    acquire_xlib_display
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { acquire_xlib_display } else { transmute(val) }
             },
             get_rand_r_output_display: unsafe {
                 unsafe extern "system" fn get_rand_r_output_display(
                     _: vk::PhysicalDevice,
-                    _: *mut crate::platform_types::Display,
-                    _: crate::platform_types::RROutput,
+                    _: *mut vk::Display,
+                    _: vk::RROutput,
                     _: *mut vk::DisplayKHR,
                 ) -> vk::Result {
                     panic!("unable to load vkGetRandROutputDisplayEXT")
                 }
                 let val = _f(c"vkGetRandROutputDisplayEXT");
-                if val.is_null() {
-                    get_rand_r_output_display
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_rand_r_output_display } else { transmute(val) }
             },
         }
     }
@@ -58,13 +52,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -73,7 +67,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkAcquireXlibDisplayEXT
@@ -82,8 +76,8 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         display: vk::DisplayKHR,
-    ) -> VkResult<crate::platform_types::Display> {
-        let mut dpy = core::mem::MaybeUninit::uninit();
+    ) -> VkResult<vk::Display> {
+        let mut dpy = MaybeUninit::uninit();
         (self.fp.acquire_xlib_display)(physical_device, dpy.as_mut_ptr(), display)
             .assume_init_on_success(dpy)
     }
@@ -92,8 +86,8 @@ impl Instance {
     pub unsafe fn get_rand_r_output_display(
         &self,
         physical_device: vk::PhysicalDevice,
-        dpy: &mut crate::platform_types::Display,
-        rr_output: crate::platform_types::RROutput,
+        dpy: &mut vk::Display,
+        rr_output: vk::RROutput,
         display: &mut vk::DisplayKHR,
     ) -> VkResult<()> {
         (self.fp.get_rand_r_output_display)(physical_device, dpy, rr_output, display)
@@ -104,13 +98,13 @@ pub(crate) mod items {
     use crate::vk;
     pub type PFN_vkAcquireXlibDisplayEXT = unsafe extern "system" fn(
         physical_device: vk::PhysicalDevice,
-        dpy: *mut crate::platform_types::Display,
+        dpy: *mut vk::Display,
         display: vk::DisplayKHR,
     ) -> vk::Result;
     pub type PFN_vkGetRandROutputDisplayEXT = unsafe extern "system" fn(
         physical_device: vk::PhysicalDevice,
-        dpy: *mut crate::platform_types::Display,
-        rr_output: crate::platform_types::RROutput,
+        dpy: *mut vk::Display,
+        rr_output: vk::RROutput,
         p_display: *mut vk::DisplayKHR,
     ) -> vk::Result;
 }

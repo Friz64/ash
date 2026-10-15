@@ -14,27 +14,30 @@ pub const NAME: &CStr = c"VK_HUAWEI_hdr_vivid";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct HdrVividDynamicMetadataHUAWEI<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub dynamic_metadata_size: usize,
-        pub p_dynamic_metadata: *const core::ffi::c_void,
+        pub p_dynamic_metadata: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for HdrVividDynamicMetadataHUAWEI<'_> {}
     unsafe impl Sync for HdrVividDynamicMetadataHUAWEI<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for HdrVividDynamicMetadataHUAWEI<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for HdrVividDynamicMetadataHUAWEI<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::HDR_VIVID_DYNAMIC_METADATA_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<vk::HdrMetadataEXT<'_>>
+    unsafe impl<'a> Extends<vk::HdrMetadataEXT<'_>>
     for HdrVividDynamicMetadataHUAWEI<'a> {}
     impl<'a> Default for HdrVividDynamicMetadataHUAWEI<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::HDR_VIVID_DYNAMIC_METADATA_HUAWEI,
                 p_next: Default::default(),
                 dynamic_metadata_size: Default::default(),
                 p_dynamic_metadata: Default::default(),
@@ -54,24 +57,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub hdr_vivid: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceHdrVividFeaturesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceHdrVividFeaturesHUAWEI<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI,
                 p_next: Default::default(),
                 hdr_vivid: Default::default(),
                 _marker: PhantomData,

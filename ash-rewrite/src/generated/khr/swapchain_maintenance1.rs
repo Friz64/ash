@@ -5,7 +5,8 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_swapchain_maintenance1](crate::khr::swapchain_maintenance1)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR: Self = Self(
@@ -36,10 +37,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             release_swapchain_images: unsafe {
                 unsafe extern "system" fn release_swapchain_images(
@@ -49,11 +50,7 @@ impl DeviceFn {
                     panic!("unable to load vkReleaseSwapchainImagesKHR")
                 }
                 let val = _f(c"vkReleaseSwapchainImagesKHR");
-                if val.is_null() {
-                    release_swapchain_images
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { release_swapchain_images } else { transmute(val) }
             },
         }
     }
@@ -61,13 +58,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -76,7 +73,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkReleaseSwapchainImagesKHR
@@ -91,29 +88,32 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub swapchain_maintenance1: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR,
                 p_next: Default::default(),
                 swapchain_maintenance1: Default::default(),
                 _marker: PhantomData,
@@ -131,22 +131,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentFenceInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub swapchain_count: u32,
         pub p_fences: *const vk::Fence,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainPresentFenceInfoKHR<'_> {}
     unsafe impl Sync for SwapchainPresentFenceInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentFenceInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SwapchainPresentFenceInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_PRESENT_FENCE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::PresentInfoKHR<'_>>
     for SwapchainPresentFenceInfoKHR<'a> {}
     impl<'a> Default for SwapchainPresentFenceInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SWAPCHAIN_PRESENT_FENCE_INFO_KHR,
                 p_next: Default::default(),
                 swapchain_count: Default::default(),
                 p_fences: Default::default(),
@@ -166,23 +166,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentModesCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub present_mode_count: u32,
         pub p_present_modes: *const vk::PresentModeKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainPresentModesCreateInfoKHR<'_> {}
     unsafe impl Sync for SwapchainPresentModesCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for SwapchainPresentModesCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SwapchainPresentModesCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::SwapchainCreateInfoKHR<'_>>
     for SwapchainPresentModesCreateInfoKHR<'a> {}
     impl<'a> Default for SwapchainPresentModesCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 present_mode_count: Default::default(),
                 p_present_modes: Default::default(),
@@ -202,22 +201,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentModeInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub swapchain_count: u32,
         pub p_present_modes: *const vk::PresentModeKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainPresentModeInfoKHR<'_> {}
     unsafe impl Sync for SwapchainPresentModeInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentModeInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SwapchainPresentModeInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_PRESENT_MODE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>>
-    for SwapchainPresentModeInfoKHR<'a> {}
+    unsafe impl<'a> Extends<vk::PresentInfoKHR<'_>> for SwapchainPresentModeInfoKHR<'a> {}
     impl<'a> Default for SwapchainPresentModeInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SWAPCHAIN_PRESENT_MODE_INFO_KHR,
                 p_next: Default::default(),
                 swapchain_count: Default::default(),
                 p_present_modes: Default::default(),
@@ -237,7 +235,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentScalingCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub scaling_behavior: vk::PresentScalingFlagsKHR,
         pub present_gravity_x: vk::PresentGravityFlagsKHR,
         pub present_gravity_y: vk::PresentGravityFlagsKHR,
@@ -245,16 +243,15 @@ pub(crate) mod items {
     }
     unsafe impl Send for SwapchainPresentScalingCreateInfoKHR<'_> {}
     unsafe impl Sync for SwapchainPresentScalingCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for SwapchainPresentScalingCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SwapchainPresentScalingCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::SwapchainCreateInfoKHR<'_>>
     for SwapchainPresentScalingCreateInfoKHR<'a> {}
     impl<'a> Default for SwapchainPresentScalingCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 scaling_behavior: Default::default(),
                 present_gravity_x: Default::default(),
@@ -291,7 +288,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ReleaseSwapchainImagesInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub swapchain: vk::SwapchainKHR,
         pub image_index_count: u32,
         pub p_image_indices: *const u32,
@@ -299,13 +296,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ReleaseSwapchainImagesInfoKHR<'_> {}
     unsafe impl Sync for ReleaseSwapchainImagesInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ReleaseSwapchainImagesInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ReleaseSwapchainImagesInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RELEASE_SWAPCHAIN_IMAGES_INFO_KHR;
     }
     impl<'a> Default for ReleaseSwapchainImagesInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RELEASE_SWAPCHAIN_IMAGES_INFO_KHR,
                 p_next: Default::default(),
                 swapchain: Default::default(),
                 image_index_count: Default::default(),

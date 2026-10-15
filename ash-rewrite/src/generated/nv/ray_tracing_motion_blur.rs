@@ -55,30 +55,37 @@ pub const NAME: &CStr = c"VK_NV_ray_tracing_motion_blur";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::mem::zeroed;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub ray_tracing_motion_blur: vk::Bool32,
         pub ray_tracing_motion_blur_pipeline_trace_rays_indirect: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV,
                 p_next: Default::default(),
                 ray_tracing_motion_blur: Default::default(),
                 ray_tracing_motion_blur_pipeline_trace_rays_indirect: Default::default(),
@@ -105,22 +112,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub vertex_data: vk::DeviceOrHostAddressConstKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureGeometryMotionTrianglesDataNV<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryMotionTrianglesDataNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
+    unsafe impl<'a> Extends<vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
     for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {}
     impl<'a> Default for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV,
                 p_next: Default::default(),
                 vertex_data: Default::default(),
                 _marker: PhantomData,
@@ -141,23 +148,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureMotionInfoNV<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub max_instances: u32,
         pub flags: vk::AccelerationStructureMotionInfoFlagsNV,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureMotionInfoNV<'_> {}
     unsafe impl Sync for AccelerationStructureMotionInfoNV<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for AccelerationStructureMotionInfoNV<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for AccelerationStructureMotionInfoNV<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_MOTION_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<vk::AccelerationStructureCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::AccelerationStructureCreateInfoKHR<'_>>
     for AccelerationStructureMotionInfoNV<'a> {}
     impl<'a> Default for AccelerationStructureMotionInfoNV<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::ACCELERATION_STRUCTURE_MOTION_INFO_NV,
                 p_next: Default::default(),
                 max_instances: Default::default(),
                 flags: Default::default(),
@@ -182,87 +188,87 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct SRTDataNV {
-        pub sx: core::ffi::c_float,
-        pub a: core::ffi::c_float,
-        pub b: core::ffi::c_float,
-        pub pvx: core::ffi::c_float,
-        pub sy: core::ffi::c_float,
-        pub c: core::ffi::c_float,
-        pub pvy: core::ffi::c_float,
-        pub sz: core::ffi::c_float,
-        pub pvz: core::ffi::c_float,
-        pub qx: core::ffi::c_float,
-        pub qy: core::ffi::c_float,
-        pub qz: core::ffi::c_float,
-        pub qw: core::ffi::c_float,
-        pub tx: core::ffi::c_float,
-        pub ty: core::ffi::c_float,
-        pub tz: core::ffi::c_float,
+        pub sx: ffi::c_float,
+        pub a: ffi::c_float,
+        pub b: ffi::c_float,
+        pub pvx: ffi::c_float,
+        pub sy: ffi::c_float,
+        pub c: ffi::c_float,
+        pub pvy: ffi::c_float,
+        pub sz: ffi::c_float,
+        pub pvz: ffi::c_float,
+        pub qx: ffi::c_float,
+        pub qy: ffi::c_float,
+        pub qz: ffi::c_float,
+        pub qw: ffi::c_float,
+        pub tx: ffi::c_float,
+        pub ty: ffi::c_float,
+        pub tz: ffi::c_float,
     }
     unsafe impl Send for SRTDataNV {}
     unsafe impl Sync for SRTDataNV {}
     impl SRTDataNV {
-        pub fn sx(mut self, sx: core::ffi::c_float) -> Self {
+        pub fn sx(mut self, sx: ffi::c_float) -> Self {
             self.sx = sx;
             self
         }
-        pub fn a(mut self, a: core::ffi::c_float) -> Self {
+        pub fn a(mut self, a: ffi::c_float) -> Self {
             self.a = a;
             self
         }
-        pub fn b(mut self, b: core::ffi::c_float) -> Self {
+        pub fn b(mut self, b: ffi::c_float) -> Self {
             self.b = b;
             self
         }
-        pub fn pvx(mut self, pvx: core::ffi::c_float) -> Self {
+        pub fn pvx(mut self, pvx: ffi::c_float) -> Self {
             self.pvx = pvx;
             self
         }
-        pub fn sy(mut self, sy: core::ffi::c_float) -> Self {
+        pub fn sy(mut self, sy: ffi::c_float) -> Self {
             self.sy = sy;
             self
         }
-        pub fn c(mut self, c: core::ffi::c_float) -> Self {
+        pub fn c(mut self, c: ffi::c_float) -> Self {
             self.c = c;
             self
         }
-        pub fn pvy(mut self, pvy: core::ffi::c_float) -> Self {
+        pub fn pvy(mut self, pvy: ffi::c_float) -> Self {
             self.pvy = pvy;
             self
         }
-        pub fn sz(mut self, sz: core::ffi::c_float) -> Self {
+        pub fn sz(mut self, sz: ffi::c_float) -> Self {
             self.sz = sz;
             self
         }
-        pub fn pvz(mut self, pvz: core::ffi::c_float) -> Self {
+        pub fn pvz(mut self, pvz: ffi::c_float) -> Self {
             self.pvz = pvz;
             self
         }
-        pub fn qx(mut self, qx: core::ffi::c_float) -> Self {
+        pub fn qx(mut self, qx: ffi::c_float) -> Self {
             self.qx = qx;
             self
         }
-        pub fn qy(mut self, qy: core::ffi::c_float) -> Self {
+        pub fn qy(mut self, qy: ffi::c_float) -> Self {
             self.qy = qy;
             self
         }
-        pub fn qz(mut self, qz: core::ffi::c_float) -> Self {
+        pub fn qz(mut self, qz: ffi::c_float) -> Self {
             self.qz = qz;
             self
         }
-        pub fn qw(mut self, qw: core::ffi::c_float) -> Self {
+        pub fn qw(mut self, qw: ffi::c_float) -> Self {
             self.qw = qw;
             self
         }
-        pub fn tx(mut self, tx: core::ffi::c_float) -> Self {
+        pub fn tx(mut self, tx: ffi::c_float) -> Self {
             self.tx = tx;
             self
         }
-        pub fn ty(mut self, ty: core::ffi::c_float) -> Self {
+        pub fn ty(mut self, ty: ffi::c_float) -> Self {
             self.ty = ty;
             self
         }
-        pub fn tz(mut self, tz: core::ffi::c_float) -> Self {
+        pub fn tz(mut self, tz: ffi::c_float) -> Self {
             self.tz = tz;
             self
         }
@@ -283,8 +289,8 @@ pub(crate) mod items {
     unsafe impl Send for AccelerationStructureSRTMotionInstanceNV {}
     unsafe impl Sync for AccelerationStructureSRTMotionInstanceNV {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureSRTMotionInstanceNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccelerationStructureSRTMotionInstanceNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("AccelerationStructureSRTMotionInstanceNV")
                 .field("transform_t0", &self.transform_t0)
                 .field("transform_t1", &self.transform_t1)
@@ -371,8 +377,8 @@ pub(crate) mod items {
     unsafe impl Send for AccelerationStructureMatrixMotionInstanceNV {}
     unsafe impl Sync for AccelerationStructureMatrixMotionInstanceNV {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureMatrixMotionInstanceNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccelerationStructureMatrixMotionInstanceNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("AccelerationStructureMatrixMotionInstanceNV")
                 .field("transform_t0", &self.transform_t0)
                 .field("transform_t1", &self.transform_t1)
@@ -482,12 +488,12 @@ pub(crate) mod items {
     }
     impl Default for AccelerationStructureMotionInstanceDataNV {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureMotionInstanceDataNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccelerationStructureMotionInstanceDataNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "AccelerationStructureMotionInstanceDataNV")
         }
     }
@@ -495,8 +501,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AccelerationStructureMotionInstanceTypeNV(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureMotionInstanceTypeNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AccelerationStructureMotionInstanceTypeNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::STATIC => Some("STATIC"),
                 Self::MATRIX_MOTION => Some("MATRIX_MOTION"),
@@ -505,7 +511,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -523,9 +529,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccelerationStructureMotionInfoFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureMotionInfoFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for AccelerationStructureMotionInfoFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl AccelerationStructureMotionInfoFlagsNV {
@@ -548,40 +554,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for AccelerationStructureMotionInfoFlagsNV {
+    impl BitOr for AccelerationStructureMotionInfoFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for AccelerationStructureMotionInfoFlagsNV {
+    impl BitOrAssign for AccelerationStructureMotionInfoFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for AccelerationStructureMotionInfoFlagsNV {
+    impl BitAnd for AccelerationStructureMotionInfoFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for AccelerationStructureMotionInfoFlagsNV {
+    impl BitAndAssign for AccelerationStructureMotionInfoFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for AccelerationStructureMotionInfoFlagsNV {
+    impl BitXor for AccelerationStructureMotionInfoFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for AccelerationStructureMotionInfoFlagsNV {
+    impl BitXorAssign for AccelerationStructureMotionInfoFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for AccelerationStructureMotionInfoFlagsNV {
+    impl Not for AccelerationStructureMotionInfoFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -591,9 +597,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct AccelerationStructureMotionInstanceFlagsNV(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AccelerationStructureMotionInstanceFlagsNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for AccelerationStructureMotionInstanceFlagsNV {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl AccelerationStructureMotionInstanceFlagsNV {
@@ -616,40 +622,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for AccelerationStructureMotionInstanceFlagsNV {
+    impl BitOr for AccelerationStructureMotionInstanceFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for AccelerationStructureMotionInstanceFlagsNV {
+    impl BitOrAssign for AccelerationStructureMotionInstanceFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for AccelerationStructureMotionInstanceFlagsNV {
+    impl BitAnd for AccelerationStructureMotionInstanceFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for AccelerationStructureMotionInstanceFlagsNV {
+    impl BitAndAssign for AccelerationStructureMotionInstanceFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for AccelerationStructureMotionInstanceFlagsNV {
+    impl BitXor for AccelerationStructureMotionInstanceFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for AccelerationStructureMotionInstanceFlagsNV {
+    impl BitXorAssign for AccelerationStructureMotionInstanceFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for AccelerationStructureMotionInstanceFlagsNV {
+    impl Not for AccelerationStructureMotionInstanceFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

@@ -5,7 +5,10 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ptr;
+use core::mem::MaybeUninit;
+use core::ffi;
 ///Provided by [VK_EXT_display_control](crate::ext::display_control)
 impl vk::StructureType {
     pub const DISPLAY_POWER_INFO_EXT: Self = Self(1000091000);
@@ -39,10 +42,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             display_power_control: unsafe {
                 unsafe extern "system" fn display_power_control(
@@ -53,11 +56,7 @@ impl DeviceFn {
                     panic!("unable to load vkDisplayPowerControlEXT")
                 }
                 let val = _f(c"vkDisplayPowerControlEXT");
-                if val.is_null() {
-                    display_power_control
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { display_power_control } else { transmute(val) }
             },
             register_device_event: unsafe {
                 unsafe extern "system" fn register_device_event(
@@ -69,11 +68,7 @@ impl DeviceFn {
                     panic!("unable to load vkRegisterDeviceEventEXT")
                 }
                 let val = _f(c"vkRegisterDeviceEventEXT");
-                if val.is_null() {
-                    register_device_event
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { register_device_event } else { transmute(val) }
             },
             register_display_event: unsafe {
                 unsafe extern "system" fn register_display_event(
@@ -86,11 +81,7 @@ impl DeviceFn {
                     panic!("unable to load vkRegisterDisplayEventEXT")
                 }
                 let val = _f(c"vkRegisterDisplayEventEXT");
-                if val.is_null() {
-                    register_display_event
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { register_display_event } else { transmute(val) }
             },
             get_swapchain_counter: unsafe {
                 unsafe extern "system" fn get_swapchain_counter(
@@ -102,11 +93,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetSwapchainCounterEXT")
                 }
                 let val = _f(c"vkGetSwapchainCounterEXT");
-                if val.is_null() {
-                    get_swapchain_counter
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_swapchain_counter } else { transmute(val) }
             },
         }
     }
@@ -114,13 +101,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -129,7 +116,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkDisplayPowerControlEXT
@@ -149,7 +136,7 @@ impl Device {
         device_event_info: &vk::DeviceEventInfoEXT<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::Fence> {
-        let mut fence = core::mem::MaybeUninit::uninit();
+        let mut fence = MaybeUninit::uninit();
         (self
             .fp
             .register_device_event)(
@@ -157,7 +144,7 @@ impl Device {
                 device_event_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 fence.as_mut_ptr(),
             )
@@ -171,7 +158,7 @@ impl Device {
         display_event_info: &vk::DisplayEventInfoEXT<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::Fence> {
-        let mut fence = core::mem::MaybeUninit::uninit();
+        let mut fence = MaybeUninit::uninit();
         (self
             .fp
             .register_display_event)(
@@ -180,7 +167,7 @@ impl Device {
                 display_event_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 fence.as_mut_ptr(),
             )
@@ -193,7 +180,7 @@ impl Device {
         swapchain: vk::SwapchainKHR,
         counter: vk::SurfaceCounterFlagBitsEXT,
     ) -> VkResult<u64> {
-        let mut counter_value = core::mem::MaybeUninit::uninit();
+        let mut counter_value = MaybeUninit::uninit();
         (self
             .fp
             .get_swapchain_counter)(
@@ -208,24 +195,29 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    use crate::Extends;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DisplayPowerInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub power_state: vk::DisplayPowerStateEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplayPowerInfoEXT<'_> {}
     unsafe impl Sync for DisplayPowerInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPowerInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DisplayPowerInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_POWER_INFO_EXT;
     }
     impl<'a> Default for DisplayPowerInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DISPLAY_POWER_INFO_EXT,
                 p_next: Default::default(),
                 power_state: Default::default(),
                 _marker: PhantomData,
@@ -243,19 +235,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceEventInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub device_event: vk::DeviceEventTypeEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceEventInfoEXT<'_> {}
     unsafe impl Sync for DeviceEventInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceEventInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DeviceEventInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_EVENT_INFO_EXT;
     }
     impl<'a> Default for DeviceEventInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DEVICE_EVENT_INFO_EXT,
                 p_next: Default::default(),
                 device_event: Default::default(),
                 _marker: PhantomData,
@@ -273,19 +265,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DisplayEventInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub display_event: vk::DisplayEventTypeEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplayEventInfoEXT<'_> {}
     unsafe impl Sync for DisplayEventInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayEventInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for DisplayEventInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_EVENT_INFO_EXT;
     }
     impl<'a> Default for DisplayEventInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DISPLAY_EVENT_INFO_EXT,
                 p_next: Default::default(),
                 display_event: Default::default(),
                 _marker: PhantomData,
@@ -303,21 +295,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct SwapchainCounterCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub surface_counters: vk::SurfaceCounterFlagsEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainCounterCreateInfoEXT<'_> {}
     unsafe impl Sync for SwapchainCounterCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainCounterCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SwapchainCounterCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_COUNTER_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::SwapchainCreateInfoKHR<'_>>
     for SwapchainCounterCreateInfoEXT<'a> {}
     impl<'a> Default for SwapchainCounterCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SWAPCHAIN_COUNTER_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 surface_counters: Default::default(),
                 _marker: PhantomData,
@@ -337,8 +329,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DisplayPowerStateEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DisplayPowerStateEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DisplayPowerStateEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::OFF => Some("OFF"),
                 Self::SUSPEND => Some("SUSPEND"),
@@ -347,7 +339,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -365,15 +357,15 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DeviceEventTypeEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceEventTypeEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceEventTypeEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::DISPLAY_HOTPLUG => Some("DISPLAY_HOTPLUG"),
                 _ => None,
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -391,15 +383,15 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DisplayEventTypeEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DisplayEventTypeEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DisplayEventTypeEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::FIRST_PIXEL_OUT => Some("FIRST_PIXEL_OUT"),
                 _ => None,
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

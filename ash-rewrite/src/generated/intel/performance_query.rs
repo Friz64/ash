@@ -5,7 +5,9 @@
 use crate::vk;
 use core::ffi::CStr;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::mem::MaybeUninit;
+use core::ffi;
 ///Provided by [VK_INTEL_performance_query](crate::intel::performance_query)
 impl vk::QueryType {
     pub const PERFORMANCE_QUERY_INTEL: Self = Self(1000210000);
@@ -66,10 +68,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             initialize_performance_api: unsafe {
                 unsafe extern "system" fn initialize_performance_api(
@@ -79,22 +81,14 @@ impl DeviceFn {
                     panic!("unable to load vkInitializePerformanceApiINTEL")
                 }
                 let val = _f(c"vkInitializePerformanceApiINTEL");
-                if val.is_null() {
-                    initialize_performance_api
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { initialize_performance_api } else { transmute(val) }
             },
             uninitialize_performance_api: unsafe {
                 unsafe extern "system" fn uninitialize_performance_api(_: vk::Device) {
                     panic!("unable to load vkUninitializePerformanceApiINTEL")
                 }
                 let val = _f(c"vkUninitializePerformanceApiINTEL");
-                if val.is_null() {
-                    uninitialize_performance_api
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { uninitialize_performance_api } else { transmute(val) }
             },
             cmd_set_performance_marker: unsafe {
                 unsafe extern "system" fn cmd_set_performance_marker(
@@ -104,11 +98,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetPerformanceMarkerINTEL")
                 }
                 let val = _f(c"vkCmdSetPerformanceMarkerINTEL");
-                if val.is_null() {
-                    cmd_set_performance_marker
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_performance_marker } else { transmute(val) }
             },
             cmd_set_performance_stream_marker: unsafe {
                 unsafe extern "system" fn cmd_set_performance_stream_marker(
@@ -121,7 +111,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_set_performance_stream_marker
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_performance_override: unsafe {
@@ -132,11 +122,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetPerformanceOverrideINTEL")
                 }
                 let val = _f(c"vkCmdSetPerformanceOverrideINTEL");
-                if val.is_null() {
-                    cmd_set_performance_override
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_performance_override } else { transmute(val) }
             },
             acquire_performance_configuration: unsafe {
                 unsafe extern "system" fn acquire_performance_configuration(
@@ -150,7 +136,7 @@ impl DeviceFn {
                 if val.is_null() {
                     acquire_performance_configuration
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             release_performance_configuration: unsafe {
@@ -164,7 +150,7 @@ impl DeviceFn {
                 if val.is_null() {
                     release_performance_configuration
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             queue_set_performance_configuration: unsafe {
@@ -178,7 +164,7 @@ impl DeviceFn {
                 if val.is_null() {
                     queue_set_performance_configuration
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_performance_parameter: unsafe {
@@ -190,11 +176,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetPerformanceParameterINTEL")
                 }
                 let val = _f(c"vkGetPerformanceParameterINTEL");
-                if val.is_null() {
-                    get_performance_parameter
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_performance_parameter } else { transmute(val) }
             },
         }
     }
@@ -202,13 +184,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -217,7 +199,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkInitializePerformanceApiINTEL
@@ -266,7 +248,7 @@ impl Device {
         &self,
         acquire_info: &vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
     ) -> VkResult<vk::PerformanceConfigurationINTEL> {
-        let mut configuration = core::mem::MaybeUninit::uninit();
+        let mut configuration = MaybeUninit::uninit();
         (self
             .fp
             .acquire_performance_configuration)(
@@ -299,7 +281,7 @@ impl Device {
         &self,
         parameter: vk::PerformanceParameterTypeINTEL,
     ) -> VkResult<vk::PerformanceValueINTEL> {
-        let mut value = core::mem::MaybeUninit::uninit();
+        let mut value = MaybeUninit::uninit();
         (self.fp.get_performance_parameter)(self.handle, parameter, value.as_mut_ptr())
             .assume_init_on_success(value)
     }
@@ -307,10 +289,14 @@ impl Device {
 pub(crate) mod items {
     use crate::vk;
     use core::marker::PhantomData;
+    use crate::TaggedStructure;
+    use core::ffi;
+    use crate::Extends;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     use crate::Handle;
     use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -335,20 +321,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct InitializePerformanceApiInfoINTEL<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub p_user_data: *mut core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
+        pub p_user_data: *mut ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for InitializePerformanceApiInfoINTEL<'_> {}
     unsafe impl Sync for InitializePerformanceApiInfoINTEL<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for InitializePerformanceApiInfoINTEL<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for InitializePerformanceApiInfoINTEL<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::INITIALIZE_PERFORMANCE_API_INFO_INTEL;
     }
     impl<'a> Default for InitializePerformanceApiInfoINTEL<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::INITIALIZE_PERFORMANCE_API_INFO_INTEL,
                 p_next: Default::default(),
                 p_user_data: Default::default(),
                 _marker: PhantomData,
@@ -356,7 +341,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> InitializePerformanceApiInfoINTEL<'a> {
-        pub fn user_data(mut self, user_data: &'a mut core::ffi::c_void) -> Self {
+        pub fn user_data(mut self, user_data: &'a mut ffi::c_void) -> Self {
             self.p_user_data = user_data;
             self
         }
@@ -366,22 +351,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub performance_counters_sampling: vk::QueryPoolSamplingModeINTEL,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueryPoolPerformanceQueryCreateInfoINTEL<'_> {}
     unsafe impl Sync for QueryPoolPerformanceQueryCreateInfoINTEL<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL;
     }
-    unsafe impl<'a> crate::Extends<vk::QueryPoolCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::QueryPoolCreateInfo<'_>>
     for QueryPoolPerformanceQueryCreateInfoINTEL<'a> {}
     impl<'a> Default for QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL,
                 p_next: Default::default(),
                 performance_counters_sampling: Default::default(),
                 _marker: PhantomData,
@@ -402,19 +387,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PerformanceMarkerInfoINTEL<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub marker: u64,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PerformanceMarkerInfoINTEL<'_> {}
     unsafe impl Sync for PerformanceMarkerInfoINTEL<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceMarkerInfoINTEL<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PerformanceMarkerInfoINTEL<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PERFORMANCE_MARKER_INFO_INTEL;
     }
     impl<'a> Default for PerformanceMarkerInfoINTEL<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PERFORMANCE_MARKER_INFO_INTEL,
                 p_next: Default::default(),
                 marker: Default::default(),
                 _marker: PhantomData,
@@ -432,19 +417,19 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PerformanceStreamMarkerInfoINTEL<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub marker: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PerformanceStreamMarkerInfoINTEL<'_> {}
     unsafe impl Sync for PerformanceStreamMarkerInfoINTEL<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceStreamMarkerInfoINTEL<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PerformanceStreamMarkerInfoINTEL<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PERFORMANCE_STREAM_MARKER_INFO_INTEL;
     }
     impl<'a> Default for PerformanceStreamMarkerInfoINTEL<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PERFORMANCE_STREAM_MARKER_INFO_INTEL,
                 p_next: Default::default(),
                 marker: Default::default(),
                 _marker: PhantomData,
@@ -462,7 +447,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PerformanceOverrideInfoINTEL<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub ty: vk::PerformanceOverrideTypeINTEL,
         pub enable: vk::Bool32,
         pub parameter: u64,
@@ -470,13 +455,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for PerformanceOverrideInfoINTEL<'_> {}
     unsafe impl Sync for PerformanceOverrideInfoINTEL<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceOverrideInfoINTEL<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PerformanceOverrideInfoINTEL<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PERFORMANCE_OVERRIDE_INFO_INTEL;
     }
     impl<'a> Default for PerformanceOverrideInfoINTEL<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PERFORMANCE_OVERRIDE_INFO_INTEL,
                 p_next: Default::default(),
                 ty: Default::default(),
                 enable: Default::default(),
@@ -504,20 +489,20 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PerformanceConfigurationAcquireInfoINTEL<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub ty: vk::PerformanceConfigurationTypeINTEL,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PerformanceConfigurationAcquireInfoINTEL<'_> {}
     unsafe impl Sync for PerformanceConfigurationAcquireInfoINTEL<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PerformanceConfigurationAcquireInfoINTEL<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL;
     }
     impl<'a> Default for PerformanceConfigurationAcquireInfoINTEL<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL,
                 p_next: Default::default(),
                 ty: Default::default(),
                 _marker: PhantomData,
@@ -538,18 +523,18 @@ pub(crate) mod items {
     pub union PerformanceValueDataINTEL {
         pub value32: u32,
         pub value64: u64,
-        pub value_float: core::ffi::c_float,
+        pub value_float: ffi::c_float,
         pub value_bool: vk::Bool32,
-        pub value_string: *const core::ffi::c_char,
+        pub value_string: *const ffi::c_char,
     }
     impl Default for PerformanceValueDataINTEL {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PerformanceValueDataINTEL {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PerformanceValueDataINTEL {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "PerformanceValueDataINTEL")
         }
     }
@@ -557,8 +542,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PerformanceConfigurationTypeINTEL(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PerformanceConfigurationTypeINTEL {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PerformanceConfigurationTypeINTEL {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED => {
                     Some("COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED")
@@ -567,7 +552,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -585,15 +570,15 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct QueryPoolSamplingModeINTEL(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for QueryPoolSamplingModeINTEL {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for QueryPoolSamplingModeINTEL {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::MANUAL => Some("MANUAL"),
                 _ => None,
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -611,8 +596,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PerformanceOverrideTypeINTEL(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PerformanceOverrideTypeINTEL {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PerformanceOverrideTypeINTEL {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::NULL_HARDWARE => Some("NULL_HARDWARE"),
                 Self::FLUSH_GPU_CACHES => Some("FLUSH_GPU_CACHES"),
@@ -620,7 +605,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -638,8 +623,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PerformanceParameterTypeINTEL(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PerformanceParameterTypeINTEL {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PerformanceParameterTypeINTEL {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::HW_COUNTERS_SUPPORTED => Some("HW_COUNTERS_SUPPORTED"),
                 Self::STREAM_MARKER_VALIDS => Some("STREAM_MARKER_VALIDS"),
@@ -647,7 +632,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -665,8 +650,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct PerformanceValueTypeINTEL(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for PerformanceValueTypeINTEL {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for PerformanceValueTypeINTEL {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::UINT32 => Some("UINT32"),
                 Self::UINT64 => Some("UINT64"),
@@ -677,7 +662,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -714,8 +699,8 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl fmtdebug::Debug for PerformanceConfigurationINTEL {
-        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+    impl fmtd::Debug for PerformanceConfigurationINTEL {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "0x{:x}", self.0)
         }
     }

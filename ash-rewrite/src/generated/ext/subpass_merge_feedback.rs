@@ -35,30 +35,35 @@ pub const NAME: &CStr = c"VK_EXT_subpass_merge_feedback";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
-    use core::ffi::CStr;
+    use crate::TaggedStructure;
+    use crate::Extends;
     use core::ffi;
+    use core::mem::zeroed;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ffi::CStr;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RenderPassCreationControlEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub disallow_merging: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassCreationControlEXT<'_> {}
     unsafe impl Sync for RenderPassCreationControlEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassCreationControlEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RenderPassCreationControlEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_CREATION_CONTROL_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::RenderPassCreateInfo2<'_>>
+    unsafe impl<'a> Extends<vk::RenderPassCreateInfo2<'_>>
     for RenderPassCreationControlEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::SubpassDescription2<'_>>
+    unsafe impl<'a> Extends<vk::SubpassDescription2<'_>>
     for RenderPassCreationControlEXT<'a> {}
     impl<'a> Default for RenderPassCreationControlEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDER_PASS_CREATION_CONTROL_EXT,
                 p_next: Default::default(),
                 disallow_merging: Default::default(),
                 _marker: PhantomData,
@@ -93,22 +98,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderPassCreationFeedbackCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_render_pass_feedback: *mut vk::RenderPassCreationFeedbackInfoEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassCreationFeedbackCreateInfoEXT<'_> {}
     unsafe impl Sync for RenderPassCreationFeedbackCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for RenderPassCreationFeedbackCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RenderPassCreationFeedbackCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::RenderPassCreateInfo2<'_>>
+    unsafe impl<'a> Extends<vk::RenderPassCreateInfo2<'_>>
     for RenderPassCreationFeedbackCreateInfoEXT<'a> {}
     impl<'a> Default for RenderPassCreationFeedbackCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 p_render_pass_feedback: Default::default(),
                 _marker: PhantomData,
@@ -128,7 +132,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderPassSubpassFeedbackInfoEXT {
         pub subpass_merge_status: vk::SubpassMergeStatusEXT,
-        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub description: [ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
         pub post_merge_index: u32,
     }
     unsafe impl Send for RenderPassSubpassFeedbackInfoEXT {}
@@ -137,14 +141,14 @@ pub(crate) mod items {
         fn default() -> Self {
             Self {
                 subpass_merge_status: Default::default(),
-                description: unsafe { core::mem::zeroed() },
+                description: unsafe { zeroed() },
                 post_merge_index: Default::default(),
             }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for RenderPassSubpassFeedbackInfoEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for RenderPassSubpassFeedbackInfoEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("RenderPassSubpassFeedbackInfoEXT")
                 .field("subpass_merge_status", &self.subpass_merge_status)
                 .field("description", &self.description_as_c_str())
@@ -182,22 +186,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderPassSubpassFeedbackCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub p_subpass_feedback: *mut vk::RenderPassSubpassFeedbackInfoEXT,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassSubpassFeedbackCreateInfoEXT<'_> {}
     unsafe impl Sync for RenderPassSubpassFeedbackCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::SubpassDescription2<'_>>
+    unsafe impl<'a> Extends<vk::SubpassDescription2<'_>>
     for RenderPassSubpassFeedbackCreateInfoEXT<'a> {}
     impl<'a> Default for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 p_subpass_feedback: Default::default(),
                 _marker: PhantomData,
@@ -218,24 +221,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub subpass_merge_feedback: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT,
                 p_next: Default::default(),
                 subpass_merge_feedback: Default::default(),
                 _marker: PhantomData,
@@ -252,8 +255,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct SubpassMergeStatusEXT(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for SubpassMergeStatusEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for SubpassMergeStatusEXT {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::MERGED => Some("MERGED"),
                 Self::DISALLOWED => Some("DISALLOWED"),
@@ -283,7 +286,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

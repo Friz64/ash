@@ -4,7 +4,9 @@
 #![doc(alias = "VK_EXT_custom_resolve")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT: Self = Self(1000628000);
@@ -56,10 +58,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_begin_custom_resolve: unsafe {
                 unsafe extern "system" fn cmd_begin_custom_resolve(
@@ -69,11 +71,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdBeginCustomResolveEXT")
                 }
                 let val = _f(c"vkCmdBeginCustomResolveEXT");
-                if val.is_null() {
-                    cmd_begin_custom_resolve
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_begin_custom_resolve } else { transmute(val) }
             },
         }
     }
@@ -81,13 +79,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -96,7 +94,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdBeginCustomResolveEXT
@@ -112,7 +110,7 @@ impl Device {
             command_buffer,
             match begin_custom_resolve_info {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -120,23 +118,26 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    use crate::Extends;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct BeginCustomResolveInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BeginCustomResolveInfoEXT<'_> {}
     unsafe impl Sync for BeginCustomResolveInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for BeginCustomResolveInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for BeginCustomResolveInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BEGIN_CUSTOM_RESOLVE_INFO_EXT;
     }
     impl<'a> Default for BeginCustomResolveInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::BEGIN_CUSTOM_RESOLVE_INFO_EXT,
                 p_next: Default::default(),
                 _marker: PhantomData,
             }
@@ -148,24 +149,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCustomResolveFeaturesEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub custom_resolve: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCustomResolveFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceCustomResolveFeaturesEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceCustomResolveFeaturesEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceCustomResolveFeaturesEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCustomResolveFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCustomResolveFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceCustomResolveFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT,
                 p_next: Default::default(),
                 custom_resolve: Default::default(),
                 _marker: PhantomData,
@@ -183,7 +183,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct CustomResolveCreateInfoEXT<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub custom_resolve: vk::Bool32,
         pub color_attachment_count: u32,
         pub p_color_attachment_formats: *const vk::Format,
@@ -193,19 +193,19 @@ pub(crate) mod items {
     }
     unsafe impl Send for CustomResolveCreateInfoEXT<'_> {}
     unsafe impl Sync for CustomResolveCreateInfoEXT<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for CustomResolveCreateInfoEXT<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for CustomResolveCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CUSTOM_RESOLVE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for CustomResolveCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> Extends<vk::CommandBufferInheritanceInfo<'_>>
     for CustomResolveCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<vk::ShaderCreateInfoEXT<'_>>
+    unsafe impl<'a> Extends<vk::ShaderCreateInfoEXT<'_>>
     for CustomResolveCreateInfoEXT<'a> {}
     impl<'a> Default for CustomResolveCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::CUSTOM_RESOLVE_CREATE_INFO_EXT,
                 p_next: Default::default(),
                 custom_resolve: Default::default(),
                 color_attachment_count: Default::default(),

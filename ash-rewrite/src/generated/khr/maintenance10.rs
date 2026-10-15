@@ -4,7 +4,9 @@
 #![doc(alias = "VK_KHR_maintenance10")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::ptr;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR: Self = Self(1000630000);
@@ -100,10 +102,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             cmd_end_rendering2: unsafe {
                 unsafe extern "system" fn cmd_end_rendering2(
@@ -113,11 +115,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdEndRendering2KHR")
                 }
                 let val = _f(c"vkCmdEndRendering2KHR");
-                if val.is_null() {
-                    cmd_end_rendering2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_end_rendering2 } else { transmute(val) }
             },
         }
     }
@@ -125,13 +123,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -140,7 +138,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCmdEndRendering2KHR
@@ -156,7 +154,7 @@ impl Device {
             command_buffer,
             match rendering_end_info {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -164,12 +162,18 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance10PropertiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub rgba4_opaque_black_swizzled: vk::Bool32,
         pub resolve_srgb_format_applies_transfer_function: vk::Bool32,
         pub resolve_srgb_format_supports_transfer_function_control: vk::Bool32,
@@ -177,16 +181,16 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceMaintenance10PropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance10PropertiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceMaintenance10PropertiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceMaintenance10PropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance10PropertiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR,
                 p_next: Default::default(),
                 rgba4_opaque_black_swizzled: Default::default(),
                 resolve_srgb_format_applies_transfer_function: Default::default(),
@@ -225,24 +229,23 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance10FeaturesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub maintenance10: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMaintenance10FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance10FeaturesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceMaintenance10FeaturesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceMaintenance10FeaturesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMaintenance10FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMaintenance10FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance10FeaturesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR,
                 p_next: Default::default(),
                 maintenance10: Default::default(),
                 _marker: PhantomData,
@@ -260,18 +263,18 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderingEndInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderingEndInfoKHR<'_> {}
     unsafe impl Sync for RenderingEndInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for RenderingEndInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RenderingEndInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDERING_END_INFO_KHR;
     }
     impl<'a> Default for RenderingEndInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDERING_END_INFO_KHR,
                 p_next: Default::default(),
                 _marker: PhantomData,
             }
@@ -283,21 +286,21 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct RenderingAttachmentFlagsInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::RenderingAttachmentFlagsKHR,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderingAttachmentFlagsInfoKHR<'_> {}
     unsafe impl Sync for RenderingAttachmentFlagsInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for RenderingAttachmentFlagsInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for RenderingAttachmentFlagsInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDERING_ATTACHMENT_FLAGS_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::RenderingAttachmentInfo<'_>>
+    unsafe impl<'a> Extends<vk::RenderingAttachmentInfo<'_>>
     for RenderingAttachmentFlagsInfoKHR<'a> {}
     impl<'a> Default for RenderingAttachmentFlagsInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RENDERING_ATTACHMENT_FLAGS_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 _marker: PhantomData,
@@ -315,7 +318,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ResolveImageModeInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::ResolveImageFlagsKHR,
         pub resolve_mode: vk::ResolveModeFlagBits,
         pub stencil_resolve_mode: vk::ResolveModeFlagBits,
@@ -323,15 +326,14 @@ pub(crate) mod items {
     }
     unsafe impl Send for ResolveImageModeInfoKHR<'_> {}
     unsafe impl Sync for ResolveImageModeInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for ResolveImageModeInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ResolveImageModeInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RESOLVE_IMAGE_MODE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::ResolveImageInfo2<'_>>
-    for ResolveImageModeInfoKHR<'a> {}
+    unsafe impl<'a> Extends<vk::ResolveImageInfo2<'_>> for ResolveImageModeInfoKHR<'a> {}
     impl<'a> Default for ResolveImageModeInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::RESOLVE_IMAGE_MODE_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 resolve_mode: Default::default(),
@@ -361,8 +363,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct RenderingAttachmentFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for RenderingAttachmentFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for RenderingAttachmentFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -400,40 +402,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for RenderingAttachmentFlagsKHR {
+    impl BitOr for RenderingAttachmentFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for RenderingAttachmentFlagsKHR {
+    impl BitOrAssign for RenderingAttachmentFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for RenderingAttachmentFlagsKHR {
+    impl BitAnd for RenderingAttachmentFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for RenderingAttachmentFlagsKHR {
+    impl BitAndAssign for RenderingAttachmentFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for RenderingAttachmentFlagsKHR {
+    impl BitXor for RenderingAttachmentFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for RenderingAttachmentFlagsKHR {
+    impl BitXorAssign for RenderingAttachmentFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for RenderingAttachmentFlagsKHR {
+    impl Not for RenderingAttachmentFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -458,17 +460,17 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for RenderingAttachmentFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for RenderingAttachmentFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ResolveImageFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ResolveImageFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for ResolveImageFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             crate::debug_flags(
                 f,
                 &[
@@ -499,40 +501,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ResolveImageFlagsKHR {
+    impl BitOr for ResolveImageFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ResolveImageFlagsKHR {
+    impl BitOrAssign for ResolveImageFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ResolveImageFlagsKHR {
+    impl BitAnd for ResolveImageFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ResolveImageFlagsKHR {
+    impl BitAndAssign for ResolveImageFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ResolveImageFlagsKHR {
+    impl BitXor for ResolveImageFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ResolveImageFlagsKHR {
+    impl BitXorAssign for ResolveImageFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ResolveImageFlagsKHR {
+    impl Not for ResolveImageFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -557,9 +559,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ResolveImageFlagBitsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ResolveImageFlagBitsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
     pub type PFN_vkCmdEndRendering2KHR = unsafe extern "system" fn(

@@ -148,8 +148,11 @@ impl AV1ChromaSamplePosition {
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub(crate) mod items {
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     use crate::vk;
     use core::marker::PhantomData;
+    use core::mem::zeroed;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct AV1ColorConfigFlags {
@@ -162,8 +165,8 @@ pub(crate) mod items {
     unsafe impl Send for AV1ColorConfigFlags {}
     unsafe impl Sync for AV1ColorConfigFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1ColorConfigFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1ColorConfigFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("AV1ColorConfigFlags")
                 .field("mono_chrome", &self.get_mono_chrome())
                 .field("color_range", &self.get_color_range())
@@ -288,8 +291,8 @@ pub(crate) mod items {
     unsafe impl Send for AV1TimingInfoFlags {}
     unsafe impl Sync for AV1TimingInfoFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1TimingInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1TimingInfoFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("AV1TimingInfoFlags")
                 .field("equal_picture_interval", &self.get_equal_picture_interval())
                 .finish()
@@ -367,8 +370,8 @@ pub(crate) mod items {
     unsafe impl Send for AV1SequenceHeaderFlags {}
     unsafe impl Sync for AV1SequenceHeaderFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1SequenceHeaderFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1SequenceHeaderFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("AV1SequenceHeaderFlags")
                 .field("still_picture", &self.get_still_picture())
                 .field(
@@ -621,7 +624,7 @@ pub(crate) mod items {
                 order_hint_bits_minus_1: Default::default(),
                 seq_force_integer_mv: Default::default(),
                 seq_force_screen_content_tools: Default::default(),
-                reserved1: unsafe { core::mem::zeroed() },
+                reserved1: unsafe { zeroed() },
                 p_color_config: Default::default(),
                 p_timing_info: Default::default(),
                 _marker: PhantomData,
@@ -711,8 +714,8 @@ pub(crate) mod items {
     unsafe impl Send for AV1LoopFilterFlags {}
     unsafe impl Sync for AV1LoopFilterFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1LoopFilterFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1LoopFilterFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("AV1LoopFilterFlags")
                 .field(
                     "loop_filter_delta_enabled",
@@ -764,12 +767,12 @@ pub(crate) mod items {
         fn default() -> Self {
             Self {
                 flags: Default::default(),
-                loop_filter_level: unsafe { core::mem::zeroed() },
+                loop_filter_level: unsafe { zeroed() },
                 loop_filter_sharpness: Default::default(),
                 update_ref_delta: Default::default(),
-                loop_filter_ref_deltas: unsafe { core::mem::zeroed() },
+                loop_filter_ref_deltas: unsafe { zeroed() },
                 update_mode_delta: Default::default(),
-                loop_filter_mode_deltas: unsafe { core::mem::zeroed() },
+                loop_filter_mode_deltas: unsafe { zeroed() },
             }
         }
     }
@@ -822,8 +825,8 @@ pub(crate) mod items {
     unsafe impl Send for AV1QuantizationFlags {}
     unsafe impl Sync for AV1QuantizationFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1QuantizationFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1QuantizationFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("AV1QuantizationFlags")
                 .field("using_qmatrix", &self.get_using_qmatrix())
                 .field("diff_uv_delta", &self.get_diff_uv_delta())
@@ -919,8 +922,8 @@ pub(crate) mod items {
     impl Default for AV1Segmentation {
         fn default() -> Self {
             Self {
-                feature_enabled: unsafe { core::mem::zeroed() },
-                feature_data: unsafe { core::mem::zeroed() },
+                feature_enabled: unsafe { zeroed() },
+                feature_data: unsafe { zeroed() },
             }
         }
     }
@@ -949,8 +952,8 @@ pub(crate) mod items {
     unsafe impl Send for AV1TileInfoFlags {}
     unsafe impl Sync for AV1TileInfoFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1TileInfoFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1TileInfoFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("AV1TileInfoFlags")
                 .field(
                     "uniform_tile_spacing_flag",
@@ -998,7 +1001,7 @@ pub(crate) mod items {
                 tile_rows: Default::default(),
                 context_update_tile_id: Default::default(),
                 tile_size_bytes_minus_1: Default::default(),
-                reserved1: unsafe { core::mem::zeroed() },
+                reserved1: unsafe { zeroed() },
                 p_mi_col_starts: Default::default(),
                 p_mi_row_starts: Default::default(),
                 p_width_in_sbs_minus1: Default::default(),
@@ -1063,10 +1066,10 @@ pub(crate) mod items {
             Self {
                 cdef_damping_minus_3: Default::default(),
                 cdef_bits: Default::default(),
-                cdef_y_pri_strength: unsafe { core::mem::zeroed() },
-                cdef_y_sec_strength: unsafe { core::mem::zeroed() },
-                cdef_uv_pri_strength: unsafe { core::mem::zeroed() },
-                cdef_uv_sec_strength: unsafe { core::mem::zeroed() },
+                cdef_y_pri_strength: unsafe { zeroed() },
+                cdef_y_sec_strength: unsafe { zeroed() },
+                cdef_uv_pri_strength: unsafe { zeroed() },
+                cdef_uv_sec_strength: unsafe { zeroed() },
             }
         }
     }
@@ -1121,8 +1124,8 @@ pub(crate) mod items {
     impl Default for AV1LoopRestoration {
         fn default() -> Self {
             Self {
-                frame_restoration_type: unsafe { core::mem::zeroed() },
-                loop_restoration_size: unsafe { core::mem::zeroed() },
+                frame_restoration_type: unsafe { zeroed() },
+                loop_restoration_size: unsafe { zeroed() },
             }
         }
     }
@@ -1156,8 +1159,8 @@ pub(crate) mod items {
     impl Default for AV1GlobalMotion {
         fn default() -> Self {
             Self {
-                gm_type: unsafe { core::mem::zeroed() },
-                gm_params: unsafe { core::mem::zeroed() },
+                gm_type: unsafe { zeroed() },
+                gm_params: unsafe { zeroed() },
             }
         }
     }
@@ -1187,8 +1190,8 @@ pub(crate) mod items {
     unsafe impl Send for AV1FilmGrainFlags {}
     unsafe impl Sync for AV1FilmGrainFlags {}
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1FilmGrainFlags {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1FilmGrainFlags {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             f.debug_struct("AV1FilmGrainFlags")
                 .field("chroma_scaling_from_luma", &self.get_chroma_scaling_from_luma())
                 .field("overlap_flag", &self.get_overlap_flag())
@@ -1280,17 +1283,17 @@ pub(crate) mod items {
                 grain_seed: Default::default(),
                 film_grain_params_ref_idx: Default::default(),
                 num_y_points: Default::default(),
-                point_y_value: unsafe { core::mem::zeroed() },
-                point_y_scaling: unsafe { core::mem::zeroed() },
+                point_y_value: unsafe { zeroed() },
+                point_y_scaling: unsafe { zeroed() },
                 num_cb_points: Default::default(),
-                point_cb_value: unsafe { core::mem::zeroed() },
-                point_cb_scaling: unsafe { core::mem::zeroed() },
+                point_cb_value: unsafe { zeroed() },
+                point_cb_scaling: unsafe { zeroed() },
                 num_cr_points: Default::default(),
-                point_cr_value: unsafe { core::mem::zeroed() },
-                point_cr_scaling: unsafe { core::mem::zeroed() },
-                ar_coeffs_y_plus_128: unsafe { core::mem::zeroed() },
-                ar_coeffs_cb_plus_128: unsafe { core::mem::zeroed() },
-                ar_coeffs_cr_plus_128: unsafe { core::mem::zeroed() },
+                point_cr_value: unsafe { zeroed() },
+                point_cr_scaling: unsafe { zeroed() },
+                ar_coeffs_y_plus_128: unsafe { zeroed() },
+                ar_coeffs_cb_plus_128: unsafe { zeroed() },
+                ar_coeffs_cr_plus_128: unsafe { zeroed() },
                 cb_mult: Default::default(),
                 cb_luma_mult: Default::default(),
                 cb_offset: Default::default(),
@@ -1436,8 +1439,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1Profile(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1Profile {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1Profile {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::MAIN => Some("MAIN"),
                 Self::HIGH => Some("HIGH"),
@@ -1447,7 +1450,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1465,8 +1468,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1Level(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1Level {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1Level {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::TYPE_2_0 => Some("TYPE_2_0"),
                 Self::TYPE_2_1 => Some("TYPE_2_1"),
@@ -1497,7 +1500,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1515,8 +1518,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1FrameType(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1FrameType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1FrameType {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::KEY => Some("KEY"),
                 Self::INTER => Some("INTER"),
@@ -1527,7 +1530,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1545,8 +1548,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1ReferenceName(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1ReferenceName {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1ReferenceName {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::INTRA_FRAME => Some("INTRA_FRAME"),
                 Self::LAST_FRAME => Some("LAST_FRAME"),
@@ -1561,7 +1564,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1579,8 +1582,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1InterpolationFilter(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1InterpolationFilter {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1InterpolationFilter {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::EIGHTTAP => Some("EIGHTTAP"),
                 Self::EIGHTTAP_SMOOTH => Some("EIGHTTAP_SMOOTH"),
@@ -1592,7 +1595,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1610,8 +1613,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1TxMode(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1TxMode {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1TxMode {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::ONLY_4X4 => Some("ONLY_4X4"),
                 Self::LARGEST => Some("LARGEST"),
@@ -1621,7 +1624,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1639,8 +1642,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1FrameRestorationType(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1FrameRestorationType {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1FrameRestorationType {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::NONE => Some("NONE"),
                 Self::WIENER => Some("WIENER"),
@@ -1651,7 +1654,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1669,8 +1672,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1ColorPrimaries(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1ColorPrimaries {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1ColorPrimaries {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::BT_709 => Some("BT_709"),
                 Self::UNSPECIFIED => Some("UNSPECIFIED"),
@@ -1689,7 +1692,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1707,8 +1710,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1TransferCharacteristics(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1TransferCharacteristics {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1TransferCharacteristics {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::RESERVED_0 => Some("RESERVED_0"),
                 Self::BT_709 => Some("BT_709"),
@@ -1734,7 +1737,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1752,8 +1755,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1MatrixCoefficients(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1MatrixCoefficients {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1MatrixCoefficients {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::IDENTITY => Some("IDENTITY"),
                 Self::BT_709 => Some("BT_709"),
@@ -1775,7 +1778,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }
@@ -1793,8 +1796,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1ChromaSamplePosition(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for AV1ChromaSamplePosition {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for AV1ChromaSamplePosition {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::UNKNOWN => Some("UNKNOWN"),
                 Self::VERTICAL => Some("VERTICAL"),
@@ -1805,7 +1808,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

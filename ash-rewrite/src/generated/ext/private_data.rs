@@ -4,8 +4,11 @@
 #![doc(alias = "VK_EXT_private_data")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_EXT_private_data](crate::ext::private_data)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES;
@@ -28,10 +31,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_private_data_slot: unsafe {
                 unsafe extern "system" fn create_private_data_slot(
@@ -43,11 +46,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreatePrivateDataSlotEXT")
                 }
                 let val = _f(c"vkCreatePrivateDataSlotEXT");
-                if val.is_null() {
-                    create_private_data_slot
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_private_data_slot } else { transmute(val) }
             },
             destroy_private_data_slot: unsafe {
                 unsafe extern "system" fn destroy_private_data_slot(
@@ -58,11 +57,7 @@ impl DeviceFn {
                     panic!("unable to load vkDestroyPrivateDataSlotEXT")
                 }
                 let val = _f(c"vkDestroyPrivateDataSlotEXT");
-                if val.is_null() {
-                    destroy_private_data_slot
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { destroy_private_data_slot } else { transmute(val) }
             },
             set_private_data: unsafe {
                 unsafe extern "system" fn set_private_data(
@@ -75,11 +70,7 @@ impl DeviceFn {
                     panic!("unable to load vkSetPrivateDataEXT")
                 }
                 let val = _f(c"vkSetPrivateDataEXT");
-                if val.is_null() {
-                    set_private_data
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { set_private_data } else { transmute(val) }
             },
             get_private_data: unsafe {
                 unsafe extern "system" fn get_private_data(
@@ -92,11 +83,7 @@ impl DeviceFn {
                     panic!("unable to load vkGetPrivateDataEXT")
                 }
                 let val = _f(c"vkGetPrivateDataEXT");
-                if val.is_null() {
-                    get_private_data
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { get_private_data } else { transmute(val) }
             },
         }
     }
@@ -104,13 +91,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -119,7 +106,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreatePrivateDataSlot
@@ -129,7 +116,7 @@ impl Device {
         create_info: &vk::PrivateDataSlotCreateInfo<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::PrivateDataSlot> {
-        let mut private_data_slot = core::mem::MaybeUninit::uninit();
+        let mut private_data_slot = MaybeUninit::uninit();
         (self
             .fp
             .create_private_data_slot)(
@@ -137,7 +124,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 private_data_slot.as_mut_ptr(),
             )
@@ -157,7 +144,7 @@ impl Device {
             private_data_slot,
             match allocator {
                 Some(inner) => inner,
-                None => core::ptr::null_mut(),
+                None => ptr::null_mut(),
             },
         )
     }
@@ -189,7 +176,7 @@ impl Device {
         object_handle: u64,
         private_data_slot: vk::PrivateDataSlot,
     ) -> u64 {
-        let mut data = core::mem::MaybeUninit::uninit();
+        let mut data = MaybeUninit::uninit();
         (self
             .fp
             .get_private_data)(

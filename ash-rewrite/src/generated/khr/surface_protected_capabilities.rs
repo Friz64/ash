@@ -13,26 +13,29 @@ pub const NAME: &CStr = c"VK_KHR_surface_protected_capabilities";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SurfaceProtectedCapabilitiesKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub supports_protected: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SurfaceProtectedCapabilitiesKHR<'_> {}
     unsafe impl Sync for SurfaceProtectedCapabilitiesKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceProtectedCapabilitiesKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for SurfaceProtectedCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> Extends<vk::SurfaceCapabilities2KHR<'_>>
     for SurfaceProtectedCapabilitiesKHR<'a> {}
     impl<'a> Default for SurfaceProtectedCapabilitiesKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR,
                 p_next: Default::default(),
                 supports_protected: Default::default(),
                 _marker: PhantomData,

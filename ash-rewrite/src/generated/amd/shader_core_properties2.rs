@@ -13,28 +13,33 @@ pub const NAME: &CStr = c"VK_AMD_shader_core_properties2";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderCoreProperties2AMD<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_core_features: vk::ShaderCorePropertiesFlagsAMD,
         pub active_compute_unit_count: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderCoreProperties2AMD<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderCoreProperties2AMD<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceShaderCoreProperties2AMD<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceShaderCoreProperties2AMD<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceShaderCoreProperties2AMD<'a> {}
     impl<'a> Default for PhysicalDeviceShaderCoreProperties2AMD<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD,
                 p_next: Default::default(),
                 shader_core_features: Default::default(),
                 active_compute_unit_count: Default::default(),
@@ -62,9 +67,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ShaderCorePropertiesFlagsAMD(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ShaderCorePropertiesFlagsAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for ShaderCorePropertiesFlagsAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl ShaderCorePropertiesFlagsAMD {
@@ -87,40 +92,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for ShaderCorePropertiesFlagsAMD {
+    impl BitOr for ShaderCorePropertiesFlagsAMD {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for ShaderCorePropertiesFlagsAMD {
+    impl BitOrAssign for ShaderCorePropertiesFlagsAMD {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for ShaderCorePropertiesFlagsAMD {
+    impl BitAnd for ShaderCorePropertiesFlagsAMD {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for ShaderCorePropertiesFlagsAMD {
+    impl BitAndAssign for ShaderCorePropertiesFlagsAMD {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for ShaderCorePropertiesFlagsAMD {
+    impl BitXor for ShaderCorePropertiesFlagsAMD {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for ShaderCorePropertiesFlagsAMD {
+    impl BitXorAssign for ShaderCorePropertiesFlagsAMD {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for ShaderCorePropertiesFlagsAMD {
+    impl Not for ShaderCorePropertiesFlagsAMD {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -145,9 +150,9 @@ pub(crate) mod items {
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for ShaderCorePropertiesFlagBitsAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.bitmask(), f)
+    impl fmtd::Debug for ShaderCorePropertiesFlagBitsAMD {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.bitmask(), f)
         }
     }
 }

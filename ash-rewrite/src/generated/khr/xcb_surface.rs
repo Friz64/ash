@@ -4,8 +4,11 @@
 #![doc(alias = "VK_KHR_xcb_surface")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_xcb_surface](crate::khr::xcb_surface)
 impl vk::StructureType {
     pub const XCB_SURFACE_CREATE_INFO_KHR: Self = Self(1000005000);
@@ -20,10 +23,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_xcb_surface: unsafe {
                 unsafe extern "system" fn create_xcb_surface(
@@ -35,18 +38,14 @@ impl InstanceFn {
                     panic!("unable to load vkCreateXcbSurfaceKHR")
                 }
                 let val = _f(c"vkCreateXcbSurfaceKHR");
-                if val.is_null() {
-                    create_xcb_surface
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_xcb_surface } else { transmute(val) }
             },
             get_physical_device_xcb_presentation_support: unsafe {
                 unsafe extern "system" fn get_physical_device_xcb_presentation_support(
                     _: vk::PhysicalDevice,
                     _: u32,
-                    _: *mut crate::platform_types::xcb_connection_t,
-                    _: crate::platform_types::xcb_visualid_t,
+                    _: *mut vk::xcb_connection_t,
+                    _: vk::xcb_visualid_t,
                 ) -> vk::Bool32 {
                     panic!("unable to load vkGetPhysicalDeviceXcbPresentationSupportKHR")
                 }
@@ -54,7 +53,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_xcb_presentation_support
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -63,13 +62,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -78,7 +77,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkCreateXcbSurfaceKHR
@@ -88,7 +87,7 @@ impl Instance {
         create_info: &vk::XcbSurfaceCreateInfoKHR<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = core::mem::MaybeUninit::uninit();
+        let mut surface = MaybeUninit::uninit();
         (self
             .fp
             .create_xcb_surface)(
@@ -96,7 +95,7 @@ impl Instance {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 surface.as_mut_ptr(),
             )
@@ -108,9 +107,9 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        visual_id: crate::platform_types::xcb_visualid_t,
-    ) -> crate::platform_types::xcb_connection_t {
-        let mut connection = core::mem::MaybeUninit::uninit();
+        visual_id: vk::xcb_visualid_t,
+    ) -> vk::xcb_connection_t {
+        let mut connection = MaybeUninit::uninit();
         (self
             .fp
             .get_physical_device_xcb_presentation_support)(
@@ -125,26 +124,31 @@ impl Instance {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
+    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct XcbSurfaceCreateInfoKHR<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::XcbSurfaceCreateFlagsKHR,
-        pub connection: *mut crate::platform_types::xcb_connection_t,
-        pub window: crate::platform_types::xcb_window_t,
+        pub connection: *mut vk::xcb_connection_t,
+        pub window: vk::xcb_window_t,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for XcbSurfaceCreateInfoKHR<'_> {}
     unsafe impl Sync for XcbSurfaceCreateInfoKHR<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a> for XcbSurfaceCreateInfoKHR<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for XcbSurfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::XCB_SURFACE_CREATE_INFO_KHR;
     }
     impl<'a> Default for XcbSurfaceCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::XCB_SURFACE_CREATE_INFO_KHR,
                 p_next: Default::default(),
                 flags: Default::default(),
                 connection: Default::default(),
@@ -158,14 +162,11 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn connection(
-            mut self,
-            connection: &'a mut crate::platform_types::xcb_connection_t,
-        ) -> Self {
+        pub fn connection(mut self, connection: &'a mut vk::xcb_connection_t) -> Self {
             self.connection = connection;
             self
         }
-        pub fn window(mut self, window: crate::platform_types::xcb_window_t) -> Self {
+        pub fn window(mut self, window: vk::xcb_window_t) -> Self {
             self.window = window;
             self
         }
@@ -174,9 +175,9 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct XcbSurfaceCreateFlagsKHR(pub(crate) u32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for XcbSurfaceCreateFlagsKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    impl fmtd::Debug for XcbSurfaceCreateFlagsKHR {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            fmtd::Debug::fmt(&self.0, f)
         }
     }
     impl XcbSurfaceCreateFlagsKHR {
@@ -199,40 +200,40 @@ pub(crate) mod items {
             self.0 & other.0 == other.0
         }
     }
-    impl core::ops::BitOr for XcbSurfaceCreateFlagsKHR {
+    impl BitOr for XcbSurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl core::ops::BitOrAssign for XcbSurfaceCreateFlagsKHR {
+    impl BitOrAssign for XcbSurfaceCreateFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl core::ops::BitAnd for XcbSurfaceCreateFlagsKHR {
+    impl BitAnd for XcbSurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl core::ops::BitAndAssign for XcbSurfaceCreateFlagsKHR {
+    impl BitAndAssign for XcbSurfaceCreateFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl core::ops::BitXor for XcbSurfaceCreateFlagsKHR {
+    impl BitXor for XcbSurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl core::ops::BitXorAssign for XcbSurfaceCreateFlagsKHR {
+    impl BitXorAssign for XcbSurfaceCreateFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl core::ops::Not for XcbSurfaceCreateFlagsKHR {
+    impl Not for XcbSurfaceCreateFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -247,8 +248,8 @@ pub(crate) mod items {
     pub type PFN_vkGetPhysicalDeviceXcbPresentationSupportKHR = unsafe extern "system" fn(
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        connection: *mut crate::platform_types::xcb_connection_t,
-        visual_id: crate::platform_types::xcb_visualid_t,
+        connection: *mut vk::xcb_connection_t,
+        visual_id: vk::xcb_visualid_t,
     ) -> vk::Bool32;
 }
 pub use items::*;

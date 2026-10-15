@@ -4,8 +4,11 @@
 #![doc(alias = "VK_KHR_create_renderpass2")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ptr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_create_renderpass2](crate::khr::create_renderpass2)
 impl vk::StructureType {
     pub const ATTACHMENT_DESCRIPTION_2_KHR: Self = Self::ATTACHMENT_DESCRIPTION_2;
@@ -28,10 +31,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             create_render_pass2: unsafe {
                 unsafe extern "system" fn create_render_pass2(
@@ -43,11 +46,7 @@ impl DeviceFn {
                     panic!("unable to load vkCreateRenderPass2KHR")
                 }
                 let val = _f(c"vkCreateRenderPass2KHR");
-                if val.is_null() {
-                    create_render_pass2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { create_render_pass2 } else { transmute(val) }
             },
             cmd_begin_render_pass2: unsafe {
                 unsafe extern "system" fn cmd_begin_render_pass2(
@@ -58,11 +57,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdBeginRenderPass2KHR")
                 }
                 let val = _f(c"vkCmdBeginRenderPass2KHR");
-                if val.is_null() {
-                    cmd_begin_render_pass2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_begin_render_pass2 } else { transmute(val) }
             },
             cmd_next_subpass2: unsafe {
                 unsafe extern "system" fn cmd_next_subpass2(
@@ -73,11 +68,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdNextSubpass2KHR")
                 }
                 let val = _f(c"vkCmdNextSubpass2KHR");
-                if val.is_null() {
-                    cmd_next_subpass2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_next_subpass2 } else { transmute(val) }
             },
             cmd_end_render_pass2: unsafe {
                 unsafe extern "system" fn cmd_end_render_pass2(
@@ -87,11 +78,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdEndRenderPass2KHR")
                 }
                 let val = _f(c"vkCmdEndRenderPass2KHR");
-                if val.is_null() {
-                    cmd_end_render_pass2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_end_render_pass2 } else { transmute(val) }
             },
         }
     }
@@ -99,13 +86,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -114,7 +101,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkCreateRenderPass2
@@ -124,7 +111,7 @@ impl Device {
         create_info: &vk::RenderPassCreateInfo2<'_>,
         allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<vk::RenderPass> {
-        let mut render_pass = core::mem::MaybeUninit::uninit();
+        let mut render_pass = MaybeUninit::uninit();
         (self
             .fp
             .create_render_pass2)(
@@ -132,7 +119,7 @@ impl Device {
                 create_info,
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 render_pass.as_mut_ptr(),
             )

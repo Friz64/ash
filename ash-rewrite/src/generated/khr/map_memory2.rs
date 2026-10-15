@@ -4,8 +4,10 @@
 #![doc(alias = "VK_KHR_map_memory2")]
 use crate::vk;
 use core::ffi::CStr;
+use core::ffi;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
 ///Provided by [VK_KHR_map_memory2](crate::khr::map_memory2)
 impl vk::StructureType {
     pub const MEMORY_MAP_INFO_KHR: Self = Self::MEMORY_MAP_INFO;
@@ -21,21 +23,21 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             map_memory2: unsafe {
                 unsafe extern "system" fn map_memory2(
                     _: vk::Device,
                     _: *const vk::MemoryMapInfo<'_>,
-                    _: *mut *mut core::ffi::c_void,
+                    _: *mut *mut ffi::c_void,
                 ) -> vk::Result {
                     panic!("unable to load vkMapMemory2KHR")
                 }
                 let val = _f(c"vkMapMemory2KHR");
-                if val.is_null() { map_memory2 } else { ::core::mem::transmute(val) }
+                if val.is_null() { map_memory2 } else { transmute(val) }
             },
             unmap_memory2: unsafe {
                 unsafe extern "system" fn unmap_memory2(
@@ -45,7 +47,7 @@ impl DeviceFn {
                     panic!("unable to load vkUnmapMemory2KHR")
                 }
                 let val = _f(c"vkUnmapMemory2KHR");
-                if val.is_null() { unmap_memory2 } else { ::core::mem::transmute(val) }
+                if val.is_null() { unmap_memory2 } else { transmute(val) }
             },
         }
     }
@@ -53,13 +55,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -68,7 +70,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkMapMemory2
@@ -76,8 +78,8 @@ impl Device {
     pub unsafe fn map_memory2(
         &self,
         memory_map_info: &vk::MemoryMapInfo<'_>,
-    ) -> VkResult<*mut core::ffi::c_void> {
-        let mut data = core::mem::MaybeUninit::uninit();
+    ) -> VkResult<*mut ffi::c_void> {
+        let mut data = MaybeUninit::uninit();
         (self.fp.map_memory2)(self.handle, memory_map_info, data.as_mut_ptr())
             .assume_init_on_success(data)
     }

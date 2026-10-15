@@ -36,12 +36,17 @@ pub const NAME: &CStr = c"VK_ARM_data_graph_neural_accelerator_statistics";
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub data_graph_neural_accelerator_statistics: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
@@ -49,19 +54,19 @@ pub(crate) mod items {
     for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'_> {}
     unsafe impl Sync
     for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_NEURAL_ACCELERATOR_STATISTICS_FEATURES_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {}
     impl<'a> Default
     for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_NEURAL_ACCELERATOR_STATISTICS_FEATURES_ARM,
                 p_next: Default::default(),
                 data_graph_neural_accelerator_statistics: Default::default(),
                 _marker: PhantomData,
@@ -83,22 +88,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub allow_neural_statistics: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineNeuralStatisticsCreateInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineNeuralStatisticsCreateInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_NEURAL_STATISTICS_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DATA_GRAPH_PIPELINE_NEURAL_STATISTICS_CREATE_INFO_ARM,
                 p_next: Default::default(),
                 allow_neural_statistics: Default::default(),
                 _marker: PhantomData,
@@ -116,22 +121,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub mode: vk::NeuralAcceleratorStatisticsModeARM,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_NEURAL_STATISTICS_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineSessionCreateInfoARM<'_>>
+    unsafe impl<'a> Extends<vk::DataGraphPipelineSessionCreateInfoARM<'_>>
     for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_NEURAL_STATISTICS_CREATE_INFO_ARM,
                 p_next: Default::default(),
                 mode: Default::default(),
                 _marker: PhantomData,
@@ -148,8 +153,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct NeuralAcceleratorStatisticsModeARM(pub(crate) i32);
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for NeuralAcceleratorStatisticsModeARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for NeuralAcceleratorStatisticsModeARM {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             if let Some(x) = match *self {
                 Self::DISABLED => Some("DISABLED"),
                 Self::STATISTICS0 => Some("STATISTICS0"),
@@ -158,7 +163,7 @@ pub(crate) mod items {
             } {
                 f.write_str(x)
             } else {
-                core::fmt::Debug::fmt(&self.0, f)
+                fmtd::Debug::fmt(&self.0, f)
             }
         }
     }

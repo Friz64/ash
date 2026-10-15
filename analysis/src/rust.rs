@@ -87,24 +87,7 @@ pub trait RustTokens {
 
     fn platform_type_tokens(&self, raw: &str, qualified: bool) -> TokenStream;
 
-    fn primary_type_tokens(&self, primary_ty: CPrimaryType) -> TokenStream {
-        match primary_ty {
-            CPrimaryType::Void => quote! { core::ffi::c_void },
-            CPrimaryType::Char => quote! { core::ffi::c_char },
-            CPrimaryType::Int => quote! { core::ffi::c_int },
-            CPrimaryType::Float => quote! { core::ffi::c_float },
-            CPrimaryType::Double => quote! { core::ffi::c_double },
-            CPrimaryType::Int8 => quote! { i8 },
-            CPrimaryType::UInt8 => quote! { u8 },
-            CPrimaryType::Int16 => quote! { i16 },
-            CPrimaryType::UInt16 => quote! { u16 },
-            CPrimaryType::Int32 => quote! { i32 },
-            CPrimaryType::UInt32 => quote! { u32 },
-            CPrimaryType::Int64 => quote! { i64 },
-            CPrimaryType::UInt64 => quote! { u64 },
-            CPrimaryType::Size => quote! { usize },
-        }
-    }
+    fn primary_type_tokens(&self, primary_ty: CPrimaryType) -> TokenStream;
 }
 
 impl RustDecl {

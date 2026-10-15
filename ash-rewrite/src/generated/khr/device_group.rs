@@ -4,8 +4,11 @@
 #![doc(alias = "VK_KHR_device_group")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use alloc::vec::Vec;
+use core::ffi;
 ///Provided by [VK_KHR_device_group](crate::khr::device_group)
 impl vk::StructureType {
     pub const MEMORY_ALLOCATE_FLAGS_INFO_KHR: Self = Self::MEMORY_ALLOCATE_FLAGS_INFO;
@@ -90,10 +93,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_device_group_present_capabilities: unsafe {
                 unsafe extern "system" fn get_device_group_present_capabilities(
@@ -106,7 +109,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_device_group_present_capabilities
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_device_group_surface_present_modes: unsafe {
@@ -121,7 +124,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_device_group_surface_present_modes
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             acquire_next_image2: unsafe {
@@ -133,11 +136,7 @@ impl DeviceFn {
                     panic!("unable to load vkAcquireNextImage2KHR")
                 }
                 let val = _f(c"vkAcquireNextImage2KHR");
-                if val.is_null() {
-                    acquire_next_image2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { acquire_next_image2 } else { transmute(val) }
             },
             get_device_group_peer_memory_features: unsafe {
                 unsafe extern "system" fn get_device_group_peer_memory_features(
@@ -153,7 +152,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_device_group_peer_memory_features
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_set_device_mask: unsafe {
@@ -164,11 +163,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdSetDeviceMaskKHR")
                 }
                 let val = _f(c"vkCmdSetDeviceMaskKHR");
-                if val.is_null() {
-                    cmd_set_device_mask
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_set_device_mask } else { transmute(val) }
             },
             cmd_dispatch_base: unsafe {
                 unsafe extern "system" fn cmd_dispatch_base(
@@ -183,11 +178,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDispatchBaseKHR")
                 }
                 let val = _f(c"vkCmdDispatchBaseKHR");
-                if val.is_null() {
-                    cmd_dispatch_base
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_dispatch_base } else { transmute(val) }
             },
         }
     }
@@ -195,13 +186,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -210,7 +201,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetDeviceGroupPresentCapabilitiesKHR
@@ -218,7 +209,7 @@ impl Device {
     pub unsafe fn get_device_group_present_capabilities(
         &self,
     ) -> VkResult<vk::DeviceGroupPresentCapabilitiesKHR<'_>> {
-        let mut device_group_present_capabilities = core::mem::MaybeUninit::uninit();
+        let mut device_group_present_capabilities = MaybeUninit::uninit();
         (self
             .fp
             .get_device_group_present_capabilities)(
@@ -233,7 +224,7 @@ impl Device {
         &self,
         surface: vk::SurfaceKHR,
     ) -> VkResult<vk::DeviceGroupPresentModeFlagsKHR> {
-        let mut modes = core::mem::MaybeUninit::uninit();
+        let mut modes = MaybeUninit::uninit();
         (self
             .fp
             .get_device_group_surface_present_modes)(
@@ -249,7 +240,7 @@ impl Device {
         &self,
         acquire_info: &vk::AcquireNextImageInfoKHR<'_>,
     ) -> VkResult<u32> {
-        let mut image_index = core::mem::MaybeUninit::uninit();
+        let mut image_index = MaybeUninit::uninit();
         (self
             .fp
             .acquire_next_image2)(self.handle, acquire_info, image_index.as_mut_ptr())
@@ -263,7 +254,7 @@ impl Device {
         local_device_index: u32,
         remote_device_index: u32,
     ) -> vk::PeerMemoryFeatureFlags {
-        let mut peer_memory_features = core::mem::MaybeUninit::uninit();
+        let mut peer_memory_features = MaybeUninit::uninit();
         (self
             .fp
             .get_device_group_peer_memory_features)(
@@ -316,10 +307,10 @@ pub struct InstanceFn {
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_physical_device_present_rectangles: unsafe {
                 unsafe extern "system" fn get_physical_device_present_rectangles(
@@ -334,7 +325,7 @@ impl InstanceFn {
                 if val.is_null() {
                     get_physical_device_present_rectangles
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -343,13 +334,13 @@ impl InstanceFn {
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) fp: InstanceFn,
-    pub(crate) handle: crate::vk::Instance,
+    pub(crate) handle: vk::Instance,
 }
 impl Instance {
     pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
         let handle = instance.handle;
         let fp = InstanceFn::load(|name| unsafe {
-            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+            transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -358,7 +349,7 @@ impl Instance {
         &self.fp
     }
     #[inline]
-    pub fn instance(&self) -> crate::vk::Instance {
+    pub fn instance(&self) -> vk::Instance {
         self.handle
     }
     ///vkGetPhysicalDevicePresentRectanglesKHR
@@ -367,7 +358,7 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         surface: vk::SurfaceKHR,
-    ) -> crate::VkResult<Vec<vk::Rect2D>> {
+    ) -> VkResult<Vec<vk::Rect2D>> {
         crate::read_into_uninitialized_vector(|rect_count, rects| (self
             .fp
             .get_physical_device_present_rectangles)(

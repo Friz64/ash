@@ -5,8 +5,11 @@
 #![doc(alias = "VK_AMDX_shader_enqueue")]
 use crate::vk;
 use core::ffi::CStr;
+use core::mem::MaybeUninit;
 use crate::VkResult;
-use core::ffi::c_void;
+use core::mem::transmute;
+use core::ptr;
+use core::ffi;
 ///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl vk::PipelineBindPoint {
     pub const EXECUTION_GRAPH_AMDX: Self = Self(1000134000);
@@ -64,10 +67,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_execution_graph_pipeline_scratch_size: unsafe {
                 unsafe extern "system" fn get_execution_graph_pipeline_scratch_size(
@@ -81,7 +84,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_execution_graph_pipeline_scratch_size
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_execution_graph_pipeline_node_index: unsafe {
@@ -97,7 +100,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_execution_graph_pipeline_node_index
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             create_execution_graph_pipelines: unsafe {
@@ -115,7 +118,7 @@ impl DeviceFn {
                 if val.is_null() {
                     create_execution_graph_pipelines
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_initialize_graph_scratch_memory: unsafe {
@@ -131,7 +134,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_initialize_graph_scratch_memory
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_dispatch_graph: unsafe {
@@ -144,11 +147,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDispatchGraphAMDX")
                 }
                 let val = _f(c"vkCmdDispatchGraphAMDX");
-                if val.is_null() {
-                    cmd_dispatch_graph
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_dispatch_graph } else { transmute(val) }
             },
             cmd_dispatch_graph_indirect: unsafe {
                 unsafe extern "system" fn cmd_dispatch_graph_indirect(
@@ -160,11 +159,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdDispatchGraphIndirectAMDX")
                 }
                 let val = _f(c"vkCmdDispatchGraphIndirectAMDX");
-                if val.is_null() {
-                    cmd_dispatch_graph_indirect
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_dispatch_graph_indirect } else { transmute(val) }
             },
             cmd_dispatch_graph_indirect_count: unsafe {
                 unsafe extern "system" fn cmd_dispatch_graph_indirect_count(
@@ -179,7 +174,7 @@ impl DeviceFn {
                 if val.is_null() {
                     cmd_dispatch_graph_indirect_count
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -188,13 +183,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -203,7 +198,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetExecutionGraphPipelineScratchSizeAMDX
@@ -212,7 +207,7 @@ impl Device {
         &self,
         execution_graph: vk::Pipeline,
     ) -> VkResult<vk::ExecutionGraphPipelineScratchSizeAMDX<'_>> {
-        let mut size_info = core::mem::MaybeUninit::uninit();
+        let mut size_info = MaybeUninit::uninit();
         (self
             .fp
             .get_execution_graph_pipeline_scratch_size)(
@@ -229,7 +224,7 @@ impl Device {
         execution_graph: vk::Pipeline,
         node_info: &vk::PipelineShaderStageNodeCreateInfoAMDX<'_>,
     ) -> VkResult<u32> {
-        let mut node_index = core::mem::MaybeUninit::uninit();
+        let mut node_index = MaybeUninit::uninit();
         (self
             .fp
             .get_execution_graph_pipeline_node_index)(
@@ -259,7 +254,7 @@ impl Device {
                 create_infos.as_ptr(),
                 match allocator {
                     Some(inner) => inner,
-                    None => core::ptr::null_mut(),
+                    None => ptr::null_mut(),
                 },
                 pipelines.as_mut_ptr(),
             )
@@ -334,13 +329,19 @@ impl Device {
 pub(crate) mod items {
     use core::marker::PhantomData;
     use crate::vk;
+    use crate::TaggedStructure;
+    use crate::Extends;
+    use core::ffi;
+    use core::mem::zeroed;
     use core::ffi::CStr;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtd;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub max_execution_graph_depth: u32,
         pub max_execution_graph_shader_output_nodes: u32,
         pub max_execution_graph_shader_payload_size: u32,
@@ -352,23 +353,23 @@ pub(crate) mod items {
     }
     unsafe impl Send for PhysicalDeviceShaderEnqueuePropertiesAMDX<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderEnqueuePropertiesAMDX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
+    unsafe impl<'a> TaggedStructure<'a>
     for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {}
     impl<'a> Default for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX,
                 p_next: Default::default(),
                 max_execution_graph_depth: Default::default(),
                 max_execution_graph_shader_output_nodes: Default::default(),
                 max_execution_graph_shader_payload_size: Default::default(),
                 max_execution_graph_shader_payload_count: Default::default(),
                 execution_graph_dispatch_address_alignment: Default::default(),
-                max_execution_graph_workgroup_count: unsafe { core::mem::zeroed() },
+                max_execution_graph_workgroup_count: unsafe { zeroed() },
                 max_execution_graph_workgroups: Default::default(),
                 _marker: PhantomData,
             }
@@ -430,25 +431,24 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub shader_enqueue: vk::Bool32,
         pub shader_mesh_enqueue: vk::Bool32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderEnqueueFeaturesAMDX<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderEnqueueFeaturesAMDX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX;
     }
-    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {}
-    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {}
     impl<'a> Default for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX,
                 p_next: Default::default(),
                 shader_enqueue: Default::default(),
                 shader_mesh_enqueue: Default::default(),
@@ -471,7 +471,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExecutionGraphPipelineCreateInfoAMDX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
+        pub p_next: *const ffi::c_void,
         pub flags: vk::PipelineCreateFlags,
         pub stage_count: u32,
         pub p_stages: *const vk::PipelineShaderStageCreateInfo<'a>,
@@ -483,14 +483,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ExecutionGraphPipelineCreateInfoAMDX<'_> {}
     unsafe impl Sync for ExecutionGraphPipelineCreateInfoAMDX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ExecutionGraphPipelineCreateInfoAMDX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExecutionGraphPipelineCreateInfoAMDX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX;
     }
     impl<'a> Default for ExecutionGraphPipelineCreateInfoAMDX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX,
                 p_next: Default::default(),
                 flags: Default::default(),
                 stage_count: Default::default(),
@@ -544,23 +543,22 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct PipelineShaderStageNodeCreateInfoAMDX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *const core::ffi::c_void,
-        pub p_name: *const core::ffi::c_char,
+        pub p_next: *const ffi::c_void,
+        pub p_name: *const ffi::c_char,
         pub index: u32,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineShaderStageNodeCreateInfoAMDX<'_> {}
     unsafe impl Sync for PipelineShaderStageNodeCreateInfoAMDX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for PipelineShaderStageNodeCreateInfoAMDX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for PipelineShaderStageNodeCreateInfoAMDX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX;
     }
-    unsafe impl<'a> crate::Extends<vk::PipelineShaderStageCreateInfo<'_>>
+    unsafe impl<'a> Extends<vk::PipelineShaderStageCreateInfo<'_>>
     for PipelineShaderStageNodeCreateInfoAMDX<'a> {}
     impl<'a> Default for PipelineShaderStageNodeCreateInfoAMDX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX,
                 p_next: Default::default(),
                 p_name: Default::default(),
                 index: Default::default(),
@@ -590,7 +588,7 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct ExecutionGraphPipelineScratchSizeAMDX<'a> {
         pub s_type: vk::StructureType,
-        pub p_next: *mut core::ffi::c_void,
+        pub p_next: *mut ffi::c_void,
         pub min_size: vk::DeviceSize,
         pub max_size: vk::DeviceSize,
         pub size_granularity: vk::DeviceSize,
@@ -598,14 +596,13 @@ pub(crate) mod items {
     }
     unsafe impl Send for ExecutionGraphPipelineScratchSizeAMDX<'_> {}
     unsafe impl Sync for ExecutionGraphPipelineScratchSizeAMDX<'_> {}
-    unsafe impl<'a> crate::TaggedStructure<'a>
-    for ExecutionGraphPipelineScratchSizeAMDX<'a> {
+    unsafe impl<'a> TaggedStructure<'a> for ExecutionGraphPipelineScratchSizeAMDX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXECUTION_GRAPH_PIPELINE_SCRATCH_SIZE_AMDX;
     }
     impl<'a> Default for ExecutionGraphPipelineScratchSizeAMDX<'a> {
         fn default() -> Self {
             Self {
-                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                s_type: vk::StructureType::EXECUTION_GRAPH_PIPELINE_SCRATCH_SIZE_AMDX,
                 p_next: Default::default(),
                 min_size: Default::default(),
                 max_size: Default::default(),
@@ -685,16 +682,16 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub union DeviceOrHostAddressConstAMDX {
         pub device_address: vk::DeviceAddress,
-        pub host_address: *const core::ffi::c_void,
+        pub host_address: *const ffi::c_void,
     }
     impl Default for DeviceOrHostAddressConstAMDX {
         fn default() -> Self {
-            unsafe { core::mem::zeroed() }
+            unsafe { zeroed() }
         }
     }
     #[cfg(feature = "debug")]
-    impl core::fmt::Debug for DeviceOrHostAddressConstAMDX {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmtd::Debug for DeviceOrHostAddressConstAMDX {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
             write!(f, "DeviceOrHostAddressConstAMDX")
         }
     }

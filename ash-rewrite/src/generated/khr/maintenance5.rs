@@ -4,7 +4,9 @@
 #![doc(alias = "VK_KHR_maintenance5")]
 use crate::vk;
 use core::ffi::CStr;
-use core::ffi::c_void;
+use core::mem::MaybeUninit;
+use core::mem::transmute;
+use core::ffi;
 ///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl vk::Format {
     pub const A1B5G5R5_UNORM_PACK16_KHR: Self = Self::A1B5G5R5_UNORM_PACK16;
@@ -273,10 +275,10 @@ pub struct DeviceFn {
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const ffi::c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const ffi::c_void) -> Self {
         Self {
             get_rendering_area_granularity: unsafe {
                 unsafe extern "system" fn get_rendering_area_granularity(
@@ -290,7 +292,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_rendering_area_granularity
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             cmd_bind_index_buffer2: unsafe {
@@ -304,11 +306,7 @@ impl DeviceFn {
                     panic!("unable to load vkCmdBindIndexBuffer2KHR")
                 }
                 let val = _f(c"vkCmdBindIndexBuffer2KHR");
-                if val.is_null() {
-                    cmd_bind_index_buffer2
-                } else {
-                    ::core::mem::transmute(val)
-                }
+                if val.is_null() { cmd_bind_index_buffer2 } else { transmute(val) }
             },
             get_image_subresource_layout2: unsafe {
                 unsafe extern "system" fn get_image_subresource_layout2(
@@ -323,7 +321,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_image_subresource_layout2
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
             get_device_image_subresource_layout: unsafe {
@@ -338,7 +336,7 @@ impl DeviceFn {
                 if val.is_null() {
                     get_device_image_subresource_layout
                 } else {
-                    ::core::mem::transmute(val)
+                    transmute(val)
                 }
             },
         }
@@ -347,13 +345,13 @@ impl DeviceFn {
 #[derive(Clone)]
 pub struct Device {
     pub(crate) fp: DeviceFn,
-    pub(crate) handle: crate::vk::Device,
+    pub(crate) handle: vk::Device,
 }
 impl Device {
     pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
         let handle = device.handle;
         let fp = DeviceFn::load(|name| unsafe {
-            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+            transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
         });
         Self { handle, fp }
     }
@@ -362,7 +360,7 @@ impl Device {
         &self.fp
     }
     #[inline]
-    pub fn device(&self) -> crate::vk::Device {
+    pub fn device(&self) -> vk::Device {
         self.handle
     }
     ///vkGetRenderingAreaGranularity
@@ -371,7 +369,7 @@ impl Device {
         &self,
         rendering_area_info: &vk::RenderingAreaInfo<'_>,
     ) -> vk::Extent2D {
-        let mut granularity = core::mem::MaybeUninit::uninit();
+        let mut granularity = MaybeUninit::uninit();
         (self
             .fp
             .get_rendering_area_granularity)(
@@ -402,7 +400,7 @@ impl Device {
         image: vk::Image,
         subresource: &vk::ImageSubresource2<'_>,
     ) -> vk::SubresourceLayout2<'_> {
-        let mut layout = core::mem::MaybeUninit::uninit();
+        let mut layout = MaybeUninit::uninit();
         (self
             .fp
             .get_image_subresource_layout2)(
@@ -419,7 +417,7 @@ impl Device {
         &self,
         info: &vk::DeviceImageSubresourceInfo<'_>,
     ) -> vk::SubresourceLayout2<'_> {
-        let mut layout = core::mem::MaybeUninit::uninit();
+        let mut layout = MaybeUninit::uninit();
         (self
             .fp
             .get_device_image_subresource_layout)(

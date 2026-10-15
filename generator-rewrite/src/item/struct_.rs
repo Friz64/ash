@@ -1,7 +1,7 @@
 use super::{Code, Context};
 use crate::{
-    OutputContext,
-    output::{CodeMap, GlobExport, Import, OutputLocation},
+    Import, OutputContext,
+    output::{CodeMap, GlobExport, OutputLocation},
     rules::{BuilderMethod, BuilderRule},
 };
 use analysis::{
@@ -84,9 +84,11 @@ impl Code for Struct {
             lifetime_marker_val = quote! { _marker: PhantomData };
         }
 
+        let mut structure_type_enum = None;
         let tagged_structure = self.structure_type.as_ref().map(|ty| {
             let structure_ty = octx.type_tokens(TypeName::VK_STRUCTURE_TYPE, true, Some(&lifetime));
-            let ty = octx.enumerator_tokens(*ty, TypeName::VK_STRUCTURE_TYPE, true);
+            let enum_ = octx.enumerator_tokens(*ty, TypeName::VK_STRUCTURE_TYPE, true);
+            structure_type_enum = Some(enum_.clone());
             let extends = self.extends.iter().map(|ty| {
                 let is_provisional = ctx
                     .type_required_by(*ty)
@@ -95,16 +97,18 @@ impl Code for Struct {
                 let provisional_guard =
                     is_provisional.then_some(quote! { #[cfg(feature = "provisional")] });
 
+                octx.insert_import(Import::CrateExtends);
                 let extends = octx.type_tokens(*ty, true, None);
                 quote! {
                     #provisional_guard
-                    unsafe impl #lifetime_brackets crate::Extends<#extends> for #name {}
+                    unsafe impl #lifetime_brackets Extends<#extends> for #name {}
                 }
             });
 
+            octx.insert_import(Import::CrateTaggedStructure);
             quote! {
-                unsafe impl<#lifetime> crate::TaggedStructure<#lifetime> for #name {
-                    const STRUCTURE_TYPE: #structure_ty = #ty;
+                unsafe impl<#lifetime> TaggedStructure<#lifetime> for #name {
+                    const STRUCTURE_TYPE: #structure_ty = #enum_;
                 }
 
                 #(#extends)*
@@ -133,16 +137,15 @@ impl Code for Struct {
             let defaults = self.members.iter().map(|member| match member {
                 Member::Regular(RegularMember { decl, .. }) => {
                     let field_name = octx.variable_token(decl.name);
-                    if tagged_structure.is_some()
+                    if let Some(enum_) = structure_type_enum.take()
                         && decl.name.original() == "sType"
-                        && let Ty::ApiType(ty) = &decl.ty
-                        && ty == &TypeName::VK_STRUCTURE_TYPE
                     {
                         custom_default = true;
-                        quote! { #field_name: <Self as crate::TaggedStructure>::STRUCTURE_TYPE }
+                        quote! { #field_name: #enum_ }
                     } else if let Ty::Array(_, _) = &decl.ty {
                         custom_default = true;
-                        quote! { #field_name: unsafe { core::mem::zeroed() } }
+                        octx.insert_import(Import::CoreMemZeroed);
+                        quote! { #field_name: unsafe { zeroed() } }
                     } else {
                         quote! { #field_name: Default::default() }
                     }
@@ -201,8 +204,8 @@ impl Code for Struct {
             let name_string = name.to_string();
             quote! {
                 #[cfg(feature = "debug")]
-                impl #lifetime_brackets core::fmt::Debug for #name {
-                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                impl #lifetime_brackets fmtd::Debug for #name {
+                    fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
                         f.debug_struct(#name_string)
                             #( #debug_fields )*
                             .finish()
@@ -215,7 +218,11 @@ impl Code for Struct {
         let default = custom_default.then_some(default);
         let derive_debug =
             (!custom_debug).then_some(quote! { #[cfg_attr(feature = "debug", derive(Debug))] });
-        let debug = custom_debug.then_some(debug);
+        let debug = custom_debug.then(|| {
+            octx.insert_import(Import::DebugCoreFmt);
+            debug
+        });
+
         let derives = quote! {
             #derive_debug
             #[derive(Clone, Copy #derive_default)]
@@ -496,6 +503,8 @@ impl Code for Union {
             (self.members.iter()).map(|decl| decl.to_rust().tokens(&octx, Some(&lifetime)));
 
         let name_string = name.to_string();
+        octx.insert_import(Import::CoreMemZeroed);
+        octx.insert_import(Import::DebugCoreFmt);
         let code = quote! {
             #[repr(C)]
             #[derive(Clone, Copy)]
@@ -505,13 +514,13 @@ impl Code for Union {
 
             impl #lifetime_brackets Default for #name {
                 fn default() -> Self {
-                    unsafe { core::mem::zeroed() }
+                    unsafe { zeroed() }
                 }
             }
 
             #[cfg(feature = "debug")]
-            impl #lifetime_brackets core::fmt::Debug for #name {
-                fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            impl #lifetime_brackets fmtd::Debug for #name {
+                fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
                     write!(f, #name_string)
                 }
             }
